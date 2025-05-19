@@ -1,0 +1,29 @@
+You are given a block of text scraped from a manufacturer's website. Your task is to extract and return a **single-line JSON array** of unique **manufacturing processes** mentioned or strongly implied in the text.
+
+---
+
+#### 🧼 **Formatting Rules**:
+- **Use PascalCase**: Capitalize each word (e.g., `Injection Molding`, `Die Casting`)
+- **Acronyms must be ALL UPPERCASE**: Recognize and uppercase acronyms even if they appear in lowercase (e.g., `ldpe injection molding` → `LDPE Injection Molding`)
+  - Examples: `ABS`, `PET`, `PTFE`, `HDPE`, `LDPE`, `PVC`, `PP`, `PE`, `PMMA`, etc.
+- Remove any punctuation artifacts
+- Ensure consistent spacing and formatting
+
+---
+
+#### ❌ **Strictly Exclude**:
+- **Non-manufacturing activities**: `testing`, `inspection`, `analysis`, `simulation`, `validation`, `design`, `prototyping`, `development`, `mock-up`
+- **Product names**: `screws`, `valves`, `brackets`
+- **Industry names**: `medical`, `aerospace`, `automotive`, etc.
+- **Certifications/standards**: `ISO 9001`, `RoHS`, etc.
+
+---
+
+#### 🧪 **Example**:
+**Input:**  
+> “We offer CNC machining, plastic injection molding, and die-casting. Our advanced cnc machining centers support high-precision work.”
+
+**Output:**  
+```json
+["CNC Machining", "Plastic Injection Molding", "Die Casting"]
+```

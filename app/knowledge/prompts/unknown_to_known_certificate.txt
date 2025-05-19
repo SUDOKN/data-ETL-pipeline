@@ -1,0 +1,87 @@
+You are given two lists:
+
+### 1. `knowns`: A list of known certificates. Each item is a JSON object with:
+
+* `"name"`: The official name of the certificate (e.g., `"ISO 9001"`).
+* `"altLabels"`: Alternate names, acronyms, or synonyms (may be incomplete).
+* `"ancestors"`: Broader categories the certificate belongs to (e.g., `"Quality"`, `"FDA"`).
+
+### 2. `unknowns`: A list of certificate terms scraped from manufacturer websites. These are informal, inconsistent, or partially specified references to actual certificates.
+
+---
+
+## 🧠 Your Task
+
+For each `unknown` term, return the **best matching** `name` from the `knowns` list.
+
+Return a single JSON object:
+
+* **Keys**: original unknown terms (preserve exact casing),
+* **Values**: a single `name` from `knowns` (as a string), or `null` if no valid match exists.
+
+---
+
+## ✅ Matching Criteria
+
+### 1. **Exact or Alternate Label Match**
+
+Match if the unknown:
+
+* Exactly matches a `name` in `knowns`.
+* Matches any `altLabels` (case-insensitive).
+* Is a normalized variant of a name or altLabel **only if** it preserves **all** mandatory tokens—spacing, punctuation, and casing differences are allowed **except** you may **not** drop required specifiers (e.g., you may normalize `ISO/TS 16949` ↔ `ISO TS 16949`, but **not** `ISO/TS 16949` → `ISO 16949`).
+
+### 2. **Version Normalization (Same Standard Only)**
+
+If the unknown includes a version or revision (e.g., a year or edition), match to the base certificate **only if**:
+
+* The base certificate name—including any specifier tokens like `/TS` or `Rev`—matches exactly in `knowns`.
+* The issuer and naming pattern are the same.
+* The version is known to be part of the same standard (e.g., `"ISO/TS 16949:2009"` → `"ISO/TS 16949"`).
+* **Do not** normalize across different specification types (e.g., `"ISO/TS"` ≠ `"ISO"` unless explicitly listed in `altLabels`).
+
+---
+
+## 🚫 Do Not Match If:
+
+### 1. **Substring, Acronym, or Loose Semantic Match Only**
+
+* Do **not** match based on partial overlaps, loose acronyms, or common keywords.
+* Example: `"AWS"` must not match `"AWS Welder"` unless `"AWS"` is explicitly listed in `altLabels`.
+
+### 2. **Successor or Replacement Inference**
+
+* Never map to a replacement or successor certificate **unless the newer certificate’s name is explicitly mentioned** in the unknown.
+* Examples:
+
+  * `"ISO/TS 16949:2009"` → ✅ `"ISO/TS 16949"`
+  * `"IATF 16949 (formerly ISO/TS 16949)"` → ✅ `"IATF 16949"`
+  * `"ISO/TS 16949"` → ❌ do not map to `"IATF 16949"` unless `"IATF 16949"` appears in the unknown term.
+
+---
+
+## 🧾 Output Format
+
+Return a JSON object:
+
+* Key: the original unknown term
+* Value: the best matching `name` from `knowns`, or `null` if no match
+
+---
+
+### Example
+
+```json
+{
+  "ISO 9001:2015": "ISO 9001",
+  "QS-9000": "QS 9000",
+  "NIST Compliance": "NIST",
+  "AS9100 Rev D": "AS 9100",
+  "ISO9000": "ISO 9000",
+  "AWS D1.1": null,
+  "ISO/TS 16949:2009": "ISO/TS 16949",
+  "IATF 16949 (formerly ISO/TS 16949)": "IATF 16949",
+  "LEED Certification": "LEED",
+  "Random Safety Cert": null
+}
+```

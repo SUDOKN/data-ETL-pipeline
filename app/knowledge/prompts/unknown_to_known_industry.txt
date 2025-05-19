@@ -1,0 +1,88 @@
+You are given two lists:
+
+- **`knowns`**: A list of known industries. Each item is a JSON object with:
+  - `"name"`: The canonical name of the industry (e.g., `"Automotive"`)
+  - `"altLabels"`: Alternate or synonymous terms (may be incomplete).
+  - `"ancestors"`: Broader industry groupings this industry belongs to (e.g., `"Manufacturing"`, `"Transportation"`).
+
+- **`unknowns`**: A list of unstructured industry-related terms. These may be generic, trade-specific, abbreviated, or reformulated expressions of an industry.
+
+---
+
+### 🔍 Your Task
+
+For each unknown term, identify the **single most specific matching known industry**.
+
+Return a **JSON object** where:
+- Each **key** is the unknown term (preserve original casing),
+- Each **value** is the `"name"` of the most specific matching known industry — **always return the `"name"`, never an `altLabel`**,
+- If no valid match exists, map the unknown to `null`.
+
+**Important**:
+  - **Different unknown terms may independently map to the same known industry.**
+  - **It is perfectly valid for multiple unknowns to match the same known industry if they each meet the matching rules.**
+
+---
+
+### 🧠 Matching Rules
+
+#### 1. **Exact, Synonym, or Reformulated Match**
+A known industry is a match if the unknown:
+- Matches its `"name"` or any `"altLabels"`,
+- Or is a **widely accepted synonym**, abbreviation, or informal rephrasing of the known industry name.
+
+> ✅ Examples:
+> - `"EV"` → "Electric Vehicle" → `"Automotive"`  
+> - `"Auto"` → `"Automotive"`  
+> - `"Aero"` → `"Aerospace"`
+
+
+#### 2. **Subtype or Specialization Match**
+An unknown is a valid match to a known industry if:
+- It refers to a **specific sector, market segment, or subdomain** within that industry,
+- And all `"ancestors"` of the known industry are **compatible with the unknown** — no category conflicts.
+
+> ✅ Example: `"Commercial Aircraft"` → `"Aerospace"` (a known subdomain of the industry)  
+> ✅ Example: `"Electric Vehicles"` → `"Automotive"` (subsegment)  
+> ❌ `"Green Energy"` → should not match `"Greenhouse Equipment"` if ancestors suggest unrelated domains.
+
+#### 3. **Most Specific Match Wins**
+- If multiple valid matches exist:
+  - **Return the match with the most ancestors** (i.e., the most specific industry in the hierarchy).
+  - If two matches are tied in depth, return either one.
+- Only return **one match per unknown**.
+
+#### 4. **Independent Matching**
+- Each unknown is matched independently.
+- It is valid for multiple unknowns to map to the same known industry.
+
+---
+
+### 🚫 Do Not
+
+- Do **not** match based on vague or partial keyword overlap.
+- Do **not** allow a match if any `antiLabel` contradicts the unknown.
+- Do **not** guess if the relationship is unclear or ambiguous.
+- Do **not** return multiple matches for a single unknown — return only the single most specific match.
+
+---
+
+### ✅ Output Format
+
+Return a valid JSON object like:
+
+```json
+{
+  "Aerospace": "Aerospace",
+  "Electric Vehicles": "Automotive",
+  "Commercial Aircraft": "Aerospace",
+  "Government Defense": "Defense",
+  "Heating": null,
+  "Plastics": null,
+  "Communications": "Telecommunications"
+}
+```
+
+- Use `null` if no valid match exists.
+- Return only the `"name"` field of the most specific matching industry.
+- Do not include comments, formatting, or explanations — just raw valid JSON.

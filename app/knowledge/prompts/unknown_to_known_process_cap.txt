@@ -1,0 +1,102 @@
+You are given two lists:
+
+- **`knowns`**: A list of known manufacturing processes. Each item is a JSON object with:
+  - `"name"`: The primary label of a manufacturing process (e.g., `"Injection Molding"`).
+  - `"altLabels"`: A list of alternate or synonymous names (may be incomplete).
+  - `"ancestors"`: A list of broader categories this process belongs to (e.g., `"Molding"`, `"Machining"`, `"Assembly"`, `"Welding"`).
+
+- **`unknowns`**: A list of process terms. These may be informal names, partial phrases, trade-specific terms, abbreviations, or variants found in scraped manufacturing descriptions.
+
+---
+
+### 🔍 Your Task
+
+For each `unknown` term, determine the **single best matching process** from the `knowns` list.
+
+Return a **JSON object** where:
+- Each **key** is an unknown term (preserve original casing),
+- Each value is the `"name"` field of the best matching process in the knowns list — **always return the `"name"`, never an `altLabel`**.
+- If no valid match exists, map the unknown to `null`.
+
+**Important**:
+  - **Different unknown terms may independently map to the same known process.**
+  - **It is perfectly valid for multiple unknowns to match the same known process if they each meet the matching rules.**
+
+---
+
+### 🧠 Matching Rules
+
+#### 1. **Direct or Canonical Match**
+A known process is a match if the unknown term:
+- Exactly matches the known process’s `"name"` label,
+- Matches any of its `"altLabels"`,
+- Or is a **widely accepted synonym** of the known process, even if not explicitly listed.
+
+> ✅ If matched via an altLabel or synonym, you must still return the `"name"` value of the match. E.g: ❌ "Iron Stamping": "Metal Stamping", ✅ "Iron Stamping": "Stamping"
+> ✅ Use manufacturing knowledge and standards to validate terminology, not just literal matches.
+
+#### 2. **Strict Subtype Match**
+Even without a direct match, a known process is valid if:
+- The unknown is a **technically defined subtype or specific variation** of the known process,
+- The relationship is **recognized by authoritative sources** (e.g., AWS, ISO, SME standards),
+- The known and unknown are **not sibling or parallel processes** under the same parent category,
+- **All ancestors of the known process must be compatible with the unknown** — none may conflict.
+
+> ❗ For example, `"Wire Harness Assembly"` must **not** match any `"Welding"` process, even if they both mention `"Wire"`, because `"Welding"` and `"Assembly"` are incompatible categories.
+
+> ✅ Example: `"Zinc Die Casting"` → `"Die Casting"` is valid, since `"Zinc Die Casting"` is a specific, standard variant and shares compatible ancestors like `"Casting"`.
+
+#### 3. **Abbreviation or Shorthand Expansion**
+If the unknown term is an abbreviation (e.g., `"EDM"`, `"CNC"`):
+- Expand the abbreviation using standard manufacturing terminology, Example: "EDM" → "Electric Discharge Machining"
+- Then apply Rules 1 and 2 to determine the best matching process.
+
+#### 4. **Selecting the Best Match**
+- If multiple known processes match:
+  - **Select the one with the most ancestors** — the most specific in the hierarchy.
+  - If multiple matches are tied in depth, return either.
+- Only return **one match** per unknown — the best one.
+
+✅ Example:
+Unknown: "Cold Chamber Die Casting"
+Matches:
+  - "Casting" (0 ancestors)
+  - "Die Casting" (1 ancestor: "Casting")
+  - "Cold Chamber Die Casting" (2 ancestors: "Casting", "Die Casting")
+    ✅ Best Match: "Cold Chamber Die Casting"
+
+---
+
+### 🚫 Do Not
+
+- Do **not** match based on superficial keyword overlap (e.g., `"Wire"` does not imply related processes).
+- Do **not** assume matches just because `altLabels` is empty — use domain reasoning.
+- Do **not** return altLabels in the output — only the `"name"` value of the matched process.
+- Do **not** map sibling processes to one another unless one is a true subtype.
+- Do **not** match processes with **conflicting top-level categories** (e.g., `"Cutting"` vs `"Forming"`, `"Assembly"` vs `"Welding"`).
+- Do **not** invent mappings outside recognized manufacturing practices.
+
+---
+
+### ✅ Output Format
+
+Return a valid JSON object:
+```json
+{
+  "Lost Wax Casting": "Investment Casting",
+  "MIG": "Gas Metal Arc Welding",
+  "MIG Welding": "Gas Metal Arc Welding",
+  "Investment Casting": "Investment Casting",
+  "CNC Laser Cutting": "CNC Laser Cutting",
+  "Zinc Die Casting": "Die Casting",
+  "Injection Molding": "Injection Molding",
+  "Cold Chamber Die Casting": "Cold Chamber Die Casting",
+  "Plasma Cutting": "Plasma Cutting",
+  "Abrasive": null,
+  "Aluminum Extruding": "Extruding"
+}
+```
+
+- Use only the original unknown terms as keys of the JSON object.
+- Return only the `"name"` field of the best matching process, use `null` if no valid match exists.
+- Return **only** the JSON — no explanations, comments, or extra formatting.

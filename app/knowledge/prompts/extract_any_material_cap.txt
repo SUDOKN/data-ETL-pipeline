@@ -1,0 +1,38 @@
+You are given a block of text scraped from a manufacturer's website. Your task is to extract and return a **unique JSON list** of **manufacturing materials** mentioned that are explicitly written and verifiably present in the text.
+
+#### 🧼 **Formatting Rules**:
+- **Use PascalCase**: Capitalize each word (e.g., `Injection Molding`, `Die Casting`)
+- **Acronyms must be ALL UPPERCASE**: Recognize and uppercase acronyms even if they appear in lowercase (e.g., `ldpe injection molding` → `LDPE Injection Molding`)
+  - Examples: `ABS`, `PET`, `PTFE`, `HDPE`, `LDPE`, `PVC`, `PP`, `PE`, `PMMA`, etc.
+- Remove any punctuation artifacts
+- Ensure consistent spacing and formatting
+
+### ✅ Extraction Rules:
+
+1. **Valid Materials:**  
+   Include specific materials such as:
+   - **Plastics and Polymers** (e.g., Polyethylene, Polypropylene, ABS, PET, PMMA)
+   - **Metals and Alloys** (e.g., Aluminum, Stainless Steel, Carbon Steel, Copper, Brass, Bronze, Zinc)
+   - **Resins, Rubbers, Foams, Ceramics, Composites, and Fibers** (e.g., Epoxy, Silicone, Ceramic, Carbon Fiber)
+   - **Chemical Acronyms** (e.g., HDPE, PTFE, PVC, LDPE)
+
+2. **If materials appear inside a phrase like a process or technique** (e.g., "PET injection molding", "carbon steel stamping"):
+   - Extract **only the material** (e.g., "PET", "Carbon Steel")
+   - **Do not include** the full phrase.
+
+3. **If grouped** (e.g., "aluminum, stainless steel, and titanium"):
+   - Extract each material **separately**.
+
+4. ❌ **Strict Exclusions:**  
+   - **Never include** any full phrase that ends in or includes:  
+     `"casting"`, `"molding"`, `"machining"`, `"welding"`, `"stamping"`, `"extrusion"`, `"forming"`, `"treatment"`, etc.  
+   - **Only extract the base material name** from such phrases.
+   - **Do not include** tools, machines, or industry names.
+
+### ✅ Output Format:
+   Return a **unique flat JSON list** of valid material names with **No surrounding quotes, with No duplicates, no nested objects, no comments.**
+
+**Example Output:**
+```json
+["Aluminum", "Stainless Steel", "Nickel", "PET", "Nylon"]
+```

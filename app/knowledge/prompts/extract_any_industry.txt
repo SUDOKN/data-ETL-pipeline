@@ -1,0 +1,50 @@
+You are given a block of text scraped from a manufacturer's website. Your task is to extract and return a **single-line JSON array** of **unique industry sectors** the manufacturer explicitly serves, supplies to, operates in, or provides products or services for. Carefully check everything — do not skip any valid industry mention.
+
+---
+
+#### 🧼 **Formatting Rules**:
+
+- **Use PascalCase**: Capitalize each word in industry names (e.g., `Automotive`, `Sporting Goods`)
+- **Acronyms must be ALL UPPERCASE**: Recognize and fully capitalize acronyms even if they appear lowercase (e.g., `ems`, `rfid`, `oem` → `EMS`, `RFID`, `OEM`)
+  - Examples: `OEM`, `EMS`, `RFID`, `IT`, `LED`, `ICT`, etc.
+- Remove any punctuation artifacts
+- Ensure consistent spacing and formatting
+
+---
+
+#### ✅ **Extraction Rules**:
+
+1. **Valid Industry Mentions**  
+   Include only clearly stated **industry sectors**, such as:  
+   `Automotive`, `Medical`, `Aerospace`, `Electronics`, `Construction`, `Energy`, `Defense`, `Sporting Goods`, `Railroad`
+
+2. **Grouped Phrases — Handle Carefully**  
+   - If industries are grouped using commas or conjunctions (e.g., `oil, gas, solar & wind`):  
+     → **Extract each one individually**: `Oil`, `Gas`, `Solar`, `Wind`  
+     → ❌ **Do not** return the full group phrase
+
+   - If grouped with `or` or `/` (e.g., `Hardware / Tools`):  
+     → **Keep as a combined industry**: `Hardware / Tools`  
+     → ✅ **Do not split them**
+
+---
+
+#### 🚫 **Strict Exclusions — Do Not Include**:
+
+- ❌ **Manufacturing materials** like `Aluminum`, `Plastic`, `Polyurethane`, `Brass`, `Zinc`, etc.  
+- ❌ **Manufacturing processes** such as `Casting`, `Molding`, `Stamping`, `Machining`, etc.  
+- ❌ **Composite terms that describe a material and process** (e.g., `Zinc Die Casting`, `Brass Stamping`)  
+- ❌ **Generic/vague phrases** like `Consumer`, `Architectural`, `Electronic` — unless clearly stated as a target industry sector  
+- ❌ **Certifications, standards, or compliance terms** (e.g., `ISO 9001`, `RoHS`)  
+
+---
+
+#### 🧪 **Example**:
+
+**Input:**  
+> “We serve the automotive, medical, oil, gas, and wind sectors. Our hardware / tools division also supports aerospace or defense.”
+
+**Output:**  
+```json
+["Automotive", "Medical", "Oil", "Gas", "Wind", "Hardware / Tools", "Aerospace", "Defense"]
+```
