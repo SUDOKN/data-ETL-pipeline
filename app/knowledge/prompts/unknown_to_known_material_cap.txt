@@ -1,0 +1,101 @@
+You are given two lists:
+
+- **`knowns`**: A list of known materials. Each item is a JSON object with:
+  - `"name"`: The canonical name of the material (e.g., `"Steel"`).
+  - `"altLabels"`: Alternate or synonymous names.
+  - `"ancestors"`: A list of broader material categories this material belongs to.
+
+- **`unknowns`**: A list of material terms that may be acronyms, informal terms, variants, or trade names.
+
+---
+
+### 🔍 Your Task
+
+For each `unknown` term, determine the **single most specific material** from the `knowns` list.
+
+Return a **JSON object** where:
+- Each **key** is an unknown term (preserve original casing),
+- Each **value** is the `"name"` field of the most specific material in the knowns list — **always return the `"name"`, never an `altLabel`**.
+- If no valid match exists, map the unknown to `null`.
+
+**Important**:
+  - **Different unknown terms may independently map to the same known material.**
+  - **It is perfectly valid for multiple unknowns to match the same known material if they each meet the matching rules.**
+
+---
+
+### 🧠 Matching Rules
+
+#### 1. **Exact Match**
+- A known material is a match if the unknown equals:
+  - the `name` of a known material, or
+  - any value in its `altLabels`.
+  - a synonym, acronym, trade name, or variant a known material — **even if not listed in `altLabels`**.
+
+#### 2. **Acronym Expansion**
+- Expand common material acronyms using your knowledge and match them:
+  - `PTFE` → **Teflon**
+  - `PMMA` → **Acrylic** or **Plexiglas**
+  - `PP` → **Polypropylene**
+  - `HDPE` → **Polyethylene**
+  - `LDPE` → **Polyethylene**
+  - `PET` → **Polyethylene Terephthalate**
+  - `EPDM` → **Rubber**
+- Use the expanded term to find the best match using the other rules.
+
+#### 3. **Logical Subtype Match**
+- If an unknown is a subtype of a known material, it can match **only if it fits all of the known’s ancestors**.
+  - E.g., `"Polypropylene"` is a subtype of `"Plastic"` → valid.
+  - `"Zamak 5"` is a subtype of `"Zinc Alloy"` → valid.
+
+#### 4. **Fallback to Ancestors Allowed**
+- If a specific material (e.g., `"Polypropylene"`) does **not** exist in `knowns`, but a broader parent like `"Plastic"` does, map it to that broader match.
+- You may always return a broader category **as long as all ancestor conditions are satisfied**.
+
+#### 5. **Most Specific Match Wins**
+- If multiple valid known materials could match an unknown, **choose the one with the most ancestors** — meaning the most specific match in the hierarchy.
+- Do not stop at a broad category if a more specific known material is present and logically valid.
+
+**Examples:**
+  "Polyethylene" → "Polyethylene", not just "Plastic"
+  "PET" → "PETP", not just "Plastic"
+  "PMMA" → "Plexiglas", or "Acrylic" — both more specific than "Plastic"
+  "Zamak 3" → "Zinc Alloy", more specific than "Metal"
+
+
+#### 7. **Each Unknown Is Independent**
+- Evaluate each unknown independently.
+- It's valid for multiple unknowns to map to the same known.
+
+---
+
+### 🚫 Do Not
+
+- Do not return multiple matches.
+- Do not guess if there’s no confident match — return `null`.
+- Do not match based on vague substring similarity (e.g., “Steel” in “Chromium Steel” is fine only if it's logically valid).
+
+---
+
+### ✅ Output Format
+
+Return a JSON object like:
+```json
+{
+  "ABS": "ABS",
+  "Zamak": "Zinc alloy",
+  "Zamak 5": "Zinc alloy",
+  "PMMA": "Plexiglas",
+  "HDPE": "Polyethylene",
+  "Carbon Steel": "Steel",
+  "PET": "PETP",
+  "Acrylic": "Acrylic",
+  "Polyurethane": "Plastic",
+  "Zamak 3": "Zinc alloy",
+  "Alloy": null
+}
+```
+
+- Use only the original unknown terms as keys of the JSON object.
+- Return only the `"name"` field of the most specific matching material, use `null` if no valid match exists.
+- Do not include comments, formatting, or explanations — just raw valid JSON.

@@ -1,0 +1,45 @@
+You are provided with a block of text scraped from a manufacturer's website. Your task is to extract and return a **single-line JSON array** of **unique manufacturing and regulatory certificates** the company claims to hold. Follow the rules carefully — do not miss valid mentions, and do not include irrelevant items.
+
+---
+
+### 🧼 **Formatting Rules**:
+
+- Preserve the **standard capitalization** of certificate names as they are commonly written:
+  - Examples: `"ISO 9001"`, `"IATF 16949"`, `"OHSAS 18001"`, `"AS9100"`, `"CE Marking"`, `"RoHS Compliance"`, `"FDA Registration"`
+- Remove punctuation artifacts
+- Ensure clean, consistent spacing
+
+---
+
+### ✅ **Extraction Rules**:
+
+1. **Valid Certificates**  
+   Include only formal, specific manufacturing or regulatory certificates:
+   - e.g., `"ISO 9001"`, `"ISO 13485"`, `"IATF 16949"`, `"AS9100"`, `"OHSAS 18001"`, `"FDA Registration"`, `"CE Marking"`, `"RoHS Compliance"`, `"REACH"`
+
+2. **Grouped Mentions**  
+   - If multiple certificates are listed with commas or conjunctions (`and`, `&`), **split and extract them individually**
+   - ✅ Correct: `"ISO 9001"`, `"ISO 14001"`  
+   - ❌ Incorrect: `"ISO 9001 & 14001"`
+
+3. **Company-Level Certification Only**  
+   - Accept phrases like `"ISO certified facility"` or `"CE marked equipment"` if they imply company certification
+   - ❌ Do not include certifications mentioned **only in relation to employees** (e.g., `"our welder is AWS certified"`)
+
+---
+
+### 🚫 **Strict Exclusions — Do Not Include**:
+
+- ❌ Individual qualifications or employee-only credentials  
+- ❌ Manufacturing processes, quality practices, or general claims (e.g., `"six sigma"`, `"quality system"`, `"continuous improvement"`) unless tied directly to a certificate  
+- ❌ Generic claims like `"meets standards"` or `"compliant"` with no specific cert mentioned
+
+---
+
+### 🧪 **Example Input**:
+> “We hold ISO 9001, ISO 14001, and OHSAS 18001 certifications. Our plant is CE marked and RoHS compliant. Several employees are AWS D1.1 certified.”
+
+**Output:**
+```json
+["ISO 9001", "ISO 14001", "OHSAS 18001", "CE Marking", "RoHS Compliance"]
+```
