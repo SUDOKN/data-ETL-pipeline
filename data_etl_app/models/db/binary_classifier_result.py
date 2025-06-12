@@ -8,7 +8,7 @@ class BinaryClassifierResult(TypedDict):
     explanation: str
 
 
-class MBinaryClassifierResult(BaseModel):
+class BinaryClassifierResult_DBModel(BaseModel):
     name: Optional[str] = Field(default=None)
     answer: bool
     explanation: str

@@ -10,7 +10,7 @@ from open_ai_key_app.models.gpt_model import (
     ModelParameters,
     DefaultModelParameters,
 )
-from models.binary_classifier import (
+from data_etl_app.models.db.binary_classifier_result import (
     BinaryClassifierResult,
 )
 
