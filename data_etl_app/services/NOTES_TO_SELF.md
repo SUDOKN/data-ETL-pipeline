@@ -12,3 +12,8 @@ Summary:
 
 With a pure function and identical input, you won't get data corruption, but you still risk race conditions and unpredictable behavior.
 The lock is a safety measure for both now and future code changes.
+
+
+## Difference between service and util:
+1. util is usually a pure function and stateless, can be used widely by external modules. A service will carry a state and logic to interact with that state, the state may or may not be permanent.
+2. Even if a service is: Pure, Procedural, Stateless, it’s still a service if it represents a business capability or use case. In Contrast, a Util: Doesn’t know or care about business context, Isn’t tied to any one domain, Can be reused broadly across unrelated parts of the app.

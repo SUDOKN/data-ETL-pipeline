@@ -10,17 +10,19 @@ from models.db.manufacturer import Manufacturer
 from models.db.extraction_error import ExtractionError
 from models.binary_classifier import MBinaryClassifierResult
 from models.extraction import ExtractedResults
+
 from data_etl_app.services.extractor import extract_keywords
 from data_etl_app.services.ontology_service import ontology_service
 from data_etl_app.services.prompt_service import prompt_service
-
 from data_etl_app.services.binary_classifier import (
     binary_classifier,
 )
-from data_etl_app.utils.multi_key_gpt import num_tokens_from_string
-from data_etl_app.utils.key_util import pool
 from data_etl_app.utils.chunk_util import ChunkingStrat
 from data_etl_app.utils.mongo_client import init_db
+
+from open_ai_key_app.services.openai_keypool import keypool
+
+from open_ai_key_app.utils.ask_gpt import num_tokens_from_string
 
 
 async def process_mfg_text(mfg_txt: str, manufacturer: Manufacturer):
@@ -314,7 +316,7 @@ async def iterate_txt_files(
                 print("No successful tasks yet; skipping timing estimate.")
 
             # print number of active keys in the pool
-            print(f"Active keys in pool: {len(pool.slots)}\n\n")
+            print(f"Active keys in pool: {len(keypool.slots)}\n\n")
 
         except Exception as batch_err:
             print(f"Batch {i}-{i + batch_size} failed: {batch_err}")

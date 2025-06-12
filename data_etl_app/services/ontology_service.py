@@ -1,12 +1,10 @@
 import threading
 import os
 import rdflib
-from aws_service.s3_util import read_s3_file
-from data_etl_app.utils.rdf_to_knowledge import get_graph, build_children
-
-# from functools import cached_property
 from typing import Dict, List
 
+from data_etl_app.utils.s3_util import read_s3_file
+from data_etl_app.utils.rdf_to_knowledge import get_graph, build_children
 from data_etl_app.models.skos_concept import Concept, ConceptNode
 from data_etl_app.utils.rdf_to_knowledge import (
     insert_ancestors,

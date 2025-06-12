@@ -1,7 +1,7 @@
 import bisect
 from dataclasses import dataclass
 
-from utils.multi_key_gpt import num_tokens_from_string
+from open_ai_key_app.utils.ask_gpt import num_tokens_from_string
 
 
 @dataclass

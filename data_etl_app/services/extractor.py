@@ -5,26 +5,28 @@ import json
 import re
 from typing import TypedDict
 
-from models.skos_concept import Concept, ConceptJSONEncoder
-from models.extraction import (
+from data_etl_app.models.skos_concept import Concept, ConceptJSONEncoder
+from data_etl_app.models.extraction import (
     ExtractionResult,
 )
-from models.extractor import (
+from data_etl_app.models.extractor import (
+    ExtractionResultsStats,
     ExtractionResultJSONSerialized,
 )
-from data_etl_app.utils.key_util import pool
-from data_etl_app.utils.multi_key_gpt import (
-    ask_gpt_async,
-    num_tokens_from_string,
+
+from open_ai_key_app.models.gpt_model import (
     GPTModel,
     GPT_4o_mini,
-    DefaultModelParameters,
     ModelParameters,
+    DefaultModelParameters,
+)
+from open_ai_key_app.utils.ask_gpt import (
+    ask_gpt_async,
+    num_tokens_from_string,
 )
 from data_etl_app.utils.chunk_util import (
     ChunkingStrat,
-    get_chunks,
-    get_chunks_with_overlap,
+    get_chunks_with_boundaries,
 )
 
 
@@ -66,7 +68,7 @@ async def llm_search(
     # print(f'prompt:{prompt}')
     llm_results: set[str] = set()
     for _ in range(num_passes):
-        gpt_response = await ask_gpt_async(text, prompt, pool, gpt_model, model_params)
+        gpt_response = await ask_gpt_async(text, prompt, gpt_model, model_params)
 
         # if debug:
         #     print(f"llm_search gpt_response:{gpt_response}")
@@ -100,9 +102,15 @@ def search_result_to_json_serializable(
     return {
         "results": list(search_result["results"]),
         "stats": {
+            "search": {
+                chunk_bounds: {
+                    "human": list(v["human"] or []),
+                    "brute": [str(c) for c in v["brute"]],
+                    "llm": list(v["llm"]),
+                }
+                for chunk_bounds, v in search_result["stats"]["search"].items()
+            },
             "mapping": mapping,
-            "brute_search": [str(k) for k in search_result["stats"]["brute_search"]],
-            "llm_search": list(search_result["stats"]["llm_search"]),
             "unmapped_brute": [
                 str(k) for k in search_result["stats"]["unmapped_brute"]
             ],
@@ -112,7 +120,7 @@ def search_result_to_json_serializable(
 
 
 async def extract_keywords(
-    concept_type: str,
+    concept_type: str,  # used for logging and debugging
     manufacturer_url: str,
     text: str,
     known_concepts: list[Concept],
@@ -124,15 +132,12 @@ async def extract_keywords(
     debug: bool = False,
 ) -> ExtractionResult:
 
-    resultBundle: ExtractionResult = {
-        "results": set(),
-        "stats": {
-            "mapping": {},  # dict[known -> list[unknown]]
-            "brute_search": set(),
-            "llm_search": set(),
-            "unmapped_brute": set(),  # surrounding context makes them irrelevant
-            "unmapped_llm": set(),  # should ideally contain out of vocab or hallucinated keywords that were not present in llm_search
-        },
+    results = set[str]()
+    stats: ExtractionResultsStats = {
+        "search": {},
+        "mapping": {},
+        "unmapped_brute": set[Concept](),
+        "unmapped_llm": set[str](),
     }
 
     """
@@ -145,15 +150,7 @@ async def extract_keywords(
         2. can have false positives because :
         - ignores surrounding context
         - relies on the fact that keywords are so specific, it's unlikely they are used in irrelevant/incorrect context)
-    """
-    resultBundle["stats"]["brute_search"] = brute_search(text, known_concepts)
-
-    if debug:
-        print(
-            f'\n\n-----------------\nresultBundle["stats"]["brute_search"]\n{len(resultBundle["stats"]["brute_search"])}: {resultBundle["stats"]["brute_search"]}'
-        )
-
-    """
+    
     KEYWORD EXTRACTION ---------------------------------------------------------- #
     step2: ask LLM (without passing vocabulary)
     pros:
@@ -163,12 +160,9 @@ async def extract_keywords(
         2. multiple passes may be required to get everything (soln: increase num_passes)
     """
 
-    if chunk_strategy.overlap == 0:
-        chunks = get_chunks(text, chunk_strategy.max_tokens)
-    else:
-        chunks = get_chunks_with_overlap(
-            text, chunk_strategy.max_tokens, chunk_strategy.overlap
-        )
+    chunks = get_chunks_with_boundaries(
+        text, chunk_strategy.max_tokens, chunk_strategy.overlap
+    )
 
     orphan_brutes: set[Concept] = set()
     orphan_llm: set[str] = set()
@@ -177,16 +171,28 @@ async def extract_keywords(
         set()
     )  # needs to be outside else orphan_brutes is incorrect if an old llm search result is found in the next chunk
 
-    for idx, chunk in enumerate(chunks):
+    for chunk_bounds, chunk in chunks.items():
+        # BRUTE SEARCH
+        stats["search"][f"{chunk_bounds}"]["brute"] = brute_search(
+            chunk, known_concepts
+        )
+
+        if debug:
+            print(
+                f'\n\n-----------------\nstats["search"][f"{chunk_bounds}"]["brute"]\n{len(stats["search"][f"{chunk_bounds}"]["brute"])}: {stats["search"][f"{chunk_bounds}"]["brute"]}'
+            )
+
+        # LLM SEARCH
         llm_search_results: set[str] = await llm_search(
             chunk, search_prompt, gpt_model, model_params, True
         )
-        resultBundle["stats"]["llm_search"] |= llm_search_results
+        stats["search"][f"{chunk_bounds}"]["llm"] |= llm_search_results
         if debug:
             print(
-                f"llm_search_results {idx} {len(llm_search_results)}: {llm_search_results}"
+                f"llm_search_results {chunk_bounds} {len(llm_search_results)}: {llm_search_results}"
             )
 
+        # MUTUALLY AGREED
         for kc in known_concepts:
             common_labels = kc.matchLabels & llm_search_results
             if common_labels:
@@ -206,12 +212,10 @@ async def extract_keywords(
                 f"mutually agreed {len(mutually_agreed_concept_labels)}:{mutually_agreed_concept_labels}\n"
             )
 
-        resultBundle[
-            "results"
-        ] |= mutually_agreed_concept_labels  # add to final results because mutually agreed
+        results |= mutually_agreed_concept_labels  # add to final results because mutually agreed
 
         orphan_brutes |= (
-            resultBundle["stats"]["brute_search"] - mutually_agreed_concepts
+            stats["search"][f"{chunk_bounds}"]["brute"] - mutually_agreed_concepts
         )
         orphan_brute_labels = {str(k) for k in orphan_brutes}
 
@@ -243,7 +247,7 @@ async def extract_keywords(
     mapped_known_concept_labels = set(
         str(concept) for concept in map_results["known_to_unknowns"].keys()
     )
-    resultBundle["results"] = resultBundle["results"] | mapped_known_concept_labels
+    results = results | mapped_known_concept_labels
 
     mapped_orphan_brutes: set[Concept] = {
         ob for ob in orphan_brutes if str(ob) in mapped_known_concept_labels
@@ -257,11 +261,11 @@ async def extract_keywords(
         print(f"unmapped_brute_labels {len(orphan_brute_labels)}:{orphan_brute_labels}")
         print(f"orphan llm {len(orphan_llm)}:{orphan_llm}")
 
-    resultBundle["stats"]["unmapped_brute"] |= orphan_brutes
-    resultBundle["stats"]["unmapped_llm"] |= orphan_llm
-    resultBundle["stats"]["mapping"] = map_results["known_to_unknowns"]
+    stats["unmapped_brute"] |= orphan_brutes
+    stats["unmapped_llm"] |= orphan_llm
+    stats["mapping"] = map_results["known_to_unknowns"]
 
-    return resultBundle
+    return {"results": results, "stats": stats}
 
 
 class MapKnownToUnknownResult(TypedDict):
@@ -290,7 +294,7 @@ async def mapKnownToUnknown(
         print(f"context {num_tokens_from_string(context)}:{context}")
 
     gpt_response = await ask_gpt_async(
-        context, prompt, pool, GPT_4o_mini, DefaultModelParameters
+        context, prompt, GPT_4o_mini, DefaultModelParameters
     )
     # gpt_response = await ask_gpt_async(context, prompt, pool, gpt_model, model_params)
 
