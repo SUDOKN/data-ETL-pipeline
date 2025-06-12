@@ -1,0 +1,14 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Debug Pytest: test_chunk_util.py",
+      "type": "debugpy",
+      "request": "launch",
+      "module": "pytest",
+      "justMyCode": false,
+      "args": ["tests/test_utils/test_chunk_util.py"],
+      "console": "integratedTerminal"
+    }
+  ]
+}

@@ -15,7 +15,7 @@ def test_chunks_with_overlap_and_correct_boundaries(monkeypatch):
         "data_etl_app.utils.chunk_util.num_tokens_from_string", lambda line: 1
     )
     # Prepare text with 5 lines
-    text = """
+    text = """\
 L1
 L2
 L3
@@ -27,13 +27,13 @@ L5"""  # note: only first 4 lines end with newline when splitlines(keepends=True
     # Expect two chunks: first with lines L1, L2, L3; second with L3, L4, L5
     # Calculate expected keys and values manually
     # First chunk: start=0, last_line_end at end of "L3\n" => offset 9
-    expected_first_text = "L1\nL2\nL3\n"
-    expected_second_text = "L3\nL4\nL5"
+    # expected_first_text = "L1\nL2\nL3\n"
+    # expected_second_text = "L3\nL4\nL5"
 
     # Build expected result dict
     expected = {
-        "0:9": expected_first_text,
-        "6:14": expected_second_text,
+        "0:9": text[0:9],
+        "6:14": text[6:14],
     }
     assert chunks == expected
 
@@ -52,3 +52,20 @@ def test_full_text_as_single_chunk_when_under_limit(monkeypatch):
     start, end = key.split(":")
     assert start == "0"
     assert int(end) == len(text)
+
+
+def test_chunks_with_zero_overlap(monkeypatch):
+    # Monkeypatch token-count to 1 token per line
+    monkeypatch.setattr(
+        "data_etl_app.utils.chunk_util.num_tokens_from_string", lambda line: 1
+    )
+    # Prepare text with 5 lines
+    text = "L1\nL2\nL3\nL4\nL5"
+    # Use max_tokens=3 and zero overlap
+    chunks = get_chunks_with_boundaries(text, MAX_CHUNK_TOKENS=3, overlap_ratio=0)
+    # Expect two chunks: first L1-L3, second L4-L5 without overlap
+    expected = {
+        "0:9": text[0:9],
+        "9:14": text[9:14],
+    }
+    assert chunks == expected

@@ -1,5 +1,5 @@
 # Use the official Redis image as a base
-FROM redis:7.2-alpine
+FROM redis:8.0-alpine
 
 # Copy custom configuration file
 COPY redis.conf /usr/local/etc/redis/redis.conf
