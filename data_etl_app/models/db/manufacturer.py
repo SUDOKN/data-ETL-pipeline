@@ -3,9 +3,10 @@ from datetime import datetime, timezone
 from pydantic import BaseModel, Field
 from typing import List, Optional
 
-from models.extraction import ExtractedResults
-from models.binary_classifier import MBinaryClassifierResult
-from data_etl_app.services.binary_classifier import BinaryClassifierResult
+from data_etl_app.models.db.binary_classifier_result import (
+    BinaryClassifierResult_DBModel,
+)
+from data_etl_app.models.db.extraction_results import ExtractionResults_DBModel
 
 
 class Address(BaseModel):
@@ -36,19 +37,19 @@ class Manufacturer(Document):
     business_desc: Optional[str]
     data_src: str
 
-    is_manufacturer: Optional[MBinaryClassifierResult]
-    is_contract_manufacturer: Optional[MBinaryClassifierResult]
-    is_product_manufacturer: Optional[MBinaryClassifierResult]
+    is_manufacturer: Optional[BinaryClassifierResult_DBModel]
+    is_contract_manufacturer: Optional[BinaryClassifierResult_DBModel]
+    is_product_manufacturer: Optional[BinaryClassifierResult_DBModel]
 
     business_statuses: List[str]
     products_old: List[str]
     addresses: List[Address]
     naics: Optional[List[NAICSEntry]]
 
-    certificates: Optional[ExtractedResults]
-    industries: Optional[ExtractedResults]
-    process_caps: Optional[ExtractedResults]
-    material_caps: Optional[ExtractedResults]
+    certificates: Optional[ExtractionResults_DBModel]
+    industries: Optional[ExtractionResults_DBModel]
+    process_caps: Optional[ExtractionResults_DBModel]
+    material_caps: Optional[ExtractionResults_DBModel]
 
     class Settings:
         name = "manufacturers"

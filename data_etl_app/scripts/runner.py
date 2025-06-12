@@ -6,22 +6,23 @@ import datetime
 import time
 import shutil
 
-from models.db.manufacturer import Manufacturer
-from models.db.extraction_error import ExtractionError
-from models.binary_classifier import MBinaryClassifierResult
-from models.extraction import ExtractedResults
-
-from data_etl_app.services.extractor import extract_keywords
-from data_etl_app.services.ontology_service import ontology_service
-from data_etl_app.services.prompt_service import prompt_service
-from data_etl_app.services.binary_classifier import (
-    binary_classifier,
+from data_etl_app.models.db.manufacturer import Manufacturer
+from data_etl_app.models.db.extraction_error import ExtractionError
+from data_etl_app.models.db.binary_classifier_result import (
+    BinaryClassifierResult_DBModel,
 )
-from data_etl_app.utils.chunk_util import ChunkingStrat
+from data_etl_app.models.db.extraction_results import ExtractionResults_DBModel
+from data_etl_app.services.is_manufacturer_service import is_company_a_manufacturer
+from data_etl_app.services.extract_concept_service import (
+    extract_industries,
+    extract_certificates,
+    extract_materials,
+    extract_processes,
+)
+
 from data_etl_app.utils.mongo_client import init_db
 
 from open_ai_key_app.services.openai_keypool import keypool
-
 from open_ai_key_app.utils.ask_gpt import num_tokens_from_string
 
 
@@ -34,14 +35,13 @@ async def process_mfg_text(mfg_txt: str, manufacturer: Manufacturer):
         or manufacturer.is_manufacturer.name is None
     ):
         try:
-            mfg_bundle = await binary_classifier(
-                "is_manufacturer",
+            mfg_bundle = await is_company_a_manufacturer(
                 manufacturer.url,
                 mfg_txt,
-                prompt_service.is_manufacturer_prompt,
-                debug=True,
             )
-            manufacturer.is_manufacturer = MBinaryClassifierResult.from_dict(mfg_bundle)
+            manufacturer.is_manufacturer = BinaryClassifierResult_DBModel.from_dict(
+                mfg_bundle
+            )
             updated = True
             if (
                 manufacturer.is_manufacturer
@@ -79,17 +79,8 @@ async def process_mfg_text(mfg_txt: str, manufacturer: Manufacturer):
         )
     ):
         try:
-            industries = await extract_keywords(
-                "industries",
-                manufacturer.url,
-                mfg_txt,
-                ontology_service.industries,
-                prompt_service.extract_industry_prompt,
-                prompt_service.unknown_to_known_industry_prompt,
-                ChunkingStrat(0.15, 5000),
-                debug=False,
-            )
-            manufacturer.industries = ExtractedResults.from_dict(industries)
+            industries = await extract_industries(manufacturer.url, mfg_txt)
+            manufacturer.industries = ExtractionResults_DBModel.from_dict(industries)
             updated = True
         except Exception as e:
             print(f"{manufacturer.name}.industries errored:{e}")
@@ -111,17 +102,13 @@ async def process_mfg_text(mfg_txt: str, manufacturer: Manufacturer):
         )
     ):
         try:
-            certificates = await extract_keywords(
-                "certificates",
+            certificates = await extract_certificates(
                 manufacturer.url,
                 mfg_txt,
-                ontology_service.certificates,
-                prompt_service.extract_certificate_prompt,
-                prompt_service.unknown_to_known_certificate_prompt,
-                ChunkingStrat(0, 7500),
-                debug=False,
             )
-            manufacturer.certificates = ExtractedResults.from_dict(certificates)
+            manufacturer.certificates = ExtractionResults_DBModel.from_dict(
+                certificates
+            )
             updated = True
         except Exception as e:
             print(f"{manufacturer.name}.certificates errored:{e}")
@@ -144,17 +131,13 @@ async def process_mfg_text(mfg_txt: str, manufacturer: Manufacturer):
         )
     ):
         try:
-            material_caps = await extract_keywords(
-                "material_caps",
+            material_caps = await extract_materials(
                 manufacturer.url,
                 mfg_txt,
-                ontology_service.material_capabilities,
-                prompt_service.extract_material_prompt,
-                prompt_service.unknown_to_known_material_prompt,
-                ChunkingStrat(0.1, 5000),
-                debug=False,
             )
-            manufacturer.material_caps = ExtractedResults.from_dict(material_caps)
+            manufacturer.material_caps = ExtractionResults_DBModel.from_dict(
+                material_caps
+            )
             updated = True
         except Exception as e:
             print(f"{manufacturer.name}.material_caps errored:{e}")
@@ -177,20 +160,13 @@ async def process_mfg_text(mfg_txt: str, manufacturer: Manufacturer):
         )
     ):
         try:
-            process_caps = await extract_keywords(
-                "process_caps",
+            process_caps = await extract_processes(
                 manufacturer.url,
                 mfg_txt,
-                ontology_service.process_capabilities,
-                prompt_service.extract_process_prompt,
-                prompt_service.unknown_to_known_process_prompt,
-                ChunkingStrat(0.15, 2500),
-                # model_params=ModelParameters(
-                #     temperature=0.5, presence_penalty=-0.1, max_tokens=800
-                # ),
-                debug=False,
             )
-            manufacturer.process_caps = ExtractedResults.from_dict(process_caps)
+            manufacturer.process_caps = ExtractionResults_DBModel.from_dict(
+                process_caps
+            )
             updated = True
         except Exception as e:
             print(f"{manufacturer.name}.process_caps errored:{e}")

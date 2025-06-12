@@ -5,12 +5,12 @@ This script is used to extract new concepts that were discovered in the extracti
 import asyncio
 import json
 
+from data_etl_app.models.skos_concept import Concept
+from data_etl_app.services.ontology_service import ontology_service
 from data_etl_app.utils.mongo_client import (
     init_db,
     Manufacturer,
 )
-from data_etl_app.services.ontology_service import ontology_service
-from models.skos_concept import Concept
 
 
 class DiscoveredConcepts:
