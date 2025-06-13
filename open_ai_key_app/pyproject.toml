@@ -4,17 +4,18 @@ requires = ["setuptools>=61.0", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "open_ai_key_app"                   # the name your team will pip-install
+name = "open_ai_key_app"                                 # the name your team will pip-install
 version = "0.1.0"
-description = "Utilities for AWS Services"
-# readme = "../../README.md"                 # or point to a common README if you like
-requires-python = ">=3.8"
+description = "Service Module for OpenAI Key Management"
+readme = "ABOUT.md"                                      # or point to a common README if you like
+requires-python = ">=3.9"
 
 # Any dependencies that your common code needs:
 dependencies = [
-  "boto3>=1.20,<2.0",         # AWS SDK for Python
-  "mypy_boto3_s3>=1.20,<2.0", # Type stubs for boto3
+  "redis>=4.2.0,<5.0", # Async Redis client
+  "openai>=1.0.0",     # Add the version you need
+  "tiktoken>=0.5.0",   # Add the version you need
 ]
 
 [tool.setuptools.packages.find]
-where = ["."]
+where = ["src"]
