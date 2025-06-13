@@ -1,0 +1,22 @@
+import os
+import asyncio
+
+from data_etl_app.services.extract_concept_service import extract_industries
+
+print(os.getcwd())
+
+
+async def main():
+    mfg_url = "www.accufab.com"
+    mfg_path = f"./data_etl_app/src/knowledge/tmp/{mfg_url}.txt"
+    with open(f"{mfg_path}", "r") as f:
+        mfg_text = f.read()
+
+    print(mfg_text[:10])
+
+    industries = await extract_industries(mfg_url, mfg_text)
+    print(industries)
+
+
+if __name__ == "__main__":
+    asyncio.run(main())
