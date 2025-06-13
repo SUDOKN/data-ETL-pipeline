@@ -1,6 +1,6 @@
 from dataclasses import dataclass
 
-from open_ai_key_app.utils.ask_gpt import num_tokens_from_string
+from open_ai_key_app.utils.ask_gpt_util import num_tokens_from_string
 
 
 @dataclass

@@ -4,7 +4,7 @@ from fastapi.responses import JSONResponse
 
 from data_etl_app.services.ontology_service import ontology_service
 from data_etl_app.models.skos_concept import ConceptJSONEncoder
-from open_ai_key_app.services.openai_keypool import scribble
+from open_ai_key_app.services.openai_keypool_service import scribble
 
 router = APIRouter()
 

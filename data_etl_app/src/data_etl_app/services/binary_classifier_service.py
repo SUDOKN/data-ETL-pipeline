@@ -1,6 +1,6 @@
 import json
 
-from open_ai_key_app.utils.ask_gpt import (
+from open_ai_key_app.utils.ask_gpt_util import (
     num_tokens_from_string,
     ask_gpt_async,
 )
