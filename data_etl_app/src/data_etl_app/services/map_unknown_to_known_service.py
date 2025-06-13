@@ -2,7 +2,7 @@ import json
 from typing_extensions import TypedDict
 
 from data_etl_app.models.skos_concept import Concept, ConceptJSONEncoder
-from open_ai_key_app.utils.ask_gpt import (
+from open_ai_key_app.utils.ask_gpt_util import (
     ask_gpt_async,
     num_tokens_from_string,
 )

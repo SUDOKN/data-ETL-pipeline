@@ -1,12 +1,18 @@
 import threading
-import os
 import rdflib
 from typing import Dict, List
 
-from data_etl_app.utils.s3_util import read_s3_file
-from data_etl_app.utils.rdf_to_knowledge import get_graph, build_children
 from data_etl_app.models.skos_concept import Concept, ConceptNode
-from data_etl_app.utils.rdf_to_knowledge import (
+from data_etl_app.utils.s3_util import read_s3_file
+from data_etl_app.utils.ontology_uri_util import (
+    process_cap_uri,
+    material_cap_uri,
+    industry_uri,
+    certificate_uri,
+)
+from data_etl_app.utils.rdf_to_knowledge_util import (
+    get_graph,
+    build_children,
     insert_ancestors,
     insert_dummy_antiLabels,
     transform_node,
@@ -15,12 +21,11 @@ from data_etl_app.utils.rdf_to_knowledge import (
 
 
 BASE_URIS = {
-    "process": os.getenv("SUDOKN_PROCESS_CAP_BASE_URI"),
-    "material": os.getenv("SUDOKN_MATERIAL_CAP_BASE_URI"),
-    "industry": os.getenv("SUDOKN_INDUSTRY_BASE_URI"),
-    "certificate": os.getenv("SUDOKN_CERTIFICATE_BASE_URI"),
+    "process": process_cap_uri(),
+    "material": material_cap_uri(),
+    "industry": industry_uri(),
+    "certificate": certificate_uri(),
 }
-# TODO: Add a check to ensure that all BASE_URIS are set
 
 """
 Make sure that the concepts are only ready, never modified.

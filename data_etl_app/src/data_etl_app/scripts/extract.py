@@ -8,11 +8,11 @@ print(os.getcwd())
 
 async def main():
     mfg_url = "www.accufab.com"
-    mfg_path = f"./data_etl_app/src/knowledge/tmp/{mfg_url}.txt"
+    mfg_path = f"./data_etl_app/src/data_etl_app/knowledge/tmp/{mfg_url}.txt"
     with open(f"{mfg_path}", "r") as f:
         mfg_text = f.read()
 
-    print(mfg_text[:10])
+    print(mfg_text[36620:54147])
 
     industries = await extract_industries(mfg_url, mfg_text)
     print(industries)

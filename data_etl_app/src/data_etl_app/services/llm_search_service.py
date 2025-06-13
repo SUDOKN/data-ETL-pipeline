@@ -4,7 +4,7 @@ from open_ai_key_app.models.gpt_model import (
     GPTModel,
     ModelParameters,
 )
-from open_ai_key_app.utils.ask_gpt import (
+from open_ai_key_app.utils.ask_gpt_util import (
     ask_gpt_async,
 )
 

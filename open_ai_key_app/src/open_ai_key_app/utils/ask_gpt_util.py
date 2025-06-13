@@ -4,7 +4,7 @@ import asyncio
 import tiktoken
 
 from open_ai_key_app.models.gpt_model import GPTModel, GPT_4o_mini, ModelParameters
-from open_ai_key_app.services.openai_keypool import keypool
+from open_ai_key_app.services.openai_keypool_service import keypool
 
 
 # --- Token Estimation ---
@@ -49,7 +49,7 @@ async def ask_gpt_async(
             presence_penalty=model_params.presence_penalty,
             frequency_penalty=model_params.frequency_penalty,
         )
-        await keypool.record_key_usage(api_key, tokens_needed)
+        keypool.record_key_usage(api_key, tokens_needed)
         return response.choices[0].message.content
     except Exception as e:
         # some errors look like
@@ -60,7 +60,7 @@ async def ask_gpt_async(
         print(f"ask_gpt_async exception occurred: {error_msg}")
         if "You exceeded your current quota" in error_msg:
             print(f"Quota exceeded for API key_name: {key_name}. Removing from pool.")
-            await keypool.mark_key_exhausted(api_key, error_msg)
+            keypool.mark_key_exhausted(api_key, error_msg)
             raise ValueError(f"Quota exceeded for API key: {key_name}.")
 
         # Handle rate limiting with suggested retry delay
@@ -71,16 +71,16 @@ async def ask_gpt_async(
                 print(
                     f"Rate limit hit for key {key_name}. Marking as unavailable for {delay}s."
                 )
-                await keypool.set_key_cooldown(api_key, delay)
+                keypool.set_key_cooldown(api_key, delay)
             else:
                 print(
                     f"Rate limit hit for key {key_name}. Marking as unavailable for 5s by default."
                 )
-                await keypool.set_key_cooldown(api_key, 5.0)  # Fallback
+                keypool.set_key_cooldown(api_key, 5.0)  # Fallback
 
             # Do not retry, just fail and allow next request to pick a different key
             raise ValueError(f"Rate limit hit for API key: {key_name}.")
         else:
             raise e
     finally:
-        await keypool.return_key(api_key, lock_token)
+        keypool.return_key(api_key, lock_token)

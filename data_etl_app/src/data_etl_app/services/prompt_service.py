@@ -1,5 +1,9 @@
+import os
 import threading
 from typing import Dict
+
+PROMPT_BASE_PATH = "./data_etl_app/src/data_etl_app/knowledge/prompts"
+print(os.getcwd())
 
 
 class PromptService:
@@ -21,6 +25,7 @@ class PromptService:
         return cls._instance
 
     def _init_data(self) -> None:
+        self._cache = {}
         for attr in [
             "_is_manufacturer_prompt",
             "_extract_industry_prompt",
@@ -43,7 +48,7 @@ class PromptService:
     @property
     def is_manufacturer_prompt(self) -> str:
         if "_is_manufacturer_prompt" not in self._cache:
-            with open("./knowledge/prompts/is_manufacturer_prompt.txt", "r") as file:
+            with open(f"{PROMPT_BASE_PATH}/is_manufacturer_prompt.txt", "r") as file:
                 is_manufacturer_prompt = file.read()
             self._cache["_is_manufacturer_prompt"] = is_manufacturer_prompt
 
@@ -51,8 +56,8 @@ class PromptService:
 
     @property
     def extract_industry_prompt(self) -> str:
-        if "extract_industry_prompt" not in self._cache:
-            with open("./knowledge/prompts/extract_any_industry.txt", "r") as file:
+        if "_extract_industry_prompt" not in self._cache:
+            with open(f"{PROMPT_BASE_PATH}/extract_any_industry.txt", "r") as file:
                 extract_any_industry_prompt = file.read()
             self._cache["_extract_industry_prompt"] = extract_any_industry_prompt
 
@@ -60,8 +65,8 @@ class PromptService:
 
     @property
     def unknown_to_known_industry_prompt(self) -> str:
-        if "unknown_to_known_industry_prompt" not in self._cache:
-            with open("./knowledge/prompts/unknown_to_known_industry.txt", "r") as file:
+        if "_unknown_to_known_industry_prompt" not in self._cache:
+            with open(f"{PROMPT_BASE_PATH}/unknown_to_known_industry.txt", "r") as file:
                 unknown_to_known_industry_prompt = file.read()
             self._cache["_unknown_to_known_industry_prompt"] = (
                 unknown_to_known_industry_prompt
@@ -71,8 +76,8 @@ class PromptService:
 
     @property
     def extract_material_prompt(self) -> str:
-        if "extract_material_prompt" not in self._cache:
-            with open("./knowledge/prompts/extract_any_material_cap.txt", "r") as file:
+        if "_extract_material_prompt" not in self._cache:
+            with open(f"{PROMPT_BASE_PATH}/extract_any_material_cap.txt", "r") as file:
                 extract_any_material_prompt = file.read()
             self._cache["_extract_material_prompt"] = extract_any_material_prompt
 
@@ -80,9 +85,9 @@ class PromptService:
 
     @property
     def unknown_to_known_material_prompt(self) -> str:
-        if "unknown_to_known_material_prompt" not in self._cache:
+        if "_unknown_to_known_material_prompt" not in self._cache:
             with open(
-                "./knowledge/prompts/unknown_to_known_material_cap.txt", "r"
+                f"{PROMPT_BASE_PATH}/unknown_to_known_material_cap.txt", "r"
             ) as file:
                 unknown_to_known_material_prompt = file.read()
             self._cache["_unknown_to_known_material_prompt"] = (
@@ -93,8 +98,8 @@ class PromptService:
 
     @property
     def extract_process_prompt(self) -> str:
-        if "extract_process_prompt" not in self._cache:
-            with open("./knowledge/prompts/extract_any_process_cap.txt", "r") as file:
+        if "_extract_process_prompt" not in self._cache:
+            with open(f"{PROMPT_BASE_PATH}/extract_any_process_cap.txt", "r") as file:
                 extract_any_process_prompt = file.read()
             self._cache["_extract_process_prompt"] = extract_any_process_prompt
 
@@ -102,9 +107,9 @@ class PromptService:
 
     @property
     def unknown_to_known_process_prompt(self) -> str:
-        if "unknown_to_known_process_prompt" not in self._cache:
+        if "_unknown_to_known_process_prompt" not in self._cache:
             with open(
-                "./knowledge/prompts/unknown_to_known_process_cap.txt", "r"
+                f"{PROMPT_BASE_PATH}/unknown_to_known_process_cap.txt", "r"
             ) as file:
                 unknown_to_known_process_prompt = file.read()
             self._cache["_unknown_to_known_process_prompt"] = (
@@ -115,8 +120,8 @@ class PromptService:
 
     @property
     def extract_certificate_prompt(self) -> str:
-        if "extract_certificate_prompt" not in self._cache:
-            with open("./knowledge/prompts/extract_any_certificate.txt", "r") as file:
+        if "_extract_certificate_prompt" not in self._cache:
+            with open(f"{PROMPT_BASE_PATH}/extract_any_certificate.txt", "r") as file:
                 extract_any_certificate_prompt = file.read()
             self._cache["_extract_certificate_prompt"] = extract_any_certificate_prompt
 
@@ -124,9 +129,9 @@ class PromptService:
 
     @property
     def unknown_to_known_certificate_prompt(self) -> str:
-        if "unknown_to_known_certificate_prompt" not in self._cache:
+        if "_unknown_to_known_certificate_prompt" not in self._cache:
             with open(
-                "./knowledge/prompts/unknown_to_known_certificate.txt", "r"
+                f"{PROMPT_BASE_PATH}/unknown_to_known_certificate.txt", "r"
             ) as file:
                 unknown_to_known_certificate_prompt = file.read()
             self._cache["_unknown_to_known_certificate_prompt"] = (

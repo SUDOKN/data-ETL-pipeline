@@ -7,7 +7,7 @@ load_dotenv(
     dotenv_path=os.path.join(os.path.dirname(os.path.dirname(__file__)), ".env")
 )
 
-from api.routes.ontology import router as ontology_router
+from data_etl_app.api.routes.ontology import router as ontology_router
 
 app = FastAPI()
 app.include_router(ontology_router)

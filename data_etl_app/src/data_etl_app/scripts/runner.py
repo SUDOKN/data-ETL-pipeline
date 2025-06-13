@@ -22,8 +22,8 @@ from data_etl_app.services.extract_concept_service import (
 
 from data_etl_app.utils.mongo_client import init_db
 
-from open_ai_key_app.services.openai_keypool import keypool
-from open_ai_key_app.utils.ask_gpt import num_tokens_from_string
+from open_ai_key_app.services.openai_keypool_service import keypool
+from open_ai_key_app.utils.ask_gpt_util import num_tokens_from_string
 
 
 async def process_mfg_text(mfg_txt: str, manufacturer: Manufacturer):

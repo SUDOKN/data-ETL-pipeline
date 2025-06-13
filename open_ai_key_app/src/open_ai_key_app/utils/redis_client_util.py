@@ -1,5 +1,5 @@
 import os
-from redis.asyncio.client import Redis  # this import lets pylance know redis is typed
+from redis import Redis  # this import lets pylance know redis is typed
 
 from dotenv import load_dotenv
 
