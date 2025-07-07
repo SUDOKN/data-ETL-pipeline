@@ -1,0 +1,18 @@
+# shared/pyproject.toml
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "shared"                                                  # the name your team will pip-install
+version = "0.1.0"
+description = "Contains common code like AWS utils and services"
+readme = "ABOUT.md"                                              # or point to a common README if you like
+requires-python = ">=3.9"
+
+# Any dependencies that your common code needs:
+dependencies = [
+  "redis>=4.2.0,<5.0", # Async Redis client
+  "openai>=1.0.0",     # Add the version you need
+  "tiktoken>=0.5.0",   # Add the version you need
+]

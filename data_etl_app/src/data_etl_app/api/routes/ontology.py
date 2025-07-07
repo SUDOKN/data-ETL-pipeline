@@ -4,7 +4,6 @@ from fastapi.responses import JSONResponse
 
 from data_etl_app.services.ontology_service import ontology_service
 from data_etl_app.models.skos_concept import ConceptJSONEncoder
-from open_ai_key_app.services.openai_keypool_service import scribble
 
 router = APIRouter()
 
@@ -13,7 +12,6 @@ router = APIRouter()
 def refresh_ontology():
     try:
         ontology_service.refresh()
-        scribble()
         return {"detail": "Ontology refreshed successfully."}
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))

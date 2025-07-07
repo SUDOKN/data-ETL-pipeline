@@ -2,11 +2,18 @@ from __future__ import (
     annotations,
 )  # This allows you to write self-referential types without quotes, because type annotations are no longer evaluated at function/class definition time — they're stored as strings automatically.
 import asyncio
+from datetime import datetime
 
+from shared.models.types import (
+    OntologyVersionIDType,
+)
+from shared.models.db.extraction_results import (
+    ChunkSearchStats,
+    ExtractionStats,
+    ExtractionResults,
+)
 
 from data_etl_app.models.skos_concept import Concept
-from data_etl_app.models.db.extraction_stats import ExtractionStats
-from data_etl_app.models.db.extraction_results import ExtractionResult
 
 from data_etl_app.services.map_unknown_to_known_service import mapKnownToUnknown
 from data_etl_app.services.brute_search_service import brute_search
@@ -28,16 +35,22 @@ from open_ai_key_app.models.gpt_model import (
 
 
 async def extract_industries(
-    manufacturer_url: str, text: str, debug: bool = False
-) -> ExtractionResult:
+    extraction_timestamp: datetime,
+    manufacturer_url: str,
+    text: str,
+    debug: bool = False,
+) -> ExtractionResults:
     """
     Extract industries for a manufacturer text.
     """
-    return await _extract_concepts(
+    ontology_version_id, known_industries = ontology_service.industries
+    return await _extract_concept_data(
+        extraction_timestamp,
         "industries",
         manufacturer_url,
         text,
-        ontology_service.industries,
+        ontology_version_id,
+        known_industries,
         prompt_service.extract_industry_prompt,
         prompt_service.unknown_to_known_industry_prompt,
         ChunkingStrat(overlap=0.15, max_tokens=5000),
@@ -48,16 +61,22 @@ async def extract_industries(
 
 
 async def extract_certificates(
-    manufacturer_url: str, text: str, debug: bool = False
-) -> ExtractionResult:
+    extraction_timestamp: datetime,
+    manufacturer_url: str,
+    text: str,
+    debug: bool = False,
+) -> ExtractionResults:
     """
     Extract certificates for a manufacturer text.
     """
-    return await _extract_concepts(
+    ontology_version_id, known_certificates = ontology_service.certificates
+    return await _extract_concept_data(
+        extraction_timestamp,
         "certificates",
         manufacturer_url,
         text,
-        ontology_service.certificates,
+        ontology_version_id,
+        known_certificates,
         prompt_service.extract_certificate_prompt,
         prompt_service.unknown_to_known_certificate_prompt,
         ChunkingStrat(overlap=0.0, max_tokens=7500),
@@ -68,16 +87,22 @@ async def extract_certificates(
 
 
 async def extract_processes(
-    manufacturer_url: str, text: str, debug: bool = False
-) -> ExtractionResult:
+    extraction_timestamp: datetime,
+    manufacturer_url: str,
+    text: str,
+    debug: bool = False,
+) -> ExtractionResults:
     """
     Extract process capabilities for a manufacturer text.
     """
-    return await _extract_concepts(
+    ontology_version_id, known_processes = ontology_service.process_capabilities
+    return await _extract_concept_data(
+        extraction_timestamp,
         "process_caps",
         manufacturer_url,
         text,
-        ontology_service.process_capabilities,
+        ontology_version_id,
+        known_processes,
         prompt_service.extract_process_prompt,
         prompt_service.unknown_to_known_process_prompt,
         ChunkingStrat(overlap=0.15, max_tokens=2500),
@@ -88,16 +113,22 @@ async def extract_processes(
 
 
 async def extract_materials(
-    manufacturer_url: str, text: str, debug: bool = False
-) -> ExtractionResult:
+    extraction_timestamp: datetime,
+    manufacturer_url: str,
+    text: str,
+    debug: bool = False,
+) -> ExtractionResults:
     """
     Extract material capabilities for a manufacturer text.
     """
-    return await _extract_concepts(
+    ontology_version_id, known_materials = ontology_service.material_capabilities
+    return await _extract_concept_data(
+        extraction_timestamp,
         "material_caps",
         manufacturer_url,
         text,
-        ontology_service.material_capabilities,
+        ontology_version_id,
+        known_materials,
         prompt_service.extract_material_prompt,
         prompt_service.unknown_to_known_material_prompt,
         ChunkingStrat(overlap=0.1, max_tokens=5000),
@@ -107,10 +138,12 @@ async def extract_materials(
     )
 
 
-async def _extract_concepts(
+async def _extract_concept_data(
+    extraction_timestamp: datetime,
     concept_type: str,  # used for logging and debugging
     manufacturer_url: str,
     text: str,
+    ontology_version_id: OntologyVersionIDType,
     known_concepts: list[Concept],
     search_prompt: str,
     map_prompt: str,
@@ -118,15 +151,15 @@ async def _extract_concepts(
     gpt_model: GPTModel = GPT_4o_mini,
     model_params: ModelParameters = DefaultModelParameters,
     debug: bool = False,
-) -> ExtractionResult:
+) -> ExtractionResults:
 
     results = set[str]()
-    stats: ExtractionStats = {
-        "search": {},
-        "mapping": {},
-        "unmapped_brute": set[Concept](),
-        "unmapped_llm": set[str](),
-    }
+    stats: ExtractionStats = ExtractionStats(
+        ontology_version_id=ontology_version_id,
+        mapping={},
+        search={},
+        unmapped_llm=[],
+    )
 
     """
     BRUTE KEYWORD EXTRACTION ---------------------------------------------------- #
@@ -148,36 +181,51 @@ async def _extract_concepts(
         2. multiple passes may be required to get everything (soln: increase num_passes)
     """
 
-    chunks = get_chunks_with_boundaries(
+    chunk_map = get_chunks_with_boundaries(
         text, chunk_strategy.max_tokens, chunk_strategy.overlap
     )
 
     # Run brute_search and llm_search for each chunk concurrently
     async def _process_chunk(bounds: str, text_chunk: str):
+        # NOTE: doing brute search individually for each chunk is more expensive than all at once
+        # and is computationally expensive in general, but we need chunk level results
         brute_set = brute_search(text_chunk, known_concepts)
         llm_set = await llm_search(
             text_chunk, search_prompt, gpt_model, model_params, True
         )
         return bounds, brute_set, llm_set
 
-    tasks = [asyncio.create_task(_process_chunk(b, t)) for b, t in chunks.items()]
+    tasks = [asyncio.create_task(_process_chunk(b, t)) for b, t in chunk_map.items()]
     chunk_results = await asyncio.gather(*tasks)
 
-    orphan_brutes: set[Concept] = set()
-    orphan_llm: set[str] = set()
+    # orphan_brutes: set[Concept] = set()
+    unmapped_llm: set[str] = set()
     mutually_agreed_concepts: set[Concept] = set()
 
     for bounds, brute_set, llm_set in chunk_results:
-        stats["search"][bounds] = {"brute": brute_set, "llm": llm_set, "human": set()}
-        # MUTUALLY AGREED
+        stats.search[bounds] = ChunkSearchStats(
+            results=[],  # will be filled later
+            brute={b.name for b in brute_set},
+            llm=llm_set.copy(),
+            mapping={},  # will be filled later after llm produces full mapping
+            unmapped_llm=set(),
+        )
+
+        # add MUTUALLY AGREED to results
         for kc in known_concepts:
             common = kc.matchLabels & llm_set
             if common:
+                stats.search[bounds].results.append(kc.name)
                 mutually_agreed_concepts.add(kc)
                 llm_set -= common
-        results |= {str(c) for c in mutually_agreed_concepts}
-        orphan_brutes |= brute_set - mutually_agreed_concepts
-        orphan_llm |= llm_set
+
+        # recalculate orphan brute and llm sets
+        # orphan_brutes |= brute_set - mutually_agreed_concepts
+        unmapped_llm |= llm_set
+
+    results = {
+        c.name for c in mutually_agreed_concepts
+    }  # add mutually agreed concept labels to results
 
     """
     UNKNOWN TO KNOWN MAPPING --------------------------------------------------- #
@@ -193,30 +241,44 @@ async def _extract_concepts(
         concept_type,
         manufacturer_url,
         known_concepts,
-        list(orphan_llm),
+        unmapped_llm.copy(),
         map_prompt,
         debug,
     )
+
+    # UPDATE unmapped_llm and mapping in chunk_stats
+    final_unmapped_llm = map_results[
+        "unmapped_unknowns"
+    ]  # not needed if we don't pass unmapped_llm.copy()
+
+    for _, chunk_stats in stats.search.items():
+        chunk_stats.unmapped_llm = final_unmapped_llm & chunk_stats.llm
+        for mk, mu in map_results["known_to_unknowns"].items():
+            # find all elements in mu that are also in chunk_level unmapped_llm
+            # insert mk as key and those elements as value
+
+            filtered_mu = [unknown for unknown in mu if unknown in chunk_stats.llm]
+            # NOTE: it is a gurantee that unknown belongs to unmapped_llm because of mapKnownToUnknown logic
+            # so we need not find the subset unmapped_unknowns in chunk_stats.llm,
+            # we can directly use chunk_stats.llm for filtering
+            if filtered_mu:
+                chunk_stats.mapping[mk.name] = filtered_mu
+
+    # UPDATE results with newly mapped known concept labels
     mapped_known_concept_labels = set(
-        str(concept) for concept in map_results["known_to_unknowns"].keys()
+        concept.name for concept in map_results["known_to_unknowns"].keys()
     )
-    results = results | mapped_known_concept_labels
-
-    mapped_orphan_brutes: set[Concept] = {
-        ob for ob in orphan_brutes if str(ob) in mapped_known_concept_labels
-    }
-
-    orphan_brutes -= mapped_orphan_brutes
-    orphan_llm = map_results["unmapped_unknowns"]
+    results |= mapped_known_concept_labels  # union because overlap is expected
 
     if debug:
-        print(f"Remaining orphan brute and llm:")
-        orphan_brute_labels = {str(k) for k in orphan_brutes}
-        print(f"unmapped_brute_labels {len(orphan_brute_labels)}:{orphan_brute_labels}")
-        print(f"orphan llm {len(orphan_llm)}:{orphan_llm}")
+        print(f"Remaining orphan llm:")
+        print(f"final_unmapped_llm {len(final_unmapped_llm)}:{final_unmapped_llm}")
 
-    stats["unmapped_brute"] |= orphan_brutes
-    stats["unmapped_llm"] |= orphan_llm
-    stats["mapping"] = map_results["known_to_unknowns"]
+    stats.unmapped_llm = list(final_unmapped_llm)
+    stats.mapping = {mk.name: mu for mk, mu in map_results["known_to_unknowns"].items()}
 
-    return {"results": results, "stats": stats}
+    return ExtractionResults(
+        extracted_at=extraction_timestamp,
+        results=list(results),
+        stats=stats,
+    )

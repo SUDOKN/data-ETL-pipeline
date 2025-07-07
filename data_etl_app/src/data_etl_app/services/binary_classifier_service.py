@@ -1,3 +1,4 @@
+from datetime import datetime
 import json
 
 from open_ai_key_app.utils.ask_gpt_util import (
@@ -10,12 +11,13 @@ from open_ai_key_app.models.gpt_model import (
     ModelParameters,
     DefaultModelParameters,
 )
-from data_etl_app.models.db.binary_classifier_result import (
+from shared.models.db.binary_classifier_result import (
     BinaryClassifierResult,
 )
 
 
 async def binary_classifier(
+    evaluated_at: datetime,
     keyword_label: str,
     manufacturer_url: str,
     text: str,
@@ -41,7 +43,9 @@ async def binary_classifier(
 
     try:
         gpt_response = gpt_response.replace("```", "").replace("json", "")
-        classification_result: BinaryClassifierResult = json.loads(gpt_response)
+        classification_result = BinaryClassifierResult(
+            evaluated_at=evaluated_at, **json.loads(gpt_response)
+        )
     except:
         raise ValueError(
             f"{manufacturer_url}:{keyword_label} binary_classifier: non-json result from GPT:{gpt_response}"

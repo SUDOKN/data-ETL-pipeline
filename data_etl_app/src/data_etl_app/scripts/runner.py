@@ -6,13 +6,13 @@ import datetime
 import time
 import shutil
 
-from data_etl_app.models.db.manufacturer import Manufacturer
-from data_etl_app.models.db.extraction_error import ExtractionError
-from data_etl_app.models.db.binary_classifier_result import (
-    BinaryClassifierResult_DBModel,
+from shared.models.db.manufacturer import Manufacturer
+from shared.models.db.extraction_error import ExtractionError
+from shared.models.db.binary_classifier_result import (
+    BinaryClassifierResult,
 )
-from data_etl_app.models.db.extraction_results import ExtractionResults_DBModel
-from data_etl_app.services.is_manufacturer_service import is_company_a_manufacturer
+from shared.models.db.extraction_results import ExtractionResults
+from shared.services.manufacturer_service import is_company_a_manufacturer
 from data_etl_app.services.extract_concept_service import (
     extract_industries,
     extract_certificates,
@@ -20,13 +20,14 @@ from data_etl_app.services.extract_concept_service import (
     extract_processes,
 )
 
-from data_etl_app.utils.mongo_client import init_db
+from shared.utils.mongo_client import init_db
 
 from open_ai_key_app.services.openai_keypool_service import keypool
 from open_ai_key_app.utils.ask_gpt_util import num_tokens_from_string
 
 
 async def process_mfg_text(mfg_txt: str, manufacturer: Manufacturer):
+    now = datetime.datetime.now(datetime.timezone.utc)
     print(f"Processing `{manufacturer.name}:{manufacturer.url}`")
     updated = False
     updated_at = datetime.datetime.now(datetime.timezone.utc)
@@ -39,9 +40,7 @@ async def process_mfg_text(mfg_txt: str, manufacturer: Manufacturer):
                 manufacturer.url,
                 mfg_txt,
             )
-            manufacturer.is_manufacturer = BinaryClassifierResult_DBModel.from_dict(
-                mfg_bundle
-            )
+            manufacturer.is_manufacturer = BinaryClassifierResult.from_dict(mfg_bundle)
             updated = True
             if (
                 manufacturer.is_manufacturer
@@ -65,7 +64,7 @@ async def process_mfg_text(mfg_txt: str, manufacturer: Manufacturer):
 
     if manufacturer.is_manufacturer and manufacturer.is_manufacturer.answer is False:
         print(
-            f"{manufacturer.name} is not a manufacturer, because\n{manufacturer.is_manufacturer.explanation}"
+            f"{manufacturer.name} is not a manufacturer, because\n{manufacturer.is_manufacturer.reason}"
         )
         return
 
@@ -80,7 +79,7 @@ async def process_mfg_text(mfg_txt: str, manufacturer: Manufacturer):
     ):
         try:
             industries = await extract_industries(manufacturer.url, mfg_txt)
-            manufacturer.industries = ExtractionResults_DBModel.from_dict(industries)
+            manufacturer.industries = ExtractionResults.from_dict(now, industries)
             updated = True
         except Exception as e:
             print(f"{manufacturer.name}.industries errored:{e}")
@@ -106,9 +105,7 @@ async def process_mfg_text(mfg_txt: str, manufacturer: Manufacturer):
                 manufacturer.url,
                 mfg_txt,
             )
-            manufacturer.certificates = ExtractionResults_DBModel.from_dict(
-                certificates
-            )
+            manufacturer.certificates = ExtractionResults.from_dict(now, certificates)
             updated = True
         except Exception as e:
             print(f"{manufacturer.name}.certificates errored:{e}")
@@ -135,9 +132,7 @@ async def process_mfg_text(mfg_txt: str, manufacturer: Manufacturer):
                 manufacturer.url,
                 mfg_txt,
             )
-            manufacturer.material_caps = ExtractionResults_DBModel.from_dict(
-                material_caps
-            )
+            manufacturer.material_caps = ExtractionResults.from_dict(now, material_caps)
             updated = True
         except Exception as e:
             print(f"{manufacturer.name}.material_caps errored:{e}")
@@ -164,9 +159,7 @@ async def process_mfg_text(mfg_txt: str, manufacturer: Manufacturer):
                 manufacturer.url,
                 mfg_txt,
             )
-            manufacturer.process_caps = ExtractionResults_DBModel.from_dict(
-                process_caps
-            )
+            manufacturer.process_caps = ExtractionResults.from_dict(now, process_caps)
             updated = True
         except Exception as e:
             print(f"{manufacturer.name}.process_caps errored:{e}")
