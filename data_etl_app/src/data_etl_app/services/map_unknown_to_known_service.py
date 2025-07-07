@@ -22,8 +22,8 @@ class MapKnownToUnknownResult(TypedDict):
 async def mapKnownToUnknown(
     concept_type: str,
     manufacturer_url: str,
-    known_concepts: list[Concept],
-    unknowns: list[str],
+    known_concepts: list[Concept],  # DO NOT MUTATE
+    unmapped_unknowns: set[str],
     prompt: str,
     # gpt_model: GPTModel,
     # model_params: ModelParameters,
@@ -31,7 +31,8 @@ async def mapKnownToUnknown(
 ) -> MapKnownToUnknownResult:
 
     context = json.dumps(
-        {"unknowns": unknowns, "knowns": known_concepts}, cls=ConceptJSONEncoder
+        {"unknowns": list(unmapped_unknowns), "knowns": known_concepts},
+        cls=ConceptJSONEncoder,
     )
     if debug:
         print(f"\nmapping unknown_to_known")
@@ -60,10 +61,10 @@ async def mapKnownToUnknown(
 
     known_concept_labels = [label for k in known_concepts for label in k.matchLabels]
     unmapped_knowns = set(known_concepts)  # starts as the full set of passed knowns
-    unmapped_unknowns = set(unknowns)
     known_to_unknowns: dict[Concept, list[str]] = {k: [] for k in known_concepts}
 
     # mapped_unknown "biotech" -> ["pharmaceutical"] mapped_knowns
+    # mu: mapped_unknowns, mk: mapped_knowns
     for mu, mk in mapping.items():
         if mu not in unmapped_unknowns:
             # case 2: mapped_unknown was either hallucinated, in which case we will still check if mapped_knowns are valid, so just raise a warning
@@ -77,7 +78,7 @@ async def mapKnownToUnknown(
                         f"WARNING: {manufacturer_url}:{concept_type} mapped_known:{mk} was not in the original knowns list"
                     )
                 else:
-                    known_concept = next(
+                    known_concept = next(  # comparing with k.matchLabels instead of just k.label in case llm didn't provide the primary label
                         (k for k in known_concepts if mk in k.matchLabels), None
                     )
                     if not known_concept:

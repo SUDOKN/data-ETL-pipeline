@@ -6,9 +6,9 @@ import asyncio
 import json
 
 from data_etl_app.models.skos_concept import Concept
-from data_etl_app.models.db.manufacturer import Manufacturer
+from shared.models.db.manufacturer import Manufacturer
 from data_etl_app.services.ontology_service import ontology_service
-from data_etl_app.utils.mongo_client import (
+from shared.utils.mongo_client import (
     init_db,
 )
 
@@ -17,22 +17,22 @@ class DiscoveredConcepts:
     def __init__(self):
         self.process_capabilities = {
             "mapped": self._flat_concepts_to_dict(
-                ontology_service.process_capabilities
+                ontology_service.process_capabilities[1]
             ),
             "unmapped": set(),
         }
         self.material_capabilities = {
             "mapped": self._flat_concepts_to_dict(
-                ontology_service.material_capabilities
+                ontology_service.material_capabilities[1]
             ),
             "unmapped": set(),
         }
         self.industries = {
-            "mapped": self._flat_concepts_to_dict(ontology_service.industries),
+            "mapped": self._flat_concepts_to_dict(ontology_service.industries[1]),
             "unmapped": set(),
         }
         self.certificates = {
-            "mapped": self._flat_concepts_to_dict(ontology_service.certificates),
+            "mapped": self._flat_concepts_to_dict(ontology_service.certificates[1]),
             "unmapped": set(),
         }
 

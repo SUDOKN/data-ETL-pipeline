@@ -2,8 +2,10 @@ import threading
 import rdflib
 from typing import Dict, List
 
+from shared.models.types import OntologyVersionIDType
+
 from data_etl_app.models.skos_concept import Concept, ConceptNode
-from data_etl_app.utils.s3_util import read_s3_file
+from data_etl_app.utils.ontology_rdf_util import download_ontology_rdf
 from data_etl_app.utils.ontology_uri_util import (
     process_cap_uri,
     material_cap_uri,
@@ -27,18 +29,15 @@ BASE_URIS = {
     "certificate": certificate_uri(),
 }
 
-"""
-Make sure that the concepts are only ready, never modified.
-"""
-
 
 class OntologyService:
     _instance: "OntologyService | None" = None
     _lock = (
         threading.Lock()
     )  # not strictly necessary, but good practice for thread safety, read in notes
-    graph: rdflib.Graph
     _cache: Dict[str, List[Concept]]
+    graph: rdflib.Graph
+    ontology_version_id: OntologyVersionIDType
 
     """Singleton service to manage the ontology data and provide access to capabilities."""
 
@@ -54,8 +53,9 @@ class OntologyService:
         return cls._instance
 
     def _init_data(self) -> None:
-        rdf_content = read_s3_file("sudokn-ontology", "SUDOKN.rdf")
+        rdf_content, version_id = download_ontology_rdf(None)
         self.graph = get_graph(rdf_content)
+        self.ontology_version_id = version_id
         # Clear all cached properties for concept nodes and processed lists
         for attr in [
             "_process_capability_concept_nodes",
@@ -88,13 +88,13 @@ class OntologyService:
         return self._process_capability_concept_nodes
 
     @property
-    def process_capabilities(self) -> List[Concept]:
+    def process_capabilities(self) -> tuple[OntologyVersionIDType, List[Concept]]:
         if not hasattr(self, "_process_capabilities"):
             process_trees = self.process_capability_concept_nodes
             for tree in process_trees:
                 insert_ancestors(tree, [])
             self._process_capabilities = tree_list_to_flat(process_trees)
-        return self._process_capabilities
+        return self.ontology_version_id, self._process_capabilities
 
     @property
     def material_capability_concept_nodes(self) -> List[ConceptNode]:
@@ -109,13 +109,13 @@ class OntologyService:
         return self._material_capability_concept_nodes
 
     @property
-    def material_capabilities(self) -> List[Concept]:
+    def material_capabilities(self) -> tuple[OntologyVersionIDType, List[Concept]]:
         if not hasattr(self, "_material_capabilities"):
             material_trees = self.material_capability_concept_nodes
             for tree in material_trees:
                 insert_ancestors(tree, [])
             self._material_capabilities = tree_list_to_flat(material_trees)
-        return self._material_capabilities
+        return self.ontology_version_id, self._material_capabilities
 
     @property
     def industry_concept_nodes(self) -> List[ConceptNode]:
@@ -130,13 +130,13 @@ class OntologyService:
         return self._industry_concept_nodes
 
     @property
-    def industries(self) -> List[Concept]:
+    def industries(self) -> tuple[OntologyVersionIDType, List[Concept]]:
         if not hasattr(self, "_industries"):
             industry_trees = self.industry_concept_nodes
             for tree in industry_trees:
                 transform_node(tree, insert_dummy_antiLabels)
             self._industries = tree_list_to_flat(industry_trees)
-        return self._industries
+        return self.ontology_version_id, self._industries
 
     @property
     def certificate_concept_nodes(self) -> List[ConceptNode]:
@@ -151,13 +151,13 @@ class OntologyService:
         return self._certificate_concept_nodes
 
     @property
-    def certificates(self) -> List[Concept]:
+    def certificates(self) -> tuple[OntologyVersionIDType, List[Concept]]:
         if not hasattr(self, "_certificates"):
             certificate_trees = self.certificate_concept_nodes
             for tree in certificate_trees:
                 insert_ancestors(tree, [])
             self._certificates = tree_list_to_flat(certificate_trees)
-        return self._certificates
+        return self.ontology_version_id, self._certificates
 
 
 # Auto-initialize the singleton instance when the module is imported
