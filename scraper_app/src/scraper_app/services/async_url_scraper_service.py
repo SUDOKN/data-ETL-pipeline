@@ -1,5 +1,34 @@
 import asyncio
+from dataclasses import dataclass
+from typing import List
 from playwright.async_api import async_playwright, Playwright, Browser, BrowserContext
+from shared.utils.url_util import add_protocol
+
+
+@dataclass
+class ScrapingResult:
+    """Result of scraping operation with content and errors."""
+
+    content: str
+    errors: List[dict]  # List of error dictionaries
+    urls_scraped: int
+    urls_failed: int
+
+    @property
+    def has_errors(self) -> bool:
+        return len(self.errors) > 0
+
+    @property
+    def success_rate(self) -> float:
+        total = self.urls_scraped + self.urls_failed
+        return self.urls_scraped / total if total > 0 else 0.0
+
+    def __str__(self) -> str:
+        return (
+            f"ScrapingResult(success_rate={self.success_rate:.2%}, "
+            f"urls_scraped={self.urls_scraped}, urls_failed={self.urls_failed}, "
+            f"errors_count={len(self.errors)})"
+        )
 
 
 class AsyncScraperService:
@@ -50,8 +79,10 @@ class AsyncScraperService:
         queue: asyncio.Queue,
         visited: set[str],
         results: list[str],
+        errors: list[dict],  # Add errors collection
         domain: str,
         sem: asyncio.Semaphore,
+        stats: dict,  # Add stats tracking
     ):
         """
         Worker coroutine that processes URLs from the queue using the shared context.
@@ -81,7 +112,8 @@ class AsyncScraperService:
                     body_text = await page.evaluate("document.body.innerText")
                     # Append with header for clarity
                     results.append(f"{url}\n{body_text}\n")
-                    print(f"Scraped {len(body_text)} characters from {url}")
+                    stats["scraped"] += 1
+                    print(f"✅ Scraped {len(body_text)} characters from {url}")
                     print(f"depth: {depth}, self.max_depth: {self.max_depth}")
                     # Discover same-domain links if we can go deeper
                     if depth < self.max_depth:
@@ -97,36 +129,77 @@ class AsyncScraperService:
                                 print(f"Adding href: {href}")
                                 await queue.put((href, depth + 1))
                 except Exception as e:
-                    print(f"Error scraping {url}: {e}")
+                    # Collect error instead of just printing
+                    error_info = {
+                        "url": url,
+                        "error": str(e),
+                        "error_type": type(e).__name__,
+                        "depth": depth,
+                    }
+                    errors.append(error_info)
+                    stats["failed"] += 1
+                    print(f"❌ Error scraping {url}: {e}")
                 finally:
                     await page.close()
                     queue.task_done()
 
-    async def scrape(self, start_url: str, domain: str) -> str:
+    async def scrape(self, start_url: str, domain: str) -> ScrapingResult:
         """
-        Orchestrate the scraping process after start() has been called.
+        Orchestrate the scraping process and return results with errors.
         """
         assert self.context, "Must call start() before scrape()"
         print(f"Starting scrape for domain: {domain} from {start_url}")
+        start_url = add_protocol(start_url, protocol="https")
+        print(f"After adding protocol start URL: {start_url}")
+
         visited: set[str] = set()
         results: list[str] = []
+        errors: list[dict] = []  # Collect errors here
+        stats = {"scraped": 0, "failed": 0}  # Track statistics
         queue: asyncio.Queue = asyncio.Queue()
+
         # Seed the queue with the initial URL at depth 0
         await queue.put((start_url, 0))
         sem = asyncio.Semaphore(self.max_concurrency)
 
-        # Spawn worker tasks
+        # Spawn worker tasks with error collection
         workers = [
-            asyncio.create_task(self._worker(queue, visited, results, domain, sem))
+            asyncio.create_task(
+                self._worker(queue, visited, results, errors, domain, sem, stats)
+            )
             for _ in range(self.max_concurrency)
         ]
 
-        # Process until all queued URLs are done
-        await queue.join()
+        try:
+            # Process until all queued URLs are done
+            await queue.join()
+        except Exception as e:
+            # Handle any high-level orchestration errors
+            errors.append(
+                {
+                    "url": start_url,
+                    "error": f"Scraping orchestration error: {str(e)}",
+                    "error_type": type(e).__name__,
+                    "depth": 0,
+                }
+            )
+            stats["failed"] += 1
+        finally:
+            # Cancel remaining workers
+            for w in workers:
+                w.cancel()
+            # Wait for workers to finish cancelling
+            await asyncio.gather(*workers, return_exceptions=True)
 
-        # Cancel remaining workers
-        for w in workers:
-            w.cancel()
+        print(
+            f"Scraping complete. Scraped {stats['scraped']} URLs, failed {stats['failed']}."
+        )
+        print(errors)
 
-        # Return concatenated results
-        return "".join(results)
+        # Return results with error information
+        return ScrapingResult(
+            content="".join(results),
+            errors=errors,
+            urls_scraped=stats["scraped"],
+            urls_failed=stats["failed"],
+        )
