@@ -23,6 +23,7 @@ from shared.utils.aws.s3.scraped_text_util import (
     does_scraped_text_file_exist,
     download_scraped_text_from_s3_by_filename,
 )
+from shared.utils.mongo_client import init_db
 from shared.utils.aws.s3.s3_client_util import make_s3_client
 from shared.utils.time_util import get_current_time
 
@@ -487,12 +488,15 @@ async def extract_and_cleanup(
 
 
 async def async_main():
+    await init_db()
     args = parse_args()
     session = get_session()
     if args.priority:
+        print("Running extraction in priority mode")
         poll_item_from_queue = poll_item_from_priority_extract_queue
         delete_item_from_queue = delete_item_from_priority_extract_queue
     else:
+        print("Running extraction in normal mode")
         poll_item_from_queue = poll_item_from_extract_queue
         delete_item_from_queue = delete_item_from_extract_queue
     async with make_sqs_extractor_client(

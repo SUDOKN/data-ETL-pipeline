@@ -3,7 +3,7 @@ import argparse
 import asyncio
 from datetime import datetime
 import time
-from typing import Optional
+from typing import Callable, Awaitable, Any, Optional
 
 from shared.models.db.scraping_error import ScrapingError
 from shared.models.db.manufacturer import Manufacturer
@@ -14,6 +14,13 @@ from shared.utils.aws.queue.extract_queue_util import push_item_to_extract_queue
 from shared.utils.aws.queue.scrape_queue_util import (
     poll_item_from_scrape_queue,
     delete_item_from_scrape_queue,
+)
+from shared.utils.aws.queue.priority_extract_queue_util import (
+    push_item_to_priority_extract_queue,
+)
+from shared.utils.aws.queue.priority_scrape_queue_util import (
+    poll_item_from_priority_scrape_queue,
+    delete_item_from_priority_scrape_queue,
 )
 from shared.utils.aws.s3.s3_client_util import make_s3_client
 from shared.utils.aws.s3.scraped_text_util import (
@@ -60,9 +67,21 @@ class ScrapingStats:
             "average_time": self.average_time,
         }
 
+    def print_stats(self):
+        """Print the current statistics."""
+        print(f"   ✅ Completed scraping: {self.completed_count} manufacturers")
+        print(f"   ⏱️  Total time: {self.total_time/60:.1f} minutes")
+        print(f"   📈 Average time per manufacturer: {self.average_time:.2f}s")
+
 
 def parse_args():
     parser = argparse.ArgumentParser(description="SQS Scraper Bot")
+    parser.add_argument(
+        "--priority",
+        type=int,
+        default=0,
+        help="Is this for priority queue? 0 for no, 1 for yes",
+    )
     parser.add_argument(
         "--max_poll_retries", type=int, default=2, help="Max polling retries for SQS"
     )
@@ -98,6 +117,11 @@ async def process_queue(
     sqs_client,
     s3_client,
     scraper: AsyncScraperService,
+    push_item_to_e_queue: Callable[[Any, ToExtractItem], Awaitable[None]],
+    poll_item_from_s_queue: Callable[
+        [Any], Awaitable[tuple[ToScrapeItem, str] | tuple[None, None]]
+    ],
+    delete_item_from_s_queue: Callable[[Any, str], Awaitable[None]],
     max_poll_retries: int = 2,
     max_concurrent_manufacturers: int = 5,
 ):
@@ -111,7 +135,7 @@ async def process_queue(
             if len(concurrent_manufacturers) >= max_concurrent_manufacturers:
                 await asyncio.sleep(CONCURRENCY_CHECK_INTERVAL)  # lets other tasks run
                 continue
-            item, receipt_handle = await poll_item_from_scrape_queue(sqs_client)
+            item, receipt_handle = await poll_item_from_s_queue(sqs_client)
             if item is None:
                 if retries < max_poll_retries:
                     print(
@@ -125,16 +149,9 @@ async def process_queue(
                         f"No messages received after {retries} retries. Sleeping for {DEFAULT_SLEEP_AFTER_RETRIES // 3600} hours."
                     )
                     # Print summary statistics before long sleep
-                    stats = scraping_stats.get_stats()
-                    if stats["completed_count"] > 0:
+                    if scraping_stats.completed_count > 0:
                         print(f"📊 Session Summary:")
-                        print(
-                            f"   ✅ Completed scraping: {stats['completed_count']} manufacturers"
-                        )
-                        print(f"   ⏱️  Total time: {stats['total_time']:.2f}s")
-                        print(
-                            f"   📈 Average time per manufacturer: {stats['average_time']:.2f}s"
-                        )
+                        scraping_stats.print_stats()
                     await asyncio.sleep(DEFAULT_SLEEP_AFTER_RETRIES)
                     retries = 0  # Reset retries after sleeping
                     continue
@@ -155,12 +172,12 @@ async def process_queue(
                 # Validate manufacturer before processing
                 existing_manufacturer, should_continue = (
                     await validate_manufacturer_for_scraping(
-                        item, sqs_client, s3_client
+                        item, sqs_client, s3_client, push_item_to_e_queue
                     )
                 )
 
                 if not should_continue:
-                    await delete_item_from_scrape_queue(sqs_client, receipt_handle)
+                    await delete_item_from_s_queue(sqs_client, receipt_handle)
                     continue
 
                 task = asyncio.create_task(
@@ -168,6 +185,8 @@ async def process_queue(
                         current_timestamp,
                         s3_client,
                         scraper,
+                        push_item_to_e_queue,
+                        delete_item_from_s_queue,
                         item,
                         existing_manufacturer,
                         sqs_client,
@@ -188,25 +207,23 @@ async def process_queue(
                         batch=item.batch,
                     )
                 )
-                await delete_item_from_scrape_queue(sqs_client, receipt_handle)
+                await delete_item_from_s_queue(sqs_client, receipt_handle)
 
     except Exception as e:
         print(f"Error processing SQS message: {e}")
     finally:
         # Print final statistics
-        stats = scraping_stats.get_stats()
-        if stats["completed_count"] > 0:
+        if scraping_stats.completed_count > 0:
             print(f"\n🏁 Final Session Statistics:")
-            print(f"   ✅ Total completed: {stats['completed_count']} manufacturers")
-            print(
-                f"   ⏱️  Total time: {stats['total_time']:.2f}s ({stats['total_time']/60:.1f} minutes)"
-            )
-            print(f"   📈 Average time per manufacturer: {stats['average_time']:.2f}s")
+            scraping_stats.print_stats()
         await scraper.stop()
 
 
 async def validate_manufacturer_for_scraping(
-    item: ToScrapeItem, sqs_client, s3_client
+    item: ToScrapeItem,
+    sqs_client,
+    s3_client,
+    push_item_to_e_queue: Callable[[Any, ToExtractItem], Awaitable[None]],
 ) -> tuple[Optional[Manufacturer], bool]:
     """
     Validate manufacturer for scraping.
@@ -228,7 +245,7 @@ async def validate_manufacturer_for_scraping(
                 print(
                     f"Found existing scraped text file for {manufacturer.url} with version {manufacturer.scraped_text_file_version_id}. No need to scrape, fast tracking to extraction."
                 )
-                await push_item_to_extract_queue(
+                await push_item_to_e_queue(
                     sqs_client,
                     ToExtractItem(manufacturer_url=manufacturer.url),
                 )
@@ -345,6 +362,8 @@ async def scrape_and_cleanup(
     timestamp: datetime,
     s3_client,
     scraper: AsyncScraperService,
+    push_item_to_e_queue: Callable[[Any, ToExtractItem], Awaitable[None]],
+    delete_item_from_s_queue: Callable[[Any, str], Awaitable[None]],
     item: ToScrapeItem,
     manufacturer: Optional[Manufacturer],
     sqs_client,
@@ -364,11 +383,10 @@ async def scrape_and_cleanup(
 
         # Only push to extract queue if scraping was mostly successful
         if scraping_result.success_rate > 0.8:  # At least 80% success rate
-            await push_item_to_extract_queue(
+            await push_item_to_e_queue(
                 sqs_client,
                 ToExtractItem(manufacturer_url=item.manufacturer_url),
             )
-            print(f"✅ Added {item.manufacturer_url} to extract queue")
         else:
             print(
                 f"⚠️  Skipping extract queue due to low success rate: {scraping_result.success_rate:.1%}"
@@ -387,12 +405,9 @@ async def scrape_and_cleanup(
         duration = end_time - start_time
         scraping_stats.add_timing(duration)
 
-        stats = scraping_stats.get_stats()
         print(f"✅ Scraping completed for {item.manufacturer_url}")
         print(f"   ⏱️  Individual time: {duration:.2f}s")
-        print(
-            f"   📊 Average time: {stats['average_time']:.2f}s (from {stats['completed_count']} completed)"
-        )
+        scraping_stats.print_stats()
 
     except Exception as e:
         end_time = time.time()
@@ -429,13 +444,23 @@ async def scrape_and_cleanup(
     finally:
         # Always clean up
         concurrent_manufacturers.discard(asyncio.current_task())
-        await delete_item_from_scrape_queue(sqs_client, receipt_handle)
+        await delete_item_from_s_queue(sqs_client, receipt_handle)
 
 
 async def async_main():
     await init_db()
     args = parse_args()
     session = get_session()
+    if args.priority:
+        print("Running scraping in priority mode")
+        poll_item_from_s_queue = poll_item_from_priority_scrape_queue
+        delete_item_from_s_queue = delete_item_from_priority_scrape_queue
+        push_item_to_e_queue = push_item_to_priority_extract_queue
+    else:
+        print("Running scraping in normal mode")
+        poll_item_from_s_queue = poll_item_from_scrape_queue
+        delete_item_from_s_queue = delete_item_from_scrape_queue
+        push_item_to_e_queue = push_item_to_extract_queue
     async with make_sqs_scraper_client(session) as sqs_scraper_client, make_s3_client(
         session
     ) as s3_client:
@@ -447,6 +472,9 @@ async def async_main():
             sqs_scraper_client,
             s3_client,
             scraper,
+            push_item_to_e_queue,
+            poll_item_from_s_queue,
+            delete_item_from_s_queue,
             args.max_poll_retries,
             args.max_concurrent_manufacturers,
         )

@@ -22,6 +22,9 @@ async def push_item_to_priority_extract_queue(priority_sqs_client, item: ToExtra
         QueueUrl=PRIORITY_EXTRACT_QUEUE_URL,
         MessageBody=json.dumps(item.to_dict()),
     )
+    print(
+        f"Sent ToExtractItem for {item.manufacturer_url} to priority extract queue: {PRIORITY_EXTRACT_QUEUE_URL}"
+    )
 
 
 async def poll_item_from_priority_extract_queue(
@@ -32,7 +35,7 @@ async def poll_item_from_priority_extract_queue(
 
     :param priority_sqs_client: The SQS client to use for receiving messages.
     """
-    print(f"Polling SQS queue: {PRIORITY_EXTRACT_QUEUE_URL}")
+    print(f"Polling SQS Priority Extract queue: {PRIORITY_EXTRACT_QUEUE_URL}")
     response = await priority_sqs_client.receive_message(
         QueueUrl=PRIORITY_EXTRACT_QUEUE_URL,
         MaxNumberOfMessages=1,

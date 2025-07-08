@@ -23,7 +23,9 @@ async def push_item_to_scrape_queue(sqs_client, item: ToScrapeItem):
         QueueUrl=SCRAPE_QUEUE_URL,
         MessageBody=json.dumps(item.to_dict()),
     )
-    print(f"Sent item to scrape queue: {item.manufacturer_url}")
+    print(
+        f"Sent ToScrapeItem for {item.manufacturer_url} to scrape queue: {SCRAPE_QUEUE_URL}"
+    )
 
 
 async def poll_item_from_scrape_queue(
@@ -34,7 +36,7 @@ async def poll_item_from_scrape_queue(
 
     :param sqs_client: The SQS client to use for receiving messages.
     """
-    print(f"Polling SQS queue: {SCRAPE_QUEUE_URL}")
+    print(f"Polling Scrape queue: {SCRAPE_QUEUE_URL}")
     response = await sqs_client.receive_message(
         QueueUrl=SCRAPE_QUEUE_URL,
         MaxNumberOfMessages=1,
@@ -75,4 +77,4 @@ async def delete_item_from_scrape_queue(sqs_client, receipt_handle: str):
         QueueUrl=SCRAPE_QUEUE_URL,
         ReceiptHandle=receipt_handle,
     )
-    print(f"Deleted message with receipt handle: {receipt_handle}")
+    print(f"Deleted item from Scrape queue with receipt handle: {receipt_handle}")

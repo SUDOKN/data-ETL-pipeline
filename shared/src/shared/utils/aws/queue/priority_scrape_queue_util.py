@@ -22,6 +22,9 @@ async def push_item_to_priority_scrape_queue(priority_sqs_client, item: ToScrape
         QueueUrl=PRIORITY_SCRAPE_QUEUE_URL,
         MessageBody=json.dumps(item.to_dict()),
     )
+    print(
+        f"Sent ToScrapeItem for {item.manufacturer_url} to priority scrape queue: {PRIORITY_SCRAPE_QUEUE_URL}"
+    )
 
 
 async def poll_item_from_priority_scrape_queue(priority_sqs_client):
@@ -30,7 +33,7 @@ async def poll_item_from_priority_scrape_queue(priority_sqs_client):
 
     :param priority_sqs_client: The SQS client to use for receiving messages.
     """
-    print(f"Polling SQS queue: {PRIORITY_SCRAPE_QUEUE_URL}")
+    print(f"Polling Priority Scrape queue: {PRIORITY_SCRAPE_QUEUE_URL}")
     response = await priority_sqs_client.receive_message(
         QueueUrl=PRIORITY_SCRAPE_QUEUE_URL,
         MaxNumberOfMessages=1,

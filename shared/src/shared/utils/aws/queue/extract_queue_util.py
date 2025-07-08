@@ -18,10 +18,12 @@ async def push_item_to_extract_queue(sqs_client, item: ToExtractItem):
     :param sqs_client: The SQS client to use for sending messages.
     :param item: The item to send to the SQS queue.
     """
-    print(f"Sent ToExtractItem for {item.manufacturer_url} to extract queue.")
     await sqs_client.send_message(
         QueueUrl=EXTRACT_QUEUE_URL,
         MessageBody=json.dumps(item.to_dict()),
+    )
+    print(
+        f"Sent ToExtractItem for {item.manufacturer_url} to extract queue: {EXTRACT_QUEUE_URL}."
     )
 
 
@@ -31,7 +33,7 @@ async def poll_item_from_extract_queue(sqs_client):
 
     :param sqs_client: The SQS client to use for receiving messages.
     """
-    print(f"Polling SQS queue: {EXTRACT_QUEUE_URL}")
+    print(f"Polling SQS Extract queue: {EXTRACT_QUEUE_URL}")
     response = await sqs_client.receive_message(
         QueueUrl=EXTRACT_QUEUE_URL,
         MaxNumberOfMessages=1,
