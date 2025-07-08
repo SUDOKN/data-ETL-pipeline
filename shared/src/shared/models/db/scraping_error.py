@@ -7,9 +7,9 @@ from shared.utils.time_util import get_current_time
 
 
 class ScrapingError(Document):
+    created_at: datetime = Field(default_factory=lambda: get_current_time())
     error: str
     url: MfgURLType  # Manufacturer URL for which the error occurred
-    created_at: datetime = Field(default_factory=lambda: get_current_time())
 
     class Settings:
         name = "scraping_errors"
