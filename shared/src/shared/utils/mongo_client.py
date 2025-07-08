@@ -5,6 +5,7 @@ from pydantic_settings import BaseSettings
 
 from shared.models.db.manufacturer import Manufacturer
 from shared.models.db.extraction_error import ExtractionError
+from shared.models.db.scraping_error import ScrapingError
 from data_etl_app.models.keyword_ground_truth import KeywordGroundTruth
 
 MONGO_DB_URI = os.getenv("MONGO_DB_URI")
@@ -28,5 +29,10 @@ async def init_db():
     client = AsyncIOMotorClient(settings.MONGO_URI)  # type: ignore
     return await init_beanie(
         database=client.get_default_database(),
-        document_models=[Manufacturer, ExtractionError, KeywordGroundTruth],
+        document_models=[
+            Manufacturer,
+            ExtractionError,
+            ScrapingError,
+            KeywordGroundTruth,
+        ],
     )

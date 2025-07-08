@@ -3,6 +3,18 @@ from shared.models.db.manufacturer import Batch
 from shared.utils.url_util import canonical_host
 
 
+"""
+Sample:
+{
+    "manufacturer_url": "www.3pindustries.com",
+    "batch": {
+        "title": "testing",
+        "timestamp": "2025-07-08T03:29:34.165905+00:00"
+    }
+}
+"""
+
+
 @dataclass
 class ToScrapeItem:
     manufacturer_url: str
