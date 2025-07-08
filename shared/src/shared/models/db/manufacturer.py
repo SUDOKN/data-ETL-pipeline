@@ -97,4 +97,4 @@ class Manufacturer(Document):
         return value
 
     class Settings:
-        name = "manufacturer"
+        name = "manufacturers"

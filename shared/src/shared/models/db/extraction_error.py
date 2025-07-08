@@ -7,10 +7,10 @@ from shared.utils.time_util import get_current_time
 
 
 class ExtractionError(Document):
-    error: str
-    url: MfgURLType  # Manufacturer URL for which the error occurred
-    field: str
     created_at: datetime = Field(default_factory=lambda: get_current_time())
+    error: str
+    field: str
+    url: MfgURLType  # Manufacturer URL for which the error occurred
 
     class Settings:
         name = "extraction_errors"
