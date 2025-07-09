@@ -31,12 +31,24 @@ class ScrapingResult:
             f"errors_count={len(self.errors)})"
         )
 
+    def print_stats(self) -> None:
+        """
+        Print a summary of the scraping results.
+        """
+        print(f"   ✅ URLs scraped: {self.urls_scraped}")
+        print(f"   ❌ URLs failed: {self.urls_failed}")
+        print(f"   📈 Success rate: {self.success_rate:.1%}")
+        # if self.errors:
+        #     print(f"  Errors Count: {len(self.errors)}")
+        #     for error in self.errors:
+        #         print(f"    - {error['url']}: {error['error']} ({error['error_type']}) at depth {error['depth']}")
+
 
 class AsyncScraperService:
     def __init__(
         self,
         max_concurrency: int = 5,
-        max_depth: int = 2,
+        max_depth: int = 5,
         headless: bool = True,
     ):
         """
