@@ -25,3 +25,8 @@ You should use pip install . or pip install -e . to make your package importable
 - Use pip install -e . for development.
 - Both commands make your package importable everywhere in your environment.
 - Without them, you may face import errors unless you manage paths manually.
+
+# Other notes:
+- `python3.12 -m venv .venv` if first time
+- activate venv in shell each time: `source .venv/bin/activate`
+- playwright install even after installing app in -e mode
