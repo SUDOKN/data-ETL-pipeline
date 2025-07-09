@@ -83,9 +83,6 @@ def parse_args():
         help="Is this for priority queue? 0 for no, 1 for yes",
     )
     parser.add_argument(
-        "--max_poll_retries", type=int, default=2, help="Max polling retries for SQS"
-    )
-    parser.add_argument(
         "--max_concurrency", type=int, default=5, help="Max concurrency for scraping"
     )
     parser.add_argument(
@@ -95,7 +92,7 @@ def parse_args():
         help="Queue would not be polled if there are more than this many manufacturers are being scraped concurrently.",
     )
     parser.add_argument(
-        "--max_depth", type=int, default=2, help="Max depth for scraping"
+        "--max_depth", type=int, default=5, help="Max depth for scraping"
     )
     return parser.parse_args()
 
@@ -122,45 +119,35 @@ async def process_queue(
         [Any], Awaitable[tuple[ToScrapeItem, str] | tuple[None, None]]
     ],
     delete_item_from_s_queue: Callable[[Any, str], Awaitable[None]],
-    max_poll_retries: int = 2,
     max_concurrent_manufacturers: int = 5,
 ):
     concurrent_manufacturers = set()
-    retries = 0
     scraping_stats = ScrapingStats()  # Initialize timing stats
     await scraper.start()
     try:
         while True:
             # Check if we are at the concurrency threshold
             if len(concurrent_manufacturers) >= max_concurrent_manufacturers:
-                await asyncio.sleep(CONCURRENCY_CHECK_INTERVAL)  # lets other tasks run
+                await asyncio.sleep(CONCURRENCY_CHECK_INTERVAL)
+                """
+                    The sleeping coroutine only resumes when:
+                    - The minimum sleep time has elapsed AND
+                    - The currently running task yields control back to the event loop
+                    - So if you have a long-running task that takes 10 seconds to complete, 
+                    and it starts running during your 1-second sleep, your sleep will 
+                    effectively last ~10 seconds total.
+                """
                 continue
-            item, receipt_handle = await poll_item_from_s_queue(sqs_client)
-            if item is None:
-                if retries < max_poll_retries:
-                    print(
-                        f"No messages received. Retrying {retries + 1}/{max_poll_retries}..."
-                    )
-                    retries += 1
-                    await asyncio.sleep(RETRY_SLEEP_INTERVAL)
-                    continue
-                else:
-                    print(
-                        f"No messages received after {retries} retries. Sleeping for {DEFAULT_SLEEP_AFTER_RETRIES // 3600} hours."
-                    )
-                    # Print summary statistics before long sleep
-                    if scraping_stats.completed_count > 0:
-                        print(f"📊 Session Summary:")
-                        scraping_stats.print_stats()
-                    await asyncio.sleep(DEFAULT_SLEEP_AFTER_RETRIES)
-                    retries = 0  # Reset retries after sleeping
-                    continue
 
-            if not receipt_handle:
+            item, receipt_handle = await poll_item_from_s_queue(
+                sqs_client
+            )  # 10 second long poll, doesn't block, yields control back to event loop
+
+            if item is None:
+                continue
+            elif not receipt_handle:
                 print("No receipt handle found, skipping this message.")
                 continue
-
-            retries = 0  # Reset retries on successful message retrieval
 
             # Create single timestamp for this polled item - all errors will use this timestamp
             current_timestamp = get_current_time()
@@ -297,9 +284,7 @@ async def scrape_manufacturer(
 
     # Log scraping statistics
     print(f"📊 Scraping stats for {item.manufacturer_url}:")
-    print(f"   ✅ URLs scraped: {scraping_result.urls_scraped}")
-    print(f"   ❌ URLs failed: {scraping_result.urls_failed}")
-    print(f"   📈 Success rate: {scraping_result.success_rate:.1%}")
+    scraping_result.print_stats()
 
     # Validate scraped content
     num_tokens = num_tokens_from_string(scraping_result.content)
@@ -451,6 +436,7 @@ async def async_main():
     await init_db()
     args = parse_args()
     session = get_session()
+
     if args.priority:
         print("Running scraping in priority mode")
         poll_item_from_s_queue = poll_item_from_priority_scrape_queue
@@ -461,6 +447,7 @@ async def async_main():
         poll_item_from_s_queue = poll_item_from_scrape_queue
         delete_item_from_s_queue = delete_item_from_scrape_queue
         push_item_to_e_queue = push_item_to_extract_queue
+
     async with make_sqs_scraper_client(session) as sqs_scraper_client, make_s3_client(
         session
     ) as s3_client:
@@ -475,7 +462,6 @@ async def async_main():
             push_item_to_e_queue,
             poll_item_from_s_queue,
             delete_item_from_s_queue,
-            args.max_poll_retries,
             args.max_concurrent_manufacturers,
         )
 

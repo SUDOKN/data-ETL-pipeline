@@ -1,5 +1,6 @@
 import os
 import json
+
 from shared.models.to_scrape_item import ToScrapeItem
 
 

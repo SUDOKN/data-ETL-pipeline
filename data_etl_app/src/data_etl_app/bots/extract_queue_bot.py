@@ -72,13 +72,13 @@ class ExtractionStats:
         self.completed_count += 1
         self.average_time = self.total_time / self.completed_count
 
-    def get_stats(self) -> dict:
-        """Get current statistics."""
-        return {
-            "completed_count": self.completed_count,
-            "total_time": self.total_time,
-            "average_time": self.average_time,
-        }
+    def print_stats(self):
+        """Print the current statistics."""
+        print(f"   ✅ Total completed: {self.completed_count} manufacturers")
+        print(
+            f"   ⏱️  Total time: {self.total_time:.2f}s ({self.total_time/60:.1f} minutes)"
+        )
+        print(f"   📈 Average time per manufacturer: {self.average_time:.2f}s")
 
 
 def parse_args():
@@ -88,9 +88,6 @@ def parse_args():
         type=int,
         default=0,
         help="Is this for priority queue? 0 for no, 1 for yes",
-    )
-    parser.add_argument(
-        "--max_poll_retries", type=int, default=2, help="Max polling retries for SQS"
     )
     parser.add_argument(
         "--max_concurrent_manufacturers",
@@ -109,10 +106,9 @@ async def process_queue(
     delete_item_from_queue: Callable[[Any, str], Awaitable[None]],
     sqs_client,
     s3_client,
-    max_poll_retries: int = 2,
     max_concurrent_manufacturers: int = 25,
 ):
-    retries = 0
+
     concurrent_manufacturers = set()
     extraction_stats = ExtractionStats()  # Initialize timing stats
     try:
@@ -122,39 +118,15 @@ async def process_queue(
                 await asyncio.sleep(CONCURRENCY_CHECK_INTERVAL)  # lets other tasks run
                 continue
 
-            item, receipt_handle = await poll_item_from_queue(sqs_client)
-            if item is None:
-                if retries < max_poll_retries:
-                    print(
-                        f"No messages received. Retrying {retries + 1}/{max_poll_retries}..."
-                    )
-                    retries += 1
-                    await asyncio.sleep(RETRY_SLEEP_INTERVAL)
-                    continue
-                else:
-                    print(
-                        f"No messages received after {retries} retries. Sleeping for {DEFAULT_SLEEP_AFTER_RETRIES // 3600} hours."
-                    )
-                    # Print summary statistics before long sleep
-                    stats = extraction_stats.get_stats()
-                    if stats["completed_count"] > 0:
-                        print(f"📊 Session Summary:")
-                        print(
-                            f"   ✅ Completed extraction: {stats['completed_count']} manufacturers"
-                        )
-                        print(f"   ⏱️  Total time: {stats['total_time']:.2f}s")
-                        print(
-                            f"   📈 Average time per manufacturer: {stats['average_time']:.2f}s"
-                        )
-                    await asyncio.sleep(DEFAULT_SLEEP_AFTER_RETRIES)
-                    retries = 0  # Reset retries after sleeping
-                    continue
+            item, receipt_handle = await poll_item_from_queue(
+                sqs_client
+            )  # 10 second long poll, doesn't block, yields control back to event loop
 
-            if not receipt_handle:
+            if item is None:
+                continue
+            elif not receipt_handle:
                 print("No receipt handle found, skipping this message.")
                 continue
-
-            retries = 0  # Reset retries on successful message retrieval
 
             # Validate manufacturer before processing
             manufacturer, mfg_txt, _version_id, should_continue = (
@@ -189,14 +161,9 @@ async def process_queue(
         print(f"Error processing SQS message: {e}")
     finally:
         # Print final statistics
-        stats = extraction_stats.get_stats()
-        if stats["completed_count"] > 0:
+        if extraction_stats.completed_count > 0:
             print(f"\n🏁 Final Session Statistics:")
-            print(f"   ✅ Total completed: {stats['completed_count']} manufacturers")
-            print(
-                f"   ⏱️  Total time: {stats['total_time']:.2f}s ({stats['total_time']/60:.1f} minutes)"
-            )
-            print(f"   📈 Average time per manufacturer: {stats['average_time']:.2f}s")
+            extraction_stats.print_stats()
 
 
 async def validate_manufacturer_for_extraction(
@@ -460,11 +427,10 @@ async def extract_and_cleanup(
         duration = end_time - start_time
         extraction_stats.add_timing(duration)
 
-        stats = extraction_stats.get_stats()
         print(f"✅ Extraction completed for {manufacturer.url}")
         print(f"   ⏱️  Individual time: {duration:.2f}s")
         print(
-            f"   📊 Average time: {stats['average_time']:.2f}s (from {stats['completed_count']} completed)"
+            f"   📊 Average time: {extraction_stats.average_time:.2f}s (from {extraction_stats.completed_count} completed)"
         )
 
     except Exception as e:
@@ -491,6 +457,7 @@ async def async_main():
     await init_db()
     args = parse_args()
     session = get_session()
+
     if args.priority:
         print("Running extraction in priority mode")
         poll_item_from_queue = poll_item_from_priority_extract_queue
@@ -499,6 +466,7 @@ async def async_main():
         print("Running extraction in normal mode")
         poll_item_from_queue = poll_item_from_extract_queue
         delete_item_from_queue = delete_item_from_extract_queue
+
     async with make_sqs_extractor_client(
         session
     ) as sqs_extractor_client, make_s3_client(session) as s3_client:
@@ -507,7 +475,6 @@ async def async_main():
             delete_item_from_queue,
             sqs_extractor_client,
             s3_client,
-            args.max_poll_retries,
             args.max_concurrent_manufacturers,
         )
 

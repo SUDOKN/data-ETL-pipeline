@@ -1,0 +1,31 @@
+{
+  "apps": [
+    {
+      "name": "scrape-queue-bot-priority",
+      "script": "./scraper_app/src/scraper_app/bots/scrape_queue_bot.py",
+      "interpreter": "python3",
+      "args": "--priority 1 --max_concurrent_manufacturers 5 --max_depth 5",
+      "cwd": "./",
+      "instances": 1,
+      "autorestart": true,
+      "watch": false,
+      "max_memory_restart": "2G",
+      "log_date_format": "YYYY-MM-DD HH:mm:ss Z",
+      "error_file": "./logs/scrape-queue-bot-priority-error.log",
+      "out_file": "./logs/scrape-queue-bot-priority-out.log",
+      "log_file": "./logs/scrape-queue-bot-priority-combined.log",
+      "time": true,
+      "kill_timeout": 30000,
+      "shutdown_with_message": true,
+      "listen_timeout": 8000,
+      "wait_ready": false,
+      "max_restarts": 5,
+      "min_uptime": "10s",
+      "restart_delay": 5000,
+      "env": {
+        "PYTHONPATH": "./scraper_app/src:./shared/src:./open_ai_key_app/src",
+        "PYTHONUNBUFFERED": "1"
+      }
+    }
+  ]
+}
