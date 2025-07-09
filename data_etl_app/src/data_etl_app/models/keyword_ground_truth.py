@@ -15,7 +15,7 @@ class ResultCorrection(BaseModel):
     remove: list[str]
 
 
-class KeywordGroundTruth(Document):
+class KeywordGroundTruth(Document):  # TODO: add authors
     created_at: datetime = Field(default_factory=lambda: get_current_time())
     scraped_text_file_version_id: (
         str  # copy of mfg's scraped_text_file_version_id, for independent consistency

@@ -2,6 +2,7 @@ import asyncio
 from dataclasses import dataclass
 from typing import List
 from playwright.async_api import async_playwright, Playwright, Browser, BrowserContext
+
 from shared.utils.url_util import add_protocol
 
 

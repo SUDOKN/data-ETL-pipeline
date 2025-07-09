@@ -1,8 +1,8 @@
-from aiobotocore.session import get_session
-import argparse
 import asyncio
 from datetime import datetime
 import time
+import argparse
+from aiobotocore.session import get_session
 from typing import Callable, Awaitable, Any, Optional
 
 from shared.models.db.scraping_error import ScrapingError

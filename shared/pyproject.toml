@@ -10,8 +10,25 @@ description = "Contains common code like AWS utils and services"
 readme = "ABOUT.md"                                              # or point to a common README if you like
 requires-python = ">=3.9"
 
-# Any dependencies that your common code needs:
+# Any dependencies that more than one app share :
+# (not necessarily all apps just to keep every app aligned on dependencies)
 dependencies = [
+  "pydantic>=2.10.0",         # Data validation
+  "pydantic_settings>=1.0.0", # For settings management
+  "typing_extensions>=4.0.0", # For type hints in Python 3.9+
+
+  "python-dotenv>=1.1.0",      # For loading environment variables from .env files
+  "fastapi>=0.116.0",          # Modern, fast web framework for building APIs
+  "uvicorn[standard]>=0.30.0", # ASGI server for FastAPI
+
+  "motor>=3.3.0",   # Async MongoDB driver
+  "beanie>=1.23.0", # ODM for MongoDB
+
+  "aiobotocore>=2.4.0",            # Async AWS SDK
+  "boto3>=1.35.0,<1.36.0",         # Pin to compatible version
+  "botocore>=1.35.0,<1.36.0",      # Ensure compatibility
+  "mypy-boto3-s3>=1.35.0,<1.36.0", # Match boto3 version
+
   "redis>=4.2.0,<5.0", # Async Redis client
   "openai>=1.0.0",     # Add the version you need
   "tiktoken>=0.5.0",   # Add the version you need

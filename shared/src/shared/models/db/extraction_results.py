@@ -1,14 +1,13 @@
 from datetime import datetime
-from pydantic import BaseModel
+from pydantic import BaseModel, ValidationInfo, field_validator
 
 from shared.models.types import LLMMappingType, OntologyVersionIDType
-from pydantic import field_validator, ValidationInfo
 
 
 class ChunkSearchStats(BaseModel):
     results: list[str]  # results from brute and llm search, maybe empty
     brute: set[str]
-    llm: set[str]
+    llm: set[str]  # TODO: check if orphan llm is also present in the text
     mapping: LLMMappingType
     unmapped_llm: set[str]  # unmapped unknowns from llm search
 

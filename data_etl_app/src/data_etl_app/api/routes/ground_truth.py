@@ -11,7 +11,10 @@ from shared.models.to_scrape_item import ToScrapeItem
 from shared.utils.url_util import canonical_host
 from shared.utils.time_util import get_current_time
 from shared.utils.aws.queue.sqs_scraper_client_util import make_sqs_scraper_client
-from shared.utils.aws.queue.scrape_queue_util import push_item_to_scrape_queue
+from shared.utils.aws.queue.priority_scrape_queue_util import (
+    push_item_to_priority_scrape_queue,
+)
+
 from shared.utils.aws.s3.s3_client_util import make_s3_client
 from shared.utils.aws.s3.scraped_text_util import (
     get_file_name_from_mfg_url,
@@ -32,7 +35,7 @@ sqs_scraper_client = make_sqs_scraper_client(session)
 s3_client = make_s3_client(session)
 
 
-@router.get("/keyword_gt/", response_class=JSONResponse)
+@router.get("/keyword_gt/", response_class=JSONResponse)  # TODO: add response model
 async def fetch_ground_truth_template(
     mfg_url: str | None = Query(
         default=None, description="Manufacturer URL (optional, randomized otherwise)"
@@ -74,7 +77,7 @@ async def fetch_ground_truth_template(
         # this will only be the case with user provided mfg_url
         # or when for some reason the manufacturer was not extracted correctly
         # push this new potential manufacturer to scrape queue and ask user to try again in a few minutes
-        await push_item_to_scrape_queue(
+        await push_item_to_priority_scrape_queue(
             sqs_scraper_client,
             ToScrapeItem(
                 manufacturer_url=mfg_url,
@@ -111,7 +114,7 @@ async def fetch_ground_truth_template(
                 extracted_concept_data = getattr(manufacturer, concept_type.value, None)
 
     if not extracted_concept_data:
-        await push_item_to_scrape_queue(
+        await push_item_to_priority_scrape_queue(
             sqs_scraper_client,
             ToScrapeItem(
                 manufacturer_url=mfg_url,

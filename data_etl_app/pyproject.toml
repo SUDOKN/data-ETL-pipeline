@@ -13,19 +13,12 @@ requires-python = ">=3.9"
 
 # Runtime dependencies for your app
 dependencies = [
-  "fastapi>=0.95.0",           # or whichever version you need
-  "uvicorn[standard]>=0.23.0", # for running the server
-  "beanie>=1.23.0",            # ODM for MongoDB
-  "pydantic>=1.10.0",          # Data validation
-  "typing_extensions>=4.0.0",  # For type hints in Python 3.9+
-  "aiofiles>=23.1.0",          # Async file operations
-  "rdflib>=7.0.0",             # RDF library
-  "motor>=3.3.0",              # Async MongoDB driver
-  "boto3>=1.20,<2.0",          # AWS SDK for Python
-  "mypy-boto3-s3>=1.20,<2.0",  # Type stubs for boto3 S3
+  "aiofiles>=23.1.0", # Async file operations
 
-  # Tell pip that open_ai_key_app is also a dependency:
+  "rdflib>=7.0.0", # RDF library
+
+  # Tell pip that open_ai_key_app and shared are also dependencies:
   "open_ai_key_app>=0.1.0",
-  "shared>=0.1.0",
   # ^ This means: “install open_ai_key_app from that path as version 0.1.0”
+  "shared>=0.1.0",
 ]
