@@ -1,6 +1,3 @@
-from shared.models.db.manufacturer import Batch
-
-
 class ToExtractItem:
     def __init__(self, manufacturer_url: str):
 

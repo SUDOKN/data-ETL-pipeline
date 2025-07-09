@@ -1,6 +1,6 @@
 from beanie import Document
-from datetime import datetime
 from pydantic import BaseModel, Field, field_validator
+from datetime import datetime
 from typing import List, Optional
 
 from shared.models.types import MfgURLType
