@@ -2,6 +2,7 @@ import os
 import json
 
 from shared.models.to_extract_item import ToExtractItem
+from shared.constants import LONG_POLL_INTERVAL
 
 EXTRACT_QUEUE_URL = os.getenv("EXTRACT_QUEUE_URL")
 
@@ -20,7 +21,7 @@ async def push_item_to_extract_queue(sqs_client, item: ToExtractItem):
     """
     await sqs_client.send_message(
         QueueUrl=EXTRACT_QUEUE_URL,
-        MessageBody=json.dumps(item.to_dict()),
+        MessageBody=item.model_dump_json(),
     )
     print(
         f"Sent ToExtractItem for {item.manufacturer_url} to extract queue: {EXTRACT_QUEUE_URL}."
@@ -37,7 +38,7 @@ async def poll_item_from_extract_queue(sqs_client):
     response = await sqs_client.receive_message(
         QueueUrl=EXTRACT_QUEUE_URL,
         MaxNumberOfMessages=1,
-        WaitTimeSeconds=10,
+        WaitTimeSeconds=LONG_POLL_INTERVAL,
     )
     messages = response.get("Messages", [])
     if not messages:
@@ -48,7 +49,7 @@ async def poll_item_from_extract_queue(sqs_client):
 
     try:
         item_dict = json.loads(body.strip())
-        item = ToExtractItem.from_dict(item_dict)
+        item = ToExtractItem(**item_dict)
     except Exception as e:
         print(f"Error decoding ToExtractItem JSON from message body: {e}")
         # Optionally delete the message if it's malformed

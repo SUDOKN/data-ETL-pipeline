@@ -1,18 +1,18 @@
-class ToExtractItem:
-    def __init__(self, manufacturer_url: str):
+from pydantic import BaseModel, field_validator
 
-        if not isinstance(manufacturer_url, str) or not manufacturer_url:
+from shared.utils.url_util import canonical_host
+
+
+class ToExtractItem(BaseModel):
+    manufacturer_url: str
+
+    @field_validator("manufacturer_url")
+    @classmethod
+    def validate_and_canonicalize_url(cls, v: str) -> str:
+        if not isinstance(v, str) or not v:
             raise ValueError("manufacturer_url must be a non-empty string")
 
-        self.manufacturer_url = manufacturer_url
-
-    @classmethod
-    def from_dict(cls, d: dict):
-        return cls(
-            manufacturer_url=d["manufacturer_url"],
-        )
-
-    def to_dict(self):
-        return {
-            "manufacturer_url": self.manufacturer_url,
-        }
+        canonical = canonical_host(v)
+        if not canonical:
+            raise ValueError(f"Invalid URL: '{v}' has no valid hostname.")
+        return canonical

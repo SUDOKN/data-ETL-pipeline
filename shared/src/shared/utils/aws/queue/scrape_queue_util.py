@@ -2,7 +2,7 @@ import os
 import json
 
 from shared.models.to_scrape_item import ToScrapeItem
-
+from shared.constants import LONG_POLL_INTERVAL
 
 SCRAPE_QUEUE_URL = os.getenv("SCRAPE_QUEUE_URL")
 
@@ -22,7 +22,7 @@ async def push_item_to_scrape_queue(sqs_client, item: ToScrapeItem):
     """
     await sqs_client.send_message(
         QueueUrl=SCRAPE_QUEUE_URL,
-        MessageBody=json.dumps(item.to_dict()),
+        MessageBody=item.model_dump_json(),
     )
     print(
         f"Sent ToScrapeItem for {item.manufacturer_url} to scrape queue: {SCRAPE_QUEUE_URL}"
@@ -41,7 +41,7 @@ async def poll_item_from_scrape_queue(
     response = await sqs_client.receive_message(
         QueueUrl=SCRAPE_QUEUE_URL,
         MaxNumberOfMessages=1,
-        WaitTimeSeconds=10,
+        WaitTimeSeconds=LONG_POLL_INTERVAL,
     )
     messages = response.get("Messages", [])
     if not messages:
@@ -52,7 +52,7 @@ async def poll_item_from_scrape_queue(
 
     try:
         item_dict = json.loads(body.strip())
-        item = ToScrapeItem.from_dict(item_dict)
+        item = ToScrapeItem(**item_dict)
     except Exception as e:
         print(
             f"Error decoding ToScrapeItem JSON from message body: {e}, deleting message from Scrape queue."

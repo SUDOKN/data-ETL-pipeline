@@ -1,10 +1,10 @@
 import asyncio
 from datetime import datetime
-import time
 import argparse
 from aiobotocore.session import get_session
 from typing import Callable, Awaitable, Any, Optional
 
+from shared.constants import REDO_EXTRACTION_KEYWORD
 from shared.models.db.scraping_error import ScrapingError
 from shared.models.db.manufacturer import Manufacturer
 from shared.models.to_extract_item import ToExtractItem
@@ -31,7 +31,11 @@ from shared.utils.aws.s3.scraped_text_util import (
 from shared.utils.mongo_client import init_db
 from shared.utils.time_util import get_current_time
 
-from shared.services.manufacturer_service import update_manufacturer
+from shared.services.manufacturer_service import (
+    reset_llm_aided_fields,
+    find_manufacturer_by_url,
+    update_manufacturer,
+)
 
 from scraper_app.services.async_url_scraper_service import (
     AsyncScraperService,
@@ -42,7 +46,7 @@ from open_ai_key_app.utils.ask_gpt_util import num_tokens_from_string
 # Configuration constants
 DEFAULT_SLEEP_AFTER_RETRIES = 12 * 60 * 60  # 12 hours in seconds
 RETRY_SLEEP_INTERVAL = 5  # seconds
-CONCURRENCY_CHECK_INTERVAL = 1  # second
+CONCURRENCY_CHECK_INTERVAL = 0.1  # second
 
 
 class ScrapingStats:
@@ -159,7 +163,11 @@ async def process_queue(
                 # Validate manufacturer before processing
                 existing_manufacturer, should_continue = (
                     await validate_manufacturer_for_scraping(
-                        item, sqs_client, s3_client, push_item_to_e_queue
+                        current_timestamp,
+                        item,
+                        sqs_client,
+                        s3_client,
+                        push_item_to_e_queue,
                     )
                 )
 
@@ -207,6 +215,7 @@ async def process_queue(
 
 
 async def validate_manufacturer_for_scraping(
+    timestamp: datetime,
     item: ToScrapeItem,
     sqs_client,
     s3_client,
@@ -218,11 +227,26 @@ async def validate_manufacturer_for_scraping(
     if processing should continue.
     """
     print(f"Validating manufacturer for scraping: {item.manufacturer_url}")
-    manufacturer = await Manufacturer.find_one({"url": item.manufacturer_url})
+    manufacturer = await find_manufacturer_by_url(
+        item.manufacturer_url
+    )  # Fetch existing manufacturer by URL
 
     if manufacturer:
         print(f"Found existing manufacturer for {item.manufacturer_url}.")
-        if manufacturer.scraped_text_file_version_id:
+        if (
+            not manufacturer.scraped_text_file_version_id
+            or manufacturer.scraped_text_file_version_id == REDO_EXTRACTION_KEYWORD
+        ):
+            # NOTE: this block can (and should) be utilized only when we want the manufacturer extraction to be:
+            # 1. done for the first time
+            # 2. redone by setting its scraped_text_file_version_id as None beforehand.
+            print(
+                f"Manufacturer {manufacturer.url} exists but has no scraped_text_file_version_id. Adding batch {item.batch} and proceeding to scrape."
+            )
+            reset_llm_aided_fields(manufacturer)
+            manufacturer.batches.append(item.batch)
+            await update_manufacturer(timestamp, manufacturer)
+        elif manufacturer.scraped_text_file_version_id:
             existing_txt_file = await does_scraped_text_file_exist(
                 s3_client,
                 get_file_name_from_mfg_url(item.manufacturer_url),
@@ -230,8 +254,9 @@ async def validate_manufacturer_for_scraping(
             )
             if existing_txt_file:
                 print(
-                    f"Found existing scraped text file for {manufacturer.url} with version {manufacturer.scraped_text_file_version_id}. No need to scrape, fast tracking to extraction."
+                    f"Found existing scraped text file for {manufacturer.url} with version {manufacturer.scraped_text_file_version_id}. Re-extraction request noted. No need to scrape, fast tracking to extraction."
                 )
+
                 await push_item_to_e_queue(
                     sqs_client,
                     ToExtractItem(manufacturer_url=manufacturer.url),
@@ -242,19 +267,11 @@ async def validate_manufacturer_for_scraping(
                     f"WARNING: Scraped text file for {manufacturer.url} with version {manufacturer.scraped_text_file_version_id} does not exist in S3. Please check manufacturer records."
                 )
                 return manufacturer, False
-        else:
-            # NOTE: this block can (and should) be utilized only when we want the manufacturer extraction to be:
-            # 1. done for the first time
-            # 2. redone by setting its scraped_text_file_version_id as None beforehand.
-            print(
-                f"Manufacturer {manufacturer.url} exists but has no scraped_text_file_version_id. Adding batch {item.batch} and proceeding to scrape."
-            )
-            manufacturer.batches.insert(0, item.batch)
 
     return manufacturer, True
 
 
-async def scrape_manufacturer(
+async def scrape_and_save_manufacturer(
     timestamp: datetime,
     s3_client,
     scraper: AsyncScraperService,
@@ -311,11 +328,13 @@ async def scrape_manufacturer(
     print(f"Uploaded to S3: {s3_text_file_full_url}")
 
     if manufacturer:
+        manufacturer.scraped_text_file_num_tokens = num_tokens
         manufacturer.scraped_text_file_version_id = version_id
     else:
         manufacturer = Manufacturer(
             created_at=timestamp,
             url=item.manufacturer_url,
+            scraped_text_file_num_tokens=num_tokens,
             scraped_text_file_version_id=version_id,
             batches=[item.batch],
             # Following fields will be set later during extraction
@@ -357,12 +376,12 @@ async def scrape_and_cleanup(
     scraping_stats: ScrapingStats,
 ):
     """Scrape manufacturer and handle cleanup tasks with comprehensive error handling."""
-    start_time = time.time()
+    start_time = get_current_time()
     scraping_result = None
 
     try:
         # Perform scraping and get result with errors
-        scraping_result = await scrape_manufacturer(
+        scraping_result = await scrape_and_save_manufacturer(
             timestamp, s3_client, scraper, item, manufacturer
         )
 
@@ -386,16 +405,16 @@ async def scrape_and_cleanup(
             )
 
         # Calculate and log timing
-        end_time = time.time()
+        end_time = get_current_time()
         duration = end_time - start_time
-        scraping_stats.add_timing(duration)
+        scraping_stats.add_timing(duration.total_seconds())
 
         print(f"✅ Scraping completed for {item.manufacturer_url}")
         print(f"   ⏱️  Individual time: {duration:.2f}s")
         scraping_stats.print_stats()
 
     except Exception as e:
-        end_time = time.time()
+        end_time = get_current_time()
         duration = end_time - start_time
         print(
             f"❌ Error scraping manufacturer {item.manufacturer_url} after {duration:.2f}s: {e}"

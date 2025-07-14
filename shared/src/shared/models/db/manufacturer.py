@@ -4,9 +4,6 @@ from datetime import datetime
 from typing import List, Optional
 
 from shared.models.types import MfgURLType
-from shared.models.db.binary_classifier_result import (
-    BinaryClassifierResult,
-)
 from shared.models.db.extraction_results import ExtractionResults
 from shared.utils.time_util import get_current_time
 from shared.utils.url_util import canonical_host
@@ -34,10 +31,21 @@ class Batch(BaseModel):
     timestamp: datetime
 
 
+class BinaryClassifierResult(BaseModel):
+    evaluated_at: datetime
+    answer: bool
+    reason: str
+
+
+class IsManufacturerResult(BinaryClassifierResult):
+    name: str
+
+
 class Manufacturer(Document):
     url: MfgURLType
     created_at: datetime = Field(default_factory=lambda: get_current_time())
     updated_at: datetime = Field(default_factory=lambda: get_current_time())
+    scraped_text_file_num_tokens: int
     scraped_text_file_version_id: str
     batches: list[Batch] = Field(
         default_factory=list
@@ -45,7 +53,7 @@ class Manufacturer(Document):
 
     name: Optional[str]
 
-    is_manufacturer: Optional[BinaryClassifierResult]
+    is_manufacturer: Optional[IsManufacturerResult]
     is_contract_manufacturer: Optional[BinaryClassifierResult]
     is_product_manufacturer: Optional[BinaryClassifierResult]
 
@@ -83,6 +91,7 @@ class Manufacturer(Document):
         Validates that batches is a list of Batch instances and optionally checks
         that it is sorted by timestamp in descending order (latest first).
         """
+        print(f"validate_batches value: {value}")
         if not isinstance(value, list):
             raise ValueError("batches must be a list")
         for item in value:
@@ -90,9 +99,9 @@ class Manufacturer(Document):
                 raise ValueError("All items in batches must be Batch instances")
         # Optionally, ensure sorted by timestamp descending
         timestamps = [b.timestamp for b in value]
-        if timestamps != sorted(timestamps, reverse=True):
+        if timestamps != sorted(timestamps):
             raise ValueError(
-                "batches must be sorted by timestamp descending (latest first)"
+                "batches must be sorted by timestamp, ascending (oldest first)"
             )
         return value
 

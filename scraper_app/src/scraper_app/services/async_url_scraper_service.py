@@ -1,6 +1,7 @@
 import asyncio
 from dataclasses import dataclass
 from typing import List
+from urllib.parse import urljoin, urlparse
 from playwright.async_api import async_playwright, Playwright, Browser, BrowserContext
 
 from shared.utils.url_util import add_protocol
@@ -100,7 +101,10 @@ class AsyncScraperService:
         """
         Worker coroutine that processes URLs from the queue using the shared context.
         """
-        assert self.context, "Context must be initialized via start() before scraping"
+        if not self.context:
+            raise RuntimeError(
+                "Context must be initialized via start() before scraping"
+            )
         while True:
             try:
                 url, depth = await queue.get()
@@ -133,14 +137,32 @@ class AsyncScraperService:
                         anchors = await page.query_selector_all("a")
                         for a in anchors:
                             href = await a.get_attribute("href")
-                            print(
-                                f"Found anchor: {await a.inner_text()} with href: {href}"
-                            )
-                            # Only enqueue unseen, same-domain URLs
-                            print(domain, href)
-                            if href and domain in href and href not in visited:
-                                print(f"Adding href: {href}")
-                                await queue.put((href, depth + 1))
+                            if not href:
+                                continue
+
+                            # Handle all URL cases:
+                            # 1. Absolute URLs with protocol: https://example.com/page
+                            # 2. Protocol-relative URLs: //example.com/page
+                            # 3. Absolute paths: /about
+                            # 4. Relative paths: ../contact, page.html
+                            # 5. Fragment URLs: #section
+                            # 6. Query URLs: ?param=value
+
+                            # Convert to absolute URL using current page URL as base
+                            absolute_url = urljoin(url, href)
+                            parsed_url = urlparse(absolute_url)
+
+                            # Only process URLs from the same domain
+                            if parsed_url.netloc == domain:
+                                # Remove fragments for deduplication
+                                clean_url = absolute_url.split("#")[0]
+
+                                if clean_url not in visited:
+                                    print(
+                                        f"Found anchor: {await a.inner_text()} with href: {href}"
+                                    )
+                                    print(f"Resolved to: {clean_url}")
+                                    await queue.put((clean_url, depth + 1))
                 except Exception as e:
                     # Collect error instead of just printing
                     error_info = {
@@ -160,7 +182,9 @@ class AsyncScraperService:
         """
         Orchestrate the scraping process and return results with errors.
         """
-        assert self.context, "Must call start() before scrape()"
+        if not self.context:
+            raise RuntimeError("Must call start() before scrape()")
+
         print(f"Starting scrape for domain: {domain} from {start_url}")
         start_url = add_protocol(start_url, protocol="https")
         print(f"After adding protocol start URL: {start_url}")

@@ -1,0 +1,61 @@
+Task: Determine whether the manufacturer described in the text is product-based or not. A “product-based manufacturer” is one that develops, produces, and sells its own branded products—rather than only providing manufacturing services to other companies.
+
+Instructions:
+
+    Read the Text Carefully
+        Examine any details about the company’s products, services, and business model.
+        Look for explicit references to branded products, internal research and development (R&D), or proprietary technology.
+
+    Identify Key Indicators of a Product-Based Manufacturer
+        Ownership of Product Design and Intellectual Property
+            Do they mention having their own patents, unique product designs, trademarks, or other proprietary technology?
+        Focused Product Portfolio
+            Are they describing specific product lines they repeatedly produce and sell under their own brand?
+            Do they talk about continuous improvements or versions of these products?
+        Market-Driven R&D and Innovation
+            Do they discuss investing in research, testing, product innovation, or future product roadmaps?
+        Brand Building and Marketing
+            Are they promoting their own brand with marketing campaigns, brand storytelling, or emphasis on brand identity?
+        Higher Upfront Costs and Capital Investment
+            Do they mention costs associated with product development, tooling, or large-scale production capacity?
+        Quality Control and Regulatory Compliance
+            Are they highlighting their own quality standards, testing protocols, or regulatory certifications under their brand name?
+        Supply Chain and Vendor Management
+            Do they discuss sourcing raw materials for their own branded products or mention long-term partnerships with suppliers specifically for their product lines?
+        End-to-End Responsibility
+            Do they provide after-sales service, warranties, repairs, or customer support for the products they manufacture?
+        Strategic Pricing and Profit Margin Control
+            Is there any indication that they set their own pricing strategies or mention profit margins related to product sales?
+        Long-Term Competitive Differentiation
+            Are they emphasizing unique product features, patented innovations, brand reputation, or strong customer loyalty?
+
+    Determine the Manufacturer Type
+        If most of the above indicators are present and the text shows that the company creates its own branded products, invests in R&D, and handles marketing and distribution for those products, conclude true.
+        If the text mainly discusses providing manufacturing services on behalf of other brands (e.g., contract manufacturing, job shop services, or private-label production without owning brands or unique product designs), conclude false.
+
+    Provide a Clear Answer and Brief Justification
+        In either case, provide a reason which should 1–3 sentences referencing the key indicators from the text.
+
+---
+
+### ✅ Output Format
+
+Return the result as a JSON object in this format:
+
+```json
+{
+  "answer": true,
+  "reason": "The company explicitly states it owns patents, markets its own branded product lines, invests in R&D for future models, and handles after-sales support."
+}
+```
+
+or
+
+```json
+{
+  "answer": false,
+  "reason": "The text suggests the company mainly provides contract manufacturing services to other brands and does not mention its own proprietary products or brand identity."
+}
+```
+
+Only use information that is explicitly stated in the text. Do not make assumptions.

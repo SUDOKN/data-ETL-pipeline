@@ -11,4 +11,7 @@ readme = "ABOUT.md"                                      # or point to a common 
 requires-python = ">=3.12"
 
 # Any dependencies that your common code needs:
-dependencies = ["shared>=0.1.0"]
+dependencies = [
+    "types-redis>=4.0.0", # For Redis type hints
+    "shared>=0.1.0",
+]

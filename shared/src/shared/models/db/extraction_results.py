@@ -5,7 +5,7 @@ from shared.models.types import LLMMappingType, OntologyVersionIDType
 
 
 class ChunkSearchStats(BaseModel):
-    results: list[str]  # results from brute and llm search, maybe empty
+    results: set[str]  # results from brute and llm search, maybe empty
     brute: set[str]
     llm: set[str]  # TODO: check if orphan llm is also present in the text
     mapping: LLMMappingType
