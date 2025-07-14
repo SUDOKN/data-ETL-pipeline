@@ -81,6 +81,7 @@ async def download_scraped_text_from_s3_by_filename(
         raise ValueError(
             f"Version ID not found for the file: {file_name}. Ensure that versioning is enabled on the {SCRAPED_TEXT_BUCKET} bucket."
         )
+    print(f"Downloaded file {file_name} with version ID: {version_id}")
     return content.decode("utf-8"), version_id
 
 

@@ -1,0 +1,88 @@
+Instruction:
+You are given a text describing a manufacturing company. Analyze the text carefully and determine whether the manufacturer operates as a contract/service-based manufacturer (i.e., producing goods or providing manufacturing services on behalf of other businesses, typically under their clients’ brands) or not.
+
+Use the following criteria to guide your analysis. A “contract/service-based manufacturer” typically:
+
+    Customer-Owned Product Designs
+        Relies on client-provided product specifications, designs, or formulas.
+        Produces goods under the client’s brand rather than its own.
+        Focuses on protecting the client’s intellectual property, often through NDAs or other contractual means.
+
+    Specialized Manufacturing Capabilities
+        Possesses specific technical or process expertise (e.g., injection molding, PCB assembly, chemical formulation).
+        Invests in specialized equipment and skilled labor aligned with these manufacturing processes.
+
+    Scalability and Flexible Production Volumes
+        Handles varying production runs, from small batches to large-scale mass production, based on client needs.
+        Demonstrates capacity to quickly ramp production up or down.
+
+    Cost-Efficiency and Shared Investment
+        Leverages economies of scale by serving multiple clients.
+        Allows clients to avoid heavy capital expenditure on specialized facilities and equipment.
+
+    Quality Assurance and Regulatory Compliance
+        Maintains strict quality control measures (e.g., ISO 9001, GMP, FDA compliance).
+        Often has industry-specific certifications depending on the sector (pharma, medical devices, aerospace, etc.).
+
+    Partnership and Long-Term Collaboration
+        Works closely with clients, possibly offering design for manufacturability (DFM) or other engineering support.
+        Seeks ongoing, collaborative relationships rather than one-off transactions.
+
+    Supply Chain and Logistics Services
+        May handle material sourcing, packaging, labeling, warehousing, and sometimes direct shipment to end customers.
+        Often negotiates with raw material suppliers on behalf of clients.
+
+    Formalized Legal Arrangements
+        Operates under specific contractual agreements with clients, outlining responsibilities, costs, timelines, and confidentiality clauses.
+        May have liability clauses for rework, recalls, or product failures.
+
+    Confidentiality and Security
+        Uses nondisclosure agreements and secure facilities/IT systems to protect client information.
+        Typically remains discreet; end consumers may not even know this manufacturer is involved.
+
+    Value-Added Services (Optional)
+        Might provide additional services like product design improvements, prototyping, testing, or post-production support.
+        Helps clients optimize cost, quality, or manufacturability.
+
+    Industry Applications
+        Could serve pharmaceuticals, electronics, personal care, food/beverage, automotive, aerospace, etc., where specialized, regulated production is often required.
+
+    Additional Criterion
+        If the manufacturer is described explicitly as an OEM supplier, consider it a contract/service-based manufacturer.”
+
+Task:
+
+    Read the given text describing the manufacturer.
+    Determine if the text strongly suggests that this manufacturer:
+        Primarily produces goods for clients (under clients’ brands or specifications).
+        Operates under formal contracts or service-based agreements.
+        Provides specialized manufacturing as its core business rather than selling its own proprietary products.
+
+    If the manufacturer aligns with most (or all) of the characteristics above, classify them as true. Otherwise, classify them as false.
+    
+    Briefly explain your reasoning by referencing the points from the text that led you to your conclusion.
+
+
+---
+
+### ✅ Output Format
+
+Return the result as a JSON object in this format:
+
+```json
+{
+  "answer": true,
+  "reason": "The text indicates they manufacture only under clients’ brands, use client-owned specifications, and mention formal NDAs and ISO-certified quality control. They emphasize flexible production volumes and do not market any proprietary products of their own."
+}
+```
+
+or
+
+```json
+{
+  "answer": false,
+  "reason": "The text suggests the company mainly provides contract manufacturing services to other brands and does not mention its own proprietary products or brand identity."
+}
+```
+
+Only use information that is explicitly stated in the text. Do not make assumptions.

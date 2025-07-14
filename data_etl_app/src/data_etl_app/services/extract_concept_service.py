@@ -95,7 +95,7 @@ async def extract_processes(
     """
     Extract process capabilities for a manufacturer text.
     """
-    ontology_version_id, known_processes = ontology_service.process_capabilities
+    ontology_version_id, known_processes = ontology_service.process_caps
     return await _extract_concept_data(
         extraction_timestamp,
         "process_caps",
@@ -121,7 +121,7 @@ async def extract_materials(
     """
     Extract material capabilities for a manufacturer text.
     """
-    ontology_version_id, known_materials = ontology_service.material_capabilities
+    ontology_version_id, known_materials = ontology_service.material_caps
     return await _extract_concept_data(
         extraction_timestamp,
         "material_caps",
@@ -152,6 +152,10 @@ async def _extract_concept_data(
     model_params: ModelParameters = DefaultModelParameters,
     debug: bool = False,
 ) -> ExtractionResults:
+    if debug:
+        print(
+            f"Extracting {concept_type} for {manufacturer_url} at {extraction_timestamp} with ontology version {ontology_version_id}"
+        )
 
     results = set[str]()
     stats: ExtractionStats = ExtractionStats(
@@ -204,7 +208,7 @@ async def _extract_concept_data(
 
     for bounds, brute_set, llm_set in chunk_results:
         stats.search[bounds] = ChunkSearchStats(
-            results=[],  # will be filled later
+            results=set(),  # will be filled later
             brute={b.name for b in brute_set},
             llm=llm_set.copy(),
             mapping={},  # will be filled later after llm produces full mapping
@@ -215,7 +219,7 @@ async def _extract_concept_data(
         for kc in known_concepts:
             common = kc.matchLabels & llm_set
             if common:
-                stats.search[bounds].results.append(kc.name)
+                stats.search[bounds].results.add(kc.name)
                 mutually_agreed_concepts.add(kc)
                 llm_set -= common
 
@@ -257,12 +261,13 @@ async def _extract_concept_data(
             # find all elements in mu that are also in chunk_level unmapped_llm
             # insert mk as key and those elements as value
 
-            filtered_mu = [unknown for unknown in mu if unknown in chunk_stats.llm]
+            chunk_mu = [unknown for unknown in mu if unknown in chunk_stats.llm]
             # NOTE: it is a gurantee that unknown belongs to unmapped_llm because of mapKnownToUnknown logic
             # so we need not find the subset unmapped_unknowns in chunk_stats.llm,
             # we can directly use chunk_stats.llm for filtering
-            if filtered_mu:
-                chunk_stats.mapping[mk.name] = filtered_mu
+            if chunk_mu:
+                chunk_stats.results.add(mk.name)
+                chunk_stats.mapping[mk.name] = chunk_mu
 
     # UPDATE results with newly mapped known concept labels
     mapped_known_concept_labels = set(

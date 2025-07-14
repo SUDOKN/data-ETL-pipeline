@@ -6,11 +6,8 @@ import datetime
 import time
 import shutil
 
-from shared.models.db.manufacturer import Manufacturer
+from shared.models.db.manufacturer import BinaryClassifierResult, Manufacturer
 from shared.models.db.extraction_error import ExtractionError
-from shared.models.db.binary_classifier_result import (
-    BinaryClassifierResult,
-)
 from shared.models.db.extraction_results import ExtractionResults
 from shared.services.manufacturer_service import is_company_a_manufacturer
 from data_etl_app.services.extract_concept_service import (

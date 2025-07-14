@@ -56,6 +56,9 @@ class OntologyService:
         rdf_content, version_id = download_ontology_rdf(None)
         self.graph = get_graph(rdf_content)
         self.ontology_version_id = version_id
+        print(
+            f"OntologyService initialized with version ID: {self.ontology_version_id}"
+        )
         # Clear all cached properties for concept nodes and processed lists
         for attr in [
             "_process_capability_concept_nodes",
@@ -88,7 +91,7 @@ class OntologyService:
         return self._process_capability_concept_nodes
 
     @property
-    def process_capabilities(self) -> tuple[OntologyVersionIDType, List[Concept]]:
+    def process_caps(self) -> tuple[OntologyVersionIDType, List[Concept]]:
         if not hasattr(self, "_process_capabilities"):
             process_trees = self.process_capability_concept_nodes
             for tree in process_trees:
@@ -109,7 +112,7 @@ class OntologyService:
         return self._material_capability_concept_nodes
 
     @property
-    def material_capabilities(self) -> tuple[OntologyVersionIDType, List[Concept]]:
+    def material_caps(self) -> tuple[OntologyVersionIDType, List[Concept]]:
         if not hasattr(self, "_material_capabilities"):
             material_trees = self.material_capability_concept_nodes
             for tree in material_trees:

@@ -1,15 +1,6 @@
 import os
 from redis import Redis  # this import lets pylance know redis is typed
 
-from dotenv import load_dotenv
-
-# Load environment variables from .env at startup
-DOT_ENV_PATH = os.path.join(
-    os.path.dirname(os.path.dirname(os.path.dirname(__file__))), ".env"
-)
-print(f"Loading environment variables from: {DOT_ENV_PATH}")
-load_dotenv(dotenv_path=DOT_ENV_PATH)
-
 HOST = os.getenv("REDIS_HOST")
 PORT = os.getenv("REDIS_PORT")
 

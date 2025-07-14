@@ -28,6 +28,8 @@ class PromptService:
         self._cache = {}
         for attr in [
             "_is_manufacturer_prompt",
+            "_is_product_manufacturer_prompt",
+            "_is_contract_manufacturer_prompt",
             "_extract_industry_prompt",
             "_unknown_to_known_industry_prompt",
             "_extract_material_prompt",
@@ -48,11 +50,33 @@ class PromptService:
     @property
     def is_manufacturer_prompt(self) -> str:
         if "_is_manufacturer_prompt" not in self._cache:
-            with open(f"{PROMPT_BASE_PATH}/is_manufacturer_prompt.txt", "r") as file:
+            with open(f"{PROMPT_BASE_PATH}/is_manufacturer.txt", "r") as file:
                 is_manufacturer_prompt = file.read()
             self._cache["_is_manufacturer_prompt"] = is_manufacturer_prompt
 
         return self._cache["_is_manufacturer_prompt"]
+
+    @property
+    def is_product_manufacturer_prompt(self) -> str:
+        if "_is_product_manufacturer_prompt" not in self._cache:
+            with open(f"{PROMPT_BASE_PATH}/is_product_manufacturer.txt", "r") as file:
+                is_product_manufacturer_prompt = file.read()
+            self._cache["_is_product_manufacturer_prompt"] = (
+                is_product_manufacturer_prompt
+            )
+
+        return self._cache["_is_product_manufacturer_prompt"]
+
+    @property
+    def is_contract_manufacturer_prompt(self) -> str:
+        if "_is_contract_manufacturer_prompt" not in self._cache:
+            with open(f"{PROMPT_BASE_PATH}/is_contract_manufacturer.txt", "r") as file:
+                is_contract_manufacturer_prompt = file.read()
+            self._cache["_is_contract_manufacturer_prompt"] = (
+                is_contract_manufacturer_prompt
+            )
+
+        return self._cache["_is_contract_manufacturer_prompt"]
 
     @property
     def extract_industry_prompt(self) -> str:

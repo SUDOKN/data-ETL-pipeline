@@ -1,4 +1,5 @@
-from dataclasses import dataclass
+from pydantic import BaseModel, field_validator
+
 from shared.models.db.manufacturer import Batch
 from shared.utils.url_util import canonical_host
 
@@ -15,30 +16,17 @@ Sample:
 """
 
 
-@dataclass
-class ToScrapeItem:
+class ToScrapeItem(BaseModel):
     manufacturer_url: str
     batch: Batch
 
-    def __post_init__(self):
-        if not isinstance(self.manufacturer_url, str) or not self.manufacturer_url:
-            raise ValueError("manufacturer_url must be a non-empty string")
-        if not isinstance(self.batch, Batch):
-            raise ValueError("batch must be a Batch instance")
-
-        canonical = canonical_host(self.manufacturer_url)
-        if not canonical:
-            raise ValueError(
-                f"Invalid URL: '{self.manufacturer_url}' has no valid hostname."
-            )
-        self.manufacturer_url = canonical
-
+    @field_validator("manufacturer_url")
     @classmethod
-    def from_dict(cls, d: dict):
-        return cls(manufacturer_url=d["manufacturer_url"], batch=Batch(**d["batch"]))
+    def validate_and_canonicalize_url(cls, v: str) -> str:
+        if not isinstance(v, str) or not v:
+            raise ValueError("manufacturer_url must be a non-empty string")
 
-    def to_dict(self):
-        return {
-            "manufacturer_url": self.manufacturer_url,
-            "batch": self.batch.model_dump_json(),
-        }
+        canonical = canonical_host(v)
+        if not canonical:
+            raise ValueError(f"Invalid URL: '{v}' has no valid hostname.")
+        return canonical

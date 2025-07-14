@@ -2,13 +2,12 @@ from aiobotocore.session import get_session
 import argparse
 import asyncio
 from datetime import datetime
-import time
 from typing import Callable, Awaitable, Any
 
 from shared.models.db.manufacturer import Manufacturer
 from shared.models.db.extraction_error import ExtractionError
-
 from shared.models.to_extract_item import ToExtractItem
+
 from shared.utils.aws.queue.sqs_extractor_client_util import make_sqs_extractor_client
 from shared.utils.aws.queue.extract_queue_util import (
     poll_item_from_extract_queue,
@@ -28,6 +27,7 @@ from shared.utils.aws.s3.s3_client_util import make_s3_client
 from shared.utils.time_util import get_current_time
 
 from shared.services.manufacturer_service import (
+    find_manufacturer_by_url,
     update_manufacturer,
     is_company_a_manufacturer,
 )
@@ -38,6 +38,10 @@ from data_etl_app.services.extract_concept_service import (
     extract_certificates,
     extract_materials,
     extract_processes,
+)
+from data_etl_app.services.binary_classifier_service import (
+    is_product_manufacturer,
+    is_contract_manufacturer,
 )
 
 """
@@ -50,12 +54,12 @@ from scraped text using various AI services.
 
 INVALID_ITEM_TAG = "INVALID_ITEM"
 TOO_SHORT_THRESHOLD = 50  # Minimum number of tokens for scraped text
-TOO_LONG_THRESHOLD = 120000  # Maximum number of tokens for scraped text
+TOO_LONG_THRESHOLD = 125000  # Maximum number of tokens for scraped text
 
 # Configuration constants
 DEFAULT_SLEEP_AFTER_RETRIES = 12 * 60 * 60  # 12 hours in seconds
 RETRY_SLEEP_INTERVAL = 5  # seconds
-CONCURRENCY_CHECK_INTERVAL = 1  # second
+CONCURRENCY_CHECK_INTERVAL = 0.1  # second
 
 
 class ExtractionStats:
@@ -90,6 +94,11 @@ def parse_args():
         help="Is this for priority queue? 0 for no, 1 for yes",
     )
     parser.add_argument(
+        "--debug",
+        default=0,
+        help="Enable debug mode: 0 for no, 1 for yes",
+    )
+    parser.add_argument(
         "--max_concurrent_manufacturers",
         type=int,
         default=25,
@@ -107,6 +116,7 @@ async def process_queue(
     sqs_client,
     s3_client,
     max_concurrent_manufacturers: int = 25,
+    debug: bool = False,
 ):
 
     concurrent_manufacturers = set()
@@ -128,9 +138,13 @@ async def process_queue(
                 print("No receipt handle found, skipping this message.")
                 continue
 
+            current_timestamp = get_current_time()
+
             # Validate manufacturer before processing
-            manufacturer, mfg_txt, _version_id, should_continue = (
-                await validate_manufacturer_for_extraction(item, s3_client)
+            manufacturer, mfg_txt, _txt_version_id, should_continue = (
+                await validate_manufacturer_for_extraction(
+                    current_timestamp, item, s3_client
+                )
             )
 
             if not should_continue:
@@ -142,7 +156,6 @@ async def process_queue(
             assert manufacturer is not None
             assert mfg_txt is not None
 
-            current_timestamp = get_current_time()
             task = asyncio.create_task(
                 extract_and_cleanup(
                     current_timestamp,
@@ -153,12 +166,13 @@ async def process_queue(
                     delete_item_from_queue,
                     concurrent_manufacturers,
                     extraction_stats,
+                    debug=debug,
                 )
             )
             concurrent_manufacturers.add(task)
 
     except Exception as e:
-        print(f"Error processing SQS message: {e}")
+        print(f"Error processing Extract Queue message: {e}")
     finally:
         # Print final statistics
         if extraction_stats.completed_count > 0:
@@ -167,6 +181,7 @@ async def process_queue(
 
 
 async def validate_manufacturer_for_extraction(
+    timestamp: datetime,
     item: ToExtractItem,
     s3_client,
 ) -> tuple[Manufacturer, str, str, bool] | tuple[None, None, None, bool]:
@@ -176,8 +191,8 @@ async def validate_manufacturer_for_extraction(
     indicates if processing should continue.
     Note: This function does NOT delete from queue - cleanup is handled by caller.
     """
-    current_timestamp = get_current_time()
-    manufacturer = await Manufacturer.find_one({"url": item.manufacturer_url})
+
+    manufacturer = await find_manufacturer_by_url(item.manufacturer_url)
 
     if not manufacturer:
         print(
@@ -185,7 +200,7 @@ async def validate_manufacturer_for_extraction(
         )
         await ExtractionError.insert_one(
             ExtractionError(
-                created_at=current_timestamp,
+                created_at=timestamp,
                 error=f"Manufacturer {item.manufacturer_url} does not exist.",
                 field="manufacturer",
                 url=item.manufacturer_url,
@@ -199,7 +214,7 @@ async def validate_manufacturer_for_extraction(
         )
         await ExtractionError.insert_one(
             ExtractionError(
-                created_at=current_timestamp,
+                created_at=timestamp,
                 error=f"Manufacturer {item.manufacturer_url} has no scraped_text_file_version_id.",
                 field="scraped_text_file_version_id",
                 url=item.manufacturer_url,
@@ -219,7 +234,7 @@ async def validate_manufacturer_for_extraction(
         )
         await ExtractionError.insert_one(
             ExtractionError(
-                created_at=current_timestamp,
+                created_at=timestamp,
                 error=f"Scraped text file for {item.manufacturer_url}:{manufacturer.scraped_text_file_version_id} does not exist.",
                 field="scraped_text_file",
                 url=item.manufacturer_url,
@@ -240,7 +255,7 @@ async def validate_manufacturer_for_extraction(
         )
         await ExtractionError.insert_one(
             ExtractionError(
-                created_at=current_timestamp,
+                created_at=timestamp,
                 error=f"Scraped text for {item.manufacturer_url} is shorter than {TOO_SHORT_THRESHOLD} tokens.",
                 field="scraped_text",
                 url=item.manufacturer_url,
@@ -254,7 +269,7 @@ async def validate_manufacturer_for_extraction(
         )
         await ExtractionError.insert_one(
             ExtractionError(
-                created_at=current_timestamp,
+                created_at=timestamp,
                 error=f"Scraped text for {item.manufacturer_url} is longer than {TOO_LONG_THRESHOLD} tokens.",
                 field="scraped_text",
                 url=item.manufacturer_url,
@@ -268,7 +283,7 @@ async def validate_manufacturer_for_extraction(
         )
         await ExtractionError.insert_one(
             ExtractionError(
-                created_at=current_timestamp,
+                created_at=timestamp,
                 error=f"Scraped text version ID mismatch for {item.manufacturer_url}. Expected: {manufacturer.scraped_text_file_version_id}, got: {version_id}.",
                 field="scraped_text_file_version_id",
                 url=item.manufacturer_url,
@@ -283,43 +298,98 @@ async def process_manufacturer(
     timestamp: datetime,
     mfg_txt: str,
     manufacturer: Manufacturer,
+    debug: bool = False,
 ):
 
-    try:
-        print(f"Processing manufacturer: {manufacturer.url}")
-        manufacturer.is_manufacturer = await is_company_a_manufacturer(
-            timestamp,
-            manufacturer.url,
-            mfg_txt,
-        )
+    if debug:
+        print(f"Debug mode enabled. Processing manufacturer: {manufacturer.url}")
 
-        if (
-            manufacturer.is_manufacturer
-            and manufacturer.is_manufacturer.answer is False
-        ):
+    if not manufacturer.is_manufacturer:
+        try:
+            print(f"Finding out if company is a manufacturer: {manufacturer.url}")
+            manufacturer.is_manufacturer = await is_company_a_manufacturer(
+                timestamp,
+                manufacturer.url,
+                mfg_txt,
+                debug=debug,
+            )
+
+            if (
+                manufacturer.is_manufacturer
+                and manufacturer.is_manufacturer.answer is False
+            ):
+                await update_manufacturer(
+                    updated_at=timestamp,
+                    manufacturer=manufacturer,
+                )
+                return  # if not a manufacturer, skip further processing
+        except Exception as e:
+            print(f"{manufacturer.url}.is_manufacturer errored:{e}")
+            await ExtractionError.insert_one(
+                ExtractionError(
+                    created_at=timestamp,
+                    error=str(e),
+                    field="is_manufacturer",
+                    url=manufacturer.url,
+                )
+            )
+            return  # if is_manufacturer check fails, skip further processing
+
+    if not manufacturer.is_product_manufacturer:
+        try:
+            print(
+                f"Finding out if company is a product manufacturer: {manufacturer.url}"
+            )
+            manufacturer.is_product_manufacturer = await is_product_manufacturer(
+                timestamp, manufacturer.url, mfg_txt, debug=debug
+            )
             await update_manufacturer(
                 updated_at=timestamp,
                 manufacturer=manufacturer,
             )
-            return  # if not a manufacturer, skip further processing
-    except Exception as e:
-        print(f"{manufacturer.url}.is_manufacturer errored:{e}")
-        await ExtractionError.insert_one(
-            ExtractionError(
-                created_at=timestamp,
-                error=str(e),
-                field="is_manufacturer",
-                url=manufacturer.url,
+        except Exception as e:
+            print(f"{manufacturer.url}.is_product_manufacturer errored:{e}")
+            await ExtractionError.insert_one(
+                ExtractionError(
+                    created_at=timestamp,
+                    error=str(e),
+                    field="is_product_manufacturer",
+                    url=manufacturer.url,
+                )
             )
-        )
-        return
 
-    # TODO: add is_product_manufacturer, is_contract_manufacturer check
+    if not manufacturer.is_contract_manufacturer:
+        try:
+            print(
+                f"Finding out if company is a contract manufacturer: {manufacturer.url}"
+            )
+            manufacturer.is_contract_manufacturer = await is_contract_manufacturer(
+                timestamp, manufacturer.url, mfg_txt, debug=debug
+            )
+            await update_manufacturer(
+                updated_at=timestamp,
+                manufacturer=manufacturer,
+            )
+        except Exception as e:
+            print(f"{manufacturer.url}.is_contract_manufacturer errored:{e}")
+            await ExtractionError.insert_one(
+                ExtractionError(
+                    created_at=timestamp,
+                    error=str(e),
+                    field="is_contract_manufacturer",
+                    url=manufacturer.url,
+                )
+            )
+            return
+
+    if debug:
+        print(f"industries if present: {manufacturer.industries}")
 
     if not manufacturer.industries or manufacturer.industries.results is None:
         try:
+            print(f"Extracting industries for {manufacturer.url}")
             manufacturer.industries = await extract_industries(
-                timestamp, manufacturer.url, mfg_txt
+                timestamp, manufacturer.url, mfg_txt, debug=debug
             )
             await update_manufacturer(
                 updated_at=timestamp,
@@ -337,12 +407,14 @@ async def process_manufacturer(
                 )
             )
 
+    if debug:
+        print(f"certificates if present: {manufacturer.certificates}")
+
     if not manufacturer.certificates or manufacturer.certificates.results is None:
         try:
+            print(f"Extracting certificates for {manufacturer.url}")
             manufacturer.certificates = await extract_certificates(
-                timestamp,
-                manufacturer.url,
-                mfg_txt,
+                timestamp, manufacturer.url, mfg_txt, debug=debug
             )
             await update_manufacturer(
                 updated_at=timestamp,
@@ -360,12 +432,14 @@ async def process_manufacturer(
                 )
             )
 
+    if debug:
+        print(f"material_caps if present: {manufacturer.material_caps}")
+
     if not manufacturer.material_caps or manufacturer.material_caps.results is None:
         try:
+            print(f"Extracting materials for {manufacturer.url}")
             manufacturer.material_caps = await extract_materials(
-                timestamp,
-                manufacturer.url,
-                mfg_txt,
+                timestamp, manufacturer.url, mfg_txt, debug=debug
             )
             await update_manufacturer(
                 updated_at=timestamp,
@@ -383,12 +457,14 @@ async def process_manufacturer(
                 )
             )
 
+    if debug:
+        print(f"process_caps if present: {manufacturer.process_caps}")
+
     if not manufacturer.process_caps or manufacturer.process_caps.results is None:
         try:
+            print(f"Extracting processes for {manufacturer.url}")
             manufacturer.process_caps = await extract_processes(
-                timestamp,
-                manufacturer.url,
-                mfg_txt,
+                timestamp, manufacturer.url, mfg_txt, debug=debug
             )
             await update_manufacturer(
                 updated_at=timestamp,
@@ -416,28 +492,27 @@ async def extract_and_cleanup(
     delete_item_from_queue,
     concurrent_manufacturers: set,
     extraction_stats: ExtractionStats,
+    debug: bool = False,
 ):
     """Extract manufacturer data and handle cleanup tasks."""
-    start_time = time.time()
+    start_time = get_current_time()
     try:
-        await process_manufacturer(timestamp, mfg_txt, manufacturer)
+        await process_manufacturer(timestamp, mfg_txt, manufacturer, debug)
 
         # Calculate and log timing
-        end_time = time.time()
+        end_time = get_current_time()
         duration = end_time - start_time
-        extraction_stats.add_timing(duration)
+        extraction_stats.add_timing(duration.total_seconds())
 
         print(f"✅ Extraction completed for {manufacturer.url}")
-        print(f"   ⏱️  Individual time: {duration:.2f}s")
-        print(
-            f"   📊 Average time: {extraction_stats.average_time:.2f}s (from {extraction_stats.completed_count} completed)"
-        )
+        print(f"   ⏱️  Individual time: {duration.total_seconds():.2f}s")
+        extraction_stats.print_stats()
 
     except Exception as e:
-        end_time = time.time()
+        end_time = get_current_time()
         duration = end_time - start_time
         print(
-            f"❌ Error processing manufacturer {manufacturer.url} after {duration:.2f}s: {e}"
+            f"❌ Error processing manufacturer {manufacturer.url} after {duration.total_seconds():.2f}s: {e}"
         )
         await ExtractionError.insert_one(
             ExtractionError(
@@ -476,6 +551,7 @@ async def async_main():
             sqs_extractor_client,
             s3_client,
             args.max_concurrent_manufacturers,
+            debug=args.debug,
         )
 
 

@@ -1,0 +1,31 @@
+{
+  "apps": [
+    {
+      "name": "extract-queue-bot-priority",
+      "script": "./data_etl_app/src/data_etl_app/bots/extract_queue_bot.py",
+      "interpreter": "python3",
+      "args": "--priority 1 --max_concurrent_manufacturers 25 --debug 1",
+      "cwd": "./",
+      "instances": 1,
+      "autorestart": true,
+      "watch": false,
+      "max_memory_restart": "1G",
+      "log_date_format": "YYYY-MM-DD HH:mm:ss Z",
+      "error_file": "./logs/extract-queue-bot-priority-error.log",
+      "out_file": "./logs/extract-queue-bot-priority-out.log",
+      "log_file": "./logs/extract-queue-bot-priority-combined.log",
+      "time": true,
+      "kill_timeout": 30000,
+      "shutdown_with_message": true,
+      "listen_timeout": 8000,
+      "wait_ready": false,
+      "max_restarts": 5,
+      "min_uptime": "10s",
+      "restart_delay": 5000,
+      "env": {
+        "PYTHONPATH": "./data_etl_app/src:./shared/src:./open_ai_key_app/src",
+        "PYTHONUNBUFFERED": "1"
+      }
+    }
+  ]
+}

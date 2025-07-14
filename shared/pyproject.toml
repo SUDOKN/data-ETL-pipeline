@@ -16,6 +16,8 @@ dependencies = [
   "pydantic>=2.10.0",         # Data validation
   "pydantic_settings>=1.0.0", # For settings management
   "typing_extensions>=4.0.0", # For type hints in Python 3.9+
+  "pytest>=7.0.0",            # Testing framework
+  "pytest-asyncio>=0.20.0",   # Async testing support
 
   "python-dotenv>=1.1.0",      # For loading environment variables from .env files
   "fastapi>=0.116.0",          # Modern, fast web framework for building APIs

@@ -28,24 +28,24 @@ s3_client = boto3.client(
 )
 
 
-async def does_ontology_version_exist(s3_client, version_id: str) -> bool:
-    """Checks if a file exists in the S3 bucket.
-    :param s3_client: An aiobotocore or regular S3 client to use for the check.
-    :param file_name: The name of the file to check in S3.
-    :param version_id: Optional version ID to check for a specific version of the file.
-    :return: True if the file exists, False otherwise.
+def does_ontology_version_exist(s3_client, version_id: str) -> bool:
+    """Checks if a specific version of the ontology RDF file exists in the S3 bucket.
+    :param s3_client: A boto3 S3 client to use for the check.
+    :param version_id: Version ID to check for a specific version of the file.
+    :return: True if the file version exists, False otherwise.
     """
     assert (
         RDF_BUCKET is not None and RDF_FILENAME is not None
     ), "RDF bucket or filename is not set"
     try:
-
-        await s3_client.head_object(
-            Bucket=RDF_BUCKET, Key=RDF_FILENAME, VersionId=version_id
-        )
+        s3_client.head_object(Bucket=RDF_BUCKET, Key=RDF_FILENAME, VersionId=version_id)
         return True
     except s3_client.exceptions.ClientError as e:
-        if e.response["Error"]["Code"] == "404":
+        error_code = e.response["Error"]["Code"]
+        if error_code in [
+            "404",
+            "403",
+        ]:  # 404 = not found, 403 = forbidden (often means not found for versions)
             return False
         raise  # Re-raise other exceptions
 
