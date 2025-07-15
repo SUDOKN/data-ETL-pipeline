@@ -1,51 +1,46 @@
-Task: Determine whether the manufacturer described in the text is product-based or not. A “product-based manufacturer” is one that develops, produces, and sells its own branded products—rather than only providing manufacturing services to other companies.
+You are given some scraped text about a manufacturer. Your task is to decide whether the company is a **product‑based manufacturer** or not.
+A **product‑based manufacturer** develops, produces, and sells its **own branded products**—as opposed to only providing manufacturing services to other companies.
+**Along with the Yes/No classification, you must output a `confidence` score from 0 to 100 that reflects how certain you are about your answer (higher = more certain).**
+Follow the steps and indicators below, then give a concise justification that cites the relevant evidence in the text.
 
-Instructions:
+1. **Read the Text Carefully**
+   Examine all details about the company’s products, services, and business model.
+   Pay special attention to mentions of branded products, internal R\&D, or proprietary technology.
 
-    Read the Text Carefully
-        Examine any details about the company’s products, services, and business model.
-        Look for explicit references to branded products, internal research and development (R&D), or proprietary technology.
+2. **Key Indicators of a Product‑Based Manufacturer**
 
-    Identify Key Indicators of a Product-Based Manufacturer
-        Ownership of Product Design and Intellectual Property
-            Do they mention having their own patents, unique product designs, trademarks, or other proprietary technology?
-        Focused Product Portfolio
-            Are they describing specific product lines they repeatedly produce and sell under their own brand?
-            Do they talk about continuous improvements or versions of these products?
-        Market-Driven R&D and Innovation
-            Do they discuss investing in research, testing, product innovation, or future product roadmaps?
-        Brand Building and Marketing
-            Are they promoting their own brand with marketing campaigns, brand storytelling, or emphasis on brand identity?
-        Higher Upfront Costs and Capital Investment
-            Do they mention costs associated with product development, tooling, or large-scale production capacity?
-        Quality Control and Regulatory Compliance
-            Are they highlighting their own quality standards, testing protocols, or regulatory certifications under their brand name?
-        Supply Chain and Vendor Management
-            Do they discuss sourcing raw materials for their own branded products or mention long-term partnerships with suppliers specifically for their product lines?
-        End-to-End Responsibility
-            Do they provide after-sales service, warranties, repairs, or customer support for the products they manufacture?
-        Strategic Pricing and Profit Margin Control
-            Is there any indication that they set their own pricing strategies or mention profit margins related to product sales?
-        Long-Term Competitive Differentiation
-            Are they emphasizing unique product features, patented innovations, brand reputation, or strong customer loyalty?
+   | Area                                 | What to Look For                                                         |
+   | ------------------------------------ | ------------------------------------------------------------------------ |
+   | **Ownership of Product Design & IP** | Patents, unique designs, trademarks, proprietary tech                    |
+   | **Focused Product Portfolio**        | Repeated references to specific product lines sold under their own brand |
+   | **Market‑Driven R\&D & Innovation**  | Investments in research, testing, product roadmaps, new versions         |
+   | **Brand Building & Marketing**       | Brand storytelling, campaigns, emphasis on brand identity                |
+   | **Up‑Front Capital Investment**      | Tooling, molds, large‑scale production capacity for their own products   |
+   | **Quality Control & Compliance**     | Their own standards or certifications tied to the brand                  |
+   | **Supply Chain Management**          | Sourcing raw materials or long‑term supplier deals for their products    |
+   | **End‑to‑End Responsibility**        | Warranties, repairs, customer support for their branded goods            |
+   | **Strategic Pricing & Margins**      | Statements about setting product pricing or margins                      |
+   | **Long‑Term Differentiation**        | Unique features, patented advantages, strong brand reputation            |
 
-    Determine the Manufacturer Type
-        If most of the above indicators are present and the text shows that the company creates its own branded products, invests in R&D, and handles marketing and distribution for those products, conclude true.
-        If the text mainly discusses providing manufacturing services on behalf of other brands (e.g., contract manufacturing, job shop services, or private-label production without owning brands or unique product designs), conclude false.
+3. **Determine the Manufacturer Type**
 
-    Provide a Clear Answer and Brief Justification
-        In either case, provide a reason which should 1–3 sentences referencing the key indicators from the text.
+   *Return **true** (product‑based) if the majority of the above indicators are present—i.e., the company designs, brands, markets, and sells its own products and invests in R\&D and distribution.*
+   *Return **false** if the text primarily describes contract/job‑shop/private‑label services for other brands without owning unique products or a distinct brand identity.*
+
+4. **Provide a Clear Answer and Brief Justification**
+   Your justification should be **1 – 3 sentences** referencing the strongest indicators you found.
 
 ---
 
 ### ✅ Output Format
 
-Return the result as a JSON object in this format:
+Return the result as a JSON object in **exactly** one of the following two forms:
 
 ```json
 {
   "answer": true,
-  "reason": "The company explicitly states it owns patents, markets its own branded product lines, invests in R&D for future models, and handles after-sales support."
+  "confidence": 0,           // integer 0–100 indicating certainty in the answer
+  "reason": "The company explicitly states it owns patents, markets its own branded product lines, invests in R&D for future models, and handles after‑sales support."
 }
 ```
 
@@ -54,8 +49,9 @@ or
 ```json
 {
   "answer": false,
+  "confidence": 0,           // integer 0–100 indicating certainty in the answer
   "reason": "The text suggests the company mainly provides contract manufacturing services to other brands and does not mention its own proprietary products or brand identity."
 }
 ```
 
-Only use information that is explicitly stated in the text. Do not make assumptions.
+Only use information that is explicitly stated in the text. **Do not make assumptions.**

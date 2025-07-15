@@ -1,54 +1,57 @@
-You are given some scraped text from a business’s website. Your task is to determine whether the business **is a manufacturer (including contract/service-based manufacturers) or not**. Also find the business name. Use the following criteria—derived from the key characteristics of manufacturing to guide your analysis. Provide a clear, concise classification at the end and briefly explain your reasoning by referencing relevant details from the text.
+You are given some scraped text from a business’s website. Your task is to determine whether the business **is a manufacturer (including contract/service‑based manufacturers) or not**. Also find the business name. **In addition to the Yes/No classification, you must report a `confidence` score from 0 to 100 that reflects how certain you are about your answer (higher = more certain).** Use the following criteria—derived from the key characteristics of manufacturing—to guide your analysis. Provide a clear, concise classification at the end and briefly explain your reasoning by referencing relevant details from the text.
 
-1. **Does the Business Engage in Physical Production or Processing?**  
-   Look for clues that the company fabricates, processes, assembles, or finishes tangible goods (metal parts, plastic components, assemblies, etc.).  
+1. **Does the Business Engage in Physical Production or Processing?**
+   Look for clues that the company fabricates, processes, assembles, or finishes tangible goods (metal parts, plastic components, assemblies, etc.).
    Even if they only handle a specific step—like coating, machining, cutting, or assembly—this still indicates a manufacturing process.
 
-2. **Signs of Specialized Manufacturing Services or Capabilities**  
-   Contract or service-based manufacturers often highlight “Services” or “Capabilities” on their website, describing processes like:
-   - Machining (CNC, turning, milling)
-   - Finishing (coating, painting, anodizing, plating)
-   - Fabrication (welding, cutting, bending)
-   - Injection molding, molding, stamping, casting
-   - Assembly or sub-assembly of components  
-   These references indicate they provide manufacturing services to other businesses, even if they don’t make a fully branded product.
+2. **Signs of Specialized Manufacturing Services or Capabilities**
+   Contract or service‑based manufacturers often highlight “Services” or “Capabilities” on their website, describing processes like:
 
-3. **References to Production Facilities and Equipment**  
-   Mentions of industrial machinery, factories, production lines, or dedicated workshops suggest physical manufacturing.  
-   Phrases like “state-of-the-art machining center,” “our fabrication plant,” or “production runs” support the idea of a manufacturer.
+   * Machining (CNC, turning, milling)
+   * Finishing (coating, painting, anodizing, plating)
+   * Fabrication (welding, cutting, bending)
+   * Injection molding, molding, stamping, casting
+   * Assembly or sub‑assembly of components
+     These references indicate they provide manufacturing services to other businesses, even if they don’t make a fully branded product.
 
-4. **Supply Chain and Materials Handling**  
-   Any mention of sourcing raw materials or managing parts inventory for production signals manufacturing activity.  
+3. **References to Production Facilities and Equipment**
+   Mentions of industrial machinery, factories, production lines, or dedicated workshops suggest physical manufacturing.
+   Phrases like “state‑of‑the‑art machining center,” “our fabrication plant,” or “production runs” support the idea of a manufacturer.
+
+4. **Supply Chain and Materials Handling**
+   Any mention of sourcing raw materials or managing parts inventory for production signals manufacturing activity.
    Even if they don’t produce an entire product, references to handling materials, scheduling production, or coordinating supply chains point to a manufacturing role.
 
-5. **Quality Control and Regulatory Indicators**  
-   Contract manufacturers (and product-based ones) frequently mention quality control, testing, certifications (e.g., ISO standards).  
-   Look for references to compliance with industry regulations (FDA, aerospace, automotive, etc.) or industrial best practices (Lean, Six Sigma).
+5. **Quality Control and Regulatory Indicators**
+   Contract manufacturers (and product‑based ones) frequently mention quality control, testing, certifications (e.g., ISO standards).
+   Look for references to compliance with industry regulations (FDA, aerospace, automotive, etc.) or industrial best practices (Lean, Six Sigma).
 
-6. **Post-Processing or After-Sales Support**  
-   Some contract manufacturers offer follow-up services like inspection, packaging, or shipping.  
-   Product-based manufacturers might mention warranties, repairs, spare parts, but contract-only firms may talk more about meeting client specs or providing ongoing production support.
+6. **Post‑Processing or After‑Sales Support**
+   Some contract manufacturers offer follow‑up services like inspection, packaging, or shipping.
+   Product‑based manufacturers might mention warranties, repairs, spare parts, but contract‑only firms may talk more about meeting client specs or providing ongoing production support.
 
-7. **Clarity on Business Model**  
-   - **Contract/Service-Based Manufacturers**  
-     Focus on providing specialized production services to other businesses.  
+7. **Clarity on Business Model**
+
+   * **Contract/Service‑Based Manufacturers**
+     Focus on providing specialized production services to other businesses.
      Common language: “We provide machining and coating services,” “Outsourced manufacturing,” “We handle your production needs,” or “We work with your designs and specifications.”
-   - **Product-Based Manufacturers**  
-     Emphasize in-house product lines, brand ownership, and final goods sold to end users or distributors.  
+   * **Product‑Based Manufacturers**
+     Emphasize in‑house product lines, brand ownership, and final goods sold to end users or distributors.
      Often feature product catalogs, brand marketing, and direct references to “our products.”
-   - **Not a Manufacturer**  
-     Primarily retailers, distributors, service-only (no physical production), software/IT companies, or consultants without mention of physical fabrication, processing, or assembly.
+   * **Not a Manufacturer**
+     Primarily retailers, distributors, service‑only (no physical production), software/IT companies, or consultants without mention of physical fabrication, processing, or assembly.
 
 ---
 
 ### ✅ Output Format
 
-Return the result as a JSON object in this format:
+Return the result as a JSON object in **exactly** one of the following two forms:
 
 ```json
 {
   "name": [insert name here],
   "answer": true,
+  "confidence": 0,          // integer 0–100 indicating certainty in the answer
   "reason": "[1–3 sentences referencing the key indicators from the text]"
 }
 ```
@@ -59,8 +62,9 @@ or
 {
   "name": [insert name here],
   "answer": false,
+  "confidence": 0,          // integer 0–100 indicating certainty in the answer
   "reason": "[1–3 sentences referencing the key indicators from the text]"
 }
 ```
 
-Only use information that is explicitly stated in the text. Do not make assumptions.
+Only use information that is explicitly stated in the text. Do **not** make assumptions.

@@ -60,3 +60,17 @@ class BinaryGroundTruth(Document):
 
     class Settings:
         name = "binary_ground_truths"
+
+
+"""
+Indexes in MongoDB for BinaryGroundTruth:
+
+db.binary_ground_truths.createIndex(
+  {
+    mfg_url: 1,
+    scraped_text_file_version_id: 1,
+    classification_type: 1
+  },
+  { unique: true }
+)
+"""
