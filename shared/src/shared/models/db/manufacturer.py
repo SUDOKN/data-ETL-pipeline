@@ -34,6 +34,7 @@ class Batch(BaseModel):
 class BinaryClassifierResult(BaseModel):
     evaluated_at: datetime
     answer: bool
+    confidence: int
     reason: str
 
 
@@ -47,9 +48,7 @@ class Manufacturer(Document):
     updated_at: datetime = Field(default_factory=lambda: get_current_time())
     scraped_text_file_num_tokens: int
     scraped_text_file_version_id: str
-    batches: list[Batch] = Field(
-        default_factory=list
-    )  # sorted by timestamp (ensure latest is first)
+    batches: list[Batch]
 
     name: Optional[str]
 
@@ -94,6 +93,9 @@ class Manufacturer(Document):
         print(f"validate_batches value: {value}")
         if not isinstance(value, list):
             raise ValueError("batches must be a list")
+        if len(value) < 1:
+            raise ValueError("batches must contain at least one batch")
+
         for item in value:
             if not isinstance(item, Batch):
                 raise ValueError("All items in batches must be Batch instances")

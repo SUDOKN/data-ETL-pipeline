@@ -101,3 +101,24 @@ class KeywordGroundTruth(Document):
 
     class Settings:
         name = "keyword_ground_truths"
+
+
+"""
+Indexes for KeywordGroundTruth
+
+db.keyword_ground_truths.createIndex(
+  {
+    mfg_url: 1,
+    scraped_text_file_version_id: 1,
+    ontology_version_id: 1,
+    concept_type: 1,
+    chunk_no: 1
+  },
+  {
+    name: "uniq_mfg_ver_ont_type_chunk",
+    unique: true,
+    background: true   // build in the background so it doesn’t lock writes
+  }
+);
+
+"""
