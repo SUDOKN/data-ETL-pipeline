@@ -76,6 +76,15 @@ async def validation_exception_handler(request: Request, exc: RequestValidationE
     )
 
 
+# add a /health endpoint
+@app.get("/health")
+async def health_check():
+    """
+    Health check endpoint to verify if the application is running.
+    """
+    return {"status": "ok", "message": "Application is running"}
+
+
 app.include_router(ontology_router)
 app.include_router(ground_truth_router)
 
