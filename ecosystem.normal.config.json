@@ -78,7 +78,8 @@
       "env": {
         "PYTHONPATH": "./data_etl_app/src:./shared/src:./open_ai_key_app/src",
         "PYTHONUNBUFFERED": "1",
-        "NODE_ENV": "production"
+        "NODE_ENV": "production",
+        "LOG_LEVEL": "DEBUG"
       }
     }
   ]
