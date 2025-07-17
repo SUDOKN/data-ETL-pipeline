@@ -1,4 +1,6 @@
 from datetime import datetime
+import logging
+
 from shared.models.db.manufacturer import IsManufacturerResult, Manufacturer
 
 from data_etl_app.services.prompt_service import prompt_service
@@ -6,6 +8,8 @@ from data_etl_app.services.binary_classifier_service import (
     is_manufacturer,
 )
 from shared.models.types import MfgURLType
+
+logger = logging.getLogger(__name__)
 
 
 def reset_llm_aided_fields(manufacturer: Manufacturer):
@@ -27,21 +31,23 @@ def reset_llm_aided_fields(manufacturer: Manufacturer):
 async def update_manufacturer(updated_at: datetime, manufacturer: Manufacturer):
     manufacturer.updated_at = updated_at
     manufacturer = Manufacturer.model_validate(manufacturer.model_dump())
+
+    logger.debug(f"Saving manufacturer {manufacturer} to the database.")
     await manufacturer.save()
 
 
 async def is_company_a_manufacturer(
-    timestamp: datetime, manufacturer_url: str, text: str, debug: bool = False
+    timestamp: datetime, manufacturer_url: str, text: str
 ) -> IsManufacturerResult:
-    if debug:
-        print(f"Checking if {manufacturer_url} is a manufacturer...")
+
+    logger.debug(f"Checking if {manufacturer_url} is a manufacturer...")
+
     name, binary_classifier_result = await is_manufacturer(
         timestamp,
         "is_manufacturer",
         manufacturer_url,
         text,
         prompt_service.is_manufacturer_prompt,
-        debug=debug,
     )
     return IsManufacturerResult(
         name=name,

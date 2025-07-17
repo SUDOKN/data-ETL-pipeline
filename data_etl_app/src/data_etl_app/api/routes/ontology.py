@@ -1,6 +1,7 @@
 import json
 from fastapi import APIRouter, HTTPException
 from fastapi.responses import JSONResponse
+import logging
 
 from data_etl_app.models.types import ConceptTypeEnum
 from data_etl_app.models.skos_concept import ConceptJSONEncoder
@@ -8,9 +9,9 @@ from data_etl_app.services.ontology_service import ontology_service
 from data_etl_app.utils.route_url_util import (
     ONTOLOGY_REFRESH_URL,
     get_full_ontology_concept_tree_url,
-    get_full_ontology_concept_flat_url,
 )
 
+logger = logging.getLogger(__name__)
 router = APIRouter()
 
 
@@ -29,7 +30,7 @@ def refresh_ontology():
 PROCESS_CONCEPT_TREE_ROUTE = get_full_ontology_concept_tree_url(
     ConceptTypeEnum.process_caps
 )
-print(PROCESS_CONCEPT_TREE_ROUTE)
+logger.debug(f"Process concept tree route: {PROCESS_CONCEPT_TREE_ROUTE}")
 
 
 @router.get(
@@ -129,5 +130,18 @@ def get_certificates():
         return JSONResponse(
             content=json.loads(json.dumps(concepts, cls=ConceptJSONEncoder))
         )
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+@router.get("/ontology/service-info")
+def get_service_info():
+    """Debug endpoint to check ontology service singleton behavior."""
+    try:
+        service_info = ontology_service.get_service_info()
+        return {
+            "service_info": service_info,
+            "message": "Service information retrieved successfully",
+        }
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))

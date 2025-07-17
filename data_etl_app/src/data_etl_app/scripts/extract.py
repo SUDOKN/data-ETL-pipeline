@@ -1,17 +1,22 @@
 import os
 import asyncio
-import os
+import logging
 from dotenv import load_dotenv
+
+from shared.utils.time_util import get_current_time
+
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
 
 DOT_ENV_PATH = os.path.join(
     os.path.dirname(os.path.dirname(os.path.dirname(__file__))), ".env"
 )
-print(f"Loading environment variables from: {DOT_ENV_PATH}")
+logger.info(f"Loading environment variables from: {DOT_ENV_PATH}")
 load_dotenv(dotenv_path=DOT_ENV_PATH)
 
 from data_etl_app.services.extract_concept_service import extract_industries
 
-print(os.getcwd())
+logger.info(f"Current working directory: {os.getcwd()}")
 
 
 async def main():
@@ -20,10 +25,11 @@ async def main():
     with open(f"{mfg_path}", "r") as f:
         mfg_text = f.read()
 
-    print(mfg_text[36620:54147])
+    logger.info(mfg_text[36620:54147])
+    timestamp = get_current_time()
 
-    industries = await extract_industries(mfg_url, mfg_text)
-    print(industries)
+    industries = await extract_industries(timestamp, mfg_url, mfg_text)
+    logger.info(industries)
 
 
 if __name__ == "__main__":

@@ -1,10 +1,14 @@
 from __future__ import (
     annotations,
 )  # This allows you to write self-referential types without quotes, because type annotations are no longer evaluated at function/class definition time
+
 from functools import cached_property
 import json
+import logging
 
 from typing_extensions import TypedDict, Optional
+
+logger = logging.getLogger(__name__)
 
 
 class ConceptNode(TypedDict):
@@ -61,11 +65,6 @@ class Concept:
 
 class ConceptJSONEncoder(json.JSONEncoder):
     def default(self, o: object) -> object:
-        # print(f"o:{o}")
-        # print(f"o type:{type(o)}")
-        # print(f"o.__class__:{o.__class__}")
-        # print(f"o.__class__.__name__:{o.__class__.__name__}")
-        # print(f"isinstance(o, Concept):{isinstance(o, Concept)}")
         if isinstance(o, Concept):
             d: dict[str, object] = {
                 "name": o.name,

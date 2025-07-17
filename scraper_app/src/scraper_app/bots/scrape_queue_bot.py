@@ -2,6 +2,8 @@ import asyncio
 from datetime import datetime
 import argparse
 from aiobotocore.session import get_session
+import logging
+
 from typing import Callable, Awaitable, Any, Optional
 
 from shared.constants import REDO_EXTRACTION_KEYWORD
@@ -43,6 +45,8 @@ from scraper_app.services.async_url_scraper_service import (
 )
 from open_ai_key_app.utils.ask_gpt_util import num_tokens_from_string
 
+logger = logging.getLogger(__name__)
+
 # Configuration constants
 DEFAULT_SLEEP_AFTER_RETRIES = 12 * 60 * 60  # 12 hours in seconds
 RETRY_SLEEP_INTERVAL = 5  # seconds
@@ -73,9 +77,9 @@ class ScrapingStats:
 
     def print_stats(self):
         """Print the current statistics."""
-        print(f"   ✅ Completed scraping: {self.completed_count} manufacturers")
-        print(f"   ⏱️  Total time: {self.total_time/60:.1f} minutes")
-        print(f"   📈 Average time per manufacturer: {self.average_time:.2f}s")
+        logger.info(f"   ✅ Completed scraping: {self.completed_count} manufacturers")
+        logger.info(f"   ⏱️  Total time: {self.total_time/60:.1f} minutes")
+        logger.info(f"   📈 Average time per manufacturer: {self.average_time:.2f}s")
 
 
 def parse_args():
@@ -150,13 +154,13 @@ async def process_queue(
             if item is None:
                 continue
             elif not receipt_handle:
-                print("No receipt handle found, skipping this message.")
+                logger.error("No receipt handle found, skipping this message.")
                 continue
 
             # Create single timestamp for this polled item - all errors will use this timestamp
             current_timestamp = get_current_time()
 
-            print(
+            logger.info(
                 f"Processing item: {item.manufacturer_url} (Batch: {item.batch.title})"
             )
             try:
@@ -193,7 +197,9 @@ async def process_queue(
                 concurrent_manufacturers.add(task)
 
             except Exception as e:
-                print(f"Error processing manufacturer {item.manufacturer_url}: {e}")
+                logger.error(
+                    f"Error processing manufacturer {item.manufacturer_url}: {e}"
+                )
                 await ScrapingError.insert_one(
                     ScrapingError(
                         created_at=current_timestamp,
@@ -205,11 +211,11 @@ async def process_queue(
                 await delete_item_from_s_queue(sqs_client, receipt_handle)
 
     except Exception as e:
-        print(f"Error processing SQS message: {e}")
+        logger.error(f"Error processing SQS message: {e}")
     finally:
         # Print final statistics
         if scraping_stats.completed_count > 0:
-            print(f"\n🏁 Final Session Statistics:")
+            logger.info(f"\n🏁 Final Session Statistics:")
             scraping_stats.print_stats()
         await scraper.stop()
 
@@ -226,13 +232,13 @@ async def validate_manufacturer_for_scraping(
     Returns (manufacturer, should_continue) where should_continue indicates
     if processing should continue.
     """
-    print(f"Validating manufacturer for scraping: {item.manufacturer_url}")
+    logger.info(f"Validating manufacturer for scraping: {item.manufacturer_url}")
     manufacturer = await find_manufacturer_by_url(
         item.manufacturer_url
     )  # Fetch existing manufacturer by URL
 
     if manufacturer:
-        print(f"Found existing manufacturer for {item.manufacturer_url}.")
+        logger.info(f"Found existing manufacturer for {item.manufacturer_url}.")
         if (
             not manufacturer.scraped_text_file_version_id
             or manufacturer.scraped_text_file_version_id == REDO_EXTRACTION_KEYWORD
@@ -240,7 +246,7 @@ async def validate_manufacturer_for_scraping(
             # NOTE: this block can (and should) be utilized only when we want the manufacturer extraction to be:
             # 1. done for the first time
             # 2. redone by setting its scraped_text_file_version_id as None beforehand.
-            print(
+            logger.info(
                 f"Manufacturer {manufacturer.url} exists but has no scraped_text_file_version_id. Adding batch {item.batch} and proceeding to scrape."
             )
             reset_llm_aided_fields(manufacturer)
@@ -253,7 +259,7 @@ async def validate_manufacturer_for_scraping(
                 manufacturer.scraped_text_file_version_id,
             )
             if existing_txt_file:
-                print(
+                logger.info(
                     f"Found existing scraped text file for {manufacturer.url} with version {manufacturer.scraped_text_file_version_id}. Re-extraction request noted. No need to scrape, fast tracking to extraction."
                 )
 
@@ -263,8 +269,8 @@ async def validate_manufacturer_for_scraping(
                 )
                 return manufacturer, False
             else:
-                print(
-                    f"WARNING: Scraped text file for {manufacturer.url} with version {manufacturer.scraped_text_file_version_id} does not exist in S3. Please check manufacturer records."
+                logger.warning(
+                    f"Scraped text file for {manufacturer.url} with version {manufacturer.scraped_text_file_version_id} does not exist in S3. Please check manufacturer records."
                 )
                 return manufacturer, False
 
@@ -279,14 +285,14 @@ async def scrape_and_save_manufacturer(
     manufacturer: Optional[Manufacturer],  # if existing
 ) -> ScrapingResult:
     """Scrape manufacturer content and save to database."""
-    print(f"🔄 Starting scraping for {item.manufacturer_url}")
+    logger.info(f"🔄 Starting scraping for {item.manufacturer_url}")
 
     # Use the updated scraper that returns ScrapingResult
     scraping_result = await scraper.scrape(item.manufacturer_url, item.manufacturer_url)
 
     # Save individual URL errors to database (using consistent timestamp)
     if scraping_result.has_errors:
-        print(
+        logger.warning(
             f"⚠️  Saving {len(scraping_result.errors)} individual URL errors to database"
         )
         for error_info in scraping_result.errors:
@@ -300,12 +306,12 @@ async def scrape_and_save_manufacturer(
             )
 
     # Log scraping statistics
-    print(f"📊 Scraping stats for {item.manufacturer_url}:")
+    logger.info(f"📊 Scraping stats for {item.manufacturer_url}:")
     scraping_result.print_stats()
 
     # Validate scraped content
     num_tokens = num_tokens_from_string(scraping_result.content)
-    print(f"Number of tokens in scraped text: {num_tokens}")
+    logger.info(f"Number of tokens in scraped text: {num_tokens}")
 
     if not num_tokens or num_tokens < 30:
         raise ValueError(
@@ -325,7 +331,7 @@ async def scrape_and_save_manufacturer(
             "success_rate": f"{scraping_result.success_rate:.2}",
         },  # tags for S3 object
     )
-    print(f"Uploaded to S3: {s3_text_file_full_url}")
+    logger.info(f"Uploaded to S3: {s3_text_file_full_url}")
 
     if manufacturer:
         manufacturer.scraped_text_file_num_tokens = num_tokens
@@ -357,7 +363,7 @@ async def scrape_and_save_manufacturer(
         )
 
     await update_manufacturer(timestamp, manufacturer)
-    print(f"Saved manufacturer: {manufacturer.url}")
+    logger.info(f"Saved manufacturer: {manufacturer.url}")
 
     return scraping_result
 
@@ -392,7 +398,7 @@ async def scrape_and_cleanup(
                 ToExtractItem(manufacturer_url=item.manufacturer_url),
             )
         else:
-            print(
+            logger.warning(
                 f"⚠️  Skipping extract queue due to low success rate: {scraping_result.success_rate:.1%}"
             )
             await ScrapingError.insert_one(
@@ -409,14 +415,14 @@ async def scrape_and_cleanup(
         duration = end_time - start_time
         scraping_stats.add_timing(duration.total_seconds())
 
-        print(f"✅ Scraping completed for {item.manufacturer_url}")
-        print(f"   ⏱️  Individual time: {duration:.2f}s")
+        logger.info(f"✅ Scraping completed for {item.manufacturer_url}")
+        logger.info(f"   ⏱️  Individual time: {duration:.2f}s")
         scraping_stats.print_stats()
 
     except Exception as e:
         end_time = get_current_time()
         duration = end_time - start_time
-        print(
+        logger.error(
             f"❌ Error scraping manufacturer {item.manufacturer_url} after {duration:.2f}s: {e}"
         )
 
@@ -432,7 +438,7 @@ async def scrape_and_cleanup(
 
         # If we have partial results, still save individual URL errors
         if scraping_result and scraping_result.has_errors:
-            print(
+            logger.warning(
                 f"⚠️  Also saving {len(scraping_result.errors)} individual URL errors from failed scraping"
             )
             for error_info in scraping_result.errors:
@@ -457,12 +463,12 @@ async def async_main():
     session = get_session()
 
     if args.priority:
-        print("Running scraping in priority mode")
+        logger.info("Running scraping in priority mode")
         poll_item_from_s_queue = poll_item_from_priority_scrape_queue
         delete_item_from_s_queue = delete_item_from_priority_scrape_queue
         push_item_to_e_queue = push_item_to_priority_extract_queue
     else:
-        print("Running scraping in normal mode")
+        logger.info("Running scraping in normal mode")
         poll_item_from_s_queue = poll_item_from_scrape_queue
         delete_item_from_s_queue = delete_item_from_scrape_queue
         push_item_to_e_queue = push_item_to_extract_queue

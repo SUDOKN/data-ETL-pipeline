@@ -1,5 +1,6 @@
 import threading
 import rdflib
+import logging
 from typing import Dict, List
 
 from shared.models.types import OntologyVersionIDType
@@ -21,6 +22,7 @@ from data_etl_app.utils.rdf_to_knowledge_util import (
     tree_list_to_flat,
 )
 
+logger = logging.getLogger(__name__)
 
 BASE_URIS = {
     "process": process_cap_uri(),
@@ -31,32 +33,51 @@ BASE_URIS = {
 
 
 class OntologyService:
+    """
+    Singleton service to manage the ontology data and provide access to capabilities.
+
+    THREAD SAFETY NOTES:
+    - Currently using single worker (-w 1) in gunicorn, so thread contention is minimal
+    - Thread safety is kept for future-proofing and async operation safety
+    - If scaling to multiple workers, consider shared state solution (Redis/DB)
+    - Lock protects singleton creation and refresh operations
+
+    SCALING OPTIONS:
+    1. Single worker (current): Simple, solves refresh problem, may limit throughput
+    2. Multiple workers + shared state: Better throughput, requires inter-process communication
+    3. Stateless design: Move ontology to external store, eliminate singleton
+    """
+
     _instance: "OntologyService | None" = None
-    _lock = (
-        threading.Lock()
-    )  # not strictly necessary, but good practice for thread safety, read in notes
+    _lock = threading.Lock()  # Thread safety for singleton creation and refresh
     _cache: Dict[str, List[Concept]]
     graph: rdflib.Graph
     ontology_version_id: OntologyVersionIDType
-
-    """Singleton service to manage the ontology data and provide access to capabilities."""
 
     def __new__(cls) -> "OntologyService":
         # this gets called before __init__, when anyone calls OntologyService()
         # it ensures that only one instance of the service is created
         # every next time, it will return the same instance
         if cls._instance is None:
+            logger.info("OntologyService instance is None, acquiring lock for creation")
             with cls._lock:
                 if cls._instance is None:
+                    logger.info("Creating new OntologyService singleton instance")
                     cls._instance = super().__new__(cls)
                     cls._instance._init_data()
+                else:
+                    logger.info(
+                        "Another thread created the instance while waiting for lock"
+                    )
+        else:
+            logger.debug("Returning existing OntologyService singleton instance")
         return cls._instance
 
     def _init_data(self) -> None:
         rdf_content, version_id = download_ontology_rdf(None)
         self.graph = get_graph(rdf_content)
         self.ontology_version_id = version_id
-        print(
+        logger.info(
             f"OntologyService initialized with version ID: {self.ontology_version_id}"
         )
         # Clear all cached properties for concept nodes and processed lists
@@ -75,8 +96,15 @@ class OntologyService:
 
     def refresh(self) -> None:
         """Reload ontology data from S3 and clear all cached properties."""
+        logger.info("Refreshing ontology data - acquiring lock")
         with self._lock:
+            logger.info("Lock acquired, starting ontology refresh")
+            old_version = getattr(self, "ontology_version_id", "unknown")
             self._init_data()
+            logger.info(
+                f"Ontology refreshed: {old_version} -> {self.ontology_version_id}"
+            )
+        logger.info("Ontology refresh completed, lock released")
 
     @property
     def process_capability_concept_nodes(self) -> List[ConceptNode]:
@@ -161,6 +189,22 @@ class OntologyService:
                 insert_ancestors(tree, [])
             self._certificates = tree_list_to_flat(certificate_trees)
         return self.ontology_version_id, self._certificates
+
+    def get_service_info(self) -> dict:
+        """Return service information for debugging and health checks."""
+        return {
+            "instance_id": id(self),
+            "ontology_version_id": getattr(
+                self, "ontology_version_id", "not_initialized"
+            ),
+            "graph_loaded": hasattr(self, "graph") and self.graph is not None,
+            "cached_properties": {
+                "process_capabilities": hasattr(self, "_process_capabilities"),
+                "material_capabilities": hasattr(self, "_material_capabilities"),
+                "industries": hasattr(self, "_industries"),
+                "certificates": hasattr(self, "_certificates"),
+            },
+        }
 
 
 # Auto-initialize the singleton instance when the module is imported

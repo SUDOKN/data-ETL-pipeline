@@ -1,9 +1,12 @@
 import os
+import logging
 import threading
 from typing import Dict
 
+logger = logging.getLogger(__name__)
+
 PROMPT_BASE_PATH = "./data_etl_app/src/data_etl_app/knowledge/prompts"
-print(os.getcwd())
+logger.debug(f"Current working directory inside prompt_service: {os.getcwd()}")
 
 
 class PromptService:

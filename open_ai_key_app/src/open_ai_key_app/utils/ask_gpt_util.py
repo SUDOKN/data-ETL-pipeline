@@ -1,10 +1,13 @@
 import openai
 import re
 import asyncio
+import logging
 import tiktoken
 
 from open_ai_key_app.models.gpt_model import GPTModel, GPT_4o_mini, ModelParameters
 from open_ai_key_app.services.openai_keypool_service import keypool
+
+logger = logging.getLogger(__name__)
 
 
 # --- Token Estimation ---
@@ -20,7 +23,6 @@ async def ask_gpt_async(
     prompt: str,
     gpt_model: GPTModel,
     model_params: ModelParameters,
-    debug: bool = False,
 ):
     tokens_prompt = num_tokens_from_string(prompt)
     tokens_context = num_tokens_from_string(context)
@@ -34,18 +36,17 @@ async def ask_gpt_async(
     if tokens_needed > gpt_model.max_context_tokens:
         raise ValueError("Total tokens needed exceed max context tokens.")
 
-    if debug:
-        print(
-            f"ask_gpt_async: context tokens: {tokens_context}, prompt tokens: {tokens_prompt}, "
-            f"max response tokens: {max_response_tokens}, total tokens needed: {tokens_needed}. "
-            f"\nAttempting to borrow key from keypool with {tokens_needed} tokens."
-        )
+    logger.debug(
+        f"ask_gpt_async: context tokens: {tokens_context}, prompt tokens: {tokens_prompt}, "
+        f"max response tokens: {max_response_tokens}, total tokens needed: {tokens_needed}. "
+        f"\nAttempting to borrow key from keypool with {tokens_needed} tokens."
+    )
+
     key_name, api_key, lock_token = await keypool.borrow_key(tokens_needed)
     try:
-        if debug:
-            print(
-                f"ask_gpt_async: Using API key '{key_name}' for model '{gpt_model.model_name}'."
-            )
+        logger.debug(
+            f"ask_gpt_async: Using API key '{key_name}' for model '{gpt_model.model_name}'."
+        )
         openai.api_key = api_key
         response = await asyncio.to_thread(
             openai.chat.completions.create,
@@ -60,10 +61,9 @@ async def ask_gpt_async(
             presence_penalty=model_params.presence_penalty,
             frequency_penalty=model_params.frequency_penalty,
         )
-        if debug:
-            print(
-                f"ask_gpt_async: Received response for key '{key_name}' with {len(response.choices)} choices."
-            )
+        logger.debug(
+            f"ask_gpt_async: Received response for key '{key_name}' with {len(response.choices)} choices."
+        )
         keypool.record_key_usage(api_key, tokens_needed)
         return response.choices[0].message.content
     except Exception as e:
@@ -72,9 +72,11 @@ async def ask_gpt_async(
         # Error code: 429 - {'error': {'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.', 'type': 'insufficient_quota', 'param': None, 'code': 'insufficient_quota'}}
         # check if the error is due to quota exceeded
         error_msg = str(e)
-        print(f"ask_gpt_async exception occurred: {error_msg}")
+        logger.error(f"ask_gpt_async exception occurred: {error_msg}")
         if "You exceeded your current quota" in error_msg:
-            print(f"Quota exceeded for API key_name: {key_name}. Removing from pool.")
+            logger.warning(
+                f"Quota exceeded for API key_name: {key_name}. Removing from pool."
+            )
             keypool.mark_key_exhausted(api_key, error_msg)
             raise ValueError(f"Quota exceeded for API key: {key_name}.")
 
@@ -83,12 +85,12 @@ async def ask_gpt_async(
             match = re.search(r"Please try again in ([\d.]+)s", error_msg)
             if match:
                 delay = float(match.group(1))
-                print(
+                logger.warning(
                     f"Rate limit hit for key {key_name}. Marking as unavailable for {delay}s."
                 )
                 keypool.set_key_cooldown(api_key, delay)
             else:
-                print(
+                logger.warning(
                     f"Rate limit hit for key {key_name}. Marking as unavailable for 5s by default."
                 )
                 keypool.set_key_cooldown(api_key, 5.0)  # Fallback
@@ -98,6 +100,5 @@ async def ask_gpt_async(
         else:
             raise e
     finally:
-        if debug:
-            print(f"ask_gpt_async: Returning key '{key_name}' to keypool.")
+        logger.debug(f"ask_gpt_async: Returning key '{key_name}' to keypool.")
         keypool.return_key(api_key, lock_token)

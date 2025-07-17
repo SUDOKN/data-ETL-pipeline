@@ -2,6 +2,7 @@ from __future__ import (
     annotations,
 )  # This allows you to write self-referential types without quotes, because type annotations are no longer evaluated at function/class definition time — they're stored as strings automatically.
 import asyncio
+import logging
 from datetime import datetime
 
 from shared.models.types import (
@@ -26,6 +27,8 @@ from data_etl_app.utils.chunk_util import (
     get_chunks_with_boundaries,
 )
 
+logger = logging.getLogger(__name__)
+
 from open_ai_key_app.models.gpt_model import (
     GPTModel,
     GPT_4o_mini,
@@ -38,7 +41,6 @@ async def extract_industries(
     extraction_timestamp: datetime,
     manufacturer_url: str,
     text: str,
-    debug: bool = False,
 ) -> ExtractionResults:
     """
     Extract industries for a manufacturer text.
@@ -56,7 +58,6 @@ async def extract_industries(
         ChunkingStrat(overlap=0.15, max_tokens=5000),
         gpt_model=GPT_4o_mini,
         model_params=DefaultModelParameters,
-        debug=debug,
     )
 
 
@@ -64,7 +65,6 @@ async def extract_certificates(
     extraction_timestamp: datetime,
     manufacturer_url: str,
     text: str,
-    debug: bool = False,
 ) -> ExtractionResults:
     """
     Extract certificates for a manufacturer text.
@@ -82,7 +82,6 @@ async def extract_certificates(
         ChunkingStrat(overlap=0.0, max_tokens=7500),
         gpt_model=GPT_4o_mini,
         model_params=DefaultModelParameters,
-        debug=debug,
     )
 
 
@@ -90,7 +89,6 @@ async def extract_processes(
     extraction_timestamp: datetime,
     manufacturer_url: str,
     text: str,
-    debug: bool = False,
 ) -> ExtractionResults:
     """
     Extract process capabilities for a manufacturer text.
@@ -108,7 +106,6 @@ async def extract_processes(
         ChunkingStrat(overlap=0.15, max_tokens=2500),
         gpt_model=GPT_4o_mini,
         model_params=DefaultModelParameters,
-        debug=debug,
     )
 
 
@@ -116,7 +113,6 @@ async def extract_materials(
     extraction_timestamp: datetime,
     manufacturer_url: str,
     text: str,
-    debug: bool = False,
 ) -> ExtractionResults:
     """
     Extract material capabilities for a manufacturer text.
@@ -134,7 +130,6 @@ async def extract_materials(
         ChunkingStrat(overlap=0.1, max_tokens=5000),
         gpt_model=GPT_4o_mini,
         model_params=DefaultModelParameters,
-        debug=debug,
     )
 
 
@@ -150,12 +145,10 @@ async def _extract_concept_data(
     chunk_strategy: ChunkingStrat,
     gpt_model: GPTModel = GPT_4o_mini,
     model_params: ModelParameters = DefaultModelParameters,
-    debug: bool = False,
 ) -> ExtractionResults:
-    if debug:
-        print(
-            f"Extracting {concept_type} for {manufacturer_url} at {extraction_timestamp} with ontology version {ontology_version_id}"
-        )
+    logger.debug(
+        f"Extracting {concept_type} for {manufacturer_url} at {extraction_timestamp} with ontology version {ontology_version_id}"
+    )
 
     results = set[str]()
     stats: ExtractionStats = ExtractionStats(
@@ -247,7 +240,6 @@ async def _extract_concept_data(
         known_concepts,
         unmapped_llm.copy(),
         map_prompt,
-        debug,
     )
 
     # UPDATE unmapped_llm and mapping in chunk_stats
@@ -275,9 +267,8 @@ async def _extract_concept_data(
     )
     results |= mapped_known_concept_labels  # union because overlap is expected
 
-    if debug:
-        print(f"Remaining orphan llm:")
-        print(f"final_unmapped_llm {len(final_unmapped_llm)}:{final_unmapped_llm}")
+    logger.debug(f"Remaining orphan llm:")
+    logger.debug(f"final_unmapped_llm {len(final_unmapped_llm)}:{final_unmapped_llm}")
 
     stats.unmapped_llm = list(final_unmapped_llm)
     stats.mapping = {mk.name: mu for mk, mu in map_results["known_to_unknowns"].items()}

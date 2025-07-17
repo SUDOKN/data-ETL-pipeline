@@ -1,12 +1,15 @@
 from beanie import Document
 from pydantic import BaseModel, Field, field_validator
 from datetime import datetime
+import logging
 from typing import List, Optional
 
 from shared.models.types import MfgURLType
 from shared.models.db.extraction_results import ExtractionResults
 from shared.utils.time_util import get_current_time
 from shared.utils.url_util import canonical_host
+
+logger = logging.getLogger(__name__)
 
 
 class Address(BaseModel):
@@ -90,7 +93,7 @@ class Manufacturer(Document):
         Validates that batches is a list of Batch instances and optionally checks
         that it is sorted by timestamp in descending order (latest first).
         """
-        print(f"validate_batches value: {value}")
+        logger.debug(f"validate_batches value: {value}")
         if not isinstance(value, list):
             raise ValueError("batches must be a list")
         if len(value) < 1:

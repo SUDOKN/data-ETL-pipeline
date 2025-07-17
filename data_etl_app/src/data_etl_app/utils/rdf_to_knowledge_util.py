@@ -1,9 +1,12 @@
+import logging
 import rdflib
 from rdflib.term import URIRef
 from rdflib.namespace import RDFS, SKOS
 from typing import Callable, List
 
 from data_etl_app.models.skos_concept import ConceptNode, Concept
+
+logger = logging.getLogger(__name__)
 
 
 def get_graph(rdf_raw: str) -> rdflib.Graph:
@@ -53,11 +56,11 @@ def insert_ancestors(
     """
     Insert ancestors into the node
     """
-    # print(f'ancestors_so_far: {ancestors_so_far}')
+    logger.debug(f"ancestors_so_far: {ancestors_so_far}")
     node["ancestors"] = ancestors_so_far.copy()
     for child in node["children"]:
         insert_ancestors(child, ancestors_so_far + [node["name"]])
-    # print(f'node: {node}')
+    logger.debug(f"node: {node}")
     return node
 
 
