@@ -6,10 +6,14 @@ they are one the same server as the parent wrapper redis app.
 
 import asyncio
 import os
+import logging
 import random
 
 from open_ai_key_app.models.keyslot import KeySlot
 from open_ai_key_app.utils.redis_key_manager_util import get_all_openai_keys
+
+
+logger = logging.getLogger(__name__)
 
 LOCK_EXPIRY = os.getenv("LOCK_EXPIRY")
 if not LOCK_EXPIRY:
@@ -62,7 +66,7 @@ class OpenAIKeyPool:
                     try:
                         lock_token = await slot.acquire_lock(lock_expiry)
                     except Exception as e:
-                        print(f"Error acquiring lock for slot {slot.name}: {e}")
+                        logger.error(f"Error acquiring lock for slot {slot.name}: {e}")
                         continue
                     return slot.name, slot.api_key, lock_token
             await asyncio.sleep(0.25)
@@ -121,7 +125,7 @@ class OpenAIKeyPool:
                 break
 
         if not self.slots:
-            print("All API keys are exhausted. Stopping the process.")
+            logger.error("All API keys are exhausted. Stopping the process.")
             raise RuntimeError("All API keys are exhausted.")
 
     def mark_key_available(self, api_key: str):

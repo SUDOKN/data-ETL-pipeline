@@ -1,8 +1,11 @@
 from aiobotocore.session import get_session
 from typing import Any
+import logging
 
 from shared.utils.aws.queue.sqs_scraper_client_util import make_sqs_scraper_client
 from shared.utils.aws.s3.s3_client_util import make_s3_client
+
+logger = logging.getLogger(__name__)
 
 
 class AWSClients:
@@ -17,7 +20,7 @@ class AWSClients:
 
     async def initialize(self):
         """Initialize AWS clients at app startup."""
-        print("Initializing AWS clients...")
+        logger.info("Initializing AWS clients...")
         self.session = get_session()
 
         # Create context managers
@@ -28,11 +31,11 @@ class AWSClients:
         self.sqs_scraper_client = await self.sqs_scraper_client_ctx.__aenter__()
         self.s3_client = await self.s3_client_ctx.__aenter__()
 
-        print("AWS clients initialized successfully")
+        logger.info("AWS clients initialized successfully")
 
     async def cleanup(self):
         """Cleanup clients at app shutdown."""
-        print("Cleaning up AWS clients...")
+        logger.info("Cleaning up AWS clients...")
 
         if self.sqs_scraper_client_ctx and self.sqs_scraper_client:
             await self.sqs_scraper_client_ctx.__aexit__(None, None, None)
@@ -40,7 +43,7 @@ class AWSClients:
         if self.s3_client_ctx and self.s3_client:
             await self.s3_client_ctx.__aexit__(None, None, None)
 
-        print("AWS clients cleaned up successfully")
+        logger.info("AWS clients cleaned up successfully")
 
 
 # Global instance

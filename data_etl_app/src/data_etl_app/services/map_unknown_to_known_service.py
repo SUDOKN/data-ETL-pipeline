@@ -1,4 +1,5 @@
 import json
+import logging
 from typing_extensions import TypedDict
 
 from data_etl_app.models.skos_concept import Concept, ConceptJSONEncoder
@@ -10,6 +11,8 @@ from open_ai_key_app.models.gpt_model import (
     GPT_4o_mini,
     DefaultModelParameters,
 )
+
+logger = logging.getLogger(__name__)
 
 
 class MapKnownToUnknownResult(TypedDict):
@@ -27,27 +30,25 @@ async def mapKnownToUnknown(
     prompt: str,
     # gpt_model: GPTModel,
     # model_params: ModelParameters,
-    debug: bool = False,
 ) -> MapKnownToUnknownResult:
 
     context = json.dumps(
         {"unknowns": list(unmapped_unknowns), "knowns": known_concepts},
         cls=ConceptJSONEncoder,
     )
-    if debug:
-        print(f"\nmapping unknown_to_known")
-        print(f"context {num_tokens_from_string(context)}:{context}")
+
+    logger.debug(f"\nmapping unknown_to_known")
+    logger.debug(f"context {num_tokens_from_string(context)}:{context}")
 
     gpt_response = await ask_gpt_async(
         context, prompt, GPT_4o_mini, DefaultModelParameters
     )
     # gpt_response = await ask_gpt_async(context, prompt, pool, gpt_model, model_params)
 
-    if debug:
-        print(f"gptresponse:{gpt_response}")
+    logger.debug(f"gptresponse:{gpt_response}")
 
     if not gpt_response:
-        print(f"gptresponse:{gpt_response}")
+        logger.error(f"gptresponse:{gpt_response}")
         raise ValueError(
             f"{manufacturer_url}:{concept_type} unknown_to_known: Empty response from GPT"
         )
@@ -56,8 +57,7 @@ async def mapKnownToUnknown(
 
     # NOTE: mapping can be {1 unknowns:M knowns} or {M unknowns:1 knowns}
     mapping: dict[str, str] = json.loads(gpt_response)  # from unknown --> known
-    if debug:
-        print(f"mapping:{json.dumps(mapping, indent=2)}")
+    logger.debug(f"mapping:{json.dumps(mapping, indent=2)}")
 
     known_concept_labels = [label for k in known_concepts for label in k.matchLabels]
     unmapped_knowns = set(known_concepts)  # starts as the full set of passed knowns
@@ -68,13 +68,13 @@ async def mapKnownToUnknown(
     for mu, mk in mapping.items():
         if mu not in unmapped_unknowns:
             # case 2: mapped_unknown was either hallucinated, in which case we will still check if mapped_knowns are valid, so just raise a warning
-            print(
+            logger.warning(
                 f"WARNING: {manufacturer_url}:{concept_type} mapped_unknown:{mu} was not in the original unknowns list"
             )
         else:
             if mk:  # mk must not be null/None
                 if mk not in known_concept_labels:
-                    print(
+                    logger.warning(
                         f"WARNING: {manufacturer_url}:{concept_type} mapped_known:{mk} was not in the original knowns list"
                     )
                 else:
@@ -93,9 +93,8 @@ async def mapKnownToUnknown(
             unknowns
         ):  # meaning there was at least one mapping from unknown to known by llm
             unmapped_knowns.remove(kc)
-            if debug:
-                print(f"removing mapped_knowns:{kc}")
-                print(f"removing mapped_unknowns:{unknowns}")
+            logger.debug(f"removing mapped_knowns:{kc}")
+            logger.debug(f"removing mapped_unknowns:{unknowns}")
             unmapped_unknowns -= set(
                 unknowns
             )  # NOTE: unknowns may contain hallucinations, but subtraction is safe

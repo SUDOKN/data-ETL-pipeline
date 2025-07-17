@@ -1,6 +1,9 @@
 import re
+import logging
 
 from data_etl_app.models.skos_concept import Concept
+
+logger = logging.getLogger(__name__)
 
 
 def keyword_regex(keyword: str):
@@ -10,20 +13,17 @@ def keyword_regex(keyword: str):
 
 
 # only considers concept and altLabels, ignores ancestors
-def brute_search(
-    text: str, concepts: list[Concept], debug: bool = False
-) -> set[Concept]:
-    brute_search_concepts: set[Concept] = set()
+def brute_search(text: str, concepts: list[Concept]) -> set[Concept]:
+    found_brute_search_concepts: set[Concept] = set()
 
     for c in concepts:
         if any(
             re.search(keyword_regex(label.lower()), text) for label in c.matchLabels
         ):
-            brute_search_concepts.add(c)
+            found_brute_search_concepts.add(c)
 
-    if debug:
-        print(
-            f"brute_search_concepts {len(brute_search_concepts)}:{brute_search_concepts}"
-        )
+    logger.debug(
+        f"Brute search found {len(found_brute_search_concepts)}:{found_brute_search_concepts} concepts in text."
+    )
 
-    return brute_search_concepts
+    return found_brute_search_concepts

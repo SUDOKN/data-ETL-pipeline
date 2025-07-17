@@ -1,10 +1,13 @@
 import asyncio
 from dataclasses import dataclass
 from typing import List
+import logging
 from urllib.parse import urljoin, urlparse
 from playwright.async_api import async_playwright, Playwright, Browser, BrowserContext
 
 from shared.utils.url_util import add_protocol
+
+logger = logging.getLogger(__name__)
 
 
 @dataclass
@@ -36,13 +39,15 @@ class ScrapingResult:
         """
         Print a summary of the scraping results.
         """
-        print(f"   ✅ URLs scraped: {self.urls_scraped}")
-        print(f"   ❌ URLs failed: {self.urls_failed}")
-        print(f"   📈 Success rate: {self.success_rate:.1%}")
-        # if self.errors:
-        #     print(f"  Errors Count: {len(self.errors)}")
-        #     for error in self.errors:
-        #         print(f"    - {error['url']}: {error['error']} ({error['error_type']}) at depth {error['depth']}")
+        logger.info(f"   ✅ URLs scraped: {self.urls_scraped}")
+        logger.info(f"   ❌ URLs failed: {self.urls_failed}")
+        logger.info(f"   📈 Success rate: {self.success_rate:.1%}")
+        if self.errors:
+            logger.info(f"  Errors Count: {len(self.errors)}")
+            for error in self.errors:
+                logger.info(
+                    f"    - {error['url']}: {error['error']} ({error['error_type']}) at depth {error['depth']}"
+                )
 
 
 class AsyncScraperService:
@@ -108,8 +113,8 @@ class AsyncScraperService:
         while True:
             try:
                 url, depth = await queue.get()
-                print(f"queue size: {queue.qsize()}, visited: {visited}")
-                print(f"Scraping {url} at depth {depth}")
+                logger.debug(f"queue size: {queue.qsize()}, visited: {visited}")
+                logger.info(f"Scraping {url} at depth {depth}")
             except asyncio.CancelledError:
                 break  # Exit gracefully when tasks are cancelled
 
@@ -130,8 +135,9 @@ class AsyncScraperService:
                     # Append with header for clarity
                     results.append(f"{url}\n{body_text}\n")
                     stats["scraped"] += 1
-                    print(f"✅ Scraped {len(body_text)} characters from {url}")
-                    print(f"depth: {depth}, self.max_depth: {self.max_depth}")
+                    logger.info(f"✅ Scraped {len(body_text)} characters from {url}")
+                    logger.info(f"depth: {depth}, self.max_depth: {self.max_depth}")
+
                     # Discover same-domain links if we can go deeper
                     if depth < self.max_depth:
                         anchors = await page.query_selector_all("a")
@@ -158,10 +164,10 @@ class AsyncScraperService:
                                 clean_url = absolute_url.split("#")[0]
 
                                 if clean_url not in visited:
-                                    print(
+                                    logger.debug(
                                         f"Found anchor: {await a.inner_text()} with href: {href}"
                                     )
-                                    print(f"Resolved to: {clean_url}")
+                                    logger.debug(f"Resolved to: {clean_url}")
                                     await queue.put((clean_url, depth + 1))
                 except Exception as e:
                     # Collect error instead of just printing
@@ -173,7 +179,7 @@ class AsyncScraperService:
                     }
                     errors.append(error_info)
                     stats["failed"] += 1
-                    print(f"❌ Error scraping {url}: {e}")
+                    logger.error(f"❌ Error scraping {url}: {e}")
                 finally:
                     await page.close()
                     queue.task_done()
@@ -185,9 +191,9 @@ class AsyncScraperService:
         if not self.context:
             raise RuntimeError("Must call start() before scrape()")
 
-        print(f"Starting scrape for domain: {domain} from {start_url}")
+        logger.info(f"Starting scrape for domain: {domain} from {start_url}")
         start_url = add_protocol(start_url, protocol="https")
-        print(f"After adding protocol start URL: {start_url}")
+        logger.info(f"After adding protocol start URL: {start_url}")
 
         visited: set[str] = set()
         results: list[str] = []
@@ -228,10 +234,9 @@ class AsyncScraperService:
             # Wait for workers to finish cancelling
             await asyncio.gather(*workers, return_exceptions=True)
 
-        print(
+        logger.info(
             f"Scraping complete. Scraped {stats['scraped']} URLs, failed {stats['failed']}."
         )
-        print(errors)
 
         # Return results with error information
         return ScrapingResult(

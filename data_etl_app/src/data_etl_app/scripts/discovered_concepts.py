@@ -4,6 +4,7 @@ This script is used to extract new concepts that were discovered in the extracti
 
 import asyncio
 import json
+import logging
 
 from data_etl_app.models.skos_concept import Concept
 from shared.models.db.manufacturer import Manufacturer
@@ -13,18 +14,17 @@ from shared.utils.mongo_client import (
 )
 
 
+logger = logging.getLogger(__name__)
+
+
 class DiscoveredConcepts:
     def __init__(self):
         self.process_capabilities = {
-            "mapped": self._flat_concepts_to_dict(
-                ontology_service.process_capabilities[1]
-            ),
+            "mapped": self._flat_concepts_to_dict(ontology_service.process_caps[1]),
             "unmapped": set(),
         }
         self.material_capabilities = {
-            "mapped": self._flat_concepts_to_dict(
-                ontology_service.material_capabilities[1]
-            ),
+            "mapped": self._flat_concepts_to_dict(ontology_service.material_caps[1]),
             "unmapped": set(),
         }
         self.industries = {
@@ -129,7 +129,7 @@ async def fetch_discovered_concepts() -> DiscoveredConcepts:
     count = 0
     async for doc in cursor:
         count += 1
-        # print(f"Processing document {count}")
+        logger.info(f"Processing document {count}")
         process_caps = doc.get("process_caps", {})
         material_caps = doc.get("material_caps", {})
         industries = doc.get("industries", {})
@@ -143,13 +143,9 @@ async def fetch_discovered_concepts() -> DiscoveredConcepts:
                 ]
                 for lbl in new_labels:
                     label_counts[lbl] = label_counts.get(lbl, 0) + 1
-                # print(cap)
-                # print(discovered_concepts.process_capabilities["mapped"][cap])
+                logger.info(cap)
+                logger.info(discovered_concepts.process_capabilities["mapped"][cap])
             else:
-                # if cap not in ["Vacuum Forming", "Mechanical"]:
-                #     raise ValueError(
-                #         f"Unexpected process capability: {cap} for {doc['name']} ({doc['url']})"
-                #     )
                 corrupt_mfgs.append(
                     {
                         "reason": "Unexpected process capability",
@@ -250,9 +246,8 @@ async def fetch_discovered_concepts() -> DiscoveredConcepts:
         for cert in certificates.get("stats", {}).get("unmapped_llm", []):
             discovered_concepts.certificates["unmapped"].add(cert)
 
-        # print(discovered_concepts.process_capabilities["mapped"]["Fabricating"])
-        # print(discovered_concepts.process_capabilities["mapped"]["Machining"])
-        # break
+        logger.info(discovered_concepts.process_capabilities["mapped"]["Fabricating"])
+        logger.info(discovered_concepts.process_capabilities["mapped"]["Machining"])
 
     with open("corrupt_manufacturers.json", "w") as f:
         f.write(json.dumps(corrupt_mfgs, indent=2))
@@ -264,7 +259,7 @@ async def save_discovered_concepts(discovered_concepts: DiscoveredConcepts):
     dc_json = json.loads(
         json.dumps(discovered_concepts, cls=DiscoveredConceptsJSONEncoder)
     )
-    # print(f'dc_json:{dc_json["process_capabilities"]["mapped"]["Fabricating"]}')
+
     with open("discovered_process_caps.json", "w") as f:
         f.write(json.dumps(dc_json["process_capabilities"]["mapped"]))
     with open("discovered_process_caps_unmapped.json", "w") as f:

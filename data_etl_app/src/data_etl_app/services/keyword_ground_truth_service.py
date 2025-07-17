@@ -1,5 +1,9 @@
 import re
+import logging
 from datetime import datetime
+
+# Configure logger
+logger = logging.getLogger(__name__)
 
 
 from shared.utils.aws.s3.scraped_text_util import (
@@ -63,14 +67,6 @@ async def update_existing_with_new_keyword_ground_truth(
     s3_client,
 ) -> KeywordGroundTruth:
 
-    # update the existing keyword ground truth
-    # existing_keyword_gt.human_correction_logs.append(
-    #     HumanCorrectionLog(
-    #         created_at=timestamp,
-    #         result_correction=new_correction,
-    #     ),
-    # )
-
     existing_keyword_gt.updated_at = timestamp
 
     return await _validate_and_save_keyword_ground_truth(
@@ -92,12 +88,6 @@ async def save_new_keyword_ground_truth(
 
     new_keyword_gt.created_at = timestamp
     new_keyword_gt.updated_at = timestamp
-    # new_keyword_gt.human_correction_logs = [
-    #     HumanCorrectionLog(
-    #         created_at=timestamp,
-    #         result_correction=new_correction,
-    #     )
-    # ]
 
     return await _validate_and_save_keyword_ground_truth(
         manufacturer, new_keyword_gt, new_correction, s3_client
@@ -207,7 +197,9 @@ async def _validate_and_save_keyword_ground_truth(
         )
     )
 
+    logger.debug("Saving keyword ground truth {keyword_gt} to the database.")
     await keyword_gt.save()
+
     return keyword_gt
 
 
@@ -237,13 +229,13 @@ def _validate_new_human_correction(
     existing_human_correction_logs = keyword_gt.human_correction_logs[:-1]
 
     for mk, mus in new_correction.add.items():
-        print(f"Checking result_correction.add for key: {mk} with terms: {mus}")
+        logger.debug(f"Checking result_correction.add for key: {mk} with terms: {mus}")
         if not mus:
             raise ValueError(
                 f"Key '{mk}' in the object result_correction.add cannot have an empty list of terms."
             )
 
-        print(f"mk in known_concept_labels: {mk in known_concept_labels}")
+        logger.debug(f"mk in known_concept_labels: {mk in known_concept_labels}")
         # Check if mk is a known concept in the latest ontology version
         if mk not in known_concept_labels:
             raise ValueError(

@@ -1,7 +1,11 @@
 import argparse
 import asyncio
+import logging
 import os
+
 from scraper_app.services.async_url_scraper_service import AsyncScraperService
+
+logger = logging.getLogger(__name__)
 
 
 def parse_args():
@@ -57,14 +61,14 @@ async def scrape_and_save(scraper: AsyncScraperService, url: str, output_dir: st
     url = ensure_url_scheme(url)
     domain = get_domain(url)
     try:
-        scraped_text = await scraper.scrape(url, domain)
+        scraping_result = await scraper.scrape(url, domain)
         os.makedirs(output_dir, exist_ok=True)
         file_path = os.path.join(output_dir, f"{domain}.txt")
         with open(file_path, "w", encoding="utf-8") as f:
-            f.write(scraped_text)
-        print(f"Saved scraped text for {url} to {file_path}")
+            f.write(scraping_result.content)
+        logger.info(f"Saved scraped text for {url} to {file_path}")
     except Exception as e:
-        print(f"Error scraping {url}: {e}")
+        logger.error(f"Error scraping {url}: {e}")
 
 
 async def main():
@@ -75,7 +79,7 @@ async def main():
             file_urls = [line.strip() for line in f if line.strip()]
             urls.extend(file_urls)
     if not urls:
-        print("No URLs provided.")
+        logger.warning("No URLs provided.")
         return
     scraper = AsyncScraperService(
         max_concurrency=args.max_concurrency, max_depth=args.max_depth

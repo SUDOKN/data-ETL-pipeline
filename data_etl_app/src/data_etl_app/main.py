@@ -1,4 +1,5 @@
 import os
+import logging
 from contextlib import asynccontextmanager
 from dotenv import load_dotenv
 from fastapi import FastAPI, Request
@@ -9,6 +10,13 @@ from fastapi.exceptions import RequestValidationError
 load_dotenv(
     dotenv_path=os.path.join(os.path.dirname(os.path.dirname(__file__)), ".env")
 )
+
+log_level = os.getenv("LOG_LEVEL", "INFO").upper()
+
+logging.basicConfig(
+    level=log_level, format="%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+)
+logger = logging.getLogger(__name__)
 
 from shared.utils.mongo_client import init_db
 
@@ -21,13 +29,14 @@ from data_etl_app.dependencies.aws_deps import aws_clients
 async def lifespan(app: FastAPI):
     # Startup
     await init_db()
-    print("Database initialized successfully")
+    logger.info("Database initialized successfully")
+
     await aws_clients.initialize()
     yield
 
     # Shutdown
     await aws_clients.cleanup()
-    print("Application shutting down")
+    logger.info("Application shutting down")
 
 
 app = FastAPI(lifespan=lifespan)

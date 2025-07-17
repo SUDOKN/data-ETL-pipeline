@@ -1,4 +1,5 @@
 from datetime import datetime
+import logging
 
 from shared.models.db.manufacturer import Manufacturer
 
@@ -11,6 +12,8 @@ from data_etl_app.models.binary_ground_truth import (
 from shared.services.manufacturer_service import (
     find_manufacturer_by_url_and_scraped_file_version,
 )
+
+logger = logging.getLogger(__name__)
 
 
 async def get_binary_ground_truth(
@@ -106,7 +109,9 @@ async def _validate_and_save_binary_ground_truth(
         )
     )
 
+    logger.debug(f"Saving binary ground truth {binary_ground_truth}")
     await binary_ground_truth.save()
+
     return binary_ground_truth
 
 
@@ -123,7 +128,7 @@ def _validate_new_human_decision(
             "A Human decision must be provided if LLM decision is present."
         )
 
-    print(
+    logger.info(
         f"Validating human decision: {new_human_decision} vs LLM decision: {binary_ground_truth.llm_decision}"
     )
 
