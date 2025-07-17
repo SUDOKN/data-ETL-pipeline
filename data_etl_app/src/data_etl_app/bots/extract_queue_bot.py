@@ -98,8 +98,9 @@ def parse_args():
     )
     parser.add_argument(
         "--debug",
-        default="DEBUG",
-        help="Enable debug mode: 0 for no, 1 for yes",
+        type=str,
+        default="INFO",
+        help="Logging level: DEBUG, INFO, WARNING, ERROR, CRITICAL",
     )
     parser.add_argument(
         "--max_concurrent_manufacturers",
@@ -524,11 +525,22 @@ async def extract_and_cleanup(
 async def async_main():
     await init_db()
     args = parse_args()
-    session = get_session()
+
+    log_level = args.debug.upper()
+
+    # Validate log level
+    valid_levels = ["DEBUG", "INFO", "WARNING", "ERROR", "CRITICAL"]
+    if log_level not in valid_levels:
+        log_level = "INFO"
+
     logging.basicConfig(
-        level=args.debug or logging.INFO,
+        level=log_level,
         format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
     )
+    logger = logging.getLogger(__name__)
+    logger.info(f"Starting extract bot with log level: {log_level}")
+
+    session = get_session()
 
     if args.priority:
         logger.info("Running extraction in priority mode")
