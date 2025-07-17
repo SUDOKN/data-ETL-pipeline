@@ -4,7 +4,7 @@
       "name": "extract-queue-bot-priority",
       "script": "./data_etl_app/src/data_etl_app/bots/extract_queue_bot.py",
       "interpreter": "python3",
-      "args": "--priority 1 --max_concurrent_manufacturers 25 --debug 1",
+      "args": "--priority 1 --max_concurrent_manufacturers 25 --debug INFO",
       "cwd": "./",
       "instances": 1,
       "autorestart": true,

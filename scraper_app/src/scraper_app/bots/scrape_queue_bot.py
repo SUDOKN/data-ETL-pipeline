@@ -91,6 +91,12 @@ def parse_args():
         help="Is this for priority queue? 0 for no, 1 for yes",
     )
     parser.add_argument(
+        "--debug",
+        type=str,
+        default="INFO",
+        help="Logging level: DEBUG, INFO, WARNING, ERROR, CRITICAL",
+    )
+    parser.add_argument(
         "--max_concurrency", type=int, default=5, help="Max concurrency for scraping"
     )
     parser.add_argument(
@@ -460,6 +466,21 @@ async def scrape_and_cleanup(
 async def async_main():
     await init_db()
     args = parse_args()
+
+    log_level = args.debug.upper()
+
+    # Validate log level
+    valid_levels = ["DEBUG", "INFO", "WARNING", "ERROR", "CRITICAL"]
+    if log_level not in valid_levels:
+        log_level = "INFO"
+
+    logging.basicConfig(
+        level=log_level,
+        format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
+    )
+    logger = logging.getLogger(__name__)
+    logger.info(f"Starting scrape bot with log level: {log_level}")
+
     session = get_session()
 
     if args.priority:

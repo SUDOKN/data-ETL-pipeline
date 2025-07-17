@@ -1,0 +1,85 @@
+{
+  "apps": [
+    {
+      "name": "extract-queue-bot-normal",
+      "script": "./data_etl_app/src/data_etl_app/bots/extract_queue_bot.py",
+      "interpreter": "python3",
+      "args": "--priority 0 --max_concurrent_manufacturers 25 --debug INFO",
+      "cwd": "./",
+      "instances": 1,
+      "autorestart": true,
+      "watch": false,
+      "max_memory_restart": "1G",
+      "log_date_format": "YYYY-MM-DD HH:mm:ss Z",
+      "error_file": "./logs/extract-queue-bot-normal-error.log",
+      "out_file": "./logs/extract-queue-bot-normal-out.log",
+      "log_file": "./logs/extract-queue-bot-normal-combined.log",
+      "time": true,
+      "kill_timeout": 30000,
+      "shutdown_with_message": true,
+      "listen_timeout": 8000,
+      "wait_ready": false,
+      "max_restarts": 5,
+      "min_uptime": "10s",
+      "restart_delay": 5000,
+      "env": {
+        "PYTHONPATH": "./data_etl_app/src:./shared/src:./open_ai_key_app/src",
+        "PYTHONUNBUFFERED": "1"
+      }
+    },
+    {
+      "name": "scrape-queue-bot-normal",
+      "script": "./scraper_app/src/scraper_app/bots/scrape_queue_bot.py",
+      "interpreter": "python3",
+      "args": "--priority 0 --max_concurrent_manufacturers 5 --max_depth 5",
+      "cwd": "./",
+      "instances": 1,
+      "autorestart": true,
+      "watch": false,
+      "max_memory_restart": "2G",
+      "log_date_format": "YYYY-MM-DD HH:mm:ss Z",
+      "error_file": "./logs/scrape-queue-bot-normal-error.log",
+      "out_file": "./logs/scrape-queue-bot-normal-out.log",
+      "log_file": "./logs/scrape-queue-bot-normal-combined.log",
+      "time": true,
+      "kill_timeout": 1000,
+      "shutdown_with_message": true,
+      "listen_timeout": 8000,
+      "wait_ready": false,
+      "max_restarts": 5,
+      "min_uptime": "10s",
+      "restart_delay": 1000,
+      "env": {
+        "PYTHONPATH": "./scraper_app/src:./shared/src:./open_ai_key_app/src",
+        "PYTHONUNBUFFERED": "1"
+      }
+    },
+    {
+      "name": "data-etl-api",
+      "script": "python3",
+      "args": "-m gunicorn data_etl_app.main:app -w 1 -k uvicorn.workers.UvicornWorker --bind 0.0.0.0:8000 --timeout 120 --max-requests 1000 --preload --log-level info",
+      "cwd": "./",
+      "instances": 1,
+      "autorestart": true,
+      "watch": false,
+      "max_memory_restart": "1G",
+      "log_date_format": "YYYY-MM-DD HH:mm:ss Z",
+      "error_file": "./logs/data-etl-api-error.log",
+      "out_file": "./logs/data-etl-api-out.log",
+      "log_file": "./logs/data-etl-api-combined.log",
+      "time": true,
+      "kill_timeout": 5000,
+      "shutdown_with_message": true,
+      "listen_timeout": 8000,
+      "wait_ready": false,
+      "max_restarts": 5,
+      "min_uptime": "10s",
+      "restart_delay": 5000,
+      "env": {
+        "PYTHONPATH": "./data_etl_app/src:./shared/src:./open_ai_key_app/src",
+        "PYTHONUNBUFFERED": "1",
+        "NODE_ENV": "production"
+      }
+    }
+  ]
+}
