@@ -66,7 +66,7 @@ async def fetch_ground_truth_template(
         default=random.choice(list(ConceptTypeEnum)),
         description=f"Any one of {[concept.value for concept in ConceptTypeEnum]}",
     ),
-    chunk_no: int = Query(default=1, ge=1, description="Chunk number starting from 1."),
+    chunk_no: int | None = Query(ge=1, description="Chunk number starting from 1."),
     sqs_client=Depends(get_sqs_scraper_client),
     s3_client=Depends(get_s3_client),
 ):
@@ -144,6 +144,25 @@ async def fetch_ground_truth_template(
             detail=f"No data found for concept type: {concept_type.value} for manufacturer: {mfg_url}. Pushed to scrape queue for re-extraction. Please try again in a few minutes.",
         )
 
+    # sort concept_data.stats.search by chunk_bounds
+    sorted_search_data = [
+        (key, value)
+        for key, value in sorted(
+            extracted_concept_data.stats.search.items(), key=lambda item: item[0]
+        )
+    ]
+    last_chunk_no = len(sorted_search_data)
+
+    if chunk_no:
+        if chunk_no > last_chunk_no:
+            raise HTTPException(
+                status_code=404,
+                detail=f"Requested chunk number:{chunk_no} exceeds last available chunk number:{last_chunk_no} for concept type:{concept_type.value}.",
+            )
+    else:
+        # pick random chunk_no if not provided
+        chunk_no = random.randint(1, last_chunk_no)
+
     # check if keyword ground truth already exists for this mfg_url, concept_type, and chunk_no
     existing_keyword_gt = await get_keyword_ground_truth(
         manufacturer=manufacturer,
@@ -161,20 +180,7 @@ async def fetch_ground_truth_template(
         response.pop("id", None)  # remove id from response
         return response
 
-    # if not, then we need to create a new keyword ground truth
-    # sort concept_data.stats.search by chunk_bounds
-    sorted_search_data = [
-        (key, value)
-        for key, value in sorted(
-            extracted_concept_data.stats.search.items(), key=lambda item: item[0]
-        )
-    ]
-    last_chunk_no = len(sorted_search_data)
-    if chunk_no > last_chunk_no:
-        raise HTTPException(
-            status_code=404,
-            detail=f"Requested chunk number:{chunk_no} exceeds last available chunk number:{last_chunk_no} for concept type:{concept_type.value}.",
-        )
+    # At this point, chunk_no was either picked randomly or provided by user, but no existing keyword ground truth was found
     chunk_bounds, chunk_search_stats = sorted_search_data[chunk_no - 1]
 
     # TODO: maybe cache downloaded text
