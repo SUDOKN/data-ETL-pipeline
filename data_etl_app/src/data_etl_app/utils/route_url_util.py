@@ -2,9 +2,9 @@ import os
 
 from data_etl_app.models.types import ConceptTypeEnum
 
-PROTOCOL = os.getenv("PROTOCOL", "http")
-HOSTED_AT = os.getenv("HOSTED_AT", "localhost")
-PORT = int(os.getenv("PORT", 8000))
+PROTOCOL = os.getenv("PROTOCOL")
+HOSTED_AT = os.getenv("HOSTED_AT")
+PORT = os.getenv("PORT")
 
 if not PROTOCOL:
     raise ValueError("PROTOCOL must be set in the environment variables.")
@@ -12,6 +12,11 @@ if not HOSTED_AT:
     raise ValueError("HOSTED_AT must be set in the environment variables.")
 if not PORT:
     raise ValueError("PORT must be set in the environment variables.")
+
+try:
+    PORT = int(PORT)
+except ValueError:
+    raise ValueError("PORT must be an integer.")
 
 FULL_HOSTED_URL = f"{PROTOCOL}://{HOSTED_AT}:{PORT}"
 
