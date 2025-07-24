@@ -2,6 +2,7 @@ import asyncio
 from dataclasses import dataclass
 from typing import List
 import logging
+import os
 from urllib.parse import urljoin, urlparse
 from playwright.async_api import async_playwright, Playwright, Browser, BrowserContext
 
@@ -122,6 +123,26 @@ class AsyncScraperService:
                 queue.task_done()
                 continue
             visited.add(url)
+
+            # Skip non-HTML resources ---
+            parsed_url = urlparse(url)
+            _, ext = os.path.splitext(parsed_url.path)
+            if ext.lower() in {
+                ".pdf",
+                ".doc",
+                ".docx",
+                ".xls",
+                ".xlsx",
+                ".zip",
+                ".rar",
+                ".png",
+                ".jpg",
+                ".jpeg",
+                ".gif",
+            }:
+                logger.info(f"Skipping non-HTML resource: {url}")
+                queue.task_done()
+                continue
 
             async with sem:
                 # Open a new tab/page in the existing context (cheap)
