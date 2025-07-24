@@ -16,7 +16,7 @@ def calculate_final_results(
     if not keyword_gt.human_correction_logs:
         return list(final_results)
 
-    for log in keyword_gt.human_correction_logs:
+    for log in reversed(keyword_gt.human_correction_logs):
         final_results -= set(
             log.result_correction.remove
         )  # ensure beforehand that every element in remove must be present in results
