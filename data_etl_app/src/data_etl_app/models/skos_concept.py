@@ -6,7 +6,7 @@ from functools import cached_property
 import json
 import logging
 
-from typing_extensions import TypedDict, Optional
+from typing_extensions import TypedDict
 
 logger = logging.getLogger(__name__)
 
@@ -15,8 +15,6 @@ class ConceptNode(TypedDict):
     name: str
     altLabels: list[str]
     children: list[ConceptNode]
-    ancestors: Optional[list[str]]  # no quotes needed
-    antiLabels: Optional[list[str]]  # no quotes needed
 
 
 class Concept:
@@ -24,29 +22,11 @@ class Concept:
         self,
         name: str,
         altLabels: list[str],
-        ancestors: Optional[list[str]] = None,
-        antiLabels: Optional[list[str]] = None,
+        ancestors: list[str],
     ) -> None:
-        self._name = name
-        self._altLabels = altLabels
-        self._ancestors = ancestors
-        self._antiLabels = antiLabels
-
-    @property
-    def name(self) -> str:
-        return self._name
-
-    @property
-    def altLabels(self) -> list[str]:
-        return self._altLabels
-
-    @property
-    def ancestors(self) -> Optional[list[str]]:
-        return self._ancestors
-
-    @property
-    def antiLabels(self) -> Optional[list[str]]:
-        return self._antiLabels
+        self.name = name
+        self.altLabels = altLabels
+        self.ancestors = ancestors
 
     @cached_property
     def matchLabels(self) -> set[str]:
@@ -60,7 +40,7 @@ class Concept:
         return f"{self.name}"
 
     def __repr__(self) -> str:
-        return f"Concept(name={self.name}, altLabels={self.altLabels}, ancestors={self.ancestors}, antiLabels={self.antiLabels})"
+        return f"Concept(name={self.name}, altLabels={self.altLabels}, ancestors={self.ancestors})"
 
 
 class ConceptJSONEncoder(json.JSONEncoder):
@@ -69,10 +49,8 @@ class ConceptJSONEncoder(json.JSONEncoder):
             d: dict[str, object] = {
                 "name": o.name,
                 "altLabels": o.altLabels,
+                "ancestors": o.ancestors,
             }
-            if o.ancestors is not None:
-                d["ancestors"] = o.ancestors
-            if o.antiLabels is not None:
-                d["antiLabels"] = o.antiLabels
+
             return d
         return super().default(o)

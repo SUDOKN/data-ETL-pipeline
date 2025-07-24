@@ -7,7 +7,7 @@ from typing import List, Optional
 from shared.models.types import MfgURLType
 from shared.models.db.extraction_results import ExtractionResults
 from shared.utils.time_util import get_current_time
-from shared.utils.url_util import canonical_host
+from shared.utils.url_util import normalize_host
 
 logger = logging.getLogger(__name__)
 
@@ -81,7 +81,7 @@ class Manufacturer(Document):
         This ensures that every instance of Manufacturer has a canonicalized url,
         whether from .find_one(), .insert(), or deserialization.
         """
-        retval = canonical_host(v)
+        retval = normalize_host(v)
         if not retval:
             raise ValueError(f"Invalid URL: '{v}' has no valid hostname.")
         return retval

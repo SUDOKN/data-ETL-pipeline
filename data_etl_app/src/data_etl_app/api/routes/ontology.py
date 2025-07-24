@@ -39,7 +39,11 @@ logger.debug(f"Process concept tree route: {PROCESS_CONCEPT_TREE_ROUTE}")
 )
 def get_process_concept_nodes():
     try:
-        return ontology_service.process_capability_concept_nodes
+        concept_node_data = ontology_service.process_capability_concept_nodes
+        return {
+            "ontology_version_id": concept_node_data[0],
+            "process_caps": concept_node_data[1],
+        }
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
 
@@ -50,7 +54,11 @@ def get_process_concept_nodes():
 )
 def get_material_concept_nodes():
     try:
-        return ontology_service.material_capability_concept_nodes
+        concept_node_data = ontology_service.material_capability_concept_nodes
+        return {
+            "ontology_version_id": concept_node_data[0],
+            "material_caps": concept_node_data[1],
+        }
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
 
@@ -61,7 +69,11 @@ def get_material_concept_nodes():
 )
 def get_industry_concept_nodes():
     try:
-        return ontology_service.industry_concept_nodes
+        concept_node_data = ontology_service.industry_concept_nodes
+        return {
+            "ontology_version_id": concept_node_data[0],
+            "industries": concept_node_data[1],
+        }
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
 
@@ -72,7 +84,11 @@ def get_industry_concept_nodes():
 )
 def get_certificate_concept_nodes():
     try:
-        return ontology_service.certificate_concept_nodes
+        concept_node_data = ontology_service.certificate_concept_nodes
+        return {
+            "ontology_version_id": concept_node_data[0],
+            "certificates": concept_node_data[1],
+        }
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
 
@@ -84,10 +100,11 @@ def get_certificate_concept_nodes():
 )
 def get_process_capabilities():
     try:
-        concepts = ontology_service.process_caps
-        return JSONResponse(
-            content=json.loads(json.dumps(concepts, cls=ConceptJSONEncoder))
-        )
+        concept_data = ontology_service.process_caps
+        return {
+            "ontology_version_id": concept_data[0],
+            "process_caps": concept_data[1],
+        }
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
 
@@ -98,10 +115,11 @@ def get_process_capabilities():
 )
 def get_material_capabilities():
     try:
-        concepts = ontology_service.material_caps
-        return JSONResponse(
-            content=json.loads(json.dumps(concepts, cls=ConceptJSONEncoder))
-        )
+        concept_data = ontology_service.material_caps
+        return {
+            "ontology_version_id": concept_data[0],
+            "material_caps": concept_data[1],
+        }
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
 
@@ -112,10 +130,11 @@ def get_material_capabilities():
 )
 def get_industries():
     try:
-        concepts = ontology_service.industries
-        return JSONResponse(
-            content=json.loads(json.dumps(concepts, cls=ConceptJSONEncoder))
-        )
+        concept_data = ontology_service.industries
+        return {
+            "ontology_version_id": concept_data[0],
+            "industries": concept_data[1],
+        }
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
 
@@ -126,10 +145,11 @@ def get_industries():
 )
 def get_certificates():
     try:
-        concepts = ontology_service.certificates
-        return JSONResponse(
-            content=json.loads(json.dumps(concepts, cls=ConceptJSONEncoder))
-        )
+        concept_data = ontology_service.certificates
+        return {
+            "ontology_version_id": concept_data[0],
+            "certificates": concept_data[1],
+        }
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
 

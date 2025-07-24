@@ -61,7 +61,6 @@ An unknown is a valid match to a known industry if:
 ### 🚫 Do Not
 
 - Do **not** match based on vague or partial keyword overlap.
-- Do **not** allow a match if any `antiLabel` contradicts the unknown.
 - Do **not** guess if the relationship is unclear or ambiguous.
 - Do **not** return multiple matches for a single unknown — return only the single most specific match.
 

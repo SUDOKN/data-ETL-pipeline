@@ -47,10 +47,20 @@ async def update_existing_with_new_binary_ground_truth(
     """
     existing_binary_gt.updated_at = timestamp
 
-    return await _validate_and_save_binary_ground_truth(
+    await _validate_binary_ground_truth(
         new_human_decision=new_human_decision,
         binary_ground_truth=existing_binary_gt,
     )
+
+    existing_binary_gt.human_decision_logs.append(
+        HumanDecisionLog(
+            created_at=existing_binary_gt.created_at,
+            human_decision=new_human_decision,
+        )
+    )
+
+    logger.debug(f"Updating existing binary ground truth {existing_binary_gt}")
+    return await existing_binary_gt.save()
 
 
 async def save_new_binary_ground_truth(
@@ -65,16 +75,26 @@ async def save_new_binary_ground_truth(
     binary_gt.created_at = timestamp
     binary_gt.updated_at = timestamp
 
-    return await _validate_and_save_binary_ground_truth(
+    await _validate_binary_ground_truth(
         new_human_decision=new_human_decision,
         binary_ground_truth=binary_gt,
     )
 
+    binary_gt.human_decision_logs.append(
+        HumanDecisionLog(
+            created_at=binary_gt.created_at,
+            human_decision=new_human_decision,
+        )
+    )
 
-async def _validate_and_save_binary_ground_truth(
+    logger.debug(f"Inserting new binary ground truth {binary_gt}")
+    return await binary_gt.save()
+
+
+async def _validate_binary_ground_truth(
     new_human_decision: HumanBinaryDecision,
     binary_ground_truth: BinaryGroundTruth,
-) -> BinaryGroundTruth:
+) -> None:
     """
     Validate and save the binary ground truth to the database.
 
@@ -101,18 +121,6 @@ async def _validate_and_save_binary_ground_truth(
         )
 
     _validate_new_human_decision(new_human_decision, binary_ground_truth)
-
-    binary_ground_truth.human_decision_logs.append(
-        HumanDecisionLog(
-            created_at=binary_ground_truth.created_at,
-            human_decision=new_human_decision,
-        )
-    )
-
-    logger.debug(f"Saving binary ground truth {binary_ground_truth}")
-    await binary_ground_truth.save()
-
-    return binary_ground_truth
 
 
 def _validate_new_human_decision(

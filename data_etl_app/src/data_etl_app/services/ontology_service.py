@@ -16,9 +16,6 @@ from data_etl_app.utils.ontology_uri_util import (
 from data_etl_app.utils.rdf_to_knowledge_util import (
     get_graph,
     build_children,
-    insert_ancestors,
-    insert_dummy_antiLabels,
-    transform_node,
     tree_list_to_flat,
 )
 
@@ -107,7 +104,9 @@ class OntologyService:
         logger.info("Ontology refresh completed, lock released")
 
     @property
-    def process_capability_concept_nodes(self) -> List[ConceptNode]:
+    def process_capability_concept_nodes(
+        self,
+    ) -> tuple[OntologyVersionIDType, List[ConceptNode]]:
         if BASE_URIS["process"] is None:
             raise ValueError(
                 "BASE_URIS['process'] is not set. Cannot build process capabilities."
@@ -116,19 +115,20 @@ class OntologyService:
             self._process_capability_concept_nodes = build_children(
                 self.graph, rdflib.URIRef(BASE_URIS["process"])
             )
-        return self._process_capability_concept_nodes
+        return self.ontology_version_id, self._process_capability_concept_nodes
 
     @property
     def process_caps(self) -> tuple[OntologyVersionIDType, List[Concept]]:
         if not hasattr(self, "_process_capabilities"):
-            process_trees = self.process_capability_concept_nodes
-            for tree in process_trees:
-                insert_ancestors(tree, [])
-            self._process_capabilities = tree_list_to_flat(process_trees)
+            self._process_capabilities = tree_list_to_flat(
+                self.process_capability_concept_nodes[1]
+            )
         return self.ontology_version_id, self._process_capabilities
 
     @property
-    def material_capability_concept_nodes(self) -> List[ConceptNode]:
+    def material_capability_concept_nodes(
+        self,
+    ) -> tuple[OntologyVersionIDType, List[ConceptNode]]:
         if BASE_URIS["material"] is None:
             raise ValueError(
                 "BASE_URIS['material'] is not set. Cannot build material capabilities."
@@ -137,19 +137,18 @@ class OntologyService:
             self._material_capability_concept_nodes = build_children(
                 self.graph, rdflib.URIRef(BASE_URIS["material"])
             )
-        return self._material_capability_concept_nodes
+        return self.ontology_version_id, self._material_capability_concept_nodes
 
     @property
     def material_caps(self) -> tuple[OntologyVersionIDType, List[Concept]]:
         if not hasattr(self, "_material_capabilities"):
-            material_trees = self.material_capability_concept_nodes
-            for tree in material_trees:
-                insert_ancestors(tree, [])
-            self._material_capabilities = tree_list_to_flat(material_trees)
+            self._material_capabilities = tree_list_to_flat(
+                self.material_capability_concept_nodes[1]
+            )
         return self.ontology_version_id, self._material_capabilities
 
     @property
-    def industry_concept_nodes(self) -> List[ConceptNode]:
+    def industry_concept_nodes(self) -> tuple[OntologyVersionIDType, List[ConceptNode]]:
         if BASE_URIS["industry"] is None:
             raise ValueError(
                 "BASE_URIS['industry'] is not set. Cannot build industry capabilities."
@@ -158,19 +157,18 @@ class OntologyService:
             self._industry_concept_nodes = build_children(
                 self.graph, rdflib.URIRef(BASE_URIS["industry"])
             )
-        return self._industry_concept_nodes
+        return self.ontology_version_id, self._industry_concept_nodes
 
     @property
     def industries(self) -> tuple[OntologyVersionIDType, List[Concept]]:
         if not hasattr(self, "_industries"):
-            industry_trees = self.industry_concept_nodes
-            for tree in industry_trees:
-                transform_node(tree, insert_dummy_antiLabels)
-            self._industries = tree_list_to_flat(industry_trees)
+            self._industries = tree_list_to_flat(self.industry_concept_nodes[1])
         return self.ontology_version_id, self._industries
 
     @property
-    def certificate_concept_nodes(self) -> List[ConceptNode]:
+    def certificate_concept_nodes(
+        self,
+    ) -> tuple[OntologyVersionIDType, List[ConceptNode]]:
         if BASE_URIS["certificate"] is None:
             raise ValueError(
                 "BASE_URIS['certificate'] is not set. Cannot build certificate capabilities."
@@ -179,15 +177,12 @@ class OntologyService:
             self._certificate_concept_nodes = build_children(
                 self.graph, rdflib.URIRef(BASE_URIS["certificate"])
             )
-        return self._certificate_concept_nodes
+        return self.ontology_version_id, self._certificate_concept_nodes
 
     @property
     def certificates(self) -> tuple[OntologyVersionIDType, List[Concept]]:
         if not hasattr(self, "_certificates"):
-            certificate_trees = self.certificate_concept_nodes
-            for tree in certificate_trees:
-                insert_ancestors(tree, [])
-            self._certificates = tree_list_to_flat(certificate_trees)
+            self._certificates = tree_list_to_flat(self.certificate_concept_nodes[1])
         return self.ontology_version_id, self._certificates
 
     def get_service_info(self) -> dict:

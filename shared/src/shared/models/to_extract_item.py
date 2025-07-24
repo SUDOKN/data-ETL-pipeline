@@ -1,6 +1,6 @@
 from pydantic import BaseModel, field_validator
 
-from shared.utils.url_util import canonical_host
+from shared.utils.url_util import normalize_host
 
 
 class ToExtractItem(BaseModel):
@@ -12,7 +12,7 @@ class ToExtractItem(BaseModel):
         if not isinstance(v, str) or not v:
             raise ValueError("manufacturer_url must be a non-empty string")
 
-        canonical = canonical_host(v)
+        canonical = normalize_host(v)
         if not canonical:
             raise ValueError(f"Invalid URL: '{v}' has no valid hostname.")
         return canonical

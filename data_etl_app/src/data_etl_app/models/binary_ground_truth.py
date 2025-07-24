@@ -53,7 +53,7 @@ class BinaryGroundTruth(Document):
 
     @computed_field
     @property
-    def latest_human_decision(self) -> HumanBinaryDecision | None:
+    def final_decision(self) -> HumanBinaryDecision | None:
         if self.human_decision_logs:
             return self.human_decision_logs[-1].human_decision
         return None
