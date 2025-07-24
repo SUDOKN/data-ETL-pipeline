@@ -66,7 +66,9 @@ async def fetch_ground_truth_template(
         default=random.choice(list(ConceptTypeEnum)),
         description=f"Any one of {[concept.value for concept in ConceptTypeEnum]}",
     ),
-    chunk_no: int | None = Query(ge=1, description="Chunk number starting from 1."),
+    chunk_no: int | None = Query(
+        default=None, ge=1, description="Chunk number starting from 1."
+    ),
     sqs_client=Depends(get_sqs_scraper_client),
     s3_client=Depends(get_s3_client),
 ):
