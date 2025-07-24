@@ -422,14 +422,14 @@ async def scrape_and_cleanup(
         scraping_stats.add_timing(duration.total_seconds())
 
         logger.info(f"✅ Scraping completed for {item.manufacturer_url}")
-        logger.info(f"   ⏱️  Individual time: {duration:.2f}s")
+        logger.info(f"   ⏱️  Individual time: {duration.total_seconds():.2f}s")
         scraping_stats.print_stats()
 
     except Exception as e:
         end_time = get_current_time()
         duration = end_time - start_time
         logger.error(
-            f"❌ Error scraping manufacturer {item.manufacturer_url} after {duration:.2f}s: {e}"
+            f"❌ Error scraping manufacturer {item.manufacturer_url} after {duration.total_seconds():.2f}s: {e}"
         )
 
         # Save the main scraping error
