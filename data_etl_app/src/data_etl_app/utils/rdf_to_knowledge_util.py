@@ -1,3 +1,4 @@
+from collections import deque
 import logging
 import rdflib
 from rdflib.term import URIRef
@@ -42,45 +43,52 @@ def build_children(graph: rdflib.Graph, parent_uri: URIRef) -> List[ConceptNode]
             "name": get_label(graph, str(subclass)),
             "altLabels": get_alt_labels(graph, str(subclass)),
             "children": build_children(graph, subclass),
-            "ancestors": None,
-            "antiLabels": None,
         }
         children.append(child)
     return children
 
 
-def insert_ancestors(
+def tree_list_to_flat_helper(
     node: ConceptNode,
     ancestors_so_far: list[str],
-):
+) -> list[Concept]:
     """
-    Insert ancestors into the node
+    Insert ancestors into the node using queue-based expansion
     """
-    logger.debug(f"ancestors_so_far: {ancestors_so_far}")
-    node["ancestors"] = ancestors_so_far.copy()
-    for child in node["children"]:
-        insert_ancestors(child, ancestors_so_far + [node["name"]])
-    logger.debug(f"node: {node}")
-    return node
+    result = []
+    # Queue stores tuples of (node, ancestors)
+    queue = deque([(node, ancestors_so_far)])
+
+    while queue:
+        current_node, current_ancestors = queue.popleft()
+        logger.debug(f"ancestors_so_far: {current_ancestors}")
+
+        # Add current node to result
+        result.append(
+            Concept(
+                name=current_node["name"],
+                altLabels=current_node["altLabels"],
+                ancestors=current_ancestors.copy(),
+            )
+        )
+
+        # Add children to queue with updated ancestors
+        for child in current_node["children"]:
+            queue.append((child, current_ancestors + [current_node["name"]]))
+
+        logger.debug(f"node: {current_node}")
+
+    return result
 
 
 def tree_list_to_flat(tree_knowns: list[ConceptNode]) -> list[Concept]:
     """
-    Convert a tree list of knowns to a flat list of knowns.
-    CAUTION: removes children from each node
+    Returns a flat list of Concepts from a list of ConceptNodes.
+    Basically, children are replaced with ancestors.
     """
     flat_knowns: list[Concept] = []
     for known in tree_knowns:
-        flat_known: Concept = Concept(
-            known["name"],
-            known["altLabels"],
-            known.get("ancestors", None),
-            known.get("antiLabels", None),
-        )
-
-        flat_knowns.append(flat_known)
-        if known.get("children") and known["children"]:
-            flat_knowns.extend(tree_list_to_flat(known["children"]))
+        flat_knowns.extend(tree_list_to_flat_helper(known, []))
 
     return flat_knowns
 
@@ -90,9 +98,3 @@ def transform_node(node: ConceptNode, fn: Callable[[ConceptNode], ConceptNode]):
     if node.get("children"):
         for child in node["children"]:
             transform_node(child, fn)
-
-
-def insert_dummy_antiLabels(node: ConceptNode):
-    if not node.get("antiLabels"):
-        node["antiLabels"] = []
-    return node

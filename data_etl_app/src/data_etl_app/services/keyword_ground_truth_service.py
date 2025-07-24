@@ -69,9 +69,21 @@ async def update_existing_with_new_keyword_ground_truth(
 
     existing_keyword_gt.updated_at = timestamp
 
-    return await _validate_and_save_keyword_ground_truth(
+    await _validate_keyword_ground_truth(
         manufacturer, existing_keyword_gt, new_correction, s3_client
     )
+
+    existing_keyword_gt.human_correction_logs.append(
+        HumanCorrectionLog(
+            created_at=existing_keyword_gt.created_at,
+            result_correction=new_correction,
+        )
+    )
+
+    logger.debug(
+        f"Updating existingkeyword ground truth {existing_keyword_gt} to the database."
+    )
+    return await existing_keyword_gt.save()
 
 
 async def save_new_keyword_ground_truth(
@@ -89,17 +101,29 @@ async def save_new_keyword_ground_truth(
     new_keyword_gt.created_at = timestamp
     new_keyword_gt.updated_at = timestamp
 
-    return await _validate_and_save_keyword_ground_truth(
+    await _validate_keyword_ground_truth(
         manufacturer, new_keyword_gt, new_correction, s3_client
     )
 
+    new_keyword_gt.human_correction_logs.append(
+        HumanCorrectionLog(
+            created_at=new_keyword_gt.created_at,
+            result_correction=new_correction,
+        )
+    )
 
-async def _validate_and_save_keyword_ground_truth(
+    logger.debug(
+        f"Inserting new keyword ground truth {new_keyword_gt} to the database."
+    )
+    return await new_keyword_gt.save()
+
+
+async def _validate_keyword_ground_truth(
     manufacturer: Manufacturer,
     keyword_gt: KeywordGroundTruth,
     new_correction: HumanCorrection,
     s3_client,
-) -> KeywordGroundTruth:
+) -> None:
     """
     Validate and save the keyword ground truth to the database.
 
@@ -189,18 +213,6 @@ async def _validate_and_save_keyword_ground_truth(
         )
 
     _validate_new_human_correction(keyword_gt, new_correction, known_concept_labels)
-
-    keyword_gt.human_correction_logs.append(
-        HumanCorrectionLog(
-            created_at=keyword_gt.created_at,
-            result_correction=new_correction,
-        )
-    )
-
-    logger.debug("Saving keyword ground truth {keyword_gt} to the database.")
-    await keyword_gt.save()
-
-    return keyword_gt
 
 
 def _validate_new_human_correction(

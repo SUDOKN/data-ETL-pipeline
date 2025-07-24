@@ -15,7 +15,7 @@ from shared.services.manufacturer_service import (
 )
 from shared.services.user_service import findByEmail
 
-from shared.utils.url_util import canonical_host
+from shared.utils.url_util import normalize_host
 from shared.utils.time_util import get_current_time
 from shared.utils.aws.queue.priority_scrape_queue_util import (
     push_item_to_priority_scrape_queue,
@@ -71,6 +71,17 @@ async def fetch_ground_truth_template(
     s3_client=Depends(get_s3_client),
 ):
     current_timestamp = get_current_time()
+
+    user = await findByEmail(author_email)
+    if not user:
+        raise HTTPException(
+            status_code=404,
+            detail=(
+                f"Sorry, no registered user found with email: {author_email}. "
+                f"Please register on `sudokn.com` to fetch keyword extraction ground truth template."
+            ),
+        )
+
     if not mfg_url:  # then find a random manufacturer and set mfg_url
         mfg_url = await find_random_manufacturer_url()
 
@@ -80,7 +91,7 @@ async def fetch_ground_truth_template(
                 detail="Something went wrong finding a random mfg_url. Please provide a valid mfg_url instead.",
             )
     else:
-        mfg_url = canonical_host(mfg_url)  # VERY IMPORTANT, TODO: NEEDS TO BE TESTED
+        mfg_url = normalize_host(mfg_url)  # VERY IMPORTANT, TODO: NEEDS TO BE TESTED
         if not mfg_url:
             raise HTTPException(
                 status_code=400,
@@ -162,7 +173,7 @@ async def fetch_ground_truth_template(
     if chunk_no > last_chunk_no:
         raise HTTPException(
             status_code=404,
-            detail=f"Chunk number {chunk_no} exceeds last available chunk {last_chunk_no} for concept type: {concept_type.value}.",
+            detail=f"Requested chunk number:{chunk_no} exceeds last available chunk number:{last_chunk_no} for concept type:{concept_type.value}.",
         )
     chunk_bounds, chunk_search_stats = sorted_search_data[chunk_no - 1]
 
@@ -264,7 +275,7 @@ async def collect_keyword_extraction_ground_truth(
             status_code=404,
             detail=(
                 f"Sorry, no registered user found with email: {new_correction.author_email}. "
-                f"Please register on sudokn to submit corrections."
+                f"Please register on `sudokn.com` to submit corrections."
             ),
         )
 
@@ -334,12 +345,6 @@ async def collect_keyword_extraction_ground_truth(
 
     response = keyword_gt.model_dump()
 
-    response["new_human_correction"] = HumanCorrection(
-        author_email=new_correction.author_email,
-        add={},  # reset to None, user will fill this
-        remove=[],  # reset to None, user will fill this
-    )
-
     response.pop("id", None)  # remove id from response
     return response
 
@@ -363,6 +368,17 @@ async def fetch_binary_classification_template(
     sqs_client=Depends(get_sqs_scraper_client),
 ):
     current_timestamp = get_current_time()
+
+    user = await findByEmail(author_email)
+    if not user:
+        raise HTTPException(
+            status_code=404,
+            detail=(
+                f"Sorry, no registered user found with email: {author_email}. "
+                f"Please register on `sudokn.com` to fetch binary classification ground truth template."
+            ),
+        )
+
     if not mfg_url:  # then find a random manufacturer and set mfg_url
         mfg_url = await find_random_manufacturer_url()
 
@@ -372,7 +388,7 @@ async def fetch_binary_classification_template(
                 detail="Something went wrong finding a random mfg_url. Please provide a valid mfg_url instead.",
             )
     else:
-        mfg_url = canonical_host(mfg_url)  # VERY IMPORTANT
+        mfg_url = normalize_host(mfg_url)  # VERY IMPORTANT
         if not mfg_url:
             raise HTTPException(
                 status_code=400,
@@ -518,7 +534,7 @@ async def collect_binary_ground_truth(
             status_code=404,
             detail=(
                 f"Sorry, no registered user found with email: `{new_decision.author_email}`. "
-                f"Please register on sudokn to submit corrections."
+                f"Please register on `sudokn.com` to submit corrections."
             ),
         )
 
@@ -567,11 +583,5 @@ async def collect_binary_ground_truth(
 
     response = binary_gt.model_dump()
 
-    response["new_human_decision"] = HumanBinaryDecision(
-        author_email=new_decision.author_email,
-        answer=None,  # reset to None, user will fill this
-        reason=None,  # reset to None, user will fill this
-    )
     response.pop("id", None)
-
     return response

@@ -1,4 +1,8 @@
+import logging
+import tldextract
 from urllib.parse import urlparse
+
+logger = logging.getLogger(__name__)
 
 
 def canonical_host(url: str | None) -> str | None:
@@ -22,6 +26,56 @@ def canonical_host(url: str | None) -> str | None:
         return None
 
     return host
+
+
+def normalize_host(url: str | None) -> str | None:
+    """
+    Normalize a URL or host string to:
+      - lowercase
+      - no scheme (http/https)
+      - no trailing dot
+      - strip only a literal 'www.' prefix
+      - preserve other subdomains
+    Returns None if no valid hostname can be parsed.
+    """
+    logger.info("\n\nNormalizing URL: %s", url)
+    if url is None or not isinstance(url, str) or not url.strip():
+        return None
+
+    # 1. Ensure urlparse can see a scheme
+    if not url.startswith(("http://", "https://")):
+        url = "http://" + url
+
+    # 2. Parse out the hostname
+    parsed = urlparse(url)
+    hostname = parsed.hostname
+    logger.debug("Parsed hostname: %s", hostname)
+    if not hostname:
+        return None
+
+    hostname = hostname.rstrip(".").lower()
+    logger.debug("Normalized hostname: %s", hostname)
+
+    # 3. Strip only a literal 'www.' prefix
+    if hostname.startswith("www."):
+        hostname = hostname[4:]
+
+    # 4. Split via tldextract (handles co.uk, etc.)
+    ext = tldextract.extract(hostname)
+    # If there’s no domain or suffix, bail out
+    if not ext.domain or not ext.suffix:
+        return None
+
+    sub, dom, suf = ext.subdomain, ext.domain, ext.suffix
+
+    # 5. Rebuild: keep subdomain only if non-empty
+    if sub:
+        retval = f"{sub}.{dom}.{suf}"
+    else:
+        retval = f"{dom}.{suf}"
+
+    logger.info("Final normalized host: %s", retval)
+    return retval
 
 
 def add_protocol(url: str, protocol: str = "https") -> str:
