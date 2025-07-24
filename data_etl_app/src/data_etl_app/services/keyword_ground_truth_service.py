@@ -23,7 +23,7 @@ from data_etl_app.models.keyword_ground_truth import (
 )
 from data_etl_app.utils.keyword_ground_truth_helper_util import calculate_final_results
 from data_etl_app.utils.route_url_util import (
-    get_full_ontology_concept_tree_url,
+    get_full_ontology_concept_flat_url,
 )
 from data_etl_app.services.ontology_service import ontology_service
 from data_etl_app.services.brute_search_service import keyword_regex
@@ -252,7 +252,7 @@ def _validate_new_human_correction(
         if mk not in known_concept_labels:
             raise ValueError(
                 f"Key '{mk}' in the object result_correction.add is not a known concept in the latest ontology version. "
-                f"Please visit {get_full_ontology_concept_tree_url(keyword_gt.concept_type)}"
+                f"Please visit {get_full_ontology_concept_flat_url(keyword_gt.concept_type)}"
             )
         # Check if each value in result_correction.add is present in chunk_text
         for mu in mus:
