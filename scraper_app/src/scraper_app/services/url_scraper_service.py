@@ -59,7 +59,7 @@ class ScrapingResult:
                 )
 
 
-class SyncScraperService:
+class ScraperService:
     SKIP_EXTENSIONS = {
         ".pdf", ".jpg", ".jpeg", ".png", ".gif", ".svg", ".webp", ".zip", ".rar", ".exe", ".doc", ".docx",
         ".xls", ".xlsx", ".ppt", ".pptx", ".mp3", ".mp4", ".avi", ".mov", ".wmv", ".flv", ".mkv", ".ico",
@@ -79,7 +79,7 @@ class SyncScraperService:
         headless: bool = True,
     ):
         """
-        Initialize the async scraper service configuration.
+        Initialize the  scraper service configuration.
 
         Args:
             max_concurrency: Number of pages to fetch concurrently.
