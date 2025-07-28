@@ -1,10 +1,18 @@
-import asyncio
+import threading
 from dataclasses import dataclass
 from typing import List
 import logging
 import os
 from urllib.parse import urljoin, urlparse
-from playwright.async_api import async_playwright, Playwright, Browser, BrowserContext
+from selenium import webdriver
+from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.support.ui import WebDriverWait
+from queue import Queue
+from concurrent.futures import ThreadPoolExecutor
+import chromedriver_autoinstaller
+import tempfile
+import shutil
+import random
 
 from shared.utils.url_util import add_protocol
 
@@ -51,7 +59,19 @@ class ScrapingResult:
                 )
 
 
-class AsyncScraperService:
+class SyncScraperService:
+    SKIP_EXTENSIONS = {
+        ".pdf", ".jpg", ".jpeg", ".png", ".gif", ".svg", ".webp", ".zip", ".rar", ".exe", ".doc", ".docx",
+        ".xls", ".xlsx", ".ppt", ".pptx", ".mp3", ".mp4", ".avi", ".mov", ".wmv", ".flv", ".mkv", ".ico",
+        ".tar", ".gz", ".7z", ".bz2", ".csv", ".json", ".xml", ".rss", ".apk", ".bin", ".dmg", ".iso",
+        ".epub", ".mobi", ".psd", ".ai", ".ps", ".ttf", ".woff", ".woff2", ".eot", ".otf", ".jar", ".bat",
+        ".sh", ".dll", ".sys", ".msi", ".cab", ".torrent", ".ics", ".vcs", ".swf", ".rtf", ".log", ".bak",
+        ".tmp", ".dat", ".eml", ".msg", ".vcf", ".atom", ".xsl", ".xsd", ".old", ".swp", ".lock", ".sqlite",
+        ".db", ".mdb", ".accdb", ".sqlite3", ".conf", ".cfg", ".ini", ".pem", ".crt", ".key", ".pfx", ".cer",
+        ".csr", ".der", ".p12", ".p7b", ".p7c", ".tar.gz", ".tar.bz2", ".tar.xz", ".tgz", ".tbz2", ".txz",
+        ".7zip", ".ace", ".arc", ".arj", ".lzh", ".zipx", ".z", ".s7z", ".part", ".crdownload", ".download"
+    }
+
     def __init__(
         self,
         max_concurrency: int = 5,
@@ -66,151 +86,196 @@ class AsyncScraperService:
             max_depth: How many link-levels to descend from the start URL.
             headless: Whether to run the browser in headless mode.
         """
+
+        self.visited_lock = threading.Lock()
+        self.results_lock = threading.Lock()
+        self.errors_lock = threading.Lock()
+        self.stats_lock = threading.Lock()
         self.max_concurrency = max_concurrency
         self.max_depth = max_depth
         self.headless = headless
-        # Placeholders for Playwright objects
-        self._playwright: Playwright | None = None
-        self.browser: Browser | None = None
-        self.context: BrowserContext | None = None
+        # Ensure the correct ChromeDriver is installed
+        chromedriver_autoinstaller.install()
+        self.driver_options = Options()
+        if self.headless:
+            self.driver_options.add_argument("--headless=new")
+        self.driver_options.add_argument("--disable-gpu")
+        self.driver_options.add_argument("--no-sandbox")
 
-    async def start(self) -> None:
+    def _create_driver(self):
         """
-        Launch Playwright, browser, and context once before scraping begins.
-        """
-        # Initialize Playwright
-        self._playwright = await async_playwright().__aenter__()
-        # Launch the browser process (expensive), done only once
-        self.browser = await self._playwright.chromium.launch(headless=self.headless)
-        # Create a single browser context for session isolation
-        self.context = await self.browser.new_context()
+        Create and configure a new Selenium Chrome driver instance.
 
-    async def stop(self) -> None:
+        Returns:
+            Configured Chrome WebDriver instance.
         """
-        Close browser and cleanup Playwright when scraping is complete.
-        """
-        if self.browser:
-            await self.browser.close()
-        if self._playwright:
-            await self._playwright.stop()
+        profile_dir = tempfile.mkdtemp(prefix="chrome_scrape_")
+        options = self.driver_options.__class__()
+        for arg in self.driver_options.arguments:
+            options.add_argument(arg)
+        options.add_argument(f"--user-data-dir={profile_dir}")
+        # Add stealth options
+        options.add_argument("--start-minimized")
+        options.add_argument("--window-position=-32000,-32000")
+        options.add_experimental_option("excludeSwitches", ["enable-automation"])
+        options.add_experimental_option("useAutomationExtension", False)
 
-    async def _worker(
+        driver = webdriver.Chrome(options=options)
+        driver._profile_dir = profile_dir  # Attach for cleanup
+
+        # Stealth: mask webdriver property and randomize window size
+        driver.execute_script(
+            "Object.defineProperty(navigator, 'webdriver', {get: ()=>undefined})"
+        )
+        w = random.choice([1280, 1440, 1600, 1920])
+        h = random.choice([720, 900, 1000, 1080])
+        driver.set_window_size(w, h)
+
+        return driver
+
+    def _cleanup_driver(self, driver):
+        """
+        Clean up the WebDriver and its temporary profile directory.
+
+        Args:
+            driver: The WebDriver instance to clean up.
+        """
+        driver.quit()
+        if hasattr(driver, "_profile_dir"):
+            shutil.rmtree(driver._profile_dir, ignore_errors=True)
+
+    def _accept_cookies(self, driver):
+        """
+              Attempt to accept cookie banners or popups by clicking common consent buttons.
+
+              Args:
+                  driver: The WebDriver instance.
+
+              Returns:
+                  True if a consent button was found and clicked, False otherwise.
+        """
+
+        patterns = [
+            "accept all", "accept cookies", "i agree", "i accept", "allow all",
+            "got it", "continue", "ok", "okay", "confirm", "accept"
+        ]
+        xpath = (
+            "//*[self::button or self::a]["
+            "contains(translate(normalize-space(.),"
+            "'ABCDEFGHIJKLMNOPQRSTUVWXYZ','abcdefghijklmnopqrstuvwxyz'),"
+            "'{txt}')]"
+        )
+        for txt in patterns:
+            els = driver.find_elements("xpath", xpath.format(txt=txt))
+            if els:
+                try:
+                    els[0].click()
+                    WebDriverWait(driver, 0.2).until(lambda d: True)
+                    return True
+                except Exception:
+                    pass
+        return False
+
+
+    def _worker(
         self,
-        queue: asyncio.Queue,
+        queue: Queue,
         visited: set[str],
         results: list[str],
         errors: list[dict],  # Add errors collection
         domain: str,
-        sem: asyncio.Semaphore,
+        sem: threading.Semaphore,
         stats: dict,  # Add stats tracking
     ):
         """
-        Worker coroutine that processes URLs from the queue using the shared context.
+        Worker function for scraping URLs from the queue.
+
+        Args:
+            queue: Queue of (url, depth) tuples to process.
+            visited: Set of already visited URLs.
+            results: List to store scraped content.
+            errors: List to store error information.
+            domain: Domain to restrict crawling.
+            sem: Semaphore for concurrency control.
+            stats: Dictionary to track stats.
         """
-        if not self.context:
-            raise RuntimeError(
-                "Context must be initialized via start() before scraping"
-            )
-        while True:
-            try:
-                url, depth = await queue.get()
-                logger.debug(f"queue size: {queue.qsize()}, visited: {visited}")
-                logger.info(f"Scraping {url} at depth {depth}")
-            except asyncio.CancelledError:
-                break  # Exit gracefully when tasks are cancelled
-
-            if url in visited:
-                queue.task_done()
-                continue
-            visited.add(url)
-
-            # Skip non-HTML resources ---
-            parsed_url = urlparse(url)
-            _, ext = os.path.splitext(parsed_url.path)
-            if ext.lower() in {
-                ".pdf",
-                ".doc",
-                ".docx",
-                ".xls",
-                ".xlsx",
-                ".zip",
-                ".rar",
-                ".png",
-                ".jpg",
-                ".jpeg",
-                ".gif",
-            }:
-                logger.info(f"Skipping non-HTML resource: {url}")
-                queue.task_done()
-                continue
-
-            async with sem:
-                # Open a new tab/page in the existing context (cheap)
-                page = await self.context.new_page()
+        driver = self._create_driver()
+        try:
+            while True:
                 try:
-                    # Navigate and wait for <body>
-                    await page.goto(url, timeout=60000)
-                    await page.wait_for_selector("body")
-                    # Extract text
-                    body_text = await page.evaluate("document.body.innerText")
-                    # Append with header for clarity
-                    results.append(f"{url}\n{body_text}\n")
-                    stats["scraped"] += 1
-                    logger.info(f"✅ Scraped {len(body_text)} characters from {url}")
-                    logger.info(f"depth: {depth}, self.max_depth: {self.max_depth}")
+                    url, depth = queue.get(timeout=2)
+                except Exception:
+                    break   # Queue is empty
+                with self.visited_lock:
+                    if url in visited:
+                        queue.task_done()
+                        continue
+                    visited.add(url)
 
-                    # Discover same-domain links if we can go deeper
-                    if depth < self.max_depth:
-                        anchors = await page.query_selector_all("a")
-                        for a in anchors:
-                            href = await a.get_attribute("href")
-                            if not href:
-                                continue
-
-                            # Handle all URL cases:
-                            # 1. Absolute URLs with protocol: https://example.com/page
-                            # 2. Protocol-relative URLs: //example.com/page
-                            # 3. Absolute paths: /about
-                            # 4. Relative paths: ../contact, page.html
-                            # 5. Fragment URLs: #section
-                            # 6. Query URLs: ?param=value
-
-                            # Convert to absolute URL using current page URL as base
-                            absolute_url = urljoin(url, href)
-                            parsed_url = urlparse(absolute_url)
-
-                            # Only process URLs from the same domain
-                            if parsed_url.netloc == domain:
-                                # Remove fragments for deduplication
-                                clean_url = absolute_url.split("#")[0]
-
-                                if clean_url not in visited:
-                                    logger.debug(
-                                        f"Found anchor: {await a.inner_text()} with href: {href}"
-                                    )
-                                    logger.debug(f"Resolved to: {clean_url}")
-                                    await queue.put((clean_url, depth + 1))
-                except Exception as e:
-                    # Collect error instead of just printing
-                    error_info = {
-                        "url": url,
-                        "error": str(e),
-                        "error_type": type(e).__name__,
-                        "depth": depth,
-                    }
-                    errors.append(error_info)
-                    stats["failed"] += 1
-                    logger.error(f"❌ Error scraping {url}: {e}")
-                finally:
-                    await page.close()
+                # Skip non-HTML resources based on file extension
+                parsed_url = urlparse(url)
+                _, ext = os.path.splitext(parsed_url.path)
+                if ext.lower() in self.SKIP_EXTENSIONS:
+                    logger.info(f"Skipping non-HTML resource: {url}")
                     queue.task_done()
+                    continue
+                with sem:
+                    try:
+                        driver.get(url)
+                        self._accept_cookies(driver)
+                        body = driver.find_element("tag name", "body")
+                        body_text = body.text
+                        with self.results_lock:
+                            results.append(f"{url}\n{body_text}\n")
+                        with self.stats_lock:
+                            stats["scraped"] += 1
+                        logger.info(f"✅ Scraped {len(body_text)} characters from {url}")
+                        # If not at max depth, enqueue links from this page
+                        if depth < self.max_depth:
+                            anchors = driver.find_elements("tag name", "a")
+                            for a in anchors:
+                                href = a.get_attribute("href")
+                                if not href:
+                                    continue  # Skip empty links
+                                if href.startswith("mailto:"):
+                                    continue  # Skip mailto links
+                                absolute_url = urljoin(url, href)
+                                parsed_url = urlparse(absolute_url)
+                                if parsed_url.netloc == domain:
+                                    clean_url = absolute_url.split("#")[0]
+                                    with self.visited_lock:
+                                        if clean_url not in visited:
+                                            queue.put((clean_url, depth + 1))
+                    except Exception as e:
+                        error_info = {
+                            "url": url,
+                            "error": str(e),
+                            "error_type": type(e).__name__,
+                            "depth": depth,
+                        }
+                        with self.errors_lock:
+                            errors.append(error_info)
+                        with self.stats_lock:
+                            stats["failed"] += 1
+                        logger.error(f"❌ Error scraping {url}: {e}")
+                    finally:
+                        queue.task_done()
+        finally:
+            self._cleanup_driver(driver)
 
-    async def scrape(self, start_url: str, domain: str) -> ScrapingResult:
+
+
+    def scrape(self, start_url: str, domain: str) -> ScrapingResult:
         """
         Orchestrate the scraping process and return results with errors.
+
+        Args:
+            start_url: The initial URL to start scraping from.
+            domain: The domain to restrict crawling.
+
+        Returns:
+            ScrapingResult: The result object containing content and errors.
         """
-        if not self.context:
-            raise RuntimeError("Must call start() before scrape()")
 
         logger.info(f"Starting scrape for domain: {domain} from {start_url}")
         start_url = add_protocol(start_url, protocol="https")
@@ -220,40 +285,17 @@ class AsyncScraperService:
         results: list[str] = []
         errors: list[dict] = []  # Collect errors here
         stats = {"scraped": 0, "failed": 0}  # Track statistics
-        queue: asyncio.Queue = asyncio.Queue()
+        queue = Queue()
+        queue.put((start_url, 0))
+        sem = threading.Semaphore(self.max_concurrency)
 
-        # Seed the queue with the initial URL at depth 0
-        await queue.put((start_url, 0))
-        sem = asyncio.Semaphore(self.max_concurrency)
-
-        # Spawn worker tasks with error collection
-        workers = [
-            asyncio.create_task(
-                self._worker(queue, visited, results, errors, domain, sem, stats)
-            )
-            for _ in range(self.max_concurrency)
-        ]
-
-        try:
-            # Process until all queued URLs are done
-            await queue.join()
-        except Exception as e:
-            # Handle any high-level orchestration errors
-            errors.append(
-                {
-                    "url": start_url,
-                    "error": f"Scraping orchestration error: {str(e)}",
-                    "error_type": type(e).__name__,
-                    "depth": 0,
-                }
-            )
-            stats["failed"] += 1
-        finally:
-            # Cancel remaining workers
-            for w in workers:
-                w.cancel()
-            # Wait for workers to finish cancelling
-            await asyncio.gather(*workers, return_exceptions=True)
+        # Use ThreadPoolExecutor to run multiple workers concurrently
+        with ThreadPoolExecutor(max_workers=self.max_concurrency) as executor:
+            for _ in range(self.max_concurrency):
+                executor.submit(
+                    self._worker, queue, visited, results, errors, domain, sem, stats
+                )
+            queue.join()
 
         logger.info(
             f"Scraping complete. Scraped {stats['scraped']} URLs, failed {stats['failed']}."
