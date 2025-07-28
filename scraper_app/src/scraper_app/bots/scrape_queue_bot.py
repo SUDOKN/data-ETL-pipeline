@@ -39,8 +39,8 @@ from shared.services.manufacturer_service import (
     update_manufacturer,
 )
 
-from scraper_app.services.async_url_scraper_service import (
-    AsyncScraperService,
+from scraper_app.services.url_scraper_service import (
+    ScraperService,
     ScrapingResult,
 )
 from open_ai_key_app.utils.ask_gpt_util import num_tokens_from_string

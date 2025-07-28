@@ -3,7 +3,7 @@ import asyncio
 import logging
 import os
 
-from scraper_app.services.async_url_scraper_service import AsyncScraperService
+from scraper_app.services.url_scraper_service import ScraperService
 
 logger = logging.getLogger(__name__)
 
