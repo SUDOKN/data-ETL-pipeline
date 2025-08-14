@@ -92,6 +92,23 @@ async def download_scraped_text_from_s3_by_filename(
     return content.decode("utf-8"), version_id
 
 
+async def get_object_tags(s3_client, file_name: str) -> Optional[list[dict]]:
+    assert SCRAPED_TEXT_BUCKET is not None, "SCRAPED_TEXT_BUCKET is None"
+
+    try:
+        # Call the get_object_tagging method
+        response = await s3_client.get_object_tagging(
+            Bucket=SCRAPED_TEXT_BUCKET, Key=file_name
+        )
+
+        # Extract and return the tag set
+        return response["TagSet"]
+
+    except Exception as e:
+        print(f"An error occurred: {str(e)}")
+        return None
+
+
 async def delete_scraped_text_from_s3(
     s3_client, file_name: str, version_id: Optional[str] = None
 ) -> None:
