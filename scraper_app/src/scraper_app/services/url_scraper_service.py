@@ -10,7 +10,6 @@ import math
 import sys
 import importlib
 import tempfile
-from pathlib import Path
 from collections import defaultdict
 from urllib.parse import urlparse
 from queue import Queue, Empty
@@ -21,8 +20,11 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import WebDriverException, TimeoutException, StaleElementReferenceException
+import platform, json, io, zipfile, shutil as _shutil, stat, urllib.request, os, sys, tempfile
+from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.chrome.service import Service
 
-from shared.utils.url_util import add_protocol
+from shared.utils.url_util import add_protocol,normalize_url
 
 # -------------------------------- Logging --------------------------------
 logging.basicConfig(
@@ -34,14 +36,17 @@ logger = logging.getLogger(__name__)
 # -------------------------------------------------------------------------
 
 # ---------- Driver factory resolver ----------
-def _load_driver_factories() -> Tuple[Callable[[str], webdriver.Chrome], Callable[[], str]]:
+def _load_driver_factories(mod_name: str | None, headless: bool):
     """
-    Resolve (create_driver, prepare_temp_profile) from:
-      1) Env var SCRAPER_DRIVER_MODULE (module must export both functions)
-      2) Current module globals (if defined in this file)
-      3) Local fallbacks (basic Chrome with user-data-dir)
+    Resolves (create_driver, prepare_temp_profile):
+      1) Optional custom module (if provided)
+      2) Built-in factory that ensures a portable Chrome + chromedriver
+         are downloaded and used automatically on first run.
     """
-    mod_name = os.environ.get("SCRAPER_DRIVER_MODULE")
+
+    logger = logging.getLogger(__name__)
+
+    # ---- 1) External override remains supported
     if mod_name:
         try:
             mod = importlib.import_module(mod_name)
@@ -54,49 +59,213 @@ def _load_driver_factories() -> Tuple[Callable[[str], webdriver.Chrome], Callabl
         except Exception as e:
             logger.warning("Failed importing %s: %s", mod_name, e)
 
-    g = globals()
-    if callable(g.get("create_driver")) and callable(g.get("prepare_temp_profile")):
-        return g["create_driver"], g["prepare_temp_profile"]
+    # ---- Paths / OS detection helpers
+    def _home():
+        return os.path.expanduser("~")
 
-    # Fallbacks
-    from selenium.webdriver.chrome.options import Options
+    def _cache_root():
+        # Platform-appropriate user cache dir
+        if os.name == "nt":
+            base = os.getenv("LOCALAPPDATA") or os.path.join(_home(), "AppData", "Local")
+        elif sys.platform == "darwin":
+            base = os.path.join(_home(), "Library", "Caches")
+        else:
+            base = os.getenv("XDG_CACHE_HOME") or os.path.join(_home(), ".cache")
+        root = os.path.join(base, "scraper_portable_chrome")
+        os.makedirs(root, exist_ok=True)
+        return root
+
+    def _platform_key():
+        machine = platform.machine().lower()
+        if os.name == "nt":
+            return "win64"  # assume modern 64-bit Windows
+        if sys.platform == "darwin":
+            return "mac-arm64" if "arm" in machine or "aarch64" in machine else "mac-x64"
+        # linux
+        return "linux64"
+
+    # Chrome-for-Testing (CfT) download metadata
+    # Docs: https://googlechromelabs.github.io/chrome-for-testing/
+    CFT_JSON = "https://googlechromelabs.github.io/chrome-for-testing/latest-versions-per-channel-with-downloads.json"
+
+    def _download(url: str, dest_path: str):
+        tmp = dest_path + ".tmp"
+        with urllib.request.urlopen(url) as r, open(tmp, "wb") as f:
+            _shutil.copyfileobj(r, f)
+        os.replace(tmp, dest_path)
+
+    def _unzip(zip_path: str, dest_dir: str):
+        with zipfile.ZipFile(zip_path) as z:
+            z.extractall(dest_dir)
+
+    def _chmod_x(p: str):
+        try:
+            st = os.stat(p)
+            os.chmod(p, st.st_mode | stat.S_IEXEC)
+        except Exception:
+            pass
+
+    def _find_in_tree(root: str, candidates: list[str]) -> Optional[str]:
+        for dirpath, _, filenames in os.walk(root):
+            for name in filenames:
+                if name in candidates:
+                    return os.path.join(dirpath, name)
+        return None
+
+    def _ensure_cft(channel="Stable"):
+        """
+        Ensure Chrome for Testing + chromedriver are present for this OS.
+        Returns (chrome_binary_path, chromedriver_path).
+        Cached for future runs; reuses if already present.
+        """
+        plat = _platform_key()
+        cache_dir = os.path.join(_cache_root(), f"{channel.lower()}_{plat}")
+        chrome_dir = os.path.join(cache_dir, "chrome")
+        driver_dir = os.path.join(cache_dir, "driver")
+        os.makedirs(chrome_dir, exist_ok=True)
+        os.makedirs(driver_dir, exist_ok=True)
+
+        # If already provisioned, reuse
+        chrome_bin = None
+        driver_bin = None
+        if os.name == "nt":
+            chrome_bin = _find_in_tree(chrome_dir, ["chrome.exe"])
+            driver_bin = _find_in_tree(driver_dir, ["chromedriver.exe"])
+        elif sys.platform == "darwin":
+            chrome_bin = _find_in_tree(chrome_dir, ["Google Chrome for Testing"])
+            driver_bin = _find_in_tree(driver_dir, ["chromedriver"])
+        else:
+            chrome_bin = _find_in_tree(chrome_dir, ["chrome"])
+            driver_bin = _find_in_tree(driver_dir, ["chromedriver"])
+
+        if chrome_bin and driver_bin:
+            return chrome_bin, driver_bin
+
+        # Fetch metadata
+        with urllib.request.urlopen(CFT_JSON) as r:
+            meta = json.load(r)
+
+        # channel like "Stable" / "Beta" etc.
+        try:
+            ch = meta["channels"][channel.lower()]
+        except KeyError:
+            # meta keys are 'Stable', 'Beta', 'Dev', 'Canary' (Windows) – but JSON page uses lowercase keys in some revs
+            ch = meta["channels"].get(channel) or meta["channels"]["Stable"]
+
+        # find URLs for this platform
+        def _pick(url_key: str, artifact: str) -> str:
+            for entry in ch["downloads"][artifact]:
+                if entry["platform"] == _platform_key():
+                    return entry["url"]
+            raise RuntimeError(f"No {artifact} download for platform {_platform_key()}")
+
+        chrome_url = _pick("url", "chrome")
+        driver_url = _pick("url", "chromedriver")
+
+        # Download & unzip
+        chrome_zip = os.path.join(chrome_dir, "chrome.zip")
+        driver_zip = os.path.join(driver_dir, "driver.zip")
+
+        if not chrome_bin:
+            logger.info("Downloading portable Chrome for Testing (%s, %s)...", channel, _platform_key())
+            _download(chrome_url, chrome_zip)
+            _unzip(chrome_zip, chrome_dir)
+            os.remove(chrome_zip)
+            # re-locate
+            if os.name == "nt":
+                chrome_bin = _find_in_tree(chrome_dir, ["chrome.exe"])
+            elif sys.platform == "darwin":
+                chrome_bin = _find_in_tree(chrome_dir, ["Google Chrome for Testing"])
+            else:
+                chrome_bin = _find_in_tree(chrome_dir, ["chrome"])
+            if not chrome_bin:
+                raise RuntimeError("Failed to provision portable Chrome binary.")
+            _chmod_x(chrome_bin)
+
+        if not driver_bin:
+            logger.info("Downloading matching chromedriver (%s, %s)...", channel, _platform_key())
+            _download(driver_url, driver_zip)
+            _unzip(driver_zip, driver_dir)
+            os.remove(driver_zip)
+            # re-locate
+            if os.name == "nt":
+                driver_bin = _find_in_tree(driver_dir, ["chromedriver.exe"])
+            else:
+                driver_bin = _find_in_tree(driver_dir, ["chromedriver"])
+            if not driver_bin:
+                raise RuntimeError("Failed to provision chromedriver.")
+            _chmod_x(driver_bin)
+
+        return chrome_bin, driver_bin
 
     def prepare_temp_profile() -> str:
         return tempfile.mkdtemp(prefix="chrome_scrape_")
 
     def create_driver(profile_dir: str) -> webdriver.Chrome:
-        from selenium.webdriver.chrome.options import Options
-        opts = Options()
-        headless = os.environ.get("HEADLESS", "true").lower() in ("1", "true", "yes")
-        if headless:
-            opts.add_argument("--headless=new")
+        # First try system Chrome via Selenium Manager (fast path on dev boxes)
+        # If it fails or Chrome is missing, auto-provision CfT and use that.
+        def _build_options(binary_path: Optional[str]) -> Options:
+            opts = Options()
+            if headless:
+                opts.add_argument("--headless=new")
+            if binary_path:
+                opts.binary_location = binary_path
 
-        opts.add_argument(f"--user-data-dir={profile_dir}")
-        opts.add_argument("--no-sandbox")
-        opts.add_argument("--disable-dev-shm-usage")
-        opts.add_argument("--disable-gpu")
-        opts.add_argument("--disable-blink-features=AutomationControlled")
-        opts.add_argument("--disable-features=HttpsUpgrades")
-        opts.add_experimental_option("excludeSwitches", ["enable-automation"])
-        opts.add_experimental_option("useAutomationExtension", False)
+            # Your existing flags
+            opts.add_argument(f"--user-data-dir={profile_dir}")
+            opts.add_argument("--no-sandbox")
+            opts.add_argument("--disable-dev-shm-usage")
+            opts.add_argument("--disable-gpu")
+            opts.add_argument("--disable-blink-features=AutomationControlled")
+            opts.add_argument("--disable-features=HttpsUpgrades")
+            opts.add_argument("--disable-features=HttpsFirstModeV2,HttpsFirstModeV2ForEngagedSites")
+            opts.add_argument("--disable-features=BlockInsecurePrivateNetworkRequests")
+            opts.add_experimental_option("excludeSwitches", ["enable-automation"])
+            opts.add_experimental_option("useAutomationExtension", False)
 
-        # Important for your case:
-        opts.set_capability("acceptInsecureCerts", True)
-        opts.add_argument("--ignore-certificate-errors")
-        opts.add_argument("--allow-running-insecure-content")
-        opts.add_argument("--disable-features=HttpsFirstModeV2,HttpsFirstModeV2ForEngagedSites")
-        opts.add_argument("--disable-features=BlockInsecurePrivateNetworkRequests")
+            # Insecure/HTTPS interstitial helpers
+            opts.set_capability("acceptInsecureCerts", True)
+            opts.add_argument("--ignore-certificate-errors")
+            opts.add_argument("--allow-running-insecure-content")
 
-        if not headless:
-            opts.add_argument("--start-minimized")
-            opts.add_argument("--window-position=-32000,-32000")
+            if not headless:
+                opts.add_argument("--start-minimized")
+                opts.add_argument("--window-position=-32000,-32000")
+            return opts
 
-        driver = webdriver.Chrome(options=opts)
+        # Try native (no binary_location) first
         try:
-            driver.set_page_load_timeout(int(os.environ.get("PAGE_LOAD_TIMEOUT", "120")))
-        except Exception:
-            pass
-        return driver
+            os.environ.setdefault("SELENIUM_MANAGER_LOGLEVEL", "ERROR")
+            opts_native = _build_options(None)
+            drv = webdriver.Chrome(options=opts_native)
+            try:
+                drv.set_page_load_timeout(int(os.environ.get("PAGE_LOAD_TIMEOUT", "120")))
+            except Exception:
+                pass
+            return drv
+        except Exception as e_native:
+            # If native fails for any reason (missing browser/driver mismatch/etc.), provision CfT
+            logger.info("Falling back to portable Chrome for Testing: %s", e_native)
+
+        # Provision portable Chrome + chromedriver and launch
+        chrome_bin, driver_bin = _ensure_cft(channel="Stable")
+        opts = _build_options(chrome_bin)
+        try:
+            service = Service(executable_path=driver_bin)
+            drv = webdriver.Chrome(service=service, options=opts)
+            try:
+                drv.set_page_load_timeout(int(os.environ.get("PAGE_LOAD_TIMEOUT", "120")))
+            except Exception:
+                pass
+            return drv
+        except WebDriverException as e:
+            # Add helpful diagnostics for exit code 127 / missing libs
+            msg = str(e)
+            raise RuntimeError(
+                "Failed to launch Chrome even after provisioning portable binaries.\n"
+                f"Details: {msg}\n"
+                f"Chrome: {chrome_bin}\nDriver: {driver_bin}"
+            )
 
     return create_driver, prepare_temp_profile
 # -------------------------------------------------------------------
@@ -177,7 +346,7 @@ class ScraperService:
 
         # Resolve driver/profile factories
         if driver_factory is None or profile_factory is None:
-            df, pf = _load_driver_factories()
+            df, pf = _load_driver_factories(None, self.headless)
         else:
             df, pf = driver_factory, profile_factory
         self._driver_factory = df
@@ -197,11 +366,6 @@ class ScraperService:
         self.root_domain_adopted: bool = False
         self.base_domain_lock = threading.Lock()
 
-        try:
-            global HEADLESS  # sync for external factories that read global
-            HEADLESS = bool(self.headless)
-        except NameError:
-            pass
 
     # ----------------- Domain helpers -----------------
     @staticmethod
@@ -445,14 +609,16 @@ class ScraperService:
                 driver.set_page_load_timeout(self.request_timeout)
             except Exception:
                 pass
-            logger.info("Scraping URL: %s", attempts[0])
+            print(f"Scraping URL: {attempts[0]}")
             driver.get(attempts[0])
             if attempts[0].startswith("https://") and self._is_chrome_error_page(driver):
                 # Specific interstitial detected → try HTTP fallback
                 if len(attempts) > 1:
                     try:
+                        print(f"Scraping fallback URL: {attempts[1]}")
                         target = self._preflight_http_redirect(attempts[1]) or attempts[1]
-
+                        if target != attempts[1]:
+                            print(f"HTTP preflight Location -> {target}")
                         driver.get(target)
 
                         # Only treat as interstitial if it isn’t plain HTTP
@@ -554,11 +720,13 @@ class ScraperService:
                 break
 
             with self.visited_lock:
-                if orig_url in visited:
+                norm_url = normalize_url(orig_url)
+                print(f"[DEBUG] Checking visited: {norm_url}  (already in visited? {norm_url in visited})")
+                if norm_url in visited:
                     queue.task_done()
                     continue
-                visited.add(orig_url)
-                queued.discard(orig_url)
+                visited.add(norm_url)
+                queued.discard(norm_url)
 
             parsed_orig = urlparse(orig_url)
             _, ext = os.path.splitext(parsed_orig.path)
@@ -587,6 +755,20 @@ class ScraperService:
                         parsed_final = urlparse(final_url)
                         final_host = self._norm_netloc(parsed_final.netloc)
 
+                        # normalize the FINAL url
+                        norm_final_url = normalize_url(final_url)
+
+                        # de-dupe on the FINAL url before extracting/adding results
+                        with self.visited_lock:
+                            if norm_final_url in visited and norm_final_url != norm_url:
+                                # same destination reached via an alias (e.g., pages.php?id=14 -> /about-the-equipment)
+                                logger.debug("Redirect alias duplicate; skipping emit: %s -> %s", norm_url,
+                                             norm_final_url)
+                                # just skip; 'finally' will still run and queue.task_done() will be called
+                                continue
+                            # first time we see this final page—record it
+                            visited.add(norm_final_url)
+
                         if depth == 0:
                             with self.base_domain_lock:
                                 if not self.root_domain_adopted:
@@ -601,7 +783,8 @@ class ScraperService:
                                 effective_base = self._norm_netloc(self.base_domain or base_domain)
 
                         with self.visited_lock:
-                            visited.add(final_url)
+                            norm_final_url = normalize_url(final_url)
+                            visited.add(norm_final_url)
 
                         final_ext = os.path.splitext(parsed_final.path)[1].lower()
                         if final_ext in self.SKIP_EXTENSIONS:
@@ -640,9 +823,10 @@ class ScraperService:
                                 if not self._host_allowed(parsed_abs.netloc, effective_base):
                                     continue
                                 with self.visited_lock:
-                                    if abs_url in visited or abs_url in queued:
+                                    norm_abs_url = normalize_url(abs_url)
+                                    if norm_abs_url in visited or norm_abs_url in queued:
                                         continue
-                                to_enqueue.append(abs_url)
+                                to_enqueue.append(norm_abs_url)
 
                             if to_enqueue:
                                 logger.info(f"Discovered sub URLs at depth {depth} from {final_url}")
