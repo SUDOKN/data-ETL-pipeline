@@ -5,67 +5,128 @@ from typing import Set, List
 # File extensions to skip during scraping (organized by category)
 SKIP_EXTENSIONS: Set[str] = {
     # Images
-    ".pdf", ".jpg", ".jpeg", ".png", ".gif", ".svg", ".webp", ".ico",
-    ".psd", ".ai", ".ps",
-    
+    ".pdf",
+    ".jpg",
+    ".jpeg",
+    ".png",
+    ".gif",
+    ".svg",
+    ".webp",
+    ".ico",
+    ".psd",
+    ".ai",
+    ".ps",
     # Archives
-    ".zip", ".rar", ".7z", ".tar", ".gz", ".bz2", ".tar.gz", ".tar.bz2", 
-    ".tar.xz", ".tgz", ".tbz2", ".txz", ".7zip", ".ace", ".arc", ".arj",
-    ".lzh", ".zipx", ".z", ".s7z",
-    
+    ".zip",
+    ".rar",
+    ".7z",
+    ".tar",
+    ".gz",
+    ".bz2",
+    ".tar.gz",
+    ".tar.bz2",
+    ".tar.xz",
+    ".tgz",
+    ".tbz2",
+    ".txz",
+    ".7zip",
+    ".ace",
+    ".arc",
+    ".arj",
+    ".lzh",
+    ".zipx",
+    ".z",
+    ".s7z",
     # Executables
-    ".exe", ".msi", ".dmg", ".apk", ".bin", ".jar", ".dll", ".sys", ".bat", 
-    ".sh", ".cab",
-    
+    ".exe",
+    ".msi",
+    ".dmg",
+    ".apk",
+    ".bin",
+    ".jar",
+    ".dll",
+    ".sys",
+    ".bat",
+    ".sh",
+    ".cab",
     # Documents
-    ".doc", ".docx", ".xls", ".xlsx", ".ppt", ".pptx", ".rtf", ".epub", 
+    ".doc",
+    ".docx",
+    ".xls",
+    ".xlsx",
+    ".ppt",
+    ".pptx",
+    ".rtf",
+    ".epub",
     ".mobi",
-    
     # Media
-    ".mp3", ".mp4", ".avi", ".mov", ".wmv", ".flv", ".mkv", ".swf",
-    
+    ".mp3",
+    ".mp4",
+    ".avi",
+    ".mov",
+    ".wmv",
+    ".flv",
+    ".mkv",
+    ".swf",
     # Data/Config
-    ".csv", ".json", ".xml", ".rss", ".atom", ".xsl", ".xsd", ".sqlite",
-    ".db", ".mdb", ".accdb", ".sqlite3", ".conf", ".cfg", ".ini",
-    
+    ".csv",
+    ".json",
+    ".xml",
+    ".rss",
+    ".atom",
+    ".xsl",
+    ".xsd",
+    ".sqlite",
+    ".db",
+    ".mdb",
+    ".accdb",
+    ".sqlite3",
+    ".conf",
+    ".cfg",
+    ".ini",
     # Fonts
-    ".ttf", ".woff", ".woff2", ".eot", ".otf",
-    
+    ".ttf",
+    ".woff",
+    ".woff2",
+    ".eot",
+    ".otf",
     # Certificates/Security
-    ".pem", ".crt", ".key", ".pfx", ".cer", ".csr", ".der", ".p12", 
-    ".p7b", ".p7c",
-    
+    ".pem",
+    ".crt",
+    ".key",
+    ".pfx",
+    ".cer",
+    ".csr",
+    ".der",
+    ".p12",
+    ".p7b",
+    ".p7c",
     # Temporary/System
-    ".log", ".bak", ".tmp", ".dat", ".old", ".swp", ".lock", ".torrent",
-    ".part", ".crdownload", ".download",
-    
+    ".log",
+    ".bak",
+    ".tmp",
+    ".dat",
+    ".old",
+    ".swp",
+    ".lock",
+    ".torrent",
+    ".part",
+    ".crdownload",
+    ".download",
     # Communication
-    ".eml", ".msg", ".vcf", ".ics", ".vcs",
-    
+    ".eml",
+    ".msg",
+    ".vcf",
+    ".ics",
+    ".vcs",
     # Additional web-unfriendly formats
     ".iso",
 }
 
-# HTTP timeout configurations (in seconds)
-DEFAULT_REQUEST_TIMEOUT = 15
-HTTP_PREFLIGHT_TIMEOUT = 3
-
-# DOM stability timeouts (in milliseconds)
-DOM_MIN_WAIT_MS = 300
-DOM_MAX_WAIT_MS = 1000
-DOM_STEP_MS = 100
-
-# WebDriverWait timeouts (in seconds)
-WEBDRIVER_READY_STATE_TIMEOUT = 5
-WEBDRIVER_BODY_PRESENCE_TIMEOUT = 8
-
-# Queue timeout (in seconds)
-WORKER_QUEUE_TIMEOUT = 1.0
-
 # Cookie acceptance patterns (ordered by frequency/effectiveness)
 COOKIE_ACCEPTANCE_PATTERNS: List[str] = [
     "accept all",
-    "accept cookies", 
+    "accept cookies",
     "i accept",
     "allow all",
     "got it",
@@ -99,13 +160,3 @@ CHROME_ERROR_PHRASES = (
     "site is not secure",
     "always use secure connections",
 )
-
-# HTTP headers for preflight requests
-HTTP_PREFLIGHT_HEADERS = {
-    "User-Agent": "Mozilla/5.0",
-    "Accept": "*/*",
-    "Connection": "close",
-}
-
-# Content extraction minimum length
-MIN_CONTENT_LENGTH = 200

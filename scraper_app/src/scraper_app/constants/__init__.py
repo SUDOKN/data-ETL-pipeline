@@ -1,1 +1,1 @@
-"""constants package."""
+"""Scraper constants package."""

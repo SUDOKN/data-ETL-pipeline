@@ -31,6 +31,13 @@ from scraper_app.utils.selenium import (
     ChromeDriverFactory,
     LegacyDriverFactory,
 )
+from scraper_app.constants.scraping_constants import (
+    SKIP_EXTENSIONS,
+    COOKIE_ACCEPTANCE_PATTERNS,
+    COOKIE_BANNER_DETECTION_XPATH,
+    COOKIE_ACCEPTANCE_XPATH_TEMPLATE,
+    CHROME_ERROR_PHRASES,
+)
 
 # -------------------------------- Logging --------------------------------
 logging.basicConfig(
@@ -82,115 +89,6 @@ class ScraperService:
     Threaded Selenium scraper with per-page fresh drivers,
     single-pass link discovery per page, BFS up to max_depth.
     """
-
-    SKIP_EXTENSIONS = {
-        ".pdf",
-        ".jpg",
-        ".jpeg",
-        ".png",
-        ".gif",
-        ".svg",
-        ".webp",
-        ".zip",
-        ".rar",
-        ".exe",
-        ".doc",
-        ".docx",
-        ".xls",
-        ".xlsx",
-        ".ppt",
-        ".pptx",
-        ".mp3",
-        ".mp4",
-        ".avi",
-        ".mov",
-        ".wmv",
-        ".flv",
-        ".mkv",
-        ".ico",
-        ".tar",
-        ".gz",
-        ".7z",
-        ".bz2",
-        ".csv",
-        ".json",
-        ".xml",
-        ".rss",
-        ".apk",
-        ".bin",
-        ".dmg",
-        ".iso",
-        ".epub",
-        ".mobi",
-        ".psd",
-        ".ai",
-        ".ps",
-        ".ttf",
-        ".woff",
-        ".woff2",
-        ".eot",
-        ".otf",
-        ".jar",
-        ".bat",
-        ".sh",
-        ".dll",
-        ".sys",
-        ".msi",
-        ".cab",
-        ".torrent",
-        ".ics",
-        ".vcs",
-        ".swf",
-        ".rtf",
-        ".log",
-        ".bak",
-        ".tmp",
-        ".dat",
-        ".eml",
-        ".msg",
-        ".vcf",
-        ".atom",
-        ".xsl",
-        ".xsd",
-        ".old",
-        ".swp",
-        ".lock",
-        ".sqlite",
-        ".db",
-        ".mdb",
-        ".accdb",
-        ".sqlite3",
-        ".conf",
-        ".cfg",
-        ".ini",
-        ".pem",
-        ".crt",
-        ".key",
-        ".pfx",
-        ".cer",
-        ".csr",
-        ".der",
-        ".p12",
-        ".p7b",
-        ".p7c",
-        ".tar.gz",
-        ".tar.bz2",
-        ".tar.xz",
-        ".tgz",
-        ".tbz2",
-        ".txz",
-        ".7zip",
-        ".ace",
-        ".arc",
-        ".arj",
-        ".lzh",
-        ".zipx",
-        ".z",
-        ".s7z",
-        ".part",
-        ".crdownload",
-        ".download",
-    }
 
     def __init__(
         self,
@@ -271,33 +169,18 @@ class ScraperService:
         try:
             cookie_indicators = driver.find_elements(
                 By.XPATH,
-                "//*[contains(translate(text(), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), 'cookie') or contains(translate(text(), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), 'accept') or contains(translate(text(), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), 'consent')]",
+                COOKIE_BANNER_DETECTION_XPATH,
             )
             if not cookie_indicators:
                 return False  # No cookie banners detected, skip processing
         except Exception:
             pass
 
-        patterns = [
-            "accept all",
-            "accept cookies",
-            "i accept",
-            "allow all",
-            "got it",
-            "ok",
-            "accept",  # Moved most common patterns first
-            "i agree",
-            "continue",
-            "okay",
-            "confirm",
-        ]
-        xpath = (
-            "//*[self::button or self::a][contains(translate(normalize-space(.),"
-            "'ABCDEFGHIJKLMNOPQRSTUVWXYZ','abcdefghijklmnopqrstuvwxyz'), '{txt}')]"
-        )
-        for txt in patterns:
+        for txt in COOKIE_ACCEPTANCE_PATTERNS:
             try:
-                els = driver.find_elements(By.XPATH, xpath.format(txt=txt))
+                els = driver.find_elements(
+                    By.XPATH, COOKIE_ACCEPTANCE_XPATH_TEMPLATE.format(txt=txt)
+                )
                 if not els:
                     continue
                 for el in els:
@@ -310,7 +193,8 @@ class ScraperService:
                     except StaleElementReferenceException:
                         try:
                             refound = driver.find_elements(
-                                By.XPATH, xpath.format(txt=txt)
+                                By.XPATH,
+                                COOKIE_ACCEPTANCE_XPATH_TEMPLATE.format(txt=txt),
                             )
                             if refound:
                                 refound[0].click()
@@ -456,20 +340,9 @@ class ScraperService:
                 return False
             blob = (f"{driver.title}\n{driver.page_source}").lower()
 
-            # Helpful debug for this domain (keep or remove)
-            phrases = (
-                "your connection is not private",
-                "this site can’t provide a secure connection",
-                "this site can't provide a secure connection",
-                "attackers can see and change information you send or receive from the site.",
-                "doesn’t support a secure connection with https",
-                "doesn't support a secure connection with https",
-                "site is not secure",  # ← new Chrome wording you saw
-                "always use secure connections",  # https-first banner text
-            )
             # Also catch chrome’s internal error scheme if it appears
             return (driver.current_url or "").startswith("chrome-error://") or any(
-                p in blob for p in phrases
+                p in blob for p in CHROME_ERROR_PHRASES
             )
         except Exception:
             return False
@@ -628,7 +501,7 @@ class ScraperService:
 
             parsed_orig = urlparse(orig_url)
             _, ext = os.path.splitext(parsed_orig.path)
-            if ext.lower() in self.SKIP_EXTENSIONS:
+            if ext.lower() in SKIP_EXTENSIONS:
                 queue.task_done()
                 continue
 
@@ -689,7 +562,7 @@ class ScraperService:
                     visited.add(norm_final_url)
 
                 final_ext = os.path.splitext(parsed_final.path)[1].lower()
-                if final_ext in self.SKIP_EXTENSIONS:
+                if final_ext in SKIP_EXTENSIONS:
                     logger.info(f"Skipping by extension {final_ext}: {final_url}")
                     # Skip extraction & link discovery; not a failure.
                     continue
@@ -720,7 +593,7 @@ class ScraperService:
                     for abs_url in discovered:
                         parsed_abs = urlparse(abs_url)
                         _, ext2 = os.path.splitext(parsed_abs.path)
-                        if ext2.lower() in self.SKIP_EXTENSIONS:
+                        if ext2.lower() in SKIP_EXTENSIONS:
                             continue
                         if not self._host_allowed(parsed_abs.netloc, effective_base):
                             continue
