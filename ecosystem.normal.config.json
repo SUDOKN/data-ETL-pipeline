@@ -31,7 +31,7 @@
       "name": "scrape-queue-bot-normal",
       "script": "./scraper_app/src/scraper_app/bots/scrape_queue_bot.py",
       "interpreter": "python3",
-      "args": "--priority 0 --max_concurrent_manufacturers 5 --max_depth 5",
+      "args": "--priority 0 --max_concurrent_browser_tabs 5 --max_depth 5",
       "cwd": "./",
       "instances": 1,
       "autorestart": true,

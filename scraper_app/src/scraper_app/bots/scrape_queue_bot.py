@@ -82,8 +82,6 @@ class ScrapingStats:
         logger.info(f"   📈 Average time per manufacturer: {self.average_time:.2f}s")
 
 
-
-
 """
 Special Notes:
 If a manufacturer already exists in the database, 
@@ -141,7 +139,6 @@ async def process_queue(
                 if not should_continue:
                     await delete_item_from_s_queue(sqs_client, receipt_handle)
                     continue
-
 
                 await scrape_and_cleanup(
                     current_timestamp,
@@ -339,7 +336,6 @@ async def scrape_and_cleanup(
     scraping_stats: ScrapingStats,
 ):
     """Scrape manufacturer and handle cleanup tasks with comprehensive error handling."""
-    start_time = get_current_time()
     scraping_result = None
 
     try:
@@ -369,7 +365,7 @@ async def scrape_and_cleanup(
 
         # Calculate and log timing
         end_time = get_current_time()
-        duration = end_time - start_time
+        duration = end_time - timestamp
         scraping_stats.add_timing(duration.total_seconds())
 
         logger.info(f"✅ Scraping completed for {item.manufacturer_url}")
@@ -378,7 +374,7 @@ async def scrape_and_cleanup(
 
     except Exception as e:
         end_time = get_current_time()
-        duration = end_time - start_time
+        duration = end_time - timestamp
         logger.error(
             f"❌ Error scraping manufacturer {item.manufacturer_url} after {duration.total_seconds():.2f}s: {e}"
         )
@@ -412,6 +408,7 @@ async def scrape_and_cleanup(
         # Always clean up
         await delete_item_from_s_queue(sqs_client, receipt_handle)
 
+
 def parse_args():
     parser = argparse.ArgumentParser(description="SQS Scraper Bot")
     parser.add_argument(
@@ -427,7 +424,10 @@ def parse_args():
         help="Logging level: DEBUG, INFO, WARNING, ERROR, CRITICAL",
     )
     parser.add_argument(
-        "--max_concurrency", type=int, default=5, help="Max concurrency for scraping"
+        "--max_concurrent_browser_tabs",
+        type=int,
+        default=5,
+        help="Max concurrent browser tabs that can be active at once",
     )
     parser.add_argument(
         "--max_depth", type=int, default=5, help="Max depth for scraping"
@@ -470,7 +470,7 @@ async def async_main():
         session
     ) as s3_client:
         scraper = ScraperService(
-            max_concurrency=args.max_concurrency,
+            max_concurrent_browser_tabs=args.max_concurrent_browser_tabs,
             max_depth=args.max_depth,
         )
         await process_queue(
