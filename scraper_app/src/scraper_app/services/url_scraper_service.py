@@ -228,7 +228,7 @@ class ScraperService:
             acc += step_ms
 
     def _extract_text_with_fallback(self, driver) -> str:
-        """Wait for body/main, short DOM-stability loop, then <body>.text; fallback to HTML."""
+        """Wait for body/main, short DOM-stability loop, then <body>.text; fallback to innerText only."""
         # Ready-state (best-effort) - reduced timeout
         try:
             WebDriverWait(driver, min(5, max(1, self.request_timeout))).until(
@@ -271,12 +271,8 @@ class ScraperService:
         except Exception:
             pass
 
-        # Fallback 2: page_source
-        try:
-            html = driver.page_source or ""
-            return f"[HTML_FALLBACK length={len(html)}]\n{html}"
-        except Exception:
-            return ""
+        #Return Empty String if all attempts fail
+        return ""
 
     def _preflight_http_redirect(self, url: str) -> Optional[str]:
         try:
