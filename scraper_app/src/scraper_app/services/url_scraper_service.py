@@ -271,7 +271,7 @@ class ScraperService:
         except Exception:
             pass
 
-        #Return Empty String if all attempts fail
+        # Return Empty String if all attempts fail
         return ""
 
     def _preflight_http_redirect(self, url: str) -> Optional[str]:
@@ -376,7 +376,7 @@ class ScraperService:
                 driver.set_page_load_timeout(self.request_timeout)
             except Exception:
                 pass
-            print(f"Scraping URL: {attempts[0]}")
+            logger.info(f"Scraping URL: {attempts[0]}")
             driver.get(attempts[0])
             if attempts[0].startswith("https://") and self._is_chrome_error_page(
                 driver
@@ -384,12 +384,12 @@ class ScraperService:
                 # Specific interstitial detected → try HTTP fallback
                 if len(attempts) > 1:
                     try:
-                        print(f"Scraping fallback URL: {attempts[1]}")
+                        logger.info(f"Scraping fallback URL: {attempts[1]}")
                         target = (
                             self._preflight_http_redirect(attempts[1]) or attempts[1]
                         )
                         if target != attempts[1]:
-                            print(f"HTTP preflight Location -> {target}")
+                            logger.info(f"HTTP preflight Location -> {target}")
                         driver.get(target)
 
                         # Only treat as interstitial if it isn’t plain HTTP
@@ -486,8 +486,8 @@ class ScraperService:
 
             with self.visited_lock:
                 norm_url = normalize_url(orig_url)
-                print(
-                    f"[DEBUG] Checking visited: {norm_url}  (already in visited? {norm_url in visited})"
+                logger.info(
+                    f"Checking visited: {norm_url}  (already in visited? {norm_url in visited})"
                 )
                 if norm_url in visited:
                     queue.task_done()

@@ -56,23 +56,22 @@ def normalize_host(url: str | None) -> str | None:
     hostname = hostname.rstrip(".").lower()
     logger.debug("Normalized hostname: %s", hostname)
 
-    # # 3. Strip only a literal 'www.' prefix
-    # if hostname.startswith("www."):
-    #     hostname = hostname[4:]
-
-    # 4. Split via tldextract (handles co.uk, etc.)
+    # 3. Split via tldextract (handles co.uk, etc.)
     ext = tldextract.extract(hostname)
     # If there’s no domain or suffix, bail out
     if not ext.domain or not ext.suffix:
         return None
 
     sub, dom, suf = ext.subdomain, ext.domain, ext.suffix
+    logger.debug(
+        "Extracted parts - Subdomain: %s, Domain: %s, Suffix: %s", sub, dom, suf
+    )
 
     # 5. Rebuild: keep subdomain only if non-empty
     if sub:
         retval = f"{sub}.{dom}.{suf}"
     else:
-        retval = f"{dom}.{suf}"
+        retval = f"www.{dom}.{suf}"
 
     logger.info("Final normalized host: %s", retval)
     return retval
