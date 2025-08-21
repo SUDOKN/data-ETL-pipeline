@@ -57,11 +57,11 @@ def get_domain(url: str) -> str:
     return netloc
 
 
-async def scrape_and_save(scraper: AsyncScraperService, url: str, output_dir: str):
+async def scrape_and_save(scraper: ScraperService, url: str, output_dir: str):
     url = ensure_url_scheme(url)
     domain = get_domain(url)
     try:
-        scraping_result = await scraper.scrape(url, domain)
+        scraping_result = scraper.scrape(url, domain)
         os.makedirs(output_dir, exist_ok=True)
         file_path = os.path.join(output_dir, f"{domain}.txt")
         with open(file_path, "w", encoding="utf-8") as f:
@@ -81,15 +81,15 @@ async def main():
     if not urls:
         logger.warning("No URLs provided.")
         return
-    scraper = AsyncScraperService(
-        max_concurrency=args.max_concurrency, max_depth=args.max_depth
+    scraper = ScraperService(
+        max_concurrent_browser_tabs=args.max_concurrency, max_depth=args.max_depth
     )
-    await scraper.start()
+
     try:
         tasks = [scrape_and_save(scraper, url, args.output_dir) for url in urls]
         await asyncio.gather(*tasks)
     finally:
-        await scraper.stop()
+        logger.info("Scraping stopped.")
 
 
 if __name__ == "__main__":
