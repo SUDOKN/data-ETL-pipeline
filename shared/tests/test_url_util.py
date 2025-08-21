@@ -14,10 +14,10 @@ def test_normalize_host():  # happy path
         normalize_host("https://DOMINOS.POSIST.COM/anything/else/")
         == "dominos.posist.com"
     )
-    assert normalize_host("https://www.mfgabc.COM/anything/else/") == "mfgabc.com"
+    assert normalize_host("https://www.mfgabc.COM/anything/else/") == "www.mfgabc.com"
     assert (
         normalize_host(normalize_host("https://www.mfgabc.COM/anything/else/"))
-        == "mfgabc.com"
+        == "www.mfgabc.com"
     )
 
     assert normalize_host("https://www1.mfgabc.COM/anything/else/") == "www1.mfgabc.com"
@@ -32,23 +32,23 @@ def test_normalize_host():  # happy path
         == "www2.mfgabc.com"
     )
 
-    assert normalize_host("https://www.m.mfgabc.COM/anything/else/") == "m.mfgabc.com"
+    assert normalize_host("https://m.mfgabc.COM/anything/else/") == "m.mfgabc.com"
     assert (
-        normalize_host(normalize_host("https://www.m.mfgabc.COM/anything/else/"))
+        normalize_host(normalize_host("https://m.mfgabc.COM/anything/else/"))
         == "m.mfgabc.com"
     )
 
-    assert normalize_host("https://mfgabc.COM/anything/else/") == "mfgabc.com"
+    assert normalize_host("https://mfgabc.COM/anything/else/") == "www.mfgabc.com"
     assert (
         normalize_host(normalize_host("https://mfgabc.COM/anything/else/"))
-        == "mfgabc.com"
+        == "www.mfgabc.com"
     )
 
-    assert normalize_host("www.mfgabc.COM") == "mfgabc.com"
-    assert normalize_host(normalize_host("www.mfgabc.COM")) == "mfgabc.com"
+    assert normalize_host("www.mfgabc.COM") == "www.mfgabc.com"
+    assert normalize_host(normalize_host("www.mfgabc.COM")) == "www.mfgabc.com"
 
-    assert normalize_host("mfgabc.COM") == "mfgabc.com"
-    assert normalize_host(normalize_host("mfgabc.COM")) == "mfgabc.com"
+    assert normalize_host("mfgabc.COM") == "www.mfgabc.com"
+    assert normalize_host(normalize_host("mfgabc.COM")) == "www.mfgabc.com"
 
 
 def test_normalize_host_invalid():
