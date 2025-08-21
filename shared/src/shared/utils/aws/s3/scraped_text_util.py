@@ -25,6 +25,9 @@ async def does_scraped_text_file_exist(
     :return: True if the file exists, False otherwise.
     """
     assert SCRAPED_TEXT_BUCKET is not None, "SCRAPED_TEXT_BUCKET is None"
+    logger.info(
+        f"Checking existence of file: {file_name} in bucket: {SCRAPED_TEXT_BUCKET}"
+    )
     try:
         if version_id:
             await s3_client.head_object(

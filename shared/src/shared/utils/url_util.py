@@ -1,6 +1,6 @@
 import logging
 import tldextract
-from urllib.parse import urlparse
+from urllib.parse import urlparse, urlunparse
 
 logger = logging.getLogger(__name__)
 
@@ -56,9 +56,9 @@ def normalize_host(url: str | None) -> str | None:
     hostname = hostname.rstrip(".").lower()
     logger.debug("Normalized hostname: %s", hostname)
 
-    # 3. Strip only a literal 'www.' prefix
-    if hostname.startswith("www."):
-        hostname = hostname[4:]
+    # # 3. Strip only a literal 'www.' prefix
+    # if hostname.startswith("www."):
+    #     hostname = hostname[4:]
 
     # 4. Split via tldextract (handles co.uk, etc.)
     ext = tldextract.extract(hostname)
@@ -89,3 +89,13 @@ def add_protocol(url: str, protocol: str = "https") -> str:
     if url.startswith("http://") or url.startswith("https://"):
         return url
     return f"{protocol}://{url}"
+
+
+def normalize_url(url: str) -> str:
+    parsed = urlparse(url)
+    # Remove fragment, lowercase scheme/host, standardize trailing slash
+    scheme = parsed.scheme.lower()
+    netloc = parsed.netloc.lower()
+    path = parsed.path.rstrip("/") or "/"
+    normalized = urlunparse((scheme, netloc, path, "", parsed.query, ""))
+    return normalized
