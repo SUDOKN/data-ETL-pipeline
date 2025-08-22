@@ -27,7 +27,7 @@ async def push_item_to_extract_queue(sqs_client, item: ToExtractItem):
         MessageBody=item.model_dump_json(),
     )
     logger.info(
-        f"Sent ToExtractItem for {item.manufacturer_url} to extract queue: {EXTRACT_QUEUE_URL}."
+        f"Sent ToExtractItem for {item.mfg_etld1} to extract queue: {EXTRACT_QUEUE_URL}."
     )
 
 

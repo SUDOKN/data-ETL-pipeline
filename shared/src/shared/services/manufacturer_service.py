@@ -1,13 +1,15 @@
 from datetime import datetime
 import logging
 
-from shared.models.db.manufacturer import IsManufacturerResult, Manufacturer
-
 from data_etl_app.services.prompt_service import prompt_service
 from data_etl_app.services.binary_classifier_service import (
     is_manufacturer,
 )
+
+from shared.models.db.manufacturer import IsManufacturerResult, Manufacturer
 from shared.models.types import MfgURLType
+from shared.utils.url_util import get_etld1_from_host
+
 
 logger = logging.getLogger(__name__)
 
@@ -37,15 +39,15 @@ async def update_manufacturer(updated_at: datetime, manufacturer: Manufacturer):
 
 
 async def is_company_a_manufacturer(
-    timestamp: datetime, manufacturer_url: str, text: str
+    timestamp: datetime, manufacturer_etld: str, text: str
 ) -> IsManufacturerResult:
 
-    logger.debug(f"Checking if {manufacturer_url} is a manufacturer...")
+    logger.debug(f"Checking if {manufacturer_etld} is a manufacturer...")
 
     name, binary_classifier_result = await is_manufacturer(
         timestamp,
         "is_manufacturer",
-        manufacturer_url,
+        manufacturer_etld,
         text,
         prompt_service.is_manufacturer_prompt,
     )
@@ -66,10 +68,10 @@ async def find_random_manufacturer_url() -> MfgURLType | None:
         [
             {"$match": {"is_manufacturer.answer": True}},
             {"$sample": {"size": 1}},
-            {"$project": {"url": 1}},
+            {"$project": {"url_accessible_at": 1}},
         ]
     ).to_list(length=1)
-    mfg_url = str(agg_cursor[0]["url"]) if agg_cursor else None
+    mfg_url = str(agg_cursor[0]["url_accessible_at"]) if agg_cursor else None
     return mfg_url
 
 
@@ -85,7 +87,9 @@ async def find_manufacturer_by_url(
     Returns:
         Manufacturer | None: The manufacturer object if found, otherwise None.
     """
-    return await Manufacturer.find_one({"url": mfg_url})
+    etld1 = get_etld1_from_host(mfg_url)
+    logger.debug(f"Finding manufacturer with etld1: {etld1} and url: {mfg_url}")
+    return await Manufacturer.find_one({"etld1": etld1})
 
 
 async def find_prevalidated_manufacturer_by_url(
@@ -100,8 +104,9 @@ async def find_prevalidated_manufacturer_by_url(
     Returns:
         Manufacturer | None: The manufacturer object if found and is a valid manufacturer, otherwise None.
     """
+    etld1 = get_etld1_from_host(mfg_url)
     manufacturer = await Manufacturer.find_one(
-        {"url": mfg_url, "is_manufacturer.answer": True}
+        {"etld1": etld1, "is_manufacturer.answer": True}
     )
     if not manufacturer:
         raise ValueError(
@@ -124,9 +129,10 @@ async def find_manufacturer_by_url_and_scraped_file_version(
     Returns:
         Manufacturer | None: The manufacturer object if found, otherwise None.
     """
+    etld1 = get_etld1_from_host(mfg_url)
     return await Manufacturer.find_one(
         {
-            "url": mfg_url,
+            "etld1": etld1,
             "scraped_text_file_version_id": scraped_text_file_version_id,
         }
     )

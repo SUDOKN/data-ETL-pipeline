@@ -15,14 +15,17 @@ from shared.services.manufacturer_service import (
 )
 from shared.services.user_service import findByEmail
 
-from shared.utils.url_util import normalize_host
+from shared.utils.url_util import (
+    get_normalized_url,
+    get_complete_url_with_compatible_protocol,
+)
 from shared.utils.time_util import get_current_time
 from shared.utils.aws.queue.priority_scrape_queue_util import (
     push_item_to_priority_scrape_queue,
 )
 
 from shared.utils.aws.s3.scraped_text_util import (
-    get_file_name_from_mfg_url,
+    get_file_name_from_mfg_etld,
     download_scraped_text_from_s3_by_filename,
 )
 
@@ -93,11 +96,14 @@ async def fetch_ground_truth_template(
                 detail="Something went wrong finding a random mfg_url. Please provide a valid mfg_url instead.",
             )
     else:
-        mfg_url = normalize_host(mfg_url)  # VERY IMPORTANT, TODO: NEEDS TO BE TESTED
-        if not mfg_url:
+        try:
+            _, mfg_url = get_normalized_url(
+                get_complete_url_with_compatible_protocol(mfg_url)
+            )
+        except ValueError as e:
             raise HTTPException(
                 status_code=400,
-                detail=f"Invalid URL: '{mfg_url}' has no valid hostname.",
+                detail=f"Invalid URL: '{mfg_url}' has no valid hostname. Error: {str(e)}",
             )
 
     # fetch the manufacturer from the database
@@ -110,7 +116,7 @@ async def fetch_ground_truth_template(
         await push_item_to_priority_scrape_queue(
             sqs_client,
             ToScrapeItem(
-                manufacturer_url=mfg_url,
+                accessible_normalized_url=mfg_url,
                 batch=Batch(
                     title="Ground Truth API: Keyword Extraction Result",
                     timestamp=current_timestamp,  # ISO format for timestamp
@@ -134,7 +140,7 @@ async def fetch_ground_truth_template(
         await push_item_to_priority_scrape_queue(
             sqs_client,
             ToScrapeItem(
-                manufacturer_url=mfg_url,
+                accessible_normalized_url=mfg_url,
                 batch=Batch(
                     title=f"Ground Truth API: Concept Data for `{concept_type.value}` missing",
                     timestamp=current_timestamp,  # ISO format for timestamp
@@ -187,7 +193,7 @@ async def fetch_ground_truth_template(
 
     # TODO: maybe cache downloaded text
     scraped_text, version_id = await download_scraped_text_from_s3_by_filename(
-        s3_client, file_name=get_file_name_from_mfg_url(mfg_url)
+        s3_client, file_name=get_file_name_from_mfg_etld(mfg_url)
     )
 
     if manufacturer.scraped_text_file_version_id != version_id:
@@ -208,7 +214,7 @@ async def fetch_ground_truth_template(
     keyword_ground_truth = KeywordGroundTruth(
         scraped_text_file_version_id=version_id,
         ontology_version_id=extracted_concept_data.stats.ontology_version_id,
-        mfg_url=mfg_url,
+        mfg_etld1=mfg_url,
         concept_type=concept_type,
         chunk_bounds=chunk_bounds,
         chunk_text=scraped_text[start:end],
@@ -287,7 +293,7 @@ async def collect_keyword_extraction_ground_truth(
             ),
         )
 
-    manufacturer = await find_prevalidated_manufacturer_by_url(keyword_gt.mfg_url)
+    manufacturer = await find_prevalidated_manufacturer_by_url(keyword_gt.mfg_etld1)
 
     # decide if this is a new insert or update
     existing_keyword_gt = await get_keyword_ground_truth(
@@ -301,7 +307,7 @@ async def collect_keyword_extraction_ground_truth(
             raise HTTPException(
                 status_code=400,
                 detail=(
-                    f"Existing keyword ground truth for mfg_url: {keyword_gt.mfg_url}, "
+                    f"Existing keyword ground truth for mfg_url: {keyword_gt.mfg_etld1}, "
                     f"concept_type: {keyword_gt.concept_type}, chunk_no: {keyword_gt.chunk_no} does not have any previous human corrections. "
                     f"Please contact the administrator."
                 ),
@@ -314,7 +320,7 @@ async def collect_keyword_extraction_ground_truth(
             raise HTTPException(
                 status_code=400,
                 detail=(
-                    f"Keyword ground truth for mfg_url: {keyword_gt.mfg_url}, "
+                    f"Keyword ground truth for mfg_url: {keyword_gt.mfg_etld1}, "
                     f"concept_type: {keyword_gt.concept_type}, "
                     f"chunk_no: {keyword_gt.chunk_no} already contains the same result correction. "
                     f"Please check the latest `human_correction_logs`. {get_human_correction_help_info()}"
@@ -396,11 +402,14 @@ async def fetch_binary_classification_template(
                 detail="Something went wrong finding a random mfg_url. Please provide a valid mfg_url instead.",
             )
     else:
-        mfg_url = normalize_host(mfg_url)  # VERY IMPORTANT
-        if not mfg_url:
+        try:
+            _, mfg_url = get_normalized_url(
+                get_complete_url_with_compatible_protocol(mfg_url)
+            )
+        except ValueError as e:
             raise HTTPException(
                 status_code=400,
-                detail=f"Invalid URL: '{mfg_url}' has no valid hostname.",
+                detail=f"Invalid URL: '{mfg_url}' has no valid hostname. Error: {str(e)}",
             )
 
     manufacturer = await find_manufacturer_by_url(mfg_url)
@@ -411,7 +420,7 @@ async def fetch_binary_classification_template(
         await push_item_to_priority_scrape_queue(
             sqs_client,
             ToScrapeItem(
-                manufacturer_url=mfg_url,
+                accessible_normalized_url=mfg_url,
                 batch=Batch(
                     title="Ground Truth API: Binary Classification",
                     timestamp=current_timestamp,  # ISO format for timestamp
@@ -458,7 +467,7 @@ async def fetch_binary_classification_template(
         await push_item_to_priority_scrape_queue(
             sqs_client,
             ToScrapeItem(
-                manufacturer_url=mfg_url,
+                accessible_normalized_url=mfg_url,
                 batch=Batch(
                     title=f"Ground Truth API: LLM Decision for `{classification_type.value}` missing",
                     timestamp=current_timestamp,  # ISO format for timestamp
@@ -472,7 +481,7 @@ async def fetch_binary_classification_template(
 
     # if not, then we need to create a new binary ground truth
     binary_ground_truth = BinaryGroundTruth(
-        mfg_url=mfg_url,
+        mfg_etld1=mfg_url,
         scraped_text_file_version_id=manufacturer.scraped_text_file_version_id,
         classification_type=classification_type,
         llm_decision=llm_decision,
@@ -546,12 +555,12 @@ async def collect_binary_ground_truth(
             ),
         )
 
-    manufacturer = await find_prevalidated_manufacturer_by_url(binary_gt.mfg_url)
+    manufacturer = await find_prevalidated_manufacturer_by_url(binary_gt.mfg_etld1)
     if not manufacturer:
         raise HTTPException(
             status_code=404,
             detail=(
-                f"Manufacturer with URL '{binary_gt.mfg_url}' does not exist"
+                f"Manufacturer with URL '{binary_gt.mfg_etld1}' does not exist"
                 f" or is not a valid manufacturer."
             ),
         )
@@ -565,7 +574,7 @@ async def collect_binary_ground_truth(
             raise HTTPException(
                 status_code=400,
                 detail=(
-                    f"Existing binary ground truth for mfg_url: {binary_gt.mfg_url}, "
+                    f"Existing binary ground truth for mfg_url: {binary_gt.mfg_etld1}, "
                     f"classification_type: {binary_gt.classification_type} does not have any previous human decisions. "
                     f"Please contact the administrator."
                 ),

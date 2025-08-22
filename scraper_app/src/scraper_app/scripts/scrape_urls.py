@@ -2,94 +2,84 @@ import argparse
 import asyncio
 import logging
 import os
+import csv
+from datetime import datetime
+from urllib.parse import urlparse
 
-from scraper_app.services.url_scraper_service import ScraperService
+from aiobotocore.session import get_session
+from shared.utils.aws.queue.sqs_scraper_client_util import make_sqs_scraper_client
+from shared.utils.aws.queue.scrape_queue_util import push_item_to_scrape_queue
+from shared.models.to_scrape_item import ToScrapeItem
+from shared.models.db.manufacturer import Batch
 
 logger = logging.getLogger(__name__)
 
 
 def parse_args():
-    parser = argparse.ArgumentParser(description="Bulk URL Scraper")
+    parser = argparse.ArgumentParser(description="Push URLs to scrape queue")
     parser.add_argument(
-        "--urls",
-        nargs="*",
-        help="List of URLs to scrape (space separated)",
-    )
-    parser.add_argument(
-        "--urls-file",
+        "--file",
         type=str,
-        help="Path to a file containing URLs (one per line)",
-    )
-    parser.add_argument(
-        "--output-dir",
-        type=str,
-        default="scraped_texts",
-        help="Directory to save scraped text files",
-    )
-    parser.add_argument(
-        "--max_concurrency",
-        type=int,
-        default=5,
-        help="Max concurrency for scraping",
-    )
-    parser.add_argument(
-        "--max_depth",
-        type=int,
-        default=5,
-        help="Max depth for scraping",
+        default="urls.csv",
+        help="Path to CSV file containing URLs and batch titles",
     )
     return parser.parse_args()
 
 
-def ensure_url_scheme(url: str) -> str:
-    if not url.startswith(("http://", "https://")):
-        return "http://" + url
-    return url
-
-
-def get_domain(url: str) -> str:
-    from urllib.parse import urlparse
-
-    parsed = urlparse(url)
-    netloc = parsed.netloc
-    if netloc.startswith("www."):
-        netloc = netloc[4:]
-    return netloc
-
-
-async def scrape_and_save(scraper: ScraperService, url: str, output_dir: str):
-    url = ensure_url_scheme(url)
-    domain = get_domain(url)
-    try:
-        scraping_result = scraper.scrape(url, domain)
-        os.makedirs(output_dir, exist_ok=True)
-        file_path = os.path.join(output_dir, f"{domain}.txt")
-        with open(file_path, "w", encoding="utf-8") as f:
-            f.write(scraping_result.content)
-        logger.info(f"Saved scraped text for {url} to {file_path}")
-    except Exception as e:
-        logger.error(f"Error scraping {url}: {e}")
-
-
 async def main():
-    args = parse_args()
-    urls = args.urls or []
-    if args.urls_file:
-        with open(args.urls_file, "r") as f:
-            file_urls = [line.strip() for line in f if line.strip()]
-            urls.extend(file_urls)
-    if not urls:
-        logger.warning("No URLs provided.")
-        return
-    scraper = ScraperService(
-        max_concurrent_browser_tabs=args.max_concurrency, max_depth=args.max_depth
+    logging.basicConfig(
+        level=logging.INFO,
+        format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
     )
 
-    try:
-        tasks = [scrape_and_save(scraper, url, args.output_dir) for url in urls]
-        await asyncio.gather(*tasks)
-    finally:
-        logger.info("Scraping stopped.")
+    args = parse_args()
+
+    # Read URLs from CSV file
+    if not os.path.exists(args.file):
+        logger.error(f"File {args.file} does not exist")
+        return
+
+    url_batch_pairs = []
+    with open(args.file, "r", newline="") as csvfile:
+        reader = csv.DictReader(csvfile)
+        for row in reader:
+            url = row.get("url", "").strip()
+            batch_title = row.get("batch_title", "").strip()
+            if url and batch_title:
+                url_batch_pairs.append((url, batch_title))
+
+    if not url_batch_pairs:
+        logger.warning("No valid URL/batch_title pairs found in CSV file")
+        return
+
+    logger.info(
+        f"Found {len(url_batch_pairs)} URL/batch_title pairs to push to scrape queue"
+    )
+
+    # Initialize AWS session and SQS client
+    session = get_session()
+
+    async with make_sqs_scraper_client(session) as sqs_client:
+        for url, batch_title in url_batch_pairs:
+            try:
+                # Create batch info with the specific batch title from CSV
+                batch = Batch(title=batch_title, timestamp=datetime.now())
+
+                # Create ToScrapeItem
+                item = ToScrapeItem(accessible_normalized_url=url, batch=batch)
+
+                # Push to queue
+                await push_item_to_scrape_queue(sqs_client, item)
+                logger.info(
+                    f"Pushed {item.accessible_normalized_url} to scrape queue with batch '{batch_title}'"
+                )
+
+            except Exception as e:
+                logger.error(
+                    f"Error processing URL {url} with batch '{batch_title}': {e}"
+                )
+
+    logger.info("Finished pushing all URLs to scrape queue")
 
 
 if __name__ == "__main__":

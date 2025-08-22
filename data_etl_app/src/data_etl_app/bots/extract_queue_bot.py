@@ -19,7 +19,7 @@ from shared.utils.aws.queue.priority_extract_queue_util import (
     delete_item_from_priority_extract_queue,
 )
 from shared.utils.aws.s3.scraped_text_util import (
-    get_file_name_from_mfg_url,
+    get_file_name_from_mfg_etld,
     does_scraped_text_file_exist,
     download_scraped_text_from_s3_by_filename,
 )
@@ -194,32 +194,32 @@ async def validate_manufacturer_for_extraction(
     Note: This function does NOT delete from queue - cleanup is handled by caller.
     """
 
-    manufacturer = await find_manufacturer_by_url(item.manufacturer_url)
+    manufacturer = await find_manufacturer_by_url(item.mfg_etld1)
 
     if not manufacturer:
         logger.warning(
-            f"{INVALID_ITEM_TAG}: Manufacturer {item.manufacturer_url} does not exist. Skipping extraction."
+            f"{INVALID_ITEM_TAG}: Manufacturer {item.mfg_etld1} does not exist. Skipping extraction."
         )
         await ExtractionError.insert_one(
             ExtractionError(
                 created_at=timestamp,
-                error=f"Manufacturer {item.manufacturer_url} does not exist.",
+                error=f"Manufacturer {item.mfg_etld1} does not exist.",
                 field="manufacturer",
-                url=item.manufacturer_url,
+                mfg_etld1=item.mfg_etld1,
             )
         )
         return None, None, None, False
 
     if not manufacturer.scraped_text_file_version_id:
         logger.warning(
-            f"{INVALID_ITEM_TAG}: Manufacturer {item.manufacturer_url} has no scraped_text_file_version_id, probably needs scraping. Skipping extraction."
+            f"{INVALID_ITEM_TAG}: Manufacturer {item.mfg_etld1} has no scraped_text_file_version_id, probably needs scraping. Skipping extraction."
         )
         await ExtractionError.insert_one(
             ExtractionError(
                 created_at=timestamp,
-                error=f"Manufacturer {item.manufacturer_url} has no scraped_text_file_version_id.",
+                error=f"Manufacturer {item.mfg_etld1} has no scraped_text_file_version_id.",
                 field="scraped_text_file_version_id",
-                url=item.manufacturer_url,
+                mfg_etld1=item.mfg_etld1,
             )
         )
         return None, None, None, False
@@ -227,19 +227,19 @@ async def validate_manufacturer_for_extraction(
     if not (
         await does_scraped_text_file_exist(
             s3_client,
-            get_file_name_from_mfg_url(manufacturer.url),
+            get_file_name_from_mfg_etld(manufacturer.etld1),
             manufacturer.scraped_text_file_version_id,
         )
     ):
         logger.warning(
-            f"{INVALID_ITEM_TAG}: Scraped text file for {item.manufacturer_url} does not exist, probably needs rescraping. Skipping extraction."
+            f"{INVALID_ITEM_TAG}: Scraped text file for {item.mfg_etld1} does not exist, probably needs rescraping. Skipping extraction."
         )
         await ExtractionError.insert_one(
             ExtractionError(
                 created_at=timestamp,
-                error=f"Scraped text file for {item.manufacturer_url}:{manufacturer.scraped_text_file_version_id} does not exist.",
+                error=f"Scraped text file for {item.mfg_etld1}:{manufacturer.scraped_text_file_version_id} does not exist.",
                 field="scraped_text_file",
-                url=item.manufacturer_url,
+                mfg_etld1=item.mfg_etld1,
             )
         )
         return None, None, None, False
@@ -247,48 +247,48 @@ async def validate_manufacturer_for_extraction(
     # Download and validate scraped text
     mfg_txt, version_id = await download_scraped_text_from_s3_by_filename(
         s3_client,
-        file_name=get_file_name_from_mfg_url(manufacturer.url),
+        file_name=get_file_name_from_mfg_etld(manufacturer.etld1),
     )
 
     num_tokens = num_tokens_from_string(mfg_txt)
     if num_tokens < TOO_SHORT_THRESHOLD:
         logger.warning(
-            f"{INVALID_ITEM_TAG}: Scraped text for {item.manufacturer_url} is too short ({num_tokens}), probably needs rescraping. Skipping extraction."
+            f"{INVALID_ITEM_TAG}: Scraped text for {item.mfg_etld1} is too short ({num_tokens}), probably needs rescraping. Skipping extraction."
         )
         await ExtractionError.insert_one(
             ExtractionError(
                 created_at=timestamp,
-                error=f"Scraped text for {item.manufacturer_url} is shorter than {TOO_SHORT_THRESHOLD} tokens.",
+                error=f"Scraped text for {item.mfg_etld1} is shorter than {TOO_SHORT_THRESHOLD} tokens.",
                 field="scraped_text",
-                url=item.manufacturer_url,
+                mfg_etld1=item.mfg_etld1,
             )
         )
         return None, None, None, False
 
     if num_tokens > TOO_LONG_THRESHOLD:
         logger.warning(
-            f"{INVALID_ITEM_TAG}: Scraped text for {item.manufacturer_url} is too long ({num_tokens}), skipping extraction."
+            f"{INVALID_ITEM_TAG}: Scraped text for {item.mfg_etld1} is too long ({num_tokens}), skipping extraction."
         )
         await ExtractionError.insert_one(
             ExtractionError(
                 created_at=timestamp,
-                error=f"Scraped text for {item.manufacturer_url} is longer than {TOO_LONG_THRESHOLD} tokens.",
+                error=f"Scraped text for {item.mfg_etld1} is longer than {TOO_LONG_THRESHOLD} tokens.",
                 field="scraped_text",
-                url=item.manufacturer_url,
+                mfg_etld1=item.mfg_etld1,
             )
         )
         return None, None, None, False
 
     if version_id != manufacturer.scraped_text_file_version_id:
         logger.warning(
-            f"{INVALID_ITEM_TAG}: Scraped text version ID mismatch for {item.manufacturer_url}. Expected: {manufacturer.scraped_text_file_version_id}, got: {version_id}. Skipping extraction."
+            f"{INVALID_ITEM_TAG}: Scraped text version ID mismatch for {item.mfg_etld1}. Expected: {manufacturer.scraped_text_file_version_id}, got: {version_id}. Skipping extraction."
         )
         await ExtractionError.insert_one(
             ExtractionError(
                 created_at=timestamp,
-                error=f"Scraped text version ID mismatch for {item.manufacturer_url}. Expected: {manufacturer.scraped_text_file_version_id}, got: {version_id}.",
+                error=f"Scraped text version ID mismatch for {item.mfg_etld1}. Expected: {manufacturer.scraped_text_file_version_id}, got: {version_id}.",
                 field="scraped_text_file_version_id",
-                url=item.manufacturer_url,
+                mfg_etld1=item.mfg_etld1,
             )
         )
         return None, None, None, False
@@ -302,14 +302,18 @@ async def process_manufacturer(
     manufacturer: Manufacturer,
 ):
 
-    logger.debug(f"Debug mode enabled. Processing manufacturer: {manufacturer.url}")
+    logger.debug(
+        f"Debug mode enabled. Processing manufacturer: {manufacturer.etld1} with URL {manufacturer.url_accessible_at}"
+    )
 
     if not manufacturer.is_manufacturer:
         try:
-            logger.info(f"Finding out if company is a manufacturer: {manufacturer.url}")
+            logger.info(
+                f"Finding out if company {manufacturer.etld1} is a manufacturer with URL {manufacturer.url_accessible_at}"
+            )
             manufacturer.is_manufacturer = await is_company_a_manufacturer(
                 timestamp,
-                manufacturer.url,
+                manufacturer.etld1,
                 mfg_txt,
             )
 
@@ -323,13 +327,13 @@ async def process_manufacturer(
                 )
                 return  # if not a manufacturer, skip further processing
         except Exception as e:
-            logger.error(f"{manufacturer.url}.is_manufacturer errored:{e}")
+            logger.error(f"{manufacturer.etld1}.is_manufacturer errored:{e}")
             await ExtractionError.insert_one(
                 ExtractionError(
                     created_at=timestamp,
                     error=str(e),
                     field="is_manufacturer",
-                    url=manufacturer.url,
+                    mfg_etld1=manufacturer.etld1,
                 )
             )
             return  # if is_manufacturer check fails, skip further processing
@@ -337,46 +341,46 @@ async def process_manufacturer(
     if not manufacturer.is_product_manufacturer:
         try:
             logger.info(
-                f"Finding out if company is a product manufacturer: {manufacturer.url}"
+                f"Finding out if company is a product manufacturer: {manufacturer.etld1}"
             )
             manufacturer.is_product_manufacturer = await is_product_manufacturer(
-                timestamp, manufacturer.url, mfg_txt
+                timestamp, manufacturer.etld1, mfg_txt
             )
             await update_manufacturer(
                 updated_at=timestamp,
                 manufacturer=manufacturer,
             )
         except Exception as e:
-            logger.error(f"{manufacturer.url}.is_product_manufacturer errored:{e}")
+            logger.error(f"{manufacturer.etld1}.is_product_manufacturer errored:{e}")
             await ExtractionError.insert_one(
                 ExtractionError(
                     created_at=timestamp,
                     error=str(e),
                     field="is_product_manufacturer",
-                    url=manufacturer.url,
+                    mfg_etld1=manufacturer.etld1,
                 )
             )
 
     if not manufacturer.is_contract_manufacturer:
         try:
             logger.info(
-                f"Finding out if company is a contract manufacturer: {manufacturer.url}"
+                f"Finding out if company is a contract manufacturer: {manufacturer.etld1}"
             )
             manufacturer.is_contract_manufacturer = await is_contract_manufacturer(
-                timestamp, manufacturer.url, mfg_txt
+                timestamp, manufacturer.etld1, mfg_txt
             )
             await update_manufacturer(
                 updated_at=timestamp,
                 manufacturer=manufacturer,
             )
         except Exception as e:
-            logger.error(f"{manufacturer.url}.is_contract_manufacturer errored:{e}")
+            logger.error(f"{manufacturer.etld1}.is_contract_manufacturer errored:{e}")
             await ExtractionError.insert_one(
                 ExtractionError(
                     created_at=timestamp,
                     error=str(e),
                     field="is_contract_manufacturer",
-                    url=manufacturer.url,
+                    mfg_etld1=manufacturer.etld1,
                 )
             )
             return
@@ -385,9 +389,9 @@ async def process_manufacturer(
 
     if not manufacturer.industries or manufacturer.industries.results is None:
         try:
-            logger.info(f"Extracting industries for {manufacturer.url}")
+            logger.info(f"Extracting industries for {manufacturer.etld1}")
             manufacturer.industries = await extract_industries(
-                timestamp, manufacturer.url, mfg_txt
+                timestamp, manufacturer.etld1, mfg_txt
             )
             await update_manufacturer(
                 updated_at=timestamp,
@@ -401,7 +405,7 @@ async def process_manufacturer(
                     created_at=timestamp,
                     error=str(e),
                     field="industries",
-                    url=manufacturer.url,
+                    mfg_etld1=manufacturer.etld1,
                 )
             )
 
@@ -409,9 +413,9 @@ async def process_manufacturer(
 
     if not manufacturer.certificates or manufacturer.certificates.results is None:
         try:
-            logger.info(f"Extracting certificates for {manufacturer.url}")
+            logger.info(f"Extracting certificates for {manufacturer.etld1}")
             manufacturer.certificates = await extract_certificates(
-                timestamp, manufacturer.url, mfg_txt
+                timestamp, manufacturer.etld1, mfg_txt
             )
             await update_manufacturer(
                 updated_at=timestamp,
@@ -425,7 +429,7 @@ async def process_manufacturer(
                     created_at=timestamp,
                     error=str(e),
                     field="certificates",
-                    url=manufacturer.url,
+                    mfg_etld1=manufacturer.etld1,
                 )
             )
 
@@ -433,9 +437,9 @@ async def process_manufacturer(
 
     if not manufacturer.material_caps or manufacturer.material_caps.results is None:
         try:
-            logger.info(f"Extracting materials for {manufacturer.url}")
+            logger.info(f"Extracting materials for {manufacturer.etld1}")
             manufacturer.material_caps = await extract_materials(
-                timestamp, manufacturer.url, mfg_txt
+                timestamp, manufacturer.etld1, mfg_txt
             )
             await update_manufacturer(
                 updated_at=timestamp,
@@ -449,7 +453,7 @@ async def process_manufacturer(
                     created_at=timestamp,
                     error=str(e),
                     field="material_caps",
-                    url=manufacturer.url,
+                    mfg_etld1=manufacturer.etld1,
                 )
             )
 
@@ -457,9 +461,9 @@ async def process_manufacturer(
 
     if not manufacturer.process_caps or manufacturer.process_caps.results is None:
         try:
-            logger.info(f"Extracting processes for {manufacturer.url}")
+            logger.info(f"Extracting processes for {manufacturer.etld1}")
             manufacturer.process_caps = await extract_processes(
-                timestamp, manufacturer.url, mfg_txt
+                timestamp, manufacturer.etld1, mfg_txt
             )
             await update_manufacturer(
                 updated_at=timestamp,
@@ -473,7 +477,7 @@ async def process_manufacturer(
                     created_at=timestamp,
                     error=str(e),
                     field="process_caps",
-                    url=manufacturer.url,
+                    mfg_etld1=manufacturer.etld1,
                 )
             )
 
@@ -498,7 +502,7 @@ async def extract_and_cleanup(
         duration = end_time - start_time
         extraction_stats.add_timing(duration.total_seconds())
 
-        logger.info(f"✅ Extraction completed for {manufacturer.url}")
+        logger.info(f"✅ Extraction completed for {manufacturer.etld1}")
         logger.info(f"   ⏱️  Individual time: {duration.total_seconds():.2f}s")
         extraction_stats.print_stats()
 
@@ -506,14 +510,14 @@ async def extract_and_cleanup(
         end_time = get_current_time()
         duration = end_time - start_time
         logger.error(
-            f"❌ Error processing manufacturer {manufacturer.url} after {duration.total_seconds():.2f}s: {e}"
+            f"❌ Error processing manufacturer {manufacturer.etld1} after {duration.total_seconds():.2f}s: {e}"
         )
         await ExtractionError.insert_one(
             ExtractionError(
                 created_at=timestamp,
                 error=str(e),
                 field="general_processing",
-                url=manufacturer.url,
+                mfg_etld1=manufacturer.etld1,
             )
         )
     finally:

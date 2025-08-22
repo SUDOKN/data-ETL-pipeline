@@ -81,7 +81,7 @@ async def _binary_classify(
 async def is_manufacturer(
     evaluated_at: datetime,
     keyword_label: str,
-    manufacturer_url: str,
+    manufacturer_etld: str,
     text: str,
     binary_prompt: str,
     gpt_model: GPTModel = GPT_4o_mini,
@@ -95,7 +95,7 @@ async def is_manufacturer(
     if not gpt_response:
         logger.error(f"Invalid gpt_response:{gpt_response}")
         raise ValueError(
-            f"{manufacturer_url}:{keyword_label} llm_results: Empty or invalid response from GPT"
+            f"{manufacturer_etld}:{keyword_label} llm_results: Empty or invalid response from GPT"
         )
 
     logger.debug(f"classification gpt response:\n{gpt_response}")
@@ -104,7 +104,7 @@ async def is_manufacturer(
     result = json.loads(gpt_response)
     if not result or not result["name"]:
         raise ValueError(
-            f"{manufacturer_url}:{keyword_label} llm_results: Empty or manufacturer name missing in response from GPT"
+            f"{manufacturer_etld}:{keyword_label} llm_results: Empty or manufacturer name missing in response from GPT"
         )
 
     return result["name"], BinaryClassifierResult(evaluated_at=evaluated_at, **result)
