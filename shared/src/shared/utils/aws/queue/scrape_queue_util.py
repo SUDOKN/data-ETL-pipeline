@@ -27,7 +27,7 @@ async def push_item_to_scrape_queue(sqs_client, item: ToScrapeItem):
         MessageBody=item.model_dump_json(),
     )
     logger.info(
-        f"Sent ToScrapeItem for {item.manufacturer_url} to scrape queue: {SCRAPE_QUEUE_URL}"
+        f"Sent ToScrapeItem for {item.accessible_normalized_url} to scrape queue: {SCRAPE_QUEUE_URL}"
     )
 
 

@@ -3,7 +3,7 @@ from datetime import datetime
 from pydantic import BaseModel, Field, computed_field
 
 from shared.models.db.manufacturer import BinaryClassifierResult
-from shared.models.types import MfgURLType
+from shared.models.types import MfgETLDType
 
 from shared.utils.time_util import get_current_time
 
@@ -41,7 +41,7 @@ class HumanDecisionLog(BaseModel):
 class BinaryGroundTruth(Document):
     created_at: datetime = Field(default_factory=lambda: get_current_time())
     updated_at: datetime = Field(default_factory=lambda: get_current_time())
-    mfg_url: MfgURLType
+    mfg_etld1: MfgETLDType
 
     # knowledge base identifiers
     scraped_text_file_version_id: str

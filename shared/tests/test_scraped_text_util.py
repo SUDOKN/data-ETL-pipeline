@@ -5,7 +5,7 @@ import pytest_asyncio
 import aiobotocore.session
 
 from shared.utils.aws.s3.scraped_text_util import (
-    get_file_name_from_mfg_url,
+    get_file_name_from_mfg_etld,
     does_scraped_text_file_exist,
     upload_scraped_text_to_s3,
     download_scraped_text_from_s3_by_filename,
@@ -25,7 +25,7 @@ class TestScrapedTextUtilS3Integration:
     async def test_upload_download_delete_cycle(self, s3_client):
         # Generate a unique file name
         url = f"https://example.com/{uuid.uuid4()}"
-        file_name = get_file_name_from_mfg_url(url)
+        file_name = get_file_name_from_mfg_etld(url)
         file_content = "Integration test content"
         tags = {"test": "integration"}
 

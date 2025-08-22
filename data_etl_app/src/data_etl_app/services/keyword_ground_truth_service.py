@@ -7,7 +7,7 @@ logger = logging.getLogger(__name__)
 
 
 from shared.utils.aws.s3.scraped_text_util import (
-    get_file_name_from_mfg_url,
+    get_file_name_from_mfg_etld,
     download_scraped_text_from_s3_by_filename,
 )
 from shared.models.db.manufacturer import Manufacturer
@@ -47,9 +47,9 @@ async def get_keyword_ground_truth(
     )
     assert (
         extracted_concept_data is not None
-    ), f"Concept type '{concept_type}' not found in manufacturer '{manufacturer.url}'."
+    ), f"Concept type '{concept_type}' not found in manufacturer '{manufacturer.etld1}'."
     return await KeywordGroundTruth.find_one(
-        KeywordGroundTruth.mfg_url == manufacturer.url,
+        KeywordGroundTruth.mfg_etld1 == manufacturer.etld1,
         KeywordGroundTruth.scraped_text_file_version_id
         == manufacturer.scraped_text_file_version_id,
         KeywordGroundTruth.ontology_version_id
@@ -141,7 +141,7 @@ async def _validate_keyword_ground_truth(
     if not extracted_concept_data:
         raise ValueError(
             f"No extraction results found for concept type '{keyword_gt.concept_type}'"
-            f" in manufacturer '{keyword_gt.mfg_url}'."
+            f" in manufacturer '{keyword_gt.mfg_etld1}'."
         )
 
     assert (
@@ -168,11 +168,11 @@ async def _validate_keyword_ground_truth(
 
     # file and version ID check
     scraped_text, version_id = await download_scraped_text_from_s3_by_filename(
-        s3_client, file_name=get_file_name_from_mfg_url(keyword_gt.mfg_url)
+        s3_client, file_name=get_file_name_from_mfg_etld(keyword_gt.mfg_etld1)
     )
     if manufacturer.scraped_text_file_version_id != version_id:
         raise ValueError(
-            f"Scraped text version ID mismatch for mfg_url: {keyword_gt.mfg_url}. Expected: {manufacturer.scraped_text_file_version_id}, got: {version_id}. (manufacturer.scraped_text_file_version_id != version_id)"
+            f"Scraped text version ID mismatch for mfg_url: {keyword_gt.mfg_etld1}. Expected: {manufacturer.scraped_text_file_version_id}, got: {version_id}. (manufacturer.scraped_text_file_version_id != version_id)"
         )
     if keyword_gt.scraped_text_file_version_id != version_id:
         raise ValueError(
