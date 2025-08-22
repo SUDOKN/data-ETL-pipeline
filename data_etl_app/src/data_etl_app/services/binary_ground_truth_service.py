@@ -27,7 +27,7 @@ async def get_binary_ground_truth(
 
     """
     return await BinaryGroundTruth.find_one(
-        BinaryGroundTruth.mfg_url == manufacturer.url,
+        BinaryGroundTruth.mfg_etld1 == manufacturer.etld1,
         BinaryGroundTruth.scraped_text_file_version_id
         == manufacturer.scraped_text_file_version_id,
         BinaryGroundTruth.classification_type == classification_type,
@@ -113,11 +113,11 @@ async def _validate_binary_ground_truth(
 
     # existing manufacturer check
     existing_manufacturer = await find_manufacturer_by_url_and_scraped_file_version(
-        binary_ground_truth.mfg_url, binary_ground_truth.scraped_text_file_version_id
+        binary_ground_truth.mfg_etld1, binary_ground_truth.scraped_text_file_version_id
     )
     if not existing_manufacturer:
         raise ValueError(
-            f"Manufacturer with URL '{binary_ground_truth.mfg_url}' does not exist or has a different scraped text file version ID."
+            f"Manufacturer with URL '{binary_ground_truth.mfg_etld1}' does not exist or has a different scraped text file version ID."
         )
 
     _validate_new_human_decision(new_human_decision, binary_ground_truth)
