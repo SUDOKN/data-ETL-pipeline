@@ -10,7 +10,7 @@ from data_etl_app.models.binary_ground_truth import (
     HumanBinaryDecision,
 )
 from shared.services.manufacturer_service import (
-    find_manufacturer_by_url_and_scraped_file_version,
+    find_manufacturer_by_etld1_and_scraped_file_version,
 )
 
 logger = logging.getLogger(__name__)
@@ -112,7 +112,7 @@ async def _validate_binary_ground_truth(
     )
 
     # existing manufacturer check
-    existing_manufacturer = await find_manufacturer_by_url_and_scraped_file_version(
+    existing_manufacturer = await find_manufacturer_by_etld1_and_scraped_file_version(
         binary_ground_truth.mfg_etld1, binary_ground_truth.scraped_text_file_version_id
     )
     if not existing_manufacturer:
