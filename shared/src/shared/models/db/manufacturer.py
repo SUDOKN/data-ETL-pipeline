@@ -34,6 +34,20 @@ class Batch(BaseModel):
     title: str
     timestamp: datetime
 
+    @field_validator("title")
+    @classmethod
+    def validate_title_not_empty(cls, v: str) -> str:
+        if not v.strip():
+            raise ValueError("Batch title cannot be empty")
+        return v.strip()
+
+    @field_validator("timestamp")
+    @classmethod
+    def validate_timestamp(cls, v: datetime) -> datetime:
+        if not isinstance(v, datetime):
+            raise ValueError("timestamp must be a valid datetime object")
+        return v
+
 
 class BinaryClassifierResult(BaseModel):
     evaluated_at: datetime
