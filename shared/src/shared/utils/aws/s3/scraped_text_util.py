@@ -10,7 +10,7 @@ if not SCRAPED_TEXT_BUCKET:
 logger = logging.getLogger(__name__)
 
 
-def get_file_name_from_mfg_url(url: str) -> str:
+def get_file_name_from_mfg_etld(url: str) -> str:
     """Generates a file name for the scraped text based on the manufacturer URL."""
     return f"{url}.txt"
 

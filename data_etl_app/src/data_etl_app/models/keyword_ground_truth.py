@@ -3,7 +3,7 @@ from datetime import datetime
 from pydantic import BaseModel, ValidationInfo, computed_field, Field, field_validator
 
 from shared.utils.time_util import get_current_time
-from shared.models.types import LLMMappingType, MfgURLType, OntologyVersionIDType
+from shared.models.types import LLMMappingType, MfgETLDType, OntologyVersionIDType
 from shared.models.db.extraction_results import ChunkSearchStats
 
 from data_etl_app.models.types import ConceptTypeEnum
@@ -60,7 +60,7 @@ class KeywordGroundTruth(Document):
 
     created_at: datetime = Field(default_factory=lambda: get_current_time())
     updated_at: datetime = Field(default_factory=lambda: get_current_time())
-    mfg_url: MfgURLType
+    mfg_etld1: MfgETLDType
 
     # knowledge base identifiers
     scraped_text_file_version_id: str

@@ -42,13 +42,13 @@
       "out_file": "./logs/scrape-queue-bot-priority-out.log",
       "log_file": "./logs/scrape-queue-bot-priority-combined.log",
       "time": true,
-      "kill_timeout": 1000,
+      "kill_timeout": 30000,
       "shutdown_with_message": true,
       "listen_timeout": 8000,
       "wait_ready": false,
       "max_restarts": 5,
       "min_uptime": "10s",
-      "restart_delay": 1000,
+      "restart_delay": 5000,
       "env": {
         "PYTHONPATH": "./scraper_app/src:./shared/src:./open_ai_key_app/src",
         "PYTHONUNBUFFERED": "1"

@@ -26,7 +26,7 @@ from shared.utils.aws.queue.priority_scrape_queue_util import (
 )
 from shared.utils.aws.s3.s3_client_util import make_s3_client
 from shared.utils.aws.s3.scraped_text_util import (
-    get_file_name_from_mfg_url,
+    get_file_name_from_mfg_etld,
     does_scraped_text_file_exist,
     upload_scraped_text_to_s3,
 )
@@ -44,6 +44,7 @@ from scraper_app.services.url_scraper_service import (
     ScrapingResult,
 )
 from open_ai_key_app.utils.ask_gpt_util import num_tokens_from_string
+from shared.utils.url_util import get_etld1_from_host
 
 logger = logging.getLogger(__name__)
 
@@ -122,7 +123,7 @@ async def process_queue(
             current_timestamp = get_current_time()
 
             logger.info(
-                f"Processing item: {item.manufacturer_url} (Batch: {item.batch.title})"
+                f"Processing item: {item.accessible_normalized_url} (Batch: {item.batch.title})"
             )
             try:
                 # Validate manufacturer before processing
@@ -155,13 +156,13 @@ async def process_queue(
 
             except Exception as e:
                 logger.error(
-                    f"Error processing manufacturer {item.manufacturer_url}: {e}"
+                    f"Error processing manufacturer {item.accessible_normalized_url}: {e}"
                 )
                 await ScrapingError.insert_one(
                     ScrapingError(
                         created_at=current_timestamp,
                         error=str(e),
-                        url=item.manufacturer_url,
+                        url=item.accessible_normalized_url,
                         batch=item.batch,
                     )
                 )
@@ -187,13 +188,17 @@ async def validate_manufacturer_for_scraping(
     Returns (manufacturer, should_continue) where should_continue indicates
     if processing should continue.
     """
-    logger.info(f"Validating manufacturer for scraping: {item.manufacturer_url}")
+    logger.info(
+        f"Validating manufacturer for scraping: {item.accessible_normalized_url}"
+    )
     manufacturer = await find_manufacturer_by_url(
-        item.manufacturer_url
+        item.accessible_normalized_url
     )  # Fetch existing manufacturer by URL
 
     if manufacturer:
-        logger.info(f"Found existing manufacturer for {item.manufacturer_url}.")
+        logger.info(
+            f"Found existing manufacturer for {item.accessible_normalized_url}."
+        )
         if (
             not manufacturer.scraped_text_file_version_id
             or manufacturer.scraped_text_file_version_id == REDO_EXTRACTION_KEYWORD
@@ -202,7 +207,7 @@ async def validate_manufacturer_for_scraping(
             # 1. done for the first time
             # 2. redone by setting its scraped_text_file_version_id as None beforehand.
             logger.info(
-                f"Manufacturer {manufacturer.url} exists but has no scraped_text_file_version_id. Adding batch {item.batch} and proceeding to scrape."
+                f"Manufacturer {manufacturer.etld1} exists but has no scraped_text_file_version_id. Adding batch {item.batch} and proceeding to scrape."
             )
             reset_llm_aided_fields(manufacturer)
             manufacturer.batches.append(item.batch)
@@ -210,22 +215,22 @@ async def validate_manufacturer_for_scraping(
         elif manufacturer.scraped_text_file_version_id:
             existing_txt_file = await does_scraped_text_file_exist(
                 s3_client,
-                get_file_name_from_mfg_url(item.manufacturer_url),
+                get_file_name_from_mfg_etld(manufacturer.etld1),
                 manufacturer.scraped_text_file_version_id,
             )
             if existing_txt_file:
                 logger.info(
-                    f"Found existing scraped text file for {manufacturer.url} with version {manufacturer.scraped_text_file_version_id}. Re-extraction request noted. No need to scrape, fast tracking to extraction."
+                    f"Found existing scraped text file for {manufacturer.etld1} with version {manufacturer.scraped_text_file_version_id}. Re-extraction request noted. No need to scrape, fast tracking to extraction."
                 )
 
                 await push_item_to_e_queue(
                     sqs_client,
-                    ToExtractItem(manufacturer_url=manufacturer.url),
+                    ToExtractItem(mfg_etld1=manufacturer.etld1),
                 )
                 return manufacturer, False
             else:
                 logger.warning(
-                    f"Scraped text file for {manufacturer.url} with version {manufacturer.scraped_text_file_version_id} does not exist in S3. Please check manufacturer records."
+                    f"Scraped text file for {manufacturer.etld1} with version {manufacturer.scraped_text_file_version_id} does not exist in S3. Please check manufacturer records."
                 )
                 return manufacturer, False
 
@@ -238,12 +243,12 @@ async def scrape_and_save_manufacturer(
     scraper: ScraperService,
     item: ToScrapeItem,
     manufacturer: Optional[Manufacturer],  # if existing
-) -> ScrapingResult:
+) -> tuple[ScrapingResult, Manufacturer]:
     """Scrape manufacturer content and save to database."""
-    logger.info(f"🔄 Starting scraping for {item.manufacturer_url}")
+    logger.info(f"🔄 Starting scraping for {item.accessible_normalized_url}")
 
     # Use the updated scraper that returns ScrapingResult
-    scraping_result = scraper.scrape(item.manufacturer_url, item.manufacturer_url)
+    scraping_result = scraper.scrape(item.accessible_normalized_url)
 
     # Save individual URL errors to database (using consistent timestamp)
     if scraping_result.has_errors:
@@ -255,13 +260,13 @@ async def scrape_and_save_manufacturer(
                 ScrapingError(
                     created_at=timestamp,  # Use consistent timestamp from main loop
                     error=f"URL: {error_info['url']} (depth {error_info['depth']}) - {error_info['error_type']}: {error_info['error']}",
-                    url=item.manufacturer_url,  # Main manufacturer URL for grouping
+                    url=item.accessible_normalized_url,  # Main manufacturer URL for grouping
                     batch=item.batch,
                 )
             )
 
     # Log scraping statistics
-    logger.info(f"📊 Scraping stats for {item.manufacturer_url}:")
+    logger.info(f"📊 Scraping stats for {item.accessible_normalized_url}:")
     scraping_result.print_stats()
 
     # Validate scraped content
@@ -270,14 +275,16 @@ async def scrape_and_save_manufacturer(
 
     if not num_tokens or num_tokens < 30:
         raise ValueError(
-            f"Scraped text for {item.manufacturer_url} is empty or too short ({num_tokens} tokens). Success rate: {scraping_result.success_rate:.1%}"
+            f"Scraped text for {item.accessible_normalized_url} is empty or too short ({num_tokens} tokens). Success rate: {scraping_result.success_rate:.1%}"
         )
+
+    mfg_etld = get_etld1_from_host(item.accessible_normalized_url)
 
     # Upload to S3
     version_id, s3_text_file_full_url = await upload_scraped_text_to_s3(
         s3_client,
         scraping_result.content,
-        get_file_name_from_mfg_url(item.manufacturer_url),
+        get_file_name_from_mfg_etld(mfg_etld),
         {
             "batch_title": item.batch.title,
             "batch_timestamp": item.batch.timestamp.isoformat(),
@@ -294,7 +301,8 @@ async def scrape_and_save_manufacturer(
     else:
         manufacturer = Manufacturer(
             created_at=timestamp,
-            url=item.manufacturer_url,
+            etld1=mfg_etld,
+            url_accessible_at=item.accessible_normalized_url,
             scraped_text_file_num_tokens=num_tokens,
             scraped_text_file_version_id=version_id,
             batches=[item.batch],
@@ -318,9 +326,9 @@ async def scrape_and_save_manufacturer(
         )
 
     await update_manufacturer(timestamp, manufacturer)
-    logger.info(f"Saved manufacturer: {manufacturer.url}")
+    logger.info(f"Saved manufacturer: {manufacturer.etld1}")
 
-    return scraping_result
+    return scraping_result, manufacturer
 
 
 async def scrape_and_cleanup(
@@ -340,7 +348,7 @@ async def scrape_and_cleanup(
 
     try:
         # Perform scraping and get result with errors
-        scraping_result = await scrape_and_save_manufacturer(
+        scraping_result, updated_manufacturer = await scrape_and_save_manufacturer(
             timestamp, s3_client, scraper, item, manufacturer
         )
 
@@ -348,7 +356,7 @@ async def scrape_and_cleanup(
         if scraping_result.success_rate > 0.8:  # At least 80% success rate
             await push_item_to_e_queue(
                 sqs_client,
-                ToExtractItem(manufacturer_url=item.manufacturer_url),
+                ToExtractItem(mfg_etld1=updated_manufacturer.etld1),
             )
         else:
             logger.warning(
@@ -357,8 +365,8 @@ async def scrape_and_cleanup(
             await ScrapingError.insert_one(
                 ScrapingError(
                     created_at=timestamp,  # Use consistent timestamp from main loop
-                    error=f"Low success rate ({scraping_result.success_rate:.1%}) for {item.manufacturer_url}. Not added to extract queue.",
-                    url=item.manufacturer_url,
+                    error=f"Low success rate ({scraping_result.success_rate:.1%}) for {item.accessible_normalized_url}. Not added to extract queue.",
+                    url=item.accessible_normalized_url,
                     batch=item.batch,
                 )
             )
@@ -368,7 +376,7 @@ async def scrape_and_cleanup(
         duration = end_time - timestamp
         scraping_stats.add_timing(duration.total_seconds())
 
-        logger.info(f"✅ Scraping completed for {item.manufacturer_url}")
+        logger.info(f"✅ Scraping completed for {item.accessible_normalized_url}")
         logger.info(f"   ⏱️  Individual time: {duration.total_seconds():.2f}s")
         scraping_stats.print_stats()
 
@@ -376,7 +384,7 @@ async def scrape_and_cleanup(
         end_time = get_current_time()
         duration = end_time - timestamp
         logger.error(
-            f"❌ Error scraping manufacturer {item.manufacturer_url} after {duration.total_seconds():.2f}s: {e}"
+            f"❌ Error scraping manufacturer {item.accessible_normalized_url} after {duration.total_seconds():.2f}s: {e}"
         )
 
         # Save the main scraping error
@@ -384,7 +392,7 @@ async def scrape_and_cleanup(
             ScrapingError(
                 created_at=timestamp,  # Use consistent timestamp from main loop
                 error=str(e),
-                url=item.manufacturer_url,
+                url=item.accessible_normalized_url,
                 batch=item.batch,
             )
         )
@@ -399,7 +407,7 @@ async def scrape_and_cleanup(
                     ScrapingError(
                         created_at=timestamp,  # Use consistent timestamp
                         error=f"URL: {error_info['url']} (depth {error_info['depth']}) - {error_info['error_type']}: {error_info['error']}",
-                        url=item.manufacturer_url,
+                        url=item.accessible_normalized_url,
                         batch=item.batch,  # Include batch for context
                     )
                 )
