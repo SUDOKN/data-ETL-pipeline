@@ -28,7 +28,7 @@ from shared.utils.aws.s3.s3_client_util import make_s3_client
 from shared.utils.time_util import get_current_time
 
 from shared.services.manufacturer_service import (
-    find_manufacturer_by_url,
+    find_manufacturer_by_etld1,
     update_manufacturer,
     is_company_a_manufacturer,
 )
@@ -194,7 +194,7 @@ async def validate_manufacturer_for_extraction(
     Note: This function does NOT delete from queue - cleanup is handled by caller.
     """
 
-    manufacturer = await find_manufacturer_by_url(item.mfg_etld1)
+    manufacturer = await find_manufacturer_by_etld1(item.mfg_etld1)
 
     if not manufacturer:
         logger.warning(

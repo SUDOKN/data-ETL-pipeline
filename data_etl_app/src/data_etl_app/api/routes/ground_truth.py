@@ -11,7 +11,7 @@ from shared.models.to_scrape_item import ToScrapeItem
 from shared.services.manufacturer_service import (
     find_manufacturer_by_url,
     find_random_manufacturer_url,
-    find_prevalidated_manufacturer_by_url,
+    find_prevalidated_manufacturer_by_etld1,
 )
 from shared.services.user_service import findByEmail
 
@@ -214,7 +214,7 @@ async def fetch_ground_truth_template(
     keyword_ground_truth = KeywordGroundTruth(
         scraped_text_file_version_id=version_id,
         ontology_version_id=extracted_concept_data.stats.ontology_version_id,
-        mfg_etld1=mfg_url,
+        mfg_etld1=manufacturer.etld1,
         concept_type=concept_type,
         chunk_bounds=chunk_bounds,
         chunk_text=scraped_text[start:end],
@@ -293,7 +293,7 @@ async def collect_keyword_extraction_ground_truth(
             ),
         )
 
-    manufacturer = await find_prevalidated_manufacturer_by_url(keyword_gt.mfg_etld1)
+    manufacturer = await find_prevalidated_manufacturer_by_etld1(keyword_gt.mfg_etld1)
 
     # decide if this is a new insert or update
     existing_keyword_gt = await get_keyword_ground_truth(
@@ -481,7 +481,7 @@ async def fetch_binary_classification_template(
 
     # if not, then we need to create a new binary ground truth
     binary_ground_truth = BinaryGroundTruth(
-        mfg_etld1=mfg_url,
+        mfg_etld1=manufacturer.etld1,
         scraped_text_file_version_id=manufacturer.scraped_text_file_version_id,
         classification_type=classification_type,
         llm_decision=llm_decision,
@@ -555,7 +555,7 @@ async def collect_binary_ground_truth(
             ),
         )
 
-    manufacturer = await find_prevalidated_manufacturer_by_url(binary_gt.mfg_etld1)
+    manufacturer = await find_prevalidated_manufacturer_by_etld1(binary_gt.mfg_etld1)
     if not manufacturer:
         raise HTTPException(
             status_code=404,

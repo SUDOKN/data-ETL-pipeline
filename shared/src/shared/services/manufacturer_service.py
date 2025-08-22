@@ -7,7 +7,7 @@ from data_etl_app.services.binary_classifier_service import (
 )
 
 from shared.models.db.manufacturer import IsManufacturerResult, Manufacturer
-from shared.models.types import MfgURLType
+from shared.models.types import MfgURLType, MfgETLDType
 from shared.utils.url_util import get_etld1_from_host
 
 
@@ -87,9 +87,26 @@ async def find_manufacturer_by_url(
     Returns:
         Manufacturer | None: The manufacturer object if found, otherwise None.
     """
-    etld1 = get_etld1_from_host(mfg_url)
-    logger.debug(f"Finding manufacturer with etld1: {etld1} and url: {mfg_url}")
-    return await Manufacturer.find_one({"etld1": etld1})
+    mfg_etld1 = get_etld1_from_host(mfg_url)
+    logger.debug(f"Finding manufacturer with mfg_etld1: {mfg_etld1} and url: {mfg_url}")
+    return await find_manufacturer_by_etld1(mfg_etld1)
+
+
+async def find_manufacturer_by_etld1(
+    mfg_etld1: MfgETLDType,
+) -> Manufacturer | None:
+    """
+    Find a manufacturer by its URL.
+
+    Args:
+        mfg_url (MfgURLType): The URL of the manufacturer to find.
+
+    Returns:
+        Manufacturer | None: The manufacturer object if found, otherwise None.
+    """
+
+    logger.debug(f"Finding manufacturer with just mfg_etld1: {mfg_etld1}")
+    return await Manufacturer.find_one({"etld1": mfg_etld1})
 
 
 async def find_prevalidated_manufacturer_by_url(
@@ -104,9 +121,25 @@ async def find_prevalidated_manufacturer_by_url(
     Returns:
         Manufacturer | None: The manufacturer object if found and is a valid manufacturer, otherwise None.
     """
-    etld1 = get_etld1_from_host(mfg_url)
+    mfg_etld1 = get_etld1_from_host(mfg_url)
+    return await find_prevalidated_manufacturer_by_etld1(mfg_etld1)
+
+
+async def find_prevalidated_manufacturer_by_etld1(
+    mfg_etld1: MfgETLDType,
+) -> Manufacturer:
+    """
+    Find a valid manufacturer by its URL.
+
+    Args:
+        mfg_url (MfgURLType): The URL of the manufacturer to find.
+
+    Returns:
+        Manufacturer | None: The manufacturer object if found and is a valid manufacturer, otherwise None.
+    """
+
     manufacturer = await Manufacturer.find_one(
-        {"etld1": etld1, "is_manufacturer.answer": True}
+        {"etld1": mfg_etld1, "is_manufacturer.answer": True}
     )
     if not manufacturer:
         raise ValueError(
@@ -129,10 +162,27 @@ async def find_manufacturer_by_url_and_scraped_file_version(
     Returns:
         Manufacturer | None: The manufacturer object if found, otherwise None.
     """
-    etld1 = get_etld1_from_host(mfg_url)
+    mfg_etld1 = get_etld1_from_host(mfg_url)
+    return await find_manufacturer_by_etld1_and_scraped_file_version(mfg_etld1)
+
+
+async def find_manufacturer_by_etld1_and_scraped_file_version(
+    mfg_etld1: MfgETLDType,
+    scraped_text_file_version_id: str,
+) -> Manufacturer | None:
+    """
+    Find a manufacturer by its URL and scraped text file version ID.
+
+    Args:
+        mfg_url (MfgURLType): The URL of the manufacturer to find.
+        scraped_text_file_version_id (str): The version ID of the scraped text file.
+
+    Returns:
+        Manufacturer | None: The manufacturer object if found, otherwise None.
+    """
     return await Manufacturer.find_one(
         {
-            "etld1": etld1,
+            "etld1": mfg_etld1,
             "scraped_text_file_version_id": scraped_text_file_version_id,
         }
     )

@@ -296,9 +296,11 @@ async def scrape_and_save_manufacturer(
     logger.info(f"Uploaded to S3: {s3_text_file_full_url}")
 
     if manufacturer:
+        logger.info(f"existing manufacturer found: {manufacturer.etld1}.")
         manufacturer.scraped_text_file_num_tokens = num_tokens
         manufacturer.scraped_text_file_version_id = version_id
     else:
+        logger.info(f"Creating new manufacturer for mfg_etld:{mfg_etld}.")
         manufacturer = Manufacturer(
             created_at=timestamp,
             etld1=mfg_etld,
@@ -323,6 +325,9 @@ async def scrape_and_save_manufacturer(
             industries=None,
             process_caps=None,
             material_caps=None,
+        )
+        logger.info(
+            f"Done creating new manufacturer for mfg_etld:{manufacturer.etld1}."
         )
 
     await update_manufacturer(timestamp, manufacturer)
