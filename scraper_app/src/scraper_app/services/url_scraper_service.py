@@ -26,6 +26,7 @@ from scraper_app.utils.selenium import (
     ChromeDriverFactory,
     LegacyDriverFactory,
 )
+from scraper_app.utils.social_media_blocker import social_media_blocker
 from scraper_app.constants.scraping_constants import (
     SKIP_EXTENSIONS,
     COOKIE_ACCEPTANCE_PATTERNS,
@@ -199,18 +200,32 @@ class ScraperService:
             acc += step_ms
 
     def _extract_text_with_fallback(self, driver, url: str) -> str:
-        """Wait for body/main, short DOM-stability loop, then <body>.text; fallback to innerText only."""
+        """
+        Wait for body/main, short DOM-stability loop, then <body>.text; fallback to innerText only.
+        Includes redirect protection to prevent scraping social media sites via redirects.
+        """
         if not url:
             raise ValueError("URL cannot be empty")
 
         try:
             driver.get(url)
+
+            # Check if redirects led us to a social media site
+            final_url = driver.current_url
+            if social_media_blocker.is_social_media_url(final_url):
+                raise ValueError(
+                    f"URL redirected to blocked social media site: {final_url}"
+                )
+
             self._wait_dom_stable(driver)
             self._accept_cookies(driver)
 
             body_el = driver.find_element(By.TAG_NAME, "body")
             text = (body_el.text or "").strip()
-        except Exception:
+        except Exception as e:
+            # If it's our social media block, re-raise to maintain the specific error
+            if "redirected to blocked social media site" in str(e):
+                raise
             text = ""
 
         # Fallback 1: try innerText via JS
@@ -334,8 +349,9 @@ class ScraperService:
                 if depth < self.max_depth:
                     new_hrefs = self._collect_links_js(driver, resolved_start_url)
                     logger.debug(
-                        f"Found {len(new_hrefs)}:{new_hrefs} links on {url} at depth {depth}"
+                        f"Found {len(new_hrefs)} links on {url} at depth {depth}"
                     )
+
                     for href in new_hrefs:
                         parsed_href = urlparse(href)
 
@@ -382,11 +398,20 @@ class ScraperService:
     # --------------------------- Orchestrator --------------------------
     def scrape(self, start_url: str) -> ScrapingResult:
         try:
+            # Hard check: Block social media sites from being scraped
+            social_media_blocker.validate_start_url(start_url)
+
             scheme = urlparse(start_url).scheme
             if not scheme:
                 raise ValueError("Start URL must have a valid scheme (http or https).")
 
             final_landing_url = get_final_landing_url(start_url)
+
+            # Double-check the final landing URL in case of redirects to social media
+            social_media_blocker.validate_start_url(final_landing_url)
+
+            # NOTE: _extract_text_with_fallback already blocks social media URLs but this precheck avoids creating unnecessary drivers
+
             scheme = urlparse(final_landing_url).scheme
 
             logger.info("Starting scraping with scheme: %s", scheme)
