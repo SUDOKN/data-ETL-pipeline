@@ -432,7 +432,7 @@ def parse_args():
         help="Logging level: DEBUG, INFO, WARNING, ERROR, CRITICAL",
     )
     parser.add_argument(
-        "--max_concurrent_browser_tabs",
+        "--max_concurrent_browsers",
         type=int,
         default=5,
         help="Max concurrent browser tabs that can be active at once",
@@ -478,7 +478,7 @@ async def async_main():
         session
     ) as s3_client:
         scraper = ScraperService(
-            max_concurrent_browser_tabs=args.max_concurrent_browser_tabs,
+            max_concurrent_browsers=args.max_concurrent_browsers,
             max_depth=args.max_depth,
         )
         await process_queue(

@@ -3,7 +3,7 @@
     {
       "name": "extract-queue-bot-priority",
       "script": "./data_etl_app/src/data_etl_app/bots/extract_queue_bot.py",
-      "interpreter": "python3",
+      "interpreter": "./.venv/bin/python3",
       "args": "--priority 1 --max_concurrent_manufacturers 25 --debug INFO",
       "cwd": "./",
       "instances": 1,
@@ -24,14 +24,16 @@
       "restart_delay": 5000,
       "env": {
         "PYTHONPATH": "./data_etl_app/src:./shared/src:./open_ai_key_app/src",
-        "PYTHONUNBUFFERED": "1"
+        "PYTHONUNBUFFERED": "1",
+        "VIRTUAL_ENV": "./.venv",
+        "PATH": "./.venv/bin:/usr/local/bin:/usr/bin:/bin"
       }
     },
     {
       "name": "scrape-queue-bot-priority",
       "script": "./scraper_app/src/scraper_app/bots/scrape_queue_bot.py",
-      "interpreter": "python3",
-      "args": "--priority 1 --max_concurrent_browser_tabs 5 --max_depth 5",
+      "interpreter": "./.venv/bin/python3",
+      "args": "--priority 1 --max_concurrent_browsers 2 --max_depth 5",
       "cwd": "./",
       "instances": 1,
       "autorestart": true,
@@ -51,12 +53,15 @@
       "restart_delay": 5000,
       "env": {
         "PYTHONPATH": "./scraper_app/src:./shared/src:./open_ai_key_app/src",
-        "PYTHONUNBUFFERED": "1"
+        "PYTHONUNBUFFERED": "1",
+        "VIRTUAL_ENV": "./.venv",
+        "PATH": "./.venv/bin:/usr/local/bin:/usr/bin:/bin"
       }
     },
     {
       "name": "data-etl-api",
-      "script": "python3",
+      "script": "./.venv/bin/python3",
+      "interpreter": "none",
       "args": "-m gunicorn data_etl_app.main:app -w 1 -k uvicorn.workers.UvicornWorker --bind 0.0.0.0:8000 --timeout 120 --max-requests 1000 --preload --log-level info",
       "cwd": "./",
       "instances": 1,
@@ -79,7 +84,9 @@
         "PYTHONPATH": "./data_etl_app/src:./shared/src:./open_ai_key_app/src",
         "PYTHONUNBUFFERED": "1",
         "NODE_ENV": "production",
-        "LOG_LEVEL": "INFO"
+        "LOG_LEVEL": "INFO",
+        "VIRTUAL_ENV": "./.venv",
+        "PATH": "./.venv/bin:/usr/local/bin:/usr/bin:/bin"
       }
     }
   ]

@@ -87,7 +87,7 @@ class ScraperService:
 
     def __init__(
         self,
-        max_concurrent_browser_tabs: int = 5,
+        max_concurrent_browsers: int = 5,
         max_depth: int = 5,
         headless: bool = True,
         driver_module: Optional[str] = None,  # For backward compatibility
@@ -98,7 +98,7 @@ class ScraperService:
         self.errors_lock = threading.Lock()
         self.stats_lock = threading.Lock()
 
-        self.max_concurrent_browser_tabs = max_concurrent_browser_tabs
+        self.max_concurrent_browsers = max_concurrent_browsers
         self.max_depth = max_depth
 
         # Track active drivers for cleanup
@@ -208,6 +208,7 @@ class ScraperService:
             raise ValueError("URL cannot be empty")
 
         try:
+            logger.info(f"driver {driver.session_id} navigating to {url}")
             driver.get(url)
 
             # Check if redirects led us to a social media site
@@ -426,12 +427,10 @@ class ScraperService:
             work_q.put((final_landing_url, 0))
 
             with ThreadPoolExecutor(
-                max_workers=self.max_concurrent_browser_tabs
+                max_workers=self.max_concurrent_browsers
             ) as executor:
-                logger.info(
-                    f"Starting {self.max_concurrent_browser_tabs} worker threads."
-                )
-                for _ in range(self.max_concurrent_browser_tabs):
+                logger.info(f"Starting {self.max_concurrent_browsers} worker threads.")
+                for _ in range(self.max_concurrent_browsers):
                     logger.info(f"Submitting worker for {final_landing_url} at depth 0")
                     executor.submit(
                         self._worker,
@@ -448,7 +447,7 @@ class ScraperService:
 
                 # Send sentinels
                 logger.info("All workers finished, sending sentinels to stop them.")
-                for _ in range(self.max_concurrent_browser_tabs):
+                for _ in range(self.max_concurrent_browsers):
                     work_q.put((None, 0))
                 work_q.join()
 

@@ -165,7 +165,7 @@ class TestScraperServiceSocialMediaIntegration:
 
     def setup_method(self):
         self.scraper = ScraperService(
-            max_concurrent_browser_tabs=1, max_depth=1, headless=True
+            max_concurrent_browsers=1, max_depth=1, headless=True
         )
 
     def test_scrape_blocks_social_media_start_url(self):
