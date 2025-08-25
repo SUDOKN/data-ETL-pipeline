@@ -4,6 +4,7 @@ Separates driver management concerns from scraping logic.
 """
 
 import os
+import glob
 import sys
 import json
 import zipfile
@@ -25,6 +26,9 @@ logger = logging.getLogger(__name__)
 CHROME_PROFILE_TMPDIR = os.getenv("CHROME_PROFILE_TMPDIR")
 if not CHROME_PROFILE_TMPDIR:
     raise ValueError("CHROME_PROFILE_TMPDIR environment variable is not set.")
+
+# Ensure the Chrome profile directory exists
+os.makedirs(CHROME_PROFILE_TMPDIR, exist_ok=True)
 
 
 class ChromeDriverManager:
@@ -54,14 +58,23 @@ class ChromeDriverManager:
             logger.warning(f"Could not kill orphaned processes: {e}")
 
     def _cleanup_temp_profiles(self):
-        """Clean up temporary Chrome profiles."""
+        """Clean up temporary Chrome profiles (contents only, not the base directory)."""
         try:
-            import glob
+            # Ensure the directory exists first
+            if CHROME_PROFILE_TMPDIR:
+                os.makedirs(CHROME_PROFILE_TMPDIR, exist_ok=True)
 
-            temp_pattern = f"{CHROME_PROFILE_TMPDIR}/chrome_scrape_*"
-            for profile_dir in glob.glob(temp_pattern):
-                _shutil.rmtree(profile_dir, ignore_errors=True)
-            logger.info("Cleaned up temporary Chrome profiles")
+                temp_pattern = f"{CHROME_PROFILE_TMPDIR}/chrome_scrape_*"
+                cleaned_count = 0
+
+                for profile_dir in glob.glob(temp_pattern):
+                    if os.path.isdir(profile_dir):
+                        _shutil.rmtree(profile_dir, ignore_errors=True)
+                        cleaned_count += 1
+
+                logger.info(
+                    f"Cleaned up {cleaned_count} temporary Chrome profiles from {CHROME_PROFILE_TMPDIR}"
+                )
         except Exception as e:
             logger.warning(f"Could not cleanup temp profiles: {e}")
 
@@ -116,39 +129,118 @@ class ChromeDriverManager:
             )
 
     def _build_options(self, binary_path: Optional[str], profile_dir: str) -> Options:
-        """Build Chrome options with security and automation flags."""
+        """Build Chrome options with security and automation flags optimized for EC2."""
         opts = Options()
 
         if self.headless:
-            opts.add_argument("--headless=new")
+            opts.add_argument(
+                "--headless=new"
+            )  # New headless mode (more stable than legacy --headless)
         if binary_path:
             opts.binary_location = binary_path
 
         # Profile and sandbox options
-        opts.add_argument(f"--user-data-dir={profile_dir}")
-        opts.add_argument("--no-sandbox")
-        opts.add_argument("--disable-dev-shm-usage")
-        opts.add_argument("--disable-gpu")
+        opts.add_argument(
+            f"--user-data-dir={profile_dir}"
+        )  # Use custom profile directory
+        opts.add_argument(
+            "--no-sandbox"
+        )  # CRITICAL for EC2 - disables Chrome's sandbox (required in containers)
+        opts.add_argument(
+            "--disable-dev-shm-usage"
+        )  # CRITICAL for EC2 - uses /tmp instead of /dev/shm (prevents memory issues)
+        opts.add_argument(
+            "--disable-gpu"
+        )  # Disables GPU acceleration (good for headless/server environments)
+
+        # EC2 Performance & Stability flags
+        opts.add_argument(
+            "--disable-extensions"
+        )  # Prevents extension crashes and memory usage
+        opts.add_argument(
+            "--disable-plugins"
+        )  # Disables Flash, PDF viewer, etc. (saves memory)
+        opts.add_argument(
+            "--disable-images"
+        )  # Major bandwidth saver - downloads only text/HTML
+        # NOTE: --disable-javascript is COMMENTED OUT because url_scraper_service.py uses JS for fast link collection
+        # opts.add_argument("--disable-javascript")  # Much faster if JS not needed, but breaks _collect_links_js()
+        opts.add_argument(
+            "--disable-css"
+        )  # Faster parsing if you only need raw content
+        opts.add_argument(
+            "--no-first-run"
+        )  # Skips first-run setup dialogs that can hang
+        opts.add_argument(
+            "--no-default-browser-check"
+        )  # Prevents hanging on default browser prompts
+        opts.add_argument("--disable-default-apps")  # Skips default app installation
+        opts.add_argument(
+            "--disable-background-networking"
+        )  # Stops background requests (saves bandwidth)
+        opts.add_argument(
+            "--disable-background-timer-throttling"
+        )  # Better headless performance
+        opts.add_argument(
+            "--disable-renderer-backgrounding"
+        )  # Prevents renderer throttling
+        opts.add_argument(
+            "--disable-backgrounding-occluded-windows"
+        )  # Keeps processes active
+        opts.add_argument(
+            "--disable-component-extensions-with-background-pages"
+        )  # Reduces background activity
+        opts.add_argument(
+            "--disable-features=TranslateUI"
+        )  # Disables translate popup/processing
+        opts.add_argument(
+            "--disable-features=VizDisplayCompositor"
+        )  # Disables display compositor (saves memory)
+        opts.add_argument(
+            "--memory-pressure-off"
+        )  # Prevents Chrome from being too aggressive with cleanup
+        opts.add_argument("--max_old_space_size=3072")  # Limits V8 heap size (3GB max)
+        opts.add_argument(
+            "--renderer-process-limit=4"
+        )  # Caps number of renderer processes per browser
 
         # Anti-detection options
-        opts.add_argument("--disable-blink-features=AutomationControlled")
-        opts.add_experimental_option("excludeSwitches", ["enable-automation"])
-        opts.add_experimental_option("useAutomationExtension", False)
+        opts.add_argument(
+            "--disable-blink-features=AutomationControlled"
+        )  # Removes navigator.webdriver flag
+        opts.add_experimental_option(
+            "excludeSwitches", ["enable-automation"]
+        )  # Removes "Chrome is being controlled" bar
+        opts.add_experimental_option(
+            "useAutomationExtension", False
+        )  # Disables automation extension
 
         # HTTPS/security options
-        opts.add_argument("--disable-features=HttpsUpgrades")
+        opts.add_argument(
+            "--disable-features=HttpsUpgrades"
+        )  # Disables automatic HTTP->HTTPS upgrades
         opts.add_argument(
             "--disable-features=HttpsFirstModeV2,HttpsFirstModeV2ForEngagedSites"
-        )
-        opts.add_argument("--disable-features=BlockInsecurePrivateNetworkRequests")
-        opts.set_capability("acceptInsecureCerts", True)
-        opts.add_argument("--ignore-certificate-errors")
-        opts.add_argument("--allow-running-insecure-content")
+        )  # Disables HTTPS-first mode
+        opts.add_argument(
+            "--disable-features=BlockInsecurePrivateNetworkRequests"
+        )  # Allows insecure private network requests
+        opts.set_capability(
+            "acceptInsecureCerts", True
+        )  # Accepts invalid/self-signed certificates
+        opts.add_argument("--ignore-certificate-errors")  # Ignores certificate errors
+        opts.add_argument(
+            "--allow-running-insecure-content"
+        )  # Allows mixed HTTP/HTTPS content
 
         # Window options for non-headless mode
         if not self.headless:
-            opts.add_argument("--start-minimized")
-            opts.add_argument("--window-position=-32000,-32000")
+            opts.add_argument(
+                "--start-minimized"
+            )  # Start minimized to reduce visual distraction
+            opts.add_argument(
+                "--window-position=-32000,-32000"
+            )  # Move window off-screen
 
         return opts
 

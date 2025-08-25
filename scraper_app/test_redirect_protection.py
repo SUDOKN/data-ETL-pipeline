@@ -20,7 +20,7 @@ def test_redirect_protection():
     print("=" * 50)
 
     # We'll create a mock scenario where a legitimate URL redirects to social media
-    scraper = ScraperService(max_concurrent_browser_tabs=1, max_depth=1, headless=True)
+    scraper = ScraperService(max_concurrent_browsers=1, max_depth=1, headless=True)
 
     # Test the _extract_text_with_fallback method directly with a mock
     with patch("scraper_app.services.url_scraper_service.webdriver") as mock_webdriver:
