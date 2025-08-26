@@ -193,7 +193,7 @@ async def fetch_ground_truth_template(
 
     # TODO: maybe cache downloaded text
     scraped_text, version_id = await download_scraped_text_from_s3_by_filename(
-        s3_client, file_name=get_file_name_from_mfg_etld(mfg_url)
+        s3_client, file_name=get_file_name_from_mfg_etld(manufacturer.etld1)
     )
 
     if manufacturer.scraped_text_file_version_id != version_id:

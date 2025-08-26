@@ -1,6 +1,8 @@
 import os
 import logging
+import tldextract
 from typing import Optional
+
 
 SCRAPED_TEXT_BUCKET = os.getenv("SCRAPED_TEXT_BUCKET")
 if not SCRAPED_TEXT_BUCKET:
@@ -10,9 +12,23 @@ if not SCRAPED_TEXT_BUCKET:
 logger = logging.getLogger(__name__)
 
 
-def get_file_name_from_mfg_etld(url: str) -> str:
-    """Generates a file name for the scraped text based on the manufacturer URL."""
-    return f"{url}.txt"
+def get_file_name_from_mfg_etld(etld1: str) -> str:
+    """Generates a file name for the scraped text based on the manufacturer etld1."""
+    # check if the input is not exactly a etld1 (i.e., effective top level domain)
+
+    extracted = tldextract.extract(etld1)
+    if not (extracted.domain and extracted.suffix):
+        raise ValueError("Invalid eTLD+1 format")
+
+    # Reconstruct eTLD+1
+    reconstructed_etld1 = (f"{extracted.domain}.{extracted.suffix}").lower()
+
+    if reconstructed_etld1 != etld1:
+        raise ValueError(
+            f"etld1:{etld1} passed is inconsistent with reconstructed_etld1:{reconstructed_etld1}"
+        )
+
+    return f"{etld1}.txt"
 
 
 async def does_scraped_text_file_exist(
@@ -77,6 +93,7 @@ async def download_scraped_text_from_s3_by_filename(
     """
     assert SCRAPED_TEXT_BUCKET is not None, "SCRAPED_TEXT_BUCKET is None"
     # Use provided s3_client to download
+    logger.info(f"Attempting to download `{file_name}` from S3")
     obj = await s3_client.get_object(Bucket=SCRAPED_TEXT_BUCKET, Key=file_name)
     async with obj["Body"] as stream:
         content = await stream.read()
