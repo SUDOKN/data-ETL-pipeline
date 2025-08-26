@@ -23,9 +23,10 @@ class TestScrapedTextUtilS3Integration:
 
     @pytest.mark.asyncio
     async def test_upload_download_delete_cycle(self, s3_client):
-        # Generate a unique file name
-        url = f"https://example.com/{uuid.uuid4()}"
-        file_name = get_file_name_from_mfg_etld(url)
+        # Generate a unique file name using a proper eTLD+1 format
+        # The function expects an eTLD+1 (like "example.com"), not a full URL
+        etld1 = f"test-{uuid.uuid4().hex[:8]}.com"  # Generate unique domain like "test-a1b2c3d4.com"
+        file_name = get_file_name_from_mfg_etld(etld1)
         file_content = "Integration test content"
         tags = {"test": "integration"}
 
