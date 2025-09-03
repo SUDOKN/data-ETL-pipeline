@@ -143,7 +143,7 @@ async def find_prevalidated_manufacturer_by_etld1(
     )
     if not manufacturer:
         raise ValueError(
-            f"Manufacturer with URL '{mfg_url}' does not exist or is not a valid manufacturer."
+            f"Manufacturer with URL '{mfg_etld1}' does not exist or is not a valid manufacturer."
         )
     return manufacturer
 
@@ -163,7 +163,9 @@ async def find_manufacturer_by_url_and_scraped_file_version(
         Manufacturer | None: The manufacturer object if found, otherwise None.
     """
     mfg_etld1 = get_etld1_from_host(mfg_url)
-    return await find_manufacturer_by_etld1_and_scraped_file_version(mfg_etld1)
+    return await find_manufacturer_by_etld1_and_scraped_file_version(
+        mfg_etld1, scraped_text_file_version_id
+    )
 
 
 async def find_manufacturer_by_etld1_and_scraped_file_version(
