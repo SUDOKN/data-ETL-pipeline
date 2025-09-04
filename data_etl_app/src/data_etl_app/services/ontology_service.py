@@ -12,6 +12,7 @@ from data_etl_app.utils.ontology_uri_util import (
     material_cap_uri,
     industry_uri,
     certificate_uri,
+    product_uri,
 )
 from data_etl_app.utils.rdf_to_knowledge_util import (
     get_graph,
@@ -26,6 +27,7 @@ BASE_URIS = {
     "material": material_cap_uri(),
     "industry": industry_uri(),
     "certificate": certificate_uri(),
+    "product": product_uri(),
 }
 
 
@@ -87,6 +89,7 @@ class OntologyService:
             "_material_capabilities",
             "_industries",
             "_certificates",
+            "_products",
         ]:
             if hasattr(self, attr):
                 delattr(self, attr)
@@ -184,6 +187,24 @@ class OntologyService:
         if not hasattr(self, "_certificates"):
             self._certificates = tree_list_to_flat(self.certificate_concept_nodes[1])
         return self.ontology_version_id, self._certificates
+
+    @property
+    def product_concept_nodes(self) -> tuple[OntologyVersionIDType, List[ConceptNode]]:
+        if BASE_URIS["product"] is None:
+            raise ValueError(
+                "BASE_URIS['product'] is not set. Cannot build product capabilities."
+            )
+        if not hasattr(self, "_product_concept_nodes"):
+            self._product_concept_nodes = build_children(
+                self.graph, rdflib.URIRef(BASE_URIS["product"])
+            )
+        return self.ontology_version_id, self._product_concept_nodes
+
+    @property
+    def products(self) -> tuple[OntologyVersionIDType, List[Concept]]:
+        if not hasattr(self, "_products"):
+            self._products = tree_list_to_flat(self.product_concept_nodes[1])
+        return self.ontology_version_id, self._products
 
     def get_service_info(self) -> dict:
         """Return service information for debugging and health checks."""

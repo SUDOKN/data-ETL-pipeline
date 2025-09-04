@@ -39,7 +39,9 @@ from data_etl_app.services.extract_concept_service import (
     extract_certificates,
     extract_materials,
     extract_processes,
+    extract_products,
 )
+
 from data_etl_app.services.binary_classifier_service import (
     is_product_manufacturer,
     is_contract_manufacturer,
@@ -350,6 +352,7 @@ async def process_manufacturer(
                 updated_at=timestamp,
                 manufacturer=manufacturer,
             )
+            logger.info( f"Finding out   is_product_manufacturer success: {manufacturer.is_product_manufacturer}" )
         except Exception as e:
             logger.error(f"{manufacturer.etld1}.is_product_manufacturer errored:{e}")
             await ExtractionError.insert_one(
@@ -477,6 +480,30 @@ async def process_manufacturer(
                     created_at=timestamp,
                     error=str(e),
                     field="process_caps",
+                    mfg_etld1=manufacturer.etld1,
+                )
+            )
+
+    logger.debug(f"products if present: {manufacturer.products}")
+
+    if not manufacturer.products or manufacturer.products.results is None:
+        try:
+            logger.info(f"Extracting products for {manufacturer.etld1}")
+            manufacturer.products = await extract_products(
+                timestamp, manufacturer.etld1, mfg_txt
+            )
+            await update_manufacturer(
+                updated_at=timestamp,
+                manufacturer=manufacturer,
+            )
+
+        except Exception as e:
+            logger.error(f"{manufacturer.name}.products errored:{e}")
+            await ExtractionError.insert_one(
+                ExtractionError(
+                    created_at=timestamp,
+                    error=str(e),
+                    field="products",
                     mfg_etld1=manufacturer.etld1,
                 )
             )

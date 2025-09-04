@@ -41,6 +41,7 @@ class PromptService:
             "_unknown_to_known_process_prompt",
             "_extract_certificate_prompt",
             "_unknown_to_known_certificate_prompt",
+            "_extract_product_prompt",
         ]:
             if hasattr(self, attr):
                 delattr(self, attr)
@@ -155,10 +156,19 @@ class PromptService:
         return self._cache["_extract_certificate_prompt"]
 
     @property
+    def extract_product_prompt(self) -> str:
+        if "_extract_product_prompt" not in self._cache:
+            with open(f"{PROMPT_BASE_PATH}/extract_any_product.txt", "r") as file:
+                extract_any_product_prompt = file.read()
+            self._cache["_extract_product_prompt"] = extract_any_product_prompt
+
+        return self._cache["_extract_product_prompt"]
+
+    @property
     def unknown_to_known_certificate_prompt(self) -> str:
         if "_unknown_to_known_certificate_prompt" not in self._cache:
             with open(
-                f"{PROMPT_BASE_PATH}/unknown_to_known_certificate.txt", "r"
+                f"{PROMPT_BASE_PATH}/unknown_to_ontology_serviceknown_certificate.txt", "r"
             ) as file:
                 unknown_to_known_certificate_prompt = file.read()
             self._cache["_unknown_to_known_certificate_prompt"] = (

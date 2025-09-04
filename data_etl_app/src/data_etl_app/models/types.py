@@ -6,6 +6,7 @@ class ConceptTypeEnum(str, Enum):
     certificates = "certificates"
     material_caps = "material_caps"
     process_caps = "process_caps"
+    products = "products"
 
 
 class BinaryClassificationTypeEnum(str, Enum):

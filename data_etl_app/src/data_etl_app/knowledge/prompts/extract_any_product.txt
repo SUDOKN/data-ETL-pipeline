@@ -1,0 +1,59 @@
+You are given a block of text scraped from a manufacturer’s website. Your task is to extract and return a single-line JSON array of unique products (product types, models, series, or product families) that the manufacturer makes, sells, or offers. Carefully check everything — do not skip any valid product mention. Only include items explicitly stated in the text.
+---
+
+#### 🧼 **Formatting Rules**:
+
+	•	Use PascalCase for generic product types (e.g., Ball Bearings, Hydraulic Pumps, Heat Exchangers)
+	•	Acronyms must be ALL UPPERCASE (e.g., LED Drivers, RFID Tags, HVAC Dampers, PCB Assemblies)
+	•	Preserve model/series tokens exactly as written (keep digits and internal hyphens/slashes): X3000 Series, S-400 Valves, AB-12C
+	•	Remove trademark symbols and punctuation artifacts (e.g., ®, ™, trailing commas/periods)
+	•	Deduplicate case-insensitively; prefer the most specific marketed name (e.g., keep X3000 Series Pumps, not both that and Pumps)
+	•	For generic product types, prefer singular (Valve, Gasket, Bolt) unless the branded phrase is plural (X-Series Bearings)
+
+---
+
+#### ✅ **Extraction Rules**:
+
+	1.	What counts as a product
+Include:
+	•	Product types/components (e.g., Gaskets, Ball Bearings, Check Valves, Gearboxes)
+	•	Branded lines/series/models (e.g., X3000 Series Pumps, S-400 Valves, UltraSeal Gasket Kit)
+	•	Kits or accessories sold as standalone products (e.g., Replacement Filters, if marketed as products)
+	2.	Phrase grouping
+	•	If products are listed with commas or & (e.g., bolts, screws & nuts):
+→ Extract each individually: Bolt, Screw, Nut
+	•	If written with / or or as a combined label (e.g., Washer / Spacer, Detector or Alarm used as one offering):
+→ Keep as combined: Washer / Spacer, Detector or Alarm
+	3.	Adjectives & modifiers
+	•	Drop material/size/rating-only modifiers unless part of a branded name:
+stainless steel screws → Screw; 1/4" NPT valves → Valve
+UltraSeal™ stainless steel gaskets → UltraSeal Gaskets
+	•	Keep functional qualifiers that define a distinct type (e.g., Pressure Relief Valve, Self-Tapping Screw, Planetary Gearbox)
+	4.	Specificity rule
+	•	If both a generic type and a specific branded variant appear, keep only the most specific unless the generic type is independently listed as its own offering elsewhere.
+	5.	No guessing
+	•	Extract only explicitly mentioned products. Do not infer from applications, capabilities, or images.
+
+---
+
+#### 🚫 **Strict Exclusions — Do Not Include**:
+
+	•	❌ Services/capabilities: Design, Prototyping, CNC Machining, Assembly, Testing
+	•	❌ Processes: Casting, Molding, Stamping, Machining, 3D Printing
+	•	❌ Materials: Aluminum, Brass, PVC, Polyurethane, Stainless Steel
+	•	❌ Industries/applications: Automotive, Aerospace, Oil & Gas, HVAC
+	•	❌ Certifications/standards: ISO 9001, IATF 16949, RoHS, REACH
+	•	❌ Generic vague terms not marketed as products: Solutions, Systems (unless clearly a named product like AlphaFlow System)
+	•	❌ Features/specs: High Torque, IP67, Food-Grade, Class A
+
+---
+
+#### 🧪 **Example**:
+
+**Input:**  
+> “We manufacture precision bolts, screws & nuts, custom gaskets, and planetary gearboxes. Our X3000 Series pumps and S-400 valves serve oil & gas. Services include rapid prototyping and CNC machining. Materials: aluminum and brass.”
+
+**Output:**  
+```json
+["Bolt", "Screw", "Nut", "Gasket", "Planetary Gearbox", "X3000 Series Pumps", "S-400 Valves"]
+```

@@ -84,7 +84,7 @@ class Manufacturer(Document):
     secondary_naics: Optional[List[str]]
     addresses: Optional[List[Address]]
 
-    products: Optional[List[Product]]
+    products: Optional[ExtractionResults]
 
     certificates: Optional[ExtractionResults]
     industries: Optional[ExtractionResults]

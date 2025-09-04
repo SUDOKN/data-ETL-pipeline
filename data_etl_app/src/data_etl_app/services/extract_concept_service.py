@@ -132,6 +132,95 @@ async def extract_materials(
         model_params=DefaultModelParameters,
     )
 
+async def extract_products(   extraction_timestamp: datetime,
+    manufacturer_url: str,
+    text: str,
+) -> ExtractionResults:
+    """
+    Extract products for a manufacturer's text.
+    """
+    ontology_version_id, known_products = ontology_service.products
+    return await _extract_free_range_concept_data(
+        extraction_timestamp,
+        "products",
+        manufacturer_url,
+        text,
+        ontology_version_id,
+        prompt_service.extract_product_prompt,
+        ChunkingStrat(overlap=0.15, max_tokens=5000),
+        gpt_model=GPT_4o_mini,
+        model_params=DefaultModelParameters,
+    )
+
+async def _extract_free_range_concept_data( extraction_timestamp: datetime,
+    concept_type: str,  # used for logging/debug
+    manufacturer_url: str,
+    text: str,
+    ontology_version_id: OntologyVersionIDType,
+    search_prompt: str,
+    chunk_strategy: ChunkingStrat,
+    gpt_model: GPTModel = GPT_4o_mini,
+    model_params: ModelParameters = DefaultModelParameters,
+) -> ExtractionResults:
+    logger.info(
+        f"Extracting {concept_type} (NO BRUTE) for {manufacturer_url} at {extraction_timestamp} "
+        f"with ontology version {ontology_version_id}"
+    )
+
+    # 1) Chunk
+    chunk_map = get_chunks_with_boundaries(
+        text, chunk_strategy.max_tokens, chunk_strategy.overlap
+    )
+
+    # 2) LLM search per chunk (no brute)
+    async def _process_chunk(bounds: str, text_chunk: str):
+        llm_set = await llm_search(
+            text_chunk, search_prompt, gpt_model, model_params, True  # dedupe/normalize
+        )
+        return bounds, llm_set
+
+    tasks = [asyncio.create_task(_process_chunk(b, t)) for b, t in chunk_map.items()]
+    chunk_results = await asyncio.gather(*tasks)
+
+    # Prepare stats
+    stats = ExtractionStats(
+        ontology_version_id=ontology_version_id,
+        mapping={},       # global mapping filled later
+        search={},        # per-chunk stats
+        unmapped_llm=[],  # global residual filled later
+    )
+
+    # Track all unknowns to feed the mapping stage
+    global_llm_unknowns: set[str] = set()
+
+    # Seed per-chunk stats (brute is always empty)
+    for bounds, llm_set in chunk_results:
+        stats.search[bounds] = ChunkSearchStats(
+            results=set(llm_set),  # Put LLM results directly here
+            brute=set(),  # no brute in this extractor
+            llm=set(llm_set),  # raw llm labels seen in this chunk
+            mapping={},  # no mapping in free range
+            unmapped_llm=set()  # no unmapped since we keep all results
+        )
+        global_llm_unknowns |= llm_set
+
+
+
+    # 3) Aggregate final results and global fields
+    final_results: set[str] = global_llm_unknowns
+    stats.unmapped_llm = []
+    stats.mapping = {}
+
+    logger.info(
+        f"[{concept_type}] NO-BRUTE unmapped_unknowns=0; "
+        f"raw_results={len(final_results)}"
+    )
+
+    return ExtractionResults(
+        extracted_at=extraction_timestamp,
+        results=list(final_results),
+        stats=stats,
+    )
 
 async def _extract_concept_data(
     extraction_timestamp: datetime,
