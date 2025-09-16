@@ -294,6 +294,14 @@ async def collect_keyword_extraction_ground_truth(
         )
 
     manufacturer = await find_manufacturer_by_etld1(keyword_gt.mfg_etld1)
+    if not manufacturer:
+        raise HTTPException(
+            status_code=404,
+            detail=(
+                f"Manufacturer not found for etld1: {keyword_gt.mfg_etld1}. "
+                f"Cannot submit correction for non-existent manufacturer."
+            ),
+        )
 
     # decide if this is a new insert or update
     existing_keyword_gt = await get_keyword_ground_truth(
@@ -560,8 +568,7 @@ async def collect_binary_ground_truth(
         raise HTTPException(
             status_code=404,
             detail=(
-                f"Manufacturer with URL '{binary_gt.mfg_etld1}' does not exist"
-                f" or is not a valid manufacturer."
+                f"Manufacturer with URL '{binary_gt.mfg_etld1}' does not exist. Cannot submit correction for non-existent manufacturer."
             ),
         )
 
