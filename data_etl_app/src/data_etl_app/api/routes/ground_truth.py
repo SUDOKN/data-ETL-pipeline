@@ -9,9 +9,9 @@ from shared.models.extraction_results import ExtractionResults
 from shared.models.to_scrape_item import ToScrapeItem
 
 from shared.services.manufacturer_service import (
+    find_manufacturer_by_etld1,
     find_manufacturer_by_url,
     find_random_manufacturer_url,
-    find_prevalidated_manufacturer_by_etld1,
 )
 from shared.services.user_service import findByEmail
 
@@ -293,7 +293,7 @@ async def collect_keyword_extraction_ground_truth(
             ),
         )
 
-    manufacturer = await find_prevalidated_manufacturer_by_etld1(keyword_gt.mfg_etld1)
+    manufacturer = await find_manufacturer_by_etld1(keyword_gt.mfg_etld1)
 
     # decide if this is a new insert or update
     existing_keyword_gt = await get_keyword_ground_truth(
@@ -555,7 +555,7 @@ async def collect_binary_ground_truth(
             ),
         )
 
-    manufacturer = await find_prevalidated_manufacturer_by_etld1(binary_gt.mfg_etld1)
+    manufacturer = await find_manufacturer_by_etld1(binary_gt.mfg_etld1)
     if not manufacturer:
         raise HTTPException(
             status_code=404,
