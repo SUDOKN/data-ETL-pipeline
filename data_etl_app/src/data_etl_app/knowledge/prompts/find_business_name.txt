@@ -1,0 +1,23 @@
+Given text scraped from a business’s website, identify the name of the business. Return the result as JSON with a single field called name. If the business name cannot be determined from the text, return "name": null. Do not include anything else.
+
+---
+
+### ✅ Output Format
+
+Return the result as a JSON object in **exactly** one of the following two forms:
+
+```json
+{
+  "name": "Starbucks Coffee"
+}
+```
+
+or
+
+```json
+{
+  "name": null
+}
+```
+
+Only use information that is explicitly stated in the text. Do **not** make assumptions.

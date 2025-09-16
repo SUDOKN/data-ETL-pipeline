@@ -2,7 +2,7 @@ from beanie import Document
 from datetime import datetime
 from pydantic import BaseModel, Field, computed_field
 
-from shared.models.db.manufacturer import BinaryClassifierResult
+from shared.models.binary_classification import BinaryClassificationResult
 from shared.models.types import MfgETLDType
 
 from shared.utils.time_util import get_current_time
@@ -20,7 +20,9 @@ class HumanBinaryDecision(BaseModel):
     """
 
     author_email: str
-    answer: bool | None
+    answer: (
+        bool | None
+    )  # CAUTION: this field is optional just for convenience of gt template, not optional in db schema
     reason: str | None
 
 
@@ -30,7 +32,7 @@ class HumanDecisionLog(BaseModel):
 
     Attributes:
         created_at: When the decision was made.
-        author_email: Email of the user who made the decision.
+        author_email: Email of the sudokn user who made the decision.
         human_decision: The human decision details, including answer and reason.
     """
 
@@ -48,7 +50,7 @@ class BinaryGroundTruth(Document):
 
     classification_type: BinaryClassificationTypeEnum
 
-    llm_decision: BinaryClassifierResult
+    llm_decision: BinaryClassificationResult
     human_decision_logs: list[HumanDecisionLog]
 
     @computed_field

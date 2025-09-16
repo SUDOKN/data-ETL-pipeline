@@ -34,7 +34,9 @@ async def ask_gpt_async(
     tokens_needed = tokens_prompt + tokens_context + max_response_tokens
 
     if tokens_needed > gpt_model.max_context_tokens:
-        raise ValueError("Total tokens needed exceed max context tokens.")
+        raise ValueError(
+            f"Total tokens needed:{tokens_needed} exceed max context tokens:{gpt_model.max_context_tokens}."
+        )
 
     logger.debug(
         f"ask_gpt_async: context tokens: {tokens_context}, prompt tokens: {tokens_prompt}, "

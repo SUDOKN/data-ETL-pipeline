@@ -2,3 +2,4 @@ LLMMappingType = dict[str, list[str]]  # mapping from known concept to unknown c
 MfgETLDType = str
 MfgURLType = str
 OntologyVersionIDType = str
+PromptVersionIDType = str

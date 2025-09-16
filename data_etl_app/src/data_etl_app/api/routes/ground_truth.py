@@ -5,7 +5,7 @@ from fastapi.responses import JSONResponse
 
 from shared.models.db.user import User
 from shared.models.db.manufacturer import Batch
-from shared.models.db.extraction_results import ExtractionResults
+from shared.models.extraction_results import ExtractionResults
 from shared.models.to_scrape_item import ToScrapeItem
 
 from shared.services.manufacturer_service import (

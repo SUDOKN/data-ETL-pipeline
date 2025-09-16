@@ -291,6 +291,7 @@ async def scrape_and_save_manufacturer(
             "urls_scraped": str(scraping_result.urls_scraped),
             "urls_failed": str(scraping_result.urls_failed),
             "success_rate": f"{scraping_result.success_rate:.2}",
+            "num_tokens": str(num_tokens),
         },  # tags for S3 object
     )
     logger.info(f"Uploaded to S3: {s3_text_file_full_url}")

@@ -21,6 +21,7 @@ logger = logging.getLogger(__name__)
 from shared.utils.mongo_client import init_db
 
 from data_etl_app.api.routes.ontology import router as ontology_router
+from data_etl_app.api.routes.prompt import router as prompt_router
 from data_etl_app.api.routes.ground_truth import router as ground_truth_router
 from data_etl_app.dependencies.aws_deps import aws_clients
 
@@ -95,6 +96,7 @@ async def health_check():
 
 
 app.include_router(ontology_router)
+app.include_router(prompt_router)
 app.include_router(ground_truth_router)
 
 """

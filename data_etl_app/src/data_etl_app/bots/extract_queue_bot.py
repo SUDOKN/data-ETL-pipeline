@@ -5,7 +5,7 @@ import logging
 from datetime import datetime
 from typing import Callable, Awaitable, Any
 
-from shared.models.db.manufacturer import Manufacturer
+from shared.models.db.manufacturer import IsManufacturerResult, Manufacturer
 from shared.models.db.extraction_error import ExtractionError
 from shared.models.to_extract_item import ToExtractItem
 
@@ -30,10 +30,13 @@ from shared.utils.time_util import get_current_time
 from shared.services.manufacturer_service import (
     find_manufacturer_by_etld1,
     update_manufacturer,
-    is_company_a_manufacturer,
 )
 
 from open_ai_key_app.utils.ask_gpt_util import num_tokens_from_string
+
+from data_etl_app.services.llm_search_service import (
+    find_business_name_using_only_first_chunk,
+)
 from data_etl_app.services.extract_concept_service import (
     extract_industries,
     extract_certificates,
@@ -41,6 +44,7 @@ from data_etl_app.services.extract_concept_service import (
     extract_processes,
 )
 from data_etl_app.services.binary_classifier_service import (
+    is_company_a_manufacturer,
     is_product_manufacturer,
     is_contract_manufacturer,
 )
@@ -265,19 +269,19 @@ async def validate_manufacturer_for_extraction(
         )
         return None, None, None, False
 
-    if num_tokens > TOO_LONG_THRESHOLD:
-        logger.warning(
-            f"{INVALID_ITEM_TAG}: Scraped text for {item.mfg_etld1} is too long ({num_tokens}), skipping extraction."
-        )
-        await ExtractionError.insert_one(
-            ExtractionError(
-                created_at=timestamp,
-                error=f"Scraped text for {item.mfg_etld1} is longer than {TOO_LONG_THRESHOLD} tokens.",
-                field="scraped_text",
-                mfg_etld1=item.mfg_etld1,
-            )
-        )
-        return None, None, None, False
+    # if num_tokens > TOO_LONG_THRESHOLD:
+    #     logger.warning(
+    #         f"{INVALID_ITEM_TAG}: Scraped text for {item.mfg_etld1} is too long ({num_tokens}), skipping extraction."
+    #     )
+    #     await ExtractionError.insert_one(
+    #         ExtractionError(
+    #             created_at=timestamp,
+    #             error=f"Scraped text for {item.mfg_etld1} is longer than {TOO_LONG_THRESHOLD} tokens.",
+    #             field="scraped_text",
+    #             mfg_etld1=item.mfg_etld1,
+    #         )
+    #     )
+    #     return None, None, None, False
 
     if version_id != manufacturer.scraped_text_file_version_id:
         logger.warning(
@@ -301,20 +305,25 @@ async def process_manufacturer(
     mfg_txt: str,
     manufacturer: Manufacturer,
 ):
-
-    logger.debug(
-        f"Debug mode enabled. Processing manufacturer: {manufacturer.etld1} with URL {manufacturer.url_accessible_at}"
-    )
+    logger.debug(f"Debug mode enabled. Processing manufacturer: {manufacturer.etld1}")
 
     if not manufacturer.is_manufacturer:
         try:
             logger.info(
-                f"Finding out if company {manufacturer.etld1} is a manufacturer with URL {manufacturer.url_accessible_at}"
+                f"Finding out if company {manufacturer.etld1} is a manufacturer."
             )
-            manufacturer.is_manufacturer = await is_company_a_manufacturer(
+            business_name = await find_business_name_using_only_first_chunk(
+                manufacturer.etld1,
+                mfg_txt,
+            )
+            is_manufacturer_classification_result = await is_company_a_manufacturer(
                 timestamp,
                 manufacturer.etld1,
                 mfg_txt,
+            )
+            manufacturer.is_manufacturer = IsManufacturerResult(
+                name=business_name,
+                **is_manufacturer_classification_result.model_dump(),
             )
 
             if (

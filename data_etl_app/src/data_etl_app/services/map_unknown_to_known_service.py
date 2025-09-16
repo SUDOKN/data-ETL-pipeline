@@ -24,7 +24,7 @@ class MapKnownToUnknownResult(TypedDict):
 
 async def mapKnownToUnknown(
     concept_type: str,
-    manufacturer_url: str,
+    mfg_etld1: str,
     known_concepts: list[Concept],  # DO NOT MUTATE
     unmapped_unknowns: set[str],
     prompt: str,
@@ -50,7 +50,7 @@ async def mapKnownToUnknown(
     if not gpt_response:
         logger.error(f"gptresponse:{gpt_response}")
         raise ValueError(
-            f"{manufacturer_url}:{concept_type} unknown_to_known: Empty response from GPT"
+            f"{mfg_etld1}:{concept_type} unknown_to_known: Empty response from GPT"
         )
 
     gpt_response = gpt_response.replace("```", "").replace("json", "")
@@ -69,13 +69,13 @@ async def mapKnownToUnknown(
         if mu not in unmapped_unknowns:
             # case 2: mapped_unknown was either hallucinated, in which case we will still check if mapped_knowns are valid, so just raise a warning
             logger.warning(
-                f"WARNING: {manufacturer_url}:{concept_type} mapped_unknown:{mu} was not in the original unknowns list"
+                f"WARNING: {mfg_etld1}:{concept_type} mapped_unknown:{mu} was not in the original unknowns list"
             )
         else:
             if mk:  # mk must not be null/None
                 if mk not in known_concept_labels:
                     logger.warning(
-                        f"WARNING: {manufacturer_url}:{concept_type} mapped_known:{mk} was not in the original knowns list"
+                        f"WARNING: {mfg_etld1}:{concept_type} mapped_known:{mk} was not in the original knowns list"
                     )
                 else:
                     known_concept = next(  # comparing with k.matchLabels instead of just k.label in case llm didn't provide the primary label
@@ -83,7 +83,7 @@ async def mapKnownToUnknown(
                     )
                     if not known_concept:
                         raise ValueError(
-                            f"{manufacturer_url}:{concept_type} mapped_known:{mk} was not found in known_concepts"
+                            f"{mfg_etld1}:{concept_type} mapped_known:{mk} was not found in known_concepts"
                         )
                     known_to_unknowns[known_concept].append(mu)
 

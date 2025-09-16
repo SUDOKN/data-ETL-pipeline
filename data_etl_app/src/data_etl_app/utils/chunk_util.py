@@ -15,19 +15,38 @@ class ChunkingStrat:
             raise ValueError("Max Tokens must be less than 20000")
 
 
-def get_chunks_with_boundaries(
-    text: str, MAX_CHUNK_TOKENS: int = 5000, overlap_ratio: float = 0.25
+def get_roughly_even_chunks(
+    text: str, max_tokens_allowed_per_chunk: int = 120000, overlap_ratio: float = 0.25
 ) -> dict[str, str]:
     """
-    Splits the input text into chunks where each chunk's token count is
-    ≤ MAX_CHUNK_TOKENS. Each new chunk will start with an overlap equal
-    to 'overlap_ratio' of the previous chunk's tokens. Returns a dict
-    mapping "start:end" character‐offset pairs (in the original text) to
-    the chunk text.
+    Attempts to create roughly even-sized chunks with the given target size.
+    Actual chunks may vary due to line boundaries and overlap.
+    """
+    num_divisions = 1
+    total_tokens = num_tokens_from_string(text)
+
+    # Find how many divisions we need to get close to our target
+    while total_tokens // num_divisions > max_tokens_allowed_per_chunk:
+        num_divisions += 1
+
+    # Calculate target size for each division
+    approximate_chunk_tokens = total_tokens // num_divisions
+    return get_chunks_respecting_line_boundaries(
+        text, approximate_chunk_tokens, overlap_ratio
+    )
+
+
+def get_chunks_respecting_line_boundaries(
+    text: str, soft_limit_tokens: int = 5000, overlap_ratio: float = 0.25
+) -> dict[str, str]:
+    """
+    Splits text into chunks that try to stay around soft_limit_tokens, but may
+    exceed it to respect line boundaries. Each chunk overlaps with the previous
+    by overlap_ratio of tokens.
 
     Args:
         text (str): The input text to be chunked.
-        MAX_CHUNK_TOKENS (int): Maximum number of tokens allowed per chunk.
+        soft_limit_tokens (int): Target token count per chunk (may be exceeded for line boundaries).
         overlap_ratio (float): Fraction of tokens to overlap from the previous chunk.
 
     Returns:
@@ -56,7 +75,7 @@ def get_chunks_with_boundaries(
 
     for line_text, line_tokens, line_start, line_end in line_info:
         # If adding this line would exceed token limit, finalize current chunk first.
-        if current_chunk_tokens + line_tokens > MAX_CHUNK_TOKENS and current_chunk:
+        if current_chunk_tokens + line_tokens > soft_limit_tokens and current_chunk:
             # Compute how many tokens to carry as overlap
             target_overlap = int(current_chunk_tokens * overlap_ratio)
             overlap_lines: list[tuple[str, int, int, int]] = []

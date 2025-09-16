@@ -11,7 +11,7 @@ from shared.utils.aws.s3.scraped_text_util import (
     download_scraped_text_from_s3_by_filename,
 )
 from shared.models.db.manufacturer import Manufacturer
-from shared.models.db.extraction_results import ExtractionResults
+from shared.models.extraction_results import ExtractionResults
 from shared.models.types import OntologyVersionIDType
 
 from data_etl_app.models.keyword_ground_truth import KeywordGroundTruth

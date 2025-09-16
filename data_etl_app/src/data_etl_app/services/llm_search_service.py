@@ -1,7 +1,13 @@
 import json
 import logging
 
+from data_etl_app.services.prompt_service import prompt_service
+from data_etl_app.utils.chunk_util import (
+    get_chunks_respecting_line_boundaries,
+)
 from open_ai_key_app.models.gpt_model import (
+    DefaultModelParameters,
+    GPT_4o_mini,
     GPTModel,
     ModelParameters,
 )
@@ -10,6 +16,42 @@ from open_ai_key_app.utils.ask_gpt_util import (
 )
 
 logger = logging.getLogger(__name__)
+
+
+async def find_business_name_using_only_first_chunk(
+    mfg_etld1: str,
+    mfg_text: str,
+    gpt_model: GPTModel = GPT_4o_mini,
+    model_params: ModelParameters = DefaultModelParameters,
+) -> str:
+    logger.info(f"Finding business name for {mfg_etld1} using only first chunk...")
+    prompt = prompt_service.find_business_name_prompt
+    chunks_map = get_chunks_respecting_line_boundaries(
+        mfg_text,
+        gpt_model.max_context_tokens - prompt.num_tokens - 5000,
+    )
+    first_chunk_key = min(chunks_map.keys(), key=lambda k: int(k.split(":")[0]))
+    first_chunk_text = chunks_map[first_chunk_key]
+    gpt_response = await ask_gpt_async(
+        first_chunk_text, prompt.text, gpt_model, model_params
+    )
+
+    if not gpt_response:
+        logger.error(f"Invalid gpt_response:{gpt_response}")
+        raise ValueError("find_business_name: Empty or invalid response from GPT")
+
+    try:
+        gpt_response = gpt_response.replace("```", "").replace("json", "")
+        json_response = json.loads(gpt_response)
+        business_name = json_response.get("name")
+    except:
+        raise ValueError(
+            f"find_business_name: Invalid response from GPT:{gpt_response}"
+        )
+
+    logger.debug(f"find_business_name:{business_name}")
+
+    return business_name
 
 
 # LLM's independent search
