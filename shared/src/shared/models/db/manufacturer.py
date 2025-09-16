@@ -6,7 +6,10 @@ from typing import List, Optional
 from urllib.parse import urlparse
 
 from shared.models.types import MfgURLType, MfgETLDType
-from shared.models.db.extraction_results import ExtractionResults
+from shared.models.extraction_results import ExtractionResults
+from shared.models.binary_classification import (
+    BinaryClassificationResult,
+)
 from shared.utils.time_util import get_current_time
 from shared.utils.url_util import get_normalized_url, get_etld1_from_host
 
@@ -49,14 +52,7 @@ class Batch(BaseModel):
         return v
 
 
-class BinaryClassifierResult(BaseModel):
-    evaluated_at: datetime
-    answer: bool
-    confidence: int
-    reason: str
-
-
-class IsManufacturerResult(BinaryClassifierResult):
+class IsManufacturerResult(BinaryClassificationResult):
     name: str
 
 
@@ -73,8 +69,8 @@ class Manufacturer(Document):
     name: Optional[str]
 
     is_manufacturer: Optional[IsManufacturerResult]
-    is_contract_manufacturer: Optional[BinaryClassifierResult]
-    is_product_manufacturer: Optional[BinaryClassifierResult]
+    is_contract_manufacturer: Optional[BinaryClassificationResult]
+    is_product_manufacturer: Optional[BinaryClassificationResult]
 
     founded_in: Optional[int]
     num_employees: Optional[int]

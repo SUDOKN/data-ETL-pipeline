@@ -5,10 +5,11 @@ import asyncio
 import logging
 from datetime import datetime
 
+from shared.models.prompt import Prompt
 from shared.models.types import (
     OntologyVersionIDType,
 )
-from shared.models.db.extraction_results import (
+from shared.models.extraction_results import (
     ChunkSearchStats,
     ExtractionStats,
     ExtractionResults,
@@ -24,7 +25,7 @@ from data_etl_app.services.prompt_service import prompt_service
 
 from data_etl_app.utils.chunk_util import (
     ChunkingStrat,
-    get_chunks_with_boundaries,
+    get_chunks_respecting_line_boundaries,
 )
 
 logger = logging.getLogger(__name__)
@@ -39,7 +40,7 @@ from open_ai_key_app.models.gpt_model import (
 
 async def extract_industries(
     extraction_timestamp: datetime,
-    manufacturer_url: str,
+    mfg_etld1: str,
     text: str,
 ) -> ExtractionResults:
     """
@@ -49,11 +50,11 @@ async def extract_industries(
     return await _extract_concept_data(
         extraction_timestamp,
         "industries",
-        manufacturer_url,
+        mfg_etld1,
         text,
         ontology_version_id,
         known_industries,
-        prompt_service.extract_industry_prompt,
+        prompt_service.extract_any_industry_prompt,
         prompt_service.unknown_to_known_industry_prompt,
         ChunkingStrat(overlap=0.15, max_tokens=5000),
         gpt_model=GPT_4o_mini,
@@ -63,7 +64,7 @@ async def extract_industries(
 
 async def extract_certificates(
     extraction_timestamp: datetime,
-    manufacturer_url: str,
+    mfg_etld1: str,
     text: str,
 ) -> ExtractionResults:
     """
@@ -73,11 +74,11 @@ async def extract_certificates(
     return await _extract_concept_data(
         extraction_timestamp,
         "certificates",
-        manufacturer_url,
+        mfg_etld1,
         text,
         ontology_version_id,
         known_certificates,
-        prompt_service.extract_certificate_prompt,
+        prompt_service.extract_any_certificate_prompt,
         prompt_service.unknown_to_known_certificate_prompt,
         ChunkingStrat(overlap=0.0, max_tokens=7500),
         gpt_model=GPT_4o_mini,
@@ -87,7 +88,7 @@ async def extract_certificates(
 
 async def extract_processes(
     extraction_timestamp: datetime,
-    manufacturer_url: str,
+    mfg_etld1: str,
     text: str,
 ) -> ExtractionResults:
     """
@@ -97,12 +98,12 @@ async def extract_processes(
     return await _extract_concept_data(
         extraction_timestamp,
         "process_caps",
-        manufacturer_url,
+        mfg_etld1,
         text,
         ontology_version_id,
         known_processes,
-        prompt_service.extract_process_prompt,
-        prompt_service.unknown_to_known_process_prompt,
+        prompt_service.extract_any_process_cap_prompt,
+        prompt_service.unknown_to_known_process_cap_prompt,
         ChunkingStrat(overlap=0.15, max_tokens=2500),
         gpt_model=GPT_4o_mini,
         model_params=DefaultModelParameters,
@@ -111,7 +112,7 @@ async def extract_processes(
 
 async def extract_materials(
     extraction_timestamp: datetime,
-    manufacturer_url: str,
+    mfg_etld1: str,
     text: str,
 ) -> ExtractionResults:
     """
@@ -121,12 +122,12 @@ async def extract_materials(
     return await _extract_concept_data(
         extraction_timestamp,
         "material_caps",
-        manufacturer_url,
+        mfg_etld1,
         text,
         ontology_version_id,
         known_materials,
-        prompt_service.extract_material_prompt,
-        prompt_service.unknown_to_known_material_prompt,
+        prompt_service.extract_any_material_cap_prompt,
+        prompt_service.unknown_to_known_material_cap_prompt,
         ChunkingStrat(overlap=0.1, max_tokens=5000),
         gpt_model=GPT_4o_mini,
         model_params=DefaultModelParameters,
@@ -136,22 +137,24 @@ async def extract_materials(
 async def _extract_concept_data(
     extraction_timestamp: datetime,
     concept_type: str,  # used for logging and debugging
-    manufacturer_url: str,
+    mfg_etld1: str,
     text: str,
     ontology_version_id: OntologyVersionIDType,
     known_concepts: list[Concept],
-    search_prompt: str,
-    map_prompt: str,
+    search_prompt: Prompt,
+    map_prompt: Prompt,
     chunk_strategy: ChunkingStrat,
     gpt_model: GPTModel = GPT_4o_mini,
     model_params: ModelParameters = DefaultModelParameters,
 ) -> ExtractionResults:
     logger.debug(
-        f"Extracting {concept_type} for {manufacturer_url} at {extraction_timestamp} with ontology version {ontology_version_id}"
+        f"Extracting {concept_type} for {mfg_etld1} at {extraction_timestamp} with ontology version {ontology_version_id}"
     )
 
     results = set[str]()
     stats: ExtractionStats = ExtractionStats(
+        extract_prompt_version_id=search_prompt.s3_version_id,
+        map_prompt_version_id=map_prompt.s3_version_id,
         ontology_version_id=ontology_version_id,
         mapping={},
         search={},
@@ -178,7 +181,7 @@ async def _extract_concept_data(
         2. multiple passes may be required to get everything (soln: increase num_passes)
     """
 
-    chunk_map = get_chunks_with_boundaries(
+    chunk_map = get_chunks_respecting_line_boundaries(
         text, chunk_strategy.max_tokens, chunk_strategy.overlap
     )
 
@@ -188,7 +191,7 @@ async def _extract_concept_data(
         # and is computationally expensive in general, but we need chunk level results
         brute_set = brute_search(text_chunk, known_concepts)
         llm_set = await llm_search(
-            text_chunk, search_prompt, gpt_model, model_params, True
+            text_chunk, search_prompt.text, gpt_model, model_params, True
         )
         return bounds, brute_set, llm_set
 
@@ -236,10 +239,10 @@ async def _extract_concept_data(
     """
     map_results = await mapKnownToUnknown(
         concept_type,
-        manufacturer_url,
+        mfg_etld1,
         known_concepts,
         unmapped_llm.copy(),
-        map_prompt,
+        map_prompt.text,
     )
 
     # UPDATE unmapped_llm and mapping in chunk_stats

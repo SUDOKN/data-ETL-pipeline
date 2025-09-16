@@ -1,12 +1,7 @@
 from datetime import datetime
 import logging
 
-from data_etl_app.services.prompt_service import prompt_service
-from data_etl_app.services.binary_classifier_service import (
-    is_manufacturer,
-)
-
-from shared.models.db.manufacturer import IsManufacturerResult, Manufacturer
+from shared.models.db.manufacturer import Manufacturer
 from shared.models.types import MfgURLType, MfgETLDType
 from shared.utils.url_util import get_etld1_from_host
 
@@ -36,25 +31,6 @@ async def update_manufacturer(updated_at: datetime, manufacturer: Manufacturer):
 
     logger.debug(f"Saving manufacturer {manufacturer} to the database.")
     await manufacturer.save()
-
-
-async def is_company_a_manufacturer(
-    timestamp: datetime, manufacturer_etld: str, text: str
-) -> IsManufacturerResult:
-
-    logger.debug(f"Checking if {manufacturer_etld} is a manufacturer...")
-
-    name, binary_classifier_result = await is_manufacturer(
-        timestamp,
-        "is_manufacturer",
-        manufacturer_etld,
-        text,
-        prompt_service.is_manufacturer_prompt,
-    )
-    return IsManufacturerResult(
-        name=name,
-        **binary_classifier_result.model_dump(),
-    )
 
 
 async def find_random_manufacturer_url() -> MfgURLType | None:

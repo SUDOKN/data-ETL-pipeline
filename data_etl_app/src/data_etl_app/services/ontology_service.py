@@ -6,7 +6,7 @@ from typing import Dict, List
 from shared.models.types import OntologyVersionIDType
 
 from data_etl_app.models.skos_concept import Concept, ConceptNode
-from data_etl_app.utils.ontology_rdf_util import download_ontology_rdf
+from data_etl_app.utils.ontology_rdf_s3_util import download_ontology_rdf
 from data_etl_app.utils.ontology_uri_util import (
     process_cap_uri,
     material_cap_uri,
@@ -64,7 +64,7 @@ class OntologyService:
                     cls._instance._init_data()
                 else:
                     logger.info(
-                        "Another thread created the instance while waiting for lock"
+                        "Another thread created the OntologyService instance while waiting for lock"
                     )
         else:
             logger.debug("Returning existing OntologyService singleton instance")

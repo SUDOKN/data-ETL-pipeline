@@ -16,7 +16,7 @@ def get_file_name_from_mfg_etld(etld1: str) -> str:
     """Generates a file name for the scraped text based on the manufacturer etld1."""
     # check if the input is not exactly a etld1 (i.e., effective top level domain)
 
-    extracted = tldextract.extract(etld1)
+    extracted = tldextract.extract(etld1)  # because the etld1 passed may not exactly be
     if not (extracted.domain and extracted.suffix):
         raise ValueError("Invalid eTLD+1 format")
 
@@ -81,6 +81,21 @@ async def upload_scraped_text_to_s3(
     return response["VersionId"], f"s3://{SCRAPED_TEXT_BUCKET}/{file_name}"
 
 
+async def download_scraped_text_from_s3_by_mfg_etld(
+    s3_client,
+    etld1: str,
+) -> tuple[str, str]:
+    """
+    Downloads a file from S3 based on the manufacturer etld1 and returns its content as a string.
+
+    :param s3_client: An aiobotocore or regular S3 client to use for the download.
+    :param etld1: The eTLD+1 of the manufacturer to download the corresponding file from S3.
+    :return: The content of the downloaded file as a string.
+    """
+    file_name = get_file_name_from_mfg_etld(etld1)
+    return await download_scraped_text_from_s3_by_filename(s3_client, file_name)
+
+
 async def download_scraped_text_from_s3_by_filename(
     s3_client,
     file_name: str,
@@ -107,6 +122,151 @@ async def download_scraped_text_from_s3_by_filename(
         )
     logger.info(f"Downloaded file {file_name} with version ID: {version_id}")
     return content.decode("utf-8"), version_id
+
+
+async def get_scraped_text_object_tags(
+    s3_client, file_name: str, version_id: str
+) -> dict[str, str]:
+    """
+    Gets the tags for a specific object version in the scraped text bucket.
+
+    :param s3_client: An aiobotocore or regular S3 client to use for getting tags.
+    :param file_name: The name of the file in S3.
+    :param version_id: The version ID of the object.
+    :return: Dictionary of tags with tag keys as dictionary keys and tag values as dictionary values.
+    """
+    assert SCRAPED_TEXT_BUCKET is not None, "SCRAPED_TEXT_BUCKET is None"
+
+    try:
+        tags_response = await s3_client.get_object_tagging(
+            Bucket=SCRAPED_TEXT_BUCKET, Key=file_name, VersionId=version_id
+        )
+        return {tag["Key"]: tag["Value"] for tag in tags_response.get("TagSet", [])}
+    except s3_client.exceptions.ClientError as e:
+        # Handle case where tags might not exist or access is denied
+        logger.warning(f"Could not fetch tags for {file_name} version {version_id}: {e}")
+        return {}
+
+
+async def iterate_scraped_text_objects_and_versions(
+    s3_client, prefix: str = "", include_tags: bool = False
+):
+    """
+    Generator that iterates over each object and its versions in the scraped text bucket.
+
+    :param s3_client: An aiobotocore or regular S3 client to use for listing objects.
+    :param prefix: Optional prefix to filter objects (e.g., to limit to specific file patterns).
+    :param include_tags: If True, fetches and includes custom tags for each object version.
+    :yield: Dictionary containing object metadata with keys:
+            - 'Key': The object key (file name)
+            - 'VersionId': The version ID of the object
+            - 'LastModified': The last modified timestamp
+            - 'Size': The size of the object in bytes
+            - 'IsLatest': Boolean indicating if this is the latest version
+            - 'StorageClass': The storage class of the object
+            - 'ETag': The entity tag of the object
+            - 'Type': Either "Version" or "DeleteMarker"
+            - 'Tags': Dictionary of custom tags (only if include_tags=True)
+    """
+    assert SCRAPED_TEXT_BUCKET is not None, "SCRAPED_TEXT_BUCKET is None"
+    logger.info(
+        f"Iterating over objects in bucket: {SCRAPED_TEXT_BUCKET} with prefix: '{prefix}', include_tags: {include_tags}"
+    )
+
+    paginator = s3_client.get_paginator("list_object_versions")
+
+    async for page in paginator.paginate(Bucket=SCRAPED_TEXT_BUCKET, Prefix=prefix):
+        # Process regular versions
+        for version in page.get("Versions", []):
+            obj_data = {
+                "Key": version["Key"],
+                "VersionId": version["VersionId"],
+                "LastModified": version["LastModified"],
+                "Size": version["Size"],
+                "IsLatest": version["IsLatest"],
+                "StorageClass": version.get("StorageClass", "STANDARD"),
+                "ETag": version["ETag"],
+                "Type": "Version",
+            }
+
+            # Fetch tags if requested
+            if include_tags:
+                obj_data["Tags"] = await get_scraped_text_object_tags(
+                    s3_client, version["Key"], version["VersionId"]
+                )
+
+            yield obj_data
+
+        # Process delete markers (if any)
+        for delete_marker in page.get("DeleteMarkers", []):
+            obj_data = {
+                "Key": delete_marker["Key"],
+                "VersionId": delete_marker["VersionId"],
+                "LastModified": delete_marker["LastModified"],
+                "Size": 0,  # Delete markers have no size
+                "IsLatest": delete_marker["IsLatest"],
+                "StorageClass": None,
+                "ETag": None,
+                "Type": "DeleteMarker",
+            }
+
+            # Delete markers don't have tags
+            if include_tags:
+                obj_data["Tags"] = {}
+
+            yield obj_data
+
+
+async def get_all_scraped_text_objects_summary(s3_client, prefix: str = "") -> dict:
+    """
+    Gets a summary of all objects and versions in the scraped text bucket.
+
+    :param s3_client: An aiobotocore or regular S3 client to use for listing objects.
+    :param prefix: Optional prefix to filter objects.
+    :return: Dictionary containing summary statistics:
+             - 'total_objects': Total number of unique objects (keys)
+             - 'total_versions': Total number of versions across all objects
+             - 'total_size_bytes': Total size of all versions in bytes
+             - 'objects_with_multiple_versions': Number of objects that have multiple versions
+             - 'delete_markers': Number of delete markers
+    """
+    assert SCRAPED_TEXT_BUCKET is not None, "SCRAPED_TEXT_BUCKET is None"
+
+    objects_summary = {}
+    total_size = 0
+    delete_marker_count = 0
+
+    async for obj_version in iterate_scraped_text_objects_and_versions(
+        s3_client, prefix
+    ):
+        key = obj_version["Key"]
+
+        if obj_version["Type"] == "DeleteMarker":
+            delete_marker_count += 1
+        else:
+            total_size += obj_version["Size"]
+
+        if key not in objects_summary:
+            objects_summary[key] = {"version_count": 0, "latest_size": 0}
+
+        objects_summary[key]["version_count"] += 1
+
+        if obj_version["IsLatest"] and obj_version["Type"] == "Version":
+            objects_summary[key]["latest_size"] = obj_version["Size"]
+
+    objects_with_multiple_versions = sum(
+        1 for obj_info in objects_summary.values() if obj_info["version_count"] > 1
+    )
+
+    return {
+        "total_objects": len(objects_summary),
+        "total_versions": sum(
+            obj_info["version_count"] for obj_info in objects_summary.values()
+        ),
+        "total_size_bytes": total_size,
+        "objects_with_multiple_versions": objects_with_multiple_versions,
+        "delete_markers": delete_marker_count,
+    }
 
 
 async def delete_scraped_text_from_s3(

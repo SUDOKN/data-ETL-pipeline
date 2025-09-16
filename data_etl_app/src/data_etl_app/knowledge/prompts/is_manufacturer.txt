@@ -1,4 +1,4 @@
-You are given some scraped text from a business’s website. Your task is to determine whether the business **is a manufacturer (including contract/service‑based manufacturers) or not**. Also find the business name. **In addition to the Yes/No classification, you must report a `confidence` score from 0 to 100 that reflects how certain you are about your answer (higher = more certain).** Use the following criteria—derived from the key characteristics of manufacturing—to guide your analysis. Provide a clear, concise classification at the end and briefly explain your reasoning by referencing relevant details from the text.
+You are given some scraped text from a business’s website. Your task is to determine whether the business **is a manufacturer (including contract/service‑based manufacturers) or not**. **In addition to the Yes/No classification, you must report a `confidence` score from 0 to 100 that reflects how certain you are about your answer (higher = more certain).** Use the following criteria—derived from the key characteristics of manufacturing—to guide your analysis. Provide a clear, concise classification at the end and briefly explain your reasoning by referencing relevant details from the text.
 
 1. **Does the Business Engage in Physical Production or Processing?**
    Look for clues that the company fabricates, processes, assembles, or finishes tangible goods (metal parts, plastic components, assemblies, etc.).
@@ -49,10 +49,9 @@ Return the result as a JSON object in **exactly** one of the following two forms
 
 ```json
 {
-  "name": [insert name here],
   "answer": true,
   "confidence": 0,          // integer 0–100 indicating certainty in the answer
-  "reason": "[1–3 sentences referencing the key indicators from the text]"
+  "reason": "[3–5 sentences referencing the key indicators from the text]"
 }
 ```
 
@@ -60,10 +59,9 @@ or
 
 ```json
 {
-  "name": [insert name here],
   "answer": false,
   "confidence": 0,          // integer 0–100 indicating certainty in the answer
-  "reason": "[1–3 sentences referencing the key indicators from the text]"
+  "reason": "[3–5 sentences referencing the key indicators from the text]"
 }
 ```
 

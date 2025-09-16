@@ -1,7 +1,11 @@
 from datetime import datetime
 from pydantic import BaseModel, ValidationInfo, field_validator
 
-from shared.models.types import LLMMappingType, OntologyVersionIDType
+from shared.models.types import (
+    LLMMappingType,
+    PromptVersionIDType,
+    OntologyVersionIDType,
+)
 
 
 class ChunkSearchStats(BaseModel):
@@ -17,6 +21,8 @@ SearchResult = dict[str, ChunkSearchStats]
 
 
 class ExtractionStats(BaseModel):
+    extract_prompt_version_id: PromptVersionIDType
+    map_prompt_version_id: PromptVersionIDType
     ontology_version_id: OntologyVersionIDType
     mapping: LLMMappingType
     search: SearchResult

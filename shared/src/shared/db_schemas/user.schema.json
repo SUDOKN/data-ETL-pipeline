@@ -1,0 +1,49 @@
+{
+  "$jsonSchema": {
+    "bsonType": "object",
+    "title": "User",
+    "required": ["firstName", "lastName", "email", "salt", "hashedPassword"],
+    "additionalProperties": false,
+    "properties": {
+      "_id": {
+        "bsonType": "objectId"
+      },
+      "firstName": {
+        "bsonType": "string",
+        "description": "User's first name"
+      },
+      "lastName": {
+        "bsonType": "string",
+        "description": "User's last name"
+      },
+      "email": {
+        "bsonType": "string",
+        "description": "User's email, should be unique"
+      },
+      "companyURL": {
+        "bsonType": "string",
+        "description": "URL of the user's company"
+      },
+      "salt": {
+        "bsonType": "string",
+        "description": "Salt used for password hashing"
+      },
+      "hashedPassword": {
+        "bsonType": "string",
+        "description": "User's hashed password"
+      },
+      "resetPwdToken": {
+        "anyOf": [
+          {
+            "bsonType": "string",
+            "minLength": 1
+          },
+          {
+            "bsonType": "null"
+          }
+        ],
+        "description": "Reset password JWT token with embedded expiration"
+      }
+    }
+  }
+}

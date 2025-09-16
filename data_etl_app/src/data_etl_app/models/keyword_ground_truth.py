@@ -4,7 +4,7 @@ from pydantic import BaseModel, ValidationInfo, computed_field, Field, field_val
 
 from shared.utils.time_util import get_current_time
 from shared.models.types import LLMMappingType, MfgETLDType, OntologyVersionIDType
-from shared.models.db.extraction_results import ChunkSearchStats
+from shared.models.extraction_results import ChunkSearchStats
 
 from data_etl_app.models.types import ConceptTypeEnum
 

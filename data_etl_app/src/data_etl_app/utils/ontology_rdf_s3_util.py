@@ -2,15 +2,11 @@ import os
 import boto3
 from typing import Optional
 
-AWS_RDF_USER_ACCESS_KEY_ID = os.getenv("AWS_RDF_USER_ACCESS_KEY_ID")
-AWS_RDF_USER_SECRET_ACCESS_KEY = os.getenv("AWS_RDF_USER_SECRET_ACCESS_KEY")
+USER_ACCESS_KEY_ID = os.getenv("AWS_RDF_AND_PROMPT_USER_ACCESS_KEY_ID")
+USER_SECRET_ACCESS_KEY = os.getenv("AWS_RDF_AND_PROMPT_USER_SECRET_ACCESS_KEY")
 AWS_REGION = os.getenv("AWS_REGION")
 
-if (
-    not AWS_RDF_USER_ACCESS_KEY_ID
-    or not AWS_RDF_USER_SECRET_ACCESS_KEY
-    or not AWS_REGION
-):
+if not USER_ACCESS_KEY_ID or not USER_SECRET_ACCESS_KEY or not AWS_REGION:
     raise ValueError(
         "AWS credentials or region are not set. Please set them in your .env file."
     )
@@ -22,8 +18,8 @@ if not RDF_BUCKET or not RDF_FILENAME:
 
 s3_client = boto3.client(
     "s3",
-    aws_access_key_id=AWS_RDF_USER_ACCESS_KEY_ID,
-    aws_secret_access_key=AWS_RDF_USER_SECRET_ACCESS_KEY,
+    aws_access_key_id=USER_ACCESS_KEY_ID,
+    aws_secret_access_key=USER_SECRET_ACCESS_KEY,
     region_name=AWS_REGION,
 )
 

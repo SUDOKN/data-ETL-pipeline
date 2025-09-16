@@ -318,7 +318,7 @@ class ScraperService:
 
         while True:
             try:
-                url, depth = queue.get(timeout=15.0)  # Reduced from 1.5s to 1.0s
+                url, depth = queue.get(timeout=15.0)
             except Empty:
                 continue
 

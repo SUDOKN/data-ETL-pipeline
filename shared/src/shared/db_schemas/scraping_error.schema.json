@@ -1,0 +1,34 @@
+{
+  "$jsonSchema": {
+    "bsonType": "object",
+    "required": ["created_at", "error", "url", "batch"],
+    "additionalProperties": false,
+    "properties": {
+      "_id": {
+        "bsonType": "objectId"
+      },
+      "created_at": {
+        "bsonType": "date"
+      },
+      "error": {
+        "bsonType": "string"
+      },
+      "url": {
+        "bsonType": "string"
+      },
+      "batch": {
+        "bsonType": "object",
+        "additionalProperties": false,
+        "properties": {
+          "title": {
+            "bsonType": "string",
+            "minLength": 1
+          },
+          "timestamp": {
+            "bsonType": "date"
+          }
+        }
+      }
+    }
+  }
+}
