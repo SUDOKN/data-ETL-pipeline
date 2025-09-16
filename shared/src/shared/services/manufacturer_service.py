@@ -70,7 +70,7 @@ async def find_manufacturer_by_url(
 
 async def find_manufacturer_by_etld1(
     mfg_etld1: MfgETLDType,
-) -> Manufacturer:
+) -> Manufacturer | None:
     """
     Find a manufacturer by its URL.
 
@@ -78,15 +78,11 @@ async def find_manufacturer_by_etld1(
         mfg_url (MfgURLType): The URL of the manufacturer to find.
 
     Returns:
-        Manufacturer: The manufacturer object if found, otherwise None.
+        Manufacturer | None: The manufacturer object if found, otherwise None.
     """
 
     logger.debug(f"Finding manufacturer with just mfg_etld1: {mfg_etld1}")
-    manufacturer = await Manufacturer.find_one({"etld1": mfg_etld1})
-    if not manufacturer:
-        raise ValueError(f"Manufacturer with etld1 '{mfg_etld1}' does not exist.")
-
-    return manufacturer
+    return await Manufacturer.find_one({"etld1": mfg_etld1})
 
 
 async def find_prevalidated_manufacturer_by_url(
