@@ -6,7 +6,7 @@ import logging
 from datetime import datetime
 
 from shared.models.prompt import Prompt
-from shared.models.types import (
+from shared.models.field_types import (
     OntologyVersionIDType,
 )
 from shared.models.extraction_results import (

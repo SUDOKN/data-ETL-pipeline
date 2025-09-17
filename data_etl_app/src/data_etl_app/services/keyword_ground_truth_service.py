@@ -12,7 +12,7 @@ from shared.utils.aws.s3.scraped_text_util import (
 )
 from shared.models.db.manufacturer import Manufacturer
 from shared.models.extraction_results import ExtractionResults
-from shared.models.types import OntologyVersionIDType
+from shared.models.field_types import OntologyVersionIDType
 
 from data_etl_app.models.keyword_ground_truth import KeywordGroundTruth
 from data_etl_app.models.skos_concept import Concept

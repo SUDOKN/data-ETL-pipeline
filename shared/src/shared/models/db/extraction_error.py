@@ -2,7 +2,7 @@ from beanie import Document
 from datetime import datetime
 from pydantic import Field
 
-from shared.models.types import MfgETLDType
+from shared.models.field_types import MfgETLDType
 from shared.utils.time_util import get_current_time
 
 

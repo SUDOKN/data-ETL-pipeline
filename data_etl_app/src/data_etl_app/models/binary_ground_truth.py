@@ -3,7 +3,7 @@ from datetime import datetime
 from pydantic import BaseModel, Field, computed_field
 
 from shared.models.binary_classification import BinaryClassificationResult
-from shared.models.types import MfgETLDType
+from shared.models.field_types import MfgETLDType
 
 from shared.utils.time_util import get_current_time
 

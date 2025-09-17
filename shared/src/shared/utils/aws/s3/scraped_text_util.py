@@ -35,7 +35,7 @@ async def does_scraped_text_file_exist(
     s3_client, file_name: str, version_id: Optional[str] = None
 ) -> bool:
     """Checks if a file exists in the S3 bucket.
-    :param s3_client: An aiobotocore or regular S3 client to use for the check.
+    :param s3_client: An S3 client to use for the check.
     :param file_name: The name of the file to check in S3.
     :param version_id: Optional version ID to check for a specific version of the file.
     :return: True if the file exists, False otherwise.
@@ -64,7 +64,7 @@ async def upload_scraped_text_to_s3(
     """
     Uploads scraped text content to an S3 bucket using an existing client and returns the S3 URL.
 
-    :param s3_client: An aiobotocore or regular S3 client to use for the upload.
+    :param s3_client: An S3 client to use for the upload.
     :param file_content: The content of the file to upload.
     :param file_name: The name of the file to be saved in S3.
     :param tags: Tags to apply to the S3 object. (ideally at least store the batch)
@@ -81,6 +81,58 @@ async def upload_scraped_text_to_s3(
     return response["VersionId"], f"s3://{SCRAPED_TEXT_BUCKET}/{file_name}"
 
 
+async def get_latest_version_id_by_mfg_etld(
+    s3_client,
+    etld1: str,
+) -> Optional[str]:
+    """
+    Gets the latest version ID of a file based on the manufacturer etld1.
+
+    :param s3_client: An S3 client to use for the lookup.
+    :param etld1: The eTLD+1 of the manufacturer to get the latest version ID for.
+    :return: The latest version ID of the file, or None if the file doesn't exist.
+    """
+    file_name = get_file_name_from_mfg_etld(etld1)
+    return await get_latest_version_id_by_filename(s3_client, file_name)
+
+
+async def get_latest_version_id_by_filename(
+    s3_client,
+    file_name: str,
+) -> Optional[str]:
+    """
+    Gets the latest version ID of a file in the scraped text bucket.
+
+    :param s3_client: An S3 client to use for the lookup.
+    :param file_name: The name of the file to get the latest version ID for.
+    :return: The latest version ID of the file, or None if the file doesn't exist.
+    """
+    assert SCRAPED_TEXT_BUCKET is not None, "SCRAPED_TEXT_BUCKET is None"
+    logger.info(f"Getting latest version ID for file: {file_name}")
+
+    try:
+        # Use head_object to get the latest version info efficiently
+        response = await s3_client.head_object(
+            Bucket=SCRAPED_TEXT_BUCKET, Key=file_name
+        )
+        version_id = response.get("VersionId")
+
+        if not version_id:
+            logger.warning(
+                f"Version ID not found for file: {file_name}. Ensure that versioning is enabled on the {SCRAPED_TEXT_BUCKET} bucket."
+            )
+            return None
+
+        logger.info(f"Latest version ID for {file_name}: {version_id}")
+        return version_id
+
+    except s3_client.exceptions.ClientError as e:
+        if e.response["Error"]["Code"] == "404":
+            logger.info(f"File {file_name} not found in bucket {SCRAPED_TEXT_BUCKET}")
+            return None
+        raise  # Re-raise other exceptions
+
+
 async def download_scraped_text_from_s3_by_mfg_etld(
     s3_client,
     etld1: str,
@@ -88,7 +140,7 @@ async def download_scraped_text_from_s3_by_mfg_etld(
     """
     Downloads a file from S3 based on the manufacturer etld1 and returns its content as a string.
 
-    :param s3_client: An aiobotocore or regular S3 client to use for the download.
+    :param s3_client: An S3 client to use for the download.
     :param etld1: The eTLD+1 of the manufacturer to download the corresponding file from S3.
     :return: The content of the downloaded file as a string.
     """
@@ -130,22 +182,17 @@ async def get_scraped_text_object_tags(
     """
     Gets the tags for a specific object version in the scraped text bucket.
 
-    :param s3_client: An aiobotocore or regular S3 client to use for getting tags.
+    :param s3_client: An S3 client to use for getting tags.
     :param file_name: The name of the file in S3.
     :param version_id: The version ID of the object.
     :return: Dictionary of tags with tag keys as dictionary keys and tag values as dictionary values.
     """
     assert SCRAPED_TEXT_BUCKET is not None, "SCRAPED_TEXT_BUCKET is None"
 
-    try:
-        tags_response = await s3_client.get_object_tagging(
-            Bucket=SCRAPED_TEXT_BUCKET, Key=file_name, VersionId=version_id
-        )
-        return {tag["Key"]: tag["Value"] for tag in tags_response.get("TagSet", [])}
-    except s3_client.exceptions.ClientError as e:
-        # Handle case where tags might not exist or access is denied
-        logger.warning(f"Could not fetch tags for {file_name} version {version_id}: {e}")
-        return {}
+    tags_response = await s3_client.get_object_tagging(
+        Bucket=SCRAPED_TEXT_BUCKET, Key=file_name, VersionId=version_id
+    )
+    return {tag["Key"]: tag["Value"] for tag in tags_response.get("TagSet", [])}
 
 
 async def iterate_scraped_text_objects_and_versions(
@@ -154,7 +201,7 @@ async def iterate_scraped_text_objects_and_versions(
     """
     Generator that iterates over each object and its versions in the scraped text bucket.
 
-    :param s3_client: An aiobotocore or regular S3 client to use for listing objects.
+    :param s3_client: An S3 client to use for listing objects.
     :param prefix: Optional prefix to filter objects (e.g., to limit to specific file patterns).
     :param include_tags: If True, fetches and includes custom tags for each object version.
     :yield: Dictionary containing object metadata with keys:
@@ -221,7 +268,7 @@ async def get_all_scraped_text_objects_summary(s3_client, prefix: str = "") -> d
     """
     Gets a summary of all objects and versions in the scraped text bucket.
 
-    :param s3_client: An aiobotocore or regular S3 client to use for listing objects.
+    :param s3_client: An S3 client to use for listing objects.
     :param prefix: Optional prefix to filter objects.
     :return: Dictionary containing summary statistics:
              - 'total_objects': Total number of unique objects (keys)
@@ -275,7 +322,7 @@ async def delete_scraped_text_from_s3(
     """
     Deletes a file from S3. If version_id is None, deletes all versions of the file.
 
-    :param s3_client: An aiobotocore or regular S3 client to use for the deletion.
+    :param s3_client: An S3 client to use for the deletion.
     :param file_name: The name of the file to delete from S3.
     :param version_id: Optional version ID to delete a specific version of the file. If None, deletes all versions.
     """

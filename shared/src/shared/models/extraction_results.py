@@ -1,7 +1,7 @@
 from datetime import datetime
 from pydantic import BaseModel, ValidationInfo, field_validator
 
-from shared.models.types import (
+from shared.models.field_types import (
     LLMMappingType,
     PromptVersionIDType,
     OntologyVersionIDType,

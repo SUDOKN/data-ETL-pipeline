@@ -3,7 +3,7 @@ import rdflib
 import logging
 from typing import Dict, List
 
-from shared.models.types import OntologyVersionIDType
+from shared.models.field_types import OntologyVersionIDType
 
 from data_etl_app.models.skos_concept import Concept, ConceptNode
 from data_etl_app.utils.ontology_rdf_s3_util import download_ontology_rdf

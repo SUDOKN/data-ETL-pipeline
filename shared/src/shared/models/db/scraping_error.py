@@ -2,7 +2,7 @@ from beanie import Document
 from datetime import datetime
 from pydantic import Field
 
-from shared.models.types import MfgURLType
+from shared.models.field_types import MfgURLType
 from shared.models.db.manufacturer import Batch
 from shared.utils.time_util import get_current_time
 

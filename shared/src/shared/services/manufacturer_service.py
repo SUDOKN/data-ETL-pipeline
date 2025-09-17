@@ -2,7 +2,7 @@ from datetime import datetime
 import logging
 
 from shared.models.db.manufacturer import Manufacturer
-from shared.models.types import MfgURLType, MfgETLDType
+from shared.models.field_types import MfgURLType, MfgETLDType
 from shared.utils.url_util import get_etld1_from_host
 
 
