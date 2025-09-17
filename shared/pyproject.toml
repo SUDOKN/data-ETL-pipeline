@@ -26,11 +26,11 @@ dependencies = [
   "motor>=3.3.0",   # Async MongoDB driver
   "beanie>=1.23.0", # ODM for MongoDB
 
-  "aiobotocore>=2.4.0",            # Async AWS SDK
   "boto3>=1.35.0,<1.36.0",         # Pin to compatible version
   "botocore>=1.35.0,<1.36.0",      # Ensure compatibility
   "mypy-boto3-s3>=1.35.0,<1.36.0", # Match boto3 version
   "tldextract>=3.4.0",             # For extracting domain names
+  "gunicorn>=20.1.0",              # WSGI server for running Python web applications
 
   "redis>=4.2.0,<5.0", # Async Redis client
   "openai>=1.0.0",     # Add the version you need

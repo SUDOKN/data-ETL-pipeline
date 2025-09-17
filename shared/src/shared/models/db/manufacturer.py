@@ -5,7 +5,7 @@ import logging
 from typing import List, Optional
 from urllib.parse import urlparse
 
-from shared.models.types import MfgURLType, MfgETLDType
+from shared.models.field_types import MfgURLType, MfgETLDType
 from shared.models.extraction_results import ExtractionResults
 from shared.models.binary_classification import (
     BinaryClassificationResult,

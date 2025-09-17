@@ -1,7 +1,7 @@
 from datetime import datetime
 from pydantic import BaseModel
 
-from shared.models.types import (
+from shared.models.field_types import (
     PromptVersionIDType,
 )
 
