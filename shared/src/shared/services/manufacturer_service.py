@@ -18,6 +18,7 @@ def reset_llm_aided_fields(manufacturer: Manufacturer):
     manufacturer.is_contract_manufacturer = None
     manufacturer.is_product_manufacturer = None
 
+    manufacturer.products = None
     manufacturer.certificates = None
     manufacturer.industries = None
     manufacturer.material_caps = None

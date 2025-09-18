@@ -58,6 +58,16 @@ def get_is_contract_manufacturer_prompt():
         raise HTTPException(status_code=500, detail=str(e))
 
 
+@router.get("/prompt/extract_any_product", response_class=JSONResponse)
+def get_extract_any_product_prompt():
+    """Get the extract any product prompt."""
+    try:
+        prompt = prompt_service.extract_any_product_prompt
+        return prompt.model_dump()
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
+
 @router.get("/prompt/extract_any_certificate", response_class=JSONResponse)
 def get_extract_any_certificate_prompt():
     """Get the extract any certificate prompt."""

@@ -32,7 +32,7 @@ def get_file_name_from_mfg_etld(etld1: str) -> str:
 
 
 async def does_scraped_text_file_exist(
-    s3_client, file_name: str, version_id: Optional[str] = None
+    s3_client, file_name: str, version_id: str
 ) -> bool:
     """Checks if a file exists in the S3 bucket.
     :param s3_client: An S3 client to use for the check.
@@ -44,18 +44,34 @@ async def does_scraped_text_file_exist(
     logger.info(
         f"Checking existence of file: {file_name} in bucket: {SCRAPED_TEXT_BUCKET}"
     )
+    if not version_id:
+        return False
+
     try:
-        if version_id:
-            await s3_client.head_object(
-                Bucket=SCRAPED_TEXT_BUCKET, Key=file_name, VersionId=version_id
-            )
-        else:
-            await s3_client.head_object(Bucket=SCRAPED_TEXT_BUCKET, Key=file_name)
+        await s3_client.head_object(
+            Bucket=SCRAPED_TEXT_BUCKET, Key=file_name, VersionId=version_id
+        )
         return True
     except s3_client.exceptions.ClientError as e:
-        if e.response["Error"]["Code"] == "404":
+        error_code = e.response["Error"]["Code"]
+        error_message = e.response["Error"]["Message"]
+        http_status = e.response["ResponseMetadata"]["HTTPStatusCode"]
+        logger.error(
+            f"S3 ClientError checking file existence - "
+            f"File: {file_name}, VersionId: {version_id}, "
+            f"Error Code: {error_code}, HTTP Status: {http_status}, "
+            f"Message: {error_message}, Full Response: {e.response}"
+        )
+        if error_code in ["404", "400"]:
             return False
         raise  # Re-raise other exceptions
+    except Exception as e:
+        logger.error(
+            f"Unexpected error checking file existence - "
+            f"File: {file_name}, VersionId: {version_id}, "
+            f"Error Type: {type(e).__name__}, Error: {str(e)}"
+        )
+        raise
 
 
 async def upload_scraped_text_to_s3(

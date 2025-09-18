@@ -5,6 +5,10 @@ import asyncio
 import logging
 from datetime import datetime
 
+from shared.models.free_range_extraction import (
+    FreeRangeSearchResults,
+    FreeRangeSearchStats,
+)
 from shared.models.prompt import Prompt
 from shared.models.field_types import (
     OntologyVersionIDType,
@@ -38,24 +42,20 @@ from open_ai_key_app.models.gpt_model import (
 )
 
 
-async def extract_industries(
+async def extract_products(
     extraction_timestamp: datetime,
     mfg_etld1: str,
     text: str,
-) -> ExtractionResults:
+) -> FreeRangeSearchResults:
     """
-    Extract industries for a manufacturer text.
+    Extract products for a manufacturer's text.
     """
-    ontology_version_id, known_industries = ontology_service.industries
-    return await _extract_concept_data(
+    return await _extract_free_range_concept_data(
         extraction_timestamp,
-        "industries",
+        "products",
         mfg_etld1,
         text,
-        ontology_version_id,
-        known_industries,
-        prompt_service.extract_any_industry_prompt,
-        prompt_service.unknown_to_known_industry_prompt,
+        prompt_service.extract_any_product_prompt,
         ChunkingStrat(overlap=0.15, max_tokens=5000),
         gpt_model=GPT_4o_mini,
         model_params=DefaultModelParameters,
@@ -81,6 +81,30 @@ async def extract_certificates(
         prompt_service.extract_any_certificate_prompt,
         prompt_service.unknown_to_known_certificate_prompt,
         ChunkingStrat(overlap=0.0, max_tokens=7500),
+        gpt_model=GPT_4o_mini,
+        model_params=DefaultModelParameters,
+    )
+
+
+async def extract_industries(
+    extraction_timestamp: datetime,
+    mfg_etld1: str,
+    text: str,
+) -> ExtractionResults:
+    """
+    Extract industries for a manufacturer text.
+    """
+    ontology_version_id, known_industries = ontology_service.industries
+    return await _extract_concept_data(
+        extraction_timestamp,
+        "industries",
+        mfg_etld1,
+        text,
+        ontology_version_id,
+        known_industries,
+        prompt_service.extract_any_industry_prompt,
+        prompt_service.unknown_to_known_industry_prompt,
+        ChunkingStrat(overlap=0.15, max_tokens=5000),
         gpt_model=GPT_4o_mini,
         model_params=DefaultModelParameters,
     )
@@ -131,6 +155,57 @@ async def extract_materials(
         ChunkingStrat(overlap=0.1, max_tokens=5000),
         gpt_model=GPT_4o_mini,
         model_params=DefaultModelParameters,
+    )
+
+
+async def _extract_free_range_concept_data(
+    extraction_timestamp: datetime,
+    concept_type: str,  # used for logging/debug
+    mfg_etld1: str,
+    text: str,
+    search_prompt: Prompt,
+    chunk_strategy: ChunkingStrat,
+    gpt_model: GPTModel = GPT_4o_mini,
+    model_params: ModelParameters = DefaultModelParameters,
+) -> FreeRangeSearchResults:
+    logger.info(
+        f"Extracting {concept_type} (NO BRUTE) for {mfg_etld1} at {extraction_timestamp} "
+    )
+
+    # 1) Chunk
+    chunk_map = get_chunks_respecting_line_boundaries(
+        text, chunk_strategy.max_tokens, chunk_strategy.overlap
+    )
+
+    # 2) LLM search per chunk (no brute)
+    async def _process_chunk(bounds: str, text_chunk: str):
+        chunk_result = await llm_search(
+            text_chunk,
+            search_prompt.text,
+            gpt_model,
+            model_params,
+            True,  # dedupe/normalize
+        )
+        return bounds, chunk_result
+
+    tasks = [asyncio.create_task(_process_chunk(b, t)) for b, t in chunk_map.items()]
+    chunk_results = await asyncio.gather(*tasks)
+
+    final_result_set: set[str] = set()
+    stats = FreeRangeSearchStats(
+        extract_prompt_version_id=search_prompt.s3_version_id,
+        search={},  # per-chunk stats
+    )
+
+    # Seed per-chunk stats (brute is always empty)
+    for bounds, chunk_result in chunk_results:
+        stats.search[bounds] = set(chunk_result)  # Put LLM results directly here
+        final_result_set |= set(chunk_result)  # Aggregate to final results
+
+    return FreeRangeSearchResults(
+        extracted_at=extraction_timestamp,
+        results=list(final_result_set),
+        stats=stats,
     )
 
 

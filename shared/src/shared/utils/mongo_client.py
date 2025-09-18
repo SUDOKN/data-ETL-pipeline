@@ -2,6 +2,8 @@ import os
 from beanie import init_beanie
 from pymongo import AsyncMongoClient  # <-- switched from Motor
 from pydantic_settings import BaseSettings
+from bson.codec_options import CodecOptions
+from datetime import timezone
 
 from shared.models.db.manufacturer import Manufacturer
 from shared.models.db.extraction_error import ExtractionError
@@ -25,9 +27,16 @@ settings = Settings()
 
 
 async def init_db():
+    # Configure codec options for timezone awareness
+    codec_options = CodecOptions(tz_aware=True, tzinfo=timezone.utc)
+
     client = AsyncMongoClient(settings.MONGO_URI)  # <-- switched here
+
+    # Get database with timezone-aware codec options
+    database = client.get_default_database().with_options(codec_options=codec_options)
+
     return await init_beanie(
-        database=client.get_default_database(),
+        database=database,
         document_models=[
             Manufacturer,
             ExtractionError,
