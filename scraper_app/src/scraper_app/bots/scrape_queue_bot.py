@@ -28,6 +28,7 @@ from shared.utils.aws.s3.s3_client_util import make_s3_client
 from shared.utils.aws.s3.scraped_text_util import (
     get_file_name_from_mfg_etld,
     does_scraped_text_file_exist,
+    get_latest_version_id_by_mfg_etld,
     upload_scraped_text_to_s3,
 )
 from shared.utils.mongo_client import init_db
@@ -127,17 +128,15 @@ async def process_queue(
             )
             try:
                 # Validate manufacturer before processing
-                existing_manufacturer, should_continue = (
-                    await validate_manufacturer_for_scraping(
-                        current_timestamp,
-                        item,
-                        sqs_client,
-                        s3_client,
-                        push_item_to_e_queue,
-                    )
+                existing_manufacturer, fast_tracked = await fast_track_to_extraction(
+                    current_timestamp,
+                    item,
+                    sqs_client,
+                    s3_client,
+                    push_item_to_e_queue,
                 )
 
-                if not should_continue:
+                if fast_tracked:
                     await delete_item_from_s_queue(sqs_client, receipt_handle)
                     continue
 
@@ -176,7 +175,7 @@ async def process_queue(
             scraping_stats.print_stats()
 
 
-async def validate_manufacturer_for_scraping(
+async def fast_track_to_extraction(
     timestamp: datetime,
     item: ToScrapeItem,
     sqs_client,
@@ -199,26 +198,23 @@ async def validate_manufacturer_for_scraping(
         logger.info(
             f"Found existing manufacturer for {item.accessible_normalized_url}."
         )
-        if (
-            not manufacturer.scraped_text_file_version_id
-            or manufacturer.scraped_text_file_version_id == REDO_EXTRACTION_KEYWORD
-        ):
+        if manufacturer.scraped_text_file_version_id == REDO_EXTRACTION_KEYWORD:
             # NOTE: this block can (and should) be utilized only when we want the manufacturer extraction to be:
             # 1. done for the first time
-            # 2. redone by setting its scraped_text_file_version_id as None beforehand.
+            # 2. redone by setting its scraped_text_file_version_id as REDO_EXTRACTION_KEYWORD beforehand.
+            # CAUTION: Ensure older scraped text files in S3 are cleaned up if re-extraction is requested.
             logger.info(
                 f"Manufacturer {manufacturer.etld1} exists but has no scraped_text_file_version_id. Adding batch {item.batch} and proceeding to scrape."
             )
             reset_llm_aided_fields(manufacturer)
             manufacturer.batches.append(item.batch)
-            await update_manufacturer(timestamp, manufacturer)
-        elif manufacturer.scraped_text_file_version_id:
-            existing_txt_file = await does_scraped_text_file_exist(
+        else:
+            found_existing_file = await does_scraped_text_file_exist(
                 s3_client,
                 get_file_name_from_mfg_etld(manufacturer.etld1),
                 manufacturer.scraped_text_file_version_id,
-            )
-            if existing_txt_file:
+            )  # found_existing_file is False if manufacturer.scraped_text_file_version_id is None or scraped_text_file_version_id does not exist in S3
+            if found_existing_file:
                 logger.info(
                     f"Found existing scraped text file for {manufacturer.etld1} with version {manufacturer.scraped_text_file_version_id}. Re-extraction request noted. No need to scrape, fast tracking to extraction."
                 )
@@ -227,14 +223,37 @@ async def validate_manufacturer_for_scraping(
                     sqs_client,
                     ToExtractItem(mfg_etld1=manufacturer.etld1),
                 )
-                return manufacturer, False
+                return manufacturer, True
             else:
-                logger.warning(
-                    f"Scraped text file for {manufacturer.etld1} with version {manufacturer.scraped_text_file_version_id} does not exist in S3. Please check manufacturer records."
+                latest_scraped_text_file_version_id = (
+                    await get_latest_version_id_by_mfg_etld(
+                        s3_client, manufacturer.etld1
+                    )
                 )
-                return manufacturer, False
+                if latest_scraped_text_file_version_id:
+                    logger.info(
+                        f"No scraped text file for {manufacturer.etld1} found with version {manufacturer.scraped_text_file_version_id} but a more recent version {latest_scraped_text_file_version_id} was found. "
+                        f"Updating manufacturer and fast tracking to extraction."
+                    )
+                    manufacturer.scraped_text_file_version_id = (
+                        latest_scraped_text_file_version_id
+                    )
 
-    return manufacturer, True
+                    reset_llm_aided_fields(manufacturer)
+                    manufacturer.batches.append(item.batch)
+                    await update_manufacturer(timestamp, manufacturer)
+                    logger.info(f"Updated manufacturer: {manufacturer.etld1}")
+                    await push_item_to_e_queue(
+                        sqs_client,
+                        ToExtractItem(mfg_etld1=manufacturer.etld1),
+                    )
+                    return manufacturer, True
+
+                logger.warning(
+                    f"Scraped text file for {manufacturer.etld1} with version {manufacturer.scraped_text_file_version_id} does not exist in S3. No existing file found. Proceeding to scrape and upload new file."
+                )
+
+    return manufacturer, False
 
 
 async def scrape_and_save_manufacturer(
@@ -272,10 +291,29 @@ async def scrape_and_save_manufacturer(
     # Validate scraped content
     num_tokens = num_tokens_from_string(scraping_result.content)
     logger.info(f"Number of tokens in scraped text: {num_tokens}")
-
     if not num_tokens or num_tokens < 30:
+        await ScrapingError.insert_one(
+            ScrapingError(
+                created_at=timestamp,  # Use consistent timestamp from main loop
+                error=f"Scraped text is empty or too short ({num_tokens} tokens) for {item.accessible_normalized_url}. Success rate: {scraping_result.success_rate:.1%}",
+                url=item.accessible_normalized_url,
+                batch=item.batch,
+            )
+        )
         raise ValueError(
             f"Scraped text for {item.accessible_normalized_url} is empty or too short ({num_tokens} tokens). Success rate: {scraping_result.success_rate:.1%}"
+        )
+    elif scraping_result.success_rate < 0.8:
+        await ScrapingError.insert_one(
+            ScrapingError(
+                created_at=timestamp,  # Use consistent timestamp from main loop
+                error=f"Low success rate ({scraping_result.success_rate:.1%}) for {item.accessible_normalized_url}. Not added to extract queue.",
+                url=item.accessible_normalized_url,
+                batch=item.batch,
+            )
+        )
+        raise ValueError(
+            f"Scraped text for {item.accessible_normalized_url} has low success rate ({scraping_result.success_rate:.1%}). Not saving partial content."
         )
 
     mfg_etld = get_etld1_from_host(item.accessible_normalized_url)
@@ -350,32 +388,17 @@ async def scrape_and_cleanup(
     scraping_stats: ScrapingStats,
 ):
     """Scrape manufacturer and handle cleanup tasks with comprehensive error handling."""
-    scraping_result = None
 
     try:
         # Perform scraping and get result with errors
-        scraping_result, updated_manufacturer = await scrape_and_save_manufacturer(
+        _scraping_result, updated_manufacturer = await scrape_and_save_manufacturer(
             timestamp, s3_client, scraper, item, manufacturer
         )
 
-        # Only push to extract queue if scraping was mostly successful
-        if scraping_result.success_rate > 0.8:  # At least 80% success rate
-            await push_item_to_e_queue(
-                sqs_client,
-                ToExtractItem(mfg_etld1=updated_manufacturer.etld1),
-            )
-        else:
-            logger.warning(
-                f"⚠️  Skipping extract queue due to low success rate: {scraping_result.success_rate:.1%}"
-            )
-            await ScrapingError.insert_one(
-                ScrapingError(
-                    created_at=timestamp,  # Use consistent timestamp from main loop
-                    error=f"Low success rate ({scraping_result.success_rate:.1%}) for {item.accessible_normalized_url}. Not added to extract queue.",
-                    url=item.accessible_normalized_url,
-                    batch=item.batch,
-                )
-            )
+        await push_item_to_e_queue(
+            sqs_client,
+            ToExtractItem(mfg_etld1=updated_manufacturer.etld1),
+        )
 
         # Calculate and log timing
         end_time = get_current_time()
@@ -402,21 +425,6 @@ async def scrape_and_cleanup(
                 batch=item.batch,
             )
         )
-
-        # If we have partial results, still save individual URL errors
-        if scraping_result and scraping_result.has_errors:
-            logger.warning(
-                f"⚠️  Also saving {len(scraping_result.errors)} individual URL errors from failed scraping"
-            )
-            for error_info in scraping_result.errors:
-                await ScrapingError.insert_one(
-                    ScrapingError(
-                        created_at=timestamp,  # Use consistent timestamp
-                        error=f"URL: {error_info['url']} (depth {error_info['depth']}) - {error_info['error_type']}: {error_info['error']}",
-                        url=item.accessible_normalized_url,
-                        batch=item.batch,  # Include batch for context
-                    )
-                )
 
     finally:
         # Always clean up

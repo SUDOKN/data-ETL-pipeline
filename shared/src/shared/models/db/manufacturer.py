@@ -7,6 +7,7 @@ from urllib.parse import urlparse
 
 from shared.models.field_types import MfgURLType, MfgETLDType
 from shared.models.extraction_results import ExtractionResults
+from shared.models.free_range_extraction import FreeRangeSearchResults
 from shared.models.binary_classification import (
     BinaryClassificationResult,
 )
@@ -26,11 +27,6 @@ class Address(BaseModel):
     longitude: float
     phone_num: Optional[str]
     fax_num: Optional[str]
-
-
-class Product(BaseModel):
-    name: str
-    description: Optional[str]
 
 
 class Batch(BaseModel):
@@ -80,7 +76,7 @@ class Manufacturer(Document):
     secondary_naics: Optional[List[str]]
     addresses: Optional[List[Address]]
 
-    products: Optional[List[Product]]
+    products: Optional[FreeRangeSearchResults]
 
     certificates: Optional[ExtractionResults]
     industries: Optional[ExtractionResults]

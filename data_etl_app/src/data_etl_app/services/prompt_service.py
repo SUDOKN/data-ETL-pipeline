@@ -14,6 +14,7 @@ PROMPT_NAMES = [
     "is_manufacturer",
     "is_product_manufacturer",
     "is_contract_manufacturer",
+    "extract_any_product",
     "extract_any_certificate",
     "extract_any_industry",
     "extract_any_material_cap",
@@ -110,6 +111,13 @@ class PromptService:
             raise ValueError("is_contract_manufacturer prompt not found in cache")
 
         return self._prompt_cache["is_contract_manufacturer"]
+
+    @property
+    def extract_any_product_prompt(self) -> Prompt:
+        if "extract_any_product" not in self._prompt_cache:
+            raise ValueError("extract_any_product prompt not found in cache")
+
+        return self._prompt_cache["extract_any_product"]
 
     @property
     def extract_any_certificate_prompt(self) -> Prompt:

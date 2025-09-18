@@ -297,19 +297,47 @@
         }
       },
       "products": {
-        "bsonType": ["array", "null"],
-        "items": {
-          "bsonType": "object",
-          "required": ["name"],
-          "properties": {
-            "name": {
-              "bsonType": "string"
-            },
-            "description": {
-              "bsonType": ["string", "null"]
+        "bsonType": ["object", "null"],
+        "required": ["extracted_at", "results", "stats"],
+        "properties": {
+          "extracted_at": {
+            "bsonType": "date"
+          },
+          "results": {
+            "bsonType": "array",
+            "uniqueItems": true,
+            "items": {
+              "bsonType": "string",
+              "minLength": 1
+            }
+          },
+          "stats": {
+            "bsonType": "object",
+            "required": ["extract_prompt_version_id", "search"],
+            "additionalProperties": false,
+            "properties": {
+              "extract_prompt_version_id": {
+                "bsonType": "string",
+                "minLength": 1
+              },
+              "search": {
+                "bsonType": "object",
+                "patternProperties": {
+                  "^[0-9]+:[0-9]+$": {
+                    "bsonType": "array",
+                    "uniqueItems": true,
+                    "items": {
+                      "bsonType": "string",
+                      "minLength": 1
+                    }
+                  }
+                },
+                "additionalProperties": false
+              }
             }
           }
-        }
+        },
+        "additionalProperties": false
       },
       "certificates": {
         "bsonType": ["object", "null"],

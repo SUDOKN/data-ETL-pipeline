@@ -42,6 +42,7 @@ from data_etl_app.services.extract_concept_service import (
     extract_certificates,
     extract_materials,
     extract_processes,
+    extract_products,
 )
 from data_etl_app.services.binary_classifier_service import (
     is_company_a_manufacturer,
@@ -394,12 +395,12 @@ async def process_manufacturer(
             )
             return
 
-    logger.debug(f"industries if present: {manufacturer.industries}")
+    logger.debug(f"products if present: {manufacturer.products}")
 
-    if not manufacturer.industries or manufacturer.industries.results is None:
+    if not manufacturer.products or manufacturer.products.results is None:
         try:
-            logger.info(f"Extracting industries for {manufacturer.etld1}")
-            manufacturer.industries = await extract_industries(
+            logger.info(f"Extracting products for {manufacturer.etld1}")
+            manufacturer.products = await extract_products(
                 timestamp, manufacturer.etld1, mfg_txt
             )
             await update_manufacturer(
@@ -408,12 +409,12 @@ async def process_manufacturer(
             )
 
         except Exception as e:
-            logger.error(f"{manufacturer.name}.industries errored:{e}")
+            logger.error(f"{manufacturer.name}.products errored:{e}")
             await ExtractionError.insert_one(
                 ExtractionError(
                     created_at=timestamp,
                     error=str(e),
-                    field="industries",
+                    field="products",
                     mfg_etld1=manufacturer.etld1,
                 )
             )
@@ -438,6 +439,30 @@ async def process_manufacturer(
                     created_at=timestamp,
                     error=str(e),
                     field="certificates",
+                    mfg_etld1=manufacturer.etld1,
+                )
+            )
+
+    logger.debug(f"industries if present: {manufacturer.industries}")
+
+    if not manufacturer.industries or manufacturer.industries.results is None:
+        try:
+            logger.info(f"Extracting industries for {manufacturer.etld1}")
+            manufacturer.industries = await extract_industries(
+                timestamp, manufacturer.etld1, mfg_txt
+            )
+            await update_manufacturer(
+                updated_at=timestamp,
+                manufacturer=manufacturer,
+            )
+
+        except Exception as e:
+            logger.error(f"{manufacturer.name}.industries errored:{e}")
+            await ExtractionError.insert_one(
+                ExtractionError(
+                    created_at=timestamp,
+                    error=str(e),
+                    field="industries",
                     mfg_etld1=manufacturer.etld1,
                 )
             )
