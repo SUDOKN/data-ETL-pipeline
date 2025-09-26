@@ -5,28 +5,24 @@ import asyncio
 import logging
 from datetime import datetime
 
-from shared.models.free_range_extraction import (
-    FreeRangeSearchResults,
-    FreeRangeSearchStats,
-)
 from shared.models.prompt import Prompt
 from shared.models.field_types import (
     OntologyVersionIDType,
 )
-from shared.models.extraction_results import (
-    ChunkSearchStats,
-    ExtractionStats,
-    ExtractionResults,
+
+from data_etl_app.models.concept_extraction_results import (
+    ConceptSearchChunkStats,
+    ConceptExtractionStats,
+    ConceptExtractionResults,
 )
-
 from data_etl_app.models.skos_concept import Concept
-
-from data_etl_app.services.map_unknown_to_known_service import mapKnownToUnknown
+from data_etl_app.services.llm_powered.map.map_known_to_unknown_service import (
+    mapKnownToUnknown,
+)
 from data_etl_app.services.brute_search_service import brute_search
-from data_etl_app.services.llm_search_service import llm_search
-from data_etl_app.services.ontology_service import ontology_service
-from data_etl_app.services.prompt_service import prompt_service
-
+from data_etl_app.services.llm_powered.search.llm_search_service import llm_search
+from data_etl_app.services.knowledge.ontology_service import ontology_service
+from data_etl_app.services.knowledge.prompt_service import prompt_service
 from data_etl_app.utils.chunk_util import (
     ChunkingStrat,
     get_chunks_respecting_line_boundaries,
@@ -42,31 +38,11 @@ from open_ai_key_app.models.gpt_model import (
 )
 
 
-async def extract_products(
-    extraction_timestamp: datetime,
-    mfg_etld1: str,
-    text: str,
-) -> FreeRangeSearchResults:
-    """
-    Extract products for a manufacturer's text.
-    """
-    return await _extract_free_range_concept_data(
-        extraction_timestamp,
-        "products",
-        mfg_etld1,
-        text,
-        prompt_service.extract_any_product_prompt,
-        ChunkingStrat(overlap=0.15, max_tokens=5000),
-        gpt_model=GPT_4o_mini,
-        model_params=DefaultModelParameters,
-    )
-
-
 async def extract_certificates(
     extraction_timestamp: datetime,
     mfg_etld1: str,
     text: str,
-) -> ExtractionResults:
+) -> ConceptExtractionResults:
     """
     Extract certificates for a manufacturer text.
     """
@@ -90,7 +66,7 @@ async def extract_industries(
     extraction_timestamp: datetime,
     mfg_etld1: str,
     text: str,
-) -> ExtractionResults:
+) -> ConceptExtractionResults:
     """
     Extract industries for a manufacturer text.
     """
@@ -114,7 +90,7 @@ async def extract_processes(
     extraction_timestamp: datetime,
     mfg_etld1: str,
     text: str,
-) -> ExtractionResults:
+) -> ConceptExtractionResults:
     """
     Extract process capabilities for a manufacturer text.
     """
@@ -138,7 +114,7 @@ async def extract_materials(
     extraction_timestamp: datetime,
     mfg_etld1: str,
     text: str,
-) -> ExtractionResults:
+) -> ConceptExtractionResults:
     """
     Extract material capabilities for a manufacturer text.
     """
@@ -158,57 +134,6 @@ async def extract_materials(
     )
 
 
-async def _extract_free_range_concept_data(
-    extraction_timestamp: datetime,
-    concept_type: str,  # used for logging/debug
-    mfg_etld1: str,
-    text: str,
-    search_prompt: Prompt,
-    chunk_strategy: ChunkingStrat,
-    gpt_model: GPTModel = GPT_4o_mini,
-    model_params: ModelParameters = DefaultModelParameters,
-) -> FreeRangeSearchResults:
-    logger.info(
-        f"Extracting {concept_type} (NO BRUTE) for {mfg_etld1} at {extraction_timestamp} "
-    )
-
-    # 1) Chunk
-    chunk_map = get_chunks_respecting_line_boundaries(
-        text, chunk_strategy.max_tokens, chunk_strategy.overlap
-    )
-
-    # 2) LLM search per chunk (no brute)
-    async def _process_chunk(bounds: str, text_chunk: str):
-        chunk_result = await llm_search(
-            text_chunk,
-            search_prompt.text,
-            gpt_model,
-            model_params,
-            True,  # dedupe/normalize
-        )
-        return bounds, chunk_result
-
-    tasks = [asyncio.create_task(_process_chunk(b, t)) for b, t in chunk_map.items()]
-    chunk_results = await asyncio.gather(*tasks)
-
-    final_result_set: set[str] = set()
-    stats = FreeRangeSearchStats(
-        extract_prompt_version_id=search_prompt.s3_version_id,
-        search={},  # per-chunk stats
-    )
-
-    # Seed per-chunk stats (brute is always empty)
-    for bounds, chunk_result in chunk_results:
-        stats.search[bounds] = set(chunk_result)  # Put LLM results directly here
-        final_result_set |= set(chunk_result)  # Aggregate to final results
-
-    return FreeRangeSearchResults(
-        extracted_at=extraction_timestamp,
-        results=list(final_result_set),
-        stats=stats,
-    )
-
-
 async def _extract_concept_data(
     extraction_timestamp: datetime,
     concept_type: str,  # used for logging and debugging
@@ -221,18 +146,18 @@ async def _extract_concept_data(
     chunk_strategy: ChunkingStrat,
     gpt_model: GPTModel = GPT_4o_mini,
     model_params: ModelParameters = DefaultModelParameters,
-) -> ExtractionResults:
+) -> ConceptExtractionResults:
     logger.debug(
         f"Extracting {concept_type} for {mfg_etld1} at {extraction_timestamp} with ontology version {ontology_version_id}"
     )
 
     results = set[str]()
-    stats: ExtractionStats = ExtractionStats(
+    stats: ConceptExtractionStats = ConceptExtractionStats(
         extract_prompt_version_id=search_prompt.s3_version_id,
         map_prompt_version_id=map_prompt.s3_version_id,
         ontology_version_id=ontology_version_id,
         mapping={},
-        search={},
+        chunked_stats={},
         unmapped_llm=[],
     )
 
@@ -278,7 +203,7 @@ async def _extract_concept_data(
     mutually_agreed_concepts: set[Concept] = set()
 
     for bounds, brute_set, llm_set in chunk_results:
-        stats.search[bounds] = ChunkSearchStats(
+        stats.chunked_stats[bounds] = ConceptSearchChunkStats(
             results=set(),  # will be filled later
             brute={b.name for b in brute_set},
             llm=llm_set.copy(),
@@ -290,7 +215,7 @@ async def _extract_concept_data(
         for kc in known_concepts:
             common = kc.matchLabels & llm_set
             if common:
-                stats.search[bounds].results.add(kc.name)
+                stats.chunked_stats[bounds].results.add(kc.name)
                 mutually_agreed_concepts.add(kc)
                 llm_set -= common
 
@@ -325,7 +250,7 @@ async def _extract_concept_data(
         "unmapped_unknowns"
     ]  # not needed if we don't pass unmapped_llm.copy()
 
-    for _, chunk_stats in stats.search.items():
+    for _, chunk_stats in stats.chunked_stats.items():
         chunk_stats.unmapped_llm = final_unmapped_llm & chunk_stats.llm
         for mk, mu in map_results["known_to_unknowns"].items():
             # find all elements in mu that are also in chunk_level unmapped_llm
@@ -351,7 +276,7 @@ async def _extract_concept_data(
     stats.unmapped_llm = list(final_unmapped_llm)
     stats.mapping = {mk.name: mu for mk, mu in map_results["known_to_unknowns"].items()}
 
-    return ExtractionResults(
+    return ConceptExtractionResults(
         extracted_at=extraction_timestamp,
         results=list(results),
         stats=stats,

@@ -14,7 +14,9 @@ DOT_ENV_PATH = os.path.join(
 logger.info(f"Loading environment variables from: {DOT_ENV_PATH}")
 load_dotenv(dotenv_path=DOT_ENV_PATH)
 
-from data_etl_app.services.extract_concept_service import extract_industries
+from data_etl_app.services.llm_powered.extraction.extract_concept_service import (
+    extract_industries,
+)
 
 logger.info(f"Current working directory: {os.getcwd()}")
 

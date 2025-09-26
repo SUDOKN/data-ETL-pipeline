@@ -12,6 +12,7 @@ from urllib.parse import urlparse
 from queue import Queue, Empty
 from concurrent.futures import ThreadPoolExecutor
 
+from open_ai_key_app.utils.ask_gpt_util import num_tokens_from_string
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.common.exceptions import (
@@ -57,8 +58,16 @@ class ScrapingResult:
 
     @property
     def success_rate(self) -> float:
-        total = self.urls_scraped + self.urls_failed
-        return self.urls_scraped / total if total > 0 else 0.0
+        return ScrapingResult.get_success_rate(self.urls_scraped, self.urls_failed)
+
+    def is_valid(self) -> bool:
+        return ScrapingResult.is_scrape_valid(
+            self.content, self.urls_scraped, self.urls_failed
+        )
+
+    @property
+    def num_tokens(self) -> int:
+        return num_tokens_from_string(self.content)
 
     def __str__(self) -> str:
         return (
@@ -66,6 +75,21 @@ class ScrapingResult:
             f"urls_scraped={self.urls_scraped}, urls_failed={self.urls_failed}, "
             f"errors_count={len(self.errors)})"
         )
+
+    @staticmethod
+    def get_success_rate(urls_scraped: int, urls_failed: int) -> float:
+        success_rate = (
+            urls_scraped / (urls_scraped + urls_failed)
+            if (urls_scraped + urls_failed) > 0
+            else 0
+        )
+        return success_rate
+
+    @classmethod
+    def is_scrape_valid(cls, content: str, urls_scraped: int, urls_failed: int) -> bool:
+        num_tokens = num_tokens_from_string(content)
+        success_rate = cls.get_success_rate(urls_scraped, urls_failed)
+        return 30 < num_tokens and success_rate > 0.8
 
     def print_stats(self) -> None:
         logger.info(f"URLs scraped: {self.urls_scraped}")

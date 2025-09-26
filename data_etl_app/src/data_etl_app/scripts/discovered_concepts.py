@@ -8,7 +8,7 @@ import logging
 
 from data_etl_app.models.skos_concept import Concept
 from shared.models.db.manufacturer import Manufacturer
-from data_etl_app.services.ontology_service import ontology_service
+from data_etl_app.services.knowledge.ontology_service import ontology_service
 from shared.utils.mongo_client import (
     init_db,
 )
@@ -124,7 +124,7 @@ async def fetch_discovered_concepts() -> DiscoveredConcepts:
         "url": 1,
         "name": 1,
     }
-    collection = Manufacturer.get_motor_collection()
+    collection = Manufacturer.get_pymongo_collection()
     cursor = collection.find({"is_manufacturer.answer": True}, projection)
     count = 0
     async for doc in cursor:

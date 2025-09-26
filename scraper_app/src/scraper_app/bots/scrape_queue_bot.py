@@ -35,7 +35,7 @@ from shared.utils.mongo_client import init_db
 from shared.utils.time_util import get_current_time
 
 from shared.services.manufacturer_service import (
-    reset_llm_aided_fields,
+    reset_llm_extracted_fields,
     find_manufacturer_by_url,
     update_manufacturer,
 )
@@ -206,7 +206,7 @@ async def fast_track_to_extraction(
             logger.info(
                 f"Manufacturer {manufacturer.etld1} exists but has no scraped_text_file_version_id. Adding batch {item.batch} and proceeding to scrape."
             )
-            reset_llm_aided_fields(manufacturer)
+            reset_llm_extracted_fields(manufacturer)
             manufacturer.batches.append(item.batch)
         else:
             found_existing_file = await does_scraped_text_file_exist(
@@ -239,7 +239,7 @@ async def fast_track_to_extraction(
                         latest_scraped_text_file_version_id
                     )
 
-                    reset_llm_aided_fields(manufacturer)
+                    reset_llm_extracted_fields(manufacturer)
                     manufacturer.batches.append(item.batch)
                     await update_manufacturer(timestamp, manufacturer)
                     logger.info(f"Updated manufacturer: {manufacturer.etld1}")
@@ -353,6 +353,7 @@ async def scrape_and_save_manufacturer(
             is_contract_manufacturer=None,
             is_product_manufacturer=None,
             founded_in=None,
+            email_addresses=None,
             num_employees=None,
             business_desc=None,
             business_statuses=None,

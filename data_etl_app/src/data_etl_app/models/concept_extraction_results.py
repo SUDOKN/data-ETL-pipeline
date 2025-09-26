@@ -3,12 +3,12 @@ from pydantic import BaseModel, ValidationInfo, field_validator
 
 from shared.models.field_types import (
     LLMMappingType,
-    PromptVersionIDType,
+    S3FileVersionIDType,
     OntologyVersionIDType,
 )
 
 
-class ChunkSearchStats(BaseModel):
+class ConceptSearchChunkStats(BaseModel):
     results: set[str]  # results from brute and llm search, maybe empty
     brute: set[str]
     llm: set[str]  # TODO: check if orphan llm is also present in the text
@@ -16,21 +16,21 @@ class ChunkSearchStats(BaseModel):
     unmapped_llm: set[str]  # unmapped unknowns from llm search
 
 
-# key: chunk_bounds, e.g. "0:1000"
-SearchResult = dict[str, ChunkSearchStats]
+# "0:1000" -> { results, brute, llm, mapping, unmapped_llm }
+ConceptSearchChunkMap = dict[str, ConceptSearchChunkStats]
 
 
-class ExtractionStats(BaseModel):
-    extract_prompt_version_id: PromptVersionIDType
-    map_prompt_version_id: PromptVersionIDType
+class ConceptExtractionStats(BaseModel):
+    extract_prompt_version_id: S3FileVersionIDType
+    map_prompt_version_id: S3FileVersionIDType
     ontology_version_id: OntologyVersionIDType
-    mapping: LLMMappingType
-    search: SearchResult
+    mapping: LLMMappingType  # all chunk mappings combined
+    chunked_stats: ConceptSearchChunkMap
     unmapped_llm: list[str]
 
-    @field_validator("search")
+    @field_validator("chunked_stats")
     @classmethod
-    def validate_search_keys(cls, v: SearchResult, info: ValidationInfo):
+    def validate_chunk_map_keys(cls, v: ConceptSearchChunkMap, info: ValidationInfo):
         for key in v.keys():
             parts = key.split(":")
             if len(parts) != 2:
@@ -45,7 +45,7 @@ class ExtractionStats(BaseModel):
         return v
 
 
-class ExtractionResults(BaseModel):
+class ConceptExtractionResults(BaseModel):
     extracted_at: datetime
     results: list[str]  # final results
-    stats: ExtractionStats
+    stats: ConceptExtractionStats

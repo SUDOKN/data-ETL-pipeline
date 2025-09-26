@@ -1,7 +1,7 @@
 import logging
 import requests
 import tldextract
-from urllib.parse import urlparse, urlunparse
+from urllib.parse import urlparse
 
 logger = logging.getLogger(__name__)
 

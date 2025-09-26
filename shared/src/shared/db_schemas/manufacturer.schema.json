@@ -225,11 +225,28 @@
         "bsonType": ["int", "null"],
         "minimum": 1800
       },
+      "email_addresses": {
+        "bsonType": ["array", "null"],
+        "items": {
+          "bsonType": "string",
+          "minLength": 1
+        },
+        "uniqueItems": true
+      },
       "num_employees": {
         "bsonType": ["int", "null"]
       },
       "business_desc": {
-        "bsonType": ["string", "null"]
+        "bsonType": ["object", "null"],
+        "properties": {
+          "name": {
+            "bsonType": ["string", "null"]
+          },
+          "description": {
+            "bsonType": ["string", "null"]
+          }
+        },
+        "additionalProperties": false
       },
       "business_statuses": {
         "bsonType": ["array", "null"],
@@ -313,22 +330,29 @@
           },
           "stats": {
             "bsonType": "object",
-            "required": ["extract_prompt_version_id", "search"],
+            "required": ["extract_prompt_version_id", "chunked_stats"],
             "additionalProperties": false,
             "properties": {
               "extract_prompt_version_id": {
                 "bsonType": "string",
                 "minLength": 1
               },
-              "search": {
+              "chunked_stats": {
                 "bsonType": "object",
                 "patternProperties": {
                   "^[0-9]+:[0-9]+$": {
-                    "bsonType": "array",
-                    "uniqueItems": true,
-                    "items": {
-                      "bsonType": "string",
-                      "minLength": 1
+                    "bsonType": "object",
+                    "required": ["results"],
+                    "additionalProperties": false,
+                    "properties": {
+                      "results": {
+                        "bsonType": "array",
+                        "uniqueItems": true,
+                        "items": {
+                          "bsonType": "string",
+                          "minLength": 1
+                        }
+                      }
                     }
                   }
                 },
@@ -361,7 +385,7 @@
               "map_prompt_version_id",
               "ontology_version_id",
               "mapping",
-              "search",
+              "chunked_stats",
               "unmapped_llm"
             ],
             "additionalProperties": false,
@@ -389,7 +413,7 @@
                   }
                 }
               },
-              "search": {
+              "chunked_stats": {
                 "bsonType": "object",
                 "patternProperties": {
                   "^[0-9]+:[0-9]+$": {
@@ -486,7 +510,7 @@
               "map_prompt_version_id",
               "ontology_version_id",
               "mapping",
-              "search",
+              "chunked_stats",
               "unmapped_llm"
             ],
             "additionalProperties": false,
@@ -514,7 +538,7 @@
                   }
                 }
               },
-              "search": {
+              "chunked_stats": {
                 "bsonType": "object",
                 "patternProperties": {
                   "^[0-9]+:[0-9]+$": {
@@ -611,7 +635,7 @@
               "map_prompt_version_id",
               "ontology_version_id",
               "mapping",
-              "search",
+              "chunked_stats",
               "unmapped_llm"
             ],
             "additionalProperties": false,
@@ -639,7 +663,7 @@
                   }
                 }
               },
-              "search": {
+              "chunked_stats": {
                 "bsonType": "object",
                 "patternProperties": {
                   "^[0-9]+:[0-9]+$": {
@@ -736,7 +760,7 @@
               "map_prompt_version_id",
               "ontology_version_id",
               "mapping",
-              "search",
+              "chunked_stats",
               "unmapped_llm"
             ],
             "additionalProperties": false,
@@ -764,7 +788,7 @@
                   }
                 }
               },
-              "search": {
+              "chunked_stats": {
                 "bsonType": "object",
                 "patternProperties": {
                   "^[0-9]+:[0-9]+$": {

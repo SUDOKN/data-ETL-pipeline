@@ -2,7 +2,7 @@ from fastapi import APIRouter, HTTPException
 from fastapi.responses import JSONResponse
 import logging
 
-from data_etl_app.services.prompt_service import prompt_service
+from data_etl_app.services.knowledge.prompt_service import prompt_service
 
 logger = logging.getLogger(__name__)
 router = APIRouter()
@@ -18,11 +18,11 @@ def refresh_prompts():
         raise HTTPException(status_code=500, detail=str(e))
 
 
-@router.get("/prompt/find_business_name", response_class=JSONResponse)
+@router.get("/prompt/find_business_desc", response_class=JSONResponse)
 def get_find_business_name_prompt():
     """Get the find business name prompt."""
     try:
-        prompt = prompt_service.find_business_name_prompt
+        prompt = prompt_service.find_business_desc_prompt
         return prompt.model_dump()
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
@@ -154,7 +154,7 @@ def get_all_prompts():
     try:
         prompts = {}
         for prompt_name in [
-            "find_business_name",
+            "find_business_desc",
             "is_manufacturer",
             "is_product_manufacturer",
             "is_contract_manufacturer",

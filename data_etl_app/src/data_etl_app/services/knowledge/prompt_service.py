@@ -10,7 +10,7 @@ logger = logging.getLogger(__name__)
 
 
 PROMPT_NAMES = [
-    "find_business_name",
+    "find_business_desc",
     "is_manufacturer",
     "is_product_manufacturer",
     "is_contract_manufacturer",
@@ -85,11 +85,11 @@ class PromptService:
             self._init_data()
 
     @property
-    def find_business_name_prompt(self) -> Prompt:
-        if "find_business_name" not in self._prompt_cache:
-            raise ValueError("find_business_name prompt not found in cache")
+    def find_business_desc_prompt(self) -> Prompt:
+        if "find_business_desc" not in self._prompt_cache:
+            raise ValueError("find_business_desc prompt not found in cache")
 
-        return self._prompt_cache["find_business_name"]
+        return self._prompt_cache["find_business_desc"]
 
     @property
     def is_manufacturer_prompt(self) -> Prompt:

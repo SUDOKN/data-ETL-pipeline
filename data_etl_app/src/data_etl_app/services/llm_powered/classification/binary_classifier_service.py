@@ -14,14 +14,14 @@ from open_ai_key_app.models.gpt_model import (
     DefaultModelParameters,
 )
 
-from shared.models.binary_classification import (
+from data_etl_app.models.binary_classification import (
     BinaryClassificationResult,
     BinaryClassificationStats,
     ChunkBinaryClassificationResult,
 )
 from shared.models.prompt import Prompt
 
-from data_etl_app.services.prompt_service import prompt_service
+from data_etl_app.services.knowledge.prompt_service import prompt_service
 from data_etl_app.utils.chunk_util import (
     get_chunks_respecting_line_boundaries,
     get_roughly_even_chunks,
