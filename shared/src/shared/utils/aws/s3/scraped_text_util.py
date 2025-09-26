@@ -149,9 +149,10 @@ async def get_latest_version_id_by_filename(
         raise  # Re-raise other exceptions
 
 
-async def download_scraped_text_from_s3_by_mfg_etld(
+async def download_scraped_text_from_s3_by_mfg_etld1(
     s3_client,
     etld1: str,
+    version_id: str,
 ) -> tuple[str, str]:
     """
     Downloads a file from S3 based on the manufacturer etld1 and returns its content as a string.
@@ -161,38 +162,72 @@ async def download_scraped_text_from_s3_by_mfg_etld(
     :return: The content of the downloaded file as a string.
     """
     file_name = get_file_name_from_mfg_etld(etld1)
-    return await download_scraped_text_from_s3_by_filename(s3_client, file_name)
+    return await download_scraped_text_from_s3_by_filename(
+        s3_client, file_name, version_id
+    )
 
 
 async def download_scraped_text_from_s3_by_filename(
     s3_client,
     file_name: str,
+    version_id: str,
 ) -> tuple[str, str]:
     """
     Downloads a file from S3 and returns its content as a string.
 
     :param file_name: The name of the file to download from S3.
-    :return: The content of the downloaded file as a string.
+    :return: tuple [the content of the downloaded file as a string, its version ID]
     """
     assert SCRAPED_TEXT_BUCKET is not None, "SCRAPED_TEXT_BUCKET is None"
     # Use provided s3_client to download
-    logger.info(f"Attempting to download `{file_name}` from S3")
-    obj = await s3_client.get_object(Bucket=SCRAPED_TEXT_BUCKET, Key=file_name)
-    async with obj["Body"] as stream:
-        content = await stream.read()
-
-    version_id = obj.get(
-        "VersionId"
-    )  # This will be None if versioning is off or suspended
-    if not version_id:
-        raise ValueError(
-            f"Version ID not found for the file: {file_name}. Ensure that versioning is enabled on the {SCRAPED_TEXT_BUCKET} bucket."
+    if version_id:
+        logger.info(
+            f"Attempting to download `{file_name}` with version ID `{version_id}` from S3"
         )
-    logger.info(f"Downloaded file {file_name} with version ID: {version_id}")
+        obj = await s3_client.get_object(
+            Bucket=SCRAPED_TEXT_BUCKET, Key=file_name, VersionId=version_id
+        )
+        logger.info(f"Attempting to download `{file_name}` from S3")
+        obj = await s3_client.get_object(Bucket=SCRAPED_TEXT_BUCKET, Key=file_name)
+        async with obj["Body"] as stream:
+            content = await stream.read()
+    else:
+        logger.info(
+            f"Attempting to download `{file_name}` from S3 without specifying version ID"
+        )
+        obj = await s3_client.get_object(Bucket=SCRAPED_TEXT_BUCKET, Key=file_name)
+        async with obj["Body"] as stream:
+            content = await stream.read()
+
+        version_id = obj.get(
+            "VersionId"
+        )  # This will be None if versioning is off or suspended
+        if not version_id:
+            raise ValueError(
+                f"Version ID not found for the file: {file_name}. Ensure that versioning is enabled on the {SCRAPED_TEXT_BUCKET} bucket."
+            )
+        logger.info(f"Downloaded file {file_name} with version ID: {version_id}")
     return content.decode("utf-8"), version_id
 
 
-async def get_scraped_text_object_tags(
+async def get_scraped_text_object_tags_by_mfg_etld1(
+    s3_client, mfg_etld1: str, version_id: str
+) -> dict[str, str]:
+    """
+    Gets the tags for a specific object version in the scraped text bucket based on the manufacturer etld1.
+
+    :param s3_client: An S3 client to use for getting tags.
+    :param mfg_etld1: The eTLD+1 of the manufacturer to get the corresponding file tags from S3.
+    :param version_id: The version ID of the object.
+    :return: Dictionary of tags with tag keys as dictionary keys and tag values as dictionary values.
+    """
+    file_name = get_file_name_from_mfg_etld(mfg_etld1)
+    return await get_scraped_text_object_tags_by_filename(
+        s3_client, file_name, version_id
+    )
+
+
+async def get_scraped_text_object_tags_by_filename(
     s3_client, file_name: str, version_id: str
 ) -> dict[str, str]:
     """
@@ -254,7 +289,7 @@ async def iterate_scraped_text_objects_and_versions(
 
             # Fetch tags if requested
             if include_tags:
-                obj_data["Tags"] = await get_scraped_text_object_tags(
+                obj_data["Tags"] = await get_scraped_text_object_tags_by_filename(
                     s3_client, version["Key"], version["VersionId"]
                 )
 
@@ -332,7 +367,21 @@ async def get_all_scraped_text_objects_summary(s3_client, prefix: str = "") -> d
     }
 
 
-async def delete_scraped_text_from_s3(
+async def delete_scraped_text_from_s3_by_etld1(
+    s3_client, etld1: str, version_id: Optional[str] = None
+) -> None:
+    """
+    Deletes a file from S3 based on the manufacturer etld1. If version_id is None, deletes all versions of the file.
+
+    :param s3_client: An S3 client to use for the deletion.
+    :param etld1: The eTLD+1 of the manufacturer to delete the corresponding file from S3.
+    :param version_id: Optional version ID to delete a specific version of the file. If None, deletes all versions.
+    """
+    file_name = get_file_name_from_mfg_etld(etld1)
+    await delete_scraped_text_from_s3_by_filename(s3_client, file_name, version_id)
+
+
+async def delete_scraped_text_from_s3_by_filename(
     s3_client, file_name: str, version_id: Optional[str] = None
 ) -> None:
     """

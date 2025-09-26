@@ -2,12 +2,14 @@ from beanie import Document
 from datetime import datetime
 from pydantic import BaseModel, Field, computed_field
 
-from shared.models.binary_classification import BinaryClassificationResult
 from shared.models.field_types import MfgETLDType
-
 from shared.utils.time_util import get_current_time
 
-from data_etl_app.models.types import BinaryClassificationTypeEnum
+from data_etl_app.models.binary_classification import BinaryClassificationResult
+from data_etl_app.models.types_and_enums import (
+    GroundTruthSource,
+    BinaryClassificationTypeEnum,
+)
 
 
 class HumanBinaryDecision(BaseModel):
@@ -20,6 +22,7 @@ class HumanBinaryDecision(BaseModel):
     """
 
     author_email: str
+    source: GroundTruthSource
     answer: (
         bool | None
     )  # CAUTION: this field is optional just for convenience of gt template, not optional in db schema
@@ -50,7 +53,10 @@ class BinaryGroundTruth(Document):
 
     classification_type: BinaryClassificationTypeEnum
 
+    # following is a copy of what was extracted at the time of creating this ground truth
+    # stored originally in the linked manufacturer
     llm_decision: BinaryClassificationResult
+
     human_decision_logs: list[HumanDecisionLog]
 
     @computed_field
@@ -69,10 +75,13 @@ Indexes in MongoDB for BinaryGroundTruth:
 
 db.binary_ground_truths.createIndex(
   {
-    mfg_url: 1,
+    mfg_etld1: 1,
     scraped_text_file_version_id: 1,
     classification_type: 1
   },
-  { unique: true }
+  { 
+    name: "binary_gt_unique_idx",
+    unique: true 
+  }
 )
 """

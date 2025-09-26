@@ -9,7 +9,7 @@ from shared.utils.url_util import get_etld1_from_host
 logger = logging.getLogger(__name__)
 
 
-def reset_llm_aided_fields(manufacturer: Manufacturer):
+def reset_llm_extracted_fields(manufacturer: Manufacturer):
     """
     Resets the classification and extracted fields of a manufacturer to None.
     This is useful when re-evaluating a manufacturer.

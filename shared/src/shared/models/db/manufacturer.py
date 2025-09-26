@@ -1,14 +1,14 @@
 from beanie import Document
-from pydantic import BaseModel, Field, field_validator, model_validator
+from pydantic import BaseModel, ConfigDict, Field, field_validator, model_validator
 from datetime import datetime
 import logging
 from typing import List, Optional
 from urllib.parse import urlparse
 
 from shared.models.field_types import MfgURLType, MfgETLDType
-from shared.models.extraction_results import ExtractionResults
-from shared.models.free_range_extraction import FreeRangeSearchResults
-from shared.models.binary_classification import (
+from data_etl_app.models.concept_extraction_results import ConceptExtractionResults
+from data_etl_app.models.keyword_extraction_results import KeywordExtractionResults
+from data_etl_app.models.binary_classification import (
     BinaryClassificationResult,
 )
 from shared.utils.time_util import get_current_time
@@ -48,8 +48,9 @@ class Batch(BaseModel):
         return v
 
 
-class IsManufacturerResult(BinaryClassificationResult):
-    name: str
+class BusinessDescriptionResult(BaseModel):
+    name: Optional[str]
+    description: Optional[str]
 
 
 class Manufacturer(Document):
@@ -64,24 +65,27 @@ class Manufacturer(Document):
 
     name: Optional[str]
 
-    is_manufacturer: Optional[IsManufacturerResult]
+    is_manufacturer: Optional[BinaryClassificationResult]
     is_contract_manufacturer: Optional[BinaryClassificationResult]
     is_product_manufacturer: Optional[BinaryClassificationResult]
 
     founded_in: Optional[int]
+    email_addresses: Optional[List[str]]
     num_employees: Optional[int]
-    business_desc: Optional[str]
     business_statuses: Optional[List[str]]
     primary_naics: Optional[str]
     secondary_naics: Optional[List[str]]
     addresses: Optional[List[Address]]
 
-    products: Optional[FreeRangeSearchResults]
+    # LLM extracted fields
+    business_desc: Optional[BusinessDescriptionResult]
 
-    certificates: Optional[ExtractionResults]
-    industries: Optional[ExtractionResults]
-    process_caps: Optional[ExtractionResults]
-    material_caps: Optional[ExtractionResults]
+    products: Optional[KeywordExtractionResults]
+
+    certificates: Optional[ConceptExtractionResults]
+    industries: Optional[ConceptExtractionResults]
+    process_caps: Optional[ConceptExtractionResults]
+    material_caps: Optional[ConceptExtractionResults]
 
     @field_validator("url_accessible_at", mode="before")
     @classmethod
@@ -144,3 +148,28 @@ class Manufacturer(Document):
 
     class Settings:
         name = "manufacturers"
+
+
+"""
+Indexes for Manufacturers
+
+db.manufacturers.createIndex(
+  {
+    etld1: 1,
+  },
+  {
+    name: "mfg_etld1_unique_idx",
+    unique: true
+  }
+);
+
+db.manufacturers.createIndex(
+  {
+    url_accessible_at: 1,
+  },
+  {
+    name: "mfg_url_accessible_at_idx",
+    unique: true
+  }
+);
+"""

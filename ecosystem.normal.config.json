@@ -1,7 +1,7 @@
 {
   "apps": [
     {
-      "name": "extract-queue-bot-normal",
+      "name": "extract-q-bot",
       "script": "./data_etl_app/src/data_etl_app/bots/extract_queue_bot.py",
       "interpreter": "./.venv/bin/python3",
       "args": "--priority 0 --max_concurrent_manufacturers 25 --debug INFO",
@@ -30,7 +30,7 @@
       }
     },
     {
-      "name": "scrape-queue-bot-normal",
+      "name": "scrape-q-bot",
       "script": "./scraper_app/src/scraper_app/bots/scrape_queue_bot.py",
       "interpreter": "./.venv/bin/python3",
       "args": "--priority 0 --max_concurrent_browsers 5 --max_depth 5",
@@ -44,7 +44,7 @@
       "out_file": "./logs/scrape-queue-bot-normal-out.log",
       "log_file": "./logs/scrape-queue-bot-normal-combined.log",
       "time": true,
-      "kill_timeout": 30000,
+      "kill_timeout": 2000,
       "shutdown_with_message": true,
       "listen_timeout": 8000,
       "wait_ready": false,

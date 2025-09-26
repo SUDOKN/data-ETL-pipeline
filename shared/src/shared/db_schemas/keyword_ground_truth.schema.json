@@ -5,16 +5,16 @@
       "created_at",
       "updated_at",
       "scraped_text_file_version_id",
-      "ontology_version_id",
+      "extract_prompt_version_id",
       "mfg_etld1",
-      "concept_type",
+      "keyword_type",
       "chunk_bounds",
       "chunk_text",
       "chunk_no",
       "last_chunk_no",
       "chunk_extracted_at",
       "chunk_search_stats",
-      "human_correction_logs"
+      "correction_logs"
     ],
     "additionalProperties": false,
     "properties": {
@@ -30,14 +30,14 @@
       "scraped_text_file_version_id": {
         "bsonType": "string"
       },
-      "ontology_version_id": {
+      "extract_prompt_version_id": {
         "bsonType": "string"
       },
       "mfg_etld1": {
         "bsonType": "string"
       },
-      "concept_type": {
-        "enum": ["industries", "certificates", "material_caps", "process_caps"]
+      "keyword_type": {
+        "enum": ["products"]
       },
       "chunk_bounds": {
         "bsonType": "string"
@@ -56,67 +56,19 @@
       },
       "chunk_search_stats": {
         "bsonType": "object",
-        "required": ["results", "brute", "llm", "mapping", "unmapped_llm"],
+        "required": ["results"],
+        "additionalProperties": false,
         "properties": {
           "results": {
             "bsonType": "array",
-            "items": {
-              "bsonType": "string"
-            }
-          },
-          "brute": {
-            "bsonType": "array",
-            "items": {
-              "bsonType": "string"
-            }
-          },
-          "llm": {
-            "bsonType": "array",
-            "items": {
-              "bsonType": "string"
-            }
-          },
-          "mapping": {
-            "bsonType": "object",
-            "additionalProperties": {
-              "bsonType": "array",
-              "minItems": 1,
-              "items": {
-                "bsonType": "string"
-              }
-            }
-          },
-          "unmapped_llm": {
-            "bsonType": "array",
+            "uniqueItems": true,
             "items": {
               "bsonType": "string"
             }
           }
         }
       },
-      "result_correction": {
-        "bsonType": ["object", "null"],
-        "required": ["add", "remove"],
-        "properties": {
-          "add": {
-            "bsonType": "object",
-            "additionalProperties": {
-              "bsonType": "array",
-              "minItems": 1,
-              "items": {
-                "bsonType": "string"
-              }
-            }
-          },
-          "remove": {
-            "bsonType": "array",
-            "items": {
-              "bsonType": "string"
-            }
-          }
-        }
-      },
-      "human_correction_logs": {
+      "correction_logs": {
         "bsonType": "array",
         "items": {
           "bsonType": "object",
@@ -132,14 +84,14 @@
                 "author_email": {
                   "bsonType": "string"
                 },
+                "source": {
+                  "bsonType": "string",
+                  "enum": ["user_form", "api_survey"]
+                },
                 "add": {
-                  "bsonType": "object",
-                  "additionalProperties": {
-                    "bsonType": "array",
-                    "minItems": 1,
-                    "items": {
-                      "bsonType": "string"
-                    }
+                  "bsonType": "array",
+                  "items": {
+                    "bsonType": "string"
                   }
                 },
                 "remove": {
@@ -148,9 +100,11 @@
                     "bsonType": "string"
                   }
                 }
-              }
+              },
+              "additionalProperties": false
             }
-          }
+          },
+          "additionalProperties": false
         }
       }
     }

@@ -1,7 +1,8 @@
 import json
 import logging
 
-from data_etl_app.services.prompt_service import prompt_service
+from shared.models.db.manufacturer import BusinessDescriptionResult
+from data_etl_app.services.knowledge.prompt_service import prompt_service
 from data_etl_app.utils.chunk_util import (
     get_chunks_respecting_line_boundaries,
 )
@@ -18,14 +19,14 @@ from open_ai_key_app.utils.ask_gpt_util import (
 logger = logging.getLogger(__name__)
 
 
-async def find_business_name_using_only_first_chunk(
+async def find_business_desc_using_only_first_chunk(
     mfg_etld1: str,
     mfg_text: str,
     gpt_model: GPTModel = GPT_4o_mini,
     model_params: ModelParameters = DefaultModelParameters,
-) -> str:
-    logger.info(f"Finding business name for {mfg_etld1} using only first chunk...")
-    prompt = prompt_service.find_business_name_prompt
+) -> BusinessDescriptionResult:
+    logger.info(f"Finding business desc for {mfg_etld1} using only first chunk...")
+    prompt = prompt_service.find_business_desc_prompt
     chunks_map = get_chunks_respecting_line_boundaries(
         mfg_text,
         gpt_model.max_context_tokens - prompt.num_tokens - 5000,
@@ -38,20 +39,21 @@ async def find_business_name_using_only_first_chunk(
 
     if not gpt_response:
         logger.error(f"Invalid gpt_response:{gpt_response}")
-        raise ValueError("find_business_name: Empty or invalid response from GPT")
+        raise ValueError("find_business_desc: Empty or invalid response from GPT")
 
     try:
         gpt_response = gpt_response.replace("```", "").replace("json", "")
         json_response = json.loads(gpt_response)
         business_name = json_response.get("name")
+        business_desc = json_response.get("description")
     except:
         raise ValueError(
-            f"find_business_name: Invalid response from GPT:{gpt_response}"
+            f"find_business_desc: Invalid response from GPT:{gpt_response}"
         )
 
-    logger.debug(f"find_business_name:{business_name}")
+    logger.info(f"find_business_desc:`{business_name}`\n`{business_desc}`")
 
-    return business_name
+    return BusinessDescriptionResult(name=business_name, description=business_desc)
 
 
 # LLM's independent search

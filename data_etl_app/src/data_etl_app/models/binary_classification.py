@@ -2,7 +2,7 @@ from datetime import datetime
 from pydantic import BaseModel
 
 from shared.models.field_types import (
-    PromptVersionIDType,
+    S3FileVersionIDType,
 )
 
 
@@ -13,7 +13,7 @@ class ChunkBinaryClassificationResult(BaseModel):
 
 
 class BinaryClassificationStats(BaseModel):
-    prompt_version_id: PromptVersionIDType
+    prompt_version_id: S3FileVersionIDType
     final_chunk_key: str
     chunk_result_map: dict[str, ChunkBinaryClassificationResult]
 

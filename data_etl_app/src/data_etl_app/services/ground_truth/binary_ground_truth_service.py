@@ -2,9 +2,12 @@ from datetime import datetime
 import logging
 
 from shared.models.db.manufacturer import Manufacturer
+from shared.models.field_types import (
+    S3FileVersionIDType,
+)
 
-from data_etl_app.models.types import BinaryClassificationTypeEnum
-from data_etl_app.models.binary_ground_truth import (
+from data_etl_app.models.types_and_enums import BinaryClassificationTypeEnum
+from data_etl_app.models.db.binary_ground_truth import (
     BinaryGroundTruth,
     HumanDecisionLog,
     HumanBinaryDecision,
@@ -18,6 +21,7 @@ logger = logging.getLogger(__name__)
 
 async def get_binary_ground_truth(
     manufacturer: Manufacturer,
+    prompt_version_id: S3FileVersionIDType,
     classification_type: BinaryClassificationTypeEnum,
 ) -> BinaryGroundTruth | None:
     """
@@ -30,7 +34,23 @@ async def get_binary_ground_truth(
         BinaryGroundTruth.mfg_etld1 == manufacturer.etld1,
         BinaryGroundTruth.scraped_text_file_version_id
         == manufacturer.scraped_text_file_version_id,
+        BinaryGroundTruth.llm_decision.stats.prompt_version_id  # CAUTION: does not throw an error if stats doesn't exist
+        == prompt_version_id,  # critical
         BinaryGroundTruth.classification_type == classification_type,
+    )
+
+
+async def does_a_bgt_exist_with_scraped_file_version(
+    scraped_file_version_id: S3FileVersionIDType,
+) -> BinaryGroundTruth | None:
+    """
+    Fetch the binary ground truth for a given manufacturer URL.
+    Check if the scraped text file version ID matches the manufacturer's
+    most recently scraped and extracted data.
+
+    """
+    return await BinaryGroundTruth.find_one(
+        BinaryGroundTruth.scraped_text_file_version_id == scraped_file_version_id
     )
 
 

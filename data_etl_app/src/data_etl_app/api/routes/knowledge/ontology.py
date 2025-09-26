@@ -1,11 +1,9 @@
-import json
 from fastapi import APIRouter, HTTPException
 from fastapi.responses import JSONResponse
 import logging
 
-from data_etl_app.models.types import ConceptTypeEnum
-from data_etl_app.models.skos_concept import ConceptJSONEncoder
-from data_etl_app.services.ontology_service import ontology_service
+from data_etl_app.models.types_and_enums import ConceptTypeEnum
+from data_etl_app.services.knowledge.ontology_service import ontology_service
 from data_etl_app.utils.route_url_util import (
     ONTOLOGY_REFRESH_URL,
     get_full_ontology_concept_tree_url,

@@ -11,8 +11,8 @@ from shared.utils.aws.s3.scraped_text_util import (
     does_scraped_text_file_exist,
     upload_scraped_text_to_s3,
     download_scraped_text_from_s3_by_filename,
-    delete_scraped_text_from_s3,
-    get_scraped_text_object_tags,
+    delete_scraped_text_from_s3_by_filename,
+    get_scraped_text_object_tags_by_filename,
     iterate_scraped_text_objects_and_versions,
 )
 from shared.utils.aws.s3.s3_client_util import make_s3_client
@@ -56,7 +56,9 @@ class TestScrapedTextUtilS3Integration:
 
         # Delete (handle permission issues gracefully)
         try:
-            await delete_scraped_text_from_s3(s3_client, file_name, version_id)
+            await delete_scraped_text_from_s3_by_filename(
+                s3_client, file_name, version_id
+            )
             print("✅ File successfully deleted from S3")
 
             # Confirm deletion (should not exist)
@@ -89,18 +91,20 @@ class TestGetScrapedTextObjectTags:
                 {"Key": "environment", "Value": "production"},
             ]
         }
-        
+
         file_name = "test.com.txt"
         version_id = "test-version-123"
-        
-        result = await get_scraped_text_object_tags(mock_s3_client, file_name, version_id)
-        
+
+        result = await get_scraped_text_object_tags_by_filename(
+            mock_s3_client, file_name, version_id
+        )
+
         # Verify the call was made with correct parameters
         mock_s3_client.get_object_tagging.assert_called_once()
         call_args = mock_s3_client.get_object_tagging.call_args
         assert call_args.kwargs["Key"] == file_name
         assert call_args.kwargs["VersionId"] == version_id
-        
+
         # Verify the returned tags
         expected_tags = {
             "urls_scraped": "5",
@@ -114,9 +118,11 @@ class TestGetScrapedTextObjectTags:
         """Test tag retrieval when TagSet is empty."""
         mock_s3_client = AsyncMock()
         mock_s3_client.get_object_tagging.return_value = {"TagSet": []}
-        
-        result = await get_scraped_text_object_tags(mock_s3_client, "test.txt", "version-1")
-        
+
+        result = await get_scraped_text_object_tags_by_filename(
+            mock_s3_client, "test.txt", "version-1"
+        )
+
         assert result == {}
 
     @pytest.mark.asyncio
@@ -124,9 +130,11 @@ class TestGetScrapedTextObjectTags:
         """Test tag retrieval when TagSet key is missing."""
         mock_s3_client = AsyncMock()
         mock_s3_client.get_object_tagging.return_value = {}
-        
-        result = await get_scraped_text_object_tags(mock_s3_client, "test.txt", "version-1")
-        
+
+        result = await get_scraped_text_object_tags_by_filename(
+            mock_s3_client, "test.txt", "version-1"
+        )
+
         assert result == {}
 
 
@@ -137,10 +145,10 @@ class TestIterateScrapedTextObjectsAndVersions:
         # Mock S3 client and paginator
         mock_s3_client = AsyncMock()
         mock_paginator = MagicMock()  # Use MagicMock for paginator
-        
+
         # Make get_paginator a regular (non-async) method that returns the mock paginator
         mock_s3_client.get_paginator = MagicMock(return_value=mock_paginator)
-        
+
         # Mock pagination response
         mock_page = {
             "Versions": [
@@ -172,25 +180,27 @@ class TestIterateScrapedTextObjectsAndVersions:
                 }
             ],
         }
-        
+
         # Create an async generator function for pagination
         async def mock_paginate_async():
             yield mock_page
-        
+
         mock_paginator.paginate.return_value = mock_paginate_async()
-        
+
         # Collect results
         results = []
-        async for obj_version in iterate_scraped_text_objects_and_versions(mock_s3_client):
+        async for obj_version in iterate_scraped_text_objects_and_versions(
+            mock_s3_client
+        ):
             results.append(obj_version)
-        
+
         # Verify paginator was called correctly
         mock_s3_client.get_paginator.assert_called_once_with("list_object_versions")
         mock_paginator.paginate.assert_called_once()
-        
+
         # Verify results
         assert len(results) == 3
-        
+
         # Check first version
         assert results[0]["Key"] == "example.com.txt"
         assert results[0]["VersionId"] == "version-1"
@@ -198,14 +208,14 @@ class TestIterateScrapedTextObjectsAndVersions:
         assert results[0]["IsLatest"] is True
         assert results[0]["Type"] == "Version"
         assert "Tags" not in results[0]
-        
+
         # Check second version
         assert results[1]["Key"] == "example.com.txt"
         assert results[1]["VersionId"] == "version-2"
         assert results[1]["Size"] == 512
         assert results[1]["IsLatest"] is False
         assert results[1]["Type"] == "Version"
-        
+
         # Check delete marker
         assert results[2]["Key"] == "deleted.com.txt"
         assert results[2]["VersionId"] == "delete-marker-1"
@@ -221,10 +231,10 @@ class TestIterateScrapedTextObjectsAndVersions:
         # Mock S3 client and paginator
         mock_s3_client = AsyncMock()
         mock_paginator = MagicMock()  # Use MagicMock for paginator
-        
+
         # Make get_paginator a regular (non-async) method that returns the mock paginator
         mock_s3_client.get_paginator = MagicMock(return_value=mock_paginator)
-        
+
         # Mock get_object_tagging responses
         mock_s3_client.get_object_tagging.side_effect = [
             {
@@ -235,7 +245,7 @@ class TestIterateScrapedTextObjectsAndVersions:
             },
             {"TagSet": [{"Key": "urls_scraped", "Value": "5"}]},
         ]
-        
+
         # Mock pagination response
         mock_page = {
             "Versions": [
@@ -267,34 +277,34 @@ class TestIterateScrapedTextObjectsAndVersions:
                 }
             ],
         }
-        
+
         # Create an async generator function for pagination
         async def mock_paginate_async():
             yield mock_page
-        
+
         mock_paginator.paginate.return_value = mock_paginate_async()
-        
+
         # Collect results with tags
         results = []
         async for obj_version in iterate_scraped_text_objects_and_versions(
             mock_s3_client, include_tags=True
         ):
             results.append(obj_version)
-        
+
         # Verify tag calls were made
         assert mock_s3_client.get_object_tagging.call_count == 2
-        
+
         # Verify results
         assert len(results) == 3
-        
+
         # Check first version with tags
         assert results[0]["Key"] == "example.com.txt"
         assert results[0]["Tags"] == {"urls_scraped": "10", "batch_title": "batch_1"}
-        
+
         # Check second version with tags
         assert results[1]["Key"] == "test.com.txt"
         assert results[1]["Tags"] == {"urls_scraped": "5"}
-        
+
         # Check delete marker (should have empty tags)
         assert results[2]["Type"] == "DeleteMarker"
         assert results[2]["Tags"] == {}
@@ -304,25 +314,25 @@ class TestIterateScrapedTextObjectsAndVersions:
         """Test iteration with prefix filter."""
         mock_s3_client = AsyncMock()
         mock_paginator = MagicMock()  # Use MagicMock for paginator
-        
+
         # Make get_paginator a regular (non-async) method that returns the mock paginator
         mock_s3_client.get_paginator = MagicMock(return_value=mock_paginator)
-        
+
         mock_page = {"Versions": [], "DeleteMarkers": []}
-        
+
         # Create an async generator function for pagination
         async def mock_paginate_async():
             yield mock_page
-        
+
         mock_paginator.paginate.return_value = mock_paginate_async()
-        
+
         prefix = "test-prefix/"
         results = []
         async for obj_version in iterate_scraped_text_objects_and_versions(
             mock_s3_client, prefix=prefix
         ):
             results.append(obj_version)
-        
+
         # Verify paginator was called with prefix
         call_args = mock_paginator.paginate.call_args
         assert call_args.kwargs["Prefix"] == prefix
@@ -332,23 +342,25 @@ class TestIterateScrapedTextObjectsAndVersions:
         """Test iteration when S3 returns empty response."""
         mock_s3_client = AsyncMock()
         mock_paginator = MagicMock()  # Use MagicMock for paginator
-        
+
         # Make get_paginator a regular (non-async) method that returns the mock paginator
         mock_s3_client.get_paginator = MagicMock(return_value=mock_paginator)
-        
+
         # Empty response
         mock_page = {}
-        
+
         # Create an async generator function for pagination
         async def mock_paginate_async():
             yield mock_page
-        
+
         mock_paginator.paginate.return_value = mock_paginate_async()
-        
+
         results = []
-        async for obj_version in iterate_scraped_text_objects_and_versions(mock_s3_client):
+        async for obj_version in iterate_scraped_text_objects_and_versions(
+            mock_s3_client
+        ):
             results.append(obj_version)
-        
+
         assert len(results) == 0
 
 
@@ -377,44 +389,52 @@ class TestScrapedTextUtilS3IntegrationWithTags:
             version_id, s3_url = await upload_scraped_text_to_s3(
                 s3_client, file_content, file_name, tags
             )
-            
+
             # Test tag retrieval
-            retrieved_tags = await get_scraped_text_object_tags(
+            retrieved_tags = await get_scraped_text_object_tags_by_filename(
                 s3_client, file_name, version_id
             )
             assert retrieved_tags == tags
-            
+
             # Test iteration without tags
             found_without_tags = False
             async for obj_version in iterate_scraped_text_objects_and_versions(
                 s3_client, prefix=file_name
             ):
-                if obj_version["Key"] == file_name and obj_version["VersionId"] == version_id:
+                if (
+                    obj_version["Key"] == file_name
+                    and obj_version["VersionId"] == version_id
+                ):
                     found_without_tags = True
                     assert "Tags" not in obj_version
                     assert obj_version["Type"] == "Version"
                     assert obj_version["IsLatest"] is True
                     break
-            
+
             assert found_without_tags, "Object not found in iteration without tags"
-            
+
             # Test iteration with tags
             found_with_tags = False
             async for obj_version in iterate_scraped_text_objects_and_versions(
                 s3_client, prefix=file_name, include_tags=True
             ):
-                if obj_version["Key"] == file_name and obj_version["VersionId"] == version_id:
+                if (
+                    obj_version["Key"] == file_name
+                    and obj_version["VersionId"] == version_id
+                ):
                     found_with_tags = True
                     assert obj_version["Tags"] == tags
                     assert obj_version["Type"] == "Version"
                     break
-            
+
             assert found_with_tags, "Object not found in iteration with tags"
-            
+
         finally:
             # Cleanup
             try:
-                await delete_scraped_text_from_s3(s3_client, file_name, version_id)
+                await delete_scraped_text_from_s3_by_filename(
+                    s3_client, file_name, version_id
+                )
             except Exception as e:
                 if "AccessDenied" not in str(e):
                     raise
