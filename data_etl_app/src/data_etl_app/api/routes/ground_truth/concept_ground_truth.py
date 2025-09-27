@@ -116,8 +116,9 @@ async def fetch_concept_ground_truth_template(
         raise HTTPException(
             status_code=400,
             detail=(
-                f"The provided URL:`{mfg_url}` does not belong to a valid manufacturer, because {manufacturer.is_manufacturer.reason}. If you think otherwise, "
-                f"please submit a ground truth for `is_manufacturer` binary classification first using `/ground_truth/text-level/binary-classification/template` endpoint."
+                f"The provided URL:`{mfg_url}` does not belong to a valid manufacturer. "
+                f"Following is the reason. {manufacturer.is_manufacturer.reason}` If you think otherwise, "
+                f"please submit a ground truth for `is_manufacturer` on binary classification endpoint."
             ),
         )
 

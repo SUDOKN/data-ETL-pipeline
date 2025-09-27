@@ -5,7 +5,9 @@ from core.models.db.manufacturer import Manufacturer
 from core.models.field_types import (
     S3FileVersionIDType,
 )
+from core.models.prompt import Prompt
 
+from data_etl_app.services.knowledge.prompt_service import get_prompt_service
 from data_etl_app.models.types_and_enums import BinaryClassificationTypeEnum
 from data_etl_app.models.db.binary_ground_truth import (
     BinaryGroundTruth,
@@ -17,6 +19,10 @@ from core.services.manufacturer_service import (
 )
 from core.utils.aws.s3.scraped_text_util import (
     download_scraped_text_from_s3_by_mfg_etld1,
+)
+from data_etl_app.utils.prompt_s3_util import (
+    does_prompt_version_exist,
+    get_prompt_filename,
 )
 
 logger = logging.getLogger(__name__)
@@ -148,12 +154,19 @@ async def _validate_binary_ground_truth(
     )
 
     # check if prompt file exists
-    await download_scraped_text_from_s3_by_mfg_etld1(
-        etld1=binary_ground_truth.mfg_etld1,
-        version_id=binary_ground_truth.scraped_text_file_version_id,
+    prompt_filename = get_prompt_filename(
+        f"{binary_ground_truth.classification_type.value}"
     )
 
-    _validate_new_human_decision(new_human_decision, binary_ground_truth)
+    if not await does_prompt_version_exist(
+        prompt_filename, binary_ground_truth.llm_decision.stats.prompt_version_id
+    ):
+        raise ValueError(f"Prompt file '{prompt_filename}' does not exist.")
+
+    _validate_new_human_decision(
+        new_human_decision=new_human_decision,
+        binary_ground_truth=binary_ground_truth,
+    )
 
 
 def _validate_new_human_decision(
