@@ -28,7 +28,7 @@ from data_etl_app.models.types_and_enums import ConceptTypeEnum
 
 
 async def get_extracted_concept_ground_truth(
-    manufacturer: Manufacturer,
+    linked_manufacturer: Manufacturer,
     concept_type: ConceptTypeEnum,
     chunk_no: int,
 ) -> ConceptGroundTruth | None:
@@ -40,17 +40,17 @@ async def get_extracted_concept_ground_truth(
     Assumed concept_type is a valid ConceptTypeEnum value and present in manufacturer's data.
     """
     concept_extraction_results: ConceptExtractionResults | None = getattr(
-        manufacturer, concept_type, None
+        linked_manufacturer, concept_type, None
     )
     assert (
         concept_extraction_results is not None
-    ), f"Concept type '{concept_type}' not found in manufacturer '{manufacturer.etld1}'."
+    ), f"Concept type '{concept_type}' not found in manufacturer '{linked_manufacturer.etld1}'."
     return await ConceptGroundTruth.find_one(
-        ConceptGroundTruth.mfg_etld1 == manufacturer.etld1,
+        ConceptGroundTruth.mfg_etld1 == linked_manufacturer.etld1,
         ConceptGroundTruth.concept_type == concept_type,
         # ------------------ knowledge ids ------------------- #
         ConceptGroundTruth.scraped_text_file_version_id
-        == manufacturer.scraped_text_file_version_id,
+        == linked_manufacturer.scraped_text_file_version_id,
         ConceptGroundTruth.ontology_version_id
         == concept_extraction_results.stats.ontology_version_id,
         ConceptGroundTruth.extract_prompt_version_id
@@ -77,10 +77,10 @@ async def does_a_cgt_exist_with_scraped_file_version(
 
 
 async def add_correction_to_concept_ground_truth(
-    timestamp: datetime,
-    manufacturer: Manufacturer,
+    linked_manufacturer: Manufacturer,
     existing_concept_gt: ConceptGroundTruth,
     new_correction: ConceptResultCorrection,
+    timestamp: datetime,
 ) -> ConceptGroundTruth:
 
     existing_concept_gt.updated_at = timestamp
@@ -91,7 +91,7 @@ async def add_correction_to_concept_ground_truth(
         existing_concept_gt.correction_logs.pop()  # the new correction will replace the last one because it is from the same author
 
     await _validate_concept_ground_truth(
-        manufacturer, existing_concept_gt, new_correction
+        linked_manufacturer, existing_concept_gt, new_correction
     )
 
     existing_concept_gt.correction_logs.append(
@@ -137,7 +137,7 @@ async def save_new_concept_ground_truth(
 
 
 async def _validate_concept_ground_truth(
-    manufacturer: Manufacturer,
+    linked_manufacturer: Manufacturer,
     concept_gt: ConceptGroundTruth,
     new_correction: ConceptResultCorrection,
 ) -> None:
@@ -152,7 +152,9 @@ async def _validate_concept_ground_truth(
     """
 
     # concept_data check
-    concept_extraction_results = getattr(manufacturer, concept_gt.concept_type, None)
+    concept_extraction_results = getattr(
+        linked_manufacturer, concept_gt.concept_type, None
+    )
     if not concept_extraction_results:
         raise ValueError(
             f"No extraction results found for concept type '{concept_gt.concept_type}'"
@@ -185,22 +187,22 @@ async def _validate_concept_ground_truth(
     # file and version ID check
     scraped_text, version_id = await download_scraped_text_from_s3_by_mfg_etld1(
         etld1=concept_gt.mfg_etld1,
-        version_id=manufacturer.scraped_text_file_version_id,
+        version_id=linked_manufacturer.scraped_text_file_version_id,
     )
-    if manufacturer.scraped_text_file_version_id != version_id:
+    if linked_manufacturer.scraped_text_file_version_id != version_id:
         raise ValueError(
-            f"Scraped text version ID mismatch for mfg_url: {concept_gt.mfg_etld1}. Expected: {manufacturer.scraped_text_file_version_id}, got: {version_id}. (manufacturer.scraped_text_file_version_id != version_id)"
+            f"Scraped text version ID mismatch for mfg_url: {concept_gt.mfg_etld1}. Expected: {linked_manufacturer.scraped_text_file_version_id}, got: {version_id}. (manufacturer.scraped_text_file_version_id != version_id)"
         )
     if concept_gt.scraped_text_file_version_id != version_id:
         raise ValueError(
             f"Scraped text version ID mismatch for concept ground truth. Expected: {version_id}, got: {concept_gt.scraped_text_file_version_id}. (concept_ground_truth.scraped_text_file_version_id != version_id)"
         )
     if (
-        manufacturer.scraped_text_file_version_id
+        linked_manufacturer.scraped_text_file_version_id
         != concept_gt.scraped_text_file_version_id
     ):
         raise ValueError(
-            f"Scraped text version ID mismatch for concept ground truth. Expected: {manufacturer.scraped_text_file_version_id}, got: {concept_gt.scraped_text_file_version_id}. (manufacturer.scraped_text_file_version_id != concept_ground_truth.scraped_text_file_version_id)"
+            f"Scraped text version ID mismatch for concept ground truth. Expected: {linked_manufacturer.scraped_text_file_version_id}, got: {concept_gt.scraped_text_file_version_id}. (manufacturer.scraped_text_file_version_id != concept_ground_truth.scraped_text_file_version_id)"
         )
 
     # chunk text check

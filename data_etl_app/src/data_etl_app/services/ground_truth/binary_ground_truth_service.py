@@ -29,7 +29,7 @@ logger = logging.getLogger(__name__)
 
 
 async def get_binary_ground_truth(
-    manufacturer: Manufacturer,
+    linked_manufacturer: Manufacturer,
     prompt_version_id: S3FileVersionIDType,
     classification_type: BinaryClassificationTypeEnum,
 ) -> BinaryGroundTruth | None:
@@ -40,9 +40,9 @@ async def get_binary_ground_truth(
 
     """
     return await BinaryGroundTruth.find_one(
-        BinaryGroundTruth.mfg_etld1 == manufacturer.etld1,
+        BinaryGroundTruth.mfg_etld1 == linked_manufacturer.etld1,
         BinaryGroundTruth.scraped_text_file_version_id
-        == manufacturer.scraped_text_file_version_id,
+        == linked_manufacturer.scraped_text_file_version_id,
         BinaryGroundTruth.llm_decision.stats.prompt_version_id  # CAUTION: does not throw an error if stats doesn't exist
         == prompt_version_id,  # critical
         BinaryGroundTruth.classification_type == classification_type,
@@ -64,6 +64,7 @@ async def does_a_bgt_exist_with_scraped_file_version(
 
 
 async def add_decision_to_binary_ground_truth(
+    linked_manufacturer: Manufacturer,
     existing_binary_gt: BinaryGroundTruth,
     new_human_decision: HumanBinaryDecision,
     timestamp: datetime,
@@ -82,6 +83,7 @@ async def add_decision_to_binary_ground_truth(
         existing_binary_gt.human_decision_logs.pop()  # the new decision will replace the last one because it is from the same author
 
     await _validate_binary_ground_truth(
+        linked_manufacturer=linked_manufacturer,
         new_human_decision=new_human_decision,
         binary_ground_truth=existing_binary_gt,
     )
@@ -98,6 +100,7 @@ async def add_decision_to_binary_ground_truth(
 
 
 async def save_new_binary_ground_truth(
+    linked_manufacturer: Manufacturer,
     binary_gt: BinaryGroundTruth,
     new_human_decision: HumanBinaryDecision,
     timestamp: datetime,
@@ -110,6 +113,7 @@ async def save_new_binary_ground_truth(
     binary_gt.updated_at = timestamp
 
     await _validate_binary_ground_truth(
+        linked_manufacturer=linked_manufacturer,
         new_human_decision=new_human_decision,
         binary_ground_truth=binary_gt,
     )
@@ -126,6 +130,7 @@ async def save_new_binary_ground_truth(
 
 
 async def _validate_binary_ground_truth(
+    linked_manufacturer: Manufacturer,
     new_human_decision: HumanBinaryDecision,
     binary_ground_truth: BinaryGroundTruth,
 ) -> None:
@@ -142,9 +147,9 @@ async def _validate_binary_ground_truth(
         raise ValueError("human_decision must be provided if llm_decision is present.")
 
     # existing manufacturer check
-    if not await find_manufacturer_by_etld1(binary_ground_truth.mfg_etld1):
+    if linked_manufacturer.etld1 != binary_ground_truth.mfg_etld1:
         raise ValueError(
-            f"Manufacturer with URL '{binary_ground_truth.mfg_etld1}' does not exist."
+            f"Manufacturer etld1 mismatch: {linked_manufacturer.etld1} vs {binary_ground_truth.mfg_etld1}"
         )
 
     # check if scraped file exists
