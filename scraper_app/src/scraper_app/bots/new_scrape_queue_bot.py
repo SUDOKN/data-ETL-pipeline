@@ -279,7 +279,7 @@ async def get_valid_scraped_file(
                 logger.info(
                     f"Existing scraped file for {mfg_etld} is invalid. Deleting and setting existing_scraped_file = None."
                 )
-                await existing_scraped_file.delete_permanently_if_possible()
+                # await existing_scraped_file.delete_permanently_if_possible()
                 existing_scraped_file = None
         else:
             logger.info(f"No valid existing scraped file for {mfg_etld}.")
@@ -342,7 +342,7 @@ async def get_valid_scraped_file(
                     f" Setting existing_scraped_file = None.\n"
                     f"{existing_scraped_file}"
                 )
-                await existing_scraped_file.delete_permanently_if_possible()
+                # await existing_scraped_file.delete_permanently_if_possible()
                 existing_scraped_file = None
 
     logger.info(f"after s3 check, existing_scraped_file = {existing_scraped_file}.")
