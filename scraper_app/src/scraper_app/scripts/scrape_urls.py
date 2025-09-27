@@ -7,10 +7,10 @@ from datetime import datetime
 from urllib.parse import urlparse
 
 from aiobotocore.session import get_session
-from shared.utils.aws.queue.sqs_scraper_client_util import make_sqs_scraper_client
-from shared.utils.aws.queue.scrape_queue_util import push_item_to_scrape_queue
-from shared.models.to_scrape_item import ToScrapeItem
-from shared.models.db.manufacturer import Batch
+from core.utils.aws.queue.sqs_scraper_client_util import make_sqs_scraper_client
+from core.utils.aws.queue.scrape_queue_util import push_item_to_scrape_queue
+from core.models.to_scrape_item import ToScrapeItem
+from core.models.db.manufacturer import Batch
 
 logger = logging.getLogger(__name__)
 

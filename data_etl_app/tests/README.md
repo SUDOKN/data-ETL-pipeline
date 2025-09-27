@@ -4,7 +4,7 @@ This directory contains the test suite for the application. It is organized into
 
 ## Directory Structure
 
-- **conftest.py**: Contains fixtures that can be shared across multiple test files, such as a test client or mock Redis instances.
+- **conftest.py**: Contains fixtures that can be core across multiple test files, such as a test client or mock Redis instances.
   
 - **test_routes/**: This directory contains tests related to the application's routes. It is marked as a package and can be used to organize route-related tests.
 

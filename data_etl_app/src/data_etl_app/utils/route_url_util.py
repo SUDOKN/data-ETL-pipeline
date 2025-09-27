@@ -1,6 +1,6 @@
 import os
 
-from data_etl_app.models.types import ConceptTypeEnum
+from data_etl_app.models.types_and_enums import ConceptTypeEnum
 
 PROTOCOL = os.getenv("PROTOCOL")
 HOSTED_AT = os.getenv("HOSTED_AT")

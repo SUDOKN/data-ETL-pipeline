@@ -1,8 +1,8 @@
 {
   "apps": [
     {
-      "name": "extract-queue-bot-normal",
-      "script": "./data_etl_app/src/data_etl_app/bots/extract_queue_bot.py",
+      "name": "extract-q-bot",
+      "script": "./data_etl_app/src/data_etl_app/bots/new_extract_queue_bot.py",
       "interpreter": "./.venv/bin/python3",
       "args": "--priority 0 --max_concurrent_manufacturers 25 --debug INFO",
       "cwd": "./",
@@ -23,15 +23,15 @@
       "min_uptime": "10s",
       "restart_delay": 5000,
       "env": {
-        "PYTHONPATH": "./data_etl_app/src:./shared/src:./open_ai_key_app/src",
+        "PYTHONPATH": "./data_etl_app/src:./core/src:./open_ai_key_app/src",
         "PYTHONUNBUFFERED": "1",
         "VIRTUAL_ENV": "./.venv",
         "PATH": "./.venv/bin:/usr/local/bin:/usr/bin:/bin"
       }
     },
     {
-      "name": "scrape-queue-bot-normal",
-      "script": "./scraper_app/src/scraper_app/bots/scrape_queue_bot.py",
+      "name": "scrape-q-bot",
+      "script": "./scraper_app/src/scraper_app/bots/new_scrape_queue_bot.py",
       "interpreter": "./.venv/bin/python3",
       "args": "--priority 0 --max_concurrent_browsers 5 --max_depth 5",
       "cwd": "./",
@@ -44,7 +44,7 @@
       "out_file": "./logs/scrape-queue-bot-normal-out.log",
       "log_file": "./logs/scrape-queue-bot-normal-combined.log",
       "time": true,
-      "kill_timeout": 30000,
+      "kill_timeout": 2000,
       "shutdown_with_message": true,
       "listen_timeout": 8000,
       "wait_ready": false,
@@ -52,7 +52,7 @@
       "min_uptime": "10s",
       "restart_delay": 5000,
       "env": {
-        "PYTHONPATH": "./scraper_app/src:./shared/src:./open_ai_key_app/src",
+        "PYTHONPATH": "./scraper_app/src:./core/src:./open_ai_key_app/src",
         "PYTHONUNBUFFERED": "1",
         "VIRTUAL_ENV": "./.venv",
         "PATH": "./.venv/bin:/usr/local/bin:/usr/bin:/bin"
@@ -81,7 +81,7 @@
       "min_uptime": "10s",
       "restart_delay": 5000,
       "env": {
-        "PYTHONPATH": "./data_etl_app/src:./shared/src:./open_ai_key_app/src",
+        "PYTHONPATH": "./data_etl_app/src:./core/src:./open_ai_key_app/src",
         "PYTHONUNBUFFERED": "1",
         "NODE_ENV": "production",
         "LOG_LEVEL": "INFO",
