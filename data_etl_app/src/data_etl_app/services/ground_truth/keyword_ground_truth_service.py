@@ -6,12 +6,12 @@ from datetime import datetime
 logger = logging.getLogger(__name__)
 
 
-from shared.models.field_types import S3FileVersionIDType
-from shared.utils.aws.s3.scraped_text_util import (
+from core.models.field_types import S3FileVersionIDType
+from core.utils.aws.s3.scraped_text_util import (
     get_file_name_from_mfg_etld,
     download_scraped_text_from_s3_by_filename,
 )
-from shared.models.db.manufacturer import Manufacturer
+from core.models.db.manufacturer import Manufacturer
 
 from data_etl_app.models.keyword_extraction_results import KeywordExtractionResults
 from data_etl_app.models.db.keyword_ground_truth import (
@@ -74,7 +74,6 @@ async def add_new_correction_to_keyword_ground_truth(
     manufacturer: Manufacturer,
     existing_keyword_gt: KeywordGroundTruth,
     new_correction: KeywordResultCorrection,
-    s3_client,
 ) -> KeywordGroundTruth:
 
     existing_keyword_gt.updated_at = timestamp
@@ -85,7 +84,7 @@ async def add_new_correction_to_keyword_ground_truth(
         existing_keyword_gt.correction_logs.pop()  # the new correction will replace the last one because it is from the same author
 
     await _validate_keyword_ground_truth(
-        manufacturer, existing_keyword_gt, new_correction, s3_client
+        manufacturer, existing_keyword_gt, new_correction
     )
 
     existing_keyword_gt.correction_logs.append(
@@ -106,7 +105,6 @@ async def save_new_keyword_ground_truth(
     manufacturer: Manufacturer,
     new_keyword_gt: KeywordGroundTruth,
     new_correction: KeywordResultCorrection,
-    s3_client,
 ) -> KeywordGroundTruth:
     """
     Prepare a new keyword ground truth instance with the provided timestamp.
@@ -116,9 +114,7 @@ async def save_new_keyword_ground_truth(
     new_keyword_gt.created_at = timestamp
     new_keyword_gt.updated_at = timestamp
 
-    await _validate_keyword_ground_truth(
-        manufacturer, new_keyword_gt, new_correction, s3_client
-    )
+    await _validate_keyword_ground_truth(manufacturer, new_keyword_gt, new_correction)
 
     new_keyword_gt.correction_logs.append(
         KeywordResultCorrectionLog(
@@ -137,7 +133,6 @@ async def _validate_keyword_ground_truth(
     manufacturer: Manufacturer,
     keyword_gt: KeywordGroundTruth,
     new_correction: KeywordResultCorrection,
-    s3_client,
 ) -> None:
     """
     Validate and save the keyword ground truth to the database.
@@ -148,8 +143,6 @@ async def _validate_keyword_ground_truth(
     - Make sure to set created_at and updated_at beforehand.
     - Ensure that the manufacturer is prevalidated and exists in the database.
     """
-
-    keyword_gt = KeywordGroundTruth.model_validate(keyword_gt.model_dump())
 
     # keyword_data check
     keyword_extraction_results = getattr(manufacturer, keyword_gt.keyword_type, None)
@@ -184,7 +177,6 @@ async def _validate_keyword_ground_truth(
 
     # file and version ID check
     scraped_text, version_id = await download_scraped_text_from_s3_by_filename(
-        s3_client,
         file_name=get_file_name_from_mfg_etld(keyword_gt.mfg_etld1),
         version_id=manufacturer.scraped_text_file_version_id,
     )

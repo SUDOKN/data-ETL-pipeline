@@ -1,9 +1,9 @@
+import asyncio
 import logging
-import threading
 from typing import Dict, Optional
 
+from core.models.prompt import Prompt
 from open_ai_key_app.utils.ask_gpt_util import num_tokens_from_string
-from shared.models.prompt import Prompt
 from data_etl_app.utils.prompt_s3_util import download_prompt
 
 logger = logging.getLogger(__name__)
@@ -28,42 +28,48 @@ PROMPT_NAMES = [
 
 class PromptService:
     _instance: "PromptService | None" = None
-    _lock = (
-        threading.Lock()
-    )  # not strictly necessary, but good practice for thread safety, read in notes
-    _prompt_cache: Dict[str, Prompt]
+    _lock = asyncio.Lock()
+    _initialized = False
 
-    def __new__(cls) -> "PromptService":
-        # this gets called before __init__, when anyone calls PromptService()
-        # it ensures that only one instance of the service is created
-        # every next time, it will return the same instance
-        logger.info("PromptService instance is None, acquiring lock for creation")
+    def __init__(self):
+        self._prompt_cache: Dict[str, Prompt] = {}
+
+    @classmethod
+    async def get_instance(cls) -> "PromptService":
+        """Get the singleton instance with lazy initialization."""
         if cls._instance is None:
-            with cls._lock:
+            async with cls._lock:
                 if cls._instance is None:
                     logger.info("Creating new PromptService singleton instance")
-                    cls._instance = super().__new__(cls)
-                    cls._instance._init_data()
-                else:
-                    logger.info(
-                        "Another thread created the PromptService instance while waiting for lock"
-                    )
-        else:
-            logger.debug("Returning existing PromptService singleton instance")
+                    cls._instance = cls()
+
+        # Initialize data if not already done
+        if not cls._initialized:
+            async with cls._lock:
+                if not cls._initialized:
+                    logger.info("Initializing PromptService data")
+                    await cls._instance._init_data()
+                    cls._initialized = True
+
         return cls._instance
 
-    def _init_data(self) -> None:
+    async def _init_data(self) -> None:
+        """Initialize prompt cache by downloading from S3."""
         self._prompt_cache = {}
-        for attr in PROMPT_NAMES:
-            if hasattr(self, attr):
-                delattr(self, attr)
-            self._prompt_cache[attr] = self._download_prompt(attr, None)
-        logger.info("PromptService initialized and prompts loaded")
+        try:
+            for prompt_name in PROMPT_NAMES:
+                self._prompt_cache[prompt_name] = await self._download_prompt(
+                    prompt_name, None
+                )
+            logger.info("PromptService initialized and prompts loaded")
+        except Exception as e:
+            logger.error(f"Failed to initialize prompt service: {e}")
+            raise
 
-    def _download_prompt(
+    async def _download_prompt(
         self, prompt_filename: str, version_id: Optional[str]
     ) -> Prompt:
-        prompt_content, actual_version_id = download_prompt(
+        prompt_content, actual_version_id = await download_prompt(
             f"{prompt_filename}.txt", version_id
         )
         if version_id and actual_version_id != version_id:
@@ -77,103 +83,79 @@ class PromptService:
             num_tokens=num_tokens_from_string(prompt_content),
         )
 
-    def refresh(self) -> None:
-        """Reload ontology data from S3 and clear all cached properties."""
-        logger.info("Refreshing prompt data - acquiring lock")
-        with self._lock:
+    async def refresh(self) -> None:
+        """Reload prompt data from S3."""
+        logger.info("Refreshing prompt data")
+        async with self._lock:
             logger.info("Lock acquired, starting prompt refresh")
-            self._init_data()
+            await self._init_data()
+
+    def _get_prompt(self, prompt_name: str) -> Prompt:
+        """Helper method to get prompt from cache with validation."""
+        if not self._initialized:
+            raise RuntimeError(
+                f"PromptService not initialized. Call get_instance() first."
+            )
+
+        if prompt_name not in self._prompt_cache:
+            raise ValueError(f"{prompt_name} prompt not found in cache")
+
+        return self._prompt_cache[prompt_name]
 
     @property
     def find_business_desc_prompt(self) -> Prompt:
-        if "find_business_desc" not in self._prompt_cache:
-            raise ValueError("find_business_desc prompt not found in cache")
-
-        return self._prompt_cache["find_business_desc"]
+        return self._get_prompt("find_business_desc")
 
     @property
     def is_manufacturer_prompt(self) -> Prompt:
-        if "is_manufacturer" not in self._prompt_cache:
-            raise ValueError("is_manufacturer prompt not found in cache")
-
-        return self._prompt_cache["is_manufacturer"]
+        return self._get_prompt("is_manufacturer")
 
     @property
     def is_product_manufacturer_prompt(self) -> Prompt:
-        if "is_product_manufacturer" not in self._prompt_cache:
-            raise ValueError("is_product_manufacturer prompt not found in cache")
-
-        return self._prompt_cache["is_product_manufacturer"]
+        return self._get_prompt("is_product_manufacturer")
 
     @property
     def is_contract_manufacturer_prompt(self) -> Prompt:
-        if "is_contract_manufacturer" not in self._prompt_cache:
-            raise ValueError("is_contract_manufacturer prompt not found in cache")
-
-        return self._prompt_cache["is_contract_manufacturer"]
+        return self._get_prompt("is_contract_manufacturer")
 
     @property
     def extract_any_product_prompt(self) -> Prompt:
-        if "extract_any_product" not in self._prompt_cache:
-            raise ValueError("extract_any_product prompt not found in cache")
-
-        return self._prompt_cache["extract_any_product"]
+        return self._get_prompt("extract_any_product")
 
     @property
     def extract_any_certificate_prompt(self) -> Prompt:
-        if "extract_any_certificate" not in self._prompt_cache:
-            raise ValueError("extract_any_certificate prompt not found in cache")
-
-        return self._prompt_cache["extract_any_certificate"]
+        return self._get_prompt("extract_any_certificate")
 
     @property
     def extract_any_industry_prompt(self) -> Prompt:
-        if "extract_any_industry" not in self._prompt_cache:
-            raise ValueError("extract_any_industry prompt not found in cache")
-
-        return self._prompt_cache["extract_any_industry"]
+        return self._get_prompt("extract_any_industry")
 
     @property
     def extract_any_material_cap_prompt(self) -> Prompt:
-        if "extract_any_material_cap" not in self._prompt_cache:
-            raise ValueError("extract_any_material_cap prompt not found in cache")
-
-        return self._prompt_cache["extract_any_material_cap"]
+        return self._get_prompt("extract_any_material_cap")
 
     @property
     def extract_any_process_cap_prompt(self) -> Prompt:
-        if "extract_any_process_cap" not in self._prompt_cache:
-            raise ValueError("extract_any_process_cap prompt not found in cache")
-
-        return self._prompt_cache["extract_any_process_cap"]
+        return self._get_prompt("extract_any_process_cap")
 
     @property
     def unknown_to_known_certificate_prompt(self) -> Prompt:
-        if "unknown_to_known_certificate" not in self._prompt_cache:
-            raise ValueError("unknown_to_known_certificate prompt not found in cache")
-
-        return self._prompt_cache["unknown_to_known_certificate"]
+        return self._get_prompt("unknown_to_known_certificate")
 
     @property
     def unknown_to_known_industry_prompt(self) -> Prompt:
-        if "unknown_to_known_industry" not in self._prompt_cache:
-            raise ValueError("unknown_to_known_industry prompt not found in cache")
-
-        return self._prompt_cache["unknown_to_known_industry"]
+        return self._get_prompt("unknown_to_known_industry")
 
     @property
     def unknown_to_known_material_cap_prompt(self) -> Prompt:
-        if "unknown_to_known_material_cap" not in self._prompt_cache:
-            raise ValueError("unknown_to_known_material_cap prompt not found in cache")
-
-        return self._prompt_cache["unknown_to_known_material_cap"]
+        return self._get_prompt("unknown_to_known_material_cap")
 
     @property
     def unknown_to_known_process_cap_prompt(self) -> Prompt:
-        if "unknown_to_known_process_cap" not in self._prompt_cache:
-            raise ValueError("unknown_to_known_process_cap prompt not found in cache")
-
-        return self._prompt_cache["unknown_to_known_process_cap"]
+        return self._get_prompt("unknown_to_known_process_cap")
 
 
-prompt_service = PromptService()
+# Factory function for getting the service instance
+async def get_prompt_service() -> PromptService:
+    """Factory function to get the PromptService instance."""
+    return await PromptService.get_instance()

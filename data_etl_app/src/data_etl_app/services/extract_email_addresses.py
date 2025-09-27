@@ -1,10 +1,10 @@
 import logging
 
 from requests import session
-from shared.models.field_types import MfgETLDType
-from shared.utils.aws.s3.s3_client_util import make_s3_client
-from shared.services.manufacturer_service import find_manufacturer_by_etld1
-from shared.utils.aws.s3.scraped_text_util import (
+from core.models.field_types import MfgETLDType
+from core.utils.aws.s3.s3_client_util import make_s3_client
+from core.services.manufacturer_service import find_manufacturer_by_etld1
+from core.utils.aws.s3.scraped_text_util import (
     download_scraped_text_from_s3_by_mfg_etld1,
 )
 

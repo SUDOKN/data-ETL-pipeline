@@ -1,10 +1,35 @@
-from aiobotocore.session import get_session
 import argparse
 import asyncio
 import logging
 from datetime import datetime
 from typing import Callable, Awaitable, Any
 
+from core.dependencies.load_core_env import load_core_env
+from open_ai_key_app.dependencies.load_open_ai_app_env import load_open_ai_app_env
+from data_etl_app.dependencies.load_data_etl_env import load_data_etl_env
+
+from core.dependencies.aws_clients import (
+    initialize_core_aws_clients,
+    cleanup_core_aws_clients,
+)
+from data_etl_app.dependencies.aws_clients import (
+    initialize_data_etl_aws_clients,
+    cleanup_data_etl_aws_clients,
+)
+
+from core.models.db.manufacturer import Manufacturer
+from core.models.db.extraction_error import ExtractionError
+from core.models.to_extract_item import ToExtractItem
+
+from core.services.user_service import is_user_MEP
+from core.utils.mongo_client import init_db
+from core.utils.time_util import get_current_time
+
+from core.services.manufacturer_service import (
+    find_manufacturer_by_etld1,
+    update_manufacturer,
+)
+from scraper_app.models.scraped_text_file import ScrapedTextFile
 from data_etl_app.models.binary_classification import BinaryClassificationResult
 from data_etl_app.models.db.binary_ground_truth import HumanBinaryDecision
 from data_etl_app.models.types_and_enums import BinaryClassificationTypeEnum
@@ -14,33 +39,6 @@ from data_etl_app.services.manufacturer_user_form_service import (
 from data_etl_app.services.ground_truth.binary_ground_truth_service import (
     get_binary_ground_truth,
 )
-from scraper_app.models.scraped_text_file import ScrapedTextFile
-
-from shared.models.db.manufacturer import Manufacturer
-from shared.models.db.extraction_error import ExtractionError
-from shared.models.to_extract_item import ToExtractItem
-
-from shared.services.user_service import is_user_MEP
-from shared.utils.aws.queue.sqs_extractor_client_util import make_sqs_extractor_client
-from shared.utils.aws.queue.extract_queue_util import (
-    poll_item_from_extract_queue,
-    delete_item_from_extract_queue,
-)
-from shared.utils.aws.queue.priority_extract_queue_util import (
-    poll_item_from_priority_extract_queue,
-    delete_item_from_priority_extract_queue,
-)
-from shared.utils.mongo_client import init_db
-from shared.utils.send_email_util import emailer
-from shared.utils.aws.s3.s3_client_util import make_s3_client
-from shared.utils.time_util import get_current_time
-
-from shared.services.manufacturer_service import (
-    find_manufacturer_by_etld1,
-    update_manufacturer,
-)
-
-from open_ai_key_app.utils.ask_gpt_util import num_tokens_from_string
 
 from data_etl_app.services.llm_powered.search.llm_search_service import (
     find_business_desc_using_only_first_chunk,
@@ -127,15 +125,12 @@ def parse_args():
     return parser.parse_args()
 
 
-# TODO: fix Any
 async def process_queue(
     poll_item_from_queue: Callable[
-        [Any],
+        [],
         Awaitable[tuple[ToExtractItem, str] | tuple[None, None]],
     ],
-    delete_item_from_queue: Callable[[Any, str], Awaitable[None]],
-    sqs_client,
-    s3_client,
+    delete_item_from_queue: Callable[[str], Awaitable[None]],
     max_concurrent_manufacturers: int = 25,
 ):
 
@@ -148,8 +143,8 @@ async def process_queue(
                 await asyncio.sleep(CONCURRENCY_CHECK_INTERVAL)  # lets other tasks run
                 continue
 
-            item, receipt_handle = await poll_item_from_queue(
-                sqs_client
+            item, receipt_handle = (
+                await poll_item_from_queue()
             )  # 10 second long poll, doesn't block, yields control back to event loop
 
             if item is None:
@@ -162,12 +157,12 @@ async def process_queue(
 
             # Validate manufacturer before processing
             manufacturer, scraped_text_file, should_continue = (
-                await validate_manufacturer_for_extraction(polled_at, item, s3_client)
+                await validate_manufacturer_for_extraction(polled_at, item)
             )
 
             if not should_continue:
                 # Delete invalid item from queue and continue
-                await delete_item_from_queue(sqs_client, receipt_handle)
+                await delete_item_from_queue(receipt_handle)
                 continue
 
             # Help Pylance know we are now certain manufacturer is not None
@@ -180,7 +175,6 @@ async def process_queue(
                     polled_at,
                     scraped_text_file,
                     manufacturer,
-                    sqs_client,
                     receipt_handle,
                     delete_item_from_queue,
                     concurrent_manufacturers,
@@ -201,7 +195,6 @@ async def process_queue(
 async def validate_manufacturer_for_extraction(
     timestamp: datetime,
     item: ToExtractItem,
-    s3_client,
 ) -> tuple[Manufacturer, ScrapedTextFile, bool] | tuple[None, None, bool]:
     """
     Validate manufacturer for extraction.
@@ -242,7 +235,6 @@ async def validate_manufacturer_for_extraction(
 
     existing_scraped_file, exception = (
         await ScrapedTextFile.download_from_s3_and_create(
-            s3_client,
             item.mfg_etld1,
             manufacturer.scraped_text_file_version_id,
         )
@@ -280,7 +272,7 @@ async def process_manufacturer(
     mfg_txt: str,
     manufacturer: Manufacturer,
 ):
-    logger.debug(f"Debug mode enabled. Processing manufacturer: {manufacturer.etld1}")
+    logger.info(f"Processing manufacturer: {manufacturer}")
     if not manufacturer.business_desc:
         try:
             logger.info(
@@ -539,7 +531,6 @@ async def extract_and_cleanup(
     polled_at: datetime,
     scraped_text_file: ScrapedTextFile,
     manufacturer: Manufacturer,
-    sqs_client,
     receipt_handle: str,
     delete_item_from_queue,
     concurrent_manufacturers: set,
@@ -549,11 +540,15 @@ async def extract_and_cleanup(
     start_time = get_current_time()
     try:
         await process_manufacturer(polled_at, scraped_text_file.text, manufacturer)
+        logger.info(f"Manufacturer processed at {polled_at}:\n {manufacturer}\n\n")
 
+        logger.info(
+            f"Checking if something was missed in processing {manufacturer.etld1}."
+        )
         await create_from_manufacturer(manufacturer)
-
+        logger.info(f"{manufacturer.etld1} was completely processed.")
         if item.email_errand:
-            logger.info(f"Running email errand for {manufacturer.etld1}")
+            logger.info(f"Running email errand for {manufacturer.etld1}.")
             assert manufacturer.is_manufacturer is not None
             is_manufacturer_gt = await get_binary_ground_truth(
                 manufacturer,
@@ -613,11 +608,30 @@ async def extract_and_cleanup(
     finally:
         # Always clean up
         concurrent_manufacturers.discard(asyncio.current_task())
-        await delete_item_from_queue(sqs_client, receipt_handle)
+        await delete_item_from_queue(receipt_handle)
 
 
 async def async_main():
+    # Load environment variables
+    load_core_env()
+    load_data_etl_env()
+    load_open_ai_app_env()
+
+    from core.utils.aws.queue.extract_queue_util import (
+        poll_item_from_extract_queue,
+        delete_item_from_extract_queue,
+    )
+    from core.utils.aws.queue.priority_extract_queue_util import (
+        poll_item_from_priority_extract_queue,
+        delete_item_from_priority_extract_queue,
+    )
+
     await init_db()
+
+    # Initialize AWS clients
+    await initialize_core_aws_clients()
+    await initialize_data_etl_aws_clients()
+
     args = parse_args()
 
     log_level = args.debug.upper()
@@ -634,8 +648,6 @@ async def async_main():
     logger = logging.getLogger(__name__)
     logger.info(f"Starting extract bot with log level: {log_level}")
 
-    session = get_session()
-
     if args.priority:
         logger.info("Running extraction in priority mode")
         poll_item_from_queue = poll_item_from_priority_extract_queue
@@ -645,16 +657,16 @@ async def async_main():
         poll_item_from_queue = poll_item_from_extract_queue
         delete_item_from_queue = delete_item_from_extract_queue
 
-    async with make_sqs_extractor_client(
-        session
-    ) as sqs_extractor_client, make_s3_client(session) as s3_client:
+    try:
         await process_queue(
             poll_item_from_queue,
             delete_item_from_queue,
-            sqs_extractor_client,
-            s3_client,
             args.max_concurrent_manufacturers,
         )
+    finally:
+        # Clean up AWS clients
+        await cleanup_data_etl_aws_clients()
+        await cleanup_core_aws_clients()
 
 
 def main():

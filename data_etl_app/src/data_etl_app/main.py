@@ -1,56 +1,53 @@
 import os
 import logging
 from contextlib import asynccontextmanager
-from dotenv import load_dotenv
+
 from fastapi import FastAPI, Request
 from fastapi.responses import JSONResponse
 from fastapi.exceptions import RequestValidationError
 
-
-# Load environment variables from .env at startup
-load_dotenv(
-    dotenv_path=os.path.join(os.path.dirname(os.path.dirname(__file__)), ".env")
+logging.basicConfig(
+    level=logging.INFO, format="%(asctime)s - %(name)s - %(levelname)s - %(message)s"
 )
+from core.dependencies.load_core_env import load_core_env
+from open_ai_key_app.dependencies.load_open_ai_app_env import load_open_ai_app_env
+from data_etl_app.dependencies.load_data_etl_env import load_data_etl_env
+
+# Load environment variables
+load_core_env()
+load_data_etl_env()
+load_open_ai_app_env()
 
 log_level = os.getenv("LOG_LEVEL", "INFO").upper()
-
-logging.basicConfig(
-    level=log_level, format="%(asctime)s - %(name)s - %(levelname)s - %(message)s"
-)
 logger = logging.getLogger(__name__)
 
-from shared.utils.mongo_client import init_db
-
-from data_etl_app.api.routes.knowledge.ontology import router as ontology_router
-from data_etl_app.api.routes.knowledge.prompt import router as prompt_router
-from data_etl_app.api.routes.manufacturer_user_form import (
-    router as manufacturer_user_form_router,
+from core.utils.mongo_client import init_db
+from core.dependencies.aws_clients import (
+    initialize_core_aws_clients,
+    cleanup_core_aws_clients,
 )
-from data_etl_app.api.routes.ground_truth.binary_ground_truth import (
-    router as binary_ground_truth_router,
+from data_etl_app.dependencies.aws_clients import (
+    initialize_data_etl_aws_clients,
+    cleanup_data_etl_aws_clients,
 )
-from data_etl_app.api.routes.ground_truth.concept_ground_truth import (
-    router as concept_ground_truth_router,
-)
-from data_etl_app.api.routes.ground_truth.keyword_ground_truth import (
-    router as keyword_ground_truth_router,
-)
-
-
-from data_etl_app.dependencies.aws_deps import aws_clients
 
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
+
     # Startup
+
     await init_db()
     logger.info("Database initialized successfully")
 
-    await aws_clients.initialize()
+    await initialize_data_etl_aws_clients()
+    await initialize_core_aws_clients()
+    logger.info("Application startup complete")
     yield
 
     # Shutdown
-    await aws_clients.cleanup()
+    await cleanup_data_etl_aws_clients()
+    await cleanup_core_aws_clients()
     logger.info("Application shutting down")
 
 
@@ -108,6 +105,21 @@ async def health_check():
     """
     return {"status": "ok", "message": "Application is running"}
 
+
+from data_etl_app.api.routes.knowledge.ontology import router as ontology_router
+from data_etl_app.api.routes.knowledge.prompt import router as prompt_router
+from data_etl_app.api.routes.manufacturer_user_form import (
+    router as manufacturer_user_form_router,
+)
+from data_etl_app.api.routes.ground_truth.binary_ground_truth import (
+    router as binary_ground_truth_router,
+)
+from data_etl_app.api.routes.ground_truth.concept_ground_truth import (
+    router as concept_ground_truth_router,
+)
+from data_etl_app.api.routes.ground_truth.keyword_ground_truth import (
+    router as keyword_ground_truth_router,
+)
 
 app.include_router(ontology_router)
 app.include_router(prompt_router)

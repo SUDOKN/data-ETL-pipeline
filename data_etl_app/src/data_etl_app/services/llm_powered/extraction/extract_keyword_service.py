@@ -5,7 +5,7 @@ import asyncio
 import logging
 from datetime import datetime
 
-from shared.models.prompt import Prompt
+from core.models.prompt import Prompt
 
 from data_etl_app.models.keyword_extraction_results import (
     KeywordExtractionChunkStats,
@@ -13,7 +13,7 @@ from data_etl_app.models.keyword_extraction_results import (
     KeywordExtractionStats,
 )
 from data_etl_app.services.llm_powered.search.llm_search_service import llm_search
-from data_etl_app.services.knowledge.prompt_service import prompt_service
+from data_etl_app.services.knowledge.prompt_service import get_prompt_service
 from data_etl_app.utils.chunk_util import (
     ChunkingStrat,
     get_chunks_respecting_line_boundaries,
@@ -37,6 +37,7 @@ async def extract_products(
     """
     Extract products for a manufacturer's text.
     """
+    prompt_service = await get_prompt_service()
     return await _extract_keyword_data(
         extraction_timestamp,
         "products",

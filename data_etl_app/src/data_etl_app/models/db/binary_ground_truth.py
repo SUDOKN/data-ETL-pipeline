@@ -2,8 +2,8 @@ from beanie import Document
 from datetime import datetime
 from pydantic import BaseModel, Field, computed_field
 
-from shared.models.field_types import MfgETLDType
-from shared.utils.time_util import get_current_time
+from core.models.field_types import MfgETLDType
+from core.utils.time_util import get_current_time
 
 from data_etl_app.models.binary_classification import BinaryClassificationResult
 from data_etl_app.models.types_and_enums import (

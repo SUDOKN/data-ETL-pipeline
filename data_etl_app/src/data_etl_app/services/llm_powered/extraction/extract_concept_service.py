@@ -5,8 +5,8 @@ import asyncio
 import logging
 from datetime import datetime
 
-from shared.models.prompt import Prompt
-from shared.models.field_types import (
+from core.models.prompt import Prompt
+from core.models.field_types import (
     OntologyVersionIDType,
 )
 
@@ -21,8 +21,8 @@ from data_etl_app.services.llm_powered.map.map_known_to_unknown_service import (
 )
 from data_etl_app.services.brute_search_service import brute_search
 from data_etl_app.services.llm_powered.search.llm_search_service import llm_search
-from data_etl_app.services.knowledge.ontology_service import ontology_service
-from data_etl_app.services.knowledge.prompt_service import prompt_service
+from data_etl_app.services.knowledge.ontology_service import get_ontology_service
+from data_etl_app.services.knowledge.prompt_service import get_prompt_service
 from data_etl_app.utils.chunk_util import (
     ChunkingStrat,
     get_chunks_respecting_line_boundaries,
@@ -46,6 +46,8 @@ async def extract_certificates(
     """
     Extract certificates for a manufacturer text.
     """
+    ontology_service = await get_ontology_service()
+    prompt_service = await get_prompt_service()
     ontology_version_id, known_certificates = ontology_service.certificates
     return await _extract_concept_data(
         extraction_timestamp,
@@ -70,6 +72,8 @@ async def extract_industries(
     """
     Extract industries for a manufacturer text.
     """
+    ontology_service = await get_ontology_service()
+    prompt_service = await get_prompt_service()
     ontology_version_id, known_industries = ontology_service.industries
     return await _extract_concept_data(
         extraction_timestamp,
@@ -94,6 +98,8 @@ async def extract_processes(
     """
     Extract process capabilities for a manufacturer text.
     """
+    ontology_service = await get_ontology_service()
+    prompt_service = await get_prompt_service()
     ontology_version_id, known_processes = ontology_service.process_caps
     return await _extract_concept_data(
         extraction_timestamp,
@@ -118,6 +124,8 @@ async def extract_materials(
     """
     Extract material capabilities for a manufacturer text.
     """
+    ontology_service = await get_ontology_service()
+    prompt_service = await get_prompt_service()
     ontology_version_id, known_materials = ontology_service.material_caps
     return await _extract_concept_data(
         extraction_timestamp,

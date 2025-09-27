@@ -3,26 +3,26 @@ import random
 from fastapi import APIRouter, HTTPException, Request, Query, Depends
 from fastapi.responses import JSONResponse
 
-from shared.models.db.manufacturer import Batch
-from shared.models.to_scrape_item import ToScrapeItem
+from core.models.db.manufacturer import Batch
+from core.models.to_scrape_item import ToScrapeItem
 
-from shared.services.manufacturer_service import (
+from core.services.manufacturer_service import (
     find_manufacturer_by_etld1,
     find_manufacturer_by_url,
     find_random_manufacturer_url,
 )
-from shared.services.user_service import find_by_email
+from core.services.user_service import find_by_email
 
-from shared.utils.url_util import (
+from core.utils.url_util import (
     get_normalized_url,
     get_complete_url_with_compatible_protocol,
 )
-from shared.utils.time_util import get_current_time
-from shared.utils.aws.queue.priority_scrape_queue_util import (
+from core.utils.time_util import get_current_time
+from core.utils.aws.queue.priority_scrape_queue_util import (
     push_item_to_priority_scrape_queue,
 )
 
-from shared.utils.aws.s3.scraped_text_util import (
+from core.utils.aws.s3.scraped_text_util import (
     download_scraped_text_from_s3_by_mfg_etld1,
 )
 
@@ -37,7 +37,6 @@ from data_etl_app.services.ground_truth.keyword_ground_truth_service import (
     add_new_correction_to_keyword_ground_truth,
 )
 from data_etl_app.models.types_and_enums import GroundTruthSource, KeywordTypeEnum
-from data_etl_app.dependencies.aws_deps import get_sqs_scraper_client, get_s3_client
 
 router = APIRouter()
 
@@ -61,8 +60,6 @@ async def fetch_keyword_ground_truth_template(
     chunk_no: int | None = Query(
         default=None, ge=1, description="Chunk number starting from 1."
     ),
-    sqs_client=Depends(get_sqs_scraper_client),
-    s3_client=Depends(get_s3_client),
 ):
     current_timestamp = get_current_time()
 
@@ -104,7 +101,6 @@ async def fetch_keyword_ground_truth_template(
         # push this new potential manufacturer to scrape queue and ask user to try again in a few minutes
         # await push_item_to_priority_scrape_queue(
         await push_item_to_priority_scrape_queue(
-            sqs_client,
             ToScrapeItem(
                 accessible_normalized_url=mfg_url,
                 batch=Batch(
@@ -132,7 +128,6 @@ async def fetch_keyword_ground_truth_template(
     if not keyword_extraction_results:
         # await push_item_to_priority_scrape_queue(
         await push_item_to_priority_scrape_queue(
-            sqs_client,
             ToScrapeItem(
                 accessible_normalized_url=mfg_url,
                 batch=Batch(
@@ -189,7 +184,6 @@ async def fetch_keyword_ground_truth_template(
 
     # TODO: maybe cache downloaded text
     scraped_text, _version_id = await download_scraped_text_from_s3_by_mfg_etld1(
-        s3_client,
         etld1=manufacturer.etld1,
         version_id=manufacturer.scraped_text_file_version_id,
     )
@@ -270,7 +264,6 @@ async def collect_keyword_extraction_ground_truth(
     parsed_data: tuple[KeywordGroundTruth, KeywordResultCorrection] = Depends(
         parse_keyword_ground_truth_with_new_correction
     ),
-    s3_client=Depends(get_s3_client),
 ):
     """
     Endpoint to collect the ground truth results for a given keyword ground truth.
@@ -342,7 +335,6 @@ async def collect_keyword_extraction_ground_truth(
             manufacturer=manufacturer,
             existing_keyword_gt=existing_keyword_gt,
             new_correction=new_correction,
-            s3_client=s3_client,
         )
     else:
         # this is a new keyword ground truth, so we need to set the created_at and updated_at fields
@@ -351,7 +343,6 @@ async def collect_keyword_extraction_ground_truth(
             manufacturer=manufacturer,
             new_keyword_gt=keyword_gt,
             new_correction=new_correction,
-            s3_client=s3_client,
         )
 
     response = keyword_gt.model_dump()

@@ -19,9 +19,9 @@ from data_etl_app.models.binary_classification import (
     BinaryClassificationStats,
     ChunkBinaryClassificationResult,
 )
-from shared.models.prompt import Prompt
+from core.models.prompt import Prompt
 
-from data_etl_app.services.knowledge.prompt_service import prompt_service
+from data_etl_app.services.knowledge.prompt_service import get_prompt_service
 from data_etl_app.utils.chunk_util import (
     get_chunks_respecting_line_boundaries,
     get_roughly_even_chunks,
@@ -38,6 +38,7 @@ async def is_product_manufacturer(
     model_params: ModelParameters = DefaultModelParameters,
 ) -> BinaryClassificationResult:
     logger.debug(f"Checking if {manufacturer_etld} is a product manufacturer...")
+    prompt_service = await get_prompt_service()
     return await _binary_classify_using_only_first_chunk(
         evaluated_at=evaluated_at,
         keyword_label="is_product_manufacturer",
@@ -57,6 +58,7 @@ async def is_contract_manufacturer(
     model_params: ModelParameters = DefaultModelParameters,
 ) -> BinaryClassificationResult:
     logger.debug(f"Checking if {manufacturer_etld} is a contract manufacturer...")
+    prompt_service = await get_prompt_service()
     return await _binary_classify_using_only_first_chunk(
         evaluated_at=evaluated_at,
         keyword_label="is_contract_manufacturer",
@@ -76,6 +78,7 @@ async def is_company_a_manufacturer(
     model_params: ModelParameters = DefaultModelParameters,
 ) -> BinaryClassificationResult:
     logger.debug(f"Checking if {manufacturer_etld} is a manufacturer...")
+    prompt_service = await get_prompt_service()
     return await _binary_classify_using_only_first_chunk(
         evaluated_at=evaluated_at,
         keyword_label="is_manufacturer",

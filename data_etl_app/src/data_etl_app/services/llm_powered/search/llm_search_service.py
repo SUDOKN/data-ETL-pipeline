@@ -1,8 +1,8 @@
 import json
 import logging
 
-from shared.models.db.manufacturer import BusinessDescriptionResult
-from data_etl_app.services.knowledge.prompt_service import prompt_service
+from core.models.db.manufacturer import BusinessDescriptionResult
+from data_etl_app.services.knowledge.prompt_service import get_prompt_service
 from data_etl_app.utils.chunk_util import (
     get_chunks_respecting_line_boundaries,
 )
@@ -26,6 +26,7 @@ async def find_business_desc_using_only_first_chunk(
     model_params: ModelParameters = DefaultModelParameters,
 ) -> BusinessDescriptionResult:
     logger.info(f"Finding business desc for {mfg_etld1} using only first chunk...")
+    prompt_service = await get_prompt_service()
     prompt = prompt_service.find_business_desc_prompt
     chunks_map = get_chunks_respecting_line_boundaries(
         mfg_text,

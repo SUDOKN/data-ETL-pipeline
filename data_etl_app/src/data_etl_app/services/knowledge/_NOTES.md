@@ -15,7 +15,7 @@ Both threads could read and write to self.graph and self._cache at the same time
 If, in the future, _init_data is changed to be impure (e.g., it depends on the current time, a different S3 file, or some other external state), then running it concurrently could result in inconsistent or unexpected state.
 
 Best practice:
-Even if the function is pure and the input is the same, using a lock is still recommended to prevent subtle bugs and to future-proof your code. The lock ensures that only one thread can update the shared state at a time, making your code robust to future changes and safe for concurrent use.
+Even if the function is pure and the input is the same, using a lock is still recommended to prevent subtle bugs and to future-proof your code. The lock ensures that only one thread can update the core state at a time, making your code robust to future changes and safe for concurrent use.
 
 Summary:
 - With a pure function and identical input, you won't get data corruption, but you still risk race conditions and unpredictable behavior.

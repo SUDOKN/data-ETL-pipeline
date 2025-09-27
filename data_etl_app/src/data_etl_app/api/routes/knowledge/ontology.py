@@ -3,7 +3,7 @@ from fastapi.responses import JSONResponse
 import logging
 
 from data_etl_app.models.types_and_enums import ConceptTypeEnum
-from data_etl_app.services.knowledge.ontology_service import ontology_service
+from data_etl_app.services.knowledge.ontology_service import get_ontology_service
 from data_etl_app.utils.route_url_util import (
     ONTOLOGY_REFRESH_URL,
     get_full_ontology_concept_tree_url,
@@ -14,9 +14,10 @@ router = APIRouter()
 
 
 @router.get(ONTOLOGY_REFRESH_URL, response_class=JSONResponse)
-def refresh_ontology():
+async def refresh_ontology():
     try:
-        ontology_service.refresh()
+        ontology_service = await get_ontology_service()
+        await ontology_service.refresh()
         return {
             "detail": f"Ontology refreshed successfully, version {ontology_service.ontology_version_id}."
         }
@@ -35,8 +36,9 @@ logger.debug(f"Process concept tree route: {PROCESS_CONCEPT_TREE_ROUTE}")
     "/ontology/process_caps/tree",
     response_class=JSONResponse,
 )
-def get_process_concept_nodes():
+async def get_process_concept_nodes():
     try:
+        ontology_service = await get_ontology_service()
         concept_node_data = ontology_service.process_capability_concept_nodes
         return {
             "ontology_version_id": concept_node_data[0],
@@ -50,8 +52,9 @@ def get_process_concept_nodes():
     "/ontology/material_caps/tree",
     response_class=JSONResponse,
 )
-def get_material_concept_nodes():
+async def get_material_concept_nodes():
     try:
+        ontology_service = await get_ontology_service()
         concept_node_data = ontology_service.material_capability_concept_nodes
         return {
             "ontology_version_id": concept_node_data[0],
@@ -65,8 +68,9 @@ def get_material_concept_nodes():
     "/ontology/industries/tree",
     response_class=JSONResponse,
 )
-def get_industry_concept_nodes():
+async def get_industry_concept_nodes():
     try:
+        ontology_service = await get_ontology_service()
         concept_node_data = ontology_service.industry_concept_nodes
         return {
             "ontology_version_id": concept_node_data[0],
@@ -80,8 +84,9 @@ def get_industry_concept_nodes():
     "/ontology/certificates/tree",
     response_class=JSONResponse,
 )
-def get_certificate_concept_nodes():
+async def get_certificate_concept_nodes():
     try:
+        ontology_service = await get_ontology_service()
         concept_node_data = ontology_service.certificate_concept_nodes
         return {
             "ontology_version_id": concept_node_data[0],
@@ -96,8 +101,9 @@ def get_certificate_concept_nodes():
     "/ontology/process_caps/flat",
     response_class=JSONResponse,
 )
-def get_process_capabilities():
+async def get_process_capabilities():
     try:
+        ontology_service = await get_ontology_service()
         concept_data = ontology_service.process_caps
         return {
             "ontology_version_id": concept_data[0],
@@ -111,8 +117,9 @@ def get_process_capabilities():
     "/ontology/material_caps/flat",
     response_class=JSONResponse,
 )
-def get_material_capabilities():
+async def get_material_capabilities():
     try:
+        ontology_service = await get_ontology_service()
         concept_data = ontology_service.material_caps
         return {
             "ontology_version_id": concept_data[0],
@@ -126,8 +133,9 @@ def get_material_capabilities():
     "/ontology/industries/flat",
     response_class=JSONResponse,
 )
-def get_industries():
+async def get_industries():
     try:
+        ontology_service = await get_ontology_service()
         concept_data = ontology_service.industries
         return {
             "ontology_version_id": concept_data[0],
@@ -141,8 +149,9 @@ def get_industries():
     "/ontology/certificates/flat",
     response_class=JSONResponse,
 )
-def get_certificates():
+async def get_certificates():
     try:
+        ontology_service = await get_ontology_service()
         concept_data = ontology_service.certificates
         return {
             "ontology_version_id": concept_data[0],
@@ -153,9 +162,10 @@ def get_certificates():
 
 
 @router.get("/ontology/service-info")
-def get_service_info():
+async def get_service_info():
     """Debug endpoint to check ontology service singleton behavior."""
     try:
+        ontology_service = await get_ontology_service()
         service_info = ontology_service.get_service_info()
         return {
             "service_info": service_info,

@@ -1,7 +1,7 @@
 from typing import Optional
 
-from shared.models.field_types import MfgETLDType
-from shared.models.db.manufacturer import Manufacturer
+from core.models.field_types import MfgETLDType
+from core.models.db.manufacturer import Manufacturer
 
 from data_etl_app.models.db.manufacturer_user_form import ManufacturerUserForm
 
@@ -69,19 +69,6 @@ async def create_from_manufacturer(manufacturer: Manufacturer) -> ManufacturerUs
         material_caps=manufacturer.material_caps.results,
         notes=None,
     )
-
-
-async def get_manufacturer_user_form_by_mfg_url(
-    mfg_url: str,
-) -> Optional[ManufacturerUserForm]:
-    """
-    Fetches the ManufacturerUserForm document for the given manufacturer URL.
-
-    Args:
-        mfg_url (str): The URL of the manufacturer.
-    Returns:
-        Optional[ManufacturerUserForm]: The ManufacturerUserForm document if found, else None.
-    """
 
 
 async def get_manufacturer_user_form_by_mfg_etld1(
