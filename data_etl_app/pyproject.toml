@@ -18,10 +18,10 @@ dependencies = [
   "rdflib>=7.0.0",          # RDF library
   "email_validator>=2.0.0",
 
-  # Tell pip that open_ai_key_app and shared are also dependencies:
+  # Tell pip that open_ai_key_app and core are also dependencies:
   "open_ai_key_app>=0.1.0",
   # ^ This means: “install open_ai_key_app from that path as version 0.1.0”
-  "shared>=0.1.0",
+  "core>=0.1.0",
 
 
 ]

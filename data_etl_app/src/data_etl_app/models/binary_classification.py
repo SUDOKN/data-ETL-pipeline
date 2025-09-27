@@ -1,7 +1,7 @@
 from datetime import datetime
 from pydantic import BaseModel
 
-from shared.models.field_types import (
+from core.models.field_types import (
     S3FileVersionIDType,
 )
 

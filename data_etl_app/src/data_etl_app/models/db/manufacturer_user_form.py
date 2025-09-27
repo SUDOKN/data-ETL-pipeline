@@ -4,9 +4,9 @@ from pydantic import Field
 from datetime import datetime
 from typing import List, Optional
 
-from shared.models.db.manufacturer import Address
-from shared.models.field_types import MfgETLDType
-from shared.utils.time_util import get_current_time
+from core.models.db.manufacturer import Address
+from core.models.field_types import MfgETLDType
+from core.utils.time_util import get_current_time
 
 from data_etl_app.services.llm_powered.search.llm_search_service import (
     BusinessDescriptionResult,

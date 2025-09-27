@@ -6,12 +6,11 @@ from datetime import datetime
 logger = logging.getLogger(__name__)
 
 
-from shared.utils.aws.s3.scraped_text_util import (
-    get_file_name_from_mfg_etld,
-    download_scraped_text_from_s3_by_filename,
+from core.utils.aws.s3.scraped_text_util import (
+    download_scraped_text_from_s3_by_mfg_etld1,
 )
-from shared.models.db.manufacturer import Manufacturer
-from shared.models.field_types import OntologyVersionIDType, S3FileVersionIDType
+from core.models.db.manufacturer import Manufacturer
+from core.models.field_types import OntologyVersionIDType, S3FileVersionIDType
 
 from data_etl_app.models.concept_extraction_results import ConceptExtractionResults
 from data_etl_app.models.db.concept_ground_truth import (
@@ -23,7 +22,7 @@ from data_etl_app.models.skos_concept import Concept
 from data_etl_app.utils.route_url_util import (
     get_full_ontology_concept_flat_url,
 )
-from data_etl_app.services.knowledge.ontology_service import ontology_service
+from data_etl_app.services.knowledge.ontology_service import get_ontology_service
 from data_etl_app.services.brute_search_service import word_regex
 from data_etl_app.models.types_and_enums import ConceptTypeEnum
 
@@ -77,12 +76,11 @@ async def does_a_cgt_exist_with_scraped_file_version(
     )
 
 
-async def add_new_correction_to_concept_ground_truth(
+async def add_correction_to_concept_ground_truth(
     timestamp: datetime,
     manufacturer: Manufacturer,
     existing_concept_gt: ConceptGroundTruth,
     new_correction: ConceptResultCorrection,
-    s3_client,
 ) -> ConceptGroundTruth:
 
     existing_concept_gt.updated_at = timestamp
@@ -93,12 +91,12 @@ async def add_new_correction_to_concept_ground_truth(
         existing_concept_gt.correction_logs.pop()  # the new correction will replace the last one because it is from the same author
 
     await _validate_concept_ground_truth(
-        manufacturer, existing_concept_gt, new_correction, s3_client
+        manufacturer, existing_concept_gt, new_correction
     )
 
     existing_concept_gt.correction_logs.append(
         ConceptResultCorrectionLog(
-            created_at=existing_concept_gt.created_at,
+            created_at=timestamp,
             result_correction=new_correction,
         )
     )
@@ -114,7 +112,6 @@ async def save_new_concept_ground_truth(
     manufacturer: Manufacturer,
     new_concept_gt: ConceptGroundTruth,
     new_correction: ConceptResultCorrection,
-    s3_client,
 ) -> ConceptGroundTruth:
     """
     Prepare a new concept ground truth instance with the provided timestamp.
@@ -124,9 +121,7 @@ async def save_new_concept_ground_truth(
     new_concept_gt.created_at = timestamp
     new_concept_gt.updated_at = timestamp
 
-    await _validate_concept_ground_truth(
-        manufacturer, new_concept_gt, new_correction, s3_client
-    )
+    await _validate_concept_ground_truth(manufacturer, new_concept_gt, new_correction)
 
     new_concept_gt.correction_logs.append(
         ConceptResultCorrectionLog(
@@ -145,7 +140,6 @@ async def _validate_concept_ground_truth(
     manufacturer: Manufacturer,
     concept_gt: ConceptGroundTruth,
     new_correction: ConceptResultCorrection,
-    s3_client,
 ) -> None:
     """
     Validate and save the concept ground truth to the database.
@@ -156,8 +150,6 @@ async def _validate_concept_ground_truth(
     - Make sure to set created_at and updated_at beforehand.
     - Ensure that the manufacturer is prevalidated and exists in the database.
     """
-
-    concept_gt = ConceptGroundTruth.model_validate(concept_gt.model_dump())
 
     # concept_data check
     concept_extraction_results = getattr(manufacturer, concept_gt.concept_type, None)
@@ -191,9 +183,8 @@ async def _validate_concept_ground_truth(
         )
 
     # file and version ID check
-    scraped_text, version_id = await download_scraped_text_from_s3_by_filename(
-        s3_client,
-        file_name=get_file_name_from_mfg_etld(concept_gt.mfg_etld1),
+    scraped_text, version_id = await download_scraped_text_from_s3_by_mfg_etld1(
+        etld1=concept_gt.mfg_etld1,
         version_id=manufacturer.scraped_text_file_version_id,
     )
     if manufacturer.scraped_text_file_version_id != version_id:
@@ -225,6 +216,7 @@ async def _validate_concept_ground_truth(
         )
 
     # ontology version ID check in case it is different from the latest version
+    ontology_service = await get_ontology_service()
     ontology_info: tuple[OntologyVersionIDType, list[Concept]] = getattr(
         ontology_service, concept_gt.concept_type
     )

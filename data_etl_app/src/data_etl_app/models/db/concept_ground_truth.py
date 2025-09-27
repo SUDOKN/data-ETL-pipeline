@@ -2,8 +2,8 @@ from beanie import Document
 from datetime import datetime
 from pydantic import BaseModel, ValidationInfo, computed_field, Field, field_validator
 
-from shared.utils.time_util import get_current_time
-from shared.models.field_types import (
+from core.utils.time_util import get_current_time
+from core.models.field_types import (
     LLMMappingType,
     MfgETLDType,
     OntologyVersionIDType,

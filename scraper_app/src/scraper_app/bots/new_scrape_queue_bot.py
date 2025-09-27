@@ -1,34 +1,41 @@
 import asyncio
 from datetime import datetime
 import argparse
-from aiobotocore.session import get_session
+
 import logging
 
 from typing import Callable, Awaitable, Any
 
-from scraper_app.models.scraped_text_file import ScrapedTextFile
-from shared.models.db.scraping_error import ScrapingError
-from shared.models.db.manufacturer import Manufacturer
-from shared.models.to_extract_item import ToExtractItem
-from shared.models.to_scrape_item import ToScrapeItem
+from core.dependencies.load_core_env import load_core_env
+from open_ai_key_app.dependencies.load_open_ai_app_env import load_open_ai_app_env
+from data_etl_app.dependencies.load_data_etl_env import load_data_etl_env
 
-from shared.utils.aws.s3.scraped_text_util import (
+from core.dependencies.aws_clients import initialize_core_aws_clients
+from data_etl_app.dependencies.aws_clients import initialize_data_etl_aws_clients
+
+from core.models.db.scraping_error import ScrapingError
+from core.models.db.manufacturer import Manufacturer
+from core.models.to_extract_item import ToExtractItem
+from core.models.to_scrape_item import ToScrapeItem
+
+from core.utils.aws.s3.scraped_text_util import (
     delete_scraped_text_from_s3_by_etld1,
     get_latest_version_id_by_mfg_etld,
 )
-from shared.utils.mongo_client import init_db
-from shared.utils.time_util import get_current_time
+from core.utils.mongo_client import init_db
+from core.utils.time_util import get_current_time
 
-from shared.services.manufacturer_service import (
+from core.services.manufacturer_service import (
     reset_llm_extracted_fields,
     update_manufacturer,
 )
 
+from scraper_app.models.scraped_text_file import ScrapedTextFile
 from scraper_app.services.url_scraper_service import (
     ScraperService,
 )
 
-from shared.utils.url_util import get_etld1_from_host
+from core.utils.url_util import get_etld1_from_host
 
 logger = logging.getLogger(__name__)
 
@@ -107,20 +114,18 @@ Here, valid_file must be set
 
 
 async def process_queue(
-    sqs_client,
-    s3_client,
     scraper: ScraperService,
-    push_item_to_e_queue: Callable[[Any, ToExtractItem], Awaitable[None]],
+    push_item_to_e_queue: Callable[[ToExtractItem], Awaitable[None]],
     poll_item_from_s_queue: Callable[
-        [Any], Awaitable[tuple[ToScrapeItem, str] | tuple[None, None]]
+        [], Awaitable[tuple[ToScrapeItem, str] | tuple[None, None]]
     ],
-    delete_item_from_s_queue: Callable[[Any, str], Awaitable[None]],
+    delete_item_from_s_queue: Callable[[str], Awaitable[None]],
 ):
     scraping_stats = ScrapingStats()  # Initialize timing stats
     try:
         while True:
-            item, receipt_handle = await poll_item_from_s_queue(
-                sqs_client
+            item, receipt_handle = (
+                await poll_item_from_s_queue()
             )  # 10 second long poll, doesn't block, yields control back to event loop
 
             if item is None:
@@ -144,7 +149,6 @@ async def process_queue(
                     manufacturer,
                     redo_extraction_flag=item.redo_extraction,
                     scraper=scraper,
-                    s3_client=s3_client,
                 )
 
                 if manufacturer:
@@ -187,20 +191,24 @@ async def process_queue(
 
                 await update_manufacturer(polled_at, manufacturer)
                 await push_item_to_e_queue(
-                    sqs_client,
                     ToExtractItem(mfg_etld1=manufacturer.etld1),
                 )
                 logger.info(f"Saved manufacturer: {manufacturer.etld1}")
                 # Calculate and log timing
-                end_time = get_current_time()
-                duration = end_time - polled_at
-                scraping_stats.add_timing(duration.total_seconds())
-
-                logger.info(
-                    f"✅ Processing completed for {item.accessible_normalized_url}"
-                )
-                logger.info(f"   ⏱️  Individual time: {duration.total_seconds():.2f}s")
-                scraping_stats.print_stats()
+                if scraped_file.last_modified_on > polled_at:
+                    # Only calculate stats if the file was modified after polling
+                    end_time = get_current_time()
+                    duration = end_time - polled_at
+                    scraping_stats.add_timing(duration.total_seconds())
+                    logger.info(
+                        f"   ⏱️  Individual time: {duration.total_seconds():.2f}s"
+                    )
+                    scraping_stats.print_stats()
+                else:
+                    logger.info(
+                        f"Skipped stats calculation: scraped_file.last_modified_on ({scraped_file.last_modified_on}) "
+                        f"is not newer than polled_at ({polled_at})"
+                    )
 
             except Exception as e:
                 logger.error(
@@ -215,7 +223,8 @@ async def process_queue(
                     )
                 )
             finally:
-                await delete_item_from_s_queue(sqs_client, receipt_handle)
+
+                await delete_item_from_s_queue(receipt_handle)
     except Exception as e:
         logger.error(f"Error processing SQS message: {e}")
     finally:
@@ -231,7 +240,6 @@ async def get_valid_scraped_file(
     manufacturer: Manufacturer | None,
     redo_extraction_flag: bool,
     scraper: ScraperService,
-    s3_client,
 ) -> ScrapedTextFile:
     mfg_etld = get_etld1_from_host(item.accessible_normalized_url)
     existing_scraped_file: ScrapedTextFile | None = None
@@ -241,16 +249,18 @@ async def get_valid_scraped_file(
         )
         existing_scraped_file, exception = (
             await ScrapedTextFile.download_from_s3_and_create(
-                s3_client,
                 mfg_etld,
                 manufacturer.scraped_text_file_version_id,
             )
         )
         if exception:
+            subject = f"Error downloading existing scraped file for {mfg_etld}, version {manufacturer.scraped_text_file_version_id}."
             await ScrapingError.insert_one(
                 ScrapingError(
                     created_at=polled_at,
-                    error=str(exception) if exception else "",
+                    error=(
+                        f"{subject} details={str(exception)}" if exception else subject
+                    ),
                     url=item.accessible_normalized_url,
                     batch=item.batch,
                 )
@@ -269,14 +279,15 @@ async def get_valid_scraped_file(
                 logger.info(
                     f"Existing scraped file for {mfg_etld} is invalid. Deleting and setting existing_scraped_file = None."
                 )
-                await existing_scraped_file.delete_permanently_if_possible(s3_client)
+                await existing_scraped_file.delete_permanently_if_possible()
                 existing_scraped_file = None
-        logger.info(f"No valid existing scraped file for {mfg_etld}.")
+        else:
+            logger.info(f"No valid existing scraped file for {mfg_etld}.")
     else:
         logger.info(f"No existing manufacturer found for {mfg_etld}.")
 
     logger.info(
-        f"after existing mfg check, existing_scraped_file = {existing_scraped_file}."
+        f"after existing mfg check, existing_scraped_file = {existing_scraped_file.model_dump() if existing_scraped_file else None}."
     )
 
     if not existing_scraped_file:  # try to find any version on S3
@@ -284,7 +295,6 @@ async def get_valid_scraped_file(
             f"No existing scraped file found for {mfg_etld}. Checking S3 for any version."
         )
         latest_version_id = await get_latest_version_id_by_mfg_etld(
-            s3_client,
             mfg_etld,
         )
         if latest_version_id:
@@ -293,16 +303,20 @@ async def get_valid_scraped_file(
             )
             existing_scraped_file, exception = (
                 await ScrapedTextFile.download_from_s3_and_create(
-                    s3_client,
                     mfg_etld,
                     latest_version_id,
                 )
             )
             if exception:
+                subject = f"Error downloading existing scraped file for {mfg_etld}, version {latest_version_id}."
                 await ScrapingError.insert_one(
                     ScrapingError(
                         created_at=polled_at,
-                        error=str(exception) if exception else "",
+                        error=(
+                            f"{subject} details={str(exception)}"
+                            if exception
+                            else subject
+                        ),
                         url=item.accessible_normalized_url,
                         batch=item.batch,
                     )
@@ -316,7 +330,7 @@ async def get_valid_scraped_file(
                 )
                 (
                     await delete_scraped_text_from_s3_by_etld1(
-                        s3_client, mfg_etld, latest_version_id
+                        mfg_etld, latest_version_id
                     )
                     if await ScrapedTextFile.can_delete_version(latest_version_id)
                     else None
@@ -325,9 +339,10 @@ async def get_valid_scraped_file(
             elif not existing_scraped_file.is_valid:
                 logger.info(
                     f"Downloaded scraped file for {mfg_etld} with version ID {latest_version_id} is invalid. Deleting this version from S3."
-                    f" Setting existing_scraped_file = None."
+                    f" Setting existing_scraped_file = None.\n"
+                    f"{existing_scraped_file}"
                 )
-                await existing_scraped_file.delete_permanently_if_possible(s3_client)
+                await existing_scraped_file.delete_permanently_if_possible()
                 existing_scraped_file = None
 
     logger.info(f"after s3 check, existing_scraped_file = {existing_scraped_file}.")
@@ -356,7 +371,7 @@ async def get_valid_scraped_file(
 
         existing_scraped_file = (
             await ScrapedTextFile.upload_to_s3_and_create(  # throws error if not valid
-                s3_client, item.batch, scraping_result, mfg_etld
+                item.batch, scraping_result, mfg_etld
             )
         )
         logger.info(
@@ -393,22 +408,29 @@ def parse_args():
 
 
 async def async_main():
-    from shared.utils.aws.s3.s3_client_util import make_s3_client
-    from shared.utils.aws.queue.sqs_scraper_client_util import make_sqs_scraper_client
-    from shared.utils.aws.queue.extract_queue_util import push_item_to_extract_queue
-    from shared.utils.aws.queue.priority_extract_queue_util import (
+    # Load environment variables
+    load_core_env()
+    load_data_etl_env()
+    load_open_ai_app_env()
+
+    from core.utils.aws.queue.extract_queue_util import push_item_to_extract_queue
+    from core.utils.aws.queue.priority_extract_queue_util import (
         push_item_to_priority_extract_queue,
     )
-    from shared.utils.aws.queue.scrape_queue_util import (
+    from core.utils.aws.queue.scrape_queue_util import (
         poll_item_from_scrape_queue,
         delete_item_from_scrape_queue,
     )
-    from shared.utils.aws.queue.priority_scrape_queue_util import (
+    from core.utils.aws.queue.priority_scrape_queue_util import (
         poll_item_from_priority_scrape_queue,
         delete_item_from_priority_scrape_queue,
     )
 
     await init_db()
+    # Initialize AWS clients
+    await initialize_core_aws_clients()
+    await initialize_data_etl_aws_clients()
+
     args = parse_args()
 
     log_level = args.debug.upper()
@@ -425,8 +447,6 @@ async def async_main():
     logger = logging.getLogger(__name__)
     logger.info(f"Starting scrape bot with log level: {log_level}")
 
-    session = get_session()
-
     if args.priority:
         logger.info("Running scraping in priority mode")
         poll_item_from_s_queue = poll_item_from_priority_scrape_queue
@@ -438,21 +458,16 @@ async def async_main():
         delete_item_from_s_queue = delete_item_from_scrape_queue
         push_item_to_e_queue = push_item_to_extract_queue
 
-    async with make_sqs_scraper_client(session) as sqs_scraper_client, make_s3_client(
-        session
-    ) as s3_client:
-        scraper = ScraperService(
-            max_concurrent_browsers=args.max_concurrent_browsers,
-            max_depth=args.max_depth,
-        )
-        await process_queue(
-            sqs_scraper_client,
-            s3_client,
-            scraper,
-            push_item_to_e_queue,
-            poll_item_from_s_queue,
-            delete_item_from_s_queue,
-        )
+    scraper = ScraperService(
+        max_concurrent_browsers=args.max_concurrent_browsers,
+        max_depth=args.max_depth,
+    )
+    await process_queue(
+        scraper,
+        push_item_to_e_queue,
+        poll_item_from_s_queue,
+        delete_item_from_s_queue,
+    )
 
 
 def main():

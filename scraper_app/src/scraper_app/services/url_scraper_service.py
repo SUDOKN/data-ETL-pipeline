@@ -21,7 +21,7 @@ from selenium.common.exceptions import (
     StaleElementReferenceException,
 )
 
-from shared.utils.url_util import get_final_landing_url
+from core.utils.url_util import get_final_landing_url
 
 from scraper_app.utils.selenium import (
     ChromeDriverFactory,
@@ -116,7 +116,7 @@ class ScraperService:
         headless: bool = True,
         driver_module: Optional[str] = None,  # For backward compatibility
     ):
-        # Locks & shared state to avoid corrupt read/write to python non-thread-safe structures
+        # Locks & core state to avoid corrupt read/write to python non-thread-safe structures
         self.discovered_lock = threading.Lock()
         self.results_lock = threading.Lock()
         self.errors_lock = threading.Lock()

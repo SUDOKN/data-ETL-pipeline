@@ -1,7 +1,7 @@
 import logging
 import re
 from email_validator import validate_email, EmailNotValidError
-from shared.models.field_types import MfgETLDType
+from core.models.field_types import MfgETLDType
 
 logger = logging.getLogger(__name__)
 
@@ -26,4 +26,5 @@ def get_validated_emails_from_text(mfg_etld1: MfgETLDType, text: str) -> list[st
             logger.warning(f"Invalid email found: {email} while processing {mfg_etld1}")
             continue  # skip invalid ones
 
+    logger.info(f"Found {len(valid_emails)} unique valid emails for {mfg_etld1}")
     return list(valid_emails)

@@ -1,8 +1,8 @@
 from datetime import datetime
 import logging
 
-from shared.models.db.manufacturer import Manufacturer
-from shared.models.field_types import (
+from core.models.db.manufacturer import Manufacturer
+from core.models.field_types import (
     S3FileVersionIDType,
 )
 
@@ -12,8 +12,11 @@ from data_etl_app.models.db.binary_ground_truth import (
     HumanDecisionLog,
     HumanBinaryDecision,
 )
-from shared.services.manufacturer_service import (
-    find_manufacturer_by_etld1_and_scraped_file_version,
+from core.services.manufacturer_service import (
+    find_manufacturer_by_etld1,
+)
+from core.utils.aws.s3.scraped_text_util import (
+    download_scraped_text_from_s3_by_mfg_etld1,
 )
 
 logger = logging.getLogger(__name__)
@@ -54,7 +57,7 @@ async def does_a_bgt_exist_with_scraped_file_version(
     )
 
 
-async def update_existing_with_new_binary_ground_truth(
+async def add_decision_to_binary_ground_truth(
     existing_binary_gt: BinaryGroundTruth,
     new_human_decision: HumanBinaryDecision,
     timestamp: datetime,
@@ -66,6 +69,11 @@ async def update_existing_with_new_binary_ground_truth(
     and passed as an argument.
     """
     existing_binary_gt.updated_at = timestamp
+    if (
+        existing_binary_gt.human_decision_logs[-1].human_decision.author_email
+        == new_human_decision.author_email
+    ):
+        existing_binary_gt.human_decision_logs.pop()  # the new decision will replace the last one because it is from the same author
 
     await _validate_binary_ground_truth(
         new_human_decision=new_human_decision,
@@ -74,7 +82,7 @@ async def update_existing_with_new_binary_ground_truth(
 
     existing_binary_gt.human_decision_logs.append(
         HumanDecisionLog(
-            created_at=existing_binary_gt.created_at,
+            created_at=timestamp,
             human_decision=new_human_decision,
         )
     )
@@ -102,7 +110,7 @@ async def save_new_binary_ground_truth(
 
     binary_gt.human_decision_logs.append(
         HumanDecisionLog(
-            created_at=binary_gt.created_at,
+            created_at=timestamp,
             human_decision=new_human_decision,
         )
     )
@@ -127,18 +135,23 @@ async def _validate_binary_ground_truth(
     if not new_human_decision:
         raise ValueError("human_decision must be provided if llm_decision is present.")
 
-    binary_ground_truth = BinaryGroundTruth.model_validate(
-        binary_ground_truth.model_dump()
+    # existing manufacturer check
+    if not await find_manufacturer_by_etld1(binary_ground_truth.mfg_etld1):
+        raise ValueError(
+            f"Manufacturer with URL '{binary_ground_truth.mfg_etld1}' does not exist."
+        )
+
+    # check if scraped file exists
+    await download_scraped_text_from_s3_by_mfg_etld1(
+        etld1=binary_ground_truth.mfg_etld1,
+        version_id=binary_ground_truth.scraped_text_file_version_id,
     )
 
-    # existing manufacturer check
-    existing_manufacturer = await find_manufacturer_by_etld1_and_scraped_file_version(
-        binary_ground_truth.mfg_etld1, binary_ground_truth.scraped_text_file_version_id
+    # check if prompt file exists
+    await download_scraped_text_from_s3_by_mfg_etld1(
+        etld1=binary_ground_truth.mfg_etld1,
+        version_id=binary_ground_truth.scraped_text_file_version_id,
     )
-    if not existing_manufacturer:
-        raise ValueError(
-            f"Manufacturer with URL '{binary_ground_truth.mfg_etld1}' does not exist or has a different scraped text file version ID."
-        )
 
     _validate_new_human_decision(new_human_decision, binary_ground_truth)
 

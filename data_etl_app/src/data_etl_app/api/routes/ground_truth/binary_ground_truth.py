@@ -4,23 +4,23 @@ import logging
 from fastapi import APIRouter, HTTPException, Request, Query, Depends
 from fastapi.responses import JSONResponse
 
-from shared.models.db.user import User
-from shared.models.db.manufacturer import Batch
-from shared.models.to_scrape_item import ToScrapeItem
+from core.models.db.user import User
+from core.models.db.manufacturer import Batch
+from core.models.to_scrape_item import ToScrapeItem
 
-from shared.services.manufacturer_service import (
+from core.services.manufacturer_service import (
     find_manufacturer_by_etld1,
     find_manufacturer_by_url,
     find_random_manufacturer_url,
 )
-from shared.services.user_service import find_by_email
+from core.services.user_service import find_by_email
 
-from shared.utils.url_util import (
+from core.utils.url_util import (
     get_normalized_url,
     get_complete_url_with_compatible_protocol,
 )
-from shared.utils.time_util import get_current_time
-from shared.utils.aws.queue.priority_scrape_queue_util import (
+from core.utils.time_util import get_current_time
+from core.utils.aws.queue.priority_scrape_queue_util import (
     push_item_to_priority_scrape_queue,
 )
 
@@ -31,13 +31,12 @@ from data_etl_app.models.db.binary_ground_truth import (
 from data_etl_app.services.ground_truth.binary_ground_truth_service import (
     get_binary_ground_truth,
     save_new_binary_ground_truth,
-    update_existing_with_new_binary_ground_truth,
+    add_decision_to_binary_ground_truth,
 )
 from data_etl_app.models.types_and_enums import (
     BinaryClassificationTypeEnum,
     GroundTruthSource,
 )
-from data_etl_app.dependencies.aws_deps import get_sqs_scraper_client
 
 router = APIRouter()
 logger = logging.getLogger(__name__)
@@ -147,7 +146,6 @@ async def fetch_binary_classification_template(
         default=random.choice(list(BinaryClassificationTypeEnum)),
         description=f"Any one of {[concept.value for concept in BinaryClassificationTypeEnum]}",
     ),
-    sqs_client=Depends(get_sqs_scraper_client),
 ):
     current_timestamp = get_current_time()
 
@@ -186,7 +184,6 @@ async def fetch_binary_classification_template(
         # or when for some reason the manufacturer was not extracted correctly
         # push this new potential manufacturer to scrape queue and ask user to try again in a few minutes
         await push_item_to_priority_scrape_queue(
-            sqs_client,
             ToScrapeItem(
                 accessible_normalized_url=mfg_url,
                 batch=Batch(
@@ -218,7 +215,6 @@ async def fetch_binary_classification_template(
     if llm_decision is None:
         # if the LLM decision is not available, we need to push this manufacturer to the scrape queue
         await push_item_to_priority_scrape_queue(
-            sqs_client,
             ToScrapeItem(
                 accessible_normalized_url=mfg_url,
                 batch=Batch(
@@ -363,7 +359,7 @@ async def collect_binary_ground_truth(
                 ),
             )
 
-        binary_gt = await update_existing_with_new_binary_ground_truth(
+        binary_gt = await add_decision_to_binary_ground_truth(
             existing_binary_gt, new_decision, current_time
         )
     else:
