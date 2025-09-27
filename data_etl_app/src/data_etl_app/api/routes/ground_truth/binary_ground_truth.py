@@ -205,7 +205,7 @@ async def fetch_binary_classification_template(
             status_code=400,
             detail=(
                 f"The provided URL:`{mfg_url}` does not belong to a valid manufacturer, "
-                f"because {manufacturer.is_manufacturer.reason}. "
+                f"Following is the reason. {manufacturer.is_manufacturer.reason} "
                 f"Please specify `is_manufacturer` classification type to get the "
                 f"binary ground truth template for this manufacturer."
             ),

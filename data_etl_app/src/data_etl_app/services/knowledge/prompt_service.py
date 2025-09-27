@@ -4,7 +4,7 @@ from typing import Dict, Optional
 
 from core.models.prompt import Prompt
 from open_ai_key_app.utils.ask_gpt_util import num_tokens_from_string
-from data_etl_app.utils.prompt_s3_util import download_prompt
+from data_etl_app.utils.prompt_s3_util import download_prompt, get_prompt_filename
 
 logger = logging.getLogger(__name__)
 
@@ -67,18 +67,19 @@ class PromptService:
             raise
 
     async def _download_prompt(
-        self, prompt_filename: str, version_id: Optional[str]
+        self, prompt_name: str, version_id: Optional[str]
     ) -> Prompt:
+        prompt_file_name = get_prompt_filename(prompt_name)
         prompt_content, actual_version_id = await download_prompt(
-            f"{prompt_filename}.txt", version_id
+            prompt_file_name, version_id
         )
         if version_id and actual_version_id != version_id:
             raise ValueError(
-                f"Requested version ID {version_id} but got {actual_version_id} for {prompt_filename}"
+                f"Requested version ID {version_id} but got {actual_version_id} for {prompt_name}"
             )
         return Prompt(
             s3_version_id=actual_version_id,
-            name=prompt_filename,
+            name=prompt_name,
             text=prompt_content,
             num_tokens=num_tokens_from_string(prompt_content),
         )

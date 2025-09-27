@@ -7,6 +7,14 @@ if not PROMPT_BUCKET:
     raise ValueError("Prompt bucket is not set. Please check your .env file.")
 
 
+def get_prompt_filename(prompt_name: str) -> str:
+    """Get the S3 key (filename) for a given prompt name."""
+    if not prompt_name:
+        raise ValueError("Prompt name must be provided")
+
+    return f"{prompt_name}.txt"
+
+
 async def does_prompt_version_exist(prompt_filename: str, version_id: str) -> bool:
     """Checks if a specific version of the prompt file exists in the S3 bucket.
     :param prompt_filename: The name of the prompt file to check.
