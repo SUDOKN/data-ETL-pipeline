@@ -162,7 +162,7 @@ async def fetch_concept_ground_truth_template(
 
     # check if concept ground truth already exists for this mfg_url, concept_type, and chunk_no
     existing_concept_gt = await get_extracted_concept_ground_truth(
-        manufacturer=manufacturer,
+        linked_manufacturer=manufacturer,
         concept_type=concept_type,
         chunk_no=chunk_no,
     )
@@ -294,7 +294,7 @@ async def collect_concept_extraction_ground_truth(
 
     # decide if this is a new insert or update
     existing_concept_gt = await get_extracted_concept_ground_truth(
-        manufacturer=manufacturer,
+        linked_manufacturer=manufacturer,
         concept_type=concept_gt.concept_type,
         chunk_no=concept_gt.chunk_no,
     )
@@ -310,17 +310,6 @@ async def collect_concept_extraction_ground_truth(
                 ),
             )
 
-        if new_correction == existing_concept_gt.correction_logs[-1].result_correction:
-            raise HTTPException(
-                status_code=400,
-                detail=(
-                    f"concept ground truth for mfg_url: {concept_gt.mfg_etld1}, "
-                    f"concept_type: {concept_gt.concept_type}, "
-                    f"chunk_no: {concept_gt.chunk_no} already contains the same result correction. "
-                    f"Please fetch a fresh template first and check the latest `correction_logs`."
-                ),
-            )
-
         # in case two people fetched the same concept ground truth, one submitted first
         if existing_concept_gt.correction_logs != concept_gt.correction_logs:
             raise HTTPException(
@@ -333,7 +322,7 @@ async def collect_concept_extraction_ground_truth(
 
         concept_gt = await add_correction_to_concept_ground_truth(
             timestamp=current_time,
-            manufacturer=manufacturer,
+            linked_manufacturer=manufacturer,
             existing_concept_gt=existing_concept_gt,
             new_correction=new_correction,
         )

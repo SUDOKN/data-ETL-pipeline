@@ -89,7 +89,7 @@ async def fetch_binary_classification_user_form_template(
         )
 
     existing_binary_gt = await get_binary_ground_truth(
-        manufacturer=manufacturer,
+        linked_manufacturer=manufacturer,
         prompt_version_id=llm_decision.stats.prompt_version_id,
         classification_type=classification_type,
     )
@@ -230,7 +230,7 @@ async def fetch_binary_classification_template(
 
     # check if binary ground truth already exists for this mfg_url and classification_type
     existing_binary_gt = await get_binary_ground_truth(
-        manufacturer=manufacturer,
+        linked_manufacturer=manufacturer,
         prompt_version_id=llm_decision.stats.prompt_version_id,
         classification_type=classification_type,
     )
@@ -334,7 +334,7 @@ async def collect_binary_ground_truth(
         )
 
     existing_binary_gt = await get_binary_ground_truth(
-        manufacturer=manufacturer,
+        linked_manufacturer=manufacturer,
         prompt_version_id=binary_gt.llm_decision.stats.prompt_version_id,
         classification_type=binary_gt.classification_type,
     )
@@ -350,7 +350,7 @@ async def collect_binary_ground_truth(
             )
 
         # in case two people fetched the same binary ground truth, one submitted first
-        if new_decision == existing_binary_gt.human_decision_logs[-1].human_decision:
+        if existing_binary_gt.human_decision_logs != binary_gt.human_decision_logs:
             raise HTTPException(
                 status_code=400,
                 detail=(
@@ -360,11 +360,11 @@ async def collect_binary_ground_truth(
             )
 
         binary_gt = await add_decision_to_binary_ground_truth(
-            existing_binary_gt, new_decision, current_time
+            manufacturer, existing_binary_gt, new_decision, current_time
         )
     else:
         binary_gt = await save_new_binary_ground_truth(
-            binary_gt, new_decision, current_time
+            manufacturer, binary_gt, new_decision, current_time
         )
 
     response = binary_gt.model_dump()

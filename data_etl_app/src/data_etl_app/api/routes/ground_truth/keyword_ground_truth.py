@@ -310,17 +310,6 @@ async def collect_keyword_extraction_ground_truth(
                 ),
             )
 
-        if new_correction == existing_keyword_gt.correction_logs[-1].result_correction:
-            raise HTTPException(
-                status_code=400,
-                detail=(
-                    f"keyword ground truth for mfg_url: {keyword_gt.mfg_etld1}, "
-                    f"keyword_type: {keyword_gt.keyword_type}, "
-                    f"chunk_no: {keyword_gt.chunk_no} already contains the same result correction. "
-                    f"Please fetch a fresh template first and check the latest `correction_logs`."
-                ),
-            )
-
         # in case two people fetched the same keyword ground truth, one submitted first
         if existing_keyword_gt.correction_logs != keyword_gt.correction_logs:
             raise HTTPException(
