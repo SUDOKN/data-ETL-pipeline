@@ -2,11 +2,18 @@ import argparse
 import asyncio
 import logging
 from datetime import datetime
-from typing import Callable, Awaitable, Any
+from typing import Callable, Awaitable
 
 from core.dependencies.load_core_env import load_core_env
+from scraper_app.dependencies.load_scraper_env import load_scraper_env
 from open_ai_key_app.dependencies.load_open_ai_app_env import load_open_ai_app_env
 from data_etl_app.dependencies.load_data_etl_env import load_data_etl_env
+
+# Load environment variables
+load_core_env()
+load_scraper_env()
+load_data_etl_env()
+load_open_ai_app_env()
 
 from core.dependencies.aws_clients import (
     initialize_core_aws_clients,
@@ -185,6 +192,14 @@ async def process_queue(
 
     except Exception as e:
         logger.error(f"Error processing Extract Queue message: {e}")
+        await ExtractionError.insert_one(
+            ExtractionError(
+                created_at=get_current_time(),
+                error=str(e),
+                field="general_queue_processing",
+                mfg_etld1="N/A",
+            )
+        )
     finally:
         # Print final statistics
         if extraction_stats.completed_count > 0:
@@ -311,14 +326,10 @@ async def process_manufacturer(
                 mfg_txt,
             )
 
-            if (
-                manufacturer.is_manufacturer
-                and manufacturer.is_manufacturer.answer is False
-            ):
-                await update_manufacturer(
-                    updated_at=polled_at,
-                    manufacturer=manufacturer,
-                )
+            await update_manufacturer(
+                updated_at=polled_at,
+                manufacturer=manufacturer,
+            )
         except Exception as e:
             logger.error(f"{manufacturer.etld1}.is_manufacturer errored:{e}")
             await ExtractionError.insert_one(
@@ -378,14 +389,6 @@ async def process_manufacturer(
             )
             return
 
-    if not manufacturer.is_manufacturer.answer:
-        logger.info(
-            f"Skipping further extraction for {manufacturer.etld1} as it is not a manufacturer."
-        )
-        return
-
-    logger.debug(f"products if present: {manufacturer.products}")
-
     if not manufacturer.email_addresses:
         try:
             logger.info(f"Extracting email addresses for {manufacturer.etld1}")
@@ -406,6 +409,15 @@ async def process_manufacturer(
                     mfg_etld1=manufacturer.etld1,
                 )
             )
+
+    # TODO: check existing binary ground truth as well
+    if not manufacturer.is_manufacturer.answer:
+        logger.info(
+            f"Skipping further extraction for {manufacturer.etld1} as it is not a manufacturer."
+        )
+        return
+
+    logger.debug(f"products if present: {manufacturer.products}")
 
     if not manufacturer.products or manufacturer.products.results is None:
         try:
@@ -569,7 +581,7 @@ async def extract_and_cleanup(
             else:
                 html_content = (
                     str(
-                        f"As a MEP user, you can now add or edit the manufacturer details using this link: https://sudokn.com/add-or-edit-manufacturer?etld1={manufacturer.etld1}",
+                        f"As an MEP user, you can now add or edit the manufacturer details using this link: https://sudokn.com/add-or-edit-manufacturer?etld1={manufacturer.etld1}",
                     )
                     if await is_user_MEP(item.email_errand.user_email)
                     else str(
@@ -612,11 +624,6 @@ async def extract_and_cleanup(
 
 
 async def async_main():
-    # Load environment variables
-    load_core_env()
-    load_data_etl_env()
-    load_open_ai_app_env()
-
     from core.utils.aws.queue.extract_queue_util import (
         poll_item_from_extract_queue,
         delete_item_from_extract_queue,

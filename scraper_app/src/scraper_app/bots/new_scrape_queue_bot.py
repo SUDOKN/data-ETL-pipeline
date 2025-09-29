@@ -4,11 +4,19 @@ import argparse
 
 import logging
 
-from typing import Callable, Awaitable, Any
+from typing import Callable, Awaitable
 
 from core.dependencies.load_core_env import load_core_env
+from scraper_app.dependencies.load_scraper_env import load_scraper_env
 from open_ai_key_app.dependencies.load_open_ai_app_env import load_open_ai_app_env
 from data_etl_app.dependencies.load_data_etl_env import load_data_etl_env
+
+# Load environment variables
+load_core_env()
+load_scraper_env()
+load_data_etl_env()
+load_open_ai_app_env()
+
 
 from core.dependencies.aws_clients import initialize_core_aws_clients
 from data_etl_app.dependencies.aws_clients import initialize_data_etl_aws_clients
@@ -209,7 +217,6 @@ async def process_queue(
                         f"Skipped stats calculation: scraped_file.last_modified_on ({scraped_file.last_modified_on}) "
                         f"is not newer than polled_at ({polled_at})"
                     )
-
             except Exception as e:
                 logger.error(
                     f"Error processing manufacturer {item.accessible_normalized_url}: {e}"
@@ -223,7 +230,6 @@ async def process_queue(
                     )
                 )
             finally:
-
                 await delete_item_from_s_queue(receipt_handle)
     except Exception as e:
         logger.error(f"Error processing SQS message: {e}")
@@ -290,6 +296,7 @@ async def get_valid_scraped_file(
         f"after existing mfg check, existing_scraped_file = {existing_scraped_file.model_dump() if existing_scraped_file else None}."
     )
 
+    # Find any latest version on S3 if a linked version wasn't found above
     if not existing_scraped_file:  # try to find any version on S3
         logger.info(
             f"No existing scraped file found for {mfg_etld}. Checking S3 for any version."
@@ -408,11 +415,6 @@ def parse_args():
 
 
 async def async_main():
-    # Load environment variables
-    load_core_env()
-    load_data_etl_env()
-    load_open_ai_app_env()
-
     from core.utils.aws.queue.extract_queue_util import push_item_to_extract_queue
     from core.utils.aws.queue.priority_extract_queue_util import (
         push_item_to_priority_extract_queue,

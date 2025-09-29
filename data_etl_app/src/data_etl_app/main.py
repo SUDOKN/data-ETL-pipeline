@@ -10,11 +10,13 @@ logging.basicConfig(
     level=logging.INFO, format="%(asctime)s - %(name)s - %(levelname)s - %(message)s"
 )
 from core.dependencies.load_core_env import load_core_env
+from scraper_app.dependencies.load_scraper_env import load_scraper_env
 from open_ai_key_app.dependencies.load_open_ai_app_env import load_open_ai_app_env
 from data_etl_app.dependencies.load_data_etl_env import load_data_etl_env
 
 # Load environment variables
 load_core_env()
+load_scraper_env()
 load_data_etl_env()
 load_open_ai_app_env()
 

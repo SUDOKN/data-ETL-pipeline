@@ -37,11 +37,15 @@ class ScrapedTextFile(BaseModel):
     s3_version_id: str
     last_modified_on: datetime
     etld1: str
-    num_tokens: int
     text: str = Field(repr=False, exclude=True)
+
+    # tags
+    num_tokens: int
     urls_scraped: int
     urls_failed: int
-    success_rate: float
+
+    # meta
+    success_rate: float  # TODO: computed property
     is_valid: bool
 
     @computed_field  # included in dumps; safe for logs

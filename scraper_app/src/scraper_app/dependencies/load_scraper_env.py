@@ -12,7 +12,7 @@ _loaded = False
 _lock = threading.Lock()
 
 
-def load_shared_env(
+def load_scraper_env(
     *, required: bool = True, override: bool = False, env_path: Path | None = None
 ) -> None:
     """
