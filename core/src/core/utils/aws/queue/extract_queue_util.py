@@ -4,7 +4,10 @@ import logging
 
 from core.models.to_extract_item import ToExtractItem
 from core.constants import LONG_POLL_INTERVAL
-from core.dependencies.aws_clients import get_extract_queue_client
+from core.dependencies.aws_clients import (
+    get_extract_queue_client,
+    get_scrape_queue_client,
+)
 
 logger = logging.getLogger(__name__)
 
@@ -23,7 +26,7 @@ async def push_item_to_extract_queue(item: ToExtractItem):
     :param item: The item to send to the SQS queue.
     """
     assert EXTRACT_QUEUE_URL, "EXTRACT_QUEUE_URL is not set"
-    sqs_client = get_extract_queue_client()
+    sqs_client = get_scrape_queue_client()
     await sqs_client.send_message(
         QueueUrl=EXTRACT_QUEUE_URL,
         MessageBody=item.model_dump_json(),
