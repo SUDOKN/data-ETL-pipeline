@@ -142,7 +142,10 @@ class ScrapedTextFile(BaseModel):
         cls, batch: Batch, scrape_result: ScrapingResult, mfg_etld1: str
     ) -> ScrapedTextFile:
         is_valid = ScrapingResult.is_scrape_valid(
-            scrape_result.content, scrape_result.urls_scraped, scrape_result.urls_failed
+            scrape_result.content,
+            scrape_result.urls_scraped,
+            scrape_result.urls_failed,
+            scrape_result.timed_out,
         )
 
         if not is_valid:
@@ -150,6 +153,9 @@ class ScrapedTextFile(BaseModel):
                 f"Upload cancelled. Scraping result is not valid for {mfg_etld1}: "
                 f"Urls scraped: {scrape_result.urls_scraped}, "
                 f"Urls failed: {scrape_result.urls_failed}, "
+                f"Timed out: {scrape_result.timed_out}, "
+                f"Urls discovered: {scrape_result.urls_discovered}, "
+                f"Total time taken: {scrape_result.total_time_taken}, "
                 f"success_rate: {scrape_result.success_rate}, "
                 f"num_tokens: {scrape_result.num_tokens}."
             )

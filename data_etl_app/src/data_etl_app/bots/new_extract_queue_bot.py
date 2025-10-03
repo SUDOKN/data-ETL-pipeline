@@ -27,28 +27,27 @@ from data_etl_app.dependencies.aws_clients import (
 from core.models.db.manufacturer import Manufacturer
 from core.models.db.extraction_error import ExtractionError
 from core.models.to_extract_item import ToExtractItem
-
 from core.services.user_service import is_user_MEP
 from core.utils.mongo_client import init_db
 from core.utils.time_util import get_current_time
-
 from core.services.manufacturer_service import (
     find_manufacturer_by_etld1,
     update_manufacturer,
 )
+
 from scraper_app.models.scraped_text_file import ScrapedTextFile
-from data_etl_app.models.binary_classification import BinaryClassificationResult
+
 from data_etl_app.models.db.binary_ground_truth import HumanBinaryDecision
+from data_etl_app.models.binary_classification import BinaryClassificationResult
 from data_etl_app.models.types_and_enums import BinaryClassificationTypeEnum
-from data_etl_app.services.manufacturer_user_form_service import (
-    create_from_manufacturer,
-)
 from data_etl_app.services.ground_truth.binary_ground_truth_service import (
     get_binary_ground_truth,
 )
-
 from data_etl_app.services.llm_powered.search.llm_search_service import (
     find_business_desc_using_only_first_chunk,
+)
+from data_etl_app.services.llm_powered.extraction.extract_address import (
+    extract_address_from_n_chunks,
 )
 from data_etl_app.services.llm_powered.extraction.extract_keyword_service import (
     extract_products,
@@ -410,14 +409,45 @@ async def process_manufacturer(
                 )
             )
 
-    # TODO: check existing binary ground truth as well
-    if not manufacturer.is_manufacturer.answer:
+    if not manufacturer.addresses:
+        try:
+            logger.info(f"Extracting addresses for {manufacturer.etld1}")
+
+            manufacturer.addresses = await extract_address_from_n_chunks(
+                polled_at, manufacturer.etld1, mfg_txt
+            )
+            await update_manufacturer(
+                updated_at=polled_at,
+                manufacturer=manufacturer,
+            )
+        except Exception as e:
+            logger.error(f"{manufacturer.name}.addresses errored:{e}")
+            await ExtractionError.insert_one(
+                ExtractionError(
+                    created_at=polled_at,
+                    error=str(e),
+                    field="addresses",
+                    mfg_etld1=manufacturer.etld1,
+                )
+            )
+
+    is_manufacturer_gt = await get_binary_ground_truth(
+        manufacturer,
+        manufacturer.is_manufacturer.stats.prompt_version_id,
+        BinaryClassificationTypeEnum.is_manufacturer,
+    )
+
+    final_decision: HumanBinaryDecision | BinaryClassificationResult = (
+        is_manufacturer_gt.final_decision
+        if is_manufacturer_gt and is_manufacturer_gt.final_decision
+        else manufacturer.is_manufacturer
+    )
+
+    if not final_decision.answer:
         logger.info(
             f"Skipping further extraction for {manufacturer.etld1} as it is not a manufacturer."
         )
         return
-
-    logger.debug(f"products if present: {manufacturer.products}")
 
     if not manufacturer.products or manufacturer.products.results is None:
         try:
@@ -441,8 +471,6 @@ async def process_manufacturer(
                 )
             )
 
-    logger.debug(f"certificates if present: {manufacturer.certificates}")
-
     if not manufacturer.certificates or manufacturer.certificates.results is None:
         try:
             logger.info(f"Extracting certificates for {manufacturer.etld1}")
@@ -465,8 +493,6 @@ async def process_manufacturer(
                 )
             )
 
-    logger.debug(f"industries if present: {manufacturer.industries}")
-
     if not manufacturer.industries or manufacturer.industries.results is None:
         try:
             logger.info(f"Extracting industries for {manufacturer.etld1}")
@@ -488,8 +514,6 @@ async def process_manufacturer(
                     mfg_etld1=manufacturer.etld1,
                 )
             )
-
-    logger.debug(f"material_caps if present: {manufacturer.material_caps}")
 
     if not manufacturer.material_caps or manufacturer.material_caps.results is None:
         try:
@@ -557,8 +581,7 @@ async def extract_and_cleanup(
         logger.info(
             f"Checking if something was missed in processing {manufacturer.etld1}."
         )
-        await create_from_manufacturer(manufacturer)
-        logger.info(f"{manufacturer.etld1} was completely processed.")
+
         if item.email_errand:
             logger.info(f"Running email errand for {manufacturer.etld1}.")
             assert manufacturer.is_manufacturer is not None

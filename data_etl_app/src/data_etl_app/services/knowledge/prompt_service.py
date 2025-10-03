@@ -14,6 +14,7 @@ PROMPT_NAMES = [
     "is_manufacturer",
     "is_product_manufacturer",
     "is_contract_manufacturer",
+    "extract_any_address",
     "extract_any_product",
     "extract_any_certificate",
     "extract_any_industry",
@@ -118,6 +119,10 @@ class PromptService:
     @property
     def is_contract_manufacturer_prompt(self) -> Prompt:
         return self._get_prompt("is_contract_manufacturer")
+
+    @property
+    def extract_any_address(self) -> Prompt:
+        return self._get_prompt("extract_any_address")
 
     @property
     def extract_any_product_prompt(self) -> Prompt:

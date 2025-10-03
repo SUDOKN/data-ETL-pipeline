@@ -3,8 +3,14 @@ import uuid
 import pytest
 import pytest_asyncio
 import aiobotocore.session
-from unittest.mock import AsyncMock, MagicMock
+import os
+from unittest.mock import AsyncMock, MagicMock, patch
 from datetime import datetime
+
+# Load environment variables first
+from core.dependencies.load_core_env import load_core_env
+
+load_core_env()
 
 from core.utils.aws.s3.scraped_text_util import (
     get_file_name_from_mfg_etld,
@@ -12,18 +18,113 @@ from core.utils.aws.s3.scraped_text_util import (
     upload_scraped_text_to_s3,
     download_scraped_text_from_s3_by_filename,
     delete_scraped_text_from_s3_by_filename,
-    get_scraped_text_object_tags_by_filename,
+    _get_scraped_text_object_tags_by_filename,
     iterate_scraped_text_objects_and_versions,
+    SCRAPED_TEXT_BUCKET,
 )
-from core.utils.aws.s3.s3_client_util import make_s3_client
+
+from core.dependencies.aws_clients import (
+    initialize_core_aws_clients,
+    cleanup_core_aws_clients,
+)
+
+
+def make_s3_client(session):
+    """Create an S3 client for testing purposes."""
+    aws_region = os.getenv("AWS_REGION", "us-east-1")
+    aws_access_key_id = os.getenv("AWS_SCRAPED_BUCKET_USER_ACCESS_KEY_ID")
+    aws_secret_access_key = os.getenv("AWS_SCRAPED_BUCKET_USER_SECRET_ACCESS_KEY")
+
+    return session.create_client(
+        "s3",
+        region_name=aws_region,
+        aws_access_key_id=aws_access_key_id,
+        aws_secret_access_key=aws_secret_access_key,
+    )
+
+
+# Test helper functions that take an S3 client parameter
+async def upload_scraped_text_to_s3_with_client(
+    s3_client, file_content: str, file_name: str, tags: dict[str, str]
+) -> tuple[str, str]:
+    """Test helper that takes an S3 client and mimics the real function."""
+    with patch(
+        "core.utils.aws.s3.scraped_text_util.get_scraped_bucket_s3_client",
+        return_value=s3_client,
+    ):
+        return await upload_scraped_text_to_s3(file_content, file_name, tags)
+
+
+async def get_scraped_text_file_exist_last_modified_on_with_client(
+    s3_client, file_name: str, version_id: str
+) -> datetime | None:
+    """Test helper that takes an S3 client and mimics the real function."""
+    with patch(
+        "core.utils.aws.s3.scraped_text_util.get_scraped_bucket_s3_client",
+        return_value=s3_client,
+    ):
+        return await get_scraped_text_file_exist_last_modified_on(file_name, version_id)
+
+
+async def download_scraped_text_from_s3_by_filename_with_client(
+    s3_client, file_name: str, version_id: str
+) -> tuple[str, str]:
+    """Test helper that takes an S3 client and mimics the real function."""
+    with patch(
+        "core.utils.aws.s3.scraped_text_util.get_scraped_bucket_s3_client",
+        return_value=s3_client,
+    ):
+        return await download_scraped_text_from_s3_by_filename(file_name, version_id)
+
+
+async def delete_scraped_text_from_s3_by_filename_with_client(
+    s3_client, file_name: str, version_id: str | None = None
+) -> None:
+    """Test helper that takes an S3 client and mimics the real function."""
+    with patch(
+        "core.utils.aws.s3.scraped_text_util.get_scraped_bucket_s3_client",
+        return_value=s3_client,
+    ):
+        return await delete_scraped_text_from_s3_by_filename(file_name, version_id)
+
+
+async def _get_scraped_text_object_tags_by_filename_with_client(
+    s3_client, file_name: str, version_id: str
+) -> dict[str, str]:
+    """Test helper that takes an S3 client and mimics the real function."""
+    with patch(
+        "core.utils.aws.s3.scraped_text_util.get_scraped_bucket_s3_client",
+        return_value=s3_client,
+    ):
+        return await _get_scraped_text_object_tags_by_filename(file_name, version_id)
+
+
+async def iterate_scraped_text_objects_and_versions_with_client(
+    s3_client, prefix: str = "", include_tags: bool = False
+):
+    """Test helper that takes an S3 client and mimics the real function."""
+    with patch(
+        "core.utils.aws.s3.scraped_text_util.get_scraped_bucket_s3_client",
+        return_value=s3_client,
+    ):
+        async for item in iterate_scraped_text_objects_and_versions(
+            prefix, include_tags
+        ):
+            yield item
 
 
 class TestScrapedTextUtilS3Integration:
     @pytest_asyncio.fixture
     async def s3_client(self):
-        session = aiobotocore.session.get_session()
-        async with make_s3_client(session) as client:
-            yield client
+        # Initialize AWS clients first
+        await initialize_core_aws_clients()
+        try:
+            session = aiobotocore.session.get_session()
+            async with make_s3_client(session) as client:
+                yield client
+        finally:
+            # Cleanup AWS clients
+            await cleanup_core_aws_clients()
 
     @pytest.mark.asyncio
     async def test_upload_download_delete_cycle(self, s3_client):
@@ -35,7 +136,7 @@ class TestScrapedTextUtilS3Integration:
         tags = {"test": "integration"}
 
         # Upload
-        version_id, s3_url = await upload_scraped_text_to_s3(
+        version_id, s3_url = await upload_scraped_text_to_s3_with_client(
             s3_client, file_content, file_name, tags
         )
         print(f"Uploaded file to S3: {s3_url} with version ID: {version_id}")
@@ -44,14 +145,14 @@ class TestScrapedTextUtilS3Integration:
         assert s3_url.endswith(file_name)
 
         # Existence check
-        exists = await get_scraped_text_file_exist_last_modified_on(
+        exists = await get_scraped_text_file_exist_last_modified_on_with_client(
             s3_client, file_name, version_id
         )
-        assert exists is True
+        assert exists is not None  # Should return a datetime, not True/False
 
         # Download
         downloaded_content, downloaded_version_id = (
-            await download_scraped_text_from_s3_by_filename(
+            await download_scraped_text_from_s3_by_filename_with_client(
                 s3_client, file_name, version_id
             )
         )
@@ -60,16 +161,18 @@ class TestScrapedTextUtilS3Integration:
 
         # Delete (handle permission issues gracefully)
         try:
-            await delete_scraped_text_from_s3_by_filename(
+            await delete_scraped_text_from_s3_by_filename_with_client(
                 s3_client, file_name, version_id
             )
             print("✅ File successfully deleted from S3")
 
             # Confirm deletion (should not exist)
-            exists_after = await get_scraped_text_file_exist_last_modified_on(
-                s3_client, file_name, version_id
+            exists_after = (
+                await get_scraped_text_file_exist_last_modified_on_with_client(
+                    s3_client, file_name, version_id
+                )
             )
-            assert exists_after is False
+            assert exists_after is None  # Should return None when file doesn't exist
 
         except Exception as e:
             if "AccessDenied" in str(e) and "DeleteObjectVersion" in str(e):
@@ -99,7 +202,7 @@ class TestGetScrapedTextObjectTags:
         file_name = "test.com.txt"
         version_id = "test-version-123"
 
-        result = await get_scraped_text_object_tags_by_filename(
+        result = await _get_scraped_text_object_tags_by_filename_with_client(
             mock_s3_client, file_name, version_id
         )
 
@@ -123,7 +226,7 @@ class TestGetScrapedTextObjectTags:
         mock_s3_client = AsyncMock()
         mock_s3_client.get_object_tagging.return_value = {"TagSet": []}
 
-        result = await get_scraped_text_object_tags_by_filename(
+        result = await _get_scraped_text_object_tags_by_filename_with_client(
             mock_s3_client, "test.txt", "version-1"
         )
 
@@ -135,7 +238,7 @@ class TestGetScrapedTextObjectTags:
         mock_s3_client = AsyncMock()
         mock_s3_client.get_object_tagging.return_value = {}
 
-        result = await get_scraped_text_object_tags_by_filename(
+        result = await _get_scraped_text_object_tags_by_filename_with_client(
             mock_s3_client, "test.txt", "version-1"
         )
 
@@ -193,7 +296,7 @@ class TestIterateScrapedTextObjectsAndVersions:
 
         # Collect results
         results = []
-        async for obj_version in iterate_scraped_text_objects_and_versions(
+        async for obj_version in iterate_scraped_text_objects_and_versions_with_client(
             mock_s3_client
         ):
             results.append(obj_version)
@@ -290,7 +393,7 @@ class TestIterateScrapedTextObjectsAndVersions:
 
         # Collect results with tags
         results = []
-        async for obj_version in iterate_scraped_text_objects_and_versions(
+        async for obj_version in iterate_scraped_text_objects_and_versions_with_client(
             mock_s3_client, include_tags=True
         ):
             results.append(obj_version)
@@ -332,7 +435,7 @@ class TestIterateScrapedTextObjectsAndVersions:
 
         prefix = "test-prefix/"
         results = []
-        async for obj_version in iterate_scraped_text_objects_and_versions(
+        async for obj_version in iterate_scraped_text_objects_and_versions_with_client(
             mock_s3_client, prefix=prefix
         ):
             results.append(obj_version)
@@ -360,7 +463,7 @@ class TestIterateScrapedTextObjectsAndVersions:
         mock_paginator.paginate.return_value = mock_paginate_async()
 
         results = []
-        async for obj_version in iterate_scraped_text_objects_and_versions(
+        async for obj_version in iterate_scraped_text_objects_and_versions_with_client(
             mock_s3_client
         ):
             results.append(obj_version)
@@ -371,9 +474,15 @@ class TestIterateScrapedTextObjectsAndVersions:
 class TestScrapedTextUtilS3IntegrationWithTags:
     @pytest_asyncio.fixture
     async def s3_client(self):
-        session = aiobotocore.session.get_session()
-        async with make_s3_client(session) as client:
-            yield client
+        # Initialize AWS clients first
+        await initialize_core_aws_clients()
+        try:
+            session = aiobotocore.session.get_session()
+            async with make_s3_client(session) as client:
+                yield client
+        finally:
+            # Cleanup AWS clients
+            await cleanup_core_aws_clients()
 
     @pytest.mark.asyncio
     async def test_full_cycle_with_tags_and_iteration(self, s3_client):
@@ -390,19 +499,23 @@ class TestScrapedTextUtilS3IntegrationWithTags:
 
         try:
             # Upload with tags
-            version_id, s3_url = await upload_scraped_text_to_s3(
+            version_id, s3_url = await upload_scraped_text_to_s3_with_client(
                 s3_client, file_content, file_name, tags
             )
 
             # Test tag retrieval
-            retrieved_tags = await get_scraped_text_object_tags_by_filename(
-                s3_client, file_name, version_id
+            retrieved_tags = (
+                await _get_scraped_text_object_tags_by_filename_with_client(
+                    s3_client, file_name, version_id
+                )
             )
             assert retrieved_tags == tags
 
             # Test iteration without tags
             found_without_tags = False
-            async for obj_version in iterate_scraped_text_objects_and_versions(
+            async for (
+                obj_version
+            ) in iterate_scraped_text_objects_and_versions_with_client(
                 s3_client, prefix=file_name
             ):
                 if (
@@ -419,7 +532,9 @@ class TestScrapedTextUtilS3IntegrationWithTags:
 
             # Test iteration with tags
             found_with_tags = False
-            async for obj_version in iterate_scraped_text_objects_and_versions(
+            async for (
+                obj_version
+            ) in iterate_scraped_text_objects_and_versions_with_client(
                 s3_client, prefix=file_name, include_tags=True
             ):
                 if (
@@ -436,7 +551,7 @@ class TestScrapedTextUtilS3IntegrationWithTags:
         finally:
             # Cleanup
             try:
-                await delete_scraped_text_from_s3_by_filename(
+                await delete_scraped_text_from_s3_by_filename_with_client(
                     s3_client, file_name, version_id
                 )
             except Exception as e:

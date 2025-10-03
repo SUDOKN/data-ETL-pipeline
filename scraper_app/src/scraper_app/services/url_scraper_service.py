@@ -51,6 +51,9 @@ class ScrapingResult:
     errors: List[dict]
     urls_scraped: int
     urls_failed: int
+    urls_discovered: int
+    total_time_taken: float  # in seconds
+    timed_out: bool
 
     @property
     def has_errors(self) -> bool:
@@ -62,7 +65,7 @@ class ScrapingResult:
 
     def is_valid(self) -> bool:
         return ScrapingResult.is_scrape_valid(
-            self.content, self.urls_scraped, self.urls_failed
+            self.content, self.urls_scraped, self.urls_failed, self.timed_out
         )
 
     @property
@@ -70,10 +73,14 @@ class ScrapingResult:
         return num_tokens_from_string(self.content)
 
     def __str__(self) -> str:
+        timeout_info = " (TIMED OUT)" if self.timed_out else ""
         return (
             f"ScrapingResult(success_rate={self.success_rate:.2%}, "
             f"urls_scraped={self.urls_scraped}, urls_failed={self.urls_failed}, "
-            f"errors_count={len(self.errors)})"
+            f"urls_discovered={self.urls_discovered}, "
+            f"num_tokens={self.num_tokens}, "
+            f"time={self.total_time_taken:.1f}s, "
+            f"errors_count={len(self.errors)}{timeout_info})"
         )
 
     @staticmethod
@@ -86,15 +93,21 @@ class ScrapingResult:
         return success_rate
 
     @classmethod
-    def is_scrape_valid(cls, content: str, urls_scraped: int, urls_failed: int) -> bool:
+    def is_scrape_valid(
+        cls, content: str, urls_scraped: int, urls_failed: int, timed_out: bool = False
+    ) -> bool:
         num_tokens = num_tokens_from_string(content)
         success_rate = cls.get_success_rate(urls_scraped, urls_failed)
-        return 30 < num_tokens and success_rate > 0.8
+        return 30 < num_tokens and success_rate > 0.8 and not timed_out
 
     def print_stats(self) -> None:
         logger.info(f"URLs scraped: {self.urls_scraped}")
         logger.info(f"URLs failed: {self.urls_failed}")
+        logger.info(f"URLs discovered: {self.urls_discovered}")
         logger.info(f"Success rate: {self.success_rate:.1%}")
+        logger.info(f"Total time taken: {self.total_time_taken:.1f}s")
+        if self.timed_out:
+            logger.info("Scraping operation TIMED OUT")
         if self.errors:
             logger.info(f"Errors Count: {len(self.errors)}")
             for error in self.errors:
@@ -113,6 +126,7 @@ class ScraperService:
         self,
         max_concurrent_browsers: int = 5,
         max_depth: int = 5,
+        scrape_timeout: int = 60,  # in minutes
         headless: bool = True,
         driver_module: Optional[str] = None,  # For backward compatibility
     ):
@@ -124,6 +138,7 @@ class ScraperService:
 
         self.max_concurrent_browsers = max_concurrent_browsers
         self.max_depth = max_depth
+        self.scrape_timeout = scrape_timeout  # in minutes
 
         # Track active drivers for cleanup
         self.active_drivers = []
@@ -332,6 +347,7 @@ class ScraperService:
         errors: list[dict],
         resolved_start_url: str,
         stats: dict,
+        cancel_event: threading.Event,
     ):
         logger.info("Creating new driver for worker")
         driver = self._new_driver()
@@ -341,13 +357,25 @@ class ScraperService:
         parsed_start = urlparse(resolved_start_url)
 
         while True:
+            # Exit promptly if cancellation was requested
+            if cancel_event.is_set():
+                break
+
             try:
-                url, depth = queue.get(timeout=15.0)
+                # Use a short timeout so we can react quickly to cancellation
+                url, depth = queue.get(timeout=1.0)
             except Empty:
+                if cancel_event.is_set():
+                    break
                 continue
 
             if not url or not isinstance(url, str):
                 logger.debug("Received sentinel or invalid URL, exiting worker.")
+                queue.task_done()
+                break
+
+            # If cancelled after dequeuing, mark the task done and exit
+            if cancel_event.is_set():
                 queue.task_done()
                 break
 
@@ -371,7 +399,7 @@ class ScraperService:
                     logger.info(f"Scraped: {url} | Remaining: {remaining}")
 
                 # ----- Single-pass discovery per page + BFS until max_depth
-                if depth < self.max_depth:
+                if depth < self.max_depth and not cancel_event.is_set():
                     new_hrefs = self._collect_links_js(driver, resolved_start_url)
                     logger.debug(
                         f"Found {len(new_hrefs)} links on {url} at depth {depth}"
@@ -450,6 +478,10 @@ class ScraperService:
             work_q = Queue()
             work_q.put((final_landing_url, 0))
 
+            cancel_event = threading.Event()
+            start_time = time.monotonic()
+            deadline = start_time + self.scrape_timeout * 60
+
             with ThreadPoolExecutor(
                 max_workers=self.max_concurrent_browsers
             ) as executor:
@@ -464,25 +496,84 @@ class ScraperService:
                         errors,
                         final_landing_url,
                         stats,
+                        cancel_event,
                     )
 
-                logger.info("Waiting for all workers to finish...")
-                work_q.join()
+                # Monitor for completion or timeout
+                timed_out = False
+                while True:
+                    if time.monotonic() >= deadline:
+                        timed_out = True
+                        break
+                    # Avoid Queue.join() so we can bail out on timeout
+                    if getattr(work_q, "unfinished_tasks", 0) == 0:
+                        break
+                    time.sleep(0.5)
 
-                # Send sentinels
-                logger.info("All workers finished, sending sentinels to stop them.")
+                if timed_out:
+                    logger.warning(
+                        "Scrape exceeded max duration (%d minutes). Cancelling...",
+                        self.scrape_timeout,
+                    )
+                    cancel_event.set()
+
+                    # Drain remaining tasks and mark them done so no joins hang
+                    try:
+                        while True:
+                            _ = work_q.get_nowait()
+                            work_q.task_done()
+                    except Empty:
+                        pass
+
+                    # Unblock workers waiting on get() so they can exit
+                    for _ in range(self.max_concurrent_browsers):
+                        work_q.put((None, 0))
+
+                    # Calculate final time
+                    total_time_taken = time.monotonic() - start_time
+
+                    # Propagate timeout to caller
+                    raise TimeoutError(
+                        f"Scrape exceeded max duration: {self.scrape_timeout} minutes"
+                    )
+
+                # Normal completion: ask workers to exit
+                logger.info("All work finished, sending sentinels to stop workers.")
                 for _ in range(self.max_concurrent_browsers):
                     work_q.put((None, 0))
-                work_q.join()
+
+            total_time_taken = time.monotonic() - start_time
 
             return ScrapingResult(
                 content="".join(results),
                 errors=errors,
                 urls_scraped=stats["scraped"],
                 urls_failed=stats["failed"],
+                urls_discovered=len(discovered),
+                total_time_taken=total_time_taken,
+                timed_out=False,
             )
 
+        except TimeoutError:
+            # Let caller handle timeouts - but we need to return a result with the timeout flag
+            total_time_taken = (
+                time.monotonic() - start_time
+                if "start_time" in locals()
+                else self.scrape_timeout * 60
+            )
+            return ScrapingResult(
+                content="".join(results) if "results" in locals() else "",
+                errors=errors if "errors" in locals() else [],
+                urls_scraped=stats["scraped"] if "stats" in locals() else 0,
+                urls_failed=stats["failed"] if "stats" in locals() else 0,
+                urls_discovered=len(discovered) if "discovered" in locals() else 0,
+                total_time_taken=total_time_taken,
+                timed_out=True,
+            )
         except Exception as e:
+            total_time_taken = (
+                time.monotonic() - start_time if "start_time" in locals() else 0
+            )
             return ScrapingResult(
                 content="",
                 errors=[
@@ -495,4 +586,7 @@ class ScraperService:
                 ],
                 urls_scraped=0,
                 urls_failed=1,
+                urls_discovered=0,
+                total_time_taken=total_time_taken,
+                timed_out=False,
             )

@@ -18,15 +18,17 @@ logger = logging.getLogger(__name__)
 
 
 class Address(BaseModel):
-    line_1: str
+    name: Optional[str]
+    address_lines: Optional[str]
     city: str
-    county: str
     state: str
-    zip: str
-    latitude: float
-    longitude: float
-    phone_num: Optional[str]
-    fax_num: Optional[str]
+    county: Optional[str]
+    postal_code: str
+    country: str
+    latitude: Optional[float]
+    longitude: Optional[float]
+    phone_numbers: Optional[str]
+    fax_numbers: Optional[str]
 
 
 class Batch(BaseModel):

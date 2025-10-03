@@ -2,7 +2,7 @@ from beanie import Document
 import logging
 from pydantic import Field
 from datetime import datetime
-from typing import List, Optional
+from typing import Optional
 
 from core.models.db.manufacturer import Address
 from core.models.field_types import MfgETLDType
@@ -32,13 +32,14 @@ class ManufacturerUserForm(Document):
     # is_product_manufacturer_gt_id: Optional[str]
 
     founded_in: Optional[int]
-    email_addresses: Optional[List[str]]
+    email_addresses: Optional[list[str]]
     num_employees: Optional[int]
-    business_statuses: Optional[List[str]]
+    business_statuses: Optional[list[str]]
     primary_naics: Optional[str]
-    secondary_naics: Optional[List[str]]
-    addresses: Optional[List[Address]]
+    secondary_naics: Optional[list[str]]
 
+    # Required
+    addresses: list[Address]
     business_desc: BusinessDescriptionResult
     products: list[str]
 

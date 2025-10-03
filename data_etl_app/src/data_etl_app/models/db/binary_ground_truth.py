@@ -63,7 +63,9 @@ class BinaryGroundTruth(Document):
     @property
     def final_decision(self) -> HumanBinaryDecision | None:
         if self.human_decision_logs:
-            return self.human_decision_logs[-1].human_decision
+            for log in reversed(self.human_decision_logs):
+                if log.human_decision.source == GroundTruthSource.API_SURVEY:
+                    return log.human_decision
         return None
 
     class Settings:

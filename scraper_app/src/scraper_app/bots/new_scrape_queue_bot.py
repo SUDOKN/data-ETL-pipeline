@@ -18,8 +18,14 @@ load_data_etl_env()
 load_open_ai_app_env()
 
 
-from core.dependencies.aws_clients import initialize_core_aws_clients
-from data_etl_app.dependencies.aws_clients import initialize_data_etl_aws_clients
+from core.dependencies.aws_clients import (
+    cleanup_core_aws_clients,
+    initialize_core_aws_clients,
+)
+from data_etl_app.dependencies.aws_clients import (
+    cleanup_data_etl_aws_clients,
+    initialize_data_etl_aws_clients,
+)
 
 from core.models.db.scraping_error import ScrapingError
 from core.models.db.manufacturer import Manufacturer
@@ -198,9 +204,9 @@ async def process_queue(
                     )
 
                 await update_manufacturer(polled_at, manufacturer)
-                await push_item_to_e_queue(
-                    ToExtractItem(mfg_etld1=manufacturer.etld1),
-                )
+                # await push_item_to_e_queue(
+                #     ToExtractItem.from_to_scrape_item(item),
+                # )
                 logger.info(f"Saved manufacturer: {manufacturer.etld1}")
                 # Calculate and log timing
                 if scraped_file.last_modified_on > polled_at:
@@ -376,10 +382,8 @@ async def get_valid_scraped_file(
         logger.info(f"📊 Scraping stats for {item.accessible_normalized_url}:")
         scraping_result.print_stats()
 
-        existing_scraped_file = (
-            await ScrapedTextFile.upload_to_s3_and_create(  # throws error if not valid
-                item.batch, scraping_result, mfg_etld
-            )
+        existing_scraped_file = await ScrapedTextFile.upload_to_s3_and_create(  # throws error if not valid or scraping_result.timed_out
+            item.batch, scraping_result, mfg_etld
         )
         logger.info(
             f"Uploaded new scraped text file for {item.accessible_normalized_url} to S3."
@@ -411,6 +415,12 @@ def parse_args():
     parser.add_argument(
         "--max_depth", type=int, default=5, help="Max depth for scraping"
     )
+    parser.add_argument(
+        "--scrape_timeout",
+        type=int,
+        default=60,
+        help="Max timeout for scraping in minutes",
+    )
     return parser.parse_args()
 
 
@@ -429,6 +439,7 @@ async def async_main():
     )
 
     await init_db()
+
     # Initialize AWS clients
     await initialize_core_aws_clients()
     await initialize_data_etl_aws_clients()
@@ -460,16 +471,22 @@ async def async_main():
         delete_item_from_s_queue = delete_item_from_scrape_queue
         push_item_to_e_queue = push_item_to_extract_queue
 
-    scraper = ScraperService(
-        max_concurrent_browsers=args.max_concurrent_browsers,
-        max_depth=args.max_depth,
-    )
-    await process_queue(
-        scraper,
-        push_item_to_e_queue,
-        poll_item_from_s_queue,
-        delete_item_from_s_queue,
-    )
+    try:
+        scraper = ScraperService(
+            max_concurrent_browsers=args.max_concurrent_browsers,
+            max_depth=args.max_depth,
+            scrape_timeout=args.scrape_timeout,  # in minutes
+        )
+        await process_queue(
+            scraper,
+            push_item_to_e_queue,
+            poll_item_from_s_queue,
+            delete_item_from_s_queue,
+        )
+    finally:
+        # Clean up AWS clients
+        await cleanup_data_etl_aws_clients()
+        await cleanup_core_aws_clients()
 
 
 def main():

@@ -63,6 +63,17 @@ async def get_is_contract_manufacturer_prompt():
         raise HTTPException(status_code=500, detail=str(e))
 
 
+@router.get("/prompts/extract_any_address", response_class=JSONResponse)
+async def get_extract_any_address_prompt():
+    """Get the extract any address prompt."""
+    try:
+        prompt_service = await get_prompt_service()
+        prompt = prompt_service.extract_any_address
+        return prompt.model_dump()
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
+
 @router.get("/prompts/extract_any_product", response_class=JSONResponse)
 async def get_extract_any_product_prompt():
     """Get the extract any product prompt."""

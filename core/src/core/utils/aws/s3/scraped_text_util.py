@@ -210,6 +210,20 @@ async def download_scraped_text_from_s3_by_filename(
     return content.decode("utf-8"), version_id
 
 
+async def get_latest_scraped_text_object_tags_by_mfg_etld1(
+    mfg_etld1: str,
+) -> dict[str, str]:
+    """
+    Gets the tags for a specific object version in the scraped text bucket based on the manufacturer etld1.
+
+    :param mfg_etld1: The eTLD+1 of the manufacturer to get the corresponding file tags from S3.
+    :param version_id: The version ID of the object.
+    :return: Dictionary of tags with tag keys as dictionary keys and tag values as dictionary values.
+    """
+    file_name = get_file_name_from_mfg_etld(mfg_etld1)
+    return await _get_scraped_text_object_tags_by_filename(file_name, None)
+
+
 async def get_scraped_text_object_tags_by_mfg_etld1(
     mfg_etld1: str, version_id: str
 ) -> dict[str, str]:
@@ -221,11 +235,11 @@ async def get_scraped_text_object_tags_by_mfg_etld1(
     :return: Dictionary of tags with tag keys as dictionary keys and tag values as dictionary values.
     """
     file_name = get_file_name_from_mfg_etld(mfg_etld1)
-    return await get_scraped_text_object_tags_by_filename(file_name, version_id)
+    return await _get_scraped_text_object_tags_by_filename(file_name, version_id)
 
 
-async def get_scraped_text_object_tags_by_filename(
-    file_name: str, version_id: str
+async def _get_scraped_text_object_tags_by_filename(
+    file_name: str, version_id: str | None
 ) -> dict[str, str]:
     """
     Gets the tags for a specific object version in the scraped text bucket.
@@ -234,12 +248,20 @@ async def get_scraped_text_object_tags_by_filename(
     :param version_id: The version ID of the object.
     :return: Dictionary of tags with tag keys as dictionary keys and tag values as dictionary values.
     """
+    print(
+        f"Fetching tags for file: {file_name} with version ID: {version_id if version_id else 'latest'}"
+    )
     s3_client = get_scraped_bucket_s3_client()
     assert SCRAPED_TEXT_BUCKET is not None, "SCRAPED_TEXT_BUCKET is None"
 
-    tags_response = await s3_client.get_object_tagging(
-        Bucket=SCRAPED_TEXT_BUCKET, Key=file_name, VersionId=version_id
-    )
+    if not version_id:
+        tags_response = await s3_client.get_object_tagging(
+            Bucket=SCRAPED_TEXT_BUCKET, Key=file_name
+        )
+    else:
+        tags_response = await s3_client.get_object_tagging(
+            Bucket=SCRAPED_TEXT_BUCKET, Key=file_name, VersionId=version_id
+        )
     return {tag["Key"]: tag["Value"] for tag in tags_response.get("TagSet", [])}
 
 
@@ -286,7 +308,7 @@ async def iterate_scraped_text_objects_and_versions(
 
             # Fetch tags if requested
             if include_tags:
-                obj_data["Tags"] = await get_scraped_text_object_tags_by_filename(
+                obj_data["Tags"] = await _get_scraped_text_object_tags_by_filename(
                     version["Key"], version["VersionId"]
                 )
 
