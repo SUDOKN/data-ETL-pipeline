@@ -25,7 +25,7 @@ Sample:
 
 
 class ToScrapeItem(QueueItem):
-    model_config = ConfigDict(frozen=True, extra="forbid")
+    model_config = ConfigDict(frozen=True)
 
     accessible_normalized_url: str
     batch: Batch
