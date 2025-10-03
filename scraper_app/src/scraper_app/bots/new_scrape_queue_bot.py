@@ -204,9 +204,9 @@ async def process_queue(
                     )
 
                 await update_manufacturer(polled_at, manufacturer)
-                # await push_item_to_e_queue(
-                #     ToExtractItem.from_to_scrape_item(item),
-                # )
+                await push_item_to_e_queue(
+                    ToExtractItem.from_to_scrape_item(item),
+                )
                 logger.info(f"Saved manufacturer: {manufacturer.etld1}")
                 # Calculate and log timing
                 if scraped_file.last_modified_on > polled_at:

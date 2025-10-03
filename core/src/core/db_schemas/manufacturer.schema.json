@@ -271,44 +271,49 @@
         "bsonType": ["array", "null"],
         "items": {
           "bsonType": "object",
-          "required": [
-            "line_1",
-            "city",
-            "county",
-            "state",
-            "zip",
-            "latitude",
-            "longitude"
-          ],
+          "required": ["city", "state", "postal_code", "country"],
           "properties": {
-            "line_1": {
-              "bsonType": "string"
+            "name": {
+              "bsonType": ["string", "null"]
+            },
+            "address_lines": {
+              "bsonType": ["array", "null"],
+              "items": {
+                "bsonType": "string"
+              }
             },
             "city": {
               "bsonType": "string"
             },
-            "county": {
+            "state": {
               "bsonType": "string"
             },
-            "state": {
-              "bsonType": "string",
-              "minLength": 2
+            "county": {
+              "bsonType": ["string", "null"]
             },
-            "zip": {
-              "bsonType": "string",
-              "minLength": 5
+            "postal_code": {
+              "bsonType": "string"
+            },
+            "country": {
+              "bsonType": "string"
             },
             "latitude": {
-              "bsonType": "double"
+              "bsonType": ["double", "null"]
             },
             "longitude": {
-              "bsonType": "double"
+              "bsonType": ["double", "null"]
             },
-            "phone_num": {
-              "bsonType": ["string", "null"]
+            "phone_numbers": {
+              "bsonType": ["array", "null"],
+              "items": {
+                "bsonType": "string"
+              }
             },
-            "fax_num": {
-              "bsonType": ["string", "null"]
+            "fax_numbers": {
+              "bsonType": ["array", "null"],
+              "items": {
+                "bsonType": "string"
+              }
             }
           }
         }

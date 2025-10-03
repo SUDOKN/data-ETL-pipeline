@@ -29,7 +29,7 @@ async def extract_address_from_n_chunks(
     extraction_timestamp: datetime,
     mfg_etld1: str,
     mfg_text: str,
-    n: int = 3,
+    n: int = 1,
     gpt_model: GPTModel = GPT_4o_mini,
     model_params: ModelParameters = DefaultModelParameters,
 ) -> list[Address]:
@@ -46,7 +46,7 @@ async def extract_address_from_n_chunks(
     tasks = []
 
     for i, (_bounds, chunk_text) in enumerate(chunks_map.items()):
-        if i > n:
+        if i >= n:
             break
         tasks.append(
             _extract_address_from_chunk(
@@ -102,5 +102,8 @@ async def _extract_address_from_chunk(
         raise ValueError(
             f"extraction_timestamp: {extraction_timestamp}, {mfg_etld1}:{keyword_label} _extract_address_from_chunk: Empty json result found in gpt_response"
         )
+    logger.info(
+        f"extraction_timestamp: {extraction_timestamp}, {mfg_etld1}:{keyword_label} extracted {result} addresses from chunk"
+    )
 
     return [Address(**addr) for addr in result]
