@@ -194,7 +194,9 @@ async def _extract_concept_data(
     )
 
     # Run brute_search and llm_search for each chunk concurrently
-    async def _process_chunk(bounds: str, text_chunk: str):
+    async def _process_chunk(
+        bounds: str, text_chunk: str
+    ) -> tuple[str, set[Concept], set[str]]:
         # NOTE: doing brute search individually for each chunk is more expensive than all at once
         # and is computationally expensive in general, but we need chunk level results
         brute_set = brute_search(text_chunk, known_concepts)

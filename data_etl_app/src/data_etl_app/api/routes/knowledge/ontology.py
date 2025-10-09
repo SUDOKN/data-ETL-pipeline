@@ -1,12 +1,10 @@
+import logging
 from fastapi import APIRouter, HTTPException
 from fastapi.responses import JSONResponse
-import logging
 
-from data_etl_app.models.types_and_enums import ConceptTypeEnum
 from data_etl_app.services.knowledge.ontology_service import get_ontology_service
 from data_etl_app.utils.route_url_util import (
     ONTOLOGY_REFRESH_URL,
-    get_full_ontology_concept_tree_url,
 )
 
 logger = logging.getLogger(__name__)
@@ -19,17 +17,10 @@ async def refresh_ontology():
         ontology_service = await get_ontology_service()
         await ontology_service.refresh()
         return {
-            "detail": f"Ontology refreshed successfully, version {ontology_service.ontology_version_id}."
+            "detail": f"Ontology refreshed successfully, version {ontology_service.ontology.s3_version_id}."
         }
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
-
-
-# Concept nodes endpoints
-PROCESS_CONCEPT_TREE_ROUTE = get_full_ontology_concept_tree_url(
-    ConceptTypeEnum.process_caps
-)
-logger.debug(f"Process concept tree route: {PROCESS_CONCEPT_TREE_ROUTE}")
 
 
 @router.get(
@@ -96,7 +87,39 @@ async def get_certificate_concept_nodes():
         raise HTTPException(status_code=500, detail=str(e))
 
 
-# Processed (flat) endpoints
+@router.get(
+    "/ontology/naics/tree",
+    response_class=JSONResponse,
+)
+async def get_naics_concept_nodes():
+    try:
+        ontology_service = await get_ontology_service()
+        concept_node_data = ontology_service.naics_concept_nodes
+        return {
+            "ontology_version_id": concept_node_data[0],
+            "naics": concept_node_data[1],
+        }
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+@router.get(
+    "/ontology/ownership_statuses/tree",
+    response_class=JSONResponse,
+)
+async def get_ownership_status_nodes():
+    try:
+        ontology_service = await get_ontology_service()
+        concept_node_data = ontology_service.ownership_concept_nodes
+        return {
+            "ontology_version_id": concept_node_data[0],
+            "ownership_statuses": concept_node_data[1],
+        }
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+# Processed (flat) endpoints ----------------------------------------------------------- #
 @router.get(
     "/ontology/process_caps/flat",
     response_class=JSONResponse,
@@ -156,6 +179,38 @@ async def get_certificates():
         return {
             "ontology_version_id": concept_data[0],
             "certificates": concept_data[1],
+        }
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+@router.get(
+    "/ontology/ownership_statuses/flat",
+    response_class=JSONResponse,
+)
+async def get_ownership_statuses():
+    try:
+        ontology_service = await get_ontology_service()
+        concept_data = ontology_service.ownership_statuses
+        return {
+            "ontology_version_id": concept_data[0],
+            "ownership_statuses": concept_data[1],
+        }
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+@router.get(
+    "/ontology/naics/flat",
+    response_class=JSONResponse,
+)
+async def get_naics_codes():
+    try:
+        ontology_service = await get_ontology_service()
+        concept_data = ontology_service.naics_codes
+        return {
+            "ontology_version_id": concept_data[0],
+            "naics": concept_data[1],
         }
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))

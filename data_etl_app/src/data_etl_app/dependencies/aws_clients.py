@@ -3,7 +3,6 @@ import os
 import logging
 from aiobotocore.session import get_session, AioSession
 from types_aiobotocore_s3.client import S3Client
-from types_aiobotocore_sqs.client import SQSClient
 from typing import AsyncContextManager, Optional, cast
 
 

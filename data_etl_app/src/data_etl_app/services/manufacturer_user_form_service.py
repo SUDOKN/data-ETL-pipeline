@@ -39,6 +39,8 @@ async def create_from_manufacturer(manufacturer: Manufacturer) -> ManufacturerUs
         raise AssertionError("email_addresses must not be None")
     if manufacturer.business_desc is None:
         raise AssertionError("business_desc must not be None")
+    if manufacturer.addresses is None:
+        raise AssertionError("addresses must not be None")
     if manufacturer.products is None:
         raise AssertionError("products must not be None")
     if manufacturer.certificates is None:

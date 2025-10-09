@@ -5,6 +5,7 @@ from __future__ import (
 from functools import cached_property
 import json
 import logging
+from rdflib import URIRef
 
 from typing_extensions import TypedDict
 
@@ -13,6 +14,7 @@ logger = logging.getLogger(__name__)
 
 class ConceptNode(TypedDict):
     name: str
+    uri: URIRef
     altLabels: list[str]
     children: list[ConceptNode]
 
@@ -21,10 +23,12 @@ class Concept:
     def __init__(
         self,
         name: str,
+        uri: URIRef,
         altLabels: list[str],
         ancestors: list[str],
     ) -> None:
         self.name = name
+        self.uri = uri
         self.altLabels = altLabels
         self.ancestors = ancestors
 
@@ -40,7 +44,7 @@ class Concept:
         return f"{self.name}"
 
     def __repr__(self) -> str:
-        return f"Concept(name={self.name}, altLabels={self.altLabels}, ancestors={self.ancestors})"
+        return f"Concept(name={self.name}, uri={self.uri}, altLabels={self.altLabels}, ancestors={self.ancestors})"
 
 
 class ConceptJSONEncoder(json.JSONEncoder):

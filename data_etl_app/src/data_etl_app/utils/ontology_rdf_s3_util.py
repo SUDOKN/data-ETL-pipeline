@@ -1,6 +1,7 @@
 import os
 from typing import Optional
 from data_etl_app.dependencies.aws_clients import get_prompt_rdf_s3_client
+from data_etl_app.models.ontology import Ontology
 
 RDF_BUCKET = os.getenv("RDF_BUCKET")
 RDF_FILENAME = os.getenv("RDF_FILENAME")
@@ -29,7 +30,7 @@ async def does_ontology_version_exist(version_id: str) -> bool:
         raise  # Re-raise other exceptions
 
 
-async def download_ontology_rdf(version_id: Optional[str]) -> tuple[str, str]:
+async def download_ontology_rdf(version_id: Optional[str]) -> Ontology:
     """
     Read a file from an AWS S3 bucket and return its content as a string.
     """
@@ -56,4 +57,4 @@ async def download_ontology_rdf(version_id: Optional[str]) -> tuple[str, str]:
         )
 
     body_bytes = await obj["Body"].read()
-    return body_bytes.decode("utf-8"), actual_version_id
+    return Ontology(s3_version_id=actual_version_id, rdf=body_bytes.decode("utf-8"))

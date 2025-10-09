@@ -3,11 +3,25 @@ import logging
 import rdflib
 from rdflib.term import URIRef
 from rdflib.namespace import RDFS, SKOS
+from urllib.parse import quote
 from typing import Callable, List
 
 from data_etl_app.models.skos_concept import ConceptNode, Concept
 
 logger = logging.getLogger(__name__)
+
+
+def uri_strip(val: str) -> str:
+    if val is None:
+        raise ValueError("Value for URI stripping cannot be None")
+
+    # Safe chars including underscore
+    safe_chars = "~.-_%:/0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
+
+    # Simple percent-encoding, everything except safe chars is encoded
+    suffix = quote(str(val), safe=safe_chars)
+
+    return suffix
 
 
 def get_graph(rdf_raw: str) -> rdflib.Graph:
@@ -19,11 +33,16 @@ def get_graph(rdf_raw: str) -> rdflib.Graph:
 
 def get_label(graph: rdflib.Graph, uri: str) -> str:
     """Get the rdfs:label or raise ValueError."""
-    label = graph.value(subject=URIRef(uri), predicate=RDFS.label)
-    if label:
-        return str(label)
+    labels = list(graph.objects(subject=URIRef(uri), predicate=RDFS.label))
 
-    raise ValueError(f"Label not found for URI: {uri}")
+    if len(labels) == 0:
+        raise ValueError(f"Label not found for URI: {uri}")
+    elif len(labels) > 1:
+        raise ValueError(
+            f"Multiple labels found for URI: {uri}. Found {len(labels)} labels: {[str(label) for label in labels]}"
+        )
+
+    return str(labels[0])
 
 
 def get_alt_labels(graph: rdflib.Graph, uri: str) -> list[str]:
@@ -33,19 +52,36 @@ def get_alt_labels(graph: rdflib.Graph, uri: str) -> list[str]:
     ]
 
 
-def build_children(graph: rdflib.Graph, parent_uri: URIRef) -> List[ConceptNode]:
+def build_concept_tree(
+    graph: rdflib.Graph, parent_uri: URIRef, labels_seen: set[str]
+) -> ConceptNode:
     """Recursively find subclasses and build children structure."""
+    label = get_label(graph, str(parent_uri))
+    # print(f"Processing label: {label} for URI: {parent_uri}")
+    if label in labels_seen:
+        raise ValueError(f"Duplicate label '{label}' for URI: {parent_uri}.")
+    labels_seen.add(label)
+
+    alt_labels = get_alt_labels(graph, str(parent_uri))
+    for alt in alt_labels:
+        if alt in labels_seen:
+            raise ValueError(f"Duplicate altLabel '{alt}' for URI: {parent_uri}.")
+        labels_seen.add(alt)
+
     children: List[ConceptNode] = []
     for subclass, _, _ in graph.triples((None, RDFS.subClassOf, parent_uri)):
         if not isinstance(subclass, URIRef):
-            continue
-        child: ConceptNode = {
-            "name": get_label(graph, str(subclass)),
-            "altLabels": get_alt_labels(graph, str(subclass)),
-            "children": build_children(graph, subclass),
-        }
+            raise ValueError("Expected subclass to be a URIRef")
+
+        child: ConceptNode = build_concept_tree(graph, subclass, labels_seen)
         children.append(child)
-    return children
+
+    return {
+        "name": label,
+        "uri": parent_uri,
+        "altLabels": alt_labels,
+        "children": children,
+    }
 
 
 def tree_list_to_flat_helper(
@@ -67,6 +103,7 @@ def tree_list_to_flat_helper(
         result.append(
             Concept(
                 name=current_node["name"],
+                uri=current_node["uri"],
                 altLabels=current_node["altLabels"],
                 ancestors=current_ancestors.copy(),
             )

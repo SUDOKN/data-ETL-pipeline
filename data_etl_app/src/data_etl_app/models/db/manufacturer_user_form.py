@@ -26,11 +26,6 @@ class ManufacturerUserForm(Document):
 
     name: Optional[str]
 
-    # # these would exist if the user has provided ground truth for these fields
-    # is_manufacturer_gt_id: Optional[str]
-    # is_contract_manufacturer_gt_id: Optional[str]
-    # is_product_manufacturer_gt_id: Optional[str]
-
     founded_in: Optional[int]
     email_addresses: Optional[list[str]]
     num_employees: Optional[int]
