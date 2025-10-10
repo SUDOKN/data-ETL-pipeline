@@ -537,8 +537,6 @@ async def process_manufacturer(
                 )
             )
 
-    logger.debug(f"process_caps if present: {manufacturer.process_caps}")
-
     if not manufacturer.process_caps or manufacturer.process_caps.results is None:
         try:
             logger.info(f"Extracting processes for {manufacturer.etld1}")

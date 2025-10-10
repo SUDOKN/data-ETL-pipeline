@@ -5,17 +5,12 @@ from core.models.db.manufacturer import Manufacturer
 from core.models.field_types import (
     S3FileVersionIDType,
 )
-from core.models.prompt import Prompt
 
-from data_etl_app.services.knowledge.prompt_service import get_prompt_service
 from data_etl_app.models.types_and_enums import BinaryClassificationTypeEnum
 from data_etl_app.models.db.binary_ground_truth import (
     BinaryGroundTruth,
     HumanDecisionLog,
     HumanBinaryDecision,
-)
-from core.services.manufacturer_service import (
-    find_manufacturer_by_etld1,
 )
 from core.utils.aws.s3.scraped_text_util import (
     download_scraped_text_from_s3_by_mfg_etld1,
