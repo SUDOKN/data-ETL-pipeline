@@ -38,6 +38,8 @@ async def init_db():
     database = client.get_default_database().with_options(codec_options=codec_options)
 
     print("Initializing Beanie connection to MongoDB...")
+    if "example" in settings.MONGO_URI:
+        print("WARNING: Using local MongoDB credentials.")
     return await init_beanie(
         database=database,
         document_models=[

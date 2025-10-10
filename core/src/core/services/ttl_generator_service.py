@@ -1,6 +1,3 @@
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
-
 import asyncio
 import logging
 import sys
@@ -8,27 +5,6 @@ from typing import Optional
 from rdflib import Graph, Namespace, Literal, URIRef
 from rdflib.namespace import RDF, RDFS, XSD
 from pathlib import Path
-
-from core.dependencies.load_core_env import load_core_env
-from scraper_app.dependencies.load_scraper_env import load_scraper_env
-from open_ai_key_app.dependencies.load_open_ai_app_env import load_open_ai_app_env
-from data_etl_app.dependencies.load_data_etl_env import load_data_etl_env
-
-# Load environment variables
-load_core_env()
-load_scraper_env()
-load_data_etl_env()
-load_open_ai_app_env()
-
-from core.utils.mongo_client import init_db
-from core.dependencies.aws_clients import (
-    cleanup_core_aws_clients,
-    initialize_core_aws_clients,
-)
-from data_etl_app.dependencies.aws_clients import (
-    cleanup_data_etl_aws_clients,
-    initialize_data_etl_aws_clients,
-)
 
 from data_etl_app.models.ontology import Ontology
 from data_etl_app.services.knowledge.ontology_service import OntologyService
@@ -38,8 +14,6 @@ from data_etl_app.models.skos_concept import Concept
 from data_etl_app.models.db.manufacturer_user_form import (
     ManufacturerUserForm,
 )
-
-logger = logging.getLogger(__name__)
 
 # --- RDF NAMESPACE SETUP ---
 SDK = Namespace("http://asu.edu/semantics/SUDOKN/")
@@ -97,18 +71,29 @@ def get_material_cap_concept(ont_inst: OntologyService, label: str) -> Concept:
     return concept
 
 
-def add_mfg_name_triple(mfg_inst_uri: URIRef, mfg_name: Optional[str], g: Graph):
+def add_mfg_name_triple(
+    mfg_inst_uri: URIRef, mfg_name: Optional[str], g: Graph, strict: bool
+):
     if not mfg_name:
-        raise ValueError("Manufacturer name cannot be empty")
+        if strict:
+            raise ValueError("Manufacturer name cannot be empty")
+        else:
+            print("  skipping empty manufacturer name")
+            return
 
     print(f"  with name: {mfg_name}")
     g.add((mfg_inst_uri, RDFS_NS.label, Literal(mfg_name)))
 
 
-def add_founded_in_triple(mfg_inst_uri: URIRef, founded_in: Optional[int], g: Graph):
+def add_founded_in_triple(
+    mfg_inst_uri: URIRef, founded_in: Optional[int], g: Graph, strict: bool
+):
     if not founded_in:
-        print(f"  skipping empty founded in year")
-        return
+        if strict:
+            raise ValueError("Founded in year cannot be empty")
+        else:
+            print(f"  skipping empty founded in year")
+            return
 
     print(f"  founded in: {founded_in}")
     g.add(
@@ -125,17 +110,22 @@ def add_email_addresses_triples(
     email_addresses: Optional[list[str]],
     gid_stripped: str,
     g: Graph,
+    strict: bool,
 ):
+
     if not email_addresses:
-        print(f"  skipping empty email addresses")
-        return
+        if strict:
+            raise ValueError("Email addresses cannot be empty")
+        else:
+            print(f"  skipping empty email addresses")
+            return
 
     for email in email_addresses:
         if not email:
             raise ValueError("Email address cannot be empty")
         print(f"  with email: {email}")
         # Create an EmailAddress individual
-        email_inst_uri = SDK[f"{gid_stripped}-email-{uri_strip(email)}-inst"]
+        email_inst_uri = SDK[f"{gid_stripped}-email-{uri_strip(email)}-instance"]
         g.add((email_inst_uri, RDF.type, SDK.EmailAddress))
         g.add((email_inst_uri, SDK.hasVirtualLocationIdentifierValue, Literal(email)))
         # link it
@@ -143,11 +133,15 @@ def add_email_addresses_triples(
 
 
 def add_number_of_employees_triple(
-    mfg_inst_uri: URIRef, num_employees: Optional[int], g: Graph
+    mfg_inst_uri: URIRef, num_employees: Optional[int], g: Graph, strict: bool
 ):
+
     if num_employees is None:
-        print(f"  skipping empty number of employees")
-        return
+        if strict:
+            raise ValueError("Number of employees cannot be empty")
+        else:
+            print(f"  skipping empty number of employees")
+            return
 
     print(f"  with number of employees: {num_employees}")
     g.add(
@@ -164,10 +158,14 @@ def add_business_status_triples(
     ont_inst: OntologyService,
     status_labels: Optional[list[str]],
     g: Graph,
+    strict: bool,
 ):
     if not status_labels:
-        print(f"  skipping empty business ownership status")
-        return
+        if strict:
+            raise ValueError("Business ownership status cannot be empty")
+        else:
+            print(f"  skipping empty business ownership status")
+            return
     for status_label in status_labels:
         if not status_label:
             raise ValueError("Business ownership status cannot be empty")
@@ -185,10 +183,14 @@ def add_primary_naics_triple(
     primary_naics: Optional[str],
     ont_inst: OntologyService,
     g: Graph,
+    strict: bool,
 ):
     if not primary_naics:
-        print(f"  skipping empty primary NAICS")
-        return
+        if strict:
+            raise ValueError("Primary NAICS cannot be empty")
+        else:
+            print(f"  skipping empty primary NAICS")
+            return
     print(f"  with primary NAICS: {primary_naics}")
     naics_concept = get_naics_concept(ont_inst, "NAICS " + primary_naics)
     naics_ind_uri = SDK[f"{uri_strip(naics_concept.name)}-individual"]
@@ -201,10 +203,14 @@ def add_secondary_naics_triple(
     secondary_naics: Optional[list[str]],
     ont_inst: OntologyService,
     g: Graph,
+    strict: bool,
 ):
     if not secondary_naics:
-        print(f"  skipping empty secondary NAICS")
-        return
+        if strict:
+            raise ValueError("Secondary NAICS cannot be empty")
+        else:
+            print(f"  skipping empty secondary NAICS")
+            return
     for naics_label in secondary_naics:
         if not naics_label:
             raise ValueError("Secondary NAICS code cannot be empty")
@@ -220,16 +226,21 @@ def add_address_triples(
     addresses: Optional[list[Address]],
     gid_stripped: str,
     g: Graph,
+    strict: bool,
 ):
     if not addresses:
-        raise ValueError("Manufacturer must have at least one address")
+        if strict:
+            raise ValueError("Manufacturer must have at least one address")
+        else:
+            print("  skipping empty addresses")
+            return
 
     for i, addr in enumerate(addresses):
         if not addr:
             raise ValueError("Address cannot be empty")
         print(f"  with address: {addr}")
         # Create GeospatialSite
-        geosite_inst_uri = SDK[f"{gid_stripped}-geosite-{i+1}-inst"]
+        geosite_inst_uri = SDK[f"{gid_stripped}-geosite-{i+1}-instance"]
         g.add((geosite_inst_uri, RDF.type, SDK.GeospatialSite))
         if addr.name:
             g.add(
@@ -239,7 +250,9 @@ def add_address_triples(
         # Address lines
         for idx, addr_line in enumerate(addr.address_lines or []):
             if addr_line:
-                address_line_inst_uri = SDK[f"{gid_stripped}-address-line-{idx+1}-inst"]
+                address_line_inst_uri = SDK[
+                    f"{gid_stripped}-address-line-{idx+1}-instance"
+                ]
                 g.add((address_line_inst_uri, RDF.type, SDK.AddressLine))
                 g.add(
                     (address_line_inst_uri, IOF_SCRO.hasTextValue, Literal(addr_line))
@@ -301,7 +314,7 @@ def add_address_triples(
         elif not (-180 <= addr.longitude <= 180):
             raise ValueError("Longitude must be between -180 and 180 degrees")
 
-        geoloc_inst_uri = SDK[f"{gid_stripped}-geolocation-{i+1}-inst"]
+        geoloc_inst_uri = SDK[f"{gid_stripped}-geolocation-{i+1}-instance"]
         g.add(
             (geoloc_inst_uri, RDF.type, IOF_SCRO.GeospatialLocation)
         )  # GeospatialLocation
@@ -340,12 +353,16 @@ def add_business_description_triples(
     business_desc: Optional[BusinessDescriptionResult],
     gid_stripped: str,
     g: Graph,
+    strict: bool,
 ):
     if not business_desc or not business_desc.description:
-        print(f"  skipping empty business description")
-        return
+        if strict:
+            raise ValueError("Business description cannot be empty")
+        else:
+            print(f"  skipping empty business description")
+            return
     print(f"  with business description: {business_desc.description}")
-    desc_inst_uri = SDK[f"{gid_stripped}-business-description-inst"]
+    desc_inst_uri = SDK[f"{gid_stripped}-business-description-instance"]
     g.add((desc_inst_uri, RDF.type, SDK.BusinessDescription))
     g.add(
         (
@@ -358,18 +375,25 @@ def add_business_description_triples(
 
 
 def add_product_triples(
-    mfg_inst_uri: URIRef, products: Optional[list[str]], gid_stripped: str, g: Graph
+    mfg_inst_uri: URIRef,
+    products: Optional[list[str]],
+    gid_stripped: str,
+    g: Graph,
+    strict: bool,
 ):
     if not products:
-        print(f"  skipping empty products")
-        return
+        if strict:
+            raise ValueError("Products cannot be empty")
+        else:
+            print(f"  skipping empty products")
+            return
 
     for prod in products:
         if not prod:
             raise ValueError("Product name cannot be empty")
         print(f"  with product: {prod}")
         prod_inst_uri = SDK[
-            f"{gid_stripped}-{uri_strip(prod)}-product-inst"
+            f"{gid_stripped}-{uri_strip(prod)}-product-instance"
         ]  # Changed to match your example
 
         # Add product as MaterialProduct
@@ -383,10 +407,14 @@ def add_certificate_triples(
     certificates: Optional[list[str]],
     ont_inst: OntologyService,
     g: Graph,
+    strict: bool,
 ):
     if not certificates:
-        print(f"  skipping empty certificates")
-        return
+        if strict:
+            raise ValueError("Certificates cannot be empty")
+        else:
+            print(f"  skipping empty certificates")
+            return
 
     for cert in certificates:
         if not cert:
@@ -404,10 +432,14 @@ def add_industry_triples(
     industries: Optional[list[str]],
     ont_inst: OntologyService,
     g: Graph,
+    strict: bool,
 ):
     if not industries:
-        print(f"  skipping empty industries")
-        return
+        if strict:
+            raise ValueError("Industries cannot be empty")
+        else:
+            print(f"  skipping empty industries")
+            return
 
     for ind in industries:
         if not ind:
@@ -426,10 +458,14 @@ def add_process_capability_triples(
     process_caps: Optional[list[str]],
     ont_inst: OntologyService,
     g: Graph,
+    strict: bool,
 ):
     if not process_caps:
-        print(f"  skipping empty process capabilities")
-        return
+        if strict:
+            raise ValueError("Process capabilities cannot be empty")
+        else:
+            print(f"  skipping empty process capabilities")
+            return
 
     for pc in process_caps or []:
         if not pc:
@@ -437,7 +473,7 @@ def add_process_capability_triples(
         print(f"  with process capability: {pc}")
         pc_concept = get_process_cap_concept(ont_inst, pc)
         pc_inst_uri = SDK[
-            f"{gid_stripped}-{uri_strip(pc_concept.name)}-process-capability-inst"
+            f"{gid_stripped}-{uri_strip(pc_concept.name)}-process-capability-instance"
         ]
         g.add((pc_inst_uri, RDF.type, pc_concept.uri))
         g.add((mfg_inst_uri, SDK.hasProcessCapability, pc_inst_uri))
@@ -449,10 +485,14 @@ def add_material_capability_triples(
     material_caps: Optional[list[str]],
     ont_inst: OntologyService,
     g: Graph,
+    strict: bool,
 ):
     if not material_caps:
-        print(f"  skipping empty material capabilities")
-        return
+        if strict:
+            raise ValueError("Material capabilities cannot be empty")
+        else:
+            print(f"  skipping empty material capabilities")
+            return
 
     for mc in material_caps or []:
         if not mc:
@@ -460,19 +500,21 @@ def add_material_capability_triples(
         print(f"  with material capability: {mc}")
         mc_concept = get_material_cap_concept(ont_inst, mc)
         mc_inst_uri = SDK[
-            f"{gid_stripped}-{uri_strip(mc_concept.name)}-material-capability-inst"
+            f"{gid_stripped}-{uri_strip(mc_concept.name)}-material-capability-instance"
         ]
         g.add((mc_inst_uri, RDF.type, mc_concept.uri))
         g.add((mfg_inst_uri, SDK.hasMaterialCapability, mc_inst_uri))
 
 
-def enrich_manufacturer_rdf(ont_inst: OntologyService, mfg: ManufacturerUserForm, g):
+def add_manufacturer_triples(
+    ont_inst: OntologyService, mfg: ManufacturerUserForm, g, strict: bool = True
+):
     gid_val = str(mfg.mfg_etld1)
     if not gid_val:
         raise ValueError("ManufacturerUserForm must have a valid mfg_etld1")
 
     gid_stripped = uri_strip(gid_val)
-    mfg_inst_uri = SDK[f"{gid_stripped}-company-inst"]
+    mfg_inst_uri = SDK[f"{gid_stripped}-company-instance"]
     print(f"Generating triples for {mfg_inst_uri}")
 
     g.add((mfg_inst_uri, RDF.type, IOF_CORE.Manufacturer))
@@ -482,30 +524,34 @@ def enrich_manufacturer_rdf(ont_inst: OntologyService, mfg: ManufacturerUserForm
         mfg_inst_uri,
         mfg.name or mfg.business_desc.name if mfg.business_desc else None,
         g,
+        strict,
     )
-    add_founded_in_triple(mfg_inst_uri, mfg.founded_in, g)
-    add_email_addresses_triples(mfg_inst_uri, mfg.email_addresses, gid_stripped, g)
-    add_number_of_employees_triple(mfg_inst_uri, mfg.num_employees, g)
-    add_business_status_triples(mfg_inst_uri, ont_inst, mfg.business_statuses, g)
-    add_primary_naics_triple(mfg_inst_uri, mfg.primary_naics, ont_inst, g)
-    add_secondary_naics_triple(mfg_inst_uri, mfg.secondary_naics, ont_inst, g)
-    add_address_triples(mfg_inst_uri, mfg.addresses, gid_stripped, g)
-    add_business_description_triples(mfg_inst_uri, mfg.business_desc, gid_stripped, g)
-    add_product_triples(mfg_inst_uri, mfg.products, gid_stripped, g)
-    add_certificate_triples(mfg_inst_uri, mfg.certificates, ont_inst, g)
-    add_industry_triples(mfg_inst_uri, mfg.industries, ont_inst, g)
+    add_founded_in_triple(mfg_inst_uri, mfg.founded_in, g, strict)
+    add_email_addresses_triples(
+        mfg_inst_uri, mfg.email_addresses, gid_stripped, g, strict
+    )
+    add_number_of_employees_triple(mfg_inst_uri, mfg.num_employees, g, strict)
+    add_business_status_triples(
+        mfg_inst_uri, ont_inst, mfg.business_statuses, g, strict
+    )
+    add_primary_naics_triple(mfg_inst_uri, mfg.primary_naics, ont_inst, g, strict)
+    add_secondary_naics_triple(mfg_inst_uri, mfg.secondary_naics, ont_inst, g, strict)
+    add_address_triples(mfg_inst_uri, mfg.addresses, gid_stripped, g, strict)
+    add_business_description_triples(
+        mfg_inst_uri, mfg.business_desc, gid_stripped, g, strict
+    )
+    add_product_triples(mfg_inst_uri, mfg.products, gid_stripped, g, strict)
+    add_certificate_triples(mfg_inst_uri, mfg.certificates, ont_inst, g, strict)
+    add_industry_triples(mfg_inst_uri, mfg.industries, ont_inst, g, strict)
     add_process_capability_triples(
-        mfg_inst_uri, gid_stripped, mfg.process_caps, ont_inst, g
+        mfg_inst_uri, gid_stripped, mfg.process_caps, ont_inst, g, strict
     )
     add_material_capability_triples(
-        mfg_inst_uri, gid_stripped, mfg.material_caps, ont_inst, g
+        mfg_inst_uri, gid_stripped, mfg.material_caps, ont_inst, g, strict
     )
 
 
-def generate_triples(
-    ont_inst: OntologyService, manufacturers: list[ManufacturerUserForm]
-):
-
+def _init_graph() -> Graph:
     g = Graph()
     g.bind("sdk", SDK)
     g.bind("iof-core", IOF_CORE)
@@ -513,92 +559,27 @@ def generate_triples(
     g.bind("xsd", XSD_NS)
     g.bind("rdfs", RDFS_NS)
     g.bind("bfo", BFO)
+    return g
 
+
+def generate_triples(
+    ont_inst: OntologyService, manufacturers: list[ManufacturerUserForm]
+):
+    g = _init_graph()
     for mfg in manufacturers:
-        enrich_manufacturer_rdf(ont_inst, mfg, g)
+        add_manufacturer_triples(ont_inst, mfg, g)
 
-    with open("output.ttl", "w", encoding="utf-8") as f:
-        f.write(g.serialize(format="turtle"))
-    print(f"Generated {len(g)} triples from ManufacturerUserForm model.")
-
-
-async def main():
-    try:
-        await init_db()
-
-        # Initialize AWS clients
-        await initialize_core_aws_clients()
-        await initialize_data_etl_aws_clients()
-        from data_etl_app.services.knowledge.ontology_service import (
-            get_ontology_service,
-        )
-
-        ontology_file_path = (
-            Path(__file__).resolve().parents[4] / "ontology/SUDOKN1.1/SUDOKN1_1.rdf"
-        )
-
-        print(f"Ontology file path: {ontology_file_path}")
-        with open(ontology_file_path, "r", encoding="utf-8") as file:
-            ontology_data = file.read()
-
-        ont_inst = await get_ontology_service(
-            Ontology(rdf=ontology_data, s3_version_id="local-test-version-id")
-        )
-        print("Ontology service initialized.")
-        manufacturers = [
-            ManufacturerUserForm(
-                author_email="info@acmemfg.com",
-                mfg_etld1="mfg-001",
-                name="Acme Manufacturing",
-                founded_in=1990,
-                email_addresses=["info@acmemfg.com"],
-                num_employees=150,
-                business_statuses=["Disabled Veteran Owned"],
-                primary_naics="332710",
-                secondary_naics=["332312", "332313"],
-                addresses=[
-                    Address(
-                        name="Main Plant",
-                        address_lines=["123 Industrial Way"],
-                        city="Metropolis",
-                        state="CA",
-                        county="Los Angeles",
-                        postal_code="90001",
-                        country="USA",
-                        latitude=34.0522,
-                        longitude=-118.2437,
-                        phone_numbers=["+1-555-1234"],
-                        fax_numbers=["+1-555-5678"],
-                    )
-                ],
-                business_desc=BusinessDescriptionResult(
-                    name="Acme Manufacturing",
-                    description="Leading manufacturer of industrial components.",
-                ),
-                products=["Gears", "Sprockets"],
-                certificates=["ISO 9001", "AS 9100"],
-                industries=["Aerospace", "Automotive"],
-                process_caps=["CNC Machining", "Gas Welding"],
-                material_caps=["Aluminum", "Steel"],
-                notes="Top-tier manufacturer with a focus on quality.",
-            )
-        ]
-        print(f"Loaded {len(manufacturers)} manufacturers for RDF generation.")
-        generate_triples(ont_inst, manufacturers)
-
-    finally:
-        # Cleanup AWS clients
-        await cleanup_core_aws_clients()
-        await cleanup_data_etl_aws_clients()
+    print(f"Generated {len(g)} RDF triples.")
+    return g.serialize(format="turtle")
 
 
-if __name__ == "__main__":
-    try:
-        print("Starting RDF validation script...")
-        asyncio.run(main())
-
-    except Exception as e:
-        print(f"Error during validation: {e}")
-        sys.exit(1)
-    print("RDF validation completed successfully.")
-    sys.exit(0)
+def generate_triples_for_single_mfg(
+    ont_inst: OntologyService, mfg: ManufacturerUserForm
+):
+    """
+    CAUTION: Returns triples in N-Triples format which skips prefixes.
+    """
+    g = _init_graph()
+    add_manufacturer_triples(ont_inst, mfg, g)
+    print(f"Generated {len(g)} RDF triples.")
+    return g.serialize(format="nt")

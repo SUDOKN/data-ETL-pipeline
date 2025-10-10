@@ -1,3 +1,4 @@
+from core.services.graph_db_manufacturer_service import replace_manufacturer_in_graph
 from fastapi import APIRouter, HTTPException, Query, Depends
 from fastapi.responses import JSONResponse
 import logging
@@ -8,9 +9,7 @@ from core.models.to_scrape_item import ToScrapeItem
 from core.services.manufacturer_service import find_manufacturer_by_etld1
 from core.utils.time_util import get_current_time
 from core.utils.url_util import (
-    get_complete_url_with_compatible_protocol,
     get_etld1_from_host,
-    get_normalized_url,
 )
 from core.utils.aws.queue.priority_scrape_queue_util import (
     push_item_to_priority_scrape_queue,
@@ -82,4 +81,5 @@ async def upsert_manufacturer_user_form(
             f"please fetch the existing form and then include the id field."
         )
     await save_manufacturer_user_form(form)
+    await replace_manufacturer_in_graph(form.mfg_etld1)
     return form
