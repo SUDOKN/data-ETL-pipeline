@@ -10,7 +10,8 @@ from data_etl_app.utils.chunk_util import (
     get_chunks_respecting_line_boundaries,
 )
 
-from open_ai_key_app.models.gpt_batch_request import GPTBatchRequest
+from open_ai_key_app.models.db.gpt_batch_request import GPTBatchRequest
+from open_ai_key_app.models.field_types import GPTBatchRequestMongoID
 from open_ai_key_app.models.gpt_model import (
     DefaultModelParameters,
     GPT_4o_mini,
@@ -32,7 +33,7 @@ async def find_business_desc_using_only_first_chunk_deferred(
     keyword_label="business_desc",
     gpt_model: GPTModel = GPT_4o_mini,
     model_params: ModelParameters = DefaultModelParameters,
-) -> GPTBatchRequest:
+) -> GPTBatchRequestMongoID:
     logger.info(f"Finding business desc for {mfg_etld1} using only first chunk...")
     prompt_service = await get_prompt_service()
     prompt = prompt_service.find_business_desc_prompt
@@ -44,7 +45,7 @@ async def find_business_desc_using_only_first_chunk_deferred(
     first_chunk_text = chunks_map[first_chunk_bounds]
     custom_id = f"{mfg_etld1}>{keyword_label}>chunk{first_chunk_bounds}"
 
-    return GPTBatchRequest(
+    gpt_batch_request = GPTBatchRequest(
         batch_id=None,
         request=get_gpt_request_blob(
             created_at=deferred_at,
@@ -55,6 +56,11 @@ async def find_business_desc_using_only_first_chunk_deferred(
             model_params=model_params,
         ),
     )
+    await gpt_batch_request.insert()
+    assert (
+        gpt_batch_request.id is not None
+    ), f"find_business_desc_using_only_first_chunk_deferred:{custom_id}: GPTBatchRequest.id should be set after insert()"
+    return gpt_batch_request.id
 
 
 async def find_business_desc_using_only_first_chunk(
@@ -129,16 +135,15 @@ async def llm_search(
     return llm_results
 
 
-def llm_search_deferred(
+async def llm_search_deferred(
     deferred_at: datetime,
     custom_id: str,
     text: str,
     prompt: Prompt,
     gpt_model: GPTModel,
     model_params: ModelParameters,
-) -> GPTBatchRequest:
-    custom_id = f"llm_search_deferred>{hash(text)}>{hash(prompt)}"
-    return GPTBatchRequest(
+) -> GPTBatchRequestMongoID:
+    gpt_batch_request = GPTBatchRequest(
         batch_id=None,
         request=get_gpt_request_blob(
             created_at=deferred_at,
@@ -149,3 +154,8 @@ def llm_search_deferred(
             model_params=model_params,
         ),
     )
+    await gpt_batch_request.insert()
+    assert (
+        gpt_batch_request.id is not None
+    ), f"llm_search_deferred:{custom_id}: GPTBatchRequest.id should be set after insert()"
+    return gpt_batch_request.id
