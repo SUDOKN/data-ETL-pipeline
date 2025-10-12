@@ -4,7 +4,7 @@ from pymongo import ReplaceOne
 from pymongo.errors import BulkWriteError
 from core.utils.mongo_client import init_db
 from core.models.db.manufacturer import Manufacturer
-from data_etl_app.models.binary_classification import (
+from data_etl_app.models.binary_classification_result import (
     BinaryClassificationResult,
 )
 from data_etl_app.models.db.binary_ground_truth import BinaryGroundTruth

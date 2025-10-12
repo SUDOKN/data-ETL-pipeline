@@ -3,7 +3,7 @@ import logging
 from typing import Dict, Optional
 
 from core.models.prompt import Prompt
-from open_ai_key_app.utils.ask_gpt_util import num_tokens_from_string
+from open_ai_key_app.utils.token_util import num_tokens_from_string
 from data_etl_app.utils.prompt_s3_util import download_prompt, get_prompt_filename
 
 logger = logging.getLogger(__name__)

@@ -5,7 +5,7 @@ from pydantic import BaseModel, Field, computed_field
 from core.models.field_types import MfgETLDType
 from core.utils.time_util import get_current_time
 
-from data_etl_app.models.binary_classification import BinaryClassificationResult
+from data_etl_app.models.binary_classification_result import BinaryClassificationResult
 from data_etl_app.models.types_and_enums import (
     GroundTruthSource,
     BinaryClassificationTypeEnum,

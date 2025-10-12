@@ -1,11 +1,16 @@
+from datetime import datetime
 import json
 import logging
 
+from core.models.prompt import Prompt
 from core.models.db.manufacturer import BusinessDescriptionResult
+
 from data_etl_app.services.knowledge.prompt_service import get_prompt_service
 from data_etl_app.utils.chunk_util import (
     get_chunks_respecting_line_boundaries,
 )
+
+from open_ai_key_app.models.gpt_batch_request import GPTBatchRequest
 from open_ai_key_app.models.gpt_model import (
     DefaultModelParameters,
     GPT_4o_mini,
@@ -15,8 +20,41 @@ from open_ai_key_app.models.gpt_model import (
 from open_ai_key_app.utils.ask_gpt_util import (
     ask_gpt_async,
 )
+from open_ai_key_app.utils.batch_gpt_util import get_gpt_request_blob
 
 logger = logging.getLogger(__name__)
+
+
+async def find_business_desc_using_only_first_chunk_deferred(
+    deferred_at: datetime,
+    mfg_etld1: str,
+    mfg_text: str,
+    keyword_label="business_desc",
+    gpt_model: GPTModel = GPT_4o_mini,
+    model_params: ModelParameters = DefaultModelParameters,
+) -> GPTBatchRequest:
+    logger.info(f"Finding business desc for {mfg_etld1} using only first chunk...")
+    prompt_service = await get_prompt_service()
+    prompt = prompt_service.find_business_desc_prompt
+    chunks_map = get_chunks_respecting_line_boundaries(
+        mfg_text,
+        gpt_model.max_context_tokens - prompt.num_tokens - 5000,
+    )
+    first_chunk_bounds = min(chunks_map.keys(), key=lambda k: int(k.split(":")[0]))
+    first_chunk_text = chunks_map[first_chunk_bounds]
+    custom_id = f"{mfg_etld1}>{keyword_label}>chunk{first_chunk_bounds}"
+
+    return GPTBatchRequest(
+        batch_id=None,
+        request=get_gpt_request_blob(
+            created_at=deferred_at,
+            custom_id=custom_id,
+            context=first_chunk_text,
+            prompt=prompt.text,
+            gpt_model=gpt_model,
+            model_params=model_params,
+        ),
+    )
 
 
 async def find_business_desc_using_only_first_chunk(
@@ -89,3 +127,25 @@ async def llm_search(
     logger.debug(f"llm_results:{llm_results}")
 
     return llm_results
+
+
+def llm_search_deferred(
+    deferred_at: datetime,
+    custom_id: str,
+    text: str,
+    prompt: Prompt,
+    gpt_model: GPTModel,
+    model_params: ModelParameters,
+) -> GPTBatchRequest:
+    custom_id = f"llm_search_deferred>{hash(text)}>{hash(prompt)}"
+    return GPTBatchRequest(
+        batch_id=None,
+        request=get_gpt_request_blob(
+            created_at=deferred_at,
+            custom_id=custom_id,
+            context=text,
+            prompt=prompt.text,
+            gpt_model=gpt_model,
+            model_params=model_params,
+        ),
+    )

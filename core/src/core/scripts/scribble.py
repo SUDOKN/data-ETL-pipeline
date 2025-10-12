@@ -18,7 +18,7 @@ from open_ai_key_app.models.gpt_model import (
     GPTModel,
 )
 
-from data_etl_app.models.binary_classification import (
+from data_etl_app.models.binary_classification_result import (
     BinaryClassificationStats,
     ChunkBinaryClassificationResult,
 )

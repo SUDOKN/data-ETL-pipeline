@@ -3,9 +3,10 @@ import logging
 from typing_extensions import TypedDict
 
 from data_etl_app.models.skos_concept import Concept, ConceptJSONEncoder
+
+from open_ai_key_app.utils.token_util import num_tokens_from_string
 from open_ai_key_app.utils.ask_gpt_util import (
     ask_gpt_async,
-    num_tokens_from_string,
 )
 from open_ai_key_app.models.gpt_model import (
     GPT_4o_mini,
@@ -43,7 +44,6 @@ async def mapKnownToUnknown(
     gpt_response = await ask_gpt_async(
         context, prompt, GPT_4o_mini, DefaultModelParameters
     )
-    # gpt_response = await ask_gpt_async(context, prompt, pool, gpt_model, model_params)
 
     logger.debug(f"gptresponse:{gpt_response}")
 
