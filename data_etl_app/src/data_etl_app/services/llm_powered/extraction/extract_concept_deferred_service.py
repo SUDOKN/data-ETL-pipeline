@@ -1,7 +1,7 @@
 from __future__ import (
     annotations,
 )  # This allows you to write self-referential types without quotes, because type annotations are no longer evaluated at function/class definition time — they're stored as strings automatically.
-import asyncio
+
 import json
 import logging
 from datetime import datetime
@@ -11,12 +11,14 @@ from core.models.field_types import (
     OntologyVersionIDType,
 )
 
-from open_ai_key_app.models.gpt_batch_request import GPTBatchRequest
+from open_ai_key_app.services.gpt_batch_request_service import (
+    find_gpt_batch_request_by_mongo_id,
+)
 
 from data_etl_app.models.deferred_concept_extraction import (
     DeferredConceptExtraction,
     DeferredConceptExtractionStats,
-    ConceptSearchBatchRequest,
+    ConceptSearchBatchRequestBundle,
 )
 from data_etl_app.models.skos_concept import Concept
 from data_etl_app.services.brute_search_service import brute_search
@@ -55,7 +57,7 @@ async def add_certificate_mapping_requests_to_deferred_stats(
         raise ValueError(
             f"add_certificate_mapping_requests_to_deferred_stats: Ontology version mismatch for {mfg_etld1}: deferred_stats.ontology_version_id={deferred_stats.ontology_version_id} != ontology_version_id={ontology_version_id}"
         )
-    return _add_mapping_requests_to_deferred_stats(
+    return await _add_mapping_requests_to_deferred_stats(
         deferred_at=deferred_at,
         deferred_stats=deferred_stats,
         concept_type="certificates",
@@ -77,7 +79,7 @@ async def add_industry_mapping_requests_to_deferred_stats(
         raise ValueError(
             f"add_industry_mapping_requests_to_deferred_stats: Ontology version mismatch for {mfg_etld1}: deferred_stats.ontology_version_id={deferred_stats.ontology_version_id} != ontology_version_id={ontology_version_id}"
         )
-    return _add_mapping_requests_to_deferred_stats(
+    return await _add_mapping_requests_to_deferred_stats(
         deferred_at=deferred_at,
         deferred_stats=deferred_stats,
         concept_type="industries",
@@ -99,7 +101,7 @@ async def add_process_mapping_requests_to_deferred_stats(
         raise ValueError(
             f"add_process_mapping_requests_to_deferred_stats: Ontology version mismatch for {mfg_etld1}: deferred_stats.ontology_version_id={deferred_stats.ontology_version_id} != ontology_version_id={ontology_version_id}"
         )
-    return _add_mapping_requests_to_deferred_stats(
+    return await _add_mapping_requests_to_deferred_stats(
         deferred_at=deferred_at,
         deferred_stats=deferred_stats,
         concept_type="processes",
@@ -121,7 +123,7 @@ async def add_material_mapping_requests_to_deferred_stats(
         raise ValueError(
             f"add_material_mapping_requests_to_deferred_stats: Ontology version mismatch for {mfg_etld1}: deferred_stats.ontology_version_id={deferred_stats.ontology_version_id} != ontology_version_id={ontology_version_id}"
         )
-    return _add_mapping_requests_to_deferred_stats(
+    return await _add_mapping_requests_to_deferred_stats(
         deferred_at=deferred_at,
         deferred_stats=deferred_stats,
         concept_type="materials",
@@ -131,7 +133,7 @@ async def add_material_mapping_requests_to_deferred_stats(
     )
 
 
-def _add_mapping_requests_to_deferred_stats(
+async def _add_mapping_requests_to_deferred_stats(
     deferred_at: datetime,
     deferred_stats: DeferredConceptExtractionStats,
     concept_type: str,  # used for logging and debugging
@@ -144,37 +146,53 @@ def _add_mapping_requests_to_deferred_stats(
     updated = False
     for (
         chunk_bounds,
-        chunk_request,
+        chunk_batch_request_bundle,
     ) in deferred_stats.chunked_stats_batch_request_map.items():
-        if chunk_request.llm.response_blob and not chunk_request.mapping:
+        custom_id = f"{mfg_etld1}>{concept_type}>mapping>chunk{chunk_bounds}"
+        llm_gpt_batch_request = await find_gpt_batch_request_by_mongo_id(
+            chunk_batch_request_bundle.llm_batch_request_id
+        )
+        if (
+            llm_gpt_batch_request.response_blob
+            and not chunk_batch_request_bundle.mapping_batch_request_id
+        ):
             logger.info(
                 f"add_mapping_requests_to_deferred_stats: Adding mapping request for chunk {chunk_bounds}"
             )
             try:
-                gpt_response = chunk_request.llm.response_blob.response.result.replace(
-                    "```", ""
-                ).replace("json", "")
+                gpt_response = (
+                    llm_gpt_batch_request.response_blob.response.result.replace(
+                        "```", ""
+                    ).replace("json", "")
+                )
                 chunk_llm_results: set[str] = set(json.loads(gpt_response))
-                unmapped_unknowns = chunk_llm_results - chunk_request.brute
-                if not unmapped_unknowns:
-                    logger.info(
-                        f"add_mapping_requests_to_deferred_stats: No unmapped unknowns for chunk {chunk_bounds}, skipping mapping request"
+                unmapped_unknowns = chunk_llm_results - chunk_batch_request_bundle.brute
+                # if not unmapped_unknowns:
+                #     logger.info(
+                #         f"add_mapping_requests_to_deferred_stats: No unmapped unknowns for chunk {chunk_bounds}, skipping mapping request"
+                #     )
+                #     continue
+                chunk_batch_request_bundle.mapping_batch_request_id = (
+                    await map_known_to_unknown_deferred(
+                        deferred_at=deferred_at,
+                        custom_id=custom_id,
+                        known_concepts=known_concepts,
+                        unmapped_unknowns=unmapped_unknowns,
+                        prompt=map_prompt,
+                        gpt_model=gpt_model,
+                        model_params=model_params,
                     )
-                    continue
-                chunk_request.mapping = map_known_to_unknown_deferred(
-                    deferred_at=deferred_at,
-                    custom_id=f"{mfg_etld1}>{concept_type}>mapping>chunk{chunk_bounds}",
-                    known_concepts=known_concepts,
-                    unmapped_unknowns=unmapped_unknowns,
-                    prompt=map_prompt,
-                    gpt_model=gpt_model,
-                    model_params=model_params,
                 )
                 updated = True
             except:
                 raise ValueError(
                     f"llm_results: Invalid response from GPT:{gpt_response}"
                 )
+        else:
+            logger.debug(
+                f"add_mapping_requests_to_deferred_stats: Skipping mapping request for custom_id={custom_id}"
+                f" because llm.response_blob is None or mapping already exists"
+            )
 
     return updated
 
@@ -190,7 +208,7 @@ async def extract_certificates_deferred(
     prompt_service = await get_prompt_service()
     ontology_service = await get_ontology_service()
     ontology_version_id, known_certificates = ontology_service.certificates
-    return _extract_concept_data_deferred(
+    return await _extract_concept_data_deferred(
         deferred_at,
         concept_type="certificates",
         mfg_etld1=mfg_etld1,
@@ -216,7 +234,7 @@ async def extract_industries_deferred(
     prompt_service = await get_prompt_service()
     ontology_service = await get_ontology_service()
     ontology_version_id, known_industries = ontology_service.industries
-    return _extract_concept_data_deferred(
+    return await _extract_concept_data_deferred(
         deferred_at,
         concept_type="industries",
         mfg_etld1=mfg_etld1,
@@ -242,7 +260,7 @@ async def extract_processes_deferred(
     prompt_service = await get_prompt_service()
     ontology_service = await get_ontology_service()
     ontology_version_id, known_processes = ontology_service.process_caps
-    return _extract_concept_data_deferred(
+    return await _extract_concept_data_deferred(
         deferred_at,
         concept_type="processes",
         mfg_etld1=mfg_etld1,
@@ -268,7 +286,7 @@ async def extract_materials_deferred(
     prompt_service = await get_prompt_service()
     ontology_service = await get_ontology_service()
     ontology_version_id, known_materials = ontology_service.material_caps
-    return _extract_concept_data_deferred(
+    return await _extract_concept_data_deferred(
         deferred_at,
         concept_type="materials",
         mfg_etld1=mfg_etld1,
@@ -283,7 +301,7 @@ async def extract_materials_deferred(
     )
 
 
-def _extract_concept_data_deferred(
+async def _extract_concept_data_deferred(
     deferred_at: datetime,
     concept_type: str,  # used for logging and debugging
     mfg_etld1: str,
@@ -313,20 +331,17 @@ def _extract_concept_data_deferred(
 
     for chunk_bounds, chunk_text in chunk_map.items():
         deferred_stats.chunked_stats_batch_request_map[chunk_bounds] = (
-            ConceptSearchBatchRequest(
+            ConceptSearchBatchRequestBundle(
                 brute={b.name for b in brute_search(chunk_text, known_concepts)},
-                llm=GPTBatchRequest(
-                    request=llm_search_deferred(
-                        deferred_at=deferred_at,
-                        custom_id=f"{mfg_etld1}>{concept_type}>llm_search>chunk{chunk_bounds}",
-                        text=chunk_text,
-                        prompt=search_prompt,
-                        gpt_model=gpt_model,
-                        model_params=model_params,
-                    ).request,
-                    batch_id=None,
+                llm_batch_request_id=await llm_search_deferred(
+                    deferred_at=deferred_at,
+                    custom_id=f"{mfg_etld1}>{concept_type}>llm_search>chunk{chunk_bounds}",
+                    text=chunk_text,
+                    prompt=search_prompt,
+                    gpt_model=gpt_model,
+                    model_params=model_params,
                 ),
-                mapping=None,  # to be filled after LLM response is received
+                mapping_batch_request_id=None,  # to be filled after LLM response is received
             )
         )
 

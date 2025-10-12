@@ -10,6 +10,9 @@ from core.models.db.extraction_error import ExtractionError
 from core.models.db.scraping_error import ScrapingError
 from core.models.db.user import User
 
+from open_ai_key_app.models.db.deferred_manufacturer import DeferredManufacturer
+from open_ai_key_app.models.db.gpt_batch_request import GPTBatchRequest
+
 from data_etl_app.models.db.manufacturer_user_form import ManufacturerUserForm
 from data_etl_app.models.db.binary_ground_truth import BinaryGroundTruth
 from data_etl_app.models.db.concept_ground_truth import ConceptGroundTruth
@@ -50,6 +53,8 @@ async def init_db():
             BinaryGroundTruth,
             ConceptGroundTruth,
             KeywordGroundTruth,
+            DeferredManufacturer,
+            GPTBatchRequest,
             User,
         ],
     )

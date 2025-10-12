@@ -7,8 +7,8 @@ from core.models.prompt import Prompt
 
 from data_etl_app.models.skos_concept import Concept, ConceptJSONEncoder
 
-from open_ai_key_app.models.gpt_batch_request import GPTBatchRequest
-from open_ai_key_app.utils.token_util import num_tokens_from_string
+from open_ai_key_app.models.db.gpt_batch_request import GPTBatchRequest
+from open_ai_key_app.models.field_types import GPTBatchRequestMongoID
 from open_ai_key_app.utils.batch_gpt_util import (
     get_gpt_request_blob,
 )
@@ -22,7 +22,7 @@ from open_ai_key_app.models.gpt_model import (
 logger = logging.getLogger(__name__)
 
 
-def map_known_to_unknown_deferred(
+async def map_known_to_unknown_deferred(
     deferred_at: datetime,
     custom_id: str,
     known_concepts: list[Concept],  # DO NOT MUTATE
@@ -30,7 +30,7 @@ def map_known_to_unknown_deferred(
     prompt: Prompt,
     gpt_model: GPTModel = GPT_4o_mini,
     model_params: ModelParameters = DefaultModelParameters,
-) -> GPTBatchRequest:
+) -> GPTBatchRequestMongoID:
     logger.info(
         f"map_known_to_unknown_deferred: Generating GPTBatchRequest for {custom_id}"
     )
@@ -38,7 +38,7 @@ def map_known_to_unknown_deferred(
         {"unknowns": list(unmapped_unknowns), "knowns": known_concepts},
         cls=ConceptJSONEncoder,
     )
-    return GPTBatchRequest(
+    gpt_batch_request = GPTBatchRequest(
         request=get_gpt_request_blob(
             context=context,
             prompt=prompt.text,
@@ -49,3 +49,8 @@ def map_known_to_unknown_deferred(
         ),
         batch_id=None,
     )
+    await gpt_batch_request.insert()
+    assert (
+        gpt_batch_request.id is not None
+    ), f"map_known_to_unknown_deferred:{custom_id}: GPTBatchRequest.id should be set after insert()"
+    return gpt_batch_request.id

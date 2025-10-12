@@ -1,7 +1,6 @@
 from __future__ import (
     annotations,
 )  # This allows you to write self-referential types without quotes, because type annotations are no longer evaluated at function/class definition time — they're stored as strings automatically.
-import asyncio
 import logging
 from datetime import datetime
 
@@ -39,7 +38,7 @@ async def extract_products_deferred(
     Extract products for a manufacturer's text.
     """
     prompt_service = await get_prompt_service()
-    return _extract_keyword_data_deferred(
+    return await _extract_keyword_data_deferred(
         deferred_at,
         mfg_etld1=mfg_etld1,
         keyword_type="products",
@@ -51,7 +50,7 @@ async def extract_products_deferred(
     )
 
 
-def _extract_keyword_data_deferred(
+async def _extract_keyword_data_deferred(
     deferred_at: datetime,
     mfg_etld1: str,
     keyword_type: str,  # used for logging/debug
@@ -72,9 +71,9 @@ def _extract_keyword_data_deferred(
 
     # 2) LLM search per chunk (no brute)
     chunk_batch_request_map = {
-        b: llm_search_deferred(
+        b: await llm_search_deferred(
             deferred_at=deferred_at,
-            custom_id=f"{mfg_etld1}>chunk{b}",
+            custom_id=f"{mfg_etld1}>{keyword_type}>chunk{b}",
             text=t,
             prompt=search_prompt,
             gpt_model=gpt_model,
@@ -86,6 +85,6 @@ def _extract_keyword_data_deferred(
     return DeferredKeywordExtraction(
         deferred_stats=DeferredKeywordExtractionStats(
             extract_prompt_version_id=search_prompt.s3_version_id,
-            chunk_batch_request_map=chunk_batch_request_map,
+            chunk_batch_request_id_map=chunk_batch_request_map,
         )
     )
