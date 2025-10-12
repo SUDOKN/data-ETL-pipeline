@@ -32,7 +32,7 @@ def reset_llm_extracted_fields(manufacturer: Manufacturer):
 
 async def update_manufacturer(updated_at: datetime, manufacturer: Manufacturer):
     manufacturer.updated_at = updated_at
-    logger.info(f"Saving manufacturer {manufacturer} to the database.")
+    logger.info(f"Saving manufacturer {manufacturer.etld1} to the database.")
     await manufacturer.save()
 
 
