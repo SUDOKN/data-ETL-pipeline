@@ -1,14 +1,14 @@
 from beanie import Document
-from pydantic import BaseModel, ConfigDict, Field, field_validator, model_validator
+from pydantic import BaseModel, Field, field_validator, model_validator
 from datetime import datetime
 import logging
 from typing import List, Optional
 from urllib.parse import urlparse
 
-from core.models.field_types import MfgURLType, MfgETLDType
+from core.models.field_types import MfgURLType, MfgETLDType, S3FileVersionIDType
 from data_etl_app.models.concept_extraction_results import ConceptExtractionResults
 from data_etl_app.models.keyword_extraction_results import KeywordExtractionResults
-from data_etl_app.models.binary_classification import (
+from data_etl_app.models.binary_classification_result import (
     BinaryClassificationResult,
 )
 from core.utils.time_util import get_current_time
@@ -62,7 +62,7 @@ class Manufacturer(Document):
     created_at: datetime = Field(default_factory=lambda: get_current_time())
     updated_at: datetime = Field(default_factory=lambda: get_current_time())
     scraped_text_file_num_tokens: int
-    scraped_text_file_version_id: str
+    scraped_text_file_version_id: S3FileVersionIDType
     batches: list[Batch]
 
     name: Optional[str]
@@ -77,9 +77,9 @@ class Manufacturer(Document):
     business_statuses: Optional[List[str]]
     primary_naics: Optional[str]
     secondary_naics: Optional[List[str]]
-    addresses: Optional[List[Address]]
 
     # LLM extracted fields
+    addresses: Optional[List[Address]]
     business_desc: Optional[BusinessDescriptionResult]
 
     products: Optional[KeywordExtractionResults]

@@ -1,10 +1,9 @@
 from datetime import datetime
-import asyncio
 import json
 import logging
 
+from open_ai_key_app.utils.token_util import num_tokens_from_string
 from open_ai_key_app.utils.ask_gpt_util import (
-    num_tokens_from_string,
     ask_gpt_async,
 )
 from open_ai_key_app.models.gpt_model import (
@@ -14,7 +13,7 @@ from open_ai_key_app.models.gpt_model import (
     DefaultModelParameters,
 )
 
-from data_etl_app.models.binary_classification import (
+from data_etl_app.models.binary_classification_result import (
     BinaryClassificationResult,
     BinaryClassificationStats,
     ChunkBinaryClassificationResult,
@@ -24,7 +23,6 @@ from core.models.prompt import Prompt
 from data_etl_app.services.knowledge.prompt_service import get_prompt_service
 from data_etl_app.utils.chunk_util import (
     get_chunks_respecting_line_boundaries,
-    get_roughly_even_chunks,
 )
 
 logger = logging.getLogger(__name__)
@@ -134,65 +132,6 @@ async def _binary_classify_using_only_first_chunk(
     )
 
 
-# currently unused - keeping for reference
-async def _binary_classify(
-    evaluated_at: datetime,
-    keyword_label: str,
-    manufacturer_etld: str,
-    mfg_txt: str,
-    binary_prompt: Prompt,
-    gpt_model: GPTModel = GPT_4o_mini,
-    model_params: ModelParameters = DefaultModelParameters,
-) -> BinaryClassificationResult:
-    chunk_map = get_roughly_even_chunks(mfg_txt, gpt_model.max_context_tokens - 8000)
-    tasks = []
-    for _, chunk_txt in chunk_map.items():
-        task = _binary_classify_chunk(
-            keyword_label,
-            manufacturer_etld,
-            chunk_txt,
-            binary_prompt.text,
-            gpt_model,
-            model_params,
-        )
-        tasks.append(task)
-
-    results: list[ChunkBinaryClassificationResult] = await asyncio.gather(*tasks)
-    # replace values in chunk_map with results in the same order, preserving original keys
-    chunk_result_map = {k: v for k, v in zip(chunk_map.keys(), results)}
-    chosen_chunk_key, chosen_chunk_result = _get_winner_chunk(chunk_result_map)
-
-    return BinaryClassificationResult(
-        evaluated_at=evaluated_at,
-        answer=chosen_chunk_result.answer,
-        confidence=chosen_chunk_result.confidence,
-        reason=chosen_chunk_result.reason,
-        stats=BinaryClassificationStats(
-            prompt_version_id=binary_prompt.s3_version_id,
-            final_chunk_key=chosen_chunk_key,
-            chunk_result_map=chunk_result_map,
-        ),
-    )
-
-
-def _get_winner_chunk(
-    chunk_result_map: dict[str, ChunkBinaryClassificationResult],
-) -> tuple[str, ChunkBinaryClassificationResult]:
-    # any positive chunk means it is a manufacturer
-    for chunk_key, chunk_result in chunk_result_map.items():
-        if chunk_result.answer is True:
-            return chunk_key, chunk_result
-
-    for chunk_key, chunk_result in chunk_result_map.items():
-        if chunk_result.answer is False:
-            return chunk_key, chunk_result
-
-    err = ValueError("No positives or negatives were found in the chunk result map.")
-    err.add_note(f"{chunk_result_map}")
-    raise err
-
-
-# special case of binary classification as the llm also returns name
 async def _binary_classify_chunk(
     keyword_label: str,
     manufacturer_etld: str,

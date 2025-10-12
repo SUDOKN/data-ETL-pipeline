@@ -15,7 +15,7 @@ from data_etl_app.services.ground_truth.binary_ground_truth_service import (
     does_a_bgt_exist_with_scraped_file_version,
 )
 
-from open_ai_key_app.utils.ask_gpt_util import num_tokens_from_string
+from open_ai_key_app.utils.token_util import num_tokens_from_string
 from scraper_app.services.url_scraper_service import ScrapingResult
 from core.models.db.manufacturer import Batch
 from core.utils.aws.s3.scraped_text_util import (

@@ -12,7 +12,7 @@ from urllib.parse import urlparse
 from queue import Queue, Empty
 from concurrent.futures import ThreadPoolExecutor
 
-from open_ai_key_app.utils.ask_gpt_util import num_tokens_from_string
+from open_ai_key_app.utils.token_util import num_tokens_from_string
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.common.exceptions import (
