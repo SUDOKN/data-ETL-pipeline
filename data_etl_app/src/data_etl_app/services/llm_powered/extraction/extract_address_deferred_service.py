@@ -34,11 +34,12 @@ async def extract_address_from_n_chunks_deferred(
     prompt_service = await get_prompt_service()
     extract_address_prompt = prompt_service.extract_any_address
 
-    chunks_map = get_chunks_respecting_line_boundaries(
+    chunks_map = await get_chunks_respecting_line_boundaries(
         mfg_text,
         gpt_model.max_context_tokens
         - extract_address_prompt.num_tokens
         - 5000,  # subtracting 5000 to leave room for last line in each chunk, otherwise _binary_classify_chunk gets > GPT_4o_mini.max_context_tokens
+        max_chunks=n,  # Only generate n chunks
     )
 
     gpt_batch_requests_mongo_ids: list[GPTBatchRequestCustomID] = []

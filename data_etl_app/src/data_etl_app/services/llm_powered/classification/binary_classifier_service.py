@@ -97,7 +97,7 @@ async def _binary_classify_using_only_first_chunk(
     gpt_model: GPTModel = GPT_4o_mini,
     model_params: ModelParameters = DefaultModelParameters,
 ) -> BinaryClassificationResult:
-    chunks_map = get_chunks_respecting_line_boundaries(
+    chunks_map = await get_chunks_respecting_line_boundaries(
         mfg_txt,
         gpt_model.max_context_tokens
         - binary_prompt.num_tokens

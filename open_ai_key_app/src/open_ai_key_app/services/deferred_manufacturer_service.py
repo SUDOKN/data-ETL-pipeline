@@ -61,6 +61,7 @@ async def update_deferred_manufacturer(
 async def upsert_deferred_manufacturer(
     timestamp: datetime,
     manufacturer: Manufacturer,
+    existing_deferred_manufacturer: Optional[DeferredManufacturer],
 ) -> tuple[DeferredManufacturer, bool]:
 
     existing_scraped_file, exception = (
@@ -74,12 +75,8 @@ async def upsert_deferred_manufacturer(
 
     assert existing_scraped_file is not None
 
-    deferred_manufacturer = (
-        await get_deferred_manufacturer_by_etld1_scraped_file_version(
-            mfg_etld1=manufacturer.etld1,
-            scraped_text_file_version_id=manufacturer.scraped_text_file_version_id,
-        )
-    )
+    # Use provided deferred manufacturer if available (batch optimization)
+    deferred_manufacturer = existing_deferred_manufacturer
     if not deferred_manufacturer:
         deferred_manufacturer = DeferredManufacturer(
             created_at=timestamp,
