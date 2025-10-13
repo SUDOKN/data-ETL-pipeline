@@ -145,9 +145,9 @@ async def _binary_classify_chunk_deferred(
     )
 
     gpt_batch_request = GPTBatchRequest(
+        created_at=deferred_at,
         batch_id=None,
         request=get_gpt_request_blob(
-            created_at=deferred_at,
             custom_id=custom_id,
             context=chunk_txt,
             prompt=binary_prompt.text,

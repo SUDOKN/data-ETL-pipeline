@@ -45,3 +45,18 @@ class DeferredManufacturer(Document):
 
     class Settings:
         name = "deferred_manufacturers"
+
+
+"""
+Indices for Manufacturers
+
+db.deferred_manufacturers.createIndex(
+  {
+    mfg_etld1: 1,
+  },
+  {
+    name: "mfg_etld1_unique_idx",
+    unique: true
+  }
+);
+"""

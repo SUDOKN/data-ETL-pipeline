@@ -39,10 +39,10 @@ async def map_known_to_unknown_deferred(
         cls=ConceptJSONEncoder,
     )
     gpt_batch_request = GPTBatchRequest(
+        created_at=deferred_at,
         request=get_gpt_request_blob(
             context=context,
             prompt=prompt.text,
-            created_at=deferred_at,
             custom_id=custom_id,
             gpt_model=gpt_model,
             model_params=model_params,

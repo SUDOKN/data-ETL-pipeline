@@ -6,6 +6,7 @@ from open_ai_key_app.models.gpt_batch_response_blob import GPTBatchResponseBlob
 
 
 class GPTBatchRequest(Document):
+    created_at: datetime
     request: GPTBatchRequestBlob
     batch_id: str | None  # known after batch is uploaded
     request_sent_at: datetime | None = None  # known after batch is created on gpt
@@ -18,3 +19,18 @@ class GPTBatchRequest(Document):
 
     class Settings:
         name = "gpt_batch_requests"
+
+
+"""
+Indices for GPTBatchRequest
+
+db.gpt_batch_requests.createIndex(
+  {
+    request.custom_id: 1,
+  },
+  {
+    name: "gpt_batch_requests_custom_id_idx",
+    unique: true
+  }
+);
+"""

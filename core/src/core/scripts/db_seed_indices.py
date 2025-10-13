@@ -17,8 +17,11 @@ Requirements:
 import logging
 from pymongo import MongoClient
 import os
-import logging
-from dotenv import load_dotenv
+
+from core.dependencies.load_core_env import load_core_env
+
+# Load environment variables
+load_core_env()
 
 logger = logging.getLogger(__name__)
 # Configure logging
@@ -164,6 +167,42 @@ class DatabaseIndexSeeder:
             except Exception as e:
                 logger.error(f"Failed to create index {index['options']['name']}: {e}")
 
+    def create_gpt_batch_request_indexes(self):
+        """Create indexes for gpt_batch_requests collection."""
+        collection = self.db.gpt_batch_requests
+
+        indexes = [
+            {
+                "keys": [("request.custom_id", 1)],
+                "options": {"name": "gpt_batch_requests_custom_id_idx", "unique": True},
+            }
+        ]
+
+        for index in indexes:
+            try:
+                collection.create_index(index["keys"], **index["options"])
+                logger.info(f"Created index: {index['options']['name']}")
+            except Exception as e:
+                logger.error(f"Failed to create index {index['options']['name']}: {e}")
+
+    def create_deferred_manufacturer_indexes(self):
+        """Create indexes for deferred_manufacturers collection."""
+        collection = self.db.deferred_manufacturers
+
+        indexes = [
+            {
+                "keys": [("mfg_etld1", 1)],
+                "options": {"name": "deferred_mfg_etld1_unique_idx", "unique": True},
+            }
+        ]
+
+        for index in indexes:
+            try:
+                collection.create_index(index["keys"], **index["options"])
+                logger.info(f"Created index: {index['options']['name']}")
+            except Exception as e:
+                logger.error(f"Failed to create index {index['options']['name']}: {e}")
+
     def drop_collection_indexes(self, collection_name: str):
         """Drop all indexes for a specific collection (except _id_)."""
         try:
@@ -200,6 +239,8 @@ class DatabaseIndexSeeder:
             "binary_ground_truths",
             "concept_ground_truths",
             "keyword_ground_truths",
+            "gpt_batch_requests",
+            "deferred_manufacturers",
         ]
 
         logger.info("Dropping all existing custom indexes...")
@@ -237,6 +278,8 @@ class DatabaseIndexSeeder:
             self.create_binary_ground_truth_indexes()
             self.create_concept_ground_truth_indexes()
             self.create_keyword_ground_truth_indexes()
+            self.create_gpt_batch_request_indexes()
+            self.create_deferred_manufacturer_indexes()
 
             logger.info("Database index seeding completed successfully!")
 
@@ -255,6 +298,8 @@ class DatabaseIndexSeeder:
             "binary_ground_truths",
             "concept_ground_truths",
             "keyword_ground_truths",
+            "gpt_batch_requests",
+            "deferred_manufacturers",
         ]
 
         logger.info("Listing existing indexes...")
@@ -317,10 +362,4 @@ def main():
 
 
 if __name__ == "__main__":
-    DOT_ENV_PATH = os.path.join(
-        os.path.dirname(os.path.dirname(os.path.dirname(__file__))), ".env"
-    )
-
-    logger.info(f"Loading environment variables from: {DOT_ENV_PATH}")
-    load_dotenv(dotenv_path=DOT_ENV_PATH)
     main()
