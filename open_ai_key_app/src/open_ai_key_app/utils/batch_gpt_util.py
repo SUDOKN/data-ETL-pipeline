@@ -42,6 +42,7 @@ def get_gpt_request_blob(
 
     return GPTBatchRequestBlob(
         created_at=created_at,
+        custom_id=custom_id,
         body=GPTBatchRequestBlobBody(
             model=gpt_model.model_name,
             messages=[

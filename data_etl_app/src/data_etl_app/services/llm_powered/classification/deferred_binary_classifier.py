@@ -8,14 +8,14 @@ from open_ai_key_app.utils.batch_gpt_util import (
     get_gpt_request_blob,
 )
 from open_ai_key_app.models.db.gpt_batch_request import GPTBatchRequest
-from open_ai_key_app.models.field_types import GPTBatchRequestMongoID
+from open_ai_key_app.models.field_types import GPTBatchRequestCustomID
 from open_ai_key_app.models.gpt_model import (
     GPTModel,
     GPT_4o_mini,
     ModelParameters,
     DefaultModelParameters,
 )
-from open_ai_key_app.models.field_types import GPTBatchRequestMongoID
+from open_ai_key_app.models.field_types import GPTBatchRequestCustomID
 
 from data_etl_app.models.deferred_binary_classification import (
     DeferredBinaryClassification,
@@ -139,7 +139,7 @@ async def _binary_classify_chunk_deferred(
     binary_prompt: Prompt,
     gpt_model: GPTModel = GPT_4o_mini,
     model_params: ModelParameters = DefaultModelParameters,
-) -> GPTBatchRequestMongoID:
+) -> GPTBatchRequestCustomID:
     logger.info(
         f"_binary_classify_chunk_deferred: Generating GPTBatchRequest for {custom_id}"
     )
@@ -159,8 +159,4 @@ async def _binary_classify_chunk_deferred(
         response_received_at=None,
     )
     await gpt_batch_request.insert()
-    assert (
-        gpt_batch_request.id is not None
-    ), f"_binary_classify_chunk_deferred:{custom_id}: GPTBatchRequest.id should be set after insert()"
-    # logger.info(f"Saved GPTBatchRequest {gpt_batch_request}")
-    return gpt_batch_request.id
+    return gpt_batch_request.request.custom_id
