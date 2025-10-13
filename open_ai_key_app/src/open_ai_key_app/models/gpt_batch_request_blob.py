@@ -1,5 +1,5 @@
 from datetime import datetime
-from pydantic import BaseModel
+from pydantic import BaseModel, ConfigDict, Field
 
 
 """
@@ -46,6 +46,8 @@ from pydantic import BaseModel
 
 
 class GPTBatchRequestBlobBody(BaseModel):
+    model_config = ConfigDict(frozen=True, extra="forbid")
+
     model: str  # e.g. "gpt-4o-mini"
     messages: list[dict]  # e.g. [{"role": "user", "content": "Hello!"}]
     input_tokens: int  # exclude in deserialization
@@ -53,7 +55,8 @@ class GPTBatchRequestBlobBody(BaseModel):
 
 
 class GPTBatchRequestBlob(BaseModel):
-    created_at: datetime
+    model_config = ConfigDict(frozen=True, extra="forbid")
+
     custom_id: str  # we provide this id
     method: str = "POST"
     url: str = "/v1/chat/completions"

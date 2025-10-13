@@ -28,6 +28,8 @@ from data_etl_app.services.llm_powered.extraction.extract_concept_deferred_servi
 )
 from data_etl_app.services.llm_powered.classification.deferred_binary_classifier import (
     is_company_a_manufacturer_deferred,
+    is_contract_manufacturer_deferred,
+    is_product_manufacturer_deferred,
 )
 
 logger = logging.getLogger(__name__)
@@ -118,7 +120,7 @@ async def upsert_deferred_manufacturer(
             )
         else:
             deferred_manufacturer.is_contract_manufacturer = (
-                await is_company_a_manufacturer_deferred(
+                await is_contract_manufacturer_deferred(
                     deferred_at=timestamp,
                     manufacturer_etld=manufacturer.etld1,
                     mfg_txt=existing_scraped_file.text,
@@ -134,7 +136,7 @@ async def upsert_deferred_manufacturer(
             )
         else:
             deferred_manufacturer.is_product_manufacturer = (
-                await is_company_a_manufacturer_deferred(
+                await is_product_manufacturer_deferred(
                     deferred_at=timestamp,
                     manufacturer_etld=manufacturer.etld1,
                     mfg_txt=existing_scraped_file.text,

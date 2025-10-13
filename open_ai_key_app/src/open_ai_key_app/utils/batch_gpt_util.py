@@ -17,7 +17,6 @@ logger = logging.getLogger(__name__)
 
 
 def get_gpt_request_blob(
-    created_at: datetime,
     custom_id: str,
     context: str,
     prompt: str,
@@ -41,7 +40,6 @@ def get_gpt_request_blob(
         )
 
     return GPTBatchRequestBlob(
-        created_at=created_at,
         custom_id=custom_id,
         body=GPTBatchRequestBlobBody(
             model=gpt_model.model_name,

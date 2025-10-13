@@ -1,0 +1,207 @@
+{
+  "$jsonSchema": {
+    "bsonType": "object",
+    "required": ["created_at", "request"],
+    "additionalProperties": false,
+    "properties": {
+      "_id": {
+        "bsonType": "objectId"
+      },
+      "created_at": {
+        "bsonType": "date",
+        "description": "Timestamp when the batch request was created"
+      },
+      "request": {
+        "bsonType": "object",
+        "required": ["custom_id", "method", "url", "body"],
+        "additionalProperties": false,
+        "properties": {
+          "custom_id": {
+            "bsonType": "string",
+            "minLength": 1,
+            "description": "Custom ID provided for the request"
+          },
+          "method": {
+            "bsonType": "string",
+            "enum": ["POST"],
+            "description": "HTTP method for the request"
+          },
+          "url": {
+            "bsonType": "string",
+            "pattern": "^/v1/chat/completions$",
+            "description": "API endpoint URL"
+          },
+          "body": {
+            "bsonType": "object",
+            "required": ["model", "messages", "input_tokens", "max_tokens"],
+            "additionalProperties": false,
+            "properties": {
+              "model": {
+                "bsonType": "string",
+                "minLength": 1,
+                "description": "GPT model name (e.g., gpt-4o-mini)"
+              },
+              "messages": {
+                "bsonType": "array",
+                "minItems": 1,
+                "items": {
+                  "bsonType": "object"
+                },
+                "description": "Array of message objects for the chat completion"
+              },
+              "input_tokens": {
+                "bsonType": "int",
+                "minimum": 0,
+                "description": "Number of input tokens"
+              },
+              "max_tokens": {
+                "bsonType": "int",
+                "minimum": 1,
+                "description": "Maximum number of tokens to generate"
+              }
+            }
+          }
+        }
+      },
+      "batch_id": {
+        "bsonType": ["string", "null"],
+        "description": "OpenAI batch ID, known after batch is uploaded"
+      },
+      "request_sent_at": {
+        "bsonType": ["date", "null"],
+        "description": "Timestamp when request was sent to GPT"
+      },
+      "response_blob": {
+        "bsonType": ["object", "null"],
+        "required": ["batch_id", "request_custom_id", "response"],
+        "properties": {
+          "batch_id": {
+            "bsonType": "string",
+            "minLength": 1,
+            "description": "Batch request ID from OpenAI"
+          },
+          "request_custom_id": {
+            "bsonType": "string",
+            "minLength": 1,
+            "description": "Custom ID matching the request"
+          },
+          "response": {
+            "bsonType": "object",
+            "required": ["status_code", "gpt_internal_request_id", "body"],
+            "properties": {
+              "status_code": {
+                "bsonType": "int",
+                "description": "HTTP status code of the response"
+              },
+              "gpt_internal_request_id": {
+                "bsonType": "string",
+                "minLength": 1,
+                "description": "Internal request ID from GPT"
+              },
+              "body": {
+                "bsonType": "object",
+                "required": [
+                  "completion_id",
+                  "object",
+                  "created",
+                  "model",
+                  "choices",
+                  "usage",
+                  "system_fingerprint"
+                ],
+                "properties": {
+                  "completion_id": {
+                    "bsonType": "string",
+                    "minLength": 1,
+                    "description": "Chat completion ID"
+                  },
+                  "object": {
+                    "bsonType": "string",
+                    "enum": ["chat.completion"],
+                    "description": "Object type"
+                  },
+                  "created": {
+                    "bsonType": "date",
+                    "description": "Creation timestamp"
+                  },
+                  "model": {
+                    "bsonType": "string",
+                    "minLength": 1,
+                    "description": "Model used for completion"
+                  },
+                  "choices": {
+                    "bsonType": "array",
+                    "minItems": 1,
+                    "items": {
+                      "bsonType": "object",
+                      "required": ["index", "message", "finish_reason"],
+                      "properties": {
+                        "index": {
+                          "bsonType": "int",
+                          "minimum": 0
+                        },
+                        "message": {
+                          "bsonType": "object",
+                          "required": ["role", "content"],
+                          "properties": {
+                            "role": {
+                              "bsonType": "string",
+                              "enum": ["assistant", "user", "system"]
+                            },
+                            "content": {
+                              "bsonType": "string"
+                            }
+                          }
+                        },
+                        "logprobs": {
+                          "bsonType": ["object", "null"]
+                        },
+                        "finish_reason": {
+                          "bsonType": "string"
+                        }
+                      }
+                    }
+                  },
+                  "usage": {
+                    "bsonType": "object",
+                    "required": [
+                      "prompt_tokens",
+                      "completion_tokens",
+                      "total_tokens"
+                    ],
+                    "properties": {
+                      "prompt_tokens": {
+                        "bsonType": "int",
+                        "minimum": 0
+                      },
+                      "completion_tokens": {
+                        "bsonType": "int",
+                        "minimum": 0
+                      },
+                      "total_tokens": {
+                        "bsonType": "int",
+                        "minimum": 0
+                      }
+                    }
+                  },
+                  "system_fingerprint": {
+                    "bsonType": "string"
+                  }
+                }
+              }
+            }
+          },
+          "error": {
+            "bsonType": ["object", "null"],
+            "description": "Error object if request failed"
+          }
+        },
+        "description": "Response from GPT batch API"
+      },
+      "response_received_at": {
+        "bsonType": ["date", "null"],
+        "description": "Timestamp when response was received from GPT"
+      }
+    }
+  }
+}
