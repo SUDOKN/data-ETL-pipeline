@@ -148,7 +148,7 @@ async def _add_mapping_requests_to_deferred_stats(
         chunk_bounds,
         chunk_batch_request_bundle,
     ) in deferred_stats.chunked_stats_batch_request_map.items():
-        custom_id = f"{mfg_etld1}>{concept_type}>mapping>chunk{chunk_bounds}"
+        custom_id = f"{mfg_etld1}>{concept_type}>mapping>chunk>{chunk_bounds}"
         llm_gpt_batch_request = await find_gpt_batch_request_by_mongo_id(
             chunk_batch_request_bundle.llm_batch_request_id
         )
@@ -335,7 +335,7 @@ async def _extract_concept_data_deferred(
                 brute={b.name for b in brute_search(chunk_text, known_concepts)},
                 llm_batch_request_id=await llm_search_deferred(
                     deferred_at=deferred_at,
-                    custom_id=f"{mfg_etld1}>{concept_type}>llm_search>chunk{chunk_bounds}",
+                    custom_id=f"{mfg_etld1}>{concept_type}>llm_search>chunk>{chunk_bounds}",
                     text=chunk_text,
                     prompt=search_prompt,
                     gpt_model=gpt_model,
