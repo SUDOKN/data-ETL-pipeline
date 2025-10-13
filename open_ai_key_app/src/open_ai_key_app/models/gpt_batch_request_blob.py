@@ -54,6 +54,7 @@ class GPTBatchRequestBlobBody(BaseModel):
 
 class GPTBatchRequestBlob(BaseModel):
     created_at: datetime
+    custom_id: str  # we provide this id
     method: str = "POST"
     url: str = "/v1/chat/completions"
     body: GPTBatchRequestBlobBody

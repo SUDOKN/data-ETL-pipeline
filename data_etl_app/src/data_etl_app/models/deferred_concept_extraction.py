@@ -1,14 +1,14 @@
 from pydantic import BaseModel
 
 from core.models.field_types import OntologyVersionIDType, S3FileVersionIDType
-from open_ai_key_app.models.field_types import GPTBatchRequestMongoID
+from open_ai_key_app.models.field_types import GPTBatchRequestCustomID
 
 
 class ConceptSearchBatchRequestBundle(BaseModel):
     brute: set[str]
-    llm_batch_request_id: GPTBatchRequestMongoID
+    llm_batch_request_id: GPTBatchRequestCustomID
     mapping_batch_request_id: (
-        GPTBatchRequestMongoID | None
+        GPTBatchRequestCustomID | None
     )  # because this will be executed in a different batch
 
 

@@ -4,7 +4,7 @@ import logging
 from core.models.prompt import Prompt
 
 from open_ai_key_app.models.db.gpt_batch_request import GPTBatchRequest
-from open_ai_key_app.models.field_types import GPTBatchRequestMongoID
+from open_ai_key_app.models.field_types import GPTBatchRequestCustomID
 from open_ai_key_app.utils.batch_gpt_util import get_gpt_request_blob
 
 from open_ai_key_app.models.gpt_model import (
@@ -30,7 +30,7 @@ async def extract_address_from_n_chunks_deferred(
     n: int = 1,
     gpt_model: GPTModel = GPT_4o_mini,
     model_params: ModelParameters = DefaultModelParameters,
-) -> list[GPTBatchRequestMongoID]:
+) -> list[GPTBatchRequestCustomID]:
     prompt_service = await get_prompt_service()
     extract_address_prompt = prompt_service.extract_any_address
 
@@ -41,7 +41,7 @@ async def extract_address_from_n_chunks_deferred(
         - 5000,  # subtracting 5000 to leave room for last line in each chunk, otherwise _binary_classify_chunk gets > GPT_4o_mini.max_context_tokens
     )
 
-    gpt_batch_requests_mongo_ids: list[GPTBatchRequestMongoID] = []
+    gpt_batch_requests_mongo_ids: list[GPTBatchRequestCustomID] = []
     for i, (bounds, chunk_text) in enumerate(chunks_map.items()):
         if i >= n:
             break
@@ -66,7 +66,7 @@ async def _extract_address_from_chunk_deferred(
     extract_prompt: Prompt,
     gpt_model: GPTModel = GPT_4o_mini,
     model_params: ModelParameters = DefaultModelParameters,
-) -> GPTBatchRequestMongoID:
+) -> GPTBatchRequestCustomID:
     logger.info(
         f"_extract_address_from_chunk_deferred: Generating GPTBatchRequest for {custom_id}"
     )
@@ -83,7 +83,4 @@ async def _extract_address_from_chunk_deferred(
         ),
     )
     await gpt_batch_request.insert()
-    assert (
-        gpt_batch_request.id is not None
-    ), f"_extract_address_from_chunk_deferred:{custom_id}: GPTBatchRequest.id should be set after insert()"
-    return gpt_batch_request.id
+    return gpt_batch_request.request.custom_id

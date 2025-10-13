@@ -7,7 +7,7 @@ import logging
 from core.models.field_types import MfgETLDType, S3FileVersionIDType
 from core.utils.time_util import get_current_time
 
-from open_ai_key_app.models.field_types import GPTBatchRequestMongoID
+from open_ai_key_app.models.field_types import GPTBatchRequestCustomID
 
 
 from data_etl_app.models.deferred_binary_classification import (
@@ -33,8 +33,8 @@ class DeferredManufacturer(Document):
     is_contract_manufacturer: Optional[DeferredBinaryClassification]
     is_product_manufacturer: Optional[DeferredBinaryClassification]
 
-    addresses: Optional[list[GPTBatchRequestMongoID]]
-    business_desc: Optional[GPTBatchRequestMongoID]
+    addresses: Optional[list[GPTBatchRequestCustomID]]
+    business_desc: Optional[GPTBatchRequestCustomID]
 
     products: Optional[DeferredKeywordExtraction]
 
