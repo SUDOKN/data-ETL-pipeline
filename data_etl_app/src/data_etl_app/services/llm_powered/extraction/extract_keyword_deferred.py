@@ -19,6 +19,8 @@ from data_etl_app.utils.chunk_util import (
     get_chunks_respecting_line_boundaries,
 )
 
+from open_ai_key_app.models.db.gpt_batch_request import GPTBatchRequest
+
 logger = logging.getLogger(__name__)
 
 from open_ai_key_app.models.gpt_model import (
@@ -33,10 +35,11 @@ async def extract_products_deferred(
     deferred_at: datetime,
     mfg_etld1: str,
     mfg_text: str,
-) -> DeferredKeywordExtraction:
+) -> tuple[DeferredKeywordExtraction, list[GPTBatchRequest]]:
     """
     Extract products for a manufacturer's text.
     """
+
     prompt_service = await get_prompt_service()
     return await _extract_keyword_data_deferred(
         deferred_at,
@@ -59,7 +62,8 @@ async def _extract_keyword_data_deferred(
     chunk_strategy: ChunkingStrat,
     gpt_model: GPTModel = GPT_4o_mini,
     model_params: ModelParameters = DefaultModelParameters,
-) -> DeferredKeywordExtraction:
+) -> tuple[DeferredKeywordExtraction, list[GPTBatchRequest]]:
+
     logger.info(
         f"_extract_keyword_data_deferred: Generating GPTBatchRequest for {mfg_etld1}:{keyword_type}"
     )
@@ -70,8 +74,10 @@ async def _extract_keyword_data_deferred(
     )
 
     # 2) LLM search per chunk (no brute)
-    chunk_batch_request_map = {
-        b: await llm_search_deferred(
+    chunk_batch_request_map = {}
+    batch_requests: list[GPTBatchRequest] = []
+    for b, t in chunk_map.items():
+        custom_id, batch_request = llm_search_deferred(
             deferred_at=deferred_at,
             custom_id=f"{mfg_etld1}>{keyword_type}>chunk>{b}",
             text=t,
@@ -79,12 +85,15 @@ async def _extract_keyword_data_deferred(
             gpt_model=gpt_model,
             model_params=model_params,
         )
-        for b, t in chunk_map.items()
-    }
+        chunk_batch_request_map[b] = custom_id
+        batch_requests.append(batch_request)
 
-    return DeferredKeywordExtraction(
-        deferred_stats=DeferredKeywordExtractionStats(
-            extract_prompt_version_id=search_prompt.s3_version_id,
-            chunk_batch_request_id_map=chunk_batch_request_map,
-        )
+    return (
+        DeferredKeywordExtraction(
+            deferred_stats=DeferredKeywordExtractionStats(
+                extract_prompt_version_id=search_prompt.s3_version_id,
+                chunk_batch_request_id_map=chunk_batch_request_map,
+            )
+        ),
+        batch_requests,
     )
