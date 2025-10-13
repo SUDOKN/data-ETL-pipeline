@@ -48,7 +48,7 @@ async def extract_address_from_n_chunks_deferred(
         gpt_batch_requests_mongo_ids.append(
             await _extract_address_from_chunk_deferred(
                 deferred_at=deferred_at,
-                custom_id=f"{mfg_etld1}>{keyword_label}>chunk{bounds}",
+                custom_id=f"{mfg_etld1}>{keyword_label}>chunk>{bounds}",
                 chunk_text=chunk_text,
                 extract_prompt=extract_address_prompt,
                 gpt_model=gpt_model,

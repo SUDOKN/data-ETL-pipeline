@@ -43,7 +43,7 @@ async def find_business_desc_using_only_first_chunk_deferred(
     )
     first_chunk_bounds = min(chunks_map.keys(), key=lambda k: int(k.split(":")[0]))
     first_chunk_text = chunks_map[first_chunk_bounds]
-    custom_id = f"{mfg_etld1}>{keyword_label}>chunk{first_chunk_bounds}"
+    custom_id = f"{mfg_etld1}>{keyword_label}>chunk>{first_chunk_bounds}"
 
     gpt_batch_request = GPTBatchRequest(
         batch_id=None,

@@ -73,7 +73,7 @@ async def _extract_keyword_data_deferred(
     chunk_batch_request_map = {
         b: await llm_search_deferred(
             deferred_at=deferred_at,
-            custom_id=f"{mfg_etld1}>{keyword_type}>chunk{b}",
+            custom_id=f"{mfg_etld1}>{keyword_type}>chunk>{b}",
             text=t,
             prompt=search_prompt,
             gpt_model=gpt_model,

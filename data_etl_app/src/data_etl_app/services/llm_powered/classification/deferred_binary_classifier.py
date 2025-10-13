@@ -116,7 +116,7 @@ async def _binary_classify_using_only_first_chunk_deferred(
     chunk_batch_request_map = {
         first_chunk_bounds: await _binary_classify_chunk_deferred(
             deferred_at=deferred_at,
-            custom_id=f"{manufacturer_etld}>{keyword_label}>chunk{first_chunk_bounds}",
+            custom_id=f"{manufacturer_etld}>{keyword_label}>chunk>{first_chunk_bounds}",
             chunk_txt=first_chunk_text,
             binary_prompt=binary_prompt,
             gpt_model=gpt_model,
