@@ -22,7 +22,7 @@ from open_ai_key_app.models.gpt_model import (
 logger = logging.getLogger(__name__)
 
 
-async def map_known_to_unknown_deferred(
+def map_known_to_unknown_deferred(
     deferred_at: datetime,
     custom_id: str,
     known_concepts: list[Concept],  # DO NOT MUTATE
@@ -30,7 +30,7 @@ async def map_known_to_unknown_deferred(
     prompt: Prompt,
     gpt_model: GPTModel = GPT_4o_mini,
     model_params: ModelParameters = DefaultModelParameters,
-) -> GPTBatchRequestCustomID:
+) -> tuple[GPTBatchRequestCustomID, GPTBatchRequest]:
     logger.info(
         f"map_known_to_unknown_deferred: Generating GPTBatchRequest for {custom_id}"
     )
@@ -49,5 +49,4 @@ async def map_known_to_unknown_deferred(
         ),
         batch_id=None,
     )
-    await gpt_batch_request.insert()
-    return gpt_batch_request.request.custom_id
+    return gpt_batch_request.request.custom_id, gpt_batch_request

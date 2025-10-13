@@ -50,7 +50,7 @@ class GPTBatchRequestBlobBody(BaseModel):
 
     model: str  # e.g. "gpt-4o-mini"
     messages: list[dict]  # e.g. [{"role": "user", "content": "Hello!"}]
-    input_tokens: int  # exclude in deserialization
+    input_tokens: int  # exclude before sending to OpenAI
     max_tokens: int
 
 

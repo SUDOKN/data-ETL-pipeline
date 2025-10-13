@@ -33,7 +33,7 @@ async def find_business_desc_using_only_first_chunk_deferred(
     keyword_label="business_desc",
     gpt_model: GPTModel = GPT_4o_mini,
     model_params: ModelParameters = DefaultModelParameters,
-) -> GPTBatchRequestCustomID:
+) -> tuple[GPTBatchRequestCustomID, GPTBatchRequest]:
     logger.info(f"Finding business desc for {mfg_etld1} using only first chunk...")
     prompt_service = await get_prompt_service()
     prompt = prompt_service.find_business_desc_prompt
@@ -56,8 +56,7 @@ async def find_business_desc_using_only_first_chunk_deferred(
             model_params=model_params,
         ),
     )
-    await gpt_batch_request.insert()
-    return gpt_batch_request.request.custom_id
+    return gpt_batch_request.request.custom_id, gpt_batch_request
 
 
 async def find_business_desc_using_only_first_chunk(
@@ -132,14 +131,14 @@ async def llm_search(
     return llm_results
 
 
-async def llm_search_deferred(
+def llm_search_deferred(
     deferred_at: datetime,
     custom_id: str,
     text: str,
     prompt: Prompt,
     gpt_model: GPTModel,
     model_params: ModelParameters,
-) -> GPTBatchRequestCustomID:
+) -> tuple[GPTBatchRequestCustomID, GPTBatchRequest]:
     gpt_batch_request = GPTBatchRequest(
         created_at=deferred_at,
         batch_id=None,
@@ -151,5 +150,4 @@ async def llm_search_deferred(
             model_params=model_params,
         ),
     )
-    await gpt_batch_request.insert()
-    return gpt_batch_request.request.custom_id
+    return gpt_batch_request.request.custom_id, gpt_batch_request

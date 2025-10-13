@@ -15,7 +15,6 @@ from open_ai_key_app.models.gpt_model import (
     ModelParameters,
     DefaultModelParameters,
 )
-from open_ai_key_app.models.field_types import GPTBatchRequestCustomID
 
 from data_etl_app.models.deferred_binary_classification import (
     DeferredBinaryClassification,
@@ -35,7 +34,7 @@ async def is_company_a_manufacturer_deferred(
     mfg_txt: str,
     gpt_model: GPTModel = GPT_4o_mini,
     model_params: ModelParameters = DefaultModelParameters,
-) -> DeferredBinaryClassification:
+) -> tuple[DeferredBinaryClassification, list[GPTBatchRequest]]:
     logger.info(
         f"is_company_a_manufacturer_deferred: Generating for {manufacturer_etld}"
     )
@@ -57,7 +56,7 @@ async def is_contract_manufacturer_deferred(
     mfg_txt: str,
     gpt_model: GPTModel = GPT_4o_mini,
     model_params: ModelParameters = DefaultModelParameters,
-) -> DeferredBinaryClassification:
+) -> tuple[DeferredBinaryClassification, list[GPTBatchRequest]]:
     logger.info(
         f"is_contract_manufacturer_deferred: Generating for {manufacturer_etld}"
     )
@@ -79,7 +78,7 @@ async def is_product_manufacturer_deferred(
     mfg_txt: str,
     gpt_model: GPTModel = GPT_4o_mini,
     model_params: ModelParameters = DefaultModelParameters,
-) -> DeferredBinaryClassification:
+) -> tuple[DeferredBinaryClassification, list[GPTBatchRequest]]:
     logger.info(f"is_product_manufacturer_deferred: Generating for {manufacturer_etld}")
     prompt_service = await get_prompt_service()
     return await _binary_classify_using_only_first_chunk_deferred(
@@ -101,7 +100,7 @@ async def _binary_classify_using_only_first_chunk_deferred(
     binary_prompt: Prompt,
     gpt_model: GPTModel = GPT_4o_mini,
     model_params: ModelParameters = DefaultModelParameters,
-) -> DeferredBinaryClassification:
+) -> tuple[DeferredBinaryClassification, list[GPTBatchRequest]]:
     chunks_map = get_chunks_respecting_line_boundaries(
         mfg_txt,
         gpt_model.max_context_tokens
@@ -113,33 +112,35 @@ async def _binary_classify_using_only_first_chunk_deferred(
     logger.info(
         f"Using first chunk with key {first_chunk_bounds} for deferred binary classification with num_tokens {num_tokens_from_string(first_chunk_text)}."
     )
-    chunk_batch_request_map = {
-        first_chunk_bounds: await _binary_classify_chunk_deferred(
-            deferred_at=deferred_at,
-            custom_id=f"{manufacturer_etld}>{keyword_label}>chunk>{first_chunk_bounds}",
-            chunk_txt=first_chunk_text,
-            binary_prompt=binary_prompt,
-            gpt_model=gpt_model,
-            model_params=model_params,
-        )
-    }
-    return DeferredBinaryClassification(
-        deferred_stats=DeferredBinaryClassificationStats(
-            prompt_version_id=binary_prompt.s3_version_id,
-            final_chunk_key=first_chunk_bounds,
-            chunk_batch_request_id_map=chunk_batch_request_map,
-        )
+    batch_request, custom_id = _binary_classify_chunk_deferred(
+        deferred_at=deferred_at,
+        custom_id=f"{manufacturer_etld}>{keyword_label}>chunk>{first_chunk_bounds}",
+        chunk_txt=first_chunk_text,
+        binary_prompt=binary_prompt,
+        gpt_model=gpt_model,
+        model_params=model_params,
+    )
+    chunk_batch_request_map = {first_chunk_bounds: custom_id}
+    return (
+        DeferredBinaryClassification(
+            deferred_stats=DeferredBinaryClassificationStats(
+                prompt_version_id=binary_prompt.s3_version_id,
+                final_chunk_key=first_chunk_bounds,
+                chunk_batch_request_id_map=chunk_batch_request_map,
+            )
+        ),
+        [batch_request],
     )
 
 
-async def _binary_classify_chunk_deferred(
+def _binary_classify_chunk_deferred(
     deferred_at: datetime,
     custom_id: str,
     chunk_txt: str,
     binary_prompt: Prompt,
     gpt_model: GPTModel = GPT_4o_mini,
     model_params: ModelParameters = DefaultModelParameters,
-) -> GPTBatchRequestCustomID:
+) -> tuple[GPTBatchRequest, GPTBatchRequestCustomID]:
     logger.info(
         f"_binary_classify_chunk_deferred: Generating GPTBatchRequest for {custom_id}"
     )
@@ -158,5 +159,4 @@ async def _binary_classify_chunk_deferred(
         response_blob=None,
         response_received_at=None,
     )
-    await gpt_batch_request.insert()
-    return gpt_batch_request.request.custom_id
+    return gpt_batch_request, gpt_batch_request.request.custom_id

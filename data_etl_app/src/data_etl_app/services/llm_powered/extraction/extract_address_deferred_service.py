@@ -30,7 +30,7 @@ async def extract_address_from_n_chunks_deferred(
     n: int = 1,
     gpt_model: GPTModel = GPT_4o_mini,
     model_params: ModelParameters = DefaultModelParameters,
-) -> list[GPTBatchRequestCustomID]:
+) -> tuple[list[GPTBatchRequestCustomID], list[GPTBatchRequest]]:
     prompt_service = await get_prompt_service()
     extract_address_prompt = prompt_service.extract_any_address
 
@@ -42,31 +42,32 @@ async def extract_address_from_n_chunks_deferred(
     )
 
     gpt_batch_requests_mongo_ids: list[GPTBatchRequestCustomID] = []
+    batch_requests: list[GPTBatchRequest] = []
     for i, (bounds, chunk_text) in enumerate(chunks_map.items()):
         if i >= n:
             break
-        gpt_batch_requests_mongo_ids.append(
-            await _extract_address_from_chunk_deferred(
-                deferred_at=deferred_at,
-                custom_id=f"{mfg_etld1}>{keyword_label}>chunk>{bounds}",
-                chunk_text=chunk_text,
-                extract_prompt=extract_address_prompt,
-                gpt_model=gpt_model,
-                model_params=model_params,
-            )
+        batch_request, custom_id = _extract_address_from_chunk_deferred(
+            deferred_at=deferred_at,
+            custom_id=f"{mfg_etld1}>{keyword_label}>chunk>{bounds}",
+            chunk_text=chunk_text,
+            extract_prompt=extract_address_prompt,
+            gpt_model=gpt_model,
+            model_params=model_params,
         )
+        gpt_batch_requests_mongo_ids.append(custom_id)
+        batch_requests.append(batch_request)
 
-    return gpt_batch_requests_mongo_ids
+    return gpt_batch_requests_mongo_ids, batch_requests
 
 
-async def _extract_address_from_chunk_deferred(
+def _extract_address_from_chunk_deferred(
     deferred_at: datetime,
     custom_id: str,
     chunk_text: str,
     extract_prompt: Prompt,
     gpt_model: GPTModel = GPT_4o_mini,
     model_params: ModelParameters = DefaultModelParameters,
-) -> GPTBatchRequestCustomID:
+) -> tuple[GPTBatchRequest, GPTBatchRequestCustomID]:
     logger.info(
         f"_extract_address_from_chunk_deferred: Generating GPTBatchRequest for {custom_id}"
     )
@@ -82,5 +83,4 @@ async def _extract_address_from_chunk_deferred(
             model_params=model_params,
         ),
     )
-    await gpt_batch_request.insert()
-    return gpt_batch_request.request.custom_id
+    return gpt_batch_request, gpt_batch_request.request.custom_id

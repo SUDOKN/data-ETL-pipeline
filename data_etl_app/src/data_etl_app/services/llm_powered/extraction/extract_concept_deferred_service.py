@@ -14,6 +14,7 @@ from core.models.field_types import (
 from open_ai_key_app.services.gpt_batch_request_service import (
     find_gpt_batch_request_by_mongo_id,
 )
+from open_ai_key_app.models.db.gpt_batch_request import GPTBatchRequest
 
 from data_etl_app.models.deferred_concept_extraction import (
     DeferredConceptExtraction,
@@ -49,7 +50,7 @@ async def add_certificate_mapping_requests_to_deferred_stats(
     deferred_at: datetime,
     deferred_stats: DeferredConceptExtractionStats,
     mfg_etld1: str,
-) -> bool:
+) -> tuple[bool, list[GPTBatchRequest]]:
     prompt_service = await get_prompt_service()
     ontology_service = await get_ontology_service()
     ontology_version_id, known_certificates = ontology_service.certificates
@@ -71,7 +72,7 @@ async def add_industry_mapping_requests_to_deferred_stats(
     deferred_at: datetime,
     deferred_stats: DeferredConceptExtractionStats,
     mfg_etld1: str,
-) -> bool:
+) -> tuple[bool, list[GPTBatchRequest]]:
     prompt_service = await get_prompt_service()
     ontology_service = await get_ontology_service()
     ontology_version_id, known_industries = ontology_service.industries
@@ -93,7 +94,7 @@ async def add_process_mapping_requests_to_deferred_stats(
     deferred_at: datetime,
     deferred_stats: DeferredConceptExtractionStats,
     mfg_etld1: str,
-) -> bool:
+) -> tuple[bool, list[GPTBatchRequest]]:
     prompt_service = await get_prompt_service()
     ontology_service = await get_ontology_service()
     ontology_version_id, known_processes = ontology_service.process_caps
@@ -115,7 +116,7 @@ async def add_material_mapping_requests_to_deferred_stats(
     deferred_at: datetime,
     deferred_stats: DeferredConceptExtractionStats,
     mfg_etld1: str,
-) -> bool:
+) -> tuple[bool, list[GPTBatchRequest]]:
     prompt_service = await get_prompt_service()
     ontology_service = await get_ontology_service()
     ontology_version_id, known_materials = ontology_service.material_caps
@@ -142,8 +143,9 @@ async def _add_mapping_requests_to_deferred_stats(
     map_prompt: Prompt,
     gpt_model: GPTModel = GPT_4o_mini,
     model_params: ModelParameters = DefaultModelParameters,
-) -> bool:
+) -> tuple[bool, list[GPTBatchRequest]]:
     updated = False
+    batch_requests: list[GPTBatchRequest] = []
     for (
         chunk_bounds,
         chunk_batch_request_bundle,
@@ -172,17 +174,17 @@ async def _add_mapping_requests_to_deferred_stats(
                 #         f"add_mapping_requests_to_deferred_stats: No unmapped unknowns for chunk {chunk_bounds}, skipping mapping request"
                 #     )
                 #     continue
-                chunk_batch_request_bundle.mapping_batch_request_id = (
-                    await map_known_to_unknown_deferred(
-                        deferred_at=deferred_at,
-                        custom_id=custom_id,
-                        known_concepts=known_concepts,
-                        unmapped_unknowns=unmapped_unknowns,
-                        prompt=map_prompt,
-                        gpt_model=gpt_model,
-                        model_params=model_params,
-                    )
+                mapping_id, batch_request = map_known_to_unknown_deferred(
+                    deferred_at=deferred_at,
+                    custom_id=custom_id,
+                    known_concepts=known_concepts,
+                    unmapped_unknowns=unmapped_unknowns,
+                    prompt=map_prompt,
+                    gpt_model=gpt_model,
+                    model_params=model_params,
                 )
+                chunk_batch_request_bundle.mapping_batch_request_id = mapping_id
+                batch_requests.append(batch_request)
                 updated = True
             except:
                 raise ValueError(
@@ -194,17 +196,18 @@ async def _add_mapping_requests_to_deferred_stats(
                 f" because llm.response_blob is None or mapping already exists"
             )
 
-    return updated
+    return updated, batch_requests
 
 
 async def extract_certificates_deferred(
     deferred_at: datetime,
     mfg_etld1: str,
     mfg_text: str,
-) -> DeferredConceptExtraction:
+) -> tuple[DeferredConceptExtraction, list[GPTBatchRequest]]:
     """
     Extract certificates for a manufacturer's text.
     """
+
     prompt_service = await get_prompt_service()
     ontology_service = await get_ontology_service()
     ontology_version_id, known_certificates = ontology_service.certificates
@@ -227,7 +230,7 @@ async def extract_industries_deferred(
     deferred_at: datetime,
     mfg_etld1: str,
     mfg_text: str,
-) -> DeferredConceptExtraction:
+) -> tuple[DeferredConceptExtraction, list[GPTBatchRequest]]:
     """
     Extract industries for a manufacturer's text.
     """
@@ -253,10 +256,11 @@ async def extract_processes_deferred(
     deferred_at: datetime,
     mfg_etld1: str,
     mfg_text: str,
-) -> DeferredConceptExtraction:
+) -> tuple[DeferredConceptExtraction, list[GPTBatchRequest]]:
     """
     Extract processes for a manufacturer's text.
     """
+
     prompt_service = await get_prompt_service()
     ontology_service = await get_ontology_service()
     ontology_version_id, known_processes = ontology_service.process_caps
@@ -279,10 +283,11 @@ async def extract_materials_deferred(
     deferred_at: datetime,
     mfg_etld1: str,
     mfg_text: str,
-) -> DeferredConceptExtraction:
+) -> tuple[DeferredConceptExtraction, list[GPTBatchRequest]]:
     """
     Extract materials for a manufacturer's text.
     """
+
     prompt_service = await get_prompt_service()
     ontology_service = await get_ontology_service()
     ontology_version_id, known_materials = ontology_service.material_caps
@@ -313,7 +318,8 @@ async def _extract_concept_data_deferred(
     chunk_strategy: ChunkingStrat,
     gpt_model: GPTModel = GPT_4o_mini,
     model_params: ModelParameters = DefaultModelParameters,
-) -> DeferredConceptExtraction:
+) -> tuple[DeferredConceptExtraction, list[GPTBatchRequest]]:
+
     logger.info(
         f"_extract_concept_data: Generating GPTBatchRequest for {mfg_etld1}:{concept_type}"
     )
@@ -329,20 +335,23 @@ async def _extract_concept_data_deferred(
         text, chunk_strategy.max_tokens, chunk_strategy.overlap
     )
 
+    batch_requests: list[GPTBatchRequest] = []
     for chunk_bounds, chunk_text in chunk_map.items():
+        llm_batch_request_id, batch_request = llm_search_deferred(
+            deferred_at=deferred_at,
+            custom_id=f"{mfg_etld1}>{concept_type}>llm_search>chunk>{chunk_bounds}",
+            text=chunk_text,
+            prompt=search_prompt,
+            gpt_model=gpt_model,
+            model_params=model_params,
+        )
+        batch_requests.append(batch_request)
         deferred_stats.chunked_stats_batch_request_map[chunk_bounds] = (
             ConceptSearchBatchRequestBundle(
                 brute={b.name for b in brute_search(chunk_text, known_concepts)},
-                llm_batch_request_id=await llm_search_deferred(
-                    deferred_at=deferred_at,
-                    custom_id=f"{mfg_etld1}>{concept_type}>llm_search>chunk>{chunk_bounds}",
-                    text=chunk_text,
-                    prompt=search_prompt,
-                    gpt_model=gpt_model,
-                    model_params=model_params,
-                ),
+                llm_batch_request_id=llm_batch_request_id,
                 mapping_batch_request_id=None,  # to be filled after LLM response is received
             )
         )
 
-    return DeferredConceptExtraction(deferred_stats=deferred_stats)
+    return DeferredConceptExtraction(deferred_stats=deferred_stats), batch_requests
