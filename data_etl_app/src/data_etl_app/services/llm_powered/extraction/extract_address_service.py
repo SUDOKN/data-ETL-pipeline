@@ -37,7 +37,7 @@ async def extract_address_from_n_chunks(
     prompt_service = await get_prompt_service()
     extract_address_prompt = prompt_service.extract_any_address
 
-    chunks_map = get_chunks_respecting_line_boundaries(
+    chunks_map = await get_chunks_respecting_line_boundaries(
         mfg_text,
         gpt_model.max_context_tokens
         - extract_address_prompt.num_tokens

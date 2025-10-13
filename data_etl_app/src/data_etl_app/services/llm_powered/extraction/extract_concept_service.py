@@ -189,7 +189,7 @@ async def _extract_concept_data(
         2. multiple passes may be required to get everything (soln: increase num_passes)
     """
 
-    chunk_map = get_chunks_respecting_line_boundaries(
+    chunk_map = await get_chunks_respecting_line_boundaries(
         text, chunk_strategy.max_tokens, chunk_strategy.overlap
     )
 

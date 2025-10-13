@@ -6,13 +6,15 @@ from data_etl_app.utils.chunk_util import (
 )
 
 
-def test_empty_text_returns_empty_dict():
-    result = get_chunks_respecting_line_boundaries("")
+@pytest.mark.asyncio
+async def test_empty_text_returns_empty_dict():
+    result = await get_chunks_respecting_line_boundaries("")
     assert isinstance(result, dict)
     assert result == {}
 
 
-def test_chunks_with_overlap_and_correct_boundaries(monkeypatch):
+@pytest.mark.asyncio
+async def test_chunks_with_overlap_and_correct_boundaries(monkeypatch):
     # Monkeypatch token-count function so each line counts as 1 token
     monkeypatch.setattr(
         "data_etl_app.utils.chunk_util.num_tokens_from_string", lambda line: 1
@@ -25,7 +27,7 @@ L3
 L4
 L5"""  # note: only first 4 lines end with newline when splitlines(keepends=True)
     # Use max_tokens=3 and 50% overlap => overlap of 1 line
-    chunks = get_chunks_respecting_line_boundaries(
+    chunks = await get_chunks_respecting_line_boundaries(
         text, soft_limit_tokens=3, overlap_ratio=0.5
     )
 
@@ -43,13 +45,14 @@ L5"""  # note: only first 4 lines end with newline when splitlines(keepends=True
     assert chunks == expected
 
 
-def test_full_text_as_single_chunk_when_under_limit(monkeypatch):
+@pytest.mark.asyncio
+async def test_full_text_as_single_chunk_when_under_limit(monkeypatch):
     monkeypatch.setattr(
         "data_etl_app.utils.chunk_util.num_tokens_from_string",
         lambda line: len(line),  # small count to ensure under limit
     )
     text = "Hello world!"  # single line
-    result = get_chunks_respecting_line_boundaries(
+    result = await get_chunks_respecting_line_boundaries(
         text, soft_limit_tokens=100, overlap_ratio=0.5
     )
     # Entire text should be one chunk with key '0:12'
@@ -61,7 +64,8 @@ def test_full_text_as_single_chunk_when_under_limit(monkeypatch):
     assert int(end) == len(text)
 
 
-def test_chunks_with_zero_overlap(monkeypatch):
+@pytest.mark.asyncio
+async def test_chunks_with_zero_overlap(monkeypatch):
     # Monkeypatch token-count to 1 token per line
     monkeypatch.setattr(
         "data_etl_app.utils.chunk_util.num_tokens_from_string", lambda line: 1
@@ -69,7 +73,7 @@ def test_chunks_with_zero_overlap(monkeypatch):
     # Prepare text with 5 lines
     text = "L1\nL2\nL3\nL4\nL5"
     # Use max_tokens=3 and zero overlap
-    chunks = get_chunks_respecting_line_boundaries(
+    chunks = await get_chunks_respecting_line_boundaries(
         text, soft_limit_tokens=3, overlap_ratio=0
     )
     # Expect two chunks: first L1-L3, second L4-L5 without overlap
@@ -176,12 +180,14 @@ def test_get_roughly_even_chunks_division_calculation(monkeypatch):
 
 
 def test_get_roughly_even_chunks_passes_correct_parameters(monkeypatch):
-    """Test that parameters are passed correctly to get_chunks_respecting_boundaries"""
+    """Test that parameters are passed correctly to get_chunks_respecting_line_boundaries_sync"""
 
-    # Track what parameters were passed to get_chunks_respecting_boundaries
+    # Track what parameters were passed to get_chunks_respecting_line_boundaries_sync
     captured_params = {}
 
-    def mock_get_chunks_respecting_boundaries(text, soft_limit_tokens, overlap_ratio):
+    def mock_get_chunks_respecting_boundaries(
+        text, soft_limit_tokens, overlap_ratio, max_chunks
+    ):
         captured_params["text"] = text
         captured_params["soft_limit_tokens"] = soft_limit_tokens
         captured_params["overlap_ratio"] = overlap_ratio
@@ -194,7 +200,7 @@ def test_get_roughly_even_chunks_passes_correct_parameters(monkeypatch):
         "data_etl_app.utils.chunk_util.num_tokens_from_string", mock_token_count
     )
     monkeypatch.setattr(
-        "data_etl_app.utils.chunk_util.get_chunks_respecting_boundaries",
+        "data_etl_app.utils.chunk_util.get_chunks_respecting_line_boundaries_sync",
         mock_get_chunks_respecting_boundaries,
     )
 
@@ -269,7 +275,9 @@ def test_get_roughly_even_chunks_integer_division_behavior(monkeypatch):
     captured_divisions = []
     original_get_chunks = None
 
-    def mock_get_chunks_respecting_boundaries(text, soft_limit_tokens, overlap_ratio):
+    def mock_get_chunks_respecting_boundaries(
+        text, soft_limit_tokens, overlap_ratio, max_chunks
+    ):
         # Capture what approximate_chunk_tokens was calculated as
         captured_divisions.append(soft_limit_tokens)
         return {"0:10": text[:10]}
@@ -278,7 +286,7 @@ def test_get_roughly_even_chunks_integer_division_behavior(monkeypatch):
         "data_etl_app.utils.chunk_util.num_tokens_from_string", mock_token_count
     )
     monkeypatch.setattr(
-        "data_etl_app.utils.chunk_util.get_chunks_respecting_boundaries",
+        "data_etl_app.utils.chunk_util.get_chunks_respecting_line_boundaries_sync",
         mock_get_chunks_respecting_boundaries,
     )
 
@@ -385,7 +393,7 @@ def test_get_roughly_even_chunks_specific_division_scenarios(monkeypatch):
             return case["total_tokens"]
 
         def mock_get_chunks_respecting_boundaries(
-            text, soft_limit_tokens, overlap_ratio
+            text, soft_limit_tokens, overlap_ratio, max_chunks
         ):
             captured_params["soft_limit_tokens"] = soft_limit_tokens
             # Create fake chunks based on the chunk size
@@ -396,7 +404,7 @@ def test_get_roughly_even_chunks_specific_division_scenarios(monkeypatch):
             "data_etl_app.utils.chunk_util.num_tokens_from_string", mock_token_count
         )
         monkeypatch.setattr(
-            "data_etl_app.utils.chunk_util.get_chunks_respecting_boundaries",
+            "data_etl_app.utils.chunk_util.get_chunks_respecting_line_boundaries_sync",
             mock_get_chunks_respecting_boundaries,
         )
 

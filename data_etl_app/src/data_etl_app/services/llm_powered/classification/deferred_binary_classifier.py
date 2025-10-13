@@ -101,11 +101,12 @@ async def _binary_classify_using_only_first_chunk_deferred(
     gpt_model: GPTModel = GPT_4o_mini,
     model_params: ModelParameters = DefaultModelParameters,
 ) -> tuple[DeferredBinaryClassification, list[GPTBatchRequest]]:
-    chunks_map = get_chunks_respecting_line_boundaries(
+    chunks_map = await get_chunks_respecting_line_boundaries(
         mfg_txt,
         gpt_model.max_context_tokens
         - binary_prompt.num_tokens
         - 5000,  # subtracting 5000 to leave room for last line in each chunk, otherwise _binary_classify_chunk gets > GPT_4o_mini.max_context_tokens
+        max_chunks=1,  # Only generate the first chunk
     )
     first_chunk_bounds = min(chunks_map.keys(), key=lambda k: int(k.split(":")[0]))
     first_chunk_text = chunks_map[first_chunk_bounds]

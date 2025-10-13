@@ -69,7 +69,7 @@ async def _extract_keyword_data_deferred(
     )
 
     # 1) Chunk
-    chunk_map = get_chunks_respecting_line_boundaries(
+    chunk_map = await get_chunks_respecting_line_boundaries(
         text, chunk_strategy.max_tokens, chunk_strategy.overlap
     )
 

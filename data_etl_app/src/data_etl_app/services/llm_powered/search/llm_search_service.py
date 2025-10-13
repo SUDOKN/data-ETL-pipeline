@@ -37,9 +37,10 @@ async def find_business_desc_using_only_first_chunk_deferred(
     logger.info(f"Finding business desc for {mfg_etld1} using only first chunk...")
     prompt_service = await get_prompt_service()
     prompt = prompt_service.find_business_desc_prompt
-    chunks_map = get_chunks_respecting_line_boundaries(
+    chunks_map = await get_chunks_respecting_line_boundaries(
         mfg_text,
         gpt_model.max_context_tokens - prompt.num_tokens - 5000,
+        max_chunks=1,  # Only generate the first chunk
     )
     first_chunk_bounds = min(chunks_map.keys(), key=lambda k: int(k.split(":")[0]))
     first_chunk_text = chunks_map[first_chunk_bounds]
@@ -68,9 +69,10 @@ async def find_business_desc_using_only_first_chunk(
     logger.info(f"Finding business desc for {mfg_etld1} using only first chunk...")
     prompt_service = await get_prompt_service()
     prompt = prompt_service.find_business_desc_prompt
-    chunks_map = get_chunks_respecting_line_boundaries(
+    chunks_map = await get_chunks_respecting_line_boundaries(
         mfg_text,
         gpt_model.max_context_tokens - prompt.num_tokens - 5000,
+        max_chunks=1,  # Only generate the first chunk
     )
     first_chunk_key = min(chunks_map.keys(), key=lambda k: int(k.split(":")[0]))
     first_chunk_text = chunks_map[first_chunk_key]
