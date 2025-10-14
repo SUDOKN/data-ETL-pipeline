@@ -1,3 +1,4 @@
+import asyncio
 from datetime import datetime
 import logging
 
@@ -5,7 +6,7 @@ from core.models.prompt import Prompt
 
 from open_ai_key_app.models.db.gpt_batch_request import GPTBatchRequest
 from open_ai_key_app.models.field_types import GPTBatchRequestCustomID
-from open_ai_key_app.utils.batch_gpt_util import get_gpt_request_blob
+from open_ai_key_app.utils.batch_gpt_util import get_gpt_request_blob_async
 
 from open_ai_key_app.models.gpt_model import (
     GPTModel,
@@ -42,12 +43,11 @@ async def extract_address_from_n_chunks_deferred(
         max_chunks=n,  # Only generate n chunks
     )
 
-    gpt_batch_requests_mongo_ids: list[GPTBatchRequestCustomID] = []
-    batch_requests: list[GPTBatchRequest] = []
-    for i, (bounds, chunk_text) in enumerate(chunks_map.items()):
-        if i >= n:
-            break
-        batch_request, custom_id = _extract_address_from_chunk_deferred(
+    # Process first n chunks in parallel
+    chunk_items = list(chunks_map.items())[:n]
+
+    tasks = [
+        _extract_address_from_chunk_deferred(
             deferred_at=deferred_at,
             custom_id=f"{mfg_etld1}>{keyword_label}>chunk>{bounds}",
             chunk_text=chunk_text,
@@ -55,13 +55,23 @@ async def extract_address_from_n_chunks_deferred(
             gpt_model=gpt_model,
             model_params=model_params,
         )
+        for bounds, chunk_text in chunk_items
+    ]
+
+    # Wait for all chunks to be processed
+    results = await asyncio.gather(*tasks)
+
+    # Collect results
+    gpt_batch_requests_mongo_ids: list[GPTBatchRequestCustomID] = []
+    batch_requests: list[GPTBatchRequest] = []
+    for batch_request, custom_id in results:
         gpt_batch_requests_mongo_ids.append(custom_id)
         batch_requests.append(batch_request)
 
     return gpt_batch_requests_mongo_ids, batch_requests
 
 
-def _extract_address_from_chunk_deferred(
+async def _extract_address_from_chunk_deferred(
     deferred_at: datetime,
     custom_id: str,
     chunk_text: str,
@@ -76,7 +86,7 @@ def _extract_address_from_chunk_deferred(
     gpt_batch_request = GPTBatchRequest(
         created_at=deferred_at,
         batch_id=None,
-        request=get_gpt_request_blob(
+        request=await get_gpt_request_blob_async(
             custom_id=custom_id,
             context=chunk_text,
             prompt=extract_prompt.text,

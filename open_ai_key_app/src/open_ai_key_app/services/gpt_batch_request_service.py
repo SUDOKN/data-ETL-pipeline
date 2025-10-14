@@ -9,7 +9,7 @@ from open_ai_key_app.models.db.gpt_batch_request import GPTBatchRequest
 logger = logging.getLogger(__name__)
 
 
-async def find_gpt_batch_request_by_mongo_id(
+async def find_gpt_batch_request_by_custom_id(
     gpt_batch_request_custom_id: GPTBatchRequestCustomID,
 ) -> GPTBatchRequest:
     gpt_batch_request = await GPTBatchRequest.find_one(

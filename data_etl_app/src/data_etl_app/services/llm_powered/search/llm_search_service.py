@@ -21,7 +21,9 @@ from open_ai_key_app.models.gpt_model import (
 from open_ai_key_app.utils.ask_gpt_util import (
     ask_gpt_async,
 )
-from open_ai_key_app.utils.batch_gpt_util import get_gpt_request_blob
+from open_ai_key_app.utils.batch_gpt_util import (
+    get_gpt_request_blob_async,
+)
 
 logger = logging.getLogger(__name__)
 
@@ -46,16 +48,18 @@ async def find_business_desc_using_only_first_chunk_deferred(
     first_chunk_text = chunks_map[first_chunk_bounds]
     custom_id = f"{mfg_etld1}>{keyword_label}>chunk>{first_chunk_bounds}"
 
+    request_blob = await get_gpt_request_blob_async(
+        custom_id=custom_id,
+        context=first_chunk_text,
+        prompt=prompt.text,
+        gpt_model=gpt_model,
+        model_params=model_params,
+    )
+
     gpt_batch_request = GPTBatchRequest(
         created_at=deferred_at,
         batch_id=None,
-        request=get_gpt_request_blob(
-            custom_id=custom_id,
-            context=first_chunk_text,
-            prompt=prompt.text,
-            gpt_model=gpt_model,
-            model_params=model_params,
-        ),
+        request=request_blob,
     )
     return gpt_batch_request.request.custom_id, gpt_batch_request
 
@@ -133,7 +137,7 @@ async def llm_search(
     return llm_results
 
 
-def llm_search_deferred(
+async def llm_search_deferred(
     deferred_at: datetime,
     custom_id: str,
     text: str,
@@ -141,15 +145,23 @@ def llm_search_deferred(
     gpt_model: GPTModel,
     model_params: ModelParameters,
 ) -> tuple[GPTBatchRequestCustomID, GPTBatchRequest]:
+    """
+    Async version that runs CPU-intensive batch request generation in thread pool.
+
+    This allows the event loop to yield control during tokenization, enabling
+    concurrent processing of multiple manufacturers.
+    """
+    request_blob = await get_gpt_request_blob_async(
+        custom_id=custom_id,
+        context=text,
+        prompt=prompt.text,
+        gpt_model=gpt_model,
+        model_params=model_params,
+    )
+
     gpt_batch_request = GPTBatchRequest(
         created_at=deferred_at,
         batch_id=None,
-        request=get_gpt_request_blob(
-            custom_id=custom_id,
-            context=text,
-            prompt=prompt.text,
-            gpt_model=gpt_model,
-            model_params=model_params,
-        ),
+        request=request_blob,
     )
     return gpt_batch_request.request.custom_id, gpt_batch_request

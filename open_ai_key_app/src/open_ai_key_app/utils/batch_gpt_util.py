@@ -1,9 +1,6 @@
-from datetime import datetime
-import re
 import asyncio
+from datetime import datetime
 import logging
-import tiktoken
-from openai import AsyncOpenAI
 
 from open_ai_key_app.utils.token_util import num_tokens_from_string
 from open_ai_key_app.models.gpt_model import GPTModel, GPT_4o_mini, ModelParameters
@@ -16,6 +13,35 @@ from open_ai_key_app.services.openai_keypool_service import keypool
 logger = logging.getLogger(__name__)
 
 
+async def get_gpt_request_blob_async(
+    custom_id: str,
+    context: str,
+    prompt: str,
+    gpt_model: GPTModel,
+    model_params: ModelParameters,
+) -> GPTBatchRequestBlob:
+    """
+    Async version that runs CPU-intensive operations in thread pool.
+
+    Tokenization is the main bottleneck (~70ms per call), so we run it
+    in a thread pool to avoid blocking the event loop and allow other
+    manufacturers to process concurrently.
+    """
+    logger.info(f"Generating GPT request blob for {custom_id}.")
+    loop = asyncio.get_event_loop()
+
+    # Run synchronous version in thread pool
+    return await loop.run_in_executor(
+        None,
+        get_gpt_request_blob,
+        custom_id,
+        context,
+        prompt,
+        gpt_model,
+        model_params,
+    )
+
+
 def get_gpt_request_blob(
     custom_id: str,
     context: str,
@@ -23,7 +49,11 @@ def get_gpt_request_blob(
     gpt_model: GPTModel,
     model_params: ModelParameters,
 ) -> GPTBatchRequestBlob:
-    logger.info(f"get_gpt_request_blob: Generating request blob for {custom_id}")
+    """
+    Synchronous version - called from thread pool in async context.
+
+    Creates a GPT batch request blob with token counting and validation.
+    """
     tokens_prompt = num_tokens_from_string(prompt)
     tokens_context = num_tokens_from_string(context)
     max_response_tokens = (
@@ -39,7 +69,7 @@ def get_gpt_request_blob(
             f"Total tokens needed:{tokens_needed} exceed max context tokens:{gpt_model.max_context_tokens}."
         )
 
-    return GPTBatchRequestBlob(
+    blob = GPTBatchRequestBlob(
         custom_id=custom_id,
         body=GPTBatchRequestBlobBody(
             model=gpt_model.model_name,
@@ -51,3 +81,5 @@ def get_gpt_request_blob(
             max_tokens=max_response_tokens,
         ),
     )
+
+    return blob

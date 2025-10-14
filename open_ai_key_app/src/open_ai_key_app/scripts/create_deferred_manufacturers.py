@@ -1,7 +1,7 @@
+import time
 import argparse
 import asyncio
 import logging
-import multiprocessing
 from datetime import datetime
 from typing import Optional
 
@@ -24,7 +24,7 @@ from data_etl_app.dependencies.aws_clients import (
     initialize_data_etl_aws_clients,
     cleanup_data_etl_aws_clients,
 )
-from data_etl_app.utils.process_pool_manager import ProcessPoolManager
+from data_etl_app.utils.chunk_util import shutdown_chunk_thread_pool
 
 from core.utils.mongo_client import init_db
 from core.models.db.manufacturer import Manufacturer
@@ -39,11 +39,33 @@ from open_ai_key_app.services.deferred_manufacturer_service import (
 )
 
 
+def classify_error(error: Optional[Exception]) -> str:
+    """
+    Classify error type for tracking.
+
+    Returns:
+        "s3_version" for S3 version errors
+        "duplicate_key" for MongoDB duplicate key errors
+        "other" for all other errors
+    """
+    if not error:
+        return "other"
+
+    error_str = str(error)
+
+    if "NoSuchVersion" in error_str:
+        return "s3_version"
+    elif "duplicate key error" in error_str or "E11000" in error_str:
+        return "duplicate_key"
+    else:
+        return "other"
+
+
 async def process_single_manufacturer(
     deferred_at: datetime,
     mfg: Manufacturer,
     existing_deferred_mfg: Optional["DeferredManufacturer"] = None,
-) -> tuple[str, bool, Optional[Exception]]:
+) -> tuple[str, bool, bool, Optional[Exception]]:
     """
     Process a single manufacturer and return result.
 
@@ -53,7 +75,7 @@ async def process_single_manufacturer(
         existing_deferred_mfg: Pre-fetched deferred manufacturer (for batch optimization)
 
     Returns:
-        (etld1, success, exception)
+        (etld1, success, updated, exception)
     """
     try:
         _deferred_manufacturer, updated = await upsert_deferred_manufacturer(
@@ -62,194 +84,409 @@ async def process_single_manufacturer(
             existing_deferred_manufacturer=existing_deferred_mfg,
         )
         logger.info(f"✅ Processed {mfg.etld1}: updated={updated}")
-        return (mfg.etld1, True, None)
+        return (mfg.etld1, True, updated, None)
     except Exception as e:
         logger.error(f"❌ Failed to process {mfg.etld1}: {e}", exc_info=True)
-        return (mfg.etld1, False, e)
+        return (mfg.etld1, False, False, e)
 
 
-async def process_batch(
-    batch: list[Manufacturer],
-    deferred_at: datetime,
-) -> list[tuple[str, bool, Optional[Exception]] | BaseException]:
-    """
-    Process a batch of manufacturers with optimized database queries.
-
-    Args:
-        batch: List of manufacturers to process
-        deferred_at: Timestamp for deferred processing
-
-    Returns:
-        List of (etld1, success, exception) tuples or BaseException for each manufacturer
-    """
-    # Batch fetch existing deferred manufacturers for this batch
-    batch_keys = [(m.etld1, m.scraped_text_file_version_id) for m in batch]
-    existing_deferred_mfgs = await DeferredManufacturer.find(
-        {
-            "$or": [
-                {
-                    "mfg_etld1": etld1,
-                    "scraped_text_file_version_id": version_id,
-                }
-                for etld1, version_id in batch_keys
-            ]
-        }
-    ).to_list()
-
-    # Create lookup map for quick access
-    deferred_mfg_map = {
-        (dm.mfg_etld1, dm.scraped_text_file_version_id): dm
-        for dm in existing_deferred_mfgs
-    }
-
-    # Process batch concurrently, passing pre-fetched deferred manufacturers
-    results = await asyncio.gather(
-        *[
-            process_single_manufacturer(
-                deferred_at,
-                m,
-                deferred_mfg_map.get((m.etld1, m.scraped_text_file_version_id)),
-            )
-            for m in batch
-        ],
-        return_exceptions=True,
-    )
-
-    return results
-
-
-async def process_manufacturers_in_batches(
+async def process_manufacturers_with_dynamic_concurrency(
     query_filter: dict,
-    batch_size: int = 5,
+    max_concurrent: int,
     limit: Optional[int] = None,
+    stats_interval: int = 100,
+    batch_size: int = 300,
+    prefetch_threshold: int = 200,
 ):
     """
-    Process manufacturers using cursor with controlled parallelism.
+    Process manufacturers with dynamic concurrency using sliding window batching.
 
-    This hybrid approach:
-    - Uses cursor for memory efficiency
-    - Processes small batches concurrently for speed
-    - Continues processing even if individual manufacturers fail
+    Uses an aggressive preemptive batch fetching strategy:
+    - Fetches manufacturers in large batches (default: 300)
+    - Preemptively fetches next batch when 2/3 consumed (default: 200 remaining)
+    - Triggers prefetch only once per batch to avoid spam
+    - Starts with 2 batches prefetched to ensure queue stays full
+    - Avoids long-lived MongoDB cursors that can timeout
+    - Maintains high concurrency without overwhelming the database
 
     Args:
-        batch_size: Number of manufacturers to process concurrently
         query_filter: MongoDB query to filter manufacturers
+        max_concurrent: Maximum number of manufacturers to process concurrently
         limit: Maximum number of manufacturers to process (optional, for testing)
+        stats_interval: Number of manufacturers between statistics reports (default: 100)
+        batch_size: Number of manufacturers to fetch per batch (default: 300)
+        prefetch_threshold: Trigger next batch fetch when remaining drops to this (default: 200)
     """
+
+    start_time = time.perf_counter()
 
     deferred_at = get_current_time()
 
-    # Get cursor for all manufacturers to process
-    cursor = Manufacturer.find(query_filter)
-    total_count = await Manufacturer.find(query_filter).count()
+    # Get total count using pymongo collection directly
+    collection = Manufacturer.get_pymongo_collection()
+    total_count = await collection.count_documents(query_filter)
+
+    if limit:
+        total_count = min(total_count, limit)
 
     logger.info(
-        f"Starting batch processing: {total_count} manufacturers, "
-        f"batch_size={batch_size}"
+        f"Starting dynamic concurrent processing: {total_count} manufacturers, "
+        f"max_concurrent={max_concurrent}, batch_size={batch_size}, "
+        f"prefetch_threshold={prefetch_threshold}"
     )
 
+    # Semaphore to control concurrency
+    semaphore = asyncio.Semaphore(max_concurrent)
+
+    # Tracking variables
     processed = 0
     success_count = 0
+    updated_count = 0  # Track manufacturers that were actually updated
     failure_count = 0
     s3_version_error_count = 0
+    duplicate_key_error_count = 0
     other_error_count = 0
-    current_batch = []
     failed_etld1s = []
     s3_version_error_etld1s = []
+    duplicate_key_error_etld1s = []
     other_error_etld1s = []
 
-    async for mfg in cursor:
-        current_batch.append(mfg)
+    # Time tracking for statistics
+    last_stats_count = 0
+    last_stats_time = start_time
 
-        # Check if we've reached the limit
-        if limit and (processed + len(current_batch)) >= limit:
-            # Process what we have and stop
-            logger.info(
-                f"Reached limit of {limit} manufacturers, processing final batch"
+    # Lock for thread-safe counter updates
+    stats_lock = asyncio.Lock()
+
+    # Buffer for errors (write periodically, not per error)
+    duplicate_key_error_buffer = []
+    other_error_buffer = []
+
+    # Open error and stats log file
+    log_path = f"processing_log_{int(time.time())}.log"
+    log_file = open(log_path, "w", encoding="utf-8")
+    log_file.write(f"Processing started at {datetime.now()}\n")
+    log_file.write(f"Max concurrent: {max_concurrent}\n")
+    log_file.write(f"Stats interval: {stats_interval}\n")
+    log_file.write("=" * 70 + "\n\n")
+    log_file.flush()
+    logger.info(f"Writing processing log to: {log_path}")
+
+    async def process_with_semaphore(
+        mfg: Manufacturer, existing_deferred_mfg: Optional[DeferredManufacturer]
+    ):
+        """Process a single manufacturer with semaphore control"""
+        nonlocal processed, success_count, updated_count, failure_count
+        nonlocal s3_version_error_count, duplicate_key_error_count, other_error_count
+        nonlocal last_stats_count, last_stats_time
+
+        async with semaphore:
+            mfg_start_time = asyncio.get_event_loop().time()
+            etld1, success, updated, error = await process_single_manufacturer(
+                deferred_at, mfg, existing_deferred_mfg
             )
-            break
+            elapsed = asyncio.get_event_loop().time() - mfg_start_time
 
-        # When batch is full, process it
-        if len(current_batch) >= batch_size:
-            # Process batch with optimized database queries
-            results = await process_batch(current_batch, deferred_at)
-
-            # Update counters
-            for result in results:
+            # Update stats in thread-safe manner
+            async with stats_lock:
                 processed += 1
-                if isinstance(result, BaseException):
-                    # Unexpected exception from asyncio.gather
-                    failure_count += 1
-                    other_error_count += 1
-                    logger.error(
-                        f"Unexpected error in batch: {result}", exc_info=result
-                    )
-                else:
-                    # Normal result tuple
-                    etld1, success, error = result
-                    if success:
-                        success_count += 1
-                    else:
-                        failure_count += 1
-                        failed_etld1s.append(etld1)
 
-                        # Categorize error type
-                        if error and "NoSuchVersion" in str(error):
-                            s3_version_error_count += 1
-                            s3_version_error_etld1s.append(etld1)
-                        else:
-                            other_error_count += 1
-                            other_error_etld1s.append(etld1)
-
-            logger.info(
-                f"Progress: {processed}/{total_count} "
-                f"(✅ {success_count} | ❌ {failure_count}: "
-                f"S3 version errors: {s3_version_error_count}, Other: {other_error_count})"
-            )
-
-            # Clear batch for next iteration
-            current_batch = []
-
-    # Process remaining manufacturers in last partial batch
-    if current_batch:
-        # Process final batch with optimized database queries
-        results = await process_batch(current_batch, deferred_at)
-
-        for result in results:
-            processed += 1
-            if isinstance(result, BaseException):
-                # Unexpected exception from asyncio.gather
-                failure_count += 1
-                other_error_count += 1
-                logger.error(
-                    f"Unexpected error in final batch: {result}", exc_info=result
-                )
-            else:
-                # Normal result tuple
-                etld1, success, error = result
                 if success:
                     success_count += 1
+                    if updated:
+                        updated_count += 1
                 else:
                     failure_count += 1
                     failed_etld1s.append(etld1)
 
-                    # Categorize error type
-                    if error and "NoSuchVersion" in str(error):
+                    # Classify error type
+                    error_type = classify_error(error)
+
+                    if error_type == "s3_version":
                         s3_version_error_count += 1
                         s3_version_error_etld1s.append(etld1)
+                    elif error_type == "duplicate_key":
+                        duplicate_key_error_count += 1
+                        duplicate_key_error_etld1s.append(etld1)
+                        # Buffer duplicate key errors separately (only log etld1)
+                        duplicate_key_error_buffer.append(etld1)
                     else:
                         other_error_count += 1
                         other_error_etld1s.append(etld1)
+                        # Buffer other errors with full message
+                        other_error_buffer.append((etld1, str(error)))
+
+                # Log progress every 10 manufacturers or on failure
+                if processed % 10 == 0 or not success:
+                    logger.info(
+                        f"Progress: {processed}/{total_count} "
+                        f"(✅ {success_count} | 🔄 {updated_count} updated | ❌ {failure_count}: "
+                        f"S3: {s3_version_error_count}, DupKey: {duplicate_key_error_count}, Other: {other_error_count}) "
+                        f"[last: {etld1} in {elapsed:.1f}s]"
+                    )
+
+                # Log detailed statistics at intervals
+                if processed % stats_interval == 0:
+                    current_time = time.perf_counter()
+                    batch_count = processed - last_stats_count
+                    batch_time = current_time - last_stats_time
+                    overall_elapsed = current_time - start_time
+
+                    # Calculate ETA based on current throughput
+                    remaining = total_count - processed
+                    current_rate = processed / overall_elapsed  # mfg/s
+                    eta_seconds = remaining / current_rate if current_rate > 0 else 0
+                    eta_minutes = eta_seconds / 60
+                    eta_hours = eta_minutes / 60
+
+                    stats_text = (
+                        f"\n{'='*70}\n"
+                        f"📊 STATISTICS: Processed {processed}/{total_count} manufacturers\n"
+                        f"{'='*70}\n"
+                        f"Last {batch_count} batch:\n"
+                        f"  - Total time: {batch_time:.2f}s\n"
+                        f"  - Avg per mfg: {batch_time/batch_count:.2f}s\n"
+                        f"  - Throughput: {batch_count/batch_time:.2f} mfg/s\n"
+                        f"Overall (all {processed}):\n"
+                        f"  - Total time: {overall_elapsed:.2f}s\n"
+                        f"  - Avg per mfg: {overall_elapsed/processed:.2f}s\n"
+                        f"  - Throughput: {processed/overall_elapsed:.2f} mfg/s\n"
+                        f"Success rate: {success_count}/{processed} ({100*success_count/processed:.1f}%)\n"
+                        f"Updated: {updated_count}/{success_count} ({100*updated_count/success_count:.1f}%)\n"
+                        f"Estimated completion:\n"
+                        f"  - Remaining: {remaining} manufacturers\n"
+                        f"  - ETA: {eta_hours:.1f}h ({eta_minutes:.1f}m or {eta_seconds:.0f}s)\n"
+                        f"{'='*70}\n"
+                    )
+
+                    logger.info(stats_text)
+
+                    # Write stats and errors to file
+                    log_file.write(f"\n{datetime.now()}\n")
+                    log_file.write(stats_text)
+
+                    # Write buffered duplicate key errors since last interval
+                    if duplicate_key_error_buffer:
+                        log_file.write(
+                            f"\nDuplicate Key Errors since last interval ({len(duplicate_key_error_buffer)}):\n"
+                        )
+                        for etld1 in duplicate_key_error_buffer:
+                            log_file.write(f"  - {etld1}\n")
+                        duplicate_key_error_buffer.clear()  # Clear buffer after writing
+
+                    # Write buffered other errors since last interval
+                    if other_error_buffer:
+                        log_file.write(
+                            f"\nOther Errors since last interval ({len(other_error_buffer)}):\n"
+                        )
+                        for etld1, error_msg in other_error_buffer:
+                            log_file.write(f"  - {etld1}: {error_msg}\n")
+                        other_error_buffer.clear()  # Clear buffer after writing
+
+                    log_file.write("\n")
+                    log_file.flush()
+
+                    # Update for next interval
+                    last_stats_count = processed
+                    last_stats_time = current_time
+
+            return etld1, success, error
+
+    # Sliding window batch processing
+    skip = 0
+    manufacturers_queue = []  # Queue of manufacturers ready to process
+    tasks = []  # Active processing tasks
+    fetch_lock = asyncio.Lock()  # Prevent concurrent fetches
+    is_fetching = False
+    total_fetched = 0
+
+    # Projection to only fetch needed fields (performance optimization)
+    # projection = {
+    #     "_id": 1,
+    #     "etld1": 1,
+    #     "scraped_text_file_version_id": 1,
+    #     "is_manufacturer": 1,
+    #     "is_contract_manufacturer": 1,
+    #     "is_product_manufacturer": 1,
+    #     "addresses": 1,
+    #     "business_desc": 1,
+    #     "products": 1,
+    #     "certificates": 1,
+    #     "industries": 1,
+    #     "process_caps": 1,
+    #     "material_caps": 1,
+    # }
+
+    async def fetch_next_batch():
+        """Fetch the next batch of manufacturers from MongoDB"""
+        nonlocal skip, is_fetching, total_fetched
+
+        async with fetch_lock:
+            if is_fetching:
+                return  # Already fetching
+            is_fetching = True
+
+        try:
+            # Calculate how many to fetch
+            remaining = total_count - total_fetched
+            current_batch_size = min(batch_size, remaining)
+
+            if current_batch_size <= 0:
+                logger.info("No more manufacturers to fetch")
+                return
+
+            logger.info(
+                f"Fetching batch: skip={skip}, limit={current_batch_size} "
+                f"(fetched: {total_fetched}/{total_count})"
+            )
+
+            # Fetch batch with projection (only needed fields)
+            batch_docs = (
+                await collection.find(query_filter)
+                .skip(skip)
+                .limit(current_batch_size)
+                .to_list(length=current_batch_size)
+            )
+
+            if not batch_docs:
+                logger.info("No documents returned from MongoDB")
+                return
+
+            logger.info(f"Fetched {len(batch_docs)} manufacturers from MongoDB")
+
+            # Convert dicts to Manufacturer objects
+            batch_manufacturers = [Manufacturer(**doc) for doc in batch_docs]
+
+            # Batch fetch existing deferred manufacturers for this batch
+            batch_keys = [
+                (m.etld1, m.scraped_text_file_version_id) for m in batch_manufacturers
+            ]
+            existing_deferred_mfgs = await DeferredManufacturer.find(
+                {
+                    "$or": [
+                        {
+                            "mfg_etld1": etld1,
+                            "scraped_text_file_version_id": version_id,
+                        }
+                        for etld1, version_id in batch_keys
+                    ]
+                }
+            ).to_list()
+
+            # Create lookup map
+            deferred_mfg_map = {
+                (dm.mfg_etld1, dm.scraped_text_file_version_id): dm
+                for dm in existing_deferred_mfgs
+            }
+
+            logger.info(
+                f"Fetched {len(existing_deferred_mfgs)} existing deferred "
+                f"manufacturers for batch"
+            )
+
+            # Add to queue with their existing deferred manufacturers
+            for mfg in batch_manufacturers:
+                existing = deferred_mfg_map.get(
+                    (mfg.etld1, mfg.scraped_text_file_version_id)
+                )
+                manufacturers_queue.append((mfg, existing))
+
+            # Update counters
+            skip += current_batch_size
+            total_fetched += len(batch_manufacturers)
+
+            logger.info(
+                f"Queue size now: {len(manufacturers_queue)} manufacturers "
+                f"({total_fetched}/{total_count} total fetched)"
+            )
+        finally:
+            async with fetch_lock:
+                is_fetching = False
+            # Reset prefetch trigger flag when new batch arrives
+            nonlocal prefetch_triggered
+            prefetch_triggered = False
+
+    # Fetch initial batch
+    await fetch_next_batch()
+
+    # Immediately start prefetching second batch
+    if total_fetched < total_count:
+        asyncio.create_task(fetch_next_batch())
+
+    # Track if we've triggered prefetch for current batch (avoid spam)
+    prefetch_triggered = False
+
+    # Process manufacturers from the queue
+    while total_fetched < total_count or manufacturers_queue:
+        # Wait if queue is empty but more to fetch
+        if not manufacturers_queue:
+            if total_fetched < total_count:
+                logger.info("Queue empty, waiting for fetch to complete...")
+                await asyncio.sleep(0.1)
+                continue
+            else:
+                # No more to fetch and queue is empty
+                break
+
+        # Pop from queue and create task
+        mfg, existing = manufacturers_queue.pop(0)
+        task = asyncio.create_task(process_with_semaphore(mfg, existing))
+        tasks.append(task)
+
+        # Check if we should trigger prefetch AFTER popping (only once per batch)
+        if (
+            not prefetch_triggered
+            and len(manufacturers_queue) <= prefetch_threshold
+            and total_fetched < total_count
+            and not is_fetching
+        ):
+            logger.info(
+                f"Queue low ({len(manufacturers_queue)} remaining), "
+                f"triggering prefetch..."
+            )
+            asyncio.create_task(fetch_next_batch())
+            prefetch_triggered = True
+
+        # No delay - let tasks run as fast as semaphore allows
+
+    # Wait for all remaining tasks to complete
+    if tasks:
+        logger.info(f"Waiting for {len(tasks)} remaining tasks to complete...")
+        await asyncio.gather(*tasks, return_exceptions=True)
+
+    # Write any remaining buffered errors
+    if duplicate_key_error_buffer or other_error_buffer:
+        log_file.write(f"\n{datetime.now()}\n")
+
+        if duplicate_key_error_buffer:
+            log_file.write(
+                f"Final Duplicate Key Errors ({len(duplicate_key_error_buffer)}):\n"
+            )
+            for etld1 in duplicate_key_error_buffer:
+                log_file.write(f"  - {etld1}\n")
+            log_file.write("\n")
+
+        if other_error_buffer:
+            log_file.write(f"Final Other Errors ({len(other_error_buffer)}):\n")
+            for etld1, error_msg in other_error_buffer:
+                log_file.write(f"  - {etld1}: {error_msg}\n")
+            log_file.write("\n")
+
+    # Calculate timing metrics
+    total_time = time.perf_counter() - start_time
+    avg_time_per_mfg = total_time / processed if processed > 0 else 0
 
     logger.info(
-        f"✅ Batch processing complete: {processed} total "
-        f"(✅ {success_count} success | ❌ {failure_count} failed)"
+        f"✅ Dynamic concurrent processing complete: {processed} total "
+        f"(✅ {success_count} success, 🔄 {updated_count} updated | ❌ {failure_count} failed) "
+        f"in {total_time:.2f}s (avg: {avg_time_per_mfg:.2f}s/mfg)"
     )
 
     # Log error breakdown
     if failure_count > 0:
         logger.info(
             f"Error breakdown: S3 version errors: {s3_version_error_count}, "
+            f"Duplicate key errors: {duplicate_key_error_count}, "
             f"Other errors: {other_error_count}"
         )
 
@@ -262,6 +499,15 @@ async def process_manufacturers_in_batches(
         if len(s3_version_error_etld1s) > 10:
             logger.warning(f"... and {len(s3_version_error_etld1s) - 10} more")
 
+    # Log duplicate key errors separately
+    if duplicate_key_error_etld1s:
+        logger.warning(
+            f"❌ Duplicate Key Errors ({len(duplicate_key_error_etld1s)}): "
+            f"{duplicate_key_error_etld1s[:10]}"
+        )
+        if len(duplicate_key_error_etld1s) > 10:
+            logger.warning(f"... and {len(duplicate_key_error_etld1s) - 10} more")
+
     # Log other errors separately
     if other_error_etld1s:
         logger.warning(
@@ -270,15 +516,46 @@ async def process_manufacturers_in_batches(
         if len(other_error_etld1s) > 10:
             logger.warning(f"... and {len(other_error_etld1s) - 10} more")
 
+    # Write final summary to log file
+    log_file.write(f"\n{'='*70}\n")
+    log_file.write(f"FINAL SUMMARY\n")
+    log_file.write(f"{'='*70}\n")
+    log_file.write(f"Processing completed at: {datetime.now()}\n")
+    log_file.write(f"Total processed: {processed}/{total_count}\n")
+    log_file.write(
+        f"Success: {success_count} ({100*success_count/processed:.1f}%)\n"
+        if processed > 0
+        else "Success: 0\n"
+    )
+    log_file.write(
+        f"Updated: {updated_count} ({100*updated_count/success_count:.1f}% of successful)\n"
+        if success_count > 0
+        else "Updated: 0\n"
+    )
+    log_file.write(f"Failed: {failure_count}\n")
+    log_file.write(f"  - S3 version errors: {s3_version_error_count}\n")
+    log_file.write(f"  - Duplicate key errors: {duplicate_key_error_count}\n")
+    log_file.write(f"  - Other errors: {other_error_count}\n")
+    log_file.write(f"Total time: {total_time:.2f}s\n")
+    log_file.write(f"Avg per manufacturer: {avg_time_per_mfg:.2f}s\n")
+    log_file.write(f"{'='*70}\n")
+    log_file.close()
+    logger.info(f"Processing log saved to: {log_path}")
+
     return {
         "total": processed,
         "success": success_count,
+        "updated": updated_count,
         "failed": failure_count,
         "s3_version_errors": s3_version_error_count,
+        "duplicate_key_errors": duplicate_key_error_count,
         "other_errors": other_error_count,
         "failed_etld1s": failed_etld1s,
         "s3_version_error_etld1s": s3_version_error_etld1s,
+        "duplicate_key_error_etld1s": duplicate_key_error_etld1s,
         "other_error_etld1s": other_error_etld1s,
+        "total_time_seconds": total_time,
+        "avg_time_per_manufacturer_seconds": avg_time_per_mfg,
     }
 
 
@@ -292,10 +569,12 @@ async def process_single_manufacturer_by_etld1(etld1: str):
     logger.info(f"Found manufacturer: {mfg.etld1}")
     deferred_at = get_current_time()
 
-    etld1_result, success, error = await process_single_manufacturer(deferred_at, mfg)
+    etld1_result, success, updated, error = await process_single_manufacturer(
+        deferred_at, mfg
+    )
 
     if success:
-        logger.info(f"✅ Successfully processed {etld1_result}")
+        logger.info(f"✅ Successfully processed {etld1_result} (updated={updated})")
     else:
         logger.error(f"❌ Failed to process {etld1_result}: {error}")
 
@@ -318,35 +597,58 @@ async def async_main():
         help="Manufacturer etld1 (for single mode)",
     )
     parser.add_argument(
-        "--batch-size",
+        "--max-concurrent",
         type=int,
-        default=5,
-        help="Number of manufacturers to process concurrently (for all mode)",
+        default=50,  # Reduced default to avoid overwhelming MongoDB
+        help="Maximum concurrent manufacturers",
     )
     parser.add_argument(
         "--limit",
         type=int,
         help="Maximum number of manufacturers to process (for testing)",
     )
+    parser.add_argument(
+        "--stats-interval",
+        type=int,
+        default=100,
+        help="Log detailed statistics every N manufacturers (default: 100)",
+    )
+    parser.add_argument(
+        "--yes",
+        "-y",
+        action="store_true",
+        help="Skip confirmation prompt and proceed automatically",
+    )
 
     args = parser.parse_args()
 
-    await init_db()
+    # Minimal connection pool settings with sliding window batch approach
+    # With batching (20 mfg at a time) and mostly CPU-bound work (tokenization, chunking),
+    # we only need minimal DB connections:
+    # - 1-2 for batch fetching (one active, one preparing)
+    # - 5-10 for DeferredManufacturer upserts (spread across 50 concurrent tasks)
+    # - 5-10 for S3 metadata and other queries
+    # Total: 20-30 connections is plenty
+    max_pool = 30  # Fixed small pool - batching eliminates need for many connections
+    min_pool = 10  # Keep minimum ready for quick response
+
+    logger.info(
+        f"Initializing MongoDB with maxPoolSize={max_pool}, minPoolSize={min_pool} "
+        f"(optimized for sliding window batching with max_concurrent={args.max_concurrent})"
+    )
+
+    await init_db(
+        max_pool_size=max_pool,
+        min_pool_size=min_pool,
+        max_idle_time_ms=60000,  # 60s - keep connections alive longer
+        server_selection_timeout_ms=30000,  # 30s - more time to find server
+        connect_timeout_ms=30000,  # 30s - more time to connect
+        socket_timeout_ms=60000,  # 60s - more time for operations
+    )
 
     # Initialize AWS clients
     await initialize_core_aws_clients()
     await initialize_data_etl_aws_clients()
-
-    # Initialize process pool for parallel chunking
-    # Use fewer workers for batch processing to avoid overwhelming system
-    cpu_count = multiprocessing.cpu_count()
-    max_workers = min(cpu_count - 2, 8)  # Leave 2 cores for system, cap at 6
-
-    ProcessPoolManager.initialize(max_workers=max_workers)
-    logger.info(
-        f"Process pool initialized with {max_workers} workers "
-        f"(system has {cpu_count} CPU cores)"
-    )
 
     try:
         if args.mode == "single":
@@ -355,10 +657,27 @@ async def async_main():
             await process_single_manufacturer_by_etld1(args.etld1)
 
         elif args.mode == "all":
-            # Process manufacturers with scraped_text_file_num_tokens < 1000000
+            # Process manufacturers that actually need processing:
+            # 1. Have scraped text file (scraped_text_file_version_id exists)
+            # 2. Token count < 1,000,000
+            # 3. Missing at least one of the extracted fields
             query_filter = {
                 "scraped_text_file_version_id": {"$exists": True},
                 "scraped_text_file_num_tokens": {"$lt": 1000000},
+                "$or": [
+                    # Missing classification fields
+                    {"is_manufacturer": None},
+                    {"is_contract_manufacturer": None},
+                    {"is_product_manufacturer": None},
+                    # Missing extraction fields
+                    {"addresses": None},
+                    {"business_desc": None},
+                    {"products": None},
+                    {"certificates": None},
+                    {"industries": None},
+                    {"process_caps": None},
+                    {"material_caps": None},
+                ],
             }
 
             # Get count of manufacturers matching the filter
@@ -368,9 +687,11 @@ async def async_main():
             print("\n" + "=" * 70)
             print("MANUFACTURER PROCESSING CONFIGURATION")
             print("=" * 70)
-            print(f"Filter: scraped_text_file_num_tokens < 1,000,000")
-            print(f"Batch size: {args.batch_size}")
-            print(f"Total manufacturers: {matching_count}")
+            print(f"Filter:")
+            print(f"  - scraped_text_file_num_tokens < 1,000,000")
+            print(f"  - Missing at least one field (classification/extraction)")
+            print(f"Max concurrent: {args.max_concurrent}")
+            print(f"Total manufacturers needing processing: {matching_count}")
             if args.limit:
                 print(f"Limit: {args.limit} (testing mode)")
                 print(f"Will process: {min(args.limit, matching_count)} manufacturers")
@@ -378,28 +699,35 @@ async def async_main():
                 print(f"Will process: {matching_count} manufacturers (ALL matching)")
             print("=" * 70)
 
-            # Ask for confirmation
-            response = input("\nDo you want to proceed? (yes/no): ").strip().lower()
+            # Ask for confirmation (unless --yes flag is set)
+            if not args.yes:
+                response = input("\nDo you want to proceed? (yes/no): ").strip().lower()
 
-            if response not in ["yes", "y"]:
-                logger.info("Processing cancelled by user")
-                print("Processing cancelled.")
-                return
+                if response not in ["yes", "y"]:
+                    logger.info("Processing cancelled by user")
+                    print("Processing cancelled.")
+                    return
+            else:
+                logger.info("Auto-proceeding with --yes flag")
 
             print("\nStarting processing...\n")
-            logger.info(f"User confirmed processing of {matching_count} manufacturers")
+            logger.info(f"Processing {matching_count} manufacturers")
 
-            results = await process_manufacturers_in_batches(
+            # Process with dynamic concurrency and sliding window batching
+            results = await process_manufacturers_with_dynamic_concurrency(
                 query_filter=query_filter,
-                batch_size=args.batch_size,
+                max_concurrent=args.max_concurrent,
                 limit=args.limit,
+                stats_interval=args.stats_interval,
+                batch_size=300,  # Fetch 300 manufacturers at a time (larger buffer)
+                prefetch_threshold=200,  # Start fetching next batch when 200 remain (2/3 consumed)
             )
             logger.info(f"Final results: {results}")
 
     finally:
-        # Clean up process pool
-        ProcessPoolManager.shutdown(wait=True)
-        logger.info("Process pool shut down")
+        # Clean up chunking thread pool
+        shutdown_chunk_thread_pool(wait=True)
+        logger.info("Chunking thread pool shut down")
 
         # Clean up AWS clients
         await cleanup_data_etl_aws_clients()

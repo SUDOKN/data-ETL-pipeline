@@ -10,7 +10,7 @@ from data_etl_app.models.skos_concept import Concept, ConceptJSONEncoder
 from open_ai_key_app.models.db.gpt_batch_request import GPTBatchRequest
 from open_ai_key_app.models.field_types import GPTBatchRequestCustomID
 from open_ai_key_app.utils.batch_gpt_util import (
-    get_gpt_request_blob,
+    get_gpt_request_blob_async,
 )
 from open_ai_key_app.models.gpt_model import (
     GPTModel,
@@ -22,7 +22,7 @@ from open_ai_key_app.models.gpt_model import (
 logger = logging.getLogger(__name__)
 
 
-def map_known_to_unknown_deferred(
+async def map_known_to_unknown_deferred(
     deferred_at: datetime,
     custom_id: str,
     known_concepts: list[Concept],  # DO NOT MUTATE
@@ -40,7 +40,7 @@ def map_known_to_unknown_deferred(
     )
     gpt_batch_request = GPTBatchRequest(
         created_at=deferred_at,
-        request=get_gpt_request_blob(
+        request=await get_gpt_request_blob_async(
             context=context,
             prompt=prompt.text,
             custom_id=custom_id,

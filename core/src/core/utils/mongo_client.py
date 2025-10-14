@@ -31,11 +31,34 @@ class Settings(BaseSettings):
 settings = Settings()
 
 
-async def init_db():
+async def init_db(
+    max_pool_size: int = 20,
+    min_pool_size: int = 5,
+    max_idle_time_ms: int = 45000,
+    server_selection_timeout_ms: int = 20000,
+    connect_timeout_ms: int = 20000,
+    socket_timeout_ms: int = 45000,
+):
     # Configure codec options for timezone awareness
     codec_options = CodecOptions(tz_aware=True, tzinfo=timezone.utc)
 
-    client = AsyncMongoClient(settings.MONGO_URI)  # <-- switched here
+    # Create client with optimized connection pool settings
+    client = AsyncMongoClient(
+        settings.MONGO_URI,
+        maxPoolSize=max_pool_size,
+        minPoolSize=min_pool_size,
+        maxIdleTimeMS=max_idle_time_ms,
+        serverSelectionTimeoutMS=server_selection_timeout_ms,
+        connectTimeoutMS=connect_timeout_ms,
+        socketTimeoutMS=socket_timeout_ms,
+        # Additional performance optimizations
+        retryWrites=True,
+        retryReads=True,
+        w="majority",  # Write concern for durability
+        readPreference="primaryPreferred",  # Allow reads from secondaries
+        # Connection pool monitoring
+        waitQueueTimeoutMS=30000,  # Wait up to 30s for connection from pool
+    )
 
     # Get database with timezone-aware codec options
     database = client.get_default_database().with_options(codec_options=codec_options)
@@ -43,6 +66,11 @@ async def init_db():
     print("Initializing Beanie connection to MongoDB...")
     if "example" in settings.MONGO_URI:
         print("WARNING: Using local MongoDB credentials.")
+
+    print(
+        f"MongoDB connection pool: maxPoolSize={max_pool_size}, minPoolSize={min_pool_size}"
+    )
+
     return await init_beanie(
         database=database,
         document_models=[

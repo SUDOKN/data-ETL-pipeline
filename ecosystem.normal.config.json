@@ -88,6 +88,35 @@
         "VIRTUAL_ENV": "./.venv",
         "PATH": "./.venv/bin:/usr/local/bin:/usr/bin:/bin"
       }
+    },
+    {
+      "name": "create-deferred-mfg",
+      "script": "./open_ai_key_app/src/open_ai_key_app/scripts/create_deferred_manufacturers.py",
+      "interpreter": "./.venv/bin/python3",
+      "args": "--mode all --max-concurrent 50 --stats-interval 50 --yes",
+      "cwd": "./",
+      "instances": 1,
+      "autorestart": true,
+      "watch": false,
+      "max_memory_restart": "4G",
+      "log_date_format": "YYYY-MM-DD HH:mm:ss Z",
+      "error_file": "./logs/create-deferred-mfg-error.log",
+      "out_file": "./logs/create-deferred-mfg-out.log",
+      "log_file": "./logs/create-deferred-mfg-combined.log",
+      "time": true,
+      "kill_timeout": 3000,
+      "shutdown_with_message": false,
+      "listen_timeout": 8000,
+      "wait_ready": false,
+      "max_restarts": 10,
+      "min_uptime": "60s",
+      "restart_delay": 10000,
+      "env": {
+        "PYTHONPATH": "./data_etl_app/src:./core/src:./open_ai_key_app/src:./scraper_app/src",
+        "PYTHONUNBUFFERED": "1",
+        "VIRTUAL_ENV": "./.venv",
+        "PATH": "./.venv/bin:/usr/local/bin:/usr/bin:/bin"
+      }
     }
   ]
 }
