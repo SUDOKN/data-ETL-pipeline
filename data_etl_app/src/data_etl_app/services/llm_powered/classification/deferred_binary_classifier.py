@@ -5,7 +5,7 @@ from core.models.prompt import Prompt
 
 from open_ai_key_app.utils.token_util import num_tokens_from_string
 from open_ai_key_app.utils.batch_gpt_util import (
-    get_gpt_request_blob,
+    get_gpt_request_blob_async,
 )
 from open_ai_key_app.models.db.gpt_batch_request import GPTBatchRequest
 from open_ai_key_app.models.field_types import GPTBatchRequestCustomID
@@ -113,7 +113,7 @@ async def _binary_classify_using_only_first_chunk_deferred(
     logger.info(
         f"Using first chunk with key {first_chunk_bounds} for deferred binary classification with num_tokens {num_tokens_from_string(first_chunk_text)}."
     )
-    batch_request, custom_id = _binary_classify_chunk_deferred(
+    batch_request, custom_id = await _binary_classify_chunk_deferred(
         deferred_at=deferred_at,
         custom_id=f"{manufacturer_etld}>{keyword_label}>chunk>{first_chunk_bounds}",
         chunk_txt=first_chunk_text,
@@ -134,7 +134,7 @@ async def _binary_classify_using_only_first_chunk_deferred(
     )
 
 
-def _binary_classify_chunk_deferred(
+async def _binary_classify_chunk_deferred(
     deferred_at: datetime,
     custom_id: str,
     chunk_txt: str,
@@ -149,7 +149,7 @@ def _binary_classify_chunk_deferred(
     gpt_batch_request = GPTBatchRequest(
         created_at=deferred_at,
         batch_id=None,
-        request=get_gpt_request_blob(
+        request=await get_gpt_request_blob_async(
             custom_id=custom_id,
             context=chunk_txt,
             prompt=binary_prompt.text,

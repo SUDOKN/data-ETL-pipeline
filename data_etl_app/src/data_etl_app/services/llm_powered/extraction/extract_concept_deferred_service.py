@@ -2,6 +2,7 @@ from __future__ import (
     annotations,
 )  # This allows you to write self-referential types without quotes, because type annotations are no longer evaluated at function/class definition time — they're stored as strings automatically.
 
+import asyncio
 import json
 import logging
 from datetime import datetime
@@ -11,9 +12,6 @@ from core.models.field_types import (
     OntologyVersionIDType,
 )
 
-from open_ai_key_app.services.gpt_batch_request_service import (
-    find_gpt_batch_request_by_mongo_id,
-)
 from open_ai_key_app.models.db.gpt_batch_request import GPTBatchRequest
 
 from data_etl_app.models.deferred_concept_extraction import (
@@ -146,14 +144,56 @@ async def _add_mapping_requests_to_deferred_stats(
 ) -> tuple[bool, list[GPTBatchRequest]]:
     updated = False
     batch_requests: list[GPTBatchRequest] = []
+
+    # Collect all custom IDs to fetch in a single query
+    llm_batch_request_ids = [
+        bundle.llm_batch_request_id
+        for bundle in deferred_stats.chunked_stats_batch_request_map.values()
+    ]
+
+    # Batch fetch all GPT batch requests at once
+    if not llm_batch_request_ids:
+        logger.debug(
+            f"add_mapping_requests_to_deferred_stats: No batch requests to fetch for {mfg_etld1}:{concept_type}"
+        )
+        return updated, batch_requests
+
+    logger.info(
+        f"add_mapping_requests_to_deferred_stats: Fetching {len(llm_batch_request_ids)} "
+        f"batch requests for {mfg_etld1}:{concept_type}"
+    )
+
+    llm_gpt_batch_requests = await GPTBatchRequest.find(
+        {"request.custom_id": {"$in": llm_batch_request_ids}}
+    ).to_list()
+
+    # Create lookup map: custom_id -> GPTBatchRequest
+    batch_request_map = {req.request.custom_id: req for req in llm_gpt_batch_requests}
+
+    logger.info(
+        f"add_mapping_requests_to_deferred_stats: Found {len(batch_request_map)} "
+        f"batch requests for {mfg_etld1}:{concept_type}"
+    )
+
+    # Now iterate through chunks and process using the fetched batch requests
     for (
         chunk_bounds,
         chunk_batch_request_bundle,
     ) in deferred_stats.chunked_stats_batch_request_map.items():
         custom_id = f"{mfg_etld1}>{concept_type}>mapping>chunk>{chunk_bounds}"
-        llm_gpt_batch_request = await find_gpt_batch_request_by_mongo_id(
+
+        # Get the batch request from our lookup map
+        llm_gpt_batch_request = batch_request_map.get(
             chunk_batch_request_bundle.llm_batch_request_id
         )
+
+        if not llm_gpt_batch_request:
+            logger.warning(
+                f"add_mapping_requests_to_deferred_stats: Batch request not found for "
+                f"custom_id={chunk_batch_request_bundle.llm_batch_request_id}, skipping chunk {chunk_bounds}"
+            )
+            continue
+
         if (
             llm_gpt_batch_request.response_blob
             and not chunk_batch_request_bundle.mapping_batch_request_id
@@ -174,7 +214,7 @@ async def _add_mapping_requests_to_deferred_stats(
                 #         f"add_mapping_requests_to_deferred_stats: No unmapped unknowns for chunk {chunk_bounds}, skipping mapping request"
                 #     )
                 #     continue
-                mapping_id, batch_request = map_known_to_unknown_deferred(
+                mapping_id, batch_request = await map_known_to_unknown_deferred(
                     deferred_at=deferred_at,
                     custom_id=custom_id,
                     known_concepts=known_concepts,
@@ -336,8 +376,11 @@ async def _extract_concept_data_deferred(
     )
 
     batch_requests: list[GPTBatchRequest] = []
-    for chunk_bounds, chunk_text in chunk_map.items():
-        llm_batch_request_id, batch_request = llm_search_deferred(
+
+    # Process chunks in parallel using asyncio.gather
+    chunk_items = list(chunk_map.items())
+    tasks = [
+        llm_search_deferred(
             deferred_at=deferred_at,
             custom_id=f"{mfg_etld1}>{concept_type}>llm_search>chunk>{chunk_bounds}",
             text=chunk_text,
@@ -345,6 +388,16 @@ async def _extract_concept_data_deferred(
             gpt_model=gpt_model,
             model_params=model_params,
         )
+        for chunk_bounds, chunk_text in chunk_items
+    ]
+
+    # Wait for all chunks to be processed
+    results = await asyncio.gather(*tasks)
+
+    # Collect results
+    for (chunk_bounds, chunk_text), (llm_batch_request_id, batch_request) in zip(
+        chunk_items, results
+    ):
         batch_requests.append(batch_request)
         deferred_stats.chunked_stats_batch_request_map[chunk_bounds] = (
             ConceptSearchBatchRequestBundle(

@@ -1,11 +1,46 @@
 from dataclasses import dataclass
+import multiprocessing
 import logging
 import time
+import asyncio
+from concurrent.futures import ThreadPoolExecutor
 
 from open_ai_key_app.utils.token_util import num_tokens_from_string
-from data_etl_app.utils.process_pool_manager import ProcessPoolManager
 
 logger = logging.getLogger(__name__)
+
+# Module-level thread pool for chunking operations
+_chunk_thread_pool: ThreadPoolExecutor | None = None
+
+
+def get_chunk_thread_pool() -> ThreadPoolExecutor:
+    """Get or create thread pool for chunking operations
+
+    Uses all CPU cores since:
+    1. Chunking is CPU-bound (tokenization + string operations)
+    2. Overall concurrency is controlled by semaphore in calling code
+    3. This prevents chunking from becoming a bottleneck
+    """
+    global _chunk_thread_pool
+    if _chunk_thread_pool is None:
+
+        # Use all CPU cores for maximum throughput on CPU-bound chunking
+        # max_workers = multiprocessing.cpu_count()
+        max_workers = multiprocessing.cpu_count() + 2  # 10 cores → 12 workers
+        _chunk_thread_pool = ThreadPoolExecutor(
+            max_workers=max_workers, thread_name_prefix="chunking"
+        )
+        logger.info(f"Initialized chunking thread pool with {max_workers} workers")
+    return _chunk_thread_pool
+
+
+def shutdown_chunk_thread_pool(wait: bool = True):
+    """Shutdown the chunking thread pool"""
+    global _chunk_thread_pool
+    if _chunk_thread_pool is not None:
+        logger.info("Shutting down chunking thread pool")
+        _chunk_thread_pool.shutdown(wait=wait)
+        _chunk_thread_pool = None
 
 
 @dataclass
@@ -155,18 +190,18 @@ async def get_chunks_respecting_line_boundaries(
     soft_limit_tokens: int = 5000,
     overlap_ratio: float = 0.25,
     use_multiprocessing: bool = True,
-    size_threshold_kb: int = 100,  # Only use multiprocessing for texts >100KB
+    size_threshold_kb: int = 100,  # Only use thread pool for texts >100KB
     max_chunks: int | None = None,
 ) -> dict[str, str]:
     """
-    ASYNC version that automatically uses multiprocessing for large texts.
+    ASYNC version that runs chunking in thread pool to avoid blocking event loop.
 
     Args:
         text: The input text to be chunked
         soft_limit_tokens: Target token count per chunk
         overlap_ratio: Fraction of tokens to overlap
-        use_multiprocessing: Whether to use ProcessPoolExecutor for large texts
-        size_threshold_kb: Minimum text size (in KB) to use multiprocessing
+        use_multiprocessing: Whether to use thread pool for large texts
+        size_threshold_kb: Minimum text size (in KB) to use thread pool
         max_chunks: Maximum number of chunks to generate. If None, generates all chunks.
 
     Returns:
@@ -175,16 +210,16 @@ async def get_chunks_respecting_line_boundaries(
     start_time = time.perf_counter()
     text_size_kb = len(text) / 1024
 
-    # Decide whether to use multiprocessing
+    # Decide whether to use thread pool
     # Only worth it for large texts when requesting many chunks (overhead ~50-80ms)
-    should_use_multiprocessing = (
+    should_use_threading = (
         use_multiprocessing
         and text_size_kb >= size_threshold_kb
         and (max_chunks is None or max_chunks > 3)  # Only worth it for 4+ chunks
     )
 
     # For small texts or when requesting very few chunks, run synchronously
-    if not should_use_multiprocessing:
+    if not should_use_threading:
         reasons = []
         if not use_multiprocessing:
             reasons.append("disabled")
@@ -203,13 +238,17 @@ async def get_chunks_respecting_line_boundaries(
             text, soft_limit_tokens, overlap_ratio, max_chunks
         )
     else:
-        # For large texts with many chunks, use multiprocessing
+        # Run in thread pool to avoid blocking event loop
         logger.debug(
-            f"Chunking {text_size_kb:.1f}KB text in worker process "
+            f"Chunking {text_size_kb:.1f}KB text in thread pool "
             f"(text size: {text_size_kb:.1f}KB, chunks: {max_chunks or 'all'})"
         )
 
-        result = await ProcessPoolManager.run_in_process(
+        loop = asyncio.get_event_loop()
+        thread_pool = get_chunk_thread_pool()
+
+        result = await loop.run_in_executor(
+            thread_pool,
             get_chunks_respecting_line_boundaries_sync,
             text,
             soft_limit_tokens,
@@ -218,7 +257,7 @@ async def get_chunks_respecting_line_boundaries(
         )
 
     elapsed_ms = (time.perf_counter() - start_time) * 1000
-    method = "multiprocess" if should_use_multiprocessing else "sync"
+    method = "thread_pool" if should_use_threading else "sync"
 
     logger.info(
         f"Chunking [{method}]: {text_size_kb:.1f}KB → {len(result)} chunks "
