@@ -144,7 +144,7 @@ async def get_latest_version_id_by_filename(
             )
             return None
 
-        logger.info(f"Latest version ID for {file_name}: {version_id}")
+        logger.debug(f"Latest version ID for {file_name}: {version_id}")
         return version_id
 
     except s3_client.exceptions.ClientError as e:

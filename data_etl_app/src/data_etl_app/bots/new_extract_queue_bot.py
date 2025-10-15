@@ -23,12 +23,12 @@ from data_etl_app.dependencies.aws_clients import (
     initialize_data_etl_aws_clients,
     cleanup_data_etl_aws_clients,
 )
+from core.utils.mongo_client import init_db
 
 from core.models.db.manufacturer import Manufacturer
 from core.models.db.extraction_error import ExtractionError
 from core.models.to_extract_item import ToExtractItem
 from core.services.user_service import is_user_MEP
-from core.utils.mongo_client import init_db
 from core.utils.time_util import get_current_time
 from core.services.manufacturer_service import (
     find_manufacturer_by_etld1,
@@ -38,7 +38,7 @@ from core.services.manufacturer_service import (
 from scraper_app.models.scraped_text_file import ScrapedTextFile
 
 from data_etl_app.models.db.binary_ground_truth import HumanBinaryDecision
-from data_etl_app.models.binary_classification import BinaryClassificationResult
+from data_etl_app.models.binary_classification_result import BinaryClassificationResult
 from data_etl_app.models.types_and_enums import BinaryClassificationTypeEnum
 from data_etl_app.services.ground_truth.binary_ground_truth_service import (
     get_binary_ground_truth,
@@ -46,7 +46,7 @@ from data_etl_app.services.ground_truth.binary_ground_truth_service import (
 from data_etl_app.services.llm_powered.search.llm_search_service import (
     find_business_desc_using_only_first_chunk,
 )
-from data_etl_app.services.llm_powered.extraction.extract_address import (
+from data_etl_app.services.llm_powered.extraction.extract_address_service import (
     extract_address_from_n_chunks,
 )
 from data_etl_app.services.llm_powered.extraction.extract_keyword_service import (
@@ -63,7 +63,7 @@ from data_etl_app.services.llm_powered.classification.binary_classifier_service 
     is_product_manufacturer,
     is_contract_manufacturer,
 )
-from data_etl_app.utils.find_email_addresses import get_validated_emails_from_text
+from data_etl_app.utils.find_email_addresses import get_validated_emails_from_text_async
 
 logger = logging.getLogger(__name__)
 
@@ -287,33 +287,6 @@ async def process_manufacturer(
     manufacturer: Manufacturer,
 ):
     logger.info(f"Processing manufacturer: {manufacturer}")
-    if not manufacturer.business_desc:
-        try:
-            logger.info(
-                f"Finding business description for company {manufacturer.etld1}"
-            )
-            manufacturer.business_desc = (
-                await find_business_desc_using_only_first_chunk(
-                    manufacturer.etld1,
-                    mfg_txt,
-                )
-            )
-
-            await update_manufacturer(
-                updated_at=polled_at,
-                manufacturer=manufacturer,
-            )
-        except Exception as e:
-            logger.error(f"{manufacturer.etld1}.business_desc errored:{e}")
-            await ExtractionError.insert_one(
-                ExtractionError(
-                    created_at=polled_at,
-                    error=str(e),
-                    field="business_desc",
-                    mfg_etld1=manufacturer.etld1,
-                )
-            )
-
     if not manufacturer.is_manufacturer:
         try:
             logger.info(
@@ -340,6 +313,54 @@ async def process_manufacturer(
                 )
             )
             return  # if is_manufacturer check fails, skip further processing
+
+    if not manufacturer.email_addresses:
+        try:
+            logger.info(f"Extracting email addresses for {manufacturer.etld1}")
+            manufacturer.email_addresses = await get_validated_emails_from_text_async(
+                manufacturer.etld1, mfg_txt
+            )
+            await update_manufacturer(
+                updated_at=polled_at,
+                manufacturer=manufacturer,
+            )
+        except Exception as e:
+            logger.error(f"{manufacturer.name}.email_addresses errored:{e}")
+            await ExtractionError.insert_one(
+                ExtractionError(
+                    created_at=polled_at,
+                    error=str(e),
+                    field="email_addresses",
+                    mfg_etld1=manufacturer.etld1,
+                )
+            )
+
+    if not manufacturer.business_desc:
+        try:
+            logger.info(
+                f"Finding business description for company {manufacturer.etld1}"
+            )
+            manufacturer.business_desc = (
+                await find_business_desc_using_only_first_chunk(
+                    manufacturer.etld1,
+                    mfg_txt,
+                )
+            )
+
+            await update_manufacturer(
+                updated_at=polled_at,
+                manufacturer=manufacturer,
+            )
+        except Exception as e:
+            logger.error(f"{manufacturer.etld1}.business_desc errored:{e}")
+            await ExtractionError.insert_one(
+                ExtractionError(
+                    created_at=polled_at,
+                    error=str(e),
+                    field="business_desc",
+                    mfg_etld1=manufacturer.etld1,
+                )
+            )
 
     if not manufacturer.is_product_manufacturer:
         try:
@@ -387,27 +408,6 @@ async def process_manufacturer(
                 )
             )
             return
-
-    if not manufacturer.email_addresses:
-        try:
-            logger.info(f"Extracting email addresses for {manufacturer.etld1}")
-            manufacturer.email_addresses = get_validated_emails_from_text(
-                manufacturer.etld1, mfg_txt
-            )
-            await update_manufacturer(
-                updated_at=polled_at,
-                manufacturer=manufacturer,
-            )
-        except Exception as e:
-            logger.error(f"{manufacturer.name}.email_addresses errored:{e}")
-            await ExtractionError.insert_one(
-                ExtractionError(
-                    created_at=polled_at,
-                    error=str(e),
-                    field="email_addresses",
-                    mfg_etld1=manufacturer.etld1,
-                )
-            )
 
     if not manufacturer.addresses:
         try:

@@ -37,6 +37,7 @@ from core.services.manufacturer_service import find_manufacturer_by_etld1
 from open_ai_key_app.services.deferred_manufacturer_service import (
     upsert_deferred_manufacturer,
 )
+from scraper_app.models.scraped_text_file import ScrapedTextFile
 
 
 def classify_error(error: Optional[Exception]) -> str:
@@ -64,14 +65,16 @@ def classify_error(error: Optional[Exception]) -> str:
 async def process_single_manufacturer(
     deferred_at: datetime,
     mfg: Manufacturer,
+    scraped_text_file: "ScrapedTextFile",
     existing_deferred_mfg: Optional["DeferredManufacturer"] = None,
 ) -> tuple[str, bool, bool, Optional[Exception]]:
     """
-    Process a single manufacturer and return result.
+    Process a single manufacturer with pre-downloaded scraped text file.
 
     Args:
         deferred_at: Timestamp for deferred processing
         mfg: Manufacturer to process
+        scraped_text_file: Pre-downloaded scraped text file from S3
         existing_deferred_mfg: Pre-fetched deferred manufacturer (for batch optimization)
 
     Returns:
@@ -82,6 +85,7 @@ async def process_single_manufacturer(
             timestamp=deferred_at,
             manufacturer=mfg,
             existing_deferred_manufacturer=existing_deferred_mfg,
+            scraped_text_file=scraped_text_file,
         )
         logger.info(f"✅ Processed {mfg.etld1}: updated={updated}")
         return (mfg.etld1, True, updated, None)
@@ -93,10 +97,10 @@ async def process_single_manufacturer(
 async def process_manufacturers_with_dynamic_concurrency(
     query_filter: dict,
     max_concurrent: int,
-    limit: Optional[int] = None,
-    stats_interval: int = 100,
-    batch_size: int = 300,
-    prefetch_threshold: int = 200,
+    batch_size: int,
+    stats_interval: int,
+    prefetch_threshold: int,
+    limit: Optional[int],
 ):
     """
     Process manufacturers with dynamic concurrency using sliding window batching.
@@ -173,9 +177,11 @@ async def process_manufacturers_with_dynamic_concurrency(
     logger.info(f"Writing processing log to: {log_path}")
 
     async def process_with_semaphore(
-        mfg: Manufacturer, existing_deferred_mfg: Optional[DeferredManufacturer]
+        mfg: Manufacturer,
+        scraped_text_file: ScrapedTextFile,
+        existing_deferred_mfg: Optional[DeferredManufacturer],
     ):
-        """Process a single manufacturer with semaphore control"""
+        """Process a single manufacturer with semaphore control (S3 already downloaded)"""
         nonlocal processed, success_count, updated_count, failure_count
         nonlocal s3_version_error_count, duplicate_key_error_count, other_error_count
         nonlocal last_stats_count, last_stats_time
@@ -183,7 +189,7 @@ async def process_manufacturers_with_dynamic_concurrency(
         async with semaphore:
             mfg_start_time = asyncio.get_event_loop().time()
             etld1, success, updated, error = await process_single_manufacturer(
-                deferred_at, mfg, existing_deferred_mfg
+                deferred_at, mfg, scraped_text_file, existing_deferred_mfg
             )
             elapsed = asyncio.get_event_loop().time() - mfg_start_time
 
@@ -213,8 +219,9 @@ async def process_manufacturers_with_dynamic_concurrency(
                     else:
                         other_error_count += 1
                         other_error_etld1s.append(etld1)
-                        # Buffer other errors with full message
-                        other_error_buffer.append((etld1, str(error)))
+                        # Buffer other errors with full message and type
+                        error_details = f"{type(error).__name__}: {str(error)}"
+                        other_error_buffer.append((etld1, error_details))
 
                 # Log progress every 10 manufacturers or on failure
                 if processed % 10 == 0 or not success:
@@ -280,7 +287,7 @@ async def process_manufacturers_with_dynamic_concurrency(
                             f"\nOther Errors since last interval ({len(other_error_buffer)}):\n"
                         )
                         for etld1, error_msg in other_error_buffer:
-                            log_file.write(f"  - {etld1}: {error_msg}\n")
+                            log_file.write(f"  - {etld1}:\n    {error_msg}\n")
                         other_error_buffer.clear()  # Clear buffer after writing
 
                     log_file.write("\n")
@@ -341,8 +348,10 @@ async def process_manufacturers_with_dynamic_concurrency(
             )
 
             # Fetch batch with projection (only needed fields)
+            # Sort by scraped_text_file_num_tokens ascending (smallest first)
             batch_docs = (
                 await collection.find(query_filter)
+                .sort("scraped_text_file_num_tokens", 1)
                 .skip(skip)
                 .limit(current_batch_size)
                 .to_list(length=current_batch_size)
@@ -358,20 +367,46 @@ async def process_manufacturers_with_dynamic_concurrency(
             batch_manufacturers = [Manufacturer(**doc) for doc in batch_docs]
 
             # Batch fetch existing deferred manufacturers for this batch
+            # Only fetch those with at least one field missing (same as manufacturer filter)
             batch_keys = [
                 (m.etld1, m.scraped_text_file_version_id) for m in batch_manufacturers
             ]
             existing_deferred_mfgs = await DeferredManufacturer.find(
                 {
-                    "$or": [
+                    "$and": [
                         {
-                            "mfg_etld1": etld1,
-                            "scraped_text_file_version_id": version_id,
-                        }
-                        for etld1, version_id in batch_keys
+                            "$or": [
+                                {
+                                    "mfg_etld1": etld1,
+                                    "scraped_text_file_version_id": version_id,
+                                }
+                                for etld1, version_id in batch_keys
+                            ]
+                        },
+                        # {
+                        #     "$or": [
+                        #         # Missing classification fields
+                        #         {"is_manufacturer": None},
+                        #         {"is_contract_manufacturer": None},
+                        #         {"is_product_manufacturer": None},
+                        #         # Missing extraction fields
+                        #         {"addresses": None},
+                        #         {"business_desc": None},
+                        #         {"products": None},
+                        #         {"certificates": None},
+                        #         {"industries": None},
+                        #         {"process_caps": None},
+                        #         {"material_caps": None},
+                        #     ]
+                        # },
                     ]
                 }
-            ).to_list()
+            ).to_list(length=None)
+
+            # Convert dicts to DeferredManufacturer objects
+            # existing_deferred_mfgs = [
+            #     DeferredManufacturer(**doc) for doc in existing_deferred_docs
+            # ]
 
             # Create lookup map
             deferred_mfg_map = {
@@ -384,12 +419,97 @@ async def process_manufacturers_with_dynamic_concurrency(
                 f"manufacturers for batch"
             )
 
-            # Add to queue with their existing deferred manufacturers
-            for mfg in batch_manufacturers:
-                existing = deferred_mfg_map.get(
-                    (mfg.etld1, mfg.scraped_text_file_version_id)
+            # Download S3 files in parallel for this batch (outside semaphore!)
+            logger.info(
+                f"Downloading S3 files for {len(batch_manufacturers)} manufacturers in parallel..."
+            )
+            s3_download_tasks = [
+                ScrapedTextFile.download_from_s3_and_create(
+                    m.etld1, m.scraped_text_file_version_id
                 )
-                manufacturers_queue.append((mfg, existing))
+                for m in batch_manufacturers
+            ]
+            s3_results = await asyncio.gather(
+                *s3_download_tasks, return_exceptions=True
+            )
+
+            # Add to queue only manufacturers where S3 download succeeded
+            s3_success_count = 0
+            s3_failure_count = 0
+            for mfg, result in zip(batch_manufacturers, s3_results):
+                # Handle both cases: exception object OR (scraped_file, exception) tuple
+                if isinstance(result, Exception):
+                    # Unexpected exception raised during S3 download (shouldn't happen but handle it)
+                    s3_failure_count += 1
+                    error_type = classify_error(result)
+                    error_details = f"{type(result).__name__}: {str(result)}"
+                    logger.warning(
+                        f"S3 download raised exception for {mfg.etld1} (type: {error_type}): {error_details}"
+                    )
+                    async with stats_lock:
+                        nonlocal processed, failure_count, s3_version_error_count, s3_version_error_etld1s
+                        nonlocal failed_etld1s, other_error_count, other_error_etld1s
+                        processed += 1
+                        failure_count += 1
+                        failed_etld1s.append(mfg.etld1)
+                        error_type = classify_error(result)
+                        if error_type == "s3_version":
+                            s3_version_error_count += 1
+                            s3_version_error_etld1s.append(mfg.etld1)
+                        else:
+                            other_error_count += 1
+                            other_error_etld1s.append(mfg.etld1)
+                elif isinstance(result, tuple) and len(result) == 2:
+                    # Normal case: (scraped_file, exception) tuple
+                    scraped_file, exception = result
+                    if exception or not scraped_file:
+                        # S3 download failed - track as error but don't queue
+                        s3_failure_count += 1
+                        error_type = classify_error(exception)
+                        error_details = (
+                            f"{type(exception).__name__}: {str(exception)}"
+                            if exception
+                            else "No scraped file returned"
+                        )
+                        logger.warning(
+                            f"S3 download failed for {mfg.etld1} (type: {error_type}): {error_details}"
+                        )
+                        # Process as failure immediately (not queued for processing)
+                        async with stats_lock:
+                            processed += 1
+                            failure_count += 1
+                            failed_etld1s.append(mfg.etld1)
+                            error_type = classify_error(exception)
+                            if error_type == "s3_version":
+                                s3_version_error_count += 1
+                                s3_version_error_etld1s.append(mfg.etld1)
+                            else:
+                                other_error_count += 1
+                                other_error_etld1s.append(mfg.etld1)
+                    else:
+                        # S3 download succeeded - add to queue
+                        s3_success_count += 1
+                        existing = deferred_mfg_map.get(
+                            (mfg.etld1, mfg.scraped_text_file_version_id)
+                        )
+                        manufacturers_queue.append((mfg, scraped_file, existing))
+                else:
+                    # Unexpected result format
+                    s3_failure_count += 1
+                    logger.error(
+                        f"Unexpected S3 download result format for {mfg.etld1}: {type(result)}"
+                    )
+                    async with stats_lock:
+                        processed += 1
+                        failure_count += 1
+                        failed_etld1s.append(mfg.etld1)
+                        other_error_count += 1
+                        other_error_etld1s.append(mfg.etld1)
+
+            logger.info(
+                f"S3 downloads: {s3_success_count} succeeded, {s3_failure_count} failed. "
+                f"{s3_success_count} manufacturers queued for processing."
+            )
 
             # Update counters
             skip += current_batch_size
@@ -428,9 +548,9 @@ async def process_manufacturers_with_dynamic_concurrency(
                 # No more to fetch and queue is empty
                 break
 
-        # Pop from queue and create task
-        mfg, existing = manufacturers_queue.pop(0)
-        task = asyncio.create_task(process_with_semaphore(mfg, existing))
+        # Pop from queue and create task (queue now contains: mfg, scraped_file, existing)
+        mfg, scraped_file, existing = manufacturers_queue.pop(0)
+        task = asyncio.create_task(process_with_semaphore(mfg, scraped_file, existing))
         tasks.append(task)
 
         # Check if we should trigger prefetch AFTER popping (only once per batch)
@@ -469,7 +589,7 @@ async def process_manufacturers_with_dynamic_concurrency(
         if other_error_buffer:
             log_file.write(f"Final Other Errors ({len(other_error_buffer)}):\n")
             for etld1, error_msg in other_error_buffer:
-                log_file.write(f"  - {etld1}: {error_msg}\n")
+                log_file.write(f"  - {etld1}:\n    {error_msg}\n")
             log_file.write("\n")
 
     # Calculate timing metrics
@@ -515,6 +635,12 @@ async def process_manufacturers_with_dynamic_concurrency(
         )
         if len(other_error_etld1s) > 10:
             logger.warning(f"... and {len(other_error_etld1s) - 10} more")
+
+        # Log a sample of error types for debugging
+        if other_error_buffer:
+            logger.warning("Sample of other error types:")
+            for etld1, error_msg in other_error_buffer[:5]:
+                logger.warning(f"  - {etld1}: {error_msg}")
 
     # Write final summary to log file
     log_file.write(f"\n{'='*70}\n")
@@ -569,8 +695,17 @@ async def process_single_manufacturer_by_etld1(etld1: str):
     logger.info(f"Found manufacturer: {mfg.etld1}")
     deferred_at = get_current_time()
 
+    # Download S3 file first
+    scraped_file, exception = await ScrapedTextFile.download_from_s3_and_create(
+        mfg.etld1, mfg.scraped_text_file_version_id
+    )
+
+    if exception or not scraped_file:
+        logger.error(f"❌ Failed to download S3 file for {mfg.etld1}: {exception}")
+        return
+
     etld1_result, success, updated, error = await process_single_manufacturer(
-        deferred_at, mfg
+        deferred_at, mfg, scraped_file
     )
 
     if success:
@@ -587,20 +722,13 @@ async def async_main():
     parser.add_argument(
         "--mode",
         choices=["single", "all"],
-        default="single",
-        help="Processing mode: single manufacturer or all manufacturers",
+        default=None,  # Will be auto-determined
+        help="Processing mode: single manufacturer or all manufacturers (auto-detected if --etld1 provided)",
     )
     parser.add_argument(
         "--etld1",
         type=str,
-        default="limitedproductions.net",
-        help="Manufacturer etld1 (for single mode)",
-    )
-    parser.add_argument(
-        "--max-concurrent",
-        type=int,
-        default=50,  # Reduced default to avoid overwhelming MongoDB
-        help="Maximum concurrent manufacturers",
+        help="Manufacturer etld1 (for single mode). If provided, automatically switches to single mode.",
     )
     parser.add_argument(
         "--limit",
@@ -622,28 +750,83 @@ async def async_main():
 
     args = parser.parse_args()
 
-    # Minimal connection pool settings with sliding window batch approach
-    # With batching (20 mfg at a time) and mostly CPU-bound work (tokenization, chunking),
-    # we only need minimal DB connections:
-    # - 1-2 for batch fetching (one active, one preparing)
-    # - 5-10 for DeferredManufacturer upserts (spread across 50 concurrent tasks)
-    # - 5-10 for S3 metadata and other queries
-    # Total: 20-30 connections is plenty
-    max_pool = 30  # Fixed small pool - batching eliminates need for many connections
-    min_pool = 10  # Keep minimum ready for quick response
+    # Auto-detect mode based on --etld1 flag
+    if args.mode is None:
+        if args.etld1:
+            args.mode = "single"
+            logger.info(f"Auto-detected mode: single (--etld1={args.etld1})")
+        else:
+            args.mode = "all"
+            logger.info("Auto-detected mode: all (no --etld1 provided)")
+
+    # ========================================================================
+    # CONCURRENCY AND POOL SIZING
+    # ========================================================================
+    # MongoDB connection pool sizing for 8GB EC2 instance:
+    # - Each connection: ~5 MB RAM average
+    # - 120 connections: ~600 MB (safe for 8GB instance)
+    # - Server can handle 500-1000 connections before performance degrades
+    #
+    # Key insight: Connections are borrowed ONLY during DB operations, not held
+    # by Pydantic instances. Each task's timeline:
+    #   1. Borrow connection → Query manufacturer → Return (~10-50ms)
+    #   2. [If update needed]:
+    #      a. Fetch S3 (1-3s) - NO MongoDB connection used
+    #      b. Chunking (0.5-2s) - NO MongoDB connection used (runs in thread pool)
+    #      c. LLM requests (0.5-1s) - NO MongoDB connection used (runs in thread pool)
+    #      d. Borrow connection → Write results → Return (~100-500ms)
+    #
+    # Configuration (Ultra-Conservative):
+    #   max_pool_size = 120 (safe for 8GB EC2, ~600 MB RAM)
+    #   max_concurrent = 30 (leaves 75% buffer: 90 connections)
+    #
+    # This 4:1 ratio (120 pool : 30 concurrent) provides:
+    #   - 30 connections for concurrent task queries/writes
+    #   - 90 connections buffer for batch fetching, overlap, and background ops
+    #   - Massive headroom even when all 30 tasks need updates simultaneously
+    #   - Eliminates timeout risk with huge safety margin
+    #
+    # Note: Reduced from 50 to 30 due to timeouts observed at batch 2500+
+    # when manufacturers started needing updates (S3 fetch + chunking hold time)
+    # ========================================================================
+
+    MAX_POOL_SIZE = 120  # Conservative for 8GB EC2 (~600 MB RAM)
+    MAX_CONCURRENT = 20  # Ultra-conservative: leaves 75% buffer (90 connections)
+
+    max_concurrent = MAX_CONCURRENT
+    min_pool_size = max(20, MAX_POOL_SIZE // 4)  # 25% of max, minimum 20
+
+    logger.info("=" * 70)
+    logger.info("CONCURRENCY AND POOL CONFIGURATION (ULTRA-CONSERVATIVE)")
+    logger.info("=" * 70)
+    logger.info(f"MongoDB Pool Configuration (8GB EC2):")
+    logger.info(f"  - Max pool size: {MAX_POOL_SIZE} (~600 MB RAM)")
+    logger.info(f"  - Min pool size: {min_pool_size}")
+    logger.info(f"Concurrency Configuration:")
+    logger.info(f"  - Max concurrent manufacturers: {max_concurrent}")
+    logger.info(f"  - Pool to concurrency ratio: 4:1 (75% buffer = 90 connections)")
+    logger.info(f"Rationale:")
+    logger.info(f"  - Pool size {MAX_POOL_SIZE} is conservative for 8GB EC2")
+    logger.info(f"  - Each connection uses ~5 MB RAM")
+    logger.info(f"  - Connections borrowed ONLY during DB operations (queries/writes)")
+    logger.info(f"  - Pydantic instances don't hold connections")
+    logger.info(f"  - 75% buffer (90 connections) eliminates timeout risk")
+    logger.info(f"  - During updates: S3/chunking uses semaphore but NOT MongoDB")
+    logger.info(f"  - Reduced from 50 to 30 due to timeouts when updates started")
+    logger.info("=" * 70)
 
     logger.info(
-        f"Initializing MongoDB with maxPoolSize={max_pool}, minPoolSize={min_pool} "
-        f"(optimized for sliding window batching with max_concurrent={args.max_concurrent})"
+        f"Initializing MongoDB with maxPoolSize={MAX_POOL_SIZE}, minPoolSize={min_pool_size}, "
+        f"max_concurrent={max_concurrent}"
     )
 
     await init_db(
-        max_pool_size=max_pool,
-        min_pool_size=min_pool,
+        max_pool_size=MAX_POOL_SIZE,
+        min_pool_size=min_pool_size,
         max_idle_time_ms=60000,  # 60s - keep connections alive longer
         server_selection_timeout_ms=30000,  # 30s - more time to find server
         connect_timeout_ms=30000,  # 30s - more time to connect
-        socket_timeout_ms=60000,  # 60s - more time for operations
+        socket_timeout_ms=120000,  # 120s - more time for operations
     )
 
     # Initialize AWS clients
@@ -661,27 +844,30 @@ async def async_main():
             # 1. Have scraped text file (scraped_text_file_version_id exists)
             # 2. Token count < 1,000,000
             # 3. Missing at least one of the extracted fields
+            # NOTE: We check for fields that are NOT yet populated (None/null)
+            # to avoid reprocessing manufacturers that already have all fields
             query_filter = {
                 "scraped_text_file_version_id": {"$exists": True},
                 "scraped_text_file_num_tokens": {"$lt": 1000000},
-                "$or": [
-                    # Missing classification fields
-                    {"is_manufacturer": None},
-                    {"is_contract_manufacturer": None},
-                    {"is_product_manufacturer": None},
-                    # Missing extraction fields
-                    {"addresses": None},
-                    {"business_desc": None},
-                    {"products": None},
-                    {"certificates": None},
-                    {"industries": None},
-                    {"process_caps": None},
-                    {"material_caps": None},
-                ],
+                # "$or": [
+                #     # Missing classification fields
+                #     {"is_manufacturer": None},
+                #     {"is_contract_manufacturer": None},
+                #     {"is_product_manufacturer": None},
+                #     # Missing extraction fields
+                #     {"addresses": None},
+                #     {"business_desc": None},
+                #     {"products": None},
+                #     {"certificates": None},
+                #     {"industries": None},
+                #     {"process_caps": None},
+                #     {"material_caps": None},
+                # ],
             }
 
-            # Get count of manufacturers matching the filter
-            matching_count = await Manufacturer.find(query_filter).count()
+            # Get count of manufacturers matching the filter using pymongo collection directly
+            collection = Manufacturer.get_pymongo_collection()
+            matching_count = await collection.count_documents(query_filter)
 
             # Show filter details and count
             print("\n" + "=" * 70)
@@ -690,7 +876,8 @@ async def async_main():
             print(f"Filter:")
             print(f"  - scraped_text_file_num_tokens < 1,000,000")
             print(f"  - Missing at least one field (classification/extraction)")
-            print(f"Max concurrent: {args.max_concurrent}")
+            print(f"Max concurrent: {max_concurrent} (auto-calculated)")
+            print(f"MongoDB pool size: {MAX_POOL_SIZE}")
             print(f"Total manufacturers needing processing: {matching_count}")
             if args.limit:
                 print(f"Limit: {args.limit} (testing mode)")
@@ -716,11 +903,11 @@ async def async_main():
             # Process with dynamic concurrency and sliding window batching
             results = await process_manufacturers_with_dynamic_concurrency(
                 query_filter=query_filter,
-                max_concurrent=args.max_concurrent,
+                max_concurrent=max_concurrent,  # Use auto-calculated value
                 limit=args.limit,
                 stats_interval=args.stats_interval,
-                batch_size=300,  # Fetch 300 manufacturers at a time (larger buffer)
-                prefetch_threshold=200,  # Start fetching next batch when 200 remain (2/3 consumed)
+                batch_size=50,  # Fetch 50 manufacturers at a time (smaller buffer)
+                prefetch_threshold=49,  # Start fetching next batch when 49 remain (2/3 consumed)
             )
             logger.info(f"Final results: {results}")
 
