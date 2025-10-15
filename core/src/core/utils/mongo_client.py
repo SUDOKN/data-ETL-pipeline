@@ -55,7 +55,7 @@ async def init_db(
         retryWrites=True,
         retryReads=True,
         w="majority",  # Write concern for durability
-        readPreference="primaryPreferred",  # Allow reads from secondaries
+        readPreference="primary",  # Only read from primary
         # Connection pool monitoring
         waitQueueTimeoutMS=30000,  # Wait up to 30s for connection from pool
     )

@@ -236,11 +236,14 @@ class DatabaseSchemaValidator:
         msg += "=" * 80 + "\n"
         return msg
 
-    def validate_all_schemas(self, raise_on_mismatch: bool = True) -> bool:
+    def validate_all_schemas(
+        self, raise_on_mismatch: bool = True, create_if_missing: bool = True
+    ) -> bool:
         """Validate all collection schemas against their schema files.
 
         Args:
             raise_on_mismatch: If True, raise exception on any mismatch
+            create_if_missing: If True, create collections that don't exist
 
         Returns:
             True if all schemas match, False otherwise
@@ -257,6 +260,22 @@ class DatabaseSchemaValidator:
 
         for collection_name, schema_filename in self.SCHEMA_MAPPINGS.items():
             is_match, error_msg = self.compare_schemas(collection_name, schema_filename)
+
+            # If collection doesn't exist and create_if_missing is True, create it
+            if (
+                not is_match
+                and create_if_missing
+                and error_msg
+                and "does not exist" in error_msg
+            ):
+                logger.info(f"Creating missing collection '{collection_name}'...")
+                if self.apply_schema_validator(
+                    collection_name, schema_filename, create_if_missing=True
+                ):
+                    logger.info(f"✓ Created and validated '{collection_name}'")
+                    results[collection_name] = True
+                    continue
+
             results[collection_name] = is_match
             if not is_match and error_msg:
                 error_messages.append(error_msg)
@@ -515,10 +534,14 @@ def main():
 
                 # Validate after applying
                 logger.info("\nValidating applied schemas...\n")
-                validator.validate_all_schemas(raise_on_mismatch=True)
+                validator.validate_all_schemas(
+                    raise_on_mismatch=True, create_if_missing=False
+                )
             else:
-                # Just validate
-                validator.validate_all_schemas(raise_on_mismatch=True)
+                # Just validate and create missing collections
+                validator.validate_all_schemas(
+                    raise_on_mismatch=True, create_if_missing=True
+                )
 
             logger.info("\n✓ Schema validation completed successfully!")
 

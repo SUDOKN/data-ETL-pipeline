@@ -1,6 +1,9 @@
-import logging
+import asyncio
 from datetime import datetime
 from typing import Optional
+import logging
+from pymongo.errors import BulkWriteError
+from pymongo import ReplaceOne
 
 from core.models.db.manufacturer import Manufacturer
 from scraper_app.models.scraped_text_file import ScrapedTextFile
@@ -32,6 +35,9 @@ from data_etl_app.services.llm_powered.classification.deferred_binary_classifier
 
 from open_ai_key_app.models.db.gpt_batch_request import GPTBatchRequest
 from open_ai_key_app.models.db.deferred_manufacturer import DeferredManufacturer
+from open_ai_key_app.services.gpt_batch_request_service import (
+    bulk_upsert_gpt_batch_requests,
+)
 
 logger = logging.getLogger(__name__)
 
@@ -62,19 +68,14 @@ async def upsert_deferred_manufacturer(
     timestamp: datetime,
     manufacturer: Manufacturer,
     existing_deferred_manufacturer: Optional[DeferredManufacturer],
+    scraped_text_file: ScrapedTextFile,  # Now passed as parameter instead of downloaded here
 ) -> tuple[DeferredManufacturer, bool]:
+    """
+    Upsert deferred manufacturer with pre-downloaded scraped text file.
 
-    existing_scraped_file, exception = (
-        await ScrapedTextFile.download_from_s3_and_create(
-            manufacturer.etld1,
-            manufacturer.scraped_text_file_version_id,
-        )
-    )
-    if exception:
-        raise exception
-
-    assert existing_scraped_file is not None
-
+    Note: scraped_text_file should be downloaded before calling this function
+    to avoid holding semaphore slots during S3 network I/O.
+    """
     # Use provided deferred manufacturer if available (batch optimization)
     deferred_manufacturer = existing_deferred_manufacturer
     if not deferred_manufacturer:
@@ -95,7 +96,7 @@ async def upsert_deferred_manufacturer(
         )
 
     updated = False
-    batch_requests_to_save: list[GPTBatchRequest] = []
+    # batch_requests_to_save: list[GPTBatchRequest] = []
     if not manufacturer.is_manufacturer and not deferred_manufacturer.is_manufacturer:
         (
             deferred_manufacturer.is_manufacturer,
@@ -103,9 +104,14 @@ async def upsert_deferred_manufacturer(
         ) = await is_company_a_manufacturer_deferred(
             deferred_at=timestamp,
             manufacturer_etld=manufacturer.etld1,
-            mfg_txt=existing_scraped_file.text,
+            mfg_txt=scraped_text_file.text,
         )
-        batch_requests_to_save.extend(batch_requests)
+        # batch_requests_to_save.extend(batch_requests)
+        await bulk_upsert_gpt_batch_requests(
+            batch_requests=batch_requests,
+            mfg_etld1=manufacturer.etld1,
+            chunk_size=2500,
+        )
         updated = True
 
     if (
@@ -118,9 +124,14 @@ async def upsert_deferred_manufacturer(
         ) = await is_contract_manufacturer_deferred(
             deferred_at=timestamp,
             manufacturer_etld=manufacturer.etld1,
-            mfg_txt=existing_scraped_file.text,
+            mfg_txt=scraped_text_file.text,
         )
-        batch_requests_to_save.extend(batch_requests)
+        # batch_requests_to_save.extend(batch_requests)
+        await bulk_upsert_gpt_batch_requests(
+            batch_requests=batch_requests,
+            mfg_etld1=manufacturer.etld1,
+            chunk_size=2500,
+        )
         updated = True
 
     if (
@@ -133,9 +144,14 @@ async def upsert_deferred_manufacturer(
         ) = await is_product_manufacturer_deferred(
             deferred_at=timestamp,
             manufacturer_etld=manufacturer.etld1,
-            mfg_txt=existing_scraped_file.text,
+            mfg_txt=scraped_text_file.text,
         )
-        batch_requests_to_save.extend(batch_requests)
+        # batch_requests_to_save.extend(batch_requests)
+        await bulk_upsert_gpt_batch_requests(
+            batch_requests=batch_requests,
+            mfg_etld1=manufacturer.etld1,
+            chunk_size=2500,
+        )
         updated = True
 
     if not manufacturer.addresses and not deferred_manufacturer.addresses:
@@ -146,9 +162,14 @@ async def upsert_deferred_manufacturer(
             deferred_at=timestamp,
             keyword_label="addresses",
             mfg_etld1=manufacturer.etld1,
-            mfg_text=existing_scraped_file.text,
+            mfg_text=scraped_text_file.text,
         )
-        batch_requests_to_save.extend(batch_requests)
+        # batch_requests_to_save.extend(batch_requests)
+        await bulk_upsert_gpt_batch_requests(
+            batch_requests=batch_requests,
+            mfg_etld1=manufacturer.etld1,
+            chunk_size=2500,
+        )
         updated = True
 
     if not manufacturer.business_desc and not deferred_manufacturer.business_desc:
@@ -158,9 +179,14 @@ async def upsert_deferred_manufacturer(
         ) = await find_business_desc_using_only_first_chunk_deferred(
             deferred_at=timestamp,
             mfg_etld1=manufacturer.etld1,
-            mfg_text=existing_scraped_file.text,
+            mfg_text=scraped_text_file.text,
         )
-        batch_requests_to_save.append(batch_request)
+        # batch_requests_to_save.append(batch_requests)
+        await bulk_upsert_gpt_batch_requests(
+            batch_requests=[batch_request],
+            mfg_etld1=manufacturer.etld1,
+            chunk_size=2500,
+        )
         updated = True
 
     if not manufacturer.products and not deferred_manufacturer.products:
@@ -170,116 +196,90 @@ async def upsert_deferred_manufacturer(
         ) = await extract_products_deferred(
             deferred_at=timestamp,
             mfg_etld1=manufacturer.etld1,
-            mfg_text=existing_scraped_file.text,
+            mfg_text=scraped_text_file.text,
         )
-        batch_requests_to_save.extend(batch_requests)
+        # batch_requests_to_save.extend(batch_requests)
+        await bulk_upsert_gpt_batch_requests(
+            batch_requests=batch_requests,
+            mfg_etld1=manufacturer.etld1,
+            chunk_size=2500,
+        )
         updated = True
 
-    if not manufacturer.certificates:
-        if not deferred_manufacturer.certificates:  # missing phase 1
-            (
-                deferred_manufacturer.certificates,
-                batch_requests,
-            ) = await extract_certificates_deferred(
-                deferred_at=timestamp,
-                mfg_etld1=manufacturer.etld1,
-                mfg_text=existing_scraped_file.text,
-            )
-            batch_requests_to_save.extend(batch_requests)
-            updated = True
-        else:  # phase 1 present, check to see if phase 2 can begin for any chunk
-            phase2_updated, batch_requests = (
-                await add_certificate_mapping_requests_to_deferred_stats(
-                    deferred_at=timestamp,
-                    deferred_stats=deferred_manufacturer.certificates.deferred_stats,
-                    mfg_etld1=manufacturer.etld1,
-                )
-            )
-            batch_requests_to_save.extend(batch_requests)
-            updated = phase2_updated or updated
+    if (
+        not manufacturer.certificates and not deferred_manufacturer.certificates
+    ):  # missing phase 1
+        (
+            deferred_manufacturer.certificates,
+            batch_requests,
+        ) = await extract_certificates_deferred(
+            deferred_at=timestamp,
+            mfg_etld1=manufacturer.etld1,
+            mfg_text=scraped_text_file.text,
+        )
+        # batch_requests_to_save.extend(batch_requests)
+        await bulk_upsert_gpt_batch_requests(
+            batch_requests=batch_requests,
+            mfg_etld1=manufacturer.etld1,
+            chunk_size=2500,
+        )
+        updated = True
 
-    if not manufacturer.industries:
-        if not deferred_manufacturer.industries:  # missing phase 1
-            (
-                deferred_manufacturer.industries,
-                batch_requests,
-            ) = await extract_industries_deferred(
-                deferred_at=timestamp,
-                mfg_etld1=manufacturer.etld1,
-                mfg_text=existing_scraped_file.text,
-            )
-            batch_requests_to_save.extend(batch_requests)
-            updated = True
-        else:  # phase 1 present, check to see if phase 2 can begin for any chunk
-            phase2_updated, batch_requests = (
-                await add_industry_mapping_requests_to_deferred_stats(
-                    deferred_at=timestamp,
-                    deferred_stats=deferred_manufacturer.industries.deferred_stats,
-                    mfg_etld1=manufacturer.etld1,
-                )
-            )
-            batch_requests_to_save.extend(batch_requests)
-            updated = phase2_updated or updated
+    if (
+        not manufacturer.industries and not deferred_manufacturer.industries
+    ):  # missing phase 1
+        (
+            deferred_manufacturer.industries,
+            batch_requests,
+        ) = await extract_industries_deferred(
+            deferred_at=timestamp,
+            mfg_etld1=manufacturer.etld1,
+            mfg_text=scraped_text_file.text,
+        )
+        # batch_requests_to_save.extend(batch_requests)
+        await bulk_upsert_gpt_batch_requests(
+            batch_requests=batch_requests,
+            mfg_etld1=manufacturer.etld1,
+            chunk_size=2500,
+        )
+        updated = True
 
-    if not manufacturer.process_caps:
-        if not deferred_manufacturer.process_caps:  # missing phase 1
-            (
-                deferred_manufacturer.process_caps,
-                batch_requests,
-            ) = await extract_processes_deferred(
-                deferred_at=timestamp,
-                mfg_etld1=manufacturer.etld1,
-                mfg_text=existing_scraped_file.text,
-            )
-            batch_requests_to_save.extend(batch_requests)
-            updated = True
-        else:  # phase 1 present, check to see if phase 2 can begin for any chunk
-            phase2_updated, batch_requests = (
-                await add_process_mapping_requests_to_deferred_stats(
-                    deferred_at=timestamp,
-                    deferred_stats=deferred_manufacturer.process_caps.deferred_stats,
-                    mfg_etld1=manufacturer.etld1,
-                )
-            )
-            batch_requests_to_save.extend(batch_requests)
-            updated = phase2_updated or updated
+    if not manufacturer.process_caps and not deferred_manufacturer.process_caps:
+        (
+            deferred_manufacturer.process_caps,
+            batch_requests,
+        ) = await extract_processes_deferred(
+            deferred_at=timestamp,
+            mfg_etld1=manufacturer.etld1,
+            mfg_text=scraped_text_file.text,
+        )
+        # batch_requests_to_save.extend(batch_requests)
+        await bulk_upsert_gpt_batch_requests(
+            batch_requests=batch_requests,
+            mfg_etld1=manufacturer.etld1,
+            chunk_size=2500,
+        )
+        updated = True
 
-    if not manufacturer.material_caps:
-        if not deferred_manufacturer.material_caps:  # missing phase 1
-            (
-                deferred_manufacturer.material_caps,
-                batch_requests,
-            ) = await extract_materials_deferred(
-                deferred_at=timestamp,
-                mfg_etld1=manufacturer.etld1,
-                mfg_text=existing_scraped_file.text,
-            )
-            batch_requests_to_save.extend(batch_requests)
-            updated = True
-        else:  # phase 1 present, check to see if phase 2 can begin for any chunk
-            phase2_updated, batch_requests = (
-                await add_material_mapping_requests_to_deferred_stats(
-                    deferred_at=timestamp,
-                    deferred_stats=deferred_manufacturer.material_caps.deferred_stats,
-                    mfg_etld1=manufacturer.etld1,
-                )
-            )
-            batch_requests_to_save.extend(batch_requests)
-            updated = phase2_updated or updated
+    if not manufacturer.material_caps and not deferred_manufacturer.material_caps:
+        (
+            deferred_manufacturer.material_caps,
+            batch_requests,
+        ) = await extract_materials_deferred(
+            deferred_at=timestamp,
+            mfg_etld1=manufacturer.etld1,
+            mfg_text=scraped_text_file.text,
+        )
+        # batch_requests_to_save.extend(batch_requests)
+        await bulk_upsert_gpt_batch_requests(
+            batch_requests=batch_requests,
+            mfg_etld1=manufacturer.etld1,
+            chunk_size=2500,
+        )
+        updated = True
 
     if updated:
-        # Bulk save all batch requests at the end
-        if batch_requests_to_save:
-            logger.info(
-                f"Bulk saving {len(batch_requests_to_save)} GPT batch requests for {manufacturer.etld1}"
-            )
-            try:
-                await GPTBatchRequest.insert_many(batch_requests_to_save, ordered=False)
-            except Exception as e:
-                logger.error(
-                    f"Some batch requests failed to insert for {manufacturer.etld1}: {e}. "
-                    f"Continuing with other operations."
-                )
+        # Bulk upsert all batch requests using dedicated service function
         await update_deferred_manufacturer(timestamp, deferred_manufacturer)
 
     return deferred_manufacturer, updated
