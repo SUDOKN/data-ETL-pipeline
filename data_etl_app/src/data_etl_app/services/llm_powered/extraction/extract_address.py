@@ -98,12 +98,13 @@ async def _extract_address_from_chunk(
 
     gpt_response = gpt_response.replace("```", "").replace("json", "")
     result = json.loads(gpt_response)
-    if not result:
+    if result is None:
         raise ValueError(
             f"extraction_timestamp: {extraction_timestamp}, {mfg_etld1}:{keyword_label} _extract_address_from_chunk: Empty json result found in gpt_response"
         )
-    logger.info(
-        f"extraction_timestamp: {extraction_timestamp}, {mfg_etld1}:{keyword_label} extracted {result} addresses from chunk"
-    )
+    elif not isinstance(result, list):
+        logger.info(
+            f"extraction_timestamp: {extraction_timestamp}, {mfg_etld1}:{keyword_label} extracted non-list addresses {result} from chunk"
+        )
 
     return [Address(**addr) for addr in result]

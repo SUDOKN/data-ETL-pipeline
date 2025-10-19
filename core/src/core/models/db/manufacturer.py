@@ -18,15 +18,15 @@ logger = logging.getLogger(__name__)
 
 
 class Address(BaseModel):
-    name: Optional[str]
-    address_lines: Optional[list[str]]
     city: str
     state: str
-    county: Optional[str] = None
-    postal_code: str
-    country: str
-    latitude: Optional[float] = None
-    longitude: Optional[float] = None
+    country: str = "US"
+    name: Optional[str]
+    address_lines: Optional[list[str]]
+    county: Optional[str]
+    postal_code: Optional[str]
+    latitude: Optional[float]
+    longitude: Optional[float]
     phone_numbers: Optional[list[str]]
     fax_numbers: Optional[list[str]]
 

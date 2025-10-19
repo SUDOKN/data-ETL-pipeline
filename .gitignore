@@ -13,6 +13,7 @@ build/
 .venv
 logs/
 data_statistics/
+secure-chain-final/
 data_etl_app/src/data_etl_app/scripts/
 .idea/
 data_etl_app/src/data_etl_app/knowledge
@@ -20,3 +21,9 @@ data_etl_app/src/data_etl_app/knowledge
 *.ttl
 scratch.ipynb
 keys.py
+*.log
+*.jsonl
+*.ndjson
+*.csv
+*.txt
+*.owl

@@ -238,11 +238,14 @@ def add_address_triples(
     for i, addr in enumerate(addresses):
         if not addr:
             raise ValueError("Address cannot be empty")
-        print(f"  with address: {addr}")
+        print(f"  with full address passed: {addr}")
         # Create GeospatialSite
+        print(f"  with address name: {addr.name}")
         geosite_inst_uri = SDK[f"{gid_stripped}-geosite-{i+1}-instance"]
+        print(f"  adding GeospatialSite: {geosite_inst_uri}")
         g.add((geosite_inst_uri, RDF.type, SDK.GeospatialSite))
         if addr.name:
+            print(f"  adding address name label: {addr.name}")
             g.add(
                 (geosite_inst_uri, RDFS_NS.label, Literal(addr.name))
             )  # link name to site
@@ -250,9 +253,11 @@ def add_address_triples(
         # Address lines
         for idx, addr_line in enumerate(addr.address_lines or []):
             if addr_line:
+                print(f"  with address line: {addr_line}")
                 address_line_inst_uri = SDK[
                     f"{gid_stripped}-address-line-{idx+1}-instance"
                 ]
+                print(f"  adding AddressLine: {address_line_inst_uri}")
                 g.add((address_line_inst_uri, RDF.type, SDK.AddressLine))
                 g.add(
                     (address_line_inst_uri, IOF_SCRO.hasTextValue, Literal(addr_line))
@@ -264,42 +269,57 @@ def add_address_triples(
                         Literal(idx + 1, datatype=XSD.int),
                     )
                 )
+                print(f"  linking AddressLine to site")
                 g.add(
                     (geosite_inst_uri, SDK.hasAddressLine, address_line_inst_uri)
                 )  # link address line to site
 
         # City
+        print(f"  with city: {addr.city}")
         city_ind_uri = SDK[f"{uri_strip(addr.city)}-city-individual"]
+        print(f"  adding City: {city_ind_uri}")
         g.add((city_ind_uri, RDF.type, SDK.City))
         g.add((city_ind_uri, RDFS_NS.label, Literal(addr.city)))
+        print(f"  linking City to site")
         g.add((geosite_inst_uri, SDK.locatedInCity, city_ind_uri))  # link city to site
 
         # State
+        print(f"  with state: {addr.state}")
         state_ind_uri = SDK[f"{uri_strip(addr.state)}-state-individual"]
+        print(f"  adding State: {state_ind_uri}")
         g.add((state_ind_uri, RDF.type, SDK.State))
         g.add((state_ind_uri, RDFS_NS.label, Literal(addr.state)))
+        print(f"  linking State to site")
         g.add(
             (geosite_inst_uri, SDK.locatedInState, state_ind_uri)
         )  # link state to site
 
         # County - only if available
         if addr.county:
+            print(f"  with county: {addr.county}")
             county_ind_uri = SDK[f"{uri_strip(addr.county)}-county-individual"]
+            print(f"  adding County: {county_ind_uri}")
             g.add((county_ind_uri, RDF.type, SDK.County))
             g.add((county_ind_uri, RDFS_NS.label, Literal(addr.county)))
+            print(f"  linking County to site")
             g.add(
                 (geosite_inst_uri, SDK.locatedInCounty, county_ind_uri)
             )  # link county to site
 
         # Postal Code
+        print(f"  with postal code: {addr.postal_code}")
+        print(f"  adding postal code to site")
         g.add(
             (geosite_inst_uri, SDK.hasZipcodeValue, Literal(addr.postal_code))
         )  # link zipcode to site
 
         # Country
+        print(f"  with country: {addr.country}")
         country_ind_uri = SDK[f"{uri_strip(addr.country)}-country-individual"]
+        print(f"  adding Country: {country_ind_uri}")
         g.add((country_ind_uri, RDF.type, SDK.Country))
         g.add((country_ind_uri, RDFS_NS.label, Literal(addr.country)))
+        print(f"  linking Country to site")
         g.add(
             (geosite_inst_uri, SDK.locatedInCountry, country_ind_uri)
         )  # link country to site
@@ -314,7 +334,9 @@ def add_address_triples(
         elif not (-180 <= addr.longitude <= 180):
             raise ValueError("Longitude must be between -180 and 180 degrees")
 
+        print(f"  with coordinates: lat={addr.latitude}, lon={addr.longitude}")
         geoloc_inst_uri = SDK[f"{gid_stripped}-geolocation-{i+1}-instance"]
+        print(f"  adding GeospatialLocation: {geoloc_inst_uri}")
         g.add(
             (geoloc_inst_uri, RDF.type, IOF_SCRO.GeospatialLocation)
         )  # GeospatialLocation
@@ -332,17 +354,23 @@ def add_address_triples(
                 Literal(addr.longitude, datatype=XSD.float),
             )
         )
+        print(f"  linking GeospatialLocation to site")
         g.add(
             (geosite_inst_uri, SDK.hasGeospatialLocation, geoloc_inst_uri)
         )  # link location to site
 
         for phone in addr.phone_numbers or []:
             if phone:
+                print(f"  with phone number: {phone}")
+                print(f"  adding phone number to site")
                 g.add((geosite_inst_uri, SDK.hasPhoneNumberValue, Literal(phone)))
         for fax in addr.fax_numbers or []:
             if fax:
+                print(f"  with fax number: {fax}")
+                print(f"  adding fax number to site")
                 g.add((geosite_inst_uri, SDK.hasFaxNumberValue, Literal(fax)))
 
+        print(f"  linking site to manufacturer")
         g.add(
             (mfg_inst_uri, SDK.organizationLocatedIn, geosite_inst_uri)
         )  # link site to manufacturer
@@ -574,12 +602,12 @@ def generate_triples(
 
 
 def generate_triples_for_single_mfg(
-    ont_inst: OntologyService, mfg: ManufacturerUserForm
+    ont_inst: OntologyService, mfg: ManufacturerUserForm, strict: bool
 ):
     """
     CAUTION: Returns triples in N-Triples format which skips prefixes.
     """
     g = _init_graph()
-    add_manufacturer_triples(ont_inst, mfg, g)
+    add_manufacturer_triples(ont_inst, mfg, g, strict)
     print(f"Generated {len(g)} RDF triples.")
     return g.serialize(format="nt")

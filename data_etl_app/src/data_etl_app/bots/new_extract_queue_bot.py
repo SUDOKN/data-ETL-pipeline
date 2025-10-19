@@ -421,7 +421,7 @@ async def process_manufacturer(
                 manufacturer=manufacturer,
             )
         except Exception as e:
-            logger.error(f"{manufacturer.name}.addresses errored:{e}")
+            logger.error(f"{manufacturer.etld1}.addresses errored:{e}")
             await ExtractionError.insert_one(
                 ExtractionError(
                     created_at=polled_at,

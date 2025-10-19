@@ -28,7 +28,7 @@ async def push_item_to_priority_scrape_queue(item: ToScrapeItem):
         MessageBody=item.model_dump_json(),
     )
     logger.info(
-        f"Sent ToScrapeItem for {item.accessible_normalized_url} to priority scrape queue: {PRIORITY_SCRAPE_QUEUE_URL}"
+        f"Sent ToScrapeItem for {item} to priority scrape queue: {PRIORITY_SCRAPE_QUEUE_URL}"
     )
 
 

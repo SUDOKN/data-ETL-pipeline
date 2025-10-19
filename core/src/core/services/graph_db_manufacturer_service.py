@@ -14,7 +14,7 @@ async def replace_manufacturer_in_graph(mfg_etdl1: MfgETLDType) -> None:
             f"Cannot replace manufacturer, ManufacturerUserForm not found for ETLD1: {mfg_etdl1}"
         )
     ont_inst = await OntologyService.get_instance()
-    ttl_data = generate_triples_for_single_mfg(ont_inst, mfg_user_form)
+    ttl_data = generate_triples_for_single_mfg(ont_inst, mfg_user_form, False)
 
     query = f"""
     WITH <http://asu.edu/semantics/SUDOKN/graphs/manufacturers>

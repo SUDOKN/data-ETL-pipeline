@@ -32,7 +32,7 @@ async def push_item_to_priority_extract_queue(item: ToExtractItem):
         MessageBody=item.model_dump_json(),
     )
     logger.info(
-        f"Sent ToExtractItem for {item.mfg_etld1} to priority extract queue: {PRIORITY_EXTRACT_QUEUE_URL}"
+        f"Sent ToExtractItem for {item} to priority extract queue: {PRIORITY_EXTRACT_QUEUE_URL}"
     )
 
 

@@ -2,7 +2,16 @@
   "$jsonSchema": {
     "bsonType": "object",
     "title": "User",
-    "required": ["firstName", "lastName", "email", "salt", "hashedPassword"],
+    "required": [
+      "firstName",
+      "lastName",
+      "email",
+      "role",
+      "salt",
+      "hashedPassword",
+      "createdAt",
+      "updatedAt"
+    ],
     "additionalProperties": false,
     "properties": {
       "_id": {
@@ -19,6 +28,10 @@
       "email": {
         "bsonType": "string",
         "description": "User's email, should be unique"
+      },
+      "role": {
+        "enum": ["default", "employee", "mep", "admin"],
+        "description": "User's role in the system"
       },
       "companyURL": {
         "bsonType": "string",
@@ -43,6 +56,14 @@
           }
         ],
         "description": "Reset password JWT token with embedded expiration"
+      },
+      "createdAt": {
+        "bsonType": "date",
+        "description": "Timestamp when the user was created"
+      },
+      "updatedAt": {
+        "bsonType": "date",
+        "description": "Timestamp when the user was last updated"
       }
     }
   }

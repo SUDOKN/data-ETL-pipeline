@@ -1,0 +1,51 @@
+{
+  "$jsonSchema": {
+    "bsonType": "object",
+    "title": "UserRoleAccessRequest",
+    "required": [
+      "userEmail",
+      "requestedRole",
+      "status",
+      "createdAt",
+      "updatedAt"
+    ],
+    "additionalProperties": false,
+    "properties": {
+      "_id": {
+        "bsonType": "objectId"
+      },
+      "userEmail": {
+        "bsonType": "string",
+        "description": "Email of the user requesting role access"
+      },
+      "requestedRole": {
+        "enum": ["default", "employee", "mep", "admin"],
+        "description": "The role being requested by the user"
+      },
+      "status": {
+        "enum": ["PENDING", "APPROVED", "REJECTED"],
+        "description": "Current status of the role access request"
+      },
+      "companyUrl": {
+        "bsonType": "string",
+        "description": "URL of the company associated with the request"
+      },
+      "reason": {
+        "bsonType": "string",
+        "description": "Reason provided by the user for the role request"
+      },
+      "adminNotes": {
+        "bsonType": "string",
+        "description": "Notes added by admin when processing the request"
+      },
+      "createdAt": {
+        "bsonType": "date",
+        "description": "Timestamp when the request was created"
+      },
+      "updatedAt": {
+        "bsonType": "date",
+        "description": "Timestamp when the request was last updated"
+      }
+    }
+  }
+}

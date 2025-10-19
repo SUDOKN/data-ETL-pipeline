@@ -17,7 +17,7 @@ from core.utils.aws.queue.priority_scrape_queue_util import (
 
 from data_etl_app.models.db.manufacturer_user_form import ManufacturerUserForm
 from data_etl_app.services.manufacturer_user_form_service import (
-    create_from_manufacturer,
+    validate_and_create_from_manufacturer,
     get_manufacturer_user_form_by_mfg_etld1,
     save_manufacturer_user_form,
 )
@@ -53,7 +53,7 @@ async def fetch_manufacturer_user_form(
                 ToScrapeItem(
                     accessible_normalized_url=mfg_url,
                     batch=Batch(
-                        title="Ground Truth API: Binary Classification",
+                        title="Userform Binary Classification",
                         timestamp=current_timestamp,  # ISO format for timestamp
                     ),
                     email_errand=EmailUserErrand(user_email=author_email),
@@ -63,9 +63,28 @@ async def fetch_manufacturer_user_form(
                 status_code=404,
                 detail=f"Manufacturer with etld1 {mfg_etld1} not found. Manufacturer has been pushed to the extract queue for processing. Please try again later.",
             )
-
-        form = await create_from_manufacturer(existing_manufacturer)
-        form.author_email = author_email
+        else:
+            try:
+                form = await validate_and_create_from_manufacturer(
+                    existing_manufacturer
+                )
+                form.author_email = author_email
+            except Exception as e:
+                # some of the fields weren't extracted successfully, push to pipeline again
+                await push_item_to_priority_scrape_queue(
+                    ToScrapeItem(
+                        accessible_normalized_url=mfg_url,
+                        batch=Batch(
+                            title="Userform Binary Classification, Repush",
+                            timestamp=current_timestamp,  # ISO format for timestamp
+                        ),
+                        email_errand=EmailUserErrand(user_email=author_email),
+                    ),
+                )
+                raise HTTPException(
+                    status_code=208,
+                    detail=f"Manufacturer with etld1 {mfg_etld1} is being processed right now, please try again later.",
+                )
 
     return form
 
