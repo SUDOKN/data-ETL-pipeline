@@ -57,6 +57,35 @@
         "VIRTUAL_ENV": "./.venv",
         "PATH": "./.venv/bin:/usr/local/bin:/usr/bin:/bin"
       }
+    },
+    {
+      "name": "batch-file-station",
+      "script": "./data_etl_app/src/data_etl_app/bots/batch_file_station.py",
+      "interpreter": "./.venv/bin/python3",
+      "args": "",
+      "cwd": "./",
+      "instances": 1,
+      "autorestart": true,
+      "watch": false,
+      "max_memory_restart": "4G",
+      "log_date_format": "YYYY-MM-DD HH:mm:ss Z",
+      "error_file": "./logs/batch-file-station-error.log",
+      "out_file": "./logs/batch-file-station-out.log",
+      "log_file": "./logs/batch-file-station-combined.log",
+      "time": true,
+      "kill_timeout": 10000,
+      "shutdown_with_message": false,
+      "listen_timeout": 8000,
+      "wait_ready": false,
+      "max_restarts": 10,
+      "min_uptime": "60s",
+      "restart_delay": 10000,
+      "env": {
+        "PYTHONPATH": "./data_etl_app/src:./core/src:./open_ai_key_app/src:./scraper_app/src",
+        "PYTHONUNBUFFERED": "1",
+        "VIRTUAL_ENV": "./.venv",
+        "PATH": "./.venv/bin:/usr/local/bin:/usr/bin:/bin"
+      }
     }
   ]
 }

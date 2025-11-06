@@ -50,7 +50,7 @@ from data_etl_app.utils.chunk_util import (
     get_chunks_respecting_line_boundaries,
 )
 from core.services.gpt_batch_request_service import (
-    create_gpt_batch_request,
+    create_base_gpt_batch_request,
     find_completed_gpt_batch_requests_by_custom_ids,
     find_gpt_batch_request_ids_only,
 )
@@ -255,7 +255,7 @@ async def _get_missing_mapping_request(
             llm_mapping_req_id=deferred_concept_extraction.llm_mapping_request_id,
             known_concepts=known_concepts,
             unmatched_keywords=unmatched_keywords,
-            prompt=map_prompt,
+            mapping_prompt=map_prompt,
             gpt_model=gpt_model,
             model_params=model_params,
         )
@@ -552,10 +552,10 @@ async def _get_missing_concept_search_requests(
 
         # Process current batch
         for chunk_bounds, chunk_text in batch:
-            llm_batch_request = create_gpt_batch_request(
+            llm_batch_request = create_base_gpt_batch_request(
                 deferred_at=deferred_at,
                 custom_id=f"{mfg_etld1}>{concept_type.name}>llm_search>chunk>{chunk_bounds}",
-                text=chunk_text,
+                context=chunk_text,
                 prompt=search_prompt,
                 gpt_model=gpt_model,
                 model_params=model_params,

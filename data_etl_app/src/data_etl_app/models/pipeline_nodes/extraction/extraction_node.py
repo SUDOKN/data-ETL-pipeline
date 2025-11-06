@@ -10,7 +10,7 @@ from data_etl_app.models.pipeline_nodes.reconcile.reconcile_node import Reconcil
 from core.models.db.deferred_manufacturer import DeferredManufacturer
 from core.models.db.gpt_batch_request import GPTBatchRequest
 from core.services.gpt_batch_request_service import (
-    bulk_upsert_gpt_batch_requests,
+    bulk_upsert_gpt_batch_requests_with_only_req_bodies,
 )
 from scraper_app.models.scraped_text_file import ScrapedTextFile
 
@@ -113,7 +113,7 @@ class ExtractionNode(BaseNode[GenericFieldTypeVar]):
             logger.info(
                 f"[{mfg.etld1}] ✅ Created {len(batch_requests)} batch requests for {self.__class__.__name__} ('{self.field_type.name}')"
             )
-            await bulk_upsert_gpt_batch_requests(
+            await bulk_upsert_gpt_batch_requests_with_only_req_bodies(
                 batch_requests=batch_requests, mfg_etld1=mfg.etld1
             )
             await deferred_mfg.save()

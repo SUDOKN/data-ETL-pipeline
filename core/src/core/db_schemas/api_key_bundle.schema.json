@@ -1,0 +1,50 @@
+{
+  "$jsonSchema": {
+    "bsonType": "object",
+    "required": [
+      "created_at",
+      "label",
+      "key",
+      "batch_queue_limit",
+      "available_at",
+      "updated_at"
+    ],
+    "additionalProperties": false,
+    "properties": {
+      "_id": {
+        "bsonType": "objectId"
+      },
+      "created_at": {
+        "bsonType": "date",
+        "description": "Timestamp when the API key bundle was created"
+      },
+      "label": {
+        "bsonType": "string",
+        "minLength": 1,
+        "description": "API key name/label (e.g., 'sudokn.tool', 'sudokn.tool+1')"
+      },
+      "key": {
+        "bsonType": "string",
+        "minLength": 1,
+        "description": "The actual API key"
+      },
+      "batch_queue_limit": {
+        "bsonType": "int",
+        "minimum": 0,
+        "description": "Maximum number of batch requests that can be enqueued per day"
+      },
+      "available_at": {
+        "bsonType": "date",
+        "description": "Timestamp when the API key will be available for use (considers cooldown period)"
+      },
+      "updated_at": {
+        "bsonType": "date",
+        "description": "Timestamp when the API key bundle was last updated"
+      },
+      "latest_external_batch_id": {
+        "bsonType": ["string", "null"],
+        "description": "The external batch ID of the currently active batch, null if no active batch"
+      }
+    }
+  }
+}

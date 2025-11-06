@@ -8,10 +8,7 @@ from core.models.prompt import Prompt
 from data_etl_app.models.skos_concept import Concept, ConceptJSONEncoder
 
 from core.models.db.gpt_batch_request import GPTBatchRequest
-from open_ai_key_app.models.field_types import GPTBatchRequestCustomID
-from open_ai_key_app.utils.batch_gpt_util import (
-    get_gpt_request_blob,
-)
+from core.services.gpt_batch_request_service import create_base_gpt_batch_request
 from open_ai_key_app.models.gpt_model import (
     GPTModel,
     GPT_4o_mini,
@@ -27,7 +24,7 @@ def map_known_to_unknown_deferred(
     llm_mapping_req_id: str,
     known_concepts: set[Concept],  # DO NOT MUTATE
     unmatched_keywords: set[str],
-    prompt: Prompt,
+    mapping_prompt: Prompt,
     gpt_model: GPTModel = GPT_4o_mini,
     model_params: ModelParameters = DefaultModelParameters,
 ) -> GPTBatchRequest:
@@ -38,15 +35,12 @@ def map_known_to_unknown_deferred(
         {"unknowns": list(unmatched_keywords), "knowns": list(known_concepts)},
         cls=ConceptJSONEncoder,
     )
-    gpt_batch_request = GPTBatchRequest(
-        created_at=deferred_at,
-        request=get_gpt_request_blob(
-            context=context,
-            prompt=prompt.text,
-            custom_id=llm_mapping_req_id,
-            gpt_model=gpt_model,
-            model_params=model_params,
-        ),
-        batch_id=None,
+    gpt_batch_request = create_base_gpt_batch_request(
+        deferred_at=deferred_at,
+        custom_id=llm_mapping_req_id,
+        context=context,
+        prompt=mapping_prompt,
+        gpt_model=gpt_model,
+        model_params=model_params,
     )
     return gpt_batch_request

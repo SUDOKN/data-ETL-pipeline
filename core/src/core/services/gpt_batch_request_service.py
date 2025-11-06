@@ -1,11 +1,10 @@
 from datetime import datetime
 import logging
 from typing import Optional
-import re
 
 from data_etl_app.models.types_and_enums import GenericFieldTypeEnum
 from pymongo.errors import BulkWriteError
-from pymongo import ReplaceOne, UpdateOne
+from pymongo import UpdateOne
 
 from core.models.prompt import Prompt
 from core.models.db.gpt_batch import GPTBatch
@@ -23,17 +22,17 @@ from open_ai_key_app.utils.batch_gpt_util import (
 logger = logging.getLogger(__name__)
 
 
-def create_gpt_batch_request(
+def create_base_gpt_batch_request(
     deferred_at: datetime,
     custom_id: str,
-    text: str,
+    context: str,
     prompt: Prompt,
     gpt_model: GPTModel,
     model_params: ModelParameters,
 ) -> GPTBatchRequest:
     request_blob = get_gpt_request_blob(
         custom_id=custom_id,
-        context=text,
+        context=context,
         prompt=prompt.text,
         gpt_model=gpt_model,
         model_params=model_params,
@@ -372,7 +371,7 @@ async def reset_batch_requests_with_batch(gpt_batch: GPTBatch) -> int:
     return result.modified_count
 
 
-async def _upsert_chunk(
+async def _upsert_chunk_with_only_request_body(
     chunk: list[GPTBatchRequest],
     chunk_num: int,
     total_chunks: int,
@@ -386,28 +385,12 @@ async def _upsert_chunk(
         Dict with keys: upserted_count, modified_count, write_errors, unexpected_error
     """
     try:
-        # Use UpdateOne with $setOnInsert to only insert when document doesn't exist
-        # This prevents overwriting existing documents
-        """
-        operations = [
-            UpdateOne(
-                {"request.custom_id": req.request.custom_id},  # Filter by custom_id
-                {
-                    "$setOnInsert": req.model_dump(
-                        by_alias=True, exclude={"id"}
-                    )  # Only set these fields on insert
-                },
-                upsert=True,
-            )
-            for req in chunk
-        ]
-        """
         operations = [
             UpdateOne(
                 {"request.custom_id": req.request.custom_id},  # Filter by custom_id
                 {
                     "$set": {
-                        "request": req.request,
+                        "request": req.request.model_dump(),
                     }
                 },
                 upsert=True,
@@ -466,7 +449,7 @@ async def _upsert_chunk(
         }
 
 
-async def bulk_upsert_gpt_batch_requests(
+async def bulk_upsert_gpt_batch_requests_with_only_req_bodies(
     batch_requests: list[GPTBatchRequest],
     mfg_etld1: str,
     chunk_size: int = 5000,
@@ -511,7 +494,9 @@ async def bulk_upsert_gpt_batch_requests(
 
     # Process chunks sequentially (async but not concurrent)
     for chunk, chunk_num in chunks:
-        result = await _upsert_chunk(chunk, chunk_num, total_chunks, mfg_etld1)
+        result = await _upsert_chunk_with_only_request_body(
+            chunk, chunk_num, total_chunks, mfg_etld1
+        )
 
         # Aggregate results
         total_upserted += result["upserted_count"]

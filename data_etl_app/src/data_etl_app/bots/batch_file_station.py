@@ -2,11 +2,24 @@ import asyncio
 import httpx
 import json
 import logging
+from dataclasses import dataclass
 from pymongo import UpdateOne
 from datetime import datetime
 from pathlib import Path
 from typing import Optional
 from openai import OpenAI
+
+from core.dependencies.load_core_env import load_core_env
+from scraper_app.dependencies.load_scraper_env import load_scraper_env
+from open_ai_key_app.dependencies.load_open_ai_app_env import load_open_ai_app_env
+from data_etl_app.dependencies.load_data_etl_env import load_data_etl_env
+
+# Load environment variables (entry point)
+load_core_env()
+load_scraper_env()
+load_data_etl_env()
+load_open_ai_app_env()
+
 
 from core.models.db.api_key_bundle import APIKeyBundle
 from core.models.db.gpt_batch import GPTBatch
@@ -27,13 +40,16 @@ from data_etl_app.services.batch_file_generator import (
     BatchFileGenerationResult,
     iterate_df_manufacturers_and_write_batch_files,
 )
-from data_etl_app.scripts.create_batch_files import (
-    MAX_FILE_SIZE_MB,
-    MAX_MANUFACTURER_TOKENS,
-    MAX_REQUESTS_PER_FILE,
-    OUTPUT_DIR_DEFAULT,
+
+# from data_etl_app.scripts.create_batch_files import (
+#     MAX_FILE_SIZE_MB,
+#     MAX_MANUFACTURER_TOKENS,
+#     MAX_REQUESTS_PER_FILE,
+#     OUTPUT_DIR_DEFAULT,
+# )
+from data_etl_app.utils.gpt_batch_request_util import (
+    parse_individual_batch_req_response_raw,
 )
-from data_etl_app.utils.gpt_batch_request_util import parse_batch_req_response
 from data_etl_app.bots.batch_file_satellite import (
     BatchFileSatellite,
     BatchDownloadOutput,
@@ -46,12 +62,19 @@ from data_etl_app.scripts.batch_request_orchestrator import (
 
 logger = logging.getLogger(__name__)
 
+OUTPUT_DIR_DEFAULT = "../../../../batch_data"
+MAX_MANUFACTURER_TOKENS = 200_000
+MAX_TOKENS_PER_FILE = 20_000_000
+MAX_REQUESTS_PER_FILE = 40_000
+MAX_FILE_SIZE_MB = 120  # 120MB in MB
+
 FINISHED_BATCHES_DIR_DEFAULT = Path(OUTPUT_DIR_DEFAULT + "/finished_batches")
 DF_MFG_BATCH_FILTER = {
     "scraped_text_file_num_tokens": {"$lt": MAX_MANUFACTURER_TOKENS},
 }
 
 
+@dataclass
 class BatchFileStationStats:
     batches_created: int = 0
     batches_uploaded: int = 0
@@ -75,7 +98,7 @@ class BatchFileStation:
             )
         self.mfg_intake_orchestrator = ManufacturerExtractionOrchestrator()
         self.satellite = BatchFileSatellite(
-            output_dir=Path(OUTPUT_DIR_DEFAULT),
+            output_dir=Path(FINISHED_BATCHES_DIR_DEFAULT),
             on_batch_completed=self.handle_batch_completed,
             on_batch_failed=self.handle_batch_failed,
             on_batch_expired=self.handle_batch_expired,
@@ -86,8 +109,7 @@ class BatchFileStation:
     @classmethod
     def get_instance(cls) -> "BatchFileStation":
         if cls._instance is None:
-            cls._instance = cls.__new__(cls)
-            cls._instance.__init__()
+            cls._instance = cls()
         return cls._instance
 
     async def start_loop(self, poll_interval_seconds: int = 300):
@@ -211,15 +233,16 @@ class BatchFileStation:
                     mfg_etld1 = custom_id.split(">")[0]
                     unique_mfg_etld1s.add(mfg_etld1)
 
-                    response_blob = parse_batch_req_response(
+                    response_blob = parse_individual_batch_req_response_raw(
                         raw_result, gpt_batch.external_batch_id
                     )
                     operation = UpdateOne(
                         {"request.custom_id": custom_id},  # Filter
                         {
                             "$set": {
-                                "response_blob": response_blob,
-                                "batch_id": gpt_batch.external_batch_id,
+                                "response_blob": response_blob.model_dump(
+                                    exclude={"result"}
+                                )
                             }
                         },
                         upsert=False,  # Doesn't create new documents if filter unmatched
@@ -228,10 +251,23 @@ class BatchFileStation:
                 except json.JSONDecodeError as e:
                     logger.error(f"Line {line_num}: JSON decode error - {e}")
                     batch_stats["failed_parses"] += 1
-                    batch_stats["errors"] += 1
+                    update_operations.append(
+                        UpdateOne(
+                            {"request.custom_id": custom_id},  # Filter
+                            {"$set": {"batch_id": None}},
+                            upsert=False,  # Doesn't create new documents if filter unmatched
+                        )
+                    )
                 except Exception as e:
                     logger.error(f"Line {line_num}: Error processing result - {e}")
                     batch_stats["errors"] += 1
+                    update_operations.append(
+                        UpdateOne(
+                            {"request.custom_id": custom_id},  # Filter
+                            {"$set": {"batch_id": None}},
+                            upsert=False,  # Doesn't create new documents if filter unmatched
+                        )
+                    )
 
         if not update_operations:
             logger.warning(
@@ -291,7 +327,7 @@ class BatchFileStation:
         self, poll_interval_seconds: int = 10 * 60
     ):
         logger.info(
-            f"create_new_batches_and_upload_with_all_available_keys: Starting batch upload loop (interval: {poll_interval_seconds}s)"
+            f"poll_sync_and_upload_new_batches: Starting batch upload loop (interval: {poll_interval_seconds}s)"
         )
 
         while True:
@@ -300,6 +336,11 @@ class BatchFileStation:
                 api_key_bundles: list[APIKeyBundle] = await get_all_api_key_bundles()
 
                 for api_key_bundle in api_key_bundles:
+                    # if api_key_bundle.label in ["sudokn.tool2", "sudokn.tool3"]:
+                    if api_key_bundle.label in ["sudokn.tool"]:
+                        logger.info("temp skip")
+                        continue
+
                     client = OpenAI(
                         api_key=api_key_bundle.key,
                         timeout=httpx.Timeout(
@@ -346,7 +387,6 @@ class BatchFileStation:
                                 client=client,
                                 api_key_bundle=api_key_bundle,
                             )
-                            continue
 
                         # proceed to generate batch files and try uploading
                         batch_file_generation_result: BatchFileGenerationResult = (
@@ -360,13 +400,22 @@ class BatchFileStation:
                                 max_files=1,
                             )
                         )
+                        jsonl_batch_file = batch_file_generation_result.batch_request_jsonl_file_writer.files[
+                            0
+                        ]
+                        if not jsonl_batch_file.unique_ids:
+                            logger.error(
+                                f"poll_sync_and_upload_new_batches: Batch file generation created empty file"
+                            )
+                            continue
+
                         self.stats.batches_created += 1
-                        new_gpt_batch = await self.satellite.try_uploading_new_batch_file(
-                            client=client,
-                            api_key_bundle=api_key_bundle,
-                            jsonl_batch_file=batch_file_generation_result.batch_request_jsonl_file_writer.files[
-                                0
-                            ],
+                        new_gpt_batch = (
+                            await self.satellite.try_uploading_new_batch_file(
+                                client=client,
+                                api_key_bundle=api_key_bundle,
+                                jsonl_batch_file=jsonl_batch_file,
+                            )
                         )
                         if not new_gpt_batch:
                             logger.info(
@@ -401,17 +450,6 @@ class BatchFileStation:
 
 
 async def async_main():
-    from core.dependencies.load_core_env import load_core_env
-    from scraper_app.dependencies.load_scraper_env import load_scraper_env
-    from open_ai_key_app.dependencies.load_open_ai_app_env import load_open_ai_app_env
-    from data_etl_app.dependencies.load_data_etl_env import load_data_etl_env
-
-    # Load environment variables
-    load_core_env()
-    load_scraper_env()
-    load_data_etl_env()
-    load_open_ai_app_env()
-
     from core.dependencies.aws_clients import (
         initialize_core_aws_clients,
         cleanup_core_aws_clients,
@@ -433,11 +471,19 @@ async def async_main():
         format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
     )
     logger = logging.getLogger(__name__)
-    logger.info(f"Starting extract bot with log level: {log_level}")
+    logger.info(f"Starting batch file station with log level: {log_level}")
     batch_file_station = BatchFileStation.get_instance()
     try:
-        await batch_file_station.start_loop()
+        await batch_file_station.start_loop(10)
     finally:
         # Clean up AWS clients
         await cleanup_data_etl_aws_clients()
         await cleanup_core_aws_clients()
+
+
+def main():
+    asyncio.run(async_main())
+
+
+if __name__ == "__main__":
+    main()

@@ -13,7 +13,7 @@
       },
       "request": {
         "bsonType": "object",
-        "required": ["custom_id", "body"],
+        "required": ["custom_id", "method", "url", "body"],
         "additionalProperties": false,
         "properties": {
           "custom_id": {
@@ -24,11 +24,12 @@
           "method": {
             "bsonType": "string",
             "enum": ["POST"],
-            "description": "HTTP method for the request (optional, defaults to POST)"
+            "description": "HTTP method for the request (defaults to POST)"
           },
           "url": {
             "bsonType": "string",
-            "description": "API endpoint URL (optional, defaults to /v1/chat/completions)"
+            "minLength": 1,
+            "description": "API endpoint URL (defaults to /v1/chat/completions)"
           },
           "body": {
             "bsonType": "object",
@@ -51,7 +52,7 @@
               "input_tokens": {
                 "bsonType": "int",
                 "minimum": 0,
-                "description": "Number of input tokens"
+                "description": "Number of input tokens (excluded before sending to OpenAI)"
               },
               "max_tokens": {
                 "bsonType": "int",
@@ -73,28 +74,30 @@
           "batch_id": {
             "bsonType": "string",
             "minLength": 1,
-            "description": "Batch request ID from OpenAI"
+            "description": "Batch ID from OpenAI (e.g., 'batch_req_123')"
           },
           "request_custom_id": {
             "bsonType": "string",
             "minLength": 1,
-            "description": "Custom ID matching the request"
+            "description": "Custom ID matching the request (e.g., 'request-2')"
           },
           "response": {
             "bsonType": "object",
             "required": ["status_code", "body"],
+            "additionalProperties": false,
             "properties": {
               "status_code": {
                 "bsonType": "int",
-                "description": "HTTP status code of the response"
+                "description": "HTTP status code of the response (e.g., 200)"
               },
               "body": {
                 "bsonType": "object",
                 "required": ["created", "choices", "usage"],
+                "additionalProperties": false,
                 "properties": {
                   "created": {
                     "bsonType": "date",
-                    "description": "Creation timestamp"
+                    "description": "Creation timestamp (epoch time converted to datetime)"
                   },
                   "choices": {
                     "bsonType": "array",
@@ -102,21 +105,25 @@
                     "items": {
                       "bsonType": "object",
                       "required": ["index", "message"],
+                      "additionalProperties": false,
                       "properties": {
                         "index": {
                           "bsonType": "int",
-                          "minimum": 0
+                          "minimum": 0,
+                          "description": "Choice index"
                         },
                         "message": {
                           "bsonType": "object",
                           "required": ["role", "content"],
+                          "additionalProperties": false,
                           "properties": {
                             "role": {
                               "bsonType": "string",
-                              "enum": ["assistant", "user", "system"]
+                              "description": "Role of the message (e.g., 'assistant')"
                             },
                             "content": {
-                              "bsonType": "string"
+                              "bsonType": "string",
+                              "description": "Message content"
                             }
                           }
                         }
@@ -130,18 +137,22 @@
                       "completion_tokens",
                       "total_tokens"
                     ],
+                    "additionalProperties": false,
                     "properties": {
                       "prompt_tokens": {
                         "bsonType": "int",
-                        "minimum": 0
+                        "minimum": 0,
+                        "description": "Number of prompt tokens used"
                       },
                       "completion_tokens": {
                         "bsonType": "int",
-                        "minimum": 0
+                        "minimum": 0,
+                        "description": "Number of completion tokens generated"
                       },
                       "total_tokens": {
                         "bsonType": "int",
-                        "minimum": 0
+                        "minimum": 0,
+                        "description": "Total tokens used (prompt + completion)"
                       }
                     }
                   }

@@ -138,7 +138,7 @@ class BatchRequestJSONLFileWriter:
         self, item_id: str, request_blobs: list[GPTBatchRequestBlob]
     ):
         """Write all requests for a single item to the current batch file."""
-        logger.info(f"Writing {len(request_blobs):,} requests for item {item_id}")
+        # logger.info(f"Writing {len(request_blobs):,} requests for item {item_id}")
         if not request_blobs:
             logger.debug(
                 f"write_item_request_blobs: No requests to write for {item_id}; skipping."

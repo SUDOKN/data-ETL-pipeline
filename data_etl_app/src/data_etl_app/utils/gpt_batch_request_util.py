@@ -14,7 +14,9 @@ from core.models.gpt_batch_response_blob import (
 logger = logging.getLogger(__name__)
 
 
-def parse_batch_req_response(raw_result: dict, batch_id: str) -> dict:
+def parse_individual_batch_req_response_raw(
+    raw_result: dict, batch_id: str
+) -> GPTBatchResponseBlob:
     """
     Parse raw batch result into structured response blob.
 
@@ -27,6 +29,9 @@ def parse_batch_req_response(raw_result: dict, batch_id: str) -> dict:
     """
     try:
         if raw_result.get("error"):
+            logger.error(
+                f"parse_individual_batch_req_response_raw: error in raw result\n:{raw_result.get("error")}"
+            )
             raise ValueError(raw_result.get("error"))
 
         response_data = raw_result["response"]
@@ -81,7 +86,7 @@ def parse_batch_req_response(raw_result: dict, batch_id: str) -> dict:
             error=raw_result.get("error"),
         )
 
-        return blob.model_dump()
+        return blob
 
     except Exception as e:
         logger.error(

@@ -61,6 +61,8 @@ class DatabaseSchemaValidator:
         "extraction_errors": "extraction_error.schema.json",
         "gpt_batch_requests": "gpt_batch_request.schema.json",
         "deferred_manufacturers": "deferred_manufacturer.schema.json",
+        "gpt_batches": "gpt_batch.schema.json",
+        "api_keys": "api_key_bundle.schema.json",
     }
 
     def __init__(self, connection_string: str, database_name: str):

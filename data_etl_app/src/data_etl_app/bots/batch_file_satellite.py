@@ -60,7 +60,7 @@ BatchExpiredCallback = Callable[
 
 
 class BatchFileSatellite:
-    output_dir: Path
+    download_dir: Path
     on_batch_completed: BatchCompletionCallback
     on_batch_failed: BatchFailedCallback
     on_batch_expired: BatchExpiredCallback
@@ -72,8 +72,8 @@ class BatchFileSatellite:
         on_batch_failed: BatchFailedCallback,
         on_batch_expired: BatchExpiredCallback,
     ) -> None:
-        self.output_dir = output_dir
-        self.output_dir.mkdir(parents=True, exist_ok=True)
+        self.download_dir = output_dir
+        self.download_dir.mkdir(parents=True, exist_ok=True)
         self.on_batch_completed = on_batch_completed
         self.on_batch_failed = on_batch_failed
         self.on_batch_expired = on_batch_expired
@@ -178,8 +178,8 @@ class BatchFileSatellite:
                 f"Batch {gpt_batch.id} is not completed. Current status: {gpt_batch.status}"
             )
 
-        timestamp_str = get_timestamp_str(timestamp=timestamp)
-        download_folder = self.output_dir / timestamp_str
+        # timestamp_str = get_timestamp_str(timestamp=timestamp)
+        # download_folder = self.download_dir
 
         # download the output file
         if not gpt_batch.output_file_id:
@@ -188,7 +188,7 @@ class BatchFileSatellite:
             )
 
         output_filename = f"{gpt_batch.external_batch_id}_output.jsonl"
-        output_file_path = download_folder / output_filename
+        output_file_path = self.download_dir / output_filename
         download_openai_file(
             client=client,
             output_type="output",
@@ -196,9 +196,10 @@ class BatchFileSatellite:
             openai_file_id=gpt_batch.output_file_id,
         )
 
+        error_file_path = None
         if gpt_batch.error_file_id:
             error_filename = f"{gpt_batch.external_batch_id}_error.jsonl"
-            error_file_path = download_folder / error_filename
+            error_file_path = self.download_dir / error_filename
             download_openai_file(
                 client=client,
                 output_type="error",
@@ -234,7 +235,7 @@ class BatchFileSatellite:
             )
             if gpt_batch.is_processing_complete():
                 logger.info(
-                    f"sync_batch: Batch {api_key_bundle.latest_external_batch_id} is already processed"
+                    f"sync_batch: Batch {api_key_bundle.label}:{api_key_bundle.latest_external_batch_id} is already processed"
                 )
                 await api_key_bundle.mark_batch_inactive(
                     updated_at=timestamp
@@ -242,17 +243,17 @@ class BatchFileSatellite:
                 return
             else:
                 logger.info(
-                    f"sync_batch: Batch {api_key_bundle.latest_external_batch_id} is due for processing"
+                    f"sync_batch: Batch {api_key_bundle.label}:{api_key_bundle.latest_external_batch_id} is due for processing"
                 )
 
             if batch_response.status == "failed":
                 logger.info(
-                    f"sync_batch: Invoking failed callback for batch {api_key_bundle.latest_external_batch_id}"
+                    f"sync_batch: Invoking failed callback for batch {api_key_bundle.label}:{api_key_bundle.latest_external_batch_id}"
                 )
                 await self.on_batch_failed(api_key_bundle, timestamp, gpt_batch, client)
             elif batch_response.status == "completed":
                 logger.info(
-                    f"sync_batch: Batch completed. Invoking completion callback for batch {gpt_batch.external_batch_id}"
+                    f"sync_batch: Batch {api_key_bundle.label}:{gpt_batch.external_batch_id} completed!"
                 )
                 download_result: BatchDownloadOutput = self.download_batch_output(
                     client=client, gpt_batch=gpt_batch, timestamp=timestamp
@@ -261,7 +262,7 @@ class BatchFileSatellite:
                 # Notify the observer (e.g.: BatchFileStation)
                 if self.on_batch_completed and download_result:
                     logger.info(
-                        f"sync_batch: Invoking completion callback for batch {gpt_batch.external_batch_id}"
+                        f"sync_batch: Invoking completion callback for batch {api_key_bundle.label}:{gpt_batch.external_batch_id}"
                     )
                     await self.on_batch_completed(
                         api_key_bundle,
@@ -274,24 +275,24 @@ class BatchFileSatellite:
                 # shouldn't happen, we should have downloaded the file already in a previous sync
                 # if file not already downloaded, then reset batch requests
                 logger.info(
-                    f"sync_batch: Invoking expired callback for batch {gpt_batch.external_batch_id}"
+                    f"sync_batch: Invoking expired callback for batch {api_key_bundle.label}:{gpt_batch.external_batch_id}"
                 )
                 await self.on_batch_expired(
                     api_key_bundle, timestamp, gpt_batch, client
                 )
             else:
                 logger.info(
-                    f"sync_batch: Batch {gpt_batch.external_batch_id} {batch_response.status} not ready yet. "
-                    f"API key must already be marked in use {api_key_bundle.label}:{api_key_bundle.available_at} [has_active_batch:{api_key_bundle.has_active_batch()}]"
+                    f"sync_batch: Batch {api_key_bundle.label}:{gpt_batch.external_batch_id} ({batch_response.status}) not ready yet. "
+                    f"API key must already have an active batch [has_active_batch:{api_key_bundle.has_active_batch()}]"
                 )
                 # no need to apply cooldown, key must already have been marked in use.
         except OpenAIError as e:
             logger.error(
-                f"OpenAI API error syncing batch {gpt_batch.external_batch_id}: {e}",
+                f"OpenAI API error syncing batch {api_key_bundle.latest_external_batch_id}: {e}",
                 exc_info=True,
             )
         except Exception as e:
             logger.error(
-                f"Unexpected error syncing batch {gpt_batch.external_batch_id}: {e}",
+                f"Unexpected error syncing batch {api_key_bundle.latest_external_batch_id}: {e}",
                 exc_info=True,
             )

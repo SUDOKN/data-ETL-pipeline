@@ -40,6 +40,10 @@ async def upsert_latest_gpt_batch_by_external_batch(
         existing_gpt_batch = await insert_gpt_batch_from_response(
             batch_response=external_batch, api_key_label=api_key_bundle.label
         )
+    else:
+        await update_gpt_batch_from_response(
+            batch_response=external_batch, gpt_batch=existing_gpt_batch
+        )
     return existing_gpt_batch
 
 
@@ -145,9 +149,9 @@ async def update_gpt_batch_from_response(
 
         logger.info(
             f"Updated batch {gpt_batch.external_batch_id}: "
+            f"api_key={gpt_batch.api_key_label}, "
             f"status={gpt_batch.status}, "
             f"requests={gpt_batch.request_counts}"
-            f"api_key={gpt_batch.api_key_label}"
         )
 
     except OpenAIError as e:
@@ -165,7 +169,11 @@ async def get_pending_batches_mapped_by_api_key_label() -> dict[str, GPTBatch]:
     pending_batches: list[GPTBatch] = await GPTBatch.find(
         {
             "status": {
-                "$in": [GPTBatchStatus.VALIDATING.name, GPTBatchStatus.PROCESSING.name]
+                "$in": [
+                    GPTBatchStatus.VALIDATING.name,
+                    GPTBatchStatus.IN_PROGRESS.name,
+                    GPTBatchStatus.PROCESSING.name,
+                ]
             },
             "api_key_label": {"$exists": True},
         }

@@ -1,12 +1,14 @@
 from beanie import Document
 from datetime import datetime
+from pydantic import Field
 
 from core.models.gpt_batch_request_blob import GPTBatchRequestBlob
 from core.models.gpt_batch_response_blob import GPTBatchResponseBlob
+from core.utils.time_util import get_current_time
 
 
 class GPTBatchRequest(Document):
-    created_at: datetime
+    created_at: datetime = Field(default_factory=lambda: get_current_time())
     request: GPTBatchRequestBlob
     batch_id: str | None  # known after batch is uploaded
     response_blob: GPTBatchResponseBlob | None = (

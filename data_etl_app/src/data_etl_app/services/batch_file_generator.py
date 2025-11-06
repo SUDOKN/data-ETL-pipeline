@@ -79,14 +79,14 @@ async def iterate_df_manufacturers_and_write_batch_files(
             .sort("scraped_text_file_num_tokens", 1)  # 1 = ascending
         ) as cursor:
             async for df_mfg_doc in cursor:
-                logger.info(
-                    f"Processing DeferredManufacturer {df_mfg_doc['mfg_etld1']}"
-                )
+                # logger.debug(
+                #     f"Processing DeferredManufacturer {df_mfg_doc['mfg_etld1']}"
+                # )
                 deferred_mfg = DeferredManufacturer(**df_mfg_doc)
                 custom_ids = get_embedded_gpt_request_ids(deferred_mfg)
-                logger.info(
-                    f"Found {len(custom_ids):,} embedded GPTBatchRequest IDs in DeferredManufacturer {deferred_mfg.mfg_etld1}"
-                )
+                # logger.debug(
+                #     f"Found {len(custom_ids):,} embedded GPTBatchRequest IDs in DeferredManufacturer {deferred_mfg.mfg_etld1}"
+                # )
                 all_requests = await find_gpt_batch_requests_by_custom_ids(
                     list(custom_ids)
                 )
@@ -94,10 +94,10 @@ async def iterate_df_manufacturers_and_write_batch_files(
                 found_custom_ids: set[str] = set(all_requests.keys())
                 missing_custom_ids = list(custom_ids - found_custom_ids)
                 if missing_custom_ids:
-                    logger.warning(
-                        f"DeferredManufacturer {deferred_mfg.mfg_etld1} has "
-                        f"{len(missing_custom_ids):,} orphan GPTBatchRequests"
-                    )
+                    # logger.warning(
+                    #     f"DeferredManufacturer {deferred_mfg.mfg_etld1} has "
+                    #     f"{len(missing_custom_ids):,} orphan GPTBatchRequests"
+                    # )
                     df_mfgs_with_orphan_custom_ids_file.add_csv_row(
                         [deferred_mfg.mfg_etld1, str(len(missing_custom_ids))]
                     )

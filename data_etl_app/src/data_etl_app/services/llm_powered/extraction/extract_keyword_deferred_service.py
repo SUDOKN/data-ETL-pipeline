@@ -22,7 +22,7 @@ from data_etl_app.utils.chunk_util import (
 
 from core.models.db.gpt_batch_request import GPTBatchRequest
 from core.services.gpt_batch_request_service import (
-    create_gpt_batch_request,
+    create_base_gpt_batch_request,
     find_gpt_batch_request_ids_only,
 )
 
@@ -156,10 +156,10 @@ async def _get_keyword_search_requests(
         # Process current batch
         for chunk_bounds, chunk_text in batch:
             custom_id = f"{mfg_etld1}>{keyword_type}>llm_search>chunk>{chunk_bounds}"
-            llm_batch_request = create_gpt_batch_request(
+            llm_batch_request = create_base_gpt_batch_request(
                 deferred_at=deferred_at,
                 custom_id=custom_id,
-                text=chunk_text,
+                context=chunk_text,
                 prompt=search_prompt,
                 gpt_model=gpt_model,
                 model_params=model_params,

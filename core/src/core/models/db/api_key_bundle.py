@@ -17,7 +17,7 @@ class APIKeyBundle(Document):
     available_at: datetime
 
     # Updatable
-    updated_at: datetime = Field(default_factory=lambda: get_current_time())
+    updated_at: datetime
     latest_external_batch_id: str | None
 
     async def update_latest_external_batch_id(

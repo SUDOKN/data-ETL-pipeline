@@ -18,7 +18,7 @@ class JSONLBatchFileSummary:
 
 
 class JSONLBatchFile(JSONLFile):
-    unique_ids: set[str]
+    unique_ids: set[str] = set()
     total_requests: int = 0
     total_tokens: int = 0
     size_in_bytes: int = 0

@@ -23,6 +23,8 @@ def download_openai_file(
             )
             return True
         else:
+            # Create parent directory if it doesn't exist
+            # output_path.parent.mkdir(parents=True, exist_ok=True)
             # Download file content
             file_response = client.files.content(openai_file_id)
             with open(output_path, "w", encoding="utf-8") as f:

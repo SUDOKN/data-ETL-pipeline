@@ -13,6 +13,7 @@ from core.models.db.user import User
 from core.models.db.deferred_manufacturer import DeferredManufacturer
 from core.models.db.gpt_batch_request import GPTBatchRequest
 from core.models.db.gpt_batch import GPTBatch
+from core.models.db.api_key_bundle import APIKeyBundle
 
 from core.models.db.manufacturer_user_form import ManufacturerUserForm
 from core.models.db.binary_ground_truth import BinaryGroundTruth
@@ -85,6 +86,7 @@ async def init_db(
             DeferredManufacturer,
             GPTBatchRequest,
             GPTBatch,
+            APIKeyBundle,
             User,
         ],
     )

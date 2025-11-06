@@ -203,6 +203,46 @@ class DatabaseIndexSeeder:
             except Exception as e:
                 logger.error(f"Failed to create index {index['options']['name']}: {e}")
 
+    def create_gpt_batch_indexes(self):
+        """Create indexes for gpt_batches collection."""
+        collection = self.db.gpt_batches
+
+        indexes = [
+            {
+                "keys": [("external_batch_id", 1)],
+                "options": {"name": "gpt_batch_external_batch_id_idx", "unique": True},
+            }
+        ]
+
+        for index in indexes:
+            try:
+                collection.create_index(index["keys"], **index["options"])
+                logger.info(f"Created index: {index['options']['name']}")
+            except Exception as e:
+                logger.error(f"Failed to create index {index['options']['name']}: {e}")
+
+    def create_api_key_bundle_indexes(self):
+        """Create indexes for api_keys collection."""
+        collection = self.db.api_keys
+
+        indexes = [
+            {
+                "keys": [("label", 1)],
+                "options": {"name": "apikey_label_unique_idx", "unique": True},
+            },
+            {
+                "keys": [("key", 1)],
+                "options": {"name": "apikey_key_unique_idx", "unique": True},
+            },
+        ]
+
+        for index in indexes:
+            try:
+                collection.create_index(index["keys"], **index["options"])
+                logger.info(f"Created index: {index['options']['name']}")
+            except Exception as e:
+                logger.error(f"Failed to create index {index['options']['name']}: {e}")
+
     def drop_collection_indexes(self, collection_name: str):
         """Drop all indexes for a specific collection (except _id_)."""
         try:
@@ -241,6 +281,8 @@ class DatabaseIndexSeeder:
             "keyword_ground_truths",
             "gpt_batch_requests",
             "deferred_manufacturers",
+            "gpt_batches",
+            "api_keys",
         ]
 
         logger.info("Dropping all existing custom indexes...")
@@ -280,6 +322,8 @@ class DatabaseIndexSeeder:
             self.create_keyword_ground_truth_indexes()
             self.create_gpt_batch_request_indexes()
             self.create_deferred_manufacturer_indexes()
+            self.create_gpt_batch_indexes()
+            self.create_api_key_bundle_indexes()
 
             logger.info("Database index seeding completed successfully!")
 
@@ -300,6 +344,8 @@ class DatabaseIndexSeeder:
             "keyword_ground_truths",
             "gpt_batch_requests",
             "deferred_manufacturers",
+            "gpt_batches",
+            "api_keys",
         ]
 
         logger.info("Listing existing indexes...")

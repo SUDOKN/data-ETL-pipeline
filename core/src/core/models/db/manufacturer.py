@@ -1,5 +1,5 @@
 from beanie import Document
-from pydantic import BaseModel, Field, field_validator, model_validator
+from pydantic import BaseModel, Field
 from datetime import datetime
 import logging
 from typing import List, Optional
@@ -12,7 +12,6 @@ from core.models.binary_classification_result import (
     BinaryClassificationResult,
 )
 from core.utils.time_util import get_current_time
-from core.utils.url_util import get_normalized_url, get_etld1_from_host
 
 logger = logging.getLogger(__name__)
 

@@ -5,8 +5,8 @@ from typing import Optional
 from core.models.prompt import Prompt
 
 from core.services.gpt_batch_request_service import (
-    create_gpt_batch_request,
-    create_gpt_batch_request,
+    create_base_gpt_batch_request,
+    create_base_gpt_batch_request,
 )
 from core.models.db.gpt_batch_request import GPTBatchRequest
 from open_ai_key_app.models.gpt_model import (
@@ -168,12 +168,12 @@ async def _binary_classify_using_only_first_chunk_deferred(
         end = chunk_bounds.split(":")[1]
         chunk = (chunk_bounds, mfg_text[int(start) : int(end)])
 
-    gpt_batch_request = create_gpt_batch_request(
+    gpt_batch_request = create_base_gpt_batch_request(
         deferred_at=deferred_at,
         custom_id=deferred_binary_classification.chunk_request_id_map[
             deferred_binary_classification.final_chunk_key
         ],
-        text=chunk[1],
+        context=chunk[1],
         prompt=binary_prompt,
         gpt_model=gpt_model,
         model_params=model_params,

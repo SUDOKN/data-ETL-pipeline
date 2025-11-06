@@ -5,6 +5,7 @@ from enum import Enum
 
 class GPTBatchStatus(str, Enum):
     VALIDATING = "validating"
+    IN_PROGRESS = "in_progress"
     PROCESSING = "processing"
     COMPLETED = "completed"
     FAILED = "failed"
@@ -17,7 +18,7 @@ class GPTBatch(Document):
     endpoint: str  # e.g. "/v1/chat/completions"
     input_file_id: str  # e.g. "file-abc123"
     completion_window: str  # e.g. "24h"
-    status: str  # e.g. "validating", "processing", "completed", "failed", "expired"
+    status: str  # e.g. "validating", "in_progress", "processing", "completed", "failed", "expired"
     output_file_id: str | None = None  # e.g. "file-xyz789"
     error_file_id: str | None = None  # e.g. "file-error456"
     created_at: datetime
@@ -46,7 +47,7 @@ class GPTBatch(Document):
         name = "gpt_batches"
 
     class Config:
-        schema_extra = {
+        json_schema_extra = {
             "example": {
                 "batch_id": "batch_abc123",
                 "endpoint": "/v1/chat/completions",

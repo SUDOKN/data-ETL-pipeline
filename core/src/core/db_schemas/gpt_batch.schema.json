@@ -1,0 +1,121 @@
+{
+  "$jsonSchema": {
+    "bsonType": "object",
+    "required": [
+      "external_batch_id",
+      "endpoint",
+      "input_file_id",
+      "completion_window",
+      "status",
+      "created_at",
+      "expires_at",
+      "request_counts",
+      "api_key_label"
+    ],
+    "additionalProperties": false,
+    "properties": {
+      "_id": {
+        "bsonType": "objectId"
+      },
+      "external_batch_id": {
+        "bsonType": "string",
+        "minLength": 1,
+        "description": "External batch ID from OpenAI, e.g., 'batch_abc123'"
+      },
+      "endpoint": {
+        "bsonType": "string",
+        "minLength": 1,
+        "description": "API endpoint for the batch, e.g., '/v1/chat/completions'"
+      },
+      "input_file_id": {
+        "bsonType": "string",
+        "minLength": 1,
+        "description": "Input file ID from OpenAI, e.g., 'file-abc123'"
+      },
+      "completion_window": {
+        "bsonType": "string",
+        "minLength": 1,
+        "description": "Completion window for the batch, e.g., '24h'"
+      },
+      "status": {
+        "bsonType": "string",
+        "enum": [
+          "validating",
+          "in_progress",
+          "processing",
+          "completed",
+          "failed",
+          "expired"
+        ],
+        "description": "Current status of the batch"
+      },
+      "output_file_id": {
+        "bsonType": ["string", "null"],
+        "description": "Output file ID from OpenAI after completion, e.g., 'file-xyz789'"
+      },
+      "error_file_id": {
+        "bsonType": ["string", "null"],
+        "description": "Error file ID from OpenAI if errors occurred, e.g., 'file-error456'"
+      },
+      "created_at": {
+        "bsonType": "date",
+        "description": "Timestamp when the batch was created"
+      },
+      "in_progress_at": {
+        "bsonType": ["date", "null"],
+        "description": "Timestamp when the batch started processing"
+      },
+      "expires_at": {
+        "bsonType": "date",
+        "description": "Timestamp when the batch will expire"
+      },
+      "completed_at": {
+        "bsonType": ["date", "null"],
+        "description": "Timestamp when the batch completed"
+      },
+      "failed_at": {
+        "bsonType": ["date", "null"],
+        "description": "Timestamp when the batch failed"
+      },
+      "expired_at": {
+        "bsonType": ["date", "null"],
+        "description": "Timestamp when the batch expired"
+      },
+      "request_counts": {
+        "bsonType": "object",
+        "required": ["total", "completed", "failed"],
+        "properties": {
+          "total": {
+            "bsonType": "int",
+            "minimum": 0,
+            "description": "Total number of requests in the batch"
+          },
+          "completed": {
+            "bsonType": "int",
+            "minimum": 0,
+            "description": "Number of completed requests"
+          },
+          "failed": {
+            "bsonType": "int",
+            "minimum": 0,
+            "description": "Number of failed requests"
+          }
+        },
+        "description": "Counts of requests by status, e.g., {'total': 100, 'completed': 80, 'failed': 20}"
+      },
+      "metadata": {
+        "bsonType": ["object", "null"],
+        "description": "Optional metadata for the batch"
+      },
+      "api_key_label": {
+        "bsonType": "string",
+        "minLength": 1,
+        "description": "Label for the API key used, e.g., 'sudokn.tool', 'sudokn.tool+1'"
+      },
+      "processing_completed_at": {
+        "bsonType": ["date", "null"],
+        "description": "Timestamp when batch status was recognized and batch was processed"
+      }
+    }
+  }
+}

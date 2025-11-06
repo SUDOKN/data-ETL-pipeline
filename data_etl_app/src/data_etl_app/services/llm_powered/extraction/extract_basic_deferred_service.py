@@ -5,7 +5,7 @@ from typing import Optional
 from core.models.deferred_basic_extraction import DeferredBasicExtraction
 from core.models.db.gpt_batch_request import GPTBatchRequest
 from core.services.gpt_batch_request_service import (
-    create_gpt_batch_request,
+    create_base_gpt_batch_request,
 )
 
 from open_ai_key_app.models.gpt_model import (
@@ -67,10 +67,10 @@ async def find_addresses_from_first_chunk_deferred(
         end = chunk_bounds.split(":")[1]
         chunk = (chunk_bounds, mfg_text[int(start) : int(end)])
 
-    gpt_batch_request = create_gpt_batch_request(
+    gpt_batch_request = create_base_gpt_batch_request(
         deferred_at=deferred_at,
         custom_id=deferred_address_extraction.gpt_request_id,
-        text=chunk[1],
+        context=chunk[1],
         prompt=extract_address_prompt,
         gpt_model=gpt_model,
         model_params=model_params,
@@ -122,10 +122,10 @@ async def find_business_desc_using_only_first_chunk_deferred(
         end = chunk_bounds.split(":")[1]
         chunk = (chunk_bounds, mfg_text[int(start) : int(end)])
 
-    gpt_batch_request = create_gpt_batch_request(
+    gpt_batch_request = create_base_gpt_batch_request(
         deferred_at=deferred_at,
         custom_id=deferred_business_desc_extraction.gpt_request_id,
-        text=chunk[1],
+        context=chunk[1],
         prompt=find_business_desc_prompt,
         gpt_model=gpt_model,
         model_params=model_params,
