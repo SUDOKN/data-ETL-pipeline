@@ -15,7 +15,7 @@ from core.utils.aws.queue.priority_scrape_queue_util import (
     push_item_to_priority_scrape_queue,
 )
 
-from data_etl_app.models.db.manufacturer_user_form import ManufacturerUserForm
+from core.models.db.manufacturer_user_form import ManufacturerUserForm
 from data_etl_app.services.manufacturer_user_form_service import (
     validate_and_create_from_manufacturer,
     get_manufacturer_user_form_by_mfg_etld1,

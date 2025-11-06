@@ -26,8 +26,8 @@ from core.utils.aws.s3.scraped_text_util import (
     download_scraped_text_from_s3_by_mfg_etld1,
 )
 
-from data_etl_app.models.concept_extraction_results import ConceptExtractionResults
-from data_etl_app.models.db.concept_ground_truth import (
+from core.models.concept_extraction_results import ConceptExtractionResults
+from core.models.db.concept_ground_truth import (
     ConceptGroundTruth,
     ConceptResultCorrection,
 )

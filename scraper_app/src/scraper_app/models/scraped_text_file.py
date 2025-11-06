@@ -70,7 +70,7 @@ class ScrapedTextFile(BaseModel):
     @classmethod
     async def download_from_s3_and_create(
         cls, mfg_etld1: str, s3_version_id: str
-    ) -> tuple[ScrapedTextFile, None] | tuple[None, Exception]:
+    ) -> ScrapedTextFile:
         try:
             scraped_text, _version_id = (
                 await download_scraped_text_from_s3_by_mfg_etld1(
@@ -96,25 +96,22 @@ class ScrapedTextFile(BaseModel):
                 scraped_text, urls_scraped, urls_failed
             )
 
-            return (
-                cls(
-                    etld1=mfg_etld1,
-                    s3_version_id=s3_version_id,
-                    num_tokens=num_tokens,
-                    text=scraped_text,
-                    urls_scraped=urls_scraped,
-                    urls_failed=urls_failed,
-                    success_rate=success_rate,
-                    is_valid=is_valid,
-                    last_modified_on=last_modified_on,
-                ),
-                None,
+            return cls(
+                etld1=mfg_etld1,
+                s3_version_id=s3_version_id,
+                num_tokens=num_tokens,
+                text=scraped_text,
+                urls_scraped=urls_scraped,
+                urls_failed=urls_failed,
+                success_rate=success_rate,
+                is_valid=is_valid,
+                last_modified_on=last_modified_on,
             )
         except Exception as e:
             logger.error(
                 f"Error creating ScrapedTextFile for {mfg_etld1} with version ID {s3_version_id}: {e}"
             )
-            return None, e
+            raise e
 
     @classmethod
     async def can_delete_version(

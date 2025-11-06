@@ -10,14 +10,15 @@ from core.models.field_types import (
     OntologyVersionIDType,
 )
 
-from data_etl_app.models.concept_extraction_results import (
+from core.models.concept_extraction_results import (
     ConceptSearchChunkStats,
     ConceptExtractionStats,
     ConceptExtractionResults,
 )
 from data_etl_app.models.skos_concept import Concept
+from data_etl_app.models.types_and_enums import ConceptTypeEnum
 from data_etl_app.services.llm_powered.map.map_known_to_unknown_service import (
-    mapKnownToUnknown,
+    map_known_concepts_with_found_keywords,
 )
 from data_etl_app.services.brute_search_service import brute_search
 from data_etl_app.services.llm_powered.search.llm_search_service import llm_search
@@ -51,7 +52,7 @@ async def extract_certificates(
     ontology_version_id, known_certificates = ontology_service.certificates
     return await _extract_concept_data(
         extraction_timestamp,
-        "certificates",
+        ConceptTypeEnum.certificates,
         mfg_etld1,
         text,
         ontology_version_id,
@@ -77,7 +78,7 @@ async def extract_industries(
     ontology_version_id, known_industries = ontology_service.industries
     return await _extract_concept_data(
         extraction_timestamp,
-        "industries",
+        ConceptTypeEnum.industries,
         mfg_etld1,
         text,
         ontology_version_id,
@@ -103,7 +104,7 @@ async def extract_processes(
     ontology_version_id, known_processes = ontology_service.process_caps
     return await _extract_concept_data(
         extraction_timestamp,
-        "process_caps",
+        ConceptTypeEnum.process_caps,
         mfg_etld1,
         text,
         ontology_version_id,
@@ -129,7 +130,7 @@ async def extract_materials(
     ontology_version_id, known_materials = ontology_service.material_caps
     return await _extract_concept_data(
         extraction_timestamp,
-        "material_caps",
+        ConceptTypeEnum.material_caps,
         mfg_etld1,
         text,
         ontology_version_id,
@@ -144,11 +145,11 @@ async def extract_materials(
 
 async def _extract_concept_data(
     extraction_timestamp: datetime,
-    concept_type: str,  # used for logging and debugging
+    concept_type: ConceptTypeEnum,  # used for logging and debugging
     mfg_etld1: str,
     text: str,
     ontology_version_id: OntologyVersionIDType,
-    known_concepts: list[Concept],
+    known_concepts: set[Concept],
     search_prompt: Prompt,
     map_prompt: Prompt,
     chunk_strategy: ChunkingStrat,
@@ -166,7 +167,7 @@ async def _extract_concept_data(
         ontology_version_id=ontology_version_id,
         mapping={},
         chunked_stats={},
-        unmapped_llm=[],
+        unmapped_llm=set(),
     )
 
     """
@@ -209,8 +210,10 @@ async def _extract_concept_data(
     chunk_results = await asyncio.gather(*tasks)
 
     # orphan_brutes: set[Concept] = set()
-    unmapped_llm: set[str] = set()
-    mutually_agreed_concepts: set[Concept] = set()
+    unmatched_keywords: set[str] = set()
+    matched_known_concepts: set[Concept] = (
+        set()
+    )  # concepts that we have in our vocabular and llm also found them in the text
 
     for bounds, brute_set, llm_set in chunk_results:
         stats.chunked_stats[bounds] = ConceptSearchChunkStats(
@@ -221,20 +224,28 @@ async def _extract_concept_data(
             unmapped_llm=set(),
         )
 
+        matched_concepts_in_chunk, unmatched_keywords_in_chunk = (
+            get_matched_concepts_and_unmatched_keywords(known_concepts, llm_set)
+        )
+
+        """
         # add MUTUALLY AGREED to results
         for kc in known_concepts:
             common = kc.matchLabels & llm_set
             if common:
                 stats.chunked_stats[bounds].results.add(kc.name)
-                mutually_agreed_concepts.add(kc)
+                mutually_known_concepts.add(kc)
                 llm_set -= common
 
         # recalculate orphan brute and llm sets
-        # orphan_brutes |= brute_set - mutually_agreed_concepts
+        # orphan_brutes |= brute_set - mutually_known_concepts
         unmapped_llm |= llm_set
+        """
+        matched_known_concepts |= matched_concepts_in_chunk
+        unmatched_keywords |= unmatched_keywords_in_chunk
 
     results = {
-        c.name for c in mutually_agreed_concepts
+        c.name for c in matched_known_concepts
     }  # add mutually agreed concept labels to results
 
     """
@@ -247,12 +258,12 @@ async def _extract_concept_data(
     cons:
         1. may discard true positives (highly unlikely, can be solved by inc num_passes and keeping intersections)
     """
-    map_results = await mapKnownToUnknown(
-        concept_type,
-        mfg_etld1,
-        known_concepts,
-        unmapped_llm.copy(),
-        map_prompt.text,
+    map_results = await map_known_concepts_with_found_keywords(
+        concept_type=concept_type,
+        mfg_etld1=mfg_etld1,
+        known_concepts=known_concepts,
+        unmatched_keywords=unmatched_keywords,
+        prompt_text=map_prompt.text,
     )
 
     # UPDATE unmapped_llm and mapping in chunk_stats
@@ -262,17 +273,17 @@ async def _extract_concept_data(
 
     for _, chunk_stats in stats.chunked_stats.items():
         chunk_stats.unmapped_llm = final_unmapped_llm & chunk_stats.llm
-        for mk, mu in map_results["known_to_unknowns"].items():
+        for mk, mus in map_results["known_to_unknowns"].items():
             # find all elements in mu that are also in chunk_level unmapped_llm
             # insert mk as key and those elements as value
 
-            chunk_mu = [unknown for unknown in mu if unknown in chunk_stats.llm]
+            chunk_mus = chunk_stats.llm & mus
             # NOTE: it is a gurantee that unknown belongs to unmapped_llm because of mapKnownToUnknown logic
             # so we need not find the subset unmapped_unknowns in chunk_stats.llm,
             # we can directly use chunk_stats.llm for filtering
-            if chunk_mu:
+            if chunk_mus:
                 chunk_stats.results.add(mk.name)
-                chunk_stats.mapping[mk.name] = chunk_mu
+                chunk_stats.mapping[mk.name] = chunk_mus
 
     # UPDATE results with newly mapped known concept labels
     mapped_known_concept_labels = set(
@@ -283,11 +294,53 @@ async def _extract_concept_data(
     logger.debug(f"Remaining orphan llm:")
     logger.debug(f"final_unmapped_llm {len(final_unmapped_llm)}:{final_unmapped_llm}")
 
-    stats.unmapped_llm = list(final_unmapped_llm)
-    stats.mapping = {mk.name: mu for mk, mu in map_results["known_to_unknowns"].items()}
+    stats.unmapped_llm = final_unmapped_llm
+    stats.mapping = {
+        mk.name: mus for mk, mus in map_results["known_to_unknowns"].items()
+    }
 
     return ConceptExtractionResults(
         extracted_at=extraction_timestamp,
         results=list(results),
         stats=stats,
     )
+
+
+async def get_matched_concepts_and_unmatched_keywords_by_concept_type(
+    concept_type: ConceptTypeEnum,
+    llm_search_results: set[str],
+) -> tuple[set[Concept], set[str]]:
+    ontology_service = await get_ontology_service()
+    if concept_type == ConceptTypeEnum.certificates:
+        _, known_concepts = ontology_service.certificates
+    elif concept_type == ConceptTypeEnum.industries:
+        _, known_concepts = ontology_service.industries
+    elif concept_type == ConceptTypeEnum.process_caps:
+        _, known_concepts = ontology_service.process_caps
+    elif concept_type == ConceptTypeEnum.material_caps:
+        _, known_concepts = ontology_service.material_caps
+    else:
+        raise ValueError(f"Unknown concept type: {concept_type}")
+
+    return get_matched_concepts_and_unmatched_keywords(
+        known_concepts, llm_search_results
+    )
+
+
+def get_matched_concepts_and_unmatched_keywords(
+    known_concepts: set[Concept], llm_search_results: set[str]
+) -> tuple[set[Concept], set[str]]:
+    matched_concepts: set[Concept] = set()
+    unmatched_keywords: set[str] = llm_search_results.copy()
+    for kc in known_concepts:
+        common = kc.matchLabels & llm_search_results
+        if common:
+            matched_concepts.add(kc)
+            unmatched_keywords -= common
+    return matched_concepts, unmatched_keywords
+
+
+# def ingest_concept_search_results_into_stats(
+#     stats: ConceptExtractionStats,
+#     chunk_results: tuple[str, set[Concept], set[str]]
+# ) -> list[str]:

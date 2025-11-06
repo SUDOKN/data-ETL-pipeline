@@ -3,7 +3,7 @@ from typing import Optional
 from core.models.field_types import MfgETLDType
 from core.models.db.manufacturer import Manufacturer
 
-from data_etl_app.models.db.manufacturer_user_form import ManufacturerUserForm
+from core.models.db.manufacturer_user_form import ManufacturerUserForm
 
 
 async def validate_and_create_from_manufacturer(

@@ -37,8 +37,8 @@ from core.services.manufacturer_service import (
 
 from scraper_app.models.scraped_text_file import ScrapedTextFile
 
-from data_etl_app.models.db.binary_ground_truth import HumanBinaryDecision
-from data_etl_app.models.binary_classification_result import BinaryClassificationResult
+from core.models.db.binary_ground_truth import HumanBinaryDecision
+from core.models.binary_classification_result import BinaryClassificationResult
 from data_etl_app.models.types_and_enums import BinaryClassificationTypeEnum
 from data_etl_app.services.ground_truth.binary_ground_truth_service import (
     get_binary_ground_truth,
@@ -46,7 +46,7 @@ from data_etl_app.services.ground_truth.binary_ground_truth_service import (
 from data_etl_app.services.llm_powered.search.llm_search_service import (
     find_business_desc_using_only_first_chunk,
 )
-from data_etl_app.services.llm_powered.extraction.extract_address_service import (
+from data_etl_app.services.llm_powered.extraction.extract_basic_service import (
     extract_address_from_n_chunks,
 )
 from data_etl_app.services.llm_powered.extraction.extract_keyword_service import (

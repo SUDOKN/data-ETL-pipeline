@@ -7,7 +7,7 @@ from core.models.field_types import (
 )
 
 from data_etl_app.models.types_and_enums import BinaryClassificationTypeEnum
-from data_etl_app.models.db.binary_ground_truth import (
+from core.models.db.binary_ground_truth import (
     BinaryGroundTruth,
     HumanDecisionLog,
     HumanBinaryDecision,

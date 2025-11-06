@@ -12,8 +12,8 @@ from core.utils.aws.s3.scraped_text_util import (
 from core.models.db.manufacturer import Manufacturer
 from core.models.field_types import OntologyVersionIDType, S3FileVersionIDType
 
-from data_etl_app.models.concept_extraction_results import ConceptExtractionResults
-from data_etl_app.models.db.concept_ground_truth import (
+from core.models.concept_extraction_results import ConceptExtractionResults
+from core.models.db.concept_ground_truth import (
     ConceptGroundTruth,
     ConceptResultCorrection,
     ConceptResultCorrectionLog,

@@ -3,25 +3,11 @@ import logging
 import rdflib
 from rdflib.term import URIRef
 from rdflib.namespace import RDFS, SKOS
-from urllib.parse import quote
 from typing import Callable, List
 
 from data_etl_app.models.skos_concept import ConceptNode, Concept
 
 logger = logging.getLogger(__name__)
-
-
-def uri_strip(val: str) -> str:
-    if val is None:
-        raise ValueError("Value for URI stripping cannot be None")
-
-    # Safe chars including underscore
-    safe_chars = "~.-_0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
-
-    # Simple percent-encoding, everything except safe chars is encoded
-    suffix = quote(str(val), safe=safe_chars)
-
-    return suffix
 
 
 def get_graph(rdf_raw: str) -> rdflib.Graph:
@@ -118,7 +104,7 @@ def tree_list_to_flat_helper(
     return result
 
 
-def tree_list_to_flat(tree_knowns: list[ConceptNode]) -> list[Concept]:
+def tree_list_to_flat(tree_knowns: list[ConceptNode]) -> set[Concept]:
     """
     Returns a flat list of Concepts from a list of ConceptNodes.
     Basically, children are replaced with ancestors.
@@ -127,7 +113,7 @@ def tree_list_to_flat(tree_knowns: list[ConceptNode]) -> list[Concept]:
     for known in tree_knowns:
         flat_knowns.extend(tree_list_to_flat_helper(known, []))
 
-    return flat_knowns
+    return set(flat_knowns)
 
 
 def transform_node(node: ConceptNode, fn: Callable[[ConceptNode], ConceptNode]):

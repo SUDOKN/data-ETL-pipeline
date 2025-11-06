@@ -13,7 +13,7 @@
       },
       "request": {
         "bsonType": "object",
-        "required": ["custom_id", "method", "url", "body"],
+        "required": ["custom_id", "body"],
         "additionalProperties": false,
         "properties": {
           "custom_id": {
@@ -24,12 +24,11 @@
           "method": {
             "bsonType": "string",
             "enum": ["POST"],
-            "description": "HTTP method for the request"
+            "description": "HTTP method for the request (optional, defaults to POST)"
           },
           "url": {
             "bsonType": "string",
-            "pattern": "^/v1/chat/completions$",
-            "description": "API endpoint URL"
+            "description": "API endpoint URL (optional, defaults to /v1/chat/completions)"
           },
           "body": {
             "bsonType": "object",
@@ -67,10 +66,6 @@
         "bsonType": ["string", "null"],
         "description": "OpenAI batch ID, known after batch is uploaded"
       },
-      "request_sent_at": {
-        "bsonType": ["date", "null"],
-        "description": "Timestamp when request was sent to GPT"
-      },
       "response_blob": {
         "bsonType": ["object", "null"],
         "required": ["batch_id", "request_custom_id", "response"],
@@ -87,54 +82,26 @@
           },
           "response": {
             "bsonType": "object",
-            "required": ["status_code", "gpt_internal_request_id", "body"],
+            "required": ["status_code", "body"],
             "properties": {
               "status_code": {
                 "bsonType": "int",
                 "description": "HTTP status code of the response"
               },
-              "gpt_internal_request_id": {
-                "bsonType": "string",
-                "minLength": 1,
-                "description": "Internal request ID from GPT"
-              },
               "body": {
                 "bsonType": "object",
-                "required": [
-                  "completion_id",
-                  "object",
-                  "created",
-                  "model",
-                  "choices",
-                  "usage",
-                  "system_fingerprint"
-                ],
+                "required": ["created", "choices", "usage"],
                 "properties": {
-                  "completion_id": {
-                    "bsonType": "string",
-                    "minLength": 1,
-                    "description": "Chat completion ID"
-                  },
-                  "object": {
-                    "bsonType": "string",
-                    "enum": ["chat.completion"],
-                    "description": "Object type"
-                  },
                   "created": {
                     "bsonType": "date",
                     "description": "Creation timestamp"
-                  },
-                  "model": {
-                    "bsonType": "string",
-                    "minLength": 1,
-                    "description": "Model used for completion"
                   },
                   "choices": {
                     "bsonType": "array",
                     "minItems": 1,
                     "items": {
                       "bsonType": "object",
-                      "required": ["index", "message", "finish_reason"],
+                      "required": ["index", "message"],
                       "properties": {
                         "index": {
                           "bsonType": "int",
@@ -152,12 +119,6 @@
                               "bsonType": "string"
                             }
                           }
-                        },
-                        "logprobs": {
-                          "bsonType": ["object", "null"]
-                        },
-                        "finish_reason": {
-                          "bsonType": "string"
                         }
                       }
                     }
@@ -183,9 +144,6 @@
                         "minimum": 0
                       }
                     }
-                  },
-                  "system_fingerprint": {
-                    "bsonType": "string"
                   }
                 }
               }
@@ -193,14 +151,10 @@
           },
           "error": {
             "bsonType": ["object", "null"],
-            "description": "Error object if request failed"
+            "description": "Error information if the batch request failed"
           }
         },
         "description": "Response from GPT batch API"
-      },
-      "response_received_at": {
-        "bsonType": ["date", "null"],
-        "description": "Timestamp when response was received from GPT"
       }
     }
   }

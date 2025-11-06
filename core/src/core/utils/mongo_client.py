@@ -10,13 +10,14 @@ from core.models.db.extraction_error import ExtractionError
 from core.models.db.scraping_error import ScrapingError
 from core.models.db.user import User
 
-from open_ai_key_app.models.db.deferred_manufacturer import DeferredManufacturer
-from open_ai_key_app.models.db.gpt_batch_request import GPTBatchRequest
+from core.models.db.deferred_manufacturer import DeferredManufacturer
+from core.models.db.gpt_batch_request import GPTBatchRequest
+from core.models.db.gpt_batch import GPTBatch
 
-from data_etl_app.models.db.manufacturer_user_form import ManufacturerUserForm
-from data_etl_app.models.db.binary_ground_truth import BinaryGroundTruth
-from data_etl_app.models.db.concept_ground_truth import ConceptGroundTruth
-from data_etl_app.models.db.keyword_ground_truth import KeywordGroundTruth
+from core.models.db.manufacturer_user_form import ManufacturerUserForm
+from core.models.db.binary_ground_truth import BinaryGroundTruth
+from core.models.db.concept_ground_truth import ConceptGroundTruth
+from core.models.db.keyword_ground_truth import KeywordGroundTruth
 
 
 MONGO_DB_URI = os.getenv("MONGO_DB_URI")
@@ -83,6 +84,14 @@ async def init_db(
             KeywordGroundTruth,
             DeferredManufacturer,
             GPTBatchRequest,
+            GPTBatch,
             User,
         ],
     )
+
+
+async def get_mongo_database():
+    """Get direct access to MongoDB database for raw collection operations."""
+    codec_options = CodecOptions(tz_aware=True, tzinfo=timezone.utc)
+    client = AsyncMongoClient(settings.MONGO_URI)
+    return client.get_default_database().with_options(codec_options=codec_options)

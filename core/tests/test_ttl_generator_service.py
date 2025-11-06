@@ -30,7 +30,7 @@ from data_etl_app.dependencies.aws_clients import (
 from data_etl_app.models.ontology import Ontology
 from core.models.db.manufacturer import Address, BusinessDescriptionResult
 from core.services.ttl_generator_service import generate_triples
-from data_etl_app.models.db.manufacturer_user_form import (
+from core.models.db.manufacturer_user_form import (
     ManufacturerUserForm,
 )
 

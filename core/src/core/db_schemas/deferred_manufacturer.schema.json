@@ -5,6 +5,7 @@
       "mfg_etld1",
       "created_at",
       "updated_at",
+      "scraped_text_file_num_tokens",
       "scraped_text_file_version_id"
     ],
     "additionalProperties": false,
@@ -24,6 +25,9 @@
         "bsonType": "date",
         "description": "Timestamp when the record was last updated"
       },
+      "scraped_text_file_num_tokens": {
+        "bsonType": "int"
+      },
       "scraped_text_file_version_id": {
         "bsonType": "string",
         "minLength": 25,
@@ -31,379 +35,348 @@
       },
       "is_manufacturer": {
         "bsonType": ["object", "null"],
-        "required": ["deferred_stats"],
+        "required": [
+          "prompt_version_id",
+          "final_chunk_key",
+          "chunk_request_id_map"
+        ],
         "properties": {
-          "deferred_stats": {
+          "prompt_version_id": {
+            "bsonType": "string",
+            "minLength": 1,
+            "description": "S3 file version ID of the prompt"
+          },
+          "final_chunk_key": {
+            "bsonType": "string",
+            "minLength": 1,
+            "description": "Key of the final chunk to process"
+          },
+          "chunk_request_id_map": {
             "bsonType": "object",
-            "required": [
-              "prompt_version_id",
-              "final_chunk_key",
-              "chunk_batch_request_id_map"
-            ],
-            "properties": {
-              "prompt_version_id": {
-                "bsonType": "string",
-                "minLength": 1,
-                "description": "S3 file version ID of the prompt"
-              },
-              "final_chunk_key": {
-                "bsonType": "string",
-                "minLength": 1,
-                "description": "Key of the final chunk to process"
-              },
-              "chunk_batch_request_id_map": {
-                "bsonType": "object",
-                "description": "Map of chunk keys to GPT batch request custom IDs",
-                "additionalProperties": {
-                  "bsonType": "string"
-                }
-              }
+            "description": "Map of chunk keys to GPT batch request custom IDs",
+            "additionalProperties": {
+              "bsonType": "string"
             }
           }
         }
       },
       "is_contract_manufacturer": {
         "bsonType": ["object", "null"],
-        "required": ["deferred_stats"],
+        "required": [
+          "prompt_version_id",
+          "final_chunk_key",
+          "chunk_request_id_map"
+        ],
         "properties": {
-          "deferred_stats": {
+          "prompt_version_id": {
+            "bsonType": "string",
+            "minLength": 1,
+            "description": "S3 file version ID of the prompt"
+          },
+          "final_chunk_key": {
+            "bsonType": "string",
+            "minLength": 1,
+            "description": "Key of the final chunk to process"
+          },
+          "chunk_request_id_map": {
             "bsonType": "object",
-            "required": [
-              "prompt_version_id",
-              "final_chunk_key",
-              "chunk_batch_request_id_map"
-            ],
-            "properties": {
-              "prompt_version_id": {
-                "bsonType": "string",
-                "minLength": 1,
-                "description": "S3 file version ID of the prompt"
-              },
-              "final_chunk_key": {
-                "bsonType": "string",
-                "minLength": 1,
-                "description": "Key of the final chunk to process"
-              },
-              "chunk_batch_request_id_map": {
-                "bsonType": "object",
-                "description": "Map of chunk keys to GPT batch request custom IDs",
-                "additionalProperties": {
-                  "bsonType": "string"
-                }
-              }
+            "description": "Map of chunk keys to GPT batch request custom IDs",
+            "additionalProperties": {
+              "bsonType": "string"
             }
           }
         }
       },
       "is_product_manufacturer": {
         "bsonType": ["object", "null"],
-        "required": ["deferred_stats"],
+        "required": [
+          "prompt_version_id",
+          "final_chunk_key",
+          "chunk_request_id_map"
+        ],
         "properties": {
-          "deferred_stats": {
+          "prompt_version_id": {
+            "bsonType": "string",
+            "minLength": 1,
+            "description": "S3 file version ID of the prompt"
+          },
+          "final_chunk_key": {
+            "bsonType": "string",
+            "minLength": 1,
+            "description": "Key of the final chunk to process"
+          },
+          "chunk_request_id_map": {
             "bsonType": "object",
-            "required": [
-              "prompt_version_id",
-              "final_chunk_key",
-              "chunk_batch_request_id_map"
-            ],
-            "properties": {
-              "prompt_version_id": {
-                "bsonType": "string",
-                "minLength": 1,
-                "description": "S3 file version ID of the prompt"
-              },
-              "final_chunk_key": {
-                "bsonType": "string",
-                "minLength": 1,
-                "description": "Key of the final chunk to process"
-              },
-              "chunk_batch_request_id_map": {
-                "bsonType": "object",
-                "description": "Map of chunk keys to GPT batch request custom IDs",
-                "additionalProperties": {
-                  "bsonType": "string"
-                }
-              }
+            "description": "Map of chunk keys to GPT batch request custom IDs",
+            "additionalProperties": {
+              "bsonType": "string"
             }
           }
         }
       },
       "addresses": {
-        "bsonType": ["array", "null"],
-        "items": {
-          "bsonType": "string",
-          "minLength": 1,
-          "description": "GPT batch request custom ID"
+        "bsonType": ["object", "null"],
+        "required": ["prompt_version_id", "gpt_request_id"],
+        "properties": {
+          "prompt_version_id": {
+            "bsonType": "string",
+            "minLength": 1,
+            "description": "S3 file version ID of the prompt"
+          },
+          "gpt_request_id": {
+            "bsonType": "string",
+            "minLength": 1,
+            "description": "GPT batch request custom ID"
+          }
         }
       },
       "business_desc": {
-        "bsonType": ["string", "null"],
-        "description": "GPT batch request custom ID"
+        "bsonType": ["object", "null"],
+        "required": ["prompt_version_id", "gpt_request_id"],
+        "properties": {
+          "prompt_version_id": {
+            "bsonType": "string",
+            "minLength": 1,
+            "description": "S3 file version ID of the prompt"
+          },
+          "gpt_request_id": {
+            "bsonType": "string",
+            "minLength": 1,
+            "description": "GPT batch request custom ID"
+          }
+        }
       },
       "products": {
         "bsonType": ["object", "null"],
-        "required": ["deferred_stats"],
+        "required": ["extract_prompt_version_id", "chunk_request_id_map"],
         "properties": {
-          "deferred_stats": {
+          "extract_prompt_version_id": {
+            "bsonType": "string",
+            "minLength": 1,
+            "description": "S3 file version ID of the extraction prompt"
+          },
+          "chunk_request_id_map": {
             "bsonType": "object",
-            "required": [
-              "extract_prompt_version_id",
-              "chunk_batch_request_id_map"
-            ],
-            "properties": {
-              "extract_prompt_version_id": {
-                "bsonType": "string",
-                "minLength": 1,
-                "description": "S3 file version ID of the extraction prompt"
-              },
-              "chunk_batch_request_id_map": {
-                "bsonType": "object",
-                "description": "Map of chunk keys to GPT batch request custom IDs",
-                "additionalProperties": {
-                  "bsonType": "string"
-                }
-              }
+            "description": "Map of chunk keys to GPT batch request custom IDs",
+            "additionalProperties": {
+              "bsonType": "string"
             }
           }
         }
       },
       "certificates": {
         "bsonType": ["object", "null"],
-        "required": ["deferred_stats"],
+        "required": [
+          "extract_prompt_version_id",
+          "map_prompt_version_id",
+          "ontology_version_id",
+          "chunk_request_bundle_map"
+        ],
         "properties": {
-          "deferred_stats": {
+          "extract_prompt_version_id": {
+            "bsonType": "string",
+            "minLength": 1,
+            "description": "S3 file version ID of the extraction prompt"
+          },
+          "map_prompt_version_id": {
+            "bsonType": "string",
+            "minLength": 1,
+            "description": "S3 file version ID of the mapping prompt"
+          },
+          "ontology_version_id": {
+            "bsonType": "string",
+            "minLength": 1,
+            "description": "Version ID of the ontology"
+          },
+          "chunk_request_bundle_map": {
             "bsonType": "object",
-            "required": [
-              "extract_prompt_version_id",
-              "map_prompt_version_id",
-              "ontology_version_id",
-              "chunked_stats_batch_request_map"
-            ],
-            "properties": {
-              "extract_prompt_version_id": {
-                "bsonType": "string",
-                "minLength": 1,
-                "description": "S3 file version ID of the extraction prompt"
-              },
-              "map_prompt_version_id": {
-                "bsonType": "string",
-                "minLength": 1,
-                "description": "S3 file version ID of the mapping prompt"
-              },
-              "ontology_version_id": {
-                "bsonType": "string",
-                "minLength": 1,
-                "description": "Version ID of the ontology"
-              },
-              "chunked_stats_batch_request_map": {
-                "bsonType": "object",
-                "description": "Map of chunk keys to concept search batch request bundles",
-                "additionalProperties": {
-                  "bsonType": "object",
-                  "required": ["brute", "llm_batch_request_id"],
-                  "properties": {
-                    "brute": {
-                      "bsonType": "array",
-                      "uniqueItems": true,
-                      "items": {
-                        "bsonType": "string",
-                        "minLength": 1
-                      },
-                      "description": "Brute force search results"
-                    },
-                    "llm_batch_request_id": {
-                      "bsonType": "string",
-                      "minLength": 1,
-                      "description": "GPT batch request custom ID for LLM extraction"
-                    },
-                    "mapping_batch_request_id": {
-                      "bsonType": ["string", "null"],
-                      "description": "GPT batch request custom ID for mapping (executed in different batch)"
-                    }
-                  }
+            "description": "Map of chunk keys to concept search batch request bundles",
+            "additionalProperties": {
+              "bsonType": "object",
+              "required": ["brute", "llm_search_request_id"],
+              "properties": {
+                "brute": {
+                  "bsonType": "array",
+                  "uniqueItems": true,
+                  "items": {
+                    "bsonType": "string",
+                    "minLength": 1
+                  },
+                  "description": "Brute force search results"
+                },
+                "llm_search_request_id": {
+                  "bsonType": "string",
+                  "minLength": 1,
+                  "description": "GPT batch request custom ID for LLM extraction"
                 }
               }
             }
+          },
+          "llm_mapping_request_id": {
+            "bsonType": ["string", "null"],
+            "description": "GPT batch request custom ID for mapping (executed in different batch)"
           }
         }
       },
       "industries": {
         "bsonType": ["object", "null"],
-        "required": ["deferred_stats"],
+        "required": [
+          "extract_prompt_version_id",
+          "map_prompt_version_id",
+          "ontology_version_id",
+          "chunk_request_bundle_map"
+        ],
         "properties": {
-          "deferred_stats": {
+          "extract_prompt_version_id": {
+            "bsonType": "string",
+            "minLength": 1,
+            "description": "S3 file version ID of the extraction prompt"
+          },
+          "map_prompt_version_id": {
+            "bsonType": "string",
+            "minLength": 1,
+            "description": "S3 file version ID of the mapping prompt"
+          },
+          "ontology_version_id": {
+            "bsonType": "string",
+            "minLength": 1,
+            "description": "Version ID of the ontology"
+          },
+          "chunk_request_bundle_map": {
             "bsonType": "object",
-            "required": [
-              "extract_prompt_version_id",
-              "map_prompt_version_id",
-              "ontology_version_id",
-              "chunked_stats_batch_request_map"
-            ],
-            "properties": {
-              "extract_prompt_version_id": {
-                "bsonType": "string",
-                "minLength": 1,
-                "description": "S3 file version ID of the extraction prompt"
-              },
-              "map_prompt_version_id": {
-                "bsonType": "string",
-                "minLength": 1,
-                "description": "S3 file version ID of the mapping prompt"
-              },
-              "ontology_version_id": {
-                "bsonType": "string",
-                "minLength": 1,
-                "description": "Version ID of the ontology"
-              },
-              "chunked_stats_batch_request_map": {
-                "bsonType": "object",
-                "description": "Map of chunk keys to concept search batch request bundles",
-                "additionalProperties": {
-                  "bsonType": "object",
-                  "required": ["brute", "llm_batch_request_id"],
-                  "properties": {
-                    "brute": {
-                      "bsonType": "array",
-                      "uniqueItems": true,
-                      "items": {
-                        "bsonType": "string",
-                        "minLength": 1
-                      },
-                      "description": "Brute force search results"
-                    },
-                    "llm_batch_request_id": {
-                      "bsonType": "string",
-                      "minLength": 1,
-                      "description": "GPT batch request custom ID for LLM extraction"
-                    },
-                    "mapping_batch_request_id": {
-                      "bsonType": ["string", "null"],
-                      "description": "GPT batch request custom ID for mapping (executed in different batch)"
-                    }
-                  }
+            "description": "Map of chunk keys to concept search batch request bundles",
+            "additionalProperties": {
+              "bsonType": "object",
+              "required": ["brute", "llm_search_request_id"],
+              "properties": {
+                "brute": {
+                  "bsonType": "array",
+                  "uniqueItems": true,
+                  "items": {
+                    "bsonType": "string",
+                    "minLength": 1
+                  },
+                  "description": "Brute force search results"
+                },
+                "llm_search_request_id": {
+                  "bsonType": "string",
+                  "minLength": 1,
+                  "description": "GPT batch request custom ID for LLM extraction"
                 }
               }
             }
+          },
+          "llm_mapping_request_id": {
+            "bsonType": ["string", "null"],
+            "description": "GPT batch request custom ID for mapping (executed in different batch)"
           }
         }
       },
       "process_caps": {
         "bsonType": ["object", "null"],
-        "required": ["deferred_stats"],
+        "required": [
+          "extract_prompt_version_id",
+          "map_prompt_version_id",
+          "ontology_version_id",
+          "chunk_request_bundle_map"
+        ],
         "properties": {
-          "deferred_stats": {
+          "extract_prompt_version_id": {
+            "bsonType": "string",
+            "minLength": 1,
+            "description": "S3 file version ID of the extraction prompt"
+          },
+          "map_prompt_version_id": {
+            "bsonType": "string",
+            "minLength": 1,
+            "description": "S3 file version ID of the mapping prompt"
+          },
+          "ontology_version_id": {
+            "bsonType": "string",
+            "minLength": 1,
+            "description": "Version ID of the ontology"
+          },
+          "chunk_request_bundle_map": {
             "bsonType": "object",
-            "required": [
-              "extract_prompt_version_id",
-              "map_prompt_version_id",
-              "ontology_version_id",
-              "chunked_stats_batch_request_map"
-            ],
-            "properties": {
-              "extract_prompt_version_id": {
-                "bsonType": "string",
-                "minLength": 1,
-                "description": "S3 file version ID of the extraction prompt"
-              },
-              "map_prompt_version_id": {
-                "bsonType": "string",
-                "minLength": 1,
-                "description": "S3 file version ID of the mapping prompt"
-              },
-              "ontology_version_id": {
-                "bsonType": "string",
-                "minLength": 1,
-                "description": "Version ID of the ontology"
-              },
-              "chunked_stats_batch_request_map": {
-                "bsonType": "object",
-                "description": "Map of chunk keys to concept search batch request bundles",
-                "additionalProperties": {
-                  "bsonType": "object",
-                  "required": ["brute", "llm_batch_request_id"],
-                  "properties": {
-                    "brute": {
-                      "bsonType": "array",
-                      "uniqueItems": true,
-                      "items": {
-                        "bsonType": "string",
-                        "minLength": 1
-                      },
-                      "description": "Brute force search results"
-                    },
-                    "llm_batch_request_id": {
-                      "bsonType": "string",
-                      "minLength": 1,
-                      "description": "GPT batch request custom ID for LLM extraction"
-                    },
-                    "mapping_batch_request_id": {
-                      "bsonType": ["string", "null"],
-                      "description": "GPT batch request custom ID for mapping (executed in different batch)"
-                    }
-                  }
+            "description": "Map of chunk keys to concept search batch request bundles",
+            "additionalProperties": {
+              "bsonType": "object",
+              "required": ["brute", "llm_search_request_id"],
+              "properties": {
+                "brute": {
+                  "bsonType": "array",
+                  "uniqueItems": true,
+                  "items": {
+                    "bsonType": "string",
+                    "minLength": 1
+                  },
+                  "description": "Brute force search results"
+                },
+                "llm_search_request_id": {
+                  "bsonType": "string",
+                  "minLength": 1,
+                  "description": "GPT batch request custom ID for LLM extraction"
                 }
               }
             }
+          },
+          "llm_mapping_request_id": {
+            "bsonType": ["string", "null"],
+            "description": "GPT batch request custom ID for mapping (executed in different batch)"
           }
         }
       },
       "material_caps": {
         "bsonType": ["object", "null"],
-        "required": ["deferred_stats"],
+        "required": [
+          "extract_prompt_version_id",
+          "map_prompt_version_id",
+          "ontology_version_id",
+          "chunk_request_bundle_map"
+        ],
         "properties": {
-          "deferred_stats": {
+          "extract_prompt_version_id": {
+            "bsonType": "string",
+            "minLength": 1,
+            "description": "S3 file version ID of the extraction prompt"
+          },
+          "map_prompt_version_id": {
+            "bsonType": "string",
+            "minLength": 1,
+            "description": "S3 file version ID of the mapping prompt"
+          },
+          "ontology_version_id": {
+            "bsonType": "string",
+            "minLength": 1,
+            "description": "Version ID of the ontology"
+          },
+          "chunk_request_bundle_map": {
             "bsonType": "object",
-            "required": [
-              "extract_prompt_version_id",
-              "map_prompt_version_id",
-              "ontology_version_id",
-              "chunked_stats_batch_request_map"
-            ],
-            "properties": {
-              "extract_prompt_version_id": {
-                "bsonType": "string",
-                "minLength": 1,
-                "description": "S3 file version ID of the extraction prompt"
-              },
-              "map_prompt_version_id": {
-                "bsonType": "string",
-                "minLength": 1,
-                "description": "S3 file version ID of the mapping prompt"
-              },
-              "ontology_version_id": {
-                "bsonType": "string",
-                "minLength": 1,
-                "description": "Version ID of the ontology"
-              },
-              "chunked_stats_batch_request_map": {
-                "bsonType": "object",
-                "description": "Map of chunk keys to concept search batch request bundles",
-                "additionalProperties": {
-                  "bsonType": "object",
-                  "required": ["brute", "llm_batch_request_id"],
-                  "properties": {
-                    "brute": {
-                      "bsonType": "array",
-                      "uniqueItems": true,
-                      "items": {
-                        "bsonType": "string",
-                        "minLength": 1
-                      },
-                      "description": "Brute force search results"
-                    },
-                    "llm_batch_request_id": {
-                      "bsonType": "string",
-                      "minLength": 1,
-                      "description": "GPT batch request custom ID for LLM extraction"
-                    },
-                    "mapping_batch_request_id": {
-                      "bsonType": ["string", "null"],
-                      "description": "GPT batch request custom ID for mapping (executed in different batch)"
-                    }
-                  }
+            "description": "Map of chunk keys to concept search batch request bundles",
+            "additionalProperties": {
+              "bsonType": "object",
+              "required": ["brute", "llm_search_request_id"],
+              "properties": {
+                "brute": {
+                  "bsonType": "array",
+                  "uniqueItems": true,
+                  "items": {
+                    "bsonType": "string",
+                    "minLength": 1
+                  },
+                  "description": "Brute force search results"
+                },
+                "llm_search_request_id": {
+                  "bsonType": "string",
+                  "minLength": 1,
+                  "description": "GPT batch request custom ID for LLM extraction"
                 }
               }
             }
+          },
+          "llm_mapping_request_id": {
+            "bsonType": ["string", "null"],
+            "description": "GPT batch request custom ID for mapping (executed in different batch)"
           }
         }
       }

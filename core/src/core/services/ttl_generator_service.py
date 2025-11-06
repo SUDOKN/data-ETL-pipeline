@@ -1,28 +1,25 @@
-import asyncio
-import logging
-import sys
 from typing import Optional
 from rdflib import Graph, Namespace, Literal, URIRef
 from rdflib.namespace import RDF, RDFS, XSD
-from pathlib import Path
 
-from data_etl_app.models.ontology import Ontology
-from data_etl_app.services.knowledge.ontology_service import OntologyService
 from core.models.db.manufacturer import Address, BusinessDescriptionResult
-from data_etl_app.utils.rdf_to_graph_util import uri_strip
+from core.utils.ttl_generator_util import (
+    get_mfg_instance_uri_and_stripped_etld1,
+    get_product_instance_uri,
+)
+from data_etl_app.services.knowledge.ontology_service import OntologyService
+from data_etl_app.utils.ttl_generator_util import uri_strip
 from data_etl_app.models.skos_concept import Concept
-from data_etl_app.models.db.manufacturer_user_form import (
+from core.models.db.manufacturer_user_form import (
     ManufacturerUserForm,
 )
 
-# --- RDF NAMESPACE SETUP ---
+# --- NAMESPACE SETUP ---
 SDK = Namespace("http://asu.edu/semantics/SUDOKN/")
 IOF_CORE = Namespace("https://spec.industrialontologies.org/ontology/core/Core/")
 IOF_SCRO = Namespace(
     "https://spec.industrialontologies.org/ontology/supplychain/SupplyChain/"
 )
-XSD_NS = Namespace("http://www.w3.org/2001/XMLSchema#")
-RDFS_NS = Namespace("http://www.w3.org/2000/01/rdf-schema#")
 BFO = Namespace("http://purl.obolibrary.org/obo/")
 
 
@@ -82,7 +79,7 @@ def add_mfg_name_triple(
             return
 
     print(f"  with name: {mfg_name}")
-    g.add((mfg_inst_uri, RDFS_NS.label, Literal(mfg_name)))
+    g.add((mfg_inst_uri, RDFS.label, Literal(mfg_name)))
 
 
 def add_founded_in_triple(
@@ -108,7 +105,7 @@ def add_founded_in_triple(
 def add_email_addresses_triples(
     mfg_inst_uri: URIRef,
     email_addresses: Optional[list[str]],
-    gid_stripped: str,
+    mfg_etld1_stripped: str,
     g: Graph,
     strict: bool,
 ):
@@ -125,7 +122,7 @@ def add_email_addresses_triples(
             raise ValueError("Email address cannot be empty")
         print(f"  with email: {email}")
         # Create an EmailAddress individual
-        email_inst_uri = SDK[f"{gid_stripped}-email-{uri_strip(email)}-instance"]
+        email_inst_uri = SDK[f"{mfg_etld1_stripped}-email-{uri_strip(email)}-instance"]
         g.add((email_inst_uri, RDF.type, SDK.EmailAddress))
         g.add((email_inst_uri, SDK.hasVirtualLocationIdentifierValue, Literal(email)))
         # link it
@@ -224,7 +221,7 @@ def add_secondary_naics_triple(
 def add_address_triples(
     mfg_inst_uri: URIRef,
     addresses: Optional[list[Address]],
-    gid_stripped: str,
+    mfg_etld1_stripped: str,
     g: Graph,
     strict: bool,
 ):
@@ -241,13 +238,13 @@ def add_address_triples(
         print(f"  with full address passed: {addr}")
         # Create GeospatialSite
         print(f"  with address name: {addr.name}")
-        geosite_inst_uri = SDK[f"{gid_stripped}-geosite-{i+1}-instance"]
+        geosite_inst_uri = SDK[f"{mfg_etld1_stripped}-geosite-{i+1}-instance"]
         print(f"  adding GeospatialSite: {geosite_inst_uri}")
         g.add((geosite_inst_uri, RDF.type, SDK.GeospatialSite))
         if addr.name:
             print(f"  adding address name label: {addr.name}")
             g.add(
-                (geosite_inst_uri, RDFS_NS.label, Literal(addr.name))
+                (geosite_inst_uri, RDFS.label, Literal(addr.name))
             )  # link name to site
 
         # Address lines
@@ -255,7 +252,7 @@ def add_address_triples(
             if addr_line:
                 print(f"  with address line: {addr_line}")
                 address_line_inst_uri = SDK[
-                    f"{gid_stripped}-address-line-{idx+1}-instance"
+                    f"{mfg_etld1_stripped}-address-line-{idx+1}-instance"
                 ]
                 print(f"  adding AddressLine: {address_line_inst_uri}")
                 g.add((address_line_inst_uri, RDF.type, SDK.AddressLine))
@@ -279,7 +276,7 @@ def add_address_triples(
         city_ind_uri = SDK[f"{uri_strip(addr.city)}-city-individual"]
         print(f"  adding City: {city_ind_uri}")
         g.add((city_ind_uri, RDF.type, SDK.City))
-        g.add((city_ind_uri, RDFS_NS.label, Literal(addr.city)))
+        g.add((city_ind_uri, RDFS.label, Literal(addr.city)))
         print(f"  linking City to site")
         g.add((geosite_inst_uri, SDK.locatedInCity, city_ind_uri))  # link city to site
 
@@ -288,7 +285,7 @@ def add_address_triples(
         state_ind_uri = SDK[f"{uri_strip(addr.state)}-state-individual"]
         print(f"  adding State: {state_ind_uri}")
         g.add((state_ind_uri, RDF.type, SDK.State))
-        g.add((state_ind_uri, RDFS_NS.label, Literal(addr.state)))
+        g.add((state_ind_uri, RDFS.label, Literal(addr.state)))
         print(f"  linking State to site")
         g.add(
             (geosite_inst_uri, SDK.locatedInState, state_ind_uri)
@@ -300,7 +297,7 @@ def add_address_triples(
             county_ind_uri = SDK[f"{uri_strip(addr.county)}-county-individual"]
             print(f"  adding County: {county_ind_uri}")
             g.add((county_ind_uri, RDF.type, SDK.County))
-            g.add((county_ind_uri, RDFS_NS.label, Literal(addr.county)))
+            g.add((county_ind_uri, RDFS.label, Literal(addr.county)))
             print(f"  linking County to site")
             g.add(
                 (geosite_inst_uri, SDK.locatedInCounty, county_ind_uri)
@@ -318,7 +315,7 @@ def add_address_triples(
         country_ind_uri = SDK[f"{uri_strip(addr.country)}-country-individual"]
         print(f"  adding Country: {country_ind_uri}")
         g.add((country_ind_uri, RDF.type, SDK.Country))
-        g.add((country_ind_uri, RDFS_NS.label, Literal(addr.country)))
+        g.add((country_ind_uri, RDFS.label, Literal(addr.country)))
         print(f"  linking Country to site")
         g.add(
             (geosite_inst_uri, SDK.locatedInCountry, country_ind_uri)
@@ -335,7 +332,7 @@ def add_address_triples(
             raise ValueError("Longitude must be between -180 and 180 degrees")
 
         print(f"  with coordinates: lat={addr.latitude}, lon={addr.longitude}")
-        geoloc_inst_uri = SDK[f"{gid_stripped}-geolocation-{i+1}-instance"]
+        geoloc_inst_uri = SDK[f"{mfg_etld1_stripped}-geolocation-{i+1}-instance"]
         print(f"  adding GeospatialLocation: {geoloc_inst_uri}")
         g.add(
             (geoloc_inst_uri, RDF.type, IOF_SCRO.GeospatialLocation)
@@ -379,7 +376,7 @@ def add_address_triples(
 def add_business_description_triples(
     mfg_inst_uri: URIRef,
     business_desc: Optional[BusinessDescriptionResult],
-    gid_stripped: str,
+    mfg_etld1_stripped: str,
     g: Graph,
     strict: bool,
 ):
@@ -390,7 +387,7 @@ def add_business_description_triples(
             print(f"  skipping empty business description")
             return
     print(f"  with business description: {business_desc.description}")
-    desc_inst_uri = SDK[f"{gid_stripped}-business-description-instance"]
+    desc_inst_uri = SDK[f"{mfg_etld1_stripped}-business-description-instance"]
     g.add((desc_inst_uri, RDF.type, SDK.BusinessDescription))
     g.add(
         (
@@ -405,7 +402,7 @@ def add_business_description_triples(
 def add_product_triples(
     mfg_inst_uri: URIRef,
     products: Optional[list[str]],
-    gid_stripped: str,
+    mfg_etld1_stripped: str,
     g: Graph,
     strict: bool,
 ):
@@ -420,13 +417,11 @@ def add_product_triples(
         if not prod:
             raise ValueError("Product name cannot be empty")
         print(f"  with product: {prod}")
-        prod_inst_uri = SDK[
-            f"{gid_stripped}-{uri_strip(prod)}-product-instance"
-        ]  # Changed to match your example
+        prod_inst_uri = get_product_instance_uri(mfg_etld1_stripped, prod)
 
         # Add product as MaterialProduct
         g.add((prod_inst_uri, RDF.type, IOF_CORE.MaterialProduct))
-        g.add((prod_inst_uri, RDFS_NS.label, Literal(prod)))
+        g.add((prod_inst_uri, RDFS.label, Literal(prod)))
         g.add((mfg_inst_uri, SDK.manufactures, prod_inst_uri))
 
 
@@ -451,7 +446,7 @@ def add_certificate_triples(
         cert_concept = get_certificate_concept(ont_inst, cert)
         cert_ind_uri = SDK[f"{uri_strip(cert_concept.name)}-certificate-individual"]
         g.add((cert_ind_uri, RDF.type, cert_concept.uri))
-        # g.add((cert_ind_uri, RDFS_NS.label, Literal(cert_concept.name)))
+        # g.add((cert_ind_uri, RDFS.label, Literal(cert_concept.name)))
         g.add((mfg_inst_uri, SDK.hasCertificate, cert_ind_uri))
 
 
@@ -476,13 +471,13 @@ def add_industry_triples(
         ind_concept = get_industry_concept(ont_inst, ind)
         industry_ind_uri = SDK[f"{uri_strip(ind_concept.name)}-industry-individual"]
         g.add((industry_ind_uri, RDF.type, ind_concept.uri))
-        # g.add((industry_ind_uri, RDFS_NS.label, Literal(ind_concept.name)))
+        # g.add((industry_ind_uri, RDFS.label, Literal(ind_concept.name)))
         g.add((mfg_inst_uri, SDK.suppliesToIndustry, industry_ind_uri))
 
 
 def add_process_capability_triples(
     mfg_inst_uri: URIRef,
-    gid_stripped: str,
+    mfg_etld1_stripped: str,
     process_caps: Optional[list[str]],
     ont_inst: OntologyService,
     g: Graph,
@@ -501,7 +496,7 @@ def add_process_capability_triples(
         print(f"  with process capability: {pc}")
         pc_concept = get_process_cap_concept(ont_inst, pc)
         pc_inst_uri = SDK[
-            f"{gid_stripped}-{uri_strip(pc_concept.name)}-process-capability-instance"
+            f"{mfg_etld1_stripped}-{uri_strip(pc_concept.name)}-process-capability-instance"
         ]
         g.add((pc_inst_uri, RDF.type, pc_concept.uri))
         g.add((mfg_inst_uri, SDK.hasProcessCapability, pc_inst_uri))
@@ -509,7 +504,7 @@ def add_process_capability_triples(
 
 def add_material_capability_triples(
     mfg_inst_uri: URIRef,
-    gid_stripped: str,
+    mfg_etld1_stripped: str,
     material_caps: Optional[list[str]],
     ont_inst: OntologyService,
     g: Graph,
@@ -528,21 +523,21 @@ def add_material_capability_triples(
         print(f"  with material capability: {mc}")
         mc_concept = get_material_cap_concept(ont_inst, mc)
         mc_inst_uri = SDK[
-            f"{gid_stripped}-{uri_strip(mc_concept.name)}-material-capability-instance"
+            f"{mfg_etld1_stripped}-{uri_strip(mc_concept.name)}-material-capability-instance"
         ]
         g.add((mc_inst_uri, RDF.type, mc_concept.uri))
         g.add((mfg_inst_uri, SDK.hasMaterialCapability, mc_inst_uri))
 
 
 def add_manufacturer_triples(
-    ont_inst: OntologyService, mfg: ManufacturerUserForm, g, strict: bool = True
+    ont_inst: OntologyService, mfg: ManufacturerUserForm, g: Graph, strict: bool = True
 ):
-    gid_val = str(mfg.mfg_etld1)
-    if not gid_val:
+    if not str(mfg.mfg_etld1):
         raise ValueError("ManufacturerUserForm must have a valid mfg_etld1")
 
-    gid_stripped = uri_strip(gid_val)
-    mfg_inst_uri = SDK[f"{gid_stripped}-company-instance"]
+    mfg_inst_uri, mfg_etld1_stripped = get_mfg_instance_uri_and_stripped_etld1(
+        mfg.mfg_etld1
+    )
     print(f"Generating triples for {mfg_inst_uri}")
 
     g.add((mfg_inst_uri, RDF.type, IOF_CORE.Manufacturer))
@@ -556,7 +551,7 @@ def add_manufacturer_triples(
     )
     add_founded_in_triple(mfg_inst_uri, mfg.founded_in, g, strict)
     add_email_addresses_triples(
-        mfg_inst_uri, mfg.email_addresses, gid_stripped, g, strict
+        mfg_inst_uri, mfg.email_addresses, mfg_etld1_stripped, g, strict
     )
     add_number_of_employees_triple(mfg_inst_uri, mfg.num_employees, g, strict)
     add_business_status_triples(
@@ -564,18 +559,18 @@ def add_manufacturer_triples(
     )
     add_primary_naics_triple(mfg_inst_uri, mfg.primary_naics, ont_inst, g, strict)
     add_secondary_naics_triple(mfg_inst_uri, mfg.secondary_naics, ont_inst, g, strict)
-    add_address_triples(mfg_inst_uri, mfg.addresses, gid_stripped, g, strict)
+    add_address_triples(mfg_inst_uri, mfg.addresses, mfg_etld1_stripped, g, strict)
     add_business_description_triples(
-        mfg_inst_uri, mfg.business_desc, gid_stripped, g, strict
+        mfg_inst_uri, mfg.business_desc, mfg_etld1_stripped, g, strict
     )
-    add_product_triples(mfg_inst_uri, mfg.products, gid_stripped, g, strict)
+    add_product_triples(mfg_inst_uri, mfg.products, mfg_etld1_stripped, g, strict)
     add_certificate_triples(mfg_inst_uri, mfg.certificates, ont_inst, g, strict)
     add_industry_triples(mfg_inst_uri, mfg.industries, ont_inst, g, strict)
     add_process_capability_triples(
-        mfg_inst_uri, gid_stripped, mfg.process_caps, ont_inst, g, strict
+        mfg_inst_uri, mfg_etld1_stripped, mfg.process_caps, ont_inst, g, strict
     )
     add_material_capability_triples(
-        mfg_inst_uri, gid_stripped, mfg.material_caps, ont_inst, g, strict
+        mfg_inst_uri, mfg_etld1_stripped, mfg.material_caps, ont_inst, g, strict
     )
 
 
@@ -584,8 +579,8 @@ def _init_graph() -> Graph:
     g.bind("sdk", SDK)
     g.bind("iof-core", IOF_CORE)
     g.bind("iof-scro", IOF_SCRO)
-    g.bind("xsd", XSD_NS)
-    g.bind("rdfs", RDFS_NS)
+    g.bind("xsd", XSD)
+    g.bind("rdfs", RDFS)
     g.bind("bfo", BFO)
     return g
 

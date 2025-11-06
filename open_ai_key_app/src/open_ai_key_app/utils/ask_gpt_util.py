@@ -1,11 +1,12 @@
+import openai
 import re
 import asyncio
 import logging
-
-from openai import AsyncOpenAI
+import httpx
 
 from open_ai_key_app.utils.token_util import num_tokens_from_string
-from open_ai_key_app.models.gpt_model import GPTModel, ModelParameters
+from open_ai_key_app.models.gpt_model import GPTModel, GPT_4o_mini, ModelParameters
+from core.models.gpt_batch_request_blob import GPTBatchRequestBlob
 from open_ai_key_app.services.openai_keypool_service import keypool
 
 logger = logging.getLogger(__name__)
@@ -18,7 +19,7 @@ async def ask_gpt_async(
     prompt: str,
     gpt_model: GPTModel,
     model_params: ModelParameters,
-) -> str | None:
+):
     tokens_prompt = num_tokens_from_string(prompt)
     tokens_context = num_tokens_from_string(context)
     max_response_tokens = (
@@ -40,54 +41,29 @@ async def ask_gpt_async(
     )
 
     key_name, api_key, lock_token = await keypool.borrow_key(tokens_needed)
-    accounted = False
-    request_maybe_sent = False
     try:
         logger.debug(
             f"ask_gpt_async: Using API key '{key_name}' for model '{gpt_model.model_name}'."
         )
-        # Use async client so cancellation aborts the HTTP request
-        client = AsyncOpenAI(api_key=api_key, timeout=30.0)
-        request_maybe_sent = True
-        response = await client.chat.completions.create(
+        openai.api_key = api_key
+        response = await asyncio.to_thread(
+            openai.chat.completions.create,
             model=gpt_model.model_name,
             messages=[
                 {"role": "system", "content": prompt},
                 {"role": "user", "content": context},
             ],
-            max_tokens=max_response_tokens,
+            max_completion_tokens=max_response_tokens,
             temperature=model_params.temperature,
             top_p=model_params.top_p,
             presence_penalty=model_params.presence_penalty,
             frequency_penalty=model_params.frequency_penalty,
         )
-        # Prefer exact billing when available
-        used_tokens = None
-        try:
-            if hasattr(response, "usage") and response.usage is not None:
-                # OpenAI returns usage with prompt_tokens, completion_tokens, total_tokens
-                used_tokens = getattr(response.usage, "total_tokens", None)
-        except Exception:
-            used_tokens = None
-        if used_tokens is None:
-            used_tokens = tokens_needed
-
-        keypool.record_key_usage(api_key, used_tokens)
-        accounted = True
         logger.debug(
             f"ask_gpt_async: Received response for key '{key_name}' with {len(response.choices)} choices."
         )
+        keypool.record_key_usage(api_key, tokens_needed)
         return response.choices[0].message.content
-    except asyncio.CancelledError:
-        # Peer task failed; this coroutine was cancelled while the background request keeps running.
-        # Conservatively account tokens to avoid undercounting.
-        if request_maybe_sent and not accounted:
-            logger.info(
-                f"ask_gpt_async: Cancelled while using key '{key_name}'. Conservatively recording usage: {tokens_needed} tokens."
-            )
-            keypool.record_key_usage(api_key, tokens_needed)
-            accounted = True
-        raise
     except Exception as e:
         # some errors look like
         # Error code: 429 - {'error': {'message': 'Rate limit reached for gpt-4o-mini in organization org-M5dkpWKwz4bw95SV04FgKdYV on tokens per min (TPM): Limit 200000, Used 130491, Requested 75418. Please try again in 1.772s. Visit https://platform.openai.com/account/rate-limits to learn more.', 'type': 'tokens', 'param': None, 'code': 'rate_limit_exceeded'}}
@@ -120,14 +96,129 @@ async def ask_gpt_async(
             # Do not retry, just fail and allow next request to pick a different key
             raise ValueError(f"Rate limit hit for API key: {key_name}.")
         else:
-            # Unknown error: if the request was likely dispatched, conservatively account
-            if request_maybe_sent and not accounted:
-                logger.warning(
-                    f"ask_gpt_async: Unknown error after dispatch for key '{key_name}'. Conservatively recording usage: {tokens_needed} tokens."
-                )
-                keypool.record_key_usage(api_key, tokens_needed)
-                accounted = True
             raise e
     finally:
         logger.debug(f"ask_gpt_async: Returning key '{key_name}' to keypool.")
+        keypool.return_key(api_key, lock_token)
+
+
+# --- send_gpt_batch_request_sync Function ---
+async def send_gpt_batch_request_sync(
+    batch_request: GPTBatchRequestBlob,
+) -> dict:
+    """
+    Send a GPT batch request synchronously using HTTP client with keypool management.
+
+    Args:
+        batch_request: GPTBatchRequestBlob containing the request details
+
+    Returns:
+        dict: The JSON response from OpenAI API
+
+    Raises:
+        httpx.HTTPStatusError: If the request fails
+        ValueError: If quota exceeded or rate limit hit
+    """
+    tokens_needed = batch_request.body.input_tokens + batch_request.body.max_tokens
+
+    logger.debug(
+        f"send_gpt_batch_request_sync: Request '{batch_request.custom_id}' needs {tokens_needed} tokens. "
+        f"Attempting to borrow key from keypool."
+    )
+
+    key_name, api_key, lock_token = await keypool.borrow_key(tokens_needed)
+
+    try:
+        logger.info(
+            f"send_gpt_batch_request_sync: Using API key '{key_name}' for request '{batch_request.custom_id}'."
+        )
+
+        headers = {
+            "Authorization": f"Bearer {api_key}",
+            "Content-Type": "application/json",
+        }
+
+        # Prepare the request body (exclude input_tokens as it's just for our tracking)
+        request_body = {
+            "model": batch_request.body.model,
+            "messages": batch_request.body.messages,
+            "max_tokens": batch_request.body.max_tokens,
+        }
+
+        logger.info(
+            f"send_gpt_batch_request_sync: Sending request '{batch_request.custom_id}' "
+            f"to model '{batch_request.body.model}' with {batch_request.body.input_tokens} input tokens."
+        )
+
+        with httpx.Client(timeout=60.0) as client:
+            response = client.post(
+                f"https://api.openai.com{batch_request.url}",
+                headers=headers,
+                json=request_body,
+            )
+            response.raise_for_status()
+            result = response.json()
+
+            logger.debug(
+                f"send_gpt_batch_request_sync: Received response for request '{batch_request.custom_id}'."
+            )
+            keypool.record_key_usage(api_key, tokens_needed)
+            return result
+
+    except httpx.HTTPStatusError as e:
+        error_msg = str(e)
+        logger.error(f"send_gpt_batch_request_sync HTTP error: {error_msg}")
+
+        # Try to parse error response
+        try:
+            error_data = e.response.json()
+            logger.error(f"Error details: {error_data}")
+
+            # Check for quota or rate limit errors in the response
+            if "error" in error_data:
+                error_message = error_data["error"].get("message", "")
+                error_code = error_data["error"].get("code", "")
+
+                if (
+                    "quota" in error_message.lower()
+                    or error_code == "insufficient_quota"
+                ):
+                    logger.warning(
+                        f"Quota exceeded for API key_name: {key_name}. Removing from pool."
+                    )
+                    keypool.mark_key_exhausted(api_key, error_message)
+                    raise ValueError(f"Quota exceeded for API key: {key_name}.")
+
+                elif (
+                    "rate limit" in error_message.lower()
+                    or error_code == "rate_limit_exceeded"
+                ):
+                    match = re.search(r"Please try again in ([\d.]+)s", error_message)
+                    if match:
+                        delay = float(match.group(1))
+                        logger.warning(
+                            f"Rate limit hit for key {key_name}. Marking as unavailable for {delay}s."
+                        )
+                        keypool.set_key_cooldown(api_key, delay)
+                    else:
+                        logger.warning(
+                            f"Rate limit hit for key {key_name}. Marking as unavailable for 5s by default."
+                        )
+                        keypool.set_key_cooldown(api_key, 5.0)
+
+                    raise ValueError(f"Rate limit hit for API key: {key_name}.")
+        except ValueError:
+            # Re-raise ValueError from quota/rate limit handling
+            raise
+        except Exception:
+            pass
+
+        raise
+    except Exception as e:
+        logger.error(f"send_gpt_batch_request_sync exception occurred: {str(e)}")
+        raise
+    finally:
+        logger.debug(
+            f"send_gpt_batch_request_sync: Returning key '{key_name}' to keypool."
+        )
         keypool.return_key(api_key, lock_token)

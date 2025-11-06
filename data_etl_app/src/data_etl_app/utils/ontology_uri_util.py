@@ -1,4 +1,5 @@
 import os
+from urllib.parse import quote
 
 SUDOKN_PROCESS_CAP_BASE_URI = os.getenv("SUDOKN_PROCESS_CAP_BASE_URI")
 if not SUDOKN_PROCESS_CAP_BASE_URI:

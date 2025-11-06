@@ -4,7 +4,7 @@ import logging
 
 from open_ai_key_app.utils.token_util import num_tokens_from_string
 from open_ai_key_app.models.gpt_model import GPTModel, GPT_4o_mini, ModelParameters
-from open_ai_key_app.models.gpt_batch_request_blob import (
+from core.models.gpt_batch_request_blob import (
     GPTBatchRequestBlob,
     GPTBatchRequestBlobBody,
 )

@@ -1,6 +1,7 @@
 from datetime import datetime
 import json
 import logging
+from typing import Optional
 
 from open_ai_key_app.utils.token_util import num_tokens_from_string
 from open_ai_key_app.utils.ask_gpt_util import (
@@ -13,7 +14,7 @@ from open_ai_key_app.models.gpt_model import (
     DefaultModelParameters,
 )
 
-from data_etl_app.models.binary_classification_result import (
+from core.models.binary_classification_result import (
     BinaryClassificationResult,
     BinaryClassificationStats,
     ChunkBinaryClassificationResult,
@@ -109,7 +110,7 @@ async def _binary_classify_using_only_first_chunk(
         f"Using first chunk with key {first_chunk_key} for binary classification with num_tokens {num_tokens_from_string(first_chunk_text)}."
     )
 
-    chunk_result = await _binary_classify_chunk(
+    chunk_result = await _get_binary_classification_result_for_chunk(
         keyword_label,
         manufacturer_etld,
         first_chunk_text,
@@ -132,7 +133,7 @@ async def _binary_classify_using_only_first_chunk(
     )
 
 
-async def _binary_classify_chunk(
+async def _get_binary_classification_result_for_chunk(
     keyword_label: str,
     manufacturer_etld: str,
     chunk_txt: str,
@@ -141,25 +142,34 @@ async def _binary_classify_chunk(
     model_params: ModelParameters = DefaultModelParameters,
 ) -> ChunkBinaryClassificationResult:
     chunk_tokens = num_tokens_from_string(chunk_txt)
-    logger.debug(f"chunk_tokens: {chunk_tokens}")
+    logger.info(
+        f"_binary_classify_chunk: keyword_label({keyword_label}), chunk_tokens({chunk_tokens}) for {manufacturer_etld}"
+    )
 
     gpt_response = await ask_gpt_async(
         chunk_txt, binary_prompt, gpt_model, model_params
     )
 
+    return parse_chunk_binary_classification_result_from_gpt_response(
+        gpt_response=gpt_response
+    )
+
+
+def parse_chunk_binary_classification_result_from_gpt_response(
+    gpt_response: Optional[str],
+) -> ChunkBinaryClassificationResult:
     if not gpt_response:
         logger.error(f"Invalid gpt_response:{gpt_response}")
         raise ValueError(
-            f"{manufacturer_etld}:{keyword_label} _binary_classify_chunk: Empty or invalid response from GPT"
+            "parse_binary_classification_result_from_gpt_response: Empty or invalid response from GPT"
         )
 
-    logger.debug(f"classification gpt response:\n{gpt_response}")
-
-    gpt_response = gpt_response.replace("```", "").replace("json", "")
-    result = json.loads(gpt_response)
-    if not result:
+    try:
+        gpt_response = gpt_response.replace("```", "").replace("json", "")
+        json_response = json.loads(gpt_response)
+    except:
         raise ValueError(
-            f"{manufacturer_etld}:{keyword_label} _binary_classify_chunk: Empty json result found in gpt_response"
+            f"parse_binary_classification_result_from_gpt_response: Invalid response from GPT:{gpt_response}"
         )
 
-    return ChunkBinaryClassificationResult(**result)
+    return ChunkBinaryClassificationResult(**json_response)

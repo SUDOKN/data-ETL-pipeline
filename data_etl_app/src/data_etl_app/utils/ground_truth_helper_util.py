@@ -1,7 +1,7 @@
-from data_etl_app.models.db.concept_ground_truth import (
+from core.models.db.concept_ground_truth import (
     ConceptGroundTruth,
 )
-from data_etl_app.models.db.keyword_ground_truth import (
+from core.models.db.keyword_ground_truth import (
     KeywordGroundTruth,
 )
 

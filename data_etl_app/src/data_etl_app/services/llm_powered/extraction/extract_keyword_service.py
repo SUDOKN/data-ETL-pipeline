@@ -7,7 +7,7 @@ from datetime import datetime
 
 from core.models.prompt import Prompt
 
-from data_etl_app.models.keyword_extraction_results import (
+from core.models.keyword_extraction_results import (
     KeywordExtractionChunkStats,
     KeywordExtractionResults,
     KeywordExtractionStats,
@@ -91,13 +91,11 @@ async def _extract_keyword_data(
 
     # Seed per-chunk stats (brute is always empty)
     for bounds, chunk_result in chunk_results:
-        stats.chunked_stats[bounds] = KeywordExtractionChunkStats(
-            results=set(chunk_result)
-        )
-        final_result_set |= set(chunk_result)  # Aggregate to final results
+        stats.chunked_stats[bounds] = KeywordExtractionChunkStats(results=chunk_result)
+        final_result_set |= chunk_result  # Aggregate to final results
 
     return KeywordExtractionResults(
         extracted_at=extraction_timestamp,
-        results=list(final_result_set),
+        results=final_result_set,
         stats=stats,
     )

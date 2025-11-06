@@ -24,7 +24,7 @@ from core.utils.aws.queue.priority_scrape_queue_util import (
     push_item_to_priority_scrape_queue,
 )
 
-from data_etl_app.models.db.binary_ground_truth import (
+from core.models.db.binary_ground_truth import (
     BinaryGroundTruth,
     HumanBinaryDecision,
 )

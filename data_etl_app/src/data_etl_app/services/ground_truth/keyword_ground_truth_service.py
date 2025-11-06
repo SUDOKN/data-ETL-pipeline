@@ -13,8 +13,8 @@ from core.utils.aws.s3.scraped_text_util import (
 )
 from core.models.db.manufacturer import Manufacturer
 
-from data_etl_app.models.keyword_extraction_results import KeywordExtractionResults
-from data_etl_app.models.db.keyword_ground_truth import (
+from core.models.keyword_extraction_results import KeywordExtractionResults
+from core.models.db.keyword_ground_truth import (
     KeywordGroundTruth,
     KeywordResultCorrection,
     KeywordResultCorrectionLog,

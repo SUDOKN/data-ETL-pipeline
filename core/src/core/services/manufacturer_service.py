@@ -36,6 +36,35 @@ async def update_manufacturer(updated_at: datetime, manufacturer: Manufacturer):
     await manufacturer.save()
 
 
+# unused
+def is_llm_extraction_complete(manufacturer: Manufacturer) -> bool:
+    """
+    Check if the LLM extraction for the manufacturer is complete.
+
+    Args:
+        manufacturer (Manufacturer): The manufacturer object to check.
+    Returns:
+        bool: True if extraction is complete, False otherwise.
+    """
+    required_fields = [
+        manufacturer.is_manufacturer,
+        manufacturer.is_contract_manufacturer,
+        manufacturer.is_product_manufacturer,
+        manufacturer.business_desc,
+        manufacturer.products,
+        manufacturer.certificates,
+        manufacturer.industries,
+        manufacturer.material_caps,
+        manufacturer.process_caps,
+    ]
+
+    extraction_complete = all(field is not None for field in required_fields)
+    logger.debug(
+        f"Extraction complete for manufacturer {manufacturer.etld1}: {extraction_complete}"
+    )
+    return extraction_complete
+
+
 async def find_random_manufacturer_url() -> MfgURLType | None:
     """
     Fetch a random manufacturer URL from the database.
@@ -69,6 +98,23 @@ async def find_manufacturer_by_url(
     mfg_etld1 = get_etld1_from_host(mfg_url)
     logger.debug(f"Finding manufacturer with mfg_etld1: {mfg_etld1} and url: {mfg_url}")
     return await find_manufacturer_by_etld1(mfg_etld1)
+
+
+async def find_manufacturers_by_etld1s(
+    mfg_etld1s: list[MfgETLDType],
+) -> list[Manufacturer]:
+    """
+    Find a manufacturer by its URL.
+
+    Args:
+        mfg_url (MfgURLType): The URL of the manufacturer to find.
+
+    Returns:
+        Manufacturer | None: The manufacturer object if found, otherwise None.
+    """
+
+    logger.debug(f"Finding manufacturer with {len(mfg_etld1s)} mfg_etld1s")
+    return await Manufacturer.find({"etld1": {"$in": mfg_etld1s}}).to_list()
 
 
 async def find_manufacturer_by_etld1(

@@ -150,7 +150,7 @@ class OntologyService:
         return self.ontology.s3_version_id, self._process_capability_concept_nodes
 
     @property
-    def process_caps(self) -> tuple[OntologyVersionIDType, List[Concept]]:
+    def process_caps(self) -> tuple[OntologyVersionIDType, set[Concept]]:
         self._ensure_initialized()
         if not hasattr(self, "_process_capabilities"):
             self._process_capabilities = tree_list_to_flat(
@@ -190,7 +190,7 @@ class OntologyService:
         return self.ontology.s3_version_id, self._material_capability_concept_nodes
 
     @property
-    def material_caps(self) -> tuple[OntologyVersionIDType, List[Concept]]:
+    def material_caps(self) -> tuple[OntologyVersionIDType, set[Concept]]:
         self._ensure_initialized()
         if not hasattr(self, "_material_capabilities"):
             self._material_capabilities = tree_list_to_flat(
@@ -228,7 +228,7 @@ class OntologyService:
         return self.ontology.s3_version_id, self._industry_concept_nodes
 
     @property
-    def industries(self) -> tuple[OntologyVersionIDType, List[Concept]]:
+    def industries(self) -> tuple[OntologyVersionIDType, set[Concept]]:
         self._ensure_initialized()
         if not hasattr(self, "_industries"):
             self._industries = tree_list_to_flat(self.industry_concept_nodes[1])
@@ -266,7 +266,7 @@ class OntologyService:
         return self.ontology.s3_version_id, self._certificate_concept_nodes
 
     @property
-    def certificates(self) -> tuple[OntologyVersionIDType, List[Concept]]:
+    def certificates(self) -> tuple[OntologyVersionIDType, set[Concept]]:
         self._ensure_initialized()
         if not hasattr(self, "_certificates"):
             self._certificates = tree_list_to_flat(self.certificate_concept_nodes[1])
@@ -304,7 +304,7 @@ class OntologyService:
         return self.ontology.s3_version_id, self._ownership_concept_nodes
 
     @property
-    def ownership_statuses(self) -> tuple[OntologyVersionIDType, List[Concept]]:
+    def ownership_statuses(self) -> tuple[OntologyVersionIDType, set[Concept]]:
         self._ensure_initialized()
         if not hasattr(self, "_ownership_statuses"):
             self._ownership_statuses = tree_list_to_flat(
@@ -346,7 +346,7 @@ class OntologyService:
         return self.ontology.s3_version_id, self._naics_concept_nodes
 
     @property
-    def naics_codes(self) -> tuple[OntologyVersionIDType, List[Concept]]:
+    def naics_codes(self) -> tuple[OntologyVersionIDType, set[Concept]]:
         self._ensure_initialized()
         if not hasattr(self, "_naics_codes"):
             self._naics_codes = tree_list_to_flat(self.naics_concept_nodes[1])

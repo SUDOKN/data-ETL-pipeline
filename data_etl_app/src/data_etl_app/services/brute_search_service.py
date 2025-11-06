@@ -13,7 +13,7 @@ def word_regex(keyword: str):
 
 
 # only considers concept and altLabels, ignores ancestors
-def brute_search(text: str, concepts: list[Concept]) -> set[Concept]:
+def brute_search(text: str, concepts: set[Concept]) -> set[Concept]:
     found_brute_search_concepts: set[Concept] = set()
 
     for c in concepts:
