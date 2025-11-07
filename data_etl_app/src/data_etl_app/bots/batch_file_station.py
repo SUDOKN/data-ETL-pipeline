@@ -118,12 +118,6 @@ class BatchFileStation:
         When batches complete, handle_batch_completed will be called automatically.
         """
         logger.info("Starting BatchFileStation...")
-        """
-        await asyncio.gather(
-            self.satellite.poll_and_sync_all_batches(poll_interval_seconds),
-            self.iterate_available_keys_and_upload_new_batches(poll_interval_seconds),
-        )
-        """
         await self.poll_sync_and_upload_new_batches(poll_interval_seconds)
 
     async def finish_gpt_batch_processing(
@@ -141,12 +135,13 @@ class BatchFileStation:
                 finished_batches_dir=FINISHED_BATCHES_DIR_DEFAULT,
             )
 
-        if api_key_bundle.latest_external_batch_id != gpt_batch.external_batch_id:
-            raise ValueError(
-                f"Error: Current batch does not match passed batch!! "
-                f"self.latest_external_batch_id={api_key_bundle.latest_external_batch_id}\n"
-                f"gpt_batch.external_batch_id={gpt_batch.external_batch_id}\n"
-            )
+        # if api_key_bundle.latest_external_batch_id != gpt_batch.external_batch_id:
+        #     raise ValueError(
+        #         f"Error: Current batch does not match passed batch!! "
+        #         f"api_key_bundle={api_key_bundle.label}\n"
+        #         f"self.latest_external_batch_id={api_key_bundle.latest_external_batch_id}\n"
+        #         f"gpt_batch.external_batch_id={gpt_batch.external_batch_id}\n"
+        #     )
 
         await api_key_bundle.mark_batch_inactive(
             updated_at=done_at
@@ -336,10 +331,9 @@ class BatchFileStation:
                 api_key_bundles: list[APIKeyBundle] = await get_all_api_key_bundles()
 
                 for api_key_bundle in api_key_bundles:
-                    # if api_key_bundle.label in ["sudokn.tool2", "sudokn.tool3"]:
-                    if api_key_bundle.label in ["sudokn.tool"]:
-                        logger.info("temp skip")
-                        continue
+                    # if api_key_bundle.label not in ["sudokn.tool2"]:
+                    #     logger.info("temp skip")
+                    #     continue
 
                     client = OpenAI(
                         api_key=api_key_bundle.key,
@@ -378,15 +372,25 @@ class BatchFileStation:
                         latest_batch = find_latest_batch_of_api_key_bundle(
                             client=client, api_key_bundle=api_key_bundle
                         )
-                        if latest_batch:
+                        if (
+                            latest_batch
+                            and api_key_bundle.has_active_batch()
+                            and api_key_bundle.latest_external_batch_id
+                            != latest_batch.id
+                        ):
                             # the call api_key_bundle.update_latest_external_batch_id might have failed
                             await api_key_bundle.update_latest_external_batch_id(
                                 updated_at=now, external_batch_id=latest_batch.id
                             )
-                            await self.satellite.sync_batch(
-                                client=client,
-                                api_key_bundle=api_key_bundle,
-                            )
+                            # ready_for_next_batch = await self.satellite.sync_batch(
+                            #     client=client,
+                            #     api_key_bundle=api_key_bundle,
+                            # )
+                            # logger.error(
+                            #     f"poll_sync_and_upload_new_batches: ready_for_next_batch={ready_for_next_batch}"
+                            # )
+                            # if not ready_for_next_batch:
+                            continue
 
                         # proceed to generate batch files and try uploading
                         batch_file_generation_result: BatchFileGenerationResult = (
@@ -421,6 +425,7 @@ class BatchFileStation:
                             logger.info(
                                 f"create_new_batches_and_upload: Upload failed for {api_key_bundle.label}"
                             )
+                            batch_file_generation_result.batch_request_jsonl_file_writer.delete_files()
                             continue
 
                         self.stats.batches_uploaded += 1
@@ -461,7 +466,11 @@ async def async_main():
 
     from core.utils.mongo_client import init_db
 
-    await init_db()
+    await init_db(
+        socket_timeout_ms=300000,  # 5 minutes for bulk operations
+        server_selection_timeout_ms=60000,  # 30 seconds
+        connect_timeout_ms=60000,  # 30 seconds
+    )
     await initialize_core_aws_clients()
     await initialize_data_etl_aws_clients()
 
@@ -473,8 +482,10 @@ async def async_main():
     logger = logging.getLogger(__name__)
     logger.info(f"Starting batch file station with log level: {log_level}")
     batch_file_station = BatchFileStation.get_instance()
+    POLL_INTERVAL = 10 * 60  # 5 mins
+    # POLL_INTERVAL = 5  # 5 seconds
     try:
-        await batch_file_station.start_loop(10)
+        await batch_file_station.start_loop(POLL_INTERVAL)
     finally:
         # Clean up AWS clients
         await cleanup_data_etl_aws_clients()

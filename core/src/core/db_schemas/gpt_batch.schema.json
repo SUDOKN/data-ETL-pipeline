@@ -39,14 +39,7 @@
       },
       "status": {
         "bsonType": "string",
-        "enum": [
-          "validating",
-          "in_progress",
-          "processing",
-          "completed",
-          "failed",
-          "expired"
-        ],
+        "minLength": 1,
         "description": "Current status of the batch"
       },
       "output_file_id": {

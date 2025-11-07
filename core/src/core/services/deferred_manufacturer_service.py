@@ -83,10 +83,6 @@ async def delete_deferred_manufacturer_if_empty(
             f"Deferred manufacturer {deferred_manufacturer.mfg_etld1} is empty. Deleting from the database."
         )
         await delete_deferred_manufacturer(deferred_manufacturer=deferred_manufacturer)
-        # if delete_batch_requests_too:
-        #     await bulk_delete_gpt_batch_requests_by_mfg_etld1(
-        #         mfg_etld1=deferred_manufacturer.mfg_etld1
-        #     )
 
 
 def get_embedded_gpt_request_ids(

@@ -3,10 +3,11 @@ from beanie import Document
 from enum import Enum
 
 
-class GPTBatchStatus(str, Enum):
+class GPTBatchStatus(str, Enum):  # not exhaustive
     VALIDATING = "validating"
     IN_PROGRESS = "in_progress"
     PROCESSING = "processing"
+    FINALISING = "finalising"
     COMPLETED = "completed"
     FAILED = "failed"
     EXPIRED = "expired"

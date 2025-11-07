@@ -44,12 +44,12 @@ class ManufacturerExtractionOrchestrator:
         # Create or update the deferred manufacturer
         deferred_mfg = await self._get_or_create_deferred(timestamp, mfg)
 
-        logger.info(
+        logger.debug(
             f"[{mfg.etld1}] Starting extraction pipeline with {len(self.pipelines)} field types"
         )
 
         for field_type, pipeline in self.pipelines.items():
-            logger.info(
+            logger.debug(
                 f"[{mfg.etld1}] Processing extraction pipeline for field '{field_type.name}', stats: {mfg.scraped_text_file_num_tokens} tokens"
             )
             if pipeline.is_mfg_missing_data(mfg):
@@ -63,7 +63,7 @@ class ManufacturerExtractionOrchestrator:
                     timestamp=timestamp,
                 )
             else:
-                logger.info(
+                logger.debug(
                     f"[{mfg.etld1}] ✓ Already has data for field '{field_type.name}'. Setting deferred.{field_type.name} to None..."
                 )
                 setattr(deferred_mfg, field_type.name, None)

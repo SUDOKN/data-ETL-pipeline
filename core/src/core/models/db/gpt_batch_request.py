@@ -31,4 +31,8 @@ db.gpt_batch_requests.createIndex(
     unique: true
   }
 );
+db.gpt_batch_requests.createIndex(
+  { batch_id: 1 },
+  { name: "gpt_batch_id_sparse_idx", sparse: true }
+)
 """

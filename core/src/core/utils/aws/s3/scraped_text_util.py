@@ -45,7 +45,7 @@ async def get_scraped_text_file_exist_last_modified_on(
     """
     s3_client = get_scraped_bucket_s3_client()
     assert SCRAPED_TEXT_BUCKET is not None, "SCRAPED_TEXT_BUCKET is None"
-    logger.info(
+    logger.debug(
         f"Checking existence of file: {file_name} in bucket: {SCRAPED_TEXT_BUCKET}"
     )
     if not version_id:
@@ -56,7 +56,7 @@ async def get_scraped_text_file_exist_last_modified_on(
             Bucket=SCRAPED_TEXT_BUCKET, Key=file_name, VersionId=version_id
         )
         last_modified = response["LastModified"]
-        logger.info(
+        logger.debug(
             f"File {file_name} with version ID {version_id} exists in bucket {SCRAPED_TEXT_BUCKET}. Last modified: {last_modified}"
         )
         return last_modified
@@ -182,17 +182,17 @@ async def download_scraped_text_from_s3_by_filename(
     assert SCRAPED_TEXT_BUCKET is not None, "SCRAPED_TEXT_BUCKET is None"
     # Use centralized s3_client to download
     if version_id:
-        logger.info(
+        logger.debug(
             f"Attempting to download `{file_name}` with version ID `{version_id}` from S3"
         )
         obj = await s3_client.get_object(
             Bucket=SCRAPED_TEXT_BUCKET, Key=file_name, VersionId=version_id
         )
-        logger.info(f"Streaming `{file_name}` from S3")
+        logger.debug(f"Streaming `{file_name}` from S3")
         async with obj["Body"] as stream:
             content = await stream.read()
     else:
-        logger.info(
+        logger.debug(
             f"Attempting to download `{file_name}` from S3 without specifying version ID"
         )
         obj = await s3_client.get_object(Bucket=SCRAPED_TEXT_BUCKET, Key=file_name)

@@ -34,17 +34,23 @@ class BatchDownloadOutput:
     def delete_batch_file_from_openai_and_move_output(
         self, client: OpenAI, input_file_id: str, finished_batches_dir: Path
     ):
-        logger.warning(
-            f"Deleting {input_file_id} from openai, moving {self.output_file_path} and {self.error_file_path} to {finished_batches_dir}"
-        )
-        delete_uploaded_batch_file_from_openai(
-            client=client, input_file_id=input_file_id
-        )
-        output_dest = finished_batches_dir / self.output_file_path.name
-        self.output_file_path.rename(output_dest)
-        if self.error_file_path:
-            error_dest = finished_batches_dir / self.error_file_path.name
-            self.error_file_path.rename(error_dest)
+        try:
+            logger.warning(
+                f"Deleting {input_file_id} from openai, moving {self.output_file_path} and {self.error_file_path} to {finished_batches_dir}"
+            )
+            delete_uploaded_batch_file_from_openai(
+                client=client, input_file_id=input_file_id
+            )
+            output_dest = finished_batches_dir / self.output_file_path.name
+            self.output_file_path.rename(output_dest)
+            if self.error_file_path:
+                error_dest = finished_batches_dir / self.error_file_path.name
+                self.error_file_path.rename(error_dest)
+        except Exception as e:
+            logger.error(
+                f"Error deleting batch file {input_file_id} from OpenAI or moving downloaded files: {e}",
+                exc_info=True,
+            )
 
 
 # Type alias for the callbacks
@@ -240,7 +246,6 @@ class BatchFileSatellite:
                 await api_key_bundle.mark_batch_inactive(
                     updated_at=timestamp
                 )  # makes latest_external_batch_id None
-                return
             else:
                 logger.info(
                     f"sync_batch: Batch {api_key_bundle.label}:{api_key_bundle.latest_external_batch_id} is due for processing"
@@ -260,7 +265,7 @@ class BatchFileSatellite:
                 )
 
                 # Notify the observer (e.g.: BatchFileStation)
-                if self.on_batch_completed and download_result:
+                if download_result:
                     logger.info(
                         f"sync_batch: Invoking completion callback for batch {api_key_bundle.label}:{gpt_batch.external_batch_id}"
                     )
@@ -271,6 +276,7 @@ class BatchFileSatellite:
                         download_result,
                         client,
                     )
+
             elif batch_response.status == "expired":
                 # shouldn't happen, we should have downloaded the file already in a previous sync
                 # if file not already downloaded, then reset batch requests

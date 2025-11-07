@@ -361,7 +361,7 @@ async def reset_batch_requests_with_batch(gpt_batch: GPTBatch) -> int:
     }
 
     result = await GPTBatchRequest.get_pymongo_collection().update_many(
-        filter=match_filter, update=update_operation
+        filter=match_filter, update=update_operation, hint=[("batch_id", 1)]
     )
 
     logger.info(
@@ -579,7 +579,7 @@ async def bulk_delete_gpt_batch_requests_by_mfg_etld1_and_field(
         hint=[("request.custom_id", 1)],
     )
 
-    logger.info(
+    logger.debug(
         f"Deleted residual {result.deleted_count} GPT batch requests for {mfg_etld1}"
     )
 

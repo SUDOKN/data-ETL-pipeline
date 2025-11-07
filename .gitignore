@@ -21,6 +21,11 @@ data_etl_app/src/data_etl_app/knowledge
 scratch.ipynb
 keys.py
 *.log
+# Ignore any .json file that does NOT have .schema before .json
+# Example: data.json (ignored), data.schema.json (not ignored)
+*.json
+!*.schema.json
+!*.config.json
 *.jsonl
 *.ndjson
 *.csv
