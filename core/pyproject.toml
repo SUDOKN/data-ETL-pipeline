@@ -40,4 +40,25 @@ dependencies = [
 
   "psutil>=5.9.0",
   "pytest-cov>=3.0.0",
+  "ruff>=0.8.0",
 ]
+
+[tool.ruff]
+# Set line length
+line-length = 100
+
+# Exclude directories
+exclude = [".git", "__pycache__", ".venv", "venv", ".pytest_cache"]
+
+[tool.ruff.lint]
+# Enable specific rules
+select = [
+  "E",      # pycodestyle errors
+  "W",      # pycodestyle warnings
+  "F",      # pyflakes
+  "B",      # flake8-bugbear (includes B006)
+  "RUF012", # Mutable class attributes should be annotated with `ClassVar`
+]
+
+# Ignore specific rules if needed
+ignore = []

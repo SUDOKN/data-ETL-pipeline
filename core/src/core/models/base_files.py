@@ -1,13 +1,9 @@
-from dataclasses import field
 from functools import cached_property
 from io import TextIOWrapper
 from pathlib import Path
 
 
 class FileOnDisk:
-    name: str = field(init=False)
-    full_path: Path = field(init=False)
-
     def __init__(
         self, output_dir: Path, prefix: str, timestamp_str: str, extension: str
     ):
@@ -43,8 +39,6 @@ class FileOnDisk:
 
 
 class CSVFile(FileOnDisk):
-    total_rows: int = 0
-
     def __init__(
         self, output_dir: Path, prefix: str, timestamp_str: str, headers: list[str]
     ):
@@ -54,6 +48,7 @@ class CSVFile(FileOnDisk):
             timestamp_str=timestamp_str,
             extension="csv",
         )
+        self.total_rows: int = 0
         self.add_csv_row(headers)
 
     def add_csv_row(self, row: list[str]):

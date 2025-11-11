@@ -41,5 +41,5 @@ GPT_4o_mini = GPTModel(
     rate_limit_window=60,
     max_context_tokens=128000,
     token_limit_per_minute=200000,
-    safe_completion_tokens=2500,
+    safe_completion_tokens=7500,
 )

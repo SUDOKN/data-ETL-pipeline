@@ -182,9 +182,9 @@ def get_mapped_known_concepts_and_unmapped_keywords(
                 )
         else:
             if mk_label:  # mk must not be null/None
-                matched_known_concept = match_label_map[mk_label]
+                matched_known_concept = match_label_map.get(mk_label)
                 if not matched_known_concept:
-                    logger.warning(
+                    logger.debug(
                         f"WARNING: {mfg_etld1}:{concept_type.name} mapped_known:{mk_label} was not in the original knowns list"
                     )
                 else:

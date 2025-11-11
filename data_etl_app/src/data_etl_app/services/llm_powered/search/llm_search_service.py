@@ -6,6 +6,7 @@ from typing import Optional
 from core.models.prompt import Prompt
 
 from core.models.db.gpt_batch_request import GPTBatchRequest
+from core.utils.str_util import make_json_parse_safe
 from open_ai_key_app.models.gpt_model import (
     GPTModel,
     ModelParameters,
@@ -52,14 +53,35 @@ async def llm_search(
 
 def parse_llm_search_response(gpt_response: str) -> set[str]:
     if not gpt_response:
-        logger.error(f"Invalid gpt_response:{gpt_response}")
-        raise ValueError("llm_results: Empty or invalid response from GPT")
+        logger.error(
+            f"parse_llm_search_response: Invalid gpt_response:{gpt_response}, returning empty set"
+        )
+        return set()
 
     try:
-        gpt_response = gpt_response.replace("```", "").replace("json", "")
-        llm_results: set[str] = set(json.loads(gpt_response))
-    except:
-        raise ValueError(f"llm_results: Invalid response from GPT:{gpt_response}")
+        cleaned_response = make_json_parse_safe(gpt_response)
+    except Exception as e:
+        logger.error(
+            (
+                f"parse_llm_search_response: Failed to make_json_parse_safe GPT response: {e}\n",
+                f"cleaned_response={gpt_response}, returning empty set",
+            ),
+            exc_info=True,
+        )
+        return set()
+
+    try:
+        llm_results: set[str] = set(json.loads(cleaned_response))
+    except Exception as e:
+        logger.error(
+            (
+                f"parse_llm_search_response: Failed to json.loads(cleaned_response): {e}\n",
+                f"gpt_response={gpt_response}\n"
+                f"cleaned_response={cleaned_response}, returning empty set",
+            ),
+            exc_info=True,
+        )
+        return set()
 
     logger.debug(f"llm_results:{llm_results}")
 

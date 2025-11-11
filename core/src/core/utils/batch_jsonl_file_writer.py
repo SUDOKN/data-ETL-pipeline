@@ -1,5 +1,5 @@
 from datetime import datetime
-from dataclasses import field
+import asyncio
 import json
 import logging
 from pathlib import Path
@@ -7,7 +7,6 @@ from typing import Optional
 
 from core.models.gpt_batch_request_blob import GPTBatchRequestBlob
 from core.models.jsonl_batch_file import (
-    JSONLBatchFileSummary,
     JSONLBatchFile,
 )
 from core.utils.time_util import get_timestamp_str
@@ -25,20 +24,10 @@ class MaxFilesReachedException(Exception):
 
 
 class BatchRequestJSONLFileWriter:
-    """Handles writing batch requests to JSONL files with constraints."""
+    """Handles writing batch requests to JSONL files with constraints.
 
-    run_timestamp_str: str
-    output_dir: Path
-    common_prefix: str
-    files: list[JSONLBatchFile] = field(init=False)
-    current_file_index: int = field(init=False)
-    result_summary: dict[str, JSONLBatchFileSummary] = field(init=False)
-
-    # constraints
-    max_files: Optional[int]
-    max_requests_per_file: int
-    max_tokens_per_file: int
-    max_file_size_in_bytes: int
+    Thread-safe for concurrent access using asyncio.Lock.
+    """
 
     def __init__(
         self,
@@ -62,6 +51,7 @@ class BatchRequestJSONLFileWriter:
         self.files = []
         self.current_file_index = -1
         self.result_summary = {}
+        self._lock = asyncio.Lock()  # Thread-safe lock for concurrent writes
         self._add_new_file()
 
     @property
@@ -87,14 +77,16 @@ class BatchRequestJSONLFileWriter:
             logger.info(
                 f"Closed {self.current_file.name}: "
                 f"{file_summary.request_count:,} requests, {file_summary.total_tokens:,} tokens, "
-                f"{file_summary.unique_items} unique items, "
+                f"{file_summary.unique_items} unique items, {file_summary.unique_lines} unique lines"
                 f"{self.current_file.size_in_bytes / (1024 * 1024):.2f} MB"
             )
 
         # Check if we've reached the max number of files
         if self.max_files is not None and self.current_file_index + 1 >= self.max_files:
             self.current_file.close_pointer()
-            raise StopIteration(f"Reached maximum number of files: {self.max_files}")
+            raise MaxFilesReachedException(
+                f"Reached maximum number of files: {self.max_files}"
+            )
 
         self._add_new_file()
 
@@ -137,7 +129,11 @@ class BatchRequestJSONLFileWriter:
     def write_item_request_blobs(
         self, item_id: str, request_blobs: list[GPTBatchRequestBlob]
     ):
-        """Write all requests for a single item to the current batch file."""
+        """Write all requests for a single item to the current batch file.
+
+        Note: This is a synchronous wrapper that should be called with await
+        in an async context for thread safety.
+        """
         # logger.info(f"Writing {len(request_blobs):,} requests for item {item_id}")
         if not request_blobs:
             logger.debug(
@@ -151,10 +147,22 @@ class BatchRequestJSONLFileWriter:
         for req_blob in request_blobs:
             json_str = self._serialize_request(req_blob)
             self.current_file.add_json_line(
-                unique_id=req_blob.custom_id,
+                item_id=item_id,
+                line_id=req_blob.custom_id,
                 json_line=json_str,
                 tokens=req_blob.body.input_tokens,
             )
+
+    async def write_item_request_blobs_async(
+        self, item_id: str, request_blobs: list[GPTBatchRequestBlob]
+    ):
+        """Thread-safe async version of write_item_request_blobs.
+
+        Use this method when processing manufacturers in parallel to ensure
+        safe concurrent writes to batch files.
+        """
+        async with self._lock:
+            self.write_item_request_blobs(item_id, request_blobs)
 
     def delete_files(self):
         """Delete all created batch files from disk."""

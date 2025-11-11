@@ -9,6 +9,67 @@ from open_ai_key_app.utils.token_util import num_tokens_from_string
 
 logger = logging.getLogger(__name__)
 
+
+def split_bytes_on_line_boundaries(
+    data: bytes,
+    max_chunk_size: int,
+    newline_search_window: int = 10000,
+) -> list[bytes]:
+    """
+    Split binary data into chunks at line boundaries (newline characters).
+
+    This is particularly useful for JSONL files where each line is a complete JSON object.
+    Ensures that no JSON objects are split across chunks.
+
+    Args:
+        data: The binary data to split
+        max_chunk_size: Maximum size of each chunk in bytes
+        newline_search_window: How far back from the chunk boundary to search for a newline (default: 10KB)
+
+    Returns:
+        list[bytes]: List of binary chunks, each ending on a line boundary (except possibly the last)
+
+    Example:
+        >>> data = b'{"a":1}\n{"b":2}\n{"c":3}\n'
+        >>> chunks = split_bytes_on_line_boundaries(data, max_chunk_size=10)
+        >>> # Each chunk will end at a newline, preserving JSON object integrity
+    """
+    if not data:
+        return []
+
+    if len(data) <= max_chunk_size:
+        return [data]
+
+    chunks = []
+    offset = 0
+    data_size = len(data)
+
+    while offset < data_size:
+        # Calculate the target chunk size
+        chunk_size = min(max_chunk_size, data_size - offset)
+
+        # If this isn't the last chunk, find the last newline within the chunk
+        # to avoid splitting lines (e.g., JSON objects) across chunks
+        if offset + chunk_size < data_size:
+            # Look for the last newline in this chunk
+            chunk_end = offset + chunk_size
+            # Search backwards from chunk_end to find last newline
+            search_start = max(offset, chunk_end - newline_search_window)
+            last_newline = data.rfind(b"\n", search_start, chunk_end)
+
+            if last_newline != -1 and last_newline > offset:
+                # Found a newline, split there (include the newline in this chunk)
+                chunk_size = last_newline - offset + 1
+            # If no newline found, keep the original chunk_size
+            # (rare for line-based formats like JSONL, but handles edge cases)
+
+        chunk = data[offset : offset + chunk_size]
+        chunks.append(chunk)
+        offset += chunk_size
+
+    return chunks
+
+
 # Module-level thread pool for chunking operations
 _chunk_thread_pool: ThreadPoolExecutor | None = None
 

@@ -7,6 +7,7 @@
       "key",
       "batch_queue_limit",
       "available_at",
+      "tokens_in_use",
       "updated_at"
     ],
     "additionalProperties": false,
@@ -37,13 +38,14 @@
         "bsonType": "date",
         "description": "Timestamp when the API key will be available for use (considers cooldown period)"
       },
+      "tokens_in_use": {
+        "bsonType": "int",
+        "minimum": 0,
+        "description": "Number of tokens currently in use by this API key"
+      },
       "updated_at": {
         "bsonType": "date",
         "description": "Timestamp when the API key bundle was last updated"
-      },
-      "latest_external_batch_id": {
-        "bsonType": ["string", "null"],
-        "description": "The external batch ID of the currently active batch, null if no active batch"
       }
     }
   }

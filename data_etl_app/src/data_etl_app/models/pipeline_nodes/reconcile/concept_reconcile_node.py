@@ -85,7 +85,7 @@ class ConceptReconcileNode(ReconcileNode):
         raw_gpt_mapping = parse_llm_concept_mapping_result(
             gpt_response=llm_map_request.response_blob.result
         )
-        logger.info(f"full raw_gpt_mapping: {raw_gpt_mapping}")
+        logger.debug(f"full raw_gpt_mapping: {raw_gpt_mapping}")
 
         final_results: set[str] = set()
         unmatched_keywords: set[str] = set()
@@ -118,7 +118,7 @@ class ConceptReconcileNode(ReconcileNode):
                     raw_gpt_mapping=raw_gpt_mapping,
                 )
             )
-            logger.info(
+            logger.debug(
                 f"llm_mapping_chunk_result for chunk {chunk_bounds}: {llm_mapping_chunk_result}"
             )
             chunked_stats[chunk_bounds] = ConceptSearchChunkStats(
@@ -151,7 +151,7 @@ class ConceptReconcileNode(ReconcileNode):
                 raw_gpt_mapping=raw_gpt_mapping,
             )
         )
-        logger.info(f"llm_mapping_result: {llm_mapping_result}")
+        logger.debug(f"llm_mapping_result: {llm_mapping_result}")
         concept_data = ConceptExtractionResults(
             extracted_at=timestamp,
             results=list(final_results),

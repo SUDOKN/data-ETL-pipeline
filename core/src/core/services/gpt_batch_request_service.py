@@ -102,7 +102,7 @@ async def find_gpt_batch_requests_by_custom_ids(
 
 
 async def find_gpt_batch_request_ids_only(
-    gpt_batch_request_custom_ids: list[GPTBatchRequestCustomID | None],
+    gpt_batch_request_custom_ids: list[GPTBatchRequestCustomID],
 ) -> set[GPTBatchRequestCustomID]:
     if gpt_batch_request_custom_ids is None:
         raise ValueError("gpt_batch_request_custom_ids cannot be None")
@@ -260,7 +260,7 @@ async def bulk_update_gpt_batch_requests(
         Tuple of (total_upserted, total_modified)
 
     Raises:
-        Exception: If unexpected errors occur during bulk write
+        Exception: If unexpected errors occur during bulk write, with details of all chunk failures
         BulkWriteError: If write errors occur (collected from all chunks)
     """
     if not update_one_operations:
@@ -328,47 +328,157 @@ async def bulk_update_gpt_batch_requests(
     return total_upserted, total_modified
 
 
+async def get_custom_ids_for_batch(
+    gpt_batch: GPTBatch,
+) -> set[GPTBatchRequestCustomID]:
+    """
+    Get all custom IDs for a given GPT batch.
+
+    Args:
+        gpt_batch: GPTBatch object to get custom IDs for
+
+    Returns:
+        Set of custom IDs for the batch
+    """
+    logger.info(f"Getting custom IDs for GPT batch {gpt_batch.external_batch_id}")
+    collection = GPTBatchRequest.get_pymongo_collection()
+
+    custom_ids = []
+    # Fetch all matching documents at once
+    docs = await collection.find(
+        {"batch_id": gpt_batch.external_batch_id},
+        projection={"request.custom_id": 1, "_id": 0},
+    ).to_list(
+        length=None
+    )  # None means fetch all
+    logger.info(
+        f"Found {len(docs):,} batch requests for batch {gpt_batch.external_batch_id}"
+    )
+
+    # Extract custom IDs
+    custom_ids = [doc["request"]["custom_id"] for doc in docs]
+
+    return set(custom_ids)
+
+
 async def pair_batch_request_custom_ids_with_batch(
-    custom_ids: set[str], gpt_batch: GPTBatch
+    custom_ids: set[str], gpt_batch: GPTBatch, chunk_size: int = 5000
 ) -> int:
-    match_filter = {"request.custom_id": {"$in": list(custom_ids)}}
-    update_operation = {
-        "$set": {
-            "batch_id": gpt_batch.external_batch_id,
-        }
-    }
+    """
+    Pair batch request custom IDs with a batch in chunks to avoid write lock contention.
 
-    result = await GPTBatchRequest.get_pymongo_collection().update_many(
-        filter=match_filter, update=update_operation
-    )
+    Args:
+        custom_ids: Set of custom IDs to pair with the batch
+        gpt_batch: GPTBatch object to pair with
+        chunk_size: Number of custom IDs to process per chunk (default: 5000)
 
+    Returns:
+        Total number of modified documents
+    """
     logger.info(
-        f"Paired {result.modified_count} batch requests with batch {gpt_batch.external_batch_id}"
+        f"pair_batch_request_custom_ids_with_batch: Pairing {len(custom_ids):,} custom IDs with batch:{gpt_batch.external_batch_id}"
     )
 
-    return result.modified_count
+    if not custom_ids:
+        logger.warning(
+            f"pair_batch_request_custom_ids_with_batch: No custom IDs provided to pair with batch:{gpt_batch.external_batch_id}"
+        )
+        return 0
 
+    # Create UpdateOne operations for each custom_id
+    update_operations = [
+        UpdateOne(
+            {"request.custom_id": custom_id},
+            {"$set": {"batch_id": gpt_batch.external_batch_id}},
+            upsert=False,  # Doesn't create new documents if filter unmatched
+        )
+        for custom_id in custom_ids
+    ]
 
-async def reset_batch_requests_with_batch(gpt_batch: GPTBatch) -> int:
-    match_filter = {"batch_id": gpt_batch.external_batch_id}
-    update_operation = {
-        "$set": {
-            "batch_id": None,
-            #
-            # probably not needed:
-            "response_blob": None,
-        }
-    }
-
-    result = await GPTBatchRequest.get_pymongo_collection().update_many(
-        filter=match_filter, update=update_operation, hint=[("batch_id", 1)]
+    # Use the generic bulk update function
+    _, modified_count = await bulk_update_gpt_batch_requests(
+        update_one_operations=update_operations,
+        log_id=f"pair_with_{gpt_batch.external_batch_id}",
+        chunk_size=chunk_size,
     )
 
-    logger.info(
-        f"Reset {result.modified_count} batch requests for batch {gpt_batch.external_batch_id}"
+    return modified_count
+
+
+async def unpair_all_batch_requests_from_batch(
+    gpt_batch: GPTBatch, chunk_size: int = 5000
+) -> int:
+    """
+    Reset batch requests associated with a batch in chunks to avoid write lock contention.
+
+    Args:
+        gpt_batch: GPTBatch object whose requests should be reset
+        chunk_size: Number of requests to reset per chunk (default: 5000)
+
+    Returns:
+        Total number of modified documents
+    """
+    # First, get all custom IDs for this batch
+    collection = GPTBatchRequest.get_pymongo_collection()
+
+    custom_ids = []
+    # Fetch all matching documents at once
+    docs = await collection.find(
+        {"batch_id": gpt_batch.external_batch_id},
+        projection={"request.custom_id": 1, "_id": 0},
+    ).to_list(
+        length=None
+    )  # None means fetch all
+
+    # Extract custom IDs
+    custom_ids = [doc["request"]["custom_id"] for doc in docs]
+
+    if not custom_ids:
+        logger.info(
+            f"No batch requests found to reset for batch {gpt_batch.external_batch_id}"
+        )
+        return 0
+
+    return await unpair_batch_requests_by_custom_ids(
+        custom_ids=set(custom_ids),
+        chunk_size=chunk_size,
     )
 
-    return result.modified_count
+
+async def unpair_batch_requests_by_custom_ids(
+    custom_ids: set[str], chunk_size: int = 5000
+) -> int:
+    """
+    Reset batch requests associated with a batch in chunks to avoid write lock contention.
+
+    Args:
+        custom_ids: Set of custom IDs to reset
+        chunk_size: Number of requests to reset per chunk (default: 5000)
+
+    Returns:
+        Total number of modified documents
+    """
+    if not custom_ids:
+        return 0
+
+    # Create UpdateOne operations for each custom_id
+    update_operations = [
+        UpdateOne(
+            {"request.custom_id": custom_id},
+            {"$set": {"batch_id": None, "response_blob": None}},
+            upsert=False,  # Doesn't create new documents if filter unmatched
+        )
+        for custom_id in custom_ids
+    ]
+
+    # Use the generic bulk update function
+    _, modified_count = await bulk_update_gpt_batch_requests(
+        update_one_operations=update_operations,
+        log_id=f"unpair_by_custom_ids",
+        chunk_size=chunk_size,
+    )
+
+    return modified_count
 
 
 async def _upsert_chunk_with_only_request_body(
@@ -390,8 +500,20 @@ async def _upsert_chunk_with_only_request_body(
                 {"request.custom_id": req.request.custom_id},  # Filter by custom_id
                 {
                     "$set": {
-                        "request": req.request.model_dump(),
-                    }
+                        "request.body": req.request.body.model_dump(),  # Update body on both insert and update
+                    },
+                    "$setOnInsert": {  # Set these required fields only on insert
+                        "created_at": req.created_at,
+                        "request.custom_id": req.request.custom_id,
+                        "request.method": req.request.method,
+                        "request.url": req.request.url,
+                        "batch_id": req.batch_id,
+                        "response_blob": (
+                            req.response_blob.model_dump()
+                            if req.response_blob
+                            else None
+                        ),
+                    },
                 },
                 upsert=True,
             )
@@ -423,10 +545,34 @@ async def _upsert_chunk_with_only_request_body(
         upserted_count = bwe.details.get("nUpserted", 0)
         modified_count = bwe.details.get("nModified", 0)
 
-        logger.debug(
+        # Log sample errors at INFO level for debugging
+        logger.info(
             f"Chunk {chunk_num}/{total_chunks}: Upserted {upserted_count}, "
-            f"Modified {modified_count} with {len(write_errors)} errors for {mfg_etld1}"
+            f"Modified {modified_count} with {len(write_errors)} write errors for {mfg_etld1}"
         )
+
+        # Log first few error details for debugging
+        if write_errors:
+            sample_errors = write_errors[:3]  # Show first 3 errors
+            for idx, err in enumerate(sample_errors, 1):
+                error_code = err.get("code")
+                error_msg = err.get("errmsg", "N/A")
+
+                # For validation errors (code 121), log more details
+                if error_code == 121:
+                    logger.info(
+                        f"  Write error {idx}/{len(write_errors)}: Code={error_code}, "
+                        f"Message={error_msg[:200]}"
+                    )
+                    # Try to extract the errInfo which contains validation details
+                    err_info = err.get("errInfo", {})
+                    if err_info:
+                        logger.info(f"    Validation details: {err_info}")
+                else:
+                    logger.info(
+                        f"  Write error {idx}/{len(write_errors)}: Code={error_code}, "
+                        f"Message={error_msg[:100]}"
+                    )
 
         return {
             "upserted_count": upserted_count,

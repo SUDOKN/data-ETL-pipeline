@@ -15,6 +15,13 @@ class GPTBatchRequest(Document):
         None  # known after batch response is received,
     )
 
+    def is_batch_request_pending(self) -> bool:
+        return (
+            self.batch_id
+            is None
+            # and gpt_batch_request.response_blob is None
+        )
+
     class Settings:
         name = "gpt_batch_requests"
 

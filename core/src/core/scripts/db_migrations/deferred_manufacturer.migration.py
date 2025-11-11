@@ -1,7 +1,7 @@
 import asyncio
 import logging
 import argparse
-from pymongo import ReplaceOne
+from pymongo import UpdateOne
 from pymongo.errors import BulkWriteError
 
 from core.dependencies.load_core_env import load_core_env
@@ -21,99 +21,60 @@ from core.utils.mongo_client import init_db
 logger = logging.getLogger(__name__)
 
 
-def migrate_binary_classification(field_data):
+def fix_chunk_keys_in_material_caps(field_data):
     """
-    Migrate binary classification fields (is_manufacturer, is_contract_manufacturer, is_product_manufacturer)
-    Remove deferred_stats wrapper and rename chunk_batch_request_id_map to chunk_request_id_map
+    Fix llm_search_request_id values in material_caps field.
+    Replace '>materials>' with '>material_caps>' in llm_search_request_id.
+
+    Example: 1a.tools>materials>llm_search>chunk>0:18706
+          -> 1a.tools>material_caps>llm_search>chunk>0:18706
     """
-    if not field_data or "deferred_stats" not in field_data:
-        return field_data
+    if not field_data or "chunk_request_bundle_map" not in field_data:
+        return field_data, False
 
-    stats = field_data["deferred_stats"]
-    migrated = {
-        "prompt_version_id": stats["prompt_version_id"],
-        "final_chunk_key": stats["final_chunk_key"],
-        "chunk_request_id_map": stats["chunk_batch_request_id_map"],
-    }
-    return migrated
+    chunk_map = field_data["chunk_request_bundle_map"]
+    modified = False
+
+    for chunk_key, bundle in chunk_map.items():
+        if "llm_search_request_id" in bundle:
+            llm_search_id = bundle["llm_search_request_id"]
+            if ">materials>" in llm_search_id:
+                new_id = llm_search_id.replace(">materials>", ">material_caps>")
+                bundle["llm_search_request_id"] = new_id
+                modified = True
+                print(f"    Chunk {chunk_key}: '{llm_search_id}' -> '{new_id}'")
+
+    return field_data, modified
 
 
-def migrate_basic_extraction_array(field_data):
+def fix_chunk_keys_in_process_caps(field_data):
     """
-    Migrate addresses field from array of strings to DeferredBasicExtraction object
+    Fix llm_search_request_id values in process_caps field.
+    Replace '>processes>' with '>process_caps>' in llm_search_request_id.
+
+    Example: 1a.tools>processes>llm_search>chunk>0:9573
+          -> 1a.tools>process_caps>llm_search>chunk>0:9573
     """
-    if not field_data or not isinstance(field_data, list) or len(field_data) == 0:
-        return field_data
+    if not field_data or "chunk_request_bundle_map" not in field_data:
+        return field_data, False
 
-    return {
-        "prompt_version_id": "PF7oLk38eu5SnTc20JiZfWOPMO1czNJC",
-        "gpt_request_id": field_data[0],
-    }
+    chunk_map = field_data["chunk_request_bundle_map"]
+    modified = False
 
+    for chunk_key, bundle in chunk_map.items():
+        if "llm_search_request_id" in bundle:
+            llm_search_id = bundle["llm_search_request_id"]
+            if ">processes>" in llm_search_id:
+                new_id = llm_search_id.replace(">processes>", ">process_caps>")
+                bundle["llm_search_request_id"] = new_id
+                modified = True
+                print(f"    Chunk {chunk_key}: '{llm_search_id}' -> '{new_id}'")
 
-def migrate_basic_extraction_string(field_data):
-    """
-    Migrate business_desc field from string to DeferredBasicExtraction object
-    """
-    if not field_data or not isinstance(field_data, str):
-        return field_data
-
-    return {
-        "prompt_version_id": "oGmkYFTGmRhl3mWzpkmB9pWjrnhY6YyP",
-        "gpt_request_id": field_data,
-    }
-
-
-def migrate_keyword_extraction(field_data):
-    """
-    Migrate products field
-    Remove deferred_stats wrapper and rename chunk_batch_request_id_map to chunk_request_id_map
-    """
-    if not field_data or "deferred_stats" not in field_data:
-        return field_data
-
-    stats = field_data["deferred_stats"]
-    migrated = {
-        "extract_prompt_version_id": stats["extract_prompt_version_id"],
-        "chunk_request_id_map": stats["chunk_batch_request_id_map"],
-    }
-    return migrated
-
-
-def migrate_concept_extraction(field_data):
-    """
-    Migrate concept extraction fields (certificates, industries, process_caps, material_caps)
-    Remove deferred_stats wrapper, rename chunked_stats_batch_request_map to chunk_request_bundle_map,
-    rename llm_batch_request_id to llm_search_request_id in bundles,
-    remove mapping_batch_request_id from bundles, add llm_mapping_request_id: None at top level
-    """
-    if not field_data or "deferred_stats" not in field_data:
-        return field_data
-
-    stats = field_data["deferred_stats"]
-
-    # Migrate chunk bundles
-    chunk_request_bundle_map = {}
-    for chunk_key, bundle in stats.get("chunked_stats_batch_request_map", {}).items():
-        migrated_bundle = {
-            "brute": bundle["brute"],
-            "llm_search_request_id": bundle["llm_batch_request_id"],
-            # Note: mapping_batch_request_id is intentionally deleted
-        }
-        chunk_request_bundle_map[chunk_key] = migrated_bundle
-
-    migrated = {
-        "extract_prompt_version_id": stats["extract_prompt_version_id"],
-        "map_prompt_version_id": stats["map_prompt_version_id"],
-        "ontology_version_id": stats["ontology_version_id"],
-        "chunk_request_bundle_map": chunk_request_bundle_map,
-        "llm_mapping_request_id": None,
-    }
-    return migrated
+    return field_data, modified
 
 
 async def iterate(limit=None, mfg_etld1=None):
-    print("Starting migration of DeferredManufacturer documents...")
+    print("Starting migration of DeferredManufacturer chunk keys...")
     collection = DeferredManufacturer.get_pymongo_collection()
 
     # Build query filter
@@ -135,73 +96,54 @@ async def iterate(limit=None, mfg_etld1=None):
     bulk_operations = []
     batch_size = 1000
     total_count = 0
-    failed = 0
     processed = 0
 
     async for doc in cursor:
-        updated = False
         processed += 1
+        mfg_etld1_value = doc.get("mfg_etld1")
         print(
-            f"Processing document {processed}/{total} with mfg_etld1: {doc.get('mfg_etld1')}"
+            f"Processing document {processed}/{min(limit, total) if limit else total} with mfg_etld1: {mfg_etld1_value}"
         )
 
-        # Migrate binary classification fields
-        for field in [
-            "is_manufacturer",
-            "is_contract_manufacturer",
-            "is_product_manufacturer",
-        ]:
-            if field in doc and doc[field] is not None:
-                migrated = migrate_binary_classification(doc[field])
-                if migrated != doc[field]:
-                    doc[field] = migrated
-                    updated = True
-                    print(f"  Migrated {field}")
+        update_fields = {}
+        doc_updated = False
 
-        # Migrate addresses
-        if "addresses" in doc and doc["addresses"] is not None:
-            migrated = migrate_basic_extraction_array(doc["addresses"])
-            if migrated != doc["addresses"]:
-                doc["addresses"] = migrated
-                updated = True
-                print(f"  Migrated addresses")
+        # Fix material_caps chunk keys
+        if "material_caps" in doc and doc["material_caps"] is not None:
+            material_caps_data = doc["material_caps"]
+            updated_material_caps, modified = fix_chunk_keys_in_material_caps(
+                material_caps_data
+            )
+            if modified:
+                update_fields["material_caps"] = updated_material_caps
+                doc_updated = True
+                print(f"  Updated material_caps chunk keys")
 
-        # Migrate business_desc
-        if "business_desc" in doc and doc["business_desc"] is not None:
-            migrated = migrate_basic_extraction_string(doc["business_desc"])
-            if migrated != doc["business_desc"]:
-                doc["business_desc"] = migrated
-                updated = True
-                print(f"  Migrated business_desc")
+        # Fix process_caps chunk keys
+        if "process_caps" in doc and doc["process_caps"] is not None:
+            process_caps_data = doc["process_caps"]
+            updated_process_caps, modified = fix_chunk_keys_in_process_caps(
+                process_caps_data
+            )
+            if modified:
+                update_fields["process_caps"] = updated_process_caps
+                doc_updated = True
+                print(f"  Updated process_caps chunk keys")
 
-        # Migrate products
-        if "products" in doc and doc["products"] is not None:
-            migrated = migrate_keyword_extraction(doc["products"])
-            if migrated != doc["products"]:
-                doc["products"] = migrated
-                updated = True
-                print(f"  Migrated products")
-
-        # Migrate concept extraction fields
-        for field in ["certificates", "industries", "process_caps", "material_caps"]:
-            if field in doc and doc[field] is not None:
-                migrated = migrate_concept_extraction(doc[field])
-                if migrated != doc[field]:
-                    doc[field] = migrated
-                    updated = True
-                    print(f"  Migrated {field}")
-
-        if updated:
-            bulk_operations.append(ReplaceOne({"_id": doc["_id"]}, doc))
+        if doc_updated:
+            bulk_operations.append(
+                UpdateOne({"_id": doc["_id"]}, {"$set": update_fields})
+            )
 
         # Execute bulk operation when batch size is reached
         if len(bulk_operations) >= batch_size:
-            print(f"Processing batch of {len(bulk_operations)} operations...")
+            print(f"Executing batch of {len(bulk_operations)} update operations...")
             try:
-                result = await collection.bulk_write(bulk_operations)
+                result = await collection.bulk_write(bulk_operations, ordered=True)
                 total_count += result.modified_count
-                failed += len(bulk_operations) - result.modified_count
-                print(f"Processed batch: {total_count} updated, {failed} failed")
+                print(
+                    f"Batch complete: {result.modified_count} documents updated (Total: {total_count})"
+                )
                 bulk_operations = []
             except BulkWriteError as bwe:
                 logger.error(f"Bulk write error: {bwe.details}")
@@ -209,37 +151,35 @@ async def iterate(limit=None, mfg_etld1=None):
                     print(
                         f"Error index: {err['index']}, errmsg: {err['errmsg']}, errInfo: {err.get('errInfo')}"
                     )
-                failed += len(bulk_operations)
-                bulk_operations = []
+                raise  # Stop on first error
             except Exception as e:
                 logger.error(f"Bulk write error: {e}")
-                failed += len(bulk_operations)
-                bulk_operations = []
+                raise  # Stop on first error
 
     # Execute remaining operations
     if bulk_operations:
+        print(f"Executing final batch of {len(bulk_operations)} update operations...")
         try:
-            print(f"Processing last batch of {len(bulk_operations)} operations...")
-            result = await collection.bulk_write(bulk_operations)
+            result = await collection.bulk_write(bulk_operations, ordered=True)
             total_count += result.modified_count
-            failed += len(bulk_operations) - result.modified_count
+            print(f"Final batch complete: {result.modified_count} documents updated")
         except BulkWriteError as bwe:
             logger.error(f"Final bulk write error: {bwe.details}")
             for err in bwe.details.get("writeErrors", [])[:5]:
                 print(
                     f"Error index: {err['index']}, errmsg: {err['errmsg']}, errInfo: {err.get('errInfo')}"
                 )
-            failed += len(bulk_operations)
+            raise  # Stop on first error
         except Exception as e:
             logger.error(f"Final bulk write error: {e}")
-            failed += len(bulk_operations)
+            raise  # Stop on first error
 
-    print(f"Migration complete: {total_count} documents updated, {failed} failed.")
+    print(f"\nMigration complete: {total_count} documents updated successfully.")
 
 
 async def main():
     parser = argparse.ArgumentParser(
-        description="Migrate DeferredManufacturer documents to new schema"
+        description="Fix chunk_request_bundle_map keys in material_caps and process_caps fields"
     )
     group = parser.add_mutually_exclusive_group()
     group.add_argument(

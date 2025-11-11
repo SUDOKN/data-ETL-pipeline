@@ -22,6 +22,7 @@ from core.services.gpt_batch_request_service import (
     find_gpt_batch_request_ids_only,
     find_completed_gpt_batch_request_ids_only,
 )
+from open_ai_key_app.models.field_types import GPTBatchRequestCustomID
 from scraper_app.models.scraped_text_file import ScrapedTextFile
 
 logger = logging.getLogger(__name__)
@@ -56,7 +57,7 @@ class BinaryClassificationNode(ExtractionNode):
             return True
 
         # else check if all llm search GPT requests exist
-        gpt_req_ids_to_lookup = set()
+        gpt_req_ids_to_lookup: set[GPTBatchRequestCustomID] = set()
         for (
             _chunk_bounds,
             gpt_req_id,

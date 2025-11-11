@@ -80,9 +80,53 @@ async def delete_deferred_manufacturer_if_empty(
 ):
     if is_deferred_manufacturer_empty(deferred_manufacturer):
         logger.info(
-            f"Deferred manufacturer {deferred_manufacturer.mfg_etld1} is empty. Deleting from the database."
+            f"✅✅✅ Deferred manufacturer {deferred_manufacturer.mfg_etld1} is empty. Deleting from the database."
         )
         await delete_deferred_manufacturer(deferred_manufacturer=deferred_manufacturer)
+
+
+def get_bin_field_embedded_gpt_request_ids(
+    bin_field: DeferredBinaryClassification,
+) -> set[GPTBatchRequestCustomID]:
+    custom_ids: set[GPTBatchRequestCustomID] = set()
+    for (
+        chunk_key,
+        custom_id,
+    ) in bin_field.chunk_request_id_map.items():
+        custom_ids.add(custom_id)
+    return custom_ids
+
+
+def get_basic_field_embedded_gpt_request_id(
+    basic_field: DeferredBasicExtraction,
+) -> GPTBatchRequestCustomID:
+    return basic_field.gpt_request_id
+
+
+def get_keyword_field_embedded_gpt_request_ids(
+    keyword_field: DeferredKeywordExtraction,
+) -> set[GPTBatchRequestCustomID]:
+    custom_ids: set[GPTBatchRequestCustomID] = set()
+    for (
+        chunk_key,
+        custom_id,
+    ) in keyword_field.chunk_request_id_map.items():
+        custom_ids.add(custom_id)
+    return custom_ids
+
+
+def get_concept_field_embedded_gpt_request_ids(
+    concept_field: DeferredConceptExtraction,
+) -> set[GPTBatchRequestCustomID]:
+    custom_ids: set[GPTBatchRequestCustomID] = set()
+    for (
+        chunk_key,
+        bundle,
+    ) in concept_field.chunk_request_bundle_map.items():
+        custom_ids.add(bundle.llm_search_request_id)
+    if concept_field.llm_mapping_request_id:
+        custom_ids.add(concept_field.llm_mapping_request_id)
+    return custom_ids
 
 
 def get_embedded_gpt_request_ids(
@@ -90,53 +134,45 @@ def get_embedded_gpt_request_ids(
 ) -> set[GPTBatchRequestCustomID]:
     custom_ids: set[GPTBatchRequestCustomID] = set()
 
-    def fill_binary_ids(bin_field: Optional[DeferredBinaryClassification]):
-        if bin_field:
-            for (
-                chunk_key,
-                custom_id,
-            ) in bin_field.chunk_request_id_map.items():
-                custom_ids.add(custom_id)
+    if deferred_mfg.is_manufacturer:
+        custom_ids |= get_bin_field_embedded_gpt_request_ids(
+            deferred_mfg.is_manufacturer
+        )
+    if deferred_mfg.is_contract_manufacturer:
+        custom_ids |= get_bin_field_embedded_gpt_request_ids(
+            deferred_mfg.is_contract_manufacturer
+        )
+    if deferred_mfg.is_product_manufacturer:
+        custom_ids |= get_bin_field_embedded_gpt_request_ids(
+            deferred_mfg.is_product_manufacturer
+        )
 
-    fill_binary_ids(deferred_mfg.is_manufacturer)
-    fill_binary_ids(deferred_mfg.is_contract_manufacturer)
-    fill_binary_ids(deferred_mfg.is_product_manufacturer)
+    if deferred_mfg.addresses:
+        custom_ids.add(get_basic_field_embedded_gpt_request_id(deferred_mfg.addresses))
+    if deferred_mfg.business_desc:
+        custom_ids.add(
+            get_basic_field_embedded_gpt_request_id(deferred_mfg.business_desc)
+        )
 
-    def fill_basic_ids(basic_field: Optional[DeferredBasicExtraction]):
-        if basic_field:
-            custom_ids.add(basic_field.gpt_request_id)
+    if deferred_mfg.products:
+        custom_ids |= get_keyword_field_embedded_gpt_request_ids(deferred_mfg.products)
 
-    fill_basic_ids(deferred_mfg.addresses)
-    fill_basic_ids(deferred_mfg.business_desc)
-
-    def fill_keyword_ids(
-        keyword_field: Optional[DeferredKeywordExtraction],
-    ):
-        if keyword_field:
-            for (
-                chunk_key,
-                custom_id,
-            ) in keyword_field.chunk_request_id_map.items():
-                custom_ids.add(custom_id)
-
-    fill_keyword_ids(deferred_mfg.products)
-
-    def fill_concept_ids(
-        concept_field: Optional[DeferredConceptExtraction],
-    ):
-        if concept_field:
-            for (
-                chunk_key,
-                bundle,
-            ) in concept_field.chunk_request_bundle_map.items():
-                custom_ids.add(bundle.llm_search_request_id)
-            if concept_field.llm_mapping_request_id:
-                custom_ids.add(concept_field.llm_mapping_request_id)
-
-    fill_concept_ids(deferred_mfg.certificates)
-    fill_concept_ids(deferred_mfg.industries)
-    fill_concept_ids(deferred_mfg.process_caps)
-    fill_concept_ids(deferred_mfg.material_caps)
+    if deferred_mfg.certificates:
+        custom_ids |= get_concept_field_embedded_gpt_request_ids(
+            deferred_mfg.certificates
+        )
+    if deferred_mfg.industries:
+        custom_ids |= get_concept_field_embedded_gpt_request_ids(
+            deferred_mfg.industries
+        )
+    if deferred_mfg.process_caps:
+        custom_ids |= get_concept_field_embedded_gpt_request_ids(
+            deferred_mfg.process_caps
+        )
+    if deferred_mfg.material_caps:
+        custom_ids |= get_concept_field_embedded_gpt_request_ids(
+            deferred_mfg.material_caps
+        )
 
     return custom_ids
 

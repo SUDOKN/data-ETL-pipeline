@@ -4,10 +4,24 @@ import logging
 from typing import Optional
 import argparse
 import asyncio
+import csv
+from pathlib import Path
 from asyncio import Task
 
 # Note: Environment variables should be loaded by the entry point script
 # (e.g., batch_file_station.py) before importing this module
+
+from core.dependencies.load_core_env import load_core_env
+from scraper_app.dependencies.load_scraper_env import load_scraper_env
+from open_ai_key_app.dependencies.load_open_ai_app_env import load_open_ai_app_env
+from data_etl_app.dependencies.load_data_etl_env import load_data_etl_env
+
+# Load environment variables (entry point)
+load_core_env()
+load_scraper_env()
+load_data_etl_env()
+load_open_ai_app_env()
+
 
 from core.utils.mongo_client import init_db
 from core.utils.time_util import get_current_time
@@ -30,24 +44,37 @@ async def process_single_manufacturer(
     orchestrator: ManufacturerExtractionOrchestrator,
     timestamp: datetime,
     mfg: Manufacturer,
-) -> None:
+) -> tuple[bool, Optional[str]]:
     """
     Process a single manufacturer: download scraped text and run extraction pipeline.
+
+    Returns:
+        tuple[bool, Optional[str]]: (success, error_message)
     """
-    # Download scraped text file from S3
-    scraped_text_file = await ScrapedTextFile.download_from_s3_and_create(
-        mfg.etld1, mfg.scraped_text_file_version_id
-    )
+    # # Download scraped text file from S3
+    # scraped_text_file = await ScrapedTextFile.download_from_s3_and_create(
+    #     mfg.etld1, mfg.scraped_text_file_version_id
+    # )
 
     # Process manufacturer through the orchestrator
-    await orchestrator.process_manufacturer(timestamp, mfg, scraped_text_file)
-    logger.info(f"[{mfg.etld1}] ✓ Processing complete")
+    try:
+        await orchestrator.process_manufacturer(timestamp, mfg)
+        logger.debug(f"process_single_manufacturer:[{mfg.etld1}] ✓ Processing complete")
+        return (True, None)
+    except Exception as e:
+        error_msg = str(e)
+        logger.error(
+            f"process_single_manufacturer:[{mfg.etld1}] ❌ Error during processing: {e}",
+            exc_info=True,
+        )
+        return (False, error_msg)
 
 
 async def process_manufacturers_concurrently(
+    parallel: int,
     limit: Optional[int] = None,
-    parallel: int = 10,
     dry_run: bool = False,
+    mfg_etld1s_from_csv: Optional[set[str]] = None,
 ):
     """
     Process multiple manufacturers concurrently with a parallelism limit.
@@ -56,6 +83,7 @@ async def process_manufacturers_concurrently(
         limit: Maximum number of manufacturers to process (None = all)
         parallel: Maximum number of concurrent manufacturer processing tasks
         dry_run: If True, don't actually create batch requests
+        mfg_etld1s_from_csv: Optional set of mfg_etld1s to process from CSV file
     """
     orchestrator = ManufacturerExtractionOrchestrator()
     timestamp = get_current_time()
@@ -82,6 +110,11 @@ async def process_manufacturers_concurrently(
             {"process_caps": {"$eq": None}},
         ],
     }
+
+    # If CSV file was provided, filter by etld1s from the file
+    if mfg_etld1s_from_csv:
+        query_filter["etld1"] = {"$in": list(mfg_etld1s_from_csv)}
+        logger.info(f"Filtering by {len(mfg_etld1s_from_csv)} etld1s from CSV file")
 
     """
     query_filter = {
@@ -193,10 +226,15 @@ async def async_main():
         type=int,
         help="Process up to N manufacturers from the database",
     )
+    group.add_argument(
+        "--csv",
+        action="store_true",
+        help="Process manufacturers from orchestrate_mfg_etld1s.csv in the same directory",
+    )
     parser.add_argument(
         "--parallel",
         type=int,
-        default=10,
+        default=100,
         help="Maximum number of manufacturers to process concurrently (default: 100)",
     )
     parser.add_argument(
@@ -245,6 +283,34 @@ async def async_main():
             timestamp = get_current_time()
 
             await process_single_manufacturer(orchestrator, timestamp, mfg)
+
+        elif args.csv:
+            # CSV mode - read mfg_etld1s from CSV file
+            csv_path = Path(__file__).parent / "orchestrate_mfg_etld1s.csv"
+
+            if not csv_path.exists():
+                logger.error(f"CSV file not found: {csv_path}")
+                logger.error(
+                    "Please create orchestrate_mfg_etld1s.csv in the same directory"
+                )
+                return
+
+            mfg_etld1s = set()
+            with open(csv_path, "r") as f:
+                reader = csv.DictReader(f)
+                for row in reader:
+                    mfg_etld1 = row.get("mfg_etld1", "").strip()
+                    if mfg_etld1:
+                        mfg_etld1s.add(mfg_etld1)
+
+            logger.info(f"Loaded {len(mfg_etld1s)} unique mfg_etld1s from {csv_path}")
+
+            await process_manufacturers_concurrently(
+                limit=None,
+                parallel=args.parallel,
+                dry_run=args.dry_run,
+                mfg_etld1s_from_csv=mfg_etld1s,
+            )
 
         else:
             # Bulk processing mode

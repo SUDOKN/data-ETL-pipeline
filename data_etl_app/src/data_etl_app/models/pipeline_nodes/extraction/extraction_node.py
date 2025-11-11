@@ -82,7 +82,7 @@ class ExtractionNode(BaseNode[GenericFieldTypeVar]):
         timestamp: datetime,
     ) -> None:
         """Execute this extraction phase if needed, and proceed to the next phase."""
-        logger.info(
+        logger.debug(
             f"[{mfg.etld1}] 🔄 Executing {self.__class__.__name__} for field '{self.field_type.name}'"
         )
 
@@ -112,13 +112,14 @@ class ExtractionNode(BaseNode[GenericFieldTypeVar]):
             )
             logger.info(
                 f"[{mfg.etld1}] ✅ Created {len(batch_requests)} batch requests for {self.__class__.__name__} ('{self.field_type.name}')"
+                f"batch_requests custom_ids:{[br.request.custom_id for br in batch_requests]}"
             )
             await bulk_upsert_gpt_batch_requests_with_only_req_bodies(
                 batch_requests=batch_requests, mfg_etld1=mfg.etld1
             )
             await deferred_mfg.save()
         else:
-            logger.info(
+            logger.debug(
                 f"[{mfg.etld1}] ✓ {self.__class__.__name__}: All requests already exist for '{self.field_type.name}'"
             )
 
@@ -152,7 +153,7 @@ class ExtractionNode(BaseNode[GenericFieldTypeVar]):
                     )
         else:
             # phase not complete yet, so no batch requests to return and no next phase executed
-            logger.info(
+            logger.debug(
                 f"[{mfg.etld1}] ⏸️  {self.__class__.__name__} is NOT complete for '{self.field_type.name}'. "
                 f"Waiting for requests to complete. Cannot proceed to: {self.next_node.__class__.__name__ if self.next_node else 'None'}"
             )

@@ -5,6 +5,7 @@ from core.models.db.manufacturer import Manufacturer
 from core.models.db.deferred_manufacturer import DeferredManufacturer
 from core.services.deferred_manufacturer_service import (
     delete_deferred_manufacturer_if_empty,
+    get_deferred_manufacturer_by_etld1_scraped_file_version,
 )
 from core.services.gpt_batch_request_service import (
     bulk_delete_gpt_batch_requests_by_mfg_etld1_and_field,
@@ -31,7 +32,7 @@ class ManufacturerExtractionOrchestrator:
         self.pipelines = ExtractionPipelineFactory.create_pipelines()
 
     async def process_manufacturer(
-        self, timestamp: datetime, mfg: Manufacturer, scraped_text_file: ScrapedTextFile
+        self, timestamp: datetime, mfg: Manufacturer
     ) -> None:
         """
         Main entry point: process a manufacturer and create/update deferred extraction.
@@ -40,6 +41,9 @@ class ManufacturerExtractionOrchestrator:
             timestamp (datetime): Current timestamp.
             mfg (Manufacturer): Manufacturer to process.
         """
+        scraped_text_file = await ScrapedTextFile.download_from_s3_and_create(
+            mfg.etld1, mfg.scraped_text_file_version_id
+        )
 
         # Create or update the deferred manufacturer
         deferred_mfg = await self._get_or_create_deferred(timestamp, mfg)
@@ -54,7 +58,7 @@ class ManufacturerExtractionOrchestrator:
             )
             if pipeline.is_mfg_missing_data(mfg):
                 logger.info(
-                    f"[{mfg.etld1}] ❌ Missing data for field '{field_type.name}'. Processing pipeline..."
+                    f"mfg=[{mfg.etld1}] ❌ Missing data for field '{field_type.name}'. Processing pipeline..."
                 )
                 await pipeline.execute(
                     mfg=mfg,
@@ -63,25 +67,36 @@ class ManufacturerExtractionOrchestrator:
                     timestamp=timestamp,
                 )
             else:
-                logger.debug(
-                    f"[{mfg.etld1}] ✓ Already has data for field '{field_type.name}'. Setting deferred.{field_type.name} to None..."
+                logger.info(
+                    f"mfg=[{mfg.etld1}] ✓ Already has data for field '{field_type.name}'. Setting deferred.{field_type.name} to None..."
                 )
                 setattr(deferred_mfg, field_type.name, None)
+                await deferred_mfg.save()
                 await bulk_delete_gpt_batch_requests_by_mfg_etld1_and_field(
                     mfg_etld1=mfg.etld1,
                     field_type=field_type,
                 )
 
         logger.info(f"[{mfg.etld1}] Completed extraction pipeline for all fields")
-        await delete_deferred_manufacturer_if_empty(deferred_mfg)
+        if deferred_mfg.id:
+            # only make a DB call if deferred_mfg exists in DB
+            # which maybe because _get_or_create_deferred returned an existing instance
+            # or it returned a new one, but it remained untouched (no fields set) by the pipelines
+            await delete_deferred_manufacturer_if_empty(deferred_mfg)
 
     async def _get_or_create_deferred(
         self, timestamp: datetime, mfg: Manufacturer
     ) -> DeferredManufacturer:
         """Get existing DeferredManufacturer or create new one"""
-        deferred_manufacturer = await DeferredManufacturer.find_one(
-            DeferredManufacturer.mfg_etld1 == mfg.etld1
+        deferred_manufacturer = (
+            await get_deferred_manufacturer_by_etld1_scraped_file_version(
+                mfg_etld1=mfg.etld1,
+                scraped_text_file_version_id=mfg.scraped_text_file_version_id,
+            )
         )
+
+        if deferred_manufacturer:
+            return deferred_manufacturer
 
         if not deferred_manufacturer:
             deferred_manufacturer = DeferredManufacturer(
@@ -100,6 +115,6 @@ class ManufacturerExtractionOrchestrator:
                 process_caps=None,
                 material_caps=None,
             )
-            await deferred_manufacturer.insert()
+            # await deferred_manufacturer.insert()
 
         return deferred_manufacturer

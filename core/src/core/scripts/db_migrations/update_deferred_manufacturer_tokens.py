@@ -98,13 +98,13 @@ async def update_deferred_manufacturer_tokens(limit=None, mfg_etld1=None):
 
         # Execute bulk operation when batch size is reached
         if len(bulk_operations) >= batch_size:
-            print(f"Executing batch of {len(bulk_operations)} operations...")
+            logger.info(f"Executing batch of {len(bulk_operations)} operations...")
             try:
                 result = await df_mfg_collection.bulk_write(bulk_operations)
                 total_updated += result.modified_count
                 # Count operations that didn't match any document
                 total_not_found += len(bulk_operations) - result.matched_count
-                print(
+                logger.info(
                     f"Batch complete: {result.matched_count} matched, "
                     f"{result.modified_count} modified, "
                     f"{len(bulk_operations) - result.matched_count} not found"
@@ -113,7 +113,7 @@ async def update_deferred_manufacturer_tokens(limit=None, mfg_etld1=None):
             except BulkWriteError as bwe:
                 logger.error(f"Bulk write error: {bwe.details}")
                 for err in bwe.details.get("writeErrors", [])[:5]:
-                    print(
+                    logger.error(
                         f"Error index: {err['index']}, errmsg: {err['errmsg']}, "
                         f"errInfo: {err.get('errInfo')}"
                     )
@@ -126,12 +126,12 @@ async def update_deferred_manufacturer_tokens(limit=None, mfg_etld1=None):
 
     # Execute remaining operations
     if bulk_operations:
-        print(f"Executing final batch of {len(bulk_operations)} operations...")
+        logger.info(f"Executing final batch of {len(bulk_operations)} operations...")
         try:
             result = await df_mfg_collection.bulk_write(bulk_operations)
             total_updated += result.modified_count
             total_not_found += len(bulk_operations) - result.matched_count
-            print(
+            logger.info(
                 f"Final batch complete: {result.matched_count} matched, "
                 f"{result.modified_count} modified, "
                 f"{len(bulk_operations) - result.matched_count} not found"
@@ -139,7 +139,7 @@ async def update_deferred_manufacturer_tokens(limit=None, mfg_etld1=None):
         except BulkWriteError as bwe:
             logger.error(f"Final bulk write error: {bwe.details}")
             for err in bwe.details.get("writeErrors", [])[:5]:
-                print(
+                logger.error(
                     f"Error index: {err['index']}, errmsg: {err['errmsg']}, "
                     f"errInfo: {err.get('errInfo')}"
                 )

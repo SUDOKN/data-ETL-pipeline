@@ -5,7 +5,7 @@ from typing import Optional
 from openai import OpenAI, OpenAIError
 from openai.types import Batch
 
-from core.models.db.gpt_batch import GPTBatch, GPTBatchStatus
+from core.models.db.gpt_batch import GPTBatch, GPTBatchStatus, GPTBatchMetadata
 from core.models.db.api_key_bundle import APIKeyBundle
 
 # Configure logging
@@ -28,6 +28,44 @@ async def upsert_latest_gpt_batch_by_external_batch(
     external_batch: Batch,
     api_key_bundle: APIKeyBundle,
 ) -> GPTBatch:
+    # Normalize metadata: rename old field names if they exist
+    if external_batch.metadata:
+        metadata_dict = dict(external_batch.metadata)
+
+        # Rename num_requests -> total_requests if needed
+        if "num_requests" in metadata_dict and "total_requests" not in metadata_dict:
+            metadata_dict["total_requests"] = metadata_dict.pop("num_requests")
+
+        # Rename num_tokens -> total_tokens if needed
+        if "num_tokens" in metadata_dict and "total_tokens" not in metadata_dict:
+            metadata_dict["total_tokens"] = metadata_dict.pop("num_tokens")
+
+        # Update the external_batch metadata with normalized field names
+        external_batch.metadata = metadata_dict
+    else:
+        # old batches
+        external_batch.metadata = {
+            "original_filename": "",
+            "num_manufacturers": "0",
+            "total_requests": "0",
+            "total_tokens": "0",
+        }
+
+    required_fields = [
+        "original_filename",
+        "num_manufacturers",
+        "total_requests",
+        "total_tokens",
+    ]
+    missing_fields = [
+        field
+        for field in required_fields
+        if field not in (external_batch.metadata or {})
+    ]
+    if missing_fields:
+        raise ValueError(
+            f"upsert_latest_gpt_batch_by_external_batch: {api_key_bundle.label} is missing required metadata fields in external_batch: {', '.join(missing_fields)}\nexternal_batch.metadata:{external_batch.metadata}"
+        )
 
     existing_gpt_batch = await find_latest_gpt_batch_by_external_batch_id(
         external_batch_id=external_batch.id
@@ -37,8 +75,18 @@ async def upsert_latest_gpt_batch_by_external_batch(
             f"upsert_latest_gpt_batch_by_external_batch_id: Unrecorded batch detected "
             f"with external_batch.id:{external_batch.id}, inserting new found batch"
         )
+        assert external_batch.metadata is not None, "Batch metadata is None"
+        metadata = GPTBatchMetadata(
+            original_filename=external_batch.metadata["original_filename"],
+            num_manufacturers=int(external_batch.metadata["num_manufacturers"]),
+            total_requests=int(external_batch.metadata["total_requests"]),
+            total_tokens=int(external_batch.metadata["total_tokens"]),
+            api_key_label=api_key_bundle.label,
+        )
         existing_gpt_batch = await insert_gpt_batch_from_response(
-            batch_response=external_batch, api_key_label=api_key_bundle.label
+            batch_response=external_batch,
+            metadata=metadata,
+            api_key_label=api_key_bundle.label,
         )
     else:
         await update_gpt_batch_from_response(
@@ -56,7 +104,7 @@ async def find_latest_gpt_batch_by_api_key(
 
 
 async def insert_gpt_batch_from_response(
-    batch_response: Batch, api_key_label: str
+    batch_response: Batch, metadata: GPTBatchMetadata, api_key_label: str
 ) -> GPTBatch:
     """
     Create and save a GPTBatch document from OpenAI batch response.
@@ -68,6 +116,7 @@ async def insert_gpt_batch_from_response(
     Returns:
         GPTBatch document
     """
+    assert batch_response.metadata is not None, "Batch response metadata is None"
     gpt_batch = GPTBatch(
         external_batch_id=batch_response.id,
         endpoint=batch_response.endpoint,
@@ -106,7 +155,7 @@ async def insert_gpt_batch_from_response(
             if batch_response.request_counts
             else {"total": 0, "completed": 0, "failed": 0}
         ),
-        metadata=batch_response.metadata,
+        metadata=metadata,
         api_key_label=api_key_label,
     )
 
@@ -147,7 +196,7 @@ async def update_gpt_batch_from_response(
         # Save updates to database
         await gpt_batch.save()
 
-        logger.info(
+        logger.debug(
             f"Updated batch {gpt_batch.external_batch_id}: "
             f"api_key={gpt_batch.api_key_label}, "
             f"status={gpt_batch.status}, "
@@ -172,7 +221,6 @@ async def get_pending_batches_mapped_by_api_key_label() -> dict[str, GPTBatch]:
                 "$in": [
                     GPTBatchStatus.VALIDATING.name,
                     GPTBatchStatus.IN_PROGRESS.name,
-                    GPTBatchStatus.PROCESSING.name,
                 ]
             },
             "api_key_label": {"$exists": True},

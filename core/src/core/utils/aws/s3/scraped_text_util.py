@@ -248,7 +248,7 @@ async def _get_scraped_text_object_tags_by_filename(
     :param version_id: The version ID of the object.
     :return: Dictionary of tags with tag keys as dictionary keys and tag values as dictionary values.
     """
-    print(
+    logger.debug(
         f"Fetching tags for file: {file_name} with version ID: {version_id if version_id else 'latest'}"
     )
     s3_client = get_scraped_bucket_s3_client()
