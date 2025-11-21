@@ -48,9 +48,7 @@ async def migrate_api_key_bundles():
     print(f"Setting available_at to: {current_timestamp}")
 
     # Update all documents
-    result = await collection.update_many(
-        {}, {"$set": {"available_at": current_timestamp}}
-    )
+    result = await collection.update_many({}, {"$set": {"exhausted": True}})
 
     print(
         f"\nMigration complete!\n"

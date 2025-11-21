@@ -7,7 +7,7 @@ async def get_all_api_key_bundles() -> list[APIKeyBundle]:
     """
     Find all available API keys.
     """
-    return await APIKeyBundle.find_all().to_list()
+    return await APIKeyBundle.find({"exhausted": False}).to_list()
 
 
 async def find_inactive_api_keys() -> list[APIKeyBundle]:

@@ -50,6 +50,11 @@ async def _process_single_deferred_manufacturer(
     logger.debug(
         f"Found {len(custom_ids):,} embedded GPTBatchRequest IDs in DeferredManufacturer {deferred_mfg.mfg_etld1}"
     )
+    if not custom_ids:
+        logger.warning(
+            f"DeferredManufacturer {deferred_mfg.mfg_etld1} has no embedded GPT request IDs; skipping."
+        )
+        return 0
     all_requests = await find_gpt_batch_requests_by_custom_ids(list(custom_ids))
 
     found_custom_ids: set[str] = set(all_requests.keys())
@@ -92,6 +97,12 @@ async def _process_single_deferred_manufacturer(
     logger.debug(
         f"Found {len(custom_ids):,} embedded GPTBatchRequest IDs in DeferredManufacturer {deferred_mfg.mfg_etld1} in 2nd pass"
     )
+    if not custom_ids:
+        logger.warning(
+            f"DeferredManufacturer {deferred_mfg.mfg_etld1} has no embedded GPT request IDs in 2nd pass; skipping."
+        )
+        return 0
+
     all_requests = await find_gpt_batch_requests_by_custom_ids(list(custom_ids))
 
     found_custom_ids: set[str] = set(all_requests.keys())
@@ -211,7 +222,7 @@ async def iterate_df_manufacturers_and_write_batch_files(
                 DeferredManufacturer.get_pymongo_collection()
                 .find(query_filter)
                 .sort("scraped_text_file_num_tokens", 1)  # 1 = ascending
-                .sort("updated_at", 1)  # 1 = oldest first
+                .sort("updated_at", -1)  # -1 = newest first
             ) as cursor:
                 async for df_mfg_doc in cursor:
                     task = asyncio.create_task(process_with_semaphore(df_mfg_doc))

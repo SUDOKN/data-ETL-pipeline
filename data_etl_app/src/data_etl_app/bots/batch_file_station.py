@@ -59,6 +59,10 @@ MAX_REQUESTS_PER_FILE = 50_000
 MAX_FILE_SIZE_MB = 190  # 190MB in MB
 
 FINISHED_BATCHES_DIR_DEFAULT = Path(OUTPUT_DIR_DEFAULT + "/finished_batches")
+
+# Note: This filter only checks token size, not whether manufacturers have pending requests.
+# Some manufacturers passing this filter may have no pending requests (all completed/in-progress).
+# The batch_file_generator handles this by skipping manufacturers with no pending requests.
 DF_MFG_BATCH_FILTER = {
     "scraped_text_file_num_tokens": {"$lt": MAX_MANUFACTURER_TOKENS},
 }
@@ -359,6 +363,7 @@ class BatchFileStation:
             try:
                 now = get_current_time()
                 api_key_bundles: list[APIKeyBundle] = await get_all_api_key_bundles()
+                logger.info(f"fetched {len(api_key_bundles)} API key bundles.")
                 for api_key_bundle in api_key_bundles:
                     # if api_key_bundle.label != "sudokn.tool7":
                     #     continue
@@ -418,7 +423,6 @@ class BatchFileStation:
                         )
                         continue
 
-                    # continue
                     if api_key_bundle.tokens_in_use > 0:
                         logger.info(
                             f"create_new_batches_and_upload: {api_key_bundle.label} has {api_key_bundle.tokens_in_use} tokens in use, "
@@ -450,7 +454,6 @@ class BatchFileStation:
                         batch_file_generation_result.batch_request_jsonl_file_writer.delete_files()
                         continue
 
-                    # continue
                     self.stats.batches_created += 1
                     new_gpt_batch = await self.satellite.try_uploading_new_batch_file(
                         client=client,

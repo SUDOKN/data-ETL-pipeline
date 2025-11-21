@@ -7,6 +7,7 @@ from typing import Optional
 
 from core.models.gpt_batch_request_blob import GPTBatchRequestBlob
 from core.models.jsonl_batch_file import (
+    FileContentLimitReachedException,
     JSONLBatchFile,
 )
 from core.utils.time_util import get_timestamp_str
@@ -66,6 +67,9 @@ class BatchRequestJSONLFileWriter:
                 common_prefix=self.common_prefix,
                 file_index=self.current_file_index,
                 timestamp_str=self.run_timestamp_str,
+                max_requests=self.max_requests_per_file,
+                max_tokens=self.max_tokens_per_file,
+                max_size_in_bytes=self.max_file_size_in_bytes,
             )
         )
 
@@ -83,7 +87,6 @@ class BatchRequestJSONLFileWriter:
 
         # Check if we've reached the max number of files
         if self.max_files is not None and self.current_file_index + 1 >= self.max_files:
-            self.current_file.close_pointer()
             raise MaxFilesReachedException(
                 f"Reached maximum number of files: {self.max_files}"
             )
@@ -117,14 +120,21 @@ class BatchRequestJSONLFileWriter:
             total_size_in_bytes += JSONLBatchFile.get_json_line_size_in_bytes(json_str)
 
         # Check if adding all requests would exceed limits
-        return self.current_file.can_batch_file_fit_item(
+        can_fit = self.current_file.can_batch_file_fit_item(
             item_tokens=total_item_tokens,
             item_request_count=len(request_blobs),
             item_size_in_bytes=total_size_in_bytes,
-            max_file_size_in_bytes=self.max_file_size_in_bytes,
-            max_tokens_per_file=self.max_tokens_per_file,
-            max_requests_per_file=self.max_requests_per_file,
         )
+
+        if not can_fit:
+            logger.warning(
+                f"Cannot fit item {item_id} into current file. "
+                f"Item: {len(request_blobs)} requests, {total_item_tokens:,} tokens, {total_size_in_bytes:,} bytes. "
+                f"Current file: {self.current_file.total_requests} requests, {self.current_file.total_tokens:,} tokens, {self.current_file.size_in_bytes:,} bytes. "
+                f"Limits: {self.max_requests_per_file:,} requests, {self.max_tokens_per_file:,} tokens, {self.max_file_size_in_bytes:,} bytes."
+            )
+
+        return can_fit
 
     def write_item_request_blobs(
         self, item_id: str, request_blobs: list[GPTBatchRequestBlob]
@@ -141,17 +151,34 @@ class BatchRequestJSONLFileWriter:
             )
             return
 
-        if not self._can_add_requests_of_single_item(item_id, request_blobs):
-            self._start_new_file()  # updates self.current_file to a new file
+        # if not self._can_add_requests_of_single_item(item_id, request_blobs):
+        #     self._start_new_file()  # updates self.current_file to a new file
 
-        for req_blob in request_blobs:
-            json_str = self._serialize_request(req_blob)
-            self.current_file.add_json_line(
-                item_id=item_id,
-                line_id=req_blob.custom_id,
-                json_line=json_str,
-                tokens=req_blob.body.input_tokens,
-            )
+        i = 0
+        n = len(request_blobs)
+        while i < n:
+            try:
+                req_blob = request_blobs[i]
+                is_last_item_line = i == n - 1
+                self.current_file.add_json_line(
+                    item_id=item_id,
+                    line_id=req_blob.custom_id,
+                    json_line=self._serialize_request(req_blob),
+                    tokens=req_blob.body.input_tokens,
+                    is_last_item_line=is_last_item_line,
+                )
+                i += 1
+            except FileContentLimitReachedException as e:
+                logger.warning(
+                    f"File limits reached when adding request {req_blob.custom_id} for item {item_id}: {e}. "
+                    f"Starting new file and retrying."
+                )
+                self._start_new_file()
+            except Exception as e:
+                logger.error(
+                    f"Error writing request {req_blob.custom_id} for item {item_id}: {e}"
+                )
+                raise e
 
     async def write_item_request_blobs_async(
         self, item_id: str, request_blobs: list[GPTBatchRequestBlob]

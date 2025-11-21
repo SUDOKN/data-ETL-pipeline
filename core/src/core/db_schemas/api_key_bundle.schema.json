@@ -43,6 +43,10 @@
         "minimum": 0,
         "description": "Number of tokens currently in use by this API key"
       },
+      "exhausted": {
+        "bsonType": "bool",
+        "description": "Whether the API key is exhausted"
+      },
       "updated_at": {
         "bsonType": "date",
         "description": "Timestamp when the API key bundle was last updated"

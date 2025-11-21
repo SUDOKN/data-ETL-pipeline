@@ -154,6 +154,7 @@ async def process_manufacturers_concurrently(
     processed = 0
     succeeded = 0
     failed = 0
+    no_such_version: list[str] = []
     active_tasks: set[Task] = set()
 
     async for mfg_doc in cursor:
@@ -173,6 +174,8 @@ async def process_manufacturers_concurrently(
                     succeeded += 1
                 else:
                     failed += 1
+                if error and "NoSuchVersion" in error:
+                    no_such_version.append(mfg.etld1)
 
         # Start processing this manufacturer
         task = asyncio.create_task(
@@ -185,7 +188,8 @@ async def process_manufacturers_concurrently(
             logger.info(
                 f"Progress: {processed}/{total_count} started | "
                 f"Active: {len(active_tasks)} | "
-                f"Completed: {succeeded} succeeded, {failed} failed"
+                f"Completed: {succeeded} succeeded, {failed} failed\n"
+                f"NoSuchVersion errors for: {len(no_such_version)} manufacturers"
             )
 
     # Wait for all remaining tasks to complete
@@ -199,6 +203,8 @@ async def process_manufacturers_concurrently(
                 succeeded += 1
             else:
                 failed += 1
+            if error and "NoSuchVersion" in error:
+                no_such_version.append(mfg.etld1)
 
     # Log final summary
     logger.info("\n" + "=" * 70)
@@ -207,7 +213,16 @@ async def process_manufacturers_concurrently(
     logger.info(f"Total processed: {processed:,}")
     logger.info(f"Succeeded: {succeeded:,}")
     logger.info(f"Failed: {failed:,}")
+    logger.info(f"NoSuchVersion errors for {len(no_such_version)} manufacturers:")
     logger.info("=" * 70)
+
+    # save no such version etld1s to a file
+    if no_such_version:
+        output_path = Path(__file__).parent / "no_such_version_etld1s.txt"
+        with open(output_path, "w") as f:
+            for etld1 in no_such_version:
+                f.write(f"{etld1}\n")
+        logger.info(f"NoSuchVersion etld1s saved to {output_path}")
 
 
 async def async_main():

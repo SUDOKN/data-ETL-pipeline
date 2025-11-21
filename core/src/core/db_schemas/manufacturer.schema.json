@@ -271,7 +271,7 @@
         "bsonType": ["array", "null"],
         "items": {
           "bsonType": "object",
-          "required": ["city", "state", "country"],
+          "required": ["city", "state", "postal_code", "country"],
           "properties": {
             "name": {
               "bsonType": ["string", "null"]
@@ -292,7 +292,7 @@
               "bsonType": ["string", "null"]
             },
             "postal_code": {
-              "bsonType": ["string", "null"]
+              "bsonType": "string"
             },
             "country": {
               "bsonType": "string"
