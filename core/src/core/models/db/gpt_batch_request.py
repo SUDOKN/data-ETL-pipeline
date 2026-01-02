@@ -8,12 +8,15 @@ from core.utils.time_util import get_current_time
 
 
 class GPTBatchRequest(Document):
-    created_at: datetime = Field(default_factory=lambda: get_current_time())
+    created_at: datetime
+    updated_at: datetime
+    num_batches_paired_with: int
     request: GPTBatchRequestBlob
     batch_id: str | None  # known after batch is uploaded
     response_blob: GPTBatchResponseBlob | None = (
         None  # known after batch response is received,
     )
+    response_parse_errors: list[dict] = Field(default_factory=list)
 
     def is_batch_request_pending(self) -> bool:
         return (

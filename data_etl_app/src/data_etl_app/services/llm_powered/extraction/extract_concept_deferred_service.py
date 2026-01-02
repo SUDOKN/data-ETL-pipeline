@@ -5,6 +5,7 @@ from __future__ import (
 import asyncio
 import logging
 from datetime import datetime
+import traceback
 from typing import Optional
 
 from core.models.prompt import Prompt
@@ -14,6 +15,12 @@ from core.models.field_types import (
 
 from data_etl_app.models.types_and_enums import ConceptTypeEnum
 from core.models.db.gpt_batch_request import GPTBatchRequest
+from data_etl_app.services.chunking_strat import (
+    CERTIFICATE_CHUNKING_STRAT,
+    INDUSTRY_CHUNKING_STRAT,
+    MATERIAL_CAP_CHUNKING_STRAT,
+    PROCESS_CAP_CHUNKING_STRAT,
+)
 from open_ai_key_app.models.field_types import GPTBatchRequestCustomID
 from core.models.gpt_batch_request_blob import (
     GPTBatchRequestBlob,
@@ -45,14 +52,15 @@ from data_etl_app.services.llm_powered.search.llm_search_service import (
 )
 from data_etl_app.services.knowledge.ontology_service import get_ontology_service
 from data_etl_app.services.knowledge.prompt_service import get_prompt_service
+from data_etl_app.services.chunking_strat import ChunkingStrat
 from data_etl_app.utils.chunk_util import (
-    ChunkingStrat,
     get_chunks_respecting_line_boundaries,
 )
 from core.services.gpt_batch_request_service import (
     create_base_gpt_batch_request,
     find_completed_gpt_batch_requests_by_custom_ids,
     find_gpt_batch_request_ids_only,
+    record_response_parse_error,
 )
 
 logger = logging.getLogger(__name__)
@@ -228,9 +236,21 @@ async def _get_missing_mapping_request(
         assert (  # should be ensured by find_completed_gpt_batch_requests_by_custom_ids
             llm_search_req.response_blob is not None
         ), f"Missing response_blob for {llm_search_req.request.custom_id}"
-        llm_search_results |= parse_llm_search_response(
-            llm_search_req.response_blob.result
-        )
+        try:
+            parsed_resp = parse_llm_search_response(llm_search_req.response_blob.result)
+        except Exception as e:
+            await record_response_parse_error(
+                gpt_batch_request=llm_search_req,
+                error_message=str(e),
+                timestamp=deferred_at,
+                traceback_str=traceback.format_exc(),
+            )
+            logger.error(
+                f"Error parsing concept search results for manufacturer {mfg_etld1} from GPT response: {e}"
+            )
+            raise
+
+        llm_search_results |= parsed_resp
 
     _matched_concepts, unmatched_keywords = (
         await get_matched_concepts_and_unmatched_keywords_by_concept_type(
@@ -272,6 +292,8 @@ def _get_dummy_completed_batch_request(
 
     return GPTBatchRequest(
         created_at=deferred_at,
+        updated_at=deferred_at,
+        num_batches_paired_with=0,
         request=GPTBatchRequestBlob(
             custom_id=llm_mapping_request_id,
             body=GPTBatchRequestBlobBody(
@@ -367,7 +389,7 @@ async def get_missing_certificate_search_requests(
         known_concepts=known_certificates,
         search_prompt=prompt_service.extract_any_certificate_prompt,
         map_prompt=prompt_service.unknown_to_known_certificate_prompt,
-        chunk_strategy=ChunkingStrat(overlap=0.0, max_tokens=7500),
+        chunk_strategy=CERTIFICATE_CHUNKING_STRAT,
         gpt_model=GPT_4o_mini,
         model_params=DefaultModelParameters,
     )
@@ -396,7 +418,7 @@ async def get_missing_industry_search_requests(
         known_concepts=known_industries,
         search_prompt=prompt_service.extract_any_industry_prompt,
         map_prompt=prompt_service.unknown_to_known_industry_prompt,
-        chunk_strategy=ChunkingStrat(overlap=0.15, max_tokens=5000),
+        chunk_strategy=INDUSTRY_CHUNKING_STRAT,
         gpt_model=GPT_4o_mini,
         model_params=DefaultModelParameters,
     )
@@ -426,7 +448,7 @@ async def get_missing_process_search_requests(
         known_concepts=known_processes,
         search_prompt=prompt_service.extract_any_process_cap_prompt,
         map_prompt=prompt_service.unknown_to_known_process_cap_prompt,
-        chunk_strategy=ChunkingStrat(overlap=0.15, max_tokens=2500),
+        chunk_strategy=PROCESS_CAP_CHUNKING_STRAT,
         gpt_model=GPT_4o_mini,
         model_params=DefaultModelParameters,
     )
@@ -456,7 +478,7 @@ async def get_missing_material_search_requests(
         known_concepts=known_materials,
         search_prompt=prompt_service.extract_any_material_cap_prompt,
         map_prompt=prompt_service.unknown_to_known_material_cap_prompt,
-        chunk_strategy=ChunkingStrat(overlap=0.15, max_tokens=5000),
+        chunk_strategy=MATERIAL_CAP_CHUNKING_STRAT,
         gpt_model=GPT_4o_mini,
         model_params=DefaultModelParameters,
     )
@@ -495,7 +517,10 @@ async def _get_missing_concept_search_requests(
 
         # expensive operation for large texts
         chunk_map = await get_chunks_respecting_line_boundaries(
-            mfg_text, chunk_strategy.max_tokens, chunk_strategy.overlap
+            text=mfg_text,
+            soft_limit_tokens=chunk_strategy.max_tokens,
+            overlap_ratio=chunk_strategy.overlap,
+            max_chunks=chunk_strategy.max_chunks,
         )
         chunk_items = list(chunk_map.items())
 

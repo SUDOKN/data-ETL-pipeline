@@ -33,10 +33,10 @@ async def validate_and_create_from_manufacturer(
     """
     if manufacturer.is_manufacturer is None:
         raise AssertionError("is_manufacturer must not be None")
-    if manufacturer.is_contract_manufacturer is None:
-        raise AssertionError("is_contract_manufacturer must not be None")
-    if manufacturer.is_product_manufacturer is None:
-        raise AssertionError("is_product_manufacturer must not be None")
+    # if manufacturer.is_contract_manufacturer is None:
+    #     raise AssertionError("is_contract_manufacturer must not be None")
+    # if manufacturer.is_product_manufacturer is None:
+    #     raise AssertionError("is_product_manufacturer must not be None")
     if manufacturer.email_addresses is None:
         raise AssertionError("email_addresses must not be None")
     if manufacturer.business_desc is None:

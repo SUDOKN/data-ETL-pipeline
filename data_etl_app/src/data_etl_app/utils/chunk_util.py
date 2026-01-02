@@ -1,4 +1,3 @@
-from dataclasses import dataclass
 import multiprocessing
 import logging
 import time
@@ -102,18 +101,6 @@ def shutdown_chunk_thread_pool(wait: bool = True):
         logger.info("Shutting down chunking thread pool")
         _chunk_thread_pool.shutdown(wait=wait)
         _chunk_thread_pool = None
-
-
-@dataclass
-class ChunkingStrat:
-    overlap: float  # must be between [0, 1)
-    max_tokens: int = 10000
-
-    def __post_init__(self):
-        if self.overlap < 0 or self.overlap >= 1:
-            raise ValueError("Overlap must be between >=0 and <1")
-        if self.max_tokens > 25000:
-            raise ValueError("Max Tokens must be less than 25000")
 
 
 def get_roughly_even_chunks(
@@ -248,11 +235,11 @@ def get_chunks_respecting_line_boundaries_sync(
 
 async def get_chunks_respecting_line_boundaries(
     text: str,
+    max_chunks: int,
     soft_limit_tokens: int = 5000,
     overlap_ratio: float = 0.25,
     use_multiprocessing: bool = True,
     size_threshold_kb: int = 100,  # Only use thread pool for texts >100KB
-    max_chunks: int | None = None,
 ) -> dict[str, str]:
     """
     ASYNC version that runs chunking in thread pool to avoid blocking event loop.
@@ -326,3 +313,65 @@ async def get_chunks_respecting_line_boundaries(
     )
 
     return result
+
+
+def get_chunks_respecting_line_boundaries_with_hard_limit(
+    text: str, hard_limit_tokens: int, overlap_ratio: float, max_chunks: int
+) -> dict[str, str]:
+    if overlap_ratio >= 0.9:
+        raise ValueError(
+            f"overlap_ratio={overlap_ratio} is greater than or equal to 0.9"
+        )
+
+    overlap_tokens_required: int = int(hard_limit_tokens * overlap_ratio)
+    chunk_text_with_bounds: dict[str, str] = {}
+    lines_with_ends = text.splitlines(keepends=True)
+
+    # Build a list of (line_text, token_count, start_offset, end_offset) tuples.
+    line_info: list[tuple[str, int, int, int]] = []
+    char_offset = 0
+    for raw_line in lines_with_ends:
+        line_tokens = num_tokens_from_string(raw_line)
+        start = char_offset
+        length = len(raw_line)
+        end = char_offset + length
+        line_info.append((raw_line, line_tokens, start, end))
+        char_offset = end
+    num_lines = len(line_info)
+
+    # State for the current chunk:
+    current_chunk_of_lines: list[tuple[str, int, int, int]] = []
+    current_chunk_tokens: int = 0
+
+    line_index = 0
+
+    while line_index < num_lines:
+        line_text, line_tokens, line_start, line_end = line_info[line_index]
+
+        if current_chunk_tokens + line_tokens <= hard_limit_tokens:
+            current_chunk_of_lines.append(
+                (line_text, line_tokens, line_start, line_end)
+            )
+            current_chunk_tokens += line_tokens
+            line_index += 1
+        else:
+            # save this chunk and start a new chunk
+            chunk_bounds = (
+                f"{current_chunk_of_lines[0][2]}:{current_chunk_of_lines[-1][3]}"
+            )
+            chunk_text = "".join([l[0] for l in current_chunk_of_lines])
+            chunk_text_with_bounds[chunk_bounds] = chunk_text
+
+            if len(chunk_text_with_bounds) >= max_chunks:
+                break
+
+            # backtrack line_index
+            _, prev_line_tokens, _, _ = line_info[line_index]
+            current_overlap_tokens: int = prev_line_tokens
+            line_index -= 1
+            while current_overlap_tokens < overlap_tokens_required:
+                _, prev_line_tokens, _, _ = line_info[line_index]
+                current_overlap_tokens += prev_line_tokens
+                line_index -= 1
+
+    return chunk_text_with_bounds

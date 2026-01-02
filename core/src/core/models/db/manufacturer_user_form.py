@@ -32,7 +32,7 @@ class ManufacturerUserForm(Document):
 
     # Required
     addresses: list[Address]
-    business_desc: BusinessDescriptionResult
+    business_desc: Optional[BusinessDescriptionResult]
     products: set[str]
 
     certificates: list[str]

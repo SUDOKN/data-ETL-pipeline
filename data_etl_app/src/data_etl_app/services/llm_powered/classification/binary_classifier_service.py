@@ -99,10 +99,12 @@ async def _binary_classify_using_only_first_chunk(
     model_params: ModelParameters = DefaultModelParameters,
 ) -> BinaryClassificationResult:
     chunks_map = await get_chunks_respecting_line_boundaries(
-        mfg_txt,
-        gpt_model.max_context_tokens
-        - binary_prompt.num_tokens
-        - 5000,  # subtracting 5000 to leave room for last line in each chunk, otherwise _binary_classify_chunk gets > GPT_4o_mini.max_context_tokens
+        text=mfg_txt,
+        soft_limit_tokens=(
+            gpt_model.max_context_tokens - binary_prompt.num_tokens - 10_000
+        ),  # subtracting 10000 to leave room for last line in each chunk, otherwise _binary_classify_chunk gets > GPT_4o_mini.max_context_tokens
+        overlap_ratio=0,
+        max_chunks=1,  # Only generate the first chunk
     )
     first_chunk_key = min(chunks_map.keys(), key=lambda k: int(k.split(":")[0]))
     first_chunk_text = chunks_map[first_chunk_key]

@@ -90,7 +90,9 @@ class JSONLBatchFile(JSONLFile):
 
         self.pointer.write(json_line + "\n")  # should succeed before we update stats
         if is_last_item_line:
-            self.unique_partial_item_ids.remove(item_id)
+            self.unique_partial_item_ids.discard(
+                item_id
+            )  # using remove causes problems when only one request blob was pending and passed to write_item_request_blobs
             self.unique_item_ids.add(item_id)
         else:
             self.unique_partial_item_ids.add(item_id)

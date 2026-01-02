@@ -9,7 +9,7 @@ from core.models.prompt import Prompt
 
 from core.models.db.manufacturer import BusinessDescriptionResult
 
-from core.utils.str_util import make_json_parse_safe
+from core.utils.str_util import make_json_array_parse_safe
 from open_ai_key_app.utils.token_util import num_tokens_from_string
 from open_ai_key_app.utils.ask_gpt_util import (
     ask_gpt_async,
@@ -42,10 +42,12 @@ async def extract_address_from_n_chunks(
     extract_address_prompt = prompt_service.extract_any_address
 
     chunks_map = await get_chunks_respecting_line_boundaries(
-        mfg_text,
-        gpt_model.max_context_tokens
-        - extract_address_prompt.num_tokens
-        - 5000,  # subtracting 5000 to leave room for last line in each chunk, otherwise _binary_classify_chunk gets > GPT_4o_mini.max_context_tokens
+        text=mfg_text,
+        soft_limit_tokens=(
+            gpt_model.max_context_tokens - extract_address_prompt.num_tokens - 10_000
+        ),  # subtracting 10000 to leave room for last line in each chunk, otherwise _binary_classify_chunk gets > GPT_4o_mini.max_context_tokens
+        overlap_ratio=0,
+        max_chunks=n,
     )
     tasks = []
 
@@ -102,7 +104,7 @@ def parse_address_list_from_gpt_response(
         return []
 
     try:
-        cleaned_response = make_json_parse_safe(gpt_response)
+        cleaned_response = make_json_array_parse_safe(gpt_response)
     except Exception as e:
         logger.error(
             (
@@ -146,6 +148,8 @@ def parse_address_list_from_gpt_response(
         )
         return []
 
+    # dedupe_addresses(addresses=addresses)  # modifies in place, commented out to keep integrity of what was exactly extracted
+
     return addresses
 
 
@@ -159,8 +163,11 @@ async def find_business_desc_using_only_first_chunk(
     prompt_service = await get_prompt_service()
     prompt = prompt_service.find_business_desc_prompt
     chunks_map = await get_chunks_respecting_line_boundaries(
-        mfg_text,
-        gpt_model.max_context_tokens - prompt.num_tokens - 5000,
+        text=mfg_text,
+        soft_limit_tokens=(
+            gpt_model.max_context_tokens - prompt.num_tokens - 10_000
+        ),  # subtracting 10000 to leave room for last line in each chunk, otherwise _binary_classify_chunk gets > GPT_4o_mini.max_context_tokens
+        overlap_ratio=0,
         max_chunks=1,  # Only generate the first chunk
     )
     first_chunk_key = min(chunks_map.keys(), key=lambda k: int(k.split(":")[0]))

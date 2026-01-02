@@ -14,9 +14,10 @@ from core.models.deferred_keyword_extraction import (
     DeferredKeywordExtraction,
 )
 from data_etl_app.models.types_and_enums import KeywordTypeEnum
+from data_etl_app.services.chunking_strat import PRODUCT_CHUNKING_STRAT
 from data_etl_app.services.knowledge.prompt_service import get_prompt_service
+from data_etl_app.services.chunking_strat import ChunkingStrat
 from data_etl_app.utils.chunk_util import (
-    ChunkingStrat,
     get_chunks_respecting_line_boundaries,
 )
 
@@ -78,7 +79,7 @@ async def get_missing_product_search_requests(
         deferred_keyword_extraction=deferred_keyword_extraction,
         keyword_type=KeywordTypeEnum.products.name,
         search_prompt=prompt_service.extract_any_product_prompt,
-        chunk_strategy=ChunkingStrat(overlap=0.15, max_tokens=5000),
+        chunk_strategy=PRODUCT_CHUNKING_STRAT,
         gpt_model=GPT_4o_mini,
         model_params=DefaultModelParameters,
     )
@@ -110,7 +111,10 @@ async def _get_keyword_search_requests(
 
         # expensive operation for large texts
         chunk_map = await get_chunks_respecting_line_boundaries(
-            mfg_text, chunk_strategy.max_tokens, chunk_strategy.overlap
+            text=mfg_text,
+            soft_limit_tokens=chunk_strategy.max_tokens,
+            overlap_ratio=chunk_strategy.overlap,
+            max_chunks=chunk_strategy.max_chunks,
         )
         chunk_items = list(chunk_map.items())
 

@@ -37,11 +37,14 @@ async def find_addresses_from_first_chunk_deferred(
 
     if not deferred_address_extraction:
         chunks_map = await get_chunks_respecting_line_boundaries(
-            mfg_text,
-            gpt_model.max_context_tokens
-            - extract_address_prompt.num_tokens
-            - 5000,  # subtracting 5000 to leave room for last line in each chunk, otherwise _binary_classify_chunk gets > GPT_4o_mini.max_context_tokens
-            max_chunks=1,  # Only generate 1 chunk
+            text=mfg_text,
+            soft_limit_tokens=(
+                gpt_model.max_context_tokens
+                - extract_address_prompt.num_tokens
+                - 10_000
+            ),  # subtracting 10000 to leave room for last line in each chunk, otherwise _binary_classify_chunk gets > GPT_4o_mini.max_context_tokens
+            overlap_ratio=0,
+            max_chunks=1,  # Only generate the first chunk
         )
 
         chunk = list(chunks_map.items())[0]
@@ -93,11 +96,14 @@ async def find_business_desc_using_only_first_chunk_deferred(
 
     if not deferred_business_desc_extraction:
         chunks_map = await get_chunks_respecting_line_boundaries(
-            mfg_text,
-            gpt_model.max_context_tokens
-            - find_business_desc_prompt.num_tokens
-            - 5000,  # subtracting 5000 to leave room for last line in each chunk, otherwise _binary_classify_chunk gets > GPT_4o_mini.max_context_tokens
-            max_chunks=1,  # Only generate 1 chunk
+            text=mfg_text,
+            soft_limit_tokens=(
+                gpt_model.max_context_tokens
+                - find_business_desc_prompt.num_tokens
+                - 10_000
+            ),  # subtracting 10000 to leave room for last line in each chunk, otherwise _binary_classify_chunk gets > GPT_4o_mini.max_context_tokens
+            overlap_ratio=0,
+            max_chunks=1,  # Only generate the first chunk
         )
 
         chunk = list(chunks_map.items())[0]

@@ -1,4 +1,5 @@
 import logging
+import traceback
 from datetime import datetime
 from typing import Optional
 
@@ -15,6 +16,7 @@ from data_etl_app.models.pipeline_nodes.reconcile.reconcile_node import Reconcil
 from core.services.gpt_batch_request_service import (
     find_gpt_batch_request_by_custom_id,
     bulk_delete_gpt_batch_requests_by_custom_ids,
+    record_response_parse_error,
 )
 
 logger = logging.getLogger(__name__)
@@ -53,9 +55,21 @@ class BusinessDescReconcileNode(ReconcileNode):
                 f"Could not find completed GPTBatchRequest for business description extraction with custom_id={deferred_business_desc_extraction.gpt_request_id}"
             )
 
-        mfg.business_desc = parse_business_desc_result_from_gpt_response(
-            gpt_request.response_blob.result
-        )
+        try:
+            mfg.business_desc = parse_business_desc_result_from_gpt_response(
+                gpt_request.response_blob.result
+            )
+        except Exception as e:
+            await record_response_parse_error(
+                gpt_batch_request=gpt_request,
+                error_message=str(e),
+                timestamp=timestamp,
+                traceback_str=traceback.format_exc(),
+            )
+            logger.error(
+                f"Error parsing business description for manufacturer {mfg.etld1} from GPT response: {e}"
+            )
+            raise
 
         await update_manufacturer(updated_at=timestamp, manufacturer=mfg)
 

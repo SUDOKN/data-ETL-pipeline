@@ -6,7 +6,8 @@ from typing import Optional
 from core.models.prompt import Prompt
 
 from core.models.db.gpt_batch_request import GPTBatchRequest
-from core.utils.str_util import make_json_parse_safe
+from core.utils.str_util import make_json_array_parse_safe
+from core.services.gpt_batch_request_service import create_base_gpt_batch_request
 from open_ai_key_app.models.gpt_model import (
     GPTModel,
     ModelParameters,
@@ -59,7 +60,7 @@ def parse_llm_search_response(gpt_response: str) -> set[str]:
         return set()
 
     try:
-        cleaned_response = make_json_parse_safe(gpt_response)
+        cleaned_response = make_json_array_parse_safe(gpt_response)
     except Exception as e:
         logger.error(
             (
@@ -102,18 +103,14 @@ def llm_search_deferred(
     This allows the event loop to yield control during tokenization, enabling
     concurrent processing of multiple manufacturers.
     """
-    request_blob = get_gpt_request_blob(
+
+    gpt_batch_request = create_base_gpt_batch_request(
+        deferred_at=deferred_at,
         custom_id=custom_id,
         context=text,
-        prompt=prompt.text,
+        prompt=prompt,
         gpt_model=gpt_model,
         model_params=model_params,
-    )
-
-    gpt_batch_request = GPTBatchRequest(
-        created_at=deferred_at,
-        batch_id=None,
-        request=request_blob,
     )
 
     return gpt_batch_request

@@ -1,5 +1,6 @@
 import logging
 from datetime import datetime
+import traceback
 from typing import Optional
 
 from core.models.db.manufacturer import Manufacturer
@@ -21,6 +22,7 @@ from data_etl_app.models.pipeline_nodes.reconcile.reconcile_node import Reconcil
 from core.services.gpt_batch_request_service import (
     find_completed_gpt_batch_requests_by_custom_ids,
     bulk_delete_gpt_batch_requests_by_custom_ids,
+    record_response_parse_error,
 )
 
 logger = logging.getLogger(__name__)
@@ -83,9 +85,22 @@ class KeywordReconcileNode(ReconcileNode):
             assert (  # should be ensured by find_completed_gpt_batch_requests_by_custom_ids
                 llm_search_req.response_blob is not None
             ), f"Missing response_blob for {llm_search_req.request.custom_id}"
-            llm_search_results_in_chunk = parse_llm_search_response(
-                llm_search_req.response_blob.result
-            )
+            try:
+                llm_search_results_in_chunk = parse_llm_search_response(
+                    llm_search_req.response_blob.result
+                )
+            except Exception as e:
+                await record_response_parse_error(
+                    gpt_batch_request=llm_search_req,
+                    error_message=str(e),
+                    timestamp=timestamp,
+                    traceback_str=traceback.format_exc(),
+                )
+                logger.error(
+                    f"Error parsing keyword search results for manufacturer {mfg.etld1} from GPT response: {e}"
+                )
+                raise
+
             chunked_stats[chunk_bounds] = KeywordExtractionChunkStats(
                 results=llm_search_results_in_chunk
             )

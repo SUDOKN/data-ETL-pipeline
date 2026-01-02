@@ -3,6 +3,7 @@ from rdflib import Graph, Namespace, Literal, URIRef
 from rdflib.namespace import RDF, RDFS, XSD
 
 from core.models.db.manufacturer import Address, BusinessDescriptionResult
+from core.utils.address_util import dedupe_addresses
 from core.utils.ttl_generator_util import (
     get_mfg_instance_uri_and_stripped_etld1,
     get_product_instance_uri,
@@ -13,6 +14,7 @@ from data_etl_app.models.skos_concept import Concept
 from core.models.db.manufacturer_user_form import (
     ManufacturerUserForm,
 )
+import logging
 
 # --- NAMESPACE SETUP ---
 SDK = Namespace("http://asu.edu/semantics/SUDOKN/")
@@ -21,6 +23,8 @@ IOF_SCRO = Namespace(
     "https://spec.industrialontologies.org/ontology/supplychain/SupplyChain/"
 )
 BFO = Namespace("http://purl.obolibrary.org/obo/")
+
+logger = logging.getLogger(__name__)
 
 
 def get_ownership_status_concept(ont_inst: OntologyService, label: str) -> Concept:
@@ -33,7 +37,7 @@ def get_ownership_status_concept(ont_inst: OntologyService, label: str) -> Conce
 def get_naics_concept(ont_inst: OntologyService, code: str) -> Concept:
     concept = ont_inst.naics_code_map[1].get(code)
     if not concept:
-        raise ValueError(f"NAICS code '{code}' not found in ontology.")
+        raise ValueError(f"NAICS code {code} not found in ontology.")
     return concept
 
 
@@ -45,9 +49,9 @@ def get_certificate_concept(ont_inst: OntologyService, label: str) -> Concept:
 
 
 def get_industry_concept(ont_inst: OntologyService, label: str) -> Concept:
-    # print("Looking up industry concept for label:", label)
-    # print(type(ont_inst.industry_map))
-    # print(type(ont_inst.industry_map[1]))
+    # logger.debug("Looking up industry concept for label:", label)
+    # logger.debug(type(ont_inst.industry_map))
+    # logger.debug(type(ont_inst.industry_map[1]))
     concept = ont_inst.industry_map[1].get(label)
     if not concept:
         raise ValueError(f"Industry '{label}' not found in ontology.")
@@ -75,11 +79,34 @@ def add_mfg_name_triple(
         if strict:
             raise ValueError("Manufacturer name cannot be empty")
         else:
-            print("  skipping empty manufacturer name")
+            logger.debug("  skipping empty manufacturer name")
             return
 
-    print(f"  with name: {mfg_name}")
+    logger.debug(f"  with name: {mfg_name}")
     g.add((mfg_inst_uri, RDFS.label, Literal(mfg_name)))
+
+
+def add_mfg_web_address_triple(
+    mfg_inst_uri: URIRef, mfg_web_address: Optional[str], g: Graph, strict: bool
+):
+    if not mfg_web_address:
+        if strict:
+            raise ValueError("Manufacturer name cannot be empty")
+        else:
+            logger.debug("  skipping empty manufacturer name")
+            return
+
+    logger.debug(f"  with web address: {mfg_web_address}")
+    web_address_inst_uri = SDK[f"{uri_strip(mfg_web_address)}-web-address-instance"]
+    g.add((web_address_inst_uri, RDF.type, SDK.WebAddress))
+    g.add(
+        (
+            web_address_inst_uri,
+            SDK.hasVirtualLocationIdentifierValue,
+            Literal(mfg_web_address),
+        )
+    )
+    g.add((mfg_inst_uri, SDK.hasWebAddress, web_address_inst_uri))
 
 
 def add_founded_in_triple(
@@ -89,10 +116,10 @@ def add_founded_in_triple(
         if strict:
             raise ValueError("Founded in year cannot be empty")
         else:
-            print(f"  skipping empty founded in year")
+            logger.debug(f"  skipping empty founded in year")
             return
 
-    print(f"  founded in: {founded_in}")
+    logger.debug(f"  founded in: {founded_in}")
     g.add(
         (
             mfg_inst_uri,
@@ -110,17 +137,17 @@ def add_email_addresses_triples(
     strict: bool,
 ):
 
-    if not email_addresses:
+    if email_addresses is None:
         if strict:
             raise ValueError("Email addresses cannot be empty")
         else:
-            print(f"  skipping empty email addresses")
+            logger.debug(f"  skipping empty email addresses")
             return
 
     for email in email_addresses:
         if not email:
             raise ValueError("Email address cannot be empty")
-        print(f"  with email: {email}")
+        logger.debug(f"  with email: {email}")
         # Create an EmailAddress individual
         email_inst_uri = SDK[f"{mfg_etld1_stripped}-email-{uri_strip(email)}-instance"]
         g.add((email_inst_uri, RDF.type, SDK.EmailAddress))
@@ -137,10 +164,10 @@ def add_number_of_employees_triple(
         if strict:
             raise ValueError("Number of employees cannot be empty")
         else:
-            print(f"  skipping empty number of employees")
+            logger.debug(f"  skipping empty number of employees")
             return
 
-    print(f"  with number of employees: {num_employees}")
+    logger.debug(f"  with number of employees: {num_employees}")
     g.add(
         (
             mfg_inst_uri,
@@ -161,12 +188,12 @@ def add_business_status_triples(
         if strict:
             raise ValueError("Business ownership status cannot be empty")
         else:
-            print(f"  skipping empty business ownership status")
+            logger.debug(f"  skipping empty business ownership status")
             return
     for status_label in status_labels:
         if not status_label:
             raise ValueError("Business ownership status cannot be empty")
-        print(f"  with ownership status: {status_label}")
+        logger.debug(f"  with ownership status: {status_label}")
         status_concept = get_ownership_status_concept(ont_inst, status_label)
         status_inst_uri = SDK[
             f"{uri_strip(status_concept.name)}-ownership-status-individual"
@@ -186,9 +213,9 @@ def add_primary_naics_triple(
         if strict:
             raise ValueError("Primary NAICS cannot be empty")
         else:
-            print(f"  skipping empty primary NAICS")
+            logger.debug(f"  skipping empty primary NAICS")
             return
-    print(f"  with primary NAICS: {primary_naics}")
+    logger.debug(f"  with primary NAICS: {primary_naics}")
     naics_concept = get_naics_concept(ont_inst, "NAICS " + primary_naics)
     naics_ind_uri = SDK[f"{uri_strip(naics_concept.name)}-individual"]
     g.add((naics_ind_uri, RDF.type, naics_concept.uri))
@@ -206,12 +233,12 @@ def add_secondary_naics_triple(
         if strict:
             raise ValueError("Secondary NAICS cannot be empty")
         else:
-            print(f"  skipping empty secondary NAICS")
+            logger.debug(f"  skipping empty secondary NAICS")
             return
     for naics_label in secondary_naics:
         if not naics_label:
             raise ValueError("Secondary NAICS code cannot be empty")
-        print(f"  with secondary NAICS: {naics_label}")
+        logger.debug(f"  with secondary NAICS: {naics_label}")
         naics_concept = get_naics_concept(ont_inst, "NAICS " + naics_label)
         naics_ind_uri = SDK[f"{uri_strip(naics_concept.name)}-individual"]
         g.add((naics_ind_uri, RDF.type, naics_concept.uri))
@@ -229,20 +256,21 @@ def add_address_triples(
         if strict:
             raise ValueError("Manufacturer must have at least one address")
         else:
-            print("  skipping empty addresses")
+            logger.debug("  skipping empty addresses")
             return
 
+    dedupe_addresses(addresses=addresses)
     for i, addr in enumerate(addresses):
         if not addr:
             raise ValueError("Address cannot be empty")
-        print(f"  with full address passed: {addr}")
+        logger.debug(f"  with full address passed: {addr}")
         # Create GeospatialSite
-        print(f"  with address name: {addr.name}")
+        logger.debug(f"  with address name: {addr.name}")
         geosite_inst_uri = SDK[f"{mfg_etld1_stripped}-geosite-{i+1}-instance"]
-        print(f"  adding GeospatialSite: {geosite_inst_uri}")
+        logger.debug(f"  adding GeospatialSite: {geosite_inst_uri}")
         g.add((geosite_inst_uri, RDF.type, SDK.GeospatialSite))
         if addr.name:
-            print(f"  adding address name label: {addr.name}")
+            logger.debug(f"  adding address name label: {addr.name}")
             g.add(
                 (geosite_inst_uri, RDFS.label, Literal(addr.name))
             )  # link name to site
@@ -250,11 +278,11 @@ def add_address_triples(
         # Address lines
         for idx, addr_line in enumerate(addr.address_lines or []):
             if addr_line:
-                print(f"  with address line: {addr_line}")
+                logger.debug(f"  with address line: {addr_line}")
                 address_line_inst_uri = SDK[
-                    f"{mfg_etld1_stripped}-address-line-{idx+1}-instance"
+                    f"{mfg_etld1_stripped}-geosite-{i+1}-address-line-{idx+1}-instance"
                 ]
-                print(f"  adding AddressLine: {address_line_inst_uri}")
+                logger.debug(f"  adding AddressLine: {address_line_inst_uri}")
                 g.add((address_line_inst_uri, RDF.type, SDK.AddressLine))
                 g.add(
                     (address_line_inst_uri, IOF_SCRO.hasTextValue, Literal(addr_line))
@@ -266,108 +294,112 @@ def add_address_triples(
                         Literal(idx + 1, datatype=XSD.int),
                     )
                 )
-                print(f"  linking AddressLine to site")
+                logger.debug(f"  linking AddressLine to site")
                 g.add(
                     (geosite_inst_uri, SDK.hasAddressLine, address_line_inst_uri)
                 )  # link address line to site
 
         # City
-        print(f"  with city: {addr.city}")
+        logger.debug(f"  with city: {addr.city}")
         city_ind_uri = SDK[f"{uri_strip(addr.city)}-city-individual"]
-        print(f"  adding City: {city_ind_uri}")
+        logger.debug(f"  adding City: {city_ind_uri}")
         g.add((city_ind_uri, RDF.type, SDK.City))
         g.add((city_ind_uri, RDFS.label, Literal(addr.city)))
-        print(f"  linking City to site")
+        logger.debug(f"  linking City to site")
         g.add((geosite_inst_uri, SDK.locatedInCity, city_ind_uri))  # link city to site
 
         # State
-        print(f"  with state: {addr.state}")
+        logger.debug(f"  with state: {addr.state}")
         state_ind_uri = SDK[f"{uri_strip(addr.state)}-state-individual"]
-        print(f"  adding State: {state_ind_uri}")
+        logger.debug(f"  adding State: {state_ind_uri}")
         g.add((state_ind_uri, RDF.type, SDK.State))
         g.add((state_ind_uri, RDFS.label, Literal(addr.state)))
-        print(f"  linking State to site")
+        logger.debug(f"  linking State to site")
         g.add(
             (geosite_inst_uri, SDK.locatedInState, state_ind_uri)
         )  # link state to site
 
         # County - only if available
         if addr.county:
-            print(f"  with county: {addr.county}")
+            logger.debug(f"  with county: {addr.county}")
             county_ind_uri = SDK[f"{uri_strip(addr.county)}-county-individual"]
-            print(f"  adding County: {county_ind_uri}")
+            logger.debug(f"  adding County: {county_ind_uri}")
             g.add((county_ind_uri, RDF.type, SDK.County))
             g.add((county_ind_uri, RDFS.label, Literal(addr.county)))
-            print(f"  linking County to site")
+            logger.debug(f"  linking County to site")
             g.add(
                 (geosite_inst_uri, SDK.locatedInCounty, county_ind_uri)
             )  # link county to site
 
         # Postal Code
-        print(f"  with postal code: {addr.postal_code}")
-        print(f"  adding postal code to site")
+        logger.debug(f"  with postal code: {addr.postal_code}")
+        logger.debug(f"  adding postal code to site")
         g.add(
             (geosite_inst_uri, SDK.hasZipcodeValue, Literal(addr.postal_code))
         )  # link zipcode to site
 
         # Country
-        print(f"  with country: {addr.country}")
+        logger.debug(f"  with country: {addr.country}")
         country_ind_uri = SDK[f"{uri_strip(addr.country)}-country-individual"]
-        print(f"  adding Country: {country_ind_uri}")
+        logger.debug(f"  adding Country: {country_ind_uri}")
         g.add((country_ind_uri, RDF.type, SDK.Country))
         g.add((country_ind_uri, RDFS.label, Literal(addr.country)))
-        print(f"  linking Country to site")
+        logger.debug(f"  linking Country to site")
         g.add(
             (geosite_inst_uri, SDK.locatedInCountry, country_ind_uri)
         )  # link country to site
 
-        # GeospatialLocation for coordinates
-        if addr.latitude is None or addr.longitude is None:
-            raise ValueError(
-                "Both latitude and longitude must be provided for an address"
-            )
-        elif not (-90 <= addr.latitude <= 90):
-            raise ValueError("Latitude must be between -90 and 90 degrees")
-        elif not (-180 <= addr.longitude <= 180):
-            raise ValueError("Longitude must be between -180 and 180 degrees")
-
-        print(f"  with coordinates: lat={addr.latitude}, lon={addr.longitude}")
-        geoloc_inst_uri = SDK[f"{mfg_etld1_stripped}-geolocation-{i+1}-instance"]
-        print(f"  adding GeospatialLocation: {geoloc_inst_uri}")
-        g.add(
-            (geoloc_inst_uri, RDF.type, IOF_SCRO.GeospatialLocation)
-        )  # GeospatialLocation
-        g.add(
-            (
-                geoloc_inst_uri,
-                SDK.hasLatitudeValue,
-                Literal(addr.latitude, datatype=XSD.float),
-            )
-        )
-        g.add(
-            (
-                geoloc_inst_uri,
-                SDK.hasLongitudeValue,
-                Literal(addr.longitude, datatype=XSD.float),
-            )
-        )
-        print(f"  linking GeospatialLocation to site")
-        g.add(
-            (geosite_inst_uri, SDK.hasGeospatialLocation, geoloc_inst_uri)
-        )  # link location to site
-
         for phone in addr.phone_numbers or []:
             if phone:
-                print(f"  with phone number: {phone}")
-                print(f"  adding phone number to site")
+                logger.debug(f"  with phone number: {phone}")
+                logger.debug(f"  adding phone number to site")
                 g.add((geosite_inst_uri, SDK.hasPhoneNumberValue, Literal(phone)))
         for fax in addr.fax_numbers or []:
             if fax:
-                print(f"  with fax number: {fax}")
-                print(f"  adding fax number to site")
+                logger.debug(f"  with fax number: {fax}")
+                logger.debug(f"  adding fax number to site")
                 g.add((geosite_inst_uri, SDK.hasFaxNumberValue, Literal(fax)))
 
-        print(f"  linking site to manufacturer")
+        # GeospatialLocation for coordinates
+        if addr.latitude is None or addr.longitude is None:
+            logger.error(
+                f"Both latitude and longitude missing for {mfg_etld1_stripped} address"
+            )
+            logger.debug(f"  skipping GeospatialLocation due to missing coordinates")
+        else:
+            if not (-90 <= addr.latitude <= 90):
+                raise ValueError("Latitude must be between -90 and 90 degrees")
+            if not (-180 <= addr.longitude <= 180):
+                raise ValueError("Longitude must be between -180 and 180 degrees")
+
+            logger.debug(
+                f"  with coordinates: lat={addr.latitude}, lon={addr.longitude}"
+            )
+            geoloc_inst_uri = SDK[f"{mfg_etld1_stripped}-geolocation-{i+1}-instance"]
+            logger.debug(f"  adding GeospatialLocation: {geoloc_inst_uri}")
+            g.add(
+                (geoloc_inst_uri, RDF.type, IOF_SCRO.GeospatialLocation)
+            )  # GeospatialLocation
+            g.add(
+                (
+                    geoloc_inst_uri,
+                    SDK.hasLatitudeValue,
+                    Literal(addr.latitude, datatype=XSD.float),
+                )
+            )
+            g.add(
+                (
+                    geoloc_inst_uri,
+                    SDK.hasLongitudeValue,
+                    Literal(addr.longitude, datatype=XSD.float),
+                )
+            )
+            logger.debug(f"  linking GeospatialLocation to site")
+            g.add(
+                (geosite_inst_uri, SDK.hasGeospatialLocation, geoloc_inst_uri)
+            )  # link location to site
+
+        logger.debug(f"  linking site to manufacturer")
         g.add(
             (mfg_inst_uri, SDK.organizationLocatedIn, geosite_inst_uri)
         )  # link site to manufacturer
@@ -384,9 +416,9 @@ def add_business_description_triples(
         if strict:
             raise ValueError("Business description cannot be empty")
         else:
-            print(f"  skipping empty business description")
+            logger.debug(f"  skipping empty business description")
             return
-    print(f"  with business description: {business_desc.description}")
+    logger.debug(f"  with business description: {business_desc.description}")
     desc_inst_uri = SDK[f"{mfg_etld1_stripped}-business-description-instance"]
     g.add((desc_inst_uri, RDF.type, SDK.BusinessDescription))
     g.add(
@@ -401,22 +433,22 @@ def add_business_description_triples(
 
 def add_product_triples(
     mfg_inst_uri: URIRef,
-    products: Optional[list[str]],
+    products: Optional[set[str]],
     mfg_etld1_stripped: str,
     g: Graph,
     strict: bool,
 ):
-    if not products:
+    if products is None:
         if strict:
             raise ValueError("Products cannot be empty")
         else:
-            print(f"  skipping empty products")
+            logger.debug(f"  skipping empty products")
             return
 
     for prod in products:
         if not prod:
             raise ValueError("Product name cannot be empty")
-        print(f"  with product: {prod}")
+        logger.debug(f"  with product: {prod}")
         prod_inst_uri = get_product_instance_uri(mfg_etld1_stripped, prod)
 
         # Add product as MaterialProduct
@@ -432,17 +464,17 @@ def add_certificate_triples(
     g: Graph,
     strict: bool,
 ):
-    if not certificates:
+    if certificates is None:
         if strict:
             raise ValueError("Certificates cannot be empty")
         else:
-            print(f"  skipping empty certificates")
+            logger.debug(f"  skipping empty certificates")
             return
 
     for cert in certificates:
         if not cert:
             raise ValueError("Certificate name cannot be empty")
-        print(f"  with certificate: {cert}")
+        logger.debug(f"  with certificate: {cert}")
         cert_concept = get_certificate_concept(ont_inst, cert)
         cert_ind_uri = SDK[f"{uri_strip(cert_concept.name)}-certificate-individual"]
         g.add((cert_ind_uri, RDF.type, cert_concept.uri))
@@ -457,17 +489,17 @@ def add_industry_triples(
     g: Graph,
     strict: bool,
 ):
-    if not industries:
+    if industries is None:
         if strict:
             raise ValueError("Industries cannot be empty")
         else:
-            print(f"  skipping empty industries")
+            logger.debug(f"  skipping empty industries")
             return
 
     for ind in industries:
         if not ind:
             raise ValueError("Industry cannot be empty")
-        print(f"  with industry: {ind}")
+        logger.debug(f"  with industry: {ind}")
         ind_concept = get_industry_concept(ont_inst, ind)
         industry_ind_uri = SDK[f"{uri_strip(ind_concept.name)}-industry-individual"]
         g.add((industry_ind_uri, RDF.type, ind_concept.uri))
@@ -483,17 +515,17 @@ def add_process_capability_triples(
     g: Graph,
     strict: bool,
 ):
-    if not process_caps:
+    if process_caps is None:
         if strict:
             raise ValueError("Process capabilities cannot be empty")
         else:
-            print(f"  skipping empty process capabilities")
+            logger.debug(f"  skipping empty process capabilities")
             return
 
     for pc in process_caps or []:
         if not pc:
             raise ValueError("Process capability cannot be empty")
-        print(f"  with process capability: {pc}")
+        logger.debug(f"  with process capability: {pc}")
         pc_concept = get_process_cap_concept(ont_inst, pc)
         pc_inst_uri = SDK[
             f"{mfg_etld1_stripped}-{uri_strip(pc_concept.name)}-process-capability-instance"
@@ -510,17 +542,17 @@ def add_material_capability_triples(
     g: Graph,
     strict: bool,
 ):
-    if not material_caps:
+    if material_caps is None:
         if strict:
             raise ValueError("Material capabilities cannot be empty")
         else:
-            print(f"  skipping empty material capabilities")
+            logger.debug(f"  skipping empty material capabilities")
             return
 
     for mc in material_caps or []:
         if not mc:
             raise ValueError("Material capability cannot be empty")
-        print(f"  with material capability: {mc}")
+        logger.debug(f"  with material capability: {mc}")
         mc_concept = get_material_cap_concept(ont_inst, mc)
         mc_inst_uri = SDK[
             f"{mfg_etld1_stripped}-{uri_strip(mc_concept.name)}-material-capability-instance"
@@ -538,7 +570,7 @@ def add_manufacturer_triples(
     mfg_inst_uri, mfg_etld1_stripped = get_mfg_instance_uri_and_stripped_etld1(
         mfg.mfg_etld1
     )
-    print(f"Generating triples for {mfg_inst_uri}")
+    logger.debug(f"Generating triples for {mfg_inst_uri}")
 
     g.add((mfg_inst_uri, RDF.type, IOF_CORE.Manufacturer))
 
@@ -549,19 +581,18 @@ def add_manufacturer_triples(
         g,
         strict,
     )
-    add_founded_in_triple(mfg_inst_uri, mfg.founded_in, g, strict)
+    add_mfg_web_address_triple(mfg_inst_uri, mfg.mfg_etld1, g, strict)
+    add_founded_in_triple(mfg_inst_uri, mfg.founded_in, g, False)
     add_email_addresses_triples(
-        mfg_inst_uri, mfg.email_addresses, mfg_etld1_stripped, g, strict
+        mfg_inst_uri, mfg.email_addresses, mfg_etld1_stripped, g, False
     )
-    add_number_of_employees_triple(mfg_inst_uri, mfg.num_employees, g, strict)
-    add_business_status_triples(
-        mfg_inst_uri, ont_inst, mfg.business_statuses, g, strict
-    )
-    add_primary_naics_triple(mfg_inst_uri, mfg.primary_naics, ont_inst, g, strict)
-    add_secondary_naics_triple(mfg_inst_uri, mfg.secondary_naics, ont_inst, g, strict)
-    add_address_triples(mfg_inst_uri, mfg.addresses, mfg_etld1_stripped, g, strict)
+    add_number_of_employees_triple(mfg_inst_uri, mfg.num_employees, g, False)
+    add_business_status_triples(mfg_inst_uri, ont_inst, mfg.business_statuses, g, False)
+    add_primary_naics_triple(mfg_inst_uri, mfg.primary_naics, ont_inst, g, False)
+    add_secondary_naics_triple(mfg_inst_uri, mfg.secondary_naics, ont_inst, g, False)
+    add_address_triples(mfg_inst_uri, mfg.addresses, mfg_etld1_stripped, g, False)
     add_business_description_triples(
-        mfg_inst_uri, mfg.business_desc, mfg_etld1_stripped, g, strict
+        mfg_inst_uri, mfg.business_desc, mfg_etld1_stripped, g, False
     )
     add_product_triples(mfg_inst_uri, mfg.products, mfg_etld1_stripped, g, strict)
     add_certificate_triples(mfg_inst_uri, mfg.certificates, ont_inst, g, strict)
@@ -592,7 +623,7 @@ def generate_triples(
     for mfg in manufacturers:
         add_manufacturer_triples(ont_inst, mfg, g)
 
-    print(f"Generated {len(g)} RDF triples.")
+    logger.debug(f"Generated {len(g)} RDF triples.")
     return g.serialize(format="turtle")
 
 
@@ -604,5 +635,5 @@ def generate_triples_for_single_mfg(
     """
     g = _init_graph()
     add_manufacturer_triples(ont_inst, mfg, g, strict)
-    print(f"Generated {len(g)} RDF triples.")
+    logger.debug(f"Generated {len(g)} RDF triples.")
     return g.serialize(format="nt")

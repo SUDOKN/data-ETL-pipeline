@@ -26,6 +26,7 @@ load_open_ai_app_env()
 from core.utils.mongo_client import init_db
 from core.utils.time_util import get_current_time
 from core.models.db.manufacturer import Manufacturer
+from core.models.db.deferred_manufacturer import DeferredManufacturer
 from data_etl_app.services.manufacturer_extraction_orchestrator import (
     ManufacturerExtractionOrchestrator,
 )
@@ -95,14 +96,14 @@ async def process_manufacturers_concurrently(
     # }
 
     query_filter = {
-        # "scraped_text_file_version_id": {"$exists": True},
-        "scraped_text_file_num_tokens": {"$lt": 200_000},
+        "scraped_text_file_version_id": {"$exists": True},
+        # "scraped_text_file_num_tokens": {"$gt": 100},
         "$or": [
             {"addresses": {"$eq": None}},
             {"business_desc": {"$eq": None}},
-            {"is_contract_manufacturer": {"$eq": None}},
+            # {"is_contract_manufacturer": {"$eq": None}},
             {"is_manufacturer": {"$eq": None}},
-            {"is_product_manufacturer": {"$eq": None}},
+            # {"is_product_manufacturer": {"$eq": None}},
             {"products": {"$eq": None}},
             {"certificates": {"$eq": None}},
             {"industries": {"$eq": None}},
@@ -133,20 +134,46 @@ async def process_manufacturers_concurrently(
     }
     """
 
-    collection = Manufacturer.get_pymongo_collection()
-    total_count = await collection.count_documents(query_filter)
+    df_mfg_collection = DeferredManufacturer.get_pymongo_collection()
+    df_mfgs = await df_mfg_collection.find({}, {"mfg_etld1": 1, "_id": 0}).to_list(
+        length=None
+    )
+    df_mfgdf_etld1s = [df_mfg["mfg_etld1"] for df_mfg in df_mfgs]
+    logger.info(f"some df_mfgdf_etld1s:{df_mfgdf_etld1s[0:5]}")
+
+    query_filter["etld1"] = {"$nin": df_mfgdf_etld1s}
+    # logger.info(f"query_filter:{query_filter}")
+    mfg_collection = Manufacturer.get_pymongo_collection()
+    total_count = await mfg_collection.count_documents(query_filter)
 
     if limit:
         total_count = min(total_count, limit)
 
-    logger.info(f"Processing {total_count:,} manufacturers with parallelism={parallel}")
+    logger.info(f"\n{'='*70}")
+    logger.info(f"Found {total_count:,} manufacturers matching the query")
+    logger.info(f"Parallelism: {parallel}")
     if dry_run:
-        logger.info("🔍 DRY RUN MODE - No batch requests will be created\n")
+        logger.info("Mode: 🔍 DRY RUN (No batch requests will be created)")
+    logger.info(f"{'='*70}\n")
+
+    # Wait for user confirmation
+    user_input = (
+        input(
+            f"Do you want to proceed with processing {total_count:,} manufacturers? (yes/no): "
+        )
+        .strip()
+        .lower()
+    )
+    if user_input not in ["yes", "y"]:
+        logger.info("Processing cancelled by user.")
+        return
+
+    logger.info(f"\nStarting to process {total_count:,} manufacturers...\n")
 
     # Create cursor
     cursor = (
-        collection.find(query_filter)
-        .sort("scraped_text_file_num_tokens", 1)
+        mfg_collection.find(query_filter)
+        .sort("created_at", -1)
         .limit(limit if limit else 0)
     )
 

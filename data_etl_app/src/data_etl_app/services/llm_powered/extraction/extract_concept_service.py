@@ -17,6 +17,12 @@ from core.models.concept_extraction_results import (
 )
 from data_etl_app.models.skos_concept import Concept
 from data_etl_app.models.types_and_enums import ConceptTypeEnum
+from data_etl_app.services.chunking_strat import (
+    CERTIFICATE_CHUNKING_STRAT,
+    INDUSTRY_CHUNKING_STRAT,
+    MATERIAL_CAP_CHUNKING_STRAT,
+    PROCESS_CAP_CHUNKING_STRAT,
+)
 from data_etl_app.services.llm_powered.map.map_known_to_unknown_service import (
     map_known_concepts_with_found_keywords,
 )
@@ -24,8 +30,8 @@ from data_etl_app.services.brute_search_service import brute_search
 from data_etl_app.services.llm_powered.search.llm_search_service import llm_search
 from data_etl_app.services.knowledge.ontology_service import get_ontology_service
 from data_etl_app.services.knowledge.prompt_service import get_prompt_service
+from data_etl_app.services.chunking_strat import ChunkingStrat
 from data_etl_app.utils.chunk_util import (
-    ChunkingStrat,
     get_chunks_respecting_line_boundaries,
 )
 
@@ -59,7 +65,7 @@ async def extract_certificates(
         known_certificates,
         prompt_service.extract_any_certificate_prompt,
         prompt_service.unknown_to_known_certificate_prompt,
-        ChunkingStrat(overlap=0.0, max_tokens=7500),
+        CERTIFICATE_CHUNKING_STRAT,
         gpt_model=GPT_4o_mini,
         model_params=DefaultModelParameters,
     )
@@ -85,7 +91,7 @@ async def extract_industries(
         known_industries,
         prompt_service.extract_any_industry_prompt,
         prompt_service.unknown_to_known_industry_prompt,
-        ChunkingStrat(overlap=0.15, max_tokens=5000),
+        INDUSTRY_CHUNKING_STRAT,
         gpt_model=GPT_4o_mini,
         model_params=DefaultModelParameters,
     )
@@ -111,7 +117,7 @@ async def extract_processes(
         known_processes,
         prompt_service.extract_any_process_cap_prompt,
         prompt_service.unknown_to_known_process_cap_prompt,
-        ChunkingStrat(overlap=0.15, max_tokens=2500),
+        PROCESS_CAP_CHUNKING_STRAT,
         gpt_model=GPT_4o_mini,
         model_params=DefaultModelParameters,
     )
@@ -137,7 +143,7 @@ async def extract_materials(
         known_materials,
         prompt_service.extract_any_material_cap_prompt,
         prompt_service.unknown_to_known_material_cap_prompt,
-        ChunkingStrat(overlap=0.1, max_tokens=5000),
+        MATERIAL_CAP_CHUNKING_STRAT,
         gpt_model=GPT_4o_mini,
         model_params=DefaultModelParameters,
     )
@@ -191,7 +197,10 @@ async def _extract_concept_data(
     """
 
     chunk_map = await get_chunks_respecting_line_boundaries(
-        text, chunk_strategy.max_tokens, chunk_strategy.overlap
+        text=text,
+        soft_limit_tokens=chunk_strategy.max_tokens,
+        overlap_ratio=chunk_strategy.overlap,
+        max_chunks=chunk_strategy.max_chunks,
     )
 
     # Run brute_search and llm_search for each chunk concurrently

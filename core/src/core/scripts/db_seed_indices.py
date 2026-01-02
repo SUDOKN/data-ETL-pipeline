@@ -37,6 +37,27 @@ class DatabaseIndexSeeder:
         self.client = MongoClient(connection_string)
         self.db = self.client[database_name]
 
+    def _index_exists(self, collection, index_name: str) -> bool:
+        """Check if an index already exists in a collection."""
+        existing_indexes = collection.index_information()
+        return index_name in existing_indexes
+
+    def _create_index_if_missing(self, collection, keys, options):
+        """Create an index only if it doesn't already exist."""
+        index_name = options.get("name")
+
+        if self._index_exists(collection, index_name):
+            logger.info(f"Index already exists, skipping: {index_name}")
+            return False
+
+        try:
+            collection.create_index(keys, **options)
+            logger.info(f"Created index: {index_name}")
+            return True
+        except Exception as e:
+            logger.error(f"Failed to create index {index_name}: {e}")
+            return False
+
     def create_manufacturer_indexes(self):
         """Create indexes for manufacturers collection."""
         collection = self.db.manufacturers
@@ -53,11 +74,7 @@ class DatabaseIndexSeeder:
         ]
 
         for index in indexes:
-            try:
-                collection.create_index(index["keys"], **index["options"])
-                logger.info(f"Created index: {index['options']['name']}")
-            except Exception as e:
-                logger.error(f"Failed to create index {index['options']['name']}: {e}")
+            self._create_index_if_missing(collection, index["keys"], index["options"])
 
     def create_user_indexes(self):
         """Create indexes for users collection."""
@@ -71,11 +88,7 @@ class DatabaseIndexSeeder:
         ]
 
         for index in indexes:
-            try:
-                collection.create_index(index["keys"], **index["options"])
-                logger.info(f"Created index: {index['options']['name']}")
-            except Exception as e:
-                logger.error(f"Failed to create index {index['options']['name']}: {e}")
+            self._create_index_if_missing(collection, index["keys"], index["options"])
 
     def create_manufacturer_user_form_indexes(self):
         """Create indexes for manufacturer_user_forms collection."""
@@ -89,11 +102,7 @@ class DatabaseIndexSeeder:
         ]
 
         for index in indexes:
-            try:
-                collection.create_index(index["keys"], **index["options"])
-                logger.info(f"Created index: {index['options']['name']}")
-            except Exception as e:
-                logger.error(f"Failed to create index {index['options']['name']}: {e}")
+            self._create_index_if_missing(collection, index["keys"], index["options"])
 
     def create_binary_ground_truth_indexes(self):
         """Create indexes for binary_ground_truths collection."""
@@ -111,11 +120,7 @@ class DatabaseIndexSeeder:
         ]
 
         for index in indexes:
-            try:
-                collection.create_index(index["keys"], **index["options"])
-                logger.info(f"Created index: {index['options']['name']}")
-            except Exception as e:
-                logger.error(f"Failed to create index {index['options']['name']}: {e}")
+            self._create_index_if_missing(collection, index["keys"], index["options"])
 
     def create_concept_ground_truth_indexes(self):
         """Create indexes for concept_ground_truths collection."""
@@ -137,11 +142,7 @@ class DatabaseIndexSeeder:
         ]
 
         for index in indexes:
-            try:
-                collection.create_index(index["keys"], **index["options"])
-                logger.info(f"Created index: {index['options']['name']}")
-            except Exception as e:
-                logger.error(f"Failed to create index {index['options']['name']}: {e}")
+            self._create_index_if_missing(collection, index["keys"], index["options"])
 
     def create_keyword_ground_truth_indexes(self):
         """Create indexes for keyword_ground_truths collection."""
@@ -161,11 +162,7 @@ class DatabaseIndexSeeder:
         ]
 
         for index in indexes:
-            try:
-                collection.create_index(index["keys"], **index["options"])
-                logger.info(f"Created index: {index['options']['name']}")
-            except Exception as e:
-                logger.error(f"Failed to create index {index['options']['name']}: {e}")
+            self._create_index_if_missing(collection, index["keys"], index["options"])
 
     def create_gpt_batch_request_indexes(self):
         """Create indexes for gpt_batch_requests collection."""
@@ -175,15 +172,15 @@ class DatabaseIndexSeeder:
             {
                 "keys": [("request.custom_id", 1)],
                 "options": {"name": "gpt_batch_requests_custom_id_idx", "unique": True},
-            }
+            },
+            {
+                "keys": [("batch_id", 1)],
+                "options": {"name": "gpt_batch_id_sparse_idx", "sparse": True},
+            },
         ]
 
         for index in indexes:
-            try:
-                collection.create_index(index["keys"], **index["options"])
-                logger.info(f"Created index: {index['options']['name']}")
-            except Exception as e:
-                logger.error(f"Failed to create index {index['options']['name']}: {e}")
+            self._create_index_if_missing(collection, index["keys"], index["options"])
 
     def create_deferred_manufacturer_indexes(self):
         """Create indexes for deferred_manufacturers collection."""
@@ -197,11 +194,7 @@ class DatabaseIndexSeeder:
         ]
 
         for index in indexes:
-            try:
-                collection.create_index(index["keys"], **index["options"])
-                logger.info(f"Created index: {index['options']['name']}")
-            except Exception as e:
-                logger.error(f"Failed to create index {index['options']['name']}: {e}")
+            self._create_index_if_missing(collection, index["keys"], index["options"])
 
     def create_gpt_batch_indexes(self):
         """Create indexes for gpt_batches collection."""
@@ -215,11 +208,7 @@ class DatabaseIndexSeeder:
         ]
 
         for index in indexes:
-            try:
-                collection.create_index(index["keys"], **index["options"])
-                logger.info(f"Created index: {index['options']['name']}")
-            except Exception as e:
-                logger.error(f"Failed to create index {index['options']['name']}: {e}")
+            self._create_index_if_missing(collection, index["keys"], index["options"])
 
     def create_api_key_bundle_indexes(self):
         """Create indexes for api_keys collection."""
@@ -237,11 +226,7 @@ class DatabaseIndexSeeder:
         ]
 
         for index in indexes:
-            try:
-                collection.create_index(index["keys"], **index["options"])
-                logger.info(f"Created index: {index['options']['name']}")
-            except Exception as e:
-                logger.error(f"Failed to create index {index['options']['name']}: {e}")
+            self._create_index_if_missing(collection, index["keys"], index["options"])
 
     def drop_collection_indexes(self, collection_name: str):
         """Drop all indexes for a specific collection (except _id_)."""

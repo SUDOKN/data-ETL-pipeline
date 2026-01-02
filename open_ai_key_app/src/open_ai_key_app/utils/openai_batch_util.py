@@ -17,11 +17,22 @@ def fetch_all_batches(client: OpenAI, limit: int = 100) -> list[Batch]:
     Returns:
         List of all batch objects
     """
-    all_batches = []
+    all_batches: list[Batch] = []
+    after: str | None = None
 
-    # The SDK's list() returns a cursor that handles pagination
-    for batch in client.batches.list(limit=limit):
-        all_batches.append(batch)
+    while True:
+        if after is None:
+            page = client.batches.list(limit=limit)
+        else:
+            page = client.batches.list(limit=limit, after=after)
+
+        batches = page.data or []
+        all_batches.extend(batches)
+
+        if not page.has_more or not batches:
+            break
+
+        after = batches[-1].id
 
     logger.info(f"Fetched {len(all_batches)} batches total")
     return all_batches

@@ -24,6 +24,7 @@ keys.py
 # Ignore any .json file that does NOT have .schema before .json
 # Example: data.json (ignored), data.schema.json (not ignored)
 *.json
+!*.manufacturers.json
 !*.schema.json
 !*.config.json
 *.jsonl

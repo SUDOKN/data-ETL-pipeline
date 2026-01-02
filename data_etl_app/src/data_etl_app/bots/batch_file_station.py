@@ -54,7 +54,7 @@ from data_etl_app.services.manufacturer_extraction_orchestrator import (
 logger = logging.getLogger(__name__)
 
 OUTPUT_DIR_DEFAULT = "../../../../batch_data"
-MAX_MANUFACTURER_TOKENS = 200_000
+MAX_MANUFACTURER_TOKENS = 6_000_000
 MAX_REQUESTS_PER_FILE = 50_000
 MAX_FILE_SIZE_MB = 190  # 190MB in MB
 
@@ -152,7 +152,9 @@ class BatchFileStation:
     ):
         self.stats.batches_failed += 1
         await api_key_bundle.apply_cooldown(30 * 60)  # 30 mins
-        await unpair_all_batch_requests_from_batch(gpt_batch=gpt_batch)
+        await unpair_all_batch_requests_from_batch(
+            timestamp=timestamp, gpt_batch=gpt_batch
+        )
         await self._finish_gpt_batch_processing(
             done_at=timestamp,
             client=client,
@@ -176,15 +178,15 @@ class BatchFileStation:
         3. Find available API keys and create batches per key following individual quota limits.
         4. Upload batches
         """
-        now = get_current_time()
+
         self.stats.batches_downloaded += 1
         log_id = f"{api_key_bundle.label}-{gpt_batch.external_batch_id}"
         update_operations = []
         batch_stats = SingleBatchStats()
-        all_custom_ids: set[str] = await get_custom_ids_for_batch(gpt_batch)
+        missing_custom_ids: set[str] = await get_custom_ids_for_batch(gpt_batch)
         logger.info(
-            f"{log_id}: Expecting {len(all_custom_ids):,} custom_ids in output/error files.\n"
-            # f"all_custom_ids:{all_custom_ids}"
+            f"{log_id}: Expecting {len(missing_custom_ids):,} custom_ids in output/error files.\n"
+            #     f"all_custom_ids:{all_custom_ids}"
         )
         output_custom_ids: set[str] = set()
         # error_custom_ids: set[str] = set()
@@ -205,7 +207,7 @@ class BatchFileStation:
                         raw_result, gpt_batch.external_batch_id
                     )
 
-                    all_custom_ids.remove(custom_id)
+                    missing_custom_ids.discard(custom_id)
                     output_custom_ids.add(custom_id)
                     mfg_etld1 = custom_id.split(">")[0]
                     unique_mfg_etld1s.add(mfg_etld1)
@@ -218,6 +220,7 @@ class BatchFileStation:
                                 "response_blob": response_blob.model_dump(
                                     exclude={"result"}
                                 ),
+                                "updated_at": downloaded_at,
                             }
                         },
                         upsert=False,  # Doesn't create new documents if filter unmatched
@@ -233,16 +236,16 @@ class BatchFileStation:
                     )
                     batch_stats.output_errors += 1
 
-        if all_custom_ids:
+        if missing_custom_ids:
             logger.error(
-                f"{log_id}: Missing {len(all_custom_ids)} expected custom_ids in output/error files: "
+                f"{log_id}: Missing {len(missing_custom_ids)} expected custom_ids in output/error files: "
                 f"output[{len(output_custom_ids)}], Resetting their batch_id to None."
             )
-            for custom_id in all_custom_ids:
+            for custom_id in missing_custom_ids:
                 update_operations.append(
                     UpdateOne(
                         {"request.custom_id": custom_id},  # Filter
-                        {"$set": {"batch_id": None}},
+                        {"$set": {"batch_id": None, "updated_at": downloaded_at}},
                         upsert=False,  # Doesn't create new documents if filter unmatched
                     )
                 )
@@ -253,7 +256,7 @@ class BatchFileStation:
                 f"Skipping to creating new batch and upload."
             )
             await self._finish_gpt_batch_processing(
-                done_at=now,
+                done_at=downloaded_at,
                 client=client,
                 gpt_batch=gpt_batch,
                 api_key_bundle=api_key_bundle,
@@ -293,7 +296,7 @@ class BatchFileStation:
 
         self.stats.batches_succeeded += 1
         await self._finish_gpt_batch_processing(
-            done_at=now,
+            done_at=downloaded_at,
             client=client,
             gpt_batch=gpt_batch,
             api_key_bundle=api_key_bundle,
@@ -401,19 +404,25 @@ class BatchFileStation:
                         gpt_batch
                     ) in synced_gpt_batches:  # hopefully there is only one each time
                         if not gpt_batch.is_our_processing_complete():
-                            logger.info(
-                                f"poll_sync_and_upload_new_batches: Processing synced batch {api_key_bundle.label}:{gpt_batch.external_batch_id} with status {gpt_batch.status}"
-                            )
-                            api_key_bundle.tokens_in_use += (
-                                gpt_batch.metadata.total_tokens
-                            )
-                            await self.process_batch(  # if completed/expired, process_batch will free up tokens_in_use
-                                client=client,
-                                api_key_bundle=api_key_bundle,
-                                gpt_batch=gpt_batch,
-                                timestamp=now,
-                            )
-                            at_least_one_incomplete = True
+                            try:
+                                logger.info(
+                                    f"poll_sync_and_upload_new_batches: Processing synced batch {api_key_bundle.label}:{gpt_batch.external_batch_id} with status {gpt_batch.status}"
+                                )
+                                api_key_bundle.tokens_in_use += (
+                                    gpt_batch.metadata.total_tokens
+                                )
+                                await self.process_batch(  # if completed/expired, process_batch will free up tokens_in_use
+                                    client=client,
+                                    api_key_bundle=api_key_bundle,
+                                    gpt_batch=gpt_batch,
+                                    timestamp=now,
+                                )
+                                at_least_one_incomplete = True
+                            except Exception as e:
+                                logger.info(
+                                    f"poll_sync_and_upload_new_batches: Error processing synced batch {api_key_bundle.label}:{gpt_batch.external_batch_id}: {e}",
+                                    exc_info=True,
+                                )
 
                     await api_key_bundle.save()  # save the updated tokens_in_use
                     if at_least_one_incomplete:
@@ -423,6 +432,7 @@ class BatchFileStation:
                         )
                         continue
 
+                    # continue
                     if api_key_bundle.tokens_in_use > 0:
                         logger.info(
                             f"create_new_batches_and_upload: {api_key_bundle.label} has {api_key_bundle.tokens_in_use} tokens in use, "
@@ -475,6 +485,7 @@ class BatchFileStation:
                     for attempt in range(2):
                         try:
                             num_paired = await pair_batch_request_custom_ids_with_batch(
+                                timestamp=now,
                                 custom_ids=batch_file_generation_result.batch_request_jsonl_file_writer.files[
                                     0
                                 ].unique_line_ids,

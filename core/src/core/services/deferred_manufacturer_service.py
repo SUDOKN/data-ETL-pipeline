@@ -52,8 +52,8 @@ def is_deferred_manufacturer_empty(deferred_manufacturer: DeferredManufacturer) 
         getattr(deferred_manufacturer, field) is None
         for field in [
             BinaryClassificationTypeEnum.is_manufacturer.name,
-            BinaryClassificationTypeEnum.is_contract_manufacturer.name,
-            BinaryClassificationTypeEnum.is_product_manufacturer.name,
+            # BinaryClassificationTypeEnum.is_contract_manufacturer.name,
+            # BinaryClassificationTypeEnum.is_product_manufacturer.name,
             BasicFieldTypeEnum.addresses.name,
             BasicFieldTypeEnum.business_desc.name,
             KeywordTypeEnum.products.name,

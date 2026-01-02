@@ -319,9 +319,11 @@ class OntologyService:
         self._ensure_initialized()
         if not hasattr(self, "_ownership_status_map"):
             _, ownership_statuses = self.ownership_statuses
-            self._ownership_status_map = {
-                status.name: status for status in ownership_statuses
-            }
+            self._ownership_status_map = {}
+            for status in ownership_statuses:
+                self._ownership_status_map[status.name] = status
+                for alt_label in status.altLabels:
+                    self._ownership_status_map[alt_label] = status
         # Type assertion safe after _ensure_initialized check
         assert self.ontology is not None
         return self.ontology.s3_version_id, self._ownership_status_map

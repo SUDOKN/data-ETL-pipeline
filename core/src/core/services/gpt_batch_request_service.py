@@ -40,6 +40,8 @@ def create_base_gpt_batch_request(
 
     gpt_batch_request = GPTBatchRequest(
         created_at=deferred_at,
+        updated_at=deferred_at,
+        num_batches_paired_with=0,
         batch_id=None,
         request=request_blob,
     )
@@ -345,9 +347,16 @@ async def get_custom_ids_for_batch(
 
     custom_ids = []
     # Fetch all matching documents at once
+    query = {"batch_id": gpt_batch.external_batch_id}
+    projection = {"request.custom_id": 1, "_id": 0}
+
+    logger.info(
+        f"Querying for batch requests with query: {query} and projection: {projection}"
+    )
+
     docs = await collection.find(
-        {"batch_id": gpt_batch.external_batch_id},
-        projection={"request.custom_id": 1, "_id": 0},
+        query,
+        projection=projection,
     ).to_list(
         length=None
     )  # None means fetch all
@@ -362,7 +371,10 @@ async def get_custom_ids_for_batch(
 
 
 async def pair_batch_request_custom_ids_with_batch(
-    custom_ids: set[str], gpt_batch: GPTBatch, chunk_size: int = 5000
+    timestamp: datetime,
+    custom_ids: set[str],
+    gpt_batch: GPTBatch,
+    chunk_size: int = 5000,
 ) -> int:
     """
     Pair batch request custom IDs with a batch in chunks to avoid write lock contention.
@@ -389,7 +401,15 @@ async def pair_batch_request_custom_ids_with_batch(
     update_operations = [
         UpdateOne(
             {"request.custom_id": custom_id},
-            {"$set": {"batch_id": gpt_batch.external_batch_id}},
+            {
+                "$set": {
+                    "batch_id": gpt_batch.external_batch_id,
+                    "updated_at": timestamp,
+                },
+                "$inc": {
+                    "num_batches_paired_with": 1
+                },  # Increment attempt count on each successful pairing
+            },
             upsert=False,  # Doesn't create new documents if filter unmatched
         )
         for custom_id in custom_ids
@@ -402,11 +422,16 @@ async def pair_batch_request_custom_ids_with_batch(
         chunk_size=chunk_size,
     )
 
+    logger.info(
+        f"pair_batch_request_custom_ids_with_batch: Successfully paired {modified_count:,} requests "
+        f"with batch:{gpt_batch.external_batch_id}. num_batches_paired_with incremented for all paired requests."
+    )
+
     return modified_count
 
 
 async def unpair_all_batch_requests_from_batch(
-    gpt_batch: GPTBatch, chunk_size: int = 5000
+    timestamp: datetime, gpt_batch: GPTBatch, chunk_size: int = 5000
 ) -> int:
     """
     Reset batch requests associated with a batch in chunks to avoid write lock contention.
@@ -440,13 +465,14 @@ async def unpair_all_batch_requests_from_batch(
         return 0
 
     return await unpair_batch_requests_by_custom_ids(
+        timestamp=timestamp,
         custom_ids=set(custom_ids),
         chunk_size=chunk_size,
     )
 
 
 async def unpair_batch_requests_by_custom_ids(
-    custom_ids: set[str], chunk_size: int = 5000
+    timestamp: datetime, custom_ids: set[str], chunk_size: int = 5000
 ) -> int:
     """
     Reset batch requests associated with a batch in chunks to avoid write lock contention.
@@ -465,7 +491,13 @@ async def unpair_batch_requests_by_custom_ids(
     update_operations = [
         UpdateOne(
             {"request.custom_id": custom_id},
-            {"$set": {"batch_id": None, "response_blob": None}},
+            {
+                "$set": {
+                    "batch_id": None,
+                    "response_blob": None,
+                    "updated_at": timestamp,
+                }
+            },
             upsert=False,  # Doesn't create new documents if filter unmatched
         )
         for custom_id in custom_ids
@@ -476,6 +508,11 @@ async def unpair_batch_requests_by_custom_ids(
         update_one_operations=update_operations,
         log_id=f"unpair_by_custom_ids",
         chunk_size=chunk_size,
+    )
+
+    logger.info(
+        f"unpair_batch_requests_by_custom_ids: Unpaired {modified_count:,} requests. "
+        f"num_batches_paired_with preserved for retry tracking."
     )
 
     return modified_count
@@ -501,9 +538,11 @@ async def _upsert_chunk_with_only_request_body(
                 {
                     "$set": {
                         "request.body": req.request.body.model_dump(),  # Update body on both insert and update
+                        "updated_at": req.updated_at,
                     },
                     "$setOnInsert": {  # Set these required fields only on insert
                         "created_at": req.created_at,
+                        "num_batches_paired_with": req.num_batches_paired_with,
                         "request.custom_id": req.request.custom_id,
                         "request.method": req.request.method,
                         "request.url": req.request.url,
@@ -730,6 +769,33 @@ async def bulk_delete_gpt_batch_requests_by_mfg_etld1_and_field(
     )
 
     return result.deleted_count
+
+
+async def record_response_parse_error(
+    gpt_batch_request: GPTBatchRequest,
+    error_message: str,
+    timestamp: datetime,
+    traceback_str: str,
+) -> None:
+    """
+    Record a response parse error in the GPT batch request.
+
+    Args:
+        gpt_batch_request: GPTBatchRequest object to update
+        error_message: Error message to record
+        timestamp: Timestamp of the error occurrence
+    """
+    gpt_batch_request.batch_id = None
+    gpt_batch_request.updated_at = timestamp
+    gpt_batch_request.response_blob = None
+    gpt_batch_request.response_parse_errors.append(
+        {
+            "timestamp": timestamp.isoformat(),
+            "error_message": error_message,
+            "traceback": traceback_str,
+        }
+    )
+    await gpt_batch_request.save()
 
 
 '''

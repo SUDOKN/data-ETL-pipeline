@@ -62,6 +62,9 @@ class PromptService:
                 self._prompt_cache[prompt_name] = await self._download_prompt(
                     prompt_name, None
                 )
+                logger.info(
+                    f"Downloaded {prompt_name} prompt with {(self._prompt_cache[prompt_name]).num_tokens}"
+                )
             logger.info("PromptService initialized and prompts loaded")
         except Exception as e:
             logger.error(f"Failed to initialize prompt service: {e}")

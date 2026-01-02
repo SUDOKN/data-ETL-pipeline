@@ -257,13 +257,14 @@
         "uniqueItems": true
       },
       "primary_naics": {
-        "bsonType": ["string", "null"]
+        "bsonType": ["string", "null"],
+        "minLength": 3
       },
       "secondary_naics": {
         "bsonType": ["array", "null"],
         "items": {
           "bsonType": "string",
-          "minLength": 5
+          "minLength": 3
         },
         "uniqueItems": true
       },
@@ -271,7 +272,7 @@
         "bsonType": ["array", "null"],
         "items": {
           "bsonType": "object",
-          "required": ["city", "state", "postal_code", "country"],
+          "required": ["city", "state", "country"],
           "properties": {
             "name": {
               "bsonType": ["string", "null"]
@@ -292,7 +293,7 @@
               "bsonType": ["string", "null"]
             },
             "postal_code": {
-              "bsonType": "string"
+              "bsonType": ["string", "null"]
             },
             "country": {
               "bsonType": "string"

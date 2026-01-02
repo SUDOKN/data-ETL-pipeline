@@ -5,7 +5,7 @@ import re
 logger = logging.getLogger(__name__)
 
 
-def make_json_parse_safe(response: str) -> str:
+def make_json_array_parse_safe(response: str) -> str:
     """
     Makes a string safe for JSON parsing by handling common formatting issues.
 

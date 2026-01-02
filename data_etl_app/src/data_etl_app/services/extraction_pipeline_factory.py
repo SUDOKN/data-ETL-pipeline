@@ -60,18 +60,18 @@ class ExtractionPipelineFactory:
                     binary_field_type=BinaryClassificationTypeEnum.is_manufacturer
                 ),
             ),
-            BinaryClassificationTypeEnum.is_contract_manufacturer: BinaryClassificationNode(
-                binary_field_type=BinaryClassificationTypeEnum.is_contract_manufacturer,
-                next_node=BinaryReconcileNode(
-                    binary_field_type=BinaryClassificationTypeEnum.is_contract_manufacturer
-                ),
-            ),
-            BinaryClassificationTypeEnum.is_product_manufacturer: BinaryClassificationNode(
-                binary_field_type=BinaryClassificationTypeEnum.is_product_manufacturer,
-                next_node=BinaryReconcileNode(
-                    binary_field_type=BinaryClassificationTypeEnum.is_product_manufacturer
-                ),
-            ),
+            # BinaryClassificationTypeEnum.is_contract_manufacturer: BinaryClassificationNode(
+            #     binary_field_type=BinaryClassificationTypeEnum.is_contract_manufacturer,
+            #     next_node=BinaryReconcileNode(
+            #         binary_field_type=BinaryClassificationTypeEnum.is_contract_manufacturer
+            #     ),
+            # ),
+            # BinaryClassificationTypeEnum.is_product_manufacturer: BinaryClassificationNode(
+            #     binary_field_type=BinaryClassificationTypeEnum.is_product_manufacturer,
+            #     next_node=BinaryReconcileNode(
+            #         binary_field_type=BinaryClassificationTypeEnum.is_product_manufacturer
+            #     ),
+            # ),
             BasicFieldTypeEnum.addresses: AddressExtractionNode(
                 field_type=BasicFieldTypeEnum.addresses,
                 next_node=AddressReconcileNode(field_type=BasicFieldTypeEnum.addresses),

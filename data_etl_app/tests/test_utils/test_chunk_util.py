@@ -8,7 +8,9 @@ from data_etl_app.utils.chunk_util import (
 
 @pytest.mark.asyncio
 async def test_empty_text_returns_empty_dict():
-    result = await get_chunks_respecting_line_boundaries("")
+    result = await get_chunks_respecting_line_boundaries(
+        "", soft_limit_tokens=5000, overlap_ratio=0.25, max_chunks=10
+    )
     assert isinstance(result, dict)
     assert result == {}
 
@@ -28,7 +30,7 @@ L4
 L5"""  # note: only first 4 lines end with newline when splitlines(keepends=True)
     # Use max_tokens=3 and 50% overlap => overlap of 1 line
     chunks = await get_chunks_respecting_line_boundaries(
-        text, soft_limit_tokens=3, overlap_ratio=0.5
+        text, soft_limit_tokens=3, overlap_ratio=0.5, max_chunks=2
     )
 
     # Expect two chunks: first with lines L1, L2, L3; second with L3, L4, L5
@@ -53,7 +55,7 @@ async def test_full_text_as_single_chunk_when_under_limit(monkeypatch):
     )
     text = "Hello world!"  # single line
     result = await get_chunks_respecting_line_boundaries(
-        text, soft_limit_tokens=100, overlap_ratio=0.5
+        text, soft_limit_tokens=100, overlap_ratio=0.5, max_chunks=10
     )
     # Entire text should be one chunk with key '0:12'
     assert list(result.values()) == [text]
@@ -74,7 +76,10 @@ async def test_chunks_with_zero_overlap(monkeypatch):
     text = "L1\nL2\nL3\nL4\nL5"
     # Use max_tokens=3 and zero overlap
     chunks = await get_chunks_respecting_line_boundaries(
-        text, soft_limit_tokens=3, overlap_ratio=0
+        text,
+        soft_limit_tokens=3,
+        overlap_ratio=0,
+        max_chunks=10,
     )
     # Expect two chunks: first L1-L3, second L4-L5 without overlap
     expected = {

@@ -1,5 +1,4 @@
 import asyncio
-from datetime import datetime
 import logging
 
 from open_ai_key_app.utils.token_util import num_tokens_from_string
@@ -66,7 +65,7 @@ def get_gpt_request_blob(
 
     if tokens_needed > gpt_model.max_context_tokens:
         raise ValueError(
-            f"Total tokens needed:{tokens_needed} exceed max context tokens:{gpt_model.max_context_tokens}."
+            f"Total tokens needed:{tokens_needed}=prompt:{tokens_prompt}+context:{tokens_context}+safe_completion:{max_response_tokens} exceed max context tokens:{gpt_model.max_context_tokens}."
         )
 
     blob = GPTBatchRequestBlob(

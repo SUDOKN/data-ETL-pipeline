@@ -92,8 +92,31 @@ async def init_db(
     )
 
 
-async def get_mongo_database():
+async def get_mongo_database(
+    CUSTOM_MONGO_URI: str,
+    max_pool_size: int = 20,
+    min_pool_size: int = 5,
+    max_idle_time_ms: int = 45000,
+    server_selection_timeout_ms: int = 20000,
+    connect_timeout_ms: int = 20000,
+    socket_timeout_ms: int = 45000,
+):
     """Get direct access to MongoDB database for raw collection operations."""
     codec_options = CodecOptions(tz_aware=True, tzinfo=timezone.utc)
-    client = AsyncMongoClient(settings.MONGO_URI)
+    client = AsyncMongoClient(
+        CUSTOM_MONGO_URI,
+        maxPoolSize=max_pool_size,
+        minPoolSize=min_pool_size,
+        maxIdleTimeMS=max_idle_time_ms,
+        serverSelectionTimeoutMS=server_selection_timeout_ms,
+        connectTimeoutMS=connect_timeout_ms,
+        socketTimeoutMS=socket_timeout_ms,
+        # Additional performance optimizations
+        retryWrites=True,
+        retryReads=True,
+        w="majority",  # Write concern for durability
+        readPreference="primary",  # Only read from primary
+        # Connection pool monitoring
+        waitQueueTimeoutMS=30000,  # Wait up to 30s for connection from pool
+    )
     return client.get_default_database().with_options(codec_options=codec_options)

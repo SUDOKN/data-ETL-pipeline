@@ -1,5 +1,6 @@
 import logging
 from datetime import datetime
+import traceback
 from typing import Optional
 
 from core.models.db.manufacturer import Manufacturer
@@ -33,6 +34,7 @@ from core.services.gpt_batch_request_service import (
     find_completed_gpt_batch_requests_by_custom_ids,
     find_completed_gpt_batch_request_by_custom_id,
     bulk_delete_gpt_batch_requests_by_custom_ids,
+    record_response_parse_error,
 )
 
 logger = logging.getLogger(__name__)
@@ -82,9 +84,23 @@ class ConceptReconcileNode(ReconcileNode):
         )
         assert llm_map_request is not None
         assert llm_map_request.response_blob is not None
-        raw_gpt_mapping = parse_llm_concept_mapping_result(
-            gpt_response=llm_map_request.response_blob.result
-        )
+
+        try:
+            raw_gpt_mapping = parse_llm_concept_mapping_result(
+                gpt_response=llm_map_request.response_blob.result
+            )
+        except Exception as e:
+            await record_response_parse_error(
+                gpt_batch_request=llm_map_request,
+                error_message=str(e),
+                timestamp=timestamp,
+                traceback_str=traceback.format_exc(),
+            )
+            logger.error(
+                f"Error parsing concept mapping for manufacturer {mfg.etld1} from GPT response: {e}"
+            )
+            raise
+
         logger.debug(f"full raw_gpt_mapping: {raw_gpt_mapping}")
 
         final_results: set[str] = set()
@@ -102,9 +118,22 @@ class ConceptReconcileNode(ReconcileNode):
                 llm_search_req.response_blob is not None
             ), f"Missing response_blob for {llm_search_req.request.custom_id}"
 
-            llm_search_results_in_chunk = parse_llm_search_response(
-                llm_search_req.response_blob.result
-            )
+            try:
+                llm_search_results_in_chunk = parse_llm_search_response(
+                    llm_search_req.response_blob.result
+                )
+            except Exception as e:  # should not happen since we validated earlier
+                await record_response_parse_error(
+                    gpt_batch_request=llm_search_req,
+                    error_message=str(e),
+                    timestamp=timestamp,
+                    traceback_str=traceback.format_exc(),
+                )
+                logger.error(
+                    f"Error parsing concept search results for manufacturer {mfg.etld1} from GPT response: {e}"
+                )
+                raise
+
             matched_concepts_in_chunk, unmatched_keywords_in_chunk = (
                 await get_matched_concepts_and_unmatched_keywords_by_concept_type(
                     self.field_type, llm_search_results_in_chunk

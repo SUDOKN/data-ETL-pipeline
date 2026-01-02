@@ -138,10 +138,11 @@ async def _binary_classify_using_only_first_chunk_deferred(
 
     if not deferred_binary_classification:
         chunks_map = await get_chunks_respecting_line_boundaries(
-            mfg_text,
-            gpt_model.max_context_tokens
-            - binary_prompt.num_tokens
-            - 5000,  # subtracting 5000 to leave room for last line in each chunk, otherwise _binary_classify_chunk gets > GPT_4o_mini.max_context_tokens
+            text=mfg_text,
+            soft_limit_tokens=(
+                gpt_model.max_context_tokens - binary_prompt.num_tokens - 10_000
+            ),  # subtracting 10000 to leave room for last line in each chunk, otherwise _binary_classify_chunk gets > GPT_4o_mini.max_context_tokens
+            overlap_ratio=0,
             max_chunks=1,  # Only generate the first chunk
         )
         chunk = list(chunks_map.items())[0]

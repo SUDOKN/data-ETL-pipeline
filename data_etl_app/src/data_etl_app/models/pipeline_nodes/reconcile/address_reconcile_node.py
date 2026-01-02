@@ -1,5 +1,6 @@
 import logging
 from datetime import datetime
+import traceback
 from typing import Optional
 
 from core.models.db.manufacturer import Manufacturer
@@ -15,6 +16,7 @@ from data_etl_app.models.pipeline_nodes.reconcile.reconcile_node import Reconcil
 from core.services.gpt_batch_request_service import (
     find_gpt_batch_request_by_custom_id,
     bulk_delete_gpt_batch_requests_by_custom_ids,
+    record_response_parse_error,
 )
 
 logger = logging.getLogger(__name__)
@@ -52,9 +54,22 @@ class AddressReconcileNode(ReconcileNode):
                 f"Could not find completed GPTBatchRequest for address extraction with custom_id={deferred_address_extraction.gpt_request_id}"
             )
 
-        mfg.addresses = parse_address_list_from_gpt_response(
-            gpt_request.response_blob.result
-        )
+        try:
+            mfg.addresses = parse_address_list_from_gpt_response(
+                gpt_request.response_blob.result
+            )
+        except Exception as e:
+            await record_response_parse_error(
+                gpt_batch_request=gpt_request,
+                error_message=str(e),
+                timestamp=timestamp,
+                traceback_str=traceback.format_exc(),
+            )
+            logger.error(
+                f"Error parsing addresses for manufacturer {mfg.etld1} from GPT response: {e}"
+            )
+            raise
+
         await update_manufacturer(updated_at=timestamp, manufacturer=mfg)
 
         await bulk_delete_gpt_batch_requests_by_custom_ids(

@@ -19,6 +19,7 @@ from core.models.db.deferred_manufacturer import DeferredManufacturer
 from core.models.db.gpt_batch_request import GPTBatchRequest
 from core.services.deferred_manufacturer_service import get_embedded_gpt_request_ids
 from core.utils.mongo_client import init_db
+from core.utils.time_util import get_current_time
 from open_ai_key_app.models.field_types import GPTBatchRequestCustomID
 
 logging.basicConfig(level=logging.INFO)
@@ -107,6 +108,8 @@ async def reset_batch_ids_for_incomplete_requests():
         {"scraped_text_file_num_tokens": {"$lt": 200_000}}
     )
 
+    now = get_current_time()
+
     async for df_mfg in cursor:
         total_df_mfgs_processed += 1
 
@@ -135,7 +138,7 @@ async def reset_batch_ids_for_incomplete_requests():
         if incomplete_request_ids:
             reset_result = await GPTBatchRequest.get_pymongo_collection().update_many(
                 {"request.custom_id": {"$in": incomplete_request_ids}},
-                {"$set": {"batch_id": None}},
+                {"$set": {"batch_id": None, "updated_at": now}},
             )
 
             num_reset = reset_result.modified_count

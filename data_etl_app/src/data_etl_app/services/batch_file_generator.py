@@ -54,7 +54,22 @@ async def _process_single_deferred_manufacturer(
         logger.warning(
             f"DeferredManufacturer {deferred_mfg.mfg_etld1} has no embedded GPT request IDs; skipping."
         )
+        try:
+            mfg = await find_manufacturer_by_etld1(deferred_mfg.mfg_etld1)
+            assert (
+                mfg is not None
+            ), f"Manufacturer not found for {deferred_mfg.mfg_etld1}"
+            await mfg_orchestrator.process_manufacturer(
+                timestamp=timestamp,
+                mfg=mfg,
+            )
+        except Exception as e:
+            logger.error(
+                f"Error processing Manufacturer {deferred_mfg.mfg_etld1} to handle orphan GPTBatchRequests: {e}",
+                exc_info=True,
+            )
         return 0
+
     all_requests = await find_gpt_batch_requests_by_custom_ids(list(custom_ids))
 
     found_custom_ids: set[str] = set(all_requests.keys())

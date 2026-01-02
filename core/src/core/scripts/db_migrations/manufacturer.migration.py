@@ -46,7 +46,6 @@ logger = logging.getLogger(__name__)
 
 
 async def iterate():
-    gpt_model: GPTModel = GPT_4o_mini
     print("Starting iteration over Manufacturer documents...")
     collection = Manufacturer.get_pymongo_collection()
     print("Count:", await collection.count_documents({}))
@@ -67,82 +66,6 @@ async def iterate():
         if "email_addresses" not in doc:
             doc["email_addresses"] = None
             updated = True
-
-        # for field in [
-        #     "is_manufacturer",
-        #     "is_contract_manufacturer",
-        #     "is_product_manufacturer",
-        # ]:
-        #     if (
-        #         field in doc
-        #         and doc[field] is not None
-        #         and ("stats" not in doc[field] or doc[field]["stats"] is None)
-        #     ):
-        #         prompt = getattr(prompt_service, f"{field}_prompt")
-        #         mfg_text, _scraped_text_file_version_id = (
-        #             await download_scraped_text_from_s3_by_mfg_etld1(
-        #                 s3_client, doc["etld1"], doc.get("scraped_text_file_version_id")
-        #             )
-        #         )
-        #         chunks_map = get_chunks_respecting_line_boundaries(
-        #             mfg_text,
-        #             gpt_model.max_context_tokens - prompt.num_tokens - 5000,
-        #         )
-        #         first_chunk_key = min(
-        #             chunks_map.keys(), key=lambda k: int(k.split(":")[0])
-        #         )
-
-        #         doc[field]["stats"] = BinaryClassificationStats(
-        #             prompt_version_id=prompt.s3_version_id,
-        #             final_chunk_key=first_chunk_key,
-        #             chunk_result_map={
-        #                 first_chunk_key: ChunkBinaryClassificationResult(
-        #                     answer=doc[field]["answer"],
-        #                     confidence=doc[field]["confidence"],
-        #                     reason=doc[field]["reason"],
-        #                 )
-        #             },
-        #         ).model_dump()
-        #         updated = True
-
-        # # rename stats.search to stats.chunked_stats for specified fields
-        # for field in [
-        #     "products",
-        #     "certificates",
-        #     "industries",
-        #     "process_caps",
-        #     "material_caps",
-        # ]:
-        #     if field in doc and doc[field] is not None:
-
-        #         # if "extract_prompt_version_id" not in doc[field]["stats"]:
-        #         doc[field]["stats"]["extract_prompt_version_id"] = getattr(
-        #             prompt_service,
-        #             f"extract_any_{field[0:-1] if field != 'industries' else 'industry'}_prompt",
-        #         ).s3_version_id
-        #         updated = True
-
-        #         # if "map_prompt_version_id" not in doc[field]["stats"]:
-        #         if field != "products":
-        #             doc[field]["stats"]["map_prompt_version_id"] = getattr(
-        #                 prompt_service,
-        #                 f"unknown_to_known_{field[0:-1] if field != 'industries' else 'industry'}_prompt",
-        #             ).s3_version_id
-        #             updated = True
-
-        #         if "search" in doc[field]["stats"]:
-        #             if field == "products":
-        #                 old_search_map = doc[field]["stats"].pop("search")
-        #                 doc[field]["stats"]["chunked_stats"] = {
-        #                     k: {"results": list(set(v))}
-        #                     for k, v in old_search_map.items()
-        #                 }
-        #                 updated = True
-        #             else:
-        #                 doc[field]["stats"]["chunked_stats"] = doc[field]["stats"].pop(
-        #                     "search"
-        #                 )
-        #                 updated = True
 
         if updated:
             bulk_operations.append(ReplaceOne({"_id": doc["_id"]}, doc))

@@ -8,6 +8,7 @@ This migration:
 
 import asyncio
 import logging
+from datetime import datetime, UTC
 from pymongo.errors import BulkWriteError
 
 from core.dependencies.load_core_env import load_core_env
@@ -40,8 +41,9 @@ async def migrate_gpt_batches():
     print("\nAnalyzing documents that need migration...\n")
 
     collection = GPTBatch.get_pymongo_collection()
+    current_timestamp = datetime.now(UTC)
 
-    total_docs = await collection.count_documents({})
+    total_docs = await collection.count_documents({"processing_completed_at": None})
     print(f"Total GPT batch documents: {total_docs}")
 
     print("\n" + "-" * 80)
@@ -72,7 +74,8 @@ async def migrate_gpt_batches():
 
     try:
         result = await collection.update_many(
-            {}, {"$set": {"processing_completed_at": None}}
+            {"processing_completed_at": None},
+            {"$set": {"processing_completed_at": current_timestamp}},
         )
 
         print("\n" + "=" * 80)

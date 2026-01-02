@@ -1,7 +1,12 @@
 {
   "$jsonSchema": {
     "bsonType": "object",
-    "required": ["created_at", "request"],
+    "required": [
+      "created_at",
+      "updated_at",
+      "num_batches_paired_with",
+      "request"
+    ],
     "additionalProperties": false,
     "properties": {
       "_id": {
@@ -10,6 +15,15 @@
       "created_at": {
         "bsonType": "date",
         "description": "Timestamp when the batch request was created"
+      },
+      "updated_at": {
+        "bsonType": "date",
+        "description": "Timestamp when the batch request was last updated"
+      },
+      "num_batches_paired_with": {
+        "bsonType": "int",
+        "minimum": 0,
+        "description": "Number of batches this request has been paired with"
       },
       "request": {
         "bsonType": "object",
@@ -66,6 +80,13 @@
       "batch_id": {
         "bsonType": ["string", "null"],
         "description": "OpenAI batch ID, known after batch is uploaded"
+      },
+      "response_parse_errors": {
+        "bsonType": "array",
+        "items": {
+          "bsonType": "object"
+        },
+        "description": "List of parse error objects encountered when processing the response"
       },
       "response_blob": {
         "bsonType": ["object", "null"],

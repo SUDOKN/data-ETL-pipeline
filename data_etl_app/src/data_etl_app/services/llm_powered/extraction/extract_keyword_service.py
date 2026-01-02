@@ -14,8 +14,8 @@ from core.models.keyword_extraction_results import (
 )
 from data_etl_app.services.llm_powered.search.llm_search_service import llm_search
 from data_etl_app.services.knowledge.prompt_service import get_prompt_service
+from data_etl_app.services.chunking_strat import PRODUCT_CHUNKING_STRAT, ChunkingStrat
 from data_etl_app.utils.chunk_util import (
-    ChunkingStrat,
     get_chunks_respecting_line_boundaries,
 )
 
@@ -44,7 +44,7 @@ async def extract_products(
         mfg_etld1,
         text,
         prompt_service.extract_any_product_prompt,
-        ChunkingStrat(overlap=0.15, max_tokens=5000),
+        PRODUCT_CHUNKING_STRAT,
         gpt_model=GPT_4o_mini,
         model_params=DefaultModelParameters,
     )
@@ -66,7 +66,10 @@ async def _extract_keyword_data(
 
     # 1) Chunk
     chunk_map = await get_chunks_respecting_line_boundaries(
-        text, chunk_strategy.max_tokens, chunk_strategy.overlap
+        text=text,
+        soft_limit_tokens=chunk_strategy.max_tokens,
+        overlap_ratio=chunk_strategy.overlap,
+        max_chunks=chunk_strategy.max_chunks,
     )
 
     # 2) LLM search per chunk (no brute)
