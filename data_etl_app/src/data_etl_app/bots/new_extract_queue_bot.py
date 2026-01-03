@@ -43,7 +43,7 @@ from data_etl_app.models.types_and_enums import BinaryClassificationTypeEnum
 from data_etl_app.services.ground_truth.binary_ground_truth_service import (
     get_binary_ground_truth,
 )
-from data_etl_app.services.llm_powered.search.llm_search_service import (
+from data_etl_app.services.llm_powered.extraction.extract_basic_service import (
     find_business_desc_using_only_first_chunk,
 )
 from data_etl_app.services.llm_powered.extraction.extract_basic_service import (
@@ -247,18 +247,20 @@ async def validate_manufacturer_for_extraction(
         )
         return None, None, False
 
-    existing_scraped_file, exception = (
-        await ScrapedTextFile.download_from_s3_and_create(
+    try:
+        existing_scraped_file = await ScrapedTextFile.download_from_s3_and_create(
             item.mfg_etld1,
             manufacturer.scraped_text_file_version_id,
         )
-    )
-    if exception:
+    except Exception as e:
+        logger.error(
+            f"Error downloading scraped text file for {item.mfg_etld1} with version ID {manufacturer.scraped_text_file_version_id}: {e}"
+        )
         await ExtractionError.insert_one(
             ExtractionError(
                 created_at=timestamp,
-                error=str(exception) if exception else "",
-                field="scraped_text_file",
+                error=str(e),
+                field="scraped_text_file_download",
                 mfg_etld1=item.mfg_etld1,
             )
         )
@@ -361,7 +363,7 @@ async def process_manufacturer(
                     mfg_etld1=manufacturer.etld1,
                 )
             )
-
+    """
     if not manufacturer.is_product_manufacturer:
         try:
             logger.info(
@@ -408,6 +410,7 @@ async def process_manufacturer(
                 )
             )
             return
+    """
 
     if not manufacturer.addresses:
         try:

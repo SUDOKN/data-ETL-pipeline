@@ -259,24 +259,22 @@ async def get_valid_scraped_file(
         logger.info(
             f"Manufacturer found for {mfg_etld}. Checking if linked scraped file exists."
         )
-        existing_scraped_file, exception = (
-            await ScrapedTextFile.download_from_s3_and_create(
+        try:
+            existing_scraped_file = await ScrapedTextFile.download_from_s3_and_create(
                 mfg_etld,
                 manufacturer.scraped_text_file_version_id,
             )
-        )
-        if exception:
+        except Exception as e:
             subject = f"Error downloading existing scraped file for {mfg_etld}, version {manufacturer.scraped_text_file_version_id}."
             await ScrapingError.insert_one(
                 ScrapingError(
                     created_at=polled_at,
-                    error=(
-                        f"{subject} details={str(exception)}" if exception else subject
-                    ),
+                    error=(f"{subject} details={str(e)}" if e else subject),
                     url=item.accessible_normalized_url,
                     batch=item.batch,
                 )
             )
+
         if existing_scraped_file:
             logger.info(
                 f"Existing scraped file found for {mfg_etld} with version ID {manufacturer.scraped_text_file_version_id}."
@@ -314,22 +312,19 @@ async def get_valid_scraped_file(
             logger.info(
                 f"Found existing scraped file version {latest_version_id} for {mfg_etld} on S3. Attempting to download and create."
             )
-            existing_scraped_file, exception = (
-                await ScrapedTextFile.download_from_s3_and_create(
-                    mfg_etld,
-                    latest_version_id,
+            try:
+                existing_scraped_file = (
+                    await ScrapedTextFile.download_from_s3_and_create(
+                        mfg_etld,
+                        latest_version_id,
+                    )
                 )
-            )
-            if exception:
+            except Exception as e:
                 subject = f"Error downloading existing scraped file for {mfg_etld}, version {latest_version_id}."
                 await ScrapingError.insert_one(
                     ScrapingError(
                         created_at=polled_at,
-                        error=(
-                            f"{subject} details={str(exception)}"
-                            if exception
-                            else subject
-                        ),
+                        error=(f"{subject} details={str(e)}" if e else subject),
                         url=item.accessible_normalized_url,
                         batch=item.batch,
                     )
