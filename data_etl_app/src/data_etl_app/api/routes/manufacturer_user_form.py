@@ -45,10 +45,14 @@ async def fetch_manufacturer_user_form(
             detail=f"Could not extract etld1 from the provided URL: {mfg_url}",
         )
 
+    logger.info(f"Fetching ManufacturerUserForm for etld1: {mfg_etld1}")
     form = await get_manufacturer_user_form_by_mfg_etld1(mfg_etld1)
     if not form:
         existing_manufacturer = await find_manufacturer_by_etld1(mfg_etld1)
         if not existing_manufacturer:
+            logger.info(
+                f"Manufacturer with etld1 {mfg_etld1} not found, pushing to scrape queue."
+            )
             await push_item_to_priority_scrape_queue(
                 ToScrapeItem(
                     accessible_normalized_url=mfg_url,
@@ -64,6 +68,9 @@ async def fetch_manufacturer_user_form(
                 detail=f"Manufacturer with etld1 {mfg_etld1} not found. Manufacturer has been pushed to the extract queue for processing. Please try again later.",
             )
         else:
+            logger.info(
+                f"Manufacturer with etld1 {mfg_etld1} found, but no ManufacturerUserForm exists. Validating/extracting..."
+            )
             try:
                 form = await validate_and_create_from_manufacturer(
                     existing_manufacturer
@@ -71,6 +78,9 @@ async def fetch_manufacturer_user_form(
                 form.author_email = author_email
             except Exception as e:
                 # some of the fields weren't extracted successfully, push to pipeline again
+                logger.error(
+                    f"Error validating/extracting ManufacturerUserForm for etld1 {mfg_etld1}: {e}"
+                )
                 await push_item_to_priority_scrape_queue(
                     ToScrapeItem(
                         accessible_normalized_url=mfg_url,

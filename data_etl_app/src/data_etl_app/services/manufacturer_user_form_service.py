@@ -49,33 +49,25 @@ async def validate_and_create_from_manufacturer(
                 raise AssertionError("addresses must not contain None values")
             else:
                 required_fields = [
-                    "name",
-                    "address_lines",
                     "city",
                     "state",
-                    "county",
-                    "postal_code",
                     "country",
-                    "latitude",
-                    "longitude",
-                    "phone_numbers",
-                    "fax_numbers",
                 ]
                 for field in required_fields:
                     if getattr(addr, field) is None:
                         raise AssertionError(f"address {i} is missing field {field}")
 
-                assert addr.address_lines is not None
-                if len(addr.address_lines) < 1:
-                    raise AssertionError(
-                        f"address {i} must have at least one address line"
-                    )
+                # assert addr.address_lines is not None
+                # if len(addr.address_lines) < 1:
+                #     raise AssertionError(
+                #         f"address {i} must have at least one address line"
+                #     )
 
-                assert addr.phone_numbers is not None
-                if len(addr.phone_numbers) < 1:
-                    raise AssertionError(
-                        f"address {i} must have at least one phone number"
-                    )
+                # assert addr.phone_numbers is not None
+                # if len(addr.phone_numbers) < 1:
+                #     raise AssertionError(
+                #         f"address {i} must have at least one phone number"
+                #     )
 
     if manufacturer.products is None:
         raise AssertionError("products must not be None")

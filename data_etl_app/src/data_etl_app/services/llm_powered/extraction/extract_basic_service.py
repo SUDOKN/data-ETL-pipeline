@@ -22,6 +22,9 @@ from open_ai_key_app.models.gpt_model import (
 )
 
 from data_etl_app.services.knowledge.prompt_service import get_prompt_service
+from data_etl_app.utils.lat_lng_util import (
+    get_lat_lng_from_address,
+)
 from data_etl_app.utils.chunk_util import (
     get_chunks_respecting_line_boundaries,
 )
@@ -90,7 +93,14 @@ async def _extract_address_from_chunk(
         chunk_text, extract_prompt.text, gpt_model, model_params
     )
 
-    return parse_address_list_from_gpt_response(gpt_response)
+    parsed_addresses = parse_address_list_from_gpt_response(gpt_response)
+    for addr in parsed_addresses:
+        coords = get_lat_lng_from_address(addr)
+        if coords:
+            addr.latitude = coords[0]
+            addr.longitude = coords[1]
+
+    return parsed_addresses
 
 
 def parse_address_list_from_gpt_response(

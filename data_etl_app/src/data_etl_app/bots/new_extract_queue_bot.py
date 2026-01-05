@@ -605,7 +605,7 @@ async def extract_and_cleanup(
             else:
                 html_content = (
                     str(
-                        f"As an MEP user, you can now add or edit the manufacturer details using this link: https://sudokn.com/add-or-edit-manufacturer?etld1={manufacturer.etld1}",
+                        f"As an MEP user, you can now add or edit the manufacturer details using this link: https://sudokn.com/app/manufacturer/{manufacturer.etld1}/edit",
                     )
                     if await is_user_MEP(item.email_errand.user_email)
                     else str(
