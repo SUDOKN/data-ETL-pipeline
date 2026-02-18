@@ -609,7 +609,7 @@ async def extract_and_cleanup(
                     )
                     if await is_user_MEP(item.email_errand.user_email)
                     else str(
-                        f"You can now add or edit the manufacturer details using this link (you will need to verify your manufacturer email first): https://sudokn.com/otp-verify?etld1={manufacturer.etld1}"
+                        f"You can now add or edit the manufacturer details using this link (you will need to verify your manufacturer email first): https://sudokn.com/app/otp-verify?etld1={manufacturer.etld1}"
                     )
                 )
 
