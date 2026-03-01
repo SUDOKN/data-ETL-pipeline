@@ -45,11 +45,8 @@ def get_lat_lng_from_address(addr: Address) -> Optional[tuple[float, float]]:
                         return (location.latitude, location.longitude)  # type: ignore
                     else:
                         print(f"  No results for: {query}...")
-                        geocode_error_count += 1
 
             except (GeocoderTimedOut, GeocoderServiceError) as e:
                 print(f"  Geocoding error for {query[:50]}...: {e}")
-                geocode_error_count += 1
             except Exception as e:
                 print(f"  Unexpected error geocoding {query[:50]}...: {e}")
-                geocode_error_count += 1
