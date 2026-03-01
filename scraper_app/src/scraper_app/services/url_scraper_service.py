@@ -28,6 +28,7 @@ from scraper_app.utils.selenium import (
     LegacyDriverFactory,
 )
 from scraper_app.utils.social_media_blocker import social_media_blocker
+from scraper_app.utils.dedup_util import deduplicate_scraped_content
 from scraper_app.constants.scraping_constants import (
     SKIP_EXTENSIONS,
     COOKIE_ACCEPTANCE_PATTERNS,
@@ -544,8 +545,12 @@ class ScraperService:
 
             total_time_taken = time.monotonic() - start_time
 
+            combined = "".join(results)
+            results.clear()  # free the list before dedup allocates its own structures
+            deduped_content = deduplicate_scraped_content(combined)
+            del combined  # free the raw joined string once dedup is done
             return ScrapingResult(
-                content="".join(results),
+                content=deduped_content,
                 errors=errors,
                 urls_scraped=stats["scraped"],
                 urls_failed=stats["failed"],
@@ -561,8 +566,11 @@ class ScraperService:
                 if "start_time" in locals()
                 else self.scrape_timeout * 60
             )
+            raw_content = "".join(results) if "results" in locals() else ""
+            if "results" in locals():
+                results.clear()  # free the list before dedup runs
             return ScrapingResult(
-                content="".join(results) if "results" in locals() else "",
+                content=deduplicate_scraped_content(raw_content),
                 errors=errors if "errors" in locals() else [],
                 urls_scraped=stats["scraped"] if "stats" in locals() else 0,
                 urls_failed=stats["failed"] if "stats" in locals() else 0,
