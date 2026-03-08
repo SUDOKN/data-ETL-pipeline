@@ -3,6 +3,7 @@ import logging
 import tldextract
 from datetime import datetime
 from typing import Optional
+from urllib.parse import urlencode, quote
 
 from core.dependencies.aws_clients import get_scraped_bucket_s3_client
 
@@ -95,7 +96,8 @@ async def upload_scraped_text_to_s3(
     """
     s3_client = get_scraped_bucket_s3_client()
     assert SCRAPED_TEXT_BUCKET is not None, "SCRAPED_TEXT_BUCKET is None"
-    tagging_string = "&".join([f"{k}={v}" for k, v in tags.items()])
+    tags = {k: str(v).replace(":", "-").replace("+", "").replace(",", "") for k, v in tags.items()}
+    tagging_string = urlencode(tags, quote_via=quote)
     response = await s3_client.put_object(
         Bucket=SCRAPED_TEXT_BUCKET,
         Key=file_name,
