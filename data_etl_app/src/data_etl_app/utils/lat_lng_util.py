@@ -1,52 +1,50 @@
+import os
 from typing import Optional
-from geopy.geocoders import Nominatim
-from geopy.exc import GeocoderTimedOut, GeocoderServiceError
+import googlemaps
 
 from core.models.db.manufacturer import Address
 
-_geolocator = Nominatim(user_agent="sudokn_geocoder")
+_gmaps: Optional[googlemaps.Client] = None
+
+
+def _get_gmaps() -> googlemaps.Client:
+    global _gmaps
+    if _gmaps is None:
+        _gmaps = googlemaps.Client(key=os.environ["GOOGLE_MAPS_API_KEY"])
+    return _gmaps
 
 
 def get_lat_lng_from_address(addr: Address) -> Optional[tuple[float, float]]:
     """
-    Given a string address, return the latitude and longitude using geopy's Nominatim geocoder.
+    Given an Address, return (latitude, longitude) using the Google Maps Geocoding API.
     Returns None if the address cannot be geocoded.
     """
-    if addr.latitude is None or addr.longitude is None:
-        # Build geocoding query
-        query_parts = []
-        if addr.address_lines:
-            query_parts.append(addr.address_lines[0])
-        if addr.city:
-            query_parts.append(addr.city)
-        if addr.postal_code:
-            query_parts.append(addr.postal_code)
-        if addr.state and addr.state != "Not Applicable":
-            query_parts.append(addr.state)
-        if addr.country:
-            query_parts.append(addr.country)
+    if addr.latitude is not None and addr.longitude is not None:
+        return (addr.latitude, addr.longitude)
 
-        # query = ", ".join(query_parts)
+    query_parts = []
+    if addr.address_lines:
+        query_parts.append(addr.address_lines[0])
+    if addr.city:
+        query_parts.append(addr.city)
+    if addr.postal_code:
+        query_parts.append(addr.postal_code)
+    if addr.state and addr.state != "Not Applicable":
+        query_parts.append(addr.state)
+    if addr.country:
+        query_parts.append(addr.country)
 
-        if query_parts:
-            try:
-                for i in range(len(query_parts)):
-                    # Add small delay to respect rate limits (max 1 request per second for Nominatim)
-                    query = ", ".join(query_parts[i:])
+    for i in range(len(query_parts)):
+        query = ", ".join(query_parts[i:])
+        try:
+            results = _get_gmaps().geocode(query)  # type: ignore[attr-defined]
+            if results:
+                loc = results[0]["geometry"]["location"]
+                print(f"  Geocoded: {query} -> ({loc['lat']}, {loc['lng']})")
+                return (loc["lat"], loc["lng"])
+            else:
+                print(f"  No results for: {query}")
+        except Exception as e:
+            print(f"  Geocoding error for {query[:50]}...: {e}")
 
-                    location = _geolocator.geocode(query)
-
-                    if location:
-                        # addr.latitude = location.latitude  # type: ignore
-                        # addr.longitude = location.longitude  # type: ignore
-                        print(
-                            f"  Geocoded: {query}... -> ({location.latitude}, {location.longitude})"  # type: ignore
-                        )
-                        return (location.latitude, location.longitude)  # type: ignore
-                    else:
-                        print(f"  No results for: {query}...")
-
-            except (GeocoderTimedOut, GeocoderServiceError) as e:
-                print(f"  Geocoding error for {query[:50]}...: {e}")
-            except Exception as e:
-                print(f"  Unexpected error geocoding {query[:50]}...: {e}")
+    return None

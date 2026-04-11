@@ -22,6 +22,11 @@ dependencies = [
   "open_ai_key_app>=0.1.0",
   # ^ This means: “install open_ai_key_app from that path as version 0.1.0”
   "core>=0.1.0",
-  "geopy>=2.4.0",
+  "googlemaps>=4.10.0",
 
+]
+
+[tool.pytest.ini_options]
+markers = [
+  "integration: marks tests that call the real Google Maps API (deselect with '-m not integration')",
 ]
