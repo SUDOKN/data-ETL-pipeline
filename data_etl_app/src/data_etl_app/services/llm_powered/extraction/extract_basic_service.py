@@ -99,6 +99,7 @@ async def _extract_address_from_chunk(
         if coords:
             addr.latitude = coords[0]
             addr.longitude = coords[1]
+            addr.place_id = coords[2]
 
     return parsed_addresses
 

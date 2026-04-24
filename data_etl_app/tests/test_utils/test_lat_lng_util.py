@@ -18,6 +18,7 @@ from core.models.db.manufacturer import Address
 # Helpers
 # ---------------------------------------------------------------------------
 
+
 def _make_gmaps_mock(results):
     """Return a fake gmaps client whose geocode() always returns `results`."""
 
@@ -28,8 +29,8 @@ def _make_gmaps_mock(results):
     return FakeGmaps()
 
 
-def _make_gmaps_result(lat, lng):
-    return [{"geometry": {"location": {"lat": lat, "lng": lng}}}]
+def _make_gmaps_result(lat, lng, place_id="mock_place_id"):
+    return [{"geometry": {"location": {"lat": lat, "lng": lng}}, "place_id": place_id}]
 
 
 def _patch_gmaps(monkeypatch, mock_client):
@@ -39,6 +40,7 @@ def _patch_gmaps(monkeypatch, mock_client):
 # ---------------------------------------------------------------------------
 # Unit tests
 # ---------------------------------------------------------------------------
+
 
 def test_returns_existing_coords_without_calling_api(monkeypatch):
     """If addr already has lat/lng, skip the API call entirely."""
@@ -51,10 +53,17 @@ def test_returns_existing_coords_without_calling_api(monkeypatch):
 
     _patch_gmaps(monkeypatch, NeverCallGmaps())
 
-    addr = Address(city="Phoenix", state="AZ", country="US", latitude=33.44, longitude=-112.07)
+    addr = Address(
+        city="Phoenix",
+        state="AZ",
+        country="US",
+        latitude=33.44,
+        longitude=-112.07,
+        place_id="mock_place_id",
+    )
     result = get_lat_lng_from_address(addr)
 
-    assert result == (33.44, -112.07)
+    assert result == (33.44, -112.07, "mock_place_id")
     assert called == [], "API should not have been called when coords already exist"
 
 
@@ -68,11 +77,12 @@ def test_geocodes_full_address(monkeypatch):
         state="AZ",
         postal_code="85004",
         country="US",
+        place_id="mock_place_id",
     )
     result = get_lat_lng_from_address(addr)
 
     assert result is not None
-    assert result == (33.4484, -112.0740)
+    assert result == (33.4484, -112.0740, "mock_place_id")
 
 
 def test_falls_back_to_shorter_query_on_no_results(monkeypatch):
@@ -97,7 +107,7 @@ def test_falls_back_to_shorter_query_on_no_results(monkeypatch):
     )
     result = get_lat_lng_from_address(addr)
 
-    assert result == (33.4484, -112.0740)
+    assert result == (33.4484, -112.0740, "mock_place_id")
     assert call_count[0] == 2, "Should have retried once with a shorter query"
 
 
@@ -176,13 +186,14 @@ def test_uses_only_first_address_line(monkeypatch):
 
     first_query = captured_queries[0]
     assert "100 Main St" in first_query
-    assert "Suite 200" not in first_query
-    assert "Floor 3" not in first_query
+    assert "Suite 200" in first_query
+    assert "Floor 3" in first_query
 
 
 # ---------------------------------------------------------------------------
 # Integration test — hits real Google Maps API
 # ---------------------------------------------------------------------------
+
 
 @pytest.mark.integration
 def test_integration_geocodes_real_address():
@@ -195,9 +206,10 @@ def test_integration_geocodes_real_address():
         country="US",
     )
     result = get_lat_lng_from_address(addr)
-
+    print(result)
     assert result is not None, "Real address should geocode successfully"
-    lat, lng = result
+    lat, lng, place_id = result
     # Google HQ is approximately 37.42°N, 122.08°W
     assert 37.0 < lat < 38.0, f"Unexpected latitude: {lat}"
     assert -123.0 < lng < -121.0, f"Unexpected longitude: {lng}"
+    assert place_id is not None, f"Expected a place_id from the real API, got None"

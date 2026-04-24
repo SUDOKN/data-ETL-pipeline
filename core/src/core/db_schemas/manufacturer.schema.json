@@ -315,6 +315,10 @@
               "items": {
                 "bsonType": "string"
               }
+            },
+            "place_id": {
+              "bsonType": ["string", "null"],
+              "description": "Google Maps globally unique Place ID for the geocoded location"
             }
           }
         }

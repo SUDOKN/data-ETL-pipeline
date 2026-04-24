@@ -23,6 +23,8 @@ IOF_SCRO = Namespace(
     "https://spec.industrialontologies.org/ontology/supplychain/SupplyChain/"
 )
 BFO = Namespace("http://purl.obolibrary.org/obo/")
+GEO = Namespace("http://www.opengis.net/ont/geosparql#")
+SCHEMA = Namespace("https://schema.org/")
 
 logger = logging.getLogger(__name__)
 
@@ -77,7 +79,7 @@ def add_mfg_name_triple(
 ):
     if not mfg_name:
         if strict:
-            raise ValueError("Manufacturer name cannot be empty")
+            raise ValueError(f"Manufacturer name found empty for {mfg_inst_uri}")
         else:
             logger.debug("  skipping empty manufacturer name")
             return
@@ -99,6 +101,7 @@ def add_mfg_web_address_triple(
     logger.debug(f"  with web address: {mfg_web_address}")
     web_address_inst_uri = SDK[f"{uri_strip(mfg_web_address)}-web-address-instance"]
     g.add((web_address_inst_uri, RDF.type, SDK.WebAddress))
+    g.add((web_address_inst_uri, RDF.type, SDK.VirtualLocationIdentifier))
     g.add(
         (
             web_address_inst_uri,
@@ -150,6 +153,7 @@ def add_email_addresses_triples(
         logger.debug(f"  with email: {email}")
         # Create an EmailAddress individual
         email_inst_uri = SDK[f"{mfg_etld1_stripped}-email-{uri_strip(email)}-instance"]
+        g.add((email_inst_uri, RDF.type, SDK.VirtualLocationIdentifier))
         g.add((email_inst_uri, RDF.type, SDK.EmailAddress))
         g.add((email_inst_uri, SDK.hasVirtualLocationIdentifierValue, Literal(email)))
         # link it
@@ -264,40 +268,29 @@ def add_address_triples(
         if not addr:
             raise ValueError("Address cannot be empty")
         logger.debug(f"  with full address passed: {addr}")
-        # Create GeospatialSite
+
+        # Create GeospatialLocation
         logger.debug(f"  with address name: {addr.name}")
-        geosite_inst_uri = SDK[f"{mfg_etld1_stripped}-geosite-{i+1}-instance"]
-        logger.debug(f"  adding GeospatialSite: {geosite_inst_uri}")
-        g.add((geosite_inst_uri, RDF.type, SDK.GeospatialSite))
+        geolocation_inst_uri = SDK[f"{mfg_etld1_stripped}-geolocation-{i+1}-instance"]
+        logger.debug(f"  adding GeospatialLocation: {geolocation_inst_uri}")
+        g.add((geolocation_inst_uri, RDF.type, SDK.GeospatialLocation))
+        g.add((geolocation_inst_uri, RDF.type, GEO.Feature))
+        g.add((geolocation_inst_uri, RDF.type, SCHEMA.Place))
         if addr.name:
             logger.debug(f"  adding address name label: {addr.name}")
             g.add(
-                (geosite_inst_uri, RDFS.label, Literal(addr.name))
+                (geolocation_inst_uri, RDFS.label, Literal(addr.name))
             )  # link name to site
 
-        # Address lines
-        for idx, addr_line in enumerate(addr.address_lines or []):
-            if addr_line:
-                logger.debug(f"  with address line: {addr_line}")
-                address_line_inst_uri = SDK[
-                    f"{mfg_etld1_stripped}-geosite-{i+1}-address-line-{idx+1}-instance"
-                ]
-                logger.debug(f"  adding AddressLine: {address_line_inst_uri}")
-                g.add((address_line_inst_uri, RDF.type, SDK.AddressLine))
-                g.add(
-                    (address_line_inst_uri, IOF_SCRO.hasTextValue, Literal(addr_line))
+        concatenated_addr_lines = ", ".join(addr.address_lines or [])
+        if concatenated_addr_lines:
+            g.add(
+                (
+                    geolocation_inst_uri,
+                    SCHEMA.streetAddress,
+                    Literal(concatenated_addr_lines),
                 )
-                g.add(
-                    (
-                        address_line_inst_uri,
-                        SDK.hasOrder,
-                        Literal(idx + 1, datatype=XSD.int),
-                    )
-                )
-                logger.debug(f"  linking AddressLine to site")
-                g.add(
-                    (geosite_inst_uri, SDK.hasAddressLine, address_line_inst_uri)
-                )  # link address line to site
+            )
 
         # City
         logger.debug(f"  with city: {addr.city}")
@@ -306,7 +299,9 @@ def add_address_triples(
         g.add((city_ind_uri, RDF.type, SDK.City))
         g.add((city_ind_uri, RDFS.label, Literal(addr.city)))
         logger.debug(f"  linking City to site")
-        g.add((geosite_inst_uri, SDK.locatedInCity, city_ind_uri))  # link city to site
+        g.add(
+            (geolocation_inst_uri, SDK.locatedInCity, city_ind_uri)
+        )  # link city to site
 
         # State
         logger.debug(f"  with state: {addr.state}")
@@ -316,7 +311,7 @@ def add_address_triples(
         g.add((state_ind_uri, RDFS.label, Literal(addr.state)))
         logger.debug(f"  linking State to site")
         g.add(
-            (geosite_inst_uri, SDK.locatedInState, state_ind_uri)
+            (geolocation_inst_uri, SDK.locatedInState, state_ind_uri)
         )  # link state to site
 
         # County - only if available
@@ -328,14 +323,14 @@ def add_address_triples(
             g.add((county_ind_uri, RDFS.label, Literal(addr.county)))
             logger.debug(f"  linking County to site")
             g.add(
-                (geosite_inst_uri, SDK.locatedInCounty, county_ind_uri)
+                (geolocation_inst_uri, SDK.locatedInCounty, county_ind_uri)
             )  # link county to site
 
         # Postal Code
         logger.debug(f"  with postal code: {addr.postal_code}")
         logger.debug(f"  adding postal code to site")
         g.add(
-            (geosite_inst_uri, SDK.hasZipcodeValue, Literal(addr.postal_code))
+            (geolocation_inst_uri, SCHEMA.postalCode, Literal(addr.postal_code))
         )  # link zipcode to site
 
         # Country
@@ -346,19 +341,19 @@ def add_address_triples(
         g.add((country_ind_uri, RDFS.label, Literal(addr.country)))
         logger.debug(f"  linking Country to site")
         g.add(
-            (geosite_inst_uri, SDK.locatedInCountry, country_ind_uri)
+            (geolocation_inst_uri, SDK.locatedInCountry, country_ind_uri)
         )  # link country to site
 
         for phone in addr.phone_numbers or []:
             if phone:
                 logger.debug(f"  with phone number: {phone}")
                 logger.debug(f"  adding phone number to site")
-                g.add((geosite_inst_uri, SDK.hasPhoneNumberValue, Literal(phone)))
+                g.add((geolocation_inst_uri, SDK.hasPhoneNumberValue, Literal(phone)))
         for fax in addr.fax_numbers or []:
             if fax:
                 logger.debug(f"  with fax number: {fax}")
                 logger.debug(f"  adding fax number to site")
-                g.add((geosite_inst_uri, SDK.hasFaxNumberValue, Literal(fax)))
+                g.add((geolocation_inst_uri, SDK.hasFaxNumberValue, Literal(fax)))
 
         # GeospatialLocation for coordinates
         if addr.latitude is None or addr.longitude is None:
@@ -375,33 +370,30 @@ def add_address_triples(
             logger.debug(
                 f"  with coordinates: lat={addr.latitude}, lon={addr.longitude}"
             )
-            geoloc_inst_uri = SDK[f"{mfg_etld1_stripped}-geolocation-{i+1}-instance"]
-            logger.debug(f"  adding GeospatialLocation: {geoloc_inst_uri}")
-            g.add(
-                (geoloc_inst_uri, RDF.type, IOF_SCRO.GeospatialLocation)
-            )  # GeospatialLocation
-            g.add(
-                (
-                    geoloc_inst_uri,
-                    SDK.hasLatitudeValue,
-                    Literal(addr.latitude, datatype=XSD.float),
-                )
-            )
+            geometry_inst_uri = SDK[
+                f"{mfg_etld1_stripped}-geolocation-{i+1}-geometry-instance"
+            ]
+            logger.debug(f"  adding GEO.Geometry: {geometry_inst_uri}")
+
+            g.add((geometry_inst_uri, RDF.type, GEO.Geometry))  # geo:Geometry
             g.add(
                 (
-                    geoloc_inst_uri,
-                    SDK.hasLongitudeValue,
-                    Literal(addr.longitude, datatype=XSD.float),
+                    geometry_inst_uri,
+                    GEO.asWKT,
+                    Literal(
+                        f"POINT({addr.longitude} {addr.latitude})",
+                        datatype=GEO.wktLiteral,
+                    ),
                 )
             )
             logger.debug(f"  linking GeospatialLocation to site")
             g.add(
-                (geosite_inst_uri, SDK.hasGeospatialLocation, geoloc_inst_uri)
+                (geolocation_inst_uri, GEO.hasGeometry, geometry_inst_uri)
             )  # link location to site
 
         logger.debug(f"  linking site to manufacturer")
         g.add(
-            (mfg_inst_uri, SDK.organizationLocatedIn, geosite_inst_uri)
+            (mfg_inst_uri, SDK.organizationLocatedIn, geolocation_inst_uri)
         )  # link site to manufacturer
 
 
@@ -421,13 +413,7 @@ def add_business_description_triples(
     logger.debug(f"  with business description: {business_desc.description}")
     desc_inst_uri = SDK[f"{mfg_etld1_stripped}-business-description-instance"]
     g.add((desc_inst_uri, RDF.type, SDK.BusinessDescription))
-    g.add(
-        (
-            desc_inst_uri,
-            IOF_SCRO.hasTextValue,
-            Literal(business_desc.description),
-        )
-    )
+    g.add((desc_inst_uri, IOF_SCRO.hasTextValue, Literal(business_desc.description)))
     g.add((mfg_inst_uri, SDK.hasBusinessDescription, desc_inst_uri))
 
 
@@ -577,7 +563,11 @@ def add_manufacturer_triples(
     # Name
     add_mfg_name_triple(
         mfg_inst_uri,
-        mfg.name or mfg.business_desc.name if mfg.business_desc else None,
+        (
+            mfg.business_desc.name
+            if (mfg.business_desc and mfg.business_desc.name)
+            else mfg.name
+        ),
         g,
         strict,
     )
@@ -613,6 +603,8 @@ def _init_graph() -> Graph:
     g.bind("xsd", XSD)
     g.bind("rdfs", RDFS)
     g.bind("bfo", BFO)
+    g.bind("geo", GEO)
+    g.bind("schema", SCHEMA)
     return g
 
 

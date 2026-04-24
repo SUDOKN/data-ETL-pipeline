@@ -17,7 +17,6 @@ async def replace_manufacturer_in_graph(mfg_etdl1: MfgETLDType) -> None:
     ttl_data = generate_triples_for_single_mfg(ont_inst, mfg_user_form, False)
 
     query = f"""
-    WITH <http://asu.edu/semantics/SUDOKN/graphs/manufacturers>
     DELETE {{
         ?s ?p ?o .
     }}
@@ -34,9 +33,7 @@ async def replace_manufacturer_in_graph(mfg_etdl1: MfgETLDType) -> None:
     }};
     
     INSERT DATA {{
-        GRAPH <http://asu.edu/semantics/SUDOKN/graphs/manufacturers> {{
-            {ttl_data}
-        }}
+        {ttl_data}
     }}
     """
     await send_update_query_to_db(query, debug=False)

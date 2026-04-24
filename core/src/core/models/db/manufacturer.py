@@ -27,6 +27,7 @@ class Address(BaseModel):
     # Geolocation fields
     latitude: Optional[float] = None
     longitude: Optional[float] = None
+    place_id: Optional[str] = None
 
     # Contact fields
     phone_numbers: Optional[list[str]] = None
