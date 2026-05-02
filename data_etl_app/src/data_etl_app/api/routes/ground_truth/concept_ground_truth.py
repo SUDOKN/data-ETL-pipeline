@@ -356,6 +356,16 @@ async def get_concept_coverage_stats(
         default="asc",
         description="Sort order for the coverage list. 'asc' = lowest coverage first, 'desc' = highest coverage first.",
     ),
+    min_count: int = Query(
+        default=0,
+        ge=0,
+        description="Exclude concepts with a document count strictly below this value. Defaults to 0 (include all).",
+    ),
+    max_count: int | None = Query(
+        default=None,
+        ge=0,
+        description="Exclude concepts with a document count strictly above this value. Defaults to None (no upper limit).",
+    ),
 ):
     """
     Returns coverage statistics for all concepts of the given type.
@@ -364,8 +374,17 @@ async def get_concept_coverage_stats(
     A document counts if the concept appears in either `chunk_search_stats.results`
     (raw extraction) OR `final_results` (human-corrected), i.e. the union.
 
-    Concepts with zero coverage are included.
+    `total_documents_in_range`: count of distinct GT documents that contain at least
+    one concept whose global coverage count falls within [min_count, max_count].
+
+    Concepts with zero coverage are included unless filtered by min_count.
     """
+    if max_count is not None and max_count < min_count:
+        raise HTTPException(
+            status_code=400,
+            detail=f"max_count ({max_count}) must be >= min_count ({min_count}).",
+        )
+
     ontology_svc = await get_ontology_service()
 
     _concept_type_to_map = {
@@ -384,16 +403,35 @@ async def get_concept_coverage_stats(
         ConceptGroundTruth.ontology_version_id == effective_ontology_version_id,
     ).to_list()
 
+    # Tally coverage across all docs (no range filter applied yet)
     coverage: dict[str, int] = {name: 0 for name in concept_map}
+    doc_covered_sets: list[set[str]] = []
 
     for doc in gt_docs:
         covered = set(doc.chunk_search_stats.results) | set(doc.final_results or [])
+        doc_covered_sets.append(covered)
         for concept_name in covered:
             if concept_name in coverage:
                 coverage[concept_name] += 1
 
+    # Concepts whose global count falls within [min_count, max_count]
+    in_range_concepts = {
+        name
+        for name, count in coverage.items()
+        if count >= min_count and (max_count is None or count <= max_count)
+    }
+
+    # Distinct GT docs that touch at least one in-range concept
+    total_gts_in_range = sum(
+        1 for covered in doc_covered_sets if covered & in_range_concepts
+    )
+
     sorted_coverage = sorted(
-        [{"concept": name, "count": count} for name, count in coverage.items()],
+        [
+            {"concept": name, "count": count}
+            for name, count in coverage.items()
+            if name in in_range_concepts
+        ],
         key=lambda x: x["count"],
         reverse=(sort == "desc"),
     )
@@ -401,6 +439,9 @@ async def get_concept_coverage_stats(
     return {
         "ontology_version_id": effective_ontology_version_id,
         "concept_type": concept_type.value,
-        "total_documents": len(gt_docs),
+        "total_ground_truths": len(gt_docs),
+        "total_ground_truths_in_range": total_gts_in_range,
+        "total_concepts": len(concept_map),
+        "total_concepts_in_range": len(in_range_concepts),
         "coverage": sorted_coverage,
     }
