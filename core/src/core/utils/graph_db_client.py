@@ -26,7 +26,7 @@ async def send_update_query_to_db(payload: str, debug: bool = False) -> None:
     try:
         async with httpx.AsyncClient() as client:
             response = await client.post(
-                endpoint, content=payload, headers=headers, timeout=10
+                endpoint, content=payload, headers=headers, timeout=30
             )
     except httpx.RequestError as e:
         raise SPARQLQueryError(f"Network error while querying {endpoint}") from e
