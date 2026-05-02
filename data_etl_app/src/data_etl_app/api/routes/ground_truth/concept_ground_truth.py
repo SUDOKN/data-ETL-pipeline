@@ -1,5 +1,6 @@
 import json
 import random
+from typing import Literal
 from fastapi import APIRouter, HTTPException, Request, Query, Depends
 from fastapi.responses import JSONResponse
 
@@ -36,6 +37,7 @@ from data_etl_app.services.ground_truth.concept_ground_truth_service import (
     save_new_concept_ground_truth,
     add_correction_to_concept_ground_truth,
 )
+from data_etl_app.services.knowledge.ontology_service import get_ontology_service
 from data_etl_app.models.types_and_enums import ConceptTypeEnum, GroundTruthSource
 
 router = APIRouter()
@@ -339,3 +341,66 @@ async def collect_concept_extraction_ground_truth(
 
     response.pop("id", None)  # remove id from response
     return response
+
+
+@router.get("/ground_truth/concept-coverage", response_class=JSONResponse)
+async def get_concept_coverage_stats(
+    concept_type: ConceptTypeEnum = Query(
+        description=f"Concept type to compute coverage for. One of {[c.value for c in ConceptTypeEnum]}.",
+    ),
+    ontology_version_id: str | None = Query(
+        default=None,
+        description="Ontology version ID to filter GT documents against. Defaults to the current live ontology version.",
+    ),
+    sort: Literal["asc", "desc"] = Query(
+        default="asc",
+        description="Sort order for the coverage list. 'asc' = lowest coverage first, 'desc' = highest coverage first.",
+    ),
+):
+    """
+    Returns coverage statistics for all concepts of the given type.
+
+    For each concept in the ontology, counts how many GT documents reference it.
+    A document counts if the concept appears in either `chunk_search_stats.results`
+    (raw extraction) OR `final_results` (human-corrected), i.e. the union.
+
+    Concepts with zero coverage are included.
+    """
+    ontology_svc = await get_ontology_service()
+
+    _concept_type_to_map = {
+        ConceptTypeEnum.process_caps: ontology_svc.process_cap_map,
+        ConceptTypeEnum.material_caps: ontology_svc.material_cap_map,
+        ConceptTypeEnum.industries: ontology_svc.industry_map,
+        ConceptTypeEnum.certificates: ontology_svc.certificate_map,
+    }
+
+    live_version_id, concept_map = _concept_type_to_map[concept_type]
+
+    effective_ontology_version_id: str = ontology_version_id or live_version_id
+
+    gt_docs: list[ConceptGroundTruth] = await ConceptGroundTruth.find(
+        ConceptGroundTruth.concept_type == concept_type,
+        ConceptGroundTruth.ontology_version_id == effective_ontology_version_id,
+    ).to_list()
+
+    coverage: dict[str, int] = {name: 0 for name in concept_map}
+
+    for doc in gt_docs:
+        covered = set(doc.chunk_search_stats.results) | set(doc.final_results or [])
+        for concept_name in covered:
+            if concept_name in coverage:
+                coverage[concept_name] += 1
+
+    sorted_coverage = sorted(
+        [{"concept": name, "count": count} for name, count in coverage.items()],
+        key=lambda x: x["count"],
+        reverse=(sort == "desc"),
+    )
+
+    return {
+        "ontology_version_id": effective_ontology_version_id,
+        "concept_type": concept_type.value,
+        "total_documents": len(gt_docs),
+        "coverage": sorted_coverage,
+    }
