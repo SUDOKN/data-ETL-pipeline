@@ -47,7 +47,16 @@ async def iterate(dry_run: bool) -> None:
     total_mfg = await collection.count_documents({})
     print(f"Total manufacturer documents: {total_mfg}")
 
-    query = {"addresses": {"$exists": True, "$ne": None, "$not": {"$size": 0}}}
+    query = {
+        "addresses": {"$exists": True, "$ne": None, "$not": {"$size": 0}},
+        "addresses.place_id": {"$exists": False},
+    }
+    matched_count = await collection.count_documents(query)
+    print(
+        f"Manufacturers matching query (at least one address without place_id): {matched_count}"
+    )
+    input("Press Enter to proceed...")
+
     # Fetch in chunks to avoid holding the cursor open during slow geocoding API calls.
     # Each iteration: (1) load chunk into memory, (2) geocode with no active cursor,
     # (3) bulk-write results with a fresh connection.
@@ -142,6 +151,14 @@ async def iterate(dry_run: bool) -> None:
                 if dry_run:
                     print(f"  [DRY RUN] Would update addresses for {etld1}")
                 else:
+                    # Normalize lat/lng to float across ALL addresses (not just newly geocoded ones)
+                    # to satisfy the BSON schema (bsonType: double). Existing int values like -80
+                    # would otherwise fail validation on write.
+                    for a in addresses:
+                        if a.get("latitude") is not None:
+                            a["latitude"] = float(a["latitude"])
+                        if a.get("longitude") is not None:
+                            a["longitude"] = float(a["longitude"])
                     bulk_operations.append(
                         UpdateOne(
                             {"_id": doc["_id"]}, {"$set": {"addresses": addresses}}

@@ -170,7 +170,7 @@ async def _validate_concept_ground_truth(
         (cb, css)
         for cb, css in sorted(
             concept_extraction_results.stats.chunked_stats.items(),
-            key=lambda item: item[0],
+            key=lambda item: int(item[0].split(":")[0]),
         )
     ][concept_gt.chunk_no - 1]
 

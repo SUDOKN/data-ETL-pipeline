@@ -147,7 +147,7 @@ async def fetch_keyword_ground_truth_template(
         (key, value)
         for key, value in sorted(
             keyword_extraction_results.stats.chunked_stats.items(),
-            key=lambda item: item[0],
+            key=lambda item: int(item[0].split(":")[0]),
         )
     ]
     last_chunk_no = len(sorted_search_data)

@@ -33,6 +33,9 @@ def get_geocode_result_from_address(addr: Address) -> Optional[tuple[dict, str]]
     if addr.country:
         query_parts.append(addr.country)
 
+    if not query_parts:
+        return None
+
     for i in range(len(query_parts)):
         query = ", ".join(query_parts[i:])
         try:

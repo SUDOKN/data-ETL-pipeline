@@ -3,7 +3,6 @@
 
 import argparse
 import asyncio
-import glob
 import logging
 import sys
 from pathlib import Path
@@ -57,10 +56,17 @@ def _merged_filename(total: int) -> str:
     return f"output_[0:{_fmt(total)}].ttl"
 
 
-def _batch_file_exists(start_label: int) -> bool:
-    """Return True if a batch file for this start label already exists."""
-    pattern = f"output_[{_fmt(start_label)}-*].ttl"
-    return bool(glob.glob(pattern))
+def _find_existing_batch_file(start_label: int) -> str | None:
+    """Return the filename of an existing batch file for start_label, or None.
+
+    Uses Path.iterdir() + plain string matching to avoid glob treating '[' and ']'
+    as character-class metacharacters.
+    """
+    prefix = f"output_[{_fmt(start_label)}-"
+    for p in Path(".").iterdir():
+        if p.name.startswith(prefix) and p.name.endswith("].ttl"):
+            return p.name
+    return None
 
 
 def _merge_batch_files(
@@ -167,11 +173,11 @@ async def main():
                 break
 
             skip = batch_idx * batch_size
-            start_label = 0 if batch_idx == 0 else skip + 1
+            start_label = skip + 1
 
             # Resumability: skip if this batch's output file already exists
-            if _batch_file_exists(start_label):
-                existing = glob.glob(f"output_[{_fmt(start_label)}-*].ttl")[0]
+            existing = _find_existing_batch_file(start_label)
+            if existing is not None:
                 print(
                     f"Batch {batch_idx} (start={_fmt(start_label)}): "
                     f"file '{existing}' already exists, skipping."

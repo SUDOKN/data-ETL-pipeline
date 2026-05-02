@@ -348,12 +348,12 @@ def add_address_triples(
             if phone:
                 logger.debug(f"  with phone number: {phone}")
                 logger.debug(f"  adding phone number to site")
-                g.add((geolocation_inst_uri, SDK.hasPhoneNumberValue, Literal(phone)))
+                g.add((geolocation_inst_uri, SCHEMA.telephone, Literal(phone)))
         for fax in addr.fax_numbers or []:
             if fax:
                 logger.debug(f"  with fax number: {fax}")
                 logger.debug(f"  adding fax number to site")
-                g.add((geolocation_inst_uri, SDK.hasFaxNumberValue, Literal(fax)))
+                g.add((geolocation_inst_uri, SCHEMA.faxNumber, Literal(fax)))
 
         # GeospatialLocation for coordinates
         if addr.latitude is None or addr.longitude is None:
