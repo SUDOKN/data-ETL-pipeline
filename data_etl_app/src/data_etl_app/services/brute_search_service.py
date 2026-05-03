@@ -17,7 +17,9 @@ def brute_search(text: str, concepts: set[Concept]) -> set[Concept]:
     found_brute_search_concepts: set[Concept] = set()
 
     for c in concepts:
-        if any(re.search(word_regex(label.lower()), text) for label in c.matchLabels):
+        if any(
+            re.search(word_regex(label), text, re.IGNORECASE) for label in c.matchLabels
+        ):
             found_brute_search_concepts.add(c)
 
     logger.debug(

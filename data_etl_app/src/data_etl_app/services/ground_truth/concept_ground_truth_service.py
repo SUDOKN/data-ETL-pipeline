@@ -275,7 +275,7 @@ def _validate_new_human_correction(
             )
         # Check if each value in result_correction.add is present in chunk_text
         for mu in mus:
-            if not re.search(word_regex(mu), chunk_concept_gt.chunk_text):
+            if not re.search(word_regex(mu), chunk_concept_gt.chunk_text, re.IGNORECASE):
                 raise ValueError(
                     f"The term '{mu}' in the list result_correction.add['{mk}'] is not present in chunk_text."
                 )
