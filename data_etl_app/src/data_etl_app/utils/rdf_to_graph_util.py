@@ -13,7 +13,8 @@ logger = logging.getLogger(__name__)
 def get_graph(rdf_raw: str) -> rdflib.Graph:
     rdf_cleaned = rdf_raw.replace('xml:lang="asu.edu"', 'xml:lang="en"')
     graph = rdflib.Graph()
-    graph.parse(data=rdf_cleaned, format="application/rdf+xml")
+    # graph.parse(data=rdf_cleaned, format="application/rdf+xml")
+    graph.parse(data=rdf_cleaned, format="turtle")
     return graph
 
 

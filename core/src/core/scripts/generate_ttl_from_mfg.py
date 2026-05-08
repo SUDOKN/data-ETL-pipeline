@@ -146,16 +146,16 @@ async def main():
             connect_timeout_ms=60000,  # 30 seconds
         )
 
-        ontology_file_path = (
-            Path(__file__).resolve().parents[4] / "ontology/SUDOKN1.1/SUDOKN1_1.rdf"
-        )
+        # ontology_file_path = (
+        #     Path(__file__).resolve().parents[4] / "ontology/SUDOKN1.1/SUDOKN1_1.rdf"
+        # )
         onto_mahir_path = (
             Path(__file__).resolve().parents[4]
             / "ontology/SUDOKN1.1/sudokn_onto_mahir.ttl"
         )
 
-        print(f"Ontology file path: {ontology_file_path}")
-        with open(ontology_file_path, "r", encoding="utf-8") as file:
+        print(f"Ontology file path: {onto_mahir_path}")
+        with open(onto_mahir_path, "r", encoding="utf-8") as file:
             ontology_data = file.read()
 
         ont_inst = await get_ontology_service(
