@@ -15,21 +15,15 @@ async def replace_manufacturer_in_graph(mfg_etdl1: MfgETLDType) -> None:
         )
     ont_inst = await OntologyService.get_instance()
     ttl_data = generate_triples_for_single_mfg(ont_inst, mfg_user_form, False)
+    mfg_uri_prefix = f"http://asu.edu/semantics/SUDOKN/{mfg_etdl1}"
 
     query = f"""
     DELETE {{
         ?s ?p ?o .
     }}
     WHERE {{
-        {{
-            ?s ?p ?o .
-            FILTER(isIRI(?s) && STRSTARTS(STR(?s), CONCAT("http://asu.edu/semantics/SUDOKN/", "{mfg_etdl1}")))
-        }}
-        UNION
-        {{
-            ?s ?p ?o .
-            FILTER(isIRI(?o) && STRSTARTS(STR(?o), CONCAT("http://asu.edu/semantics/SUDOKN/", "{mfg_etdl1}")))
-        }}
+        ?s ?p ?o .
+        FILTER(isIRI(?s) && STRSTARTS(STR(?s), "{mfg_uri_prefix}"))
     }};
     
     INSERT DATA {{

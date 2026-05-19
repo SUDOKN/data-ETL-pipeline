@@ -11,6 +11,7 @@ from core.utils.time_util import get_current_time
 from core.utils.url_util import (
     get_etld1_from_host,
 )
+from core.utils.graph_db_client import SPARQLQueryError
 from core.utils.aws.queue.priority_scrape_queue_util import (
     push_item_to_priority_scrape_queue,
 )
@@ -110,5 +111,18 @@ async def upsert_manufacturer_user_form(
             f"please fetch the existing form and then include the id field."
         )
     await save_manufacturer_user_form(form)
-    await replace_manufacturer_in_graph(form.mfg_etld1)
+    try:
+        await replace_manufacturer_in_graph(form.mfg_etld1)
+    except SPARQLQueryError as exc:
+        logger.exception(
+            "Failed to sync ManufacturerUserForm for etld1 %s to GraphDB",
+            form.mfg_etld1,
+        )
+        raise HTTPException(
+            status_code=503,
+            detail=(
+                f"ManufacturerUserForm was saved, but GraphDB sync failed for etld1 {form.mfg_etld1}. "
+                "Please retry shortly."
+            ),
+        ) from exc
     return form

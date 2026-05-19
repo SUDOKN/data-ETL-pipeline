@@ -6,6 +6,10 @@ GRAPH_DB_BASE_URL = os.getenv("GRAPH_DB_BASE_URL")
 if not GRAPH_DB_BASE_URL:
     raise ValueError("GRAPH_DB_BASE_URL environment variable is not set")
 
+GRAPH_DB_UPDATE_TIMEOUT_SECONDS = float(
+    os.getenv("GRAPH_DB_UPDATE_TIMEOUT_SECONDS", "120")
+)
+
 
 class SPARQLQueryError(Exception):
     """Raised when a SPARQL query fails or returns invalid data."""
@@ -26,7 +30,10 @@ async def send_update_query_to_db(payload: str, debug: bool = False) -> None:
     try:
         async with httpx.AsyncClient() as client:
             response = await client.post(
-                endpoint, content=payload, headers=headers, timeout=30
+                endpoint,
+                content=payload,
+                headers=headers,
+                timeout=GRAPH_DB_UPDATE_TIMEOUT_SECONDS,
             )
     except httpx.RequestError as e:
         raise SPARQLQueryError(f"Network error while querying {endpoint}") from e
