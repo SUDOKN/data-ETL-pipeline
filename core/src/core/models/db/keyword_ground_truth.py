@@ -4,55 +4,45 @@ from pydantic import BaseModel, ValidationInfo, computed_field, Field, field_val
 
 from core.utils.time_util import get_current_time
 from core.models.field_types import MfgETLDType, S3FileVersionIDType
-
-from core.models.keyword_extraction_results import KeywordExtractionChunkStats
+from core.models.search_stage_results import SearchStageMetadata
+from core.models.keyword_extraction_results import KeywordExtractionStats
 from data_etl_app.models.types_and_enums import GroundTruthSource, KeywordTypeEnum
 
 
 class KeywordResultCorrection(BaseModel):
-    author_email: str
-    add: list[str]  # because there is no mapping for keywords
+    add: list[str]
     remove: list[str]
+
+
+class HumanKeywordCorrection(BaseModel):
+    author_email: str
     source: GroundTruthSource
+    llm_search: KeywordResultCorrection
 
 
-class KeywordResultCorrectionLog(BaseModel):
-    """
-    KeywordResultCorrectionLog stores the history of corrections made to the keyword extraction results.
-
-    Attributes:
-        created_at: When the correction was made.
-        last_author_email: Email of the user who made the correction.
-        result_correction: The correction details, including additions and removals.
-    """
-
+class KeywordCorrectionLog(BaseModel):
     created_at: datetime  # must be set beforehand, no default provided on purpose
-    result_correction: KeywordResultCorrection
+    human_correction: HumanKeywordCorrection
 
 
 class KeywordGroundTruth(Document):
     created_at: datetime = Field(default_factory=lambda: get_current_time())
     updated_at: datetime = Field(default_factory=lambda: get_current_time())
-    mfg_etld1: MfgETLDType
 
+    mfg_etld1: MfgETLDType
+    scraped_text_file_version_id: S3FileVersionIDType
     keyword_type: KeywordTypeEnum
 
-    # ---- DECONSTRUCTED EXTRACTION STATS ---- #
-    # knowledge base identifiers
-    scraped_text_file_version_id: str
-    extract_prompt_version_id: S3FileVersionIDType
-
-    # chunk identifiers, all need to match
+    # context ids
     chunk_bounds: str
-    last_chunk_no: int
     chunk_no: int
-    chunk_extracted_at: datetime
+    last_chunk_no: int
 
     chunk_text: str
-    chunk_search_stats: KeywordExtractionChunkStats
-    # ---------------------------------------- #
+    metadata: SearchStageMetadata
+    extraction_stats: KeywordExtractionStats
 
-    correction_logs: list[KeywordResultCorrectionLog]
+    corrections: list[KeywordCorrectionLog]
 
     @field_validator("chunk_no")
     def check_chunk_no(cls, v, values: ValidationInfo):

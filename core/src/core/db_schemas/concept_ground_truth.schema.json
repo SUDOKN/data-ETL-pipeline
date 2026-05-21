@@ -5,142 +5,148 @@
       "created_at",
       "updated_at",
       "mfg_etld1",
-      "concept_type",
       "scraped_text_file_version_id",
-      "extract_prompt_version_id",
-      "map_prompt_version_id",
-      "ontology_version_id",
+      "concept_type",
       "chunk_bounds",
-      "last_chunk_no",
       "chunk_no",
-      "chunk_extracted_at",
-      "chunk_text",
-      "chunk_search_stats",
-      "correction_logs"
+      "last_chunk_no",
+      "metadata",
+      "extraction_stats",
+      "corrections"
     ],
     "additionalProperties": false,
     "properties": {
-      "_id": {
-        "bsonType": "objectId"
-      },
-      "created_at": {
-        "bsonType": "date"
-      },
-      "updated_at": {
-        "bsonType": "date"
-      },
-      "mfg_etld1": {
-        "bsonType": "string"
-      },
+      "_id": { "bsonType": "objectId" },
+      "created_at": { "bsonType": "date" },
+      "updated_at": { "bsonType": "date" },
+      "mfg_etld1": { "bsonType": "string" },
+      "scraped_text_file_version_id": { "bsonType": "string" },
       "concept_type": {
         "enum": ["industries", "certificates", "material_caps", "process_caps"]
       },
-      "scraped_text_file_version_id": {
-        "bsonType": "string"
-      },
-      "extract_prompt_version_id": {
-        "bsonType": "string"
-      },
-      "map_prompt_version_id": {
-        "bsonType": "string"
-      },
-      "ontology_version_id": {
-        "bsonType": "string"
-      },
-      "chunk_bounds": {
-        "bsonType": "string"
-      },
-      "last_chunk_no": {
-        "bsonType": "int"
-      },
-      "chunk_no": {
-        "bsonType": "int"
-      },
-      "chunk_extracted_at": {
-        "bsonType": "date"
-      },
-      "chunk_text": {
-        "bsonType": "string"
-      },
-      "chunk_search_stats": {
+      "chunk_bounds": { "bsonType": "string" },
+      "chunk_no": { "bsonType": "int" },
+      "last_chunk_no": { "bsonType": "int" },
+      "metadata": {
         "bsonType": "object",
-        "required": ["results", "brute", "llm", "mapping", "unmapped_llm"],
+        "required": [
+          "model",
+          "created_at",
+          "search_prompt_version_id",
+          "ontology_version_id"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "model": { "bsonType": "string" },
+          "created_at": { "bsonType": "date" },
+          "search_prompt_version_id": { "bsonType": "string" },
+          "ontology_version_id": { "bsonType": "string" },
+          "evidence_prompt_version_id": { "bsonType": ["string", "null"] },
+          "mapping_prompt_version_id": { "bsonType": ["string", "null"] }
+        }
+      },
+      "extraction_stats": {
+        "bsonType": "object",
+        "required": [
+          "results",
+          "brute_search",
+          "llm_search",
+          "llm_evidence",
+          "llm_mapping",
+          "unmapped"
+        ],
         "additionalProperties": false,
         "properties": {
           "results": {
             "bsonType": "array",
             "uniqueItems": true,
-            "items": {
-              "bsonType": "string"
-            }
+            "items": { "bsonType": "string" }
           },
-          "brute": {
+          "brute_search": {
             "bsonType": "array",
             "uniqueItems": true,
-            "items": {
-              "bsonType": "string"
-            }
+            "items": { "bsonType": "string" }
           },
-          "llm": {
+          "llm_search": {
             "bsonType": "array",
             "uniqueItems": true,
-            "items": {
-              "bsonType": "string"
-            }
+            "items": { "bsonType": "string" }
           },
-          "mapping": {
+          "llm_evidence": {
+            "bsonType": "object",
+            "additionalProperties": { "bsonType": ["string", "null"] }
+          },
+          "llm_mapping": {
             "bsonType": "object",
             "additionalProperties": {
               "bsonType": "array",
-              "items": {
-                "bsonType": "string"
-              }
+              "items": { "bsonType": "string" }
             }
           },
-          "unmapped_llm": {
+          "unmapped": {
             "bsonType": "array",
             "uniqueItems": true,
-            "items": {
-              "bsonType": "string"
-            }
+            "items": { "bsonType": "string" }
           }
         }
       },
-      "correction_logs": {
+      "corrections": {
         "bsonType": "array",
         "items": {
           "bsonType": "object",
-          "required": ["created_at", "result_correction"],
+          "required": ["created_at", "human_correction"],
           "additionalProperties": false,
           "properties": {
-            "created_at": {
-              "bsonType": "date"
-            },
-            "result_correction": {
+            "created_at": { "bsonType": "date" },
+            "human_correction": {
               "bsonType": "object",
-              "required": ["author_email", "add", "remove"],
+              "required": [
+                "author_email",
+                "source",
+                "llm_evidence",
+                "llm_mapping"
+              ],
               "additionalProperties": false,
               "properties": {
-                "author_email": {
-                  "bsonType": "string"
-                },
+                "author_email": { "bsonType": "string" },
                 "source": {
                   "bsonType": "string",
                   "enum": ["user_form", "api_survey"]
                 },
-                "add": {
+                "llm_evidence": {
                   "bsonType": "object",
-                  "additionalProperties": {
-                    "bsonType": "array",
-                    "items": {
-                      "bsonType": "string"
+                  "required": ["upsert", "remove"],
+                  "additionalProperties": false,
+                  "properties": {
+                    "upsert": {
+                      "bsonType": "object",
+                      "additionalProperties": {
+                        "bsonType": "array",
+                        "items": { "bsonType": "string" }
+                      }
+                    },
+                    "remove": {
+                      "bsonType": "array",
+                      "items": { "bsonType": "string" }
                     }
                   }
                 },
-                "remove": {
-                  "bsonType": "array",
-                  "items": {
-                    "bsonType": "string"
+                "llm_mapping": {
+                  "bsonType": "object",
+                  "required": ["upsert", "remove"],
+                  "additionalProperties": false,
+                  "properties": {
+                    "upsert": {
+                      "bsonType": "object",
+                      "additionalProperties": {
+                        "bsonType": "array",
+                        "items": { "bsonType": "string" }
+                      }
+                    },
+                    "remove": {
+                      "bsonType": "array",
+                      "items": { "bsonType": "string" }
+                    }
                   }
                 }
               }

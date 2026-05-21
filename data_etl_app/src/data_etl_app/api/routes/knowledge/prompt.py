@@ -68,7 +68,7 @@ async def get_extract_any_address_prompt():
     """Get the extract any address prompt."""
     try:
         prompt_service = await get_prompt_service()
-        prompt = prompt_service.extract_any_address
+        prompt = prompt_service.extract_any_address_prompt
         return prompt.model_dump()
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))

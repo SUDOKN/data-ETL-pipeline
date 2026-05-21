@@ -6,13 +6,14 @@ from fastapi.responses import JSONResponse
 
 from core.models.db.manufacturer import Batch
 from core.models.to_scrape_item import ToScrapeItem
-
-from core.services.manufacturer_service import (
-    find_manufacturer_by_etld1,
-    find_manufacturer_by_url,
-    find_random_manufacturer_url,
+from core.models.concept_extraction_results import ConceptExtractionResults
+from core.models.db.concept_ground_truth import (
+    ConceptGroundTruth,
+    EvidenceResultCorrection,
+    HumanConceptCorrection,
+    MappingResultCorrection,
 )
-from core.services.user_service import find_by_email
+from data_etl_app.models.types_and_enums import ConceptTypeEnum, GroundTruthSource
 
 from core.utils.url_util import (
     get_normalized_url,
@@ -22,23 +23,22 @@ from core.utils.time_util import get_current_time
 from core.utils.aws.queue.priority_scrape_queue_util import (
     push_item_to_priority_scrape_queue,
 )
-
 from core.utils.aws.s3.scraped_text_util import (
     download_scraped_text_from_s3_by_mfg_etld1,
 )
 
-from core.models.concept_extraction_results import ConceptExtractionResults
-from core.models.db.concept_ground_truth import (
-    ConceptGroundTruth,
-    ConceptResultCorrection,
+from core.services.manufacturer_service import (
+    find_manufacturer_by_etld1,
+    find_manufacturer_by_url,
+    find_random_manufacturer_url,
 )
+from core.services.user_service import find_by_email
 from data_etl_app.services.ground_truth.concept_ground_truth_service import (
     get_extracted_concept_ground_truth,
     save_new_concept_ground_truth,
     add_correction_to_concept_ground_truth,
 )
 from data_etl_app.services.knowledge.ontology_service import get_ontology_service
-from data_etl_app.models.types_and_enums import ConceptTypeEnum, GroundTruthSource
 
 router = APIRouter()
 
@@ -114,12 +114,12 @@ async def fetch_concept_ground_truth_template(
             status_code=404,
             detail=f"Manufacturer not found for mfg_url:`{mfg_url}`. Pushed to scrape queue. Please try again in a few minutes.",
         )
-    elif manufacturer and manufacturer.is_manufacturer.answer is False:
+    elif manufacturer and manufacturer.is_manufacturer.result.answer is False:
         raise HTTPException(
             status_code=400,
             detail=(
                 f"The provided URL:`{mfg_url}` does not belong to a valid manufacturer. "
-                f"Following is the reason. {manufacturer.is_manufacturer.reason}` If you think otherwise, "
+                f"Following is the reason. {manufacturer.is_manufacturer.result.reason}` If you think otherwise, "
                 f"please submit a ground truth for `is_manufacturer` on binary classification endpoint."
             ),
         )
@@ -128,25 +128,16 @@ async def fetch_concept_ground_truth_template(
         manufacturer, concept_type, None
     )
     if not concept_extraction_results:
-        await push_item_to_priority_scrape_queue(
-            ToScrapeItem(
-                accessible_normalized_url=mfg_url,
-                batch=Batch(
-                    title=f"Ground Truth API: Concept Data for `{concept_type.value}` missing",
-                    timestamp=current_timestamp,  # ISO format for timestamp
-                ),
-            ),
-        )
         raise HTTPException(
             status_code=404,
-            detail=f"No data found for concept type: {concept_type.value} for manufacturer: {mfg_url}. Pushed to scrape queue for re-extraction. Please try again in a few minutes.",
+            detail=f"No data found for concept type: {concept_type.value} for manufacturer: {mfg_url}. Please add manufacturer first.",
         )
 
     # sort concept_data.stats.search by chunk_bounds
     sorted_search_data = [
         (key, value)
         for key, value in sorted(
-            concept_extraction_results.stats.chunked_stats.items(),
+            concept_extraction_results.chunk_stats.items(),
             key=lambda item: int(item[0].split(":")[0]),
         )
     ]
@@ -171,11 +162,11 @@ async def fetch_concept_ground_truth_template(
     if existing_concept_gt:  # then logs must be non-empty
         last_correction_log = existing_concept_gt.correction_logs[-1]
         response = existing_concept_gt.model_dump()
-        response["your_correction"] = ConceptResultCorrection(
+        response["your_correction"] = HumanConceptCorrection(
             author_email=author_email,
-            add=last_correction_log.result_correction.add,  # pre-fill with last correction
-            remove=last_correction_log.result_correction.remove,  # pre-fill with last correction
             source=GroundTruthSource.API_SURVEY,
+            llm_evidence_correction=last_correction_log.human_correction.evidence,
+            llm_mapping_correction=last_correction_log.human_correction.mapping,  # pre-fill with last correction
         )
         response.pop("id", None)  # remove id from response
         return response
@@ -201,25 +192,31 @@ async def fetch_concept_ground_truth_template(
         mfg_etld1=manufacturer.etld1,
         concept_type=concept_type,
         scraped_text_file_version_id=manufacturer.scraped_text_file_version_id,
-        map_prompt_version_id=concept_extraction_results.stats.map_prompt_version_id,
-        extract_prompt_version_id=concept_extraction_results.stats.extract_prompt_version_id,
-        ontology_version_id=concept_extraction_results.stats.ontology_version_id,
-        chunk_bounds=chunk_bounds,
-        last_chunk_no=last_chunk_no,
-        chunk_no=chunk_no,
-        chunk_extracted_at=concept_extraction_results.extracted_at,
         chunk_text=scraped_text[start:end],
-        chunk_search_stats=chunk_search_stats,
-        correction_logs=[],  # empty logs initially
+        chunk_bounds=chunk_bounds,
+        chunk_no=chunk_no,
+        last_chunk_no=last_chunk_no,
+        metadata=concept_extraction_results.metadata,
+        extraction_stats=chunk_search_stats,
+        corrections=[],  # empty logs initially
     )
 
     response = concept_ground_truth.model_dump()
 
-    response["your_correction"] = ConceptResultCorrection(
+    response["your_correction"] = HumanConceptCorrection(
         author_email=author_email,
-        add={},  # initially None, user will fill this
-        remove=[],  # initially None, user will fill this
         source=GroundTruthSource.API_SURVEY,
+        llm_evidence_correction=EvidenceResultCorrection(
+            upsert={
+                kw: reason
+                for kw, reason in chunk_search_stats.llm_evidence.items()
+                if reason
+            },
+            reject=[],
+        ),
+        llm_mapping_correction=MappingResultCorrection(
+            upsert=chunk_search_stats.llm_mapping, remove=[]
+        ),  # pre-fill with last correction
     )
 
     response.pop("id", None)  # remove id from response
@@ -237,7 +234,7 @@ def get_human_correction_help_info() -> str:
 
 async def parse_concept_ground_truth_with_new_correction(
     request: Request,
-) -> tuple[ConceptGroundTruth, ConceptResultCorrection]:
+) -> tuple[ConceptGroundTruth, EvidenceResultCorrection]:
     """Parse request body and handle your_correction field"""
     body = await request.body()
     data = json.loads(body)
@@ -251,7 +248,7 @@ async def parse_concept_ground_truth_with_new_correction(
         )
 
     # Validate your_correction
-    new_correction = ConceptResultCorrection(**new_correction_data)
+    new_correction = EvidenceResultCorrection(**new_correction_data)
 
     # Create ChunkconceptGroundTruth instance (validates all other fields)
     concept_gt = ConceptGroundTruth(**data)
@@ -264,7 +261,7 @@ async def parse_concept_ground_truth_with_new_correction(
     response_class=JSONResponse,
 )
 async def collect_concept_extraction_ground_truth(
-    parsed_data: tuple[ConceptGroundTruth, ConceptResultCorrection] = Depends(
+    parsed_data: tuple[ConceptGroundTruth, EvidenceResultCorrection] = Depends(
         parse_concept_ground_truth_with_new_correction
     ),
 ):
@@ -407,12 +404,45 @@ async def get_concept_coverage_stats(
     coverage: dict[str, int] = {name: 0 for name in concept_map}
     doc_covered_sets: list[set[str]] = []
 
+    per_doc_precision: list[float] = []
+    per_doc_recall: list[float] = []
+    per_doc_f1: list[float] = []
+
     for doc in gt_docs:
-        covered = set(doc.chunk_search_stats.results) | set(doc.final_results or [])
+        results = set(doc.chunk_search_stats.results)
+        final = set(doc.final_results or [])
+        covered = results | final
         doc_covered_sets.append(covered)
         for concept_name in covered:
             if concept_name in coverage:
                 coverage[concept_name] += 1
+
+        # Accuracy metrics — only for validated (human-corrected) docs
+        if doc.correction_logs:
+            tp = len(results & final)
+            fp = len(results - final)
+            fn = len(final - results)
+            precision = tp / (tp + fp) if (tp + fp) > 0 else 0.0
+            recall = tp / (tp + fn) if (tp + fn) > 0 else 0.0
+            f1 = (
+                2 * precision * recall / (precision + recall)
+                if (precision + recall) > 0
+                else 0.0
+            )
+            per_doc_precision.append(precision)
+            per_doc_recall.append(recall)
+            per_doc_f1.append(f1)
+
+    validated_count = len(per_doc_precision)
+    accuracy = (
+        {
+            "precision": round(sum(per_doc_precision) / validated_count, 4),
+            "recall": round(sum(per_doc_recall) / validated_count, 4),
+            "f1": round(sum(per_doc_f1) / validated_count, 4),
+        }
+        if validated_count > 0
+        else None
+    )
 
     # Concepts whose global count falls within [min_count, max_count]
     in_range_concepts = {
@@ -441,7 +471,9 @@ async def get_concept_coverage_stats(
         "concept_type": concept_type.value,
         "total_ground_truths": len(gt_docs),
         "total_ground_truths_in_range": total_gts_in_range,
+        "validated_ground_truths": validated_count,
         "total_concepts": len(concept_map),
         "total_concepts_in_range": len(in_range_concepts),
+        "accuracy": accuracy,
         "coverage": sorted_coverage,
     }

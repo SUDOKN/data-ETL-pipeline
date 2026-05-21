@@ -29,10 +29,10 @@ def fix_chunk_keys_in_material_caps(field_data):
     Example: 1a.tools>materials>llm_search>chunk>0:18706
           -> 1a.tools>material_caps>llm_search>chunk>0:18706
     """
-    if not field_data or "chunk_request_bundle_map" not in field_data:
+    if not field_data or "request_map" not in field_data:
         return field_data, False
 
-    chunk_map = field_data["chunk_request_bundle_map"]
+    chunk_map = field_data["request_map"]
     modified = False
 
     for chunk_key, bundle in chunk_map.items():
@@ -55,10 +55,10 @@ def fix_chunk_keys_in_process_caps(field_data):
     Example: 1a.tools>processes>llm_search>chunk>0:9573
           -> 1a.tools>process_caps>llm_search>chunk>0:9573
     """
-    if not field_data or "chunk_request_bundle_map" not in field_data:
+    if not field_data or "request_map" not in field_data:
         return field_data, False
 
-    chunk_map = field_data["chunk_request_bundle_map"]
+    chunk_map = field_data["request_map"]
     modified = False
 
     for chunk_key, bundle in chunk_map.items():
@@ -179,7 +179,7 @@ async def iterate(limit=None, mfg_etld1=None):
 
 async def main():
     parser = argparse.ArgumentParser(
-        description="Fix chunk_request_bundle_map keys in material_caps and process_caps fields"
+        description="Fix request_map keys in material_caps and process_caps fields"
     )
     group = parser.add_mutually_exclusive_group()
     group.add_argument(

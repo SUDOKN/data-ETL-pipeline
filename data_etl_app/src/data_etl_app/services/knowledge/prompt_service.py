@@ -15,11 +15,17 @@ PROMPT_NAMES = [
     "is_product_manufacturer",
     "is_contract_manufacturer",
     "extract_any_address",
+    # keywords
     "extract_any_product",
+    # concepts
     "extract_any_certificate",
     "extract_any_industry",
     "extract_any_material_cap",
     "extract_any_process_cap",
+    "certificate_evidence",
+    "industry_evidence",
+    "material_cap_evidence",
+    "process_cap_evidence",
     "unknown_to_known_certificate",
     "unknown_to_known_industry",
     "unknown_to_known_material_cap",
@@ -124,7 +130,7 @@ class PromptService:
         return self._get_prompt("is_contract_manufacturer")
 
     @property
-    def extract_any_address(self) -> Prompt:
+    def extract_any_address_prompt(self) -> Prompt:
         return self._get_prompt("extract_any_address")
 
     @property
@@ -146,6 +152,22 @@ class PromptService:
     @property
     def extract_any_process_cap_prompt(self) -> Prompt:
         return self._get_prompt("extract_any_process_cap")
+
+    @property
+    def certificate_evidence_prompt(self) -> Prompt:
+        return self._get_prompt("certificate_evidence")
+
+    @property
+    def industry_evidence_prompt(self) -> Prompt:
+        return self._get_prompt("industry_evidence")
+
+    @property
+    def material_cap_evidence_prompt(self) -> Prompt:
+        return self._get_prompt("material_cap_evidence")
+
+    @property
+    def process_cap_evidence_prompt(self) -> Prompt:
+        return self._get_prompt("process_cap_evidence")
 
     @property
     def unknown_to_known_certificate_prompt(self) -> Prompt:

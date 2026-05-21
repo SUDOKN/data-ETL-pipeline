@@ -7,8 +7,9 @@
       "mfg_etld1",
       "scraped_text_file_version_id",
       "classification_type",
-      "llm_decision",
-      "human_decision_logs"
+      "metadata",
+      "extraction_stats",
+      "corrections"
     ],
     "additionalProperties": false,
     "properties": {
@@ -25,68 +26,56 @@
           "is_contract_manufacturer"
         ]
       },
-      "llm_decision": {
+      "metadata": {
         "bsonType": "object",
-        "required": ["evaluated_at", "answer", "confidence", "reason", "stats"],
+        "required": ["model", "created_at", "prompt_version_id"],
+        "additionalProperties": false,
         "properties": {
-          "evaluated_at": { "bsonType": "date" },
-          "answer": { "bsonType": "bool" },
-          "confidence": { "bsonType": "int" },
-          "reason": { "bsonType": "string" },
-          "stats": {
-            "bsonType": "object",
-            "required": [
-              "prompt_version_id",
-              "final_chunk_key",
-              "chunk_result_map"
-            ],
-            "properties": {
-              "prompt_version_id": { "bsonType": "string" },
-              "final_chunk_key": { "bsonType": "string" },
-              "chunk_result_map": {
-                "bsonType": "object",
-                "patternProperties": {
-                  ".*": {
-                    "bsonType": "object",
-                    "required": ["answer", "confidence", "reason"],
-                    "properties": {
-                      "answer": { "bsonType": "bool" },
-                      "confidence": { "bsonType": "int" },
-                      "reason": { "bsonType": "string" }
-                    },
-                    "additionalProperties": false
-                  }
-                }
-              }
-            },
-            "additionalProperties": false
-          }
-        },
-        "additionalProperties": false
+          "model": { "bsonType": "string" },
+          "created_at": { "bsonType": "date" },
+          "prompt_version_id": { "bsonType": "string" }
+        }
       },
-      "human_decision_logs": {
+      "extraction_stats": {
+        "bsonType": "object",
+        "required": ["result"],
+        "additionalProperties": false,
+        "properties": {
+          "result": {
+            "bsonType": "object",
+            "required": ["answer", "confidence", "reason"],
+            "additionalProperties": false,
+            "properties": {
+              "answer": { "bsonType": "bool" },
+              "confidence": { "bsonType": "int" },
+              "reason": { "bsonType": "string" }
+            }
+          }
+        }
+      },
+      "corrections": {
         "bsonType": "array",
         "items": {
           "bsonType": "object",
           "required": ["created_at", "human_decision"],
+          "additionalProperties": false,
           "properties": {
             "created_at": { "bsonType": "date" },
             "human_decision": {
               "bsonType": "object",
-              "required": ["author_email", "answer"],
+              "required": ["author_email", "source", "answer"],
+              "additionalProperties": false,
               "properties": {
                 "author_email": { "bsonType": "string" },
                 "source": {
                   "bsonType": "string",
                   "enum": ["user_form", "api_survey"]
                 },
-                "answer": { "bsonType": "bool" },
+                "answer": { "bsonType": ["bool"] },
                 "reason": { "bsonType": ["string", "null"] }
-              },
-              "additionalProperties": false
+              }
             }
-          },
-          "additionalProperties": false
+          }
         }
       }
     }

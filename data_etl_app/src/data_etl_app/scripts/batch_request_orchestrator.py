@@ -12,6 +12,7 @@ from asyncio import Task
 # (e.g., batch_file_station.py) before importing this module
 
 from core.dependencies.load_core_env import load_core_env
+from open_ai_key_app.models.gpt_model import GPT_4o_mini, LLM_Model
 from scraper_app.dependencies.load_scraper_env import load_scraper_env
 from open_ai_key_app.dependencies.load_open_ai_app_env import load_open_ai_app_env
 from data_etl_app.dependencies.load_data_etl_env import load_data_etl_env
@@ -52,14 +53,19 @@ async def process_single_manufacturer(
     Returns:
         tuple[bool, Optional[str]]: (success, error_message)
     """
-    # # Download scraped text file from S3
-    # scraped_text_file = await ScrapedTextFile.download_from_s3_and_create(
-    #     mfg.etld1, mfg.scraped_text_file_version_id
-    # )
+    # Download scraped text file from S3
+    scraped_text_file = await ScrapedTextFile.download_from_s3_and_create(
+        mfg.etld1, mfg.scraped_text_file_version_id
+    )
 
     # Process manufacturer through the orchestrator
     try:
-        await orchestrator.process_manufacturer(timestamp, mfg)
+        await orchestrator.process_manufacturer(
+            timestamp=timestamp,
+            mfg=mfg,
+            scraped_text_file=scraped_text_file,
+            eager=False,
+        )
         logger.debug(f"process_single_manufacturer:[{mfg.etld1}] ✓ Processing complete")
         return (True, None)
     except Exception as e:
@@ -73,6 +79,7 @@ async def process_single_manufacturer(
 
 async def process_manufacturers_concurrently(
     parallel: int,
+    llm_model: LLM_Model,
     limit: Optional[int] = None,
     dry_run: bool = False,
     mfg_etld1s_from_csv: Optional[set[str]] = None,
@@ -86,7 +93,7 @@ async def process_manufacturers_concurrently(
         dry_run: If True, don't actually create batch requests
         mfg_etld1s_from_csv: Optional set of mfg_etld1s to process from CSV file
     """
-    orchestrator = ManufacturerExtractionOrchestrator()
+    orchestrator = ManufacturerExtractionOrchestrator(llm_model=llm_model)
     timestamp = get_current_time()
 
     # Query for manufacturers with scraped text files
@@ -303,7 +310,6 @@ async def async_main():
 
     await initialize_core_aws_clients()
     await initialize_data_etl_aws_clients()
-
     try:
         if args.etld1:
             # Single manufacturer mode
@@ -321,7 +327,7 @@ async def async_main():
             )
             logger.info(f"  Num tokens: {mfg.scraped_text_file_num_tokens}\n")
 
-            orchestrator = ManufacturerExtractionOrchestrator()
+            orchestrator = ManufacturerExtractionOrchestrator(llm_model=GPT_4o_mini)
             timestamp = get_current_time()
 
             await process_single_manufacturer(orchestrator, timestamp, mfg)
@@ -352,6 +358,7 @@ async def async_main():
                 parallel=args.parallel,
                 dry_run=args.dry_run,
                 mfg_etld1s_from_csv=mfg_etld1s,
+                llm_model=GPT_4o_mini,
             )
 
         else:
@@ -360,6 +367,7 @@ async def async_main():
                 limit=args.limit,
                 parallel=args.parallel,
                 dry_run=args.dry_run,
+                llm_model=GPT_4o_mini,
             )
 
     except Exception as e:

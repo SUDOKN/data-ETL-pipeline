@@ -4,10 +4,9 @@ from pydantic import Field
 from datetime import datetime
 from typing import Optional
 
-from core.models.db.manufacturer import Address, BusinessDescriptionResult
+from core.models.db.manufacturer import Address, BusinessDescription
 from core.models.field_types import MfgETLDType
 from core.utils.time_util import get_current_time
-
 
 logger = logging.getLogger(__name__)
 
@@ -32,7 +31,7 @@ class ManufacturerUserForm(Document):
 
     # Required
     addresses: list[Address]
-    business_desc: Optional[BusinessDescriptionResult]
+    business_desc: Optional[BusinessDescription]
     products: set[str]
 
     certificates: list[str]

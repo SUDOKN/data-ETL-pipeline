@@ -1,25 +1,28 @@
-from datetime import datetime
-from pydantic import BaseModel
-
-from core.models.field_types import (
-    S3FileVersionIDType,
+from core.models.search_stage_results import (
+    SearchStageResults,
+    SearchStageStats,
 )
 
 
-class KeywordExtractionChunkStats(BaseModel):
-    results: set[str]
+class KeywordExtractionStats(SearchStageStats):
+    # results: set[str] # just a copy of llm_search
+    llm_search: set[str]
 
 
-# "0:1000" -> {results: ('keyword1', 'keyword2', ...)}
-KeywordSearchChunkMap = dict[str, KeywordExtractionChunkStats]
+KeywordExtractionStatsMap = dict[str, KeywordExtractionStats]
+"""
+{
+    "0:1000" : {
+        results: ('keyword1', 'keyword2', ...), 
+        llm_search: ('keyword1', 'keyword2', ...)
+    },
+    "750:1500": {
+        ...
+    }
+    
+}
+"""
 
 
-class KeywordExtractionStats(BaseModel):
-    extract_prompt_version_id: S3FileVersionIDType
-    chunked_stats: KeywordSearchChunkMap
-
-
-class KeywordExtractionResults(BaseModel):
-    extracted_at: datetime
-    results: set[str]
-    stats: KeywordExtractionStats  # chunk map
+class KeywordExtractionResults(SearchStageResults):
+    chunk_stats: KeywordExtractionStatsMap  # chunk map

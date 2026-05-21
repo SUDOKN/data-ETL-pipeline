@@ -2,29 +2,33 @@ import re
 import logging
 from datetime import datetime
 
-# Configure logger
-logger = logging.getLogger(__name__)
 
+from core.models.db.manufacturer import Manufacturer
+from core.models.field_types import OntologyVersionIDType, S3FileVersionIDType
+from core.models.concept_extraction_results import ConceptExtractionResults
+from core.models.db.concept_ground_truth import (
+    ConceptGroundTruth,
+    ConceptCorrectionLog,
+    HumanConceptCorrection,
+)
+from data_etl_app.models.skos_concept import Concept
+from data_etl_app.models.types_and_enums import ConceptTypeEnum
+
+from data_etl_app.services.knowledge.ontology_service import get_ontology_service
+from data_etl_app.services.brute_search_service import word_regex
 
 from core.utils.aws.s3.scraped_text_util import (
     download_scraped_text_from_s3_by_mfg_etld1,
 )
-from core.models.db.manufacturer import Manufacturer
-from core.models.field_types import OntologyVersionIDType, S3FileVersionIDType
-
-from core.models.concept_extraction_results import ConceptExtractionResults
-from core.models.db.concept_ground_truth import (
-    ConceptGroundTruth,
-    ConceptResultCorrection,
-    ConceptResultCorrectionLog,
-)
-from data_etl_app.models.skos_concept import Concept
 from data_etl_app.utils.route_url_util import (
     get_full_ontology_concept_flat_url,
 )
-from data_etl_app.services.knowledge.ontology_service import get_ontology_service
-from data_etl_app.services.brute_search_service import word_regex
-from data_etl_app.models.types_and_enums import ConceptTypeEnum
+from data_etl_app.utils.ground_truth_helper_util import (
+    calculate_corrected_concept_evidence_results,
+)
+
+# Configure logger
+logger = logging.getLogger(__name__)
 
 
 async def get_extracted_concept_ground_truth(
@@ -51,12 +55,14 @@ async def get_extracted_concept_ground_truth(
         # ------------------ knowledge ids ------------------- #
         ConceptGroundTruth.scraped_text_file_version_id
         == linked_manufacturer.scraped_text_file_version_id,
-        ConceptGroundTruth.ontology_version_id
-        == concept_extraction_results.stats.ontology_version_id,
-        ConceptGroundTruth.extract_prompt_version_id
-        == concept_extraction_results.stats.extract_prompt_version_id,
-        ConceptGroundTruth.map_prompt_version_id
-        == concept_extraction_results.stats.map_prompt_version_id,
+        ConceptGroundTruth.metadata.ontology_version_id
+        == concept_extraction_results.metadata.ontology_version_id,
+        ConceptGroundTruth.metadata.search_prompt_version_id
+        == concept_extraction_results.metadata.search_prompt_version_id,
+        ConceptGroundTruth.metadata.evidence_prompt_version_id
+        == concept_extraction_results.metadata.evidence_prompt_version_id,
+        ConceptGroundTruth.metadata.mapping_prompt_version_id
+        == concept_extraction_results.metadata.mapping_prompt_version_id,
         # ---------------------------------------------------- #
         ConceptGroundTruth.chunk_no == chunk_no,
     )
@@ -79,25 +85,25 @@ async def does_a_cgt_exist_with_scraped_file_version(
 async def add_correction_to_concept_ground_truth(
     linked_manufacturer: Manufacturer,
     existing_concept_gt: ConceptGroundTruth,
-    new_correction: ConceptResultCorrection,
+    new_correction: HumanConceptCorrection,
     timestamp: datetime,
 ) -> ConceptGroundTruth:
 
     existing_concept_gt.updated_at = timestamp
     if (
-        existing_concept_gt.correction_logs[-1].result_correction.author_email
+        existing_concept_gt.corrections[-1].human_correction.author_email
         == new_correction.author_email
     ):
-        existing_concept_gt.correction_logs.pop()  # the new correction will replace the last one because it is from the same author
+        existing_concept_gt.corrections.pop()  # the new correction will replace the last one because it is from the same author
 
-    await _validate_concept_ground_truth(
+    await _validate_concept_ground_truth_correction(
         linked_manufacturer, existing_concept_gt, new_correction
     )
 
-    existing_concept_gt.correction_logs.append(
-        ConceptResultCorrectionLog(
+    existing_concept_gt.corrections.append(
+        ConceptCorrectionLog(
             created_at=timestamp,
-            result_correction=new_correction,
+            human_correction=new_correction,
         )
     )
 
@@ -111,7 +117,7 @@ async def save_new_concept_ground_truth(
     timestamp: datetime,
     manufacturer: Manufacturer,
     new_concept_gt: ConceptGroundTruth,
-    new_correction: ConceptResultCorrection,
+    new_correction: HumanConceptCorrection,
 ) -> ConceptGroundTruth:
     """
     Prepare a new concept ground truth instance with the provided timestamp.
@@ -121,12 +127,14 @@ async def save_new_concept_ground_truth(
     new_concept_gt.created_at = timestamp
     new_concept_gt.updated_at = timestamp
 
-    await _validate_concept_ground_truth(manufacturer, new_concept_gt, new_correction)
+    await _validate_concept_ground_truth_correction(
+        manufacturer, new_concept_gt, new_correction
+    )
 
-    new_concept_gt.correction_logs.append(
-        ConceptResultCorrectionLog(
+    new_concept_gt.corrections.append(
+        ConceptCorrectionLog(
             created_at=new_concept_gt.created_at,
-            result_correction=new_correction,
+            human_correction=new_correction,
         )
     )
 
@@ -136,10 +144,10 @@ async def save_new_concept_ground_truth(
     return await new_concept_gt.save()
 
 
-async def _validate_concept_ground_truth(
+async def _validate_concept_ground_truth_correction(
     linked_manufacturer: Manufacturer,
     concept_gt: ConceptGroundTruth,
-    new_correction: ConceptResultCorrection,
+    new_correction: HumanConceptCorrection,
 ) -> None:
     """
     Validate and save the concept ground truth to the database.
@@ -169,7 +177,7 @@ async def _validate_concept_ground_truth(
     chunk_bounds, chunk_search_stats = [
         (cb, css)
         for cb, css in sorted(
-            concept_extraction_results.stats.chunked_stats.items(),
+            concept_extraction_results.chunk_stats.items(),
             key=lambda item: int(item[0].split(":")[0]),
         )
     ][concept_gt.chunk_no - 1]
@@ -226,70 +234,81 @@ async def _validate_concept_ground_truth(
     # because what if we have updated the ontology since user fetched original concept_ground_truth
     # this blocks users from submitting corrections on old ontology versions
     latest_ontology_version_id: OntologyVersionIDType = ontology_info[0]
-    known_concept_labels: set[str] = {c.name for c in ontology_info[1]}
+    known_concepts: set[Concept] = set(ontology_info[1])
 
-    if latest_ontology_version_id != concept_gt.ontology_version_id:
+    if latest_ontology_version_id != concept_gt.metadata.ontology_version_id:
         raise ValueError(
-            f"Ontology version ID mismatch for concept type '{concept_gt.concept_type}'. Expected: {latest_ontology_version_id}, got: {concept_gt.ontology_version_id}."
+            f"Ontology version ID mismatch for concept type '{concept_gt.concept_type}'. Expected: {latest_ontology_version_id}, got: {concept_gt.metadata.ontology_version_id}."
         )
 
-    _validate_new_human_correction(concept_gt, new_correction, known_concept_labels)
+    _validate_new_human_correction(concept_gt, new_correction, known_concepts)
 
 
 # always call before adding the new correction to correction_logs
 def _validate_new_human_correction(
     chunk_concept_gt: ConceptGroundTruth,
-    new_correction: ConceptResultCorrection,
-    known_concept_labels: set[str],
+    new_correction: HumanConceptCorrection,
+    known_concepts: set[Concept],
 ):
-    """
-    VALIDATE RESULT CORRECTION
-
-    result_correction.add: (keys are concept names, values are list of unknowns present in chunk_text)
-    - each key in add must be a known concept present in the latest ontology version
-    - each value must be present in chunk_concept_gt.chunk_text
-    - any key, value pair must not be already present in chunk_concept_gt.chunk_search_stats.mapping | value by itself can be present for a different key, hence the correction
-
-    result_correction.remove:
-    - each item in remove must be present in chunk_concept_gt.chunk_search_stats.results
-    """
 
     if not new_correction:
         raise ValueError(
             "result_correction must be provided to validate the concept ground truth."
         )
 
-    for mk, mus in new_correction.add.items():
-        logger.debug(f"Checking result_correction.add for key: {mk} with terms: {mus}")
+    # Check evidence corrections
+    for unk, reason in new_correction.llm_evidence_correction.upsert.items():
+        if not re.search(word_regex(unk), chunk_concept_gt.chunk_text, re.IGNORECASE):
+            raise ValueError(
+                f"The term '{unk}' in the list llm_evidence.upsert is not present in chunk_text."
+            )
+        if not reason:
+            raise ValueError(
+                f"The unknown term '{unk}' in llm_evidence.upsert must have a reason provided."
+            )
+
+    for unk in new_correction.llm_evidence_correction.reject:
+        if unk not in chunk_concept_gt.extraction_stats.llm_evidence:
+            raise ValueError(
+                f"The term '{unk}' in the list llm_evidence.reject is not present in extraction_stats.llm_evidence. '\
+                'Please remove the term '{unk}' from the reject list or provide a different term."
+            )
+
+    corrected_concept_evidence_results: dict[str, str] = (
+        calculate_corrected_concept_evidence_results(
+            original_llm_evidence=chunk_concept_gt.extraction_stats.llm_evidence,
+            human_correction=new_correction,
+        )
+    )
+    corrected_concept_evidence_kws = set(corrected_concept_evidence_results.keys())
+
+    known_concept_labels: set[str] = {c.name for c in known_concepts}
+    for mk, mus in new_correction.llm_mapping_correction.upsert.items():
+        logger.debug(
+            f"Checking mapping_result_correction.upsert for key: {mk} with terms: {mus}"
+        )
         if not mus:
             raise ValueError(
-                f"Key '{mk}' in the object result_correction.add cannot have an empty list of terms."
+                f"Key '{mk}' in the object mapping_result_correction.add cannot have an empty list of terms."
             )
 
         logger.debug(f"mk in known_concept_labels: {mk in known_concept_labels}")
         # Check if mk is a known concept in the latest ontology version
         if mk not in known_concept_labels:
             raise ValueError(
-                f"Key '{mk}' in the object result_correction.add is not a known concept in the latest ontology version. "
+                f"Key '{mk}' in the object mapping_result_correction.add is not a known concept in the latest ontology version. "
                 f"Please visit {get_full_ontology_concept_flat_url(chunk_concept_gt.concept_type)}"
             )
-        # Check if each value in result_correction.add is present in chunk_text
+        # Check if each value in mapping_result_correction.add is present in chunk_text
         for mu in mus:
-            if not re.search(word_regex(mu), chunk_concept_gt.chunk_text, re.IGNORECASE):
+            if mu not in corrected_concept_evidence_kws:
                 raise ValueError(
-                    f"The term '{mu}' in the list result_correction.add['{mk}'] is not present in chunk_text."
+                    f"The term '{mu}' in the list mapping_result_correction.add['{mk}'] is not present in corrected_concept_evidence_results."
                 )
 
-        # Find which mk to mus mapping is already present in chunk_search_stats.mapping
-        for mu in mus:
-            if mu in chunk_concept_gt.chunk_search_stats.mapping.get(mk, []):
-                raise ValueError(
-                    f"The term '{mu}' in the list result_correction.add['{mk}'] was already mapped by LLM and is present in chunk_search_stats.mapping. Please remove the term '{mu}' from the add mapping or provide a different term."
-                )
-
-    for rm in new_correction.remove:
-        logger.debug(f"Checking result_correction.remove for term: {rm}")
-        if rm not in chunk_concept_gt.chunk_search_stats.results:
+    for rm in new_correction.llm_mapping_correction.remove:
+        logger.debug(f"Checking mapping_result_correction.remove for term: {rm}")
+        if rm not in corrected_concept_evidence_kws:
             raise ValueError(
-                f"The term '{rm}' in the list result_correction.remove is not present in chunk_search_stats.results. Please remove the term '{rm}' from the remove list or provide a different term."
+                f"The term '{rm}' in the list mapping_result_correction.remove is not present in corrected_concept_evidence_results. Please remove the term '{rm}' from the remove list or provide a different term."
             )

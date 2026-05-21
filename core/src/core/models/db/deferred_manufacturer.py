@@ -8,15 +8,14 @@ from core.models.field_types import MfgETLDType, S3FileVersionIDType
 from core.utils.time_util import get_current_time
 
 
-from core.models.deferred_basic_extraction import DeferredBasicExtraction
-from core.models.deferred_binary_classification import (
-    DeferredBinaryClassification,
+from core.models.deferred_single_stage_extraction_requests import (
+    DeferredSingleStageExtractionRequests,
 )
-from core.models.deferred_keyword_extraction import (
-    DeferredKeywordExtraction,
+from core.models.deferred_search_requests import (
+    DeferredSearchRequests,
 )
 from core.models.deferred_concept_extraction import (
-    DeferredConceptExtraction,
+    DeferredConceptExtractionRequests,
 )
 
 logger = logging.getLogger(__name__)
@@ -29,19 +28,18 @@ class DeferredManufacturer(Document):
     scraped_text_file_num_tokens: int
     scraped_text_file_version_id: S3FileVersionIDType
 
-    is_manufacturer: Optional[DeferredBinaryClassification]
-    is_contract_manufacturer: Optional[DeferredBinaryClassification]
-    is_product_manufacturer: Optional[DeferredBinaryClassification]
+    is_manufacturer: Optional[DeferredSingleStageExtractionRequests]
+    is_contract_manufacturer: Optional[DeferredSingleStageExtractionRequests]
+    is_product_manufacturer: Optional[DeferredSingleStageExtractionRequests]
+    addresses: Optional[DeferredSingleStageExtractionRequests]
+    business_desc: Optional[DeferredSingleStageExtractionRequests]
 
-    addresses: Optional[DeferredBasicExtraction]
-    business_desc: Optional[DeferredBasicExtraction]
+    products: Optional[DeferredSearchRequests]
 
-    products: Optional[DeferredKeywordExtraction]
-
-    certificates: Optional[DeferredConceptExtraction]
-    industries: Optional[DeferredConceptExtraction]
-    process_caps: Optional[DeferredConceptExtraction]
-    material_caps: Optional[DeferredConceptExtraction]
+    certificates: Optional[DeferredConceptExtractionRequests]
+    industries: Optional[DeferredConceptExtractionRequests]
+    process_caps: Optional[DeferredConceptExtractionRequests]
+    material_caps: Optional[DeferredConceptExtractionRequests]
 
     class Settings:
         name = "deferred_manufacturers"

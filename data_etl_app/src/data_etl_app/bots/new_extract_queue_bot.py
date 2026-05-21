@@ -5,6 +5,7 @@ from datetime import datetime
 from typing import Callable, Awaitable
 
 from core.dependencies.load_core_env import load_core_env
+from open_ai_key_app.models.gpt_model import GPT_4o_mini
 from scraper_app.dependencies.load_scraper_env import load_scraper_env
 from open_ai_key_app.dependencies.load_open_ai_app_env import load_open_ai_app_env
 from data_etl_app.dependencies.load_data_etl_env import load_data_etl_env
@@ -25,47 +26,28 @@ from data_etl_app.dependencies.aws_clients import (
     initialize_data_etl_aws_clients,
     cleanup_data_etl_aws_clients,
 )
-from core.utils.mongo_client import init_db
 
 from core.models.db.manufacturer import Manufacturer
 from core.models.db.extraction_error import ExtractionError
 from core.models.to_extract_item import ToExtractItem
-from core.services.user_service import is_user_MEP
-from core.utils.time_util import get_current_time
-from core.services.manufacturer_service import (
-    find_manufacturer_by_etld1,
-    update_manufacturer,
-)
-
-from scraper_app.models.scraped_text_file import ScrapedTextFile
-
 from core.models.db.binary_ground_truth import HumanBinaryDecision
 from core.models.binary_classification_result import BinaryClassificationResult
 from data_etl_app.models.types_and_enums import BinaryClassificationTypeEnum
+from scraper_app.models.scraped_text_file import ScrapedTextFile
+
+from core.services.user_service import is_user_MEP
+from core.services.manufacturer_service import (
+    find_manufacturer_by_etld1,
+)
 from data_etl_app.services.ground_truth.binary_ground_truth_service import (
     get_binary_ground_truth,
 )
-from data_etl_app.services.llm_powered.extraction.extract_basic_service import (
-    find_business_desc_using_only_first_chunk,
+from data_etl_app.services.manufacturer_extraction_orchestrator import (
+    ManufacturerExtractionOrchestrator,
 )
-from data_etl_app.services.llm_powered.extraction.extract_basic_service import (
-    extract_address_from_n_chunks,
-)
-from data_etl_app.services.llm_powered.extraction.extract_keyword_service import (
-    extract_products,
-)
-from data_etl_app.services.llm_powered.extraction.extract_concept_service import (
-    extract_industries,
-    extract_certificates,
-    extract_materials,
-    extract_processes,
-)
-from data_etl_app.services.llm_powered.classification.binary_classifier_service import (
-    is_company_a_manufacturer,
-    is_product_manufacturer,
-    is_contract_manufacturer,
-)
-from data_etl_app.utils.find_email_addresses import get_validated_emails_from_text_async
+
+from core.utils.mongo_client import init_db
+from core.utils.time_util import get_current_time
 
 logger = logging.getLogger(__name__)
 
@@ -145,6 +127,7 @@ async def process_queue(
     concurrent_manufacturers = set()
     extraction_stats = ExtractionStats()  # Initialize timing stats
     try:
+        mfg_orchestrator = ManufacturerExtractionOrchestrator(llm_model=GPT_4o_mini)
         while True:
             # Check if we are at the concurrency threshold
             if len(concurrent_manufacturers) >= max_concurrent_manufacturers:
@@ -179,6 +162,7 @@ async def process_queue(
 
             task = asyncio.create_task(
                 extract_and_cleanup(
+                    mfg_orchestrator,
                     item,
                     polled_at,
                     scraped_text_file,
@@ -285,287 +269,8 @@ async def validate_manufacturer_for_extraction(
     return manufacturer, existing_scraped_file, True
 
 
-async def process_manufacturer(
-    polled_at: datetime,
-    mfg_txt: str,
-    manufacturer: Manufacturer,
-):
-    logger.info(f"Processing manufacturer: {manufacturer}")
-    if not manufacturer.is_manufacturer:
-        try:
-            logger.info(
-                f"Finding out if company {manufacturer.etld1} is a manufacturer."
-            )
-            manufacturer.is_manufacturer = await is_company_a_manufacturer(
-                polled_at,
-                manufacturer.etld1,
-                mfg_txt,
-            )
-
-            await update_manufacturer(
-                updated_at=polled_at,
-                manufacturer=manufacturer,
-            )
-        except Exception as e:
-            logger.error(f"{manufacturer.etld1}.is_manufacturer errored:{e}")
-            await ExtractionError.insert_one(
-                ExtractionError(
-                    created_at=polled_at,
-                    error=str(e),
-                    field="is_manufacturer",
-                    mfg_etld1=manufacturer.etld1,
-                )
-            )
-            return  # if is_manufacturer check fails, skip further processing
-
-    if not manufacturer.email_addresses:
-        try:
-            logger.info(f"Extracting email addresses for {manufacturer.etld1}")
-            manufacturer.email_addresses = await get_validated_emails_from_text_async(
-                manufacturer.etld1, mfg_txt
-            )
-            await update_manufacturer(
-                updated_at=polled_at,
-                manufacturer=manufacturer,
-            )
-        except Exception as e:
-            logger.error(f"{manufacturer.name}.email_addresses errored:{e}")
-            await ExtractionError.insert_one(
-                ExtractionError(
-                    created_at=polled_at,
-                    error=str(e),
-                    field="email_addresses",
-                    mfg_etld1=manufacturer.etld1,
-                )
-            )
-
-    if not manufacturer.business_desc:
-        try:
-            logger.info(
-                f"Finding business description for company {manufacturer.etld1}"
-            )
-            manufacturer.business_desc = (
-                await find_business_desc_using_only_first_chunk(
-                    manufacturer.etld1,
-                    mfg_txt,
-                )
-            )
-
-            await update_manufacturer(
-                updated_at=polled_at,
-                manufacturer=manufacturer,
-            )
-        except Exception as e:
-            logger.error(f"{manufacturer.etld1}.business_desc errored:{e}")
-            await ExtractionError.insert_one(
-                ExtractionError(
-                    created_at=polled_at,
-                    error=str(e),
-                    field="business_desc",
-                    mfg_etld1=manufacturer.etld1,
-                )
-            )
-    """
-    if not manufacturer.is_product_manufacturer:
-        try:
-            logger.info(
-                f"Finding out if company is a product manufacturer: {manufacturer.etld1}"
-            )
-            manufacturer.is_product_manufacturer = await is_product_manufacturer(
-                polled_at, manufacturer.etld1, mfg_txt
-            )
-            await update_manufacturer(
-                updated_at=polled_at,
-                manufacturer=manufacturer,
-            )
-        except Exception as e:
-            logger.error(f"{manufacturer.etld1}.is_product_manufacturer errored:{e}")
-            await ExtractionError.insert_one(
-                ExtractionError(
-                    created_at=polled_at,
-                    error=str(e),
-                    field="is_product_manufacturer",
-                    mfg_etld1=manufacturer.etld1,
-                )
-            )
-
-    if not manufacturer.is_contract_manufacturer:
-        try:
-            logger.info(
-                f"Finding out if company is a contract manufacturer: {manufacturer.etld1}"
-            )
-            manufacturer.is_contract_manufacturer = await is_contract_manufacturer(
-                polled_at, manufacturer.etld1, mfg_txt
-            )
-            await update_manufacturer(
-                updated_at=polled_at,
-                manufacturer=manufacturer,
-            )
-        except Exception as e:
-            logger.error(f"{manufacturer.etld1}.is_contract_manufacturer errored:{e}")
-            await ExtractionError.insert_one(
-                ExtractionError(
-                    created_at=polled_at,
-                    error=str(e),
-                    field="is_contract_manufacturer",
-                    mfg_etld1=manufacturer.etld1,
-                )
-            )
-            return
-    """
-
-    if not manufacturer.addresses:
-        try:
-            logger.info(f"Extracting addresses for {manufacturer.etld1}")
-
-            manufacturer.addresses = await extract_address_from_n_chunks(
-                polled_at, manufacturer.etld1, mfg_txt
-            )
-            await update_manufacturer(
-                updated_at=polled_at,
-                manufacturer=manufacturer,
-            )
-        except Exception as e:
-            logger.error(f"{manufacturer.etld1}.addresses errored:{e}")
-            await ExtractionError.insert_one(
-                ExtractionError(
-                    created_at=polled_at,
-                    error=str(e),
-                    field="addresses",
-                    mfg_etld1=manufacturer.etld1,
-                )
-            )
-
-    is_manufacturer_gt = await get_binary_ground_truth(
-        manufacturer,
-        manufacturer.is_manufacturer.stats.prompt_version_id,
-        BinaryClassificationTypeEnum.is_manufacturer,
-    )
-
-    final_decision: HumanBinaryDecision | BinaryClassificationResult = (
-        is_manufacturer_gt.final_decision
-        if is_manufacturer_gt and is_manufacturer_gt.final_decision
-        else manufacturer.is_manufacturer
-    )
-
-    if not final_decision.answer:
-        logger.info(
-            f"Skipping further extraction for {manufacturer.etld1} as it is not a manufacturer."
-        )
-        return
-
-    if not manufacturer.products or manufacturer.products.results is None:
-        try:
-            logger.info(f"Extracting products for {manufacturer.etld1}")
-            manufacturer.products = await extract_products(
-                polled_at, manufacturer.etld1, mfg_txt
-            )
-            await update_manufacturer(
-                updated_at=polled_at,
-                manufacturer=manufacturer,
-            )
-
-        except Exception as e:
-            logger.error(f"{manufacturer.name}.products errored:{e}")
-            await ExtractionError.insert_one(
-                ExtractionError(
-                    created_at=polled_at,
-                    error=str(e),
-                    field="products",
-                    mfg_etld1=manufacturer.etld1,
-                )
-            )
-
-    if not manufacturer.certificates or manufacturer.certificates.results is None:
-        try:
-            logger.info(f"Extracting certificates for {manufacturer.etld1}")
-            manufacturer.certificates = await extract_certificates(
-                polled_at, manufacturer.etld1, mfg_txt
-            )
-            await update_manufacturer(
-                updated_at=polled_at,
-                manufacturer=manufacturer,
-            )
-
-        except Exception as e:
-            logger.error(f"{manufacturer.name}.certificates errored:{e}")
-            await ExtractionError.insert_one(
-                ExtractionError(
-                    created_at=polled_at,
-                    error=str(e),
-                    field="certificates",
-                    mfg_etld1=manufacturer.etld1,
-                )
-            )
-
-    if not manufacturer.industries or manufacturer.industries.results is None:
-        try:
-            logger.info(f"Extracting industries for {manufacturer.etld1}")
-            manufacturer.industries = await extract_industries(
-                polled_at, manufacturer.etld1, mfg_txt
-            )
-            await update_manufacturer(
-                updated_at=polled_at,
-                manufacturer=manufacturer,
-            )
-
-        except Exception as e:
-            logger.error(f"{manufacturer.name}.industries errored:{e}")
-            await ExtractionError.insert_one(
-                ExtractionError(
-                    created_at=polled_at,
-                    error=str(e),
-                    field="industries",
-                    mfg_etld1=manufacturer.etld1,
-                )
-            )
-
-    if not manufacturer.material_caps or manufacturer.material_caps.results is None:
-        try:
-            logger.info(f"Extracting materials for {manufacturer.etld1}")
-            manufacturer.material_caps = await extract_materials(
-                polled_at, manufacturer.etld1, mfg_txt
-            )
-            await update_manufacturer(
-                updated_at=polled_at,
-                manufacturer=manufacturer,
-            )
-
-        except Exception as e:
-            logger.error(f"{manufacturer.name}.material_caps errored:{e}")
-            await ExtractionError.insert_one(
-                ExtractionError(
-                    created_at=polled_at,
-                    error=str(e),
-                    field="material_caps",
-                    mfg_etld1=manufacturer.etld1,
-                )
-            )
-
-    if not manufacturer.process_caps or manufacturer.process_caps.results is None:
-        try:
-            logger.info(f"Extracting processes for {manufacturer.etld1}")
-            manufacturer.process_caps = await extract_processes(
-                polled_at, manufacturer.etld1, mfg_txt
-            )
-            await update_manufacturer(
-                updated_at=polled_at,
-                manufacturer=manufacturer,
-            )
-
-        except Exception as e:
-            logger.error(f"{manufacturer.name}.process_caps errored:{e}")
-            await ExtractionError.insert_one(
-                ExtractionError(
-                    created_at=polled_at,
-                    error=str(e),
-                    field="process_caps",
-                    mfg_etld1=manufacturer.etld1,
-                )
-            )
-
-
 async def extract_and_cleanup(
+    mfg_orchestrator: ManufacturerExtractionOrchestrator,
     item: ToExtractItem,
     polled_at: datetime,
     scraped_text_file: ScrapedTextFile,
@@ -578,7 +283,12 @@ async def extract_and_cleanup(
     """Extract manufacturer data and handle cleanup tasks."""
     start_time = get_current_time()
     try:
-        await process_manufacturer(polled_at, scraped_text_file.text, manufacturer)
+        await mfg_orchestrator.process_manufacturer(
+            timestamp=polled_at,
+            mfg=manufacturer,
+            scraped_text_file=scraped_text_file,
+            eager=True,  # we want to process as quickly as possible since this is a queue worker
+        )
         logger.info(f"Manufacturer processed at {polled_at}:\n {manufacturer}\n\n")
 
         logger.info(
@@ -590,7 +300,7 @@ async def extract_and_cleanup(
             assert manufacturer.is_manufacturer is not None
             is_manufacturer_gt = await get_binary_ground_truth(
                 manufacturer,
-                manufacturer.is_manufacturer.stats.prompt_version_id,
+                manufacturer.is_manufacturer.metadata.prompt_version_id,
                 BinaryClassificationTypeEnum.is_manufacturer,
             )
             final_decision: HumanBinaryDecision | BinaryClassificationResult = (

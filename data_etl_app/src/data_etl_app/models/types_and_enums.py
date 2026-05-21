@@ -1,4 +1,15 @@
 from enum import Enum
+from typing import TypeVar
+
+from core.models.db.gpt_batch_request import GPTBatchRequest
+from data_etl_app.models.pipeline_nodes.llm_extraction_node import (
+    LLMExtractionNode,
+)
+from open_ai_key_app.models.field_types import GPTBatchRequestCustomID
+
+PipelineContext = dict[
+    type[LLMExtractionNode], dict[GPTBatchRequestCustomID, GPTBatchRequest]
+]
 
 
 class KeywordTypeEnum(str, Enum):
@@ -23,11 +34,22 @@ class BinaryClassificationTypeEnum(str, Enum):
     is_contract_manufacturer = "is_contract_manufacturer"
 
 
-GenericFieldTypeEnum = (
+LLMExtractedFieldTypeEnum = (
     KeywordTypeEnum
     | ConceptTypeEnum
     | BasicFieldTypeEnum
     | BinaryClassificationTypeEnum
+)
+
+SingleStageFieldTypeEnum = BasicFieldTypeEnum | BinaryClassificationTypeEnum
+
+# Define a type variable that must be a LLMExtractedFieldTypeEnum
+LLMExtractedFieldTypeVar = TypeVar(
+    "LLMExtractedFieldTypeVar", bound=LLMExtractedFieldTypeEnum
+)
+
+SingleStageFieldTypeVar = TypeVar(
+    "SingleStageFieldTypeVar", bound=SingleStageFieldTypeEnum
 )
 
 

@@ -1,0 +1,102 @@
+{
+  "$jsonSchema": {
+    "bsonType": "object",
+    "required": [
+      "author_email",
+      "mfg_etld1",
+      "created_at",
+      "updated_at",
+      "addresses",
+      "products",
+      "certificates",
+      "industries",
+      "process_caps",
+      "material_caps"
+    ],
+    "additionalProperties": false,
+    "properties": {
+      "_id": { "bsonType": "objectId" },
+      "author_email": { "bsonType": "string" },
+      "mfg_etld1": { "bsonType": "string" },
+      "created_at": { "bsonType": "date" },
+      "updated_at": { "bsonType": "date" },
+      "name": { "bsonType": ["string", "null"] },
+      "founded_in": { "bsonType": ["int", "null"] },
+      "email_addresses": {
+        "bsonType": ["array", "null"],
+        "items": { "bsonType": "string" }
+      },
+      "num_employees": { "bsonType": ["int", "null"] },
+      "business_statuses": {
+        "bsonType": ["array", "null"],
+        "items": { "bsonType": "string" }
+      },
+      "primary_naics": { "bsonType": ["string", "null"] },
+      "secondary_naics": {
+        "bsonType": ["array", "null"],
+        "items": { "bsonType": "string" }
+      },
+      "addresses": {
+        "bsonType": "array",
+        "items": {
+          "bsonType": "object",
+          "required": ["city", "state"],
+          "additionalProperties": false,
+          "properties": {
+            "city": { "bsonType": "string" },
+            "state": { "bsonType": "string" },
+            "country": { "bsonType": "string" },
+            "name": { "bsonType": ["string", "null"] },
+            "address_lines": {
+              "bsonType": ["array", "null"],
+              "items": { "bsonType": "string" }
+            },
+            "county": { "bsonType": ["string", "null"] },
+            "postal_code": { "bsonType": ["string", "null"] },
+            "latitude": { "bsonType": ["double", "null"] },
+            "longitude": { "bsonType": ["double", "null"] },
+            "place_id": { "bsonType": ["string", "null"] },
+            "phone_numbers": {
+              "bsonType": ["array", "null"],
+              "items": { "bsonType": "string" }
+            },
+            "fax_numbers": {
+              "bsonType": ["array", "null"],
+              "items": { "bsonType": "string" }
+            }
+          }
+        }
+      },
+      "business_desc": {
+        "bsonType": ["object", "null"],
+        "additionalProperties": false,
+        "properties": {
+          "name": { "bsonType": ["string", "null"] },
+          "description": { "bsonType": ["string", "null"] }
+        }
+      },
+      "products": {
+        "bsonType": "array",
+        "uniqueItems": true,
+        "items": { "bsonType": "string" }
+      },
+      "certificates": {
+        "bsonType": "array",
+        "items": { "bsonType": "string" }
+      },
+      "industries": {
+        "bsonType": "array",
+        "items": { "bsonType": "string" }
+      },
+      "process_caps": {
+        "bsonType": "array",
+        "items": { "bsonType": "string" }
+      },
+      "material_caps": {
+        "bsonType": "array",
+        "items": { "bsonType": "string" }
+      },
+      "notes": { "bsonType": ["string", "null"] }
+    }
+  }
+}

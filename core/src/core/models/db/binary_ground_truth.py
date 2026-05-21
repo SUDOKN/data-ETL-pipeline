@@ -2,14 +2,17 @@ from beanie import Document
 from datetime import datetime
 from pydantic import BaseModel, Field, computed_field
 
-from core.models.field_types import MfgETLDType
-from core.utils.time_util import get_current_time
-
-from core.models.binary_classification_result import BinaryClassificationResult
+from core.models.field_types import MfgETLDType, S3FileVersionIDType
+from core.models.binary_classification_result import (
+    BinaryClassificationStats,
+)
+from core.models.single_stage_extraction_results import SingleStageMetadata
 from data_etl_app.models.types_and_enums import (
     GroundTruthSource,
     BinaryClassificationTypeEnum,
 )
+
+from core.utils.time_util import get_current_time
 
 
 class HumanBinaryDecision(BaseModel):
@@ -46,24 +49,25 @@ class HumanDecisionLog(BaseModel):
 class BinaryGroundTruth(Document):
     created_at: datetime = Field(default_factory=lambda: get_current_time())
     updated_at: datetime = Field(default_factory=lambda: get_current_time())
+
     mfg_etld1: MfgETLDType
-
-    # knowledge base identifiers
-    scraped_text_file_version_id: str
-
     classification_type: BinaryClassificationTypeEnum
+
+    scraped_text_file_version_id: S3FileVersionIDType
+    chunk_text: str
 
     # following is a copy of what was extracted at the time of creating this ground truth
     # stored originally in the linked manufacturer
-    llm_decision: BinaryClassificationResult
+    metadata: SingleStageMetadata
+    extraction_stats: BinaryClassificationStats
 
-    human_decision_logs: list[HumanDecisionLog]
+    corrections: list[HumanDecisionLog]
 
     @computed_field
     @property
     def final_decision(self) -> HumanBinaryDecision | None:
-        if self.human_decision_logs:
-            for log in reversed(self.human_decision_logs):
+        if self.corrections:
+            for log in reversed(self.corrections):
                 if log.human_decision.source == GroundTruthSource.API_SURVEY:
                     return log.human_decision
         return None
@@ -79,6 +83,7 @@ db.binary_ground_truths.createIndex(
   {
     mfg_etld1: 1,
     scraped_text_file_version_id: 1,
+    "metadata.prompt_version_id": 1,
     classification_type: 1
   },
   { 
@@ -86,4 +91,5 @@ db.binary_ground_truths.createIndex(
     unique: true 
   }
 )
+
 """

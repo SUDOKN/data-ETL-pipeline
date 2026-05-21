@@ -93,3 +93,36 @@ def parse_individual_batch_req_response_raw(
             f"Failed to parse response for custom_id {raw_result.get('custom_id')}: {e}"
         )
         raise
+
+
+def build_response_blob_from_chat_completion(
+    response,  # ChatCompletion object from openai
+    custom_id: str,
+    batch_id: str,
+) -> GPTBatchResponseBlob:
+    return GPTBatchResponseBlob(
+        batch_id=batch_id,
+        request_custom_id=custom_id,
+        response=GPTBatchResponseBody(
+            status_code=200,
+            body=GPTResponseBlobBody(
+                created=datetime.fromtimestamp(response.created),
+                choices=[
+                    GPTBatchResponseBlobChoice(
+                        index=c.index,
+                        message=GPTBatchResponseBlobChoiceMessage(
+                            role=c.message.role,
+                            content=c.message.content,
+                        ),
+                    )
+                    for c in response.choices
+                ],
+                usage=GPTBatchResponseBlobUsage(
+                    prompt_tokens=response.usage.prompt_tokens,
+                    completion_tokens=response.usage.completion_tokens,
+                    total_tokens=response.usage.total_tokens,
+                ),
+            ),
+        ),
+        error=None,
+    )

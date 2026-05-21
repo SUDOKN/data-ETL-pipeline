@@ -322,7 +322,7 @@ async def collect_incomplete_batch_requests_for_deferred_mfg(
         for (
             chunk_key,
             bundle,
-        ) in deferred_mfg.certificates.chunk_request_bundle_map.items():
+        ) in deferred_mfg.certificates.request_map.items():
             custom_ids.add(bundle.llm_search_request_id)
         if deferred_mfg.certificates.llm_mapping_request_id:
             custom_ids.add(deferred_mfg.certificates.llm_mapping_request_id)
@@ -334,7 +334,7 @@ async def collect_incomplete_batch_requests_for_deferred_mfg(
         for (
             chunk_key,
             bundle,
-        ) in deferred_mfg.industries.chunk_request_bundle_map.items():
+        ) in deferred_mfg.industries.request_map.items():
             custom_ids.add(bundle.llm_search_request_id)
         if deferred_mfg.industries.llm_mapping_request_id:
             custom_ids.add(deferred_mfg.industries.llm_mapping_request_id)
@@ -346,7 +346,7 @@ async def collect_incomplete_batch_requests_for_deferred_mfg(
         for (
             chunk_key,
             bundle,
-        ) in deferred_mfg.process_caps.chunk_request_bundle_map.items():
+        ) in deferred_mfg.process_caps.request_map.items():
             custom_ids.add(bundle.llm_search_request_id)
         if deferred_mfg.process_caps.llm_mapping_request_id:
             custom_ids.add(deferred_mfg.process_caps.llm_mapping_request_id)
@@ -358,7 +358,7 @@ async def collect_incomplete_batch_requests_for_deferred_mfg(
         for (
             chunk_key,
             bundle,
-        ) in deferred_mfg.material_caps.chunk_request_bundle_map.items():
+        ) in deferred_mfg.material_caps.request_map.items():
             custom_ids.add(bundle.llm_search_request_id)
         if deferred_mfg.material_caps.llm_mapping_request_id:
             custom_ids.add(deferred_mfg.material_caps.llm_mapping_request_id)

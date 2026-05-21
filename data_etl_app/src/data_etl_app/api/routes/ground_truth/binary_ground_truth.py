@@ -1,6 +1,12 @@
 import json
 import random
 import logging
+from core.utils.aws.s3.scraped_text_util import (
+    download_scraped_text_from_s3_by_mfg_etld1,
+)
+from data_etl_app.models.pipeline_nodes.classification.binary_reconcile_node import (
+    BinaryClassificationResult,
+)
 from fastapi import APIRouter, HTTPException, Request, Query, Depends
 from fastapi.responses import JSONResponse
 
@@ -43,7 +49,7 @@ logger = logging.getLogger(__name__)
 
 
 @router.get(
-    "/ground_truth/binary-classification/user-form-template",
+    "/ground_truth/binary-classification/template",
     response_class=JSONResponse,
 )
 async def fetch_binary_classification_user_form_template(
@@ -81,16 +87,23 @@ async def fetch_binary_classification_user_form_template(
             ),
         )
 
-    llm_decision = getattr(manufacturer, classification_type.value, None)
-    if llm_decision is None:
+    binary_classification_result = getattr(
+        manufacturer, classification_type.value, None
+    )
+    if binary_classification_result is None:
         raise HTTPException(
             status_code=404,
             detail=f"No LLM decision found for classification type: {classification_type.value} for manufacturer with etld1: {mfg_etld1}.",
         )
+    elif type(binary_classification_result) is not BinaryClassificationResult:
+        raise HTTPException(
+            status_code=500,
+            detail=f"Unexpected data type for LLM decision: {type(binary_classification_result)}. Expected BinaryClassificationResult.",
+        )
 
     existing_binary_gt = await get_binary_ground_truth(
         linked_manufacturer=manufacturer,
-        prompt_version_id=llm_decision.stats.prompt_version_id,
+        prompt_version_id=binary_classification_result.metadata.prompt_version_id,
         classification_type=classification_type,
     )
     if existing_binary_gt:
@@ -109,12 +122,24 @@ async def fetch_binary_classification_user_form_template(
         f"No existing binary ground truth found for mfg_etld1: {mfg_etld1}, classification_type: {classification_type}. Creating new template."
     )
     # if not, then we need to create a new binary ground truth
+
+    first_chunk_bounds, first_chunk_stats = list(
+        binary_classification_result.chunk_stats.items()
+    )[0]
+    start, end = first_chunk_bounds.split(":")
+    start, end = int(start), int(end)
+    scraped_text, _version_id = await download_scraped_text_from_s3_by_mfg_etld1(
+        etld1=manufacturer.etld1,
+        version_id=manufacturer.scraped_text_file_version_id,
+    )
     binary_ground_truth = BinaryGroundTruth(
         mfg_etld1=manufacturer.etld1,
-        scraped_text_file_version_id=manufacturer.scraped_text_file_version_id,
         classification_type=classification_type,
-        llm_decision=llm_decision,
-        human_decision_logs=[],  # empty logs initially
+        scraped_text_file_version_id=manufacturer.scraped_text_file_version_id,
+        chunk_text=scraped_text[start:end],
+        metadata=binary_classification_result.metadata,
+        extraction_stats=first_chunk_stats,
+        corrections=[],  # empty logs initially
     )
 
     response = binary_ground_truth.model_dump()
@@ -124,143 +149,6 @@ async def fetch_binary_classification_user_form_template(
         answer=None,  # initially None, user will fill this
         reason=None,  # initially None, user will fill this
         source=GroundTruthSource.USER_FORM,
-    )
-    response.pop("id", None)  # remove id from response
-
-    return response
-
-
-@router.get("/ground_truth/binary-classification/template", response_class=JSONResponse)
-async def fetch_binary_classification_template(
-    author_email: str = Query(
-        description=(
-            f"Author email query param is required. This is used to generate customized template for you. "
-            f"To add your email as query param, simply append the URL with `?author_email=your_email@example.com`. "
-            f"If you are using postman, you can use the `Params` tab to add a query param."
-        ),
-    ),
-    mfg_url: str | None = Query(
-        default=None, description="Manufacturer URL (optional, randomized otherwise)"
-    ),
-    classification_type: BinaryClassificationTypeEnum = Query(
-        default=random.choice(list(BinaryClassificationTypeEnum)),
-        description=f"Any one of {[concept.value for concept in BinaryClassificationTypeEnum]}",
-    ),
-):
-    current_timestamp = get_current_time()
-
-    user = await find_by_email(author_email)
-    if not user:
-        raise HTTPException(
-            status_code=404,
-            detail=(
-                f"Sorry, no registered user found with email: {author_email}. "
-                f"Please register on `sudokn.com` to fetch binary classification ground truth template."
-            ),
-        )
-
-    if not mfg_url:  # then find a random manufacturer and set mfg_url
-        mfg_url = await find_random_manufacturer_url()
-
-        if not mfg_url:  # then raise HTTPException
-            raise HTTPException(
-                status_code=404,
-                detail="Something went wrong finding a random mfg_url. Please provide a valid mfg_url instead.",
-            )
-    else:
-        try:
-            _, mfg_url = get_normalized_url(
-                get_complete_url_with_compatible_protocol(mfg_url)
-            )
-        except ValueError as e:
-            raise HTTPException(
-                status_code=400,
-                detail=f"Invalid URL: '{mfg_url}' has no valid hostname. Error: {str(e)}",
-            )
-
-    manufacturer = await find_manufacturer_by_url(mfg_url)
-    if not manufacturer or not manufacturer.is_manufacturer:
-        # this will only be the case with user provided mfg_url
-        # or when for some reason the manufacturer was not extracted correctly
-        # push this new potential manufacturer to scrape queue and ask user to try again in a few minutes
-        await push_item_to_priority_scrape_queue(
-            ToScrapeItem(
-                accessible_normalized_url=mfg_url,
-                batch=Batch(
-                    title="Ground Truth API: Binary Classification",
-                    timestamp=current_timestamp,  # ISO format for timestamp
-                ),
-            ),
-        )
-        raise HTTPException(
-            status_code=404,
-            detail=f"Manufacturer not found for mfg_url:`{mfg_url}`. Pushed to scrape queue. Please try again in a few minutes.",
-        )
-
-    if (
-        manufacturer.is_manufacturer.answer is False
-        and classification_type != BinaryClassificationTypeEnum.is_manufacturer
-    ):
-        raise HTTPException(
-            status_code=400,
-            detail=(
-                f"The provided URL:`{mfg_url}` does not belong to a valid manufacturer, "
-                f"Following is the reason. {manufacturer.is_manufacturer.reason} "
-                f"Please specify `is_manufacturer` classification type to get the "
-                f"binary ground truth template for this manufacturer."
-            ),
-        )
-
-    llm_decision = getattr(manufacturer, classification_type.value, None)
-    if llm_decision is None:
-        # if the LLM decision is not available, we need to push this manufacturer to the scrape queue
-        await push_item_to_priority_scrape_queue(
-            ToScrapeItem(
-                accessible_normalized_url=mfg_url,
-                batch=Batch(
-                    title=f"Ground Truth API: LLM Decision for `{classification_type.value}` missing",
-                    timestamp=current_timestamp,  # ISO format for timestamp
-                ),
-            ),
-        )
-        raise HTTPException(
-            status_code=404,
-            detail=f"No LLM decision found for classification type: {classification_type.value} for manufacturer: {mfg_url}. Pushed to scrape queue for re-extraction. Please try again in a few minutes.",
-        )
-
-    # check if binary ground truth already exists for this mfg_url and classification_type
-    existing_binary_gt = await get_binary_ground_truth(
-        linked_manufacturer=manufacturer,
-        prompt_version_id=llm_decision.stats.prompt_version_id,
-        classification_type=classification_type,
-    )
-    if existing_binary_gt:
-        response = existing_binary_gt.model_dump()
-        response["new_human_decision"] = HumanBinaryDecision(
-            author_email=author_email,
-            answer=None,  # initially None, user will fill this
-            reason=None,  # initially None, user will fill this
-            source=GroundTruthSource.API_SURVEY,
-        )
-        response.pop("id", None)  # remove id from response
-        return response
-
-    # if not, then we need to create a new binary ground truth
-    binary_ground_truth = BinaryGroundTruth(
-        mfg_etld1=manufacturer.etld1,
-        scraped_text_file_version_id=manufacturer.scraped_text_file_version_id,
-        classification_type=classification_type,
-        llm_decision=llm_decision,
-        human_decision_logs=[],  # empty logs initially
-    )
-
-    response = binary_ground_truth.model_dump()
-
-    response["new_human_decision"] = HumanBinaryDecision(
-        author_email=author_email,
-        answer=None,  # initially None, user will fill this
-        reason=None,  # initially None, user will fill this
-        source=GroundTruthSource.API_SURVEY,
     )
     response.pop("id", None)  # remove id from response
 
@@ -335,11 +223,12 @@ async def collect_binary_ground_truth(
 
     existing_binary_gt = await get_binary_ground_truth(
         linked_manufacturer=manufacturer,
-        prompt_version_id=binary_gt.llm_decision.stats.prompt_version_id,
+        prompt_version_id=binary_gt.llm_decision.chunk_stats.prompt_version_id,
         classification_type=binary_gt.classification_type,
     )
     if existing_binary_gt:
-        if not existing_binary_gt.human_decision_logs:
+        if not existing_binary_gt.corrections:
+            # because a binary gt is never saved without at least one human decision, this is an unexpected state
             raise HTTPException(
                 status_code=400,
                 detail=(
@@ -350,7 +239,7 @@ async def collect_binary_ground_truth(
             )
 
         # in case two people fetched the same binary ground truth, one submitted first
-        if existing_binary_gt.human_decision_logs != binary_gt.human_decision_logs:
+        if existing_binary_gt.corrections != binary_gt.corrections:
             raise HTTPException(
                 status_code=400,
                 detail=(

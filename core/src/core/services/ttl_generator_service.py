@@ -2,7 +2,7 @@ from typing import Optional
 from rdflib import Graph, Namespace, Literal, URIRef
 from rdflib.namespace import RDF, RDFS, XSD
 
-from core.models.db.manufacturer import Address, BusinessDescriptionResult
+from core.models.db.manufacturer import Address, BusinessDescription
 from core.utils.address_util import dedupe_addresses
 from core.utils.ttl_generator_util import (
     get_mfg_instance_uri_and_stripped_etld1,
@@ -399,7 +399,7 @@ def add_address_triples(
 
 def add_business_description_triples(
     mfg_inst_uri: URIRef,
-    business_desc: Optional[BusinessDescriptionResult],
+    business_desc: Optional[BusinessDescription],
     mfg_etld1_stripped: str,
     g: Graph,
     strict: bool,

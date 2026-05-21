@@ -2,7 +2,7 @@ from typing import Optional
 
 
 # --- GPT Model Settings ---
-class GPTModel:
+class LLM_Model:
     def __init__(
         self,
         model_name: str,
@@ -36,10 +36,18 @@ class ModelParameters:
 
 DefaultModelParameters = ModelParameters()
 
-GPT_4o_mini = GPTModel(
+GPT_4o_mini = LLM_Model(
     model_name="gpt-4o-mini",
     rate_limit_window=60,
     max_context_tokens=128000,
     token_limit_per_minute=200000,
     safe_completion_tokens=7500,
+)
+
+No_model = LLM_Model(
+    model_name="no_model",
+    rate_limit_window=0,
+    max_context_tokens=0,
+    token_limit_per_minute=0,
+    safe_completion_tokens=0,
 )

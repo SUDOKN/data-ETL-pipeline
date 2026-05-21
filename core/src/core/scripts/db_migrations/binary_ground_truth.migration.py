@@ -56,7 +56,9 @@ async def iterate():
             )
             continue
         elif "stats" not in doc.get("llm_decision", {}):
-            doc["llm_decision"]["stats"] = original_llm_decision.stats.model_dump()
+            doc["llm_decision"][
+                "stats"
+            ] = original_llm_decision.chunk_stats.model_dump()
             updated = True
 
         for log in logs:

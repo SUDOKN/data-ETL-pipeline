@@ -10,9 +10,11 @@ from core.utils.time_util import get_current_time
 class GPTBatchRequest(Document):
     created_at: datetime
     updated_at: datetime
+
     num_batches_paired_with: int
-    request: GPTBatchRequestBlob
     batch_id: str | None  # known after batch is uploaded
+
+    request: GPTBatchRequestBlob
     response_blob: GPTBatchResponseBlob | None = (
         None  # known after batch response is received,
     )

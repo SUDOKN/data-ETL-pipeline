@@ -25,7 +25,7 @@ load_data_etl_env()
 load_open_ai_app_env()
 
 from core.models.db.gpt_batch import GPTBatch
-from core.services.gpt_batch_request_service import (
+from core.services.gpt_batch_request_writes import (
     pair_batch_request_custom_ids_with_batch,
 )
 from core.utils.mongo_client import init_db

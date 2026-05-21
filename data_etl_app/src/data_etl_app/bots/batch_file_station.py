@@ -23,9 +23,11 @@ load_open_ai_app_env()
 
 from core.models.db.api_key_bundle import APIKeyBundle
 from core.models.db.gpt_batch import GPTBatch, GPTBatchStatus
-from core.services.gpt_batch_request_service import (
-    bulk_update_gpt_batch_requests,
+from core.services.gpt_batch_request_queries import (
     get_custom_ids_for_batch,
+)
+from core.services.gpt_batch_request_writes import (
+    bulk_update_gpt_batch_requests,
     pair_batch_request_custom_ids_with_batch,
     unpair_all_batch_requests_from_batch,
 )
@@ -49,7 +51,6 @@ from data_etl_app.services.batch_file_satellite import (
 from data_etl_app.services.manufacturer_extraction_orchestrator import (
     ManufacturerExtractionOrchestrator,
 )
-
 
 logger = logging.getLogger(__name__)
 

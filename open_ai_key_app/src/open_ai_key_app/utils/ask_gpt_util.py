@@ -5,28 +5,71 @@ import logging
 import httpx
 import time
 import uuid
+from typing import Optional
 
-from open_ai_key_app.utils.token_util import num_tokens_from_string
-from open_ai_key_app.models.gpt_model import GPTModel, GPT_4o_mini, ModelParameters
+from core.models.gpt_batch_response_blob import GPTBatchResponseBlob
 from core.models.gpt_batch_request_blob import GPTBatchRequestBlob
+from open_ai_key_app.models.gpt_model import LLM_Model, ModelParameters
+
 from open_ai_key_app.services.openai_keypool_service import keypool
+from data_etl_app.utils.gpt_batch_request_util import (
+    build_response_blob_from_chat_completion,
+)
+from open_ai_key_app.utils.token_util import num_tokens_from_string
 
 logger = logging.getLogger(__name__)
 
 
-# --- ask_gpt_async Function ---
-# should ideally acquire lock before calling this function
-async def ask_gpt_async(
+async def ask_gpt(
     context: str,
     prompt: str,
-    gpt_model: GPTModel,
+    gpt_model: LLM_Model,
+    model_params: ModelParameters,
+) -> Optional[str]:
+    response = await fetch_gpt_raw_response(
+        context=context,
+        prompt=prompt,
+        gpt_model=gpt_model,
+        model_params=model_params,
+    )
+    return response.choices[0].message.content
+
+
+async def fetch_gpt_batch_response(
+    context: str,
+    prompt: str,
+    custom_id: str,
+    batch_id: str,
+    gpt_model: LLM_Model,
+    model_params: ModelParameters,
+) -> GPTBatchResponseBlob:
+    response = await fetch_gpt_raw_response(
+        context=context,
+        prompt=prompt,
+        gpt_model=gpt_model,
+        model_params=model_params,
+    )
+
+    response_blob = build_response_blob_from_chat_completion(
+        response=response,
+        custom_id=custom_id,
+        batch_id=batch_id,
+    )
+
+    return response_blob
+
+
+async def fetch_gpt_raw_response(
+    context: str,
+    prompt: str,
+    gpt_model: LLM_Model,
     model_params: ModelParameters,
 ):
     # Generate unique request ID for tracking
     request_id = str(uuid.uuid4())[:8]
     start_time = time.time()
 
-    logger.info(f"[Request {request_id}] Starting ask_gpt_async request")
+    logger.info(f"[Request {request_id}] Starting fetch_gpt_raw_response request")
 
     tokens_prompt = num_tokens_from_string(prompt)
     tokens_context = num_tokens_from_string(context)
@@ -88,7 +131,7 @@ async def ask_gpt_async(
             f"Received {len(response.choices)} choices from key '{key_name}'."
         )
         keypool.record_key_usage(api_key, tokens_needed)
-        return response.choices[0].message.content
+        return response
     except Exception as e:
         # some errors look like
         # Error code: 429 - {'error': {'message': 'Rate limit reached for gpt-4o-mini in organization org-M5dkpWKwz4bw95SV04FgKdYV on tokens per min (TPM): Limit 200000, Used 130491, Requested 75418. Please try again in 1.772s. Visit https://platform.openai.com/account/rate-limits to learn more.', 'type': 'tokens', 'param': None, 'code': 'rate_limit_exceeded'}}

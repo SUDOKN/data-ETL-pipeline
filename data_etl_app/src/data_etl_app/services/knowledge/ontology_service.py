@@ -1,4 +1,5 @@
 import asyncio
+from data_etl_app.models.types_and_enums import ConceptTypeEnum
 import rdflib
 import logging
 from typing import Dict, List, Optional
@@ -365,6 +366,13 @@ class OntologyService:
         # Type assertion safe after _ensure_initialized check
         assert self.ontology is not None
         return self.ontology.s3_version_id, self._naics_code_map
+
+    @property
+    def version_id(self) -> OntologyVersionIDType:
+        self._ensure_initialized()
+        # Type assertion safe after _ensure_initialized check
+        assert self.ontology is not None
+        return self.ontology.s3_version_id
 
     def get_service_info(self) -> dict:
         """Return service information for debugging and health checks."""

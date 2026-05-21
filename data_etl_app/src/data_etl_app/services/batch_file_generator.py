@@ -11,7 +11,7 @@ from core.models.db.deferred_manufacturer import DeferredManufacturer
 from core.services.manufacturer_service import (
     find_manufacturer_by_etld1,
 )
-from core.services.gpt_batch_request_service import (
+from core.services.gpt_batch_request_queries import (
     find_gpt_batch_requests_by_custom_ids,
 )
 from core.services.deferred_manufacturer_service import (

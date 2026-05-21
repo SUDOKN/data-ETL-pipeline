@@ -28,7 +28,7 @@ from data_etl_app.dependencies.aws_clients import (
 )
 
 from data_etl_app.models.ontology import Ontology
-from core.models.db.manufacturer import Address, BusinessDescriptionResult
+from core.models.db.manufacturer import Address, BusinessDescription
 from core.services.ttl_generator_service import generate_triples
 from core.models.db.manufacturer_user_form import (
     ManufacturerUserForm,
@@ -86,7 +86,7 @@ async def main():
                         fax_numbers=["+1-555-5678"],
                     )
                 ],
-                business_desc=BusinessDescriptionResult(
+                business_desc=BusinessDescription(
                     name="Acme Manufacturing",
                     description="Leading manufacturer of industrial components.",
                 ),
@@ -122,7 +122,7 @@ async def main():
                         fax_numbers=["+1-555-4321"],
                     )
                 ],
-                business_desc=BusinessDescriptionResult(
+                business_desc=BusinessDescription(
                     name="Globex Corporation",
                     description="Innovative solutions in electronics manufacturing.",
                 ),
