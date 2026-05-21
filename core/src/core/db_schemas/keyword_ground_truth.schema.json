@@ -4,17 +4,16 @@
     "required": [
       "created_at",
       "updated_at",
-      "scraped_text_file_version_id",
-      "extract_prompt_version_id",
       "mfg_etld1",
+      "scraped_text_file_version_id",
       "keyword_type",
       "chunk_bounds",
-      "chunk_text",
       "chunk_no",
       "last_chunk_no",
-      "chunk_extracted_at",
+      "chunk_text",
+      "metadata",
       "chunk_search_stats",
-      "correction_logs"
+      "corrections"
     ],
     "additionalProperties": false,
     "properties": {
@@ -27,13 +26,10 @@
       "updated_at": {
         "bsonType": "date"
       },
-      "scraped_text_file_version_id": {
-        "bsonType": "string"
-      },
-      "extract_prompt_version_id": {
-        "bsonType": "string"
-      },
       "mfg_etld1": {
+        "bsonType": "string"
+      },
+      "scraped_text_file_version_id": {
         "bsonType": "string"
       },
       "keyword_type": {
@@ -42,69 +38,80 @@
       "chunk_bounds": {
         "bsonType": "string"
       },
-      "chunk_text": {
-        "bsonType": "string"
-      },
       "chunk_no": {
         "bsonType": "int"
       },
       "last_chunk_no": {
         "bsonType": "int"
       },
-      "chunk_extracted_at": {
-        "bsonType": "date"
+      "chunk_text": {
+        "bsonType": "string"
+      },
+      "metadata": {
+        "bsonType": "object",
+        "required": ["model", "created_at", "search_prompt_version_id"],
+        "additionalProperties": false,
+        "properties": {
+          "model": { "bsonType": "string" },
+          "created_at": { "bsonType": "date" },
+          "search_prompt_version_id": { "bsonType": "string" }
+        }
       },
       "chunk_search_stats": {
         "bsonType": "object",
-        "required": ["results"],
+        "required": ["results", "llm_search"],
         "additionalProperties": false,
         "properties": {
           "results": {
             "bsonType": "array",
             "uniqueItems": true,
-            "items": {
-              "bsonType": "string"
-            }
+            "items": { "bsonType": "string" }
+          },
+          "llm_search": {
+            "bsonType": "array",
+            "uniqueItems": true,
+            "items": { "bsonType": "string" }
           }
         }
       },
-      "correction_logs": {
+      "corrections": {
         "bsonType": "array",
         "items": {
           "bsonType": "object",
-          "required": ["created_at", "result_correction"],
+          "required": ["created_at", "human_correction"],
+          "additionalProperties": false,
           "properties": {
             "created_at": {
               "bsonType": "date"
             },
-            "result_correction": {
+            "human_correction": {
               "bsonType": "object",
-              "required": ["author_email", "add", "remove"],
+              "required": ["author_email", "source", "llm_search"],
+              "additionalProperties": false,
               "properties": {
-                "author_email": {
-                  "bsonType": "string"
-                },
+                "author_email": { "bsonType": "string" },
                 "source": {
                   "bsonType": "string",
                   "enum": ["user_form", "api_survey"]
                 },
-                "add": {
-                  "bsonType": "array",
-                  "items": {
-                    "bsonType": "string"
-                  }
-                },
-                "remove": {
-                  "bsonType": "array",
-                  "items": {
-                    "bsonType": "string"
+                "llm_search": {
+                  "bsonType": "object",
+                  "required": ["add", "remove"],
+                  "additionalProperties": false,
+                  "properties": {
+                    "add": {
+                      "bsonType": "array",
+                      "items": { "bsonType": "string" }
+                    },
+                    "remove": {
+                      "bsonType": "array",
+                      "items": { "bsonType": "string" }
+                    }
                   }
                 }
-              },
-              "additionalProperties": false
+              }
             }
-          },
-          "additionalProperties": false
+          }
         }
       }
     }

@@ -38,7 +38,7 @@ async def get_binary_ground_truth(
         BinaryGroundTruth.mfg_etld1 == linked_manufacturer.etld1,
         BinaryGroundTruth.scraped_text_file_version_id
         == linked_manufacturer.scraped_text_file_version_id,
-        BinaryGroundTruth.llm_decision.stats.prompt_version_id  # CAUTION: does not throw an error if stats doesn't exist
+        BinaryGroundTruth.metadata.prompt_version_id  # CAUTION: does not throw an error if stats doesn't exist
         == prompt_version_id,  # critical
         BinaryGroundTruth.classification_type == classification_type,
     )
@@ -72,10 +72,10 @@ async def add_decision_to_binary_ground_truth(
     """
     existing_binary_gt.updated_at = timestamp
     if (
-        existing_binary_gt.human_decision_logs[-1].human_decision.author_email
+        existing_binary_gt.corrections[-1].human_decision.author_email
         == new_human_decision.author_email
     ):
-        existing_binary_gt.human_decision_logs.pop()  # the new decision will replace the last one because it is from the same author
+        existing_binary_gt.corrections.pop()  # the new decision will replace the last one because it is from the same author
 
     await _validate_binary_ground_truth(
         linked_manufacturer=linked_manufacturer,
@@ -83,7 +83,7 @@ async def add_decision_to_binary_ground_truth(
         binary_ground_truth=existing_binary_gt,
     )
 
-    existing_binary_gt.human_decision_logs.append(
+    existing_binary_gt.corrections.append(
         HumanDecisionLog(
             created_at=timestamp,
             human_decision=new_human_decision,
@@ -113,7 +113,7 @@ async def save_new_binary_ground_truth(
         binary_ground_truth=binary_gt,
     )
 
-    binary_gt.human_decision_logs.append(
+    binary_gt.corrections.append(
         HumanDecisionLog(
             created_at=timestamp,
             human_decision=new_human_decision,
@@ -159,7 +159,7 @@ async def _validate_binary_ground_truth(
     )
 
     if not await does_prompt_version_exist(
-        prompt_filename, binary_ground_truth.llm_decision.stats.prompt_version_id
+        prompt_filename, binary_ground_truth.metadata.prompt_version_id
     ):
         raise ValueError(f"Prompt file '{prompt_filename}' does not exist.")
 

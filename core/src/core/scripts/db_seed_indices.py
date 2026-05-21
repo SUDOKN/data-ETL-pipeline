@@ -113,6 +113,7 @@ class DatabaseIndexSeeder:
                 "keys": [
                     ("mfg_etld1", 1),
                     ("scraped_text_file_version_id", 1),
+                    ("metadata.prompt_version_id", 1),
                     ("classification_type", 1),
                 ],
                 "options": {"name": "binary_gt_unique_idx", "unique": True},
@@ -131,11 +132,7 @@ class DatabaseIndexSeeder:
                 "keys": [
                     ("mfg_etld1", 1),
                     ("scraped_text_file_version_id", 1),
-                    ("extract_prompt_version_id", 1),
-                    ("map_prompt_version_id", 1),
-                    ("ontology_version_id", 1),
                     ("concept_type", 1),
-                    ("chunk_no", 1),
                 ],
                 "options": {"name": "concept_gt_unique_idx", "unique": True},
             }
@@ -153,7 +150,7 @@ class DatabaseIndexSeeder:
                 "keys": [
                     ("mfg_etld1", 1),
                     ("scraped_text_file_version_id", 1),
-                    ("extract_prompt_version_id", 1),
+                    ("metadata.search_prompt_version_id", 1),
                     ("keyword_type", 1),
                     ("chunk_no", 1),
                 ],
@@ -228,6 +225,20 @@ class DatabaseIndexSeeder:
         for index in indexes:
             self._create_index_if_missing(collection, index["keys"], index["options"])
 
+    def create_place_indexes(self):
+        """Create indexes for places collection."""
+        collection = self.db.places
+
+        indexes = [
+            {
+                "keys": [("place_id", 1)],
+                "options": {"name": "place_id_unique_idx", "unique": True},
+            }
+        ]
+
+        for index in indexes:
+            self._create_index_if_missing(collection, index["keys"], index["options"])
+
     def drop_collection_indexes(self, collection_name: str):
         """Drop all indexes for a specific collection (except _id_)."""
         try:
@@ -268,6 +279,8 @@ class DatabaseIndexSeeder:
             "deferred_manufacturers",
             "gpt_batches",
             "api_keys",
+            "places",
+            "mep_requests",
         ]
 
         logger.info("Dropping all existing custom indexes...")
@@ -309,6 +322,7 @@ class DatabaseIndexSeeder:
             self.create_deferred_manufacturer_indexes()
             self.create_gpt_batch_indexes()
             self.create_api_key_bundle_indexes()
+            self.create_place_indexes()
 
             logger.info("Database index seeding completed successfully!")
 
@@ -331,6 +345,8 @@ class DatabaseIndexSeeder:
             "deferred_manufacturers",
             "gpt_batches",
             "api_keys",
+            "places",
+            "mep_requests",
         ]
 
         logger.info("Listing existing indexes...")

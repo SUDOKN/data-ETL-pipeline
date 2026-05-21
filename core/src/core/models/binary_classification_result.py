@@ -1,26 +1,28 @@
-from datetime import datetime
 from pydantic import BaseModel
 
-from core.models.field_types import (
-    S3FileVersionIDType,
+from core.models.single_stage_extraction_results import (
+    SingleStageExtractionResults,
+    SingleStageStats,
 )
 
 
-class ChunkBinaryClassificationResult(BaseModel):
+class BinaryClassification(BaseModel):
     answer: bool
     confidence: int
     reason: str
 
 
-class BinaryClassificationStats(BaseModel):
-    prompt_version_id: S3FileVersionIDType
-    final_chunk_key: str
-    chunk_result_map: dict[str, ChunkBinaryClassificationResult]
+class BinaryClassificationStats(SingleStageStats[BinaryClassification]):
+    result: BinaryClassification
 
 
-class BinaryClassificationResult(BaseModel):
-    evaluated_at: datetime
-    answer: bool  # from final chunk
-    confidence: int  # from final chunk
-    reason: str  # from final chunk
-    stats: BinaryClassificationStats
+BinaryClassificationStatsMap = dict[
+    str, BinaryClassificationStats
+]  # "0:1000" -> {answer, confidence, reason}
+
+
+class BinaryClassificationResult(
+    SingleStageExtractionResults[BinaryClassification, BinaryClassification]
+):
+    result: BinaryClassification
+    chunk_stats: BinaryClassificationStatsMap

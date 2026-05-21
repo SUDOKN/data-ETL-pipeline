@@ -17,7 +17,7 @@ load_data_etl_env()
 load_open_ai_app_env()
 
 from core.models.db.deferred_manufacturer import DeferredManufacturer
-from core.services.gpt_batch_request_service import (
+from core.services.gpt_batch_request_queries import (
     find_gpt_batch_requests_by_custom_ids,
 )
 from core.services.deferred_manufacturer_service import (
@@ -206,7 +206,7 @@ async def process_concept_field(
 
     # Extract search request IDs from bundles
     search_request_ids: Set[GPTBatchRequestCustomID] = set()
-    for bundle in field_data.chunk_request_bundle_map.values():
+    for bundle in field_data.request_map.values():
         search_request_ids.add(bundle.llm_search_request_id)
 
     # Process search requests

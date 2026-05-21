@@ -1,6 +1,10 @@
+from datetime import datetime
 from typing import Optional
 from beanie import Document
 from enum import Enum
+from pydantic import Field
+
+from core.utils.time_util import get_current_time
 
 
 class UserRole(str, Enum):
@@ -21,6 +25,8 @@ class User(Document):
     salt: str
     hashedPassword: str
     resetPwdToken: str | None = None
+    createdAt: datetime = Field(default_factory=lambda: get_current_time())
+    updatedAt: datetime = Field(default_factory=lambda: get_current_time())
 
     class Settings:
         name = "users"

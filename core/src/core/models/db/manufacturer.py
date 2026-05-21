@@ -1,7 +1,7 @@
-from beanie import Document
-from pydantic import BaseModel, Field
-from datetime import datetime
 import logging
+from beanie import Document
+from datetime import datetime
+from pydantic import BaseModel, Field
 from typing import List, Optional
 
 from core.models.field_types import MfgURLType, MfgETLDType, S3FileVersionIDType
@@ -10,55 +10,21 @@ from core.models.keyword_extraction_results import KeywordExtractionResults
 from core.models.binary_classification_result import (
     BinaryClassificationResult,
 )
+from core.models.address_extraction_result import (
+    AddressExtractionResult,
+)
+from core.models.business_description_extraction_result import (
+    BusinessDescriptionExtractionResult,
+)
+
 from core.utils.time_util import get_current_time
 
 logger = logging.getLogger(__name__)
 
 
-class Address(BaseModel):
-    city: str
-    state: str
-    country: str = "US"
-    name: Optional[str] = None
-    address_lines: Optional[list[str]] = None
-    county: Optional[str] = None
-    postal_code: Optional[str] = None
-
-    # Geolocation fields
-    latitude: Optional[float] = None
-    longitude: Optional[float] = None
-    place_id: Optional[str] = None
-
-    # Contact fields
-    phone_numbers: Optional[list[str]] = None
-    fax_numbers: Optional[list[str]] = None
-
-    def base_hash(self) -> str:
-        return f"{self.city}-{self.state}-{self.country}"
-
-
 class Batch(BaseModel):
     title: str
     timestamp: datetime
-
-    # @field_validator("title")
-    # @classmethod
-    # def validate_title_not_empty(cls, v: str) -> str:
-    #     if not v.strip():
-    #         raise ValueError("Batch title cannot be empty")
-    #     return v.strip()
-
-    # @field_validator("timestamp")
-    # @classmethod
-    # def validate_timestamp(cls, v: datetime) -> datetime:
-    #     if not isinstance(v, datetime):
-    #         raise ValueError("timestamp must be a valid datetime object")
-    #     return v
-
-
-class BusinessDescriptionResult(BaseModel):
-    name: Optional[str]
-    description: Optional[str]
 
 
 class Manufacturer(Document):
@@ -72,11 +38,6 @@ class Manufacturer(Document):
     batches: list[Batch]
 
     name: Optional[str]
-
-    is_manufacturer: Optional[BinaryClassificationResult]
-    is_contract_manufacturer: Optional[BinaryClassificationResult]
-    is_product_manufacturer: Optional[BinaryClassificationResult]
-
     founded_in: Optional[int]
     email_addresses: Optional[List[str]]
     num_employees: Optional[int]
@@ -85,8 +46,11 @@ class Manufacturer(Document):
     secondary_naics: Optional[List[str]]
 
     # LLM extracted fields
-    addresses: Optional[List[Address]]
-    business_desc: Optional[BusinessDescriptionResult]
+    is_manufacturer: Optional[BinaryClassificationResult]
+    is_contract_manufacturer: Optional[BinaryClassificationResult]
+    is_product_manufacturer: Optional[BinaryClassificationResult]
+    addresses: Optional[AddressExtractionResult]
+    business_desc: Optional[BusinessDescriptionExtractionResult]
 
     products: Optional[KeywordExtractionResults]
 

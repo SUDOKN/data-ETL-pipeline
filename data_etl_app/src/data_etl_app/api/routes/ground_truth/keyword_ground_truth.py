@@ -146,7 +146,7 @@ async def fetch_keyword_ground_truth_template(
     sorted_search_data = [
         (key, value)
         for key, value in sorted(
-            keyword_extraction_results.stats.chunked_stats.items(),
+            keyword_extraction_results.chunk_stats.chunked_stats.items(),
             key=lambda item: int(item[0].split(":")[0]),
         )
     ]
@@ -169,12 +169,12 @@ async def fetch_keyword_ground_truth_template(
         chunk_no=chunk_no,
     )
     if existing_keyword_gt:  # then logs must be non-empty
-        last_correction_log = existing_keyword_gt.correction_logs[-1]
+        last_correction_log = existing_keyword_gt.corrections[-1]
         response = existing_keyword_gt.model_dump()
         response["your_correction"] = KeywordResultCorrection(
             author_email=author_email,
-            add=last_correction_log.result_correction.add,  # pre-fill with last correction
-            remove=last_correction_log.result_correction.remove,  # pre-fill with last correction
+            add=last_correction_log.human_correction.add,  # pre-fill with last correction
+            remove=last_correction_log.human_correction.remove,  # pre-fill with last correction
             source=GroundTruthSource.API_SURVEY,
         )
         response.pop("id", None)  # remove id from response
@@ -201,14 +201,14 @@ async def fetch_keyword_ground_truth_template(
         mfg_etld1=manufacturer.etld1,
         keyword_type=keyword_type,
         scraped_text_file_version_id=manufacturer.scraped_text_file_version_id,
-        extract_prompt_version_id=keyword_extraction_results.stats.extract_prompt_version_id,
+        extract_prompt_version_id=keyword_extraction_results.chunk_stats.extract_prompt_version_id,
         chunk_bounds=chunk_bounds,
         last_chunk_no=last_chunk_no,
         chunk_no=chunk_no,
         chunk_extracted_at=keyword_extraction_results.extracted_at,
         chunk_text=scraped_text[start:end],
-        chunk_search_stats=chunk_search_stats,
-        correction_logs=[],  # empty logs initially
+        extraction_stats=chunk_search_stats,
+        corrections=[],  # empty logs initially
     )
 
     response = keyword_ground_truth.model_dump()
@@ -300,7 +300,7 @@ async def collect_keyword_extraction_ground_truth(
     )
 
     if existing_keyword_gt:
-        if not existing_keyword_gt.correction_logs:
+        if not existing_keyword_gt.corrections:
             raise HTTPException(
                 status_code=400,
                 detail=(
@@ -311,7 +311,7 @@ async def collect_keyword_extraction_ground_truth(
             )
 
         # in case two people fetched the same keyword ground truth, one submitted first
-        if existing_keyword_gt.correction_logs != keyword_gt.correction_logs:
+        if existing_keyword_gt.corrections != keyword_gt.corrections:
             raise HTTPException(
                 status_code=400,
                 detail=(

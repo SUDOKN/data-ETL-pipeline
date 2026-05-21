@@ -1,17 +1,34 @@
 from datetime import datetime
 import logging
 
+from core.models.binary_classification_result import BinaryClassificationResult
+from core.models.db.binary_ground_truth import HumanBinaryDecision
 from core.models.db.manufacturer import Manufacturer
 from core.models.db.deferred_manufacturer import DeferredManufacturer
+from core.models.db.extraction_error import ExtractionError
+from scraper_app.models.scraped_text_file import ScrapedTextFile
+from open_ai_key_app.models.gpt_model import GPT_4o_mini, LLM_Model
+
+from core.services.manufacturer_service import (
+    update_manufacturer,
+)
 from core.services.deferred_manufacturer_service import (
     delete_deferred_manufacturer_if_empty,
     get_deferred_manufacturer_by_etld1_scraped_file_version,
 )
-from core.services.gpt_batch_request_service import (
+from core.services.gpt_batch_request_writes import (
     bulk_delete_gpt_batch_requests_by_mfg_etld1_and_field,
 )
+from data_etl_app.models.pipeline_nodes.classification.binary_reconcile_node import (
+    BinaryClassificationTypeEnum,
+)
 from data_etl_app.services.extraction_pipeline_factory import ExtractionPipelineFactory
-from scraper_app.models.scraped_text_file import ScrapedTextFile
+from data_etl_app.services.knowledge.prompt_service import get_prompt_service
+from data_etl_app.services.ground_truth.binary_ground_truth_service import (
+    get_binary_ground_truth,
+)
+
+from data_etl_app.utils.find_email_addresses import get_validated_emails_from_text_async
 
 logger = logging.getLogger(__name__)
 logging.basicConfig(
@@ -28,11 +45,25 @@ class ManufacturerExtractionOrchestrator:
     Determines what's incomplete and creates appropriate batch requests.
     """
 
-    def __init__(self):
-        self.pipelines = ExtractionPipelineFactory.create_pipelines()
+    async def __init__(self, llm_model: LLM_Model):
+        prompt_service = await get_prompt_service()
+        self.is_manufacturer_pipeline = (
+            ExtractionPipelineFactory.create_binary_classification_pipeline(
+                binary_field_type=BinaryClassificationTypeEnum.is_manufacturer,
+                llm_model=llm_model,
+                prompt=prompt_service.is_manufacturer_prompt,
+            )
+        )
+        self.pipelines = await ExtractionPipelineFactory.create_pipelines(
+            llm_model=llm_model
+        )
 
     async def process_manufacturer(
-        self, timestamp: datetime, mfg: Manufacturer
+        self,
+        timestamp: datetime,
+        mfg: Manufacturer,
+        scraped_text_file: ScrapedTextFile,
+        eager: bool,
     ) -> None:
         """
         Main entry point: process a manufacturer and create/update deferred extraction.
@@ -40,10 +71,9 @@ class ManufacturerExtractionOrchestrator:
         Args:
             timestamp (datetime): Current timestamp.
             mfg (Manufacturer): Manufacturer to process.
+            scraped_text_file (ScrapedTextFile): Scraped text file associated with the manufacturer.
+            eager (bool): Whether to process eagerly or not.
         """
-        scraped_text_file = await ScrapedTextFile.download_from_s3_and_create(
-            mfg.etld1, mfg.scraped_text_file_version_id
-        )
 
         # Create or update the deferred manufacturer
         deferred_mfg = await self._get_or_create_deferred(timestamp, mfg)
@@ -52,11 +82,77 @@ class ManufacturerExtractionOrchestrator:
             f"[{mfg.etld1}] Starting extraction pipeline with {len(self.pipelines)} field types"
         )
 
+        if not mfg.is_manufacturer:
+            try:
+                logger.info(f"Finding out if company {mfg.etld1} is a manufacturer.")
+                await self.is_manufacturer_pipeline.execute(
+                    mfg=mfg,
+                    deferred_mfg=deferred_mfg,
+                    scraped_text_file=scraped_text_file,
+                    timestamp=timestamp,
+                    pipeline_context={},
+                    eager=eager,
+                )
+            except Exception as e:
+                logger.error(f"{mfg.etld1}.is_manufacturer errored:{e}")
+                await ExtractionError.insert_one(
+                    ExtractionError(
+                        created_at=timestamp,
+                        error=str(e),
+                        field="is_manufacturer",
+                        mfg_etld1=mfg.etld1,
+                    )
+                )
+                return  # if is_manufacturer check fails, skip further processing
+
+        if not mfg.email_addresses:
+            try:
+                logger.info(f"Extracting email addresses for {mfg.etld1}")
+                mfg.email_addresses = await get_validated_emails_from_text_async(
+                    mfg.etld1, scraped_text_file.text
+                )
+                await update_manufacturer(
+                    updated_at=timestamp,
+                    manufacturer=mfg,
+                )
+            except Exception as e:
+                logger.error(f"{mfg.name}.email_addresses errored:{e}")
+                await ExtractionError.insert_one(
+                    ExtractionError(
+                        created_at=timestamp,
+                        error=str(e),
+                        field="email_addresses",
+                        mfg_etld1=mfg.etld1,
+                    )
+                )
+
+        assert (
+            mfg.is_manufacturer is not None
+        ), "mfg.is_manufacturer should have been set by this point"
+
+        is_manufacturer_gt = await get_binary_ground_truth(
+            mfg,
+            mfg.is_manufacturer.metadata.prompt_version_id,
+            BinaryClassificationTypeEnum.is_manufacturer,
+        )
+
+        final_decision: HumanBinaryDecision | BinaryClassificationResult = (
+            is_manufacturer_gt.final_decision
+            if is_manufacturer_gt and is_manufacturer_gt.final_decision
+            else mfg.is_manufacturer
+        )
+
+        if not final_decision.answer:
+            logger.info(
+                f"Skipping further extraction for {mfg.etld1} as it is not a manufacturer."
+            )
+            return
+
         for field_type, pipeline in self.pipelines.items():
             logger.debug(
                 f"[{mfg.etld1}] Processing extraction pipeline for field '{field_type.name}', stats: {mfg.scraped_text_file_num_tokens} tokens"
             )
-            if pipeline.is_mfg_missing_data(mfg):
+            if not bool(getattr(mfg, field_type.name)):
                 logger.info(
                     f"mfg=[{mfg.etld1}] ❌ Missing data for field '{field_type.name}'. Processing pipeline..."
                 )
@@ -65,6 +161,8 @@ class ManufacturerExtractionOrchestrator:
                     deferred_mfg=deferred_mfg,
                     scraped_text_file=scraped_text_file,
                     timestamp=timestamp,
+                    pipeline_context={},
+                    eager=eager,
                 )
             else:
                 logger.info(

@@ -1,7 +1,7 @@
 {
   "$jsonSchema": {
     "bsonType": "object",
-    "required": ["place_id", "geocoded_at", "raw_result"],
+    "required": ["place_id", "geocoded_at", "geocode_query", "raw_result"],
     "additionalProperties": false,
     "properties": {
       "_id": {
@@ -14,6 +14,10 @@
       "geocoded_at": {
         "bsonType": "date",
         "description": "Timestamp when this place was last geocoded / upserted"
+      },
+      "geocode_query": {
+        "bsonType": "string",
+        "description": "Original query string passed to the geocoding API"
       },
       "raw_result": {
         "bsonType": "object",

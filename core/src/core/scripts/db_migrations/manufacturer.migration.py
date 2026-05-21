@@ -29,12 +29,12 @@ from core.utils.mongo_client import (
 
 from open_ai_key_app.models.gpt_model import (
     GPT_4o_mini,
-    GPTModel,
+    LLM_Model,
 )
 
 from core.models.binary_classification_result import (
     BinaryClassificationStats,
-    ChunkBinaryClassificationResult,
+    BinaryClassificationStats,
 )
 
 # from data_etl_app.services.knowledge.prompt_service import prompt_service

@@ -63,6 +63,9 @@ class DatabaseSchemaValidator:
         "deferred_manufacturers": "deferred_manufacturer.schema.json",
         "gpt_batches": "gpt_batch.schema.json",
         "api_keys": "api_key_bundle.schema.json",
+        "manufacturer_user_forms": "manufacturer_user_form.schema.json",
+        "mep_requests": "mep_request.schema.json",
+        "places": "place.schema.json",
     }
 
     def __init__(self, connection_string: str, database_name: str):

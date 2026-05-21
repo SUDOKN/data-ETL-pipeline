@@ -2,7 +2,7 @@ import asyncio
 import logging
 
 from open_ai_key_app.utils.token_util import num_tokens_from_string
-from open_ai_key_app.models.gpt_model import GPTModel, GPT_4o_mini, ModelParameters
+from open_ai_key_app.models.gpt_model import LLM_Model, GPT_4o_mini, ModelParameters
 from core.models.gpt_batch_request_blob import (
     GPTBatchRequestBlob,
     GPTBatchRequestBlobBody,
@@ -16,7 +16,7 @@ async def get_gpt_request_blob_async(
     custom_id: str,
     context: str,
     prompt: str,
-    gpt_model: GPTModel,
+    gpt_model: LLM_Model,
     model_params: ModelParameters,
 ) -> GPTBatchRequestBlob:
     """
@@ -45,7 +45,7 @@ def get_gpt_request_blob(
     custom_id: str,
     context: str,
     prompt: str,
-    gpt_model: GPTModel,
+    gpt_model: LLM_Model,
     model_params: ModelParameters,
 ) -> GPTBatchRequestBlob:
     """
