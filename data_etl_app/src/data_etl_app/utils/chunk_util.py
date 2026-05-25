@@ -4,6 +4,7 @@ import time
 import asyncio
 from concurrent.futures import ThreadPoolExecutor
 
+from open_ai_key_app.models.llm_model import LLM_Model
 from open_ai_key_app.utils.token_util import num_tokens_from_string
 
 logger = logging.getLogger(__name__)
@@ -105,6 +106,7 @@ def shutdown_chunk_thread_pool(wait: bool = True):
 
 def get_roughly_even_chunks(
     text: str,
+    llm_model: LLM_Model,
     max_tokens_allowed_per_chunk: int = 120000,
     overlap_ratio: float = 0.25,
     max_chunks: int | None = None,
@@ -120,7 +122,7 @@ def get_roughly_even_chunks(
         max_chunks: Maximum number of chunks to generate. If None, generates all chunks.
     """
     num_divisions = 1
-    total_tokens = num_tokens_from_string(text)
+    total_tokens = num_tokens_from_string(text, llm_model)
 
     # Find how many divisions we need to get close to our target
     while total_tokens // num_divisions > max_tokens_allowed_per_chunk:
@@ -129,12 +131,13 @@ def get_roughly_even_chunks(
     # Calculate target size for each division
     approximate_chunk_tokens = total_tokens // num_divisions
     return get_chunks_respecting_line_boundaries_sync(
-        text, approximate_chunk_tokens, overlap_ratio, max_chunks
+        text, llm_model, approximate_chunk_tokens, overlap_ratio, max_chunks
     )
 
 
 def get_chunks_respecting_line_boundaries_sync(
     text: str,
+    llm_model: LLM_Model,
     soft_limit_tokens: int = 5000,
     overlap_ratio: float = 0.25,
     max_chunks: int | None = None,
@@ -164,7 +167,7 @@ def get_chunks_respecting_line_boundaries_sync(
     line_info: list[tuple[str, int, int, int]] = []
     char_offset = 0
     for raw_line in lines_with_ends:
-        line_tokens = num_tokens_from_string(raw_line)
+        line_tokens = num_tokens_from_string(raw_line, llm_model)
         start = char_offset
         length = len(raw_line)
         end = char_offset + length
@@ -236,6 +239,7 @@ def get_chunks_respecting_line_boundaries_sync(
 async def get_chunks_respecting_line_boundaries(
     text: str,
     max_chunks: int,
+    llm_model: LLM_Model,
     soft_limit_tokens: int = 5000,
     overlap_ratio: float = 0.25,
     use_multiprocessing: bool = True,
@@ -283,7 +287,11 @@ async def get_chunks_respecting_line_boundaries(
             f"({', '.join(reasons) if reasons else 'default'})"
         )
         result = get_chunks_respecting_line_boundaries_sync(
-            text, soft_limit_tokens, overlap_ratio, max_chunks
+            text=text,
+            llm_model=llm_model,
+            soft_limit_tokens=soft_limit_tokens,
+            overlap_ratio=overlap_ratio,
+            max_chunks=max_chunks,
         )
     else:
         # Run in thread pool to avoid blocking event loop
@@ -299,6 +307,7 @@ async def get_chunks_respecting_line_boundaries(
             thread_pool,
             get_chunks_respecting_line_boundaries_sync,
             text,
+            llm_model,
             soft_limit_tokens,
             overlap_ratio,
             max_chunks,
@@ -316,7 +325,11 @@ async def get_chunks_respecting_line_boundaries(
 
 
 def get_chunks_respecting_line_boundaries_with_hard_limit(
-    text: str, hard_limit_tokens: int, overlap_ratio: float, max_chunks: int
+    text: str,
+    hard_limit_tokens: int,
+    overlap_ratio: float,
+    max_chunks: int,
+    llm_model: LLM_Model,
 ) -> dict[str, str]:
     if overlap_ratio >= 0.9:
         raise ValueError(
@@ -331,7 +344,7 @@ def get_chunks_respecting_line_boundaries_with_hard_limit(
     line_info: list[tuple[str, int, int, int]] = []
     char_offset = 0
     for raw_line in lines_with_ends:
-        line_tokens = num_tokens_from_string(raw_line)
+        line_tokens = num_tokens_from_string(raw_line, llm_model)
         start = char_offset
         length = len(raw_line)
         end = char_offset + length

@@ -1,5 +1,6 @@
 from beanie import Document
 from datetime import datetime
+from data_etl_app.models.chunking_strat import ChunkingStrategy
 from pydantic import BaseModel, ValidationInfo, computed_field, Field, field_validator
 
 from core.utils.time_util import get_current_time
@@ -37,8 +38,8 @@ class KeywordGroundTruth(Document):
     chunk_bounds: str
     chunk_no: int
     last_chunk_no: int
-
     chunk_text: str
+
     metadata: SearchStageMetadata
     extraction_stats: KeywordExtractionStats
 
@@ -73,9 +74,9 @@ db.keyword_ground_truths.createIndex(
   {
     mfg_etld1: 1,
     scraped_text_file_version_id: 1,
-    extract_prompt_version_id: 1,
+    "metadata.search_prompt_version_id": 1,
     keyword_type: 1,
-    chunk_no: 1
+    chunk_bounds: 1
   },
   {
     name: "keyword_gt_unique_idx",

@@ -1,6 +1,8 @@
+from __future__ import annotations
 import logging
 from datetime import datetime
 import traceback
+from typing import TYPE_CHECKING
 
 from core.models.business_description_extraction_result import BusinessDescription
 from core.models.deferred_single_stage_extraction_requests import (
@@ -8,9 +10,12 @@ from core.models.deferred_single_stage_extraction_requests import (
 )
 from core.models.prompt import Prompt
 from core.models.db.gpt_batch_request import GPTBatchRequest
-from data_etl_app.models.pipeline_nodes.basic_field.business_desc_reconcile_node import (
-    BusinessDescReconcileNode,
-)
+
+if TYPE_CHECKING:
+    from data_etl_app.models.pipeline_nodes.basic_field.business_desc_reconcile_node import (
+        BusinessDescReconcileNode,
+    )
+
 from data_etl_app.models.pipeline_nodes.single_stage_extraction_node import (
     SingleStageExtractionNode,
 )
@@ -18,7 +23,6 @@ from data_etl_app.models.types_and_enums import (
     BasicFieldTypeEnum,
 )
 from open_ai_key_app.models.field_types import GPTBatchRequestCustomID
-from open_ai_key_app.models.gpt_model import LLM_Model
 
 from core.services.gpt_batch_request_writes import record_response_parse_error
 from data_etl_app.services.extraction.deferred_business_desc_service import (
@@ -32,13 +36,11 @@ class BusinessDescExtractionNode(SingleStageExtractionNode[BusinessDescription])
     def __init__(
         self,
         extract_prompt: Prompt,
-        llm_model: LLM_Model,
         next_node: BusinessDescReconcileNode,
     ):
         super().__init__(
             field_type=BasicFieldTypeEnum.business_desc,
             prompt=extract_prompt,
-            llm_model=llm_model,
             next_node=next_node,
         )
 

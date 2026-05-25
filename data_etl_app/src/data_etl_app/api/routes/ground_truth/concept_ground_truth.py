@@ -196,6 +196,7 @@ async def fetch_concept_ground_truth_template(
         chunk_bounds=chunk_bounds,
         chunk_no=chunk_no,
         last_chunk_no=last_chunk_no,
+        chunk_strat=concept_extraction_results.metadata.chunk_strat,
         metadata=concept_extraction_results.metadata,
         extraction_stats=chunk_search_stats,
         corrections=[],  # empty logs initially
@@ -234,7 +235,7 @@ def get_human_correction_help_info() -> str:
 
 async def parse_concept_ground_truth_with_new_correction(
     request: Request,
-) -> tuple[ConceptGroundTruth, EvidenceResultCorrection]:
+) -> tuple[ConceptGroundTruth, HumanConceptCorrection]:
     """Parse request body and handle your_correction field"""
     body = await request.body()
     data = json.loads(body)
@@ -248,7 +249,7 @@ async def parse_concept_ground_truth_with_new_correction(
         )
 
     # Validate your_correction
-    new_correction = EvidenceResultCorrection(**new_correction_data)
+    new_correction = HumanConceptCorrection(**new_correction_data)
 
     # Create ChunkconceptGroundTruth instance (validates all other fields)
     concept_gt = ConceptGroundTruth(**data)
@@ -261,7 +262,7 @@ async def parse_concept_ground_truth_with_new_correction(
     response_class=JSONResponse,
 )
 async def collect_concept_extraction_ground_truth(
-    parsed_data: tuple[ConceptGroundTruth, EvidenceResultCorrection] = Depends(
+    parsed_data: tuple[ConceptGroundTruth, HumanConceptCorrection] = Depends(
         parse_concept_ground_truth_with_new_correction
     ),
 ):
@@ -397,7 +398,8 @@ async def get_concept_coverage_stats(
 
     gt_docs: list[ConceptGroundTruth] = await ConceptGroundTruth.find(
         ConceptGroundTruth.concept_type == concept_type,
-        ConceptGroundTruth.ontology_version_id == effective_ontology_version_id,
+        ConceptGroundTruth.metadata.ontology_version_id
+        == effective_ontology_version_id,
     ).to_list()
 
     # Tally coverage across all docs (no range filter applied yet)

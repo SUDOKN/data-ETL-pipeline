@@ -22,7 +22,7 @@ logger = logging.getLogger(__name__)
 
 
 class DeferredManufacturer(Document):
-    mfg_etld1: MfgETLDType
+    etld1: MfgETLDType
     created_at: datetime = Field(default_factory=lambda: get_current_time())
     updated_at: datetime = Field(default_factory=lambda: get_current_time())
     scraped_text_file_num_tokens: int
@@ -50,11 +50,20 @@ Indices for Manufacturers
 
 db.deferred_manufacturers.createIndex(
   {
-    mfg_etld1: 1,
+    etld1: 1,
   },
   {
-    name: "mfg_etld1_unique_idx",
+    name: "deferred_mfg_etld1_unique_idx",
     unique: true
+  }
+);
+db.deferred_manufacturers.createIndex(
+  {
+    etld1: 1,
+    scraped_text_file_version_id: 1,
+  },
+  {
+    name: "deferred_mfg_compound_idx"
   }
 );
 """

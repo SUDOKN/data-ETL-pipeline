@@ -12,6 +12,7 @@ from urllib.parse import urlparse
 from queue import Queue, Empty
 from concurrent.futures import ThreadPoolExecutor
 
+from open_ai_key_app.models.llm_model import LLM_Model
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.common.exceptions import (
@@ -55,6 +56,7 @@ class ScrapingResult:
     urls_discovered: int
     total_time_taken: float  # in seconds
     timed_out: bool
+    llm_model: LLM_Model
 
     @property
     def has_errors(self) -> bool:
@@ -66,12 +68,16 @@ class ScrapingResult:
 
     def is_valid(self) -> bool:
         return ScrapingResult.is_scrape_valid(
-            self.content, self.urls_scraped, self.urls_failed, self.timed_out
+            self.content,
+            self.urls_scraped,
+            self.urls_failed,
+            self.llm_model,
+            self.timed_out,
         )
 
     @property
     def num_tokens(self) -> int:
-        return num_tokens_from_string(self.content)
+        return num_tokens_from_string(self.content, self.llm_model)
 
     def __str__(self) -> str:
         timeout_info = " (TIMED OUT)" if self.timed_out else ""
@@ -95,9 +101,14 @@ class ScrapingResult:
 
     @classmethod
     def is_scrape_valid(
-        cls, content: str, urls_scraped: int, urls_failed: int, timed_out: bool = False
+        cls,
+        content: str,
+        urls_scraped: int,
+        urls_failed: int,
+        llm_model: LLM_Model,
+        timed_out: bool = False,
     ) -> bool:
-        num_tokens = num_tokens_from_string(content)
+        num_tokens = num_tokens_from_string(content, llm_model)
         success_rate = cls.get_success_rate(urls_scraped, urls_failed)
         return 30 < num_tokens and success_rate > 0.8 and not timed_out
 
@@ -450,7 +461,7 @@ class ScraperService:
             self._cleanup_driver(driver)
 
     # --------------------------- Orchestrator --------------------------
-    def scrape(self, start_url: str) -> ScrapingResult:
+    def scrape(self, start_url: str, llm_model: LLM_Model) -> ScrapingResult:
         try:
             # Hard check: Block social media sites from being scraped
             social_media_blocker.validate_start_url(start_url)
@@ -557,6 +568,7 @@ class ScraperService:
                 urls_discovered=len(discovered),
                 total_time_taken=total_time_taken,
                 timed_out=False,
+                llm_model=llm_model,
             )
 
         except TimeoutError:
@@ -577,6 +589,7 @@ class ScraperService:
                 urls_discovered=len(discovered) if "discovered" in locals() else 0,
                 total_time_taken=total_time_taken,
                 timed_out=True,
+                llm_model=llm_model,
             )
         except Exception as e:
             total_time_taken = (
@@ -597,4 +610,5 @@ class ScraperService:
                 urls_discovered=0,
                 total_time_taken=total_time_taken,
                 timed_out=False,
+                llm_model=llm_model,
             )

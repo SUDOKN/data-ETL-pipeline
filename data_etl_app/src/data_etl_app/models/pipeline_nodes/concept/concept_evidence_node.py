@@ -1,7 +1,8 @@
+from __future__ import annotations
 import logging
 from datetime import datetime
 import traceback
-from typing import Optional
+from typing import TYPE_CHECKING, Optional
 
 from core.models.db.deferred_manufacturer import DeferredManufacturer
 from core.models.prompt import Prompt
@@ -10,18 +11,23 @@ from core.models.deferred_concept_extraction import (
     DeferredConceptExtractionRequests,
     ConceptExtractionRequestBundle,
 )
-from data_etl_app.models.types_and_enums import ConceptTypeEnum, PipelineContext
+from data_etl_app.models.types_and_enums import ConceptTypeEnum
 from data_etl_app.models.pipeline_nodes.concept.concept_search_node import (
     ConceptSearchNode,
 )
-from data_etl_app.models.pipeline_nodes.concept.concept_mapping_node import (
-    ConceptMappingNode,
-)
+
+if TYPE_CHECKING:
+    from data_etl_app.models.pipeline_nodes.concept.concept_mapping_node import (
+        ConceptMappingNode,
+    )
+
+from data_etl_app.models.pipeline_nodes.base_node import PipelineContext
 from data_etl_app.models.pipeline_nodes.llm_extraction_node import (
     LLMExtractionNode,
 )
 from open_ai_key_app.models.field_types import GPTBatchRequestCustomID
-from open_ai_key_app.models.gpt_model import LLM_Model
+from open_ai_key_app.models.llm_model import LLM_Model
+from open_ai_key_app.models.gpt_model_params import GPTModelParams
 from scraper_app.models.scraped_text_file import ScrapedTextFile
 
 from data_etl_app.services.extraction.deferred_concept_evidence_service import (
@@ -40,12 +46,10 @@ class ConceptEvidenceNode(LLMExtractionNode[ConceptTypeEnum, dict[str, str]]):
         self,
         concept_type: ConceptTypeEnum,
         evidence_prompt: Prompt,
-        llm_model: LLM_Model,
         next_node: ConceptMappingNode,
     ):
         super().__init__(field_type=concept_type, next_node=next_node)
         self.evidence_prompt = evidence_prompt
-        self.llm_model = llm_model
 
     def get_embedded_request_ids(
         self,
@@ -66,9 +70,13 @@ class ConceptEvidenceNode(LLMExtractionNode[ConceptTypeEnum, dict[str, str]]):
 
     @staticmethod
     def get_request_custom_id(
-        mfg_etld1: str, field_type: ConceptTypeEnum, chunk_bounds: str
+        mfg_etld1: str,
+        field_type: ConceptTypeEnum,
+        chunk_bounds: str,
+        llm_model: LLM_Model,
+        model_params: GPTModelParams,
     ) -> GPTBatchRequestCustomID:
-        return f"{mfg_etld1}>{field_type.name}>llm_evidence>chunk>{chunk_bounds}"
+        return f"{mfg_etld1}>{field_type.name}>llm_evidence>chunk>{chunk_bounds}>{model_params.to_custom_id_segment(llm_model.model_name)}"
 
     @staticmethod
     async def parse_batch_request_result(
@@ -118,7 +126,10 @@ class ConceptEvidenceNode(LLMExtractionNode[ConceptTypeEnum, dict[str, str]]):
         deferred_mfg: DeferredManufacturer,
         scraped_text_file: ScrapedTextFile,
         timestamp: datetime,
+        eager: bool,
         pipeline_context: PipelineContext,
+        llm_model: LLM_Model,
+        model_params: GPTModelParams,
     ) -> list[GPTBatchRequest]:
         """Create batch requests for concept evidence phase."""
 
@@ -133,15 +144,17 @@ class ConceptEvidenceNode(LLMExtractionNode[ConceptTypeEnum, dict[str, str]]):
         # create_missing_concept_evidence_requests only creates batch requests fresh or only missing ones,
         # for e.g., new mfg or some batch requests failed earlier and were deleted to allow re-processing
         batch_requests = await create_missing_concept_evidence_requests(
-            mfg_etld1=deferred_mfg.mfg_etld1,
+            deferred_at=timestamp,
+            mfg_etld1=deferred_mfg.etld1,
             concept_type=self.field_type,
             missing_evidence_req_ids=missing_request_ids,
             extraction_requests=extraction_requests,
             mfg_text=scraped_text_file.text,
             evidence_prompt=self.evidence_prompt,
             upstream_completed_batch_req_map=pipeline_context[ConceptSearchNode],
-            llm_model=self.llm_model,
-            deferred_at=timestamp,
+            llm_model=llm_model,
+            model_params=model_params,
+            eager=eager,
         )
 
         return batch_requests

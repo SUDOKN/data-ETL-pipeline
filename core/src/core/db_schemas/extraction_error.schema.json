@@ -1,7 +1,11 @@
 {
   "$jsonSchema": {
     "bsonType": "object",
-    "required": ["created_at", "error", "field", "mfg_etld1"],
+    "required": [
+      "error",
+      "field",
+      "mfg_etld1"
+    ],
     "additionalProperties": false,
     "properties": {
       "_id": {

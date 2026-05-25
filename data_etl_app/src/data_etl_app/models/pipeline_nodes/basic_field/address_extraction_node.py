@@ -1,6 +1,8 @@
+from __future__ import annotations
 import logging
 from datetime import datetime
 import traceback
+from typing import TYPE_CHECKING
 
 from core.models.address_extraction_result import Address
 from core.models.deferred_single_stage_extraction_requests import (
@@ -14,10 +16,11 @@ from data_etl_app.models.types_and_enums import (
 from data_etl_app.models.pipeline_nodes.single_stage_extraction_node import (
     SingleStageExtractionNode,
 )
-from data_etl_app.models.pipeline_nodes.basic_field.address_reconcile_node import (
-    AddressReconcileNode,
-)
-from open_ai_key_app.models.gpt_model import LLM_Model
+
+if TYPE_CHECKING:  # <-- guard the circular import
+    from data_etl_app.models.pipeline_nodes.basic_field.address_reconcile_node import (
+        AddressReconcileNode,
+    )
 from open_ai_key_app.models.field_types import GPTBatchRequestCustomID
 
 from core.services.gpt_batch_request_writes import record_response_parse_error
@@ -32,13 +35,11 @@ class AddressExtractionNode(SingleStageExtractionNode[list[Address]]):
     def __init__(
         self,
         extract_prompt: Prompt,
-        llm_model: LLM_Model,
         next_node: AddressReconcileNode,
     ):
         super().__init__(
             field_type=BasicFieldTypeEnum.addresses,
             prompt=extract_prompt,
-            llm_model=llm_model,
             next_node=next_node,
         )
 

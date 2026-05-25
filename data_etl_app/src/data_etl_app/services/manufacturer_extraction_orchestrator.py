@@ -1,13 +1,20 @@
 from datetime import datetime
 import logging
 
-from core.models.binary_classification_result import BinaryClassificationResult
-from core.models.db.binary_ground_truth import HumanBinaryDecision
+from core.models.binary_classification_result import (
+    BaseClassificationDecision,
+)
 from core.models.db.manufacturer import Manufacturer
 from core.models.db.deferred_manufacturer import DeferredManufacturer
 from core.models.db.extraction_error import ExtractionError
+from data_etl_app.models.pipeline_nodes.classification.binary_reconcile_node import (
+    BinaryClassificationTypeEnum,
+)
+
+# from open_ai_key_app.models.gpt_model import GPT_4o_mini
+from open_ai_key_app.models.llm_model import LLM_Model
+from open_ai_key_app.models.gpt_model_params import GPTModelParams
 from scraper_app.models.scraped_text_file import ScrapedTextFile
-from open_ai_key_app.models.gpt_model import GPT_4o_mini, LLM_Model
 
 from core.services.manufacturer_service import (
     update_manufacturer,
@@ -19,11 +26,9 @@ from core.services.deferred_manufacturer_service import (
 from core.services.gpt_batch_request_writes import (
     bulk_delete_gpt_batch_requests_by_mfg_etld1_and_field,
 )
-from data_etl_app.models.pipeline_nodes.classification.binary_reconcile_node import (
-    BinaryClassificationTypeEnum,
-)
+from data_etl_app.services.knowledge.ontology_service import OntologyService
+from data_etl_app.services.knowledge.prompt_service import PromptService
 from data_etl_app.services.extraction_pipeline_factory import ExtractionPipelineFactory
-from data_etl_app.services.knowledge.prompt_service import get_prompt_service
 from data_etl_app.services.ground_truth.binary_ground_truth_service import (
     get_binary_ground_truth,
 )
@@ -45,18 +50,28 @@ class ManufacturerExtractionOrchestrator:
     Determines what's incomplete and creates appropriate batch requests.
     """
 
-    async def __init__(self, llm_model: LLM_Model):
-        prompt_service = await get_prompt_service()
+    def __init__(
+        self,
+        prompt_service: PromptService,
+        ontology_service: OntologyService,
+        llm_model: LLM_Model,
+        model_params: GPTModelParams,
+    ):
         self.is_manufacturer_pipeline = (
             ExtractionPipelineFactory.create_binary_classification_pipeline(
                 binary_field_type=BinaryClassificationTypeEnum.is_manufacturer,
                 llm_model=llm_model,
+                model_params=model_params,
                 prompt=prompt_service.is_manufacturer_prompt,
             )
         )
-        self.pipelines = await ExtractionPipelineFactory.create_pipelines(
-            llm_model=llm_model
+        self.pipelines = ExtractionPipelineFactory.create_pipelines(
+            llm_model=llm_model,  # needed to configure chunking strategy that respects model limits
+            prompt_service=prompt_service,
+            ontology_service=ontology_service,
         )
+        self.llm_model = llm_model
+        self.model_params = model_params
 
     async def process_manufacturer(
         self,
@@ -91,6 +106,8 @@ class ManufacturerExtractionOrchestrator:
                     scraped_text_file=scraped_text_file,
                     timestamp=timestamp,
                     pipeline_context={},
+                    llm_model=self.llm_model,
+                    model_params=self.model_params,
                     eager=eager,
                 )
             except Exception as e:
@@ -136,10 +153,12 @@ class ManufacturerExtractionOrchestrator:
             BinaryClassificationTypeEnum.is_manufacturer,
         )
 
-        final_decision: HumanBinaryDecision | BinaryClassificationResult = (
+        # assert is_manufacturer_gt is not None, "is_manufacturer_gt should not be None"
+
+        final_decision: BaseClassificationDecision = (
             is_manufacturer_gt.final_decision
             if is_manufacturer_gt and is_manufacturer_gt.final_decision
-            else mfg.is_manufacturer
+            else mfg.is_manufacturer.result
         )
 
         if not final_decision.answer:
@@ -163,6 +182,8 @@ class ManufacturerExtractionOrchestrator:
                     timestamp=timestamp,
                     pipeline_context={},
                     eager=eager,
+                    llm_model=self.llm_model,
+                    model_params=self.model_params,
                 )
             else:
                 logger.info(
@@ -199,7 +220,7 @@ class ManufacturerExtractionOrchestrator:
         if not deferred_manufacturer:
             deferred_manufacturer = DeferredManufacturer(
                 created_at=timestamp,
-                mfg_etld1=mfg.etld1,
+                etld1=mfg.etld1,
                 scraped_text_file_num_tokens=mfg.scraped_text_file_num_tokens,
                 scraped_text_file_version_id=mfg.scraped_text_file_version_id,
                 is_manufacturer=None,

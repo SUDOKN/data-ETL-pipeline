@@ -6,14 +6,17 @@ from core.models.single_stage_extraction_results import (
 )
 
 
-class BinaryClassification(BaseModel):
+class BaseClassificationDecision(BaseModel):
     answer: bool
-    confidence: int
     reason: str
 
 
-class BinaryClassificationStats(SingleStageStats[BinaryClassification]):
-    result: BinaryClassification
+class LLMBinaryClassification(BaseClassificationDecision):
+    confidence: int
+
+
+class BinaryClassificationStats(SingleStageStats[LLMBinaryClassification]):
+    result: LLMBinaryClassification
 
 
 BinaryClassificationStatsMap = dict[
@@ -22,7 +25,7 @@ BinaryClassificationStatsMap = dict[
 
 
 class BinaryClassificationResult(
-    SingleStageExtractionResults[BinaryClassification, BinaryClassification]
+    SingleStageExtractionResults[LLMBinaryClassification, LLMBinaryClassification]
 ):
-    result: BinaryClassification
+    result: LLMBinaryClassification
     chunk_stats: BinaryClassificationStatsMap

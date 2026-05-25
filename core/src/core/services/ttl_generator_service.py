@@ -550,11 +550,11 @@ def add_material_capability_triples(
 def add_manufacturer_triples(
     ont_inst: OntologyService, mfg: ManufacturerUserForm, g: Graph, strict: bool = True
 ):
-    if not str(mfg.mfg_etld1):
+    if not str(mfg.etld1):
         raise ValueError("ManufacturerUserForm must have a valid mfg_etld1")
 
     mfg_inst_uri, mfg_etld1_stripped = get_mfg_instance_uri_and_stripped_etld1(
-        mfg.mfg_etld1
+        mfg.etld1
     )
     logger.debug(f"Generating triples for {mfg_inst_uri}")
 
@@ -571,7 +571,7 @@ def add_manufacturer_triples(
         g,
         strict,
     )
-    add_mfg_web_address_triple(mfg_inst_uri, mfg.mfg_etld1, g, strict)
+    add_mfg_web_address_triple(mfg_inst_uri, mfg.etld1, g, strict)
     add_founded_in_triple(mfg_inst_uri, mfg.founded_in, g, False)
     add_email_addresses_triples(
         mfg_inst_uri, mfg.email_addresses, mfg_etld1_stripped, g, False

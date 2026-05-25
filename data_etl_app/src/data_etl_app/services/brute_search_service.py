@@ -13,17 +13,16 @@ def word_regex(keyword: str):
 
 
 # only considers concept and altLabels, ignores ancestors
-def brute_search(text: str, concepts: set[Concept]) -> set[Concept]:
-    found_brute_search_concepts: set[Concept] = set()
+def brute_search(text: str, concepts: set[Concept]) -> set[str]:
+    found_brute_search_labels: set[str] = set()
 
     for c in concepts:
-        if any(
-            re.search(word_regex(label), text, re.IGNORECASE) for label in c.matchLabels
-        ):
-            found_brute_search_concepts.add(c)
+        for label in c.matchLabels:
+            if re.search(word_regex(label), text, re.IGNORECASE):
+                found_brute_search_labels.add(label)
 
-    logger.debug(
-        f"Brute search found {len(found_brute_search_concepts)}:{found_brute_search_concepts} concepts in text."
+    logger.info(
+        f"Brute search found {len(found_brute_search_labels)}:{found_brute_search_labels} concepts in text."
     )
 
-    return found_brute_search_concepts
+    return found_brute_search_labels

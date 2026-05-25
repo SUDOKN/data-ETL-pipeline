@@ -1,13 +1,17 @@
 import asyncio
 import logging
 
-from open_ai_key_app.utils.token_util import num_tokens_from_string
-from open_ai_key_app.models.gpt_model import LLM_Model, GPT_4o_mini, ModelParameters
-from core.models.gpt_batch_request_blob import (
-    GPTBatchRequestBlob,
-    GPTBatchRequestBlobBody,
+from core.models.gpt_batch_request_blob import GPTBatchRequestBlob
+from open_ai_key_app.models.llm_model import LLM_Model
+from open_ai_key_app.models.gpt_model_params import (
+    GPTRequestBody,
+    GPTModelParams,
+    GPTModelParams,
 )
+
 from open_ai_key_app.services.openai_keypool_service import keypool
+
+from open_ai_key_app.utils.token_util import num_tokens_from_string
 
 logger = logging.getLogger(__name__)
 
@@ -17,7 +21,7 @@ async def get_gpt_request_blob_async(
     context: str,
     prompt: str,
     gpt_model: LLM_Model,
-    model_params: ModelParameters,
+    model_params: GPTModelParams,
 ) -> GPTBatchRequestBlob:
     """
     Async version that runs CPU-intensive operations in thread pool.
@@ -46,39 +50,36 @@ def get_gpt_request_blob(
     context: str,
     prompt: str,
     gpt_model: LLM_Model,
-    model_params: ModelParameters,
+    model_params: GPTModelParams,
 ) -> GPTBatchRequestBlob:
     """
     Synchronous version - called from thread pool in async context.
 
     Creates a GPT batch request blob with token counting and validation.
     """
-    tokens_prompt = num_tokens_from_string(prompt)
-    tokens_context = num_tokens_from_string(context)
-    max_response_tokens = (
-        model_params.max_tokens
-        if model_params.max_tokens
-        else gpt_model.safe_completion_tokens
-    )
+    tokens_prompt = num_tokens_from_string(prompt, gpt_model)
+    tokens_context = num_tokens_from_string(context, gpt_model)
     input_tokens = tokens_prompt + tokens_context
-    tokens_needed = input_tokens + max_response_tokens
+    tokens_needed = input_tokens + model_params.max_completion_tokens
 
     if tokens_needed > gpt_model.max_context_tokens:
         raise ValueError(
-            f"Total tokens needed:{tokens_needed}=prompt:{tokens_prompt}+context:{tokens_context}+safe_completion:{max_response_tokens} exceed max context tokens:{gpt_model.max_context_tokens}."
+            f"Total tokens needed:{tokens_needed}=prompt:{tokens_prompt}+context:{tokens_context}+safe_completion:{model_params.max_completion_tokens} exceed max context tokens:{gpt_model.max_context_tokens}."
         )
 
     blob = GPTBatchRequestBlob(
         custom_id=custom_id,
-        body=GPTBatchRequestBlobBody(
-            model=gpt_model.model_name,
-            messages=[
-                {"role": "system", "content": prompt},
-                {"role": "user", "content": context},
-            ],
-            input_tokens=input_tokens,
-            max_tokens=max_response_tokens,
+        body=GPTRequestBody.model_validate(
+            model_params.model_dump()
+            | {
+                "model": gpt_model.model_name,
+                "messages": [
+                    {"role": "system", "content": prompt},
+                    {"role": "user", "content": context},
+                ],
+            }
         ),
+        input_tokens=input_tokens,
     )
 
     return blob

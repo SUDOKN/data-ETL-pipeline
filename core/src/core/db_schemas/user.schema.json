@@ -1,16 +1,12 @@
 {
   "$jsonSchema": {
     "bsonType": "object",
-    "title": "User",
     "required": [
       "firstName",
       "lastName",
       "email",
-      "role",
       "salt",
-      "hashedPassword",
-      "createdAt",
-      "updatedAt"
+      "hashedPassword"
     ],
     "additionalProperties": false,
     "properties": {
@@ -18,52 +14,46 @@
         "bsonType": "objectId"
       },
       "firstName": {
-        "bsonType": "string",
-        "description": "User's first name"
+        "bsonType": "string"
       },
       "lastName": {
-        "bsonType": "string",
-        "description": "User's last name"
+        "bsonType": "string"
       },
       "email": {
-        "bsonType": "string",
-        "description": "User's email, should be unique"
+        "bsonType": "string"
       },
       "role": {
-        "enum": ["default", "employee", "mep", "admin"],
-        "description": "User's role in the system"
+        "enum": [
+          "default",
+          "employee",
+          "mep",
+          "admin"
+        ],
+        "bsonType": "string"
       },
       "companyURL": {
-        "bsonType": "string",
-        "description": "URL of the user's company"
+        "bsonType": [
+          "string",
+          "null"
+        ]
       },
       "salt": {
-        "bsonType": "string",
-        "description": "Salt used for password hashing"
+        "bsonType": "string"
       },
       "hashedPassword": {
-        "bsonType": "string",
-        "description": "User's hashed password"
+        "bsonType": "string"
       },
       "resetPwdToken": {
-        "anyOf": [
-          {
-            "bsonType": "string",
-            "minLength": 1
-          },
-          {
-            "bsonType": "null"
-          }
-        ],
-        "description": "Reset password JWT token with embedded expiration"
+        "bsonType": [
+          "string",
+          "null"
+        ]
       },
       "createdAt": {
-        "bsonType": "date",
-        "description": "Timestamp when the user was created"
+        "bsonType": "date"
       },
       "updatedAt": {
-        "bsonType": "date",
-        "description": "Timestamp when the user was last updated"
+        "bsonType": "date"
       }
     }
   }

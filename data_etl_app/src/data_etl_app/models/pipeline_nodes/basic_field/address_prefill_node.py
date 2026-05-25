@@ -10,25 +10,21 @@ from data_etl_app.models.pipeline_nodes.single_stage_extraction_prefill_node imp
 from data_etl_app.models.types_and_enums import (
     BasicFieldTypeEnum,
 )
-from data_etl_app.models.chunking_strat import ChunkingStrat
-from open_ai_key_app.models.gpt_model import LLM_Model
+from data_etl_app.models.chunking_strat import ChunkingStrategy
 
 logger = logging.getLogger(__name__)
 
 
 class AddressPrefillNode(SingleStageExtractionPrefillNode):
-    next_node: AddressExtractionNode
 
     def __init__(
         self,
-        llm_model: LLM_Model,
-        chunk_strategy: ChunkingStrat,
+        chunk_strategy: ChunkingStrategy,
         prompt: Prompt,
         next_node: AddressExtractionNode,
     ):
         super().__init__(
             field_type=BasicFieldTypeEnum.addresses,
-            llm_model=llm_model,
             prompt=prompt,
             chunk_strategy=chunk_strategy,
             next_node=next_node,

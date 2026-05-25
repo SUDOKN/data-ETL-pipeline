@@ -9,7 +9,8 @@ from typing import Optional
 
 from core.models.gpt_batch_response_blob import GPTBatchResponseBlob
 from core.models.gpt_batch_request_blob import GPTBatchRequestBlob
-from open_ai_key_app.models.gpt_model import LLM_Model, ModelParameters
+from open_ai_key_app.models.llm_model import LLM_Model
+from open_ai_key_app.models.gpt_model_params import GPTModelParams, GPTSyncRequestBody
 
 from open_ai_key_app.services.openai_keypool_service import keypool
 from data_etl_app.utils.gpt_batch_request_util import (
@@ -24,7 +25,7 @@ async def ask_gpt(
     context: str,
     prompt: str,
     gpt_model: LLM_Model,
-    model_params: ModelParameters,
+    model_params: GPTModelParams,
 ) -> Optional[str]:
     response = await fetch_gpt_raw_response(
         context=context,
@@ -41,7 +42,7 @@ async def fetch_gpt_batch_response(
     custom_id: str,
     batch_id: str,
     gpt_model: LLM_Model,
-    model_params: ModelParameters,
+    model_params: GPTModelParams,
 ) -> GPTBatchResponseBlob:
     response = await fetch_gpt_raw_response(
         context=context,
@@ -63,7 +64,7 @@ async def fetch_gpt_raw_response(
     context: str,
     prompt: str,
     gpt_model: LLM_Model,
-    model_params: ModelParameters,
+    model_params: GPTModelParams,
 ):
     # Generate unique request ID for tracking
     request_id = str(uuid.uuid4())[:8]
@@ -71,14 +72,9 @@ async def fetch_gpt_raw_response(
 
     logger.info(f"[Request {request_id}] Starting fetch_gpt_raw_response request")
 
-    tokens_prompt = num_tokens_from_string(prompt)
-    tokens_context = num_tokens_from_string(context)
-    max_response_tokens = (
-        model_params.max_tokens
-        if model_params.max_tokens
-        else gpt_model.safe_completion_tokens
-    )
-    tokens_needed = tokens_prompt + tokens_context + max_response_tokens
+    tokens_prompt = num_tokens_from_string(prompt, gpt_model)
+    tokens_context = num_tokens_from_string(context, gpt_model)
+    tokens_needed = tokens_prompt + tokens_context + model_params.max_completion_tokens
 
     if tokens_needed > gpt_model.max_context_tokens:
         elapsed_time = time.time() - start_time
@@ -90,14 +86,16 @@ async def fetch_gpt_raw_response(
             f"Total tokens needed:{tokens_needed} exceed max context tokens:{gpt_model.max_context_tokens}."
         )
 
-    logger.debug(
+    logger.info(
         f"[Request {request_id}] context tokens: {tokens_context}, prompt tokens: {tokens_prompt}, "
-        f"max response tokens: {max_response_tokens}, total tokens needed: {tokens_needed}. "
+        f"max response tokens: {model_params.max_completion_tokens}, total tokens needed: {tokens_needed}. "
         f"Attempting to borrow key from keypool."
     )
 
     key_borrow_time = time.time()
-    key_name, api_key, lock_token = await keypool.borrow_key(tokens_needed)
+    key_name, api_key, lock_token = await keypool.borrow_key(
+        tokens_needed, gpt_model.model_name
+    )
     key_borrow_duration = time.time() - key_borrow_time
 
     try:
@@ -109,18 +107,22 @@ async def fetch_gpt_raw_response(
 
         api_call_start = time.time()
         openai.api_key = api_key
-        response = await asyncio.to_thread(
-            openai.chat.completions.create,
+        sync_body = GPTSyncRequestBody(
             model=gpt_model.model_name,
             messages=[
                 {"role": "system", "content": prompt},
                 {"role": "user", "content": context},
             ],
-            max_completion_tokens=max_response_tokens,
+            max_completion_tokens=model_params.max_completion_tokens,
             temperature=model_params.temperature,
             top_p=model_params.top_p,
             presence_penalty=model_params.presence_penalty,
             frequency_penalty=model_params.frequency_penalty,
+            seed=model_params.seed,
+        )
+        response = await asyncio.to_thread(
+            openai.chat.completions.create,
+            **sync_body.model_dump(exclude_none=True),
         )
         api_call_duration = time.time() - api_call_start
         total_duration = time.time() - start_time
@@ -130,7 +132,7 @@ async def fetch_gpt_raw_response(
             f"total request time: {total_duration:.2f}s. "
             f"Received {len(response.choices)} choices from key '{key_name}'."
         )
-        keypool.record_key_usage(api_key, tokens_needed)
+        keypool.record_key_usage(api_key, tokens_needed, gpt_model.model_name)
         return response
     except Exception as e:
         # some errors look like
@@ -146,7 +148,7 @@ async def fetch_gpt_raw_response(
             logger.warning(
                 f"[Request {request_id}] Quota exceeded for API key_name: {key_name}. Removing from pool."
             )
-            keypool.mark_key_exhausted(api_key, error_msg)
+            keypool.mark_key_exhausted(api_key, error_msg, gpt_model.model_name)
             raise ValueError(f"Quota exceeded for API key: {key_name}.")
 
         # Handle rate limiting with suggested retry delay
@@ -158,13 +160,13 @@ async def fetch_gpt_raw_response(
                     f"[Request {request_id}] Rate limit hit for key {key_name}. "
                     f"Marking as unavailable for {delay}s."
                 )
-                keypool.set_key_cooldown(api_key, delay)
+                keypool.set_key_cooldown(api_key, delay, gpt_model.model_name)
             else:
                 logger.warning(
                     f"[Request {request_id}] Rate limit hit for key {key_name}. "
                     f"Marking as unavailable for 5s by default."
                 )
-                keypool.set_key_cooldown(api_key, 5.0)  # Fallback
+                keypool.set_key_cooldown(api_key, 5.0, gpt_model.model_name)  # Fallback
 
             # Do not retry, just fail and allow next request to pick a different key
             raise ValueError(f"Rate limit hit for API key: {key_name}.")
@@ -172,7 +174,7 @@ async def fetch_gpt_raw_response(
             raise e
     finally:
         logger.debug(f"[Request {request_id}] Returning key '{key_name}' to keypool.")
-        keypool.return_key(api_key, lock_token)
+        keypool.return_key(api_key, lock_token, gpt_model.model_name)
 
 
 # --- send_gpt_batch_request_sync Function ---
@@ -196,7 +198,9 @@ async def send_gpt_batch_request_sync(
     request_id = f"{batch_request.custom_id[:12]}_{str(uuid.uuid4())[:8]}"
     start_time = time.time()
 
-    tokens_needed = batch_request.body.input_tokens + batch_request.body.max_tokens
+    tokens_needed = batch_request.input_tokens + (
+        batch_request.body.max_completion_tokens or 0
+    )
 
     logger.info(
         f"[Request {request_id}] Starting batch request. Needs {tokens_needed} tokens. "
@@ -204,7 +208,9 @@ async def send_gpt_batch_request_sync(
     )
 
     key_borrow_time = time.time()
-    key_name, api_key, lock_token = await keypool.borrow_key(tokens_needed)
+    key_name, api_key, lock_token = await keypool.borrow_key(
+        tokens_needed, batch_request.body.model
+    )
     key_borrow_duration = time.time() - key_borrow_time
 
     try:
@@ -218,15 +224,11 @@ async def send_gpt_batch_request_sync(
         }
 
         # Prepare the request body (exclude input_tokens as it's just for our tracking)
-        request_body = {
-            "model": batch_request.body.model,
-            "messages": batch_request.body.messages,
-            "max_tokens": batch_request.body.max_tokens,
-        }
+        request_body = batch_request.body.model_dump(exclude_none=True)
 
         logger.info(
             f"[Request {request_id}] Sending to model '{batch_request.body.model}' "
-            f"with {batch_request.body.input_tokens} input tokens."
+            f"with {batch_request.input_tokens} input tokens."
         )
 
         http_call_start = time.time()
@@ -246,7 +248,7 @@ async def send_gpt_batch_request_sync(
                 f"[Request {request_id}] Success! HTTP call took {http_call_duration:.2f}s, "
                 f"total request time: {total_duration:.2f}s."
             )
-            keypool.record_key_usage(api_key, tokens_needed)
+            keypool.record_key_usage(api_key, tokens_needed, batch_request.body.model)
             return result
 
     except httpx.HTTPStatusError as e:
@@ -274,7 +276,9 @@ async def send_gpt_batch_request_sync(
                         f"[Request {request_id}] Quota exceeded for API key_name: {key_name}. "
                         f"Removing from pool."
                     )
-                    keypool.mark_key_exhausted(api_key, error_message)
+                    keypool.mark_key_exhausted(
+                        api_key, error_message, batch_request.body.model
+                    )
                     raise ValueError(f"Quota exceeded for API key: {key_name}.")
 
                 elif (
@@ -288,13 +292,15 @@ async def send_gpt_batch_request_sync(
                             f"[Request {request_id}] Rate limit hit for key {key_name}. "
                             f"Marking as unavailable for {delay}s."
                         )
-                        keypool.set_key_cooldown(api_key, delay)
+                        keypool.set_key_cooldown(
+                            api_key, delay, batch_request.body.model
+                        )
                     else:
                         logger.warning(
                             f"[Request {request_id}] Rate limit hit for key {key_name}. "
                             f"Marking as unavailable for 5s by default."
                         )
-                        keypool.set_key_cooldown(api_key, 5.0)
+                        keypool.set_key_cooldown(api_key, 5.0, batch_request.body.model)
 
                     raise ValueError(f"Rate limit hit for API key: {key_name}.")
         except ValueError:
@@ -312,4 +318,4 @@ async def send_gpt_batch_request_sync(
         raise
     finally:
         logger.debug(f"[Request {request_id}] Returning key '{key_name}' to keypool.")
-        keypool.return_key(api_key, lock_token)
+        keypool.return_key(api_key, lock_token, batch_request.body.model)

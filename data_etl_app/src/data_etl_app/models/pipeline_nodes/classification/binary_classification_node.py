@@ -1,10 +1,12 @@
+from __future__ import annotations
 import logging
 from datetime import datetime
 import traceback
+from typing import TYPE_CHECKING
 
 from core.models.prompt import Prompt
 from core.models.binary_classification_result import (
-    BinaryClassification,
+    LLMBinaryClassification,
 )
 from core.models.deferred_single_stage_extraction_requests import (
     SingleStageExtractionRequestBundle,
@@ -14,33 +16,33 @@ from core.services.gpt_batch_request_writes import record_response_parse_error
 from data_etl_app.models.pipeline_nodes.single_stage_extraction_node import (
     SingleStageExtractionNode,
 )
-from data_etl_app.models.pipeline_nodes.classification.binary_reconcile_node import (
-    BinaryReconcileNode,
-)
+
+if TYPE_CHECKING:
+    from data_etl_app.models.pipeline_nodes.classification.binary_reconcile_node import (
+        BinaryReconcileNode,
+    )
 from data_etl_app.models.types_and_enums import BinaryClassificationTypeEnum
 from data_etl_app.services.extraction.deferred_binary_classification_service import (
     parse_binary_classification_result_from_gpt_response,
 )
 from open_ai_key_app.models.field_types import GPTBatchRequestCustomID
-from open_ai_key_app.models.gpt_model import LLM_Model
+from open_ai_key_app.models.llm_model import LLM_Model
 
 logger = logging.getLogger(__name__)
 
 
-class BinaryClassificationNode(SingleStageExtractionNode[BinaryClassification]):
+class BinaryClassificationNode(SingleStageExtractionNode[LLMBinaryClassification]):
     """For is_manufacturer, is_product_manufacturer, etc. binary classification tasks."""
 
     def __init__(
         self,
         classification_prompt: Prompt,
         binary_field_type: BinaryClassificationTypeEnum,
-        llm_model: LLM_Model,
         next_node: BinaryReconcileNode,
     ):
         super().__init__(
             field_type=binary_field_type,
             prompt=classification_prompt,
-            llm_model=llm_model,
             next_node=next_node,
         )
 
@@ -52,7 +54,7 @@ class BinaryClassificationNode(SingleStageExtractionNode[BinaryClassification]):
         extraction_bundle: SingleStageExtractionRequestBundle,
         completed_request_map: dict[GPTBatchRequestCustomID, GPTBatchRequest],
         deferred_at: datetime,
-    ) -> BinaryClassification:
+    ) -> LLMBinaryClassification:
         classification_request_id = extraction_bundle.llm_request_id
         if not classification_request_id:
             raise ValueError(

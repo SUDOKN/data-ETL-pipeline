@@ -23,6 +23,11 @@ load_open_ai_app_env()
 
 from core.models.db.api_key_bundle import APIKeyBundle
 from core.models.db.gpt_batch import GPTBatch, GPTBatchStatus
+from open_ai_key_app.models.gpt_model import GPT_4o_mini
+from open_ai_key_app.models.gpt_model_params import GPTModelParams
+from open_ai_key_app.models.llm_model import LLM_Model
+from scraper_app.models.scraped_text_file import ScrapedTextFile
+
 from core.services.gpt_batch_request_queries import (
     get_custom_ids_for_batch,
 )
@@ -35,14 +40,11 @@ from core.services.api_key_service import (
     get_all_api_key_bundles,
 )
 from core.services.manufacturer_service import find_manufacturers_by_etld1s
-from core.utils.time_util import get_current_time
-
+from data_etl_app.services.knowledge.ontology_service import OntologyService
+from data_etl_app.services.knowledge.prompt_service import PromptService
 from data_etl_app.services.batch_file_generator import (
     BatchFileGenerationResult,
     iterate_df_manufacturers_and_write_batch_files,
-)
-from data_etl_app.utils.gpt_batch_request_util import (
-    parse_individual_batch_req_response_raw,
 )
 from data_etl_app.services.batch_file_satellite import (
     BatchFileSatellite,
@@ -50,6 +52,13 @@ from data_etl_app.services.batch_file_satellite import (
 )
 from data_etl_app.services.manufacturer_extraction_orchestrator import (
     ManufacturerExtractionOrchestrator,
+)
+from data_etl_app.services.knowledge.prompt_service import get_prompt_service
+from data_etl_app.services.knowledge.ontology_service import get_ontology_service
+
+from core.utils.time_util import get_current_time
+from data_etl_app.utils.gpt_batch_request_util import (
+    parse_individual_batch_req_response_raw,
 )
 
 logger = logging.getLogger(__name__)
@@ -98,12 +107,23 @@ class BatchFileStation:
     mfg_intake_orchestrator: ManufacturerExtractionOrchestrator
     satellite: BatchFileSatellite
 
-    def __init__(self):
+    def __init__(
+        self,
+        prompt_service: PromptService,
+        ontology_service: OntologyService,
+        llm_model: LLM_Model,
+        model_params: GPTModelParams,
+    ):
         if BatchFileStation._instance is not None:
             raise RuntimeError(
                 "BatchFileStation is a singleton. Use BatchFileStation.get_instance() instead."
             )
-        self.mfg_intake_orchestrator = ManufacturerExtractionOrchestrator()
+        self.mfg_intake_orchestrator = ManufacturerExtractionOrchestrator(
+            prompt_service=prompt_service,
+            ontology_service=ontology_service,
+            llm_model=llm_model,
+            model_params=model_params,
+        )
         self.satellite = BatchFileSatellite(
             output_dir=Path(FINISHED_BATCHES_DIR_DEFAULT)
         )
@@ -111,9 +131,20 @@ class BatchFileStation:
         BatchFileStation._instance = self
 
     @classmethod
-    def get_instance(cls) -> "BatchFileStation":
+    def get_instance(
+        cls,
+        prompt_service: PromptService,
+        ontology_service: OntologyService,
+        llm_model: LLM_Model,
+        model_params: GPTModelParams,
+    ) -> "BatchFileStation":
         if cls._instance is None:
-            cls._instance = cls()
+            cls._instance = cls(
+                prompt_service=prompt_service,
+                ontology_service=ontology_service,
+                llm_model=llm_model,
+                model_params=model_params,
+            )
         return cls._instance
 
     async def start_loop(self, poll_interval_seconds):
@@ -277,9 +308,16 @@ class BatchFileStation:
 
         async def bounded_process(mfg):
             async with semaphore:
+                scraped_text_file = await ScrapedTextFile.download_from_s3_and_create(
+                    mfg.etld1,
+                    mfg.scraped_text_file_version_id,
+                    llm_model=self.mfg_intake_orchestrator.llm_model,
+                )
                 await self.mfg_intake_orchestrator.process_manufacturer(
                     timestamp=downloaded_at,
                     mfg=mfg,
+                    scraped_text_file=scraped_text_file,
+                    eager=False,
                 )
 
         tasks = [
@@ -547,7 +585,24 @@ async def async_main():
     )
     logger = logging.getLogger(__name__)
     logger.info(f"Starting batch file station with log level: {log_level}")
-    batch_file_station = BatchFileStation.get_instance()
+    llm_model = GPT_4o_mini
+    model_params = GPTModelParams(
+        temperature=0,  # Greedy decoding — always picks highest probability token
+        top_p=1,  # No nucleus sampling restriction needed when temp=0
+        presence_penalty=0,  # No penalty adjustments that could shift token selection
+        frequency_penalty=0,  # Same — keep it neutral
+        seed=12345,  # NEW: explicitly request deterministic sampling,
+        max_completion_tokens=7500,  # Limit the response length to avoid excessive token usage
+    )
+
+    prompt_service = await get_prompt_service(llm_model)
+    ontology_service = await get_ontology_service()
+    batch_file_station = BatchFileStation.get_instance(
+        prompt_service=prompt_service,
+        ontology_service=ontology_service,
+        llm_model=llm_model,
+        model_params=model_params,
+    )
     POLL_INTERVAL = 5 * 60  # 1 mins
     try:
         await batch_file_station.start_loop(POLL_INTERVAL)

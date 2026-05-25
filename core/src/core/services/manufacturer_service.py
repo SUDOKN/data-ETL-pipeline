@@ -1,10 +1,10 @@
 from datetime import datetime
 import logging
 
+from beanie.operators import In
 from core.models.db.manufacturer import Manufacturer
 from core.models.field_types import MfgURLType, MfgETLDType
 from core.utils.url_util import get_etld1_from_host
-
 
 logger = logging.getLogger(__name__)
 
@@ -14,17 +14,19 @@ def reset_llm_extracted_fields(manufacturer: Manufacturer):
     Resets the classification and extracted fields of a manufacturer to None.
     This is useful when re-evaluating a manufacturer.
     """
+    # manufacturer.addresses = None
+    # manufacturer.business_desc = None
     manufacturer.is_manufacturer = None
-    manufacturer.is_contract_manufacturer = None
-    manufacturer.is_product_manufacturer = None
+    # manufacturer.is_contract_manufacturer = None
+    # manufacturer.is_product_manufacturer = None
 
-    manufacturer.business_desc = None
-    manufacturer.products = None
-    manufacturer.certificates = None
-    manufacturer.industries = None
-    manufacturer.material_caps = None
+    # manufacturer.products = None
+
+    # manufacturer.certificates = None
+    # manufacturer.industries = None
+    # manufacturer.material_caps = None
     manufacturer.process_caps = None
-    manufacturer.products = None
+
     logger.info(
         f"Reset LLM extracted fields for manufacturer with etld1: {manufacturer.etld1}"
     )
@@ -74,9 +76,9 @@ async def find_random_manufacturer_url() -> MfgURLType | None:
     """
     agg_cursor = await Manufacturer.aggregate(
         [
-            {"$match": {"is_manufacturer.answer": True}},
+            {"$match": {"is_manufacturer.result.answer": True}},
             {"$sample": {"size": 1}},
-            {"$project": {"url_accessible_at": 1}},
+            {"$project": {Manufacturer.url_accessible_at: 1}},
         ]
     ).to_list(length=1)
     mfg_url = str(agg_cursor[0]["url_accessible_at"]) if agg_cursor else None
@@ -114,7 +116,7 @@ async def find_manufacturers_by_etld1s(
     """
 
     logger.debug(f"Finding manufacturer with {len(mfg_etld1s)} mfg_etld1s")
-    return await Manufacturer.find({"etld1": {"$in": mfg_etld1s}}).to_list()
+    return await Manufacturer.find(In(Manufacturer.etld1, mfg_etld1s)).to_list()
 
 
 async def find_manufacturer_by_etld1(
@@ -131,7 +133,7 @@ async def find_manufacturer_by_etld1(
     """
 
     logger.debug(f"Finding manufacturer with just mfg_etld1: {mfg_etld1}")
-    return await Manufacturer.find_one({"etld1": mfg_etld1})
+    return await Manufacturer.find_one(Manufacturer.etld1 == mfg_etld1)
 
 
 async def find_prevalidated_manufacturer_by_url(
@@ -164,7 +166,8 @@ async def find_prevalidated_manufacturer_by_etld1(
     """
 
     manufacturer = await Manufacturer.find_one(
-        {"etld1": mfg_etld1, "is_manufacturer.answer": True}
+        Manufacturer.etld1 == mfg_etld1,
+        Manufacturer.is_manufacturer.result.answer == True,  # type: ignore[union-attr]
     )
     if not manufacturer:
         raise ValueError(
@@ -208,8 +211,6 @@ async def find_manufacturer_by_etld1_and_scraped_file_version(
         Manufacturer | None: The manufacturer object if found, otherwise None.
     """
     return await Manufacturer.find_one(
-        {
-            "etld1": mfg_etld1,
-            "scraped_text_file_version_id": scraped_text_file_version_id,
-        }
+        Manufacturer.etld1 == mfg_etld1,
+        Manufacturer.scraped_text_file_version_id == scraped_text_file_version_id,
     )

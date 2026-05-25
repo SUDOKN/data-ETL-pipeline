@@ -8,10 +8,6 @@ import logging
 from datetime import datetime
 from typing import Optional
 
-from core.models.gpt_batch_request_blob import (
-    GPTBatchRequestBlob,
-    GPTBatchRequestBlobBody,
-)
 from core.models.gpt_batch_request_blob import GPTBatchRequestBlob
 from core.models.gpt_batch_response_blob import (
     GPTBatchResponseBlob,
@@ -26,25 +22,22 @@ from core.models.db.gpt_batch_request import GPTBatchRequest
 from core.models.deferred_concept_extraction import (
     DeferredConceptExtractionRequests,
 )
-from data_etl_app.models.pipeline_nodes import ConceptSearchNode
+from data_etl_app.models.pipeline_nodes.concept.concept_search_node import (
+    ConceptSearchNode,
+)
 from data_etl_app.models.skos_concept import ConceptJSONEncoder
 from data_etl_app.models.types_and_enums import ConceptTypeEnum
+from open_ai_key_app.models.gpt_model_params import GPTRequestBody, GPTModelParams
 from open_ai_key_app.models.field_types import GPTBatchRequestCustomID
+from open_ai_key_app.models.gpt_model import No_model
+from open_ai_key_app.models.llm_model import LLM_Model
+from open_ai_key_app.models.gpt_model_params import GPTModelParams
 
 from core.services.gpt_batch_request_service import (
     create_base_gpt_batch_request,
 )
 
 logger = logging.getLogger(__name__)
-
-
-from open_ai_key_app.models.gpt_model import (
-    GPT_4o_mini,
-    LLM_Model,
-    ModelParameters,
-    DefaultModelParameters,
-    No_model,
-)
 
 
 def parse_llm_concept_evidence_result(
@@ -87,7 +80,8 @@ async def create_missing_concept_evidence_requests(
     upstream_completed_batch_req_map: dict[GPTBatchRequestCustomID, GPTBatchRequest],
     deferred_at: datetime,
     llm_model: LLM_Model,
-    model_params: ModelParameters = DefaultModelParameters,
+    eager: bool,
+    model_params: GPTModelParams,
     BATCH_SIZE=100,
 ) -> list[GPTBatchRequest]:
     logger.info(
@@ -149,15 +143,20 @@ async def create_missing_concept_evidence_requests(
                 dummy_batch_request = _create_dummy_completed_evidence_batch_request(
                     deferred_at=deferred_at,
                     llm_evidence_request_id=llm_evidence_request_id,
+                    model_params=model_params,
                 )
                 new_batch_request = dummy_batch_request
             else:
+                start, end = int(chunk_bounds.split(":")[0]), int(
+                    chunk_bounds.split(":")[1]
+                )
                 evidence_batch_request = create_deferred_evidence_gpt_request(
                     deferred_at=deferred_at,
                     llm_evidence_request_id=llm_evidence_request_id,
-                    mfg_text=mfg_text,
+                    mfg_text=mfg_text[start:end],
                     search_results=all_search_results,
                     evidence_prompt=evidence_prompt,
+                    eager=eager,
                     gpt_model=llm_model,
                     model_params=model_params,
                 )
@@ -178,7 +177,9 @@ async def create_missing_concept_evidence_requests(
 
 
 def _create_dummy_completed_evidence_batch_request(
-    deferred_at: datetime, llm_evidence_request_id: GPTBatchRequestCustomID
+    deferred_at: datetime,
+    model_params: GPTModelParams,
+    llm_evidence_request_id: GPTBatchRequestCustomID,
 ) -> GPTBatchRequest:
     if llm_evidence_request_id is None:
         raise ValueError(
@@ -191,17 +192,20 @@ def _create_dummy_completed_evidence_batch_request(
         num_batches_paired_with=0,
         request=GPTBatchRequestBlob(
             custom_id=llm_evidence_request_id,
-            body=GPTBatchRequestBlobBody(
-                model=No_model.model_name,
-                messages=[
-                    {
-                        "role": "system",
-                        "content": "No evidence needed - no concepts were found in the text.",
-                    }
-                ],
-                input_tokens=1,
-                max_tokens=1,
+            body=GPTRequestBody.model_validate(
+                model_params.model_dump()
+                | {
+                    "model": No_model.model_name,
+                    "messages": [
+                        {
+                            "role": "system",
+                            "content": "No mapping needed - all concepts matched via brute search or none were found in the first place.",
+                        }
+                    ],
+                    "max_completion_tokens": 1,
+                }
             ),
+            input_tokens=1,
         ),
         batch_id="empty_unmapped_unknowns",
         response_blob=GPTBatchResponseBlob(
@@ -209,8 +213,10 @@ def _create_dummy_completed_evidence_batch_request(
             request_custom_id="no-request",
             response=GPTBatchResponseBody(
                 status_code=200,
+                gpt_internal_request_id="no-request",
                 body=GPTResponseBlobBody(
                     created=deferred_at,
+                    model=No_model.model_name,
                     choices=[
                         GPTBatchResponseBlobChoice(
                             index=0,
@@ -224,6 +230,7 @@ def _create_dummy_completed_evidence_batch_request(
                         completion_tokens=1,
                         total_tokens=2,
                     ),
+                    system_fingerprint="no-request",
                 ),
             ),
         ),
@@ -236,8 +243,9 @@ def create_deferred_evidence_gpt_request(
     mfg_text: str,
     search_results: set[str],
     evidence_prompt: Prompt,
-    gpt_model: LLM_Model = GPT_4o_mini,
-    model_params: ModelParameters = DefaultModelParameters,
+    gpt_model: LLM_Model,
+    eager: bool,
+    model_params: GPTModelParams,
 ) -> GPTBatchRequest:
     logger.info(
         f"create_deferred_evidence_gpt_request: Generating GPTBatchRequest for {llm_evidence_request_id}"
@@ -253,5 +261,6 @@ def create_deferred_evidence_gpt_request(
         prompt=evidence_prompt,
         gpt_model=gpt_model,
         model_params=model_params,
+        batch_id="Eager" if eager else None,
     )
     return gpt_batch_request

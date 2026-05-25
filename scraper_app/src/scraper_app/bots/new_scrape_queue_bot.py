@@ -40,6 +40,7 @@ from core.utils.mongo_client import init_db
 from core.utils.time_util import get_current_time
 
 from core.services.manufacturer_service import (
+    find_manufacturer_by_etld1,
     reset_llm_extracted_fields,
     update_manufacturer,
 )
@@ -48,6 +49,8 @@ from scraper_app.models.scraped_text_file import ScrapedTextFile
 from scraper_app.services.url_scraper_service import (
     ScraperService,
 )
+from open_ai_key_app.models.gpt_model import GPT_5_2
+from open_ai_key_app.models.llm_model import LLM_Model
 
 from core.utils.url_util import get_etld1_from_host
 
@@ -156,13 +159,14 @@ async def process_queue(
                 f"Processing item: {item.accessible_normalized_url} (Batch: {item.batch.title})"
             )
             try:
-                manufacturer = await Manufacturer.find_one({"etld1": mfg_etld})
+                manufacturer = await find_manufacturer_by_etld1(mfg_etld)
                 scraped_file = await get_valid_scraped_file(
                     polled_at,
                     item,
                     manufacturer,
                     redo_extraction_flag=item.redo_extraction,
                     scraper=scraper,
+                    llm_model=GPT_5_2,
                 )
 
                 if manufacturer:
@@ -252,6 +256,7 @@ async def get_valid_scraped_file(
     manufacturer: Manufacturer | None,
     redo_extraction_flag: bool,
     scraper: ScraperService,
+    llm_model: LLM_Model,
 ) -> ScrapedTextFile:
     mfg_etld = get_etld1_from_host(item.accessible_normalized_url)
     existing_scraped_file: ScrapedTextFile | None = None
@@ -263,6 +268,7 @@ async def get_valid_scraped_file(
             existing_scraped_file = await ScrapedTextFile.download_from_s3_and_create(
                 mfg_etld,
                 manufacturer.scraped_text_file_version_id,
+                GPT_5_2,
             )
         except Exception as e:
             subject = f"Error downloading existing scraped file for {mfg_etld}, version {manufacturer.scraped_text_file_version_id}."
@@ -317,6 +323,7 @@ async def get_valid_scraped_file(
                     await ScrapedTextFile.download_from_s3_and_create(
                         mfg_etld,
                         latest_version_id,
+                        GPT_5_2,
                     )
                 )
             except Exception as e:
@@ -358,7 +365,7 @@ async def get_valid_scraped_file(
     if not existing_scraped_file:
         logger.info(f"No valid scraped file found for {mfg_etld}. Starting new scrape.")
         # now we must scrape and upload a new file
-        scraping_result = scraper.scrape(item.accessible_normalized_url)
+        scraping_result = scraper.scrape(item.accessible_normalized_url, llm_model)
         # Save individual URL errors to database (using consistent timestamp)
         if scraping_result.has_errors:
             logger.warning(

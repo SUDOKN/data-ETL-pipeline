@@ -201,7 +201,7 @@ async def main():
                 mfg = Manufacturer(**mfg_doc)
                 muf = ManufacturerUserForm(
                     author_email="me",
-                    mfg_etld1=mfg.etld1,
+                    etld1=mfg.etld1,
                     name=(
                         mfg.business_desc.name
                         if (mfg.business_desc and mfg.business_desc.name)

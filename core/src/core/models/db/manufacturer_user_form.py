@@ -4,7 +4,8 @@ from pydantic import Field
 from datetime import datetime
 from typing import Optional
 
-from core.models.db.manufacturer import Address, BusinessDescription
+from core.models.address_extraction_result import Address
+from core.models.business_description_extraction_result import BusinessDescription
 from core.models.field_types import MfgETLDType
 from core.utils.time_util import get_current_time
 
@@ -15,7 +16,7 @@ logger = logging.getLogger(__name__)
 # In case we update ontology/re-run extraction, we can notify the user to re-submit the form
 class ManufacturerUserForm(Document):
     author_email: str
-    mfg_etld1: MfgETLDType  # foreign key to Manufacturer.etld1
+    etld1: MfgETLDType  # foreign key to Manufacturer.etld1
 
     created_at: datetime = Field(default_factory=lambda: get_current_time())
     updated_at: datetime = Field(default_factory=lambda: get_current_time())
@@ -50,7 +51,7 @@ Indexes in MongoDB for ManufacturerUserForm:
 
 db.manufacturer_user_forms.createIndex(
   {
-    mfg_etld1: 1,
+    etld1: 1,
   },
   {
     name: "mfg_user_form_unique_per_etld1",

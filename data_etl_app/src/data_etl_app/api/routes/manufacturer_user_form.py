@@ -103,12 +103,12 @@ async def fetch_manufacturer_user_form(
 async def upsert_manufacturer_user_form(
     form: ManufacturerUserForm,
 ):
-    existing_form = await get_manufacturer_user_form_by_mfg_etld1(form.mfg_etld1)
+    existing_form = await get_manufacturer_user_form_by_mfg_etld1(form.etld1)
     if existing_form and not form.id:
         raise ValueError(
-            f"ManufacturerUserForm for etld1 {form.mfg_etld1} already exists. To update, "
+            f"ManufacturerUserForm for etld1 {form.etld1} already exists. To update, "
             f"please fetch the existing form and then include the id field."
         )
     await save_manufacturer_user_form(form)
-    await replace_manufacturer_in_graph(form.mfg_etld1)
+    await replace_manufacturer_in_graph(form.etld1)
     return form

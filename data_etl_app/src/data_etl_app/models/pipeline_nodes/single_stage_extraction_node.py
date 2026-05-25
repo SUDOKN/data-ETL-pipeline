@@ -15,13 +15,16 @@ from data_etl_app.models.types_and_enums import (
     BasicFieldTypeEnum,
     BinaryClassificationTypeEnum,
     SingleStageFieldTypeEnum,
+)
+from data_etl_app.models.pipeline_nodes.base_node import (
     PipelineContext,
 )
 from data_etl_app.models.pipeline_nodes.llm_extraction_node import (
     LLMExtractionNode,
     ResultT,
 )
-from open_ai_key_app.models.gpt_model import LLM_Model
+from open_ai_key_app.models.llm_model import LLM_Model
+from open_ai_key_app.models.gpt_model_params import GPTModelParams
 from open_ai_key_app.models.field_types import GPTBatchRequestCustomID
 from scraper_app.models.scraped_text_file import ScrapedTextFile
 
@@ -37,14 +40,12 @@ class SingleStageExtractionNode(LLMExtractionNode[SingleStageFieldTypeEnum, Resu
         self,
         field_type: "BasicFieldTypeEnum | BinaryClassificationTypeEnum",
         prompt: Prompt,
-        llm_model: LLM_Model,
         next_node: ReconcileNode,
     ):
         super().__init__(field_type=field_type, next_node=next_node)
         self.prompt = prompt
-        self.llm_model = llm_model
 
-    async def get_embedded_request_ids(
+    def get_embedded_request_ids(
         self,
         mfg_etld1: str,
         extraction_requests: DeferredSingleStageExtractionRequests,
@@ -66,12 +67,14 @@ class SingleStageExtractionNode(LLMExtractionNode[SingleStageFieldTypeEnum, Resu
         mfg_etld1: str,
         field_type: "BasicFieldTypeEnum | BinaryClassificationTypeEnum",
         chunk_bounds: str,
+        llm_model: LLM_Model,
+        model_params: GPTModelParams,
     ) -> GPTBatchRequestCustomID:
-        return f"{mfg_etld1}>{field_type.name}>llm_request>chunk>{chunk_bounds}"
+        return f"{mfg_etld1}>{field_type.name}>llm_request>chunk>{chunk_bounds}>{model_params.to_custom_id_segment(llm_model.model_name)}"
 
     @staticmethod
     @abstractmethod
-    def parse_batch_request_result(
+    async def parse_batch_request_result(
         mfg_etld1: str,
         field_type: "BasicFieldTypeEnum | BinaryClassificationTypeEnum",
         chunk_bounds: str,
@@ -88,6 +91,9 @@ class SingleStageExtractionNode(LLMExtractionNode[SingleStageFieldTypeEnum, Resu
         scraped_text_file: ScrapedTextFile,
         timestamp: datetime,
         pipeline_context: PipelineContext,
+        llm_model: LLM_Model,
+        model_params: GPTModelParams,
+        eager: bool,
     ) -> list[GPTBatchRequest]:
         """Create batch requests for business description extraction phase."""
 
@@ -101,13 +107,20 @@ class SingleStageExtractionNode(LLMExtractionNode[SingleStageFieldTypeEnum, Resu
 
         batch_requests = await create_missing_basic_extraction_requests(
             deferred_at=timestamp,
-            mfg_etld1=deferred_mfg.mfg_etld1,
+            mfg_etld1=deferred_mfg.etld1,
             mfg_text=scraped_text_file.text,
             field_type=self.field_type,
             extraction_requests=extraction_requests,
             missing_request_ids=missing_request_ids,
             prompt=self.prompt,
-            llm_model=self.llm_model,
+            llm_model=llm_model,
+            model_params=model_params,
+            eager=eager,
         )
+
+        logger.info(
+            f"create_batch_requests: Created {len(batch_requests)} GPTBatchRequest for {deferred_mfg.etld1}:{self.field_type.name}"
+        )
+        logger.info(f"{batch_requests}")
 
         return batch_requests

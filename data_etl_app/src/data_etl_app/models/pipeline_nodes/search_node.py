@@ -10,16 +10,19 @@ from core.models.db.gpt_batch_request import GPTBatchRequest
 from core.models.deferred_concept_extraction import (
     DeferredConceptExtractionRequests,
 )
-from data_etl_app.models.pipeline_nodes.base_node import LLMExtractedFieldTypeVar
+from data_etl_app.models.pipeline_nodes.base_node import (
+    LLMExtractedFieldTypeVar,
+    PipelineContext,
+)
 from data_etl_app.models.pipeline_nodes.reconcile_node import ReconcileNode
 from data_etl_app.models.types_and_enums import (
     LLMExtractedFieldTypeEnum,
-    PipelineContext,
 )
 from data_etl_app.models.pipeline_nodes.llm_extraction_node import (
     LLMExtractionNode,
 )
-from open_ai_key_app.models.gpt_model import LLM_Model
+from open_ai_key_app.models.llm_model import LLM_Model
+from open_ai_key_app.models.gpt_model_params import GPTModelParams
 from open_ai_key_app.models.field_types import GPTBatchRequestCustomID
 from scraper_app.models.scraped_text_file import ScrapedTextFile
 
@@ -41,12 +44,10 @@ class SearchNode(LLMExtractionNode[LLMExtractedFieldTypeVar, set[str]]):
         self,
         field_type: LLMExtractedFieldTypeVar,
         search_prompt: Prompt,
-        llm_model: LLM_Model,
         next_node: LLMExtractionNode | ReconcileNode,
     ):
         super().__init__(field_type=field_type, next_node=next_node)
         self.search_prompt = search_prompt
-        self.llm_model = llm_model
 
     def get_embedded_request_ids(
         self,
@@ -68,9 +69,13 @@ class SearchNode(LLMExtractionNode[LLMExtractedFieldTypeVar, set[str]]):
 
     @staticmethod
     def get_request_custom_id(
-        mfg_etld1: str, field_type: LLMExtractedFieldTypeEnum, chunk_bounds: str
+        mfg_etld1: str,
+        field_type: LLMExtractedFieldTypeEnum,
+        chunk_bounds: str,
+        llm_model: LLM_Model,
+        model_params: GPTModelParams,
     ) -> GPTBatchRequestCustomID:
-        return f"{mfg_etld1}>{field_type.name}>llm_search>chunk>{chunk_bounds}"
+        return f"{mfg_etld1}>{field_type.name}>llm_search>chunk>{chunk_bounds}>{model_params.to_custom_id_segment(llm_model.model_name)}"
 
     @staticmethod
     async def parse_batch_request_result(
@@ -121,6 +126,9 @@ class SearchNode(LLMExtractionNode[LLMExtractedFieldTypeVar, set[str]]):
         scraped_text_file: ScrapedTextFile,
         timestamp: datetime,
         pipeline_context: PipelineContext,
+        llm_model: LLM_Model,
+        model_params: GPTModelParams,
+        eager: bool,
     ) -> list[GPTBatchRequest]:
         """Create batch requests for concept search phase."""
 
@@ -139,10 +147,12 @@ class SearchNode(LLMExtractionNode[LLMExtractedFieldTypeVar, set[str]]):
             field_type=self.field_type,
             missing_search_req_ids=missing_request_ids,
             extraction_requests=extraction_requests,
-            mfg_etld1=deferred_mfg.mfg_etld1,
+            mfg_etld1=deferred_mfg.etld1,
             mfg_text=scraped_text_file.text,
             search_prompt=self.search_prompt,
-            llm_model=self.llm_model,
+            llm_model=llm_model,
+            model_params=model_params,
+            eager=eager,
         )
 
         return batch_requests

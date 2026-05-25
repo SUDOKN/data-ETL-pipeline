@@ -65,16 +65,16 @@ def parse_individual_batch_req_response_raw(
             # completion_id=body_data["id"],
             # object=body_data["object"],
             created=datetime.fromtimestamp(body_data["created"]),
-            # model=body_data["model"],
+            model=body_data["model"],
             choices=choices,
             usage=usage,
-            # system_fingerprint=body_data.get("system_fingerprint"),
+            system_fingerprint=body_data.get("system_fingerprint"),
         )
 
         # Parse full response
         response = GPTBatchResponseBody(
             status_code=response_data["status_code"],
-            # gpt_internal_request_id=response_data["request_id"],
+            gpt_internal_request_id=response_data["request_id"],
             body=response_body,
         )
 
@@ -104,9 +104,11 @@ def build_response_blob_from_chat_completion(
         batch_id=batch_id,
         request_custom_id=custom_id,
         response=GPTBatchResponseBody(
-            status_code=200,
+            status_code=response.status_code,
+            gpt_internal_request_id=response.request_id,
             body=GPTResponseBlobBody(
                 created=datetime.fromtimestamp(response.created),
+                model=response.body.model,
                 choices=[
                     GPTBatchResponseBlobChoice(
                         index=c.index,
@@ -122,6 +124,7 @@ def build_response_blob_from_chat_completion(
                     completion_tokens=response.usage.completion_tokens,
                     total_tokens=response.usage.total_tokens,
                 ),
+                system_fingerprint=response.body.system_fingerprint,
             ),
         ),
         error=None,

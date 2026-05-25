@@ -5,6 +5,7 @@ LLMEvidenceResults = dict[
     str, str | None
 ]  # evidence for each identified term, where key is the term and value is the evidence text which can be None if the LLM found no evidence
 LLMMappingType = dict[str, set[str]]  # mapping from known concept to unknown concepts
+LLMMappingResult = dict[str, list[str]]
 MfgETLDType = str
 MfgURLType = str
 OntologyVersionIDType = str

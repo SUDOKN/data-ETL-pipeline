@@ -20,12 +20,14 @@ from data_etl_app.models.pipeline_nodes.concept.concept_search_node import (
 )
 from data_etl_app.models.pipeline_nodes.prefill_node import PrefillNode
 from data_etl_app.models.skos_concept import Concept
-from data_etl_app.models.types_and_enums import ConceptTypeEnum, PipelineContext
-from open_ai_key_app.models.gpt_model import LLM_Model
+from data_etl_app.models.types_and_enums import ConceptTypeEnum
+from data_etl_app.models.pipeline_nodes.base_node import PipelineContext
+from data_etl_app.models.chunking_strat import ChunkingStrategy
+from open_ai_key_app.models.llm_model import LLM_Model
+from open_ai_key_app.models.gpt_model_params import GPTModelParams
 from scraper_app.models.scraped_text_file import ScrapedTextFile
 
 from data_etl_app.services.brute_search_service import brute_search
-from data_etl_app.models.chunking_strat import ChunkingStrat
 
 from data_etl_app.utils.chunk_util import get_chunks_respecting_line_boundaries
 
@@ -38,8 +40,7 @@ class ConceptExtractionPrefillNode(PrefillNode[ConceptTypeEnum]):
     def __init__(
         self,
         field_type: ConceptTypeEnum,
-        llm_model: LLM_Model,
-        chunk_strategy: ChunkingStrat,
+        chunk_strategy: ChunkingStrategy,
         search_prompt: Prompt,
         evidence_prompt: Prompt,
         mapping_prompt: Prompt,
@@ -49,7 +50,6 @@ class ConceptExtractionPrefillNode(PrefillNode[ConceptTypeEnum]):
     ):
         super().__init__(
             field_type=field_type,
-            llm_model=llm_model,
             chunk_strategy=chunk_strategy,
             next_node=next_node,
         )
@@ -66,20 +66,25 @@ class ConceptExtractionPrefillNode(PrefillNode[ConceptTypeEnum]):
         scraped_text_file: ScrapedTextFile,
         timestamp: datetime,
         pipeline_context: PipelineContext,
+        llm_model: LLM_Model,
+        model_params: GPTModelParams,
         eager: bool,
     ):
         if not bool(getattr(deferred_mfg, self.field_type.name)):
             chunk_map = await get_chunks_respecting_line_boundaries(
                 text=scraped_text_file.text,
-                soft_limit_tokens=self.chunk_strategy.max_tokens,
+                soft_limit_tokens=self.chunk_strategy.max_tokens_per_chunk,
                 overlap_ratio=self.chunk_strategy.overlap,
                 max_chunks=self.chunk_strategy.max_chunks,
+                llm_model=llm_model,
             )
 
             deferred_concept_extraction = DeferredConceptExtractionRequests(
                 metadata=ConceptExtractionMetadata(
-                    model=self.llm_model.model_name,
+                    model=llm_model.model_name,
+                    model_params=model_params,
                     created_at=timestamp,
+                    chunk_strat=self.chunk_strategy,
                     search_prompt_version_id=self.search_prompt.s3_version_id,
                     evidence_prompt_version_id=self.evidence_prompt.s3_version_id,
                     mapping_prompt_version_id=self.mapping_prompt.s3_version_id,
@@ -88,23 +93,29 @@ class ConceptExtractionPrefillNode(PrefillNode[ConceptTypeEnum]):
                 request_map={
                     chunk_bounds: ConceptExtractionRequestBundle(
                         brute={
-                            b.name
-                            for b in brute_search(chunk_text, self.known_concepts)
+                            label
+                            for label in brute_search(chunk_text, self.known_concepts)
                         },
                         llm_search_request_id=ConceptSearchNode.get_request_custom_id(
                             mfg_etld1=deferred_mfg.etld1,
                             field_type=self.field_type,
                             chunk_bounds=chunk_bounds,
+                            llm_model=llm_model,
+                            model_params=model_params,
                         ),
                         llm_evidence_request_id=ConceptEvidenceNode.get_request_custom_id(
                             mfg_etld1=deferred_mfg.etld1,
                             field_type=self.field_type,
                             chunk_bounds=chunk_bounds,
+                            llm_model=llm_model,
+                            model_params=model_params,
                         ),
                         llm_mapping_request_id=ConceptMappingNode.get_request_custom_id(
                             mfg_etld1=deferred_mfg.etld1,
                             field_type=self.field_type,
                             chunk_bounds=chunk_bounds,
+                            llm_model=llm_model,
+                            model_params=model_params,
                         ),
                     )
                     for chunk_bounds, chunk_text in chunk_map.items()
@@ -119,5 +130,7 @@ class ConceptExtractionPrefillNode(PrefillNode[ConceptTypeEnum]):
             scraped_text_file=scraped_text_file,
             timestamp=timestamp,
             pipeline_context=pipeline_context,
+            llm_model=llm_model,
+            model_params=model_params,
             eager=eager,
         )

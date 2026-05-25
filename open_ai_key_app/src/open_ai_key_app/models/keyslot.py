@@ -18,10 +18,13 @@ from open_ai_key_app.utils.openai_key_labels_util import (
 
 
 class KeySlot:
-    def __init__(self, name: str, api_key: str, token_limit_per_min: int = 200000):
+    def __init__(
+        self, name: str, api_key: str, token_limit_per_min: int, model_name: str
+    ):
         self.name = name
         self.api_key = api_key
         self.token_limit = token_limit_per_min
+        self.model_name = model_name
         self._set_key_labels()
 
     def _set_key_labels(self):
@@ -121,6 +124,13 @@ class KeySlot:
         self.set_cooldown(0)
         redis.set(self.exhausted_msg_key, exhausted_msg)
 
+    @property
+    def is_exhausted(self) -> bool:
+        """
+        Check if the key is marked as exhausted in Redis.
+        """
+        return redis.exists(self.exhausted_msg_key) > 0
+
     def mark_available(self) -> None:
         """
         Mark a key as replenished by removing its cooldown and exhausted message.
@@ -130,6 +140,8 @@ class KeySlot:
 
     def can_accept(self, tokens_needed: int) -> bool:
         # for keys that are exhausted, can_accept will always return False
+        if self.is_exhausted:
+            return False
         now = time.time()
         if now < self.cooldown_until:
             return False
