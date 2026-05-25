@@ -2,14 +2,14 @@ import json
 import logging
 from typing import Optional
 
-from core.models.binary_classification_result import BinaryClassification
+from core.models.binary_classification_result import LLMBinaryClassification
 
 logger = logging.getLogger(__name__)
 
 
 def parse_binary_classification_result_from_gpt_response(
     gpt_response: Optional[str],
-) -> BinaryClassification:
+) -> LLMBinaryClassification:
     if not gpt_response:
         logger.error(f"Invalid gpt_response:{gpt_response}")
         raise ValueError(
@@ -24,4 +24,4 @@ def parse_binary_classification_result_from_gpt_response(
             f"parse_binary_classification_result_from_gpt_response: Invalid response from GPT:{gpt_response}"
         )
 
-    return BinaryClassification(**json_response)
+    return LLMBinaryClassification(**json_response)

@@ -1,18 +1,37 @@
 {
   "$jsonSchema": {
     "bsonType": "object",
-    "required": ["userEmail", "status", "createdAt", "updatedAt"],
+    "required": [
+      "userEmail"
+    ],
     "additionalProperties": false,
     "properties": {
-      "_id": { "bsonType": "objectId" },
-      "userEmail": { "bsonType": "string" },
-      "status": {
-        "bsonType": "string",
-        "enum": ["pending", "approved", "rejected"]
+      "_id": {
+        "bsonType": "objectId"
       },
-      "reason": { "bsonType": ["string", "null"] },
-      "createdAt": { "bsonType": "date" },
-      "updatedAt": { "bsonType": "date" }
+      "userEmail": {
+        "bsonType": "string"
+      },
+      "status": {
+        "enum": [
+          "pending",
+          "approved",
+          "rejected"
+        ],
+        "bsonType": "string"
+      },
+      "reason": {
+        "bsonType": [
+          "string",
+          "null"
+        ]
+      },
+      "createdAt": {
+        "bsonType": "date"
+      },
+      "updatedAt": {
+        "bsonType": "date"
+      }
     }
   }
 }

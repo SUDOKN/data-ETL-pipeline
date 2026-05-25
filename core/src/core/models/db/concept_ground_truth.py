@@ -1,5 +1,6 @@
 from beanie import Document
 from datetime import datetime
+from data_etl_app.models.chunking_strat import ChunkingStrategy
 from pydantic import BaseModel, Field
 
 from core.models.field_types import (
@@ -44,15 +45,15 @@ class ConceptGroundTruth(Document):
     updated_at: datetime = Field(default_factory=lambda: get_current_time())
 
     mfg_etld1: MfgETLDType
-    concept_type: ConceptTypeEnum
-
     scraped_text_file_version_id: S3FileVersionIDType
-    chunk_text: str  # if the file gets
+    concept_type: ConceptTypeEnum
 
     # context ids
     chunk_bounds: str
-    chunk_no: int
-    last_chunk_no: int
+    chunk_no: int  # used as navigation parameter
+    last_chunk_no: int  # informational for the end user
+    chunk_text: str
+    chunk_strat: ChunkingStrategy
 
     metadata: ConceptExtractionMetadata
     extraction_stats: ConceptExtractionStats
@@ -69,8 +70,9 @@ Indexes in MongoDB for ConceptGroundTruth:
 db.concept_ground_truths.createIndex(
   {
     mfg_etld1: 1,
-    "metadata.scraped_text_file_version_id": 1,
-    concept_type: 1
+    concept_type: 1,
+    scraped_text_file_version_id: 1,
+    chunk_bounds: 1,
   },
   { 
     name: "concept_gt_unique_idx",

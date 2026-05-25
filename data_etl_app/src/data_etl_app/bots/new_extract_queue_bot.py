@@ -30,9 +30,12 @@ from data_etl_app.dependencies.aws_clients import (
 from core.models.db.manufacturer import Manufacturer
 from core.models.db.extraction_error import ExtractionError
 from core.models.to_extract_item import ToExtractItem
-from core.models.db.binary_ground_truth import HumanBinaryDecision
-from core.models.binary_classification_result import BinaryClassificationResult
+from core.models.binary_classification_result import (
+    BaseClassificationDecision,
+)
 from data_etl_app.models.types_and_enums import BinaryClassificationTypeEnum
+from open_ai_key_app.models.gpt_model_params import GPTModelParams
+from open_ai_key_app.models.llm_model import LLM_Model
 from scraper_app.models.scraped_text_file import ScrapedTextFile
 
 from core.services.user_service import is_user_MEP
@@ -42,6 +45,8 @@ from core.services.manufacturer_service import (
 from data_etl_app.services.ground_truth.binary_ground_truth_service import (
     get_binary_ground_truth,
 )
+from data_etl_app.services.knowledge.ontology_service import get_ontology_service
+from data_etl_app.services.knowledge.prompt_service import get_prompt_service
 from data_etl_app.services.manufacturer_extraction_orchestrator import (
     ManufacturerExtractionOrchestrator,
 )
@@ -121,13 +126,22 @@ async def process_queue(
         Awaitable[tuple[ToExtractItem, str] | tuple[None, None]],
     ],
     delete_item_from_queue: Callable[[str], Awaitable[None]],
+    llm_model: LLM_Model,
+    model_params: GPTModelParams,
     max_concurrent_manufacturers: int = 25,
 ):
 
     concurrent_manufacturers = set()
     extraction_stats = ExtractionStats()  # Initialize timing stats
     try:
-        mfg_orchestrator = ManufacturerExtractionOrchestrator(llm_model=GPT_4o_mini)
+        prompt_service = await get_prompt_service(llm_model)
+        ontology_service = await get_ontology_service()
+        mfg_orchestrator = ManufacturerExtractionOrchestrator(
+            prompt_service=prompt_service,
+            ontology_service=ontology_service,
+            llm_model=llm_model,
+            model_params=model_params,
+        )
         while True:
             # Check if we are at the concurrency threshold
             if len(concurrent_manufacturers) >= max_concurrent_manufacturers:
@@ -148,7 +162,9 @@ async def process_queue(
 
             # Validate manufacturer before processing
             manufacturer, scraped_text_file, should_continue = (
-                await validate_manufacturer_for_extraction(polled_at, item)
+                await validate_manufacturer_for_extraction(
+                    timestamp=polled_at, item=item, llm_model=llm_model
+                )
             )
 
             if not should_continue:
@@ -195,6 +211,7 @@ async def process_queue(
 async def validate_manufacturer_for_extraction(
     timestamp: datetime,
     item: ToExtractItem,
+    llm_model: LLM_Model,
 ) -> tuple[Manufacturer, ScrapedTextFile, bool] | tuple[None, None, bool]:
     """
     Validate manufacturer for extraction.
@@ -237,6 +254,7 @@ async def validate_manufacturer_for_extraction(
         existing_scraped_file = await ScrapedTextFile.download_from_s3_and_create(
             item.mfg_etld1,
             manufacturer.scraped_text_file_version_id,
+            llm_model,
         )
     except Exception as e:
         logger.error(
@@ -303,10 +321,10 @@ async def extract_and_cleanup(
                 manufacturer.is_manufacturer.metadata.prompt_version_id,
                 BinaryClassificationTypeEnum.is_manufacturer,
             )
-            final_decision: HumanBinaryDecision | BinaryClassificationResult = (
+            final_decision: BaseClassificationDecision = (
                 is_manufacturer_gt.final_decision
                 if is_manufacturer_gt and is_manufacturer_gt.final_decision
-                else manufacturer.is_manufacturer
+                else manufacturer.is_manufacturer.result
             )
             subject = f"Finished processing manufacturer URL:{manufacturer.etld1}."
             if not final_decision.answer:
@@ -400,11 +418,23 @@ async def async_main():
         poll_item_from_queue = poll_item_from_extract_queue
         delete_item_from_queue = delete_item_from_extract_queue
 
+    llm_model = GPT_4o_mini
+    model_params = GPTModelParams(
+        temperature=0,  # Greedy decoding — always picks highest probability token
+        top_p=1,  # No nucleus sampling restriction needed when temp=0
+        presence_penalty=0,  # No penalty adjustments that could shift token selection
+        frequency_penalty=0,  # Same — keep it neutral
+        seed=12345,  # NEW: explicitly request deterministic sampling,
+        max_completion_tokens=7500,  # Limit the response length to avoid excessive token usage
+    )
+
     try:
         await process_queue(
-            poll_item_from_queue,
-            delete_item_from_queue,
-            args.max_concurrent_manufacturers,
+            poll_item_from_queue=poll_item_from_queue,
+            delete_item_from_queue=delete_item_from_queue,
+            llm_model=llm_model,
+            model_params=model_params,
+            max_concurrent_manufacturers=args.max_concurrent_manufacturers,
         )
     finally:
         # Clean up AWS clients

@@ -14,7 +14,7 @@ async def find_by_email(
     Returns:
         Optional[User]: The user object if found, otherwise None.
     """
-    return await User.find_one({"email": email})
+    return await User.find_one(User.email == email)
 
 
 async def is_user_MEP(

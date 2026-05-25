@@ -1,6 +1,4 @@
 from core.models.db.concept_ground_truth import (
-    ConceptCorrectionLog,
-    ConceptGroundTruth,
     HumanConceptCorrection,
 )
 from core.models.db.keyword_ground_truth import (
@@ -12,7 +10,8 @@ from core.models.field_types import (
     LLMMappingType,
 )
 from data_etl_app.models.skos_concept import Concept
-from data_etl_app.services.extraction.deferred_concept_mapping_service import (
+
+from data_etl_app.utils.llm_mapping_helper import (
     get_matched_concepts_and_unmatched_keywords,
 )
 

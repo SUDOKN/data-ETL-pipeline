@@ -14,14 +14,16 @@ from core.models.deferred_concept_extraction import (
 )
 from data_etl_app.models.pipeline_nodes.base_node import (
     BaseNode,
-    LLMExtractedFieldTypeVar,
+    PipelineContext,
 )
 from data_etl_app.models.pipeline_nodes.reconcile_node import ReconcileNode
 from data_etl_app.models.types_and_enums import (
+    LLMExtractedFieldTypeVar,
     LLMExtractedFieldTypeEnum,
-    PipelineContext,
 )
 from open_ai_key_app.models.field_types import GPTBatchRequestCustomID
+from open_ai_key_app.models.gpt_model import LLM_Model
+from open_ai_key_app.models.gpt_model_params import GPTModelParams
 from scraper_app.models.scraped_text_file import ScrapedTextFile
 
 from core.services.gpt_batch_request_queries import (
@@ -65,18 +67,16 @@ class LLMExtractionNode(
     ) -> set[GPTBatchRequestCustomID]:
         pass
 
-    @abstractmethod
     @staticmethod
+    @abstractmethod
     def get_request_custom_id(
-        mfg_etld1: str, field_type: LLMExtractedFieldTypeEnum, chunk_bounds: str
+        mfg_etld1: str,
+        field_type: LLMExtractedFieldTypeEnum,
+        chunk_bounds: str,
+        llm_model: LLM_Model,
+        model_params: GPTModelParams,
     ) -> GPTBatchRequestCustomID:
         pass
-
-    @staticmethod
-    def get_chunk_bounds_from_request_id(
-        request_id: GPTBatchRequestCustomID,
-    ) -> str:
-        return request_id.split(">chunk>")[1]
 
     async def get_missing_req_ids(
         self,
@@ -93,7 +93,7 @@ class LLMExtractionNode(
 
         # Check if all search requests exist
         req_ids_to_lookup: set[GPTBatchRequestCustomID] = self.get_embedded_request_ids(
-            mfg_etld1=deferred_mfg.mfg_etld1,
+            mfg_etld1=deferred_mfg.etld1,
             extraction_requests=extraction_requests,
         )
         req_ids_missing = req_ids_to_lookup - (
@@ -121,7 +121,7 @@ class LLMExtractionNode(
 
         # Check if all search requests are complete
         req_ids_to_lookup: set[GPTBatchRequestCustomID] = self.get_embedded_request_ids(
-            mfg_etld1=deferred_mfg.mfg_etld1,
+            mfg_etld1=deferred_mfg.etld1,
             extraction_requests=extraction_requests,
         )
         incomplete_gpt_req_ids = req_ids_to_lookup - (
@@ -143,7 +143,7 @@ class LLMExtractionNode(
 
         # Check if all search requests are complete
         req_ids_to_lookup: set[GPTBatchRequestCustomID] = self.get_embedded_request_ids(
-            mfg_etld1=deferred_mfg.mfg_etld1,
+            mfg_etld1=deferred_mfg.etld1,
             extraction_requests=extraction_requests,
         )
         incomplete_gpt_req_ids = req_ids_to_lookup - (
@@ -161,7 +161,7 @@ class LLMExtractionNode(
 
     @staticmethod
     @abstractmethod
-    def parse_batch_request_result(
+    async def parse_batch_request_result(
         mfg_etld1: str,
         field_type: LLMExtractedFieldTypeEnum,
         chunk_bounds: str,
@@ -179,6 +179,9 @@ class LLMExtractionNode(
         scraped_text_file: ScrapedTextFile,
         timestamp: datetime,
         pipeline_context: PipelineContext,
+        llm_model: LLM_Model,
+        model_params: GPTModelParams,
+        eager: bool,
     ) -> list[GPTBatchRequest]:
         """
         Create GPT batch requests needed for this extraction phase.
@@ -193,6 +196,8 @@ class LLMExtractionNode(
         scraped_text_file: ScrapedTextFile,
         timestamp: datetime,
         pipeline_context: PipelineContext,
+        llm_model: LLM_Model,
+        model_params: GPTModelParams,
         eager: bool,  # if True, dispatch all batch requests immediately and then check for completion, basically a sync execution of the entire phase
     ) -> None:
         """Execute this extraction phase if needed, and proceed to the next phase."""
@@ -211,6 +216,9 @@ class LLMExtractionNode(
                 scraped_text_file=scraped_text_file,
                 timestamp=timestamp,
                 pipeline_context=pipeline_context,
+                llm_model=llm_model,
+                model_params=model_params,
+                eager=eager,
             )
             logger.info(
                 f"[{mfg.etld1}] ✅ Created {len(batch_requests)} batch requests for {self.__class__.__name__} ('{self.field_type.name}')"
@@ -227,7 +235,7 @@ class LLMExtractionNode(
 
         if eager:
             all_request_ids = self.get_embedded_request_ids(
-                mfg_etld1=deferred_mfg.mfg_etld1,
+                mfg_etld1=deferred_mfg.etld1,
                 extraction_requests=getattr(deferred_mfg, self.field_type.name),
             )
             incomplete_requests = (
@@ -241,7 +249,11 @@ class LLMExtractionNode(
             # execute all using asyncio.gather with dispatch_gpt_batch_request
             batch_response_blobs = await asyncio.gather(
                 *[
-                    dispatch_gpt_batch_request(gpt_batch_request=req)
+                    dispatch_gpt_batch_request(
+                        gpt_batch_request=req,
+                        gpt_model=llm_model,
+                        model_params=model_params,
+                    )
                     for req in incomplete_requests.values()
                 ]
             )
@@ -284,6 +296,8 @@ class LLMExtractionNode(
                     pipeline_context=pipeline_context,
                     timestamp=timestamp,
                     eager=eager,
+                    llm_model=llm_model,
+                    model_params=model_params,
                 )
         else:
             # phase not complete yet, so no batch requests to return and no next phase executed

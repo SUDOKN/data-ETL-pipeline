@@ -12,7 +12,8 @@ from core.models.db.deferred_manufacturer import DeferredManufacturer
 from core.models.deferred_concept_extraction import (
     DeferredConceptExtractionRequests,
 )
-from data_etl_app.models.types_and_enums import ConceptTypeEnum, PipelineContext
+from data_etl_app.models.types_and_enums import ConceptTypeEnum
+from data_etl_app.models.pipeline_nodes.base_node import PipelineContext
 from data_etl_app.models.pipeline_nodes.concept.concept_search_node import (
     ConceptSearchNode,
 )
@@ -24,13 +25,12 @@ from data_etl_app.models.pipeline_nodes.concept.concept_mapping_node import (
 )
 from data_etl_app.models.pipeline_nodes.reconcile_node import ReconcileNode
 from data_etl_app.models.skos_concept import Concept
+from open_ai_key_app.models.llm_model import LLM_Model
+from open_ai_key_app.models.gpt_model_params import GPTModelParams
 from scraper_app.models.scraped_text_file import ScrapedTextFile
 
 from core.services.manufacturer_service import update_manufacturer
-from core.services.gpt_batch_request_writes import (
-    bulk_delete_gpt_batch_requests_by_custom_ids,
-)
-from data_etl_app.services.extraction.deferred_concept_mapping_service import (
+from data_etl_app.utils.llm_mapping_helper import (
     KnownToUnknownMap,
     get_matched_concepts_and_unmatched_keywords,
     get_mapped_known_concepts_and_unmapped_keywords,
@@ -52,6 +52,8 @@ class ConceptReconcileNode(ReconcileNode[ConceptTypeEnum]):
         scraped_text_file: ScrapedTextFile,
         timestamp: datetime,
         pipeline_context: PipelineContext,
+        llm_model: LLM_Model,
+        model_params: GPTModelParams,
         eager: bool,
     ) -> None:
         # concept_data: Optional[ConceptExtractionResults] = getattr(
@@ -83,7 +85,7 @@ class ConceptReconcileNode(ReconcileNode[ConceptTypeEnum]):
             bundle,
         ) in extraction_requests.request_map.items():
             llm_search_results = await ConceptSearchNode.parse_batch_request_result(
-                mfg_etld1=deferred_mfg.mfg_etld1,
+                mfg_etld1=deferred_mfg.etld1,
                 field_type=self.field_type,
                 chunk_bounds=chunk_bounds,
                 extraction_bundle=bundle,
@@ -92,7 +94,7 @@ class ConceptReconcileNode(ReconcileNode[ConceptTypeEnum]):
             )
 
             llm_evidence_results = await ConceptEvidenceNode.parse_batch_request_result(
-                mfg_etld1=deferred_mfg.mfg_etld1,
+                mfg_etld1=deferred_mfg.etld1,
                 field_type=self.field_type,
                 chunk_bounds=chunk_bounds,
                 extraction_bundle=bundle,
@@ -114,7 +116,7 @@ class ConceptReconcileNode(ReconcileNode[ConceptTypeEnum]):
             )
 
             llm_mapping_raw = await ConceptMappingNode.parse_batch_request_result(
-                mfg_etld1=deferred_mfg.mfg_etld1,
+                mfg_etld1=deferred_mfg.etld1,
                 field_type=self.field_type,
                 chunk_bounds=chunk_bounds,
                 extraction_bundle=bundle,
@@ -124,7 +126,7 @@ class ConceptReconcileNode(ReconcileNode[ConceptTypeEnum]):
 
             llm_mapping_result: KnownToUnknownMap = (
                 get_mapped_known_concepts_and_unmapped_keywords(
-                    mfg_etld1=deferred_mfg.mfg_etld1,
+                    mfg_etld1=deferred_mfg.etld1,
                     concept_type=self.field_type,
                     known_concepts=self.known_concepts,
                     keywords_to_map=unmatched_keywords,
@@ -162,35 +164,13 @@ class ConceptReconcileNode(ReconcileNode[ConceptTypeEnum]):
         await update_manufacturer(updated_at=timestamp, manufacturer=mfg)
 
         # call super wipe_down to clear deferred field and completed GPT requests from pipeline context
-        await self.wipe_down(
-            deferred_mfg=deferred_mfg, pipeline_context=pipeline_context
-        )
-
-    async def wipe_down(
-        self,
-        deferred_mfg: DeferredManufacturer,
-        pipeline_context: PipelineContext,
-    ) -> None:
-        logger.info(
-            f"Reconciled concept {self.field_type.name} data for manufacturer {deferred_mfg.etld1}. "
-            f"Attempting to clean up GPTBatchRequests."
-        )
-        completed_search_requests = pipeline_context[ConceptSearchNode]
-        completed_evidence_requests = pipeline_context[ConceptEvidenceNode]
-        completed_mapping_requests = pipeline_context[ConceptMappingNode]
-
-        await bulk_delete_gpt_batch_requests_by_custom_ids(
-            gpt_batch_request_custom_ids=[
-                *completed_search_requests.keys(),
-                *completed_evidence_requests.keys(),
-                *completed_mapping_requests.keys(),
-            ],
-            mfg_etld1=deferred_mfg.etld1,
-        )
-        logger.info(
-            f"Cleaned up GPTBatchRequests for concept reconciliation of {self.field_type.name} for manufacturer {deferred_mfg.etld1}. "
-            f"Attempting to clear deferred concept extraction."
-        )
         await super().wipe_down(
-            deferred_mfg=deferred_mfg, pipeline_context=pipeline_context
+            deferred_mfg=deferred_mfg,
+            associated_batch_request_custom_ids=list(
+                [
+                    *completed_search_requests.keys(),
+                    *completed_evidence_requests.keys(),
+                    *completed_mapping_requests.keys(),
+                ]
+            ),
         )

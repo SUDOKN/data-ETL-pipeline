@@ -4,7 +4,6 @@ from pydantic import Field
 
 from core.models.gpt_batch_request_blob import GPTBatchRequestBlob
 from core.models.gpt_batch_response_blob import GPTBatchResponseBlob
-from core.utils.time_util import get_current_time
 
 
 class GPTBatchRequest(Document):

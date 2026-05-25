@@ -133,7 +133,7 @@ class GPTBatch(Document):
 """
 Indices for GPTBatchRequest
 
-db.gpt_batch_requests.createIndex(
+db.gpt_batches.createIndex(
   {
     external_batch_id: 1,
   },

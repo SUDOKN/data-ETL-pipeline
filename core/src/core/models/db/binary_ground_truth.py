@@ -4,6 +4,7 @@ from pydantic import BaseModel, Field, computed_field
 
 from core.models.field_types import MfgETLDType, S3FileVersionIDType
 from core.models.binary_classification_result import (
+    BaseClassificationDecision,
     BinaryClassificationStats,
 )
 from core.models.single_stage_extraction_results import SingleStageMetadata
@@ -15,7 +16,7 @@ from data_etl_app.models.types_and_enums import (
 from core.utils.time_util import get_current_time
 
 
-class HumanBinaryDecision(BaseModel):
+class HumanBinaryDecision(BaseClassificationDecision):
     """
     HumanBinaryDecision represents a binary decision made by a human expert.
 
@@ -26,10 +27,8 @@ class HumanBinaryDecision(BaseModel):
 
     author_email: str
     source: GroundTruthSource
-    answer: (
-        bool | None
-    )  # CAUTION: this field is optional just for convenience of gt template, not optional in db schema
-    reason: str | None
+    # answer: bool
+    # reason: str | None
 
 
 class HumanDecisionLog(BaseModel):
@@ -54,6 +53,7 @@ class BinaryGroundTruth(Document):
     classification_type: BinaryClassificationTypeEnum
 
     scraped_text_file_version_id: S3FileVersionIDType
+    chunk_bounds: str
     chunk_text: str
 
     # following is a copy of what was extracted at the time of creating this ground truth
@@ -65,12 +65,15 @@ class BinaryGroundTruth(Document):
 
     @computed_field
     @property
-    def final_decision(self) -> HumanBinaryDecision | None:
-        if self.corrections:
-            for log in reversed(self.corrections):
-                if log.human_decision.source == GroundTruthSource.API_SURVEY:
-                    return log.human_decision
-        return None
+    def final_decision(self) -> HumanBinaryDecision:
+        if not self.corrections:
+            raise ValueError("No corrections available to determine final decision.")
+        for log in reversed(self.corrections):
+            if log.human_decision.source == GroundTruthSource.API_SURVEY:
+                return log.human_decision
+        raise ValueError(
+            "No API_SURVEY corrections available to determine final decision."
+        )
 
     class Settings:
         name = "binary_ground_truths"

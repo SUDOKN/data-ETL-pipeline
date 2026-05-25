@@ -95,8 +95,10 @@ class BatchRequestJSONLFileWriter:
 
     def _serialize_request(self, request_blob: GPTBatchRequestBlob) -> str:
         """Serialize a request blob to JSON string (without input_tokens)."""
-        request_dict = request_blob.model_dump()
-        request_dict["body"].pop("input_tokens", None)
+        # exclude input_tokens — it is an envelope-level accounting field, not part of the OpenAI JSONL spec
+        request_dict = request_blob.model_dump(
+            exclude={"input_tokens"}, exclude_none=True
+        )
         # Use separators for consistent, compact JSON output
         return json.dumps(request_dict, separators=(",", ":"), sort_keys=False)
 
@@ -115,7 +117,7 @@ class BatchRequestJSONLFileWriter:
         total_item_tokens = 0
         total_size_in_bytes = 0
         for req_blob in request_blobs:
-            total_item_tokens += req_blob.body.input_tokens
+            total_item_tokens += req_blob.input_tokens
             json_str = self._serialize_request(req_blob)
             total_size_in_bytes += JSONLBatchFile.get_json_line_size_in_bytes(json_str)
 
@@ -164,7 +166,7 @@ class BatchRequestJSONLFileWriter:
                     item_id=item_id,
                     line_id=req_blob.custom_id,
                     json_line=self._serialize_request(req_blob),
-                    tokens=req_blob.body.input_tokens,
+                    tokens=req_blob.input_tokens,
                     is_last_item_line=is_last_item_line,
                 )
                 i += 1

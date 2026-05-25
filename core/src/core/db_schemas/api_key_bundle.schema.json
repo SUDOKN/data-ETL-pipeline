@@ -2,7 +2,6 @@
   "$jsonSchema": {
     "bsonType": "object",
     "required": [
-      "created_at",
       "label",
       "key",
       "batch_queue_limit",
@@ -16,40 +15,34 @@
         "bsonType": "objectId"
       },
       "created_at": {
-        "bsonType": "date",
-        "description": "Timestamp when the API key bundle was created"
+        "bsonType": "date"
       },
       "label": {
-        "bsonType": "string",
-        "minLength": 1,
-        "description": "API key name/label (e.g., 'sudokn.tool', 'sudokn.tool+1')"
+        "bsonType": "string"
       },
       "key": {
-        "bsonType": "string",
-        "minLength": 1,
-        "description": "The actual API key"
+        "bsonType": "string"
       },
       "batch_queue_limit": {
-        "bsonType": "int",
-        "minimum": 0,
-        "description": "Maximum number of batch requests that can be enqueued per day"
+        "bsonType": "int"
       },
       "available_at": {
-        "bsonType": "date",
-        "description": "Timestamp when the API key will be available for use (considers cooldown period)"
+        "bsonType": "date"
       },
       "tokens_in_use": {
-        "bsonType": "int",
-        "minimum": 0,
-        "description": "Number of tokens currently in use by this API key"
-      },
-      "exhausted": {
-        "bsonType": "bool",
-        "description": "Whether the API key is exhausted"
+        "bsonType": "int"
       },
       "updated_at": {
-        "bsonType": "date",
-        "description": "Timestamp when the API key bundle was last updated"
+        "bsonType": "date"
+      },
+      "exhausted": {
+        "bsonType": "bool"
+      },
+      "latest_external_batch_id": {
+        "bsonType": [
+          "string",
+          "null"
+        ]
       }
     }
   }

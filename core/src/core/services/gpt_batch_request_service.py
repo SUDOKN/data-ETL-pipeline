@@ -5,12 +5,8 @@ from core.models.prompt import Prompt
 from core.models.db.gpt_batch_request import GPTBatchRequest
 from core.models.gpt_batch_response_blob import GPTBatchResponseBlob
 
-from open_ai_key_app.models.gpt_model import (
-    DefaultModelParameters,
-    GPT_4o_mini,
-    LLM_Model,
-    ModelParameters,
-)
+from open_ai_key_app.models.llm_model import LLM_Model
+from open_ai_key_app.models.gpt_model_params import GPTModelParams
 from open_ai_key_app.utils.ask_gpt_util import fetch_gpt_batch_response
 from open_ai_key_app.utils.batch_gpt_util import (
     get_gpt_request_blob,
@@ -25,7 +21,8 @@ def create_base_gpt_batch_request(
     context: str,
     prompt: Prompt,
     gpt_model: LLM_Model,
-    model_params: ModelParameters,
+    batch_id: str | None,
+    model_params: GPTModelParams,
 ) -> GPTBatchRequest:
     request_blob = get_gpt_request_blob(
         custom_id=custom_id,
@@ -39,7 +36,7 @@ def create_base_gpt_batch_request(
         created_at=deferred_at,
         updated_at=deferred_at,
         num_batches_paired_with=0,
-        batch_id=None,
+        batch_id=batch_id,
         request=request_blob,
     )
 
@@ -58,16 +55,16 @@ def is_batch_request_pending(
 
 async def dispatch_gpt_batch_request(
     gpt_batch_request: GPTBatchRequest,
-    gpt_model: LLM_Model = GPT_4o_mini,
-    model_params: ModelParameters = DefaultModelParameters,
+    gpt_model: LLM_Model,
+    model_params: GPTModelParams,
 ) -> GPTBatchResponseBlob:
-    if not is_batch_request_pending(gpt_batch_request):
+    if is_batch_request_pending(gpt_batch_request):
         raise ValueError(
-            f"Cannot dispatch GPT batch request with id {gpt_batch_request.request.custom_id} because it is not pending."
+            f"Cannot dispatch GPT batch request with id {gpt_batch_request.request.custom_id} when it is pending."
         )
-    elif not gpt_batch_request.batch_id:
+    elif gpt_batch_request.batch_id != "Eager":
         raise ValueError(
-            f"Cannot dispatch GPT batch request with id {gpt_batch_request.request.custom_id} because it does not have a batch_id."
+            f"Can only dispatch GPT batch request with id {gpt_batch_request.request.custom_id} if it has a batch_id of 'Eager'."
         )
 
     # This is a placeholder for any additional logic needed to dispatch the request,
@@ -86,5 +83,8 @@ async def dispatch_gpt_batch_request(
         batch_id=gpt_batch_request.batch_id,
         gpt_model=gpt_model,
         model_params=model_params,
+    )
+    logger.info(
+        f"Received GPT batch response for request id {gpt_batch_request.request.custom_id}"
     )
     return gpt_response_blob

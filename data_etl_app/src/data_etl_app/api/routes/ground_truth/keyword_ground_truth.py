@@ -28,6 +28,7 @@ from core.utils.aws.s3.scraped_text_util import (
 
 from core.models.keyword_extraction_results import KeywordExtractionResults
 from core.models.db.keyword_ground_truth import (
+    HumanKeywordCorrection,
     KeywordGroundTruth,
     KeywordResultCorrection,
 )
@@ -113,12 +114,12 @@ async def fetch_keyword_ground_truth_template(
             status_code=404,
             detail=f"Manufacturer not found for mfg_url:`{mfg_url}`. Pushed to scrape queue. Please try again in a few minutes.",
         )
-    elif manufacturer and manufacturer.is_manufacturer.answer is False:
+    elif manufacturer and manufacturer.is_manufacturer.result.answer is False:
         raise HTTPException(
             status_code=400,
             detail=(
                 f"The provided URL:`{mfg_url}` does not belong to a valid manufacturer. "
-                f"Following is the reason. {manufacturer.is_manufacturer.reason}` If you think otherwise, "
+                f"Following is the reason. {manufacturer.is_manufacturer.result.reason}` If you think otherwise, "
                 f"please submit a ground truth for `is_manufacturer` on binary classification endpoint."
             ),
         )
@@ -146,7 +147,7 @@ async def fetch_keyword_ground_truth_template(
     sorted_search_data = [
         (key, value)
         for key, value in sorted(
-            keyword_extraction_results.chunk_stats.chunked_stats.items(),
+            keyword_extraction_results.chunk_stats.items(),
             key=lambda item: int(item[0].split(":")[0]),
         )
     ]
@@ -171,11 +172,13 @@ async def fetch_keyword_ground_truth_template(
     if existing_keyword_gt:  # then logs must be non-empty
         last_correction_log = existing_keyword_gt.corrections[-1]
         response = existing_keyword_gt.model_dump()
-        response["your_correction"] = KeywordResultCorrection(
+        response["your_correction"] = HumanKeywordCorrection(
             author_email=author_email,
-            add=last_correction_log.human_correction.add,  # pre-fill with last correction
-            remove=last_correction_log.human_correction.remove,  # pre-fill with last correction
             source=GroundTruthSource.API_SURVEY,
+            llm_search=KeywordResultCorrection(
+                add=last_correction_log.human_correction.llm_search.add,  # pre-fill with last correction
+                remove=last_correction_log.human_correction.llm_search.remove,  # pre-fill with last correction
+            ),
         )
         response.pop("id", None)  # remove id from response
         return response
@@ -201,23 +204,24 @@ async def fetch_keyword_ground_truth_template(
         mfg_etld1=manufacturer.etld1,
         keyword_type=keyword_type,
         scraped_text_file_version_id=manufacturer.scraped_text_file_version_id,
-        extract_prompt_version_id=keyword_extraction_results.chunk_stats.extract_prompt_version_id,
         chunk_bounds=chunk_bounds,
         last_chunk_no=last_chunk_no,
         chunk_no=chunk_no,
-        chunk_extracted_at=keyword_extraction_results.extracted_at,
         chunk_text=scraped_text[start:end],
+        metadata=keyword_extraction_results.metadata,
         extraction_stats=chunk_search_stats,
         corrections=[],  # empty logs initially
     )
 
     response = keyword_ground_truth.model_dump()
 
-    response["your_correction"] = KeywordResultCorrection(
+    response["your_correction"] = HumanKeywordCorrection(
         author_email=author_email,
-        add=[],  # initially empty, user will fill this
-        remove=[],  # initially empty, user will fill this
         source=GroundTruthSource.API_SURVEY,
+        llm_search=KeywordResultCorrection(
+            add=[],  # initially empty, user will fill this in
+            remove=[],  # initially empty, user will fill this in
+        ),
     )
 
     response.pop("id", None)  # remove id from response
@@ -235,7 +239,7 @@ def get_human_correction_help_info() -> str:
 
 async def parse_keyword_ground_truth_with_new_correction(
     request: Request,
-) -> tuple[KeywordGroundTruth, KeywordResultCorrection]:
+) -> tuple[KeywordGroundTruth, HumanKeywordCorrection]:
     """Parse request body and handle your_correction field"""
     body = await request.body()
     data = json.loads(body)
@@ -249,7 +253,7 @@ async def parse_keyword_ground_truth_with_new_correction(
         )
 
     # Validate your_correction
-    new_correction = KeywordResultCorrection(**new_correction_data)
+    new_correction = HumanKeywordCorrection(**new_correction_data)
 
     # Create ChunkkeywordGroundTruth instance (validates all other fields)
     keyword_gt = KeywordGroundTruth(**data)
@@ -262,7 +266,7 @@ async def parse_keyword_ground_truth_with_new_correction(
     response_class=JSONResponse,
 )
 async def collect_keyword_extraction_ground_truth(
-    parsed_data: tuple[KeywordGroundTruth, KeywordResultCorrection] = Depends(
+    parsed_data: tuple[KeywordGroundTruth, HumanKeywordCorrection] = Depends(
         parse_keyword_ground_truth_with_new_correction
     ),
 ):

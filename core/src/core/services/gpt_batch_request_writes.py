@@ -1,14 +1,13 @@
-from datetime import datetime
 import logging
-
-from core.models.gpt_batch_response_blob import GPTBatchResponseBlob
-from core.models.gpt_batch_response_blob import GPTBatchResponseBlob
-from data_etl_app.models.types_and_enums import LLMExtractedFieldTypeEnum
+from datetime import datetime
 from pymongo.errors import BulkWriteError
 from pymongo import UpdateOne
 
+from core.models.gpt_batch_response_blob import GPTBatchResponseBlob
+from core.models.gpt_batch_response_blob import GPTBatchResponseBlob
 from core.models.db.gpt_batch import GPTBatch
 from core.models.db.gpt_batch_request import GPTBatchRequest
+from data_etl_app.models.types_and_enums import LLMExtractedFieldTypeEnum
 from open_ai_key_app.models.field_types import GPTBatchRequestCustomID
 
 logger = logging.getLogger(__name__)
@@ -107,7 +106,7 @@ async def bulk_record_gpt_batch_responses(
         if blob:
             update_operations.append(
                 UpdateOne(
-                    {"request.custom_id": req.request.custom_id},
+                    {GPTBatchRequest.request.custom_id: req.request.custom_id},
                     {
                         "$set": {
                             "response_blob": blob.model_dump(exclude={"result"}),
@@ -230,7 +229,7 @@ async def _upsert_chunk_with_only_request_body(
     try:
         operations = [
             UpdateOne(
-                {"request.custom_id": req.request.custom_id},
+                {GPTBatchRequest.request.custom_id: req.request.custom_id},
                 {
                     "$set": {
                         "request.body": req.request.body.model_dump(),
@@ -242,6 +241,7 @@ async def _upsert_chunk_with_only_request_body(
                         "request.custom_id": req.request.custom_id,
                         "request.method": req.request.method,
                         "request.url": req.request.url,
+                        "request.input_tokens": req.request.input_tokens,
                         "batch_id": req.batch_id,
                         "response_blob": (
                             req.response_blob.model_dump()
@@ -428,7 +428,7 @@ async def pair_batch_request_custom_ids_with_batch(
 
     update_operations = [
         UpdateOne(
-            {"request.custom_id": custom_id},
+            {GPTBatchRequest.request.custom_id: custom_id},
             {
                 "$set": {
                     "batch_id": gpt_batch.external_batch_id,
@@ -471,8 +471,8 @@ async def unpair_all_batch_requests_from_batch(
     collection = GPTBatchRequest.get_pymongo_collection()
 
     docs = await collection.find(
-        {"batch_id": gpt_batch.external_batch_id},
-        projection={"request.custom_id": 1, "_id": 0},
+        {GPTBatchRequest.batch_id: gpt_batch.external_batch_id},
+        projection={GPTBatchRequest.request.custom_id: 1, "_id": 0},
     ).to_list(length=None)
 
     custom_ids = [doc["request"]["custom_id"] for doc in docs]
@@ -508,7 +508,7 @@ async def unpair_batch_requests_by_custom_ids(
 
     update_operations = [
         UpdateOne(
-            {"request.custom_id": custom_id},
+            {GPTBatchRequest.request.custom_id: custom_id},
             {
                 "$set": {
                     "batch_id": None,
@@ -553,8 +553,8 @@ async def bulk_delete_gpt_batch_requests_by_custom_ids(
         return 0
 
     result = await GPTBatchRequest.get_pymongo_collection().delete_many(
-        {"request.custom_id": {"$in": gpt_batch_request_custom_ids}},
-        hint=[("request.custom_id", 1)],
+        {GPTBatchRequest.request.custom_id: {"$in": gpt_batch_request_custom_ids}},
+        hint=[(GPTBatchRequest.request.custom_id, 1)],
     )
 
     logger.info(f"Deleted {result.deleted_count} GPT batch requests for {mfg_etld1}")
@@ -579,8 +579,8 @@ async def bulk_delete_gpt_batch_requests_by_mfg_etld1_and_field(
     prefix = f"{mfg_etld1}>{field_type.name}>"
 
     result = await GPTBatchRequest.get_pymongo_collection().delete_many(
-        {"request.custom_id": {"$gte": prefix, "$lt": prefix + "\uffff"}},
-        hint=[("request.custom_id", 1)],
+        {GPTBatchRequest.request.custom_id: {"$gte": prefix, "$lt": prefix + "\uffff"}},
+        hint=[(GPTBatchRequest.request.custom_id, 1)],
     )
 
     logger.debug(

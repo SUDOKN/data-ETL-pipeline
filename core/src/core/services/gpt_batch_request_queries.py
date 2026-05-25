@@ -1,4 +1,5 @@
 import logging
+from beanie.operators import In
 from typing import Optional
 
 from core.models.db.gpt_batch import GPTBatch
@@ -45,7 +46,7 @@ async def find_gpt_batch_requests_by_custom_ids(
 
     request_map: dict[GPTBatchRequestCustomID, GPTBatchRequest] = dict()
     async for gpt_req in GPTBatchRequest.find(
-        {"request.custom_id": {"$in": gpt_batch_request_custom_ids}}
+        In(GPTBatchRequest.request.custom_id, gpt_batch_request_custom_ids)
     ):
         request_map[gpt_req.request.custom_id] = gpt_req
 
@@ -66,10 +67,8 @@ async def find_gpt_batch_request_ids_only(
     collection = GPTBatchRequest.get_pymongo_collection()
 
     cursor = collection.find(
-        {
-            "request.custom_id": {"$in": gpt_batch_request_custom_ids},
-        },
-        projection={"request.custom_id": 1, "_id": 0},
+        {GPTBatchRequest.request.custom_id: {"$in": gpt_batch_request_custom_ids}},
+        projection={GPTBatchRequest.request.custom_id: 1, "_id": 0},
     )
 
     async for doc in cursor:
@@ -90,11 +89,9 @@ async def find_completed_gpt_batch_requests_by_custom_ids(
 
     request_map: dict[GPTBatchRequestCustomID, GPTBatchRequest] = dict()
     async for gpt_req in GPTBatchRequest.find(
-        {
-            "request.custom_id": {"$in": gpt_batch_request_custom_ids},
-            "batch_id": {"$ne": None},
-            "response_blob": {"$ne": None},
-        },
+        In(GPTBatchRequest.request.custom_id, gpt_batch_request_custom_ids),
+        GPTBatchRequest.batch_id != None,
+        GPTBatchRequest.response_blob != None,
     ):
         request_map[gpt_req.request.custom_id] = gpt_req
 
@@ -116,11 +113,11 @@ async def find_completed_gpt_batch_request_ids_only(
 
     cursor = collection.find(
         {
-            "request.custom_id": {"$in": gpt_batch_request_custom_ids},
-            "batch_id": {"$ne": None},
+            GPTBatchRequest.request.custom_id: {"$in": gpt_batch_request_custom_ids},
+            GPTBatchRequest.batch_id: {"$ne": None},
             "response_blob": {"$ne": None},
         },
-        projection={"request.custom_id": 1, "_id": 0},
+        projection={GPTBatchRequest.request.custom_id: 1, "_id": 0},
     )
 
     async for doc in cursor:
@@ -141,11 +138,9 @@ async def find_incomplete_gpt_batch_requests_by_custom_ids(
 
     request_map: dict[GPTBatchRequestCustomID, GPTBatchRequest] = dict()
     async for gpt_req in GPTBatchRequest.find(
-        {
-            "request.custom_id": {"$in": gpt_batch_request_custom_ids},
-            "batch_id": None,
-            "response_blob": None,
-        },
+        In(GPTBatchRequest.request.custom_id, gpt_batch_request_custom_ids),
+        # "batch_id": {"$in": [None, "Eager"]},
+        GPTBatchRequest.response_blob == None,
     ):
         request_map[gpt_req.request.custom_id] = gpt_req
 
@@ -158,8 +153,8 @@ async def get_custom_ids_for_batch(
     logger.info(f"Getting custom IDs for GPT batch {gpt_batch.external_batch_id}")
     collection = GPTBatchRequest.get_pymongo_collection()
 
-    query = {"batch_id": gpt_batch.external_batch_id}
-    projection = {"request.custom_id": 1, "_id": 0}
+    query = {GPTBatchRequest.batch_id: gpt_batch.external_batch_id}
+    projection = {GPTBatchRequest.request.custom_id: 1, "_id": 0}
 
     logger.info(
         f"Querying for batch requests with query: {query} and projection: {projection}"

@@ -92,15 +92,15 @@ class GPTResponseBlobBody(BaseModel):
     # completion_id: str  # e.g. "chatcmpl-123"
     # object: str  # e.g. "chat.completion"
     created: datetime  # e.g. 1711652795 (epoch time) converted to datetime
-    # model: str  # e.g. "gpt-3.5-turbo-0125"
+    model: str  # OpenAI silently upgrades model aliases (e.g. gpt-4o might point to a newer snapshot over time), so the response model field tells you the exact version that actually ran (e.g. gpt-4o-2024-08-06). Useful for debugging output quality regressions.
     choices: list[GPTBatchResponseBlobChoice]
     usage: GPTBatchResponseBlobUsage
-    # system_fingerprint: str  # e.g. "fp_123"
+    system_fingerprint: str  # e.g. "fp_123"
 
 
 class GPTBatchResponseBody(BaseModel):
     status_code: int  # e.g. 200
-    # gpt_internal_request_id: str  # e.g. "req_123"
+    gpt_internal_request_id: str  # This is the request_id from the response header / body. If a batch result looks wrong or you hit an error you can't explain, this is what OpenAI support asks for. Without it you have no recourse.
     body: GPTResponseBlobBody
 
 

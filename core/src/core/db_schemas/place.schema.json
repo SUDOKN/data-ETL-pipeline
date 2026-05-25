@@ -1,27 +1,27 @@
 {
   "$jsonSchema": {
     "bsonType": "object",
-    "required": ["place_id", "geocoded_at", "geocode_query", "raw_result"],
+    "required": [
+      "place_id",
+      "geocode_query",
+      "raw_result"
+    ],
     "additionalProperties": false,
     "properties": {
       "_id": {
         "bsonType": "objectId"
       },
       "place_id": {
-        "bsonType": "string",
-        "description": "Google Maps globally unique Place ID; unique index enforced at collection level"
+        "bsonType": "string"
       },
       "geocoded_at": {
-        "bsonType": "date",
-        "description": "Timestamp when this place was last geocoded / upserted"
+        "bsonType": "date"
       },
       "geocode_query": {
-        "bsonType": "string",
-        "description": "Original query string passed to the geocoding API"
+        "bsonType": "string"
       },
       "raw_result": {
-        "bsonType": "object",
-        "description": "Full raw result dict returned by the Google Maps Geocoding API (results[0])"
+        "bsonType": "object"
       }
     }
   }

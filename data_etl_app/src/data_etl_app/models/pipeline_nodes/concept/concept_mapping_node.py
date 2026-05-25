@@ -1,7 +1,8 @@
+from __future__ import annotations
 import logging
 import traceback
 from datetime import datetime
-from typing import Optional
+from typing import TYPE_CHECKING, Optional
 
 from core.models.db.deferred_manufacturer import DeferredManufacturer
 from core.models.db.gpt_batch_request import GPTBatchRequest
@@ -9,22 +10,26 @@ from core.models.deferred_concept_extraction import (
     DeferredConceptExtractionRequests,
     ConceptExtractionRequestBundle,
 )
+from core.models.field_types import LLMMappingResult
 from core.models.prompt import Prompt
 from data_etl_app.models.pipeline_nodes.concept.concept_evidence_node import (
     ConceptEvidenceNode,
 )
-from data_etl_app.models.pipeline_nodes.concept.concept_reconcile_node import (
-    ConceptReconcileNode,
-)
-from data_etl_app.models.types_and_enums import ConceptTypeEnum, PipelineContext
+
+if TYPE_CHECKING:
+    from data_etl_app.models.pipeline_nodes.concept.concept_reconcile_node import (
+        ConceptReconcileNode,
+    )
+
+from data_etl_app.models.types_and_enums import ConceptTypeEnum
+from data_etl_app.models.pipeline_nodes.base_node import PipelineContext
 from data_etl_app.models.skos_concept import Concept
 from data_etl_app.models.pipeline_nodes.llm_extraction_node import (
     LLMExtractionNode,
 )
 from open_ai_key_app.models.field_types import GPTBatchRequestCustomID
-from open_ai_key_app.models.gpt_model import (
-    LLM_Model,
-)
+from open_ai_key_app.models.llm_model import LLM_Model
+from open_ai_key_app.models.gpt_model_params import GPTModelParams
 from scraper_app.models.scraped_text_file import ScrapedTextFile
 
 from core.services.gpt_batch_request_writes import record_response_parse_error
@@ -36,20 +41,18 @@ from data_etl_app.services.extraction.deferred_concept_mapping_service import (
 logger = logging.getLogger(__name__)
 
 
-class ConceptMappingNode(LLMExtractionNode[ConceptTypeEnum, dict[str, str]]):
+class ConceptMappingNode(LLMExtractionNode[ConceptTypeEnum, LLMMappingResult]):
     """Phase 3: Map unknown terms to known ontology"""
 
     def __init__(
         self,
         concept_type: ConceptTypeEnum,
         mapping_prompt: Prompt,
-        llm_model: LLM_Model,
         known_concepts: set[Concept],
         next_node: ConceptReconcileNode,
     ):
         super().__init__(field_type=concept_type, next_node=next_node)
         self.mapping_prompt = mapping_prompt
-        self.llm_model = llm_model
         self.known_concepts = known_concepts
 
     def get_embedded_request_ids(
@@ -71,9 +74,13 @@ class ConceptMappingNode(LLMExtractionNode[ConceptTypeEnum, dict[str, str]]):
 
     @staticmethod
     def get_request_custom_id(
-        mfg_etld1: str, field_type: ConceptTypeEnum, chunk_bounds: str
+        mfg_etld1: str,
+        field_type: ConceptTypeEnum,
+        chunk_bounds: str,
+        llm_model: LLM_Model,
+        model_params: GPTModelParams,
     ) -> GPTBatchRequestCustomID:
-        return f"{mfg_etld1}>{field_type.name}>llm_mapping>chunk>{chunk_bounds}"
+        return f"{mfg_etld1}>{field_type.name}>llm_mapping>chunk>{chunk_bounds}>{model_params.to_custom_id_segment(llm_model.model_name)}"
 
     @staticmethod
     async def parse_batch_request_result(
@@ -83,7 +90,7 @@ class ConceptMappingNode(LLMExtractionNode[ConceptTypeEnum, dict[str, str]]):
         extraction_bundle: ConceptExtractionRequestBundle,
         completed_request_map: dict[GPTBatchRequestCustomID, GPTBatchRequest],
         deferred_at: datetime,
-    ) -> dict[str, str]:
+    ) -> LLMMappingResult:
         llm_mapping_request_id = extraction_bundle.llm_mapping_request_id
         if not llm_mapping_request_id:
             raise ValueError(
@@ -124,6 +131,9 @@ class ConceptMappingNode(LLMExtractionNode[ConceptTypeEnum, dict[str, str]]):
         scraped_text_file: ScrapedTextFile,
         timestamp: datetime,
         pipeline_context: PipelineContext,
+        llm_model: LLM_Model,
+        model_params: GPTModelParams,
+        eager: bool,
     ) -> list[GPTBatchRequest]:
         """Create batch requests for concept mapping phase."""
 
@@ -137,14 +147,16 @@ class ConceptMappingNode(LLMExtractionNode[ConceptTypeEnum, dict[str, str]]):
 
         batch_requests = await create_missing_mapping_requests(
             deferred_at=timestamp,
-            mfg_etld1=deferred_mfg.mfg_etld1,
+            mfg_etld1=deferred_mfg.etld1,
             concept_type=self.field_type,
             extraction_requests=extraction_requests,
             missing_mapping_req_ids=missing_request_ids,
             known_concepts=self.known_concepts,
             mapping_prompt=self.mapping_prompt,
             upstream_completed_batch_req_map=pipeline_context[ConceptEvidenceNode],
-            llm_model=self.llm_model,
+            llm_model=llm_model,
+            model_params=model_params,
+            eager=eager,
         )
 
         return batch_requests

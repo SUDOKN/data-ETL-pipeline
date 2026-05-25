@@ -33,9 +33,9 @@ logging.basicConfig(
 class DatabaseIndexSeeder:
     """Handles creation of all database indexes for SUDOKN collections."""
 
-    def __init__(self, connection_string: str, database_name: str):
+    def __init__(self, connection_string: str):
         self.client = MongoClient(connection_string)
-        self.db = self.client[database_name]
+        self.db = self.client.get_default_database()
 
     def _index_exists(self, collection, index_name: str) -> bool:
         """Check if an index already exists in a collection."""
@@ -71,6 +71,14 @@ class DatabaseIndexSeeder:
                 "keys": [("url_accessible_at", 1)],
                 "options": {"name": "mfg_url_accessible_at_idx", "unique": True},
             },
+            {
+                "keys": [("created_at", -1)],
+                "options": {"name": "mfg_created_at_idx"},
+            },
+            {
+                "keys": [("scraped_text_file_version_id", 1)],
+                "options": {"name": "mfg_scraped_version_idx", "sparse": True},
+            },
         ]
 
         for index in indexes:
@@ -96,7 +104,7 @@ class DatabaseIndexSeeder:
 
         indexes = [
             {
-                "keys": [("mfg_etld1", 1)],
+                "keys": [("etld1", 1)],
                 "options": {"name": "mfg_user_form_unique_per_etld1", "unique": True},
             }
         ]
@@ -131,8 +139,9 @@ class DatabaseIndexSeeder:
             {
                 "keys": [
                     ("mfg_etld1", 1),
-                    ("scraped_text_file_version_id", 1),
                     ("concept_type", 1),
+                    ("scraped_text_file_version_id", 1),
+                    ("chunk_bounds", 1),
                 ],
                 "options": {"name": "concept_gt_unique_idx", "unique": True},
             }
@@ -152,7 +161,7 @@ class DatabaseIndexSeeder:
                     ("scraped_text_file_version_id", 1),
                     ("metadata.search_prompt_version_id", 1),
                     ("keyword_type", 1),
-                    ("chunk_no", 1),
+                    ("chunk_bounds", 1),
                 ],
                 "options": {"name": "keyword_gt_unique_idx", "unique": True},
             }
@@ -174,6 +183,13 @@ class DatabaseIndexSeeder:
                 "keys": [("batch_id", 1)],
                 "options": {"name": "gpt_batch_id_sparse_idx", "sparse": True},
             },
+            {
+                "keys": [("batch_id", 1), ("response_blob", 1)],
+                "options": {
+                    "name": "gpt_batch_requests_batch_response_idx",
+                    "sparse": True,
+                },
+            },
         ]
 
         for index in indexes:
@@ -185,9 +201,13 @@ class DatabaseIndexSeeder:
 
         indexes = [
             {
-                "keys": [("mfg_etld1", 1)],
+                "keys": [("etld1", 1)],
                 "options": {"name": "deferred_mfg_etld1_unique_idx", "unique": True},
-            }
+            },
+            {
+                "keys": [("etld1", 1), ("scraped_text_file_version_id", 1)],
+                "options": {"name": "deferred_mfg_compound_idx"},
+            },
         ]
 
         for index in indexes:
@@ -201,7 +221,15 @@ class DatabaseIndexSeeder:
             {
                 "keys": [("external_batch_id", 1)],
                 "options": {"name": "gpt_batch_external_batch_id_idx", "unique": True},
-            }
+            },
+            {
+                "keys": [("status", 1)],
+                "options": {"name": "gpt_batch_status_idx"},
+            },
+            {
+                "keys": [("metadata.original_filename", 1)],
+                "options": {"name": "gpt_batch_filename_idx", "sparse": True},
+            },
         ]
 
         for index in indexes:
@@ -219,6 +247,14 @@ class DatabaseIndexSeeder:
             {
                 "keys": [("key", 1)],
                 "options": {"name": "apikey_key_unique_idx", "unique": True},
+            },
+            {
+                "keys": [("exhausted", 1)],
+                "options": {"name": "apikey_exhausted_idx"},
+            },
+            {
+                "keys": [("available_at", 1)],
+                "options": {"name": "apikey_available_at_idx"},
             },
         ]
 
@@ -281,6 +317,8 @@ class DatabaseIndexSeeder:
             "api_keys",
             "places",
             "mep_requests",
+            "scraping_errors",
+            "extraction_errors",
         ]
 
         logger.info("Dropping all existing custom indexes...")
@@ -347,6 +385,8 @@ class DatabaseIndexSeeder:
             "api_keys",
             "places",
             "mep_requests",
+            "scraping_errors",
+            "extraction_errors",
         ]
 
         logger.info("Listing existing indexes...")
@@ -373,23 +413,17 @@ def get_connection_string() -> str:
     return connection_string
 
 
-def get_database_name() -> str:
-    """Get database name from environment variables."""
-    return os.getenv("MONGODB_DATABASE", "sudokn")  # default to 'sudokn'
-
-
 def main():
     """Main execution function."""
     try:
         connection_string = get_connection_string()
-        database_name = get_database_name()
 
-        logger.info(f"Using database: {database_name}")
-        logger.info(
-            f"Connection string: {connection_string.replace(connection_string.split('@')[-1], '@***') if '@' in connection_string else connection_string}"
-        )
+        seeder = DatabaseIndexSeeder(connection_string)
 
-        seeder = DatabaseIndexSeeder(connection_string, database_name)
+        print(f"\nConnection string : {connection_string}")
+        print(f"Database          : {seeder.db.name}\n")
+        input("Press Enter to continue...")
+        print()
 
         # Optionally list existing indexes first
         if os.getenv("LIST_INDEXES", "false").lower() == "true":

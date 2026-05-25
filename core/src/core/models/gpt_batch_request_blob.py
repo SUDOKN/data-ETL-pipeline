@@ -1,63 +1,26 @@
-from datetime import datetime
-from pydantic import BaseModel, ConfigDict, Field
+from pydantic import BaseModel, ConfigDict
 
+from open_ai_key_app.models.gpt_model_params import (
+    GPTRequestBody,
+)
 
-"""
-{
-  "custom_id": "request-1",
-  "method": "POST",
-  "url": "/v1/chat/completions",
-  "body": {
-    "model": "gpt-3.5-turbo-0125",
-    "messages": [
-      {
-        "role": "system",
-        "content": "You are a helpful assistant."
-      },
-      {
-        "role": "user",
-        "content": "Hello world!"
-      }
-    ],
-    "max_tokens": 1000
-  }
-}
-
-{
-  "custom_id": "request-2",
-  "method": "POST",
-  "url": "/v1/chat/completions",
-  "body": {
-    "model": "gpt-3.5-turbo-0125",
-    "messages": [
-      {
-        "role": "system",
-        "content": "You are an unhelpful assistant."
-      },
-      {
-        "role": "user",
-        "content": "Hello world!"
-      }
-    ],
-    "max_tokens": 1000
-  }
-}
-"""
-
-
-class GPTBatchRequestBlobBody(BaseModel):
-    model_config = ConfigDict(frozen=True, extra="forbid")
-
-    model: str  # e.g. "gpt-4o-mini"
-    messages: list[dict]  # e.g. [{"role": "user", "content": "Hello!"}]
-    input_tokens: int  # exclude before sending to OpenAI
-    max_tokens: int
+# ─────────────────────────────────────────────────────────────────
+# Batch JSONL envelope
+# ─────────────────────────────────────────────────────────────────
 
 
 class GPTBatchRequestBlob(BaseModel):
+    """
+    One line in the batch .jsonl file.
+    body is GPTRequestBody — pure OpenAI params, no local accounting fields.
+    input_tokens is a local accounting field stored in MongoDB but excluded
+    from the serialized JSONL line sent to OpenAI.
+    """
+
     model_config = ConfigDict(frozen=True, extra="forbid")
 
-    custom_id: str  # we provide this id
+    custom_id: str
     method: str = "POST"
     url: str = "/v1/chat/completions"
-    body: GPTBatchRequestBlobBody
+    body: GPTRequestBody
+    input_tokens: int  # local accounting; exclude via model_dump(exclude={"input_tokens"}) when writing JSONL

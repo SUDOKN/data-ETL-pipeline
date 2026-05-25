@@ -18,10 +18,9 @@ async def get_deferred_manufacturer_by_etld1_scraped_file_version(
     scraped_text_file_version_id: str,
 ) -> Optional[DeferredManufacturer]:
     return await DeferredManufacturer.find_one(
-        {
-            "mfg_etld1": mfg_etld1,
-            "scraped_text_file_version_id": scraped_text_file_version_id,
-        }
+        DeferredManufacturer.etld1 == mfg_etld1,
+        DeferredManufacturer.scraped_text_file_version_id
+        == scraped_text_file_version_id,
     )
 
 
@@ -30,7 +29,7 @@ async def update_deferred_manufacturer(
 ):
     deferred_manufacturer.updated_at = updated_at
     logger.info(
-        f"Saving deferred manufacturer {deferred_manufacturer.mfg_etld1} to the database."
+        f"Saving deferred manufacturer {deferred_manufacturer.etld1} to the database."
     )
     await deferred_manufacturer.save()
 
@@ -58,7 +57,7 @@ async def delete_deferred_manufacturer(
     deferred_manufacturer: DeferredManufacturer,
 ):
     logger.info(
-        f"Deleting deferred manufacturer {deferred_manufacturer.mfg_etld1} from the database."
+        f"Deleting deferred manufacturer {deferred_manufacturer.etld1} from the database."
     )
     await deferred_manufacturer.delete()
 
@@ -69,6 +68,6 @@ async def delete_deferred_manufacturer_if_empty(
 ):
     if is_deferred_manufacturer_empty(deferred_manufacturer):
         logger.info(
-            f"✅✅✅ Deferred manufacturer {deferred_manufacturer.mfg_etld1} is empty. Deleting from the database."
+            f"✅✅✅ Deferred manufacturer {deferred_manufacturer.etld1} is empty. Deleting from the database."
         )
         await delete_deferred_manufacturer(deferred_manufacturer=deferred_manufacturer)

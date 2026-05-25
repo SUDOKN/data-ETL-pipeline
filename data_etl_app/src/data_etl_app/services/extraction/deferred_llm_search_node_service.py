@@ -9,19 +9,15 @@ from core.models.db.gpt_batch_request import GPTBatchRequest
 from data_etl_app.models.types_and_enums import (
     LLMExtractedFieldTypeEnum,
 )
+from open_ai_key_app.models.field_types import GPTBatchRequestCustomID
+from open_ai_key_app.models.llm_model import LLM_Model
+from open_ai_key_app.models.gpt_model_params import GPTModelParams
 
 
 from core.services.gpt_batch_request_service import create_base_gpt_batch_request
 from core.utils.str_util import make_json_array_parse_safe
 
 logger = logging.getLogger(__name__)
-
-from open_ai_key_app.models.field_types import GPTBatchRequestCustomID
-from open_ai_key_app.models.gpt_model import (
-    LLM_Model,
-    ModelParameters,
-    DefaultModelParameters,
-)
 
 
 def parse_llm_search_response(gpt_response: str) -> set[str]:
@@ -70,7 +66,8 @@ async def create_missing_search_requests(
     mfg_text: str,
     search_prompt: Prompt,
     llm_model: LLM_Model,
-    model_params: ModelParameters = DefaultModelParameters,
+    model_params: GPTModelParams,
+    eager: bool,
     BATCH_SIZE=100,
 ) -> list[GPTBatchRequest]:
 
@@ -108,6 +105,7 @@ async def create_missing_search_requests(
                 prompt=search_prompt,
                 gpt_model=llm_model,
                 model_params=model_params,
+                batch_id="Eager" if eager else None,
             )
 
             batch_requests.append(llm_batch_request)
@@ -118,7 +116,7 @@ async def create_missing_search_requests(
         if (i + BATCH_SIZE) % 500 == 0:
             logger.info(
                 f"Created {min(i + BATCH_SIZE, len(chunk_items))}/{len(chunk_items)} "
-                f"gpt request for {mfg_etld1}:{field_type}"
+                f"gpt request for {mfg_etld1}:{field_type} (Eager: {eager})"
             )
 
     return batch_requests

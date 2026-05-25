@@ -66,17 +66,17 @@ class DatabaseSchemaValidator:
         "manufacturer_user_forms": "manufacturer_user_form.schema.json",
         "mep_requests": "mep_request.schema.json",
         "places": "place.schema.json",
+        "user_role_access_requests": "user_role_access_request.schema.json",
     }
 
-    def __init__(self, connection_string: str, database_name: str):
+    def __init__(self, connection_string: str):
         """Initialize the schema validator.
 
         Args:
             connection_string: MongoDB connection string
-            database_name: Name of the database to validate
         """
         self.client = MongoClient(connection_string)
-        self.db = self.client[database_name]
+        self.db = self.client.get_default_database()
         self.schema_dir = Path(__file__).parent.parent / "db_schemas"
 
         if not self.schema_dir.exists():
@@ -487,30 +487,17 @@ def get_connection_string() -> str:
     return connection_string
 
 
-def get_database_name() -> str:
-    """Get database name from environment variables.
-
-    Returns:
-        Database name (defaults to 'sudokn')
-    """
-    return os.getenv("MONGODB_DATABASE", "sudokn")
-
-
 def main():
     """Main execution function."""
     try:
         connection_string = get_connection_string()
-        database_name = get_database_name()
 
-        logger.info(f"Database: {database_name}")
-        masked_conn = (
-            connection_string.replace(connection_string.split("@")[-1], "@***")
-            if "@" in connection_string
-            else connection_string
-        )
-        logger.info(f"Connection: {masked_conn}\n")
+        validator = DatabaseSchemaValidator(connection_string)
 
-        validator = DatabaseSchemaValidator(connection_string, database_name)
+        print(f"\nConnection string : {connection_string}")
+        print(f"Database          : {validator.db.name}\n")
+        input("Press Enter to continue...")
+        print()
 
         try:
             # Test connection

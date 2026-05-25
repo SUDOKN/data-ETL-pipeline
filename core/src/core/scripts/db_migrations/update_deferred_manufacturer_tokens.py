@@ -85,7 +85,7 @@ async def update_deferred_manufacturer_tokens(limit=None, mfg_etld1=None):
         bulk_operations.append(
             UpdateOne(
                 {
-                    "mfg_etld1": etld1,
+                    "etld1": etld1,
                     "scraped_text_file_version_id": scraped_text_file_version_id,
                 },
                 {
@@ -170,7 +170,7 @@ async def main():
         default=None,
     )
     group.add_argument(
-        "--mfg-etld1",
+        "--etld1",
         type=str,
         help="Process only the manufacturer with this specific etld1",
         default=None,

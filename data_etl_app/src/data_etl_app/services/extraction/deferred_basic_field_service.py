@@ -14,11 +14,8 @@ from data_etl_app.models.types_and_enums import (
     BinaryClassificationTypeEnum,
 )
 from open_ai_key_app.models.field_types import GPTBatchRequestCustomID
-from open_ai_key_app.models.gpt_model import (
-    LLM_Model,
-    ModelParameters,
-    DefaultModelParameters,
-)
+from open_ai_key_app.models.llm_model import LLM_Model
+from open_ai_key_app.models.gpt_model_params import GPTModelParams
 
 logger = logging.getLogger(__name__)
 
@@ -32,7 +29,8 @@ async def create_missing_basic_extraction_requests(
     mfg_text: str,
     prompt: Prompt,
     llm_model: LLM_Model,
-    model_params: ModelParameters = DefaultModelParameters,
+    model_params: GPTModelParams,
+    eager: bool,
     BATCH_SIZE=100,
 ) -> list[GPTBatchRequest]:
 
@@ -70,6 +68,7 @@ async def create_missing_basic_extraction_requests(
                 prompt=prompt,
                 gpt_model=llm_model,
                 model_params=model_params,
+                batch_id="Eager" if eager else None,
             )
 
             batch_requests.append(llm_batch_request)
@@ -80,7 +79,7 @@ async def create_missing_basic_extraction_requests(
         if (i + BATCH_SIZE) % 500 == 0:
             logger.info(
                 f"Created {min(i + BATCH_SIZE, len(chunk_items))}/{len(chunk_items)} "
-                f"gpt request for {mfg_etld1}:{field_type.name}"
+                f"gpt request for {mfg_etld1}:{field_type.name} (Eager: {eager})"
             )
 
     return batch_requests

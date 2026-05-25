@@ -63,7 +63,7 @@ async def main():
         manufacturers = [
             ManufacturerUserForm(
                 author_email="info@acmemfg.com",
-                mfg_etld1="mfg-001",
+                etld1="mfg-001",
                 name="Acme Manufacturing",
                 founded_in=1990,
                 email_addresses=["info@acmemfg.com"],
@@ -99,7 +99,7 @@ async def main():
             ),
             ManufacturerUserForm(
                 author_email="info@globex.com",
-                mfg_etld1="globex.com",
+                etld1="globex.com",
                 name="Globex Corporation",
                 founded_in=1985,
                 email_addresses=["info@globex.com"],

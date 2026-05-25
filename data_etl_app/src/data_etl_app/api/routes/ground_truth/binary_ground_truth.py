@@ -1,47 +1,35 @@
 import json
 import random
 import logging
-from core.utils.aws.s3.scraped_text_util import (
-    download_scraped_text_from_s3_by_mfg_etld1,
-)
-from data_etl_app.models.pipeline_nodes.classification.binary_reconcile_node import (
-    BinaryClassificationResult,
-)
 from fastapi import APIRouter, HTTPException, Request, Query, Depends
 from fastapi.responses import JSONResponse
 
 from core.models.db.user import User
-from core.models.db.manufacturer import Batch
-from core.models.to_scrape_item import ToScrapeItem
-
-from core.services.manufacturer_service import (
-    find_manufacturer_by_etld1,
-    find_manufacturer_by_url,
-    find_random_manufacturer_url,
-)
-from core.services.user_service import find_by_email
-
-from core.utils.url_util import (
-    get_normalized_url,
-    get_complete_url_with_compatible_protocol,
-)
-from core.utils.time_util import get_current_time
-from core.utils.aws.queue.priority_scrape_queue_util import (
-    push_item_to_priority_scrape_queue,
-)
-
 from core.models.db.binary_ground_truth import (
     BinaryGroundTruth,
     HumanBinaryDecision,
 )
+from data_etl_app.models.pipeline_nodes.classification.binary_reconcile_node import (
+    BinaryClassificationResult,
+)
+from data_etl_app.models.types_and_enums import (
+    BinaryClassificationTypeEnum,
+    GroundTruthSource,
+)
+
+from core.services.manufacturer_service import (
+    find_manufacturer_by_etld1,
+)
+from core.services.user_service import find_by_email
 from data_etl_app.services.ground_truth.binary_ground_truth_service import (
     get_binary_ground_truth,
     save_new_binary_ground_truth,
     add_decision_to_binary_ground_truth,
 )
-from data_etl_app.models.types_and_enums import (
-    BinaryClassificationTypeEnum,
-    GroundTruthSource,
+
+from core.utils.time_util import get_current_time
+from core.utils.aws.s3.scraped_text_util import (
+    download_scraped_text_from_s3_by_mfg_etld1,
 )
 
 router = APIRouter()
@@ -110,8 +98,8 @@ async def fetch_binary_classification_user_form_template(
         response = existing_binary_gt.model_dump()
         response["new_human_decision"] = HumanBinaryDecision(
             author_email=author_email,
-            answer=None,  # initially None, user will fill this
-            reason=None,  # initially None, user will fill this
+            answer=existing_binary_gt.final_decision.answer,
+            reason=existing_binary_gt.final_decision.reason,
             source=GroundTruthSource.USER_FORM,
         )
         logger.debug(f"Existing binary ground truth found: {response}")
@@ -136,6 +124,7 @@ async def fetch_binary_classification_user_form_template(
         mfg_etld1=manufacturer.etld1,
         classification_type=classification_type,
         scraped_text_file_version_id=manufacturer.scraped_text_file_version_id,
+        chunk_bounds=first_chunk_bounds,
         chunk_text=scraped_text[start:end],
         metadata=binary_classification_result.metadata,
         extraction_stats=first_chunk_stats,
@@ -146,8 +135,8 @@ async def fetch_binary_classification_user_form_template(
 
     response["new_human_decision"] = HumanBinaryDecision(
         author_email=author_email,
-        answer=None,  # initially None, user will fill this
-        reason=None,  # initially None, user will fill this
+        answer=first_chunk_stats.result.answer,
+        reason=first_chunk_stats.result.reason,
         source=GroundTruthSource.USER_FORM,
     )
     response.pop("id", None)  # remove id from response
@@ -202,7 +191,7 @@ async def collect_binary_ground_truth(
     binary_gt, new_decision = parsed_data
     current_time = get_current_time()
 
-    user = await User.find_one({"email": new_decision.author_email})
+    user = await User.find_one(User.email == new_decision.author_email)
     if not user:
         raise HTTPException(
             status_code=404,

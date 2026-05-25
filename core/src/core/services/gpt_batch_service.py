@@ -1,8 +1,8 @@
-from datetime import datetime
 import logging
-from pathlib import Path
+from beanie.operators import In
+from datetime import datetime
 from typing import Optional
-from openai import OpenAI, OpenAIError
+from openai import OpenAIError
 from openai.types import Batch
 
 from core.models.db.gpt_batch import GPTBatch, GPTBatchStatus, GPTBatchMetadata
@@ -216,15 +216,11 @@ async def update_gpt_batch_from_response(
 
 async def get_pending_batches_mapped_by_api_key_label() -> dict[str, GPTBatch]:
     pending_batches: list[GPTBatch] = await GPTBatch.find(
-        {
-            "status": {
-                "$in": [
-                    GPTBatchStatus.VALIDATING.name,
-                    GPTBatchStatus.IN_PROGRESS.name,
-                ]
-            },
-            "api_key_label": {"$exists": True},
-        }
+        In(
+            GPTBatch.status,
+            [GPTBatchStatus.VALIDATING.name, GPTBatchStatus.IN_PROGRESS.name],
+        ),
+        GPTBatch.api_key_label != None,
     ).to_list()
 
     map: dict[str, GPTBatch] = {}

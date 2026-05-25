@@ -3,6 +3,7 @@ from __future__ import (
 )  # This allows you to write self-referential types without quotes, because type annotations are no longer evaluated at function/class definition time
 import logging
 from datetime import datetime
+from open_ai_key_app.models.llm_model import LLM_Model
 from pydantic import BaseModel, ConfigDict, Field, computed_field
 
 from data_etl_app.services.ground_truth.concept_ground_truth_service import (
@@ -69,7 +70,7 @@ class ScrapedTextFile(BaseModel):
     # specially needed because pydantic validators/computed fields can't await
     @classmethod
     async def download_from_s3_and_create(
-        cls, mfg_etld1: str, s3_version_id: str
+        cls, mfg_etld1: str, s3_version_id: str, llm_model: LLM_Model
     ) -> ScrapedTextFile:
         try:
             scraped_text, _version_id = (
@@ -83,7 +84,7 @@ class ScrapedTextFile(BaseModel):
             assert (
                 last_modified_on is not None
             ), "Last modified date should not be None if file exists."
-            num_tokens = num_tokens_from_string(scraped_text)
+            num_tokens = num_tokens_from_string(scraped_text, llm_model)
             tags = await get_scraped_text_object_tags_by_mfg_etld1(
                 mfg_etld1, s3_version_id
             )
@@ -93,7 +94,7 @@ class ScrapedTextFile(BaseModel):
             success_rate = ScrapingResult.get_success_rate(urls_scraped, urls_failed)
 
             is_valid = ScrapingResult.is_scrape_valid(
-                scraped_text, urls_scraped, urls_failed
+                scraped_text, urls_scraped, urls_failed, llm_model
             )
 
             return cls(
@@ -136,14 +137,12 @@ class ScrapedTextFile(BaseModel):
 
     @classmethod
     async def upload_to_s3_and_create(
-        cls, batch: Batch, scrape_result: ScrapingResult, mfg_etld1: str
+        cls,
+        batch: Batch,
+        scrape_result: ScrapingResult,
+        mfg_etld1: str,
     ) -> ScrapedTextFile:
-        is_valid = ScrapingResult.is_scrape_valid(
-            scrape_result.content,
-            scrape_result.urls_scraped,
-            scrape_result.urls_failed,
-            scrape_result.timed_out,
-        )
+        is_valid = scrape_result.is_valid()
 
         if not is_valid:
             raise ValueError(

@@ -4,8 +4,6 @@
     "required": [
       "etld1",
       "url_accessible_at",
-      "created_at",
-      "updated_at",
       "scraped_text_file_num_tokens",
       "scraped_text_file_version_id",
       "batches"
@@ -16,12 +14,10 @@
         "bsonType": "objectId"
       },
       "etld1": {
-        "bsonType": "string",
-        "description": "Effective top level domain plus + 1, 1 meaning domain, eg: example.com"
+        "bsonType": "string"
       },
       "url_accessible_at": {
-        "bsonType": "string",
-        "description": "Full URL with scheme that is pre-validated and pre-checked if it can be reached"
+        "bsonType": "string"
       },
       "created_at": {
         "bsonType": "date"
@@ -33,19 +29,20 @@
         "bsonType": "int"
       },
       "scraped_text_file_version_id": {
-        "bsonType": "string",
-        "minLength": 25
+        "bsonType": "string"
       },
       "batches": {
         "bsonType": "array",
-        "minItems": 1,
         "items": {
           "bsonType": "object",
-          "required": ["title", "timestamp"],
+          "required": [
+            "title",
+            "timestamp"
+          ],
+          "additionalProperties": false,
           "properties": {
             "title": {
-              "bsonType": "string",
-              "minLength": 1
+              "bsonType": "string"
             },
             "timestamp": {
               "bsonType": "date"
@@ -54,48 +51,282 @@
         }
       },
       "name": {
-        "bsonType": ["string", "null"]
+        "bsonType": [
+          "string",
+          "null"
+        ]
+      },
+      "founded_in": {
+        "bsonType": [
+          "int",
+          "null"
+        ]
+      },
+      "email_addresses": {
+        "bsonType": [
+          "array",
+          "null"
+        ],
+        "items": {
+          "bsonType": "string"
+        }
+      },
+      "num_employees": {
+        "bsonType": [
+          "int",
+          "null"
+        ]
+      },
+      "business_statuses": {
+        "bsonType": [
+          "array",
+          "null"
+        ],
+        "items": {
+          "bsonType": "string"
+        }
+      },
+      "primary_naics": {
+        "bsonType": [
+          "string",
+          "null"
+        ]
+      },
+      "secondary_naics": {
+        "bsonType": [
+          "array",
+          "null"
+        ],
+        "items": {
+          "bsonType": "string"
+        }
       },
       "is_manufacturer": {
-        "bsonType": ["object", "null"],
-        "required": ["metadata", "result", "chunk_stats"],
+        "bsonType": [
+          "object",
+          "null"
+        ],
+        "required": [
+          "metadata",
+          "result",
+          "chunk_stats"
+        ],
         "additionalProperties": false,
         "properties": {
           "metadata": {
             "bsonType": "object",
-            "required": ["model", "created_at", "prompt_version_id"],
+            "required": [
+              "model",
+              "model_params",
+              "created_at",
+              "chunk_strat",
+              "prompt_version_id"
+            ],
             "additionalProperties": false,
             "properties": {
-              "model": { "bsonType": "string" },
-              "created_at": { "bsonType": "date" },
-              "prompt_version_id": { "bsonType": "string" }
+              "model": {
+                "bsonType": "string"
+              },
+              "model_params": {
+                "bsonType": "object",
+                "required": [
+                  "max_completion_tokens",
+                  "temperature",
+                  "top_p",
+                  "presence_penalty",
+                  "frequency_penalty",
+                  "seed"
+                ],
+                "additionalProperties": false,
+                "properties": {
+                  "reasoning_effort": {
+                    "enum": [
+                      "low",
+                      "medium",
+                      "high"
+                    ],
+                    "bsonType": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "logit_bias": {
+                    "bsonType": [
+                      "object",
+                      "null"
+                    ],
+                    "additionalProperties": {
+                      "bsonType": "int"
+                    }
+                  },
+                  "user": {
+                    "bsonType": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "tools": {
+                    "bsonType": [
+                      "array",
+                      "null"
+                    ],
+                    "items": {
+                      "bsonType": "object"
+                    }
+                  },
+                  "tool_choice": {
+                    "anyOf": [
+                      {
+                        "bsonType": "string"
+                      },
+                      {
+                        "bsonType": "object"
+                      },
+                      {
+                        "bsonType": "null"
+                      }
+                    ]
+                  },
+                  "parallel_tool_calls": {
+                    "bsonType": [
+                      "bool",
+                      "null"
+                    ]
+                  },
+                  "logprobs": {
+                    "bsonType": [
+                      "bool",
+                      "null"
+                    ]
+                  },
+                  "top_logprobs": {
+                    "bsonType": [
+                      "int",
+                      "null"
+                    ]
+                  },
+                  "max_completion_tokens": {
+                    "bsonType": "int"
+                  },
+                  "stop": {
+                    "anyOf": [
+                      {
+                        "bsonType": "string"
+                      },
+                      {
+                        "bsonType": "array",
+                        "items": {
+                          "bsonType": "string"
+                        }
+                      },
+                      {
+                        "bsonType": "null"
+                      }
+                    ]
+                  },
+                  "n": {
+                    "bsonType": [
+                      "int",
+                      "null"
+                    ]
+                  },
+                  "response_format": {
+                    "bsonType": [
+                      "object",
+                      "null"
+                    ]
+                  },
+                  "temperature": {
+                    "bsonType": "double"
+                  },
+                  "top_p": {
+                    "bsonType": "double"
+                  },
+                  "presence_penalty": {
+                    "bsonType": "double"
+                  },
+                  "frequency_penalty": {
+                    "bsonType": "double"
+                  },
+                  "seed": {
+                    "bsonType": "int"
+                  }
+                }
+              },
+              "created_at": {
+                "bsonType": "date"
+              },
+              "chunk_strat": {
+                "bsonType": "object",
+                "required": [
+                  "overlap",
+                  "max_chunks"
+                ],
+                "additionalProperties": false,
+                "properties": {
+                  "overlap": {
+                    "bsonType": "double"
+                  },
+                  "max_chunks": {
+                    "bsonType": "int"
+                  },
+                  "max_tokens": {
+                    "bsonType": "int"
+                  }
+                }
+              },
+              "prompt_version_id": {
+                "bsonType": "string"
+              }
             }
           },
           "result": {
             "bsonType": "object",
-            "required": ["answer", "confidence", "reason"],
+            "required": [
+              "answer",
+              "reason",
+              "confidence"
+            ],
             "additionalProperties": false,
             "properties": {
-              "answer": { "bsonType": "bool" },
-              "confidence": { "bsonType": "int" },
-              "reason": { "bsonType": "string" }
+              "answer": {
+                "bsonType": "bool"
+              },
+              "reason": {
+                "bsonType": "string"
+              },
+              "confidence": {
+                "bsonType": "int"
+              }
             }
           },
           "chunk_stats": {
             "bsonType": "object",
             "additionalProperties": {
               "bsonType": "object",
-              "required": ["result"],
+              "required": [
+                "result"
+              ],
               "additionalProperties": false,
               "properties": {
                 "result": {
                   "bsonType": "object",
-                  "required": ["answer", "confidence", "reason"],
+                  "required": [
+                    "answer",
+                    "reason",
+                    "confidence"
+                  ],
                   "additionalProperties": false,
                   "properties": {
-                    "answer": { "bsonType": "bool" },
-                    "confidence": { "bsonType": "int" },
-                    "reason": { "bsonType": "string" }
+                    "answer": {
+                      "bsonType": "bool"
+                    },
+                    "reason": {
+                      "bsonType": "string"
+                    },
+                    "confidence": {
+                      "bsonType": "int"
+                    }
                   }
                 }
               }
@@ -104,45 +335,231 @@
         }
       },
       "is_contract_manufacturer": {
-        "bsonType": ["object", "null"],
-        "required": ["metadata", "result", "chunk_stats"],
+        "bsonType": [
+          "object",
+          "null"
+        ],
+        "required": [
+          "metadata",
+          "result",
+          "chunk_stats"
+        ],
         "additionalProperties": false,
         "properties": {
           "metadata": {
             "bsonType": "object",
-            "required": ["model", "created_at", "prompt_version_id"],
+            "required": [
+              "model",
+              "model_params",
+              "created_at",
+              "chunk_strat",
+              "prompt_version_id"
+            ],
             "additionalProperties": false,
             "properties": {
-              "model": { "bsonType": "string" },
-              "created_at": { "bsonType": "date" },
-              "prompt_version_id": { "bsonType": "string" }
+              "model": {
+                "bsonType": "string"
+              },
+              "model_params": {
+                "bsonType": "object",
+                "required": [
+                  "max_completion_tokens",
+                  "temperature",
+                  "top_p",
+                  "presence_penalty",
+                  "frequency_penalty",
+                  "seed"
+                ],
+                "additionalProperties": false,
+                "properties": {
+                  "reasoning_effort": {
+                    "enum": [
+                      "low",
+                      "medium",
+                      "high"
+                    ],
+                    "bsonType": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "logit_bias": {
+                    "bsonType": [
+                      "object",
+                      "null"
+                    ],
+                    "additionalProperties": {
+                      "bsonType": "int"
+                    }
+                  },
+                  "user": {
+                    "bsonType": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "tools": {
+                    "bsonType": [
+                      "array",
+                      "null"
+                    ],
+                    "items": {
+                      "bsonType": "object"
+                    }
+                  },
+                  "tool_choice": {
+                    "anyOf": [
+                      {
+                        "bsonType": "string"
+                      },
+                      {
+                        "bsonType": "object"
+                      },
+                      {
+                        "bsonType": "null"
+                      }
+                    ]
+                  },
+                  "parallel_tool_calls": {
+                    "bsonType": [
+                      "bool",
+                      "null"
+                    ]
+                  },
+                  "logprobs": {
+                    "bsonType": [
+                      "bool",
+                      "null"
+                    ]
+                  },
+                  "top_logprobs": {
+                    "bsonType": [
+                      "int",
+                      "null"
+                    ]
+                  },
+                  "max_completion_tokens": {
+                    "bsonType": "int"
+                  },
+                  "stop": {
+                    "anyOf": [
+                      {
+                        "bsonType": "string"
+                      },
+                      {
+                        "bsonType": "array",
+                        "items": {
+                          "bsonType": "string"
+                        }
+                      },
+                      {
+                        "bsonType": "null"
+                      }
+                    ]
+                  },
+                  "n": {
+                    "bsonType": [
+                      "int",
+                      "null"
+                    ]
+                  },
+                  "response_format": {
+                    "bsonType": [
+                      "object",
+                      "null"
+                    ]
+                  },
+                  "temperature": {
+                    "bsonType": "double"
+                  },
+                  "top_p": {
+                    "bsonType": "double"
+                  },
+                  "presence_penalty": {
+                    "bsonType": "double"
+                  },
+                  "frequency_penalty": {
+                    "bsonType": "double"
+                  },
+                  "seed": {
+                    "bsonType": "int"
+                  }
+                }
+              },
+              "created_at": {
+                "bsonType": "date"
+              },
+              "chunk_strat": {
+                "bsonType": "object",
+                "required": [
+                  "overlap",
+                  "max_chunks"
+                ],
+                "additionalProperties": false,
+                "properties": {
+                  "overlap": {
+                    "bsonType": "double"
+                  },
+                  "max_chunks": {
+                    "bsonType": "int"
+                  },
+                  "max_tokens": {
+                    "bsonType": "int"
+                  }
+                }
+              },
+              "prompt_version_id": {
+                "bsonType": "string"
+              }
             }
           },
           "result": {
             "bsonType": "object",
-            "required": ["answer", "confidence", "reason"],
+            "required": [
+              "answer",
+              "reason",
+              "confidence"
+            ],
             "additionalProperties": false,
             "properties": {
-              "answer": { "bsonType": "bool" },
-              "confidence": { "bsonType": "int" },
-              "reason": { "bsonType": "string" }
+              "answer": {
+                "bsonType": "bool"
+              },
+              "reason": {
+                "bsonType": "string"
+              },
+              "confidence": {
+                "bsonType": "int"
+              }
             }
           },
           "chunk_stats": {
             "bsonType": "object",
             "additionalProperties": {
               "bsonType": "object",
-              "required": ["result"],
+              "required": [
+                "result"
+              ],
               "additionalProperties": false,
               "properties": {
                 "result": {
                   "bsonType": "object",
-                  "required": ["answer", "confidence", "reason"],
+                  "required": [
+                    "answer",
+                    "reason",
+                    "confidence"
+                  ],
                   "additionalProperties": false,
                   "properties": {
-                    "answer": { "bsonType": "bool" },
-                    "confidence": { "bsonType": "int" },
-                    "reason": { "bsonType": "string" }
+                    "answer": {
+                      "bsonType": "bool"
+                    },
+                    "reason": {
+                      "bsonType": "string"
+                    },
+                    "confidence": {
+                      "bsonType": "int"
+                    }
                   }
                 }
               }
@@ -151,172 +568,498 @@
         }
       },
       "is_product_manufacturer": {
-        "bsonType": ["object", "null"],
-        "required": ["metadata", "result", "chunk_stats"],
+        "bsonType": [
+          "object",
+          "null"
+        ],
+        "required": [
+          "metadata",
+          "result",
+          "chunk_stats"
+        ],
         "additionalProperties": false,
         "properties": {
           "metadata": {
             "bsonType": "object",
-            "required": ["model", "created_at", "prompt_version_id"],
+            "required": [
+              "model",
+              "model_params",
+              "created_at",
+              "chunk_strat",
+              "prompt_version_id"
+            ],
             "additionalProperties": false,
             "properties": {
-              "model": { "bsonType": "string" },
-              "created_at": { "bsonType": "date" },
-              "prompt_version_id": { "bsonType": "string" }
+              "model": {
+                "bsonType": "string"
+              },
+              "model_params": {
+                "bsonType": "object",
+                "required": [
+                  "max_completion_tokens",
+                  "temperature",
+                  "top_p",
+                  "presence_penalty",
+                  "frequency_penalty",
+                  "seed"
+                ],
+                "additionalProperties": false,
+                "properties": {
+                  "reasoning_effort": {
+                    "enum": [
+                      "low",
+                      "medium",
+                      "high"
+                    ],
+                    "bsonType": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "logit_bias": {
+                    "bsonType": [
+                      "object",
+                      "null"
+                    ],
+                    "additionalProperties": {
+                      "bsonType": "int"
+                    }
+                  },
+                  "user": {
+                    "bsonType": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "tools": {
+                    "bsonType": [
+                      "array",
+                      "null"
+                    ],
+                    "items": {
+                      "bsonType": "object"
+                    }
+                  },
+                  "tool_choice": {
+                    "anyOf": [
+                      {
+                        "bsonType": "string"
+                      },
+                      {
+                        "bsonType": "object"
+                      },
+                      {
+                        "bsonType": "null"
+                      }
+                    ]
+                  },
+                  "parallel_tool_calls": {
+                    "bsonType": [
+                      "bool",
+                      "null"
+                    ]
+                  },
+                  "logprobs": {
+                    "bsonType": [
+                      "bool",
+                      "null"
+                    ]
+                  },
+                  "top_logprobs": {
+                    "bsonType": [
+                      "int",
+                      "null"
+                    ]
+                  },
+                  "max_completion_tokens": {
+                    "bsonType": "int"
+                  },
+                  "stop": {
+                    "anyOf": [
+                      {
+                        "bsonType": "string"
+                      },
+                      {
+                        "bsonType": "array",
+                        "items": {
+                          "bsonType": "string"
+                        }
+                      },
+                      {
+                        "bsonType": "null"
+                      }
+                    ]
+                  },
+                  "n": {
+                    "bsonType": [
+                      "int",
+                      "null"
+                    ]
+                  },
+                  "response_format": {
+                    "bsonType": [
+                      "object",
+                      "null"
+                    ]
+                  },
+                  "temperature": {
+                    "bsonType": "double"
+                  },
+                  "top_p": {
+                    "bsonType": "double"
+                  },
+                  "presence_penalty": {
+                    "bsonType": "double"
+                  },
+                  "frequency_penalty": {
+                    "bsonType": "double"
+                  },
+                  "seed": {
+                    "bsonType": "int"
+                  }
+                }
+              },
+              "created_at": {
+                "bsonType": "date"
+              },
+              "chunk_strat": {
+                "bsonType": "object",
+                "required": [
+                  "overlap",
+                  "max_chunks"
+                ],
+                "additionalProperties": false,
+                "properties": {
+                  "overlap": {
+                    "bsonType": "double"
+                  },
+                  "max_chunks": {
+                    "bsonType": "int"
+                  },
+                  "max_tokens": {
+                    "bsonType": "int"
+                  }
+                }
+              },
+              "prompt_version_id": {
+                "bsonType": "string"
+              }
             }
           },
           "result": {
             "bsonType": "object",
-            "required": ["answer", "confidence", "reason"],
+            "required": [
+              "answer",
+              "reason",
+              "confidence"
+            ],
             "additionalProperties": false,
             "properties": {
-              "answer": { "bsonType": "bool" },
-              "confidence": { "bsonType": "int" },
-              "reason": { "bsonType": "string" }
+              "answer": {
+                "bsonType": "bool"
+              },
+              "reason": {
+                "bsonType": "string"
+              },
+              "confidence": {
+                "bsonType": "int"
+              }
             }
           },
           "chunk_stats": {
             "bsonType": "object",
             "additionalProperties": {
               "bsonType": "object",
-              "required": ["result"],
+              "required": [
+                "result"
+              ],
               "additionalProperties": false,
               "properties": {
                 "result": {
                   "bsonType": "object",
-                  "required": ["answer", "confidence", "reason"],
+                  "required": [
+                    "answer",
+                    "reason",
+                    "confidence"
+                  ],
                   "additionalProperties": false,
                   "properties": {
-                    "answer": { "bsonType": "bool" },
-                    "confidence": { "bsonType": "int" },
-                    "reason": { "bsonType": "string" }
+                    "answer": {
+                      "bsonType": "bool"
+                    },
+                    "reason": {
+                      "bsonType": "string"
+                    },
+                    "confidence": {
+                      "bsonType": "int"
+                    }
                   }
                 }
               }
             }
           }
         }
-      },
-      "founded_in": {
-        "bsonType": ["int", "null"],
-        "minimum": 1800
-      },
-      "email_addresses": {
-        "bsonType": ["array", "null"],
-        "items": {
-          "bsonType": "string",
-          "minLength": 1
-        },
-        "uniqueItems": true
-      },
-      "num_employees": {
-        "bsonType": ["int", "null"]
-      },
-      "business_desc": {
-        "bsonType": ["object", "null"],
-        "required": ["metadata", "result", "chunk_stats"],
-        "additionalProperties": false,
-        "properties": {
-          "metadata": {
-            "bsonType": "object",
-            "required": ["model", "created_at", "prompt_version_id"],
-            "additionalProperties": false,
-            "properties": {
-              "model": { "bsonType": "string" },
-              "created_at": { "bsonType": "date" },
-              "prompt_version_id": { "bsonType": "string" }
-            }
-          },
-          "result": {
-            "bsonType": "object",
-            "additionalProperties": false,
-            "properties": {
-              "name": { "bsonType": ["string", "null"] },
-              "description": { "bsonType": ["string", "null"] }
-            }
-          },
-          "chunk_stats": {
-            "bsonType": "object",
-            "additionalProperties": {
-              "bsonType": "object",
-              "required": ["result"],
-              "additionalProperties": false,
-              "properties": {
-                "result": {
-                  "bsonType": "object",
-                  "additionalProperties": false,
-                  "properties": {
-                    "name": { "bsonType": ["string", "null"] },
-                    "description": { "bsonType": ["string", "null"] }
-                  }
-                }
-              }
-            }
-          }
-        }
-      },
-      "business_statuses": {
-        "bsonType": ["array", "null"],
-        "items": {
-          "bsonType": "string",
-          "minLength": 1
-        },
-        "uniqueItems": true
-      },
-      "primary_naics": {
-        "bsonType": ["string", "null"],
-        "minLength": 3
-      },
-      "secondary_naics": {
-        "bsonType": ["array", "null"],
-        "items": {
-          "bsonType": "string",
-          "minLength": 3
-        },
-        "uniqueItems": true
       },
       "addresses": {
-        "bsonType": ["object", "null"],
-        "required": ["metadata", "result", "chunk_stats"],
+        "bsonType": [
+          "object",
+          "null"
+        ],
+        "required": [
+          "metadata",
+          "result",
+          "chunk_stats"
+        ],
         "additionalProperties": false,
         "properties": {
           "metadata": {
             "bsonType": "object",
-            "required": ["model", "created_at", "prompt_version_id"],
+            "required": [
+              "model",
+              "model_params",
+              "created_at",
+              "chunk_strat",
+              "prompt_version_id"
+            ],
             "additionalProperties": false,
             "properties": {
-              "model": { "bsonType": "string" },
-              "created_at": { "bsonType": "date" },
-              "prompt_version_id": { "bsonType": "string" }
+              "model": {
+                "bsonType": "string"
+              },
+              "model_params": {
+                "bsonType": "object",
+                "required": [
+                  "max_completion_tokens",
+                  "temperature",
+                  "top_p",
+                  "presence_penalty",
+                  "frequency_penalty",
+                  "seed"
+                ],
+                "additionalProperties": false,
+                "properties": {
+                  "reasoning_effort": {
+                    "enum": [
+                      "low",
+                      "medium",
+                      "high"
+                    ],
+                    "bsonType": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "logit_bias": {
+                    "bsonType": [
+                      "object",
+                      "null"
+                    ],
+                    "additionalProperties": {
+                      "bsonType": "int"
+                    }
+                  },
+                  "user": {
+                    "bsonType": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "tools": {
+                    "bsonType": [
+                      "array",
+                      "null"
+                    ],
+                    "items": {
+                      "bsonType": "object"
+                    }
+                  },
+                  "tool_choice": {
+                    "anyOf": [
+                      {
+                        "bsonType": "string"
+                      },
+                      {
+                        "bsonType": "object"
+                      },
+                      {
+                        "bsonType": "null"
+                      }
+                    ]
+                  },
+                  "parallel_tool_calls": {
+                    "bsonType": [
+                      "bool",
+                      "null"
+                    ]
+                  },
+                  "logprobs": {
+                    "bsonType": [
+                      "bool",
+                      "null"
+                    ]
+                  },
+                  "top_logprobs": {
+                    "bsonType": [
+                      "int",
+                      "null"
+                    ]
+                  },
+                  "max_completion_tokens": {
+                    "bsonType": "int"
+                  },
+                  "stop": {
+                    "anyOf": [
+                      {
+                        "bsonType": "string"
+                      },
+                      {
+                        "bsonType": "array",
+                        "items": {
+                          "bsonType": "string"
+                        }
+                      },
+                      {
+                        "bsonType": "null"
+                      }
+                    ]
+                  },
+                  "n": {
+                    "bsonType": [
+                      "int",
+                      "null"
+                    ]
+                  },
+                  "response_format": {
+                    "bsonType": [
+                      "object",
+                      "null"
+                    ]
+                  },
+                  "temperature": {
+                    "bsonType": "double"
+                  },
+                  "top_p": {
+                    "bsonType": "double"
+                  },
+                  "presence_penalty": {
+                    "bsonType": "double"
+                  },
+                  "frequency_penalty": {
+                    "bsonType": "double"
+                  },
+                  "seed": {
+                    "bsonType": "int"
+                  }
+                }
+              },
+              "created_at": {
+                "bsonType": "date"
+              },
+              "chunk_strat": {
+                "bsonType": "object",
+                "required": [
+                  "overlap",
+                  "max_chunks"
+                ],
+                "additionalProperties": false,
+                "properties": {
+                  "overlap": {
+                    "bsonType": "double"
+                  },
+                  "max_chunks": {
+                    "bsonType": "int"
+                  },
+                  "max_tokens": {
+                    "bsonType": "int"
+                  }
+                }
+              },
+              "prompt_version_id": {
+                "bsonType": "string"
+              }
             }
           },
           "result": {
             "bsonType": "array",
             "items": {
               "bsonType": "object",
-              "required": ["city", "state"],
+              "required": [
+                "city",
+                "state"
+              ],
               "additionalProperties": false,
               "properties": {
-                "city": { "bsonType": "string" },
-                "state": { "bsonType": "string" },
-                "country": { "bsonType": "string" },
-                "name": { "bsonType": ["string", "null"] },
-                "address_lines": {
-                  "bsonType": ["array", "null"],
-                  "items": { "bsonType": "string" }
+                "city": {
+                  "bsonType": "string"
                 },
-                "county": { "bsonType": ["string", "null"] },
-                "postal_code": { "bsonType": ["string", "null"] },
-                "latitude": { "bsonType": ["double", "null"] },
-                "longitude": { "bsonType": ["double", "null"] },
-                "place_id": { "bsonType": ["string", "null"] },
+                "state": {
+                  "bsonType": "string"
+                },
+                "country": {
+                  "bsonType": "string"
+                },
+                "name": {
+                  "bsonType": [
+                    "string",
+                    "null"
+                  ]
+                },
+                "address_lines": {
+                  "bsonType": [
+                    "array",
+                    "null"
+                  ],
+                  "items": {
+                    "bsonType": "string"
+                  }
+                },
+                "county": {
+                  "bsonType": [
+                    "string",
+                    "null"
+                  ]
+                },
+                "postal_code": {
+                  "bsonType": [
+                    "string",
+                    "null"
+                  ]
+                },
+                "latitude": {
+                  "bsonType": [
+                    "double",
+                    "null"
+                  ]
+                },
+                "longitude": {
+                  "bsonType": [
+                    "double",
+                    "null"
+                  ]
+                },
+                "place_id": {
+                  "bsonType": [
+                    "string",
+                    "null"
+                  ]
+                },
                 "phone_numbers": {
-                  "bsonType": ["array", "null"],
-                  "items": { "bsonType": "string" }
+                  "bsonType": [
+                    "array",
+                    "null"
+                  ],
+                  "items": {
+                    "bsonType": "string"
+                  }
                 },
                 "fax_numbers": {
-                  "bsonType": ["array", "null"],
-                  "items": { "bsonType": "string" }
+                  "bsonType": [
+                    "array",
+                    "null"
+                  ],
+                  "items": {
+                    "bsonType": "string"
+                  }
                 }
               }
             }
@@ -325,36 +1068,92 @@
             "bsonType": "object",
             "additionalProperties": {
               "bsonType": "object",
-              "required": ["result"],
+              "required": [
+                "result"
+              ],
               "additionalProperties": false,
               "properties": {
                 "result": {
                   "bsonType": "array",
                   "items": {
                     "bsonType": "object",
-                    "required": ["city", "state"],
+                    "required": [
+                      "city",
+                      "state"
+                    ],
                     "additionalProperties": false,
                     "properties": {
-                      "city": { "bsonType": "string" },
-                      "state": { "bsonType": "string" },
-                      "country": { "bsonType": "string" },
-                      "name": { "bsonType": ["string", "null"] },
-                      "address_lines": {
-                        "bsonType": ["array", "null"],
-                        "items": { "bsonType": "string" }
+                      "city": {
+                        "bsonType": "string"
                       },
-                      "county": { "bsonType": ["string", "null"] },
-                      "postal_code": { "bsonType": ["string", "null"] },
-                      "latitude": { "bsonType": ["double", "null"] },
-                      "longitude": { "bsonType": ["double", "null"] },
-                      "place_id": { "bsonType": ["string", "null"] },
+                      "state": {
+                        "bsonType": "string"
+                      },
+                      "country": {
+                        "bsonType": "string"
+                      },
+                      "name": {
+                        "bsonType": [
+                          "string",
+                          "null"
+                        ]
+                      },
+                      "address_lines": {
+                        "bsonType": [
+                          "array",
+                          "null"
+                        ],
+                        "items": {
+                          "bsonType": "string"
+                        }
+                      },
+                      "county": {
+                        "bsonType": [
+                          "string",
+                          "null"
+                        ]
+                      },
+                      "postal_code": {
+                        "bsonType": [
+                          "string",
+                          "null"
+                        ]
+                      },
+                      "latitude": {
+                        "bsonType": [
+                          "double",
+                          "null"
+                        ]
+                      },
+                      "longitude": {
+                        "bsonType": [
+                          "double",
+                          "null"
+                        ]
+                      },
+                      "place_id": {
+                        "bsonType": [
+                          "string",
+                          "null"
+                        ]
+                      },
                       "phone_numbers": {
-                        "bsonType": ["array", "null"],
-                        "items": { "bsonType": "string" }
+                        "bsonType": [
+                          "array",
+                          "null"
+                        ],
+                        "items": {
+                          "bsonType": "string"
+                        }
                       },
                       "fax_numbers": {
-                        "bsonType": ["array", "null"],
-                        "items": { "bsonType": "string" }
+                        "bsonType": [
+                          "array",
+                          "null"
+                        ],
+                        "items": {
+                          "bsonType": "string"
+                        }
                       }
                     }
                   }
@@ -364,42 +1163,444 @@
           }
         }
       },
-      "products": {
-        "bsonType": ["object", "null"],
-        "required": ["metadata", "results", "chunk_stats"],
+      "business_desc": {
+        "bsonType": [
+          "object",
+          "null"
+        ],
+        "required": [
+          "metadata",
+          "result",
+          "chunk_stats"
+        ],
         "additionalProperties": false,
         "properties": {
           "metadata": {
             "bsonType": "object",
-            "required": ["model", "created_at", "search_prompt_version_id"],
+            "required": [
+              "model",
+              "model_params",
+              "created_at",
+              "chunk_strat",
+              "prompt_version_id"
+            ],
             "additionalProperties": false,
             "properties": {
-              "model": { "bsonType": "string" },
-              "created_at": { "bsonType": "date" },
-              "search_prompt_version_id": { "bsonType": "string" }
+              "model": {
+                "bsonType": "string"
+              },
+              "model_params": {
+                "bsonType": "object",
+                "required": [
+                  "max_completion_tokens",
+                  "temperature",
+                  "top_p",
+                  "presence_penalty",
+                  "frequency_penalty",
+                  "seed"
+                ],
+                "additionalProperties": false,
+                "properties": {
+                  "reasoning_effort": {
+                    "enum": [
+                      "low",
+                      "medium",
+                      "high"
+                    ],
+                    "bsonType": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "logit_bias": {
+                    "bsonType": [
+                      "object",
+                      "null"
+                    ],
+                    "additionalProperties": {
+                      "bsonType": "int"
+                    }
+                  },
+                  "user": {
+                    "bsonType": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "tools": {
+                    "bsonType": [
+                      "array",
+                      "null"
+                    ],
+                    "items": {
+                      "bsonType": "object"
+                    }
+                  },
+                  "tool_choice": {
+                    "anyOf": [
+                      {
+                        "bsonType": "string"
+                      },
+                      {
+                        "bsonType": "object"
+                      },
+                      {
+                        "bsonType": "null"
+                      }
+                    ]
+                  },
+                  "parallel_tool_calls": {
+                    "bsonType": [
+                      "bool",
+                      "null"
+                    ]
+                  },
+                  "logprobs": {
+                    "bsonType": [
+                      "bool",
+                      "null"
+                    ]
+                  },
+                  "top_logprobs": {
+                    "bsonType": [
+                      "int",
+                      "null"
+                    ]
+                  },
+                  "max_completion_tokens": {
+                    "bsonType": "int"
+                  },
+                  "stop": {
+                    "anyOf": [
+                      {
+                        "bsonType": "string"
+                      },
+                      {
+                        "bsonType": "array",
+                        "items": {
+                          "bsonType": "string"
+                        }
+                      },
+                      {
+                        "bsonType": "null"
+                      }
+                    ]
+                  },
+                  "n": {
+                    "bsonType": [
+                      "int",
+                      "null"
+                    ]
+                  },
+                  "response_format": {
+                    "bsonType": [
+                      "object",
+                      "null"
+                    ]
+                  },
+                  "temperature": {
+                    "bsonType": "double"
+                  },
+                  "top_p": {
+                    "bsonType": "double"
+                  },
+                  "presence_penalty": {
+                    "bsonType": "double"
+                  },
+                  "frequency_penalty": {
+                    "bsonType": "double"
+                  },
+                  "seed": {
+                    "bsonType": "int"
+                  }
+                }
+              },
+              "created_at": {
+                "bsonType": "date"
+              },
+              "chunk_strat": {
+                "bsonType": "object",
+                "required": [
+                  "overlap",
+                  "max_chunks"
+                ],
+                "additionalProperties": false,
+                "properties": {
+                  "overlap": {
+                    "bsonType": "double"
+                  },
+                  "max_chunks": {
+                    "bsonType": "int"
+                  },
+                  "max_tokens": {
+                    "bsonType": "int"
+                  }
+                }
+              },
+              "prompt_version_id": {
+                "bsonType": "string"
+              }
             }
           },
-          "results": {
-            "bsonType": "array",
-            "uniqueItems": true,
-            "items": { "bsonType": "string" }
+          "result": {
+            "bsonType": "object",
+            "additionalProperties": false,
+            "properties": {
+              "name": {
+                "bsonType": [
+                  "string",
+                  "null"
+                ]
+              },
+              "description": {
+                "bsonType": [
+                  "string",
+                  "null"
+                ]
+              }
+            }
           },
           "chunk_stats": {
             "bsonType": "object",
             "additionalProperties": {
               "bsonType": "object",
-              "required": ["results", "llm_search"],
+              "required": [
+                "result"
+              ],
+              "additionalProperties": false,
+              "properties": {
+                "result": {
+                  "bsonType": "object",
+                  "additionalProperties": false,
+                  "properties": {
+                    "name": {
+                      "bsonType": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "description": {
+                      "bsonType": [
+                        "string",
+                        "null"
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "products": {
+        "bsonType": [
+          "object",
+          "null"
+        ],
+        "required": [
+          "metadata",
+          "results",
+          "chunk_stats"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "metadata": {
+            "bsonType": "object",
+            "required": [
+              "model",
+              "model_params",
+              "created_at",
+              "chunk_strat",
+              "search_prompt_version_id"
+            ],
+            "additionalProperties": false,
+            "properties": {
+              "model": {
+                "bsonType": "string"
+              },
+              "model_params": {
+                "bsonType": "object",
+                "required": [
+                  "max_completion_tokens",
+                  "temperature",
+                  "top_p",
+                  "presence_penalty",
+                  "frequency_penalty",
+                  "seed"
+                ],
+                "additionalProperties": false,
+                "properties": {
+                  "reasoning_effort": {
+                    "enum": [
+                      "low",
+                      "medium",
+                      "high"
+                    ],
+                    "bsonType": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "logit_bias": {
+                    "bsonType": [
+                      "object",
+                      "null"
+                    ],
+                    "additionalProperties": {
+                      "bsonType": "int"
+                    }
+                  },
+                  "user": {
+                    "bsonType": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "tools": {
+                    "bsonType": [
+                      "array",
+                      "null"
+                    ],
+                    "items": {
+                      "bsonType": "object"
+                    }
+                  },
+                  "tool_choice": {
+                    "anyOf": [
+                      {
+                        "bsonType": "string"
+                      },
+                      {
+                        "bsonType": "object"
+                      },
+                      {
+                        "bsonType": "null"
+                      }
+                    ]
+                  },
+                  "parallel_tool_calls": {
+                    "bsonType": [
+                      "bool",
+                      "null"
+                    ]
+                  },
+                  "logprobs": {
+                    "bsonType": [
+                      "bool",
+                      "null"
+                    ]
+                  },
+                  "top_logprobs": {
+                    "bsonType": [
+                      "int",
+                      "null"
+                    ]
+                  },
+                  "max_completion_tokens": {
+                    "bsonType": "int"
+                  },
+                  "stop": {
+                    "anyOf": [
+                      {
+                        "bsonType": "string"
+                      },
+                      {
+                        "bsonType": "array",
+                        "items": {
+                          "bsonType": "string"
+                        }
+                      },
+                      {
+                        "bsonType": "null"
+                      }
+                    ]
+                  },
+                  "n": {
+                    "bsonType": [
+                      "int",
+                      "null"
+                    ]
+                  },
+                  "response_format": {
+                    "bsonType": [
+                      "object",
+                      "null"
+                    ]
+                  },
+                  "temperature": {
+                    "bsonType": "double"
+                  },
+                  "top_p": {
+                    "bsonType": "double"
+                  },
+                  "presence_penalty": {
+                    "bsonType": "double"
+                  },
+                  "frequency_penalty": {
+                    "bsonType": "double"
+                  },
+                  "seed": {
+                    "bsonType": "int"
+                  }
+                }
+              },
+              "created_at": {
+                "bsonType": "date"
+              },
+              "chunk_strat": {
+                "bsonType": "object",
+                "required": [
+                  "overlap",
+                  "max_chunks"
+                ],
+                "additionalProperties": false,
+                "properties": {
+                  "overlap": {
+                    "bsonType": "double"
+                  },
+                  "max_chunks": {
+                    "bsonType": "int"
+                  },
+                  "max_tokens": {
+                    "bsonType": "int"
+                  }
+                }
+              },
+              "search_prompt_version_id": {
+                "bsonType": "string"
+              }
+            }
+          },
+          "results": {
+            "bsonType": "array",
+            "items": {
+              "bsonType": "string"
+            },
+            "uniqueItems": true
+          },
+          "chunk_stats": {
+            "bsonType": "object",
+            "additionalProperties": {
+              "bsonType": "object",
+              "required": [
+                "results",
+                "llm_search"
+              ],
               "additionalProperties": false,
               "properties": {
                 "results": {
                   "bsonType": "array",
-                  "uniqueItems": true,
-                  "items": { "bsonType": "string" }
+                  "items": {
+                    "bsonType": "string"
+                  },
+                  "uniqueItems": true
                 },
                 "llm_search": {
                   "bsonType": "array",
-                  "uniqueItems": true,
-                  "items": { "bsonType": "string" }
+                  "items": {
+                    "bsonType": "string"
+                  },
+                  "uniqueItems": true
                 }
               }
             }
@@ -407,32 +1608,206 @@
         }
       },
       "certificates": {
-        "bsonType": ["object", "null"],
-        "required": ["metadata", "results", "chunk_stats"],
+        "bsonType": [
+          "object",
+          "null"
+        ],
+        "required": [
+          "metadata",
+          "results",
+          "chunk_stats"
+        ],
         "additionalProperties": false,
         "properties": {
           "metadata": {
             "bsonType": "object",
             "required": [
               "model",
+              "model_params",
               "created_at",
+              "chunk_strat",
               "search_prompt_version_id",
               "ontology_version_id"
             ],
             "additionalProperties": false,
             "properties": {
-              "model": { "bsonType": "string" },
-              "created_at": { "bsonType": "date" },
-              "search_prompt_version_id": { "bsonType": "string" },
-              "ontology_version_id": { "bsonType": "string" },
-              "evidence_prompt_version_id": { "bsonType": ["string", "null"] },
-              "mapping_prompt_version_id": { "bsonType": ["string", "null"] }
+              "model": {
+                "bsonType": "string"
+              },
+              "model_params": {
+                "bsonType": "object",
+                "required": [
+                  "max_completion_tokens",
+                  "temperature",
+                  "top_p",
+                  "presence_penalty",
+                  "frequency_penalty",
+                  "seed"
+                ],
+                "additionalProperties": false,
+                "properties": {
+                  "reasoning_effort": {
+                    "enum": [
+                      "low",
+                      "medium",
+                      "high"
+                    ],
+                    "bsonType": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "logit_bias": {
+                    "bsonType": [
+                      "object",
+                      "null"
+                    ],
+                    "additionalProperties": {
+                      "bsonType": "int"
+                    }
+                  },
+                  "user": {
+                    "bsonType": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "tools": {
+                    "bsonType": [
+                      "array",
+                      "null"
+                    ],
+                    "items": {
+                      "bsonType": "object"
+                    }
+                  },
+                  "tool_choice": {
+                    "anyOf": [
+                      {
+                        "bsonType": "string"
+                      },
+                      {
+                        "bsonType": "object"
+                      },
+                      {
+                        "bsonType": "null"
+                      }
+                    ]
+                  },
+                  "parallel_tool_calls": {
+                    "bsonType": [
+                      "bool",
+                      "null"
+                    ]
+                  },
+                  "logprobs": {
+                    "bsonType": [
+                      "bool",
+                      "null"
+                    ]
+                  },
+                  "top_logprobs": {
+                    "bsonType": [
+                      "int",
+                      "null"
+                    ]
+                  },
+                  "max_completion_tokens": {
+                    "bsonType": "int"
+                  },
+                  "stop": {
+                    "anyOf": [
+                      {
+                        "bsonType": "string"
+                      },
+                      {
+                        "bsonType": "array",
+                        "items": {
+                          "bsonType": "string"
+                        }
+                      },
+                      {
+                        "bsonType": "null"
+                      }
+                    ]
+                  },
+                  "n": {
+                    "bsonType": [
+                      "int",
+                      "null"
+                    ]
+                  },
+                  "response_format": {
+                    "bsonType": [
+                      "object",
+                      "null"
+                    ]
+                  },
+                  "temperature": {
+                    "bsonType": "double"
+                  },
+                  "top_p": {
+                    "bsonType": "double"
+                  },
+                  "presence_penalty": {
+                    "bsonType": "double"
+                  },
+                  "frequency_penalty": {
+                    "bsonType": "double"
+                  },
+                  "seed": {
+                    "bsonType": "int"
+                  }
+                }
+              },
+              "created_at": {
+                "bsonType": "date"
+              },
+              "chunk_strat": {
+                "bsonType": "object",
+                "required": [
+                  "overlap",
+                  "max_chunks"
+                ],
+                "additionalProperties": false,
+                "properties": {
+                  "overlap": {
+                    "bsonType": "double"
+                  },
+                  "max_chunks": {
+                    "bsonType": "int"
+                  },
+                  "max_tokens": {
+                    "bsonType": "int"
+                  }
+                }
+              },
+              "search_prompt_version_id": {
+                "bsonType": "string"
+              },
+              "ontology_version_id": {
+                "bsonType": "string"
+              },
+              "evidence_prompt_version_id": {
+                "bsonType": [
+                  "string",
+                  "null"
+                ]
+              },
+              "mapping_prompt_version_id": {
+                "bsonType": [
+                  "string",
+                  "null"
+                ]
+              }
             }
           },
           "results": {
             "bsonType": "array",
-            "uniqueItems": true,
-            "items": { "bsonType": "string" }
+            "items": {
+              "bsonType": "string"
+            },
+            "uniqueItems": true
           },
           "chunk_stats": {
             "bsonType": "object",
@@ -450,34 +1825,50 @@
               "properties": {
                 "results": {
                   "bsonType": "array",
-                  "uniqueItems": true,
-                  "items": { "bsonType": "string" }
+                  "items": {
+                    "bsonType": "string"
+                  },
+                  "uniqueItems": true
                 },
                 "brute_search": {
                   "bsonType": "array",
-                  "uniqueItems": true,
-                  "items": { "bsonType": "string" }
+                  "items": {
+                    "bsonType": "string"
+                  },
+                  "uniqueItems": true
                 },
                 "llm_search": {
                   "bsonType": "array",
-                  "uniqueItems": true,
-                  "items": { "bsonType": "string" }
+                  "items": {
+                    "bsonType": "string"
+                  },
+                  "uniqueItems": true
                 },
                 "llm_evidence": {
                   "bsonType": "object",
-                  "additionalProperties": { "bsonType": ["string", "null"] }
+                  "additionalProperties": {
+                    "bsonType": [
+                      "string",
+                      "null"
+                    ]
+                  }
                 },
                 "llm_mapping": {
                   "bsonType": "object",
                   "additionalProperties": {
                     "bsonType": "array",
-                    "items": { "bsonType": "string" }
+                    "items": {
+                      "bsonType": "string"
+                    },
+                    "uniqueItems": true
                   }
                 },
                 "unmapped": {
                   "bsonType": "array",
-                  "uniqueItems": true,
-                  "items": { "bsonType": "string" }
+                  "items": {
+                    "bsonType": "string"
+                  },
+                  "uniqueItems": true
                 }
               }
             }
@@ -485,32 +1876,206 @@
         }
       },
       "industries": {
-        "bsonType": ["object", "null"],
-        "required": ["metadata", "results", "chunk_stats"],
+        "bsonType": [
+          "object",
+          "null"
+        ],
+        "required": [
+          "metadata",
+          "results",
+          "chunk_stats"
+        ],
         "additionalProperties": false,
         "properties": {
           "metadata": {
             "bsonType": "object",
             "required": [
               "model",
+              "model_params",
               "created_at",
+              "chunk_strat",
               "search_prompt_version_id",
               "ontology_version_id"
             ],
             "additionalProperties": false,
             "properties": {
-              "model": { "bsonType": "string" },
-              "created_at": { "bsonType": "date" },
-              "search_prompt_version_id": { "bsonType": "string" },
-              "ontology_version_id": { "bsonType": "string" },
-              "evidence_prompt_version_id": { "bsonType": ["string", "null"] },
-              "mapping_prompt_version_id": { "bsonType": ["string", "null"] }
+              "model": {
+                "bsonType": "string"
+              },
+              "model_params": {
+                "bsonType": "object",
+                "required": [
+                  "max_completion_tokens",
+                  "temperature",
+                  "top_p",
+                  "presence_penalty",
+                  "frequency_penalty",
+                  "seed"
+                ],
+                "additionalProperties": false,
+                "properties": {
+                  "reasoning_effort": {
+                    "enum": [
+                      "low",
+                      "medium",
+                      "high"
+                    ],
+                    "bsonType": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "logit_bias": {
+                    "bsonType": [
+                      "object",
+                      "null"
+                    ],
+                    "additionalProperties": {
+                      "bsonType": "int"
+                    }
+                  },
+                  "user": {
+                    "bsonType": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "tools": {
+                    "bsonType": [
+                      "array",
+                      "null"
+                    ],
+                    "items": {
+                      "bsonType": "object"
+                    }
+                  },
+                  "tool_choice": {
+                    "anyOf": [
+                      {
+                        "bsonType": "string"
+                      },
+                      {
+                        "bsonType": "object"
+                      },
+                      {
+                        "bsonType": "null"
+                      }
+                    ]
+                  },
+                  "parallel_tool_calls": {
+                    "bsonType": [
+                      "bool",
+                      "null"
+                    ]
+                  },
+                  "logprobs": {
+                    "bsonType": [
+                      "bool",
+                      "null"
+                    ]
+                  },
+                  "top_logprobs": {
+                    "bsonType": [
+                      "int",
+                      "null"
+                    ]
+                  },
+                  "max_completion_tokens": {
+                    "bsonType": "int"
+                  },
+                  "stop": {
+                    "anyOf": [
+                      {
+                        "bsonType": "string"
+                      },
+                      {
+                        "bsonType": "array",
+                        "items": {
+                          "bsonType": "string"
+                        }
+                      },
+                      {
+                        "bsonType": "null"
+                      }
+                    ]
+                  },
+                  "n": {
+                    "bsonType": [
+                      "int",
+                      "null"
+                    ]
+                  },
+                  "response_format": {
+                    "bsonType": [
+                      "object",
+                      "null"
+                    ]
+                  },
+                  "temperature": {
+                    "bsonType": "double"
+                  },
+                  "top_p": {
+                    "bsonType": "double"
+                  },
+                  "presence_penalty": {
+                    "bsonType": "double"
+                  },
+                  "frequency_penalty": {
+                    "bsonType": "double"
+                  },
+                  "seed": {
+                    "bsonType": "int"
+                  }
+                }
+              },
+              "created_at": {
+                "bsonType": "date"
+              },
+              "chunk_strat": {
+                "bsonType": "object",
+                "required": [
+                  "overlap",
+                  "max_chunks"
+                ],
+                "additionalProperties": false,
+                "properties": {
+                  "overlap": {
+                    "bsonType": "double"
+                  },
+                  "max_chunks": {
+                    "bsonType": "int"
+                  },
+                  "max_tokens": {
+                    "bsonType": "int"
+                  }
+                }
+              },
+              "search_prompt_version_id": {
+                "bsonType": "string"
+              },
+              "ontology_version_id": {
+                "bsonType": "string"
+              },
+              "evidence_prompt_version_id": {
+                "bsonType": [
+                  "string",
+                  "null"
+                ]
+              },
+              "mapping_prompt_version_id": {
+                "bsonType": [
+                  "string",
+                  "null"
+                ]
+              }
             }
           },
           "results": {
             "bsonType": "array",
-            "uniqueItems": true,
-            "items": { "bsonType": "string" }
+            "items": {
+              "bsonType": "string"
+            },
+            "uniqueItems": true
           },
           "chunk_stats": {
             "bsonType": "object",
@@ -528,34 +2093,50 @@
               "properties": {
                 "results": {
                   "bsonType": "array",
-                  "uniqueItems": true,
-                  "items": { "bsonType": "string" }
+                  "items": {
+                    "bsonType": "string"
+                  },
+                  "uniqueItems": true
                 },
                 "brute_search": {
                   "bsonType": "array",
-                  "uniqueItems": true,
-                  "items": { "bsonType": "string" }
+                  "items": {
+                    "bsonType": "string"
+                  },
+                  "uniqueItems": true
                 },
                 "llm_search": {
                   "bsonType": "array",
-                  "uniqueItems": true,
-                  "items": { "bsonType": "string" }
+                  "items": {
+                    "bsonType": "string"
+                  },
+                  "uniqueItems": true
                 },
                 "llm_evidence": {
                   "bsonType": "object",
-                  "additionalProperties": { "bsonType": ["string", "null"] }
+                  "additionalProperties": {
+                    "bsonType": [
+                      "string",
+                      "null"
+                    ]
+                  }
                 },
                 "llm_mapping": {
                   "bsonType": "object",
                   "additionalProperties": {
                     "bsonType": "array",
-                    "items": { "bsonType": "string" }
+                    "items": {
+                      "bsonType": "string"
+                    },
+                    "uniqueItems": true
                   }
                 },
                 "unmapped": {
                   "bsonType": "array",
-                  "uniqueItems": true,
-                  "items": { "bsonType": "string" }
+                  "items": {
+                    "bsonType": "string"
+                  },
+                  "uniqueItems": true
                 }
               }
             }
@@ -563,32 +2144,206 @@
         }
       },
       "process_caps": {
-        "bsonType": ["object", "null"],
-        "required": ["metadata", "results", "chunk_stats"],
+        "bsonType": [
+          "object",
+          "null"
+        ],
+        "required": [
+          "metadata",
+          "results",
+          "chunk_stats"
+        ],
         "additionalProperties": false,
         "properties": {
           "metadata": {
             "bsonType": "object",
             "required": [
               "model",
+              "model_params",
               "created_at",
+              "chunk_strat",
               "search_prompt_version_id",
               "ontology_version_id"
             ],
             "additionalProperties": false,
             "properties": {
-              "model": { "bsonType": "string" },
-              "created_at": { "bsonType": "date" },
-              "search_prompt_version_id": { "bsonType": "string" },
-              "ontology_version_id": { "bsonType": "string" },
-              "evidence_prompt_version_id": { "bsonType": ["string", "null"] },
-              "mapping_prompt_version_id": { "bsonType": ["string", "null"] }
+              "model": {
+                "bsonType": "string"
+              },
+              "model_params": {
+                "bsonType": "object",
+                "required": [
+                  "max_completion_tokens",
+                  "temperature",
+                  "top_p",
+                  "presence_penalty",
+                  "frequency_penalty",
+                  "seed"
+                ],
+                "additionalProperties": false,
+                "properties": {
+                  "reasoning_effort": {
+                    "enum": [
+                      "low",
+                      "medium",
+                      "high"
+                    ],
+                    "bsonType": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "logit_bias": {
+                    "bsonType": [
+                      "object",
+                      "null"
+                    ],
+                    "additionalProperties": {
+                      "bsonType": "int"
+                    }
+                  },
+                  "user": {
+                    "bsonType": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "tools": {
+                    "bsonType": [
+                      "array",
+                      "null"
+                    ],
+                    "items": {
+                      "bsonType": "object"
+                    }
+                  },
+                  "tool_choice": {
+                    "anyOf": [
+                      {
+                        "bsonType": "string"
+                      },
+                      {
+                        "bsonType": "object"
+                      },
+                      {
+                        "bsonType": "null"
+                      }
+                    ]
+                  },
+                  "parallel_tool_calls": {
+                    "bsonType": [
+                      "bool",
+                      "null"
+                    ]
+                  },
+                  "logprobs": {
+                    "bsonType": [
+                      "bool",
+                      "null"
+                    ]
+                  },
+                  "top_logprobs": {
+                    "bsonType": [
+                      "int",
+                      "null"
+                    ]
+                  },
+                  "max_completion_tokens": {
+                    "bsonType": "int"
+                  },
+                  "stop": {
+                    "anyOf": [
+                      {
+                        "bsonType": "string"
+                      },
+                      {
+                        "bsonType": "array",
+                        "items": {
+                          "bsonType": "string"
+                        }
+                      },
+                      {
+                        "bsonType": "null"
+                      }
+                    ]
+                  },
+                  "n": {
+                    "bsonType": [
+                      "int",
+                      "null"
+                    ]
+                  },
+                  "response_format": {
+                    "bsonType": [
+                      "object",
+                      "null"
+                    ]
+                  },
+                  "temperature": {
+                    "bsonType": "double"
+                  },
+                  "top_p": {
+                    "bsonType": "double"
+                  },
+                  "presence_penalty": {
+                    "bsonType": "double"
+                  },
+                  "frequency_penalty": {
+                    "bsonType": "double"
+                  },
+                  "seed": {
+                    "bsonType": "int"
+                  }
+                }
+              },
+              "created_at": {
+                "bsonType": "date"
+              },
+              "chunk_strat": {
+                "bsonType": "object",
+                "required": [
+                  "overlap",
+                  "max_chunks"
+                ],
+                "additionalProperties": false,
+                "properties": {
+                  "overlap": {
+                    "bsonType": "double"
+                  },
+                  "max_chunks": {
+                    "bsonType": "int"
+                  },
+                  "max_tokens": {
+                    "bsonType": "int"
+                  }
+                }
+              },
+              "search_prompt_version_id": {
+                "bsonType": "string"
+              },
+              "ontology_version_id": {
+                "bsonType": "string"
+              },
+              "evidence_prompt_version_id": {
+                "bsonType": [
+                  "string",
+                  "null"
+                ]
+              },
+              "mapping_prompt_version_id": {
+                "bsonType": [
+                  "string",
+                  "null"
+                ]
+              }
             }
           },
           "results": {
             "bsonType": "array",
-            "uniqueItems": true,
-            "items": { "bsonType": "string" }
+            "items": {
+              "bsonType": "string"
+            },
+            "uniqueItems": true
           },
           "chunk_stats": {
             "bsonType": "object",
@@ -606,34 +2361,50 @@
               "properties": {
                 "results": {
                   "bsonType": "array",
-                  "uniqueItems": true,
-                  "items": { "bsonType": "string" }
+                  "items": {
+                    "bsonType": "string"
+                  },
+                  "uniqueItems": true
                 },
                 "brute_search": {
                   "bsonType": "array",
-                  "uniqueItems": true,
-                  "items": { "bsonType": "string" }
+                  "items": {
+                    "bsonType": "string"
+                  },
+                  "uniqueItems": true
                 },
                 "llm_search": {
                   "bsonType": "array",
-                  "uniqueItems": true,
-                  "items": { "bsonType": "string" }
+                  "items": {
+                    "bsonType": "string"
+                  },
+                  "uniqueItems": true
                 },
                 "llm_evidence": {
                   "bsonType": "object",
-                  "additionalProperties": { "bsonType": ["string", "null"] }
+                  "additionalProperties": {
+                    "bsonType": [
+                      "string",
+                      "null"
+                    ]
+                  }
                 },
                 "llm_mapping": {
                   "bsonType": "object",
                   "additionalProperties": {
                     "bsonType": "array",
-                    "items": { "bsonType": "string" }
+                    "items": {
+                      "bsonType": "string"
+                    },
+                    "uniqueItems": true
                   }
                 },
                 "unmapped": {
                   "bsonType": "array",
-                  "uniqueItems": true,
-                  "items": { "bsonType": "string" }
+                  "items": {
+                    "bsonType": "string"
+                  },
+                  "uniqueItems": true
                 }
               }
             }
@@ -641,32 +2412,206 @@
         }
       },
       "material_caps": {
-        "bsonType": ["object", "null"],
-        "required": ["metadata", "results", "chunk_stats"],
+        "bsonType": [
+          "object",
+          "null"
+        ],
+        "required": [
+          "metadata",
+          "results",
+          "chunk_stats"
+        ],
         "additionalProperties": false,
         "properties": {
           "metadata": {
             "bsonType": "object",
             "required": [
               "model",
+              "model_params",
               "created_at",
+              "chunk_strat",
               "search_prompt_version_id",
               "ontology_version_id"
             ],
             "additionalProperties": false,
             "properties": {
-              "model": { "bsonType": "string" },
-              "created_at": { "bsonType": "date" },
-              "search_prompt_version_id": { "bsonType": "string" },
-              "ontology_version_id": { "bsonType": "string" },
-              "evidence_prompt_version_id": { "bsonType": ["string", "null"] },
-              "mapping_prompt_version_id": { "bsonType": ["string", "null"] }
+              "model": {
+                "bsonType": "string"
+              },
+              "model_params": {
+                "bsonType": "object",
+                "required": [
+                  "max_completion_tokens",
+                  "temperature",
+                  "top_p",
+                  "presence_penalty",
+                  "frequency_penalty",
+                  "seed"
+                ],
+                "additionalProperties": false,
+                "properties": {
+                  "reasoning_effort": {
+                    "enum": [
+                      "low",
+                      "medium",
+                      "high"
+                    ],
+                    "bsonType": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "logit_bias": {
+                    "bsonType": [
+                      "object",
+                      "null"
+                    ],
+                    "additionalProperties": {
+                      "bsonType": "int"
+                    }
+                  },
+                  "user": {
+                    "bsonType": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "tools": {
+                    "bsonType": [
+                      "array",
+                      "null"
+                    ],
+                    "items": {
+                      "bsonType": "object"
+                    }
+                  },
+                  "tool_choice": {
+                    "anyOf": [
+                      {
+                        "bsonType": "string"
+                      },
+                      {
+                        "bsonType": "object"
+                      },
+                      {
+                        "bsonType": "null"
+                      }
+                    ]
+                  },
+                  "parallel_tool_calls": {
+                    "bsonType": [
+                      "bool",
+                      "null"
+                    ]
+                  },
+                  "logprobs": {
+                    "bsonType": [
+                      "bool",
+                      "null"
+                    ]
+                  },
+                  "top_logprobs": {
+                    "bsonType": [
+                      "int",
+                      "null"
+                    ]
+                  },
+                  "max_completion_tokens": {
+                    "bsonType": "int"
+                  },
+                  "stop": {
+                    "anyOf": [
+                      {
+                        "bsonType": "string"
+                      },
+                      {
+                        "bsonType": "array",
+                        "items": {
+                          "bsonType": "string"
+                        }
+                      },
+                      {
+                        "bsonType": "null"
+                      }
+                    ]
+                  },
+                  "n": {
+                    "bsonType": [
+                      "int",
+                      "null"
+                    ]
+                  },
+                  "response_format": {
+                    "bsonType": [
+                      "object",
+                      "null"
+                    ]
+                  },
+                  "temperature": {
+                    "bsonType": "double"
+                  },
+                  "top_p": {
+                    "bsonType": "double"
+                  },
+                  "presence_penalty": {
+                    "bsonType": "double"
+                  },
+                  "frequency_penalty": {
+                    "bsonType": "double"
+                  },
+                  "seed": {
+                    "bsonType": "int"
+                  }
+                }
+              },
+              "created_at": {
+                "bsonType": "date"
+              },
+              "chunk_strat": {
+                "bsonType": "object",
+                "required": [
+                  "overlap",
+                  "max_chunks"
+                ],
+                "additionalProperties": false,
+                "properties": {
+                  "overlap": {
+                    "bsonType": "double"
+                  },
+                  "max_chunks": {
+                    "bsonType": "int"
+                  },
+                  "max_tokens": {
+                    "bsonType": "int"
+                  }
+                }
+              },
+              "search_prompt_version_id": {
+                "bsonType": "string"
+              },
+              "ontology_version_id": {
+                "bsonType": "string"
+              },
+              "evidence_prompt_version_id": {
+                "bsonType": [
+                  "string",
+                  "null"
+                ]
+              },
+              "mapping_prompt_version_id": {
+                "bsonType": [
+                  "string",
+                  "null"
+                ]
+              }
             }
           },
           "results": {
             "bsonType": "array",
-            "uniqueItems": true,
-            "items": { "bsonType": "string" }
+            "items": {
+              "bsonType": "string"
+            },
+            "uniqueItems": true
           },
           "chunk_stats": {
             "bsonType": "object",
@@ -684,34 +2629,50 @@
               "properties": {
                 "results": {
                   "bsonType": "array",
-                  "uniqueItems": true,
-                  "items": { "bsonType": "string" }
+                  "items": {
+                    "bsonType": "string"
+                  },
+                  "uniqueItems": true
                 },
                 "brute_search": {
                   "bsonType": "array",
-                  "uniqueItems": true,
-                  "items": { "bsonType": "string" }
+                  "items": {
+                    "bsonType": "string"
+                  },
+                  "uniqueItems": true
                 },
                 "llm_search": {
                   "bsonType": "array",
-                  "uniqueItems": true,
-                  "items": { "bsonType": "string" }
+                  "items": {
+                    "bsonType": "string"
+                  },
+                  "uniqueItems": true
                 },
                 "llm_evidence": {
                   "bsonType": "object",
-                  "additionalProperties": { "bsonType": ["string", "null"] }
+                  "additionalProperties": {
+                    "bsonType": [
+                      "string",
+                      "null"
+                    ]
+                  }
                 },
                 "llm_mapping": {
                   "bsonType": "object",
                   "additionalProperties": {
                     "bsonType": "array",
-                    "items": { "bsonType": "string" }
+                    "items": {
+                      "bsonType": "string"
+                    },
+                    "uniqueItems": true
                   }
                 },
                 "unmapped": {
                   "bsonType": "array",
-                  "uniqueItems": true,
-                  "items": { "bsonType": "string" }
+                  "items": {
+                    "bsonType": "string"
+                  },
+                  "uniqueItems": true
                 }
               }
             }

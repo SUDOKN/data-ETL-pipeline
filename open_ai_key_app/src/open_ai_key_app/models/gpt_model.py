@@ -1,47 +1,26 @@
-from typing import Optional
+from open_ai_key_app.models.llm_model import LLM_Model
 
-
-# --- GPT Model Settings ---
-class LLM_Model:
-    def __init__(
-        self,
-        model_name: str,
-        rate_limit_window: int,
-        max_context_tokens: int,
-        token_limit_per_minute: int,
-        safe_completion_tokens: int,
-    ):
-        self.model_name = model_name
-        self.rate_limit_window = rate_limit_window
-        self.max_context_tokens = max_context_tokens
-        self.token_limit_per_minute = token_limit_per_minute
-        self.safe_completion_tokens = safe_completion_tokens
-
-
-class ModelParameters:
-    def __init__(
-        self,
-        temperature: float = 1,
-        top_p: float = 1,
-        presence_penalty: float = 0,
-        frequency_penalty: float = 0,
-        max_tokens: Optional[int] = None,
-    ):
-        self.temperature: float = temperature
-        self.top_p: float = top_p
-        self.presence_penalty: float = presence_penalty
-        self.frequency_penalty: float = frequency_penalty
-        self.max_tokens: Optional[int] = max_tokens
-
-
-DefaultModelParameters = ModelParameters()
+# DefaultModelParameters = GPTModelParams(
+#     temperature=0,  # Greedy decoding — always picks highest probability token
+#     top_p=1,  # No nucleus sampling restriction needed when temp=0
+#     presence_penalty=0,  # No penalty adjustments that could shift token selection
+#     frequency_penalty=0,  # Same — keep it neutral
+#     seed=12345,  # NEW: explicitly request deterministic sampling
+#     max_completion_tokens=7500,  # NEW: explicitly set max tokens
+# )
 
 GPT_4o_mini = LLM_Model(
     model_name="gpt-4o-mini",
     rate_limit_window=60,
-    max_context_tokens=128000,
-    token_limit_per_minute=200000,
-    safe_completion_tokens=7500,
+    max_context_tokens=128_000,
+    token_limit_per_minute=10_000_000,
+)
+
+GPT_5_2 = LLM_Model(
+    model_name="gpt-5.2",
+    rate_limit_window=60,
+    max_context_tokens=272_000,
+    token_limit_per_minute=4_000_000,
 )
 
 No_model = LLM_Model(
@@ -49,5 +28,13 @@ No_model = LLM_Model(
     rate_limit_window=0,
     max_context_tokens=0,
     token_limit_per_minute=0,
-    safe_completion_tokens=0,
 )
+
+# Maps model names to tiktoken encoding names
+MODEL_ENCODING_MAP: dict[str, str] = {
+    "gpt-4o-mini": "o200k_base",
+    "gpt-5.2": "o200k_base",
+}
+
+# All models managed by the keypool. Each entry creates one slot per API key.
+MODEL_REGISTRY: list[LLM_Model] = [GPT_4o_mini, GPT_5_2]
