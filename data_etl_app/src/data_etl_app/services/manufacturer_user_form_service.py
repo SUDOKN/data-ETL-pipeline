@@ -42,7 +42,7 @@ async def validate_and_create_from_manufacturer(
     if manufacturer.business_desc is None:
         raise AssertionError("business_desc must not be None")
     if manufacturer.addresses is None:
-        #raise AssertionError("addresses must not be None")
+        # raise AssertionError("addresses must not be None")
         manufacturer.addresses = []
     else:
         for i, addr in enumerate(manufacturer.addresses):
@@ -83,16 +83,16 @@ async def validate_and_create_from_manufacturer(
 
     return ManufacturerUserForm(
         author_email="",  # to be filled later
-        mfg_etld1=manufacturer.etld1,
+        etld1=manufacturer.etld1,
         name=manufacturer.name,
         founded_in=manufacturer.founded_in,
         email_addresses=manufacturer.email_addresses,
         num_employees=manufacturer.num_employees,
-        business_desc=manufacturer.business_desc,
+        business_desc=manufacturer.business_desc.result,
         business_statuses=manufacturer.business_statuses,
         primary_naics=manufacturer.primary_naics,
         secondary_naics=manufacturer.secondary_naics,
-        addresses=manufacturer.addresses,
+        addresses=[addr for addr in manufacturer.addresses.result],
         products=manufacturer.products.results,
         certificates=manufacturer.certificates.results,
         industries=manufacturer.industries.results,
@@ -114,9 +114,7 @@ async def get_manufacturer_user_form_by_mfg_etld1(
     Returns:
         Optional[ManufacturerUserForm]: The ManufacturerUserForm document if found, else None.
     """
-    return await ManufacturerUserForm.find_one(
-        ManufacturerUserForm.mfg_etld1 == mfg_etld1
-    )
+    return await ManufacturerUserForm.find_one(ManufacturerUserForm.etld1 == mfg_etld1)
 
 
 async def save_manufacturer_user_form(

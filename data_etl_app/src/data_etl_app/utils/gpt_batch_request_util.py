@@ -1,14 +1,13 @@
 import logging
 from datetime import datetime
-
+from openai.types.chat import ChatCompletion
 
 from core.models.gpt_batch_response_blob import (
-    GPTBatchResponseBlob,
-    GPTBatchResponseBody,
-    GPTResponseBlobBody,
-    GPTBatchResponseBlobChoice,
-    GPTBatchResponseBlobChoiceMessage,
-    GPTBatchResponseBlobUsage,
+    GPTBatchResponse,
+    ChatCompletionResponse,
+    ChatCompletionChoice,
+    ChatCompletionChoiceMessage,
+    ChatCompletionUsage,
 )
 
 logger = logging.getLogger(__name__)
@@ -16,7 +15,7 @@ logger = logging.getLogger(__name__)
 
 def parse_individual_batch_req_response_raw(
     raw_result: dict, batch_id: str
-) -> GPTBatchResponseBlob:
+) -> GPTBatchResponse:
     """
     Parse raw batch result into structured response blob.
 
@@ -41,9 +40,9 @@ def parse_individual_batch_req_response_raw(
         choices = []
         for choice_data in body_data["choices"]:
             message_data = choice_data["message"]
-            choice = GPTBatchResponseBlobChoice(
+            choice = ChatCompletionChoice(
                 index=choice_data["index"],
-                message=GPTBatchResponseBlobChoiceMessage(
+                message=ChatCompletionChoiceMessage(
                     role=message_data["role"],
                     content=message_data["content"],
                 ),
@@ -54,15 +53,15 @@ def parse_individual_batch_req_response_raw(
 
         # Parse usage
         usage_data = body_data["usage"]
-        usage = GPTBatchResponseBlobUsage(
+        usage = ChatCompletionUsage(
             prompt_tokens=usage_data["prompt_tokens"],
             completion_tokens=usage_data["completion_tokens"],
             total_tokens=usage_data["total_tokens"],
         )
 
         # Parse response body
-        response_body = GPTResponseBlobBody(
-            # completion_id=body_data["id"],
+        chat_completion_response = ChatCompletionResponse(
+            id=body_data["id"],
             # object=body_data["object"],
             created=datetime.fromtimestamp(body_data["created"]),
             model=body_data["model"],
@@ -71,18 +70,10 @@ def parse_individual_batch_req_response_raw(
             system_fingerprint=body_data.get("system_fingerprint"),
         )
 
-        # Parse full response
-        response = GPTBatchResponseBody(
-            status_code=response_data["status_code"],
-            gpt_internal_request_id=response_data["request_id"],
-            body=response_body,
-        )
-
         # Create complete blob
-        blob = GPTBatchResponseBlob(
-            batch_id=batch_id,
+        blob = GPTBatchResponse(
             request_custom_id=raw_result["custom_id"],
-            response=response,
+            chat_completion_result=chat_completion_response,
             error=raw_result.get("error"),
         )
 
@@ -95,37 +86,17 @@ def parse_individual_batch_req_response_raw(
         raise
 
 
-def build_response_blob_from_chat_completion(
-    response,  # ChatCompletion object from openai
+def build_response_from_chat_completion(
+    chat_completion_result: ChatCompletion,
     custom_id: str,
     batch_id: str,
-) -> GPTBatchResponseBlob:
-    return GPTBatchResponseBlob(
-        batch_id=batch_id,
+) -> GPTBatchResponse:
+    logger.info(f"received response for custom_id={custom_id}, batch_id={batch_id}")
+    logger.info(f"response: {chat_completion_result}")
+    return GPTBatchResponse(
         request_custom_id=custom_id,
-        response=GPTBatchResponseBody(
-            status_code=response.status_code,
-            gpt_internal_request_id=response.request_id,
-            body=GPTResponseBlobBody(
-                created=datetime.fromtimestamp(response.created),
-                model=response.body.model,
-                choices=[
-                    GPTBatchResponseBlobChoice(
-                        index=c.index,
-                        message=GPTBatchResponseBlobChoiceMessage(
-                            role=c.message.role,
-                            content=c.message.content,
-                        ),
-                    )
-                    for c in response.choices
-                ],
-                usage=GPTBatchResponseBlobUsage(
-                    prompt_tokens=response.usage.prompt_tokens,
-                    completion_tokens=response.usage.completion_tokens,
-                    total_tokens=response.usage.total_tokens,
-                ),
-                system_fingerprint=response.body.system_fingerprint,
-            ),
+        chat_completion_result=ChatCompletionResponse(
+            **chat_completion_result.model_dump()
         ),
         error=None,
     )

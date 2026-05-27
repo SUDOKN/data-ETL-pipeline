@@ -8,14 +8,9 @@ import logging
 from datetime import datetime
 from typing import Optional
 
-from core.models.gpt_batch_request_blob import GPTBatchRequestBlob
+from core.models.prompt import Prompt
 from core.models.gpt_batch_response_blob import (
-    GPTBatchResponseBlob,
-    GPTBatchResponseBlobChoice,
-    GPTBatchResponseBlobChoiceMessage,
-    GPTBatchResponseBlobUsage,
-    GPTBatchResponseBody,
-    GPTResponseBlobBody,
+    ChatCompletionChoiceMessage,
 )
 from core.models.prompt import Prompt
 from core.models.db.gpt_batch_request import GPTBatchRequest
@@ -27,7 +22,7 @@ from data_etl_app.models.pipeline_nodes.concept.concept_search_node import (
 )
 from data_etl_app.models.skos_concept import ConceptJSONEncoder
 from data_etl_app.models.types_and_enums import ConceptTypeEnum
-from open_ai_key_app.models.gpt_model_params import GPTRequestBody, GPTModelParams
+from open_ai_key_app.models.gpt_model_params import GPTModelParams
 from open_ai_key_app.models.field_types import GPTBatchRequestCustomID
 from open_ai_key_app.models.gpt_model import No_model
 from open_ai_key_app.models.llm_model import LLM_Model
@@ -35,6 +30,7 @@ from open_ai_key_app.models.gpt_model_params import GPTModelParams
 
 from core.services.gpt_batch_request_service import (
     create_base_gpt_batch_request,
+    get_dummy_gpt_batch_response,
 )
 
 logger = logging.getLogger(__name__)
@@ -42,7 +38,7 @@ logger = logging.getLogger(__name__)
 
 def parse_llm_concept_evidence_result(
     gpt_response: Optional[str],
-) -> dict[str, str | None]:
+) -> dict[str, str]:
     if not gpt_response:
         logger.error(f"Invalid gpt_response:{gpt_response}")
         raise ValueError(
@@ -51,7 +47,7 @@ def parse_llm_concept_evidence_result(
 
     try:
         gpt_response = gpt_response.replace("```", "").replace("json", "")
-        raw_gpt_mapping: dict[str, str | None] = json.loads(
+        raw_gpt_mapping: dict[str, str] = json.loads(
             gpt_response
         )  # from unknown --> known
         logger.debug(f"raw_gpt_mapping:{json.dumps(raw_gpt_mapping, indent=2)}")
@@ -142,8 +138,10 @@ async def create_missing_concept_evidence_requests(
                 )
                 dummy_batch_request = _create_dummy_completed_evidence_batch_request(
                     deferred_at=deferred_at,
+                    etld1=mfg_etld1,
                     llm_evidence_request_id=llm_evidence_request_id,
                     model_params=model_params,
+                    eager=eager,
                 )
                 new_batch_request = dummy_batch_request
             else:
@@ -152,6 +150,7 @@ async def create_missing_concept_evidence_requests(
                 )
                 evidence_batch_request = create_deferred_evidence_gpt_request(
                     deferred_at=deferred_at,
+                    etld1=mfg_etld1,
                     llm_evidence_request_id=llm_evidence_request_id,
                     mfg_text=mfg_text[start:end],
                     search_results=all_search_results,
@@ -178,67 +177,47 @@ async def create_missing_concept_evidence_requests(
 
 def _create_dummy_completed_evidence_batch_request(
     deferred_at: datetime,
-    model_params: GPTModelParams,
+    etld1: str,
     llm_evidence_request_id: GPTBatchRequestCustomID,
+    model_params: GPTModelParams,
+    eager: bool,
 ) -> GPTBatchRequest:
     if llm_evidence_request_id is None:
         raise ValueError(
             "_create_dummy_completed_evidence_batch_request: llm_evidence_request_id is None"
         )
 
-    return GPTBatchRequest(
-        created_at=deferred_at,
-        updated_at=deferred_at,
-        num_batches_paired_with=0,
-        request=GPTBatchRequestBlob(
-            custom_id=llm_evidence_request_id,
-            body=GPTRequestBody.model_validate(
-                model_params.model_dump()
-                | {
-                    "model": No_model.model_name,
-                    "messages": [
-                        {
-                            "role": "system",
-                            "content": "No mapping needed - all concepts matched via brute search or none were found in the first place.",
-                        }
-                    ],
-                    "max_completion_tokens": 1,
-                }
-            ),
-            input_tokens=1,
+    base_gpt_batch_request = create_base_gpt_batch_request(
+        deferred_at=deferred_at,
+        etld1=etld1,
+        custom_id=llm_evidence_request_id,
+        context="No evidence needed - no concepts found in text.",
+        prompt=Prompt(
+            name="dummy_evidence_prompt",
+            text="No evidence needed - no concepts found in text or all matched to existing ones.",
+            s3_version_id="dummy_s3_version_id",
+            num_tokens=1,
         ),
-        batch_id="empty_unmapped_unknowns",
-        response_blob=GPTBatchResponseBlob(
-            batch_id="empty_unmapped_unknowns",
-            request_custom_id="no-request",
-            response=GPTBatchResponseBody(
-                status_code=200,
-                gpt_internal_request_id="no-request",
-                body=GPTResponseBlobBody(
-                    created=deferred_at,
-                    model=No_model.model_name,
-                    choices=[
-                        GPTBatchResponseBlobChoice(
-                            index=0,
-                            message=GPTBatchResponseBlobChoiceMessage(
-                                role="assistant", content="```json\n{}\n```"
-                            ),
-                        )
-                    ],
-                    usage=GPTBatchResponseBlobUsage(
-                        prompt_tokens=1,
-                        completion_tokens=1,
-                        total_tokens=2,
-                    ),
-                    system_fingerprint="no-request",
-                ),
-            ),
+        gpt_model=No_model,
+        model_params=model_params,
+        batch_id="Eager" if eager else "dummy_evidence_batch_id",
+    )
+
+    base_gpt_batch_request.response = get_dummy_gpt_batch_response(
+        deferred_at=deferred_at,
+        request_custom_id=llm_evidence_request_id,
+        dummy_chat_completion_id="dummy_completion_id",
+        chat_completion_choice_message=ChatCompletionChoiceMessage(
+            role="assistant", content="```json\n{}\n```"
         ),
     )
+
+    return base_gpt_batch_request
 
 
 def create_deferred_evidence_gpt_request(
     deferred_at: datetime,
+    etld1: str,
     llm_evidence_request_id: str,
     mfg_text: str,
     search_results: set[str],
@@ -250,12 +229,17 @@ def create_deferred_evidence_gpt_request(
     logger.info(
         f"create_deferred_evidence_gpt_request: Generating GPTBatchRequest for {llm_evidence_request_id}"
     )
-    context = json.dumps(
-        {"text": mfg_text, "search_results": list(search_results)},
-        cls=ConceptJSONEncoder,
+    # context = json.dumps(
+    #     {"text": mfg_text, "extracted_phrases": list(search_results)},
+    #     cls=ConceptJSONEncoder,
+    # )
+    context = (
+        f"scraped text:\n{mfg_text} \n\n extracted phrases:\n{list(search_results)}"
     )
+
     gpt_batch_request = create_base_gpt_batch_request(
         deferred_at=deferred_at,
+        etld1=etld1,
         custom_id=llm_evidence_request_id,
         context=context,
         prompt=evidence_prompt,

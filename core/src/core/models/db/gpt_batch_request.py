@@ -3,19 +3,20 @@ from datetime import datetime
 from pydantic import Field
 
 from core.models.gpt_batch_request_blob import GPTBatchRequestBlob
-from core.models.gpt_batch_response_blob import GPTBatchResponseBlob
+from core.models.gpt_batch_response_blob import GPTBatchResponse
 
 
 class GPTBatchRequest(Document):
     created_at: datetime
     updated_at: datetime
 
-    num_batches_paired_with: int
+    etld1: str  # because relying on the request.custom_id to parse this doesn't scale
     batch_id: str | None  # known after batch is uploaded
+    num_batches_paired_with: int
 
     request: GPTBatchRequestBlob
-    response_blob: GPTBatchResponseBlob | None = (
-        None  # known after batch response is received,
+    response: GPTBatchResponse | None = (
+        None  # usually set after batch response is received,
     )
     response_parse_errors: list[dict] = Field(default_factory=list)
 
@@ -23,7 +24,7 @@ class GPTBatchRequest(Document):
         return (
             self.batch_id
             is None
-            # and gpt_batch_request.response_blob is None
+            # and gpt_batch_request.response is None
         )
 
     class Settings:

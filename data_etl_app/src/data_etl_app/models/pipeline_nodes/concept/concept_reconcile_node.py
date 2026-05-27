@@ -78,7 +78,6 @@ class ConceptReconcileNode(ReconcileNode[ConceptTypeEnum]):
         completed_mapping_requests = pipeline_context[ConceptMappingNode]
 
         all_results: set[str] = set()
-        unmatched_keywords: set[str] = set()
         chunk_stats: ConceptExtractionStatsMap = {}
         for (
             chunk_bounds,
@@ -102,15 +101,15 @@ class ConceptReconcileNode(ReconcileNode[ConceptTypeEnum]):
                 deferred_at=timestamp,
             )
 
-            confirmed_keywords_w_evidence = {
+            confirmed_keywords_w_evidence = {  # evidence: null filtered out
                 kw: evidence
                 for kw, evidence in llm_evidence_results.items()
-                if evidence
+                if evidence.startswith("Yes")
             }
 
             (
                 matched_concepts,
-                unmatched_keywords,
+                unmatched_keywords_w_evidence,
             ) = get_matched_concepts_and_unmatched_keywords(
                 self.known_concepts, confirmed_keywords_w_evidence
             )
@@ -129,7 +128,7 @@ class ConceptReconcileNode(ReconcileNode[ConceptTypeEnum]):
                     mfg_etld1=deferred_mfg.etld1,
                     concept_type=self.field_type,
                     known_concepts=self.known_concepts,
-                    keywords_to_map=unmatched_keywords,
+                    unmatched_keywords_w_evidence=unmatched_keywords_w_evidence,
                     raw_gpt_mapping=llm_mapping_raw,
                 )
             )

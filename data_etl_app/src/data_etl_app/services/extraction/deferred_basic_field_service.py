@@ -63,6 +63,7 @@ async def create_missing_basic_extraction_requests(
         for llm_request_id, chunk_text in batch:
             llm_batch_request = create_base_gpt_batch_request(
                 deferred_at=deferred_at,
+                etld1=mfg_etld1,
                 custom_id=llm_request_id,
                 context=chunk_text,
                 prompt=prompt,

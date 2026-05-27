@@ -6,15 +6,16 @@ import httpx
 import time
 import uuid
 from typing import Optional
+from openai.types.chat import ChatCompletion
 
-from core.models.gpt_batch_response_blob import GPTBatchResponseBlob
+from core.models.gpt_batch_response_blob import GPTBatchResponse
 from core.models.gpt_batch_request_blob import GPTBatchRequestBlob
 from open_ai_key_app.models.llm_model import LLM_Model
 from open_ai_key_app.models.gpt_model_params import GPTModelParams, GPTSyncRequestBody
 
 from open_ai_key_app.services.openai_keypool_service import keypool
 from data_etl_app.utils.gpt_batch_request_util import (
-    build_response_blob_from_chat_completion,
+    build_response_from_chat_completion,
 )
 from open_ai_key_app.utils.token_util import num_tokens_from_string
 
@@ -27,7 +28,7 @@ async def ask_gpt(
     gpt_model: LLM_Model,
     model_params: GPTModelParams,
 ) -> Optional[str]:
-    response = await fetch_gpt_raw_response(
+    response = await fetch_gpt_chat_completion_result(
         context=context,
         prompt=prompt,
         gpt_model=gpt_model,
@@ -40,19 +41,22 @@ async def fetch_gpt_batch_response(
     context: str,
     prompt: str,
     custom_id: str,
-    batch_id: str,
+    batch_id: Optional[str],
     gpt_model: LLM_Model,
     model_params: GPTModelParams,
-) -> GPTBatchResponseBlob:
-    response = await fetch_gpt_raw_response(
+) -> GPTBatchResponse:
+    if not batch_id:
+        raise ValueError("batch_id must be provided for fetch_gpt_batch_response.")
+
+    response = await fetch_gpt_chat_completion_result(
         context=context,
         prompt=prompt,
         gpt_model=gpt_model,
         model_params=model_params,
     )
 
-    response_blob = build_response_blob_from_chat_completion(
-        response=response,
+    response_blob = build_response_from_chat_completion(
+        chat_completion_result=response,
         custom_id=custom_id,
         batch_id=batch_id,
     )
@@ -60,17 +64,19 @@ async def fetch_gpt_batch_response(
     return response_blob
 
 
-async def fetch_gpt_raw_response(
+async def fetch_gpt_chat_completion_result(
     context: str,
     prompt: str,
     gpt_model: LLM_Model,
     model_params: GPTModelParams,
-):
+) -> ChatCompletion:
     # Generate unique request ID for tracking
     request_id = str(uuid.uuid4())[:8]
     start_time = time.time()
 
-    logger.info(f"[Request {request_id}] Starting fetch_gpt_raw_response request")
+    logger.info(
+        f"[Request {request_id}] Starting fetch_gpt_chat_completion_result request"
+    )
 
     tokens_prompt = num_tokens_from_string(prompt, gpt_model)
     tokens_context = num_tokens_from_string(context, gpt_model)
@@ -107,11 +113,12 @@ async def fetch_gpt_raw_response(
 
         api_call_start = time.time()
         openai.api_key = api_key
+
         sync_body = GPTSyncRequestBody(
             model=gpt_model.model_name,
             messages=[
                 {"role": "system", "content": prompt},
-                {"role": "user", "content": context},
+                {"role": "user", "content": f"{context}"},
             ],
             max_completion_tokens=model_params.max_completion_tokens,
             temperature=model_params.temperature,
@@ -175,147 +182,3 @@ async def fetch_gpt_raw_response(
     finally:
         logger.debug(f"[Request {request_id}] Returning key '{key_name}' to keypool.")
         keypool.return_key(api_key, lock_token, gpt_model.model_name)
-
-
-# --- send_gpt_batch_request_sync Function ---
-async def send_gpt_batch_request_sync(
-    batch_request: GPTBatchRequestBlob,
-) -> dict:
-    """
-    Send a GPT batch request synchronously using HTTP client with keypool management.
-
-    Args:
-        batch_request: GPTBatchRequestBlob containing the request details
-
-    Returns:
-        dict: The JSON response from OpenAI API
-
-    Raises:
-        httpx.HTTPStatusError: If the request fails
-        ValueError: If quota exceeded or rate limit hit
-    """
-    # Generate unique request ID for tracking (use first 8 chars of custom_id + unique suffix)
-    request_id = f"{batch_request.custom_id[:12]}_{str(uuid.uuid4())[:8]}"
-    start_time = time.time()
-
-    tokens_needed = batch_request.input_tokens + (
-        batch_request.body.max_completion_tokens or 0
-    )
-
-    logger.info(
-        f"[Request {request_id}] Starting batch request. Needs {tokens_needed} tokens. "
-        f"Attempting to borrow key from keypool."
-    )
-
-    key_borrow_time = time.time()
-    key_name, api_key, lock_token = await keypool.borrow_key(
-        tokens_needed, batch_request.body.model
-    )
-    key_borrow_duration = time.time() - key_borrow_time
-
-    try:
-        logger.info(
-            f"[Request {request_id}] Borrowed key '{key_name}' in {key_borrow_duration:.2f}s."
-        )
-
-        headers = {
-            "Authorization": f"Bearer {api_key}",
-            "Content-Type": "application/json",
-        }
-
-        # Prepare the request body (exclude input_tokens as it's just for our tracking)
-        request_body = batch_request.body.model_dump(exclude_none=True)
-
-        logger.info(
-            f"[Request {request_id}] Sending to model '{batch_request.body.model}' "
-            f"with {batch_request.input_tokens} input tokens."
-        )
-
-        http_call_start = time.time()
-        with httpx.Client(timeout=60.0) as client:
-            response = client.post(
-                f"https://api.openai.com{batch_request.url}",
-                headers=headers,
-                json=request_body,
-            )
-            response.raise_for_status()
-            result = response.json()
-
-            http_call_duration = time.time() - http_call_start
-            total_duration = time.time() - start_time
-
-            logger.info(
-                f"[Request {request_id}] Success! HTTP call took {http_call_duration:.2f}s, "
-                f"total request time: {total_duration:.2f}s."
-            )
-            keypool.record_key_usage(api_key, tokens_needed, batch_request.body.model)
-            return result
-
-    except httpx.HTTPStatusError as e:
-        error_msg = str(e)
-        elapsed_time = time.time() - start_time
-        logger.error(
-            f"[Request {request_id}] HTTP error after {elapsed_time:.2f}s: {error_msg}"
-        )
-
-        # Try to parse error response
-        try:
-            error_data = e.response.json()
-            logger.error(f"Error details: {error_data}")
-
-            # Check for quota or rate limit errors in the response
-            if "error" in error_data:
-                error_message = error_data["error"].get("message", "")
-                error_code = error_data["error"].get("code", "")
-
-                if (
-                    "quota" in error_message.lower()
-                    or error_code == "insufficient_quota"
-                ):
-                    logger.warning(
-                        f"[Request {request_id}] Quota exceeded for API key_name: {key_name}. "
-                        f"Removing from pool."
-                    )
-                    keypool.mark_key_exhausted(
-                        api_key, error_message, batch_request.body.model
-                    )
-                    raise ValueError(f"Quota exceeded for API key: {key_name}.")
-
-                elif (
-                    "rate limit" in error_message.lower()
-                    or error_code == "rate_limit_exceeded"
-                ):
-                    match = re.search(r"Please try again in ([\d.]+)s", error_message)
-                    if match:
-                        delay = float(match.group(1))
-                        logger.warning(
-                            f"[Request {request_id}] Rate limit hit for key {key_name}. "
-                            f"Marking as unavailable for {delay}s."
-                        )
-                        keypool.set_key_cooldown(
-                            api_key, delay, batch_request.body.model
-                        )
-                    else:
-                        logger.warning(
-                            f"[Request {request_id}] Rate limit hit for key {key_name}. "
-                            f"Marking as unavailable for 5s by default."
-                        )
-                        keypool.set_key_cooldown(api_key, 5.0, batch_request.body.model)
-
-                    raise ValueError(f"Rate limit hit for API key: {key_name}.")
-        except ValueError:
-            # Re-raise ValueError from quota/rate limit handling
-            raise
-        except Exception:
-            pass
-
-        raise
-    except Exception as e:
-        elapsed_time = time.time() - start_time
-        logger.error(
-            f"[Request {request_id}] Exception after {elapsed_time:.2f}s: {str(e)}"
-        )
-        raise
-    finally:
-        logger.debug(f"[Request {request_id}] Returning key '{key_name}' to keypool.")
-        keypool.return_key(api_key, lock_token, batch_request.body.model)

@@ -97,14 +97,14 @@ class LLMSearchNode(LLMExtractionNode[LLMExtractedFieldTypeVar, set[str]]):
             raise ValueError(
                 f"concept_search_node.get_batch_request_result: Missing GPTBatchRequest for evidence request ID {llm_search_request_id} in {mfg_etld1}:{field_type.name}"
             )
-        elif not llm_search_req.response_blob:
+        elif not llm_search_req.response:
             raise ValueError(
                 f"concept_search_node.get_batch_request_result: GPTBatchRequest for evidence request ID {llm_search_request_id} has no response_blob in {mfg_etld1}:{field_type.name}"
             )
 
         try:
             llm_search_results = parse_llm_search_response(
-                llm_search_req.response_blob.result
+                llm_search_req.response.result
             )
             return llm_search_results
         except Exception as e:

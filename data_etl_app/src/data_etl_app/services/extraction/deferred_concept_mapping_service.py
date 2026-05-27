@@ -12,12 +12,15 @@ from core.models.deferred_concept_extraction import (
 )
 from core.models.gpt_batch_request_blob import GPTBatchRequestBlob
 from core.models.gpt_batch_response_blob import (
-    GPTBatchResponseBlob,
-    GPTBatchResponseBody,
-    GPTResponseBlobBody,
-    GPTBatchResponseBlobUsage,
-    GPTBatchResponseBlobChoice,
-    GPTBatchResponseBlobChoiceMessage,
+    GPTBatchResponse,
+    ChatCompletionResponse,
+    ChatCompletionUsage,
+    ChatCompletionChoice,
+    ChatCompletionChoiceMessage,
+)
+from core.services.gpt_batch_request_service import (
+    create_base_gpt_batch_request,
+    get_dummy_gpt_batch_response,
 )
 from data_etl_app.models.skos_concept import Concept
 from data_etl_app.models.pipeline_nodes.concept.concept_evidence_node import (
@@ -108,15 +111,15 @@ async def create_missing_mapping_requests(
                 completed_request_map=llm_evidence_gpt_request_map,
                 deferred_at=deferred_at,
             )
-            confirmed_keywords_w_evidence = {
+            confirmed_keywords_w_evidence = {  # evidence: null filtered out
                 kw: evidence
                 for kw, evidence in llm_evidence_results.items()
-                if evidence
+                if evidence.startswith("Yes")
             }
 
             (
                 _matched_concepts,  # _matched_concepts would be added later by reconcile node
-                unmatched_keywords,
+                unmatched_keywords_w_evidence,
             ) = get_matched_concepts_and_unmatched_keywords(
                 known_concepts, confirmed_keywords_w_evidence
             )
@@ -127,23 +130,26 @@ async def create_missing_mapping_requests(
                     f"concept_evidence_node.get_batch_request_result: llm_mapping_request_id is None for chunk bounds {chunk_bounds} in {mfg_etld1}:{concept_type}"
                 )
 
-            if not unmatched_keywords:
+            if not unmatched_keywords_w_evidence:
                 # add a dummy response blob with empty dict
                 logger.info(
                     f"All concepts matched via brute search for {mfg_etld1}:{concept_type} or none were found in the first place, creating dummy mapping request"
                 )
                 dummy_batch_request = _create_dummy_completed_mapping_batch_request(
                     deferred_at=deferred_at,
+                    etld1=mfg_etld1,
                     llm_mapping_request_id=llm_mapping_request_id,
                     model_params=model_params,
+                    eager=eager,
                 )
                 new_batch_request = dummy_batch_request
             else:
                 mapping_batch_request = create_deferred_mapping_gpt_request(
                     deferred_at=deferred_at,
+                    etld1=mfg_etld1,
                     llm_mapping_request_id=llm_mapping_request_id,
                     known_concepts=known_concepts,  # TODO: RAG known concepts instead of passing full set
-                    unmatched_keywords=unmatched_keywords,
+                    unmatched_keywords_w_evidence=unmatched_keywords_w_evidence,
                     mapping_prompt=mapping_prompt,
                     gpt_model=llm_model,
                     model_params=model_params,
@@ -167,60 +173,39 @@ async def create_missing_mapping_requests(
 
 def _create_dummy_completed_mapping_batch_request(
     deferred_at: datetime,
-    model_params: GPTModelParams,
+    etld1: str,
     llm_mapping_request_id: GPTBatchRequestCustomID,
+    model_params: GPTModelParams,
+    eager: bool,
 ) -> GPTBatchRequest:
     if llm_mapping_request_id is None:
         raise ValueError(
             "_create_dummy_completed_mapping_batch_request: llm_mapping_request_id is None"
         )
 
-    return GPTBatchRequest(
-        created_at=deferred_at,
-        updated_at=deferred_at,
-        num_batches_paired_with=0,
-        request=GPTBatchRequestBlob(
-            custom_id=llm_mapping_request_id,
-            body=GPTRequestBody.model_validate(
-                model_params.model_dump()
-                | {
-                    "model": No_model.model_name,
-                    "messages": [
-                        {
-                            "role": "system",
-                            "content": "No mapping needed - all concepts matched via brute search or none were found in the first place.",
-                        }
-                    ],
-                    "max_completion_tokens": 1,
-                }
-            ),
-            input_tokens=1,
+    base_gpt_batch_request = create_base_gpt_batch_request(
+        deferred_at=deferred_at,
+        etld1=etld1,
+        custom_id=llm_mapping_request_id,
+        context="No mapping needed - no concepts found in text.",
+        prompt=Prompt(
+            name="dummy_mapping_prompt",
+            text="No mapping needed - all concepts matched via brute search or none were found in the first place.",
+            s3_version_id="dummy_s3_version_id",
+            num_tokens=1,
         ),
-        batch_id="empty_unmapped_unknowns",
-        response_blob=GPTBatchResponseBlob(
-            batch_id="empty_unmapped_unknowns",
-            request_custom_id="no-request",
-            response=GPTBatchResponseBody(
-                status_code=200,
-                gpt_internal_request_id="no-request",
-                body=GPTResponseBlobBody(
-                    created=deferred_at,
-                    model=No_model.model_name,
-                    choices=[
-                        GPTBatchResponseBlobChoice(
-                            index=0,
-                            message=GPTBatchResponseBlobChoiceMessage(
-                                role="assistant", content="```json\n{}\n```"
-                            ),
-                        )
-                    ],
-                    usage=GPTBatchResponseBlobUsage(
-                        prompt_tokens=1,
-                        completion_tokens=1,
-                        total_tokens=2,
-                    ),
-                    system_fingerprint="no-request",
-                ),
-            ),
+        gpt_model=No_model,
+        model_params=model_params,
+        batch_id="Eager" if eager else "dummy_mapping_batch_id",
+    )
+
+    base_gpt_batch_request.response = get_dummy_gpt_batch_response(
+        deferred_at=deferred_at,
+        request_custom_id=llm_mapping_request_id,
+        dummy_chat_completion_id="dummy_mapping_completion_id",
+        chat_completion_choice_message=ChatCompletionChoiceMessage(
+            role="assistant", content="```json\n{}\n```"
         ),
     )
+
+    return base_gpt_batch_request

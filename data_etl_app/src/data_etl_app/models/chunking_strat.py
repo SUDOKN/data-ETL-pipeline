@@ -29,17 +29,17 @@ def get_single_shot_chunking_strat(
 
 
 PRODUCT_CHUNKING_STRAT = ChunkingStrategy(
-    overlap=0.15, max_tokens_per_chunk=5000, max_chunks=50
+    overlap=0.15, max_tokens_per_chunk=5000, max_chunks=1
 )
 CERTIFICATE_CHUNKING_STRAT = ChunkingStrategy(
-    overlap=0.0, max_tokens_per_chunk=7500, max_chunks=25
+    overlap=0.0, max_tokens_per_chunk=5000, max_chunks=1
 )
 MATERIAL_CAP_CHUNKING_STRAT = ChunkingStrategy(
-    overlap=0.15, max_tokens_per_chunk=5000, max_chunks=50
+    overlap=0.15, max_tokens_per_chunk=5000, max_chunks=1
 )
 PROCESS_CAP_CHUNKING_STRAT = ChunkingStrategy(
-    overlap=0.15, max_tokens_per_chunk=2500, max_chunks=1  # TODO: change back to 100
+    overlap=0.15, max_tokens_per_chunk=5000, max_chunks=1  # TODO: change back to 100
 )
 INDUSTRY_CHUNKING_STRAT = ChunkingStrategy(
-    overlap=0.15, max_tokens_per_chunk=5000, max_chunks=15
+    overlap=0.15, max_tokens_per_chunk=5000, max_chunks=1
 )

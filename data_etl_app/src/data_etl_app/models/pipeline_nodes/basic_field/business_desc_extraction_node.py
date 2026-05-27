@@ -64,14 +64,14 @@ class BusinessDescExtractionNode(SingleStageExtractionNode[BusinessDescription])
             raise ValueError(
                 f"business_desc_extraction_node.parse_batch_request_result: Missing GPTBatchRequest for mapping request ID {llm_business_desc_request_id} in {mfg_etld1}:{field_type.name}"
             )
-        elif not llm_business_desc_req.response_blob:
+        elif not llm_business_desc_req.response:
             raise ValueError(
                 f"business_desc_extraction_node.parse_batch_request_result: GPTBatchRequest for mapping request ID {llm_business_desc_request_id} has no response_blob in {mfg_etld1}:{field_type.name}"
             )
 
         try:
             business_desc = parse_business_desc_from_gpt_response(
-                llm_business_desc_req.response_blob.result
+                llm_business_desc_req.response.result
             )
             return business_desc
         except Exception as e:

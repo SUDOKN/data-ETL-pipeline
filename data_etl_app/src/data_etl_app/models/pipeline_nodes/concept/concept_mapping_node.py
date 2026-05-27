@@ -102,14 +102,14 @@ class ConceptMappingNode(LLMExtractionNode[ConceptTypeEnum, LLMMappingResult]):
             raise ValueError(
                 f"concept_mapping_node.get_batch_request_result: Missing GPTBatchRequest for mapping request ID {llm_mapping_request_id} in {mfg_etld1}:{field_type.name}"
             )
-        elif not llm_mapping_req.response_blob:
+        elif not llm_mapping_req.response:
             raise ValueError(
                 f"concept_mapping_node.get_batch_request_result: GPTBatchRequest for mapping request ID {llm_mapping_request_id} has no response_blob in {mfg_etld1}:{field_type.name}"
             )
 
         try:
             llm_mapping_results = parse_llm_mapping_result(
-                llm_mapping_req.response_blob.result
+                llm_mapping_req.response.result
             )
             return llm_mapping_results
         except Exception as e:
