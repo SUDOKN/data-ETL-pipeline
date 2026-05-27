@@ -1,5 +1,5 @@
 from datetime import datetime
-from pydantic import BaseModel, computed_field
+from pydantic import BaseModel
 
 """
 {
@@ -70,47 +70,39 @@ from pydantic import BaseModel, computed_field
 """
 
 
-class GPTBatchResponseBlobChoiceMessage(BaseModel):
+class ChatCompletionChoiceMessage(BaseModel):
     role: str  # e.g. "assistant"
-    content: str  # e.g. "Hello."
+    content: str | None  # e.g. "Hello."
 
 
-class GPTBatchResponseBlobChoice(BaseModel):
+class ChatCompletionChoice(BaseModel):
     index: int  # e.g. 0
-    message: GPTBatchResponseBlobChoiceMessage
+    message: ChatCompletionChoiceMessage
     # logprobs: dict | None  # e.g. null
     # finish_reason: str  # e.g. "stop"
 
 
-class GPTBatchResponseBlobUsage(BaseModel):
+class ChatCompletionUsage(BaseModel):
     prompt_tokens: int  # e.g. 22
     completion_tokens: int  # e.g. 2
     total_tokens: int  # e.g. 24
 
 
-class GPTResponseBlobBody(BaseModel):
-    # completion_id: str  # e.g. "chatcmpl-123"
-    # object: str  # e.g. "chat.completion"
+class ChatCompletionResponse(BaseModel):
+    id: str  # e.g. "chatcmpl-123"
     created: datetime  # e.g. 1711652795 (epoch time) converted to datetime
     model: str  # OpenAI silently upgrades model aliases (e.g. gpt-4o might point to a newer snapshot over time), so the response model field tells you the exact version that actually ran (e.g. gpt-4o-2024-08-06). Useful for debugging output quality regressions.
-    choices: list[GPTBatchResponseBlobChoice]
-    usage: GPTBatchResponseBlobUsage
-    system_fingerprint: str  # e.g. "fp_123"
+    choices: list[ChatCompletionChoice]
+    usage: ChatCompletionUsage
+    system_fingerprint: str | None  # e.g. "fp_123"
 
 
-class GPTBatchResponseBody(BaseModel):
-    status_code: int  # e.g. 200
-    gpt_internal_request_id: str  # This is the request_id from the response header / body. If a batch result looks wrong or you hit an error you can't explain, this is what OpenAI support asks for. Without it you have no recourse.
-    body: GPTResponseBlobBody
-
-
-class GPTBatchResponseBlob(BaseModel):
-    batch_id: str  # e.g. "batch_req_123"
-    request_custom_id: str  # e.g. "request-2"
-    response: GPTBatchResponseBody
+class GPTBatchResponse(BaseModel):
+    # batch_id: str  # e.g. "batch_req_123" skipped because it's redundant with the parent GPTBatchRequest's batch_id
+    request_custom_id: str  # e.g. "request-2" expected to match the GPTBatchRequest's request.custom_id
+    chat_completion_result: ChatCompletionResponse
     error: dict | None = None
 
-    @computed_field
     @property
-    def result(self) -> str:
-        return self.response.body.choices[0].message.content
+    def result(self) -> str | None:
+        return self.chat_completion_result.choices[0].message.content

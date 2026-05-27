@@ -16,11 +16,11 @@ class GPTSamplingParams(BaseModel):
     reasoning_effort or the request will be rejected.
     """
 
-    temperature: float = Field(ge=0.0, le=2.0)
-    top_p: float = Field(ge=0.0, le=1.0)
-    presence_penalty: float = Field(ge=-2.0, le=2.0)
-    frequency_penalty: float = Field(ge=-2.0, le=2.0)
-    seed: Optional[int]
+    temperature: float = Field(default=1.0, ge=0.0, le=2.0)
+    top_p: float = Field(default=1.0, ge=0.0, le=1.0)
+    presence_penalty: float = Field(default=0.0, ge=-2.0, le=2.0)
+    frequency_penalty: float = Field(default=0.0, ge=-2.0, le=2.0)
+    seed: Optional[int] = None
 
     @classmethod
     def with_defaults(cls) -> "GPTSamplingParams":
@@ -38,7 +38,7 @@ class GPTOutputParams(BaseModel):
     Controls the shape and length of the output.
     """
 
-    max_completion_tokens: int
+    max_completion_tokens: int = 7500
     stop: Optional[str | list[str]] = None  # up to 4 sequences
     n: Optional[int] = Field(default=None, ge=1)  # keep at 1 for batch
     response_format: Optional[dict] = None
@@ -50,7 +50,7 @@ class GPTOutputParams(BaseModel):
     def with_defaults(cls) -> "GPTOutputParams":
         # max_completion_tokens=0 is a sentinel: real values are always >= 1,
         # so this field always appears in the custom_id segment.
-        return cls(max_completion_tokens=0)
+        return cls(stop=None, max_completion_tokens=7500, response_format=None, n=None)
 
 
 class GPTLogprobParams(BaseModel):
@@ -64,7 +64,7 @@ class GPTLogprobParams(BaseModel):
 
     @classmethod
     def with_defaults(cls) -> "GPTLogprobParams":
-        return cls()
+        return cls(logprobs=None, top_logprobs=None)
 
 
 class GPTToolParams(BaseModel):
@@ -79,7 +79,7 @@ class GPTToolParams(BaseModel):
 
     @classmethod
     def with_defaults(cls) -> "GPTToolParams":
-        return cls()
+        return cls(tools=None, tool_choice=None, parallel_tool_calls=None)
 
 
 class GPTMiscParams(BaseModel):
@@ -92,7 +92,7 @@ class GPTMiscParams(BaseModel):
 
     @classmethod
     def with_defaults(cls) -> "GPTMiscParams":
-        return cls()
+        return cls(logit_bias=None, user=None)
 
 
 class GPTReasoningParams(BaseModel):
@@ -106,7 +106,7 @@ class GPTReasoningParams(BaseModel):
 
     @classmethod
     def with_defaults(cls) -> "GPTReasoningParams":
-        return cls()
+        return cls(reasoning_effort=None)
 
 
 # ─────────────────────────────────────────────────────────────────

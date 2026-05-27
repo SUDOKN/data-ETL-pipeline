@@ -97,7 +97,9 @@ class LLMExtractionNode(
             extraction_requests=extraction_requests,
         )
         req_ids_missing = req_ids_to_lookup - (
-            await find_gpt_batch_request_ids_only(list(req_ids_to_lookup))
+            await find_gpt_batch_request_ids_only(
+                deferred_mfg.etld1, list(req_ids_to_lookup)
+            )
             # maybe complete maybe not
         )
 
@@ -125,7 +127,9 @@ class LLMExtractionNode(
             extraction_requests=extraction_requests,
         )
         incomplete_gpt_req_ids = req_ids_to_lookup - (
-            await find_completed_gpt_batch_request_ids_only(list(req_ids_to_lookup))
+            await find_completed_gpt_batch_request_ids_only(
+                deferred_mfg.etld1, list(req_ids_to_lookup)
+            )
         )
         return not bool(incomplete_gpt_req_ids)
 
@@ -147,7 +151,9 @@ class LLMExtractionNode(
             extraction_requests=extraction_requests,
         )
         incomplete_gpt_req_ids = req_ids_to_lookup - (
-            await find_completed_gpt_batch_request_ids_only(list(req_ids_to_lookup))
+            await find_completed_gpt_batch_request_ids_only(
+                deferred_mfg.etld1, list(req_ids_to_lookup)
+            )
         )
         if incomplete_gpt_req_ids:
             raise ValueError(
@@ -155,7 +161,7 @@ class LLMExtractionNode(
             )
 
         gpt_request_map = await find_completed_gpt_batch_requests_by_custom_ids(
-            list(req_ids_to_lookup)
+            deferred_mfg.etld1, list(req_ids_to_lookup)
         )
         return gpt_request_map
 
@@ -240,7 +246,7 @@ class LLMExtractionNode(
             )
             incomplete_requests = (
                 await find_incomplete_gpt_batch_requests_by_custom_ids(
-                    list(all_request_ids)
+                    deferred_mfg.etld1, list(all_request_ids)
                 )
             )
             logger.info(

@@ -16,6 +16,48 @@ GPT_4o_mini = LLM_Model(
     token_limit_per_minute=10_000_000,
 )
 
+GPT_4_1 = LLM_Model(
+    model_name="gpt-4.1",
+    rate_limit_window=60,
+    max_context_tokens=128_000,
+    token_limit_per_minute=10_000_000,
+)
+
+GPT_4_1_mini = LLM_Model(
+    model_name="gpt-4.1-mini",
+    rate_limit_window=60,
+    max_context_tokens=128_000,
+    token_limit_per_minute=10_000_000,
+)
+
+GPT_5_nano = LLM_Model(
+    model_name="gpt-5-nano",
+    rate_limit_window=60,
+    max_context_tokens=128_000,
+    token_limit_per_minute=10_000_000,
+)
+
+GPT_5_mini = LLM_Model(
+    model_name="gpt-5-mini",
+    rate_limit_window=60,
+    max_context_tokens=128_000,
+    token_limit_per_minute=10_000_000,
+)
+
+GPT_5 = LLM_Model(
+    model_name="gpt-5",
+    rate_limit_window=60,
+    max_context_tokens=128_000,
+    token_limit_per_minute=10_000_000,
+)
+
+GPT_5_1 = LLM_Model(
+    model_name="gpt-5.1",
+    rate_limit_window=60,
+    max_context_tokens=272_000,
+    token_limit_per_minute=4_000_000,
+)
+
 GPT_5_2 = LLM_Model(
     model_name="gpt-5.2",
     rate_limit_window=60,
@@ -23,11 +65,18 @@ GPT_5_2 = LLM_Model(
     token_limit_per_minute=4_000_000,
 )
 
+GPT_o3_mini = LLM_Model(
+    model_name="o3-mini",
+    rate_limit_window=60,
+    max_context_tokens=272_000,
+    token_limit_per_minute=4_000_000,
+)
+
 No_model = LLM_Model(
     model_name="no_model",
-    rate_limit_window=0,
-    max_context_tokens=0,
-    token_limit_per_minute=0,
+    rate_limit_window=60,
+    max_context_tokens=100_000_000,
+    token_limit_per_minute=100_000_000,
 )
 
 # Maps model names to tiktoken encoding names
@@ -37,4 +86,14 @@ MODEL_ENCODING_MAP: dict[str, str] = {
 }
 
 # All models managed by the keypool. Each entry creates one slot per API key.
-MODEL_REGISTRY: list[LLM_Model] = [GPT_4o_mini, GPT_5_2]
+MODEL_REGISTRY: list[LLM_Model] = [
+    GPT_4o_mini,
+    GPT_4_1,
+    GPT_4_1_mini,
+    GPT_o3_mini,
+    GPT_5_nano,
+    GPT_5_mini,
+    GPT_5,
+    GPT_5_1,
+    GPT_5_2,
+]

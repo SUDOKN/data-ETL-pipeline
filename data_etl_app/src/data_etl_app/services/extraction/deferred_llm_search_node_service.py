@@ -2,6 +2,7 @@ import asyncio
 import json
 import logging
 from datetime import datetime
+from typing import Optional
 
 from core.models.deferred_search_requests import DeferredSearchRequests
 from core.models.prompt import Prompt
@@ -20,7 +21,7 @@ from core.utils.str_util import make_json_array_parse_safe
 logger = logging.getLogger(__name__)
 
 
-def parse_llm_search_response(gpt_response: str) -> set[str]:
+def parse_llm_search_response(gpt_response: Optional[str]) -> set[str]:
     if not gpt_response:
         logger.error(
             f"parse_llm_search_response: Invalid gpt_response:{gpt_response}, returning empty set"
@@ -100,6 +101,7 @@ async def create_missing_search_requests(
         for llm_search_request_id, chunk_text in batch:
             llm_batch_request = create_base_gpt_batch_request(
                 deferred_at=deferred_at,
+                etld1=mfg_etld1,
                 custom_id=llm_search_request_id,
                 context=chunk_text,
                 prompt=search_prompt,

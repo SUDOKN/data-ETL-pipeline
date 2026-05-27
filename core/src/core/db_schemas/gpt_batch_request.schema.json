@@ -4,6 +4,7 @@
     "required": [
       "created_at",
       "updated_at",
+      "etld1",
       "num_batches_paired_with",
       "request"
     ],
@@ -18,14 +19,17 @@
       "updated_at": {
         "bsonType": "date"
       },
-      "num_batches_paired_with": {
-        "bsonType": "int"
+      "etld1": {
+        "bsonType": "string"
       },
       "batch_id": {
         "bsonType": [
           "string",
           "null"
         ]
+      },
+      "num_batches_paired_with": {
+        "bsonType": "int"
       },
       "request": {
         "bsonType": "object",
@@ -48,12 +52,6 @@
           "body": {
             "bsonType": "object",
             "required": [
-              "max_completion_tokens",
-              "temperature",
-              "top_p",
-              "presence_penalty",
-              "frequency_penalty",
-              "seed",
               "model",
               "messages"
             ],
@@ -63,7 +61,8 @@
                 "enum": [
                   "low",
                   "medium",
-                  "high"
+                  "high",
+                  null
                 ],
                 "bsonType": [
                   "string",
@@ -169,7 +168,10 @@
                 "bsonType": "double"
               },
               "seed": {
-                "bsonType": "int"
+                "bsonType": [
+                  "int",
+                  "null"
+                ]
               },
               "model": {
                 "bsonType": "string"
@@ -187,100 +189,99 @@
           }
         }
       },
-      "response_blob": {
+      "response": {
         "bsonType": [
           "object",
           "null"
         ],
         "required": [
-          "batch_id",
           "request_custom_id",
-          "response"
+          "chat_completion_result"
         ],
         "additionalProperties": false,
         "properties": {
-          "batch_id": {
-            "bsonType": "string"
-          },
           "request_custom_id": {
             "bsonType": "string"
           },
-          "response": {
+          "chat_completion_result": {
             "bsonType": "object",
             "required": [
-              "status_code",
-              "body"
+              "id",
+              "created",
+              "model",
+              "choices",
+              "usage"
             ],
             "additionalProperties": false,
             "properties": {
-              "status_code": {
-                "bsonType": "int"
+              "id": {
+                "bsonType": "string"
               },
-              "body": {
-                "bsonType": "object",
-                "required": [
-                  "created",
-                  "choices",
-                  "usage"
-                ],
-                "additionalProperties": false,
-                "properties": {
-                  "created": {
-                    "bsonType": "date"
-                  },
-                  "choices": {
-                    "bsonType": "array",
-                    "items": {
+              "created": {
+                "bsonType": "date"
+              },
+              "model": {
+                "bsonType": "string"
+              },
+              "choices": {
+                "bsonType": "array",
+                "items": {
+                  "bsonType": "object",
+                  "required": [
+                    "index",
+                    "message"
+                  ],
+                  "additionalProperties": false,
+                  "properties": {
+                    "index": {
+                      "bsonType": "int"
+                    },
+                    "message": {
                       "bsonType": "object",
                       "required": [
-                        "index",
-                        "message"
+                        "role"
                       ],
                       "additionalProperties": false,
                       "properties": {
-                        "index": {
-                          "bsonType": "int"
+                        "role": {
+                          "bsonType": "string"
                         },
-                        "message": {
-                          "bsonType": "object",
-                          "required": [
-                            "role",
-                            "content"
-                          ],
-                          "additionalProperties": false,
-                          "properties": {
-                            "role": {
-                              "bsonType": "string"
-                            },
-                            "content": {
-                              "bsonType": "string"
-                            }
-                          }
+                        "content": {
+                          "bsonType": [
+                            "string",
+                            "null"
+                          ]
                         }
-                      }
-                    }
-                  },
-                  "usage": {
-                    "bsonType": "object",
-                    "required": [
-                      "prompt_tokens",
-                      "completion_tokens",
-                      "total_tokens"
-                    ],
-                    "additionalProperties": false,
-                    "properties": {
-                      "prompt_tokens": {
-                        "bsonType": "int"
-                      },
-                      "completion_tokens": {
-                        "bsonType": "int"
-                      },
-                      "total_tokens": {
-                        "bsonType": "int"
                       }
                     }
                   }
                 }
+              },
+              "usage": {
+                "bsonType": "object",
+                "required": [
+                  "prompt_tokens",
+                  "completion_tokens",
+                  "total_tokens"
+                ],
+                "additionalProperties": false,
+                "properties": {
+                  "prompt_tokens": {
+                    "bsonType": "int"
+                  },
+                  "completion_tokens": {
+                    "bsonType": "int"
+                  },
+                  "total_tokens": {
+                    "bsonType": "int"
+                  }
+                }
+              },
+              "system_fingerprint": {
+                "bsonType": [
+                  "string",
+                  "null"
+                ]
               }
             }
           },

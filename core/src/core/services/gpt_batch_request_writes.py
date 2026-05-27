@@ -1,16 +1,21 @@
 import logging
 from datetime import datetime
+from typing import Any, Optional
 from pymongo.errors import BulkWriteError
 from pymongo import UpdateOne
 
-from core.models.gpt_batch_response_blob import GPTBatchResponseBlob
-from core.models.gpt_batch_response_blob import GPTBatchResponseBlob
+from core.models.gpt_batch_response_blob import GPTBatchResponse
+from core.models.gpt_batch_response_blob import GPTBatchResponse
 from core.models.db.gpt_batch import GPTBatch
 from core.models.db.gpt_batch_request import GPTBatchRequest
 from data_etl_app.models.types_and_enums import LLMExtractedFieldTypeEnum
 from open_ai_key_app.models.field_types import GPTBatchRequestCustomID
 
 logger = logging.getLogger(__name__)
+
+# str() cast needed because Pylance infers these as non-hashable Pydantic model types
+_RESPONSE_FIELD = str(GPTBatchRequest.response)
+_REQUEST_BODY_FIELD = str(GPTBatchRequest.request.body)
 
 
 async def _bulk_update(
@@ -73,7 +78,7 @@ async def _bulk_update(
 
 async def bulk_record_gpt_batch_responses(
     batch_requests: list[GPTBatchRequest],
-    response_blobs: list[GPTBatchResponseBlob],
+    response_blobs: list[GPTBatchResponse],
     timestamp: datetime,
 ) -> tuple[int, int]:
     """
@@ -109,8 +114,8 @@ async def bulk_record_gpt_batch_responses(
                     {GPTBatchRequest.request.custom_id: req.request.custom_id},
                     {
                         "$set": {
-                            "response_blob": blob.model_dump(exclude={"result"}),
-                            "updated_at": timestamp,
+                            _RESPONSE_FIELD: blob.model_dump(exclude={"result"}),
+                            GPTBatchRequest.updated_at: timestamp,
                         }
                     },
                     upsert=False,
@@ -232,21 +237,20 @@ async def _upsert_chunk_with_only_request_body(
                 {GPTBatchRequest.request.custom_id: req.request.custom_id},
                 {
                     "$set": {
-                        "request.body": req.request.body.model_dump(),
-                        "updated_at": req.updated_at,
+                        _REQUEST_BODY_FIELD: req.request.body.model_dump(),
+                        GPTBatchRequest.updated_at: req.updated_at,
                     },
                     "$setOnInsert": {
-                        "created_at": req.created_at,
-                        "num_batches_paired_with": req.num_batches_paired_with,
-                        "request.custom_id": req.request.custom_id,
-                        "request.method": req.request.method,
-                        "request.url": req.request.url,
-                        "request.input_tokens": req.request.input_tokens,
-                        "batch_id": req.batch_id,
-                        "response_blob": (
-                            req.response_blob.model_dump()
-                            if req.response_blob
-                            else None
+                        GPTBatchRequest.created_at: req.created_at,
+                        GPTBatchRequest.batch_id: req.batch_id,
+                        GPTBatchRequest.etld1: req.etld1,
+                        GPTBatchRequest.num_batches_paired_with: req.num_batches_paired_with,
+                        GPTBatchRequest.request.custom_id: req.request.custom_id,
+                        GPTBatchRequest.request.method: req.request.method,
+                        GPTBatchRequest.request.url: req.request.url,
+                        GPTBatchRequest.request.input_tokens: req.request.input_tokens,
+                        _RESPONSE_FIELD: (
+                            req.response.model_dump() if req.response else None
                         ),
                     },
                 },
@@ -431,10 +435,10 @@ async def pair_batch_request_custom_ids_with_batch(
             {GPTBatchRequest.request.custom_id: custom_id},
             {
                 "$set": {
-                    "batch_id": gpt_batch.external_batch_id,
-                    "updated_at": timestamp,
+                    GPTBatchRequest.batch_id: gpt_batch.external_batch_id,
+                    GPTBatchRequest.updated_at: timestamp,
                 },
-                "$inc": {"num_batches_paired_with": 1},
+                "$inc": {GPTBatchRequest.num_batches_paired_with: 1},
             },
             upsert=False,
         )
@@ -511,9 +515,9 @@ async def unpair_batch_requests_by_custom_ids(
             {GPTBatchRequest.request.custom_id: custom_id},
             {
                 "$set": {
-                    "batch_id": None,
-                    "response_blob": None,
-                    "updated_at": timestamp,
+                    GPTBatchRequest.batch_id: None,
+                    _RESPONSE_FIELD: None,
+                    GPTBatchRequest.updated_at: timestamp,
                 }
             },
             upsert=False,
@@ -564,7 +568,7 @@ async def bulk_delete_gpt_batch_requests_by_custom_ids(
 
 async def bulk_delete_gpt_batch_requests_by_mfg_etld1_and_field(
     mfg_etld1: str,
-    field_type: LLMExtractedFieldTypeEnum,
+    field_type: Optional[LLMExtractedFieldTypeEnum],
 ) -> int:
     """
     Bulk delete GPT batch requests associated with a manufacturer etld1 and field type.
@@ -576,11 +580,17 @@ async def bulk_delete_gpt_batch_requests_by_mfg_etld1_and_field(
     Returns:
         Number of deleted documents
     """
-    prefix = f"{mfg_etld1}>{field_type.name}>"
+    query_filter: dict[str, Any] = {GPTBatchRequest.etld1: mfg_etld1}
+    if field_type:
+        prefix = f"{mfg_etld1}>{field_type.name}>"
+        query_filter[GPTBatchRequest.request.custom_id] = {
+            "$gte": prefix,
+            "$lt": prefix + "\uffff",
+        }
 
     result = await GPTBatchRequest.get_pymongo_collection().delete_many(
-        {GPTBatchRequest.request.custom_id: {"$gte": prefix, "$lt": prefix + "\uffff"}},
-        hint=[(GPTBatchRequest.request.custom_id, 1)],
+        query_filter,
+        hint=[(GPTBatchRequest.request.custom_id, 1)] if field_type else None,
     )
 
     logger.debug(
@@ -607,7 +617,7 @@ async def record_response_parse_error(
     """
     gpt_batch_request.batch_id = None
     gpt_batch_request.updated_at = timestamp
-    gpt_batch_request.response_blob = None
+    gpt_batch_request.response = None
     gpt_batch_request.response_parse_errors.append(
         {
             "timestamp": timestamp.isoformat(),

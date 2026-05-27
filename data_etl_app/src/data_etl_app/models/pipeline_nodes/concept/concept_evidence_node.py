@@ -86,7 +86,7 @@ class ConceptEvidenceNode(LLMExtractionNode[ConceptTypeEnum, dict[str, str]]):
         extraction_bundle: ConceptExtractionRequestBundle,
         completed_request_map: dict[GPTBatchRequestCustomID, GPTBatchRequest],
         deferred_at: datetime,
-    ) -> dict[str, str | None]:
+    ) -> dict[str, str]:
         llm_evidence_request_id = extraction_bundle.llm_evidence_request_id
         if not llm_evidence_request_id:
             raise ValueError(
@@ -98,14 +98,14 @@ class ConceptEvidenceNode(LLMExtractionNode[ConceptTypeEnum, dict[str, str]]):
             raise ValueError(
                 f"concept_evidence_node.parse_batch_request_result: Missing GPTBatchRequest for evidence request ID {llm_evidence_request_id} in {mfg_etld1}:{field_type.name}"
             )
-        elif not llm_evidence_req.response_blob:
+        elif not llm_evidence_req.response:
             raise ValueError(
                 f"concept_evidence_node.parse_batch_request_result: GPTBatchRequest for evidence request ID {llm_evidence_request_id} has no response_blob in {mfg_etld1}:{field_type.name}"
             )
 
         try:
             llm_evidence_results = parse_llm_concept_evidence_result(
-                llm_evidence_req.response_blob.result
+                llm_evidence_req.response.result
             )
             return llm_evidence_results
         except Exception as e:

@@ -139,6 +139,10 @@ def _convert_node(node: dict) -> dict:
                 # Merge all object properties at the same level (MongoDB style)
                 merged = dict(inner)
                 merged["bsonType"] = [bson_t, "null"]
+                # enum and bsonType are ANDed by MongoDB — null must be in the
+                # enum list too, otherwise null values fail the enum check.
+                if "enum" in merged:
+                    merged["enum"] = merged["enum"] + [None]
                 return merged
         # Multi-branch union: keep as anyOf
         return {"anyOf": [_convert_node(b) for b in branches]}
@@ -173,7 +177,9 @@ def _convert_node(node: dict) -> dict:
             # Pydantic v2 marks Optional[T] (no default) as required; strip those
             # so MongoDB allows the field to be absent (matches hand-written schema style)
             required_raw = node.get("required", [])
-            required = [f for f in required_raw if not _is_nullable(converted_props.get(f, {}))]
+            required = [
+                f for f in required_raw if not _is_nullable(converted_props.get(f, {}))
+            ]
             if required:
                 result["required"] = required
             result["additionalProperties"] = False
@@ -212,9 +218,9 @@ def generate_schema_for_model(model: type[Document]) -> dict:
     resolved = _resolve_refs(raw, defs)
     mongo = _convert_node(resolved)
 
-    assert mongo.get("bsonType") == "object", (
-        f"Top-level schema for {model.__name__} must be 'object', got {mongo.get('bsonType')}"
-    )
+    assert (
+        mongo.get("bsonType") == "object"
+    ), f"Top-level schema for {model.__name__} must be 'object', got {mongo.get('bsonType')}"
 
     # Fields to strip from the generated schema
     computed = set(model.model_computed_fields.keys())

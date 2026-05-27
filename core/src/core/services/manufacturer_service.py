@@ -16,15 +16,15 @@ def reset_llm_extracted_fields(manufacturer: Manufacturer):
     """
     # manufacturer.addresses = None
     # manufacturer.business_desc = None
-    manufacturer.is_manufacturer = None
+    # manufacturer.is_manufacturer = None
     # manufacturer.is_contract_manufacturer = None
     # manufacturer.is_product_manufacturer = None
 
-    # manufacturer.products = None
+    manufacturer.products = None
 
-    # manufacturer.certificates = None
-    # manufacturer.industries = None
-    # manufacturer.material_caps = None
+    manufacturer.certificates = None
+    manufacturer.industries = None
+    manufacturer.material_caps = None
     manufacturer.process_caps = None
 
     logger.info(

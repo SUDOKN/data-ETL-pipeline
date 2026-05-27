@@ -53,21 +53,14 @@
               },
               "model_params": {
                 "bsonType": "object",
-                "required": [
-                  "max_completion_tokens",
-                  "temperature",
-                  "top_p",
-                  "presence_penalty",
-                  "frequency_penalty",
-                  "seed"
-                ],
                 "additionalProperties": false,
                 "properties": {
                   "reasoning_effort": {
                     "enum": [
                       "low",
                       "medium",
-                      "high"
+                      "high",
+                      null
                     ],
                     "bsonType": [
                       "string",
@@ -173,7 +166,10 @@
                     "bsonType": "double"
                   },
                   "seed": {
-                    "bsonType": "int"
+                    "bsonType": [
+                      "int",
+                      "null"
+                    ]
                   }
                 }
               },
@@ -184,7 +180,8 @@
                 "bsonType": "object",
                 "required": [
                   "overlap",
-                  "max_chunks"
+                  "max_chunks",
+                  "max_tokens_per_chunk"
                 ],
                 "additionalProperties": false,
                 "properties": {
@@ -194,7 +191,7 @@
                   "max_chunks": {
                     "bsonType": "int"
                   },
-                  "max_tokens": {
+                  "max_tokens_per_chunk": {
                     "bsonType": "int"
                   }
                 }
@@ -248,21 +245,14 @@
               },
               "model_params": {
                 "bsonType": "object",
-                "required": [
-                  "max_completion_tokens",
-                  "temperature",
-                  "top_p",
-                  "presence_penalty",
-                  "frequency_penalty",
-                  "seed"
-                ],
                 "additionalProperties": false,
                 "properties": {
                   "reasoning_effort": {
                     "enum": [
                       "low",
                       "medium",
-                      "high"
+                      "high",
+                      null
                     ],
                     "bsonType": [
                       "string",
@@ -368,7 +358,10 @@
                     "bsonType": "double"
                   },
                   "seed": {
-                    "bsonType": "int"
+                    "bsonType": [
+                      "int",
+                      "null"
+                    ]
                   }
                 }
               },
@@ -379,7 +372,8 @@
                 "bsonType": "object",
                 "required": [
                   "overlap",
-                  "max_chunks"
+                  "max_chunks",
+                  "max_tokens_per_chunk"
                 ],
                 "additionalProperties": false,
                 "properties": {
@@ -389,7 +383,7 @@
                   "max_chunks": {
                     "bsonType": "int"
                   },
-                  "max_tokens": {
+                  "max_tokens_per_chunk": {
                     "bsonType": "int"
                   }
                 }
@@ -443,21 +437,14 @@
               },
               "model_params": {
                 "bsonType": "object",
-                "required": [
-                  "max_completion_tokens",
-                  "temperature",
-                  "top_p",
-                  "presence_penalty",
-                  "frequency_penalty",
-                  "seed"
-                ],
                 "additionalProperties": false,
                 "properties": {
                   "reasoning_effort": {
                     "enum": [
                       "low",
                       "medium",
-                      "high"
+                      "high",
+                      null
                     ],
                     "bsonType": [
                       "string",
@@ -563,7 +550,10 @@
                     "bsonType": "double"
                   },
                   "seed": {
-                    "bsonType": "int"
+                    "bsonType": [
+                      "int",
+                      "null"
+                    ]
                   }
                 }
               },
@@ -574,7 +564,8 @@
                 "bsonType": "object",
                 "required": [
                   "overlap",
-                  "max_chunks"
+                  "max_chunks",
+                  "max_tokens_per_chunk"
                 ],
                 "additionalProperties": false,
                 "properties": {
@@ -584,7 +575,7 @@
                   "max_chunks": {
                     "bsonType": "int"
                   },
-                  "max_tokens": {
+                  "max_tokens_per_chunk": {
                     "bsonType": "int"
                   }
                 }
@@ -638,21 +629,14 @@
               },
               "model_params": {
                 "bsonType": "object",
-                "required": [
-                  "max_completion_tokens",
-                  "temperature",
-                  "top_p",
-                  "presence_penalty",
-                  "frequency_penalty",
-                  "seed"
-                ],
                 "additionalProperties": false,
                 "properties": {
                   "reasoning_effort": {
                     "enum": [
                       "low",
                       "medium",
-                      "high"
+                      "high",
+                      null
                     ],
                     "bsonType": [
                       "string",
@@ -758,7 +742,10 @@
                     "bsonType": "double"
                   },
                   "seed": {
-                    "bsonType": "int"
+                    "bsonType": [
+                      "int",
+                      "null"
+                    ]
                   }
                 }
               },
@@ -769,7 +756,8 @@
                 "bsonType": "object",
                 "required": [
                   "overlap",
-                  "max_chunks"
+                  "max_chunks",
+                  "max_tokens_per_chunk"
                 ],
                 "additionalProperties": false,
                 "properties": {
@@ -779,7 +767,7 @@
                   "max_chunks": {
                     "bsonType": "int"
                   },
-                  "max_tokens": {
+                  "max_tokens_per_chunk": {
                     "bsonType": "int"
                   }
                 }
@@ -833,21 +821,14 @@
               },
               "model_params": {
                 "bsonType": "object",
-                "required": [
-                  "max_completion_tokens",
-                  "temperature",
-                  "top_p",
-                  "presence_penalty",
-                  "frequency_penalty",
-                  "seed"
-                ],
                 "additionalProperties": false,
                 "properties": {
                   "reasoning_effort": {
                     "enum": [
                       "low",
                       "medium",
-                      "high"
+                      "high",
+                      null
                     ],
                     "bsonType": [
                       "string",
@@ -953,7 +934,10 @@
                     "bsonType": "double"
                   },
                   "seed": {
-                    "bsonType": "int"
+                    "bsonType": [
+                      "int",
+                      "null"
+                    ]
                   }
                 }
               },
@@ -964,7 +948,8 @@
                 "bsonType": "object",
                 "required": [
                   "overlap",
-                  "max_chunks"
+                  "max_chunks",
+                  "max_tokens_per_chunk"
                 ],
                 "additionalProperties": false,
                 "properties": {
@@ -974,7 +959,7 @@
                   "max_chunks": {
                     "bsonType": "int"
                   },
-                  "max_tokens": {
+                  "max_tokens_per_chunk": {
                     "bsonType": "int"
                   }
                 }
@@ -1028,21 +1013,14 @@
               },
               "model_params": {
                 "bsonType": "object",
-                "required": [
-                  "max_completion_tokens",
-                  "temperature",
-                  "top_p",
-                  "presence_penalty",
-                  "frequency_penalty",
-                  "seed"
-                ],
                 "additionalProperties": false,
                 "properties": {
                   "reasoning_effort": {
                     "enum": [
                       "low",
                       "medium",
-                      "high"
+                      "high",
+                      null
                     ],
                     "bsonType": [
                       "string",
@@ -1148,7 +1126,10 @@
                     "bsonType": "double"
                   },
                   "seed": {
-                    "bsonType": "int"
+                    "bsonType": [
+                      "int",
+                      "null"
+                    ]
                   }
                 }
               },
@@ -1159,7 +1140,8 @@
                 "bsonType": "object",
                 "required": [
                   "overlap",
-                  "max_chunks"
+                  "max_chunks",
+                  "max_tokens_per_chunk"
                 ],
                 "additionalProperties": false,
                 "properties": {
@@ -1169,7 +1151,7 @@
                   "max_chunks": {
                     "bsonType": "int"
                   },
-                  "max_tokens": {
+                  "max_tokens_per_chunk": {
                     "bsonType": "int"
                   }
                 }
@@ -1224,21 +1206,14 @@
               },
               "model_params": {
                 "bsonType": "object",
-                "required": [
-                  "max_completion_tokens",
-                  "temperature",
-                  "top_p",
-                  "presence_penalty",
-                  "frequency_penalty",
-                  "seed"
-                ],
                 "additionalProperties": false,
                 "properties": {
                   "reasoning_effort": {
                     "enum": [
                       "low",
                       "medium",
-                      "high"
+                      "high",
+                      null
                     ],
                     "bsonType": [
                       "string",
@@ -1344,7 +1319,10 @@
                     "bsonType": "double"
                   },
                   "seed": {
-                    "bsonType": "int"
+                    "bsonType": [
+                      "int",
+                      "null"
+                    ]
                   }
                 }
               },
@@ -1355,7 +1333,8 @@
                 "bsonType": "object",
                 "required": [
                   "overlap",
-                  "max_chunks"
+                  "max_chunks",
+                  "max_tokens_per_chunk"
                 ],
                 "additionalProperties": false,
                 "properties": {
@@ -1365,7 +1344,7 @@
                   "max_chunks": {
                     "bsonType": "int"
                   },
-                  "max_tokens": {
+                  "max_tokens_per_chunk": {
                     "bsonType": "int"
                   }
                 }
@@ -1455,21 +1434,14 @@
               },
               "model_params": {
                 "bsonType": "object",
-                "required": [
-                  "max_completion_tokens",
-                  "temperature",
-                  "top_p",
-                  "presence_penalty",
-                  "frequency_penalty",
-                  "seed"
-                ],
                 "additionalProperties": false,
                 "properties": {
                   "reasoning_effort": {
                     "enum": [
                       "low",
                       "medium",
-                      "high"
+                      "high",
+                      null
                     ],
                     "bsonType": [
                       "string",
@@ -1575,7 +1547,10 @@
                     "bsonType": "double"
                   },
                   "seed": {
-                    "bsonType": "int"
+                    "bsonType": [
+                      "int",
+                      "null"
+                    ]
                   }
                 }
               },
@@ -1586,7 +1561,8 @@
                 "bsonType": "object",
                 "required": [
                   "overlap",
-                  "max_chunks"
+                  "max_chunks",
+                  "max_tokens_per_chunk"
                 ],
                 "additionalProperties": false,
                 "properties": {
@@ -1596,7 +1572,7 @@
                   "max_chunks": {
                     "bsonType": "int"
                   },
-                  "max_tokens": {
+                  "max_tokens_per_chunk": {
                     "bsonType": "int"
                   }
                 }
@@ -1686,21 +1662,14 @@
               },
               "model_params": {
                 "bsonType": "object",
-                "required": [
-                  "max_completion_tokens",
-                  "temperature",
-                  "top_p",
-                  "presence_penalty",
-                  "frequency_penalty",
-                  "seed"
-                ],
                 "additionalProperties": false,
                 "properties": {
                   "reasoning_effort": {
                     "enum": [
                       "low",
                       "medium",
-                      "high"
+                      "high",
+                      null
                     ],
                     "bsonType": [
                       "string",
@@ -1806,7 +1775,10 @@
                     "bsonType": "double"
                   },
                   "seed": {
-                    "bsonType": "int"
+                    "bsonType": [
+                      "int",
+                      "null"
+                    ]
                   }
                 }
               },
@@ -1817,7 +1789,8 @@
                 "bsonType": "object",
                 "required": [
                   "overlap",
-                  "max_chunks"
+                  "max_chunks",
+                  "max_tokens_per_chunk"
                 ],
                 "additionalProperties": false,
                 "properties": {
@@ -1827,7 +1800,7 @@
                   "max_chunks": {
                     "bsonType": "int"
                   },
-                  "max_tokens": {
+                  "max_tokens_per_chunk": {
                     "bsonType": "int"
                   }
                 }
@@ -1917,21 +1890,14 @@
               },
               "model_params": {
                 "bsonType": "object",
-                "required": [
-                  "max_completion_tokens",
-                  "temperature",
-                  "top_p",
-                  "presence_penalty",
-                  "frequency_penalty",
-                  "seed"
-                ],
                 "additionalProperties": false,
                 "properties": {
                   "reasoning_effort": {
                     "enum": [
                       "low",
                       "medium",
-                      "high"
+                      "high",
+                      null
                     ],
                     "bsonType": [
                       "string",
@@ -2037,7 +2003,10 @@
                     "bsonType": "double"
                   },
                   "seed": {
-                    "bsonType": "int"
+                    "bsonType": [
+                      "int",
+                      "null"
+                    ]
                   }
                 }
               },
@@ -2048,7 +2017,8 @@
                 "bsonType": "object",
                 "required": [
                   "overlap",
-                  "max_chunks"
+                  "max_chunks",
+                  "max_tokens_per_chunk"
                 ],
                 "additionalProperties": false,
                 "properties": {
@@ -2058,7 +2028,7 @@
                   "max_chunks": {
                     "bsonType": "int"
                   },
-                  "max_tokens": {
+                  "max_tokens_per_chunk": {
                     "bsonType": "int"
                   }
                 }

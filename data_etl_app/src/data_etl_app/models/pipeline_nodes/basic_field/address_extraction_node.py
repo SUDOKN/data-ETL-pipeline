@@ -63,14 +63,14 @@ class AddressExtractionNode(SingleStageExtractionNode[list[Address]]):
             raise ValueError(
                 f"address_extraction_node.parse_batch_request_result: Missing GPTBatchRequest for mapping request ID {llm_address_request_id} in {mfg_etld1}:{field_type.name}"
             )
-        elif not llm_address_req.response_blob:
+        elif not llm_address_req.response:
             raise ValueError(
                 f"address_extraction_node.parse_batch_request_result: GPTBatchRequest for mapping request ID {llm_address_request_id} has no response_blob in {mfg_etld1}:{field_type.name}"
             )
 
         try:
             addresses = parse_address_list_from_gpt_response(
-                llm_address_req.response_blob.result
+                llm_address_req.response.result
             )
             return addresses
         except Exception as e:

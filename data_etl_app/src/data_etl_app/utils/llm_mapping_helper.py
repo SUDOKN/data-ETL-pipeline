@@ -24,24 +24,26 @@ class KnownToUnknownMap(TypedDict):
 
 def get_matched_concepts_and_unmatched_keywords(
     known_concepts: set[Concept], confirmed_keywords_w_evidence: dict[str, str]
-) -> tuple[set[Concept], set[str]]:
+) -> tuple[set[Concept], dict[str, str]]:
     confirmed_keywords: set[str] = set(confirmed_keywords_w_evidence.keys())
-    unmatched_keywords: set[str] = confirmed_keywords.copy()
+    unmatched_keywords: dict[str, str] = confirmed_keywords_w_evidence.copy()
     matched_concepts: set[Concept] = set()
 
-    for kc in known_concepts:
-        common = kc.matchLabels & confirmed_keywords
-        if common:
-            matched_concepts.add(kc)
-            unmatched_keywords -= common
+    for confirmed_keyword in confirmed_keywords:
+        for concept in known_concepts:
+            if confirmed_keyword in concept.matchLabels:
+                matched_concepts.add(concept)
+                unmatched_keywords.pop(confirmed_keyword, None)
+
     return matched_concepts, unmatched_keywords
 
 
 def create_deferred_mapping_gpt_request(
     deferred_at: datetime,
+    etld1: str,
     llm_mapping_request_id: str,
     known_concepts: set[Concept],  # DO NOT MUTATE
-    unmatched_keywords: set[str],
+    unmatched_keywords_w_evidence: dict[str, str],
     mapping_prompt: Prompt,
     eager: bool,
     gpt_model: LLM_Model,
@@ -51,11 +53,15 @@ def create_deferred_mapping_gpt_request(
         f"create_deferred_mapping_gpt_request: Generating GPTBatchRequest for {llm_mapping_request_id}"
     )
     context = json.dumps(
-        {"unknowns": list(unmatched_keywords), "knowns": list(known_concepts)},
+        {
+            "candidates": unmatched_keywords_w_evidence,
+            "knowns": list(known_concepts),
+        },
         cls=ConceptJSONEncoder,
     )
     gpt_batch_request = create_base_gpt_batch_request(
         deferred_at=deferred_at,
+        etld1=etld1,
         custom_id=llm_mapping_request_id,
         context=context,
         prompt=mapping_prompt,
@@ -70,9 +76,10 @@ def get_mapped_known_concepts_and_unmapped_keywords(
     mfg_etld1: str,
     concept_type: ConceptTypeEnum,
     known_concepts: set[Concept],
-    keywords_to_map: set[str],
+    unmatched_keywords_w_evidence: dict[str, str],
     raw_gpt_mapping: LLMMappingResult,
 ) -> KnownToUnknownMap:
+    keywords_to_map = set(unmatched_keywords_w_evidence.keys())
     match_label_map: dict[str, Concept] = {
         label: k for k in known_concepts for label in k.matchLabels
     }

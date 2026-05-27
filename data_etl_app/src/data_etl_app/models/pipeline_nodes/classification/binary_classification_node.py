@@ -66,7 +66,7 @@ class BinaryClassificationNode(SingleStageExtractionNode[LLMBinaryClassification
             raise ValueError(
                 f"binary_classification_node.parse_batch_request_result: Missing GPTBatchRequest for mapping request ID {classification_request_id} in {mfg_etld1}:{field_type.name}"
             )
-        elif not classification_req.response_blob:
+        elif not classification_req.response:
             raise ValueError(
                 f"binary_classification_node.parse_batch_request_result: GPTBatchRequest for mapping request ID {classification_request_id} has no response_blob in {mfg_etld1}:{field_type.name}"
             )
@@ -74,7 +74,7 @@ class BinaryClassificationNode(SingleStageExtractionNode[LLMBinaryClassification
         try:
             classification_result = (
                 parse_binary_classification_result_from_gpt_response(
-                    classification_req.response_blob.result
+                    classification_req.response.result
                 )
             )
             return classification_result

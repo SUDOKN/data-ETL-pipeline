@@ -184,7 +184,7 @@ class DatabaseIndexSeeder:
                 "options": {"name": "gpt_batch_id_sparse_idx", "sparse": True},
             },
             {
-                "keys": [("batch_id", 1), ("response_blob", 1)],
+                "keys": [("batch_id", 1), ("response", 1)],
                 "options": {
                     "name": "gpt_batch_requests_batch_response_idx",
                     "sparse": True,

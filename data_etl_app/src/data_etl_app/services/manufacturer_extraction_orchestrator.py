@@ -163,9 +163,10 @@ class ManufacturerExtractionOrchestrator:
 
         if not final_decision.answer:
             logger.info(
-                f"Skipping further extraction for {mfg.etld1} as it is not a manufacturer."
+                f"Would have skipped further extraction for {mfg.etld1} as it is not a manufacturer, "
+                f"but continuing for testing purposes."
             )
-            return
+            # return
 
         for field_type, pipeline in self.pipelines.items():
             logger.debug(
