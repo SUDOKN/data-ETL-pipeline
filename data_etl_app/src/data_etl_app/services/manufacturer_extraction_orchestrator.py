@@ -164,7 +164,7 @@ class ManufacturerExtractionOrchestrator:
         if not final_decision.answer:
             logger.info(
                 f"Would have skipped further extraction for {mfg.etld1} as it is not a manufacturer, "
-                f"but continuing for testing purposes."
+                f"but continuing for testing or gt purposes."
             )
             # return
 

@@ -17,6 +17,8 @@ from data_etl_app.models.pipeline_nodes.keyword.keyword_search_node import (
 from data_etl_app.models.types_and_enums import KeywordTypeEnum
 from data_etl_app.models.pipeline_nodes.base_node import PipelineContext
 from data_etl_app.models.pipeline_nodes.reconcile_node import ReconcileNode
+from open_ai_key_app.models.gpt_model_params import GPTModelParams
+from open_ai_key_app.models.llm_model import LLM_Model
 from scraper_app.models.scraped_text_file import ScrapedTextFile
 
 from core.services.manufacturer_service import update_manufacturer
@@ -35,6 +37,8 @@ class KeywordReconcileNode(ReconcileNode[KeywordTypeEnum]):
         scraped_text_file: ScrapedTextFile,
         timestamp: datetime,
         pipeline_context: PipelineContext,
+        llm_model: LLM_Model,
+        model_params: GPTModelParams,
         eager: bool,
     ) -> None:
         extraction_requests: Optional[DeferredSearchRequests] = getattr(

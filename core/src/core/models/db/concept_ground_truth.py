@@ -20,7 +20,6 @@ from core.utils.time_util import get_current_time
 
 class EvidenceResultCorrection(BaseModel):
     upsert: HumanEvidenceResults
-    reject: list[str]
 
 
 class MappingResultCorrection(BaseModel):

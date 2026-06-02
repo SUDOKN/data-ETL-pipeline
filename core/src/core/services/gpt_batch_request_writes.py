@@ -14,8 +14,8 @@ from open_ai_key_app.models.field_types import GPTBatchRequestCustomID
 logger = logging.getLogger(__name__)
 
 # str() cast needed because Pylance infers these as non-hashable Pydantic model types
-_RESPONSE_FIELD = str(GPTBatchRequest.response)
-_REQUEST_BODY_FIELD = str(GPTBatchRequest.request.body)
+_RESPONSE_FIELD = "response"
+_REQUEST_BODY_FIELD = "request.body"
 
 
 async def _bulk_update(
