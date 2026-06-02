@@ -1,6 +1,8 @@
 import json
 import random
 from typing import Literal
+from core.models.queue_item import EmailUserErrand
+from core.utils.aws.queue.gt_scrape_queue_util import push_item_to_gt_scrape_queue
 from fastapi import APIRouter, HTTPException, Request, Query, Depends
 from fastapi.responses import JSONResponse
 
@@ -34,6 +36,7 @@ from core.services.manufacturer_service import (
 )
 from core.services.user_service import find_by_email
 from data_etl_app.services.ground_truth.concept_ground_truth_service import (
+    get_corrected_results,
     get_extracted_concept_ground_truth,
     save_new_concept_ground_truth,
     add_correction_to_concept_ground_truth,
@@ -52,7 +55,7 @@ async def fetch_concept_ground_truth_template(
             f"If you are using postman, you can use the `Params` tab to add a query param."
         ),
     ),
-    mfg_url: str | None = Query(
+    mfg_url: str = Query(
         default=None, description="Manufacturer URL (optional, randomized otherwise)"
     ),
     concept_type: ConceptTypeEnum = Query(
@@ -75,24 +78,24 @@ async def fetch_concept_ground_truth_template(
             ),
         )
 
-    if not mfg_url:  # then find a random manufacturer and set mfg_url
-        mfg_url = await find_random_manufacturer_url()
+    # if not mfg_url:  # then find a random manufacturer and set mfg_url
+    #     mfg_url = await find_random_manufacturer_url()
 
-        if not mfg_url:  # then raise HTTPException
-            raise HTTPException(
-                status_code=404,
-                detail="Something went wrong finding a random mfg_url. Please provide a valid mfg_url instead.",
-            )
-    else:
-        try:
-            _, mfg_url = get_normalized_url(
-                get_complete_url_with_compatible_protocol(mfg_url)
-            )
-        except ValueError as e:
-            raise HTTPException(
-                status_code=400,
-                detail=f"Invalid URL: '{mfg_url}' has no valid hostname. Error: {str(e)}",
-            )
+    #     if not mfg_url:  # then raise HTTPException
+    #         raise HTTPException(
+    #             status_code=404,
+    #             detail="Something went wrong finding a random mfg_url. Please provide a valid mfg_url instead.",
+    #         )
+    # else:
+    #     try:
+    #         _, mfg_url = get_normalized_url(
+    #             get_complete_url_with_compatible_protocol(mfg_url)
+    #         )
+    #     except ValueError as e:
+    #         raise HTTPException(
+    #             status_code=400,
+    #             detail=f"Invalid URL: '{mfg_url}' has no valid hostname. Error: {str(e)}",
+    #         )
 
     # fetch the manufacturer from the database
     manufacturer = await find_manufacturer_by_url(mfg_url)
@@ -101,26 +104,21 @@ async def fetch_concept_ground_truth_template(
         # this will only be the case with user provided mfg_url
         # or when for some reason the manufacturer was not extracted correctly
         # push this new potential manufacturer to scrape queue and ask user to try again in a few minutes
-        await push_item_to_priority_scrape_queue(
+        await push_item_to_gt_scrape_queue(
             ToScrapeItem(
                 accessible_normalized_url=mfg_url,
                 batch=Batch(
                     title="Ground Truth API: concept Extraction Result",
                     timestamp=current_timestamp,  # ISO format for timestamp
                 ),
+                email_errand=EmailUserErrand(user_email=author_email),
             ),
         )
         raise HTTPException(
             status_code=404,
-            detail=f"Manufacturer not found for mfg_url:`{mfg_url}`. Pushed to scrape queue. Please try again in a few minutes.",
-        )
-    elif manufacturer and manufacturer.is_manufacturer.result.answer is False:
-        raise HTTPException(
-            status_code=400,
             detail=(
-                f"The provided URL:`{mfg_url}` does not belong to a valid manufacturer. "
-                f"Following is the reason. {manufacturer.is_manufacturer.result.reason}` If you think otherwise, "
-                f"please submit a ground truth for `is_manufacturer` on binary classification endpoint."
+                f"Sorry, no manufacturer found for URL: {mfg_url}. "
+                f"We have added this URL to our scrape queue. Please try again in a few minutes."
             ),
         )
 
@@ -203,22 +201,21 @@ async def fetch_concept_ground_truth_template(
     )
 
     response = concept_ground_truth.model_dump()
-
-    response["your_correction"] = HumanConceptCorrection(
-        author_email=author_email,
-        source=GroundTruthSource.API_SURVEY,
-        llm_evidence_correction=EvidenceResultCorrection(
-            upsert={
-                kw: reason
-                for kw, reason in chunk_search_stats.llm_evidence.items()
-                if reason
-            },
-            reject=[],
-        ),
-        llm_mapping_correction=MappingResultCorrection(
-            upsert=chunk_search_stats.llm_mapping, remove=[]
-        ),  # pre-fill with last correction
+    response["your_correction"] = (
+        HumanConceptCorrection(  # begins as a pre-filled template for the user to fill in
+            author_email=author_email,
+            source=GroundTruthSource.API_SURVEY,
+            llm_evidence_correction=EvidenceResultCorrection(
+                upsert={
+                    kw: reason for kw, reason in chunk_search_stats.llm_evidence.items()
+                },
+            ),
+            llm_mapping_correction=MappingResultCorrection(
+                upsert=chunk_search_stats.llm_mapping, remove=[]
+            ),  # pre-fill with last correction
+        )
     )
+    response["final_results"] = await get_corrected_results(concept_ground_truth)
 
     response.pop("id", None)  # remove id from response
     return response

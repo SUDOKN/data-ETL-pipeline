@@ -25,6 +25,7 @@ from data_etl_app.utils.route_url_util import (
 )
 from data_etl_app.utils.ground_truth_helper_util import (
     calculate_corrected_concept_evidence_results,
+    calculate_corrected_concept_results,
 )
 
 # Configure logger
@@ -267,12 +268,12 @@ def _validate_new_human_correction(
                 f"The unknown term '{unk}' in llm_evidence.upsert must have a reason provided."
             )
 
-    for unk in new_correction.llm_evidence_correction.reject:
-        if unk not in chunk_concept_gt.extraction_stats.llm_evidence:
-            raise ValueError(
-                f"The term '{unk}' in the list llm_evidence.reject is not present in extraction_stats.llm_evidence. '\
-                'Please remove the term '{unk}' from the reject list or provide a different term."
-            )
+    # for unk in new_correction.llm_evidence_correction.reject:
+    #     if unk not in chunk_concept_gt.extraction_stats.llm_evidence:
+    #         raise ValueError(
+    #             f"The term '{unk}' in the list llm_evidence.reject is not present in extraction_stats.llm_evidence. '\
+    #             'Please remove the term '{unk}' from the reject list or provide a different term."
+    #         )
 
     corrected_concept_evidence_results: dict[str, str] = (
         calculate_corrected_concept_evidence_results(
@@ -312,3 +313,43 @@ def _validate_new_human_correction(
             raise ValueError(
                 f"The term '{rm}' in the list mapping_result_correction.remove is not present in corrected_concept_evidence_results. Please remove the term '{rm}' from the remove list or provide a different term."
             )
+
+
+async def get_corrected_results(
+    concept_gt: ConceptGroundTruth,
+) -> list[str]:
+    """
+    Get the final results after applying human corrections.
+    Returns None if no corrections were made.
+    """
+
+    ontology_service = await get_ontology_service()
+    ontology_info: tuple[OntologyVersionIDType, list[Concept]] = getattr(
+        ontology_service, concept_gt.concept_type
+    )
+
+    # because what if we have updated the ontology since user fetched original concept_ground_truth
+    # this blocks users from submitting corrections on old ontology versions
+    latest_ontology_version_id: OntologyVersionIDType = ontology_info[0]
+    known_concepts: set[Concept] = set(ontology_info[1])
+    if latest_ontology_version_id != concept_gt.metadata.ontology_version_id:
+        raise ValueError(
+            f"Ontology version ID mismatch for concept type '{concept_gt.concept_type}'. Expected: {latest_ontology_version_id}, got: {concept_gt.metadata.ontology_version_id}."
+        )
+
+    last_correction_log = concept_gt.corrections[-1] if concept_gt.corrections else None
+    if not last_correction_log:
+        return list(concept_gt.extraction_stats.results)
+    else:
+        corrected_concept_evidence_results: dict[str, str] = (
+            calculate_corrected_concept_evidence_results(
+                original_llm_evidence=concept_gt.extraction_stats.llm_evidence,
+                human_correction=last_correction_log.human_correction,
+            )
+        )
+        return calculate_corrected_concept_results(
+            corrected_llm_evidence_results=corrected_concept_evidence_results,
+            known_concepts=known_concepts,
+            original_mapping=concept_gt.extraction_stats.llm_mapping,
+            human_correction=last_correction_log.human_correction,
+        )

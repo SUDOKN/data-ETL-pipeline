@@ -2,7 +2,8 @@ from typing import Optional
 from rdflib import Graph, Namespace, Literal, URIRef
 from rdflib.namespace import RDF, RDFS, XSD
 
-from core.models.db.manufacturer import Address, BusinessDescription
+from core.models.address_extraction_result import Address
+from core.models.business_description_extraction_result import BusinessDescription
 from core.utils.address_util import dedupe_addresses
 from core.utils.ttl_generator_util import (
     get_mfg_instance_uri_and_stripped_etld1,
