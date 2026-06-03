@@ -288,20 +288,16 @@
           "llm_evidence": {
             "bsonType": "object",
             "additionalProperties": {
-              "bsonType": [
-                "string",
-                "null"
-              ]
+              "bsonType": "string"
             }
           },
           "llm_mapping": {
             "bsonType": "object",
             "additionalProperties": {
-              "bsonType": "array",
-              "items": {
+              "bsonType": "object",
+              "additionalProperties": {
                 "bsonType": "string"
-              },
-              "uniqueItems": true
+              }
             }
           },
           "unmapped": {
@@ -349,20 +345,13 @@
                 "llm_evidence_correction": {
                   "bsonType": "object",
                   "required": [
-                    "upsert",
-                    "reject"
+                    "upsert"
                   ],
                   "additionalProperties": false,
                   "properties": {
                     "upsert": {
                       "bsonType": "object",
                       "additionalProperties": {
-                        "bsonType": "string"
-                      }
-                    },
-                    "reject": {
-                      "bsonType": "array",
-                      "items": {
                         "bsonType": "string"
                       }
                     }
@@ -371,25 +360,17 @@
                 "llm_mapping_correction": {
                   "bsonType": "object",
                   "required": [
-                    "upsert",
-                    "remove"
+                    "upsert"
                   ],
                   "additionalProperties": false,
                   "properties": {
                     "upsert": {
                       "bsonType": "object",
                       "additionalProperties": {
-                        "bsonType": "array",
-                        "items": {
+                        "bsonType": "object",
+                        "additionalProperties": {
                           "bsonType": "string"
-                        },
-                        "uniqueItems": true
-                      }
-                    },
-                    "remove": {
-                      "bsonType": "array",
-                      "items": {
-                        "bsonType": "string"
+                        }
                       }
                     }
                   }

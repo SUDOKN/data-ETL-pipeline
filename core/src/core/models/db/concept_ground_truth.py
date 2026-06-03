@@ -24,7 +24,17 @@ class EvidenceResultCorrection(BaseModel):
 
 class MappingResultCorrection(BaseModel):
     upsert: LLMMappingType
-    remove: list[str]
+
+    # constructor from original LLM mapping result
+    @classmethod
+    def from_raw_llm_mapping_result(
+        cls, original_mapping_result: LLMMappingType
+    ) -> "MappingResultCorrection":
+        prefixed_mapping_result: LLMMappingType = original_mapping_result.copy()
+        for _mk, mu_dict in prefixed_mapping_result.items():
+            for mu in mu_dict:
+                mu_dict[mu] = f"Correct, {mu_dict[mu]}"
+        return cls(upsert=prefixed_mapping_result)
 
 
 class HumanConceptCorrection(BaseModel):

@@ -4,7 +4,11 @@ from datetime import datetime
 
 
 from core.models.db.manufacturer import Manufacturer
-from core.models.field_types import OntologyVersionIDType, S3FileVersionIDType
+from core.models.field_types import (
+    LLMEvidenceResults,
+    OntologyVersionIDType,
+    S3FileVersionIDType,
+)
 from core.models.concept_extraction_results import ConceptExtractionResults
 from core.models.db.concept_ground_truth import (
     ConceptGroundTruth,
@@ -24,8 +28,10 @@ from data_etl_app.utils.route_url_util import (
     get_full_ontology_concept_flat_url,
 )
 from data_etl_app.utils.ground_truth_helper_util import (
-    calculate_corrected_concept_evidence_results,
+    calculate_verified_concept_evidence_results,
     calculate_corrected_concept_results,
+    is_evidence_reason_format_correct,
+    is_mapping_reason_format_correct,
 )
 
 # Configure logger
@@ -188,7 +194,7 @@ async def _validate_concept_ground_truth_correction(
             f"Chunk bounds '{concept_gt.chunk_bounds}' do not match the expected bounds '{chunk_bounds}' for chunk number {concept_gt.chunk_no}."
         )
 
-    if concept_gt.chunk_search_stats != chunk_search_stats:
+    if concept_gt.extraction_stats != chunk_search_stats:
         raise ValueError(
             "Chunk search stats do not match the expected stats for the given chunk bounds."
         )
@@ -245,7 +251,7 @@ async def _validate_concept_ground_truth_correction(
     _validate_new_human_correction(concept_gt, new_correction, known_concepts)
 
 
-# always call before adding the new correction to correction_logs
+# always call before adding the new correction to corrections
 def _validate_new_human_correction(
     chunk_concept_gt: ConceptGroundTruth,
     new_correction: HumanConceptCorrection,
@@ -255,6 +261,16 @@ def _validate_new_human_correction(
     if not new_correction:
         raise ValueError(
             "result_correction must be provided to validate the concept ground truth."
+        )
+
+    original_evidence_results = chunk_concept_gt.extraction_stats.llm_evidence
+    skipped_terms = set(original_evidence_results.keys()) - set(
+        new_correction.llm_evidence_correction.upsert.keys()
+    )
+    if skipped_terms:
+        raise ValueError(
+            f"The following terms were present in the original LLM evidence results but are missing in the new correction's llm_evidence_correction.upsert: {skipped_terms}. "
+            f"Please provide corrections for these terms or leave the evidence unchanged."
         )
 
     # Check evidence corrections
@@ -267,33 +283,24 @@ def _validate_new_human_correction(
             raise ValueError(
                 f"The unknown term '{unk}' in llm_evidence.upsert must have a reason provided."
             )
+        elif not is_evidence_reason_format_correct(reason):
+            raise ValueError(
+                f"The reason for the unknown term '{unk}' in llm_evidence.upsert must start with 'Yes, ' or 'No, '."
+            )
 
-    # for unk in new_correction.llm_evidence_correction.reject:
-    #     if unk not in chunk_concept_gt.extraction_stats.llm_evidence:
-    #         raise ValueError(
-    #             f"The term '{unk}' in the list llm_evidence.reject is not present in extraction_stats.llm_evidence. '\
-    #             'Please remove the term '{unk}' from the reject list or provide a different term."
-    #         )
-
-    corrected_concept_evidence_results: dict[str, str] = (
-        calculate_corrected_concept_evidence_results(
-            original_llm_evidence=chunk_concept_gt.extraction_stats.llm_evidence,
+    verified_concept_evidence_results: LLMEvidenceResults = (
+        calculate_verified_concept_evidence_results(
             human_correction=new_correction,
         )
     )
-    corrected_concept_evidence_kws = set(corrected_concept_evidence_results.keys())
+    verified_concept_evidence_kws = set(verified_concept_evidence_results.keys())
 
     known_concept_labels: set[str] = {c.name for c in known_concepts}
-    for mk, mus in new_correction.llm_mapping_correction.upsert.items():
+    for mk, mu_dict in new_correction.llm_mapping_correction.upsert.items():
         logger.debug(
-            f"Checking mapping_result_correction.upsert for key: {mk} with terms: {mus}"
+            f"Checking mapping_result_correction.upsert for key: {mk} with terms: {mu_dict}"
         )
-        if not mus:
-            raise ValueError(
-                f"Key '{mk}' in the object mapping_result_correction.add cannot have an empty list of terms."
-            )
 
-        logger.debug(f"mk in known_concept_labels: {mk in known_concept_labels}")
         # Check if mk is a known concept in the latest ontology version
         if mk not in known_concept_labels:
             raise ValueError(
@@ -301,18 +308,19 @@ def _validate_new_human_correction(
                 f"Please visit {get_full_ontology_concept_flat_url(chunk_concept_gt.concept_type)}"
             )
         # Check if each value in mapping_result_correction.add is present in chunk_text
-        for mu in mus:
-            if mu not in corrected_concept_evidence_kws:
+        for mu in mu_dict:
+            if mu not in verified_concept_evidence_kws:
                 raise ValueError(
-                    f"The term '{mu}' in the list mapping_result_correction.add['{mk}'] is not present in corrected_concept_evidence_results."
+                    f"The term '{mu}' in the list mapping_result_correction.upsert['{mk}'] is not present in verified_concept_evidence_results."
                 )
-
-    for rm in new_correction.llm_mapping_correction.remove:
-        logger.debug(f"Checking mapping_result_correction.remove for term: {rm}")
-        if rm not in corrected_concept_evidence_kws:
-            raise ValueError(
-                f"The term '{rm}' in the list mapping_result_correction.remove is not present in corrected_concept_evidence_results. Please remove the term '{rm}' from the remove list or provide a different term."
-            )
+            elif not mu_dict[mu]:
+                raise ValueError(
+                    f"The unknown term '{mu}' in mapping_result_correction.upsert['{mk}'] must have a reason provided."
+                )
+            elif not is_mapping_reason_format_correct(mu_dict[mu]):
+                raise ValueError(
+                    f"The reason for the unknown term '{mu}' in mapping_result_correction.upsert['{mk}'] must start with 'Correct, ' or 'Incorrect, '."
+                )
 
 
 async def get_corrected_results(
@@ -341,15 +349,7 @@ async def get_corrected_results(
     if not last_correction_log:
         return list(concept_gt.extraction_stats.results)
     else:
-        corrected_concept_evidence_results: dict[str, str] = (
-            calculate_corrected_concept_evidence_results(
-                original_llm_evidence=concept_gt.extraction_stats.llm_evidence,
-                human_correction=last_correction_log.human_correction,
-            )
-        )
         return calculate_corrected_concept_results(
-            corrected_llm_evidence_results=corrected_concept_evidence_results,
             known_concepts=known_concepts,
-            original_mapping=concept_gt.extraction_stats.llm_mapping,
             human_correction=last_correction_log.human_correction,
         )

@@ -10,7 +10,7 @@ from core.models.deferred_concept_extraction import (
     DeferredConceptExtractionRequests,
     ConceptExtractionRequestBundle,
 )
-from core.models.field_types import LLMMappingResult
+from core.models.field_types import RawLLMMappingResult
 from core.models.prompt import Prompt
 from data_etl_app.models.pipeline_nodes.concept.concept_evidence_node import (
     ConceptEvidenceNode,
@@ -41,7 +41,7 @@ from data_etl_app.services.extraction.deferred_concept_mapping_service import (
 logger = logging.getLogger(__name__)
 
 
-class ConceptMappingNode(LLMExtractionNode[ConceptTypeEnum, LLMMappingResult]):
+class ConceptMappingNode(LLMExtractionNode[ConceptTypeEnum, RawLLMMappingResult]):
     """Phase 3: Map unknown terms to known ontology"""
 
     def __init__(
@@ -90,7 +90,7 @@ class ConceptMappingNode(LLMExtractionNode[ConceptTypeEnum, LLMMappingResult]):
         extraction_bundle: ConceptExtractionRequestBundle,
         completed_request_map: dict[GPTBatchRequestCustomID, GPTBatchRequest],
         deferred_at: datetime,
-    ) -> LLMMappingResult:
+    ) -> RawLLMMappingResult:
         llm_mapping_request_id = extraction_bundle.llm_mapping_request_id
         if not llm_mapping_request_id:
             raise ValueError(

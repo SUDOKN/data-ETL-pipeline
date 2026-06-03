@@ -1826,20 +1826,16 @@
                 "llm_evidence": {
                   "bsonType": "object",
                   "additionalProperties": {
-                    "bsonType": [
-                      "string",
-                      "null"
-                    ]
+                    "bsonType": "string"
                   }
                 },
                 "llm_mapping": {
                   "bsonType": "object",
                   "additionalProperties": {
-                    "bsonType": "array",
-                    "items": {
+                    "bsonType": "object",
+                    "additionalProperties": {
                       "bsonType": "string"
-                    },
-                    "uniqueItems": true
+                    }
                   }
                 },
                 "unmapped": {
@@ -2091,20 +2087,16 @@
                 "llm_evidence": {
                   "bsonType": "object",
                   "additionalProperties": {
-                    "bsonType": [
-                      "string",
-                      "null"
-                    ]
+                    "bsonType": "string"
                   }
                 },
                 "llm_mapping": {
                   "bsonType": "object",
                   "additionalProperties": {
-                    "bsonType": "array",
-                    "items": {
+                    "bsonType": "object",
+                    "additionalProperties": {
                       "bsonType": "string"
-                    },
-                    "uniqueItems": true
+                    }
                   }
                 },
                 "unmapped": {
@@ -2356,20 +2348,16 @@
                 "llm_evidence": {
                   "bsonType": "object",
                   "additionalProperties": {
-                    "bsonType": [
-                      "string",
-                      "null"
-                    ]
+                    "bsonType": "string"
                   }
                 },
                 "llm_mapping": {
                   "bsonType": "object",
                   "additionalProperties": {
-                    "bsonType": "array",
-                    "items": {
+                    "bsonType": "object",
+                    "additionalProperties": {
                       "bsonType": "string"
-                    },
-                    "uniqueItems": true
+                    }
                   }
                 },
                 "unmapped": {
@@ -2621,20 +2609,16 @@
                 "llm_evidence": {
                   "bsonType": "object",
                   "additionalProperties": {
-                    "bsonType": [
-                      "string",
-                      "null"
-                    ]
+                    "bsonType": "string"
                   }
                 },
                 "llm_mapping": {
                   "bsonType": "object",
                   "additionalProperties": {
-                    "bsonType": "array",
-                    "items": {
+                    "bsonType": "object",
+                    "additionalProperties": {
                       "bsonType": "string"
-                    },
-                    "uniqueItems": true
+                    }
                   }
                 },
                 "unmapped": {

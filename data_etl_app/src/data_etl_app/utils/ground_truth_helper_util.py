@@ -6,8 +6,6 @@ from core.models.db.keyword_ground_truth import (
 )
 from core.models.field_types import (
     HumanEvidenceResults,
-    LLMEvidenceResults,
-    LLMMappingType,
 )
 from data_etl_app.models.skos_concept import Concept
 
@@ -16,8 +14,25 @@ from data_etl_app.utils.llm_mapping_helper import (
 )
 
 
-def calculate_corrected_concept_evidence_results(
-    original_llm_evidence: LLMEvidenceResults,
+def is_evidence_reason_format_correct(reason: str) -> bool:
+    """
+    Checks if the reason for confirming or rejecting evidence is in the correct format.
+    The reason must start with "Yes, " for confirmed evidence or "No, " for rejected evidence.
+    """
+    return reason.lower().startswith("yes, ") or reason.lower().startswith("no, ")
+
+
+def is_mapping_reason_format_correct(reason: str) -> bool:
+    """
+    Checks if the reason for mapping an unknown term to a known concept is in the correct format.
+    The reason must start with "Correct, " for correct mappings or "Incorrect, " for incorrect mappings.
+    """
+    return reason.lower().startswith("correct, ") or reason.lower().startswith(
+        "incorrect, "
+    )
+
+
+def calculate_verified_concept_evidence_results(
     human_correction: HumanConceptCorrection,
 ) -> HumanEvidenceResults:
     """
@@ -25,42 +40,16 @@ def calculate_corrected_concept_evidence_results(
     Returns None if no corrections were made.
     """
     confirmed_keywords_w_evidence = {
-        kw: evidence for kw, evidence in original_llm_evidence.items() if evidence
+        kw: reason
+        for kw, reason in human_correction.llm_evidence_correction.upsert.items()
+        if reason.lower().startswith("yes, ")
     }
-
-    for kw, reason in human_correction.llm_evidence_correction.upsert.items():
-        confirmed_keywords_w_evidence[kw] = reason
-
-    for kw in human_correction.llm_evidence_correction.reject:
-        if kw in confirmed_keywords_w_evidence:
-            del confirmed_keywords_w_evidence[kw]
 
     return confirmed_keywords_w_evidence
 
 
-def calculate_corrected_concept_mapping_results(
-    original_llm_mapping: LLMMappingType,
-    human_correction: HumanConceptCorrection,
-) -> LLMMappingType:
-    """
-    Get the final mapping stage results after applying human corrections.
-    Returns None if no corrections were made.
-    """
-
-    for mk, mus in human_correction.llm_mapping_correction.upsert.items():
-        original_llm_mapping[mk] = mus
-
-    for mk in human_correction.llm_mapping_correction.remove:
-        if mk in original_llm_mapping:
-            del original_llm_mapping[mk]
-
-    return original_llm_mapping
-
-
 def calculate_corrected_concept_results(
-    corrected_llm_evidence_results: dict[str, str],
     known_concepts: set[Concept],
-    original_mapping: LLMMappingType,
     human_correction: HumanConceptCorrection,
 ) -> list[str]:
     """
@@ -68,13 +57,11 @@ def calculate_corrected_concept_results(
     Returns None if no corrections were made.
     """
 
-    # corrected_llm_evidence_results = calculate_corrected_concept_evidence_results(
-    #     chunk_keyword_gt
-    # )
+    verified_llm_evidence_results: dict[str, str] = (
+        calculate_verified_concept_evidence_results(human_correction=human_correction)
+    )
     verified_keywords_w_evidence = {
-        kw: evidence
-        for kw, evidence in corrected_llm_evidence_results.items()
-        if evidence
+        kw: evidence for kw, evidence in verified_llm_evidence_results.items()
     }
 
     (
@@ -83,13 +70,16 @@ def calculate_corrected_concept_results(
     ) = get_matched_concepts_and_unmatched_keywords(
         known_concepts, verified_keywords_w_evidence
     )
-    corrected_llm_mapping_results = calculate_corrected_concept_mapping_results(
-        original_mapping,
-        human_correction,
-    )
-    results = {c.name for c in matched_concepts} | set(
-        corrected_llm_mapping_results.keys()
-    )
+    corrected_llm_mapping_results = human_correction.llm_mapping_correction.upsert
+    results = {c.name for c in matched_concepts}
+    for mk, mu_dict in corrected_llm_mapping_results.items():
+        for _k, v in mu_dict.items():
+            if v.startswith("Correct, "):
+                print(
+                    f"Mapping correction for unknown term '{_k}' in mapping result for known concept '{mk}' is marked as correct. Adding '{mk}' to results."
+                )
+                results.add(mk)
+
     return list(results)
 
 
