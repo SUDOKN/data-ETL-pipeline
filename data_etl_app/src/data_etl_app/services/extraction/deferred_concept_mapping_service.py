@@ -5,17 +5,12 @@ from datetime import datetime
 from typing import Optional
 
 from core.models.prompt import Prompt
-from core.models.field_types import LLMMappingResult
+from core.models.field_types import LLMMappingType, RawLLMMappingResult
 from core.models.db.gpt_batch_request import GPTBatchRequest
 from core.models.deferred_concept_extraction import (
     DeferredConceptExtractionRequests,
 )
-from core.models.gpt_batch_request_blob import GPTBatchRequestBlob
 from core.models.gpt_batch_response_blob import (
-    GPTBatchResponse,
-    ChatCompletionResponse,
-    ChatCompletionUsage,
-    ChatCompletionChoice,
     ChatCompletionChoiceMessage,
 )
 from core.services.gpt_batch_request_service import (
@@ -29,7 +24,7 @@ from data_etl_app.models.pipeline_nodes.concept.concept_evidence_node import (
 from data_etl_app.models.types_and_enums import ConceptTypeEnum
 from open_ai_key_app.models.gpt_model import No_model
 from open_ai_key_app.models.llm_model import LLM_Model
-from open_ai_key_app.models.gpt_model_params import GPTRequestBody, GPTModelParams
+from open_ai_key_app.models.gpt_model_params import GPTModelParams
 from open_ai_key_app.models.field_types import GPTBatchRequestCustomID
 
 from data_etl_app.utils.llm_mapping_helper import (
@@ -40,14 +35,14 @@ from data_etl_app.utils.llm_mapping_helper import (
 logger = logging.getLogger(__name__)
 
 
-def parse_llm_mapping_result(gpt_response: Optional[str]) -> LLMMappingResult:
+def parse_llm_mapping_result(gpt_response: Optional[str]) -> RawLLMMappingResult:
     if not gpt_response:
         logger.error(f"Invalid gpt_response:{gpt_response}")
         raise ValueError("parse_llm_mapping_result: Empty or invalid response from GPT")
 
     try:
         gpt_response = gpt_response.replace("```", "").replace("json", "")
-        raw_gpt_mapping: LLMMappingResult = json.loads(
+        raw_gpt_mapping: RawLLMMappingResult = json.loads(
             gpt_response
         )  # from unknown --> known
         logger.debug(f"raw_gpt_mapping:{json.dumps(raw_gpt_mapping, indent=2)}")
@@ -62,6 +57,19 @@ def parse_llm_mapping_result(gpt_response: Optional[str]) -> LLMMappingResult:
         )
 
     logger.debug(f"raw_gpt_mapping:{raw_gpt_mapping}")
+
+    for unknown, knowns_dict in raw_gpt_mapping.items():
+        if not isinstance(unknown, str):
+            raise ValueError(
+                f"parse_llm_mapping_result: Expected unknown term to be a string, got {type(unknown)}"
+            )
+        if not isinstance(knowns_dict, dict) or not all(
+            isinstance(known_label, str) and isinstance(matching_reason, str)
+            for known_label, matching_reason in knowns_dict.items()
+        ):
+            raise ValueError(
+                f"parse_llm_mapping_result: Expected known terms to be a dictionary of strings, got {type(knowns_dict)} with elements of types {[type(k) for k in knowns_dict]}"
+            )
 
     return raw_gpt_mapping
 

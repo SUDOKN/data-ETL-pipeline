@@ -3,7 +3,7 @@ import logging
 from datetime import datetime
 from typing import TypedDict
 
-from core.models.field_types import LLMMappingResult
+from core.models.field_types import LLMMappingType, RawLLMMappingResult
 from core.models.prompt import Prompt
 from core.models.db.gpt_batch_request import GPTBatchRequest
 from data_etl_app.models.types_and_enums import ConceptTypeEnum
@@ -18,7 +18,7 @@ logger = logging.getLogger(__name__)
 
 
 class KnownToUnknownMap(TypedDict):
-    known_to_unknowns: dict[Concept, set[str]]
+    known_to_unknowns: dict[Concept, dict[str, str]]
     unmapped_unknowns: set[str]
 
 
@@ -77,17 +77,17 @@ def get_mapped_known_concepts_and_unmapped_keywords(
     concept_type: ConceptTypeEnum,
     known_concepts: set[Concept],
     unmatched_keywords_w_evidence: dict[str, str],
-    raw_gpt_mapping: LLMMappingResult,
+    raw_gpt_mapping: RawLLMMappingResult,
 ) -> KnownToUnknownMap:
     keywords_to_map = set(unmatched_keywords_w_evidence.keys())
     match_label_map: dict[str, Concept] = {
         label: k for k in known_concepts for label in k.matchLabels
     }
-    known_to_unknowns: dict[Concept, set[str]] = {}
+    known_to_unknowns: dict[Concept, dict[str, str]] = {}
 
-    # mapped_unknown "biotech" -> ["pharmaceutical"] mapped_knowns
+    # mapped_unknown "biotech" -> {"pharmaceutical": "matching reason"} mapped_knowns
     # mu ~ mapped_unknown, mk ~ mapped_knowns
-    for mu, mk_labels in raw_gpt_mapping.items():
+    for mu, mk_dict in raw_gpt_mapping.items():
         if mu not in keywords_to_map:
             # mapped_unknown was hallucinated, in which case we will skip this map
             # and raise a warning
@@ -95,16 +95,16 @@ def get_mapped_known_concepts_and_unmapped_keywords(
                 f"WARNING: {mfg_etld1}:{concept_type.name} mapped_unknown:{mu} was not in the original unknowns list"
             )
         else:
-            if mk_labels:  # mk must not be null/None
-                for mk_label in mk_labels:
+            if mk_dict:  # mk must not be null/None
+                for mk_label in mk_dict.keys():
                     matched_known_concept = match_label_map.get(mk_label)
                     if not matched_known_concept:
                         logger.debug(
                             f"WARNING: {mfg_etld1}:{concept_type.name} mapped_known:{mk_label} was not in the original knowns list"
                         )
                     else:
-                        known_to_unknowns.setdefault(matched_known_concept, set()).add(
-                            mu
+                        known_to_unknowns.setdefault(matched_known_concept, {}).update(
+                            {mu: mk_dict[mk_label]}
                         )
 
     # Derive unmapped_unknowns
@@ -113,9 +113,9 @@ def get_mapped_known_concepts_and_unmapped_keywords(
     for mk, mus in known_to_unknowns.items():
         logger.debug(f"removing mapped_known:{mk}")
         logger.debug(f"removing mapped_unknowns:{mus}")
-        unmapped_unknowns -= (
-            mus  # NOTE: unknowns may contain hallucinations, but subtraction is safe
-        )
+        unmapped_unknowns -= set(
+            mus.keys()
+        )  # NOTE: unknowns may contain hallucinations, but subtraction is safe
 
     # pack everything and send back
     final_bundle: KnownToUnknownMap = {

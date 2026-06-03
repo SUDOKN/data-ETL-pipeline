@@ -17,22 +17,9 @@ from core.models.db.concept_ground_truth import (
 )
 from data_etl_app.models.types_and_enums import ConceptTypeEnum, GroundTruthSource
 
-from core.utils.url_util import (
-    get_normalized_url,
-    get_complete_url_with_compatible_protocol,
-)
-from core.utils.time_util import get_current_time
-from core.utils.aws.queue.priority_scrape_queue_util import (
-    push_item_to_priority_scrape_queue,
-)
-from core.utils.aws.s3.scraped_text_util import (
-    download_scraped_text_from_s3_by_mfg_etld1,
-)
-
 from core.services.manufacturer_service import (
     find_manufacturer_by_etld1,
     find_manufacturer_by_url,
-    find_random_manufacturer_url,
 )
 from core.services.user_service import find_by_email
 from data_etl_app.services.ground_truth.concept_ground_truth_service import (
@@ -42,6 +29,16 @@ from data_etl_app.services.ground_truth.concept_ground_truth_service import (
     add_correction_to_concept_ground_truth,
 )
 from data_etl_app.services.knowledge.ontology_service import get_ontology_service
+
+
+from core.utils.url_util import (
+    get_normalized_url,
+    get_complete_url_with_compatible_protocol,
+)
+from core.utils.time_util import get_current_time
+from core.utils.aws.s3.scraped_text_util import (
+    download_scraped_text_from_s3_by_mfg_etld1,
+)
 
 router = APIRouter()
 
@@ -78,24 +75,21 @@ async def fetch_concept_ground_truth_template(
             ),
         )
 
-    # if not mfg_url:  # then find a random manufacturer and set mfg_url
-    #     mfg_url = await find_random_manufacturer_url()
-
-    #     if not mfg_url:  # then raise HTTPException
-    #         raise HTTPException(
-    #             status_code=404,
-    #             detail="Something went wrong finding a random mfg_url. Please provide a valid mfg_url instead.",
-    #         )
-    # else:
-    #     try:
-    #         _, mfg_url = get_normalized_url(
-    #             get_complete_url_with_compatible_protocol(mfg_url)
-    #         )
-    #     except ValueError as e:
-    #         raise HTTPException(
-    #             status_code=400,
-    #             detail=f"Invalid URL: '{mfg_url}' has no valid hostname. Error: {str(e)}",
-    #         )
+    if not mfg_url:  # then raise HTTPException
+        raise HTTPException(
+            status_code=404,
+            detail="Something went wrong finding a random mfg_url. Please provide a valid mfg_url instead.",
+        )
+    else:
+        try:
+            _, mfg_url = get_normalized_url(
+                get_complete_url_with_compatible_protocol(mfg_url)
+            )
+        except ValueError as e:
+            raise HTTPException(
+                status_code=400,
+                detail=f"Invalid URL: '{mfg_url}' has no valid hostname. Error: {str(e)}",
+            )
 
     # fetch the manufacturer from the database
     manufacturer = await find_manufacturer_by_url(mfg_url)
@@ -158,15 +152,16 @@ async def fetch_concept_ground_truth_template(
         chunk_no=chunk_no,
     )
     if existing_concept_gt:  # then logs must be non-empty
-        last_correction_log = existing_concept_gt.correction_logs[-1]
+        last_correction_log = existing_concept_gt.corrections[-1]
         response = existing_concept_gt.model_dump()
         response["your_correction"] = HumanConceptCorrection(
             author_email=author_email,
             source=GroundTruthSource.API_SURVEY,
-            llm_evidence_correction=last_correction_log.human_correction.evidence,
-            llm_mapping_correction=last_correction_log.human_correction.mapping,  # pre-fill with last correction
+            llm_evidence_correction=last_correction_log.human_correction.llm_evidence_correction,
+            llm_mapping_correction=last_correction_log.human_correction.llm_mapping_correction,  # pre-fill with last correction
         )
         response.pop("id", None)  # remove id from response
+        response["final_results"] = await get_corrected_results(existing_concept_gt)
         return response
 
     # At this point, chunk_no was either picked randomly or provided by user, but no existing concept ground truth was found
@@ -210,8 +205,8 @@ async def fetch_concept_ground_truth_template(
                     kw: reason for kw, reason in chunk_search_stats.llm_evidence.items()
                 },
             ),
-            llm_mapping_correction=MappingResultCorrection(
-                upsert=chunk_search_stats.llm_mapping, remove=[]
+            llm_mapping_correction=MappingResultCorrection.from_raw_llm_mapping_result(
+                original_mapping_result=chunk_search_stats.llm_mapping
             ),  # pre-fill with last correction
         )
     )
@@ -297,7 +292,7 @@ async def collect_concept_extraction_ground_truth(
     )
 
     if existing_concept_gt:
-        if not existing_concept_gt.correction_logs:
+        if not existing_concept_gt.corrections:
             raise HTTPException(
                 status_code=400,
                 detail=(
@@ -308,7 +303,7 @@ async def collect_concept_extraction_ground_truth(
             )
 
         # in case two people fetched the same concept ground truth, one submitted first
-        if existing_concept_gt.correction_logs != concept_gt.correction_logs:
+        if existing_concept_gt.corrections != concept_gt.corrections:
             raise HTTPException(
                 status_code=400,
                 detail=(
@@ -333,6 +328,7 @@ async def collect_concept_extraction_ground_truth(
         )
 
     response = concept_gt.model_dump()
+    response["final_results"] = await get_corrected_results(concept_gt)
 
     response.pop("id", None)  # remove id from response
     return response
@@ -417,7 +413,7 @@ async def get_concept_coverage_stats(
                 coverage[concept_name] += 1
 
         # Accuracy metrics — only for validated (human-corrected) docs
-        if doc.correction_logs:
+        if doc.corrections:
             tp = len(results & final)
             fp = len(results - final)
             fn = len(final - results)
