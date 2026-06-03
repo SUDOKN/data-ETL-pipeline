@@ -19,6 +19,7 @@ from data_etl_app.models.types_and_enums import (
 
 from core.services.manufacturer_service import (
     find_manufacturer_by_etld1,
+    find_manufacturer_by_url,
 )
 from core.services.user_service import find_by_email
 from data_etl_app.services.ground_truth.binary_ground_truth_service import (
@@ -48,7 +49,7 @@ async def fetch_binary_classification_user_form_template(
             f"If you are using postman, you can use the `Params` tab to add a query param."
         ),
     ),
-    mfg_etld1: str = Query(description="Manufacturer effective top-level domain"),
+    mfg_url: str = Query(description="Manufacturer effective top-level domain"),
     classification_type: BinaryClassificationTypeEnum = Query(
         default=random.choice(list(BinaryClassificationTypeEnum)),
         description=f"Any one of {[concept.value for concept in BinaryClassificationTypeEnum]}",
@@ -65,13 +66,13 @@ async def fetch_binary_classification_user_form_template(
             ),
         )
 
-    manufacturer = await find_manufacturer_by_etld1(mfg_etld1)
+    manufacturer = await find_manufacturer_by_url(mfg_url)
     if not manufacturer:
         raise HTTPException(
             status_code=404,
             detail=(
-                f"Sorry, no manufacturer found with effective top-level domain: {mfg_etld1}. "
-                f"Please provide a valid mfg_etld1."
+                f"Sorry, no manufacturer found with URL: {mfg_url}. "
+                f"Please provide a valid mfg_url."
             ),
         )
 
@@ -81,7 +82,7 @@ async def fetch_binary_classification_user_form_template(
     if binary_classification_result is None:
         raise HTTPException(
             status_code=404,
-            detail=f"No LLM decision found for classification type: {classification_type.value} for manufacturer with etld1: {mfg_etld1}.",
+            detail=f"No LLM decision found for classification type: {classification_type.value} for manufacturer with URL: {mfg_url}.",
         )
     elif type(binary_classification_result) is not BinaryClassificationResult:
         raise HTTPException(
@@ -100,14 +101,14 @@ async def fetch_binary_classification_user_form_template(
             author_email=author_email,
             answer=existing_binary_gt.final_decision.answer,
             reason=existing_binary_gt.final_decision.reason,
-            source=GroundTruthSource.USER_FORM,
+            source=GroundTruthSource.API_SURVEY,
         )
         logger.debug(f"Existing binary ground truth found: {response}")
         response.pop("id", None)  # remove id from response
         return response
 
     logger.debug(
-        f"No existing binary ground truth found for mfg_etld1: {mfg_etld1}, classification_type: {classification_type}. Creating new template."
+        f"No existing binary ground truth found for mfg_url: {mfg_url}, classification_type: {classification_type}. Creating new template."
     )
     # if not, then we need to create a new binary ground truth
 
@@ -137,7 +138,7 @@ async def fetch_binary_classification_user_form_template(
         author_email=author_email,
         answer=first_chunk_stats.result.answer,
         reason=first_chunk_stats.result.reason,
-        source=GroundTruthSource.USER_FORM,
+        source=GroundTruthSource.API_SURVEY,
     )
     response.pop("id", None)  # remove id from response
 
@@ -212,7 +213,7 @@ async def collect_binary_ground_truth(
 
     existing_binary_gt = await get_binary_ground_truth(
         linked_manufacturer=manufacturer,
-        prompt_version_id=binary_gt.llm_decision.chunk_stats.prompt_version_id,
+        prompt_version_id=binary_gt.metadata.prompt_version_id,
         classification_type=binary_gt.classification_type,
     )
     if existing_binary_gt:
