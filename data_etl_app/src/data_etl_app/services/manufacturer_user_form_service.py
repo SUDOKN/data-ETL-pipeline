@@ -1,7 +1,15 @@
 from typing import Optional
 
-from core.models.field_types import MfgETLDType
-from core.models.db.manufacturer import Manufacturer
+from pymongo.errors import DuplicateKeyError
+
+from core.models.field_types import MfgETLDType, MfgURLType
+from core.models.db.manufacturer import Batch, Manufacturer
+from core.models.queue_item import EmailUserErrand
+from core.models.to_scrape_item import ToScrapeItem
+from core.utils.time_util import get_current_time
+from core.utils.aws.queue.priority_scrape_queue_util import (
+    push_item_to_priority_scrape_queue,
+)
 
 from core.models.db.manufacturer_user_form import ManufacturerUserForm
 
@@ -134,3 +142,64 @@ async def save_manufacturer_user_form(
     """
     await form.save()
     return form
+
+
+async def create_blank_manufacturer_user_form(
+    *,
+    author_email: str,
+    mfg_etld1: MfgETLDType,
+) -> ManufacturerUserForm:
+    """
+    Creates and persists a blank ManufacturerUserForm draft.
+
+    This is used by the manual registration flow when the manufacturer does not
+    already exist in Mongo or GraphDB.
+    """
+    draft = ManufacturerUserForm(
+        author_email=author_email,
+        mfg_etld1=mfg_etld1,
+        name=None,
+        founded_in=None,
+        email_addresses=None,
+        num_employees=None,
+        business_statuses=None,
+        primary_naics=None,
+        secondary_naics=None,
+        addresses=[],
+        business_desc=None,
+        products=set(),
+        certificates=[],
+        industries=[],
+        process_caps=[],
+        material_caps=[],
+        notes=None,
+    )
+
+    try:
+        await draft.save()
+        return draft
+    except DuplicateKeyError:
+        # Concurrent draft creation requests can race on the unique mfg_etld1 index.
+        existing = await get_manufacturer_user_form_by_mfg_etld1(mfg_etld1)
+        if existing:
+            return existing
+        raise
+
+
+async def enqueue_manufacturer_for_priority_scrape(
+    *,
+    author_email: str,
+    mfg_url: MfgURLType,
+    title: str,
+) -> None:
+    current_timestamp = get_current_time()
+    await push_item_to_priority_scrape_queue(
+        ToScrapeItem(
+            accessible_normalized_url=mfg_url,
+            batch=Batch(
+                title=title,
+                timestamp=current_timestamp,
+            ),
+            email_errand=EmailUserErrand(user_email=author_email),
+        ),
+    )
