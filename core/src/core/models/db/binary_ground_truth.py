@@ -65,15 +65,11 @@ class BinaryGroundTruth(Document):
 
     @computed_field
     @property
-    def final_decision(self) -> HumanBinaryDecision:
-        if not self.corrections:
-            raise ValueError("No corrections available to determine final decision.")
+    def final_decision(self) -> BaseClassificationDecision:
         for log in reversed(self.corrections):
             if log.human_decision.source == GroundTruthSource.API_SURVEY:
                 return log.human_decision
-        raise ValueError(
-            "No API_SURVEY corrections available to determine final decision."
-        )
+        return self.extraction_stats.result
 
     class Settings:
         name = "binary_ground_truths"

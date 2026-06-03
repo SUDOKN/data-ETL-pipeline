@@ -77,7 +77,7 @@ async def add_decision_to_binary_ground_truth(
     ):
         existing_binary_gt.corrections.pop()  # the new decision will replace the last one because it is from the same author
 
-    await _validate_binary_ground_truth(
+    await _validate_binary_ground_truth_correction(
         linked_manufacturer=linked_manufacturer,
         new_human_decision=new_human_decision,
         binary_ground_truth=existing_binary_gt,
@@ -107,7 +107,7 @@ async def save_new_binary_ground_truth(
     binary_gt.created_at = timestamp
     binary_gt.updated_at = timestamp
 
-    await _validate_binary_ground_truth(
+    await _validate_binary_ground_truth_correction(
         linked_manufacturer=linked_manufacturer,
         new_human_decision=new_human_decision,
         binary_ground_truth=binary_gt,
@@ -124,13 +124,13 @@ async def save_new_binary_ground_truth(
     return await binary_gt.save()
 
 
-async def _validate_binary_ground_truth(
+async def _validate_binary_ground_truth_correction(
     linked_manufacturer: Manufacturer,
     new_human_decision: HumanBinaryDecision,
     binary_ground_truth: BinaryGroundTruth,
 ) -> None:
     """
-    Validate and save the binary ground truth to the database.
+    Validate the binary ground truth correction before saving it to the database.
 
     binary_ground_truth passed may be a new or existing instance.
 
@@ -183,11 +183,11 @@ def _validate_new_human_decision(
         )
 
     logger.info(
-        f"Validating human decision: {new_human_decision} vs LLM decision: {binary_ground_truth.llm_decision}"
+        f"Validating human decision: {new_human_decision} vs LLM decision: {binary_ground_truth.extraction_stats.result}"
     )
 
     if (
-        new_human_decision.answer != binary_ground_truth.llm_decision.answer
+        new_human_decision.answer != binary_ground_truth.extraction_stats.result.answer
         and not new_human_decision.reason
     ):
         raise ValueError(
