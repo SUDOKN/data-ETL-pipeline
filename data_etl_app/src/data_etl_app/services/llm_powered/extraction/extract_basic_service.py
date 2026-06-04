@@ -11,7 +11,7 @@ from core.models.db.manufacturer import BusinessDescriptionResult
 
 from core.utils.str_util import make_json_array_parse_safe
 from open_ai_key_app.utils.token_util import num_tokens_from_string
-from litellm_proxy_app.utils.ask_llm_util import ask_llm_async as ask_gpt_async
+from litellm_proxy_app.utils.ask_llm_util import ask_llm_async
 from open_ai_key_app.models.gpt_model import (
     GPTModel,
     GPT_4o_mini,
@@ -87,7 +87,7 @@ async def _extract_address_from_chunk(
         f"_extract_address_from_chunk: extraction_timestamp({extraction_timestamp}), chunk_tokens({chunk_tokens}) for {mfg_etld1}:{keyword_label}"
     )
 
-    gpt_response = await ask_gpt_async(
+    gpt_response = await ask_llm_async(
         chunk_text, extract_prompt.text, gpt_model, model_params
     )
 
@@ -181,7 +181,7 @@ async def find_business_desc_using_only_first_chunk(
     )
     first_chunk_key = min(chunks_map.keys(), key=lambda k: int(k.split(":")[0]))
     first_chunk_text = chunks_map[first_chunk_key]
-    gpt_response = await ask_gpt_async(
+    gpt_response = await ask_llm_async(
         first_chunk_text, prompt.text, gpt_model, model_params
     )
 

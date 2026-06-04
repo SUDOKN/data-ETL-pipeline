@@ -10,7 +10,7 @@ from data_etl_app.models.skos_concept import Concept, ConceptJSONEncoder
 from data_etl_app.models.types_and_enums import ConceptTypeEnum
 
 from open_ai_key_app.utils.token_util import num_tokens_from_string
-from litellm_proxy_app.utils.ask_llm_util import ask_llm_async as ask_gpt_async
+from litellm_proxy_app.utils.ask_llm_util import ask_llm_async
 from open_ai_key_app.models.gpt_model import (
     GPT_4o_mini,
     DefaultModelParameters,
@@ -42,7 +42,7 @@ async def map_known_concepts_with_found_keywords(
     logger.debug(f"\nmapping unknown_to_known")
     logger.debug(f"context {num_tokens_from_string(context)}:{context}")
 
-    gpt_response = await ask_gpt_async(
+    gpt_response = await ask_llm_async(
         context, prompt_text, GPT_4o_mini, DefaultModelParameters
     )
 

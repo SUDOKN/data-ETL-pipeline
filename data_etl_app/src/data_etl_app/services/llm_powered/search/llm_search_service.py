@@ -12,10 +12,7 @@ from open_ai_key_app.models.gpt_model import (
     GPTModel,
     ModelParameters,
 )
-from litellm_proxy_app.utils.ask_llm_util import ask_llm_async as ask_gpt_async
-from open_ai_key_app.utils.batch_gpt_util import (
-    get_gpt_request_blob,
-)
+from litellm_proxy_app.utils.ask_llm_util import ask_llm_async
 
 logger = logging.getLogger(__name__)
 
@@ -31,7 +28,7 @@ async def llm_search(
 
     llm_results: set[str] = set()
     for _ in range(num_passes):
-        gpt_response = await ask_gpt_async(text, prompt, gpt_model, model_params)
+        gpt_response = await ask_llm_async(text, prompt, gpt_model, model_params)
 
         if not gpt_response:
             logger.error(f"Invalid gpt_response:{gpt_response}")

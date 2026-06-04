@@ -4,7 +4,7 @@ import logging
 from typing import Optional
 
 from open_ai_key_app.utils.token_util import num_tokens_from_string
-from litellm_proxy_app.utils.ask_llm_util import ask_llm_async as ask_gpt_async
+from litellm_proxy_app.utils.ask_llm_util import ask_llm_async
 from open_ai_key_app.models.gpt_model import (
     GPTModel,
     GPT_4o_mini,
@@ -146,7 +146,7 @@ async def _get_binary_classification_result_for_chunk(
         f"_binary_classify_chunk: keyword_label({keyword_label}), chunk_tokens({chunk_tokens}) for {manufacturer_etld}"
     )
 
-    gpt_response = await ask_gpt_async(
+    gpt_response = await ask_llm_async(
         chunk_txt, binary_prompt, gpt_model, model_params
     )
 
