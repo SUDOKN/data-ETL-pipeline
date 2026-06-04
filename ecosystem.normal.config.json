@@ -2,14 +2,14 @@
   "apps": [
     {
       "name": "litellm-proxy",
-      "script": "./.venv/bin/litellm",
-      "interpreter": "none",
+      "script": "./litellm_proxy_app/src/litellm_proxy_app/scripts/start_litellm.sh",
+      "interpreter": "bash",
       "args": "--config ./litellm_proxy_app/src/litellm_proxy_app/config/litellm.yaml --port 4000",
       "cwd": "./",
       "instances": 1,
       "autorestart": true,
       "watch": false,
-      "max_memory_restart": "512M",
+      "max_memory_restart": "1024M",
       "log_date_format": "YYYY-MM-DD HH:mm:ss Z",
       "error_file": "./logs/litellm-proxy-error.log",
       "out_file": "./logs/litellm-proxy-out.log",
@@ -25,8 +25,7 @@
       "env": {
         "DATABASE_URL": "postgresql://litellm:litellm@localhost:5432/litellm",
         "LITELLM_MASTER_KEY": "sk-master-key-local-sudokn-amar",
-        "PYTHONUNBUFFERED": "1",
-        "PATH": "./.venv/bin:/usr/local/bin:/usr/bin:/bin"
+        "PYTHONUNBUFFERED": "1"
       }
     },
     {
