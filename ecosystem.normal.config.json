@@ -29,7 +29,7 @@
       }
     },
     {
-      "name": "extract-q-bot",
+      "name": "eq-bot",
       "script": "./data_etl_app/src/data_etl_app/bots/new_extract_queue_bot.py",
       "interpreter": "./.venv/bin/python3",
       "args": "--priority 0 --max_concurrent_manufacturers 25 --debug INFO",
@@ -39,9 +39,9 @@
       "watch": false,
       "max_memory_restart": "1G",
       "log_date_format": "YYYY-MM-DD HH:mm:ss Z",
-      "error_file": "./logs/extract-queue-bot-normal-error.log",
-      "out_file": "./logs/extract-queue-bot-normal-out.log",
-      "log_file": "./logs/extract-queue-bot-normal-combined.log",
+      "error_file": "./logs/eq-bot-normal-error.log",
+      "out_file": "./logs/eq-bot-normal-out.log",
+      "log_file": "./logs/eq-bot-normal-combined.log",
       "time": true,
       "kill_timeout": 2000,
       "shutdown_with_message": true,
@@ -58,7 +58,7 @@
       }
     },
     {
-      "name": "scrape-q-bot",
+      "name": "sq-bot",
       "script": "./scraper_app/src/scraper_app/bots/new_scrape_queue_bot.py",
       "interpreter": "./.venv/bin/python3",
       "args": "--priority 0 --max_concurrent_browsers 5 --max_depth 5 --scrape_timeout 60",
@@ -68,9 +68,9 @@
       "watch": false,
       "max_memory_restart": "2G",
       "log_date_format": "YYYY-MM-DD HH:mm:ss Z",
-      "error_file": "./logs/scrape-queue-bot-normal-error.log",
-      "out_file": "./logs/scrape-queue-bot-normal-out.log",
-      "log_file": "./logs/scrape-queue-bot-normal-combined.log",
+      "error_file": "./logs/sq-bot-normal-error.log",
+      "out_file": "./logs/sq-bot-normal-out.log",
+      "log_file": "./logs/sq-bot-normal-combined.log",
       "time": true,
       "kill_timeout": 2000,
       "shutdown_with_message": true,
