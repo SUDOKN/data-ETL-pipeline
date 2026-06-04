@@ -57,13 +57,14 @@ class ConceptGroundTruth(Document):
     scraped_text_file_version_id: S3FileVersionIDType
     concept_type: ConceptTypeEnum
 
-    # context ids
+    # chunk identifiers
     chunk_bounds: str
+    chunk_text: str
     chunk_no: int  # used as navigation parameter
     last_chunk_no: int  # informational for the end user
-    chunk_text: str
-    chunk_strat: ChunkingStrategy
 
+    # following is a copy of what was extracted at the time of creating this ground truth
+    # stored originally in the linked manufacturer
     metadata: ConceptExtractionMetadata
     extraction_stats: ConceptExtractionStats
 
