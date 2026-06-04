@@ -22,8 +22,13 @@ STORED_CHECKSUM="$(cat "$PRISMA_CHECKSUM_FILE" 2>/dev/null || echo '')"
 # Also regenerate if checksum is empty (schema not found or no hash tool available).
 if [ -z "$CURRENT_CHECKSUM" ] || [ "$CURRENT_CHECKSUM" != "$STORED_CHECKSUM" ]; then
     echo "Prisma schema changed or client not generated. Running prisma generate..."
-    "$PROJ_ROOT/.venv/bin/prisma" generate --schema "$PRISMA_SCHEMA"
-    echo "$CURRENT_CHECKSUM" > "$PRISMA_CHECKSUM_FILE"
+    # Allow non-zero exit (e.g. binaryTargets warning) so set -e doesn't skip the checksum write.
+    "$PROJ_ROOT/.venv/bin/prisma" generate --schema "$PRISMA_SCHEMA" || true
+    if [ -n "$CURRENT_CHECKSUM" ]; then
+        echo "$CURRENT_CHECKSUM" > "$PRISMA_CHECKSUM_FILE" \
+            && echo "Prisma checksum written to $PRISMA_CHECKSUM_FILE" \
+            || echo "WARNING: failed to write Prisma checksum to $PRISMA_CHECKSUM_FILE"
+    fi
 fi
 
 # Optionally clear stuck failed Prisma migrations.
