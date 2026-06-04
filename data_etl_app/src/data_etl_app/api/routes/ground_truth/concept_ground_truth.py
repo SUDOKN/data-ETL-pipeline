@@ -189,7 +189,6 @@ async def fetch_concept_ground_truth_template(
         chunk_bounds=chunk_bounds,
         chunk_no=chunk_no,
         last_chunk_no=last_chunk_no,
-        chunk_strat=concept_extraction_results.metadata.chunk_strat,
         metadata=concept_extraction_results.metadata,
         extraction_stats=chunk_search_stats,
         corrections=[],  # empty logs initially

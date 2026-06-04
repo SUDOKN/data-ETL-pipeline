@@ -3,8 +3,8 @@
     "bsonType": "object",
     "required": [
       "mfg_etld1",
-      "classification_type",
       "scraped_text_file_version_id",
+      "classification_type",
       "chunk_bounds",
       "chunk_text",
       "metadata",
@@ -25,15 +25,15 @@
       "mfg_etld1": {
         "bsonType": "string"
       },
+      "scraped_text_file_version_id": {
+        "bsonType": "string"
+      },
       "classification_type": {
         "enum": [
           "is_manufacturer",
           "is_product_manufacturer",
           "is_contract_manufacturer"
         ],
-        "bsonType": "string"
-      },
-      "scraped_text_file_version_id": {
         "bsonType": "string"
       },
       "chunk_bounds": {

@@ -50,9 +50,10 @@ class BinaryGroundTruth(Document):
     updated_at: datetime = Field(default_factory=lambda: get_current_time())
 
     mfg_etld1: MfgETLDType
+    scraped_text_file_version_id: S3FileVersionIDType
     classification_type: BinaryClassificationTypeEnum
 
-    scraped_text_file_version_id: S3FileVersionIDType
+    # chunk identifiers
     chunk_bounds: str
     chunk_text: str
 
