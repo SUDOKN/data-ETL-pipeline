@@ -1,0 +1,37 @@
+# LiteLLM Proxy configuration — Mode B (store_model_in_db: true).
+#
+# Provider API keys and model entries are NOT listed here. They are stored in
+# Postgres and registered via POST /model/new (or the proxy UI at /ui).
+# This file only sets proxy-level behavior and router settings.
+#
+# Start the proxy:
+#   litellm --config ./litellm_proxy_app/src/litellm_proxy_app/config/litellm.yaml --port 4000
+#
+# Required env vars (set in PM2 env block or exported in shell):
+#   DATABASE_URL         postgresql://litellm:litellm@localhost:5432/litellm
+#   LITELLM_MASTER_KEY   sk-master-key-change-me
+
+# Empty because all models are stored in Postgres (store_model_in_db: true).
+model_list: []
+
+litellm_settings:
+  # Strip unsupported params instead of raising an error when calling providers
+  # that don't support every OpenAI parameter (e.g., frequency_penalty for Gemini).
+  drop_params: true
+  # Total time (seconds) to wait for a response before raising TimeoutError.
+  request_timeout: 600
+
+general_settings:
+  # Store models, keys, and request logs in Postgres via Prisma.
+  store_model_in_db: true
+  # Master key for authenticating management API calls (/model/new, /key/generate …).
+  master_key: 'os.environ/LITELLM_MASTER_KEY'
+  # Postgres connection string for LiteLLM's Prisma ORM.
+  database_url: 'os.environ/DATABASE_URL'
+
+router_settings:
+  # Route each request to the model instance with the fewest in-flight requests.
+  routing_strategy: 'least-busy'
+  # Retry on transient errors before propagating the exception.
+  num_retries: 3
+  retry_after: 5

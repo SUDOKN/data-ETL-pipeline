@@ -13,15 +13,15 @@ requires-python = ">=3.12"
 
 # Runtime dependencies for your app
 dependencies = [
-  "aiofiles>=23.1.0", # Async file operations
+  "aiofiles>=23.1.0",        # Async file operations
   "python-multipart>=0.0.9",
 
   "rdflib>=7.0.0",          # RDF library
   "email_validator>=2.0.0",
 
-  # Tell pip that open_ai_key_app and core are also dependencies:
+  # Tell pip that open_ai_key_app, litellm_proxy_app and core are also dependencies:
   "open_ai_key_app>=0.1.0",
-  # ^ This means: “install open_ai_key_app from that path as version 0.1.0”
+  "litellm_proxy_app>=0.1.0",
   "core>=0.1.0",
   "googlemaps>=4.10.0",
 

@@ -1,0 +1,26 @@
+version: "3.9"
+
+# PostgreSQL 16 for LiteLLM proxy (stores models, virtual keys, and request logs).
+# Start with: docker compose -f postgres_infra/docker-compose.yml up -d
+
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: sudokn_postgres
+    restart: unless-stopped
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: litellm
+      POSTGRES_PASSWORD: litellm
+      POSTGRES_DB: litellm
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U litellm -d litellm"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  postgres_data:

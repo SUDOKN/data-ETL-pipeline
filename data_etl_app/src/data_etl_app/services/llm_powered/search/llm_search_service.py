@@ -12,9 +12,7 @@ from open_ai_key_app.models.gpt_model import (
     GPTModel,
     ModelParameters,
 )
-from open_ai_key_app.utils.ask_gpt_util import (
-    ask_gpt_async,
-)
+from litellm_proxy_app.utils.ask_llm_util import ask_llm_async as ask_gpt_async
 from open_ai_key_app.utils.batch_gpt_util import (
     get_gpt_request_blob,
 )
