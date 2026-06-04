@@ -9,10 +9,18 @@ export PATH="$PROJ_ROOT/.venv/bin:$PATH"
 PRISMA_SCHEMA="$PROJ_ROOT/.venv/lib/python3.12/site-packages/litellm/proxy/schema.prisma"
 PRISMA_CHECKSUM_FILE="$PROJ_ROOT/.venv/.prisma_schema_checksum"
 
-CURRENT_CHECKSUM="$(shasum -a 256 "$PRISMA_SCHEMA" 2>/dev/null | awk '{print $1}')"
+# Use sha256sum (Linux/EC2) with shasum (macOS) as fallback.
+if command -v sha256sum &>/dev/null; then
+    CURRENT_CHECKSUM="$(sha256sum "$PRISMA_SCHEMA" 2>/dev/null | awk '{print $1}')"
+elif command -v shasum &>/dev/null; then
+    CURRENT_CHECKSUM="$(shasum -a 256 "$PRISMA_SCHEMA" 2>/dev/null | awk '{print $1}')"
+else
+    CURRENT_CHECKSUM=""
+fi
 STORED_CHECKSUM="$(cat "$PRISMA_CHECKSUM_FILE" 2>/dev/null || echo '')"
 
-if [ "$CURRENT_CHECKSUM" != "$STORED_CHECKSUM" ]; then
+# Also regenerate if checksum is empty (schema not found or no hash tool available).
+if [ -z "$CURRENT_CHECKSUM" ] || [ "$CURRENT_CHECKSUM" != "$STORED_CHECKSUM" ]; then
     echo "Prisma schema changed or client not generated. Running prisma generate..."
     "$PROJ_ROOT/.venv/bin/prisma" generate --schema "$PRISMA_SCHEMA"
     echo "$CURRENT_CHECKSUM" > "$PRISMA_CHECKSUM_FILE"
