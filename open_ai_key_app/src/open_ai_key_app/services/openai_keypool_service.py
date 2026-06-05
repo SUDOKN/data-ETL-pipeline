@@ -9,7 +9,7 @@ import os
 import logging
 import random
 
-from open_ai_key_app.models.gpt_model import MODEL_REGISTRY
+from litellm_proxy_app.models.llm_model import MODEL_REGISTRY
 from open_ai_key_app.models.keyslot import KeySlot
 from open_ai_key_app.utils.redis_key_manager_util import get_all_openai_keys
 
@@ -43,7 +43,7 @@ class OpenAIKeyPool:
             KeySlot(
                 name=f"{key_name}:{model.model_name}",
                 api_key=api_key,
-                token_limit_per_min=model.token_limit_per_minute,
+                token_limit_per_min=100000,  # Placeholder value; can be customized per key/model if needed
                 model_name=model.model_name,
             )
             for key_name, api_key in key_map.items()

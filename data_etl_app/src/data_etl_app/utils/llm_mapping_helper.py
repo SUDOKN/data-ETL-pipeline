@@ -3,13 +3,12 @@ import logging
 from datetime import datetime
 from typing import TypedDict
 
-from core.models.field_types import LLMMappingType, RawLLMMappingResult
+from core.models.field_types import RawLLMMappingResult
 from core.models.prompt import Prompt
 from core.models.db.gpt_batch_request import GPTBatchRequest
 from data_etl_app.models.types_and_enums import ConceptTypeEnum
 from data_etl_app.models.skos_concept import Concept, ConceptJSONEncoder
-from open_ai_key_app.models.gpt_model import No_model
-from open_ai_key_app.models.llm_model import LLM_Model
+from litellm_proxy_app.models.llm_model import LLM_Model
 from open_ai_key_app.models.gpt_model_params import GPTModelParams
 
 from core.services.gpt_batch_request_service import create_base_gpt_batch_request

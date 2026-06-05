@@ -26,7 +26,6 @@ from data_etl_app.services.extraction.deferred_binary_classification_service imp
     parse_binary_classification_result_from_gpt_response,
 )
 from open_ai_key_app.models.field_types import GPTBatchRequestCustomID
-from open_ai_key_app.models.llm_model import LLM_Model
 
 logger = logging.getLogger(__name__)
 

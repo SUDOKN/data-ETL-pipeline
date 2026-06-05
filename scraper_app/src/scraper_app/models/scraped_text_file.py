@@ -1,10 +1,12 @@
 from __future__ import (
     annotations,
 )  # This allows you to write self-referential types without quotes, because type annotations are no longer evaluated at function/class definition time
+import litellm
 import logging
 from datetime import datetime
-from open_ai_key_app.models.llm_model import LLM_Model
 from pydantic import BaseModel, ConfigDict, Field, computed_field
+
+from litellm_proxy_app.models.llm_model import LLM_Model
 
 from data_etl_app.services.ground_truth.concept_ground_truth_service import (
     does_a_cgt_exist_with_scraped_file_version,
@@ -16,7 +18,7 @@ from data_etl_app.services.ground_truth.binary_ground_truth_service import (
     does_a_bgt_exist_with_scraped_file_version,
 )
 
-from open_ai_key_app.utils.token_util import num_tokens_from_string
+
 from scraper_app.services.url_scraper_service import ScrapingResult
 from core.models.db.manufacturer import Batch
 from core.utils.aws.s3.scraped_text_util import (
@@ -84,7 +86,9 @@ class ScrapedTextFile(BaseModel):
             assert (
                 last_modified_on is not None
             ), "Last modified date should not be None if file exists."
-            num_tokens = num_tokens_from_string(scraped_text, llm_model)
+            num_tokens = litellm.token_counter(
+                model=llm_model.model_name, text=scraped_text
+            )
             tags = await get_scraped_text_object_tags_by_mfg_etld1(
                 mfg_etld1, s3_version_id
             )

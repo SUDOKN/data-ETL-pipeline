@@ -15,8 +15,8 @@ from core.utils.batch_jsonl_file_writer import (
 from data_etl_app.services.knowledge.ontology_service import OntologyService
 from data_etl_app.services.knowledge.prompt_service import PromptService
 from open_ai_key_app.models.gpt_model_params import GPTModelParams
-from open_ai_key_app.models.llm_model import LLM_Model
-from open_ai_key_app.models.gpt_model import GPT_4_1_mini
+from litellm_proxy_app.models.llm_model import LLM_Model
+from litellm_proxy_app.models.llm_model import GPT_4_1_mini
 
 from core.services.manufacturer_service import (
     find_manufacturer_by_etld1,

@@ -5,7 +5,7 @@ from datetime import datetime
 from typing import Callable, Awaitable
 
 from core.dependencies.load_core_env import load_core_env
-from open_ai_key_app.models.gpt_model import GPT_4o_mini
+from litellm_proxy_app.models.llm_model import GPT_4o_mini
 from scraper_app.dependencies.load_scraper_env import load_scraper_env
 from open_ai_key_app.dependencies.load_open_ai_app_env import load_open_ai_app_env
 from data_etl_app.dependencies.load_data_etl_env import load_data_etl_env
@@ -35,7 +35,7 @@ from core.models.binary_classification_result import (
 )
 from data_etl_app.models.types_and_enums import BinaryClassificationTypeEnum
 from open_ai_key_app.models.gpt_model_params import GPTModelParams
-from open_ai_key_app.models.llm_model import LLM_Model
+from litellm_proxy_app.models.llm_model import LLM_Model
 from scraper_app.models.scraped_text_file import ScrapedTextFile
 
 from core.services.user_service import is_user_MEP

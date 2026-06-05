@@ -19,7 +19,7 @@ from data_etl_app.models.pipeline_nodes.basic_field.address_extraction_node impo
     AddressExtractionNode,
 )
 from data_etl_app.models.pipeline_nodes.reconcile_node import ReconcileNode
-from open_ai_key_app.models.llm_model import LLM_Model
+from litellm_proxy_app.models.llm_model import LLM_Model
 from open_ai_key_app.models.gpt_model_params import GPTModelParams
 from scraper_app.models.scraped_text_file import ScrapedTextFile
 

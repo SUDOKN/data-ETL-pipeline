@@ -18,7 +18,7 @@ from data_etl_app.models.types_and_enums import KeywordTypeEnum
 from data_etl_app.models.pipeline_nodes.base_node import PipelineContext
 from data_etl_app.models.pipeline_nodes.reconcile_node import ReconcileNode
 from open_ai_key_app.models.gpt_model_params import GPTModelParams
-from open_ai_key_app.models.llm_model import LLM_Model
+from litellm_proxy_app.models.llm_model import LLM_Model
 from scraper_app.models.scraped_text_file import ScrapedTextFile
 
 from core.services.manufacturer_service import update_manufacturer

@@ -1,10 +1,11 @@
 import asyncio
 import logging
+import litellm
 from typing import Dict, Optional
 
 from core.models.prompt import Prompt
-from open_ai_key_app.models.llm_model import LLM_Model
-from open_ai_key_app.utils.token_util import num_tokens_from_string
+from litellm_proxy_app.models.llm_model import LLM_Model
+
 from data_etl_app.utils.prompt_s3_util import download_prompt, get_prompt_filename
 
 logger = logging.getLogger(__name__)
@@ -93,7 +94,9 @@ class PromptService:
             s3_version_id=actual_version_id,
             name=prompt_name,
             text=prompt_content,
-            num_tokens=num_tokens_from_string(prompt_content, llm_model),
+            num_tokens=litellm.token_counter(
+                model=llm_model.model_name, text=prompt_content
+            ),
         )
 
     async def refresh(self) -> None:

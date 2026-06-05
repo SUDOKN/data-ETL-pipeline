@@ -25,7 +25,7 @@ from data_etl_app.models.pipeline_nodes.concept.concept_mapping_node import (
 )
 from data_etl_app.models.pipeline_nodes.reconcile_node import ReconcileNode
 from data_etl_app.models.skos_concept import Concept
-from open_ai_key_app.models.llm_model import LLM_Model
+from litellm_proxy_app.models.llm_model import LLM_Model
 from open_ai_key_app.models.gpt_model_params import GPTModelParams
 from scraper_app.models.scraped_text_file import ScrapedTextFile
 

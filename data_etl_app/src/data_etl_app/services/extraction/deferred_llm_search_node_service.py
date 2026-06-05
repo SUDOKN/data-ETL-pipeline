@@ -11,7 +11,7 @@ from data_etl_app.models.types_and_enums import (
     LLMExtractedFieldTypeEnum,
 )
 from open_ai_key_app.models.field_types import GPTBatchRequestCustomID
-from open_ai_key_app.models.llm_model import LLM_Model
+from litellm_proxy_app.models.llm_model import LLM_Model
 from open_ai_key_app.models.gpt_model_params import GPTModelParams
 
 

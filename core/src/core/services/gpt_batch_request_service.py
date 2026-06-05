@@ -12,8 +12,8 @@ from core.models.gpt_batch_response_blob import (
     GPTBatchResponse,
 )
 
-from open_ai_key_app.models.llm_model import LLM_Model
-from open_ai_key_app.models.gpt_model import No_model
+from litellm_proxy_app.models.llm_model import LLM_Model
+from litellm_proxy_app.models.llm_model import No_model
 from open_ai_key_app.models.gpt_model_params import GPTModelParams
 from open_ai_key_app.utils.ask_gpt_util import fetch_gpt_batch_response
 from open_ai_key_app.utils.batch_gpt_util import (

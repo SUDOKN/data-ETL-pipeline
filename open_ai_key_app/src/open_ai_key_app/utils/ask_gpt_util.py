@@ -1,23 +1,24 @@
+import litellm
 import openai
 import re
 import asyncio
 import logging
-import httpx
 import time
 import uuid
 from typing import Optional
 from openai.types.chat import ChatCompletion
 
 from core.models.gpt_batch_response_blob import GPTBatchResponse
-from core.models.gpt_batch_request_blob import GPTBatchRequestBlob
-from open_ai_key_app.models.llm_model import LLM_Model
+from litellm_proxy_app.models.llm_model import LLM_Model
+from litellm_proxy_app.models.llm_model_params import LLMModelParams
 from open_ai_key_app.models.gpt_model_params import GPTModelParams, GPTSyncRequestBody
 
 from open_ai_key_app.services.openai_keypool_service import keypool
+
 from data_etl_app.utils.gpt_batch_request_util import (
     build_response_from_chat_completion,
 )
-from open_ai_key_app.utils.token_util import num_tokens_from_string
+from litellm_proxy_app.utils.ask_llm_util import fetch_llm_chat_completion_result
 
 logger = logging.getLogger(__name__)
 
@@ -26,9 +27,9 @@ async def ask_gpt(
     context: str,
     prompt: str,
     gpt_model: LLM_Model,
-    model_params: GPTModelParams,
+    model_params: LLMModelParams,
 ) -> Optional[str]:
-    response = await fetch_gpt_chat_completion_result(
+    response = await fetch_llm_chat_completion_result(
         context=context,
         prompt=prompt,
         gpt_model=gpt_model,
@@ -48,7 +49,7 @@ async def fetch_gpt_batch_response(
     if not batch_id:
         raise ValueError("batch_id must be provided for fetch_gpt_batch_response.")
 
-    response = await fetch_gpt_chat_completion_result(
+    response = await fetch_llm_chat_completion_result(
         context=context,
         prompt=prompt,
         gpt_model=gpt_model,
@@ -78,8 +79,8 @@ async def fetch_gpt_chat_completion_result(
         f"[Request {request_id}] Starting fetch_gpt_chat_completion_result request"
     )
 
-    tokens_prompt = num_tokens_from_string(prompt, gpt_model)
-    tokens_context = num_tokens_from_string(context, gpt_model)
+    tokens_prompt = litellm.token_counter(model=gpt_model.model_name, text=prompt)
+    tokens_context = litellm.token_counter(model=gpt_model.model_name, text=context)
     tokens_needed = tokens_prompt + tokens_context + model_params.max_completion_tokens
 
     if tokens_needed > gpt_model.max_context_tokens:

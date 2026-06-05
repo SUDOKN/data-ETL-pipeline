@@ -11,7 +11,7 @@ from data_etl_app.models.types_and_enums import (
     BasicFieldTypeEnum,
 )
 from data_etl_app.models.chunking_strat import ChunkingStrategy
-from open_ai_key_app.models.llm_model import LLM_Model
+from litellm_proxy_app.models.llm_model import LLM_Model
 
 logger = logging.getLogger(__name__)
 

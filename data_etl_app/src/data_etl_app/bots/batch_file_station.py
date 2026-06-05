@@ -23,9 +23,9 @@ load_open_ai_app_env()
 
 from core.models.db.api_key_bundle import APIKeyBundle
 from core.models.db.gpt_batch import GPTBatch, GPTBatchStatus
-from open_ai_key_app.models.gpt_model import GPT_4o_mini
+from litellm_proxy_app.models.llm_model import GPT_4o_mini
 from open_ai_key_app.models.gpt_model_params import GPTModelParams
-from open_ai_key_app.models.llm_model import LLM_Model
+from litellm_proxy_app.models.llm_model import LLM_Model
 from scraper_app.models.scraped_text_file import ScrapedTextFile
 
 from core.services.gpt_batch_request_queries import (

@@ -1,17 +1,14 @@
 import asyncio
 import logging
+import litellm
 
 from core.models.gpt_batch_request_blob import GPTBatchRequestBlob
-from open_ai_key_app.models.llm_model import LLM_Model
+from litellm_proxy_app.models.llm_model import LLM_Model
 from open_ai_key_app.models.gpt_model_params import (
     GPTRequestBody,
     GPTModelParams,
     GPTModelParams,
 )
-
-from open_ai_key_app.services.openai_keypool_service import keypool
-
-from open_ai_key_app.utils.token_util import num_tokens_from_string
 
 logger = logging.getLogger(__name__)
 
@@ -57,8 +54,8 @@ def get_gpt_request_blob(
 
     Creates a GPT batch request blob with token counting and validation.
     """
-    tokens_prompt = num_tokens_from_string(prompt, gpt_model)
-    tokens_context = num_tokens_from_string(context, gpt_model)
+    tokens_prompt = litellm.token_counter(model=gpt_model.model_name, text=prompt)
+    tokens_context = litellm.token_counter(model=gpt_model.model_name, text=context)
     input_tokens = tokens_prompt + tokens_context
     tokens_needed = input_tokens + model_params.max_completion_tokens
 

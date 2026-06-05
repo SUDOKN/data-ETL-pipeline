@@ -11,8 +11,8 @@ from data_etl_app.models.pipeline_nodes.classification.binary_reconcile_node imp
     BinaryClassificationTypeEnum,
 )
 
-# from open_ai_key_app.models.gpt_model import GPT_4o_mini
-from open_ai_key_app.models.llm_model import LLM_Model
+# from litellm_proxy_app.models.llm_model import GPT_4o_mini
+from litellm_proxy_app.models.llm_model import LLM_Model
 from open_ai_key_app.models.gpt_model_params import GPTModelParams
 from scraper_app.models.scraped_text_file import ScrapedTextFile
 

@@ -49,8 +49,8 @@ from scraper_app.models.scraped_text_file import ScrapedTextFile
 from scraper_app.services.url_scraper_service import (
     ScraperService,
 )
-from open_ai_key_app.models.gpt_model import GPT_5_2
-from open_ai_key_app.models.llm_model import LLM_Model
+from litellm_proxy_app.models.llm_model import GPT_5_2
+from litellm_proxy_app.models.llm_model import LLM_Model
 
 from core.utils.url_util import get_etld1_from_host
 

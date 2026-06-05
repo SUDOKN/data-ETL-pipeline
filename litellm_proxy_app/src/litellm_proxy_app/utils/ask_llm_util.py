@@ -2,10 +2,13 @@ import os
 import logging
 import time
 import uuid
-from typing import Optional
-
 import litellm
+from typing import Optional
 from openai import AsyncOpenAI
+from openai.types.chat import ChatCompletion
+
+from litellm_proxy_app.models.llm_model import LLM_Model
+from litellm_proxy_app.models.llm_model_params import LLMModelParams, LLMSamplingParams
 
 logger = logging.getLogger(__name__)
 
@@ -26,12 +29,27 @@ def _get_client() -> AsyncOpenAI:
     return _client
 
 
-async def ask_llm_async(
+async def ask_gpt(
     context: str,
     prompt: str,
-    gpt_model,  # duck-typed: needs .model_name, .max_context_tokens, .safe_completion_tokens
-    model_params,  # duck-typed: needs .temperature, .top_p, .presence_penalty, .frequency_penalty, .max_tokens
+    gpt_model: LLM_Model,
+    model_params: LLMModelParams,
 ) -> Optional[str]:
+    response = await fetch_llm_chat_completion_result(
+        context=context,
+        prompt=prompt,
+        gpt_model=gpt_model,
+        model_params=model_params,
+    )
+    return response.choices[0].message.content
+
+
+async def fetch_llm_chat_completion_result(
+    context: str,
+    prompt: str,
+    gpt_model: LLM_Model,
+    model_params: LLMModelParams,
+) -> ChatCompletion:
     """
     Drop-in replacement for open_ai_key_app.utils.ask_gpt_util.ask_gpt_async.
 
@@ -51,12 +69,7 @@ async def ask_llm_async(
     # the Anthropic/Google tokeniser for other providers.
     tokens_prompt = litellm.token_counter(model=gpt_model.model_name, text=prompt)
     tokens_context = litellm.token_counter(model=gpt_model.model_name, text=context)
-    max_response_tokens = (
-        model_params.max_tokens
-        if model_params.max_tokens
-        else gpt_model.safe_completion_tokens
-    )
-    tokens_needed = tokens_prompt + tokens_context + max_response_tokens
+    tokens_needed = tokens_prompt + tokens_context + model_params.max_completion_tokens
 
     if tokens_needed > gpt_model.max_context_tokens:
         elapsed = time.time() - start_time
@@ -70,7 +83,7 @@ async def ask_llm_async(
 
     logger.debug(
         f"[Request {request_id}] context tokens: {tokens_context}, prompt tokens: {tokens_prompt}, "
-        f"max response tokens: {max_response_tokens}, total tokens needed: {tokens_needed}."
+        f"max response tokens: {model_params.max_completion_tokens}, total tokens needed: {tokens_needed}."
     )
 
     client = _get_client()
@@ -82,11 +95,12 @@ async def ask_llm_async(
             {"role": "system", "content": prompt},
             {"role": "user", "content": context},
         ],
-        max_completion_tokens=max_response_tokens,
+        max_completion_tokens=model_params.max_completion_tokens,
         temperature=model_params.temperature,
         top_p=model_params.top_p,
         presence_penalty=model_params.presence_penalty,
         frequency_penalty=model_params.frequency_penalty,
+        seed=model_params.seed,
     )
 
     api_call_duration = time.time() - api_call_start
@@ -98,4 +112,4 @@ async def ask_llm_async(
         f"Received {len(response.choices)} choices."
     )
 
-    return response.choices[0].message.content
+    return response

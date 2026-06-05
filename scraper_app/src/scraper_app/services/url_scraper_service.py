@@ -5,6 +5,7 @@ import random
 import sys
 import signal
 import atexit
+import litellm
 
 from dataclasses import dataclass
 from typing import List, Optional
@@ -12,7 +13,6 @@ from urllib.parse import urlparse
 from queue import Queue, Empty
 from concurrent.futures import ThreadPoolExecutor
 
-from open_ai_key_app.models.llm_model import LLM_Model
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.common.exceptions import (
@@ -21,9 +21,9 @@ from selenium.common.exceptions import (
     StaleElementReferenceException,
 )
 
-from core.utils.url_util import get_final_landing_url
-from open_ai_key_app.utils.token_util import num_tokens_from_string
+from litellm_proxy_app.models.llm_model import LLM_Model
 
+from core.utils.url_util import get_final_landing_url
 from scraper_app.utils.selenium import (
     ChromeDriverFactory,
     LegacyDriverFactory,
@@ -77,7 +77,7 @@ class ScrapingResult:
 
     @property
     def num_tokens(self) -> int:
-        return num_tokens_from_string(self.content, self.llm_model)
+        return litellm.token_counter(model=self.llm_model.model_name, text=self.content)
 
     def __str__(self) -> str:
         timeout_info = " (TIMED OUT)" if self.timed_out else ""
@@ -108,7 +108,7 @@ class ScrapingResult:
         llm_model: LLM_Model,
         timed_out: bool = False,
     ) -> bool:
-        num_tokens = num_tokens_from_string(content, llm_model)
+        num_tokens = litellm.token_counter(model=llm_model.model_name, text=content)
         success_rate = cls.get_success_rate(urls_scraped, urls_failed)
         return 30 < num_tokens and success_rate > 0.8 and not timed_out
 

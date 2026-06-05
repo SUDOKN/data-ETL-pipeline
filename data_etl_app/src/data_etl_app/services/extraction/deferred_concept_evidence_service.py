@@ -20,12 +20,12 @@ from core.models.deferred_concept_extraction import (
 from data_etl_app.models.pipeline_nodes.concept.concept_search_node import (
     ConceptSearchNode,
 )
-from data_etl_app.models.skos_concept import ConceptJSONEncoder
+
 from data_etl_app.models.types_and_enums import ConceptTypeEnum
 from open_ai_key_app.models.gpt_model_params import GPTModelParams
 from open_ai_key_app.models.field_types import GPTBatchRequestCustomID
-from open_ai_key_app.models.gpt_model import No_model
-from open_ai_key_app.models.llm_model import LLM_Model
+from litellm_proxy_app.models.llm_model import No_model
+from litellm_proxy_app.models.llm_model import LLM_Model
 from open_ai_key_app.models.gpt_model_params import GPTModelParams
 
 from core.services.gpt_batch_request_service import (

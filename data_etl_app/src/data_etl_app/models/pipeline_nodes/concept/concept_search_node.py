@@ -13,7 +13,6 @@ if TYPE_CHECKING:
         ConceptEvidenceNode,
     )
 
-from open_ai_key_app.models.llm_model import LLM_Model
 
 logger = logging.getLogger(__name__)
 

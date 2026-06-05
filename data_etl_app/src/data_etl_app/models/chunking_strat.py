@@ -1,7 +1,7 @@
 from pydantic import BaseModel
 
 from core.models.prompt import Prompt
-from open_ai_key_app.models.llm_model import LLM_Model
+from litellm_proxy_app.models.llm_model import LLM_Model
 
 
 class ChunkingStrategy(BaseModel):

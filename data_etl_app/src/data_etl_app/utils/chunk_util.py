@@ -3,9 +3,9 @@ import logging
 import time
 import asyncio
 from concurrent.futures import ThreadPoolExecutor
+import litellm
 
-from open_ai_key_app.models.llm_model import LLM_Model
-from open_ai_key_app.utils.token_util import num_tokens_from_string
+from litellm_proxy_app.models.llm_model import LLM_Model
 
 logger = logging.getLogger(__name__)
 
@@ -122,7 +122,7 @@ def get_roughly_even_chunks(
         max_chunks: Maximum number of chunks to generate. If None, generates all chunks.
     """
     num_divisions = 1
-    total_tokens = num_tokens_from_string(text, llm_model)
+    total_tokens = litellm.token_counter(model=llm_model.model_name, text=text)
 
     # Find how many divisions we need to get close to our target
     while total_tokens // num_divisions > max_tokens_allowed_per_chunk:
@@ -167,7 +167,7 @@ def get_chunks_respecting_line_boundaries_sync(
     line_info: list[tuple[str, int, int, int]] = []
     char_offset = 0
     for raw_line in lines_with_ends:
-        line_tokens = num_tokens_from_string(raw_line, llm_model)
+        line_tokens = litellm.token_counter(model=llm_model.model_name, text=raw_line)
         start = char_offset
         length = len(raw_line)
         end = char_offset + length
@@ -344,7 +344,7 @@ def get_chunks_respecting_line_boundaries_with_hard_limit(
     line_info: list[tuple[str, int, int, int]] = []
     char_offset = 0
     for raw_line in lines_with_ends:
-        line_tokens = num_tokens_from_string(raw_line, llm_model)
+        line_tokens = litellm.token_counter(model=llm_model.model_name, text=raw_line)
         start = char_offset
         length = len(raw_line)
         end = char_offset + length

@@ -1,26 +1,30 @@
 from __future__ import annotations
-
+from pydantic import BaseModel, ConfigDict, Field
 from typing import Literal, Optional
 
-from pydantic import BaseModel, ConfigDict, Field
+from litellm_proxy_app.models.llm_model_params import (
+    LLMModelParams,
+    LLMOutputParams,
+    LLMSamplingParams,
+)
 
 # ─────────────────────────────────────────────────────────────────
 # OpenAI API parameter sub-groups
 # ─────────────────────────────────────────────────────────────────
 
 
-class GPTSamplingParams(BaseModel):
+class GPTSamplingParams(LLMSamplingParams):
     """
     Core sampling controls. Set one of temperature or top_p, not both.
     Unsupported on o-series reasoning models — do not set alongside
     reasoning_effort or the request will be rejected.
     """
 
-    temperature: float = Field(default=1.0, ge=0.0, le=2.0)
-    top_p: float = Field(default=1.0, ge=0.0, le=1.0)
-    presence_penalty: float = Field(default=0.0, ge=-2.0, le=2.0)
-    frequency_penalty: float = Field(default=0.0, ge=-2.0, le=2.0)
-    seed: Optional[int] = None
+    # temperature: float = Field(default=1.0, ge=0.0, le=2.0)
+    # top_p: float = Field(default=1.0, ge=0.0, le=1.0)
+    # presence_penalty: float = Field(default=0.0, ge=-2.0, le=2.0)
+    # frequency_penalty: float = Field(default=0.0, ge=-2.0, le=2.0)
+    # seed: Optional[int] = None
 
     @classmethod
     def with_defaults(cls) -> "GPTSamplingParams":
@@ -33,7 +37,7 @@ class GPTSamplingParams(BaseModel):
         )
 
 
-class GPTOutputParams(BaseModel):
+class GPTOutputParams(LLMOutputParams):
     """
     Controls the shape and length of the output.
     """
@@ -115,6 +119,7 @@ class GPTReasoningParams(BaseModel):
 
 
 class GPTModelParams(
+    LLMModelParams,
     GPTSamplingParams,
     GPTOutputParams,
     GPTLogprobParams,

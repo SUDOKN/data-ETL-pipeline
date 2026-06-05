@@ -23,7 +23,7 @@ from data_etl_app.models.pipeline_nodes.llm_extraction_node import (
     LLMExtractionNode,
     ResultT,
 )
-from open_ai_key_app.models.llm_model import LLM_Model
+from litellm_proxy_app.models.llm_model import LLM_Model
 from open_ai_key_app.models.gpt_model_params import GPTModelParams
 from open_ai_key_app.models.field_types import GPTBatchRequestCustomID
 from scraper_app.models.scraped_text_file import ScrapedTextFile

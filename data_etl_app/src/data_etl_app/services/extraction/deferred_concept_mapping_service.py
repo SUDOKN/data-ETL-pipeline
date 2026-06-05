@@ -22,8 +22,8 @@ from data_etl_app.models.pipeline_nodes.concept.concept_evidence_node import (
     ConceptEvidenceNode,
 )
 from data_etl_app.models.types_and_enums import ConceptTypeEnum
-from open_ai_key_app.models.gpt_model import No_model
-from open_ai_key_app.models.llm_model import LLM_Model
+from litellm_proxy_app.models.llm_model import No_model
+from litellm_proxy_app.models.llm_model import LLM_Model
 from open_ai_key_app.models.gpt_model_params import GPTModelParams
 from open_ai_key_app.models.field_types import GPTBatchRequestCustomID
 
