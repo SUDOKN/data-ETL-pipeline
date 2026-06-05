@@ -17,7 +17,6 @@ from open_ai_key_app.services.openai_keypool_service import keypool
 from data_etl_app.utils.gpt_batch_request_util import (
     build_response_from_chat_completion,
 )
-from open_ai_key_app.utils.token_util import num_tokens_from_string
 
 from data_etl_app.utils.gpt_batch_request_util import (
     build_response_from_chat_completion,
