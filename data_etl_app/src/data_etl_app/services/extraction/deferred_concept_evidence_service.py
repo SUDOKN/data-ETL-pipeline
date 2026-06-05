@@ -20,7 +20,6 @@ from core.models.deferred_concept_extraction import (
 from data_etl_app.models.pipeline_nodes.concept.concept_search_node import (
     ConceptSearchNode,
 )
-
 from data_etl_app.models.types_and_enums import ConceptTypeEnum
 from open_ai_key_app.models.gpt_model_params import GPTModelParams
 from open_ai_key_app.models.field_types import GPTBatchRequestCustomID

@@ -5,7 +5,6 @@ from typing import Dict, Optional
 
 from core.models.prompt import Prompt
 from litellm_proxy_app.models.llm_model import LLM_Model
-
 from data_etl_app.utils.prompt_s3_util import download_prompt, get_prompt_filename
 
 logger = logging.getLogger(__name__)

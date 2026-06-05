@@ -14,6 +14,10 @@ from litellm_proxy_app.models.llm_model_params import LLMModelParams
 from open_ai_key_app.models.gpt_model_params import GPTModelParams, GPTSyncRequestBody
 
 from open_ai_key_app.services.openai_keypool_service import keypool
+from data_etl_app.utils.gpt_batch_request_util import (
+    build_response_from_chat_completion,
+)
+from open_ai_key_app.utils.token_util import num_tokens_from_string
 
 from data_etl_app.utils.gpt_batch_request_util import (
     build_response_from_chat_completion,

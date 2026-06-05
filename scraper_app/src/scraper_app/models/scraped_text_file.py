@@ -4,6 +4,7 @@ from __future__ import (
 import litellm
 import logging
 from datetime import datetime
+from open_ai_key_app.models.llm_model import LLM_Model
 from pydantic import BaseModel, ConfigDict, Field, computed_field
 
 from litellm_proxy_app.models.llm_model import LLM_Model

@@ -20,12 +20,6 @@ class GPTSamplingParams(LLMSamplingParams):
     reasoning_effort or the request will be rejected.
     """
 
-    # temperature: float = Field(default=1.0, ge=0.0, le=2.0)
-    # top_p: float = Field(default=1.0, ge=0.0, le=1.0)
-    # presence_penalty: float = Field(default=0.0, ge=-2.0, le=2.0)
-    # frequency_penalty: float = Field(default=0.0, ge=-2.0, le=2.0)
-    # seed: Optional[int] = None
-
     @classmethod
     def with_defaults(cls) -> "GPTSamplingParams":
         return cls(

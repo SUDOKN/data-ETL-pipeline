@@ -10,6 +10,8 @@ from open_ai_key_app.models.gpt_model_params import (
     GPTModelParams,
 )
 
+from open_ai_key_app.utils.token_util import num_tokens_from_string
+
 logger = logging.getLogger(__name__)
 
 
