@@ -1,23 +1,15 @@
-import litellm
-import openai
-import re
-import asyncio
 import logging
-import time
-import uuid
 from typing import Optional
-from openai.types.chat import ChatCompletion
 
 from core.models.gpt_batch_response_blob import GPTBatchResponse
 from litellm_proxy_app.models.llm_model import LLM_Model
 from litellm_proxy_app.models.llm_model_params import LLMModelParams
-from open_ai_key_app.models.gpt_model_params import GPTModelParams, GPTSyncRequestBody
+from open_ai_key_app.models.gpt_model_params import GPTModelParams
 
-from open_ai_key_app.services.openai_keypool_service import keypool
+
 from data_etl_app.utils.gpt_batch_request_util import (
     build_response_from_chat_completion,
 )
-
 from data_etl_app.utils.gpt_batch_request_util import (
     build_response_from_chat_completion,
 )
@@ -68,6 +60,8 @@ async def fetch_gpt_batch_response(
     return response_blob
 
 
+"""
+# deprecated
 async def fetch_gpt_chat_completion_result(
     context: str,
     prompt: str,
@@ -186,3 +180,4 @@ async def fetch_gpt_chat_completion_result(
     finally:
         logger.debug(f"[Request {request_id}] Returning key '{key_name}' to keypool.")
         keypool.return_key(api_key, lock_token, gpt_model.model_name)
+"""

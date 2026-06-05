@@ -42,11 +42,11 @@ from core.services.api_key_service import (
 from core.services.manufacturer_service import find_manufacturers_by_etld1s
 from data_etl_app.services.knowledge.ontology_service import OntologyService
 from data_etl_app.services.knowledge.prompt_service import PromptService
-from data_etl_app.services.batch_file_generator import (
+from open_ai_key_app.services.batch_file_generator import (
     BatchFileGenerationResult,
     iterate_df_manufacturers_and_write_batch_files,
 )
-from data_etl_app.services.batch_file_satellite import (
+from open_ai_key_app.services.batch_file_satellite import (
     BatchFileSatellite,
     BatchDownloadOutput,
 )
