@@ -96,7 +96,7 @@ class Manufacturer(Document):
     material_caps: Optional[ConceptExtractionResults]
 
     class Settings:
-        name = "manufacturers_scratch"
+        name = "manufacturers"
 
 
 """
