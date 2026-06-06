@@ -30,10 +30,15 @@ from open_ai_key_app.models.gpt_model_params import GPTModelParams
 from scraper_app.models.scraped_text_file import ScrapedTextFile
 
 from core.services.manufacturer_service import update_manufacturer
+
+from data_etl_app.utils.ground_truth_helper_util import (
+    get_verified_evidence_phrases_from_raw_evidence_results,
+)
 from data_etl_app.utils.llm_mapping_helper import (
-    KnownToUnknownMap,
+    UnknownToKnownMap,
     get_matched_concepts_and_unmatched_keywords,
     get_mapped_known_concepts_and_unmapped_keywords,
+    get_verified_results_from_concept_mapping,
 )
 
 logger = logging.getLogger(__name__)
@@ -101,11 +106,11 @@ class ConceptReconcileNode(ReconcileNode[ConceptTypeEnum]):
                 deferred_at=timestamp,
             )
 
-            confirmed_keywords_w_evidence = {  # evidence: null filtered out
-                kw: evidence
-                for kw, evidence in llm_evidence_results.items()
-                if evidence.startswith("Yes")
-            }
+            confirmed_keywords_w_evidence = (
+                get_verified_evidence_phrases_from_raw_evidence_results(
+                    llm_evidence_results=llm_evidence_results
+                )
+            )
 
             (
                 matched_concepts,
@@ -123,7 +128,7 @@ class ConceptReconcileNode(ReconcileNode[ConceptTypeEnum]):
                 deferred_at=timestamp,
             )
 
-            llm_mapping_result: KnownToUnknownMap = (
+            llm_mapping_result: UnknownToKnownMap = (
                 get_mapped_known_concepts_and_unmapped_keywords(
                     mfg_etld1=deferred_mfg.etld1,
                     concept_type=self.field_type,
@@ -136,16 +141,16 @@ class ConceptReconcileNode(ReconcileNode[ConceptTypeEnum]):
             chunk_stats[chunk_bounds] = ConceptExtractionStats(
                 results=(
                     {c.name for c in matched_concepts}
-                    | {c.name for c in llm_mapping_result["known_to_unknowns"].keys()}
+                    | get_verified_results_from_concept_mapping(
+                        llm_mapping_result["unknown_to_knowns"]
+                    )
                 ),
                 brute_search=bundle.brute,
                 llm_search=llm_search_results.copy(),
                 llm_evidence=llm_evidence_results.copy(),
                 llm_mapping={
-                    known.name: unknowns
-                    for known, unknowns in llm_mapping_result[
-                        "known_to_unknowns"
-                    ].items()
+                    mu: {mk.name: reason for mk, reason in mk_dict.items()}
+                    for mu, mk_dict in llm_mapping_result["unknown_to_knowns"].items()
                 },
                 unmapped=llm_mapping_result["unmapped_unknowns"],
             )

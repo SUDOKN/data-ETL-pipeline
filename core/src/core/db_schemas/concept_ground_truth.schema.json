@@ -68,6 +68,13 @@
           },
           "model_params": {
             "bsonType": "object",
+            "required": [
+              "max_completion_tokens",
+              "temperature",
+              "top_p",
+              "presence_penalty",
+              "frequency_penalty"
+            ],
             "additionalProperties": false,
             "properties": {
               "reasoning_effort": {
@@ -306,6 +313,7 @@
               "required": [
                 "author_email",
                 "source",
+                "llm_search_correction",
                 "llm_evidence_correction",
                 "llm_mapping_correction"
               ],
@@ -320,6 +328,22 @@
                     "api_survey"
                   ],
                   "bsonType": "string"
+                },
+                "llm_search_correction": {
+                  "bsonType": "object",
+                  "required": [
+                    "upsert"
+                  ],
+                  "additionalProperties": false,
+                  "properties": {
+                    "upsert": {
+                      "bsonType": "array",
+                      "items": {
+                        "bsonType": "string"
+                      },
+                      "uniqueItems": true
+                    }
+                  }
                 },
                 "llm_evidence_correction": {
                   "bsonType": "object",

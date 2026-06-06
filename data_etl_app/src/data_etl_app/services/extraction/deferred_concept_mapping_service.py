@@ -5,17 +5,13 @@ from datetime import datetime
 from typing import Optional
 
 from core.models.prompt import Prompt
-from core.models.field_types import LLMMappingType, RawLLMMappingResult
+from core.models.field_types import RawLLMMappingResult, RawLLMMappingResult
 from core.models.db.gpt_batch_request import GPTBatchRequest
 from core.models.deferred_concept_extraction import (
     DeferredConceptExtractionRequests,
 )
 from core.models.gpt_batch_response_blob import (
     ChatCompletionChoiceMessage,
-)
-from core.services.gpt_batch_request_service import (
-    create_base_gpt_batch_request,
-    get_dummy_gpt_batch_response,
 )
 from data_etl_app.models.skos_concept import Concept
 from data_etl_app.models.pipeline_nodes.concept.concept_evidence_node import (
@@ -27,6 +23,14 @@ from litellm_proxy_app.models.llm_model import LLM_Model
 from open_ai_key_app.models.gpt_model_params import GPTModelParams
 from open_ai_key_app.models.field_types import GPTBatchRequestCustomID
 
+from core.services.gpt_batch_request_service import (
+    create_base_gpt_batch_request,
+    get_dummy_gpt_batch_response,
+)
+
+from data_etl_app.utils.ground_truth_helper_util import (
+    get_verified_evidence_phrases_from_raw_evidence_results,
+)
 from data_etl_app.utils.llm_mapping_helper import (
     create_deferred_mapping_gpt_request,
     get_matched_concepts_and_unmatched_keywords,
@@ -119,11 +123,12 @@ async def create_missing_mapping_requests(
                 completed_request_map=llm_evidence_gpt_request_map,
                 deferred_at=deferred_at,
             )
-            confirmed_keywords_w_evidence = {  # evidence: null filtered out
-                kw: evidence
-                for kw, evidence in llm_evidence_results.items()
-                if evidence.startswith("Yes")
-            }
+
+            confirmed_keywords_w_evidence = (
+                get_verified_evidence_phrases_from_raw_evidence_results(
+                    llm_evidence_results=llm_evidence_results
+                )
+            )
 
             (
                 _matched_concepts,  # _matched_concepts would be added later by reconcile node

@@ -1,11 +1,11 @@
 from beanie import Document
 from datetime import datetime
-from data_etl_app.models.chunking_strat import ChunkingStrategy
 from pydantic import BaseModel, Field
 
 from core.models.field_types import (
     HumanEvidenceResults,
-    LLMMappingType,
+    RawLLMMappingResult,
+    LLMSearchResults,
     MfgETLDType,
     S3FileVersionIDType,
 )
@@ -17,29 +17,39 @@ from data_etl_app.models.types_and_enums import ConceptTypeEnum, GroundTruthSour
 
 from core.utils.time_util import get_current_time
 
+YES_PREFIX = "Yes, "
+NO_PREFIX = "No, "
+CORRECT_PREFIX = "Correct, "
+INCORRECT_PREFIX = "Incorrect, "
+
 
 class EvidenceResultCorrection(BaseModel):
     upsert: HumanEvidenceResults
 
 
+class LLMSearchResultsCorrection(BaseModel):
+    upsert: LLMSearchResults
+
+
 class MappingResultCorrection(BaseModel):
-    upsert: LLMMappingType
+    upsert: RawLLMMappingResult
 
     # constructor from original LLM mapping result
     @classmethod
     def from_raw_llm_mapping_result(
-        cls, original_mapping_result: LLMMappingType
+        cls, original_mapping_result: RawLLMMappingResult
     ) -> "MappingResultCorrection":
-        prefixed_mapping_result: LLMMappingType = original_mapping_result.copy()
-        for _mk, mu_dict in prefixed_mapping_result.items():
-            for mu in mu_dict:
-                mu_dict[mu] = f"Correct, {mu_dict[mu]}"
+        prefixed_mapping_result: RawLLMMappingResult = original_mapping_result.copy()
+        for _mu, mk_dict in prefixed_mapping_result.items():
+            for mk in mk_dict:
+                mk_dict[mk] = f"{CORRECT_PREFIX}{mk_dict[mk]}"
         return cls(upsert=prefixed_mapping_result)
 
 
 class HumanConceptCorrection(BaseModel):
     author_email: str
     source: GroundTruthSource
+    llm_search_correction: LLMSearchResultsCorrection
     llm_evidence_correction: EvidenceResultCorrection
     llm_mapping_correction: MappingResultCorrection
 

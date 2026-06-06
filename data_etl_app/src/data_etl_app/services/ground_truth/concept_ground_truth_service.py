@@ -5,7 +5,6 @@ from datetime import datetime
 
 from core.models.db.manufacturer import Manufacturer
 from core.models.field_types import (
-    LLMEvidenceResults,
     OntologyVersionIDType,
     S3FileVersionIDType,
 )
@@ -28,7 +27,9 @@ from data_etl_app.utils.route_url_util import (
     get_full_ontology_concept_flat_url,
 )
 from data_etl_app.utils.ground_truth_helper_util import (
-    calculate_verified_concept_evidence_results,
+    CORRECT_PREFIX,
+    INCORRECT_PREFIX,
+    get_verified_evidence_phrases_from_human_correction,
     calculate_corrected_concept_results,
     is_evidence_reason_format_correct,
     is_mapping_reason_format_correct,
@@ -263,63 +264,119 @@ def _validate_new_human_correction(
             "result_correction must be provided to validate the concept ground truth."
         )
 
-    original_evidence_results = chunk_concept_gt.extraction_stats.llm_evidence
-    skipped_terms = set(original_evidence_results.keys()) - set(
-        new_correction.llm_evidence_correction.upsert.keys()
-    )
-    if skipped_terms:
-        raise ValueError(
-            f"The following terms were present in the original LLM evidence results but are missing in the new correction's llm_evidence_correction.upsert: {skipped_terms}. "
-            f"Please provide corrections for these terms or leave the evidence unchanged."
-        )
-
-    # Check evidence corrections
-    for unk, reason in new_correction.llm_evidence_correction.upsert.items():
+    # VERIFY LLM SEARCH
+    for unk in new_correction.llm_search_correction.upsert:
         if not re.search(word_regex(unk), chunk_concept_gt.chunk_text, re.IGNORECASE):
             raise ValueError(
-                f"The term '{unk}' in the list llm_evidence.upsert is not present in chunk_text."
+                f"The term '{unk}' in the list llm_search_correction.upsert is not present in chunk_text."
             )
+
+    if (  # llm_search is add only, so llm_search_correction.upsert = extraction_stats.llm_search + any new terms
+        chunk_concept_gt.extraction_stats.llm_search
+        - new_correction.llm_search_correction.upsert
+    ):
+        raise ValueError(
+            f"The following terms were present in the original LLM search results but were skipped in the new correction's llm_search_correction.upsert: {chunk_concept_gt.extraction_stats.llm_search - new_correction.llm_search_correction.upsert}."
+        )
+
+    # VERIFY EVIDENCE
+    original_evidence_candidate_phrases = set(  # phrases originally present in the LLM evidence results, which is chunk_concept_gt.extraction_stats.llm_search | chunk_concept_gt.extraction_stats.brute_search
+        chunk_concept_gt.extraction_stats.llm_evidence.keys()
+    )
+    corrected_evidence_candidate_phrases = (
+        new_correction.llm_search_correction.upsert  # llm_search_correction.upsert = extraction_stats.llm_search + any new terms added by human
+        | chunk_concept_gt.extraction_stats.brute_search  # brute_search terms are also passed on to the evidence stage
+    )
+    if original_evidence_candidate_phrases - corrected_evidence_candidate_phrases:
+        # none of the original phrases can be removed, llm_evidence is edit existing or add new only
+        raise ValueError(
+            f"The following terms were present in the original LLM evidence results but are missing in the new correction's llm_evidence_correction.upsert: {original_evidence_candidate_phrases - corrected_evidence_candidate_phrases}. "
+            f"Please provide corrections for these terms or leave the evidence unchanged."
+        )
+    if corrected_evidence_candidate_phrases != set(
+        new_correction.llm_evidence_correction.upsert.keys()
+    ):
+        raise ValueError(
+            f"The phrases for your llm_evidence_correction must match the llm_search_correction.upsert + chunk_concept_gt.extraction_stats.brute_search. "
+            f"However, the [llm_search_correction.upsert + chunk_concept_gt.extraction_stats.brute_search] contains phrases: {corrected_evidence_candidate_phrases - set(new_correction.llm_evidence_correction.upsert.keys())} that are missing in your llm_evidence_correction.upsert. "
+            f"Or, the your llm_evidence_correction contains extra phrases: {set(new_correction.llm_evidence_correction.upsert.keys()) - corrected_evidence_candidate_phrases} that are not present in [llm_search_correction.upsert + chunk_concept_gt.extraction_stats.brute_search]. "
+        )
+    # Check evidence reasons
+    for unk, reason in new_correction.llm_evidence_correction.upsert.items():
         if not reason:
             raise ValueError(
-                f"The unknown term '{unk}' in llm_evidence.upsert must have a reason provided."
+                f"The unknown term '{unk}' in llm_evidence_correction.upsert must have a reason provided."
             )
         elif not is_evidence_reason_format_correct(reason):
             raise ValueError(
-                f"The reason for the unknown term '{unk}' in llm_evidence.upsert must start with 'Yes, ' or 'No, '."
+                f"The reason for the unknown term '{unk}' in llm_evidence_correction.upsert must start with 'Yes, ' or 'No, ' followed by an explanation."
             )
 
-    verified_concept_evidence_results: LLMEvidenceResults = (
-        calculate_verified_concept_evidence_results(
-            human_correction=new_correction,
+    # VERIFY MAPPING
+    original_mapping_candidate_phrases = set(
+        # phrases originally present in the LLM mapping results,
+        # which is the keys of the llm_mapping dict, these phrases
+        # had "Yes, " evidence originally
+        chunk_concept_gt.extraction_stats.llm_mapping.keys()
+    )
+    if original_mapping_candidate_phrases - set(
+        new_correction.llm_mapping_correction.upsert.keys()
+    ):
+        raise ValueError(
+            f"The following terms were present in the original LLM mapping results but are skipped in the new correction's llm_mapping_correction.upsert: {original_mapping_candidate_phrases - set(new_correction.llm_mapping_correction.upsert.keys())}. "
+            f"Please provide corrections for these terms or leave the mapping unchanged."
+        )
+
+    # corrected_mapping_candidate_phrases_w_evid must contain all of corrected_evidence_candidate_phrases
+    corrected_mapping_candidate_phrases_w_evid = (
+        set(  # These phrases are supported by reasons starting with "Yes, "
+            get_verified_evidence_phrases_from_human_correction(
+                human_correction=new_correction,
+            ).keys()
         )
     )
-    verified_concept_evidence_kws = set(verified_concept_evidence_results.keys())
-
-    known_concept_labels: set[str] = {c.name for c in known_concepts}
-    for mk, mu_dict in new_correction.llm_mapping_correction.upsert.items():
-        logger.debug(
-            f"Checking mapping_result_correction.upsert for key: {mk} with terms: {mu_dict}"
+    # in fact they must be equal
+    logger.info(
+        f"corrected_evidence_candidate_phrases: {corrected_evidence_candidate_phrases}"
+    )
+    logger.info(
+        f"corrected_mapping_candidate_phrases_w_evid: {corrected_mapping_candidate_phrases_w_evid}"
+    )
+    if (
+        new_correction.llm_mapping_correction.upsert.keys()
+        != corrected_mapping_candidate_phrases_w_evid
+    ):
+        raise ValueError(
+            f"The candidate phrases for llm_mapping_correction must match the verified evidence candidate phrases. "
+            f"However, your provided llm_mapping_correction.upsert contains phrases {set(new_correction.llm_mapping_correction.upsert.keys()) - corrected_mapping_candidate_phrases_w_evid} that are absent in the verified evidence candidate phrases (i.e. those with 'Yes, ' reason). "
+            f"Or, the corrected_mapping_candidate_phrases_w_evid contains phrases {corrected_mapping_candidate_phrases_w_evid - set(new_correction.llm_mapping_correction.upsert.keys())} that are missing in your llm_mapping_correction.upsert. "
+            f"Please ensure phrases in mapping correction match the verified evidence candidate phrases (Beginning with 'Yes, ')."
         )
 
-        # Check if mk is a known concept in the latest ontology version
-        if mk not in known_concept_labels:
+    known_concept_labels: set[str] = {c.name for c in known_concepts}
+    for mu, mk_dict in new_correction.llm_mapping_correction.upsert.items():
+        logger.debug(
+            f"Checking mapping_result_correction.upsert for key: {mu} with terms: {mk_dict}"
+        )
+        if mu not in corrected_mapping_candidate_phrases_w_evid:
             raise ValueError(
-                f"Key '{mk}' in the object mapping_result_correction.add is not a known concept in the latest ontology version. "
-                f"Please visit {get_full_ontology_concept_flat_url(chunk_concept_gt.concept_type)}"
+                f"The term '{mu}' in the list llm_mapping_correction.upsert keys is not present in corrected_mapping_candidate_phrases_w_evid."
             )
-        # Check if each value in mapping_result_correction.add is present in chunk_text
-        for mu in mu_dict:
-            if mu not in verified_concept_evidence_kws:
+
+        for mk in mk_dict:
+            # Check if mk is a known concept in the latest ontology version
+            if mk not in known_concept_labels:
                 raise ValueError(
-                    f"The term '{mu}' in the list mapping_result_correction.upsert['{mk}'] is not present in verified_concept_evidence_results."
+                    f"Key '{mk}' in the object llm_mapping_correction.upsert is not a known concept in the latest ontology version. "
+                    f"Please visit {get_full_ontology_concept_flat_url(chunk_concept_gt.concept_type)}"
                 )
-            elif not mu_dict[mu]:
+            elif not mk_dict[mk]:
                 raise ValueError(
-                    f"The unknown term '{mu}' in mapping_result_correction.upsert['{mk}'] must have a reason provided."
+                    f"The unknown term '{mk}' in llm_mapping_correction.upsert['{mu}'] must have a reason provided."
                 )
-            elif not is_mapping_reason_format_correct(mu_dict[mu]):
+            elif not is_mapping_reason_format_correct(mk_dict[mk]):
                 raise ValueError(
-                    f"The reason for the unknown term '{mu}' in mapping_result_correction.upsert['{mk}'] must start with 'Correct, ' or 'Incorrect, '."
+                    f"The reason for the unknown term '{mk}' in llm_mapping_correction.upsert['{mu}'] must start with '{CORRECT_PREFIX}' or '{INCORRECT_PREFIX}'."
                 )
 
 

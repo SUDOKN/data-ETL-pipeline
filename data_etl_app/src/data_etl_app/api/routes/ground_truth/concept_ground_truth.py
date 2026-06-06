@@ -13,6 +13,7 @@ from core.models.db.concept_ground_truth import (
     ConceptGroundTruth,
     EvidenceResultCorrection,
     HumanConceptCorrection,
+    LLMSearchResultsCorrection,
     MappingResultCorrection,
 )
 from data_etl_app.models.types_and_enums import ConceptTypeEnum, GroundTruthSource
@@ -145,27 +146,35 @@ async def fetch_concept_ground_truth_template(
         # pick random chunk_no if not provided
         chunk_no = random.randint(1, last_chunk_no)
 
+    chunk_bounds, chunk_search_stats = sorted_search_data[chunk_no - 1]
+
     # check if concept ground truth already exists for this mfg_url, concept_type, and chunk_no
     existing_concept_gt = await get_extracted_concept_ground_truth(
         linked_manufacturer=manufacturer,
         concept_type=concept_type,
         chunk_no=chunk_no,
     )
+
     if existing_concept_gt:  # then logs must be non-empty
         last_correction_log = existing_concept_gt.corrections[-1]
         response = existing_concept_gt.model_dump()
         response["your_correction"] = HumanConceptCorrection(
             author_email=author_email,
             source=GroundTruthSource.API_SURVEY,
+            llm_search_correction=last_correction_log.human_correction.llm_search_correction,  # pre-fill with last correction
             llm_evidence_correction=last_correction_log.human_correction.llm_evidence_correction,
             llm_mapping_correction=last_correction_log.human_correction.llm_mapping_correction,  # pre-fill with last correction
-        )
+        ).model_dump()
+        response["your_correction"][
+            "brute_search"
+        ] = (
+            chunk_search_stats.brute_search
+        )  # include brute search results in the response for user's reference, even though it's not part of the correction template
         response.pop("id", None)  # remove id from response
         response["final_results"] = await get_corrected_results(existing_concept_gt)
         return response
 
     # At this point, chunk_no was either picked randomly or provided by user, but no existing concept ground truth was found
-    chunk_bounds, chunk_search_stats = sorted_search_data[chunk_no - 1]
 
     # TODO: maybe cache downloaded text
     scraped_text, _version_id = await download_scraped_text_from_s3_by_mfg_etld1(
@@ -199,16 +208,22 @@ async def fetch_concept_ground_truth_template(
         HumanConceptCorrection(  # begins as a pre-filled template for the user to fill in
             author_email=author_email,
             source=GroundTruthSource.API_SURVEY,
+            llm_search_correction=LLMSearchResultsCorrection(
+                upsert=chunk_search_stats.llm_search
+            ),  # pre-fill with llm results
             llm_evidence_correction=EvidenceResultCorrection(
-                upsert={
-                    kw: reason for kw, reason in chunk_search_stats.llm_evidence.items()
-                },
-            ),
+                upsert=chunk_search_stats.llm_evidence,
+            ),  # pre-fill with llm results
             llm_mapping_correction=MappingResultCorrection.from_raw_llm_mapping_result(
                 original_mapping_result=chunk_search_stats.llm_mapping
-            ),  # pre-fill with last correction
-        )
+            ),  # pre-fill with llm results
+        ).model_dump()
     )
+    response["your_correction"][
+        "brute_search"
+    ] = (
+        chunk_search_stats.brute_search
+    )  # include brute search results in the response for user's reference, even though it's not part of the correction template
     response["final_results"] = await get_corrected_results(concept_ground_truth)
 
     response.pop("id", None)  # remove id from response
@@ -318,6 +333,113 @@ async def collect_concept_extraction_ground_truth(
             new_correction=new_correction,
         )
     else:
+        # Now check if the original template was hampered
+        # the only difference allowed was new_correction which is already extracted out
+        # reconstruct the original concept_gt from the database using the provided fields
+        # except corrections, and compare with the submitted concept_gt to ensure no tampering
+
+        concept_extraction_results: ConceptExtractionResults | None = getattr(
+            manufacturer, concept_gt.concept_type, None
+        )
+        if not concept_extraction_results:
+            raise HTTPException(
+                status_code=404,
+                detail=f"No data found for concept type: {concept_gt.concept_type.value} for manufacturer: {concept_gt.mfg_etld1}. Please add manufacturer first.",
+            )
+
+        sorted_search_data = [
+            (key, value)
+            for key, value in sorted(
+                concept_extraction_results.chunk_stats.items(),
+                key=lambda item: int(item[0].split(":")[0]),
+            )
+        ]
+        last_chunk_no = len(sorted_search_data)
+        chunk_bounds, chunk_search_stats = sorted_search_data[concept_gt.chunk_no - 1]
+        scraped_text, _version_id = await download_scraped_text_from_s3_by_mfg_etld1(
+            etld1=manufacturer.etld1,
+            version_id=manufacturer.scraped_text_file_version_id,
+        )
+        start, end = int(chunk_bounds.split(":")[0]), int(chunk_bounds.split(":")[1])
+        if start < 0 or end > len(scraped_text):
+            # beg and pray this never happens
+            raise HTTPException(
+                status_code=400,
+                detail=f"Chunk bounds {chunk_bounds} are out of range for the scraped text.",
+            )
+        copy_of_original = ConceptGroundTruth(
+            mfg_etld1=manufacturer.etld1,
+            concept_type=concept_gt.concept_type,
+            scraped_text_file_version_id=manufacturer.scraped_text_file_version_id,
+            chunk_text=scraped_text[start:end],
+            chunk_bounds=chunk_bounds,
+            chunk_no=concept_gt.chunk_no,
+            last_chunk_no=last_chunk_no,
+            metadata=concept_extraction_results.metadata,
+            extraction_stats=chunk_search_stats,
+            corrections=[],  # empty logs initially
+        )
+
+        # Field-by-field tamper check — gives precise diff in the error
+        _CHUNK_TEXT_PREVIEW = 120
+        _comparable_fields: list[tuple[str, object, object]] = [
+            ("mfg_etld1", concept_gt.mfg_etld1, copy_of_original.mfg_etld1),
+            (
+                "scraped_text_file_version_id",
+                concept_gt.scraped_text_file_version_id,
+                copy_of_original.scraped_text_file_version_id,
+            ),
+            ("concept_type", concept_gt.concept_type, copy_of_original.concept_type),
+            ("chunk_bounds", concept_gt.chunk_bounds, copy_of_original.chunk_bounds),
+            ("chunk_no", concept_gt.chunk_no, copy_of_original.chunk_no),
+            ("last_chunk_no", concept_gt.last_chunk_no, copy_of_original.last_chunk_no),
+            ("chunk_text", concept_gt.chunk_text, copy_of_original.chunk_text),
+            (
+                "metadata",
+                concept_gt.metadata.model_dump(),
+                copy_of_original.metadata.model_dump(),
+            ),
+            (
+                "extraction_stats",
+                concept_gt.extraction_stats.model_dump(),
+                copy_of_original.extraction_stats.model_dump(),
+            ),
+        ]
+
+        def _fmt(field: str, val: object) -> str:
+            if (
+                field == "chunk_text"
+                and isinstance(val, str)
+                and len(val) > _CHUNK_TEXT_PREVIEW
+            ):
+                return repr(val[:_CHUNK_TEXT_PREVIEW] + "...")
+            return repr(val)
+
+        mismatches = [
+            {
+                "field": field,
+                "submitted": _fmt(field, submitted),
+                "expected": _fmt(field, expected),
+            }
+            for field, submitted, expected in _comparable_fields
+            if submitted != expected
+        ]
+        if mismatches:
+            mismatch_detail = "; ".join(
+                f"'{m['field']}': submitted={m['submitted']}, expected={m['expected']}"
+                for m in mismatches
+            )
+            raise HTTPException(
+                status_code=400,
+                detail=(
+                    f"The concept ground truth data does not match our records for "
+                    f"mfg_etld1={concept_gt.mfg_etld1!r}, concept_type={concept_gt.concept_type.value!r}, chunk_no={concept_gt.chunk_no}. "
+                    f"Mismatched fields ({len(mismatches)}): {mismatch_detail}. "
+                    f"Please submit corrections using the unmodified template from "
+                    f"GET /ground_truth/extracted-concepts/template."
+                ),
+            )
+
         # this is a new concept ground truth, so we need to set the created_at and updated_at fields
         concept_gt = await save_new_concept_ground_truth(
             timestamp=current_time,

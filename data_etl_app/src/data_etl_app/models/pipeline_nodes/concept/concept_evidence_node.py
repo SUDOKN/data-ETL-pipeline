@@ -5,12 +5,13 @@ import traceback
 from typing import TYPE_CHECKING, Optional
 
 from core.models.db.deferred_manufacturer import DeferredManufacturer
-from core.models.prompt import Prompt
 from core.models.db.gpt_batch_request import GPTBatchRequest
 from core.models.deferred_concept_extraction import (
     DeferredConceptExtractionRequests,
     ConceptExtractionRequestBundle,
 )
+from core.models.field_types import LLMEvidenceResults
+from core.models.prompt import Prompt
 from data_etl_app.models.types_and_enums import ConceptTypeEnum
 from data_etl_app.models.pipeline_nodes.concept.concept_search_node import (
     ConceptSearchNode,
@@ -39,7 +40,7 @@ from core.services.gpt_batch_request_writes import record_response_parse_error
 logger = logging.getLogger(__name__)
 
 
-class ConceptEvidenceNode(LLMExtractionNode[ConceptTypeEnum, dict[str, str]]):
+class ConceptEvidenceNode(LLMExtractionNode[ConceptTypeEnum, LLMEvidenceResults]):
     """Phase 2: LLM finds evidence in the text"""
 
     def __init__(
@@ -86,7 +87,7 @@ class ConceptEvidenceNode(LLMExtractionNode[ConceptTypeEnum, dict[str, str]]):
         extraction_bundle: ConceptExtractionRequestBundle,
         completed_request_map: dict[GPTBatchRequestCustomID, GPTBatchRequest],
         deferred_at: datetime,
-    ) -> dict[str, str]:
+    ) -> LLMEvidenceResults:
         llm_evidence_request_id = extraction_bundle.llm_evidence_request_id
         if not llm_evidence_request_id:
             raise ValueError(

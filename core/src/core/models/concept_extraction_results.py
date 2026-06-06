@@ -8,7 +8,8 @@ from core.models.search_stage_results import (
 )
 from core.models.field_types import (
     LLMEvidenceResults,
-    LLMMappingType,
+    RawLLMMappingResult,
+    LLMSearchResults,
     S3FileVersionIDType,
     OntologyVersionIDType,
 )
@@ -22,9 +23,9 @@ class ConceptExtractionMetadata(SearchStageMetadata):
 
 class ConceptExtractionStats(SearchStageStats):
     brute_search: set[str]  # regex search
-    llm_search: set[str]  # identified by LLM
+    llm_search: LLMSearchResults  # identified by LLM
     llm_evidence: LLMEvidenceResults  # for each term in [brute | identified]
-    llm_mapping: LLMMappingType
+    llm_mapping: RawLLMMappingResult
     unmapped: set[str]
 
 

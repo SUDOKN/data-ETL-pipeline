@@ -8,4 +8,4 @@ it contains various db models, services etc shared by multiple apps hence consol
 
 open_ai_key_app has a batch file processor bot.
 
-data_etl_app has a fastapi server as well as queue bots.
+data_etl_app has a fastapi server as well as eq and sq queue bots.

@@ -16,8 +16,11 @@ from core.services.gpt_batch_request_service import create_base_gpt_batch_reques
 logger = logging.getLogger(__name__)
 
 
-class KnownToUnknownMap(TypedDict):
-    known_to_unknowns: dict[Concept, dict[str, str]]
+ConceptMapping = dict[str, dict[Concept, str]]
+
+
+class UnknownToKnownMap(TypedDict):
+    unknown_to_knowns: ConceptMapping
     unmapped_unknowns: set[str]
 
 
@@ -77,12 +80,12 @@ def get_mapped_known_concepts_and_unmapped_keywords(
     known_concepts: set[Concept],
     unmatched_keywords_w_evidence: dict[str, str],
     raw_gpt_mapping: RawLLMMappingResult,
-) -> KnownToUnknownMap:
+) -> UnknownToKnownMap:
     keywords_to_map = set(unmatched_keywords_w_evidence.keys())
     match_label_map: dict[str, Concept] = {
         label: k for k in known_concepts for label in k.matchLabels
     }
-    known_to_unknowns: dict[Concept, dict[str, str]] = {}
+    unknown_to_knowns: dict[str, dict[Concept, str]] = {}
 
     # mapped_unknown "biotech" -> {"pharmaceutical": "matching reason"} mapped_knowns
     # mu ~ mapped_unknown, mk ~ mapped_knowns
@@ -95,31 +98,35 @@ def get_mapped_known_concepts_and_unmapped_keywords(
             )
         else:
             if mk_dict:  # mk must not be null/None
-                for mk_label in mk_dict.keys():
+                for mk_label, mk_reason in mk_dict.items():
                     matched_known_concept = match_label_map.get(mk_label)
                     if not matched_known_concept:
                         logger.debug(
                             f"WARNING: {mfg_etld1}:{concept_type.name} mapped_known:{mk_label} was not in the original knowns list"
                         )
                     else:
-                        known_to_unknowns.setdefault(matched_known_concept, {}).update(
-                            {mu: mk_dict[mk_label]}
+                        unknown_to_knowns.setdefault(mu, {}).update(
+                            {matched_known_concept: mk_reason}
                         )
 
-    # Derive unmapped_unknowns
-    # mus ~ mapped_unknowns
-    unmapped_unknowns = keywords_to_map.copy()
-    for mk, mus in known_to_unknowns.items():
-        logger.debug(f"removing mapped_known:{mk}")
-        logger.debug(f"removing mapped_unknowns:{mus}")
-        unmapped_unknowns -= set(
-            mus.keys()
-        )  # NOTE: unknowns may contain hallucinations, but subtraction is safe
-
     # pack everything and send back
-    final_bundle: KnownToUnknownMap = {
-        "known_to_unknowns": known_to_unknowns,  # actively used
-        "unmapped_unknowns": unmapped_unknowns,
+    all_unknowns = keywords_to_map.copy()
+    mapped_unknowns = set(unknown_to_knowns.keys())
+    final_bundle: UnknownToKnownMap = {
+        "unknown_to_knowns": unknown_to_knowns,
+        "unmapped_unknowns": all_unknowns - mapped_unknowns,
     }
 
     return final_bundle
+
+
+def get_verified_results_from_concept_mapping(
+    concept_mapping: ConceptMapping,
+) -> set[str]:
+    verified_mapped_known_concept_labels: set[str] = set()
+    for mu, mk_dict in concept_mapping.items():
+        for mk, _reason in mk_dict.items():
+            # if reason.startswith("Correct, "): LLM does not add Correct, Incorrect, it's for concept ground truth only
+            verified_mapped_known_concept_labels.add(mk.name)
+
+    return verified_mapped_known_concept_labels
