@@ -5,13 +5,14 @@ from datetime import datetime
 from typing import Callable, Awaitable
 
 from core.dependencies.load_core_env import load_core_env
-from litellm_proxy_app.models.llm_model import GPT_4o_mini
+from litellm_proxy_app.dependencies.load_litellm_env import load_litellm_env
 from scraper_app.dependencies.load_scraper_env import load_scraper_env
 from open_ai_key_app.dependencies.load_open_ai_app_env import load_open_ai_app_env
 from data_etl_app.dependencies.load_data_etl_env import load_data_etl_env
 
 # Load environment variables
 load_core_env()
+load_litellm_env()
 load_scraper_env()
 load_data_etl_env()
 load_open_ai_app_env()
@@ -30,10 +31,9 @@ from core.models.db.extraction_error import ExtractionError
 from core.models.to_extract_item import ToExtractItem
 from data_etl_app.models.types_and_enums import BinaryClassificationTypeEnum
 from open_ai_key_app.models.gpt_model_params import GPTModelParams
-from litellm_proxy_app.models.llm_model import LLM_Model
+from litellm_proxy_app.models.llm_model import GPT_4_1, LLM_Model
 from scraper_app.models.scraped_text_file import ScrapedTextFile
 
-from core.services.user_service import is_user_MEP
 from core.services.manufacturer_service import (
     find_manufacturer_by_etld1,
 )
@@ -373,13 +373,9 @@ async def extract_and_cleanup(
 
 
 async def async_main():
-    from core.utils.aws.queue.extract_queue_util import (
-        poll_item_from_extract_queue,
-        delete_item_from_extract_queue,
-    )
-    from core.utils.aws.queue.priority_extract_queue_util import (
-        poll_item_from_priority_extract_queue,
-        delete_item_from_priority_extract_queue,
+    from core.utils.aws.queue.gt_extract_queue_util import (
+        poll_item_from_gt_extract_queue,
+        delete_item_from_gt_extract_queue,
     )
 
     await init_db()
@@ -404,16 +400,7 @@ async def async_main():
     logger = logging.getLogger(__name__)
     logger.info(f"Starting extract bot with log level: {log_level}")
 
-    if args.priority:
-        logger.info("Running extraction in priority mode")
-        poll_item_from_queue = poll_item_from_priority_extract_queue
-        delete_item_from_queue = delete_item_from_priority_extract_queue
-    else:
-        logger.info("Running extraction in normal mode")
-        poll_item_from_queue = poll_item_from_extract_queue
-        delete_item_from_queue = delete_item_from_extract_queue
-
-    llm_model = GPT_4o_mini
+    llm_model = GPT_4_1
     model_params = GPTModelParams(
         temperature=0,  # Greedy decoding — always picks highest probability token
         top_p=1,  # No nucleus sampling restriction needed when temp=0
@@ -425,8 +412,8 @@ async def async_main():
 
     try:
         await process_queue(
-            poll_item_from_queue=poll_item_from_queue,
-            delete_item_from_queue=delete_item_from_queue,
+            poll_item_from_queue=poll_item_from_gt_extract_queue,
+            delete_item_from_queue=delete_item_from_gt_extract_queue,
             llm_model=llm_model,
             model_params=model_params,
             max_concurrent_manufacturers=args.max_concurrent_manufacturers,
