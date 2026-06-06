@@ -6,14 +6,11 @@ import sys
 import signal
 import atexit
 import litellm
-
 from dataclasses import dataclass
 from typing import List, Optional
 from urllib.parse import urlparse
 from queue import Queue, Empty
 from concurrent.futures import ThreadPoolExecutor
-
-from open_ai_key_app.models.llm_model import LLM_Model
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.common.exceptions import (

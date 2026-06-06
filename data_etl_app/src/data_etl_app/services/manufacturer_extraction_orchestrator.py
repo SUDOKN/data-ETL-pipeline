@@ -1,5 +1,6 @@
 from datetime import datetime
 import logging
+import time
 
 from core.models.binary_classification_result import (
     BaseClassificationDecision,
@@ -88,6 +89,9 @@ class ManufacturerExtractionOrchestrator:
             eager (bool): Whether to process eagerly or not.
         """
 
+        overall_start = time.perf_counter()
+        field_timings: dict[str, float] = {}
+
         # Create or update the deferred manufacturer
         deferred_mfg = await self._get_or_create_deferred(timestamp, mfg)
 
@@ -98,6 +102,7 @@ class ManufacturerExtractionOrchestrator:
         if not mfg.is_manufacturer:
             try:
                 logger.info(f"Finding out if company {mfg.etld1} is a manufacturer.")
+                _t0 = time.perf_counter()
                 await self.is_manufacturer_pipeline.execute(
                     mfg=mfg,
                     deferred_mfg=deferred_mfg,
@@ -108,6 +113,7 @@ class ManufacturerExtractionOrchestrator:
                     model_params=self.model_params,
                     eager=eager,
                 )
+                field_timings["is_manufacturer"] = time.perf_counter() - _t0
             except Exception as e:
                 logger.error(f"{mfg.etld1}.is_manufacturer errored:{e}")
                 await ExtractionError.insert_one(
@@ -123,9 +129,11 @@ class ManufacturerExtractionOrchestrator:
         if not mfg.email_addresses:
             try:
                 logger.info(f"Extracting email addresses for {mfg.etld1}")
+                _t0 = time.perf_counter()
                 mfg.email_addresses = await get_validated_emails_from_text_async(
                     mfg.etld1, scraped_text_file.text
                 )
+                field_timings["email_addresses"] = time.perf_counter() - _t0
                 await update_manufacturer(
                     updated_at=timestamp,
                     manufacturer=mfg,
@@ -174,6 +182,7 @@ class ManufacturerExtractionOrchestrator:
                 logger.info(
                     f"mfg=[{mfg.etld1}] ❌ Missing data for field '{field_type.name}'. Processing pipeline..."
                 )
+                _t0 = time.perf_counter()
                 await pipeline.execute(
                     mfg=mfg,
                     deferred_mfg=deferred_mfg,
@@ -184,6 +193,7 @@ class ManufacturerExtractionOrchestrator:
                     llm_model=self.llm_model,
                     model_params=self.model_params,
                 )
+                field_timings[field_type.name] = time.perf_counter() - _t0
             else:
                 logger.info(
                     f"mfg=[{mfg.etld1}] ✓ Already has data for field '{field_type.name}'. Setting deferred.{field_type.name} to None..."
@@ -195,7 +205,14 @@ class ManufacturerExtractionOrchestrator:
                     field_type=field_type,
                 )
 
-        logger.info(f"[{mfg.etld1}] Completed extraction pipeline for all fields")
+        overall_elapsed = time.perf_counter() - overall_start
+        timing_summary = ", ".join(
+            f"{field}={elapsed:.2f}s" for field, elapsed in field_timings.items()
+        )
+        logger.info(
+            f"[{mfg.etld1}] Completed extraction pipeline for all fields | "
+            f"total={overall_elapsed:.2f}s | per-field: [{timing_summary}]"
+        )
         if deferred_mfg.id:
             # only make a DB call if deferred_mfg exists in DB
             # which maybe because _get_or_create_deferred returned an existing instance
