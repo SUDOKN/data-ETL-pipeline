@@ -1,27 +1,22 @@
-from datetime import datetime
 from pydantic import BaseModel
 
+from core.models.base_extraction import BaseStageMetadata, BaseExtractionStats
 from core.models.field_types import (
+    LLMSearchResults,
     S3FileVersionIDType,
 )
-from data_etl_app.models.chunking_strat import ChunkingStrategy
-from open_ai_key_app.models.gpt_model_params import GPTModelParams
 
 
-class SearchStageMetadata(BaseModel):
-    model: str
-    model_params: GPTModelParams
-    created_at: datetime
-    chunk_strat: ChunkingStrategy
+class SearchStageMetadata(BaseStageMetadata):
     search_prompt_version_id: S3FileVersionIDType
 
 
-class SearchStageStats(BaseModel):
-    results: set[str]
+class SearchStageExtractionStats(BaseExtractionStats):
+    llm_search: LLMSearchResults  # identified by LLM
 
 
 SearchStageStatsMap = dict[
-    str, SearchStageStats
+    str, SearchStageExtractionStats
 ]  # "0:1000" -> {results: ('term1', 'term2', ...)}
 
 

@@ -3,7 +3,10 @@ import traceback
 from datetime import datetime
 from typing import Optional
 
-from core.models.deferred_search_requests import SearchRequestBundle
+from core.models.deferred_search_requests import (
+    DeferredSearchRequests,
+    SearchRequestBundle,
+)
 from core.models.prompt import Prompt
 from core.models.db.deferred_manufacturer import DeferredManufacturer
 from core.models.db.gpt_batch_request import GPTBatchRequest
@@ -52,7 +55,7 @@ class SearchNode(LLMExtractionNode[LLMExtractedFieldTypeVar, set[str]]):
     def get_embedded_request_ids(
         self,
         mfg_etld1: str,
-        extraction_requests: DeferredConceptExtractionRequests,
+        extraction_requests: DeferredSearchRequests,
     ) -> set[GPTBatchRequestCustomID]:
         llm_search_req_ids: set[GPTBatchRequestCustomID] = set()
         for (

@@ -27,6 +27,7 @@ from data_etl_app.models.pipeline_nodes import (
     ConceptReconcileNode,
     ConceptSearchNode,
     KeywordExtractionPrefillNode,
+    KeywordEvidenceNode,
     KeywordReconcileNode,
     KeywordSearchNode,
 )
@@ -133,18 +134,23 @@ class ExtractionPipelineFactory:
             #         next_node=BusinessDescReconcileNode(),
             #     ),
             # ),
-            # KeywordTypeEnum.products: KeywordExtractionPrefillNode(
-            #     field_type=KeywordTypeEnum.products,
-            #     chunk_strategy=PRODUCT_CHUNKING_STRAT,
-            #     search_prompt=prompt_service.extract_any_product_prompt,
-            #     next_node=KeywordSearchNode(
-            #         field_type=KeywordTypeEnum.products,
-            #         search_prompt=prompt_service.extract_any_product_prompt,
-            #         next_node=KeywordReconcileNode(
-            #             field_type=KeywordTypeEnum.products,
-            #         ),
-            #     ),
-            # ),
+            KeywordTypeEnum.products: KeywordExtractionPrefillNode(
+                field_type=KeywordTypeEnum.products,
+                chunk_strategy=PRODUCT_CHUNKING_STRAT,
+                search_prompt=prompt_service.extract_any_product_prompt,
+                evidence_prompt=prompt_service.product_evidence_prompt,
+                next_node=KeywordSearchNode(
+                    field_type=KeywordTypeEnum.products,
+                    search_prompt=prompt_service.extract_any_product_prompt,
+                    next_node=KeywordEvidenceNode(
+                        field_type=KeywordTypeEnum.products,
+                        evidence_prompt=prompt_service.product_evidence_prompt,
+                        next_node=KeywordReconcileNode(
+                            field_type=KeywordTypeEnum.products,
+                        ),
+                    ),
+                ),
+            ),
             # Three-stage extractions (search -> evidence -> mapping)
             ConceptTypeEnum.certificates: ExtractionPipelineFactory.create_concept_extraction_pipeline(
                 concept_type=ConceptTypeEnum.certificates,

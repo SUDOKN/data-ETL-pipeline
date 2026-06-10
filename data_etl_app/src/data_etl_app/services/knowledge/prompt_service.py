@@ -18,6 +18,7 @@ PROMPT_NAMES = [
     "extract_any_address",
     # keywords
     "extract_any_product",
+    "product_evidence",
     # concepts
     "extract_any_certificate",
     "extract_any_industry",
@@ -140,6 +141,10 @@ class PromptService:
     @property
     def extract_any_product_prompt(self) -> Prompt:
         return self._get_prompt("extract_any_product")
+
+    @property
+    def product_evidence_prompt(self) -> Prompt:
+        return self._get_prompt("product_evidence")
 
     @property
     def extract_any_certificate_prompt(self) -> Prompt:

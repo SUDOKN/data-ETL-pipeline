@@ -1,16 +1,19 @@
 import logging
 from datetime import datetime
 
-from core.models.search_stage_results import (
-    SearchStageMetadata,
+from core.models.keyword_extraction_results import (
+    KeywordExtractionMetadata,
 )
 from core.models.db.manufacturer import Manufacturer
 from core.models.db.deferred_manufacturer import DeferredManufacturer
-from core.models.deferred_search_requests import (
-    DeferredSearchRequests,
-    SearchRequestBundle,
+from core.models.deferred_keyword_extraction import (
+    DeferredKeywordExtractionRequests,
+    KeywordExtractionRequestBundle,
 )
 from core.models.prompt import Prompt
+from data_etl_app.models.pipeline_nodes.keyword.keyword_evidence_node import (
+    KeywordEvidenceNode,
+)
 from data_etl_app.models.pipeline_nodes.keyword.keyword_search_node import (
     KeywordSearchNode,
 )
@@ -36,6 +39,7 @@ class KeywordExtractionPrefillNode(PrefillNode[KeywordTypeEnum]):
         field_type: KeywordTypeEnum,
         chunk_strategy: ChunkingStrategy,
         search_prompt: Prompt,
+        evidence_prompt: Prompt,
         next_node: KeywordSearchNode,
     ):
         super().__init__(
@@ -44,6 +48,7 @@ class KeywordExtractionPrefillNode(PrefillNode[KeywordTypeEnum]):
             next_node=next_node,
         )
         self.search_prompt: Prompt = search_prompt
+        self.evidence_prompt: Prompt = evidence_prompt
 
     async def execute(
         self,
@@ -65,17 +70,25 @@ class KeywordExtractionPrefillNode(PrefillNode[KeywordTypeEnum]):
                 llm_model=llm_model,
             )
 
-            deferred_keyword_extraction = DeferredSearchRequests(
-                metadata=SearchStageMetadata(
+            deferred_keyword_extraction = DeferredKeywordExtractionRequests(
+                metadata=KeywordExtractionMetadata(
                     model=llm_model.model_name,
                     model_params=model_params,
                     created_at=timestamp,
                     chunk_strat=self.chunk_strategy,
                     search_prompt_version_id=self.search_prompt.s3_version_id,
+                    evidence_prompt_version_id=self.evidence_prompt.s3_version_id,
                 ),
                 request_map={
-                    chunk_bounds: SearchRequestBundle(
+                    chunk_bounds: KeywordExtractionRequestBundle(
                         llm_search_request_id=KeywordSearchNode.get_request_custom_id(
+                            mfg_etld1=deferred_mfg.etld1,
+                            field_type=self.field_type,
+                            chunk_bounds=chunk_bounds,
+                            llm_model=llm_model,
+                            model_params=model_params,
+                        ),
+                        llm_evidence_request_id=KeywordEvidenceNode.get_request_custom_id(
                             mfg_etld1=deferred_mfg.etld1,
                             field_type=self.field_type,
                             chunk_bounds=chunk_bounds,

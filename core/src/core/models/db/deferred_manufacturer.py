@@ -11,8 +11,8 @@ from core.utils.time_util import get_current_time
 from core.models.deferred_single_stage_extraction_requests import (
     DeferredSingleStageExtractionRequests,
 )
-from core.models.deferred_search_requests import (
-    DeferredSearchRequests,
+from core.models.deferred_keyword_extraction import (
+    DeferredKeywordExtractionRequests,
 )
 from core.models.deferred_concept_extraction import (
     DeferredConceptExtractionRequests,
@@ -34,7 +34,7 @@ class DeferredManufacturer(Document):
     addresses: Optional[DeferredSingleStageExtractionRequests]
     business_desc: Optional[DeferredSingleStageExtractionRequests]
 
-    products: Optional[DeferredSearchRequests]
+    products: Optional[DeferredKeywordExtractionRequests]
 
     certificates: Optional[DeferredConceptExtractionRequests]
     industries: Optional[DeferredConceptExtractionRequests]

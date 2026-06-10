@@ -5,6 +5,7 @@ from data_etl_app.models.pipeline_nodes.llm_extraction_node import (
     LLMExtractionNode,
 )
 from data_etl_app.models.pipeline_nodes.search_node import SearchNode
+from data_etl_app.models.pipeline_nodes.evidence_node import EvidenceNode
 from data_etl_app.models.pipeline_nodes.single_stage_extraction_node import (
     SingleStageExtractionNode,
 )
@@ -64,6 +65,9 @@ from data_etl_app.models.pipeline_nodes.concept.concept_search_node import (
 from data_etl_app.models.pipeline_nodes.keyword.keyword_extraction_prefill_node import (
     KeywordExtractionPrefillNode,
 )
+from data_etl_app.models.pipeline_nodes.keyword.keyword_evidence_node import (
+    KeywordEvidenceNode,
+)
 from data_etl_app.models.pipeline_nodes.keyword.keyword_reconcile_node import (
     KeywordReconcileNode,
 )
@@ -77,6 +81,7 @@ __all__ = [
     "ReconcileNode",
     "LLMExtractionNode",
     "SearchNode",
+    "EvidenceNode",
     "SingleStageExtractionNode",
     "SingleStageExtractionPrefillNode",
     # basic_field
@@ -98,6 +103,7 @@ __all__ = [
     "ConceptSearchNode",
     # keyword
     "KeywordExtractionPrefillNode",
+    "KeywordEvidenceNode",
     "KeywordReconcileNode",
     "KeywordSearchNode",
 ]

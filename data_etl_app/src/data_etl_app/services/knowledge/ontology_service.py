@@ -1,5 +1,4 @@
 import asyncio
-from data_etl_app.models.types_and_enums import ConceptTypeEnum
 import rdflib
 import logging
 from typing import Dict, List, Optional
