@@ -59,13 +59,10 @@ class ManufacturerExtractionOrchestrator:
         self.is_manufacturer_pipeline = (
             ExtractionPipelineFactory.create_binary_classification_pipeline(
                 binary_field_type=BinaryClassificationTypeEnum.is_manufacturer,
-                llm_model=llm_model,
-                model_params=model_params,
                 prompt=prompt_service.is_manufacturer_prompt,
             )
         )
         self.pipelines = ExtractionPipelineFactory.create_pipelines(
-            llm_model=llm_model,  # needed to configure chunking strategy that respects model limits
             prompt_service=prompt_service,
             ontology_service=ontology_service,
         )

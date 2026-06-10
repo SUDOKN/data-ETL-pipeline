@@ -1,13 +1,14 @@
 from core.models.prompt import Prompt
 
 from data_etl_app.models.chunking_strat import (
+    ChunkingStrategy,
     CERTIFICATE_CHUNKING_STRAT,
     INDUSTRY_CHUNKING_STRAT,
     MATERIAL_CAP_CHUNKING_STRAT,
     PROCESS_CAP_CHUNKING_STRAT,
     PRODUCT_CHUNKING_STRAT,
     ChunkingStrategy,
-    get_single_shot_chunking_strat,
+    get_binary_classification_chunking_strat,
 )
 from data_etl_app.models.pipeline_nodes import (
     PrefillNode,
@@ -39,8 +40,6 @@ from data_etl_app.models.types_and_enums import (
 )
 from data_etl_app.services.knowledge.ontology_service import OntologyService
 from data_etl_app.services.knowledge.prompt_service import PromptService
-from litellm_proxy_app.models.llm_model import LLM_Model
-from open_ai_key_app.models.gpt_model_params import GPTModelParams
 
 
 class ExtractionPipelineFactory:
@@ -55,7 +54,6 @@ class ExtractionPipelineFactory:
         mapping_prompt: Prompt,
         ontology_version_id: str,
         known_concepts: set[Concept],
-        llm_model: LLM_Model,
     ) -> ConceptExtractionPrefillNode:
         return ConceptExtractionPrefillNode(
             field_type=concept_type,
@@ -87,14 +85,10 @@ class ExtractionPipelineFactory:
     def create_binary_classification_pipeline(
         binary_field_type: BinaryClassificationTypeEnum,
         prompt: Prompt,
-        llm_model: LLM_Model,
-        model_params: GPTModelParams,
     ) -> BinaryClassificationPrefillNode:
         return BinaryClassificationPrefillNode(
             binary_field_type=binary_field_type,
-            chunk_strategy=get_single_shot_chunking_strat(
-                gpt_model=llm_model, prompt=prompt
-            ),
+            chunk_strategy=get_binary_classification_chunking_strat(prompt=prompt),
             prompt=prompt,
             next_node=BinaryClassificationNode(
                 binary_field_type=binary_field_type,
@@ -107,7 +101,6 @@ class ExtractionPipelineFactory:
 
     @staticmethod
     def create_pipelines(
-        llm_model: LLM_Model,
         prompt_service: PromptService,
         ontology_service: OntologyService,
     ) -> dict[LLMExtractedFieldTypeEnum, PrefillNode]:
@@ -116,24 +109,6 @@ class ExtractionPipelineFactory:
         Each pipeline is the head of a chain of phases.
         """
 
-        """
-        BinaryClassificationTypeEnum.is_manufacturer: BinaryClassificationPrefillNode(
-            binary_field_type=BinaryClassificationTypeEnum.is_manufacturer,
-            llm_model=llm_model,
-            chunk_strategy=get_single_shot_chunking_strat(
-                gpt_model=llm_model, prompt=prompt_service.is_manufacturer_prompt
-            ),
-            prompt=prompt_service.is_manufacturer_prompt,
-            next_node=BinaryClassificationNode(
-                binary_field_type=BinaryClassificationTypeEnum.is_manufacturer,
-                classification_prompt=prompt_service.is_manufacturer_prompt,
-                llm_model=llm_model,
-                next_node=BinaryReconcileNode(
-                    binary_field_type=BinaryClassificationTypeEnum.is_manufacturer
-                ),
-            ),
-        ),
-        """
         return {
             # Single-stage extractions
             # BasicFieldTypeEnum.addresses: AddressPrefillNode(
@@ -179,7 +154,6 @@ class ExtractionPipelineFactory:
                 mapping_prompt=prompt_service.unknown_to_known_certificate_prompt,
                 ontology_version_id=ontology_service.version_id,
                 known_concepts=ontology_service.certificates[1],
-                llm_model=llm_model,
             ),
             ConceptTypeEnum.industries: ExtractionPipelineFactory.create_concept_extraction_pipeline(
                 concept_type=ConceptTypeEnum.industries,
@@ -189,7 +163,6 @@ class ExtractionPipelineFactory:
                 mapping_prompt=prompt_service.unknown_to_known_industry_prompt,
                 ontology_version_id=ontology_service.version_id,
                 known_concepts=ontology_service.industries[1],
-                llm_model=llm_model,
             ),
             ConceptTypeEnum.process_caps: ExtractionPipelineFactory.create_concept_extraction_pipeline(
                 concept_type=ConceptTypeEnum.process_caps,
@@ -199,7 +172,6 @@ class ExtractionPipelineFactory:
                 mapping_prompt=prompt_service.unknown_to_known_process_cap_prompt,
                 ontology_version_id=ontology_service.version_id,
                 known_concepts=ontology_service.process_caps[1],
-                llm_model=llm_model,
             ),
             ConceptTypeEnum.material_caps: ExtractionPipelineFactory.create_concept_extraction_pipeline(
                 concept_type=ConceptTypeEnum.material_caps,
@@ -209,6 +181,5 @@ class ExtractionPipelineFactory:
                 mapping_prompt=prompt_service.unknown_to_known_material_cap_prompt,
                 ontology_version_id=ontology_service.version_id,
                 known_concepts=ontology_service.material_caps[1],
-                llm_model=llm_model,
             ),
         }
