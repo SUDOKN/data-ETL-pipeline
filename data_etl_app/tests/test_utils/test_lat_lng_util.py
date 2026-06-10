@@ -11,8 +11,7 @@ GOOGLE_MAPS_API_KEY to be set in the environment.
 import pytest
 import data_etl_app.utils.lat_lng_util as lat_lng_module
 from data_etl_app.utils.lat_lng_util import get_lat_lng_from_address
-from core.models.db.manufacturer import Address
-
+from core.models.address_extraction_result import Address
 
 # ---------------------------------------------------------------------------
 # Helpers

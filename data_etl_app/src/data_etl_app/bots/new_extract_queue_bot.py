@@ -136,9 +136,10 @@ async def process_queue(
     try:
         prompt_service = await get_prompt_service(llm_model)
         ontology_service = await get_ontology_service()
+        ontology = await ontology_service.get_latest_ontology()
         mfg_orchestrator = ManufacturerExtractionOrchestrator(
             prompt_service=prompt_service,
-            ontology_service=ontology_service,
+            ontology=ontology,
             llm_model=llm_model,
             model_params=model_params,
         )

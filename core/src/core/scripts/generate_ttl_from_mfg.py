@@ -158,9 +158,7 @@ async def main():
         with open(onto_mahir_path, "r", encoding="utf-8") as file:
             ontology_data = file.read()
 
-        ont_inst = await get_ontology_service(
-            Ontology(rdf=ontology_data, s3_version_id="local-test-version-id")
-        )
+        ontology = Ontology(rdf=ontology_data, s3_version_id="local-test-version-id")
 
         collection = Manufacturer.get_pymongo_collection()
         batch_idx = 0
@@ -242,7 +240,7 @@ async def main():
                 f"(indices {_fmt(start_label)}–{_fmt(end_label)})."
             )
 
-            ttl = generate_triples(ont_inst, mfg_user_forms)
+            ttl = generate_triples(ontology, mfg_user_forms)
             out_filename = _batch_filename(start_label, end_label)
             with open(out_filename, "w", encoding="utf-8") as f:
                 f.write(ttl)

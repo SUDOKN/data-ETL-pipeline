@@ -6,7 +6,7 @@ from typing import Optional
 
 from core.models.address_extraction_result import Address
 from core.models.business_description_extraction_result import BusinessDescription
-from core.models.field_types import MfgETLDType
+from core.models.field_types import MfgETLDType, OntologyVersionIDType
 from core.utils.time_util import get_current_time
 
 logger = logging.getLogger(__name__)
@@ -17,6 +17,7 @@ logger = logging.getLogger(__name__)
 class ManufacturerUserForm(Document):
     author_email: str
     etld1: MfgETLDType  # foreign key to Manufacturer.etld1
+    ontology_version_id: OntologyVersionIDType
 
     created_at: datetime = Field(default_factory=lambda: get_current_time())
     updated_at: datetime = Field(default_factory=lambda: get_current_time())

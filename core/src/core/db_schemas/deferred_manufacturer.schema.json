@@ -1200,6 +1200,12 @@
               },
               "search_prompt_version_id": {
                 "bsonType": "string"
+              },
+              "evidence_prompt_version_id": {
+                "bsonType": [
+                  "string",
+                  "null"
+                ]
               }
             }
           },
@@ -1214,6 +1220,12 @@
               "properties": {
                 "llm_search_request_id": {
                   "bsonType": "string"
+                },
+                "llm_evidence_request_id": {
+                  "bsonType": [
+                    "string",
+                    "null"
+                  ]
                 }
               }
             }

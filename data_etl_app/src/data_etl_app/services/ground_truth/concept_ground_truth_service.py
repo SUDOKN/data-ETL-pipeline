@@ -5,7 +5,6 @@ from datetime import datetime
 
 from core.models.db.manufacturer import Manufacturer
 from core.models.field_types import (
-    OntologyVersionIDType,
     S3FileVersionIDType,
 )
 from core.models.concept_extraction_results import ConceptExtractionResults
@@ -233,21 +232,12 @@ async def _validate_concept_ground_truth_correction(
             "Chunk text does not match the expected text for the given chunk bounds."
         )
 
-    # ontology version ID check in case it is different from the latest version
+    # Load the specific ontology version that was used for extraction
     ontology_service = await get_ontology_service()
-    ontology_info: tuple[OntologyVersionIDType, list[Concept]] = getattr(
-        ontology_service, concept_gt.concept_type
+    ontology = await ontology_service.get_ontology(
+        concept_gt.metadata.ontology_version_id
     )
-
-    # because what if we have updated the ontology since user fetched original concept_ground_truth
-    # this blocks users from submitting corrections on old ontology versions
-    latest_ontology_version_id: OntologyVersionIDType = ontology_info[0]
-    known_concepts: set[Concept] = set(ontology_info[1])
-
-    if latest_ontology_version_id != concept_gt.metadata.ontology_version_id:
-        raise ValueError(
-            f"Ontology version ID mismatch for concept type '{concept_gt.concept_type}'. Expected: {latest_ontology_version_id}, got: {concept_gt.metadata.ontology_version_id}."
-        )
+    known_concepts: set[Concept] = getattr(ontology, concept_gt.concept_type)
 
     _validate_new_human_correction(concept_gt, new_correction, known_concepts)
 
@@ -388,19 +378,12 @@ async def get_corrected_results(
     Returns None if no corrections were made.
     """
 
+    # Load the specific ontology version that was used for extraction
     ontology_service = await get_ontology_service()
-    ontology_info: tuple[OntologyVersionIDType, list[Concept]] = getattr(
-        ontology_service, concept_gt.concept_type
+    ontology = await ontology_service.get_ontology(
+        concept_gt.metadata.ontology_version_id
     )
-
-    # because what if we have updated the ontology since user fetched original concept_ground_truth
-    # this blocks users from submitting corrections on old ontology versions
-    latest_ontology_version_id: OntologyVersionIDType = ontology_info[0]
-    known_concepts: set[Concept] = set(ontology_info[1])
-    if latest_ontology_version_id != concept_gt.metadata.ontology_version_id:
-        raise ValueError(
-            f"Ontology version ID mismatch for concept type '{concept_gt.concept_type}'. Expected: {latest_ontology_version_id}, got: {concept_gt.metadata.ontology_version_id}."
-        )
+    known_concepts: set[Concept] = getattr(ontology, concept_gt.concept_type)
 
     last_correction_log = concept_gt.corrections[-1] if concept_gt.corrections else None
     if not last_correction_log:

@@ -25,7 +25,7 @@ from core.services.deferred_manufacturer_service import (
 from core.services.gpt_batch_request_writes import (
     bulk_delete_gpt_batch_requests_by_mfg_etld1_and_field,
 )
-from data_etl_app.services.knowledge.ontology_service import OntologyService
+from data_etl_app.models.ontology import Ontology
 from data_etl_app.services.knowledge.prompt_service import PromptService
 from data_etl_app.services.extraction_pipeline_factory import ExtractionPipelineFactory
 from data_etl_app.services.ground_truth.binary_ground_truth_service import (
@@ -52,7 +52,7 @@ class ManufacturerExtractionOrchestrator:
     def __init__(
         self,
         prompt_service: PromptService,
-        ontology_service: OntologyService,
+        ontology: Ontology,
         llm_model: LLM_Model,
         model_params: GPTModelParams,
     ):
@@ -64,7 +64,7 @@ class ManufacturerExtractionOrchestrator:
         )
         self.pipelines = ExtractionPipelineFactory.create_pipelines(
             prompt_service=prompt_service,
-            ontology_service=ontology_service,
+            ontology=ontology,
         )
         self.llm_model = llm_model
         self.model_params = model_params

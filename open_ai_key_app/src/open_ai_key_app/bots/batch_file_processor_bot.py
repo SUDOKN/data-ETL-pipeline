@@ -40,7 +40,7 @@ from core.services.api_key_service import (
     get_all_api_key_bundles,
 )
 from core.services.manufacturer_service import find_manufacturers_by_etld1s
-from data_etl_app.services.knowledge.ontology_service import OntologyService
+from data_etl_app.models.ontology import Ontology
 from data_etl_app.services.knowledge.prompt_service import PromptService
 from open_ai_key_app.services.batch_file_generator import (
     BatchFileGenerationResult,
@@ -110,7 +110,7 @@ class BatchFileStation:
     def __init__(
         self,
         prompt_service: PromptService,
-        ontology_service: OntologyService,
+        ontology: Ontology,
         llm_model: LLM_Model,
         model_params: GPTModelParams,
     ):
@@ -120,7 +120,7 @@ class BatchFileStation:
             )
         self.mfg_intake_orchestrator = ManufacturerExtractionOrchestrator(
             prompt_service=prompt_service,
-            ontology_service=ontology_service,
+            ontology=ontology,
             llm_model=llm_model,
             model_params=model_params,
         )
@@ -134,14 +134,14 @@ class BatchFileStation:
     def get_instance(
         cls,
         prompt_service: PromptService,
-        ontology_service: OntologyService,
+        ontology: Ontology,
         llm_model: LLM_Model,
         model_params: GPTModelParams,
     ) -> "BatchFileStation":
         if cls._instance is None:
             cls._instance = cls(
                 prompt_service=prompt_service,
-                ontology_service=ontology_service,
+                ontology=ontology,
                 llm_model=llm_model,
                 model_params=model_params,
             )
@@ -597,9 +597,10 @@ async def async_main():
 
     prompt_service = await get_prompt_service(llm_model)
     ontology_service = await get_ontology_service()
+    ontology = await ontology_service.get_latest_ontology()
     batch_file_station = BatchFileStation.get_instance(
         prompt_service=prompt_service,
-        ontology_service=ontology_service,
+        ontology=ontology,
         llm_model=llm_model,
         model_params=model_params,
     )

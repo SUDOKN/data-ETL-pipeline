@@ -4,6 +4,7 @@
     "required": [
       "author_email",
       "etld1",
+      "ontology_version_id",
       "addresses",
       "products",
       "certificates",
@@ -20,6 +21,9 @@
         "bsonType": "string"
       },
       "etld1": {
+        "bsonType": "string"
+      },
+      "ontology_version_id": {
         "bsonType": "string"
       },
       "created_at": {

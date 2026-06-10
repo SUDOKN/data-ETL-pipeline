@@ -217,9 +217,11 @@ async def iterate_df_manufacturers_and_write_batch_files(
     # result = BatchFileGenerationResult(
     #     files=[], df_mfgs_with_orphan_custom_ids=CSVFile(output_dir=output_dir, )
     # )
+    ontology_service = await get_ontology_service()
+    ontology = await ontology_service.get_latest_ontology()
     mfg_orchestrator = ManufacturerExtractionOrchestrator(
         prompt_service=prompt_service,
-        ontology_service=ontology_service,
+        ontology=ontology,
         # llm_model=GPT_o3_mini,
         # llm_model=GPT_4o_mini,
         # llm_model=GPT_4_1,

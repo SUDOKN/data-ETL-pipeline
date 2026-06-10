@@ -1,5 +1,6 @@
 import logging
-from fastapi import APIRouter, HTTPException
+from typing import Optional
+from fastapi import APIRouter, HTTPException, Query
 from fastapi.responses import JSONResponse
 
 from data_etl_app.services.knowledge.ontology_service import get_ontology_service
@@ -15,9 +16,9 @@ router = APIRouter()
 async def refresh_ontology():
     try:
         ontology_service = await get_ontology_service()
-        await ontology_service.refresh()
+        ontology = await ontology_service.refresh()
         return {
-            "detail": f"Ontology refreshed successfully, version {ontology_service.ontology.s3_version_id}."
+            "detail": f"Ontology refreshed successfully, version {ontology.version_id}."
         }
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
@@ -27,13 +28,23 @@ async def refresh_ontology():
     "/ontology/process_caps/tree",
     response_class=JSONResponse,
 )
-async def get_process_concept_nodes():
+async def get_process_concept_nodes(
+    version: Optional[str] = Query(
+        None, description="S3 version ID. Defaults to latest."
+    )
+):
     try:
         ontology_service = await get_ontology_service()
-        concept_node_data = ontology_service.process_capability_concept_nodes
+        ontology = (
+            await ontology_service.get_ontology(version)
+            if version
+            else await ontology_service.get_latest_ontology()
+        )
+        process_caps = ontology.process_capability_concept_nodes
         return {
-            "ontology_version_id": concept_node_data[0],
-            "process_caps": concept_node_data[1],
+            "ontology_version_id": ontology.version_id,
+            "count": len(process_caps),
+            "process_caps": process_caps,
         }
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
@@ -43,13 +54,23 @@ async def get_process_concept_nodes():
     "/ontology/material_caps/tree",
     response_class=JSONResponse,
 )
-async def get_material_concept_nodes():
+async def get_material_concept_nodes(
+    version: Optional[str] = Query(
+        None, description="S3 version ID. Defaults to latest."
+    )
+):
     try:
         ontology_service = await get_ontology_service()
-        concept_node_data = ontology_service.material_capability_concept_nodes
+        ontology = (
+            await ontology_service.get_ontology(version)
+            if version
+            else await ontology_service.get_latest_ontology()
+        )
+        material_caps = ontology.material_capability_concept_nodes
         return {
-            "ontology_version_id": concept_node_data[0],
-            "material_caps": concept_node_data[1],
+            "ontology_version_id": ontology.version_id,
+            "count": len(material_caps),
+            "material_caps": material_caps,
         }
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
@@ -59,13 +80,23 @@ async def get_material_concept_nodes():
     "/ontology/industries/tree",
     response_class=JSONResponse,
 )
-async def get_industry_concept_nodes():
+async def get_industry_concept_nodes(
+    version: Optional[str] = Query(
+        None, description="S3 version ID. Defaults to latest."
+    )
+):
     try:
         ontology_service = await get_ontology_service()
-        concept_node_data = ontology_service.industry_concept_nodes
+        ontology = (
+            await ontology_service.get_ontology(version)
+            if version
+            else await ontology_service.get_latest_ontology()
+        )
+        industries = ontology.industry_concept_nodes
         return {
-            "ontology_version_id": concept_node_data[0],
-            "industries": concept_node_data[1],
+            "ontology_version_id": ontology.version_id,
+            "count": len(industries),
+            "industries": industries,
         }
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
@@ -75,13 +106,23 @@ async def get_industry_concept_nodes():
     "/ontology/certificates/tree",
     response_class=JSONResponse,
 )
-async def get_certificate_concept_nodes():
+async def get_certificate_concept_nodes(
+    version: Optional[str] = Query(
+        None, description="S3 version ID. Defaults to latest."
+    )
+):
     try:
         ontology_service = await get_ontology_service()
-        concept_node_data = ontology_service.certificate_concept_nodes
+        ontology = (
+            await ontology_service.get_ontology(version)
+            if version
+            else await ontology_service.get_latest_ontology()
+        )
+        certificates = ontology.certificate_concept_nodes
         return {
-            "ontology_version_id": concept_node_data[0],
-            "certificates": concept_node_data[1],
+            "ontology_version_id": ontology.version_id,
+            "count": len(certificates),
+            "certificates": certificates,
         }
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
@@ -91,13 +132,23 @@ async def get_certificate_concept_nodes():
     "/ontology/naics/tree",
     response_class=JSONResponse,
 )
-async def get_naics_concept_nodes():
+async def get_naics_concept_nodes(
+    version: Optional[str] = Query(
+        None, description="S3 version ID. Defaults to latest."
+    )
+):
     try:
         ontology_service = await get_ontology_service()
-        concept_node_data = ontology_service.naics_concept_nodes
+        ontology = (
+            await ontology_service.get_ontology(version)
+            if version
+            else await ontology_service.get_latest_ontology()
+        )
+        naics = ontology.naics_concept_nodes
         return {
-            "ontology_version_id": concept_node_data[0],
-            "naics": concept_node_data[1],
+            "ontology_version_id": ontology.version_id,
+            "count": len(naics),
+            "naics": naics,
         }
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
@@ -107,13 +158,23 @@ async def get_naics_concept_nodes():
     "/ontology/ownership_statuses/tree",
     response_class=JSONResponse,
 )
-async def get_ownership_status_nodes():
+async def get_ownership_status_nodes(
+    version: Optional[str] = Query(
+        None, description="S3 version ID. Defaults to latest."
+    )
+):
     try:
         ontology_service = await get_ontology_service()
-        concept_node_data = ontology_service.ownership_concept_nodes
+        ontology = (
+            await ontology_service.get_ontology(version)
+            if version
+            else await ontology_service.get_latest_ontology()
+        )
+        ownership_statuses = ontology.ownership_concept_nodes
         return {
-            "ontology_version_id": concept_node_data[0],
-            "ownership_statuses": concept_node_data[1],
+            "ontology_version_id": ontology.version_id,
+            "count": len(ownership_statuses),
+            "ownership_statuses": ownership_statuses,
         }
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
@@ -124,13 +185,23 @@ async def get_ownership_status_nodes():
     "/ontology/process_caps/flat",
     response_class=JSONResponse,
 )
-async def get_process_capabilities():
+async def get_process_capabilities(
+    version: Optional[str] = Query(
+        None, description="S3 version ID. Defaults to latest."
+    )
+):
     try:
         ontology_service = await get_ontology_service()
-        concept_data = ontology_service.process_caps
+        ontology = (
+            await ontology_service.get_ontology(version)
+            if version
+            else await ontology_service.get_latest_ontology()
+        )
+        process_caps = ontology.process_caps
         return {
-            "ontology_version_id": concept_data[0],
-            "process_caps": concept_data[1],
+            "ontology_version_id": ontology.version_id,
+            "count": len(process_caps),
+            "process_caps": process_caps,
         }
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
@@ -140,13 +211,23 @@ async def get_process_capabilities():
     "/ontology/material_caps/flat",
     response_class=JSONResponse,
 )
-async def get_material_capabilities():
+async def get_material_capabilities(
+    version: Optional[str] = Query(
+        None, description="S3 version ID. Defaults to latest."
+    )
+):
     try:
         ontology_service = await get_ontology_service()
-        concept_data = ontology_service.material_caps
+        ontology = (
+            await ontology_service.get_ontology(version)
+            if version
+            else await ontology_service.get_latest_ontology()
+        )
+        material_caps = ontology.material_caps
         return {
-            "ontology_version_id": concept_data[0],
-            "material_caps": concept_data[1],
+            "ontology_version_id": ontology.version_id,
+            "count": len(material_caps),
+            "material_caps": material_caps,
         }
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
@@ -156,13 +237,23 @@ async def get_material_capabilities():
     "/ontology/industries/flat",
     response_class=JSONResponse,
 )
-async def get_industries():
+async def get_industries(
+    version: Optional[str] = Query(
+        None, description="S3 version ID. Defaults to latest."
+    )
+):
     try:
         ontology_service = await get_ontology_service()
-        concept_data = ontology_service.industries
+        ontology = (
+            await ontology_service.get_ontology(version)
+            if version
+            else await ontology_service.get_latest_ontology()
+        )
+        industries = ontology.industries
         return {
-            "ontology_version_id": concept_data[0],
-            "industries": concept_data[1],
+            "ontology_version_id": ontology.version_id,
+            "count": len(industries),
+            "industries": industries,
         }
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
@@ -172,13 +263,23 @@ async def get_industries():
     "/ontology/certificates/flat",
     response_class=JSONResponse,
 )
-async def get_certificates():
+async def get_certificates(
+    version: Optional[str] = Query(
+        None, description="S3 version ID. Defaults to latest."
+    )
+):
     try:
         ontology_service = await get_ontology_service()
-        concept_data = ontology_service.certificates
+        ontology = (
+            await ontology_service.get_ontology(version)
+            if version
+            else await ontology_service.get_latest_ontology()
+        )
+        certificates = ontology.certificates
         return {
-            "ontology_version_id": concept_data[0],
-            "certificates": concept_data[1],
+            "ontology_version_id": ontology.version_id,
+            "count": len(certificates),
+            "certificates": certificates,
         }
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
@@ -188,13 +289,23 @@ async def get_certificates():
     "/ontology/ownership_statuses/flat",
     response_class=JSONResponse,
 )
-async def get_ownership_statuses():
+async def get_ownership_statuses(
+    version: Optional[str] = Query(
+        None, description="S3 version ID. Defaults to latest."
+    )
+):
     try:
         ontology_service = await get_ontology_service()
-        concept_data = ontology_service.ownership_statuses
+        ontology = (
+            await ontology_service.get_ontology(version)
+            if version
+            else await ontology_service.get_latest_ontology()
+        )
+        ownership_statuses = ontology.ownership_statuses
         return {
-            "ontology_version_id": concept_data[0],
-            "ownership_statuses": concept_data[1],
+            "ontology_version_id": ontology.version_id,
+            "count": len(ownership_statuses),
+            "ownership_statuses": ownership_statuses,
         }
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
@@ -204,13 +315,23 @@ async def get_ownership_statuses():
     "/ontology/naics/flat",
     response_class=JSONResponse,
 )
-async def get_naics_codes():
+async def get_naics_codes(
+    version: Optional[str] = Query(
+        None, description="S3 version ID. Defaults to latest."
+    )
+):
     try:
         ontology_service = await get_ontology_service()
-        concept_data = ontology_service.naics_codes
+        ontology = (
+            await ontology_service.get_ontology(version)
+            if version
+            else await ontology_service.get_latest_ontology()
+        )
+        naics = ontology.naics_codes
         return {
-            "ontology_version_id": concept_data[0],
-            "naics": concept_data[1],
+            "ontology_version_id": ontology.version_id,
+            "count": len(naics),
+            "naics": naics,
         }
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
@@ -218,7 +339,7 @@ async def get_naics_codes():
 
 @router.get("/ontology/service-info")
 async def get_service_info():
-    """Debug endpoint to check ontology service singleton behavior."""
+    """Debug endpoint to check ontology service multi-version cache behavior."""
     try:
         ontology_service = await get_ontology_service()
         service_info = ontology_service.get_service_info()

@@ -39,7 +39,7 @@ from data_etl_app.models.types_and_enums import (
     LLMExtractedFieldTypeEnum,
     KeywordTypeEnum,
 )
-from data_etl_app.services.knowledge.ontology_service import OntologyService
+from data_etl_app.models.ontology import Ontology
 from data_etl_app.services.knowledge.prompt_service import PromptService
 
 
@@ -103,7 +103,7 @@ class ExtractionPipelineFactory:
     @staticmethod
     def create_pipelines(
         prompt_service: PromptService,
-        ontology_service: OntologyService,
+        ontology: Ontology,
     ) -> dict[LLMExtractedFieldTypeEnum, PrefillNode]:
         """
         Returns a dict mapping field names to their phase pipelines.
@@ -158,8 +158,8 @@ class ExtractionPipelineFactory:
                 search_prompt=prompt_service.extract_any_certificate_prompt,
                 evidence_prompt=prompt_service.certificate_evidence_prompt,
                 mapping_prompt=prompt_service.unknown_to_known_certificate_prompt,
-                ontology_version_id=ontology_service.version_id,
-                known_concepts=ontology_service.certificates[1],
+                ontology_version_id=ontology.version_id,
+                known_concepts=ontology.certificates,
             ),
             ConceptTypeEnum.industries: ExtractionPipelineFactory.create_concept_extraction_pipeline(
                 concept_type=ConceptTypeEnum.industries,
@@ -167,8 +167,8 @@ class ExtractionPipelineFactory:
                 search_prompt=prompt_service.extract_any_industry_prompt,
                 evidence_prompt=prompt_service.industry_evidence_prompt,
                 mapping_prompt=prompt_service.unknown_to_known_industry_prompt,
-                ontology_version_id=ontology_service.version_id,
-                known_concepts=ontology_service.industries[1],
+                ontology_version_id=ontology.version_id,
+                known_concepts=ontology.industries,
             ),
             ConceptTypeEnum.process_caps: ExtractionPipelineFactory.create_concept_extraction_pipeline(
                 concept_type=ConceptTypeEnum.process_caps,
@@ -176,8 +176,8 @@ class ExtractionPipelineFactory:
                 search_prompt=prompt_service.extract_any_process_cap_prompt,
                 evidence_prompt=prompt_service.process_cap_evidence_prompt,
                 mapping_prompt=prompt_service.unknown_to_known_process_cap_prompt,
-                ontology_version_id=ontology_service.version_id,
-                known_concepts=ontology_service.process_caps[1],
+                ontology_version_id=ontology.version_id,
+                known_concepts=ontology.process_caps,
             ),
             ConceptTypeEnum.material_caps: ExtractionPipelineFactory.create_concept_extraction_pipeline(
                 concept_type=ConceptTypeEnum.material_caps,
@@ -185,7 +185,7 @@ class ExtractionPipelineFactory:
                 search_prompt=prompt_service.extract_any_material_cap_prompt,
                 evidence_prompt=prompt_service.material_cap_evidence_prompt,
                 mapping_prompt=prompt_service.unknown_to_known_material_cap_prompt,
-                ontology_version_id=ontology_service.version_id,
-                known_concepts=ontology_service.material_caps[1],
+                ontology_version_id=ontology.version_id,
+                known_concepts=ontology.material_caps,
             ),
         }

@@ -1,7 +1,6 @@
 from pydantic import BaseModel
 
 from core.models.prompt import Prompt
-from litellm_proxy_app.models.llm_model import LLM_Model
 
 
 class ChunkingStrategy(BaseModel):
@@ -9,7 +8,8 @@ class ChunkingStrategy(BaseModel):
     max_chunks: int
     max_tokens_per_chunk: int
 
-    def __post_init__(self):
+    def __init__(self, **data):
+        super().__init__(**data)
         if self.overlap < 0 or self.overlap >= 1:
             raise ValueError("Overlap must be between >=0 and <1")
         if self.max_tokens_per_chunk >= 128000:
@@ -38,17 +38,17 @@ def get_single_shot_chunking_strat(
 BINARY_CLASSIFICATION_CHUNKING_STRAT_MAX_TOKENS = 128_000
 
 PRODUCT_CHUNKING_STRAT = ChunkingStrategy(
-    overlap=0.15, max_tokens_per_chunk=5000, max_chunks=10
+    overlap=0.15, max_tokens_per_chunk=5000, max_chunks=1
 )
 CERTIFICATE_CHUNKING_STRAT = ChunkingStrategy(
-    overlap=0.0, max_tokens_per_chunk=5000, max_chunks=10
+    overlap=0.0, max_tokens_per_chunk=5000, max_chunks=1
 )
 MATERIAL_CAP_CHUNKING_STRAT = ChunkingStrategy(
-    overlap=0.15, max_tokens_per_chunk=5000, max_chunks=10
+    overlap=0.15, max_tokens_per_chunk=5000, max_chunks=1
 )
 PROCESS_CAP_CHUNKING_STRAT = ChunkingStrategy(
-    overlap=0.15, max_tokens_per_chunk=2500, max_chunks=10  # TODO: change back to 100
+    overlap=0.15, max_tokens_per_chunk=2500, max_chunks=1  # TODO: change back to 100
 )
 INDUSTRY_CHUNKING_STRAT = ChunkingStrategy(
-    overlap=0.15, max_tokens_per_chunk=5000, max_chunks=10
+    overlap=0.15, max_tokens_per_chunk=5000, max_chunks=1
 )

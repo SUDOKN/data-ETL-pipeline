@@ -9,7 +9,7 @@ from core.utils.ttl_generator_util import (
     get_mfg_instance_uri_and_stripped_etld1,
     get_product_instance_uri,
 )
-from data_etl_app.services.knowledge.ontology_service import OntologyService
+from data_etl_app.models.ontology import Ontology
 from data_etl_app.utils.ttl_generator_util import uri_strip
 from data_etl_app.models.skos_concept import Concept
 from core.models.db.manufacturer_user_form import (
@@ -30,46 +30,46 @@ SCHEMA = Namespace("https://schema.org/")
 logger = logging.getLogger(__name__)
 
 
-def get_ownership_status_concept(ont_inst: OntologyService, label: str) -> Concept:
-    concept = ont_inst.ownership_status_map[1].get(label)
+def get_ownership_status_concept(ontology: Ontology, label: str) -> Concept:
+    concept = ontology.ownership_status_map.get(label)
     if not concept:
         raise ValueError(f"Ownership status '{label}' not found in ontology.")
     return concept
 
 
-def get_naics_concept(ont_inst: OntologyService, code: str) -> Concept:
-    concept = ont_inst.naics_code_map[1].get(code)
+def get_naics_concept(ontology: Ontology, code: str) -> Concept:
+    concept = ontology.naics_code_map.get(code)
     if not concept:
         raise ValueError(f"NAICS code {code} not found in ontology.")
     return concept
 
 
-def get_certificate_concept(ont_inst: OntologyService, label: str) -> Concept:
-    concept = ont_inst.certificate_map[1].get(label)
+def get_certificate_concept(ontology: Ontology, label: str) -> Concept:
+    concept = ontology.certificate_map.get(label)
     if not concept:
         raise ValueError(f"Certificate '{label}' not found in ontology.")
     return concept
 
 
-def get_industry_concept(ont_inst: OntologyService, label: str) -> Concept:
+def get_industry_concept(ontology: Ontology, label: str) -> Concept:
     # logger.debug("Looking up industry concept for label:", label)
-    # logger.debug(type(ont_inst.industry_map))
-    # logger.debug(type(ont_inst.industry_map[1]))
-    concept = ont_inst.industry_map[1].get(label)
+    # logger.debug(type(ontology.industry_map))
+    # logger.debug(type(ontology.industry_map))
+    concept = ontology.industry_map.get(label)
     if not concept:
         raise ValueError(f"Industry '{label}' not found in ontology.")
     return concept
 
 
-def get_process_cap_concept(ont_inst: OntologyService, label: str) -> Concept:
-    concept = ont_inst.process_cap_map[1].get(label)
+def get_process_cap_concept(ontology: Ontology, label: str) -> Concept:
+    concept = ontology.process_cap_map.get(label)
     if not concept:
         raise ValueError(f"Process capability '{label}' not found in ontology.")
     return concept
 
 
-def get_material_cap_concept(ont_inst: OntologyService, label: str) -> Concept:
-    concept = ont_inst.material_cap_map[1].get(label)
+def get_material_cap_concept(ontology: Ontology, label: str) -> Concept:
+    concept = ontology.material_cap_map.get(label)
     if not concept:
         raise ValueError(f"Material capability '{label}' not found in ontology.")
     return concept
@@ -184,7 +184,7 @@ def add_number_of_employees_triple(
 
 def add_business_status_triples(
     mfg_inst_uri: URIRef,
-    ont_inst: OntologyService,
+    ontology: Ontology,
     status_labels: Optional[list[str]],
     g: Graph,
     strict: bool,
@@ -199,7 +199,7 @@ def add_business_status_triples(
         if not status_label:
             raise ValueError("Business ownership status cannot be empty")
         logger.debug(f"  with ownership status: {status_label}")
-        status_concept = get_ownership_status_concept(ont_inst, status_label)
+        status_concept = get_ownership_status_concept(ontology, status_label)
         status_inst_uri = SDK[
             f"{uri_strip(status_concept.name)}-ownership-status-individual"
         ]
@@ -210,7 +210,7 @@ def add_business_status_triples(
 def add_primary_naics_triple(
     mfg_inst_uri: URIRef,
     primary_naics: Optional[str],
-    ont_inst: OntologyService,
+    ontology: Ontology,
     g: Graph,
     strict: bool,
 ):
@@ -221,7 +221,7 @@ def add_primary_naics_triple(
             logger.debug(f"  skipping empty primary NAICS")
             return
     logger.debug(f"  with primary NAICS: {primary_naics}")
-    naics_concept = get_naics_concept(ont_inst, "NAICS " + primary_naics)
+    naics_concept = get_naics_concept(ontology, "NAICS " + primary_naics)
     naics_ind_uri = SDK[f"{uri_strip(naics_concept.name)}-individual"]
     g.add((naics_ind_uri, RDF.type, naics_concept.uri))
     g.add((mfg_inst_uri, SDK.hasPrimaryNAICSClassifier, naics_ind_uri))
@@ -230,7 +230,7 @@ def add_primary_naics_triple(
 def add_secondary_naics_triple(
     mfg_inst_uri: URIRef,
     secondary_naics: Optional[list[str]],
-    ont_inst: OntologyService,
+    ontology: Ontology,
     g: Graph,
     strict: bool,
 ):
@@ -244,7 +244,7 @@ def add_secondary_naics_triple(
         if not naics_label:
             raise ValueError("Secondary NAICS code cannot be empty")
         logger.debug(f"  with secondary NAICS: {naics_label}")
-        naics_concept = get_naics_concept(ont_inst, "NAICS " + naics_label)
+        naics_concept = get_naics_concept(ontology, "NAICS " + naics_label)
         naics_ind_uri = SDK[f"{uri_strip(naics_concept.name)}-individual"]
         g.add((naics_ind_uri, RDF.type, naics_concept.uri))
         g.add((mfg_inst_uri, SDK.hasSecondaryNAICSClassifier, naics_ind_uri))
@@ -447,7 +447,7 @@ def add_product_triples(
 def add_certificate_triples(
     mfg_inst_uri: URIRef,
     certificates: Optional[list[str]],
-    ont_inst: OntologyService,
+    ontology: Ontology,
     g: Graph,
     strict: bool,
 ):
@@ -462,7 +462,7 @@ def add_certificate_triples(
         if not cert:
             raise ValueError("Certificate name cannot be empty")
         logger.debug(f"  with certificate: {cert}")
-        cert_concept = get_certificate_concept(ont_inst, cert)
+        cert_concept = get_certificate_concept(ontology, cert)
         cert_ind_uri = SDK[f"{uri_strip(cert_concept.name)}-certificate-individual"]
         g.add((cert_ind_uri, RDF.type, cert_concept.uri))
         # g.add((cert_ind_uri, RDFS.label, Literal(cert_concept.name)))
@@ -472,7 +472,7 @@ def add_certificate_triples(
 def add_industry_triples(
     mfg_inst_uri: URIRef,
     industries: Optional[list[str]],
-    ont_inst: OntologyService,
+    ontology: Ontology,
     g: Graph,
     strict: bool,
 ):
@@ -487,7 +487,7 @@ def add_industry_triples(
         if not ind:
             raise ValueError("Industry cannot be empty")
         logger.debug(f"  with industry: {ind}")
-        ind_concept = get_industry_concept(ont_inst, ind)
+        ind_concept = get_industry_concept(ontology, ind)
         industry_ind_uri = SDK[f"{uri_strip(ind_concept.name)}-industry-individual"]
         g.add((industry_ind_uri, RDF.type, ind_concept.uri))
         # g.add((industry_ind_uri, RDFS.label, Literal(ind_concept.name)))
@@ -498,7 +498,7 @@ def add_process_capability_triples(
     mfg_inst_uri: URIRef,
     mfg_etld1_stripped: str,
     process_caps: Optional[list[str]],
-    ont_inst: OntologyService,
+    ontology: Ontology,
     g: Graph,
     strict: bool,
 ):
@@ -513,7 +513,7 @@ def add_process_capability_triples(
         if not pc:
             raise ValueError("Process capability cannot be empty")
         logger.debug(f"  with process capability: {pc}")
-        pc_concept = get_process_cap_concept(ont_inst, pc)
+        pc_concept = get_process_cap_concept(ontology, pc)
         pc_inst_uri = SDK[
             f"{mfg_etld1_stripped}-{uri_strip(pc_concept.name)}-process-capability-instance"
         ]
@@ -525,7 +525,7 @@ def add_material_capability_triples(
     mfg_inst_uri: URIRef,
     mfg_etld1_stripped: str,
     material_caps: Optional[list[str]],
-    ont_inst: OntologyService,
+    ontology: Ontology,
     g: Graph,
     strict: bool,
 ):
@@ -540,7 +540,7 @@ def add_material_capability_triples(
         if not mc:
             raise ValueError("Material capability cannot be empty")
         logger.debug(f"  with material capability: {mc}")
-        mc_concept = get_material_cap_concept(ont_inst, mc)
+        mc_concept = get_material_cap_concept(ontology, mc)
         mc_inst_uri = SDK[
             f"{mfg_etld1_stripped}-{uri_strip(mc_concept.name)}-material-capability-instance"
         ]
@@ -549,7 +549,7 @@ def add_material_capability_triples(
 
 
 def add_manufacturer_triples(
-    ont_inst: OntologyService, mfg: ManufacturerUserForm, g: Graph, strict: bool = True
+    ontology: Ontology, mfg: ManufacturerUserForm, g: Graph, strict: bool = True
 ):
     if not str(mfg.etld1):
         raise ValueError("ManufacturerUserForm must have a valid mfg_etld1")
@@ -578,21 +578,21 @@ def add_manufacturer_triples(
         mfg_inst_uri, mfg.email_addresses, mfg_etld1_stripped, g, False
     )
     add_number_of_employees_triple(mfg_inst_uri, mfg.num_employees, g, False)
-    add_business_status_triples(mfg_inst_uri, ont_inst, mfg.business_statuses, g, False)
-    add_primary_naics_triple(mfg_inst_uri, mfg.primary_naics, ont_inst, g, False)
-    add_secondary_naics_triple(mfg_inst_uri, mfg.secondary_naics, ont_inst, g, False)
+    add_business_status_triples(mfg_inst_uri, ontology, mfg.business_statuses, g, False)
+    add_primary_naics_triple(mfg_inst_uri, mfg.primary_naics, ontology, g, False)
+    add_secondary_naics_triple(mfg_inst_uri, mfg.secondary_naics, ontology, g, False)
     add_address_triples(mfg_inst_uri, mfg.addresses, mfg_etld1_stripped, g, False)
     add_business_description_triples(
         mfg_inst_uri, mfg.business_desc, mfg_etld1_stripped, g, False
     )
     add_product_triples(mfg_inst_uri, mfg.products, mfg_etld1_stripped, g, strict)
-    add_certificate_triples(mfg_inst_uri, mfg.certificates, ont_inst, g, strict)
-    add_industry_triples(mfg_inst_uri, mfg.industries, ont_inst, g, strict)
+    add_certificate_triples(mfg_inst_uri, mfg.certificates, ontology, g, strict)
+    add_industry_triples(mfg_inst_uri, mfg.industries, ontology, g, strict)
     add_process_capability_triples(
-        mfg_inst_uri, mfg_etld1_stripped, mfg.process_caps, ont_inst, g, strict
+        mfg_inst_uri, mfg_etld1_stripped, mfg.process_caps, ontology, g, strict
     )
     add_material_capability_triples(
-        mfg_inst_uri, mfg_etld1_stripped, mfg.material_caps, ont_inst, g, strict
+        mfg_inst_uri, mfg_etld1_stripped, mfg.material_caps, ontology, g, strict
     )
 
 
@@ -609,24 +609,22 @@ def _init_graph() -> Graph:
     return g
 
 
-def generate_triples(
-    ont_inst: OntologyService, manufacturers: list[ManufacturerUserForm]
-):
+def generate_triples(ontology: Ontology, manufacturers: list[ManufacturerUserForm]):
     g = _init_graph()
     for mfg in manufacturers:
-        add_manufacturer_triples(ont_inst, mfg, g)
+        add_manufacturer_triples(ontology, mfg, g)
 
     logger.debug(f"Generated {len(g)} RDF triples.")
     return g.serialize(format="turtle")
 
 
 def generate_triples_for_single_mfg(
-    ont_inst: OntologyService, mfg: ManufacturerUserForm, strict: bool
+    ontology: Ontology, mfg: ManufacturerUserForm, strict: bool
 ):
     """
     CAUTION: Returns triples in N-Triples format which skips prefixes.
     """
     g = _init_graph()
-    add_manufacturer_triples(ont_inst, mfg, g, strict)
+    add_manufacturer_triples(ontology, mfg, g, strict)
     logger.debug(f"Generated {len(g)} RDF triples.")
     return g.serialize(format="nt")

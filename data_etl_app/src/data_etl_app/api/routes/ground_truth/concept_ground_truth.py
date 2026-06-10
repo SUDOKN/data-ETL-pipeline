@@ -146,7 +146,7 @@ async def fetch_concept_ground_truth_template(
         # pick random chunk_no if not provided
         chunk_no = random.randint(1, last_chunk_no)
 
-    chunk_bounds, chunk_search_stats = sorted_search_data[chunk_no - 1]
+    chunk_bounds, chunk_stats = sorted_search_data[chunk_no - 1]
 
     # check if concept ground truth already exists for this mfg_url, concept_type, and chunk_no
     existing_concept_gt = await get_extracted_concept_ground_truth(
@@ -168,7 +168,7 @@ async def fetch_concept_ground_truth_template(
         response["your_correction"][
             "brute_search"
         ] = (
-            chunk_search_stats.brute_search
+            chunk_stats.brute_search
         )  # include brute search results in the response for user's reference, even though it's not part of the correction template
         response.pop("id", None)  # remove id from response
         response["final_results"] = await get_corrected_results(existing_concept_gt)
@@ -199,7 +199,7 @@ async def fetch_concept_ground_truth_template(
         chunk_no=chunk_no,
         last_chunk_no=last_chunk_no,
         metadata=concept_extraction_results.metadata,
-        extraction_stats=chunk_search_stats,
+        extraction_stats=chunk_stats,
         corrections=[],  # empty logs initially
     )
 
@@ -209,20 +209,20 @@ async def fetch_concept_ground_truth_template(
             author_email=author_email,
             source=GroundTruthSource.API_SURVEY,
             llm_search_correction=LLMSearchResultsCorrection(
-                upsert=chunk_search_stats.llm_search
+                upsert=chunk_stats.llm_search
             ),  # pre-fill with llm results
             llm_evidence_correction=EvidenceResultCorrection(
-                upsert=chunk_search_stats.llm_evidence,
+                upsert=chunk_stats.llm_evidence,
             ),  # pre-fill with llm results
             llm_mapping_correction=MappingResultCorrection.from_raw_llm_mapping_result(
-                original_mapping_result=chunk_search_stats.llm_mapping
+                original_mapping_result=chunk_stats.llm_mapping
             ),  # pre-fill with llm results
         ).model_dump()
     )
     response["your_correction"][
         "brute_search"
     ] = (
-        chunk_search_stats.brute_search
+        chunk_stats.brute_search
     )  # include brute search results in the response for user's reference, even though it's not part of the correction template
     response["final_results"] = await get_corrected_results(concept_ground_truth)
 
@@ -355,7 +355,7 @@ async def collect_concept_extraction_ground_truth(
             )
         ]
         last_chunk_no = len(sorted_search_data)
-        chunk_bounds, chunk_search_stats = sorted_search_data[concept_gt.chunk_no - 1]
+        chunk_bounds, chunk_stats = sorted_search_data[concept_gt.chunk_no - 1]
         scraped_text, _version_id = await download_scraped_text_from_s3_by_mfg_etld1(
             etld1=manufacturer.etld1,
             version_id=manufacturer.scraped_text_file_version_id,
@@ -376,7 +376,7 @@ async def collect_concept_extraction_ground_truth(
             chunk_no=concept_gt.chunk_no,
             last_chunk_no=last_chunk_no,
             metadata=concept_extraction_results.metadata,
-            extraction_stats=chunk_search_stats,
+            extraction_stats=chunk_stats,
             corrections=[],  # empty logs initially
         )
 
@@ -483,7 +483,7 @@ async def get_concept_coverage_stats(
     Returns coverage statistics for all concepts of the given type.
 
     For each concept in the ontology, counts how many GT documents reference it.
-    A document counts if the concept appears in either `chunk_search_stats.results`
+    A document counts if the concept appears in either `chunk_stats.results`
     (raw extraction) OR `final_results` (human-corrected), i.e. the union.
 
     `total_documents_in_range`: count of distinct GT documents that contain at least
@@ -499,16 +499,21 @@ async def get_concept_coverage_stats(
 
     ontology_svc = await get_ontology_service()
 
+    # Get the specific ontology version or latest
+    if ontology_version_id:
+        ontology = await ontology_svc.get_ontology(ontology_version_id)
+    else:
+        ontology = await ontology_svc.get_latest_ontology()
+
     _concept_type_to_map = {
-        ConceptTypeEnum.process_caps: ontology_svc.process_cap_map,
-        ConceptTypeEnum.material_caps: ontology_svc.material_cap_map,
-        ConceptTypeEnum.industries: ontology_svc.industry_map,
-        ConceptTypeEnum.certificates: ontology_svc.certificate_map,
+        ConceptTypeEnum.process_caps: ontology.process_cap_map,
+        ConceptTypeEnum.material_caps: ontology.material_cap_map,
+        ConceptTypeEnum.industries: ontology.industry_map,
+        ConceptTypeEnum.certificates: ontology.certificate_map,
     }
 
-    live_version_id, concept_map = _concept_type_to_map[concept_type]
-
-    effective_ontology_version_id: str = ontology_version_id or live_version_id
+    concept_map = _concept_type_to_map[concept_type]
+    effective_ontology_version_id: str = ontology.version_id
 
     gt_docs: list[ConceptGroundTruth] = await ConceptGroundTruth.find(
         ConceptGroundTruth.concept_type == concept_type,
@@ -525,8 +530,8 @@ async def get_concept_coverage_stats(
     per_doc_f1: list[float] = []
 
     for doc in gt_docs:
-        results = set(doc.chunk_search_stats.results)
-        final = set(doc.final_results or [])
+        results = set(doc.extraction_stats.results)
+        final = set(await get_corrected_results(doc))
         covered = results | final
         doc_covered_sets.append(covered)
         for concept_name in covered:

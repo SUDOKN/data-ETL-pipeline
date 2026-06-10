@@ -28,7 +28,8 @@ from data_etl_app.dependencies.aws_clients import (
 )
 
 from data_etl_app.models.ontology import Ontology
-from core.models.db.manufacturer import Address, BusinessDescription
+from core.models.address_extraction_result import Address
+from core.models.business_description_extraction_result import BusinessDescription
 from core.services.ttl_generator_service import generate_triples
 from core.models.db.manufacturer_user_form import (
     ManufacturerUserForm,
@@ -44,9 +45,6 @@ async def main():
         # Initialize AWS clients
         await initialize_core_aws_clients()
         await initialize_data_etl_aws_clients()
-        from data_etl_app.services.knowledge.ontology_service import (
-            get_ontology_service,
-        )
 
         ontology_file_path = (
             Path(__file__).resolve().parents[2] / "ontology/SUDOKN1.1/SUDOKN1_1.rdf"
@@ -56,10 +54,8 @@ async def main():
         with open(ontology_file_path, "r", encoding="utf-8") as file:
             ontology_data = file.read()
 
-        ont_inst = await get_ontology_service(
-            Ontology(rdf=ontology_data, s3_version_id="local-test-version-id")
-        )
-        print("Ontology service initialized.")
+        ontology = Ontology(rdf=ontology_data, s3_version_id="local-test-version-id")
+        print("Ontology initialized.")
         manufacturers = [
             ManufacturerUserForm(
                 author_email="info@acmemfg.com",
@@ -135,7 +131,7 @@ async def main():
             ),
         ]
         print(f"Loaded {len(manufacturers)} manufacturers for RDF generation.")
-        ttl = generate_triples(ont_inst, manufacturers)
+        ttl = generate_triples(ontology, manufacturers)
         print(f"Generated RDF with {len(ttl.splitlines())} lines.")
         with open("output.ttl", "w", encoding="utf-8") as f:
             f.write(ttl)

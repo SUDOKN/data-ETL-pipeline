@@ -12,6 +12,7 @@ from core.utils.aws.queue.priority_scrape_queue_util import (
 )
 
 from core.models.db.manufacturer_user_form import ManufacturerUserForm
+from data_etl_app.services.knowledge.ontology_service import get_ontology_service
 
 
 async def validate_and_create_from_manufacturer(
@@ -89,9 +90,14 @@ async def validate_and_create_from_manufacturer(
     if manufacturer.material_caps is None:
         raise AssertionError("material_caps must not be None")
 
+    # Extract ontology_version_id from one of the concept extraction results
+    # All concept extractions should have the same ontology version
+    ontology_version_id = manufacturer.certificates.metadata.ontology_version_id
+
     return ManufacturerUserForm(
         author_email="",  # to be filled later
         etld1=manufacturer.etld1,
+        ontology_version_id=ontology_version_id,
         name=manufacturer.name,
         founded_in=manufacturer.founded_in,
         email_addresses=manufacturer.email_addresses,
@@ -153,9 +159,14 @@ async def create_blank_manufacturer_user_form(
     This is used by the manual registration flow when the manufacturer does not
     already exist in Mongo or GraphDB.
     """
+    # Get the latest ontology version
+    ontology_service = await get_ontology_service()
+    latest_ontology = await ontology_service.get_latest_ontology()
+
     draft = ManufacturerUserForm(
         author_email=author_email,
         mfg_etld1=mfg_etld1,
+        ontology_version_id=latest_ontology.version_id,
         name=None,
         founded_in=None,
         email_addresses=None,

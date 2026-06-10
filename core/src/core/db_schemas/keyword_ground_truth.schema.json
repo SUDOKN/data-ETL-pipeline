@@ -223,7 +223,8 @@
         "bsonType": "object",
         "required": [
           "results",
-          "llm_search"
+          "llm_search",
+          "llm_evidence"
         ],
         "additionalProperties": false,
         "properties": {
@@ -240,6 +241,12 @@
               "bsonType": "string"
             },
             "uniqueItems": true
+          },
+          "llm_evidence": {
+            "bsonType": "object",
+            "additionalProperties": {
+              "bsonType": "string"
+            }
           }
         }
       },

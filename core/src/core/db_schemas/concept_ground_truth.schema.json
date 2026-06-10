@@ -242,8 +242,8 @@
         "bsonType": "object",
         "required": [
           "results",
-          "brute_search",
           "llm_search",
+          "brute_search",
           "llm_evidence",
           "llm_mapping",
           "unmapped"
@@ -257,14 +257,14 @@
             },
             "uniqueItems": true
           },
-          "brute_search": {
+          "llm_search": {
             "bsonType": "array",
             "items": {
               "bsonType": "string"
             },
             "uniqueItems": true
           },
-          "llm_search": {
+          "brute_search": {
             "bsonType": "array",
             "items": {
               "bsonType": "string"
