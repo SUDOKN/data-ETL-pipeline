@@ -3,7 +3,6 @@ import logging
 from datetime import datetime
 import traceback
 from typing import Optional, Union
-
 from core.models.db.deferred_manufacturer import DeferredManufacturer
 from core.models.db.gpt_batch_request import GPTBatchRequest
 from core.models.deferred_concept_extraction import (
@@ -155,13 +154,18 @@ class EvidenceNode(LLMExtractionNode[LLMExtractedFieldTypeVar, LLMEvidenceResult
         eager: bool,
     ) -> list[GPTBatchRequest]:
         """Create batch requests for the evidence phase."""
+        mfg_name = pipeline_context.mfg_name
+        if not mfg_name:
+            raise ValueError(
+                f"evidence_node.create_batch_requests was called for {self.field_type.name} in {self.__class__.__name__} but pipeline_context.mfg_name is not set. Ensure business_desc is extracted before evidence."
+            )
 
         extraction_requests: Optional[DeferredEvidenceExtractionRequests] = getattr(
             deferred_mfg, self.field_type.name
         )
         if not extraction_requests:
             raise ValueError(
-                f"create_batch_requests was called for {self.field_type.name} in {self.__class__.__name__} but no deferred extraction exists."
+                f"evidence_node.create_batch_requests was called for {self.field_type.name} in {self.__class__.__name__} but no deferred extraction exists."
             )
 
         # create_missing_evidence_requests only creates batch requests fresh or only missing ones,
@@ -169,6 +173,7 @@ class EvidenceNode(LLMExtractionNode[LLMExtractedFieldTypeVar, LLMEvidenceResult
         batch_requests = await create_missing_evidence_requests(
             deferred_at=timestamp,
             mfg_etld1=deferred_mfg.etld1,
+            mfg_name=mfg_name,
             field_type=self.field_type,
             missing_evidence_req_ids=missing_request_ids,
             extraction_requests=extraction_requests,

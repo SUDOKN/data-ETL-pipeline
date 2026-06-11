@@ -17,13 +17,20 @@ class ChunkingStrategy(BaseModel):
 
 
 def get_binary_classification_chunking_strat(prompt: Prompt) -> ChunkingStrategy:
-    return get_single_shot_chunking_strat(
+    return _get_single_shot_chunking_strat(
         max_context_tokens=BINARY_CLASSIFICATION_CHUNKING_STRAT_MAX_TOKENS,
         prompt=prompt,
     )
 
 
-def get_single_shot_chunking_strat(
+def get_basic_field_chunking_strat(prompt: Prompt) -> ChunkingStrategy:
+    return _get_single_shot_chunking_strat(
+        max_context_tokens=BASIC_FIELD_EXTRACTION_CHUNKING_STRAT_MAX_TOKENS,
+        prompt=prompt,
+    )
+
+
+def _get_single_shot_chunking_strat(
     max_context_tokens: int, prompt: Prompt
 ) -> ChunkingStrategy:
     # For binary classification, we want to be more conservative with chunking to ensure the model has enough context to make an accurate classification.
@@ -36,6 +43,7 @@ def get_single_shot_chunking_strat(
 
 
 BINARY_CLASSIFICATION_CHUNKING_STRAT_MAX_TOKENS = 128_000
+BASIC_FIELD_EXTRACTION_CHUNKING_STRAT_MAX_TOKENS = 128_000
 
 PRODUCT_CHUNKING_STRAT = ChunkingStrategy(
     overlap=0.15, max_tokens_per_chunk=5000, max_chunks=1

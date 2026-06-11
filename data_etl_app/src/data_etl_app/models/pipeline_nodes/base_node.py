@@ -4,7 +4,7 @@ from __future__ import (
 
 import logging
 from abc import ABC, abstractmethod
-from typing import Generic
+from typing import Generic, Optional
 from datetime import datetime
 
 from core.models.db.manufacturer import Manufacturer
@@ -43,4 +43,36 @@ class BaseNode(ABC, Generic[LLMExtractedFieldTypeVar]):
         pass
 
 
-PipelineContext = dict[type[BaseNode], dict[GPTBatchRequestCustomID, GPTBatchRequest]]
+class PipelineContext:
+    """Carries shared state for a single pipeline run.
+
+    ``mfg_name`` is pre-populated by the orchestrator before any concept/keyword
+    pipeline executes so that evidence nodes can embed the manufacturer name in
+    their batch requests without needing it threaded through every method signature.
+
+    The internal ``_results`` dict preserves the existing keying convention of
+    ``pipeline_context[NodeClass]`` used throughout the extraction nodes.
+    """
+
+    def __init__(
+        self,
+        mfg_name: Optional[str] = None,
+    ) -> None:
+        self.mfg_name: Optional[str] = mfg_name
+        self._results: dict[
+            type[BaseNode], dict[GPTBatchRequestCustomID, GPTBatchRequest]
+        ] = {}
+
+    # --- dict-like access so existing ``pipeline_context[NodeClass]`` calls work unchanged ---
+
+    def __getitem__(
+        self, key: type[BaseNode]
+    ) -> dict[GPTBatchRequestCustomID, GPTBatchRequest]:
+        return self._results[key]
+
+    def __setitem__(
+        self,
+        key: type[BaseNode],
+        value: dict[GPTBatchRequestCustomID, GPTBatchRequest],
+    ) -> None:
+        self._results[key] = value

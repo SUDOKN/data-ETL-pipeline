@@ -8,6 +8,7 @@ from data_etl_app.models.chunking_strat import (
     PROCESS_CAP_CHUNKING_STRAT,
     PRODUCT_CHUNKING_STRAT,
     ChunkingStrategy,
+    get_basic_field_chunking_strat,
     get_binary_classification_chunking_strat,
 )
 from data_etl_app.models.pipeline_nodes import (
@@ -30,6 +31,9 @@ from data_etl_app.models.pipeline_nodes import (
     KeywordEvidenceNode,
     KeywordReconcileNode,
     KeywordSearchNode,
+)
+from data_etl_app.models.pipeline_nodes.single_stage_extraction_prefill_node import (
+    SingleStageExtractionPrefillNode,
 )
 from data_etl_app.models.skos_concept import Concept
 from data_etl_app.models.types_and_enums import (
@@ -101,6 +105,19 @@ class ExtractionPipelineFactory:
         )
 
     @staticmethod
+    def create_business_desc_pipeline(
+        prompt: Prompt,
+    ) -> BusinessDescPrefillNode:
+        return BusinessDescPrefillNode(
+            chunk_strategy=get_basic_field_chunking_strat(prompt=prompt),
+            prompt=prompt,
+            next_node=BusinessDescExtractionNode(
+                extract_prompt=prompt,
+                next_node=BusinessDescReconcileNode(),
+            ),
+        )
+
+    @staticmethod
     def create_pipelines(
         prompt_service: PromptService,
         ontology: Ontology,
@@ -121,17 +138,6 @@ class ExtractionPipelineFactory:
             #     next_node=AddressExtractionNode(
             #         extract_prompt=prompt_service.extract_any_address_prompt,
             #         next_node=AddressReconcileNode(),
-            #     ),
-            # ),
-            # BasicFieldTypeEnum.business_desc: BusinessDescPrefillNode(
-            #     chunk_strategy=get_single_shot_chunking_strat(
-            #         gpt_model=llm_model,
-            #         prompt=prompt_service.find_business_desc_prompt,
-            #     ),
-            #     prompt=prompt_service.find_business_desc_prompt,
-            #     next_node=BusinessDescExtractionNode(
-            #         extract_prompt=prompt_service.find_business_desc_prompt,
-            #         next_node=BusinessDescReconcileNode(),
             #     ),
             # ),
             KeywordTypeEnum.products: KeywordExtractionPrefillNode(

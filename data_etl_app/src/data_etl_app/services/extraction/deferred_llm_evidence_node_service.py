@@ -70,6 +70,7 @@ def parse_llm_evidence_result(
 
 async def create_missing_evidence_requests(
     mfg_etld1: str,
+    mfg_name: str,
     field_type: LLMExtractedFieldTypeEnum,  # used for logging and debugging
     extraction_requests: DeferredEvidenceExtractionRequests,
     missing_evidence_req_ids: set[GPTBatchRequestCustomID],
@@ -155,6 +156,7 @@ async def create_missing_evidence_requests(
                     deferred_at=deferred_at,
                     etld1=mfg_etld1,
                     llm_evidence_request_id=llm_evidence_request_id,
+                    mfg_name=mfg_name,
                     mfg_text=mfg_text[start:end],
                     search_results=all_search_results,
                     evidence_prompt=evidence_prompt,
@@ -222,6 +224,7 @@ def create_deferred_evidence_gpt_request(
     deferred_at: datetime,
     etld1: str,
     llm_evidence_request_id: str,
+    mfg_name: str,
     mfg_text: str,
     search_results: set[str],
     evidence_prompt: Prompt,
@@ -232,9 +235,7 @@ def create_deferred_evidence_gpt_request(
     logger.info(
         f"create_deferred_evidence_gpt_request: Generating GPTBatchRequest for {llm_evidence_request_id}"
     )
-    context = (
-        f"scraped text:\n{mfg_text} \n\n extracted phrases:\n{list(search_results)}"
-    )
+    context = f"Manufacturer: {mfg_name}\n\nscraped text:\n{mfg_text} \n\n extracted phrases:\n{list(search_results)}"
 
     gpt_batch_request = create_base_gpt_batch_request(
         deferred_at=deferred_at,

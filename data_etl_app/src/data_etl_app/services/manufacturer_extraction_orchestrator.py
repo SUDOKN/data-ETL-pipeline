@@ -25,6 +25,7 @@ from core.services.deferred_manufacturer_service import (
 from core.services.gpt_batch_request_writes import (
     bulk_delete_gpt_batch_requests_by_mfg_etld1_and_field,
 )
+from data_etl_app.models.pipeline_nodes.base_node import PipelineContext
 from data_etl_app.models.ontology import Ontology
 from data_etl_app.services.knowledge.prompt_service import PromptService
 from data_etl_app.services.extraction_pipeline_factory import ExtractionPipelineFactory
@@ -60,6 +61,11 @@ class ManufacturerExtractionOrchestrator:
             ExtractionPipelineFactory.create_binary_classification_pipeline(
                 binary_field_type=BinaryClassificationTypeEnum.is_manufacturer,
                 prompt=prompt_service.is_manufacturer_prompt,
+            )
+        )
+        self.business_desc_pipeline = (
+            ExtractionPipelineFactory.create_business_desc_pipeline(
+                prompt=prompt_service.find_business_desc_prompt,
             )
         )
         self.pipelines = ExtractionPipelineFactory.create_pipelines(
@@ -105,7 +111,7 @@ class ManufacturerExtractionOrchestrator:
                     deferred_mfg=deferred_mfg,
                     scraped_text_file=scraped_text_file,
                     timestamp=timestamp,
-                    pipeline_context={},
+                    pipeline_context=PipelineContext(),
                     llm_model=self.llm_model,
                     model_params=self.model_params,
                     eager=eager,
@@ -122,6 +128,43 @@ class ManufacturerExtractionOrchestrator:
                     )
                 )
                 return  # if is_manufacturer check fails, skip further processing
+
+        if not mfg.business_desc:
+            try:
+                logger.info(f"Extracting business description for {mfg.etld1}")
+                _t0 = time.perf_counter()
+                await self.business_desc_pipeline.execute(
+                    mfg=mfg,
+                    deferred_mfg=deferred_mfg,
+                    scraped_text_file=scraped_text_file,
+                    timestamp=timestamp,
+                    pipeline_context=PipelineContext(),
+                    llm_model=self.llm_model,
+                    model_params=self.model_params,
+                    eager=eager,
+                )
+                field_timings["business_desc"] = time.perf_counter() - _t0
+            except Exception as e:
+                logger.error(f"{mfg.etld1}.business_desc errored:{e}")
+                await ExtractionError.insert_one(
+                    ExtractionError(
+                        created_at=timestamp,
+                        error=str(e),
+                        field="business_desc",
+                        mfg_etld1=mfg.etld1,
+                    )
+                )
+                return  # if business_desc extraction fails, skip further processing
+
+        if (
+            not mfg.business_desc
+            or not mfg.business_desc.result
+            or not mfg.business_desc.result.name
+        ):
+            raise ValueError(
+                f"Manufacturer {mfg.etld1} is missing business description result or name after extraction. "
+                f"business_desc: {mfg.business_desc}"
+            )
 
         if not mfg.email_addresses:
             try:
@@ -185,7 +228,9 @@ class ManufacturerExtractionOrchestrator:
                     deferred_mfg=deferred_mfg,
                     scraped_text_file=scraped_text_file,
                     timestamp=timestamp,
-                    pipeline_context={},
+                    pipeline_context=PipelineContext(
+                        mfg_name=mfg.business_desc.result.name
+                    ),
                     eager=eager,
                     llm_model=self.llm_model,
                     model_params=self.model_params,
