@@ -1,3 +1,5 @@
+import logging
+
 from core.models.db.concept_ground_truth import (
     YES_PREFIX,
     NO_PREFIX,
@@ -18,6 +20,8 @@ from data_etl_app.models.skos_concept import Concept
 from data_etl_app.utils.llm_mapping_helper import (
     get_matched_concepts_and_unmatched_keywords,
 )
+
+logger = logging.getLogger(__name__)
 
 
 def is_evidence_reason_format_correct(reason: str) -> bool:
@@ -98,6 +102,29 @@ def get_verified_results_from_raw_mapping(
             if reason.startswith(CORRECT_PREFIX):
                 verified_mapped_known_concepts.add(mk)
     return verified_mapped_known_concepts
+
+
+def merge_llm_and_filtered_brute_search_results(
+    llm_search_results: set[str],
+    brute_search_results: set[str],
+) -> set[str]:
+    """
+    Merge LLM search results with filtered brute force search results.
+
+    A brute force result is included only when it is not already a substring of
+    any LLM search result, avoiding redundancy while preserving recall.
+    """
+    lowered_brute = {r.lower() for r in brute_search_results}
+    lowered_llm = {r.lower() for r in llm_search_results}
+    filtered_brute = {
+        r
+        for r in lowered_brute
+        if not any(r in llm_result for llm_result in lowered_llm)
+    }
+    logger.info(f"LLM search results: {llm_search_results}")
+    logger.info(f"Brute force search results: {brute_search_results}")
+    logger.info(f"Non-overlapping brute force results: {filtered_brute}")
+    return llm_search_results | filtered_brute
 
 
 def calculate_final_keyword_results(

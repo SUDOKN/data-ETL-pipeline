@@ -1214,12 +1214,20 @@
             "additionalProperties": {
               "bsonType": "object",
               "required": [
-                "llm_search_request_id"
+                "llm_search_request_id",
+                "brute"
               ],
               "additionalProperties": false,
               "properties": {
                 "llm_search_request_id": {
                   "bsonType": "string"
+                },
+                "brute": {
+                  "bsonType": "array",
+                  "items": {
+                    "bsonType": "string"
+                  },
+                  "uniqueItems": true
                 },
                 "llm_evidence_request_id": {
                   "bsonType": [

@@ -11,6 +11,7 @@ from open_ai_key_app.models.field_types import GPTBatchRequestCustomID
 
 
 class KeywordExtractionRequestBundle(SearchRequestBundle):
+    brute: set[str]
     llm_evidence_request_id: Optional[GPTBatchRequestCustomID]
 
 

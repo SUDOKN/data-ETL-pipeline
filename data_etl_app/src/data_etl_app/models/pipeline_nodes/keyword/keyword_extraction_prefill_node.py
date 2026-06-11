@@ -81,6 +81,7 @@ class KeywordExtractionPrefillNode(PrefillNode[KeywordTypeEnum]):
                 ),
                 request_map={
                     chunk_bounds: KeywordExtractionRequestBundle(
+                        brute=set(),  # Keyword pipelines have no brute force phase, so this remains an empty set
                         llm_search_request_id=KeywordSearchNode.get_request_custom_id(
                             mfg_etld1=deferred_mfg.etld1,
                             field_type=self.field_type,

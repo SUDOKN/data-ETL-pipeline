@@ -28,6 +28,9 @@ from core.services.gpt_batch_request_service import (
     create_base_gpt_batch_request,
     get_dummy_gpt_batch_response,
 )
+from data_etl_app.utils.ground_truth_helper_util import (
+    merge_llm_and_filtered_brute_search_results,
+)
 
 logger = logging.getLogger(__name__)
 
@@ -110,7 +113,7 @@ async def create_missing_evidence_requests(
 
         # Process current batch
         for chunk_bounds, extraction_bundle in batch:
-            llm_search_result = await SearchNode.parse_batch_request_result(
+            llm_search_results = await SearchNode.parse_batch_request_result(
                 mfg_etld1=mfg_etld1,
                 field_type=field_type,
                 chunk_bounds=chunk_bounds,
@@ -130,9 +133,10 @@ async def create_missing_evidence_requests(
             # they weren't identified by the LLM search, because the brute force results were
             # generated with high recall in mind and we don't want to miss out on any potential
             # evidence by filtering them with the LLM search results. Keyword pipelines have no
-            # brute force phase, so ``getattr`` yields an empty set for them.
-            all_search_results = llm_search_result | getattr(
-                extraction_bundle, "brute", set()
+            # brute force phase
+            all_search_results = merge_llm_and_filtered_brute_search_results(
+                llm_search_results=llm_search_results,
+                brute_search_results=extraction_bundle.brute,
             )
 
             if not all_search_results:
@@ -151,6 +155,9 @@ async def create_missing_evidence_requests(
             else:
                 start, end = int(chunk_bounds.split(":")[0]), int(
                     chunk_bounds.split(":")[1]
+                )
+                logger.info(
+                    f"Passing on candidates {all_search_results} to evidence phase for {mfg_etld1}:{field_type} chunk {chunk_bounds}"
                 )
                 evidence_batch_request = create_deferred_evidence_gpt_request(
                     deferred_at=deferred_at,
