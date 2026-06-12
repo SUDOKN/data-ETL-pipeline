@@ -20,7 +20,7 @@ from core.models.db.binary_ground_truth import BinaryGroundTruth
 from core.models.db.concept_ground_truth import ConceptGroundTruth
 from core.models.db.keyword_ground_truth import KeywordGroundTruth
 from core.models.db.place import Place
-
+from core.models.db.out_of_vocab_labels import OutOfVocabLabel
 
 MONGO_DB_URI = os.getenv("MONGO_DB_URI")
 if not MONGO_DB_URI:
@@ -84,6 +84,7 @@ async def init_db(
             BinaryGroundTruth,
             ConceptGroundTruth,
             KeywordGroundTruth,
+            OutOfVocabLabel,
             DeferredManufacturer,
             GPTBatchRequest,
             GPTBatch,

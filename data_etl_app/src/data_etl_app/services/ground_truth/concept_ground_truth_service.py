@@ -25,6 +25,11 @@ from core.utils.aws.s3.scraped_text_util import (
 from data_etl_app.utils.route_url_util import (
     get_full_ontology_concept_flat_url,
 )
+from core.services.out_of_vocab_labels_service import (
+    get_case_matched_existing_label,
+    get_out_of_vocab_labels,
+    upsert_out_of_vocab_labels,
+)
 from data_etl_app.utils.ground_truth_helper_util import (
     CORRECT_PREFIX,
     INCORRECT_PREFIX,
@@ -32,6 +37,7 @@ from data_etl_app.utils.ground_truth_helper_util import (
     calculate_corrected_concept_results,
     is_evidence_reason_format_correct,
     is_mapping_reason_format_correct,
+    merge_llm_and_brute_search_results,
 )
 
 # Configure logger
@@ -103,7 +109,7 @@ async def add_correction_to_concept_ground_truth(
     ):
         existing_concept_gt.corrections.pop()  # the new correction will replace the last one because it is from the same author
 
-    await _validate_concept_ground_truth_correction(
+    out_of_vocab_keywords = await _validate_concept_ground_truth_correction(
         linked_manufacturer, existing_concept_gt, new_correction
     )
 
@@ -117,6 +123,12 @@ async def add_correction_to_concept_ground_truth(
     logger.debug(
         f"Updating existing concept ground truth {existing_concept_gt} to the database."
     )
+    if out_of_vocab_keywords:
+        await upsert_out_of_vocab_labels(
+            ontology_version_id=existing_concept_gt.metadata.ontology_version_id,
+            concept_type=existing_concept_gt.concept_type,
+            new_labels=out_of_vocab_keywords,
+        )
     return await existing_concept_gt.save()
 
 
@@ -134,7 +146,7 @@ async def save_new_concept_ground_truth(
     new_concept_gt.created_at = timestamp
     new_concept_gt.updated_at = timestamp
 
-    await _validate_concept_ground_truth_correction(
+    new_out_of_vocab_labels = await _validate_concept_ground_truth_correction(
         manufacturer, new_concept_gt, new_correction
     )
 
@@ -148,14 +160,21 @@ async def save_new_concept_ground_truth(
     logger.debug(
         f"Inserting new concept ground truth {new_concept_gt} to the database."
     )
-    return await new_concept_gt.save()
+    saved = await new_concept_gt.save()
+    if new_out_of_vocab_labels:
+        await upsert_out_of_vocab_labels(
+            ontology_version_id=new_concept_gt.metadata.ontology_version_id,
+            concept_type=new_concept_gt.concept_type,
+            new_labels=new_out_of_vocab_labels,
+        )
+    return saved
 
 
 async def _validate_concept_ground_truth_correction(
     linked_manufacturer: Manufacturer,
     concept_gt: ConceptGroundTruth,
     new_correction: HumanConceptCorrection,
-) -> None:
+) -> set[str]:
     """
     Validate and save the concept ground truth to the database.
 
@@ -239,49 +258,58 @@ async def _validate_concept_ground_truth_correction(
     )
     known_concepts: set[Concept] = getattr(ontology, concept_gt.concept_type)
 
-    _validate_new_human_correction(concept_gt, new_correction, known_concepts)
+    new_out_of_vocab_labels = await _validate_new_human_correction(
+        concept_gt, new_correction, known_concepts
+    )
+    return new_out_of_vocab_labels
 
 
 # always call before adding the new correction to corrections
-def _validate_new_human_correction(
-    chunk_concept_gt: ConceptGroundTruth,
+async def _validate_new_human_correction(
+    concept_gt: ConceptGroundTruth,
     new_correction: HumanConceptCorrection,
     known_concepts: set[Concept],
-):
+) -> set[str]:
 
     if not new_correction:
         raise ValueError(
-            "result_correction must be provided to validate the concept ground truth."
+            "new_correction must be provided to validate the concept ground truth."
         )
 
     # VERIFY LLM SEARCH
     for unk in new_correction.llm_search_correction.upsert:
-        if not re.search(word_regex(unk), chunk_concept_gt.chunk_text, re.IGNORECASE):
+        if not re.search(word_regex(unk), concept_gt.chunk_text, re.IGNORECASE):
             raise ValueError(
-                f"The term '{unk}' in the list llm_search_correction.upsert is not present in chunk_text."
+                f"The phrase '{unk}' in the list llm_search_correction.upsert is not present in chunk_text."
             )
 
-    if (  # llm_search is add only, so llm_search_correction.upsert = extraction_stats.llm_search + any new terms
-        chunk_concept_gt.extraction_stats.llm_search
+    if (  # llm_search is add only, so llm_search_correction.upsert = extraction_stats.llm_search + any new phrases
+        concept_gt.extraction_stats.llm_search
         - new_correction.llm_search_correction.upsert
     ):
         raise ValueError(
-            f"The following terms were present in the original LLM search results but were skipped in the new correction's llm_search_correction.upsert: {chunk_concept_gt.extraction_stats.llm_search - new_correction.llm_search_correction.upsert}."
+            f"The following phrases were present in the original LLM search results but were skipped in the new correction's llm_search_correction.upsert: {concept_gt.extraction_stats.llm_search - new_correction.llm_search_correction.upsert}."
         )
 
     # VERIFY EVIDENCE
     original_evidence_candidate_phrases = set(  # phrases originally present in the LLM evidence results, which is chunk_concept_gt.extraction_stats.llm_search | chunk_concept_gt.extraction_stats.brute_search
-        chunk_concept_gt.extraction_stats.llm_evidence.keys()
+        concept_gt.extraction_stats.llm_evidence.keys()
     )
-    corrected_evidence_candidate_phrases = (
-        new_correction.llm_search_correction.upsert  # llm_search_correction.upsert = extraction_stats.llm_search + any new terms added by human
-        | chunk_concept_gt.extraction_stats.brute_search  # brute_search terms are also passed on to the evidence stage
+    logger.info(
+        f"original_evidence_candidate_phrases: {original_evidence_candidate_phrases}"
+    )
+    corrected_evidence_candidate_phrases = merge_llm_and_brute_search_results(
+        llm_search_results=new_correction.llm_search_correction.upsert,  # llm_search_correction.upsert = extraction_stats.llm_search + any new phrases added by human
+        brute_search_results=concept_gt.extraction_stats.brute_search,  # brute_search phrases are also passed on to the evidence stage
+    )
+    logger.info(
+        f"corrected_evidence_candidate_phrases: {corrected_evidence_candidate_phrases}"
     )
     if original_evidence_candidate_phrases - corrected_evidence_candidate_phrases:
         # none of the original phrases can be removed, llm_evidence is edit existing or add new only
         raise ValueError(
-            f"The following terms were present in the original LLM evidence results but are missing in the new correction's llm_evidence_correction.upsert: {original_evidence_candidate_phrases - corrected_evidence_candidate_phrases}. "
-            f"Please provide corrections for these terms or leave the evidence unchanged."
+            f"The following phrases were present in the original LLM evidence results but are missing in the new correction's llm_evidence_correction.upsert: {original_evidence_candidate_phrases - corrected_evidence_candidate_phrases}. "
+            f"Please provide corrections for these phrases or leave the evidence unchanged."
         )
     if corrected_evidence_candidate_phrases != set(
         new_correction.llm_evidence_correction.upsert.keys()
@@ -295,11 +323,11 @@ def _validate_new_human_correction(
     for unk, reason in new_correction.llm_evidence_correction.upsert.items():
         if not reason:
             raise ValueError(
-                f"The unknown term '{unk}' in llm_evidence_correction.upsert must have a reason provided."
+                f"The unknown phrase '{unk}' in llm_evidence_correction.upsert must have a reason provided."
             )
         elif not is_evidence_reason_format_correct(reason):
             raise ValueError(
-                f"The reason for the unknown term '{unk}' in llm_evidence_correction.upsert must start with 'Yes, ' or 'No, ' followed by an explanation."
+                f"The reason for the unknown phrase '{unk}' in llm_evidence_correction.upsert must start with 'Yes, ' or 'No, ' followed by an explanation."
             )
 
     # VERIFY MAPPING
@@ -307,14 +335,14 @@ def _validate_new_human_correction(
         # phrases originally present in the LLM mapping results,
         # which is the keys of the llm_mapping dict, these phrases
         # had "Yes, " evidence originally
-        chunk_concept_gt.extraction_stats.llm_mapping.keys()
+        concept_gt.extraction_stats.llm_mapping.keys()
     )
     if original_mapping_candidate_phrases - set(
         new_correction.llm_mapping_correction.upsert.keys()
     ):
         raise ValueError(
-            f"The following terms were present in the original LLM mapping results but are skipped in the new correction's llm_mapping_correction.upsert: {original_mapping_candidate_phrases - set(new_correction.llm_mapping_correction.upsert.keys())}. "
-            f"Please provide corrections for these terms or leave the mapping unchanged."
+            f"The following phrases were present in the original LLM mapping results but are skipped in the new correction's llm_mapping_correction.upsert: {original_mapping_candidate_phrases - set(new_correction.llm_mapping_correction.upsert.keys())}. "
+            f"Please provide corrections for these phrases or leave the mapping unchanged."
         )
 
     # corrected_mapping_candidate_phrases_w_evid must contain all of corrected_evidence_candidate_phrases
@@ -344,30 +372,76 @@ def _validate_new_human_correction(
         )
 
     known_concept_labels: set[str] = {c.name for c in known_concepts}
+    new_out_of_vocab_labels: set[str] = set()
+
+    existing_out_of_vocab_labels_doc = await get_out_of_vocab_labels(
+        concept_type=concept_gt.concept_type,
+        ontology_version_id=concept_gt.metadata.ontology_version_id,
+    )
+
     for mu, mk_dict in new_correction.llm_mapping_correction.upsert.items():
         logger.debug(
-            f"Checking mapping_result_correction.upsert for key: {mu} with terms: {mk_dict}"
+            f"Checking mapping_result_correction.upsert for key: {mu} with phrases: {mk_dict}"
         )
         if mu not in corrected_mapping_candidate_phrases_w_evid:
             raise ValueError(
-                f"The term '{mu}' in the list llm_mapping_correction.upsert keys is not present in corrected_mapping_candidate_phrases_w_evid."
+                f"The phrase '{mu}' in the list llm_mapping_correction.upsert keys is not present in corrected_mapping_candidate_phrases_w_evid."
+            )
+        elif not mk_dict and (mu not in original_mapping_candidate_phrases):
+            # mk_dict can be empty only when the phrase was present in the original mapping results, which is allowed.
+            # But if mk_dict is empty for a new phrase, then it's an error because new phrases must have at least one mapping reason provided.
+            raise ValueError(
+                f"The unknown phrase '{mu}' in llm_mapping_correction.upsert must have at least one mapping reason provided since it is a new addition."
             )
 
-        for mk in mk_dict:
-            # Check if mk is a known concept in the latest ontology version
+        # at this point
+        # mk_dict can be empty iff mu was in original mapping results
+        # if mk_dict is not empty, then mu is
+        #       either a new phrase with mapping reasons provided,
+        #       or an original phrase with updated mapping reasons,
+        # both are allowed
+        for mk in list(
+            mk_dict
+        ):  # mk_dict contains {mapped_known_concept_label: mapping_reason}
+            reason = mk_dict[mk]
+            if not reason:
+                raise ValueError(
+                    f"The out-of-vocabulary keyword '{mk}' in llm_mapping_correction.upsert['{mu}'] must have a reason provided."
+                )
+            elif not is_mapping_reason_format_correct(reason):
+                raise ValueError(
+                    f"The reason for the unknown phrase '{mk}' in llm_mapping_correction.upsert['{mu}'] must start with '{CORRECT_PREFIX}' or '{INCORRECT_PREFIX}'."
+                )
+
             if mk not in known_concept_labels:
-                raise ValueError(
-                    f"Key '{mk}' in the object llm_mapping_correction.upsert is not a known concept in the latest ontology version. "
-                    f"Please visit {get_full_ontology_concept_flat_url(chunk_concept_gt.concept_type)}"
+                # Out-of-vocabulary keyword: only accepted with a "Correct, " assertion.
+                # These are tracked for future ontology expansion.
+                logger.info(
+                    f"Found out-of-vocabulary keyword '{mk}' in mapping correction for phrase '{mu}'."
                 )
-            elif not mk_dict[mk]:
-                raise ValueError(
-                    f"The unknown term '{mk}' in llm_mapping_correction.upsert['{mu}'] must have a reason provided."
+                if not reason.startswith(CORRECT_PREFIX):
+                    raise ValueError(
+                        f"Out-of-vocabulary keyword '{mk}' in llm_mapping_correction.upsert['{mu}'] must start with '{CORRECT_PREFIX}'. "
+                        f"Keywords not in the ontology can only be submitted as correct mappings. "
+                        f"To check the current vocabulary, visit {get_full_ontology_concept_flat_url(concept_gt.concept_type)}"
+                    )
+                logger.debug(
+                    f"Accepted out-of-vocabulary keyword '{mk}' for concept type '{concept_gt.concept_type}'."
                 )
-            elif not is_mapping_reason_format_correct(mk_dict[mk]):
-                raise ValueError(
-                    f"The reason for the unknown term '{mk}' in llm_mapping_correction.upsert['{mu}'] must start with '{CORRECT_PREFIX}' or '{INCORRECT_PREFIX}'."
+                case_matched_existing_label = get_case_matched_existing_label(
+                    existing_out_of_vocab_labels_doc, mk
                 )
+                if case_matched_existing_label:
+                    # update mk with case_matched_existing_label in mk_dict
+                    mk_dict[case_matched_existing_label] = mk_dict.pop(mk)
+                    logger.info(
+                        f"Out-of-vocabulary keyword '{mk}' already exists in the database with case-matched label '{case_matched_existing_label}'. "
+                        f"Updated the mapping correction to use the existing label."
+                    )
+                else:
+                    new_out_of_vocab_labels.add(mk)
+
+    return new_out_of_vocab_labels
 
 
 async def get_corrected_results(

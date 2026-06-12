@@ -24,6 +24,7 @@ class UnknownToKnownMap(TypedDict):
     unmapped_unknowns: set[str]
 
 
+# CASE-INSENSITIVE SUBSTRING MATCHING
 def get_matched_concepts_and_unmatched_keywords(
     known_concepts: set[Concept], confirmed_keywords_w_evidence: dict[str, str]
 ) -> tuple[set[Concept], dict[str, str]]:
@@ -33,7 +34,15 @@ def get_matched_concepts_and_unmatched_keywords(
 
     for confirmed_keyword in confirmed_keywords:
         for concept in known_concepts:
-            if confirmed_keyword in concept.matchLabels:
+            # critical to use case-insensitive comparison here,
+            # because LLM may return a confirmed keyword with different
+            # capitalization than the known concept label, and we don't
+            # want to miss out on valid matches because of that. For example,
+            # "semiconductor" keyword should match "Semiconductor" match label
+            if any(
+                confirmed_keyword.lower() == label.lower()
+                for label in concept.matchLabels
+            ):
                 matched_concepts.add(concept)
                 unmatched_keywords.pop(confirmed_keyword, None)
 
@@ -92,17 +101,18 @@ def get_mapped_known_concepts_and_unmapped_keywords(
     for mu, mk_dict in raw_gpt_mapping.items():
         if mu not in keywords_to_map:
             # mapped_unknown was hallucinated, in which case we will skip this map
-            # and raise a warning
-            logger.warning(
-                f"WARNING: {mfg_etld1}:{concept_type.name} mapped_unknown:{mu} was not in the original unknowns list"
+            raise ValueError(
+                f"MappingError: {mfg_etld1}:{concept_type.name} mapped_unknown:{mu} was not in the original unknowns list"
             )
         else:
             if mk_dict:  # mk must not be null/None
                 for mk_label, mk_reason in mk_dict.items():
                     matched_known_concept = match_label_map.get(mk_label)
-                    if not matched_known_concept:
-                        logger.debug(
-                            f"WARNING: {mfg_etld1}:{concept_type.name} mapped_known:{mk_label} was not in the original knowns list"
+                    if (
+                        not matched_known_concept
+                    ):  # this could be a case sensitivity issue, but we want to be strict
+                        raise ValueError(
+                            f"MappingError: {mfg_etld1}:{concept_type.name} mapped_known:{mk_label} was not in the original knowns list"
                         )
                     else:
                         unknown_to_knowns.setdefault(mu, {}).update(

@@ -29,7 +29,7 @@ from core.services.gpt_batch_request_service import (
     get_dummy_gpt_batch_response,
 )
 from data_etl_app.utils.ground_truth_helper_util import (
-    merge_llm_and_filtered_brute_search_results,
+    merge_llm_and_brute_search_results,
 )
 
 logger = logging.getLogger(__name__)
@@ -134,7 +134,7 @@ async def create_missing_evidence_requests(
             # generated with high recall in mind and we don't want to miss out on any potential
             # evidence by filtering them with the LLM search results. Keyword pipelines have no
             # brute force phase
-            all_search_results = merge_llm_and_filtered_brute_search_results(
+            all_search_results = merge_llm_and_brute_search_results(
                 llm_search_results=llm_search_results,
                 brute_search_results=extraction_bundle.brute,
             )

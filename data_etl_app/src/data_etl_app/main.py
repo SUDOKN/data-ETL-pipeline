@@ -112,6 +112,9 @@ async def health_check():
 
 from data_etl_app.api.routes.knowledge.ontology import router as ontology_router
 from data_etl_app.api.routes.knowledge.prompt import router as prompt_router
+from data_etl_app.api.routes.knowledge.out_of_vocab_labels import (
+    router as out_of_vocab_labels_router,
+)
 from data_etl_app.api.routes.rdf_validation import router as rdf_validation_router
 from data_etl_app.api.routes.manufacturer_user_form import (
     router as manufacturer_user_form_router,
@@ -128,6 +131,7 @@ from data_etl_app.api.routes.ground_truth.keyword_ground_truth import (
 
 app.include_router(ontology_router)
 app.include_router(prompt_router)
+app.include_router(out_of_vocab_labels_router)
 app.include_router(manufacturer_user_form_router)
 app.include_router(rdf_validation_router)
 app.include_router(binary_ground_truth_router)

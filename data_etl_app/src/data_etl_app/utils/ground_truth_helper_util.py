@@ -104,7 +104,7 @@ def get_verified_results_from_raw_mapping(
     return verified_mapped_known_concepts
 
 
-def merge_llm_and_filtered_brute_search_results(
+def merge_llm_and_brute_search_results(
     llm_search_results: set[str],
     brute_search_results: set[str],
 ) -> set[str]:
@@ -113,18 +113,23 @@ def merge_llm_and_filtered_brute_search_results(
 
     A brute force result is included only when it is not already a substring of
     any LLM search result, avoiding redundancy while preserving recall.
+    Preserves casing of both LLM and brute results, but does case-insensitive
+    comparison for filtering.
     """
-    lowered_brute = {r.lower() for r in brute_search_results}
+
     lowered_llm = {r.lower() for r in llm_search_results}
     filtered_brute = {
         r
-        for r in lowered_brute
-        if not any(r in llm_result for llm_result in lowered_llm)
+        for r in brute_search_results
+        if not any(r.lower() in llm_result for llm_result in lowered_llm)
     }
     logger.info(f"LLM search results: {llm_search_results}")
     logger.info(f"Brute force search results: {brute_search_results}")
     logger.info(f"Non-overlapping brute force results: {filtered_brute}")
-    return llm_search_results | filtered_brute
+
+    merged_results = llm_search_results | filtered_brute
+    logger.info(f"Merged search results: {merged_results}")
+    return merged_results
 
 
 def calculate_final_keyword_results(
