@@ -7,7 +7,7 @@ from data_etl_app.models.types_and_enums import ConceptTypeEnum
 from data_etl_app.models.pipeline_nodes.concept.concept_search_node import (
     ConceptSearchNode,
 )
-from data_etl_app.models.pipeline_nodes.evidence_node import EvidenceNode
+from data_etl_app.models.pipeline_nodes.distillation_node import DistillationNode
 
 if TYPE_CHECKING:
     from data_etl_app.models.pipeline_nodes.concept.concept_mapping_node import (
@@ -17,11 +17,11 @@ if TYPE_CHECKING:
 logger = logging.getLogger(__name__)
 
 
-class ConceptEvidenceNode(EvidenceNode[ConceptTypeEnum]):
-    """Phase 2: LLM finds evidence in the text.
+class ConceptDistillationNode(DistillationNode[ConceptTypeEnum]):
+    """Phase 2: LLM distills concepts from the phrases with context of the text.
 
-    Thin wrapper over the shared ``EvidenceNode`` that narrows the constructor types and
-    points the evidence phase at the upstream ``ConceptSearchNode`` results.
+    Thin wrapper over the shared ``DistillationNode`` that narrows the constructor types and
+    points the distillation phase at the upstream ``ConceptSearchNode`` results.
     """
 
     upstream_search_node_cls = ConceptSearchNode
@@ -29,11 +29,11 @@ class ConceptEvidenceNode(EvidenceNode[ConceptTypeEnum]):
     def __init__(
         self,
         concept_type: ConceptTypeEnum,
-        evidence_prompt: Prompt,
+        distillation_prompt: Prompt,
         next_node: ConceptMappingNode,
     ):
         super().__init__(
             field_type=concept_type,
-            evidence_prompt=evidence_prompt,
+            distillation_prompt=distillation_prompt,
             next_node=next_node,
         )

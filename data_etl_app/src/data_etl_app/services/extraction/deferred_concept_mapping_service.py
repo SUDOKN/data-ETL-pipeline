@@ -14,8 +14,8 @@ from core.models.gpt_batch_response_blob import (
     ChatCompletionChoiceMessage,
 )
 from data_etl_app.models.skos_concept import Concept
-from data_etl_app.models.pipeline_nodes.concept.concept_evidence_node import (
-    ConceptEvidenceNode,
+from data_etl_app.models.pipeline_nodes.concept.concept_distillation_node import (
+    ConceptDistillationNode,
 )
 from data_etl_app.models.types_and_enums import ConceptTypeEnum
 from litellm_proxy_app.models.llm_model import No_model
@@ -29,7 +29,7 @@ from core.services.gpt_batch_request_service import (
 )
 
 from data_etl_app.utils.ground_truth_helper_util import (
-    get_verified_evidence_phrases_from_raw_evidence_results,
+    get_verified_distillation_results,
 )
 from data_etl_app.utils.llm_mapping_helper import (
     create_deferred_mapping_gpt_request,
@@ -105,7 +105,7 @@ async def create_missing_mapping_requests(
             if bundle.llm_mapping_request_id in missing_mapping_req_ids
         }.items()
     )
-    llm_evidence_gpt_request_map: dict[GPTBatchRequestCustomID, GPTBatchRequest] = (
+    llm_distillation_gpt_request_map: dict[GPTBatchRequestCustomID, GPTBatchRequest] = (
         upstream_completed_batch_req_map
     )
 
@@ -115,19 +115,19 @@ async def create_missing_mapping_requests(
 
         # Process current batch
         for chunk_bounds, extraction_bundle in batch:
-            llm_evidence_results = await ConceptEvidenceNode.parse_batch_request_result(
-                mfg_etld1=mfg_etld1,
-                field_type=concept_type,
-                chunk_bounds=chunk_bounds,
-                extraction_bundle=extraction_bundle,
-                completed_request_map=llm_evidence_gpt_request_map,
-                deferred_at=deferred_at,
+            llm_distillation_results = (
+                await ConceptDistillationNode.parse_batch_request_result(
+                    mfg_etld1=mfg_etld1,
+                    field_type=concept_type,
+                    chunk_bounds=chunk_bounds,
+                    extraction_bundle=extraction_bundle,
+                    completed_request_map=llm_distillation_gpt_request_map,
+                    deferred_at=deferred_at,
+                )
             )
 
-            confirmed_keywords_w_evidence = (
-                get_verified_evidence_phrases_from_raw_evidence_results(
-                    llm_evidence_results=llm_evidence_results
-                )
+            confirmed_keywords_w_evidence = get_verified_distillation_results(
+                llm_distillation_results=llm_distillation_results
             )
 
             (
@@ -140,7 +140,7 @@ async def create_missing_mapping_requests(
             llm_mapping_request_id = extraction_bundle.llm_mapping_request_id
             if not llm_mapping_request_id:
                 raise ValueError(
-                    f"concept_evidence_node.get_batch_request_result: llm_mapping_request_id is None for chunk bounds {chunk_bounds} in {mfg_etld1}:{concept_type}"
+                    f"deferred_concept_mapping_service.create_missing_mapping_requests: llm_mapping_request_id is None for chunk bounds {chunk_bounds} in {mfg_etld1}:{concept_type}"
                 )
 
             if not unmatched_keywords_w_evidence:

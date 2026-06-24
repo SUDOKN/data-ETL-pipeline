@@ -224,7 +224,7 @@
         "required": [
           "results",
           "llm_search",
-          "llm_evidence"
+          "llm_distillation"
         ],
         "additionalProperties": false,
         "properties": {
@@ -242,7 +242,7 @@
             },
             "uniqueItems": true
           },
-          "llm_evidence": {
+          "llm_distillation": {
             "bsonType": "object",
             "additionalProperties": {
               "bsonType": "string"

@@ -12,7 +12,7 @@ from open_ai_key_app.models.field_types import GPTBatchRequestCustomID
 
 class KeywordExtractionRequestBundle(SearchRequestBundle):
     brute: set[str]
-    llm_evidence_request_id: Optional[GPTBatchRequestCustomID]
+    llm_distillation_request_id: Optional[GPTBatchRequestCustomID]
 
 
 KeywordExtractionRequestMap = dict[str, KeywordExtractionRequestBundle]
@@ -20,7 +20,7 @@ KeywordExtractionRequestMap = dict[str, KeywordExtractionRequestBundle]
 {
     "0:1000" : {
         llm_search_request_id: "101machine.com>products>llm_search>chunk>0:1000",
-        llm_evidence_request_id: "101machine.com>products>llm_evidence>chunk>0:1000",
+        llm_distillation_request_id: "101machine.com>products>llm_distillation>chunk>0:1000",
     },
     "750:1500": {
         ...

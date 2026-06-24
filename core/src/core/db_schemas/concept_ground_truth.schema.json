@@ -224,7 +224,7 @@
           "ontology_version_id": {
             "bsonType": "string"
           },
-          "evidence_prompt_version_id": {
+          "distillation_prompt_version_id": {
             "bsonType": [
               "string",
               "null"
@@ -244,7 +244,7 @@
           "results",
           "llm_search",
           "brute_search",
-          "llm_evidence",
+          "llm_distillation",
           "llm_mapping",
           "unmapped"
         ],
@@ -271,7 +271,7 @@
             },
             "uniqueItems": true
           },
-          "llm_evidence": {
+          "llm_distillation": {
             "bsonType": "object",
             "additionalProperties": {
               "bsonType": "string"
@@ -314,7 +314,7 @@
                 "author_email",
                 "source",
                 "llm_search_correction",
-                "llm_evidence_correction",
+                "llm_distillation_correction",
                 "llm_mapping_correction"
               ],
               "additionalProperties": false,
@@ -345,7 +345,7 @@
                     }
                   }
                 },
-                "llm_evidence_correction": {
+                "llm_distillation_correction": {
                   "bsonType": "object",
                   "required": [
                     "upsert"

@@ -7,8 +7,8 @@ from data_etl_app.models.pipeline_nodes.search_node import SearchNode
 from data_etl_app.models.types_and_enums import KeywordTypeEnum
 
 if TYPE_CHECKING:
-    from data_etl_app.models.pipeline_nodes.keyword.keyword_evidence_node import (
-        KeywordEvidenceNode,
+    from data_etl_app.models.pipeline_nodes.keyword.keyword_distillation_node import (
+        KeywordDistillationNode,
     )
 
 
@@ -22,7 +22,7 @@ class KeywordSearchNode(SearchNode[KeywordTypeEnum]):
         self,
         field_type: KeywordTypeEnum,
         search_prompt: Prompt,
-        next_node: KeywordEvidenceNode,
+        next_node: KeywordDistillationNode,
     ):
         super().__init__(
             field_type=field_type,

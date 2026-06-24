@@ -12,8 +12,8 @@ from core.models.deferred_concept_extraction import (
 )
 from core.models.field_types import RawLLMMappingResult
 from core.models.prompt import Prompt
-from data_etl_app.models.pipeline_nodes.concept.concept_evidence_node import (
-    ConceptEvidenceNode,
+from data_etl_app.models.pipeline_nodes.concept.concept_distillation_node import (
+    ConceptDistillationNode,
 )
 
 if TYPE_CHECKING:
@@ -153,7 +153,7 @@ class ConceptMappingNode(LLMExtractionNode[ConceptTypeEnum, RawLLMMappingResult]
             missing_mapping_req_ids=missing_request_ids,
             known_concepts=self.known_concepts,
             mapping_prompt=self.mapping_prompt,
-            upstream_completed_batch_req_map=pipeline_context[ConceptEvidenceNode],
+            upstream_completed_batch_req_map=pipeline_context[ConceptDistillationNode],
             llm_model=llm_model,
             model_params=model_params,
             eager=eager,

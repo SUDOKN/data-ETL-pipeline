@@ -9,8 +9,8 @@ from data_etl_app.models.types_and_enums import (
 )
 
 if TYPE_CHECKING:
-    from data_etl_app.models.pipeline_nodes.concept.concept_evidence_node import (
-        ConceptEvidenceNode,
+    from data_etl_app.models.pipeline_nodes.concept.concept_distillation_node import (
+        ConceptDistillationNode,
     )
 
 
@@ -24,7 +24,7 @@ class ConceptSearchNode(SearchNode[ConceptTypeEnum]):
         self,
         concept_type: ConceptTypeEnum,
         search_prompt: Prompt,
-        next_node: ConceptEvidenceNode,
+        next_node: ConceptDistillationNode,
     ):
         super().__init__(
             field_type=concept_type,

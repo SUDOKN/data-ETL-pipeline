@@ -13,7 +13,7 @@ from core.models.deferred_keyword_extraction import (
     DeferredKeywordExtractionRequests,
     KeywordExtractionRequestBundle,
 )
-from core.models.field_types import LLMEvidenceResults
+from core.models.field_types import LLMDistillationResults
 from core.models.prompt import Prompt
 from data_etl_app.models.types_and_enums import LLMExtractedFieldTypeEnum
 from data_etl_app.models.pipeline_nodes.base_node import (
@@ -30,36 +30,38 @@ from litellm_proxy_app.models.llm_model import LLM_Model
 from open_ai_key_app.models.gpt_model_params import GPTModelParams
 from scraper_app.models.scraped_text_file import ScrapedTextFile
 
-from data_etl_app.services.extraction.deferred_llm_evidence_node_service import (
-    create_missing_evidence_requests,
-    parse_llm_evidence_result,
+from data_etl_app.services.extraction.deferred_llm_distillation_node_service import (
+    create_missing_distillation_requests,
+    parse_llm_distillation_result,
 )
 from core.services.gpt_batch_request_writes import record_response_parse_error
 
 logger = logging.getLogger(__name__)
 
-# Both the keyword pipeline (search -> evidence -> reconcile) and the concept pipeline
-# (search -> evidence -> mapping -> reconcile) share the evidence phase. Both deferred
-# request types carry an ``llm_evidence_request_id`` on each chunk bundle, so the evidence
+# Both the keyword pipeline and the concept pipeline
+# (search -> distillation -> mapping -> reconcile) share the distillation phase. Both deferred
+# request types carry an ``llm_distillation_request_id`` on each chunk bundle, so the distillation
 # node logic can be implemented once and shared via thin subclasses.
-DeferredEvidenceExtractionRequests = Union[
+DeferredExtractionRequests = Union[
     DeferredConceptExtractionRequests, DeferredKeywordExtractionRequests
 ]
-EvidenceExtractionRequestBundle = Union[
+ExtractionRequestBundle = Union[
     ConceptExtractionRequestBundle, KeywordExtractionRequestBundle
 ]
 
 
-class EvidenceNode(LLMExtractionNode[LLMExtractedFieldTypeVar, LLMEvidenceResults]):
-    """Phase 2: LLM finds evidence in the text.
+class DistillationNode(
+    LLMExtractionNode[LLMExtractedFieldTypeVar, LLMDistillationResults]
+):
+    """Phase 2: LLM distills concepts from the phrases with context of the text.
 
-    Shared base for ``ConceptEvidenceNode`` and ``KeywordEvidenceNode``, mirroring the way
+    Shared base for ``ConceptDistillationNode`` and ``KeywordDistillationNode``, mirroring the way
     ``SearchNode`` is shared by ``ConceptSearchNode`` and ``KeywordSearchNode``. Subclasses
     only narrow constructor types and declare which upstream ``SearchNode`` subclass produced
     the search results they consume from the pipeline context.
     """
 
-    # Subclasses set this to the concrete upstream SearchNode subclass so the evidence phase
+    # Subclasses set this to the concrete upstream SearchNode subclass so the distillation phase
     # can read the completed search requests from the pipeline context, which is keyed by the
     # node class that produced them.
     upstream_search_node_cls: type[SearchNode]
@@ -67,28 +69,28 @@ class EvidenceNode(LLMExtractionNode[LLMExtractedFieldTypeVar, LLMEvidenceResult
     def __init__(
         self,
         field_type: LLMExtractedFieldTypeVar,
-        evidence_prompt: Prompt,
+        distillation_prompt: Prompt,
         next_node: LLMExtractionNode | ReconcileNode,
     ):
         super().__init__(field_type=field_type, next_node=next_node)
-        self.evidence_prompt = evidence_prompt
+        self.distillation_prompt = distillation_prompt
 
     def get_embedded_request_ids(
         self,
         mfg_etld1: str,
-        extraction_requests: DeferredEvidenceExtractionRequests,
+        extraction_requests: DeferredExtractionRequests,
     ) -> set[GPTBatchRequestCustomID]:
-        llm_evidence_req_ids: set[GPTBatchRequestCustomID] = set()
+        llm_distillation_req_ids: set[GPTBatchRequestCustomID] = set()
         for (
             chunk_bounds,
             extraction_bundle,
         ) in extraction_requests.request_map.items():
-            if not extraction_bundle.llm_evidence_request_id:
+            if not extraction_bundle.llm_distillation_request_id:
                 raise ValueError(
-                    f"get_embedded_request_ids was called for {mfg_etld1}:{self.field_type.name} but llm_evidence_request_id is None for chunk bounds {chunk_bounds}."
+                    f"get_embedded_request_ids was called for {mfg_etld1}:{self.field_type.name} but llm_distillation_request_id is None for chunk bounds {chunk_bounds}."
                 )
-            llm_evidence_req_ids.add(extraction_bundle.llm_evidence_request_id)
-        return llm_evidence_req_ids
+            llm_distillation_req_ids.add(extraction_bundle.llm_distillation_request_id)
+        return llm_distillation_req_ids
 
     @staticmethod
     def get_request_custom_id(
@@ -98,47 +100,47 @@ class EvidenceNode(LLMExtractionNode[LLMExtractedFieldTypeVar, LLMEvidenceResult
         llm_model: LLM_Model,
         model_params: GPTModelParams,
     ) -> GPTBatchRequestCustomID:
-        return f"{mfg_etld1}>{field_type.name}>llm_evidence>chunk>{chunk_bounds}>{model_params.to_custom_id_segment(llm_model.model_name)}"
+        return f"{mfg_etld1}>{field_type.name}>llm_distillation>chunk>{chunk_bounds}>{model_params.to_custom_id_segment(llm_model.model_name)}"
 
     @staticmethod
     async def parse_batch_request_result(
         mfg_etld1: str,
         field_type: LLMExtractedFieldTypeEnum,
         chunk_bounds: str,
-        extraction_bundle: EvidenceExtractionRequestBundle,
+        extraction_bundle: ExtractionRequestBundle,
         completed_request_map: dict[GPTBatchRequestCustomID, GPTBatchRequest],
         deferred_at: datetime,
-    ) -> LLMEvidenceResults:
-        llm_evidence_request_id = extraction_bundle.llm_evidence_request_id
-        if not llm_evidence_request_id:
+    ) -> LLMDistillationResults:
+        llm_distillation_request_id = extraction_bundle.llm_distillation_request_id
+        if not llm_distillation_request_id:
             raise ValueError(
-                f"evidence_node.parse_batch_request_result: llm_evidence_request_id is None for chunk bounds {chunk_bounds} in {mfg_etld1}:{field_type.name}"
+                f"distillation_node.parse_batch_request_result: llm_distillation_request_id is None for chunk bounds {chunk_bounds} in {mfg_etld1}:{field_type.name}"
             )
 
-        llm_evidence_req = completed_request_map.get(llm_evidence_request_id)
-        if not llm_evidence_req:
+        llm_distillation_req = completed_request_map.get(llm_distillation_request_id)
+        if not llm_distillation_req:
             raise ValueError(
-                f"evidence_node.parse_batch_request_result: Missing GPTBatchRequest for evidence request ID {llm_evidence_request_id} in {mfg_etld1}:{field_type.name}"
+                f"distillation_node.parse_batch_request_result: Missing GPTBatchRequest for distillation request ID {llm_distillation_request_id} in {mfg_etld1}:{field_type.name}"
             )
-        elif not llm_evidence_req.response:
+        elif not llm_distillation_req.response:
             raise ValueError(
-                f"evidence_node.parse_batch_request_result: GPTBatchRequest for evidence request ID {llm_evidence_request_id} has no response_blob in {mfg_etld1}:{field_type.name}"
+                f"distillation_node.parse_batch_request_result: GPTBatchRequest for distillation request ID {llm_distillation_request_id} has no response_blob in {mfg_etld1}:{field_type.name}"
             )
 
         try:
-            llm_evidence_results = parse_llm_evidence_result(
-                llm_evidence_req.response.result
+            llm_distillation_results = parse_llm_distillation_result(
+                llm_distillation_req.response.result
             )
-            return llm_evidence_results
+            return llm_distillation_results
         except Exception as e:
             await record_response_parse_error(
-                gpt_batch_request=llm_evidence_req,
+                gpt_batch_request=llm_distillation_req,
                 error_message=str(e),
                 timestamp=deferred_at,
                 traceback_str=traceback.format_exc(),
             )
             logger.error(
-                f"evidence_node.parse_batch_request_result: Error parsing evidence results for manufacturer {mfg_etld1} from GPT response: {e}"
+                f"distillation_node.parse_batch_request_result: Error parsing distillation results for manufacturer {mfg_etld1} from GPT response: {e}"
             )
             raise
 
@@ -153,32 +155,32 @@ class EvidenceNode(LLMExtractionNode[LLMExtractedFieldTypeVar, LLMEvidenceResult
         model_params: GPTModelParams,
         eager: bool,
     ) -> list[GPTBatchRequest]:
-        """Create batch requests for the evidence phase."""
+        """Create batch requests for the distillation phase."""
         mfg_name = pipeline_context.mfg_name
         if not mfg_name:
             raise ValueError(
-                f"evidence_node.create_batch_requests was called for {self.field_type.name} in {self.__class__.__name__} but pipeline_context.mfg_name is not set. Ensure business_desc is extracted before evidence."
+                f"distillation_node.create_batch_requests was called for {self.field_type.name} in {self.__class__.__name__} but pipeline_context.mfg_name is not set. Ensure business_desc is extracted before distillation."
             )
 
-        extraction_requests: Optional[DeferredEvidenceExtractionRequests] = getattr(
+        extraction_requests: Optional[DeferredExtractionRequests] = getattr(
             deferred_mfg, self.field_type.name
         )
         if not extraction_requests:
             raise ValueError(
-                f"evidence_node.create_batch_requests was called for {self.field_type.name} in {self.__class__.__name__} but no deferred extraction exists."
+                f"distillation_node.create_batch_requests was called for {self.field_type.name} in {self.__class__.__name__} but no deferred extraction exists."
             )
 
-        # create_missing_evidence_requests only creates batch requests fresh or only missing ones,
+        # create_missing_distillation_requests only creates batch requests fresh or only missing ones,
         # for e.g., new mfg or some batch requests failed earlier and were deleted to allow re-processing
-        batch_requests = await create_missing_evidence_requests(
+        batch_requests = await create_missing_distillation_requests(
             deferred_at=timestamp,
             mfg_etld1=deferred_mfg.etld1,
             mfg_name=mfg_name,
             field_type=self.field_type,
-            missing_evidence_req_ids=missing_request_ids,
+            missing_distillation_req_ids=missing_request_ids,
             extraction_requests=extraction_requests,
             mfg_text=scraped_text_file.text,
-            evidence_prompt=self.evidence_prompt,
+            distillation_prompt=self.distillation_prompt,
             upstream_completed_batch_req_map=pipeline_context[
                 self.upstream_search_node_cls
             ],

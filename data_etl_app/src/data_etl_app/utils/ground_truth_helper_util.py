@@ -11,8 +11,8 @@ from core.models.db.keyword_ground_truth import (
     KeywordGroundTruth,
 )
 from core.models.field_types import (
-    HumanEvidenceResults,
-    LLMEvidenceResults,
+    HumanVerificationResults,
+    LLMDistillationResults,
     RawLLMMappingResult,
 )
 from data_etl_app.models.skos_concept import Concept
@@ -24,9 +24,9 @@ from data_etl_app.utils.llm_mapping_helper import (
 logger = logging.getLogger(__name__)
 
 
-def is_evidence_reason_format_correct(reason: str) -> bool:
+def is_distillation_evidence_format_correct(reason: str) -> bool:
     """
-    Checks if the reason for confirming or rejecting evidence is in the correct format.
+    Checks if the reason for confirming or rejecting distillation results is in the correct format.
     The reason must start with "Yes, " for confirmed evidence or "No, " for rejected evidence.
     """
     return (reason.startswith(YES_PREFIX) or reason.startswith(NO_PREFIX)) and len(
@@ -42,24 +42,24 @@ def is_mapping_reason_format_correct(reason: str) -> bool:
     return reason.startswith(CORRECT_PREFIX) or reason.startswith(INCORRECT_PREFIX)
 
 
-def get_verified_evidence_phrases_from_human_correction(
+def get_verified_results_from_human_distillation_correction(
     human_correction: HumanConceptCorrection,
-) -> HumanEvidenceResults:
+) -> HumanVerificationResults:
     """
-    Get the final evidence stage results after applying human corrections.
-    Returns None if no corrections were made.
+    Get the final distillation stage results after applying human corrections.
+    Returns an empty dictionary if no distillation corrections were made.
     """
-    return get_verified_evidence_phrases_from_raw_evidence_results(
-        human_correction.llm_evidence_correction.upsert
+    return get_verified_distillation_results(
+        human_correction.llm_distillation_correction.upsert
     )
 
 
-def get_verified_evidence_phrases_from_raw_evidence_results(
-    llm_evidence_results: dict[str, str],
-) -> LLMEvidenceResults:
+def get_verified_distillation_results(
+    llm_distillation_results: LLMDistillationResults,
+) -> LLMDistillationResults:
     confirmed_keywords_w_evidence = {
         kw: reason
-        for kw, reason in llm_evidence_results.items()
+        for kw, reason in llm_distillation_results.items()
         if reason.startswith(YES_PREFIX)
     }
     return confirmed_keywords_w_evidence
@@ -74,8 +74,8 @@ def calculate_corrected_concept_results(
     Returns None if no corrections were made.
     """
 
-    verified_llm_evidence_results: dict[str, str] = (
-        get_verified_evidence_phrases_from_human_correction(
+    verified_llm_distillation_results: dict[str, str] = (
+        get_verified_results_from_human_distillation_correction(
             human_correction=human_correction
         )
     )
@@ -84,7 +84,7 @@ def calculate_corrected_concept_results(
         matched_concepts,
         _unmatched_keywords,
     ) = get_matched_concepts_and_unmatched_keywords(
-        known_concepts, verified_llm_evidence_results
+        known_concepts, verified_llm_distillation_results
     )
     corrected_llm_mapping_results = human_correction.llm_mapping_correction.upsert
     results = {c.name for c in matched_concepts}

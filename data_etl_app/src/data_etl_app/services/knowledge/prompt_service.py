@@ -19,16 +19,16 @@ PROMPT_NAMES = [
     "extract_any_address",
     # keywords
     "extract_any_product",
-    "product_evidence",
+    "product_distillation",
     # concepts
     "extract_any_certificate",
     "extract_any_industry",
     "extract_any_material_cap",
     "extract_any_process_cap",
-    "certificate_evidence",
-    "industry_evidence",
-    "material_cap_evidence",
-    "process_cap_evidence",
+    "certificate_distillation",
+    "industry_distillation",
+    "material_cap_distillation",
+    "process_cap_distillation",
     "unknown_to_known_certificate",
     "unknown_to_known_industry",
     "unknown_to_known_material_cap",
@@ -172,8 +172,8 @@ class PromptService:
         return self._get_prompt("extract_any_product")
 
     @property
-    def product_evidence_prompt(self) -> Prompt:
-        return self._get_prompt("product_evidence")
+    def product_distillation_prompt(self) -> Prompt:
+        return self._get_prompt("product_distillation")
 
     @property
     def extract_any_certificate_prompt(self) -> Prompt:
@@ -192,20 +192,20 @@ class PromptService:
         return self._get_prompt("extract_any_process_cap")
 
     @property
-    def certificate_evidence_prompt(self) -> Prompt:
-        return self._get_prompt("certificate_evidence")
+    def certificate_distillation_prompt(self) -> Prompt:
+        return self._get_prompt("certificate_distillation")
 
     @property
-    def industry_evidence_prompt(self) -> Prompt:
-        return self._get_prompt("industry_evidence")
+    def industry_distillation_prompt(self) -> Prompt:
+        return self._get_prompt("industry_distillation")
 
     @property
-    def material_cap_evidence_prompt(self) -> Prompt:
-        return self._get_prompt("material_cap_evidence")
+    def material_cap_distillation_prompt(self) -> Prompt:
+        return self._get_prompt("material_cap_distillation")
 
     @property
-    def process_cap_evidence_prompt(self) -> Prompt:
-        return self._get_prompt("process_cap_evidence")
+    def process_cap_distillation_prompt(self) -> Prompt:
+        return self._get_prompt("process_cap_distillation")
 
     @property
     def unknown_to_known_certificate_prompt(self) -> Prompt:

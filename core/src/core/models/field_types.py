@@ -9,7 +9,7 @@ Example:
 ]
 """
 
-LLMEvidenceResults = dict[str, str]
+LLMDistillationResults = dict[str, str]
 """
 Example:
 {
@@ -36,23 +36,7 @@ Example:
 }
 """
 
-LLMMappingType = RawLLMMappingResult
-"""
-inverted mapping (that's actually stored in a manufacturer) from known concept to unknown concepts but same type, # { known --> {"mapped_unknown_1": "matching reason"}, {"mapped_unknown_2": "matching reason"} } where evidence is the text snippet from which LLM derived the mapping
-Example:
-{
-    "Surface Grinding": {
-        "Reciprocating Surface Grinders": "Correct, The phrase 'Reciprocating Surface Grinders' directly implies the capability for surface grinding processes, which matches the known process 'Surface Grinding' under 'Machining' and 'Abrasive Machining'."
-    },
-    "Press Work": {
-        "Arbor Presses": "Correct, Arbor presses are equipment used for pressing operations, which aligns with 'Press Work' under 'Sheet Metal Processing' and 'Stamping'."
-    },
-    ...
-}
-"""
-
-
-HumanEvidenceResults = LLMEvidenceResults  # evidence for each identified term, where key is the term and value is the evidence text human must provide for the term
+HumanVerificationResults = LLMDistillationResults  # evidence for each identified term, where key is the term and value is the evidence text human must provide for the term
 
 MfgETLDType = str
 MfgURLType = str

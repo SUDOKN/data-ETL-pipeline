@@ -3,7 +3,7 @@ from datetime import datetime
 from pydantic import BaseModel, Field
 
 from core.models.field_types import (
-    HumanEvidenceResults,
+    HumanVerificationResults,
     RawLLMMappingResult,
     LLMSearchResults,
     MfgETLDType,
@@ -23,11 +23,11 @@ CORRECT_PREFIX = "Correct, "
 INCORRECT_PREFIX = "Incorrect, "
 
 
-class EvidenceResultCorrection(BaseModel):
-    upsert: HumanEvidenceResults
+class DistillationResultCorrection(BaseModel):
+    upsert: HumanVerificationResults
 
 
-class LLMSearchResultsCorrection(BaseModel):
+class SearchResultsCorrection(BaseModel):
     upsert: LLMSearchResults
 
 
@@ -49,8 +49,8 @@ class MappingResultCorrection(BaseModel):
 class HumanConceptCorrection(BaseModel):
     author_email: str
     source: GroundTruthSource
-    llm_search_correction: LLMSearchResultsCorrection
-    llm_evidence_correction: EvidenceResultCorrection
+    llm_search_correction: SearchResultsCorrection
+    llm_distillation_correction: DistillationResultCorrection
     llm_mapping_correction: MappingResultCorrection
 
 

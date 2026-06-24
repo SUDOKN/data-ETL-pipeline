@@ -9,8 +9,8 @@ from core.models.deferred_concept_extraction import (
     DeferredConceptExtractionRequests,
 )
 from core.models.prompt import Prompt
-from data_etl_app.models.pipeline_nodes.concept.concept_evidence_node import (
-    ConceptEvidenceNode,
+from data_etl_app.models.pipeline_nodes.concept.concept_distillation_node import (
+    ConceptDistillationNode,
 )
 from data_etl_app.models.pipeline_nodes.concept.concept_mapping_node import (
     ConceptMappingNode,
@@ -42,7 +42,7 @@ class ConceptExtractionPrefillNode(PrefillNode[ConceptTypeEnum]):
         field_type: ConceptTypeEnum,
         chunk_strategy: ChunkingStrategy,
         search_prompt: Prompt,
-        evidence_prompt: Prompt,
+        distillation_prompt: Prompt,
         mapping_prompt: Prompt,
         ontology_version_id: str,
         known_concepts: set[Concept],
@@ -54,7 +54,7 @@ class ConceptExtractionPrefillNode(PrefillNode[ConceptTypeEnum]):
             next_node=next_node,
         )
         self.search_prompt: Prompt = search_prompt
-        self.evidence_prompt: Prompt = evidence_prompt
+        self.distillation_prompt: Prompt = distillation_prompt
         self.mapping_prompt: Prompt = mapping_prompt
         self.ontology_version_id: str = ontology_version_id
         self.known_concepts: set[Concept] = known_concepts
@@ -86,7 +86,7 @@ class ConceptExtractionPrefillNode(PrefillNode[ConceptTypeEnum]):
                     created_at=timestamp,
                     chunk_strat=self.chunk_strategy,
                     search_prompt_version_id=self.search_prompt.s3_version_id,
-                    evidence_prompt_version_id=self.evidence_prompt.s3_version_id,
+                    distillation_prompt_version_id=self.distillation_prompt.s3_version_id,
                     mapping_prompt_version_id=self.mapping_prompt.s3_version_id,
                     ontology_version_id=self.ontology_version_id,
                 ),
@@ -103,7 +103,7 @@ class ConceptExtractionPrefillNode(PrefillNode[ConceptTypeEnum]):
                             llm_model=llm_model,
                             model_params=model_params,
                         ),
-                        llm_evidence_request_id=ConceptEvidenceNode.get_request_custom_id(
+                        llm_distillation_request_id=ConceptDistillationNode.get_request_custom_id(
                             mfg_etld1=deferred_mfg.etld1,
                             field_type=self.field_type,
                             chunk_bounds=chunk_bounds,

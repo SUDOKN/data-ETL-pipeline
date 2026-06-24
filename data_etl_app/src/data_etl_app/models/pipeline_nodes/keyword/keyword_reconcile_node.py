@@ -15,8 +15,8 @@ from core.models.db.deferred_manufacturer import DeferredManufacturer
 from data_etl_app.models.pipeline_nodes.keyword.keyword_search_node import (
     KeywordSearchNode,
 )
-from data_etl_app.models.pipeline_nodes.keyword.keyword_evidence_node import (
-    KeywordEvidenceNode,
+from data_etl_app.models.pipeline_nodes.keyword.keyword_distillation_node import (
+    KeywordDistillationNode,
 )
 from data_etl_app.models.types_and_enums import KeywordTypeEnum
 from data_etl_app.models.pipeline_nodes.base_node import PipelineContext
@@ -28,7 +28,7 @@ from scraper_app.models.scraped_text_file import ScrapedTextFile
 from core.services.manufacturer_service import update_manufacturer
 
 from data_etl_app.utils.ground_truth_helper_util import (
-    get_verified_evidence_phrases_from_raw_evidence_results,
+    get_verified_distillation_results,
 )
 
 logger = logging.getLogger(__name__)
@@ -58,7 +58,7 @@ class KeywordReconcileNode(ReconcileNode[KeywordTypeEnum]):
             )
 
         completed_search_requests = pipeline_context[KeywordSearchNode]
-        completed_evidence_requests = pipeline_context[KeywordEvidenceNode]
+        completed_distillation_requests = pipeline_context[KeywordDistillationNode]
         all_keywords: set[str] = set()
         chunk_stats: KeywordExtractionStatsMap = {}
         for (
@@ -74,26 +74,26 @@ class KeywordReconcileNode(ReconcileNode[KeywordTypeEnum]):
                 deferred_at=timestamp,
             )
 
-            llm_evidence_results = await KeywordEvidenceNode.parse_batch_request_result(
-                mfg_etld1=deferred_mfg.etld1,
-                field_type=self.field_type,
-                chunk_bounds=chunk_bounds,
-                extraction_bundle=bundle,
-                completed_request_map=completed_evidence_requests,
-                deferred_at=timestamp,
+            llm_distillation_results = (
+                await KeywordDistillationNode.parse_batch_request_result(
+                    mfg_etld1=deferred_mfg.etld1,
+                    field_type=self.field_type,
+                    chunk_bounds=chunk_bounds,
+                    extraction_bundle=bundle,
+                    completed_request_map=completed_distillation_requests,
+                    deferred_at=timestamp,
+                )
             )
 
-            confirmed_keywords_w_evidence = (
-                get_verified_evidence_phrases_from_raw_evidence_results(
-                    llm_evidence_results=llm_evidence_results
-                )
+            confirmed_keywords_w_evidence = get_verified_distillation_results(
+                llm_distillation_results=llm_distillation_results
             )
             confirmed_keywords = set(confirmed_keywords_w_evidence.keys())
 
             chunk_stats[chunk_bounds] = KeywordExtractionStats(
                 results=confirmed_keywords,
                 llm_search=llm_search_results,
-                llm_evidence=llm_evidence_results,
+                llm_distillation=llm_distillation_results,
             )
             all_keywords.update(confirmed_keywords)
 
@@ -112,7 +112,7 @@ class KeywordReconcileNode(ReconcileNode[KeywordTypeEnum]):
             associated_batch_request_custom_ids=list(
                 [
                     *completed_search_requests.keys(),
-                    *completed_evidence_requests.keys(),
+                    *completed_distillation_requests.keys(),
                 ]
             ),
         )

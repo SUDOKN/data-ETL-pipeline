@@ -1,7 +1,7 @@
 from typing import Optional
 
 from core.models.field_types import (
-    LLMEvidenceResults,
+    LLMDistillationResults,
     S3FileVersionIDType,
 )
 from core.models.search_stage_results import (
@@ -12,11 +12,11 @@ from core.models.search_stage_results import (
 
 
 class KeywordExtractionMetadata(SearchStageMetadata):
-    evidence_prompt_version_id: Optional[S3FileVersionIDType]
+    distillation_prompt_version_id: Optional[S3FileVersionIDType]
 
 
 class KeywordExtractionStats(SearchStageExtractionStats):
-    llm_evidence: LLMEvidenceResults
+    llm_distillation: LLMDistillationResults
 
 
 KeywordExtractionStatsMap = dict[str, KeywordExtractionStats]

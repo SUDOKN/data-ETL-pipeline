@@ -17,8 +17,8 @@ from data_etl_app.models.pipeline_nodes.base_node import PipelineContext
 from data_etl_app.models.pipeline_nodes.concept.concept_search_node import (
     ConceptSearchNode,
 )
-from data_etl_app.models.pipeline_nodes.concept.concept_evidence_node import (
-    ConceptEvidenceNode,
+from data_etl_app.models.pipeline_nodes.concept.concept_distillation_node import (
+    ConceptDistillationNode,
 )
 from data_etl_app.models.pipeline_nodes.concept.concept_mapping_node import (
     ConceptMappingNode,
@@ -32,7 +32,7 @@ from scraper_app.models.scraped_text_file import ScrapedTextFile
 from core.services.manufacturer_service import update_manufacturer
 
 from data_etl_app.utils.ground_truth_helper_util import (
-    get_verified_evidence_phrases_from_raw_evidence_results,
+    get_verified_distillation_results,
 )
 from data_etl_app.utils.llm_mapping_helper import (
     UnknownToKnownMap,
@@ -79,7 +79,7 @@ class ConceptReconcileNode(ReconcileNode[ConceptTypeEnum]):
             )
 
         completed_search_requests = pipeline_context[ConceptSearchNode]
-        completed_evidence_requests = pipeline_context[ConceptEvidenceNode]
+        completed_distillation_requests = pipeline_context[ConceptDistillationNode]
         completed_mapping_requests = pipeline_context[ConceptMappingNode]
 
         all_results: set[str] = set()
@@ -97,19 +97,19 @@ class ConceptReconcileNode(ReconcileNode[ConceptTypeEnum]):
                 deferred_at=timestamp,
             )
 
-            llm_evidence_results = await ConceptEvidenceNode.parse_batch_request_result(
-                mfg_etld1=deferred_mfg.etld1,
-                field_type=self.field_type,
-                chunk_bounds=chunk_bounds,
-                extraction_bundle=bundle,
-                completed_request_map=completed_evidence_requests,
-                deferred_at=timestamp,
+            llm_distillation_results = (
+                await ConceptDistillationNode.parse_batch_request_result(
+                    mfg_etld1=deferred_mfg.etld1,
+                    field_type=self.field_type,
+                    chunk_bounds=chunk_bounds,
+                    extraction_bundle=bundle,
+                    completed_request_map=completed_distillation_requests,
+                    deferred_at=timestamp,
+                )
             )
 
-            confirmed_keywords_w_evidence = (
-                get_verified_evidence_phrases_from_raw_evidence_results(
-                    llm_evidence_results=llm_evidence_results
-                )
+            confirmed_keywords_w_evidence = get_verified_distillation_results(
+                llm_distillation_results=llm_distillation_results
             )
 
             (
@@ -147,7 +147,7 @@ class ConceptReconcileNode(ReconcileNode[ConceptTypeEnum]):
                 ),
                 brute_search=bundle.brute,
                 llm_search=llm_search_results.copy(),
-                llm_evidence=llm_evidence_results.copy(),
+                llm_distillation=llm_distillation_results.copy(),
                 llm_mapping={
                     mu: {mk.name: reason for mk, reason in mk_dict.items()}
                     for mu, mk_dict in llm_mapping_result["unknown_to_knowns"].items()
@@ -173,7 +173,7 @@ class ConceptReconcileNode(ReconcileNode[ConceptTypeEnum]):
             associated_batch_request_custom_ids=list(
                 [
                     *completed_search_requests.keys(),
-                    *completed_evidence_requests.keys(),
+                    *completed_distillation_requests.keys(),
                     *completed_mapping_requests.keys(),
                 ]
             ),

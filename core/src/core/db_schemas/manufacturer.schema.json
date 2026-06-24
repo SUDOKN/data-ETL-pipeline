@@ -1593,7 +1593,7 @@
               "search_prompt_version_id": {
                 "bsonType": "string"
               },
-              "evidence_prompt_version_id": {
+              "distillation_prompt_version_id": {
                 "bsonType": [
                   "string",
                   "null"
@@ -1615,7 +1615,7 @@
               "required": [
                 "results",
                 "llm_search",
-                "llm_evidence"
+                "llm_distillation"
               ],
               "additionalProperties": false,
               "properties": {
@@ -1633,7 +1633,7 @@
                   },
                   "uniqueItems": true
                 },
-                "llm_evidence": {
+                "llm_distillation": {
                   "bsonType": "object",
                   "additionalProperties": {
                     "bsonType": "string"
@@ -1829,7 +1829,7 @@
               "ontology_version_id": {
                 "bsonType": "string"
               },
-              "evidence_prompt_version_id": {
+              "distillation_prompt_version_id": {
                 "bsonType": [
                   "string",
                   "null"
@@ -1858,7 +1858,7 @@
                 "results",
                 "llm_search",
                 "brute_search",
-                "llm_evidence",
+                "llm_distillation",
                 "llm_mapping",
                 "unmapped"
               ],
@@ -1885,7 +1885,7 @@
                   },
                   "uniqueItems": true
                 },
-                "llm_evidence": {
+                "llm_distillation": {
                   "bsonType": "object",
                   "additionalProperties": {
                     "bsonType": "string"
@@ -2097,7 +2097,7 @@
               "ontology_version_id": {
                 "bsonType": "string"
               },
-              "evidence_prompt_version_id": {
+              "distillation_prompt_version_id": {
                 "bsonType": [
                   "string",
                   "null"
@@ -2126,7 +2126,7 @@
                 "results",
                 "llm_search",
                 "brute_search",
-                "llm_evidence",
+                "llm_distillation",
                 "llm_mapping",
                 "unmapped"
               ],
@@ -2153,7 +2153,7 @@
                   },
                   "uniqueItems": true
                 },
-                "llm_evidence": {
+                "llm_distillation": {
                   "bsonType": "object",
                   "additionalProperties": {
                     "bsonType": "string"
@@ -2365,7 +2365,7 @@
               "ontology_version_id": {
                 "bsonType": "string"
               },
-              "evidence_prompt_version_id": {
+              "distillation_prompt_version_id": {
                 "bsonType": [
                   "string",
                   "null"
@@ -2394,7 +2394,7 @@
                 "results",
                 "llm_search",
                 "brute_search",
-                "llm_evidence",
+                "llm_distillation",
                 "llm_mapping",
                 "unmapped"
               ],
@@ -2421,7 +2421,7 @@
                   },
                   "uniqueItems": true
                 },
-                "llm_evidence": {
+                "llm_distillation": {
                   "bsonType": "object",
                   "additionalProperties": {
                     "bsonType": "string"
@@ -2633,7 +2633,7 @@
               "ontology_version_id": {
                 "bsonType": "string"
               },
-              "evidence_prompt_version_id": {
+              "distillation_prompt_version_id": {
                 "bsonType": [
                   "string",
                   "null"
@@ -2662,7 +2662,7 @@
                 "results",
                 "llm_search",
                 "brute_search",
-                "llm_evidence",
+                "llm_distillation",
                 "llm_mapping",
                 "unmapped"
               ],
@@ -2689,7 +2689,7 @@
                   },
                   "uniqueItems": true
                 },
-                "llm_evidence": {
+                "llm_distillation": {
                   "bsonType": "object",
                   "additionalProperties": {
                     "bsonType": "string"

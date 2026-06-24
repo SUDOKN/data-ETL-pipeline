@@ -95,11 +95,11 @@ class LLMSearchNode(LLMExtractionNode[LLMExtractedFieldTypeVar, set[str]]):
         llm_search_req = completed_request_map.get(llm_search_request_id)
         if not llm_search_req:
             raise ValueError(
-                f"concept_search_node.get_batch_request_result: Missing GPTBatchRequest for evidence request ID {llm_search_request_id} in {mfg_etld1}:{field_type.name}"
+                f"concept_search_node.get_batch_request_result: Missing GPTBatchRequest for search request ID {llm_search_request_id} in {mfg_etld1}:{field_type.name}"
             )
         elif not llm_search_req.response:
             raise ValueError(
-                f"concept_search_node.get_batch_request_result: GPTBatchRequest for evidence request ID {llm_search_request_id} has no response_blob in {mfg_etld1}:{field_type.name}"
+                f"concept_search_node.get_batch_request_result: GPTBatchRequest for search request ID {llm_search_request_id} has no response_blob in {mfg_etld1}:{field_type.name}"
             )
 
         try:

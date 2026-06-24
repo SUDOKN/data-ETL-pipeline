@@ -11,8 +11,8 @@ from core.models.deferred_keyword_extraction import (
     KeywordExtractionRequestBundle,
 )
 from core.models.prompt import Prompt
-from data_etl_app.models.pipeline_nodes.keyword.keyword_evidence_node import (
-    KeywordEvidenceNode,
+from data_etl_app.models.pipeline_nodes.keyword.keyword_distillation_node import (
+    KeywordDistillationNode,
 )
 from data_etl_app.models.pipeline_nodes.keyword.keyword_search_node import (
     KeywordSearchNode,
@@ -39,7 +39,7 @@ class KeywordExtractionPrefillNode(PrefillNode[KeywordTypeEnum]):
         field_type: KeywordTypeEnum,
         chunk_strategy: ChunkingStrategy,
         search_prompt: Prompt,
-        evidence_prompt: Prompt,
+        distillation_prompt: Prompt,
         next_node: KeywordSearchNode,
     ):
         super().__init__(
@@ -48,7 +48,7 @@ class KeywordExtractionPrefillNode(PrefillNode[KeywordTypeEnum]):
             next_node=next_node,
         )
         self.search_prompt: Prompt = search_prompt
-        self.evidence_prompt: Prompt = evidence_prompt
+        self.distillation_prompt: Prompt = distillation_prompt
 
     async def execute(
         self,
@@ -77,7 +77,7 @@ class KeywordExtractionPrefillNode(PrefillNode[KeywordTypeEnum]):
                     created_at=timestamp,
                     chunk_strat=self.chunk_strategy,
                     search_prompt_version_id=self.search_prompt.s3_version_id,
-                    evidence_prompt_version_id=self.evidence_prompt.s3_version_id,
+                    distillation_prompt_version_id=self.distillation_prompt.s3_version_id,
                 ),
                 request_map={
                     chunk_bounds: KeywordExtractionRequestBundle(
@@ -89,7 +89,7 @@ class KeywordExtractionPrefillNode(PrefillNode[KeywordTypeEnum]):
                             llm_model=llm_model,
                             model_params=model_params,
                         ),
-                        llm_evidence_request_id=KeywordEvidenceNode.get_request_custom_id(
+                        llm_distillation_request_id=KeywordDistillationNode.get_request_custom_id(
                             mfg_etld1=deferred_mfg.etld1,
                             field_type=self.field_type,
                             chunk_bounds=chunk_bounds,

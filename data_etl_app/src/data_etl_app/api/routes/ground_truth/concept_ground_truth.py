@@ -11,9 +11,9 @@ from core.models.to_scrape_item import ToScrapeItem
 from core.models.concept_extraction_results import ConceptExtractionResults
 from core.models.db.concept_ground_truth import (
     ConceptGroundTruth,
-    EvidenceResultCorrection,
+    DistillationResultCorrection,
     HumanConceptCorrection,
-    LLMSearchResultsCorrection,
+    SearchResultsCorrection,
     MappingResultCorrection,
 )
 from data_etl_app.models.types_and_enums import ConceptTypeEnum, GroundTruthSource
@@ -162,7 +162,7 @@ async def fetch_concept_ground_truth_template(
             author_email=author_email,
             source=GroundTruthSource.API_SURVEY,
             llm_search_correction=last_correction_log.human_correction.llm_search_correction,  # pre-fill with last correction
-            llm_evidence_correction=last_correction_log.human_correction.llm_evidence_correction,
+            llm_distillation_correction=last_correction_log.human_correction.llm_distillation_correction,
             llm_mapping_correction=last_correction_log.human_correction.llm_mapping_correction,  # pre-fill with last correction
         ).model_dump()
         response["your_correction"][
@@ -208,11 +208,11 @@ async def fetch_concept_ground_truth_template(
         HumanConceptCorrection(  # begins as a pre-filled template for the user to fill in
             author_email=author_email,
             source=GroundTruthSource.API_SURVEY,
-            llm_search_correction=LLMSearchResultsCorrection(
+            llm_search_correction=SearchResultsCorrection(
                 upsert=chunk_stats.llm_search
             ),  # pre-fill with llm results
-            llm_evidence_correction=EvidenceResultCorrection(
-                upsert=chunk_stats.llm_evidence,
+            llm_distillation_correction=DistillationResultCorrection(
+                upsert=chunk_stats.llm_distillation,
             ),  # pre-fill with llm results
             llm_mapping_correction=MappingResultCorrection.from_raw_llm_mapping_result(
                 original_mapping_result=chunk_stats.llm_mapping

@@ -5,7 +5,7 @@ from data_etl_app.models.pipeline_nodes.llm_extraction_node import (
     LLMExtractionNode,
 )
 from data_etl_app.models.pipeline_nodes.search_node import SearchNode
-from data_etl_app.models.pipeline_nodes.evidence_node import EvidenceNode
+from data_etl_app.models.pipeline_nodes.distillation_node import DistillationNode
 from data_etl_app.models.pipeline_nodes.single_stage_extraction_node import (
     SingleStageExtractionNode,
 )
@@ -45,8 +45,8 @@ from data_etl_app.models.pipeline_nodes.classification.binary_reconcile_node imp
 )
 
 # concept
-from data_etl_app.models.pipeline_nodes.concept.concept_evidence_node import (
-    ConceptEvidenceNode,
+from data_etl_app.models.pipeline_nodes.concept.concept_distillation_node import (
+    ConceptDistillationNode,
 )
 from data_etl_app.models.pipeline_nodes.concept.concept_extraction_prefill_node import (
     ConceptExtractionPrefillNode,
@@ -65,8 +65,8 @@ from data_etl_app.models.pipeline_nodes.concept.concept_search_node import (
 from data_etl_app.models.pipeline_nodes.keyword.keyword_extraction_prefill_node import (
     KeywordExtractionPrefillNode,
 )
-from data_etl_app.models.pipeline_nodes.keyword.keyword_evidence_node import (
-    KeywordEvidenceNode,
+from data_etl_app.models.pipeline_nodes.keyword.keyword_distillation_node import (
+    KeywordDistillationNode,
 )
 from data_etl_app.models.pipeline_nodes.keyword.keyword_reconcile_node import (
     KeywordReconcileNode,
@@ -81,7 +81,7 @@ __all__ = [
     "ReconcileNode",
     "LLMExtractionNode",
     "SearchNode",
-    "EvidenceNode",
+    "DistillationNode",
     "SingleStageExtractionNode",
     "SingleStageExtractionPrefillNode",
     # basic_field
@@ -96,14 +96,14 @@ __all__ = [
     "BinaryClassificationPrefillNode",
     "BinaryReconcileNode",
     # concept
-    "ConceptEvidenceNode",
+    "ConceptDistillationNode",
     "ConceptExtractionPrefillNode",
     "ConceptMappingNode",
     "ConceptReconcileNode",
     "ConceptSearchNode",
     # keyword
     "KeywordExtractionPrefillNode",
-    "KeywordEvidenceNode",
+    "KeywordDistillationNode",
     "KeywordReconcileNode",
     "KeywordSearchNode",
 ]

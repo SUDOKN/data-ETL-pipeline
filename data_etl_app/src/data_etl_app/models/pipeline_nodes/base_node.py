@@ -47,7 +47,7 @@ class PipelineContext:
     """Carries shared state for a single pipeline run.
 
     ``mfg_name`` is pre-populated by the orchestrator before any concept/keyword
-    pipeline executes so that evidence nodes can embed the manufacturer name in
+    pipeline executes so that distillation nodes can embed the manufacturer name in
     their batch requests without needing it threaded through every method signature.
 
     The internal ``_results`` dict preserves the existing keying convention of
