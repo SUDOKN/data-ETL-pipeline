@@ -6,6 +6,7 @@ from typing import Dict, Optional
 from core.models.prompt import Prompt
 from litellm_proxy_app.models.llm_model import LLM_Model
 from data_etl_app.utils.prompt_s3_util import download_prompt, get_prompt_filename
+from data_etl_app.utils.prompt_local_util import read_local_prompt
 
 logger = logging.getLogger(__name__)
 
@@ -42,10 +43,18 @@ class PromptService:
 
     def __init__(self):
         self._prompt_cache: Dict[str, Prompt] = {}
+        self._use_local: bool = False
 
     @classmethod
-    async def get_instance(cls, llm_model: LLM_Model) -> "PromptService":
-        """Get the singleton instance with lazy initialization."""
+    async def get_instance(
+        cls, llm_model: LLM_Model, use_local: bool = False
+    ) -> "PromptService":
+        """Get the singleton instance with lazy initialization.
+
+        :param llm_model: The LLM model used for token counting.
+        :param use_local: If True, load prompts from the local prompts directory
+            (LOCAL_PROMPTS_DIR) instead of downloading them from S3.
+        """
         if cls._instance is None:
             async with cls._lock:
                 if cls._instance is None:
@@ -57,24 +66,31 @@ class PromptService:
             async with cls._lock:
                 if not cls._initialized:
                     logger.info("Initializing PromptService data")
-                    await cls._instance._init_data(llm_model)
+                    await cls._instance._init_data(llm_model, use_local)
                     cls._initialized = True
 
         return cls._instance
 
-    async def _init_data(self, llm_model: LLM_Model) -> None:
-        """Initialize prompt cache by downloading from S3."""
+    async def _init_data(self, llm_model: LLM_Model, use_local: bool = False) -> None:
+        """Initialize prompt cache from local files or by downloading from S3."""
         self.llm_model = llm_model
+        self._use_local = use_local
         self._prompt_cache = {}
+        source = "local" if use_local else "S3"
         try:
             for prompt_name in PROMPT_NAMES:
-                self._prompt_cache[prompt_name] = await self._download_prompt(
-                    prompt_name, self.llm_model, None
-                )
+                if use_local:
+                    self._prompt_cache[prompt_name] = self._load_local_prompt(
+                        prompt_name, self.llm_model
+                    )
+                else:
+                    self._prompt_cache[prompt_name] = await self._download_prompt(
+                        prompt_name, self.llm_model, None
+                    )
                 logger.info(
-                    f"Downloaded {prompt_name} prompt with {(self._prompt_cache[prompt_name]).num_tokens}"
+                    f"Loaded {prompt_name} prompt from {source} with {(self._prompt_cache[prompt_name]).num_tokens} tokens"
                 )
-            logger.info("PromptService initialized and prompts loaded")
+            logger.info(f"PromptService initialized and prompts loaded from {source}")
         except Exception as e:
             logger.error(f"Failed to initialize prompt service: {e}")
             raise
@@ -99,12 +115,25 @@ class PromptService:
             ),
         )
 
+    def _load_local_prompt(self, prompt_name: str, llm_model: LLM_Model) -> Prompt:
+        """Load a prompt from the local prompts directory (LOCAL_PROMPTS_DIR)."""
+        prompt_file_name = get_prompt_filename(prompt_name)
+        prompt_content = read_local_prompt(prompt_file_name)
+        return Prompt(
+            s3_version_id="local",
+            name=prompt_name,
+            text=prompt_content,
+            num_tokens=litellm.token_counter(
+                model=llm_model.model_name, text=prompt_content
+            ),
+        )
+
     async def refresh(self) -> None:
-        """Reload prompt data from S3."""
+        """Reload prompt data from the current source (local or S3)."""
         logger.info("Refreshing prompt data")
         async with self._lock:
             logger.info("Lock acquired, starting prompt refresh")
-            await self._init_data(self.llm_model)
+            await self._init_data(self.llm_model, self._use_local)
 
     def _get_prompt(self, prompt_name: str) -> Prompt:
         """Helper method to get prompt from cache with validation."""
@@ -196,6 +225,8 @@ class PromptService:
 
 
 # Factory function for getting the service instance
-async def get_prompt_service(llm_model: LLM_Model) -> PromptService:
+async def get_prompt_service(
+    llm_model: LLM_Model, use_local: bool = False
+) -> PromptService:
     """Factory function to get the PromptService instance."""
-    return await PromptService.get_instance(llm_model=llm_model)
+    return await PromptService.get_instance(llm_model=llm_model, use_local=use_local)
