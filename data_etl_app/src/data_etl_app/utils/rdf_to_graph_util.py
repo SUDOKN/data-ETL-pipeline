@@ -10,33 +10,12 @@ from data_etl_app.models.skos_concept import ConceptNode, Concept
 logger = logging.getLogger(__name__)
 
 
-def _looks_like_rdfxml(rdf_raw: str) -> bool:
-    stripped = rdf_raw.lstrip()
-    return stripped.startswith("<?xml") or stripped.startswith("<rdf:RDF")
-
-
 def get_graph(rdf_raw: str) -> rdflib.Graph:
     rdf_cleaned = rdf_raw.replace('xml:lang="asu.edu"', 'xml:lang="en"')
-
-    # Prefer the likely parser first, then fallback to preserve compatibility.
-    candidate_formats = ["application/rdf+xml", "turtle"]
-    if not _looks_like_rdfxml(rdf_cleaned):
-        candidate_formats.reverse()
-
-    parse_errors: list[str] = []
-    for fmt in candidate_formats:
-        graph = rdflib.Graph()
-        try:
-            graph.parse(data=rdf_cleaned, format=fmt)
-            logger.info("Ontology parsed successfully as %s", fmt)
-            return graph
-        except Exception as exc:
-            parse_errors.append(f"{fmt}: {exc}")
-
-    raise ValueError(
-        "Failed to parse ontology as RDF/XML or Turtle. "
-        + " | ".join(parse_errors)
-    )
+    graph = rdflib.Graph()
+    graph.parse(data=rdf_cleaned, format="application/rdf+xml")
+    #graph.parse(data=rdf_cleaned, format="turtle")
+    return graph
 
 
 def get_label(graph: rdflib.Graph, uri: str) -> str:
