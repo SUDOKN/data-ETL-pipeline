@@ -1,10 +1,8 @@
 import logging
 
 from core.models.db.concept_ground_truth import (
-    YES_PREFIX,
-    NO_PREFIX,
-    CORRECT_PREFIX,
-    INCORRECT_PREFIX,
+    DistillationResultVerificationEnum,
+    MappingResultVerificationEnum,
     HumanConceptCorrection,
 )
 from core.models.db.keyword_ground_truth import (
@@ -29,9 +27,15 @@ def is_distillation_evidence_format_correct(reason: str) -> bool:
     Checks if the reason for confirming or rejecting distillation results is in the correct format.
     The reason must start with "Yes, " for confirmed evidence or "No, " for rejected evidence.
     """
-    return (reason.startswith(YES_PREFIX) or reason.startswith(NO_PREFIX)) and len(
-        reason
-    ) > 5  # ensure that there is some explanation following "Yes, " or "No, "
+    return (
+        reason.startswith(DistillationResultVerificationEnum.YES_PREFIX)
+        or reason.startswith(DistillationResultVerificationEnum.NO_PREFIX)
+        or reason.startswith(DistillationResultVerificationEnum.OUT_OF_SCOPE_YES_PREFIX)
+        or reason.startswith(DistillationResultVerificationEnum.OUT_OF_SCOPE_NO_PREFIX)
+    ) and len(reason) > 10
+    # to ensure that there is some explanation following
+    # "Yes, ", "No, ",
+    # "Yes_though_out-of-scope, " or "No_though_out-of-scope, "
 
 
 def is_mapping_reason_format_correct(reason: str) -> bool:
@@ -39,7 +43,9 @@ def is_mapping_reason_format_correct(reason: str) -> bool:
     Checks if the reason for mapping an unknown term to a known concept is in the correct format.
     The reason must start with "Correct, " for correct mappings or "Incorrect, " for incorrect mappings.
     """
-    return reason.startswith(CORRECT_PREFIX) or reason.startswith(INCORRECT_PREFIX)
+    return reason.startswith(
+        MappingResultVerificationEnum.CORRECT_PREFIX
+    ) or reason.startswith(MappingResultVerificationEnum.INCORRECT_PREFIX)
 
 
 def get_verified_results_from_human_distillation_correction(
@@ -60,7 +66,12 @@ def get_verified_distillation_results(
     confirmed_keywords_w_evidence = {
         kw: reason
         for kw, reason in llm_distillation_results.items()
-        if reason.startswith(YES_PREFIX)
+        if (
+            reason.startswith(DistillationResultVerificationEnum.YES_PREFIX)
+            or reason.startswith(
+                DistillationResultVerificationEnum.OUT_OF_SCOPE_YES_PREFIX
+            )
+        )
     }
     return confirmed_keywords_w_evidence
 
@@ -99,7 +110,7 @@ def get_verified_results_from_raw_mapping(
     verified_mapped_known_concepts: set[str] = set()
     for mu, mk_dict in llm_mapping_results.items():
         for mk, reason in mk_dict.items():
-            if reason.startswith(CORRECT_PREFIX):
+            if reason.startswith(MappingResultVerificationEnum.CORRECT_PREFIX):
                 verified_mapped_known_concepts.add(mk)
     return verified_mapped_known_concepts
 

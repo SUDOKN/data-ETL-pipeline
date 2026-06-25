@@ -31,8 +31,7 @@ from core.services.out_of_vocab_labels_service import (
     upsert_out_of_vocab_labels,
 )
 from data_etl_app.utils.ground_truth_helper_util import (
-    CORRECT_PREFIX,
-    INCORRECT_PREFIX,
+    MappingResultVerificationEnum,
     get_verified_results_from_human_distillation_correction,
     calculate_corrected_concept_results,
     is_distillation_evidence_format_correct,
@@ -349,12 +348,10 @@ async def _validate_new_human_correction(
         )
 
     # corrected_mapping_candidate_phrases_w_evid must contain all of corrected_distillation_candidate_phrases
-    corrected_mapping_candidate_phrases_w_evid = (
-        set(  # These phrases are supported by reasons starting with "Yes, "
-            get_verified_results_from_human_distillation_correction(
-                human_correction=new_correction,
-            ).keys()
-        )
+    corrected_mapping_candidate_phrases_w_evid = set(  # These phrases are supported by reasons starting with "Yes, " or "Yes_though_out-of-scope, "
+        get_verified_results_from_human_distillation_correction(
+            human_correction=new_correction,
+        ).keys()
     )
     # in fact they must be equal
     logger.info(
@@ -413,7 +410,7 @@ async def _validate_new_human_correction(
                 )
             elif not is_mapping_reason_format_correct(reason):
                 raise ValueError(
-                    f"The reason for the unknown phrase '{mk}' in llm_mapping_correction.upsert['{mu}'] must start with '{CORRECT_PREFIX}' or '{INCORRECT_PREFIX}'."
+                    f"The reason for the unknown phrase '{mk}' in llm_mapping_correction.upsert['{mu}'] must start with '{MappingResultVerificationEnum.CORRECT_PREFIX}' or '{MappingResultVerificationEnum.INCORRECT_PREFIX}'."
                 )
 
             if mk not in known_concept_labels:
@@ -422,9 +419,9 @@ async def _validate_new_human_correction(
                 logger.info(
                     f"Found out-of-vocabulary keyword '{mk}' in mapping correction for phrase '{mu}'."
                 )
-                if not reason.startswith(CORRECT_PREFIX):
+                if not reason.startswith(MappingResultVerificationEnum.CORRECT_PREFIX):
                     raise ValueError(
-                        f"Out-of-vocabulary keyword '{mk}' in llm_mapping_correction.upsert['{mu}'] must start with '{CORRECT_PREFIX}'. "
+                        f"Out-of-vocabulary keyword '{mk}' in llm_mapping_correction.upsert['{mu}'] must start with '{MappingResultVerificationEnum.CORRECT_PREFIX}'. "
                         f"Keywords not in the ontology can only be submitted as correct mappings. "
                         f"To check the current vocabulary, visit {get_full_ontology_concept_flat_url(concept_gt.concept_type)}"
                     )

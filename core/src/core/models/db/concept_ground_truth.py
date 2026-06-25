@@ -1,5 +1,6 @@
 from beanie import Document
 from datetime import datetime
+from enum import Enum
 from pydantic import BaseModel, Field
 
 from core.models.field_types import (
@@ -17,10 +18,17 @@ from data_etl_app.models.types_and_enums import ConceptTypeEnum, GroundTruthSour
 
 from core.utils.time_util import get_current_time
 
-YES_PREFIX = "Yes, "
-NO_PREFIX = "No, "
-CORRECT_PREFIX = "Correct, "
-INCORRECT_PREFIX = "Incorrect, "
+
+class DistillationResultVerificationEnum(str, Enum):
+    YES_PREFIX = "Yes, "
+    NO_PREFIX = "No, "
+    OUT_OF_SCOPE_YES_PREFIX = "Yes_though_out-of-scope, "
+    OUT_OF_SCOPE_NO_PREFIX = "No_though_out-of-scope, "
+
+
+class MappingResultVerificationEnum(str, Enum):
+    CORRECT_PREFIX = "Correct, "
+    INCORRECT_PREFIX = "Incorrect, "
 
 
 class DistillationResultCorrection(BaseModel):
@@ -42,7 +50,9 @@ class MappingResultCorrection(BaseModel):
         prefixed_mapping_result: RawLLMMappingResult = original_mapping_result.copy()
         for _mu, mk_dict in prefixed_mapping_result.items():
             for mk in mk_dict:
-                mk_dict[mk] = f"{CORRECT_PREFIX}{mk_dict[mk]}"
+                mk_dict[mk] = (
+                    f"{MappingResultVerificationEnum.CORRECT_PREFIX}{mk_dict[mk]}"
+                )
         return cls(upsert=prefixed_mapping_result)
 
 
