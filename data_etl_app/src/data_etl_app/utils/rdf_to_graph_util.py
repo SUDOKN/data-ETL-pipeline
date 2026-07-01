@@ -3,7 +3,7 @@ import logging
 import rdflib
 from rdflib.term import URIRef
 from rdflib.namespace import RDFS, SKOS
-from typing import Callable, List
+from typing import Callable, List, Optional
 
 from data_etl_app.models.skos_concept import ConceptNode, Concept
 
@@ -39,6 +39,14 @@ def get_alt_labels(graph: rdflib.Graph, uri: str) -> list[str]:
     ]
 
 
+def get_definition(graph: rdflib.Graph, uri: str) -> str:
+    """Get the skos:definition value or raise ValueError if not present."""
+    definitions = list(graph.objects(subject=URIRef(uri), predicate=SKOS.definition))
+    if not definitions:
+        raise ValueError(f"Definition not found for URI: {uri}")
+    return str(definitions[0])
+
+
 def build_concept_tree(
     graph: rdflib.Graph, parent_uri: URIRef, labels_seen: set[str]
 ) -> ConceptNode:
@@ -55,6 +63,8 @@ def build_concept_tree(
             raise ValueError(f"Duplicate altLabel '{alt}' for URI: {parent_uri}.")
         labels_seen.add(alt)
 
+    definition = get_definition(graph, str(parent_uri))
+
     children: List[ConceptNode] = []
     for subclass, _, _ in graph.triples((None, RDFS.subClassOf, parent_uri)):
         if not isinstance(subclass, URIRef):
@@ -67,7 +77,9 @@ def build_concept_tree(
         "name": label,
         "uri": parent_uri,
         "altLabels": alt_labels,
+        "definition": definition,
         "children": children,
+        "childrenCount": len(children),
     }
 
 
@@ -93,6 +105,7 @@ def tree_list_to_flat_helper(
                 uri=current_node["uri"],
                 altLabels=current_node["altLabels"],
                 ancestors=current_ancestors.copy(),
+                definition=current_node["definition"],
             )
         )
 
@@ -115,6 +128,57 @@ def tree_list_to_flat(tree_knowns: list[ConceptNode]) -> set[Concept]:
         flat_knowns.extend(tree_list_to_flat_helper(known, []))
 
     return set(flat_knowns)
+
+
+def find_concept_node_by_name(
+    nodes: List[ConceptNode], target_name: str
+) -> Optional[ConceptNode]:
+    """Recursively search a concept tree for a node matching target_name.
+
+    Matches case-insensitively against the node's name or any of its altLabels.
+    """
+    normalized = target_name.strip().lower()
+    for node in nodes:
+        labels = [node["name"], *node.get("altLabels", [])]
+        if any(label.lower() == normalized for label in labels):
+            return node
+        found = find_concept_node_by_name(node["children"], target_name)
+        if found is not None:
+            return found
+    return None
+
+
+def prune_tree_to_depth(
+    nodes: List[ConceptNode], depth: Optional[int]
+) -> List[ConceptNode]:
+    """Return a copy of the concept tree truncated to `depth` levels.
+
+    The given `nodes` are treated as level 1. ``depth=1`` keeps only those nodes
+    with their children removed, ``depth=2`` keeps them plus their immediate
+    children, and so on. ``depth=None`` returns the full tree unchanged.
+
+    Each node's ``childrenCount`` is preserved so callers can still tell how many
+    immediate children a truncated node has, even when its ``children`` list is
+    empty due to the depth cutoff.
+    """
+    if depth is None:
+        return nodes
+    if depth < 1:
+        return []
+    pruned: List[ConceptNode] = []
+    for node in nodes:
+        children = prune_tree_to_depth(node["children"], depth - 1) if depth > 1 else []
+        pruned.append(
+            {
+                "name": node["name"],
+                "uri": node["uri"],
+                "altLabels": node["altLabels"],
+                "definition": node["definition"],
+                "children": children,
+                "childrenCount": node["childrenCount"],
+            }
+        )
+    return pruned
 
 
 def transform_node(node: ConceptNode, fn: Callable[[ConceptNode], ConceptNode]):

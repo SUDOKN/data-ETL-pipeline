@@ -16,7 +16,9 @@ class ConceptNode(TypedDict):
     name: str
     uri: URIRef
     altLabels: list[str]
+    definition: str
     children: list[ConceptNode]
+    childrenCount: int
 
 
 class Concept:
@@ -26,11 +28,13 @@ class Concept:
         uri: URIRef,
         altLabels: list[str],
         ancestors: list[str],
+        definition: str,
     ) -> None:
         self.name = name
         self.uri = uri
         self.altLabels = altLabels
         self.ancestors = ancestors
+        self.definition = definition
 
     @cached_property
     def matchLabels(self) -> set[str]:
@@ -44,7 +48,7 @@ class Concept:
         return f"{self.name}"
 
     def __repr__(self) -> str:
-        return f"Concept(name={self.name}, uri={self.uri}, altLabels={self.altLabels}, ancestors={self.ancestors})"
+        return f"Concept(name={self.name}, uri={self.uri}, altLabels={self.altLabels}, ancestors={self.ancestors}, definition={self.definition})"
 
 
 class ConceptJSONEncoder(json.JSONEncoder):
@@ -54,6 +58,7 @@ class ConceptJSONEncoder(json.JSONEncoder):
                 "name": o.name,
                 "altLabels": o.altLabels,
                 "ancestors": o.ancestors,
+                "definition": o.definition,
             }
 
             return d
