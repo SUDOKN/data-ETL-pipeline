@@ -18,6 +18,11 @@ from core.models.deferred_phrase_extraction_requests import (
     LLMPhraseExtractionRequestBundle,
     DeferredLLMPhraseExtractionRequests,
 )
+from core.models.deferred_concept_extraction import (
+    ConceptExtractionRequestBundle,
+    DeferredConceptExtractionRequests,
+)
+
 from data_etl_app.models.types_and_enums import LLMExtractedFieldTypeEnum
 from open_ai_key_app.models.gpt_model_params import GPTModelParams
 from open_ai_key_app.models.field_types import GPTBatchRequestCustomID
@@ -116,7 +121,9 @@ async def create_missing_phrase_relationship_requests(
     mfg_etld1: str,
     mfg_name: str,
     field_type: LLMExtractedFieldTypeEnum,  # used for logging and debugging
-    extraction_requests: DeferredLLMPhraseExtractionRequests,
+    extraction_requests: (
+        DeferredLLMPhraseExtractionRequests | DeferredConceptExtractionRequests
+    ),
     missing_phrase_relationship_req_ids: set[GPTBatchRequestCustomID],
     mfg_text: str,
     phrase_relationship_prompt: Prompt,
@@ -179,7 +186,9 @@ async def create_missing_phrase_relationship_requests(
             all_search_results = merge_llm_and_brute_search_results(
                 llm_search_results=llm_phrase_search_results,
                 brute_search_results=(
-                    extraction_bundle.brute if extraction_bundle.brute else set()
+                    extraction_bundle.brute
+                    if type(extraction_bundle) == ConceptExtractionRequestBundle
+                    else set()
                 ),
             )
 
