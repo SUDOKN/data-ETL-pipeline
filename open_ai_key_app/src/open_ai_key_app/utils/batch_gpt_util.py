@@ -3,7 +3,7 @@ import logging
 import litellm
 
 from core.models.gpt_batch_request_blob import GPTBatchRequestBlob
-from litellm_proxy_app.models.llm_model import LLM_Model
+from core.models.llm_model import LLM_Model
 from open_ai_key_app.models.gpt_model_params import (
     GPTRequestBody,
     GPTModelParams,
@@ -54,8 +54,8 @@ def get_gpt_request_blob(
 
     Creates a GPT batch request blob with token counting and validation.
     """
-    tokens_prompt = litellm.token_counter(model=gpt_model.model_name, text=prompt)
-    tokens_context = litellm.token_counter(model=gpt_model.model_name, text=context)
+    tokens_prompt = litellm.token_counter(model=gpt_model.name, text=prompt)
+    tokens_context = litellm.token_counter(model=gpt_model.name, text=context)
     input_tokens = tokens_prompt + tokens_context
     tokens_needed = input_tokens + model_params.max_completion_tokens
 
@@ -69,7 +69,7 @@ def get_gpt_request_blob(
         body=GPTRequestBody.model_validate(
             model_params.model_dump()
             | {
-                "model": gpt_model.model_name,
+                "model": gpt_model.name,
                 "messages": [
                     {"role": "system", "content": prompt},
                     {"role": "user", "content": context},

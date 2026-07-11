@@ -1,7 +1,7 @@
 from pydantic import BaseModel
 from typing import Optional
 
-from core.models.single_stage_extraction_results import SingleStageMetadata
+from core.models.single_stage_extraction_results import LLMSingleStageExtractionMetadata
 from open_ai_key_app.models.field_types import GPTBatchRequestCustomID
 
 
@@ -13,5 +13,5 @@ SingleStageExtractionRequestMap = dict[str, SingleStageExtractionRequestBundle]
 
 
 class DeferredSingleStageExtractionRequests(BaseModel):
-    metadata: SingleStageMetadata
+    metadata: LLMSingleStageExtractionMetadata
     request_map: SingleStageExtractionRequestMap

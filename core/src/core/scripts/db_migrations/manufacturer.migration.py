@@ -27,8 +27,8 @@ from core.utils.mongo_client import (
     init_db,
 )
 
-from litellm_proxy_app.models.llm_model import GPT_4o_mini
-from litellm_proxy_app.models.llm_model import LLM_Model
+from core.models.llm_model import GPT_4o_mini
+from core.models.llm_model import LLM_Model
 
 from core.models.binary_classification_result import (
     BinaryClassificationStats,

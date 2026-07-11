@@ -10,7 +10,8 @@ from core.models.db.keyword_ground_truth import (
 )
 from core.models.field_types import (
     HumanVerificationResults,
-    LLMDistillationResults,
+    LLMPhraseRelationshipResults,
+    LLMScreeningResults,
     RawLLMMappingResult,
 )
 from data_etl_app.models.skos_concept import Concept
@@ -22,9 +23,9 @@ from data_etl_app.utils.llm_mapping_helper import (
 logger = logging.getLogger(__name__)
 
 
-def is_distillation_evidence_format_correct(reason: str) -> bool:
+def is_phrase_relationship_evidence_format_correct(reason: str) -> bool:
     """
-    Checks if the reason for confirming or rejecting distillation results is in the correct format.
+    Checks if the reason for confirming or rejecting phrase_relationship results is in the correct format.
     The reason must start with "Yes, " for confirmed evidence or "No, " for rejected evidence.
     """
     return (
@@ -48,24 +49,24 @@ def is_mapping_reason_format_correct(reason: str) -> bool:
     ) or reason.startswith(MappingResultVerificationEnum.INCORRECT_PREFIX)
 
 
-def get_verified_results_from_human_distillation_correction(
+def get_verified_results_from_human_phrase_relationship_correction(
     human_correction: HumanConceptCorrection,
 ) -> HumanVerificationResults:
     """
-    Get the final distillation stage results after applying human corrections.
-    Returns an empty dictionary if no distillation corrections were made.
+    Get the final phrase_relationship stage results after applying human corrections.
+    Returns an empty dictionary if no phrase_relationship corrections were made.
     """
-    return get_verified_distillation_results(
-        human_correction.llm_distillation_correction.upsert
+    return get_verified_phrase_relationship_results(
+        human_correction.llm_phrase_relationship_screening.upsert
     )
 
 
-def get_verified_distillation_results(
-    llm_distillation_results: LLMDistillationResults,
-) -> LLMDistillationResults:
+def get_verified_phrase_relationship_results(
+    llm_phrase_relationship_screening_results: LLMPhraseRelationshipResults,
+) -> LLMScreeningResults:
     confirmed_keywords_w_evidence = {
         kw: reason
-        for kw, reason in llm_distillation_results.items()
+        for kw, reason in llm_phrase_relationship_screening_results.items()
         if (
             reason.startswith(DistillationResultVerificationEnum.YES_PREFIX)
             or reason.startswith(
@@ -85,8 +86,8 @@ def calculate_corrected_concept_results(
     Returns None if no corrections were made.
     """
 
-    verified_llm_distillation_results: dict[str, str] = (
-        get_verified_results_from_human_distillation_correction(
+    verified_llm_phrase_relationship_results: dict[str, str] = (
+        get_verified_results_from_human_phrase_relationship_correction(
             human_correction=human_correction
         )
     )
@@ -95,7 +96,7 @@ def calculate_corrected_concept_results(
         matched_concepts,
         _unmatched_keywords,
     ) = get_matched_concepts_and_unmatched_keywords(
-        known_concepts, verified_llm_distillation_results
+        known_concepts, verified_llm_phrase_relationship_results
     )
     corrected_llm_mapping_results = human_correction.llm_mapping_correction.upsert
     results = {c.name for c in matched_concepts}

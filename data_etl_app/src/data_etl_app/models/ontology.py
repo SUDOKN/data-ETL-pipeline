@@ -4,6 +4,7 @@ from typing import Dict, List
 import rdflib
 from pydantic import BaseModel, ConfigDict
 
+from data_etl_app.models.types_and_enums import ConceptTypeEnum
 from data_etl_app.models.skos_concept import Concept, ConceptNode
 from data_etl_app.utils.rdf_to_graph_util import (
     build_concept_tree,
@@ -33,6 +34,23 @@ class Ontology(BaseModel):
     s3_version_id: str
     rdf: str
 
+    def get_concepts_flat(self, concept_type: ConceptTypeEnum) -> set[Concept]:
+        retval = None
+        match concept_type:
+            case ConceptTypeEnum.certificates:
+                retval = self.certificates
+            case ConceptTypeEnum.industries:
+                retval = self.certificates
+            case ConceptTypeEnum.materials:
+                retval = self.material_caps
+            case ConceptTypeEnum.processes:
+                retval = self.process_caps
+            case _:
+                raise ValueError(
+                    f"Cannot get concept:{concept_type.name} from ontology:{s3_version_id}."
+                )
+        return retval
+
     @property
     def version_id(self) -> str:
         """Alias for s3_version_id for cleaner consumer API."""
@@ -50,9 +68,7 @@ class Ontology(BaseModel):
         base_uri = process_cap_base_uri()
         if not base_uri:
             raise ValueError("Process capability base URI is not set.")
-        return build_concept_tree(self.graph, rdflib.URIRef(base_uri), set())[
-            "children"
-        ]
+        return build_concept_tree(self.graph, rdflib.URIRef(base_uri))["children"]
 
     @cached_property
     def process_caps(self) -> set[Concept]:
@@ -71,9 +87,7 @@ class Ontology(BaseModel):
         base_uri = material_cap_base_uri()
         if not base_uri:
             raise ValueError("Material capability base URI is not set.")
-        return build_concept_tree(self.graph, rdflib.URIRef(base_uri), set())[
-            "children"
-        ]
+        return build_concept_tree(self.graph, rdflib.URIRef(base_uri))["children"]
 
     @cached_property
     def material_caps(self) -> set[Concept]:
@@ -92,9 +106,7 @@ class Ontology(BaseModel):
         base_uri = industry_base_uri()
         if not base_uri:
             raise ValueError("Industry base URI is not set.")
-        return build_concept_tree(self.graph, rdflib.URIRef(base_uri), set())[
-            "children"
-        ]
+        return build_concept_tree(self.graph, rdflib.URIRef(base_uri))["children"]
 
     @cached_property
     def industries(self) -> set[Concept]:
@@ -113,9 +125,7 @@ class Ontology(BaseModel):
         base_uri = certificate_base_uri()
         if not base_uri:
             raise ValueError("Certificate base URI is not set.")
-        return build_concept_tree(self.graph, rdflib.URIRef(base_uri), set())[
-            "children"
-        ]
+        return build_concept_tree(self.graph, rdflib.URIRef(base_uri))["children"]
 
     @cached_property
     def certificates(self) -> set[Concept]:
@@ -134,9 +144,7 @@ class Ontology(BaseModel):
         base_uri = ownership_status_base_uri()
         if not base_uri:
             raise ValueError("Ownership status base URI is not set.")
-        return build_concept_tree(self.graph, rdflib.URIRef(base_uri), set())[
-            "children"
-        ]
+        return build_concept_tree(self.graph, rdflib.URIRef(base_uri))["children"]
 
     @cached_property
     def ownership_statuses(self) -> set[Concept]:
@@ -160,9 +168,7 @@ class Ontology(BaseModel):
         base_uri = naics_base_uri()
         if not base_uri:
             raise ValueError("NAICS base URI is not set.")
-        return build_concept_tree(self.graph, rdflib.URIRef(base_uri), set())[
-            "children"
-        ]
+        return build_concept_tree(self.graph, rdflib.URIRef(base_uri))["children"]
 
     @cached_property
     def naics_codes(self) -> set[Concept]:

@@ -2,7 +2,7 @@ import logging
 from typing import Optional
 
 from core.models.gpt_batch_response_blob import GPTBatchResponse
-from litellm_proxy_app.models.llm_model import LLM_Model
+from core.models.llm_model import LLM_Model
 from litellm_proxy_app.models.llm_model_params import LLMModelParams
 from open_ai_key_app.models.gpt_model_params import GPTModelParams
 

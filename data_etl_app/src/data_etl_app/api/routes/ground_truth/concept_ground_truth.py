@@ -130,7 +130,7 @@ async def fetch_concept_ground_truth_template(
     sorted_search_data = [
         (key, value)
         for key, value in sorted(
-            concept_extraction_results.chunk_stats.items(),
+            concept_extraction_results.chunked_extraction_stats.items(),
             key=lambda item: int(item[0].split(":")[0]),
         )
     ]
@@ -162,7 +162,7 @@ async def fetch_concept_ground_truth_template(
             author_email=author_email,
             source=GroundTruthSource.API_SURVEY,
             llm_search_correction=last_correction_log.human_correction.llm_search_correction,  # pre-fill with last correction
-            llm_distillation_correction=last_correction_log.human_correction.llm_distillation_correction,
+            llm_phrase_relationship_screening=last_correction_log.human_correction.llm_phrase_relationship_screening,
             llm_mapping_correction=last_correction_log.human_correction.llm_mapping_correction,  # pre-fill with last correction
         ).model_dump()
         response["your_correction"][
@@ -211,8 +211,8 @@ async def fetch_concept_ground_truth_template(
             llm_search_correction=SearchResultsCorrection(
                 upsert=chunk_stats.llm_search
             ),  # pre-fill with llm results
-            llm_distillation_correction=DistillationResultCorrection(
-                upsert=chunk_stats.llm_distillation,
+            llm_phrase_relationship_screening=DistillationResultCorrection(
+                upsert=chunk_stats.llm_phrase_relationship,
             ),  # pre-fill with llm results
             llm_mapping_correction=MappingResultCorrection.from_raw_llm_mapping_result(
                 original_mapping_result=chunk_stats.llm_mapping
@@ -350,7 +350,7 @@ async def collect_concept_extraction_ground_truth(
         sorted_search_data = [
             (key, value)
             for key, value in sorted(
-                concept_extraction_results.chunk_stats.items(),
+                concept_extraction_results.chunked_extraction_stats.items(),
                 key=lambda item: int(item[0].split(":")[0]),
             )
         ]
@@ -506,8 +506,8 @@ async def get_concept_coverage_stats(
         ontology = await ontology_svc.get_latest_ontology()
 
     _concept_type_to_map = {
-        ConceptTypeEnum.process_caps: ontology.process_cap_map,
-        ConceptTypeEnum.material_caps: ontology.material_cap_map,
+        ConceptTypeEnum.processes: ontology.process_cap_map,
+        ConceptTypeEnum.materials: ontology.material_cap_map,
         ConceptTypeEnum.industries: ontology.industry_map,
         ConceptTypeEnum.certificates: ontology.certificate_map,
     }

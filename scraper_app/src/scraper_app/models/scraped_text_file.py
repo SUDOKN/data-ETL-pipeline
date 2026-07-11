@@ -6,7 +6,7 @@ import logging
 from datetime import datetime
 from pydantic import BaseModel, ConfigDict, Field, computed_field
 
-from litellm_proxy_app.models.llm_model import LLM_Model
+from core.models.llm_model import LLM_Model
 
 from data_etl_app.services.ground_truth.concept_ground_truth_service import (
     does_a_cgt_exist_with_scraped_file_version,
@@ -86,9 +86,7 @@ class ScrapedTextFile(BaseModel):
             assert (
                 last_modified_on is not None
             ), "Last modified date should not be None if file exists."
-            num_tokens = litellm.token_counter(
-                model=llm_model.model_name, text=scraped_text
-            )
+            num_tokens = litellm.token_counter(model=llm_model.name, text=scraped_text)
             tags = await get_scraped_text_object_tags_by_mfg_etld1(
                 mfg_etld1, s3_version_id
             )

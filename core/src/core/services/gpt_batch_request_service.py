@@ -12,8 +12,8 @@ from core.models.gpt_batch_response_blob import (
     GPTBatchResponse,
 )
 
-from litellm_proxy_app.models.llm_model import LLM_Model
-from litellm_proxy_app.models.llm_model import No_model
+from core.models.llm_model import LLM_Model
+from core.models.llm_model import NO_MODEL
 from open_ai_key_app.models.gpt_model_params import GPTModelParams
 from open_ai_key_app.utils.ask_gpt_util import fetch_gpt_batch_response
 from open_ai_key_app.utils.batch_gpt_util import (
@@ -37,10 +37,8 @@ def create_base_gpt_batch_request(
 
     request_blob = get_gpt_request_blob(
         custom_id=custom_id,
-        context=f"{nonce}\n\n{context}",
-        # context=f"{context}",
-        prompt=f"{nonce}\n\n{prompt.text}",
-        # prompt=f"{prompt.text}",
+        prompt=f"{prompt.text}",  # system role, helps to keep static for kv cache
+        context=f"{nonce}\n\n{context}",  # user role
         gpt_model=gpt_model,
         model_params=model_params,
     )
@@ -68,7 +66,7 @@ def get_dummy_gpt_batch_response(
         chat_completion_result=ChatCompletionResponse(
             id=dummy_chat_completion_id,
             created=deferred_at,
-            model=No_model.model_name,
+            model=NO_MODEL.name,
             choices=[
                 ChatCompletionChoice(
                     index=0,

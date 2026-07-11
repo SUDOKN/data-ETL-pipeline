@@ -1,4 +1,5 @@
 from collections import deque
+from collections.abc import Iterable
 import logging
 import rdflib
 from rdflib.term import URIRef
@@ -48,7 +49,17 @@ def get_definition(graph: rdflib.Graph, uri: str) -> str:
 
 
 def build_concept_tree(
-    graph: rdflib.Graph, parent_uri: URIRef, labels_seen: set[str]
+    graph: rdflib.Graph,
+    parent_uri: URIRef,
+) -> ConceptNode:
+    return build_concept_tree_helper(graph, parent_uri, labels_seen=set(), level=0)
+
+
+def build_concept_tree_helper(
+    graph: rdflib.Graph,
+    parent_uri: URIRef,
+    labels_seen: set[str],
+    level: int,
 ) -> ConceptNode:
     """Recursively find subclasses and build children structure."""
     label = get_label(graph, str(parent_uri))
@@ -70,12 +81,15 @@ def build_concept_tree(
         if not isinstance(subclass, URIRef):
             raise ValueError("Expected subclass to be a URIRef")
 
-        child: ConceptNode = build_concept_tree(graph, subclass, labels_seen)
+        child: ConceptNode = build_concept_tree_helper(
+            graph, subclass, labels_seen, level + 1
+        )
         children.append(child)
 
     return {
         "name": label,
         "uri": parent_uri,
+        "level": level,
         "altLabels": alt_labels,
         "definition": definition,
         "children": children,
@@ -103,7 +117,9 @@ def tree_list_to_flat_helper(
             Concept(
                 name=current_node["name"],
                 uri=current_node["uri"],
+                level=current_node["level"],
                 altLabels=current_node["altLabels"],
+                children=[node["name"] for node in current_node["children"]],
                 ancestors=current_ancestors.copy(),
                 definition=current_node["definition"],
             )
@@ -128,6 +144,24 @@ def tree_list_to_flat(tree_knowns: list[ConceptNode]) -> set[Concept]:
         flat_knowns.extend(tree_list_to_flat_helper(known, []))
 
     return set(flat_knowns)
+
+
+def get_match_label_to_concept_map(concepts: Iterable[Concept]) -> dict[str, Concept]:
+    map: dict[str, Concept] = {}
+    for concept in concepts:
+        for label in concept.matchLabels:
+            map[label] = concept
+
+    return map
+
+
+def get_concept_label_to_level_map(concepts: Iterable[Concept]) -> dict[str, int]:
+    map = {}
+    for concept in concepts:
+        for label in concept.matchLabels:
+            map[label] = concept.level
+
+    return map
 
 
 def find_concept_node_by_name(
@@ -172,6 +206,7 @@ def prune_tree_to_depth(
             {
                 "name": node["name"],
                 "uri": node["uri"],
+                "level": node["level"],
                 "altLabels": node["altLabels"],
                 "definition": node["definition"],
                 "children": children,

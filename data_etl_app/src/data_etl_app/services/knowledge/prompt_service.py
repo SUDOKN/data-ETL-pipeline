@@ -4,7 +4,7 @@ import litellm
 from typing import Dict, Optional
 
 from core.models.prompt import Prompt
-from litellm_proxy_app.models.llm_model import LLM_Model
+from core.models.llm_model import LLM_Model
 from data_etl_app.utils.prompt_s3_util import download_prompt, get_prompt_filename
 from data_etl_app.utils.prompt_local_util import read_local_prompt
 
@@ -19,16 +19,16 @@ PROMPT_NAMES = [
     "extract_any_address",
     # keywords
     "extract_any_product",
-    "product_distillation",
+    "product_phrase_relationship",
     # concepts
     "extract_any_certificate",
     "extract_any_industry",
     "extract_any_material_cap",
     "extract_any_process_cap",
-    "certificate_distillation",
-    "industry_distillation",
-    "material_cap_distillation",
-    "process_cap_distillation",
+    "certificate_phrase_relationship",
+    "industry_phrase_relationship",
+    "material_cap_phrase_relationship",
+    "process_cap_phrase_relationship",
     "unknown_to_known_certificate",
     "unknown_to_known_industry",
     "unknown_to_known_material_cap",
@@ -110,9 +110,7 @@ class PromptService:
             s3_version_id=actual_version_id,
             name=prompt_name,
             text=prompt_content,
-            num_tokens=litellm.token_counter(
-                model=llm_model.model_name, text=prompt_content
-            ),
+            num_tokens=litellm.token_counter(model=llm_model.name, text=prompt_content),
         )
 
     def _load_local_prompt(self, prompt_name: str, llm_model: LLM_Model) -> Prompt:
@@ -123,9 +121,7 @@ class PromptService:
             s3_version_id="local",
             name=prompt_name,
             text=prompt_content,
-            num_tokens=litellm.token_counter(
-                model=llm_model.model_name, text=prompt_content
-            ),
+            num_tokens=litellm.token_counter(model=llm_model.name, text=prompt_content),
         )
 
     async def refresh(self) -> None:
@@ -172,8 +168,8 @@ class PromptService:
         return self._get_prompt("extract_any_product")
 
     @property
-    def product_distillation_prompt(self) -> Prompt:
-        return self._get_prompt("product_distillation")
+    def product_phrase_relationship_prompt(self) -> Prompt:
+        return self._get_prompt("product_phrase_relationship")
 
     @property
     def extract_any_certificate_prompt(self) -> Prompt:
@@ -192,20 +188,20 @@ class PromptService:
         return self._get_prompt("extract_any_process_cap")
 
     @property
-    def certificate_distillation_prompt(self) -> Prompt:
-        return self._get_prompt("certificate_distillation")
+    def certificate_phrase_relationship_prompt(self) -> Prompt:
+        return self._get_prompt("certificate_phrase_relationship")
 
     @property
-    def industry_distillation_prompt(self) -> Prompt:
-        return self._get_prompt("industry_distillation")
+    def industry_phrase_relationship_prompt(self) -> Prompt:
+        return self._get_prompt("industry_phrase_relationship")
 
     @property
-    def material_cap_distillation_prompt(self) -> Prompt:
-        return self._get_prompt("material_cap_distillation")
+    def material_cap_phrase_relationship_prompt(self) -> Prompt:
+        return self._get_prompt("material_cap_phrase_relationship")
 
     @property
-    def process_cap_distillation_prompt(self) -> Prompt:
-        return self._get_prompt("process_cap_distillation")
+    def process_cap_phrase_relationship_prompt(self) -> Prompt:
+        return self._get_prompt("process_cap_phrase_relationship")
 
     @property
     def unknown_to_known_certificate_prompt(self) -> Prompt:

@@ -1,17 +1,13 @@
 from pydantic import BaseModel
 from typing import Generic, TypeVar
 
-from core.models.field_types import (
-    S3FileVersionIDType,
+from core.models.llm_phrase_extraction_results import (
+    BaseExtractionMetadata,
+    ExtractionNodeMetadata,
 )
-from core.models.search_stage_results import BaseStageMetadata
 
 ChunkExtractionResultT = TypeVar("ChunkExtractionResultT")
 SingleStageExtractionResultT = TypeVar("SingleStageExtractionResultT")
-
-
-class SingleStageMetadata(BaseStageMetadata):
-    prompt_version_id: S3FileVersionIDType
 
 
 class SingleStageStats(BaseModel, Generic[ChunkExtractionResultT]):
@@ -23,9 +19,13 @@ SingleStageStatsMap = dict[
 ]  # "0:1000" -> {results: ('term1', 'term2', ...)}
 
 
+class LLMSingleStageExtractionMetadata(BaseExtractionMetadata):
+    single_stage: ExtractionNodeMetadata
+
+
 class SingleStageExtractionResults(
     BaseModel, Generic[SingleStageExtractionResultT, ChunkExtractionResultT]
 ):
-    metadata: SingleStageMetadata
+    metadata: LLMSingleStageExtractionMetadata
     result: SingleStageExtractionResultT  # compiled from chunk-level results
     chunk_stats: SingleStageStatsMap  # chunk map

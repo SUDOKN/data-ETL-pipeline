@@ -19,7 +19,7 @@ from selenium.common.exceptions import (
     StaleElementReferenceException,
 )
 
-from litellm_proxy_app.models.llm_model import LLM_Model
+from core.models.llm_model import LLM_Model
 
 from core.utils.url_util import get_final_landing_url
 from scraper_app.utils.selenium import (
@@ -75,7 +75,7 @@ class ScrapingResult:
 
     @property
     def num_tokens(self) -> int:
-        return litellm.token_counter(model=self.llm_model.model_name, text=self.content)
+        return litellm.token_counter(model=self.llm_model.name, text=self.content)
 
     def __str__(self) -> str:
         timeout_info = " (TIMED OUT)" if self.timed_out else ""
@@ -106,7 +106,7 @@ class ScrapingResult:
         llm_model: LLM_Model,
         timed_out: bool = False,
     ) -> bool:
-        num_tokens = litellm.token_counter(model=llm_model.model_name, text=content)
+        num_tokens = litellm.token_counter(model=llm_model.name, text=content)
         success_rate = cls.get_success_rate(urls_scraped, urls_failed)
         return 30 < num_tokens and success_rate > 0.8 and not timed_out
 

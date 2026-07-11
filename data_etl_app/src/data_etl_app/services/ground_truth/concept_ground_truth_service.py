@@ -32,9 +32,9 @@ from core.services.out_of_vocab_labels_service import (
 )
 from data_etl_app.utils.ground_truth_helper_util import (
     MappingResultVerificationEnum,
-    get_verified_results_from_human_distillation_correction,
+    get_verified_results_from_human_phrase_relationship_correction,
     calculate_corrected_concept_results,
-    is_distillation_evidence_format_correct,
+    is_phrase_relationship_evidence_format_correct,
     is_mapping_reason_format_correct,
     merge_llm_and_brute_search_results,
 )
@@ -71,8 +71,8 @@ async def get_extracted_concept_ground_truth(
         == concept_extraction_results.metadata.ontology_version_id,
         ConceptGroundTruth.metadata.search_prompt_version_id
         == concept_extraction_results.metadata.search_prompt_version_id,
-        ConceptGroundTruth.metadata.distillation_prompt_version_id
-        == concept_extraction_results.metadata.distillation_prompt_version_id,
+        ConceptGroundTruth.metadata.phrase_relationship_prompt_version_id
+        == concept_extraction_results.metadata.phrase_relationship_prompt_version_id,
         ConceptGroundTruth.metadata.mapping_prompt_version_id
         == concept_extraction_results.metadata.mapping_prompt_version_id,
         # ---------------------------------------------------- #
@@ -202,7 +202,7 @@ async def _validate_concept_ground_truth_correction(
     chunk_bounds, chunk_search_stats = [
         (cb, css)
         for cb, css in sorted(
-            concept_extraction_results.chunk_stats.items(),
+            concept_extraction_results.chunked_extraction_stats.items(),
             key=lambda item: int(item[0].split(":")[0]),
         )
     ][concept_gt.chunk_no - 1]
@@ -290,53 +290,56 @@ async def _validate_new_human_correction(
             f"The following phrases were present in the original LLM search results but were skipped in the new correction's llm_search_correction.upsert: {concept_gt.extraction_stats.llm_search - new_correction.llm_search_correction.upsert}."
         )
 
-    # VERIFY distillation
-    original_distillation_candidate_phrases = set(  # phrases originally present in the LLM distillation results, which is chunk_concept_gt.extraction_stats.llm_search | chunk_concept_gt.extraction_stats.brute_search
-        concept_gt.extraction_stats.llm_distillation.keys()
+    # VERIFY phrase_relationship
+    original_phrase_relationship_candidate_phrases = set(  # phrases originally present in the LLM phrase_relationship results, which is chunk_concept_gt.extraction_stats.llm_search | chunk_concept_gt.extraction_stats.brute_search
+        concept_gt.extraction_stats.llm_phrase_relationship.keys()
     )
     logger.info(
-        f"original_distillation_candidate_phrases: {original_distillation_candidate_phrases}"
+        f"original_phrase_relationship_candidate_phrases: {original_phrase_relationship_candidate_phrases}"
     )
-    corrected_distillation_candidate_phrases = merge_llm_and_brute_search_results(
+    corrected_phrase_relationship_candidate_phrases = merge_llm_and_brute_search_results(
         llm_search_results=new_correction.llm_search_correction.upsert,  # llm_search_correction.upsert = extraction_stats.llm_search + any new phrases added by human
-        brute_search_results=concept_gt.extraction_stats.brute_search,  # brute_search phrases are also passed on to the distillation stage
+        brute_search_results=concept_gt.extraction_stats.brute_search,  # brute_search phrases are also passed on to the phrase_relationship stage
     )
     logger.info(
-        f"corrected_distillation_candidate_phrases: {corrected_distillation_candidate_phrases}"
+        f"corrected_phrase_relationship_candidate_phrases: {corrected_phrase_relationship_candidate_phrases}"
     )
     if (
-        original_distillation_candidate_phrases
-        - corrected_distillation_candidate_phrases
+        original_phrase_relationship_candidate_phrases
+        - corrected_phrase_relationship_candidate_phrases
     ):
-        # none of the original phrases can be removed, llm_distillation is edit existing or add new only
+        # none of the original phrases can be removed, llm_phrase_relationship is edit existing or add new only
         raise ValueError(
-            f"The following phrases were present in the original LLM distillation results but are missing in the new correction's llm_distillation_correction.upsert: {original_distillation_candidate_phrases - corrected_distillation_candidate_phrases}. "
-            f"Please provide corrections for these phrases or leave the distillation unchanged."
+            f"The following phrases were present in the original LLM phrase_relationship results but are missing in the new correction's llm_phrase_relationship_correction.upsert: {original_phrase_relationship_candidate_phrases - corrected_phrase_relationship_candidate_phrases}. "
+            f"Please provide corrections for these phrases or leave the phrase_relationship unchanged."
         )
-    if corrected_distillation_candidate_phrases != set(
-        new_correction.llm_distillation_correction.upsert.keys()
+    if corrected_phrase_relationship_candidate_phrases != set(
+        new_correction.llm_phrase_relationship_screening.upsert.keys()
     ):
         raise ValueError(
-            f"The phrases for your llm_distillation_correction must match the llm_search_correction.upsert + chunk_concept_gt.extraction_stats.brute_search. "
-            f"However, the [llm_search_correction.upsert + chunk_concept_gt.extraction_stats.brute_search] contains phrases: {corrected_distillation_candidate_phrases - set(new_correction.llm_distillation_correction.upsert.keys())} that are missing in your llm_distillation_correction.upsert. "
-            f"Or, the your llm_distillation_correction contains extra phrases: {set(new_correction.llm_distillation_correction.upsert.keys()) - corrected_distillation_candidate_phrases} that are not present in [llm_search_correction.upsert + chunk_concept_gt.extraction_stats.brute_search]. "
+            f"The phrases for your llm_phrase_relationship_correction must match the llm_search_correction.upsert + chunk_concept_gt.extraction_stats.brute_search. "
+            f"However, the [llm_search_correction.upsert + chunk_concept_gt.extraction_stats.brute_search] contains phrases: {corrected_phrase_relationship_candidate_phrases - set(new_correction.llm_phrase_relationship_screening.upsert.keys())} that are missing in your llm_phrase_relationship_correction.upsert. "
+            f"Or, the your llm_phrase_relationship_correction contains extra phrases: {set(new_correction.llm_phrase_relationship_screening.upsert.keys()) - corrected_phrase_relationship_candidate_phrases} that are not present in [llm_search_correction.upsert + chunk_concept_gt.extraction_stats.brute_search]. "
         )
-    # Check distillation reasons
-    for unk, reason in new_correction.llm_distillation_correction.upsert.items():
+    # Check phrase_relationship reasons
+    for (
+        unk,
+        reason,
+    ) in new_correction.llm_phrase_relationship_screening.upsert.items():
         if not reason:
             raise ValueError(
-                f"The unknown phrase '{unk}' in llm_distillation_correction.upsert must have a reason provided."
+                f"The unknown phrase '{unk}' in llm_phrase_relationship_correction.upsert must have a reason provided."
             )
-        elif not is_distillation_evidence_format_correct(reason):
+        elif not is_phrase_relationship_evidence_format_correct(reason):
             raise ValueError(
-                f"The reason for the unknown phrase '{unk}' in llm_distillation_correction.upsert must start with 'Yes, ' or 'No, ' followed by an explanation."
+                f"The reason for the unknown phrase '{unk}' in llm_phrase_relationship_correction.upsert must start with 'Yes, ' or 'No, ' followed by an explanation."
             )
 
     # VERIFY MAPPING
     original_mapping_candidate_phrases = set(
         # phrases originally present in the LLM mapping results,
         # which is the keys of the llm_mapping dict, these phrases
-        # had "Yes, " distillation originally
+        # had "Yes, " phrase_relationship originally
         concept_gt.extraction_stats.llm_mapping.keys()
     )
     if original_mapping_candidate_phrases - set(
@@ -347,15 +350,15 @@ async def _validate_new_human_correction(
             f"Please provide corrections for these phrases or leave the mapping unchanged."
         )
 
-    # corrected_mapping_candidate_phrases_w_evid must contain all of corrected_distillation_candidate_phrases
+    # corrected_mapping_candidate_phrases_w_evid must contain all of corrected_phrase_relationship_candidate_phrases
     corrected_mapping_candidate_phrases_w_evid = set(  # These phrases are supported by reasons starting with "Yes, " or "Yes_though_out-of-scope, "
-        get_verified_results_from_human_distillation_correction(
+        get_verified_results_from_human_phrase_relationship_correction(
             human_correction=new_correction,
         ).keys()
     )
     # in fact they must be equal
     logger.info(
-        f"corrected_distillation_candidate_phrases: {corrected_distillation_candidate_phrases}"
+        f"corrected_phrase_relationship_candidate_phrases: {corrected_phrase_relationship_candidate_phrases}"
     )
     logger.info(
         f"corrected_mapping_candidate_phrases_w_evid: {corrected_mapping_candidate_phrases_w_evid}"
@@ -365,10 +368,10 @@ async def _validate_new_human_correction(
         != corrected_mapping_candidate_phrases_w_evid
     ):
         raise ValueError(
-            f"The candidate phrases for llm_mapping_correction must match the verified distillation candidate phrases. "
-            f"However, your provided llm_mapping_correction.upsert contains phrases {set(new_correction.llm_mapping_correction.upsert.keys()) - corrected_mapping_candidate_phrases_w_evid} that are absent in the verified distillation candidate phrases (i.e. those with 'Yes, ' reason). "
+            f"The candidate phrases for llm_mapping_correction must match the verified phrase_relationship candidate phrases. "
+            f"However, your provided llm_mapping_correction.upsert contains phrases {set(new_correction.llm_mapping_correction.upsert.keys()) - corrected_mapping_candidate_phrases_w_evid} that are absent in the verified phrase_relationship candidate phrases (i.e. those with 'Yes, ' reason). "
             f"Or, the corrected_mapping_candidate_phrases_w_evid contains phrases {corrected_mapping_candidate_phrases_w_evid - set(new_correction.llm_mapping_correction.upsert.keys())} that are missing in your llm_mapping_correction.upsert. "
-            f"Please ensure phrases in mapping correction match the verified distillation candidate phrases (Beginning with 'Yes, ')."
+            f"Please ensure phrases in mapping correction match the verified phrase_relationship candidate phrases (Beginning with 'Yes, ')."
         )
 
     known_concept_labels: set[str] = {c.name for c in known_concepts}

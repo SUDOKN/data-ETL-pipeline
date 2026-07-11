@@ -1,39 +1,22 @@
-from typing import Optional
+from pydantic import BaseModel
 
-from core.models.field_types import (
-    LLMDistillationResults,
-    S3FileVersionIDType,
-)
-from core.models.search_stage_results import (
-    SearchStageMetadata,
-    SearchStageResults,
-    SearchStageExtractionStats,
+from core.models.llm_phrase_extraction_results import (
+    LLMPhraseExtractionMetadata,
+    LLMPhraseExtractionStats,
 )
 
 
-class KeywordExtractionMetadata(SearchStageMetadata):
-    distillation_prompt_version_id: Optional[S3FileVersionIDType]
-
-
-class KeywordExtractionStats(SearchStageExtractionStats):
-    llm_distillation: LLMDistillationResults
+class KeywordExtractionStats(LLMPhraseExtractionStats):
+    pass
 
 
 KeywordExtractionStatsMap = dict[str, KeywordExtractionStats]
-"""
-{
-    "0:1000" : {
-        results: ('keyword1', 'keyword2', ...), 
-        llm_search: ('keyword1', 'keyword2', ...)
-    },
-    "750:1500": {
-        ...
-    }
-    
-}
-"""
 
 
-class KeywordExtractionResults(SearchStageResults):
+class KeywordExtractionMetadata(LLMPhraseExtractionMetadata):
+    pass
+
+
+class KeywordExtractionResults(BaseModel):
     metadata: KeywordExtractionMetadata
     chunk_stats: KeywordExtractionStatsMap  # chunk map

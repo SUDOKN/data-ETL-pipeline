@@ -7,7 +7,7 @@ from typing import Optional
 from openai import AsyncOpenAI
 from openai.types.chat import ChatCompletion
 
-from litellm_proxy_app.models.llm_model import LLM_Model
+from core.models.llm_model import LLM_Model
 from litellm_proxy_app.models.llm_model_params import LLMModelParams, LLMSamplingParams
 
 logger = logging.getLogger(__name__)
@@ -67,8 +67,8 @@ async def fetch_llm_chat_completion_result(
     # Pre-call context-window guard (same logic as ask_gpt_async).
     # litellm.token_counter is provider-aware: uses tiktoken for OpenAI models,
     # the Anthropic/Google tokeniser for other providers.
-    tokens_prompt = litellm.token_counter(model=gpt_model.model_name, text=prompt)
-    tokens_context = litellm.token_counter(model=gpt_model.model_name, text=context)
+    tokens_prompt = litellm.token_counter(model=gpt_model.name, text=prompt)
+    tokens_context = litellm.token_counter(model=gpt_model.name, text=context)
     tokens_needed = tokens_prompt + tokens_context + model_params.max_completion_tokens
 
     if tokens_needed > gpt_model.max_context_tokens:
@@ -90,7 +90,7 @@ async def fetch_llm_chat_completion_result(
     api_call_start = time.time()
 
     response = await client.chat.completions.create(
-        model=gpt_model.model_name,
+        model=gpt_model.name,
         messages=[
             {"role": "system", "content": prompt},
             {"role": "user", "content": context},

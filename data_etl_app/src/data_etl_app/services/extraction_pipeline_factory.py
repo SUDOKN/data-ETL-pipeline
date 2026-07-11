@@ -22,17 +22,17 @@ from data_etl_app.models.pipeline_nodes import (
     BinaryClassificationNode,
     BinaryClassificationPrefillNode,
     BinaryReconcileNode,
-    ConceptDistillationNode,
+    ConceptRelationshipNode,
     ConceptExtractionPrefillNode,
     ConceptMappingNode,
     ConceptReconcileNode,
-    ConceptSearchNode,
+    ConceptPhraseSearchNode,
     KeywordExtractionPrefillNode,
-    KeywordDistillationNode,
+    KeywordRelationshipNode,
     KeywordReconcileNode,
     KeywordSearchNode,
 )
-from data_etl_app.models.pipeline_nodes.single_stage_extraction_prefill_node import (
+from data_etl_app.models.pipeline_nodes.basic_field.single_stage_extraction_prefill_node import (
     SingleStageExtractionPrefillNode,
 )
 from data_etl_app.models.skos_concept import Concept
@@ -55,7 +55,7 @@ class ExtractionPipelineFactory:
         concept_type: ConceptTypeEnum,
         chunk_strategy: ChunkingStrategy,
         search_prompt: Prompt,
-        distillation_prompt: Prompt,
+        phrase_relationship_prompt: Prompt,
         mapping_prompt: Prompt,
         ontology_version_id: str,
         known_concepts: set[Concept],
@@ -64,16 +64,16 @@ class ExtractionPipelineFactory:
             field_type=concept_type,
             chunk_strategy=chunk_strategy,
             search_prompt=search_prompt,
-            distillation_prompt=distillation_prompt,
+            phrase_relationship_prompt=phrase_relationship_prompt,
             mapping_prompt=mapping_prompt,
             ontology_version_id=ontology_version_id,
             known_concepts=known_concepts,
-            next_node=ConceptSearchNode(
+            next_node=ConceptPhraseSearchNode(
                 concept_type=concept_type,
                 search_prompt=search_prompt,
-                next_node=ConceptDistillationNode(
+                next_node=ConceptRelationshipNode(
                     concept_type=concept_type,
-                    distillation_prompt=distillation_prompt,
+                    phrase_relationship_prompt=phrase_relationship_prompt,
                     next_node=ConceptMappingNode(
                         concept_type=concept_type,
                         mapping_prompt=mapping_prompt,
@@ -144,25 +144,25 @@ class ExtractionPipelineFactory:
                 field_type=KeywordTypeEnum.products,
                 chunk_strategy=PRODUCT_CHUNKING_STRAT,
                 search_prompt=prompt_service.extract_any_product_prompt,
-                distillation_prompt=prompt_service.product_distillation_prompt,
+                phrase_relationship_prompt=prompt_service.product_phrase_relationship_prompt,
                 next_node=KeywordSearchNode(
                     field_type=KeywordTypeEnum.products,
                     search_prompt=prompt_service.extract_any_product_prompt,
-                    next_node=KeywordDistillationNode(
+                    next_node=KeywordRelationshipNode(
                         field_type=KeywordTypeEnum.products,
-                        distillation_prompt=prompt_service.product_distillation_prompt,
+                        phrase_relationship_prompt=prompt_service.product_phrase_relationship_prompt,
                         next_node=KeywordReconcileNode(
                             field_type=KeywordTypeEnum.products,
                         ),
                     ),
                 ),
             ),
-            # Three-stage extractions (search -> distillation -> mapping)
+            # Three-stage extractions (search -> phrase_relationship -> mapping)
             ConceptTypeEnum.certificates: ExtractionPipelineFactory.create_concept_extraction_pipeline(
                 concept_type=ConceptTypeEnum.certificates,
                 chunk_strategy=CERTIFICATE_CHUNKING_STRAT,
                 search_prompt=prompt_service.extract_any_certificate_prompt,
-                distillation_prompt=prompt_service.certificate_distillation_prompt,
+                phrase_relationship_prompt=prompt_service.certificate_phrase_relationship_prompt,
                 mapping_prompt=prompt_service.unknown_to_known_certificate_prompt,
                 ontology_version_id=ontology.version_id,
                 known_concepts=ontology.certificates,
@@ -171,25 +171,25 @@ class ExtractionPipelineFactory:
                 concept_type=ConceptTypeEnum.industries,
                 chunk_strategy=INDUSTRY_CHUNKING_STRAT,
                 search_prompt=prompt_service.extract_any_industry_prompt,
-                distillation_prompt=prompt_service.industry_distillation_prompt,
+                phrase_relationship_prompt=prompt_service.industry_phrase_relationship_prompt,
                 mapping_prompt=prompt_service.unknown_to_known_industry_prompt,
                 ontology_version_id=ontology.version_id,
                 known_concepts=ontology.industries,
             ),
-            ConceptTypeEnum.process_caps: ExtractionPipelineFactory.create_concept_extraction_pipeline(
-                concept_type=ConceptTypeEnum.process_caps,
+            ConceptTypeEnum.processes: ExtractionPipelineFactory.create_concept_extraction_pipeline(
+                concept_type=ConceptTypeEnum.processes,
                 chunk_strategy=PROCESS_CAP_CHUNKING_STRAT,
                 search_prompt=prompt_service.extract_any_process_cap_prompt,
-                distillation_prompt=prompt_service.process_cap_distillation_prompt,
+                phrase_relationship_prompt=prompt_service.process_cap_phrase_relationship_prompt,
                 mapping_prompt=prompt_service.unknown_to_known_process_cap_prompt,
                 ontology_version_id=ontology.version_id,
                 known_concepts=ontology.process_caps,
             ),
-            ConceptTypeEnum.material_caps: ExtractionPipelineFactory.create_concept_extraction_pipeline(
-                concept_type=ConceptTypeEnum.material_caps,
+            ConceptTypeEnum.materials: ExtractionPipelineFactory.create_concept_extraction_pipeline(
+                concept_type=ConceptTypeEnum.materials,
                 chunk_strategy=MATERIAL_CAP_CHUNKING_STRAT,
                 search_prompt=prompt_service.extract_any_material_cap_prompt,
-                distillation_prompt=prompt_service.material_cap_distillation_prompt,
+                phrase_relationship_prompt=prompt_service.material_cap_phrase_relationship_prompt,
                 mapping_prompt=prompt_service.unknown_to_known_material_cap_prompt,
                 ontology_version_id=ontology.version_id,
                 known_concepts=ontology.material_caps,

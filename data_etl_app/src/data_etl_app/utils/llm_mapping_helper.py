@@ -8,7 +8,7 @@ from core.models.prompt import Prompt
 from core.models.db.gpt_batch_request import GPTBatchRequest
 from data_etl_app.models.types_and_enums import ConceptTypeEnum
 from data_etl_app.models.skos_concept import Concept, ConceptJSONEncoder
-from litellm_proxy_app.models.llm_model import LLM_Model
+from core.models.llm_model import LLM_Model
 from open_ai_key_app.models.gpt_model_params import GPTModelParams
 
 from core.services.gpt_batch_request_service import create_base_gpt_batch_request

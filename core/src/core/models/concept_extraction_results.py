@@ -1,37 +1,39 @@
-from typing import Optional
+from pydantic import BaseModel
 
-
-from core.models.search_stage_results import (
-    SearchStageMetadata,
-    SearchStageResults,
-    SearchStageExtractionStats,
+from core.models.llm_phrase_extraction_results import (
+    ExtractionNodeMetadata,
+    LLMPhraseExtractionStats,
+    LLMPhraseExtractionMetadata,
 )
 from core.models.field_types import (
-    LLMDistillationResults,
-    RawLLMMappingResult,
-    S3FileVersionIDType,
-    OntologyVersionIDType,
+    LLMGroundingResults,
+    LLMRecursiveGroundingResults,
 )
 
 
-class ConceptExtractionMetadata(SearchStageMetadata):
-    ontology_version_id: OntologyVersionIDType
-    distillation_prompt_version_id: Optional[S3FileVersionIDType]
-    mapping_prompt_version_id: Optional[S3FileVersionIDType]
+class ConceptsFound(BaseModel):
+    in_vocab: set[str]
+    out_of_vocab: set[str]
 
 
-class ConceptExtractionStats(SearchStageExtractionStats):
+class ConceptExtractionStats(LLMPhraseExtractionStats):
+    results: ConceptsFound
     brute_search: set[str]  # regex search
-    llm_distillation: LLMDistillationResults  # for each term in [brute | identified]
-    llm_mapping: RawLLMMappingResult
-    unmapped: set[str]
+    llm_phrase_initial_grounding: LLMGroundingResults
+    llm_phrase_recursive_grounding: LLMRecursiveGroundingResults
 
 
 ConceptExtractionStatsMap = dict[
     str, ConceptExtractionStats
-]  # "0:1000" -> {results, brute, identified, distillation, mapping, unmapped_llm}
+]  # "0:1000" -> {results, brute, identified, phrase_relationship, mapping, unmapped_llm}
 
 
-class ConceptExtractionResults(SearchStageResults):
+class ConceptExtractionMetadata(LLMPhraseExtractionMetadata):
+    llm_phrase_initial_grounding: ExtractionNodeMetadata
+    llm_phrase_recursive_grounding: ExtractionNodeMetadata
+
+
+class ConceptExtractionResults(BaseModel):
     metadata: ConceptExtractionMetadata
-    chunk_stats: ConceptExtractionStatsMap
+    results: ConceptsFound
+    chunked_extraction_stats: ConceptExtractionStatsMap

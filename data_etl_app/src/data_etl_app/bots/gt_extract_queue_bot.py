@@ -31,7 +31,7 @@ from core.models.db.extraction_error import ExtractionError
 from core.models.to_extract_item import ToExtractItem
 from data_etl_app.models.types_and_enums import BinaryClassificationTypeEnum
 from open_ai_key_app.models.gpt_model_params import GPTModelParams
-from litellm_proxy_app.models.llm_model import GPT_4_1, LLM_Model
+from core.models.llm_model import GPT_4_1, LLM_Model
 from scraper_app.models.scraped_text_file import ScrapedTextFile
 
 from core.services.manufacturer_service import (

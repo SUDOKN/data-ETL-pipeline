@@ -5,9 +5,6 @@ from datetime import datetime
 import logging
 
 from core.models.field_types import MfgETLDType, S3FileVersionIDType
-from core.utils.time_util import get_current_time
-
-
 from core.models.deferred_single_stage_extraction_requests import (
     DeferredSingleStageExtractionRequests,
 )
@@ -17,6 +14,8 @@ from core.models.deferred_keyword_extraction import (
 from core.models.deferred_concept_extraction import (
     DeferredConceptExtractionRequests,
 )
+
+from core.utils.time_util import get_current_time
 
 logger = logging.getLogger(__name__)
 

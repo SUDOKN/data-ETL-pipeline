@@ -11,7 +11,7 @@ from core.models.db.extraction_error import ExtractionError
 from data_etl_app.models.pipeline_nodes.classification.binary_reconcile_node import (
     BinaryClassificationTypeEnum,
 )
-from litellm_proxy_app.models.llm_model import LLM_Model
+from core.models.llm_model import LLM_Model
 from open_ai_key_app.models.gpt_model_params import GPTModelParams
 from scraper_app.models.scraped_text_file import ScrapedTextFile
 
@@ -25,7 +25,7 @@ from core.services.deferred_manufacturer_service import (
 from core.services.gpt_batch_request_writes import (
     bulk_delete_gpt_batch_requests_by_mfg_etld1_and_field,
 )
-from data_etl_app.models.pipeline_nodes.base_node import PipelineContext
+from data_etl_app.models.pipeline_nodes.foundational.base_node import PipelineContext
 from data_etl_app.models.ontology import Ontology
 from data_etl_app.services.knowledge.prompt_service import PromptService
 from data_etl_app.services.extraction_pipeline_factory import ExtractionPipelineFactory

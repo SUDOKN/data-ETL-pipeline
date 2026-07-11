@@ -1,35 +1,19 @@
-from typing import Optional
-
-from core.models.deferred_search_requests import (
-    DeferredSearchRequests,
-    SearchRequestBundle,
+from core.models.deferred_phrase_extraction_requests import (
+    DeferredLLMPhraseExtractionRequests,
+    LLMPhraseExtractionRequestBundle,
 )
 from core.models.keyword_extraction_results import (
     KeywordExtractionMetadata,
 )
-from open_ai_key_app.models.field_types import GPTBatchRequestCustomID
 
 
-class KeywordExtractionRequestBundle(SearchRequestBundle):
-    brute: set[str]
-    llm_distillation_request_id: Optional[GPTBatchRequestCustomID]
+class KeywordExtractionRequestBundle(LLMPhraseExtractionRequestBundle):
+    pass
 
 
 KeywordExtractionRequestMap = dict[str, KeywordExtractionRequestBundle]
-"""
-{
-    "0:1000" : {
-        llm_search_request_id: "101machine.com>products>llm_search>chunk>0:1000",
-        llm_distillation_request_id: "101machine.com>products>llm_distillation>chunk>0:1000",
-    },
-    "750:1500": {
-        ...
-    }
-
-}
-"""
 
 
-class DeferredKeywordExtractionRequests(DeferredSearchRequests):
+class DeferredKeywordExtractionRequests(DeferredLLMPhraseExtractionRequests):
     metadata: KeywordExtractionMetadata
     request_map: KeywordExtractionRequestMap

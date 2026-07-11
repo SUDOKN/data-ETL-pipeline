@@ -1,35 +1,27 @@
+from __future__ import annotations
+from pydantic import BaseModel
 from typing import Optional
 
-from core.models.deferred_search_requests import (
-    DeferredSearchRequests,
-    SearchRequestBundle,
-)
+from core.models.field_types import RecursivelyTaggedConceptNode
 from core.models.concept_extraction_results import ConceptExtractionMetadata
+from core.models.deferred_phrase_extraction_requests import (
+    LLMPhraseExtractionRequestBundle,
+)
+
 from open_ai_key_app.models.field_types import GPTBatchRequestCustomID
 
 
-class ConceptExtractionRequestBundle(SearchRequestBundle):
+class ConceptExtractionRequestBundle(LLMPhraseExtractionRequestBundle):
     brute: set[str]
-    llm_distillation_request_id: Optional[GPTBatchRequestCustomID]
-    llm_mapping_request_id: Optional[GPTBatchRequestCustomID]
+    llm_phrase_initial_grounding_req_id: Optional[GPTBatchRequestCustomID]
+    llm_phrase_recursive_grounding_root_req_nodes: Optional[
+        list[RecursivelyTaggedConceptNode]
+    ]
 
 
 ConceptExtractionRequestMap = dict[str, ConceptExtractionRequestBundle]
-"""
-{
-    "0:1000" : {
-        llm_search_request_id: "101machine.com>products>llm_search>chunk>0:1000",
-        llm_distillation_request_id: "101machine.com>products>llm_distillation>chunk>0:1000",
-        llm_mapping_request_id: "101machine.com>products>llm_mapping>chunk>0:1000",
-    },
-    "750:1500": {
-        ...
-    }
-    
-}
-"""
 
 
-class DeferredConceptExtractionRequests(DeferredSearchRequests):
+class DeferredConceptExtractionRequests(BaseModel):
     metadata: ConceptExtractionMetadata
-    request_map: ConceptExtractionRequestMap
+    chunked_request_map: ConceptExtractionRequestMap

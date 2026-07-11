@@ -15,10 +15,11 @@ logger = logging.getLogger(__name__)
 class ConceptNode(TypedDict):
     name: str
     uri: URIRef
+    level: int
     altLabels: list[str]
     definition: str
     children: list[ConceptNode]
-    childrenCount: int
+    num_children: int
 
 
 class Concept:
@@ -26,14 +27,18 @@ class Concept:
         self,
         name: str,
         uri: URIRef,
+        level: int,
         altLabels: list[str],
         ancestors: list[str],
+        children: list[str],
         definition: str,
     ) -> None:
         self.name = name
         self.uri = uri
+        self.level = level
         self.altLabels = altLabels
         self.ancestors = ancestors
+        self.children = children
         self.definition = definition
 
     @cached_property
@@ -48,7 +53,7 @@ class Concept:
         return f"{self.name}"
 
     def __repr__(self) -> str:
-        return f"Concept(name={self.name}, uri={self.uri}, altLabels={self.altLabels}, ancestors={self.ancestors}, definition={self.definition})"
+        return f"Concept(name={self.name}, uri={self.uri}, level={self.level}, altLabels={self.altLabels}, ancestors={self.ancestors}, definition={self.definition})"
 
 
 class ConceptJSONEncoder(json.JSONEncoder):
@@ -56,9 +61,7 @@ class ConceptJSONEncoder(json.JSONEncoder):
         if isinstance(o, Concept):
             d: dict[str, object] = {
                 "name": o.name,
-                "altLabels": o.altLabels,
-                "ancestors": o.ancestors,
-                "definition": o.definition,
+                "definition": f"{o.definition}. Also known as {', '.join(o.altLabels)}.",
             }
 
             return d

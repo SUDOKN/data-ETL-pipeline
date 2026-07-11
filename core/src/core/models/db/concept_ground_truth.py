@@ -60,7 +60,7 @@ class HumanConceptCorrection(BaseModel):
     author_email: str
     source: GroundTruthSource
     llm_search_correction: SearchResultsCorrection
-    llm_distillation_correction: DistillationResultCorrection
+    llm_phrase_relationship_screening: DistillationResultCorrection
     llm_mapping_correction: MappingResultCorrection
 
 

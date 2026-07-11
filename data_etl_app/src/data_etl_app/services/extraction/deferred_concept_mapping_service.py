@@ -14,12 +14,12 @@ from core.models.gpt_batch_response_blob import (
     ChatCompletionChoiceMessage,
 )
 from data_etl_app.models.skos_concept import Concept
-from data_etl_app.models.pipeline_nodes.concept.concept_distillation_node import (
-    ConceptDistillationNode,
+from data_etl_app.models.pipeline_nodes.multi_stage.concept.concept_relationship_node import (
+    ConceptRelationshipNode,
 )
 from data_etl_app.models.types_and_enums import ConceptTypeEnum
-from litellm_proxy_app.models.llm_model import No_model
-from litellm_proxy_app.models.llm_model import LLM_Model
+from core.models.llm_model import NO_MODEL
+from core.models.llm_model import LLM_Model
 from open_ai_key_app.models.gpt_model_params import GPTModelParams
 from open_ai_key_app.models.field_types import GPTBatchRequestCustomID
 
@@ -29,7 +29,7 @@ from core.services.gpt_batch_request_service import (
 )
 
 from data_etl_app.utils.ground_truth_helper_util import (
-    get_verified_distillation_results,
+    get_verified_phrase_relationship_results,
 )
 from data_etl_app.utils.llm_mapping_helper import (
     create_deferred_mapping_gpt_request,
@@ -101,13 +101,13 @@ async def create_missing_mapping_requests(
     chunk_items = list(
         {
             chunk_bounds: bundle
-            for chunk_bounds, bundle in extraction_requests.request_map.items()
+            for chunk_bounds, bundle in extraction_requests.chunked_request_map.items()
             if bundle.llm_mapping_request_id in missing_mapping_req_ids
         }.items()
     )
-    llm_distillation_gpt_request_map: dict[GPTBatchRequestCustomID, GPTBatchRequest] = (
-        upstream_completed_batch_req_map
-    )
+    llm_phrase_relationship_gpt_request_map: dict[
+        GPTBatchRequestCustomID, GPTBatchRequest
+    ] = upstream_completed_batch_req_map
 
     # Process chunks in batches to yield control periodically
     for i in range(0, len(chunk_items), BATCH_SIZE):
@@ -115,19 +115,19 @@ async def create_missing_mapping_requests(
 
         # Process current batch
         for chunk_bounds, extraction_bundle in batch:
-            llm_distillation_results = (
-                await ConceptDistillationNode.parse_batch_request_result(
+            llm_phrase_relationship_results = (
+                await ConceptRelationshipNode.parse_batch_request_result(
                     mfg_etld1=mfg_etld1,
                     field_type=concept_type,
                     chunk_bounds=chunk_bounds,
                     extraction_bundle=extraction_bundle,
-                    completed_request_map=llm_distillation_gpt_request_map,
+                    completed_request_map=llm_phrase_relationship_gpt_request_map,
                     deferred_at=deferred_at,
                 )
             )
 
-            confirmed_keywords_w_evidence = get_verified_distillation_results(
-                llm_distillation_results=llm_distillation_results
+            confirmed_keywords_w_evidence = get_verified_phrase_relationship_results(
+                llm_phrase_relationship_screening_results=llm_phrase_relationship_results
             )
 
             (
@@ -207,7 +207,7 @@ def _create_dummy_completed_mapping_batch_request(
             s3_version_id="dummy_s3_version_id",
             num_tokens=1,
         ),
-        gpt_model=No_model,
+        gpt_model=NO_MODEL,
         model_params=model_params,
         batch_id="Eager" if eager else "dummy_mapping_batch_id",
     )
