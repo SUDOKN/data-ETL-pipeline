@@ -27,6 +27,10 @@ LLMGroundingResults = dict[
     str, dict[str, str]  # { phrase -> {concept: reason}, ...}
 ]  # The immediate nodes phrases can be linked to, with the reason for the link.
 
+LLMFreehandGroundingResults = dict[
+    str, dict[str, str]  # { phrase -> {freehand label: reason}, ...}
+]
+
 
 # Stage 5
 class MatchedLabelAndReasonPair(BaseModel):
@@ -54,7 +58,7 @@ class RecursivelyTaggedConceptNode(BaseModel):
 
 LLMRecursiveGroundingResults = list[RecursivelyTaggedConceptNode]
 
-# RawLLMMappingResult = dict[str, dict[str, str]]
+RawLLMMappingResult = dict[str, dict[str, str]]
 """
 { unknown --> {"mapped_known_1": "matching reason"}, {"mapped_known_2": "matching reason"} } where evidence is the text snippet from which LLM derived the mapping
 Example:

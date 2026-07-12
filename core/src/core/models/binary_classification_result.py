@@ -16,7 +16,7 @@ class LLMBinaryClassification(BaseClassificationDecision):
 
 
 class BinaryClassificationStats(SingleStageStats[LLMBinaryClassification]):
-    result: LLMBinaryClassification
+    pass
 
 
 BinaryClassificationStatsMap = dict[
@@ -27,5 +27,4 @@ BinaryClassificationStatsMap = dict[
 class BinaryClassificationResult(
     SingleStageExtractionResults[LLMBinaryClassification, LLMBinaryClassification]
 ):
-    result: LLMBinaryClassification
     chunk_stats: BinaryClassificationStatsMap

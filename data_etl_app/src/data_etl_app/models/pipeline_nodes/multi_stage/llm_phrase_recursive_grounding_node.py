@@ -2,22 +2,18 @@ from __future__ import annotations
 from datetime import datetime
 import copy
 import logging
+from typing import Optional
 
-from typing import Optional, override
 from core.models.db.deferred_manufacturer import DeferredManufacturer
 from core.models.db.gpt_batch_request import GPTBatchRequest
+from core.models.gpt_batch_response_blob import GPTBatchResponse
 from core.models.field_types import LLMGroundingResults, RecursivelyTaggedConceptNode
 from core.models.prompt import Prompt
+from core.models.llm_model import LLM_Model
 from core.models.deferred_concept_extraction import (
     DeferredConceptExtractionRequests,
     ConceptExtractionRequestMap,
     ConceptExtractionMetadata,
-)
-from data_etl_app.models.pipeline_nodes.multi_stage.llm_phrase_relationship_node import (
-    LLMPhraseRelationshipNode,
-)
-from data_etl_app.models.pipeline_nodes.multi_stage.llm_phrase_initial_grounding_node import (
-    LLMPhraseInitialGroundingNode,
 )
 from data_etl_app.models.skos_concept import Concept
 from data_etl_app.models.types_and_enums import (
@@ -31,12 +27,16 @@ from data_etl_app.models.pipeline_nodes.base.base_reconcile_node import Reconcil
 from data_etl_app.models.pipeline_nodes.base.base_llm_extraction_node import (
     BaseLLMExtractionNode,
 )
-
+from data_etl_app.models.pipeline_nodes.base.base_llm_recursive_extraction_node import (
+    BaseLLMRecursiveExtractionNode,
+)
 from open_ai_key_app.models.field_types import GPTBatchRequestCustomID
-from core.models.llm_model import LLM_Model
 from open_ai_key_app.models.gpt_model_params import GPTModelParams
 from scraper_app.models.scraped_text_file import ScrapedTextFile
 
+from core.services.gpt_batch_request_service import (
+    dispatch_gpt_batch_request,
+)
 from data_etl_app.services.extraction.deferred_llm_initial_grounding_service import (
     parse_batch_request_result as parse_initial_grounding_batch_req_result,
 )
@@ -44,7 +44,6 @@ from data_etl_app.services.extraction.deferred_llm_recursive_grounding_service i
     parse_batch_request_result,
     get_tagged_concepts_from_grounding_results,
     get_flattened_embedded_tagged_concepts,
-    get_flattened_embedded_concept_req_ids,
     create_missing_phrase_recursive_grounding_requests,
 )
 
@@ -54,7 +53,7 @@ logger = logging.getLogger(__name__)
 
 
 class LLMPhraseRecursiveGroundingNode(
-    BaseLLMExtractionNode[ConceptTypeEnum, LLMGroundingResults]
+    BaseLLMRecursiveExtractionNode[ConceptTypeEnum, LLMGroundingResults]
 ):
 
     def __init__(
@@ -71,6 +70,22 @@ class LLMPhraseRecursiveGroundingNode(
         self.phrase_recursive_grounding_prompt = phrase_recursive_grounding_prompt
         self.known_concepts = known_concepts
         self.match_label_to_concept_map = get_match_label_to_concept_map(known_concepts)
+
+    def get_upstream_initial_grounding_map(
+        self, pipeline_context: PipelineContext
+    ) -> dict[GPTBatchRequestCustomID, GPTBatchRequest]:
+        """Return the completed initial-grounding request map from pipeline context."""
+        raise NotImplementedError(
+            f"{self.__class__.__name__} must implement get_upstream_initial_grounding_map"
+        )
+
+    def get_upstream_phrase_relationship_map(
+        self, pipeline_context: PipelineContext
+    ) -> dict[GPTBatchRequestCustomID, GPTBatchRequest]:
+        """Return the completed phrase-relationship request map from pipeline context."""
+        raise NotImplementedError(
+            f"{self.__class__.__name__} must implement get_upstream_phrase_relationship_map"
+        )
 
     async def embed_request_ids(  # prefill folded into this function
         self,
@@ -105,9 +120,9 @@ class LLMPhraseRecursiveGroundingNode(
                 f"as request_map found empty for mfg:{mfg_etld1}, field:{self.field_type.name}."
             )
 
-        completed_initial_grounding_req_map = pipeline_context[
-            LLMPhraseInitialGroundingNode
-        ]
+        completed_initial_grounding_req_map = self.get_upstream_initial_grounding_map(
+            pipeline_context
+        )
         if not completed_initial_grounding_req_map:
             raise ValueError(
                 f"Cannot embed req ids for llm recursive grounding node, "
@@ -189,7 +204,7 @@ class LLMPhraseRecursiveGroundingNode(
         """
             2. check if existing requests are complete
         """
-        if not self.are_all_requests_complete(  # automatically ensures deepest level requests are also complete
+        if not await self.are_all_requests_complete(  # automatically ensures deepest level requests are also complete
             mfg_etld1=mfg_etld1, request_map=request_map
         ):
             """
@@ -204,7 +219,9 @@ class LLMPhraseRecursiveGroundingNode(
         2.2 Yes? Target next level,
         """
         completed_recursive_grounding_req_map = await self.get_completed_request_map(
-            mfg_etld1=mfg_etld1, request_map=request_map
+            mfg_etld1=mfg_etld1,
+            request_map=request_map,
+            all_requests_must_be_complete=True,
         )
 
         for (
@@ -347,7 +364,6 @@ class LLMPhraseRecursiveGroundingNode(
         return all_chunks_recursive_grounding_req_ids
 
     @staticmethod
-    @override
     def get_request_custom_id(
         mfg_etld1: str,
         field_type: LLMExtractedFieldTypeEnum,
@@ -357,7 +373,10 @@ class LLMPhraseRecursiveGroundingNode(
         llm_model: LLM_Model,
         model_params: GPTModelParams,
     ) -> GPTBatchRequestCustomID:
-        return f"{mfg_etld1}>{field_type.name}>llm_phrase_recursive_grounding>chunk>{chunk_bounds}>l[{parent_level}]>{parent_tagged_concept_name}>{model_params.to_custom_id_segment(llm_model.name)}"
+        return (
+            f"{mfg_etld1}>{field_type.name}>llm_phrase_recursive_grounding>chunk>"
+            f"{chunk_bounds}>l[{parent_level}]>{parent_tagged_concept_name}>{model_params.to_custom_id_segment(llm_model.name)}"
+        )
 
     async def create_batch_requests(
         self,
@@ -366,8 +385,6 @@ class LLMPhraseRecursiveGroundingNode(
         scraped_text_file: ScrapedTextFile,
         timestamp: datetime,
         pipeline_context: PipelineContext,
-        llm_model: LLM_Model,
-        model_params: GPTModelParams,
         eager: bool,
     ) -> list[GPTBatchRequest]:
 
@@ -384,10 +401,12 @@ class LLMPhraseRecursiveGroundingNode(
             raise ValueError(
                 f"phrase_relationship_node.create_batch_requests was called for {self.field_type.name} in {self.__class__.__name__} but no deferred extraction exists."
             )
+        metadata = extraction_requests.metadata
 
         completed_recursive_grounding_req_map = await self.get_completed_request_map(
             mfg_etld1=deferred_mfg.etld1,
             request_map=extraction_requests.chunked_request_map,
+            all_requests_must_be_complete=False,
         )
 
         # create_missing_phrase_relationship_requests only creates batch requests fresh or only missing ones,
@@ -402,15 +421,26 @@ class LLMPhraseRecursiveGroundingNode(
             missing_phrase_recursive_grounding_req_ids=missing_request_ids,
             phrase_recursive_grounding_prompt=self.phrase_recursive_grounding_prompt,
             completed_recursive_grounding_req_map=completed_recursive_grounding_req_map,
-            llm_phrase_relationship_gpt_request_map=pipeline_context[
-                LLMPhraseRelationshipNode
-            ],
+            llm_phrase_relationship_gpt_request_map=self.get_upstream_phrase_relationship_map(
+                pipeline_context
+            ),
             match_label_to_concept_map=self.match_label_to_concept_map,
             # req metadata
             deferred_at=timestamp,
-            llm_model=llm_model,
-            model_params=model_params,
+            llm_model=metadata.llm_phrase_recursive_grounding.llm_model,
+            model_params=metadata.llm_phrase_recursive_grounding.model_params,
             eager=eager,
         )
 
         return batch_requests
+
+    async def dispatch_batch_request(
+        self,
+        gpt_batch_request: GPTBatchRequest,
+        metadata: ConceptExtractionMetadata,
+    ) -> GPTBatchResponse:
+        return await dispatch_gpt_batch_request(
+            gpt_batch_request=gpt_batch_request,
+            gpt_model=metadata.llm_phrase_recursive_grounding.llm_model,
+            model_params=metadata.llm_phrase_recursive_grounding.model_params,
+        )

@@ -5,6 +5,7 @@ from typing import Optional
 
 from core.models.db.deferred_manufacturer import DeferredManufacturer
 from core.models.db.gpt_batch_request import GPTBatchRequest
+from core.models.gpt_batch_response_blob import GPTBatchResponse
 from core.models.deferred_phrase_extraction_requests import (
     DeferredLLMPhraseExtractionRequests,
     LLMPhraseExtractionRequestMap,
@@ -12,9 +13,6 @@ from core.models.deferred_phrase_extraction_requests import (
 )
 from core.models.field_types import LLMScreeningResults
 from core.models.prompt import Prompt
-from data_etl_app.models.pipeline_nodes.multi_stage.llm_phrase_relationship_node import (
-    LLMPhraseRelationshipNode,
-)
 from data_etl_app.models.types_and_enums import LLMExtractedFieldTypeEnum
 from data_etl_app.models.pipeline_nodes.base.base_node import (
     LLMExtractedFieldTypeVar,
@@ -27,7 +25,9 @@ from data_etl_app.models.pipeline_nodes.base.base_llm_extraction_node import (
 from open_ai_key_app.models.field_types import GPTBatchRequestCustomID
 from scraper_app.models.scraped_text_file import ScrapedTextFile
 
-
+from core.services.gpt_batch_request_service import (
+    dispatch_gpt_batch_request,
+)
 from data_etl_app.services.extraction.deferred_llm_relationship_screening_node_service import (
     create_missing_phrase_relationship_screening_requests,
 )
@@ -50,6 +50,14 @@ class LLMPhraseRelationshipScreeningNode(
             next_node=next_node,
         )
         self.phrase_relationship_screening_prompt = phrase_relationship_screening_prompt
+
+    def get_upstream_phrase_relationship_map(
+        self, pipeline_context: PipelineContext
+    ) -> dict[GPTBatchRequestCustomID, GPTBatchRequest]:
+        """Return the completed phrase-relationship request map from pipeline context."""
+        raise NotImplementedError(
+            f"{self.__class__.__name__} must implement get_upstream_phrase_relationship_map"
+        )
 
     async def embed_request_ids(  # prefill folded into this function
         self,
@@ -149,12 +157,23 @@ class LLMPhraseRelationshipScreeningNode(
             chunked_request_map=extraction_requests.chunked_request_map,
             mfg_text=scraped_text_file.text,
             phrase_relationship_screening_prompt=self.phrase_relationship_screening_prompt,
-            llm_phrase_relationship_gpt_request_map=pipeline_context[
-                LLMPhraseRelationshipNode
-            ],
+            llm_phrase_relationship_gpt_request_map=self.get_upstream_phrase_relationship_map(
+                pipeline_context
+            ),
             llm_model=metadata.llm_model,
             model_params=metadata.model_params,
             eager=eager,
         )
 
         return batch_requests
+
+    async def dispatch_batch_request(
+        self,
+        gpt_batch_request: GPTBatchRequest,
+        metadata: LLMPhraseExtractionMetadata,
+    ) -> GPTBatchResponse:
+        return await dispatch_gpt_batch_request(
+            gpt_batch_request=gpt_batch_request,
+            gpt_model=metadata.llm_phrase_relationship_screening.llm_model,
+            model_params=metadata.llm_phrase_relationship_screening.model_params,
+        )

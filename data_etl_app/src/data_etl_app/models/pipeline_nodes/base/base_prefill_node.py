@@ -18,8 +18,6 @@ from data_etl_app.models.types_and_enums import (
     LLMExtractedFieldTypeVar,
 )
 from scraper_app.models.scraped_text_file import ScrapedTextFile
-from core.models.llm_model import LLM_Model
-from open_ai_key_app.models.gpt_model_params import GPTModelParams
 
 logger = logging.getLogger(__name__)
 

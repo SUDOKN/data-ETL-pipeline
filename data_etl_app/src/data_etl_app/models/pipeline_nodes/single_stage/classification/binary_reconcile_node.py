@@ -12,18 +12,16 @@ from core.models.db.deferred_manufacturer import DeferredManufacturer
 from core.models.deferred_single_stage_extraction_requests import (
     DeferredSingleStageExtractionRequests,
 )
-from data_etl_app.models.pipeline_nodes.foundational.base_node import (
+from data_etl_app.models.pipeline_nodes.base.base_node import (
     PipelineContext,
 )
 from data_etl_app.models.types_and_enums import (
     BinaryClassificationTypeEnum,
 )
-from data_etl_app.models.pipeline_nodes.foundational.reconcile_node import ReconcileNode
-from data_etl_app.models.pipeline_nodes.classification.binary_classification_node import (
+from data_etl_app.models.pipeline_nodes.base.base_reconcile_node import ReconcileNode
+from data_etl_app.models.pipeline_nodes.single_stage.classification.binary_classification_node import (
     BinaryClassificationNode,
 )
-from core.models.llm_model import LLM_Model
-from open_ai_key_app.models.gpt_model_params import GPTModelParams
 from scraper_app.models.scraped_text_file import ScrapedTextFile
 
 from core.services.manufacturer_service import update_manufacturer
@@ -43,8 +41,6 @@ class BinaryReconcileNode(ReconcileNode[BinaryClassificationTypeEnum]):
         scraped_text_file: ScrapedTextFile,
         timestamp: datetime,
         pipeline_context: PipelineContext,
-        llm_model: LLM_Model,
-        model_params: GPTModelParams,
         eager: bool,
     ) -> None:
 

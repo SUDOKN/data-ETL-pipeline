@@ -3,7 +3,10 @@ from datetime import datetime
 
 
 from core.models.concept_extraction_results import ConceptExtractionMetadata
-from core.models.llm_phrase_extraction_results import ExtractionNodeMetadata
+from core.models.llm_phrase_extraction_results import (
+    ExtractionNodeMetadata,
+    RecursiveSearchNodeMetadata,
+)
 from core.models.db.manufacturer import Manufacturer
 from core.models.db.deferred_manufacturer import DeferredManufacturer
 from core.models.deferred_concept_extraction import (
@@ -36,7 +39,9 @@ class ConceptExtractionPrefillNode(PrefillNode[ConceptTypeEnum]):
         field_type: ConceptTypeEnum,
         chunk_strategy: ChunkingStrategy,
         next_node: ConceptPhraseSearchNode,
+        ontology: Ontology,
         llm_phrase_search_metadata: ExtractionNodeMetadata,
+        llm_phrase_recursive_search_metadata: RecursiveSearchNodeMetadata,
         llm_phrase_relationship_metadata: ExtractionNodeMetadata,
         llm_phrase_relationship_screening_metadata: ExtractionNodeMetadata,
         llm_phrase_initial_grounding_metadata: ExtractionNodeMetadata,
@@ -47,7 +52,9 @@ class ConceptExtractionPrefillNode(PrefillNode[ConceptTypeEnum]):
             chunk_strategy=chunk_strategy,
             next_node=next_node,
         )
+        self.ontology = ontology
         self.llm_phrase_search_metadata = llm_phrase_search_metadata
+        self.llm_phrase_recursive_search_metadata = llm_phrase_recursive_search_metadata
         self.llm_phrase_relationship_metadata = llm_phrase_relationship_metadata
         self.llm_phrase_relationship_screening_metadata = (
             llm_phrase_relationship_screening_metadata
@@ -64,10 +71,9 @@ class ConceptExtractionPrefillNode(PrefillNode[ConceptTypeEnum]):
         mfg: Manufacturer,
         deferred_mfg: DeferredManufacturer,
         scraped_text_file: ScrapedTextFile,
-        pipeline_context: PipelineContext,
-        ontology: Ontology,
-        eager: bool,
         timestamp: datetime,
+        pipeline_context: PipelineContext,
+        eager: bool,
     ):
         """
         BUSINESS LOGIC:
@@ -80,8 +86,9 @@ class ConceptExtractionPrefillNode(PrefillNode[ConceptTypeEnum]):
         latest_concept_extraction_metadata = ConceptExtractionMetadata(
             created_at=timestamp,
             chunk_strat=self.chunk_strategy,
-            ontology_version_id=ontology.s3_version_id,
+            ontology_version_id=self.ontology.s3_version_id,
             llm_phrase_search=self.llm_phrase_search_metadata,
+            llm_phrase_recursive_search=self.llm_phrase_recursive_search_metadata,
             llm_phrase_relationship=self.llm_phrase_relationship_metadata,
             llm_phrase_relationship_screening=self.llm_phrase_relationship_screening_metadata,
             llm_phrase_initial_grounding=self.llm_phrase_initial_grounding_metadata,
@@ -96,7 +103,7 @@ class ConceptExtractionPrefillNode(PrefillNode[ConceptTypeEnum]):
                 max_chunks=self.chunk_strategy.max_chunks,
                 llm_model=self.llm_phrase_search_metadata.llm_model,
             )
-            known_concepts = ontology.get_concepts_flat(self.field_type)
+            known_concepts = self.ontology.get_concepts_flat(self.field_type)
 
             deferred_concept_extraction = DeferredConceptExtractionRequests(
                 metadata=latest_concept_extraction_metadata,
@@ -106,6 +113,7 @@ class ConceptExtractionPrefillNode(PrefillNode[ConceptTypeEnum]):
                             label for label in brute_search(chunk_text, known_concepts)
                         },
                         llm_phrase_search_req_id=None,
+                        llm_phrase_recursive_search_req_ids=[],
                         llm_phrase_relationship_req_id=None,
                         llm_phrase_relationship_screening_req_id=None,
                         llm_phrase_initial_grounding_req_id=None,

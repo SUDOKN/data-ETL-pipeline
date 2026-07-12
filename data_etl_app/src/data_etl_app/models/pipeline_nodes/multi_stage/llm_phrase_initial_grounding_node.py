@@ -5,6 +5,7 @@ from typing import Optional
 
 from core.models.db.deferred_manufacturer import DeferredManufacturer
 from core.models.db.gpt_batch_request import GPTBatchRequest
+from core.models.gpt_batch_response_blob import GPTBatchResponse
 from core.models.deferred_concept_extraction import (
     DeferredConceptExtractionRequests,
     ConceptExtractionRequestMap,
@@ -13,12 +14,6 @@ from core.models.deferred_concept_extraction import (
 from core.models.field_types import LLMGroundingResults
 from core.models.llm_model import LLM_Model
 from core.models.prompt import Prompt
-from data_etl_app.models.pipeline_nodes.multi_stage.llm_phrase_relationship_node import (
-    LLMPhraseRelationshipNode,
-)
-from data_etl_app.models.pipeline_nodes.multi_stage.llm_phrase_relationship_screening_node import (
-    LLMPhraseRelationshipScreeningNode,
-)
 from data_etl_app.models.skos_concept import Concept
 from data_etl_app.models.types_and_enums import (
     ConceptTypeEnum,
@@ -32,9 +27,11 @@ from data_etl_app.models.pipeline_nodes.base.base_llm_extraction_node import (
     BaseLLMExtractionNode,
 )
 from open_ai_key_app.models.field_types import GPTBatchRequestCustomID
-from open_ai_key_app.models.gpt_model_params import GPTModelParams
 from scraper_app.models.scraped_text_file import ScrapedTextFile
 
+from core.services.gpt_batch_request_service import (
+    dispatch_gpt_batch_request,
+)
 from data_etl_app.services.extraction.deferred_llm_initial_grounding_service import (
     create_missing_phrase_initial_grounding_requests,
 )
@@ -58,6 +55,22 @@ class LLMPhraseInitialGroundingNode(
         )
         self.phrase_initial_grounding_prompt = phrase_initial_grounding_prompt
         self.known_concepts = known_concepts
+
+    def get_upstream_phrase_relationship_map(
+        self, pipeline_context: PipelineContext
+    ) -> dict[GPTBatchRequestCustomID, GPTBatchRequest]:
+        """Return the completed phrase-relationship request map from pipeline context."""
+        raise NotImplementedError(
+            f"{self.__class__.__name__} must implement get_upstream_phrase_relationship_map"
+        )
+
+    def get_upstream_phrase_screening_map(
+        self, pipeline_context: PipelineContext
+    ) -> dict[GPTBatchRequestCustomID, GPTBatchRequest]:
+        """Return the completed phrase-screening request map from pipeline context."""
+        raise NotImplementedError(
+            f"{self.__class__.__name__} must implement get_upstream_phrase_screening_map"
+        )
 
     async def embed_request_ids(  # prefill folded into this function
         self,
@@ -156,12 +169,12 @@ class LLMPhraseInitialGroundingNode(
             missing_phrase_initial_grounding_req_ids=missing_request_ids,
             chunked_request_map=extraction_requests.chunked_request_map,
             phrase_initial_grounding_prompt=self.phrase_initial_grounding_prompt,
-            llm_phrase_relationship_gpt_request_map=pipeline_context[
-                LLMPhraseRelationshipNode
-            ],
-            llm_phrase_screening_gpt_request_map=pipeline_context[
-                LLMPhraseRelationshipScreeningNode
-            ],
+            llm_phrase_relationship_gpt_request_map=self.get_upstream_phrase_relationship_map(
+                pipeline_context
+            ),
+            llm_phrase_screening_gpt_request_map=self.get_upstream_phrase_screening_map(
+                pipeline_context
+            ),
             known_concepts=self.known_concepts,
             llm_model=metadata.llm_model,
             model_params=metadata.model_params,
@@ -169,3 +182,14 @@ class LLMPhraseInitialGroundingNode(
         )
 
         return batch_requests
+
+    async def dispatch_batch_request(
+        self,
+        gpt_batch_request: GPTBatchRequest,
+        metadata: ConceptExtractionMetadata,
+    ) -> GPTBatchResponse:
+        return await dispatch_gpt_batch_request(
+            gpt_batch_request=gpt_batch_request,
+            gpt_model=metadata.llm_phrase_initial_grounding.llm_model,
+            model_params=metadata.llm_phrase_initial_grounding.model_params,
+        )

@@ -1,9 +1,11 @@
 from __future__ import annotations
 import logging
 
+from core.models.db.gpt_batch_request import GPTBatchRequest
 from core.models.prompt import Prompt
 from core.models.llm_model import LLM_Model
 from data_etl_app.models.skos_concept import Concept
+from data_etl_app.models.pipeline_nodes.base.base_node import PipelineContext
 from data_etl_app.models.types_and_enums import ConceptTypeEnum
 from data_etl_app.models.pipeline_nodes.multi_stage.llm_phrase_recursive_grounding_node import (
     LLMPhraseRecursiveGroundingNode,
@@ -14,6 +16,7 @@ from data_etl_app.models.pipeline_nodes.multi_stage.concept.concept_reconcile_no
 from data_etl_app.models.types_and_enums import (
     ConceptTypeEnum,
 )
+from open_ai_key_app.models.field_types import GPTBatchRequestCustomID
 from open_ai_key_app.models.gpt_model_params import GPTModelParams
 
 logger = logging.getLogger(__name__)
@@ -38,3 +41,21 @@ class ConceptRecursiveGroundingNode(LLMPhraseRecursiveGroundingNode):
             phrase_recursive_grounding_prompt=phrase_recursive_grounding_prompt,
             known_concepts=known_concepts,
         )
+
+    def get_upstream_initial_grounding_map(
+        self, pipeline_context: PipelineContext
+    ) -> dict[GPTBatchRequestCustomID, GPTBatchRequest]:
+        from data_etl_app.models.pipeline_nodes.multi_stage.concept.concept_initial_grounding_node import (
+            ConceptInitialGroundingNode,
+        )
+
+        return pipeline_context[ConceptInitialGroundingNode]
+
+    def get_upstream_phrase_relationship_map(
+        self, pipeline_context: PipelineContext
+    ) -> dict[GPTBatchRequestCustomID, GPTBatchRequest]:
+        from data_etl_app.models.pipeline_nodes.multi_stage.concept.concept_relationship_node import (
+            ConceptRelationshipNode,
+        )
+
+        return pipeline_context[ConceptRelationshipNode]

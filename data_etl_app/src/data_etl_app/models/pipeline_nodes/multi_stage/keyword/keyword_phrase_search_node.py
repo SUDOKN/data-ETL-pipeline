@@ -9,22 +9,22 @@ from data_etl_app.models.pipeline_nodes.multi_stage.llm_phrase_search_node impor
 from data_etl_app.models.types_and_enums import KeywordTypeEnum
 
 if TYPE_CHECKING:
-    from data_etl_app.models.pipeline_nodes.multi_stage.keyword.keyword_relationship_node import (
-        KeywordRelationshipNode,
+    from data_etl_app.models.pipeline_nodes.multi_stage.keyword.keyword_recursive_search_node import (
+        KeywordRecursiveSearchNode,
     )
 
 
 logger = logging.getLogger(__name__)
 
 
-class KeywordSearchNode(LLMPhraseSearchNode[KeywordTypeEnum]):
+class KeywordPhraseSearchNode(LLMPhraseSearchNode[KeywordTypeEnum]):
     """Phase 1: LLM Search for keywords"""
 
     def __init__(
         self,
         field_type: KeywordTypeEnum,
         search_prompt: Prompt,
-        next_node: KeywordRelationshipNode,
+        next_node: KeywordRecursiveSearchNode,
     ):
         super().__init__(
             field_type=field_type,

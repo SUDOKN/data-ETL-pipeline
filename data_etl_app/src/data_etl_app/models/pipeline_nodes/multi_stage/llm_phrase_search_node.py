@@ -58,6 +58,7 @@ class LLMPhraseSearchNode(
         pipeline_context: PipelineContext,
         metadata: LLMPhraseExtractionMetadata,
         request_map: LLMPhraseExtractionRequestMap,
+        timestamp: datetime,
     ):
         if not request_map:
             raise ValueError(

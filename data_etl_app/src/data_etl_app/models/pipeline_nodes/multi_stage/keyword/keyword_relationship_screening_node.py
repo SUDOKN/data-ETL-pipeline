@@ -1,36 +1,35 @@
 from __future__ import annotations
 import logging
+from typing import TYPE_CHECKING
 
 from core.models.db.gpt_batch_request import GPTBatchRequest
 from core.models.prompt import Prompt
 from data_etl_app.models.pipeline_nodes.base.base_node import PipelineContext
-from data_etl_app.models.types_and_enums import ConceptTypeEnum
 from data_etl_app.models.pipeline_nodes.multi_stage.llm_phrase_relationship_screening_node import (
     LLMPhraseRelationshipScreeningNode,
 )
-from data_etl_app.models.pipeline_nodes.multi_stage.concept.concept_initial_grounding_node import (
-    ConceptInitialGroundingNode,
-)
-from data_etl_app.models.types_and_enums import (
-    ConceptTypeEnum,
-)
+from data_etl_app.models.types_and_enums import KeywordTypeEnum
 from open_ai_key_app.models.field_types import GPTBatchRequestCustomID
+
+if TYPE_CHECKING:
+    from data_etl_app.models.pipeline_nodes.multi_stage.keyword.keyword_freehand_grounding_node import (
+        KeywordFreehandGroundingNode,
+    )
 
 logger = logging.getLogger(__name__)
 
 
-class ConceptRelationshipScreeningNode(
-    LLMPhraseRelationshipScreeningNode[ConceptTypeEnum]
+class KeywordRelationshipScreeningNode(
+    LLMPhraseRelationshipScreeningNode[KeywordTypeEnum]
 ):
-
     def __init__(
         self,
-        concept_type: ConceptTypeEnum,
-        next_node: ConceptInitialGroundingNode,
+        field_type: KeywordTypeEnum,
+        next_node: KeywordFreehandGroundingNode,
         phrase_relationship_screening_prompt: Prompt,
     ):
         super().__init__(
-            field_type=concept_type,
+            field_type=field_type,
             phrase_relationship_screening_prompt=phrase_relationship_screening_prompt,
             next_node=next_node,
         )
@@ -38,8 +37,8 @@ class ConceptRelationshipScreeningNode(
     def get_upstream_phrase_relationship_map(
         self, pipeline_context: PipelineContext
     ) -> dict[GPTBatchRequestCustomID, GPTBatchRequest]:
-        from data_etl_app.models.pipeline_nodes.multi_stage.concept.concept_relationship_node import (
-            ConceptRelationshipNode,
+        from data_etl_app.models.pipeline_nodes.multi_stage.keyword.keyword_relationship_node import (
+            KeywordRelationshipNode,
         )
 
-        return pipeline_context[ConceptRelationshipNode]
+        return pipeline_context[KeywordRelationshipNode]

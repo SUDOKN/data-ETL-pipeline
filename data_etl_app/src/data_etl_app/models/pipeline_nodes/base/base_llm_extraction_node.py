@@ -162,6 +162,7 @@ class BaseLLMExtractionNode(
         self,
         mfg_etld1: str,
         request_map: ExtractionRequestMap,
+        all_requests_must_be_complete: bool,
     ) -> dict[GPTBatchRequestCustomID, GPTBatchRequest]:
         # Check if all search requests are complete
         req_ids_to_lookup: set[GPTBatchRequestCustomID] = self.get_embedded_request_ids(
@@ -173,7 +174,7 @@ class BaseLLMExtractionNode(
                 mfg_etld1, list(req_ids_to_lookup)
             )
         )
-        if incomplete_gpt_req_ids:
+        if incomplete_gpt_req_ids and all_requests_must_be_complete:
             raise ValueError(
                 f"get_completed_request_map was called for {self.field_type.name} in {__class__.__name__} but not all requests are complete. Incomplete request IDs: {incomplete_gpt_req_ids}"
             )
@@ -311,7 +312,9 @@ class BaseLLMExtractionNode(
                 f"Proceeding to next phase: {self.next_node.__class__.__name__ if self.next_node else 'None'}"
             )
             completed_request_map = await self.get_completed_request_map(
-                mfg_etld1=mfg.etld1, request_map=extraction_requests.chunked_request_map
+                mfg_etld1=mfg.etld1,
+                request_map=extraction_requests.chunked_request_map,
+                all_requests_must_be_complete=True,
             )
             pipeline_context[type(self)] = completed_request_map
             if self.next_node:

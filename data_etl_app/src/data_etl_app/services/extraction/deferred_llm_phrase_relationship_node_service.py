@@ -32,8 +32,12 @@ from core.services.gpt_batch_request_service import (
     create_base_gpt_batch_request,
     get_dummy_gpt_batch_response,
 )
+from data_etl_app.services.extraction.deferred_llm_phrase_recursive_search_node_service import (
+    get_all_recursive_round_results,
+)
 from data_etl_app.services.extraction.deferred_llm_phrase_search_node_service import (
     parse_batch_request_result as parse_phrase_search_batch_req_result,
+    parse_llm_search_response,
 )
 
 from data_etl_app.utils.ground_truth_helper_util import (
@@ -132,6 +136,9 @@ async def create_missing_phrase_relationship_requests(
     llm_model: LLM_Model,
     eager: bool,
     model_params: GPTModelParams,
+    llm_phrase_recursive_search_gpt_request_map: dict[
+        GPTBatchRequestCustomID, GPTBatchRequest
+    ],
     BATCH_SIZE=100,
 ) -> list[GPTBatchRequest]:
     logger.info(
@@ -168,6 +175,13 @@ async def create_missing_phrase_relationship_requests(
                 all_phrase_search_req_responses_map=llm_phrase_search_gpt_request_map,
                 deferred_at=deferred_at,
             )
+
+            llm_phrase_recursive_search_results = get_all_recursive_round_results(
+                extraction_bundle, llm_phrase_recursive_search_gpt_request_map
+            )
+
+            llm_phrase_search_results |= llm_phrase_recursive_search_results
+
             llm_phrase_relationship_request_id = (
                 extraction_bundle.llm_phrase_relationship_req_id
             )

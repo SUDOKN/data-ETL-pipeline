@@ -28,8 +28,15 @@ class ExtractionNodeMetadata(BaseModel):
     created_at: datetime
 
 
+class RecursiveSearchNodeMetadata(ExtractionNodeMetadata):
+    # Hard cap on the number of recursive search rounds (beyond the first search).
+    # Recursion also stops early when a round yields no new phrases.
+    max_rounds: int
+
+
 class LLMPhraseExtractionMetadata(BaseExtractionMetadata):
     llm_phrase_search: ExtractionNodeMetadata
+    llm_phrase_recursive_search: RecursiveSearchNodeMetadata
     llm_phrase_relationship: ExtractionNodeMetadata
     llm_phrase_relationship_screening: ExtractionNodeMetadata
 

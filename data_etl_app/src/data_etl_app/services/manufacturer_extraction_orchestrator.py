@@ -71,6 +71,8 @@ class ManufacturerExtractionOrchestrator:
         self.pipelines = ExtractionPipelineFactory.create_pipelines(
             prompt_service=prompt_service,
             ontology=ontology,
+            llm_model=llm_model,
+            model_params=model_params,
         )
         self.llm_model = llm_model
         self.model_params = model_params

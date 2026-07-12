@@ -12,23 +12,38 @@ from core.models.keyword_extraction_results import (
     KeywordExtractionStatsMap,
 )
 from core.models.db.deferred_manufacturer import DeferredManufacturer
-from data_etl_app.models.pipeline_nodes.multi_stage.keyword.keyword_search_node import (
-    KeywordSearchNode,
+from data_etl_app.models.pipeline_nodes.multi_stage.keyword.keyword_phrase_search_node import (
+    KeywordPhraseSearchNode,
+)
+from data_etl_app.models.pipeline_nodes.multi_stage.keyword.keyword_recursive_search_node import (
+    KeywordRecursiveSearchNode,
 )
 from data_etl_app.models.pipeline_nodes.multi_stage.keyword.keyword_relationship_node import (
     KeywordRelationshipNode,
 )
+from data_etl_app.models.pipeline_nodes.multi_stage.keyword.keyword_relationship_screening_node import (
+    KeywordRelationshipScreeningNode,
+)
+from data_etl_app.models.pipeline_nodes.multi_stage.keyword.keyword_freehand_grounding_node import (
+    KeywordFreehandGroundingNode,
+)
 from data_etl_app.models.types_and_enums import KeywordTypeEnum
-from data_etl_app.models.pipeline_nodes.foundational.base_node import PipelineContext
-from data_etl_app.models.pipeline_nodes.foundational.reconcile_node import ReconcileNode
-from open_ai_key_app.models.gpt_model_params import GPTModelParams
-from core.models.llm_model import LLM_Model
+from data_etl_app.models.pipeline_nodes.base.base_node import PipelineContext
+from data_etl_app.models.pipeline_nodes.base.base_reconcile_node import ReconcileNode
 from scraper_app.models.scraped_text_file import ScrapedTextFile
 
 from core.services.manufacturer_service import update_manufacturer
-
-from data_etl_app.utils.ground_truth_helper_util import (
-    get_verified_phrase_relationship_results,
+from data_etl_app.services.extraction.deferred_llm_phrase_search_node_service import (
+    parse_batch_request_result as parse_phrase_search_batch_req_result,
+)
+from data_etl_app.services.extraction.deferred_llm_phrase_relationship_node_service import (
+    parse_batch_request_result as parse_phrase_relationhip_batch_req_result,
+)
+from data_etl_app.services.extraction.deferred_llm_relationship_screening_node_service import (
+    parse_batch_request_result as parse_relationship_screening_batch_req_result,
+)
+from data_etl_app.services.extraction.deferred_llm_freehand_grounding_service import (
+    parse_batch_request_result as parse_freehand_grounding_batch_req_result,
 )
 
 logger = logging.getLogger(__name__)
@@ -45,8 +60,6 @@ class KeywordReconcileNode(ReconcileNode[KeywordTypeEnum]):
         scraped_text_file: ScrapedTextFile,
         timestamp: datetime,
         pipeline_context: PipelineContext,
-        llm_model: LLM_Model,
-        model_params: GPTModelParams,
         eager: bool,
     ) -> None:
         extraction_requests: Optional[DeferredKeywordExtractionRequests] = getattr(
@@ -57,17 +70,26 @@ class KeywordReconcileNode(ReconcileNode[KeywordTypeEnum]):
                 f"execute was called for {self.field_type.name} but no deferred extraction requests exist."
             )
 
-        completed_search_requests = pipeline_context[KeywordSearchNode]
+        completed_search_requests = pipeline_context[KeywordPhraseSearchNode]
+        completed_recursive_search_requests = pipeline_context[
+            KeywordRecursiveSearchNode
+        ]
         completed_phrase_relationship_requests = pipeline_context[
             KeywordRelationshipNode
+        ]
+        completed_relationship_screening_requests = pipeline_context[
+            KeywordRelationshipScreeningNode
+        ]
+        completed_freehand_grounding_requests = pipeline_context[
+            KeywordFreehandGroundingNode
         ]
         all_keywords: set[str] = set()
         chunk_stats: KeywordExtractionStatsMap = {}
         for (
             chunk_bounds,
             bundle,
-        ) in extraction_requests.request_map.items():
-            llm_search_results = await KeywordSearchNode.parse_batch_request_result(
+        ) in extraction_requests.chunked_request_map.items():
+            llm_search_results = await parse_phrase_search_batch_req_result(
                 mfg_etld1=deferred_mfg.etld1,
                 field_type=self.field_type,
                 chunk_bounds=chunk_bounds,
@@ -77,7 +99,7 @@ class KeywordReconcileNode(ReconcileNode[KeywordTypeEnum]):
             )
 
             llm_phrase_relationship_results = (
-                await KeywordRelationshipNode.parse_batch_request_result(
+                await parse_phrase_relationhip_batch_req_result(
                     mfg_etld1=deferred_mfg.etld1,
                     field_type=self.field_type,
                     chunk_bounds=chunk_bounds,
@@ -87,17 +109,41 @@ class KeywordReconcileNode(ReconcileNode[KeywordTypeEnum]):
                 )
             )
 
-            confirmed_keywords_w_evidence = get_verified_phrase_relationship_results(
-                llm_phrase_relationship_screening_results=llm_phrase_relationship_results
+            llm_phrase_relationship_screening_results = (
+                await parse_relationship_screening_batch_req_result(
+                    mfg_etld1=deferred_mfg.etld1,
+                    field_type=self.field_type,
+                    chunk_bounds=chunk_bounds,
+                    extraction_bundle=bundle,
+                    completed_request_map=completed_relationship_screening_requests,
+                    deferred_at=timestamp,
+                )
             )
-            confirmed_keywords = set(confirmed_keywords_w_evidence.keys())
+
+            llm_phrase_freehand_grounding_results = (
+                await parse_freehand_grounding_batch_req_result(
+                    mfg_etld1=deferred_mfg.etld1,
+                    field_type=self.field_type,
+                    chunk_bounds=chunk_bounds,
+                    extraction_bundle=bundle,
+                    completed_request_map=completed_freehand_grounding_requests,
+                    deferred_at=timestamp,
+                )
+            )
+            grounded_keywords = {
+                grounded_label
+                for phrase_groundings in llm_phrase_freehand_grounding_results.values()
+                for grounded_label in phrase_groundings.keys()
+            }
 
             chunk_stats[chunk_bounds] = KeywordExtractionStats(
-                results=confirmed_keywords,
-                llm_search=llm_search_results,
+                results=grounded_keywords,
+                llm_phrase_search=llm_search_results,
                 llm_phrase_relationship=llm_phrase_relationship_results,
+                llm_phrase_screening=llm_phrase_relationship_screening_results,
+                llm_phrase_freehand_grounding=llm_phrase_freehand_grounding_results,
             )
-            all_keywords.update(confirmed_keywords)
+            all_keywords.update(grounded_keywords)
 
         final_extraction_result = KeywordExtractionResults(
             metadata=extraction_requests.metadata,
@@ -114,7 +160,10 @@ class KeywordReconcileNode(ReconcileNode[KeywordTypeEnum]):
             associated_batch_request_custom_ids=list(
                 [
                     *completed_search_requests.keys(),
+                    *completed_recursive_search_requests.keys(),
                     *completed_phrase_relationship_requests.keys(),
+                    *completed_relationship_screening_requests.keys(),
+                    *completed_freehand_grounding_requests.keys(),
                 ]
             ),
         )

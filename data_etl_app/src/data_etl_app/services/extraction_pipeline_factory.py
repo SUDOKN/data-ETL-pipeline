@@ -1,4 +1,12 @@
+from datetime import datetime
+
+from core.models.llm_model import LLM_Model
+from core.models.llm_phrase_extraction_results import (
+    ExtractionNodeMetadata,
+    RecursiveSearchNodeMetadata,
+)
 from core.models.prompt import Prompt
+from open_ai_key_app.models.gpt_model_params import GPTModelParams
 
 from data_etl_app.models.chunking_strat import (
     ChunkingStrategy,
@@ -7,7 +15,6 @@ from data_etl_app.models.chunking_strat import (
     MATERIAL_CAP_CHUNKING_STRAT,
     PROCESS_CAP_CHUNKING_STRAT,
     PRODUCT_CHUNKING_STRAT,
-    ChunkingStrategy,
     get_basic_field_chunking_strat,
     get_binary_classification_chunking_strat,
 )
@@ -23,16 +30,22 @@ from data_etl_app.models.pipeline_nodes import (
     BinaryClassificationPrefillNode,
     BinaryReconcileNode,
     ConceptRelationshipNode,
+    ConceptRelationshipScreeningNode,
+    ConceptInitialGroundingNode,
+    ConceptRecursiveGroundingNode,
     ConceptExtractionPrefillNode,
-    ConceptMappingNode,
     ConceptReconcileNode,
     ConceptPhraseSearchNode,
+    ConceptRecursiveSearchNode,
     KeywordExtractionPrefillNode,
+    KeywordFreehandGroundingNode,
     KeywordRelationshipNode,
+    KeywordRelationshipScreeningNode,
     KeywordReconcileNode,
-    KeywordSearchNode,
+    KeywordPhraseSearchNode,
+    KeywordRecursiveSearchNode,
 )
-from data_etl_app.models.pipeline_nodes.basic_field.single_stage_extraction_prefill_node import (
+from data_etl_app.models.pipeline_nodes.single_stage.basic_fields.single_stage_extraction_prefill_node import (
     SingleStageExtractionPrefillNode,
 )
 from data_etl_app.models.skos_concept import Concept
@@ -50,36 +63,112 @@ from data_etl_app.services.knowledge.prompt_service import PromptService
 class ExtractionPipelineFactory:
     """Creates extraction phase pipelines for each field"""
 
+    DEFAULT_RECURSIVE_SEARCH_MAX_ROUNDS = 3
+
+    @staticmethod
+    def _metadata(
+        prompt: Prompt,
+        llm_model: LLM_Model,
+        model_params: GPTModelParams,
+        created_at: datetime,
+    ) -> ExtractionNodeMetadata:
+        return ExtractionNodeMetadata(
+            llm_model=llm_model,
+            model_params=model_params,
+            prompt_name=prompt.name,
+            prompt_version_id=prompt.s3_version_id,
+            created_at=created_at,
+        )
+
+    @staticmethod
+    def _recursive_search_metadata(
+        prompt: Prompt,
+        llm_model: LLM_Model,
+        model_params: GPTModelParams,
+        created_at: datetime,
+        max_rounds: int,
+    ) -> RecursiveSearchNodeMetadata:
+        return RecursiveSearchNodeMetadata(
+            llm_model=llm_model,
+            model_params=model_params,
+            prompt_name=prompt.name,
+            prompt_version_id=prompt.s3_version_id,
+            created_at=created_at,
+            max_rounds=max_rounds,
+        )
+
     @staticmethod
     def create_concept_extraction_pipeline(
         concept_type: ConceptTypeEnum,
         chunk_strategy: ChunkingStrategy,
         search_prompt: Prompt,
+        recursive_search_prompt: Prompt,
         phrase_relationship_prompt: Prompt,
-        mapping_prompt: Prompt,
-        ontology_version_id: str,
+        phrase_relationship_screening_prompt: Prompt,
+        phrase_initial_grounding_prompt: Prompt,
+        phrase_recursive_grounding_prompt: Prompt,
         known_concepts: set[Concept],
+        llm_model: LLM_Model,
+        model_params: GPTModelParams,
+        max_recursive_search_rounds: int = DEFAULT_RECURSIVE_SEARCH_MAX_ROUNDS,
     ) -> ConceptExtractionPrefillNode:
+        created_at = datetime.now()
         return ConceptExtractionPrefillNode(
             field_type=concept_type,
             chunk_strategy=chunk_strategy,
-            search_prompt=search_prompt,
-            phrase_relationship_prompt=phrase_relationship_prompt,
-            mapping_prompt=mapping_prompt,
-            ontology_version_id=ontology_version_id,
-            known_concepts=known_concepts,
+            llm_phrase_search_metadata=ExtractionPipelineFactory._metadata(
+                search_prompt, llm_model, model_params, created_at
+            ),
+            llm_phrase_recursive_search_metadata=ExtractionPipelineFactory._recursive_search_metadata(
+                recursive_search_prompt,
+                llm_model,
+                model_params,
+                created_at,
+                max_recursive_search_rounds,
+            ),
+            llm_phrase_relationship_metadata=ExtractionPipelineFactory._metadata(
+                phrase_relationship_prompt, llm_model, model_params, created_at
+            ),
+            llm_phrase_relationship_screening_metadata=ExtractionPipelineFactory._metadata(
+                phrase_relationship_screening_prompt,
+                llm_model,
+                model_params,
+                created_at,
+            ),
+            llm_phrase_initial_grounding_metadata=ExtractionPipelineFactory._metadata(
+                phrase_initial_grounding_prompt, llm_model, model_params, created_at
+            ),
+            llm_phrase_recursive_grounding_metadata=ExtractionPipelineFactory._metadata(
+                phrase_recursive_grounding_prompt, llm_model, model_params, created_at
+            ),
             next_node=ConceptPhraseSearchNode(
                 concept_type=concept_type,
                 search_prompt=search_prompt,
-                next_node=ConceptRelationshipNode(
+                next_node=ConceptRecursiveSearchNode(
                     concept_type=concept_type,
-                    phrase_relationship_prompt=phrase_relationship_prompt,
-                    next_node=ConceptMappingNode(
+                    second_search_prompt=recursive_search_prompt,
+                    next_node=ConceptRelationshipNode(
                         concept_type=concept_type,
-                        mapping_prompt=mapping_prompt,
-                        known_concepts=known_concepts,
-                        next_node=ConceptReconcileNode(
-                            concept_type=concept_type, known_concepts=known_concepts
+                        phrase_relationship_prompt=phrase_relationship_prompt,
+                        next_node=ConceptRelationshipScreeningNode(
+                            concept_type=concept_type,
+                            phrase_relationship_screening_prompt=phrase_relationship_screening_prompt,
+                            next_node=ConceptInitialGroundingNode(
+                                concept_type=concept_type,
+                                phrase_initial_grounding_prompt=phrase_initial_grounding_prompt,
+                                known_concepts=known_concepts,
+                                next_node=ConceptRecursiveGroundingNode(
+                                    concept_type=concept_type,
+                                    phrase_recursive_grounding_prompt=phrase_recursive_grounding_prompt,
+                                    known_concepts=known_concepts,
+                                    llm_model=llm_model,
+                                    model_params=model_params,
+                                    next_node=ConceptReconcileNode(
+                                        concept_type=concept_type,
+                                        known_concepts=known_concepts,
+                                    ),
+                                ),
+                            ),
                         ),
                     ),
                 ),
@@ -118,9 +207,77 @@ class ExtractionPipelineFactory:
         )
 
     @staticmethod
+    def create_keyword_extraction_pipeline(
+        keyword_type: KeywordTypeEnum,
+        chunk_strategy: ChunkingStrategy,
+        ontology_version_id: str,
+        search_prompt: Prompt,
+        recursive_search_prompt: Prompt,
+        phrase_relationship_prompt: Prompt,
+        phrase_relationship_screening_prompt: Prompt,
+        phrase_freehand_grounding_prompt: Prompt,
+        llm_model: LLM_Model,
+        model_params: GPTModelParams,
+        max_recursive_search_rounds: int = DEFAULT_RECURSIVE_SEARCH_MAX_ROUNDS,
+    ) -> KeywordExtractionPrefillNode:
+        created_at = datetime.now()
+        return KeywordExtractionPrefillNode(
+            field_type=keyword_type,
+            chunk_strategy=chunk_strategy,
+            ontology_version_id=ontology_version_id,
+            llm_phrase_search_metadata=ExtractionPipelineFactory._metadata(
+                search_prompt, llm_model, model_params, created_at
+            ),
+            llm_phrase_recursive_search_metadata=ExtractionPipelineFactory._recursive_search_metadata(
+                recursive_search_prompt,
+                llm_model,
+                model_params,
+                created_at,
+                max_recursive_search_rounds,
+            ),
+            llm_phrase_relationship_metadata=ExtractionPipelineFactory._metadata(
+                phrase_relationship_prompt, llm_model, model_params, created_at
+            ),
+            llm_phrase_relationship_screening_metadata=ExtractionPipelineFactory._metadata(
+                phrase_relationship_screening_prompt,
+                llm_model,
+                model_params,
+                created_at,
+            ),
+            llm_phrase_freehand_grounding_metadata=ExtractionPipelineFactory._metadata(
+                phrase_freehand_grounding_prompt, llm_model, model_params, created_at
+            ),
+            next_node=KeywordPhraseSearchNode(
+                field_type=keyword_type,
+                search_prompt=search_prompt,
+                next_node=KeywordRecursiveSearchNode(
+                    field_type=keyword_type,
+                    second_search_prompt=recursive_search_prompt,
+                    next_node=KeywordRelationshipNode(
+                        field_type=keyword_type,
+                        phrase_relationship_prompt=phrase_relationship_prompt,
+                        next_node=KeywordRelationshipScreeningNode(
+                            field_type=keyword_type,
+                            phrase_relationship_screening_prompt=phrase_relationship_screening_prompt,
+                            next_node=KeywordFreehandGroundingNode(
+                                field_type=keyword_type,
+                                phrase_freehand_grounding_prompt=phrase_freehand_grounding_prompt,
+                                next_node=KeywordReconcileNode(
+                                    field_type=keyword_type,
+                                ),
+                            ),
+                        ),
+                    ),
+                ),
+            ),
+        )
+
+    @staticmethod
     def create_pipelines(
         prompt_service: PromptService,
         ontology: Ontology,
+        llm_model: LLM_Model,
+        model_params: GPTModelParams,
     ) -> dict[LLMExtractedFieldTypeEnum, PrefillNode]:
         """
         Returns a dict mapping field names to their phase pipelines.
@@ -140,58 +297,69 @@ class ExtractionPipelineFactory:
             #         next_node=AddressReconcileNode(),
             #     ),
             # ),
-            KeywordTypeEnum.products: KeywordExtractionPrefillNode(
-                field_type=KeywordTypeEnum.products,
+            KeywordTypeEnum.products: ExtractionPipelineFactory.create_keyword_extraction_pipeline(
+                keyword_type=KeywordTypeEnum.products,
                 chunk_strategy=PRODUCT_CHUNKING_STRAT,
                 search_prompt=prompt_service.extract_any_product_prompt,
+                recursive_search_prompt=prompt_service.product_phrase_recursive_search_prompt,
                 phrase_relationship_prompt=prompt_service.product_phrase_relationship_prompt,
-                next_node=KeywordSearchNode(
-                    field_type=KeywordTypeEnum.products,
-                    search_prompt=prompt_service.extract_any_product_prompt,
-                    next_node=KeywordRelationshipNode(
-                        field_type=KeywordTypeEnum.products,
-                        phrase_relationship_prompt=prompt_service.product_phrase_relationship_prompt,
-                        next_node=KeywordReconcileNode(
-                            field_type=KeywordTypeEnum.products,
-                        ),
-                    ),
-                ),
+                phrase_relationship_screening_prompt=prompt_service.product_phrase_relationship_screening_prompt,
+                phrase_freehand_grounding_prompt=prompt_service.product_phrase_freehand_grounding_prompt,
+                ontology_version_id=ontology.s3_version_id,
+                llm_model=llm_model,
+                model_params=model_params,
             ),
             # Three-stage extractions (search -> phrase_relationship -> mapping)
             ConceptTypeEnum.certificates: ExtractionPipelineFactory.create_concept_extraction_pipeline(
                 concept_type=ConceptTypeEnum.certificates,
                 chunk_strategy=CERTIFICATE_CHUNKING_STRAT,
                 search_prompt=prompt_service.extract_any_certificate_prompt,
+                recursive_search_prompt=prompt_service.certificate_phrase_recursive_search_prompt,
                 phrase_relationship_prompt=prompt_service.certificate_phrase_relationship_prompt,
-                mapping_prompt=prompt_service.unknown_to_known_certificate_prompt,
-                ontology_version_id=ontology.version_id,
+                phrase_relationship_screening_prompt=prompt_service.certificate_phrase_relationship_screening_prompt,
+                phrase_initial_grounding_prompt=prompt_service.certificate_phrase_initial_grounding_prompt,
+                phrase_recursive_grounding_prompt=prompt_service.certificate_phrase_recursive_grounding_prompt,
                 known_concepts=ontology.certificates,
+                llm_model=llm_model,
+                model_params=model_params,
             ),
             ConceptTypeEnum.industries: ExtractionPipelineFactory.create_concept_extraction_pipeline(
                 concept_type=ConceptTypeEnum.industries,
                 chunk_strategy=INDUSTRY_CHUNKING_STRAT,
                 search_prompt=prompt_service.extract_any_industry_prompt,
+                recursive_search_prompt=prompt_service.industry_phrase_recursive_search_prompt,
                 phrase_relationship_prompt=prompt_service.industry_phrase_relationship_prompt,
-                mapping_prompt=prompt_service.unknown_to_known_industry_prompt,
-                ontology_version_id=ontology.version_id,
+                phrase_relationship_screening_prompt=prompt_service.industry_phrase_relationship_screening_prompt,
+                phrase_initial_grounding_prompt=prompt_service.industry_phrase_initial_grounding_prompt,
+                phrase_recursive_grounding_prompt=prompt_service.industry_phrase_recursive_grounding_prompt,
                 known_concepts=ontology.industries,
+                llm_model=llm_model,
+                model_params=model_params,
             ),
             ConceptTypeEnum.processes: ExtractionPipelineFactory.create_concept_extraction_pipeline(
                 concept_type=ConceptTypeEnum.processes,
                 chunk_strategy=PROCESS_CAP_CHUNKING_STRAT,
                 search_prompt=prompt_service.extract_any_process_cap_prompt,
+                recursive_search_prompt=prompt_service.process_cap_phrase_recursive_search_prompt,
                 phrase_relationship_prompt=prompt_service.process_cap_phrase_relationship_prompt,
-                mapping_prompt=prompt_service.unknown_to_known_process_cap_prompt,
-                ontology_version_id=ontology.version_id,
+                phrase_relationship_screening_prompt=prompt_service.process_cap_phrase_relationship_screening_prompt,
+                phrase_initial_grounding_prompt=prompt_service.process_cap_phrase_initial_grounding_prompt,
+                phrase_recursive_grounding_prompt=prompt_service.process_cap_phrase_recursive_grounding_prompt,
                 known_concepts=ontology.process_caps,
+                llm_model=llm_model,
+                model_params=model_params,
             ),
             ConceptTypeEnum.materials: ExtractionPipelineFactory.create_concept_extraction_pipeline(
                 concept_type=ConceptTypeEnum.materials,
                 chunk_strategy=MATERIAL_CAP_CHUNKING_STRAT,
                 search_prompt=prompt_service.extract_any_material_cap_prompt,
+                recursive_search_prompt=prompt_service.material_cap_phrase_recursive_search_prompt,
                 phrase_relationship_prompt=prompt_service.material_cap_phrase_relationship_prompt,
-                mapping_prompt=prompt_service.unknown_to_known_material_cap_prompt,
-                ontology_version_id=ontology.version_id,
+                phrase_relationship_screening_prompt=prompt_service.material_cap_phrase_relationship_screening_prompt,
+                phrase_initial_grounding_prompt=prompt_service.material_cap_phrase_initial_grounding_prompt,
+                phrase_recursive_grounding_prompt=prompt_service.material_cap_phrase_recursive_grounding_prompt,
                 known_concepts=ontology.material_caps,
+                llm_model=llm_model,
+                model_params=model_params,
             ),
         }

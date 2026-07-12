@@ -28,4 +28,4 @@ class SingleStageExtractionResults(
 ):
     metadata: LLMSingleStageExtractionMetadata
     result: SingleStageExtractionResultT  # compiled from chunk-level results
-    chunk_stats: SingleStageStatsMap  # chunk map
+    chunk_stats: SingleStageStatsMap[ChunkExtractionResultT]  # chunk map

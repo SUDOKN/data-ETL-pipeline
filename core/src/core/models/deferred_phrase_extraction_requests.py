@@ -1,4 +1,4 @@
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 from typing import Optional
 
 from core.models.llm_phrase_extraction_results import (
@@ -9,6 +9,12 @@ from open_ai_key_app.models.field_types import GPTBatchRequestCustomID
 
 class LLMPhraseExtractionRequestBundle(BaseModel):
     llm_phrase_search_req_id: Optional[GPTBatchRequestCustomID]
+    # Ordered list of recursive search rounds (round 1 == index 0). Each round
+    # re-searches the chunk while excluding the compounding union of phrases found
+    # by the first search and all prior recursive rounds.
+    llm_phrase_recursive_search_req_ids: list[GPTBatchRequestCustomID] = Field(
+        default_factory=list
+    )
     llm_phrase_relationship_req_id: Optional[GPTBatchRequestCustomID]
     llm_phrase_relationship_screening_req_id: Optional[GPTBatchRequestCustomID]
 
