@@ -1,6 +1,9 @@
+from __future__ import annotations
+
 import logging
 from abc import abstractmethod
 from datetime import datetime
+from typing import TYPE_CHECKING
 
 from core.models.db.manufacturer import Manufacturer
 from core.models.db.deferred_manufacturer import DeferredManufacturer
@@ -17,7 +20,9 @@ from data_etl_app.models.pipeline_nodes.base.base_llm_extraction_node import (
 from data_etl_app.models.types_and_enums import (
     LLMExtractedFieldTypeVar,
 )
-from scraper_app.models.scraped_text_file import ScrapedTextFile
+
+if TYPE_CHECKING:
+    from scraper_app.models.scraped_text_file import ScrapedTextFile
 
 logger = logging.getLogger(__name__)
 

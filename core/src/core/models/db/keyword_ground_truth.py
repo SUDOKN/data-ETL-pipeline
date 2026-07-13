@@ -5,8 +5,10 @@ from pydantic import BaseModel, ValidationInfo, computed_field, Field, field_val
 
 from core.utils.time_util import get_current_time
 from core.models.field_types import MfgETLDType, S3FileVersionIDType
-from core.models.search_stage_results import SearchStageMetadata
-from core.models.keyword_extraction_results import KeywordExtractionStats
+from core.models.keyword_extraction_results import (
+    KeywordExtractionMetadata,
+    KeywordExtractionStats,
+)
 from data_etl_app.models.types_and_enums import GroundTruthSource, KeywordTypeEnum
 
 
@@ -40,7 +42,7 @@ class KeywordGroundTruth(Document):
     last_chunk_no: int
     chunk_text: str
 
-    metadata: SearchStageMetadata
+    metadata: KeywordExtractionMetadata
     extraction_stats: KeywordExtractionStats
 
     corrections: list[KeywordCorrectionLog]

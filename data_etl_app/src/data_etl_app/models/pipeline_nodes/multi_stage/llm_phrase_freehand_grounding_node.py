@@ -2,7 +2,7 @@ from __future__ import annotations
 
 import logging
 from datetime import datetime
-from typing import Optional
+from typing import TYPE_CHECKING, Optional
 
 from core.models.db.deferred_manufacturer import DeferredManufacturer
 from core.models.db.gpt_batch_request import GPTBatchRequest
@@ -28,7 +28,9 @@ from data_etl_app.services.extraction.deferred_llm_freehand_grounding_service im
     create_missing_phrase_freehand_grounding_requests,
 )
 from open_ai_key_app.models.field_types import GPTBatchRequestCustomID
-from scraper_app.models.scraped_text_file import ScrapedTextFile
+
+if TYPE_CHECKING:
+    from scraper_app.models.scraped_text_file import ScrapedTextFile
 
 logger = logging.getLogger(__name__)
 

@@ -506,8 +506,8 @@ async def get_concept_coverage_stats(
         ontology = await ontology_svc.get_latest_ontology()
 
     _concept_type_to_map = {
-        ConceptTypeEnum.processes: ontology.process_cap_map,
-        ConceptTypeEnum.materials: ontology.material_cap_map,
+        ConceptTypeEnum.process_caps: ontology.process_cap_map,
+        ConceptTypeEnum.material_caps: ontology.material_cap_map,
         ConceptTypeEnum.industries: ontology.industry_map,
         ConceptTypeEnum.certificates: ontology.certificate_map,
     }

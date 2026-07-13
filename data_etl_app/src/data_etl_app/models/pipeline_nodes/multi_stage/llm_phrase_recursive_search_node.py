@@ -2,7 +2,7 @@ from __future__ import annotations
 
 import logging
 from datetime import datetime
-from typing import Optional, override
+from typing import TYPE_CHECKING, Optional, override
 
 from core.models.db.deferred_manufacturer import DeferredManufacturer
 from core.models.db.gpt_batch_request import GPTBatchRequest
@@ -29,7 +29,9 @@ from data_etl_app.models.pipeline_nodes.base.base_llm_recursive_extraction_node 
     BaseLLMRecursiveExtractionNode,
 )
 from open_ai_key_app.models.field_types import GPTBatchRequestCustomID
-from scraper_app.models.scraped_text_file import ScrapedTextFile
+
+if TYPE_CHECKING:
+    from scraper_app.models.scraped_text_file import ScrapedTextFile
 
 from core.services.gpt_batch_request_service import dispatch_gpt_batch_request
 from data_etl_app.services.extraction.deferred_llm_phrase_search_node_service import (

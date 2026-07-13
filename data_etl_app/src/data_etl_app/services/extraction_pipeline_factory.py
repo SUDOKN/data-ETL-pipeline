@@ -6,6 +6,7 @@ from core.models.llm_phrase_extraction_results import (
     RecursiveSearchNodeMetadata,
 )
 from core.models.prompt import Prompt
+from core.models.single_stage_extraction_results import LLMSingleStageExtractionMetadata
 from open_ai_key_app.models.gpt_model_params import GPTModelParams
 
 from data_etl_app.models.chunking_strat import (
@@ -45,12 +46,8 @@ from data_etl_app.models.pipeline_nodes import (
     KeywordPhraseSearchNode,
     KeywordRecursiveSearchNode,
 )
-from data_etl_app.models.pipeline_nodes.single_stage.basic_fields.single_stage_extraction_prefill_node import (
-    SingleStageExtractionPrefillNode,
-)
 from data_etl_app.models.skos_concept import Concept
 from data_etl_app.models.types_and_enums import (
-    BasicFieldTypeEnum,
     BinaryClassificationTypeEnum,
     ConceptTypeEnum,
     LLMExtractedFieldTypeEnum,
@@ -98,9 +95,28 @@ class ExtractionPipelineFactory:
         )
 
     @staticmethod
+    def _single_stage_metadata(
+        prompt: Prompt,
+        llm_model: LLM_Model,
+        model_params: GPTModelParams,
+        created_at: datetime,
+        chunk_strategy: ChunkingStrategy,
+        ontology: Ontology,
+    ) -> LLMSingleStageExtractionMetadata:
+        return LLMSingleStageExtractionMetadata(
+            single_stage=ExtractionPipelineFactory._metadata(
+                prompt, llm_model, model_params, created_at
+            ),
+            created_at=created_at,
+            chunk_strat=chunk_strategy,
+            ontology_version_id=ontology.s3_version_id,
+        )
+
+    @staticmethod
     def create_concept_extraction_pipeline(
         concept_type: ConceptTypeEnum,
         chunk_strategy: ChunkingStrategy,
+        ontology: Ontology,
         search_prompt: Prompt,
         recursive_search_prompt: Prompt,
         phrase_relationship_prompt: Prompt,
@@ -110,12 +126,13 @@ class ExtractionPipelineFactory:
         known_concepts: set[Concept],
         llm_model: LLM_Model,
         model_params: GPTModelParams,
+        created_at: datetime,
         max_recursive_search_rounds: int = DEFAULT_RECURSIVE_SEARCH_MAX_ROUNDS,
     ) -> ConceptExtractionPrefillNode:
-        created_at = datetime.now()
         return ConceptExtractionPrefillNode(
             field_type=concept_type,
             chunk_strategy=chunk_strategy,
+            ontology=ontology,
             llm_phrase_search_metadata=ExtractionPipelineFactory._metadata(
                 search_prompt, llm_model, model_params, created_at
             ),
@@ -161,8 +178,6 @@ class ExtractionPipelineFactory:
                                     concept_type=concept_type,
                                     phrase_recursive_grounding_prompt=phrase_recursive_grounding_prompt,
                                     known_concepts=known_concepts,
-                                    llm_model=llm_model,
-                                    model_params=model_params,
                                     next_node=ConceptReconcileNode(
                                         concept_type=concept_type,
                                         known_concepts=known_concepts,
@@ -179,11 +194,24 @@ class ExtractionPipelineFactory:
     def create_binary_classification_pipeline(
         binary_field_type: BinaryClassificationTypeEnum,
         prompt: Prompt,
+        llm_model: LLM_Model,
+        model_params: GPTModelParams,
+        ontology: Ontology,
+        created_at: datetime,
     ) -> BinaryClassificationPrefillNode:
+        chunk_strategy = get_binary_classification_chunking_strat(prompt=prompt)
         return BinaryClassificationPrefillNode(
             binary_field_type=binary_field_type,
-            chunk_strategy=get_binary_classification_chunking_strat(prompt=prompt),
+            chunk_strategy=chunk_strategy,
             prompt=prompt,
+            extraction_metadata=ExtractionPipelineFactory._single_stage_metadata(
+                prompt=prompt,
+                llm_model=llm_model,
+                model_params=model_params,
+                chunk_strategy=chunk_strategy,
+                ontology=ontology,
+                created_at=created_at,
+            ),
             next_node=BinaryClassificationNode(
                 binary_field_type=binary_field_type,
                 classification_prompt=prompt,
@@ -196,10 +224,23 @@ class ExtractionPipelineFactory:
     @staticmethod
     def create_business_desc_pipeline(
         prompt: Prompt,
+        llm_model: LLM_Model,
+        model_params: GPTModelParams,
+        ontology: Ontology,
+        created_at: datetime,
     ) -> BusinessDescPrefillNode:
+        chunk_strategy = get_basic_field_chunking_strat(prompt=prompt)
         return BusinessDescPrefillNode(
-            chunk_strategy=get_basic_field_chunking_strat(prompt=prompt),
+            chunk_strategy=chunk_strategy,
             prompt=prompt,
+            business_desc_extraction_metadata=ExtractionPipelineFactory._single_stage_metadata(
+                prompt=prompt,
+                llm_model=llm_model,
+                model_params=model_params,
+                created_at=created_at,
+                chunk_strategy=chunk_strategy,
+                ontology=ontology,
+            ),
             next_node=BusinessDescExtractionNode(
                 extract_prompt=prompt,
                 next_node=BusinessDescReconcileNode(),
@@ -218,9 +259,9 @@ class ExtractionPipelineFactory:
         phrase_freehand_grounding_prompt: Prompt,
         llm_model: LLM_Model,
         model_params: GPTModelParams,
+        created_at: datetime,
         max_recursive_search_rounds: int = DEFAULT_RECURSIVE_SEARCH_MAX_ROUNDS,
     ) -> KeywordExtractionPrefillNode:
-        created_at = datetime.now()
         return KeywordExtractionPrefillNode(
             field_type=keyword_type,
             chunk_strategy=chunk_strategy,
@@ -278,6 +319,7 @@ class ExtractionPipelineFactory:
         ontology: Ontology,
         llm_model: LLM_Model,
         model_params: GPTModelParams,
+        created_at: datetime,
     ) -> dict[LLMExtractedFieldTypeEnum, PrefillNode]:
         """
         Returns a dict mapping field names to their phase pipelines.
@@ -308,11 +350,13 @@ class ExtractionPipelineFactory:
                 ontology_version_id=ontology.s3_version_id,
                 llm_model=llm_model,
                 model_params=model_params,
+                created_at=created_at,
             ),
             # Three-stage extractions (search -> phrase_relationship -> mapping)
             ConceptTypeEnum.certificates: ExtractionPipelineFactory.create_concept_extraction_pipeline(
                 concept_type=ConceptTypeEnum.certificates,
                 chunk_strategy=CERTIFICATE_CHUNKING_STRAT,
+                ontology=ontology,
                 search_prompt=prompt_service.extract_any_certificate_prompt,
                 recursive_search_prompt=prompt_service.certificate_phrase_recursive_search_prompt,
                 phrase_relationship_prompt=prompt_service.certificate_phrase_relationship_prompt,
@@ -322,10 +366,12 @@ class ExtractionPipelineFactory:
                 known_concepts=ontology.certificates,
                 llm_model=llm_model,
                 model_params=model_params,
+                created_at=created_at,
             ),
             ConceptTypeEnum.industries: ExtractionPipelineFactory.create_concept_extraction_pipeline(
                 concept_type=ConceptTypeEnum.industries,
                 chunk_strategy=INDUSTRY_CHUNKING_STRAT,
+                ontology=ontology,
                 search_prompt=prompt_service.extract_any_industry_prompt,
                 recursive_search_prompt=prompt_service.industry_phrase_recursive_search_prompt,
                 phrase_relationship_prompt=prompt_service.industry_phrase_relationship_prompt,
@@ -335,10 +381,12 @@ class ExtractionPipelineFactory:
                 known_concepts=ontology.industries,
                 llm_model=llm_model,
                 model_params=model_params,
+                created_at=created_at,
             ),
-            ConceptTypeEnum.processes: ExtractionPipelineFactory.create_concept_extraction_pipeline(
-                concept_type=ConceptTypeEnum.processes,
+            ConceptTypeEnum.process_caps: ExtractionPipelineFactory.create_concept_extraction_pipeline(
+                concept_type=ConceptTypeEnum.process_caps,
                 chunk_strategy=PROCESS_CAP_CHUNKING_STRAT,
+                ontology=ontology,
                 search_prompt=prompt_service.extract_any_process_cap_prompt,
                 recursive_search_prompt=prompt_service.process_cap_phrase_recursive_search_prompt,
                 phrase_relationship_prompt=prompt_service.process_cap_phrase_relationship_prompt,
@@ -348,10 +396,12 @@ class ExtractionPipelineFactory:
                 known_concepts=ontology.process_caps,
                 llm_model=llm_model,
                 model_params=model_params,
+                created_at=created_at,
             ),
-            ConceptTypeEnum.materials: ExtractionPipelineFactory.create_concept_extraction_pipeline(
-                concept_type=ConceptTypeEnum.materials,
+            ConceptTypeEnum.material_caps: ExtractionPipelineFactory.create_concept_extraction_pipeline(
+                concept_type=ConceptTypeEnum.material_caps,
                 chunk_strategy=MATERIAL_CAP_CHUNKING_STRAT,
+                ontology=ontology,
                 search_prompt=prompt_service.extract_any_material_cap_prompt,
                 recursive_search_prompt=prompt_service.material_cap_phrase_recursive_search_prompt,
                 phrase_relationship_prompt=prompt_service.material_cap_phrase_relationship_prompt,
@@ -361,5 +411,6 @@ class ExtractionPipelineFactory:
                 known_concepts=ontology.material_caps,
                 llm_model=llm_model,
                 model_params=model_params,
+                created_at=created_at,
             ),
         }

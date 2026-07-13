@@ -1,6 +1,8 @@
+from __future__ import annotations
+
 import logging
 from datetime import datetime
-from typing import Optional
+from typing import TYPE_CHECKING, Optional
 
 from core.models.db.manufacturer import Manufacturer
 from core.models.binary_classification_result import (
@@ -22,7 +24,9 @@ from data_etl_app.models.pipeline_nodes.base.base_reconcile_node import Reconcil
 from data_etl_app.models.pipeline_nodes.single_stage.classification.binary_classification_node import (
     BinaryClassificationNode,
 )
-from scraper_app.models.scraped_text_file import ScrapedTextFile
+
+if TYPE_CHECKING:
+    from scraper_app.models.scraped_text_file import ScrapedTextFile
 
 from core.services.manufacturer_service import update_manufacturer
 

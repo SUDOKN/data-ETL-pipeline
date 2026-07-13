@@ -1,6 +1,8 @@
+from __future__ import annotations
+
 import logging
 from datetime import datetime
-from typing import Optional
+from typing import TYPE_CHECKING, Optional
 
 from core.models.db.manufacturer import Manufacturer
 from core.models.business_description_extraction_result import (
@@ -20,7 +22,9 @@ from data_etl_app.models.pipeline_nodes.base.base_llm_extraction_node import (
 )
 from data_etl_app.models.types_and_enums import BasicFieldTypeEnum
 from data_etl_app.models.pipeline_nodes.base.base_reconcile_node import ReconcileNode
-from scraper_app.models.scraped_text_file import ScrapedTextFile
+
+if TYPE_CHECKING:
+    from scraper_app.models.scraped_text_file import ScrapedTextFile
 
 from core.services.manufacturer_service import update_manufacturer
 

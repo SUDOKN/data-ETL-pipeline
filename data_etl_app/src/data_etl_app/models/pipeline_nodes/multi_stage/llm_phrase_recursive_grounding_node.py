@@ -2,7 +2,7 @@ from __future__ import annotations
 from datetime import datetime
 import copy
 import logging
-from typing import Optional
+from typing import TYPE_CHECKING, Optional
 
 from core.models.db.deferred_manufacturer import DeferredManufacturer
 from core.models.db.gpt_batch_request import GPTBatchRequest
@@ -32,7 +32,9 @@ from data_etl_app.models.pipeline_nodes.base.base_llm_recursive_extraction_node 
 )
 from open_ai_key_app.models.field_types import GPTBatchRequestCustomID
 from open_ai_key_app.models.gpt_model_params import GPTModelParams
-from scraper_app.models.scraped_text_file import ScrapedTextFile
+
+if TYPE_CHECKING:
+    from scraper_app.models.scraped_text_file import ScrapedTextFile
 
 from core.services.gpt_batch_request_service import (
     dispatch_gpt_batch_request,
@@ -141,7 +143,8 @@ class LLMPhraseRecursiveGroundingNode(
             1.2 No? skip
             """
             if (
-                not extraction_request_bundle.llm_phrase_recursive_grounding_root_req_nodes
+                extraction_request_bundle.llm_phrase_recursive_grounding_root_req_nodes
+                is not None
             ):
                 continue
 
@@ -198,7 +201,10 @@ class LLMPhraseRecursiveGroundingNode(
                 )
             else:
                 logger.info(
-                    f"Bummer, no phrase was tagged to any known {self.field_type.name}."
+                    f"Bummer, no phrase was tagged to any known {self.field_type.name} for {mfg_etld1}:{chunk_bounds}."
+                )
+                extraction_request_bundle.llm_phrase_recursive_grounding_root_req_nodes = (
+                    []
                 )
 
         """
@@ -253,7 +259,7 @@ class LLMPhraseRecursiveGroundingNode(
                         field_type=self.field_type,
                         chunk_bounds=chunk_bounds,
                         extraction_bundle=extraction_request_bundle,
-                        completed_request_map=completed_recursive_grounding_req_map,
+                        completed_request_map=completed_initial_grounding_req_map,
                         deferred_at=timestamp,
                     )
                 )
@@ -337,19 +343,16 @@ class LLMPhraseRecursiveGroundingNode(
     def get_embedded_request_ids(
         self,
         mfg_etld1: str,
-        extraction_requests: DeferredConceptExtractionRequests,
+        request_map: ConceptExtractionRequestMap,
     ) -> set[GPTBatchRequestCustomID]:
         all_chunks_recursive_grounding_req_ids: set[GPTBatchRequestCustomID] = set()
-        for (
-            chunk_bounds,
-            extraction_bundle,
-        ) in extraction_requests.chunked_request_map.items():
-            if not extraction_bundle.llm_phrase_recursive_grounding_root_req_nodes:
+        for chunk_bounds, extraction_bundle in request_map.items():
+            if extraction_bundle.llm_phrase_recursive_grounding_root_req_nodes is None:
                 raise ValueError(
                     f"get_embedded_request_ids was called for {mfg_etld1}:{self.field_type.name} but llm_phrase_recursive_grounding_request_ids is None for chunk bounds {chunk_bounds}."
                 )
 
-            embedded_grounding_req_ids: list[GPTBatchRequestCustomID] = [
+            embedded_grounding_req_ids = [
                 tagged_concept.descend_req_id
                 for tagged_concept in get_flattened_embedded_tagged_concepts(
                     extraction_bundle=extraction_bundle,

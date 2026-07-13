@@ -47,8 +47,8 @@ def is_deferred_manufacturer_empty(deferred_manufacturer: DeferredManufacturer) 
             KeywordTypeEnum.products.name,
             ConceptTypeEnum.certificates.name,
             ConceptTypeEnum.industries.name,
-            ConceptTypeEnum.processes.name,
-            ConceptTypeEnum.materials.name,
+            ConceptTypeEnum.process_caps.name,
+            ConceptTypeEnum.material_caps.name,
         ]
     )
 

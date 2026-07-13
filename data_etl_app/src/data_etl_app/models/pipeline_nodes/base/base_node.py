@@ -4,7 +4,7 @@ from __future__ import (
 
 import logging
 from abc import ABC, abstractmethod
-from typing import Generic, Optional
+from typing import TYPE_CHECKING, Generic, Optional
 from datetime import datetime
 
 from core.models.db.manufacturer import Manufacturer
@@ -14,7 +14,9 @@ from data_etl_app.models.types_and_enums import (
     LLMExtractedFieldTypeVar,
 )
 from open_ai_key_app.models.field_types import GPTBatchRequestCustomID
-from scraper_app.models.scraped_text_file import ScrapedTextFile
+
+if TYPE_CHECKING:
+    from scraper_app.models.scraped_text_file import ScrapedTextFile
 
 logger = logging.getLogger(__name__)
 

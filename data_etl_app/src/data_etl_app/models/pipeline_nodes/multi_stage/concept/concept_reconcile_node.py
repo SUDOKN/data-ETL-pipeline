@@ -1,9 +1,10 @@
+from __future__ import annotations
+
 import logging
 from datetime import datetime
-from typing import Optional
+from typing import TYPE_CHECKING, Optional
 
 from core.models.db.manufacturer import Manufacturer
-from core.models.llm_model import LLM_Model
 from core.models.concept_extraction_results import (
     ConceptsFound,
     ConceptExtractionStatsMap,
@@ -17,28 +18,11 @@ from core.models.deferred_concept_extraction import (
 )
 from data_etl_app.models.types_and_enums import ConceptTypeEnum
 from data_etl_app.models.pipeline_nodes.base.base_node import PipelineContext
-from data_etl_app.models.pipeline_nodes.multi_stage.concept.concept_extraction_prefill_node import (
-    ConceptExtractionPrefillNode,
-)
-from data_etl_app.models.pipeline_nodes.multi_stage.concept.concept_phrase_search_node import (
-    ConceptPhraseSearchNode,
-)
-from data_etl_app.models.pipeline_nodes.multi_stage.concept.concept_relationship_node import (
-    ConceptRelationshipNode,
-)
-from data_etl_app.models.pipeline_nodes.multi_stage.concept.concept_relationship_screening_node import (
-    ConceptRelationshipScreeningNode,
-)
-from data_etl_app.models.pipeline_nodes.multi_stage.concept.concept_initial_grounding_node import (
-    ConceptInitialGroundingNode,
-)
-from data_etl_app.models.pipeline_nodes.multi_stage.concept.concept_recursive_grounding_node import (
-    ConceptRecursiveGroundingNode,
-)
 from data_etl_app.models.pipeline_nodes.base.base_reconcile_node import ReconcileNode
 from data_etl_app.models.skos_concept import Concept
-from open_ai_key_app.models.gpt_model_params import GPTModelParams
-from scraper_app.models.scraped_text_file import ScrapedTextFile
+
+if TYPE_CHECKING:
+    from scraper_app.models.scraped_text_file import ScrapedTextFile
 
 from core.services.manufacturer_service import update_manufacturer
 from data_etl_app.services.extraction.deferred_llm_phrase_search_node_service import (
@@ -83,6 +67,22 @@ class ConceptReconcileNode(ReconcileNode[ConceptTypeEnum]):
         pipeline_context: PipelineContext,
         eager: bool,
     ) -> None:
+        from data_etl_app.models.pipeline_nodes.multi_stage.concept.concept_phrase_search_node import (
+            ConceptPhraseSearchNode,
+        )
+        from data_etl_app.models.pipeline_nodes.multi_stage.concept.concept_relationship_node import (
+            ConceptRelationshipNode,
+        )
+        from data_etl_app.models.pipeline_nodes.multi_stage.concept.concept_relationship_screening_node import (
+            ConceptRelationshipScreeningNode,
+        )
+        from data_etl_app.models.pipeline_nodes.multi_stage.concept.concept_initial_grounding_node import (
+            ConceptInitialGroundingNode,
+        )
+        from data_etl_app.models.pipeline_nodes.multi_stage.concept.concept_recursive_grounding_node import (
+            ConceptRecursiveGroundingNode,
+        )
+
         extraction_requests: Optional[DeferredConceptExtractionRequests] = getattr(
             deferred_mfg, self.field_type.name
         )
@@ -115,7 +115,7 @@ class ConceptReconcileNode(ReconcileNode[ConceptTypeEnum]):
             recursively_tagged_concept_nodes = (
                 bundle.llm_phrase_recursive_grounding_root_req_nodes
             )
-            if not recursively_tagged_concept_nodes:
+            if recursively_tagged_concept_nodes is None:
                 raise ValueError(
                     f"Cannot proceed to reconcile {self.field_type.name} for {mfg.etld1}:{chunk_bounds} "
                     f"as bundle.llm_phrase_recursive_grounding_root_req_nodes is None implying "

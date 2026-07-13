@@ -1,10 +1,11 @@
 import logging
 
 from core.models.prompt import Prompt
-from data_etl_app.models.pipeline_nodes.classification.binary_classification_node import (
+from core.models.single_stage_extraction_results import LLMSingleStageExtractionMetadata
+from data_etl_app.models.pipeline_nodes.single_stage.classification.binary_classification_node import (
     BinaryClassificationNode,
 )
-from data_etl_app.models.pipeline_nodes.basic_field.single_stage_extraction_prefill_node import (
+from data_etl_app.models.pipeline_nodes.single_stage.basic_fields.single_stage_extraction_prefill_node import (
     SingleStageExtractionPrefillNode,
 )
 from data_etl_app.models.types_and_enums import (
@@ -20,13 +21,15 @@ class BinaryClassificationPrefillNode(SingleStageExtractionPrefillNode):
     def __init__(
         self,
         binary_field_type: BinaryClassificationTypeEnum,
+        next_node: BinaryClassificationNode,
         chunk_strategy: ChunkingStrategy,
         prompt: Prompt,
-        next_node: BinaryClassificationNode,
+        extraction_metadata: LLMSingleStageExtractionMetadata,
     ):
         super().__init__(
             field_type=binary_field_type,
+            next_node=next_node,
             chunk_strategy=chunk_strategy,
             prompt=prompt,
-            next_node=next_node,
+            extraction_metadata=extraction_metadata,
         )

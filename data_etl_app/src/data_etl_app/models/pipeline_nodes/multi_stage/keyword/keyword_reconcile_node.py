@@ -1,6 +1,8 @@
+from __future__ import annotations
+
 import logging
 from datetime import datetime
-from typing import Optional
+from typing import TYPE_CHECKING, Optional
 
 from core.models.db.manufacturer import Manufacturer
 from core.models.deferred_keyword_extraction import (
@@ -30,7 +32,9 @@ from data_etl_app.models.pipeline_nodes.multi_stage.keyword.keyword_freehand_gro
 from data_etl_app.models.types_and_enums import KeywordTypeEnum
 from data_etl_app.models.pipeline_nodes.base.base_node import PipelineContext
 from data_etl_app.models.pipeline_nodes.base.base_reconcile_node import ReconcileNode
-from scraper_app.models.scraped_text_file import ScrapedTextFile
+
+if TYPE_CHECKING:
+    from scraper_app.models.scraped_text_file import ScrapedTextFile
 
 from core.services.manufacturer_service import update_manufacturer
 from data_etl_app.services.extraction.deferred_llm_phrase_search_node_service import (

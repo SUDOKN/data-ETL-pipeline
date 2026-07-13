@@ -23,9 +23,6 @@ from core.models.deferred_concept_extraction import (
     ConceptExtractionRequestBundle,
     ConceptExtractionRequestMap,
 )
-from data_etl_app.models.pipeline_nodes.multi_stage.llm_phrase_recursive_grounding_node import (
-    LLMPhraseRecursiveGroundingNode,
-)
 from data_etl_app.models.skos_concept import Concept, ConceptJSONEncoder
 from data_etl_app.models.types_and_enums import (
     ConceptTypeEnum,
@@ -44,6 +41,21 @@ from data_etl_app.services.extraction.deferred_llm_phrase_relationship_node_serv
 )
 
 logger = logging.getLogger(__name__)
+
+
+def get_recursive_grounding_request_custom_id(
+    mfg_etld1: str,
+    field_type: LLMExtractedFieldTypeEnum,
+    chunk_bounds: str,
+    parent_level: int,
+    parent_tagged_concept_name: str,
+    llm_model: LLM_Model,
+    model_params: GPTModelParams,
+) -> GPTBatchRequestCustomID:
+    return (
+        f"{mfg_etld1}>{field_type.name}>llm_phrase_recursive_grounding>chunk>"
+        f"{chunk_bounds}>l[{parent_level}]>{parent_tagged_concept_name}>{model_params.to_custom_id_segment(llm_model.name)}"
+    )
 
 
 def parse_llm_phrase_recursive_grounding_result(
@@ -220,7 +232,7 @@ def get_tagged_concepts_from_grounding_results(
                     unrecognized_tagged_concept_obj = RecursivelyTaggedConceptNode(
                         name=matched_concept_label,
                         level=level,
-                        descend_req_id=LLMPhraseRecursiveGroundingNode.get_request_custom_id(
+                        descend_req_id=get_recursive_grounding_request_custom_id(
                             mfg_etld1=mfg_etld1,
                             field_type=field_type,
                             chunk_bounds=chunk_bounds,
@@ -256,7 +268,7 @@ def get_tagged_concepts_from_grounding_results(
                     tagged_concept_obj = RecursivelyTaggedConceptNode(
                         name=matched_concept_obj.name,
                         level=matched_concept_obj.level,
-                        descend_req_id=LLMPhraseRecursiveGroundingNode.get_request_custom_id(
+                        descend_req_id=get_recursive_grounding_request_custom_id(
                             mfg_etld1=mfg_etld1,
                             field_type=field_type,
                             chunk_bounds=chunk_bounds,
@@ -310,7 +322,7 @@ def get_flattened_embedded_tagged_concepts(
     in_vocab: bool,
     match_label_to_concept_map: dict[str, Concept],
 ) -> list[RecursivelyTaggedConceptNode]:
-    if not extraction_bundle.llm_phrase_recursive_grounding_root_req_nodes:
+    if extraction_bundle.llm_phrase_recursive_grounding_root_req_nodes is None:
         raise ValueError(
             f"Cannot get get_flattened_embedded_tagged_concepts because .llm_phrase_recursive_grounding_root_req_nodes is None."
         )
@@ -320,10 +332,9 @@ def get_flattened_embedded_tagged_concepts(
         if in_vocab and req_node.name not in match_label_to_concept_map:
             # must be "None of the above" or unlisted concept
             continue
-        for child_req_node in req_node.children:
-            embedded_tagged_concepts.extend(
-                get_flattened_embedded_tagged_concepts_helper(child_req_node)
-            )
+        embedded_tagged_concepts.extend(
+            get_flattened_embedded_tagged_concepts_helper(req_node)
+        )
 
     return embedded_tagged_concepts
 
@@ -456,7 +467,7 @@ async def create_missing_phrase_recursive_grounding_requests(
             ) | set(node.iteratively_tagged_phrase_reason_map.keys())
             phrases_referenced_in_node_w_summary = {
                 phrase: summary
-                for phrase, summary in llm_phrase_relationship_results
+                for phrase, summary in llm_phrase_relationship_results.items()
                 if phrase in phrases_referenced_in_node
             }
             chunk_items.extend(
@@ -465,11 +476,6 @@ async def create_missing_phrase_recursive_grounding_requests(
                     for node in missing_chunk_recursive_grounding_nodes
                 ]
             )
-
-    if not completed_recursive_grounding_req_map:
-        raise ValueError(
-            f"create_missing_recursive_grounding_requests: No completed GPTBatchRequests found for {mfg_etld1}:{field_type} in llm_phrase_recursive_grounding_gpt_request_map."
-        )
 
     # Process chunks in batches to yield control periodically
     for i in range(0, len(chunk_items), BATCH_SIZE):

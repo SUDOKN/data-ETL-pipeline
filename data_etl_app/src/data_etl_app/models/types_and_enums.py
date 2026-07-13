@@ -9,8 +9,8 @@ class KeywordTypeEnum(str, Enum):
 class ConceptTypeEnum(str, Enum):
     industries = "industries"
     certificates = "certificates"
-    materials = "material_caps"
-    processes = "process_caps"
+    material_caps = "material_caps"
+    process_caps = "process_caps"
 
 
 class BasicFieldTypeEnum(str, Enum):

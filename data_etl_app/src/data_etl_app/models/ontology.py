@@ -40,10 +40,10 @@ class Ontology(BaseModel):
             case ConceptTypeEnum.certificates:
                 retval = self.certificates
             case ConceptTypeEnum.industries:
-                retval = self.certificates
-            case ConceptTypeEnum.materials:
+                retval = self.industries
+            case ConceptTypeEnum.material_caps:
                 retval = self.material_caps
-            case ConceptTypeEnum.processes:
+            case ConceptTypeEnum.process_caps:
                 retval = self.process_caps
             case _:
                 raise ValueError(

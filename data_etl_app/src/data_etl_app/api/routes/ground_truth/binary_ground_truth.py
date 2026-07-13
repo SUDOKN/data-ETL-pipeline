@@ -9,7 +9,7 @@ from core.models.db.binary_ground_truth import (
     BinaryGroundTruth,
     HumanBinaryDecision,
 )
-from data_etl_app.models.pipeline_nodes.classification.binary_reconcile_node import (
+from core.models.binary_classification_result import (
     BinaryClassificationResult,
 )
 from data_etl_app.models.types_and_enums import (
@@ -92,7 +92,7 @@ async def fetch_binary_classification_user_form_template(
 
     existing_binary_gt = await get_binary_ground_truth(
         linked_manufacturer=manufacturer,
-        prompt_version_id=binary_classification_result.metadata.prompt_version_id,
+        prompt_version_id=binary_classification_result.metadata.single_stage.prompt_version_id,
         classification_type=classification_type,
     )
     if existing_binary_gt:
@@ -213,7 +213,7 @@ async def collect_binary_ground_truth(
 
     existing_binary_gt = await get_binary_ground_truth(
         linked_manufacturer=manufacturer,
-        prompt_version_id=binary_gt.metadata.prompt_version_id,
+        prompt_version_id=binary_gt.metadata.single_stage.prompt_version_id,
         classification_type=binary_gt.classification_type,
     )
     if existing_binary_gt:

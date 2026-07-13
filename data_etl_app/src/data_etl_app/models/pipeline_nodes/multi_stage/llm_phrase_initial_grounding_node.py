@@ -1,7 +1,7 @@
 from __future__ import annotations
 import logging
 from datetime import datetime
-from typing import Optional
+from typing import TYPE_CHECKING, Optional
 
 from core.models.db.deferred_manufacturer import DeferredManufacturer
 from core.models.db.gpt_batch_request import GPTBatchRequest
@@ -12,7 +12,6 @@ from core.models.deferred_concept_extraction import (
     ConceptExtractionMetadata,
 )
 from core.models.field_types import LLMGroundingResults
-from core.models.llm_model import LLM_Model
 from core.models.prompt import Prompt
 from data_etl_app.models.skos_concept import Concept
 from data_etl_app.models.types_and_enums import (
@@ -27,7 +26,9 @@ from data_etl_app.models.pipeline_nodes.base.base_llm_extraction_node import (
     BaseLLMExtractionNode,
 )
 from open_ai_key_app.models.field_types import GPTBatchRequestCustomID
-from scraper_app.models.scraped_text_file import ScrapedTextFile
+
+if TYPE_CHECKING:
+    from scraper_app.models.scraped_text_file import ScrapedTextFile
 
 from core.services.gpt_batch_request_service import (
     dispatch_gpt_batch_request,

@@ -2,7 +2,7 @@ from __future__ import annotations
 
 import asyncio
 import logging
-from typing import Generic, TypeVar
+from typing import TYPE_CHECKING, Generic, TypeVar
 
 from core.models.db.deferred_manufacturer import DeferredManufacturer
 from core.models.db.manufacturer import Manufacturer
@@ -12,7 +12,9 @@ from data_etl_app.models.pipeline_nodes.base.base_llm_extraction_node import (
 from data_etl_app.models.pipeline_nodes.base.base_node import PipelineContext
 from data_etl_app.models.types_and_enums import LLMExtractedFieldTypeVar
 from open_ai_key_app.models.field_types import GPTBatchRequestCustomID
-from scraper_app.models.scraped_text_file import ScrapedTextFile
+
+if TYPE_CHECKING:
+    from scraper_app.models.scraped_text_file import ScrapedTextFile
 
 from core.services.gpt_batch_request_queries import (
     find_incomplete_gpt_batch_requests_by_custom_ids,

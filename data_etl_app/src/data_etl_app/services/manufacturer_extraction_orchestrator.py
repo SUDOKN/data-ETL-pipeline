@@ -1,6 +1,9 @@
+from __future__ import annotations
+
 from datetime import datetime
 import logging
 import time
+from typing import TYPE_CHECKING
 
 from core.models.binary_classification_result import (
     BaseClassificationDecision,
@@ -8,12 +11,14 @@ from core.models.binary_classification_result import (
 from core.models.db.manufacturer import Manufacturer
 from core.models.db.deferred_manufacturer import DeferredManufacturer
 from core.models.db.extraction_error import ExtractionError
-from data_etl_app.models.pipeline_nodes.classification.binary_reconcile_node import (
+from data_etl_app.models.types_and_enums import (
     BinaryClassificationTypeEnum,
 )
 from core.models.llm_model import LLM_Model
 from open_ai_key_app.models.gpt_model_params import GPTModelParams
-from scraper_app.models.scraped_text_file import ScrapedTextFile
+
+if TYPE_CHECKING:
+    from scraper_app.models.scraped_text_file import ScrapedTextFile
 
 from core.services.manufacturer_service import (
     update_manufacturer,
@@ -25,7 +30,7 @@ from core.services.deferred_manufacturer_service import (
 from core.services.gpt_batch_request_writes import (
     bulk_delete_gpt_batch_requests_by_mfg_etld1_and_field,
 )
-from data_etl_app.models.pipeline_nodes.foundational.base_node import PipelineContext
+from data_etl_app.models.pipeline_nodes.base.base_node import PipelineContext
 from data_etl_app.models.ontology import Ontology
 from data_etl_app.services.knowledge.prompt_service import PromptService
 from data_etl_app.services.extraction_pipeline_factory import ExtractionPipelineFactory
@@ -56,16 +61,25 @@ class ManufacturerExtractionOrchestrator:
         ontology: Ontology,
         llm_model: LLM_Model,
         model_params: GPTModelParams,
+        metadata_init_at: datetime,
     ):
         self.is_manufacturer_pipeline = (
             ExtractionPipelineFactory.create_binary_classification_pipeline(
                 binary_field_type=BinaryClassificationTypeEnum.is_manufacturer,
                 prompt=prompt_service.is_manufacturer_prompt,
+                llm_model=llm_model,
+                model_params=model_params,
+                ontology=ontology,
+                created_at=metadata_init_at,
             )
         )
         self.business_desc_pipeline = (
             ExtractionPipelineFactory.create_business_desc_pipeline(
                 prompt=prompt_service.find_business_desc_prompt,
+                llm_model=llm_model,
+                model_params=model_params,
+                ontology=ontology,
+                created_at=metadata_init_at,
             )
         )
         self.pipelines = ExtractionPipelineFactory.create_pipelines(
@@ -73,6 +87,7 @@ class ManufacturerExtractionOrchestrator:
             ontology=ontology,
             llm_model=llm_model,
             model_params=model_params,
+            created_at=metadata_init_at,
         )
         self.llm_model = llm_model
         self.model_params = model_params
@@ -114,8 +129,6 @@ class ManufacturerExtractionOrchestrator:
                     scraped_text_file=scraped_text_file,
                     timestamp=timestamp,
                     pipeline_context=PipelineContext(),
-                    llm_model=self.llm_model,
-                    model_params=self.model_params,
                     eager=eager,
                 )
                 field_timings["is_manufacturer"] = time.perf_counter() - _t0
@@ -141,8 +154,6 @@ class ManufacturerExtractionOrchestrator:
                     scraped_text_file=scraped_text_file,
                     timestamp=timestamp,
                     pipeline_context=PipelineContext(),
-                    llm_model=self.llm_model,
-                    model_params=self.model_params,
                     eager=eager,
                 )
                 field_timings["business_desc"] = time.perf_counter() - _t0
@@ -197,7 +208,7 @@ class ManufacturerExtractionOrchestrator:
 
         is_manufacturer_gt = await get_binary_ground_truth(
             mfg,
-            mfg.is_manufacturer.metadata.prompt_version_id,
+            mfg.is_manufacturer.metadata.single_stage.prompt_version_id,
             BinaryClassificationTypeEnum.is_manufacturer,
         )
 
@@ -234,8 +245,6 @@ class ManufacturerExtractionOrchestrator:
                         mfg_name=mfg.business_desc.result.name
                     ),
                     eager=eager,
-                    llm_model=self.llm_model,
-                    model_params=self.model_params,
                 )
                 field_timings[field_type.name] = time.perf_counter() - _t0
             else:

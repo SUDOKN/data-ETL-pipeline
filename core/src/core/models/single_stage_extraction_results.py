@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 from pydantic import BaseModel
 from typing import Generic, TypeVar
 
@@ -14,11 +16,6 @@ class SingleStageStats(BaseModel, Generic[ChunkExtractionResultT]):
     result: ChunkExtractionResultT
 
 
-SingleStageStatsMap = dict[
-    str, SingleStageStats[ChunkExtractionResultT]
-]  # "0:1000" -> {results: ('term1', 'term2', ...)}
-
-
 class LLMSingleStageExtractionMetadata(BaseExtractionMetadata):
     single_stage: ExtractionNodeMetadata
 
@@ -28,4 +25,4 @@ class SingleStageExtractionResults(
 ):
     metadata: LLMSingleStageExtractionMetadata
     result: SingleStageExtractionResultT  # compiled from chunk-level results
-    chunk_stats: SingleStageStatsMap[ChunkExtractionResultT]  # chunk map
+    chunk_stats: dict[str, SingleStageStats[ChunkExtractionResultT]]  # chunk map

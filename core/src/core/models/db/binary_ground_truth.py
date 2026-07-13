@@ -7,7 +7,7 @@ from core.models.binary_classification_result import (
     BaseClassificationDecision,
     BinaryClassificationStats,
 )
-from core.models.single_stage_extraction_results import SingleStageMetadata
+from core.models.single_stage_extraction_results import LLMSingleStageExtractionMetadata
 from data_etl_app.models.types_and_enums import (
     GroundTruthSource,
     BinaryClassificationTypeEnum,
@@ -59,7 +59,7 @@ class BinaryGroundTruth(Document):
 
     # following is a copy of what was extracted at the time of creating this ground truth
     # stored originally in the linked manufacturer
-    metadata: SingleStageMetadata
+    metadata: LLMSingleStageExtractionMetadata
     extraction_stats: BinaryClassificationStats
 
     corrections: list[HumanDecisionLog]

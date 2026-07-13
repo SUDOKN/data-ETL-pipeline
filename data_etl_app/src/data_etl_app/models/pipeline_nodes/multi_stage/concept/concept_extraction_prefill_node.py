@@ -1,5 +1,8 @@
+from __future__ import annotations
+
 import logging
 from datetime import datetime
+from typing import TYPE_CHECKING
 
 
 from core.models.concept_extraction_results import ConceptExtractionMetadata
@@ -21,7 +24,9 @@ from data_etl_app.models.pipeline_nodes.base.base_prefill_node import PrefillNod
 from data_etl_app.models.types_and_enums import ConceptTypeEnum
 from data_etl_app.models.pipeline_nodes.base.base_node import PipelineContext
 from data_etl_app.models.chunking_strat import ChunkingStrategy
-from scraper_app.models.scraped_text_file import ScrapedTextFile
+
+if TYPE_CHECKING:
+    from scraper_app.models.scraped_text_file import ScrapedTextFile
 
 from data_etl_app.services.brute_search_service import brute_search
 

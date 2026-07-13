@@ -1,10 +1,13 @@
+from __future__ import annotations
+
 import logging
 from abc import abstractmethod
 from datetime import datetime
-from typing import Optional
+from typing import TYPE_CHECKING, Optional
 
 from core.models.db.deferred_manufacturer import DeferredManufacturer
 from core.models.db.gpt_batch_request import GPTBatchRequest
+from core.models.gpt_batch_response_blob import GPTBatchResponse
 from core.models.prompt import Prompt
 from core.models.single_stage_extraction_results import LLMSingleStageExtractionMetadata
 from core.models.deferred_single_stage_extraction_requests import (
@@ -26,7 +29,13 @@ from data_etl_app.models.pipeline_nodes.base.base_llm_extraction_node import (
     ResultT,
 )
 from open_ai_key_app.models.field_types import GPTBatchRequestCustomID
-from scraper_app.models.scraped_text_file import ScrapedTextFile
+
+if TYPE_CHECKING:
+    from scraper_app.models.scraped_text_file import ScrapedTextFile
+
+from core.services.gpt_batch_request_service import (
+    dispatch_gpt_batch_request,
+)
 
 from data_etl_app.services.extraction.deferred_basic_field_service import (
     create_missing_basic_extraction_requests,
@@ -156,3 +165,14 @@ class SingleStageExtractionNode(
         logger.info(f"{batch_requests}")
 
         return batch_requests
+
+    async def dispatch_batch_request(
+        self,
+        gpt_batch_request: GPTBatchRequest,
+        metadata: LLMSingleStageExtractionMetadata,
+    ) -> GPTBatchResponse:
+        return await dispatch_gpt_batch_request(
+            gpt_batch_request=gpt_batch_request,
+            gpt_model=metadata.single_stage.llm_model,
+            model_params=metadata.single_stage.model_params,
+        )

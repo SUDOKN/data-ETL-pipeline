@@ -1,6 +1,8 @@
+from __future__ import annotations
+
 import logging
 from datetime import datetime
-from typing import Optional
+from typing import TYPE_CHECKING, Optional
 
 from core.models.address_extraction_result import (
     Address,
@@ -23,7 +25,9 @@ from data_etl_app.models.pipeline_nodes.single_stage.basic_fields.address_extrac
 from data_etl_app.models.pipeline_nodes.base.base_reconcile_node import ReconcileNode
 from core.models.llm_model import LLM_Model
 from open_ai_key_app.models.gpt_model_params import GPTModelParams
-from scraper_app.models.scraped_text_file import ScrapedTextFile
+
+if TYPE_CHECKING:
+    from scraper_app.models.scraped_text_file import ScrapedTextFile
 
 from core.services.manufacturer_service import update_manufacturer
 

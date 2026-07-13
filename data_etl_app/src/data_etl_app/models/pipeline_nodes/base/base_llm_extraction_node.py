@@ -4,7 +4,7 @@ import logging
 from datetime import datetime
 from abc import abstractmethod
 
-from typing import TypeVar, Generic, Union
+from typing import TYPE_CHECKING, TypeVar, Generic, Union
 
 from core.models.db.manufacturer import Manufacturer
 from core.models.db.deferred_manufacturer import DeferredManufacturer
@@ -38,7 +38,9 @@ from data_etl_app.models.types_and_enums import (
     LLMExtractedFieldTypeEnum,
 )
 from open_ai_key_app.models.field_types import GPTBatchRequestCustomID
-from scraper_app.models.scraped_text_file import ScrapedTextFile
+
+if TYPE_CHECKING:
+    from scraper_app.models.scraped_text_file import ScrapedTextFile
 
 from core.services.gpt_batch_request_queries import (
     find_completed_gpt_batch_request_ids_only,
