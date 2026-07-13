@@ -15,11 +15,11 @@ from core.models.field_types import (
     MatchedLabelAndReasonPair,
 )
 from core.models.llm_model import LLM_Model, NO_MODEL
-from core.models.prompt import Prompt
-from core.models.gpt_batch_response_blob import (
+from core.models.file_objects.prompt import Prompt
+from core.models.batch_request_objects.gpt_batch_response_blob import (
     ChatCompletionChoiceMessage,
 )
-from core.models.deferred_concept_extraction import (
+from core.models.deferred_extraction.deferred_concept_extraction import (
     ConceptExtractionRequestBundle,
     ConceptExtractionRequestMap,
 )

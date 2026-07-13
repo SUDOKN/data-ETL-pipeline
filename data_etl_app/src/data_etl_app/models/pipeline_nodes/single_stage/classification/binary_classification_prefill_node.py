@@ -1,7 +1,9 @@
 import logging
 
-from core.models.prompt import Prompt
-from core.models.single_stage_extraction_results import LLMSingleStageExtractionMetadata
+from core.models.file_objects.prompt import Prompt
+from core.models.extraction_results.single_stage_extraction_results import (
+    LLMSingleStageExtractionMetadata,
+)
 from data_etl_app.models.pipeline_nodes.single_stage.classification.binary_classification_node import (
     BinaryClassificationNode,
 )

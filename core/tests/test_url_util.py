@@ -9,6 +9,7 @@ from core.utils.url_util import (
     get_etld1_from_host,
     strip_scheme,
     get_final_landing_url,
+    get_final_landing_etld1,
 )
 
 
@@ -1255,3 +1256,14 @@ def test_get_final_landing_url():
     except ValueError:
         # Skip if sites are not accessible
         pytest.skip("Real HTTP sites not accessible")
+
+
+@patch("core.utils.url_util.get_final_landing_url")
+def test_get_final_landing_etld1(mock_get_final_landing_url):
+    """Test that the final landing eTLD+1 is derived from the resolved landing URL."""
+    mock_get_final_landing_url.return_value = "https://blog.example.co.uk/path"
+
+    assert get_final_landing_etld1("https://example.com/start") == "example.co.uk"
+    mock_get_final_landing_url.assert_called_once_with(
+        "https://example.com/start", timeout=10.0
+    )

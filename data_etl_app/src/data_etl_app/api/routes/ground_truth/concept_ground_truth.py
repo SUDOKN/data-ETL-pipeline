@@ -1,14 +1,16 @@
 import json
 import random
 from typing import Literal
-from core.models.queue_item import EmailUserErrand
+from core.models.queue_items.queue_item import EmailUserErrand
 from core.utils.aws.queue.gt_scrape_queue_util import push_item_to_gt_scrape_queue
 from fastapi import APIRouter, HTTPException, Request, Query, Depends
 from fastapi.responses import JSONResponse
 
 from core.models.db.manufacturer import Batch
-from core.models.to_scrape_item import ToScrapeItem
-from core.models.concept_extraction_results import ConceptExtractionResults
+from core.models.queue_items.to_scrape_item import ToScrapeItem
+from core.models.extraction_results.concept_extraction_results import (
+    ConceptExtractionResults,
+)
 from core.models.db.concept_ground_truth import (
     ConceptGroundTruth,
     DistillationResultCorrection,
@@ -101,7 +103,7 @@ async def fetch_concept_ground_truth_template(
         # push this new potential manufacturer to scrape queue and ask user to try again in a few minutes
         await push_item_to_gt_scrape_queue(
             ToScrapeItem(
-                accessible_normalized_url=mfg_url,
+                start_url=mfg_url,
                 batch=Batch(
                     title="Ground Truth API: concept Extraction Result",
                     timestamp=current_timestamp,  # ISO format for timestamp
@@ -483,7 +485,7 @@ async def get_concept_coverage_stats(
     Returns coverage statistics for all concepts of the given type.
 
     For each concept in the ontology, counts how many GT documents reference it.
-    A document counts if the concept appears in either `chunk_stats.results`
+    A document counts if the concept appears in either `chunk_stats.extraction_results`
     (raw extraction) OR `final_results` (human-corrected), i.e. the union.
 
     `total_documents_in_range`: count of distinct GT documents that contain at least
@@ -530,7 +532,7 @@ async def get_concept_coverage_stats(
     per_doc_f1: list[float] = []
 
     for doc in gt_docs:
-        results = set(doc.extraction_stats.results)
+        results = set(doc.extraction_stats.extraction_results)
         final = set(await get_corrected_results(doc))
         covered = results | final
         doc_covered_sets.append(covered)

@@ -13,7 +13,7 @@ from core.services.gpt_batch_service import (
     insert_gpt_batch_from_response,
     upsert_latest_gpt_batch_by_external_batch,
 )
-from core.models.jsonl_batch_file import (
+from core.models.file_objects.jsonl_batch_file import (
     JSONLBatchFile,
 )
 from core.models.db.api_key_bundle import APIKeyBundle
@@ -24,7 +24,6 @@ from open_ai_key_app.utils.openai_file_util import (
     upload_file_to_openai_using_parts,
 )
 from open_ai_key_app.utils.openai_batch_util import fetch_all_batches
-
 
 logger = logging.getLogger(__name__)
 

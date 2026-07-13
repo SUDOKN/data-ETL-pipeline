@@ -6,7 +6,7 @@ from pathlib import Path
 from typing import Optional
 
 
-from core.models.base_files import CSVFile
+from core.models.file_objects.base_files import CSVFile
 from core.models.db.deferred_manufacturer import DeferredManufacturer
 from core.utils.batch_jsonl_file_writer import (
     BatchRequestJSONLFileWriter,

@@ -2,8 +2,8 @@ from beanie import Document
 from datetime import datetime
 from pydantic import Field
 
-from core.models.gpt_batch_request_blob import GPTBatchRequestBlob
-from core.models.gpt_batch_response_blob import GPTBatchResponse
+from core.models.batch_request_objects.gpt_batch_request_blob import GPTBatchRequestBlob
+from core.models.batch_request_objects.gpt_batch_response_blob import GPTBatchResponse
 
 
 class GPTBatchRequest(Document):

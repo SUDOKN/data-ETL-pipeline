@@ -69,19 +69,19 @@ def is_llm_extraction_complete(manufacturer: Manufacturer) -> bool:
 
 async def find_random_manufacturer_url() -> MfgURLType | None:
     """
-    Fetch a random manufacturer URL from the database.
+    Fetch a random manufacturer starting eTLD+1 from the database.
 
     Returns:
-        str: A random manufacturer URL.
+        str: A random manufacturer starting eTLD+1.
     """
     agg_cursor = await Manufacturer.aggregate(
         [
             {"$match": {"is_manufacturer.result.answer": True}},
             {"$sample": {"size": 1}},
-            {"$project": {Manufacturer.url_accessible_at: 1}},
+            {"$project": {"etld1": 1}},
         ]
     ).to_list(length=1)
-    mfg_url = str(agg_cursor[0]["url_accessible_at"]) if agg_cursor else None
+    mfg_url = str(agg_cursor[0]["etld1"]) if agg_cursor else None
     return mfg_url
 
 

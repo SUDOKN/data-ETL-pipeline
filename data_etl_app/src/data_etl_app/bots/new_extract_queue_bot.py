@@ -29,8 +29,8 @@ from data_etl_app.dependencies.aws_clients import (
 
 from core.models.db.manufacturer import Manufacturer
 from core.models.db.extraction_error import ExtractionError
-from core.models.to_extract_item import ToExtractItem
-from core.models.binary_classification_result import (
+from core.models.queue_items.to_extract_item import ToExtractItem
+from core.models.extraction_results.binary_classification_result import (
     BaseClassificationDecision,
 )
 from data_etl_app.models.types_and_enums import BinaryClassificationTypeEnum

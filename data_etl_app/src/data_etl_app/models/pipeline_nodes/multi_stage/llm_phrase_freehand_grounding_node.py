@@ -6,14 +6,16 @@ from typing import TYPE_CHECKING, Optional
 
 from core.models.db.deferred_manufacturer import DeferredManufacturer
 from core.models.db.gpt_batch_request import GPTBatchRequest
-from core.models.deferred_keyword_extraction import (
+from core.models.deferred_extraction.deferred_keyword_extraction import (
     DeferredKeywordExtractionRequests,
     KeywordExtractionRequestMap,
 )
 from core.models.field_types import LLMFreehandGroundingResults
-from core.models.gpt_batch_response_blob import GPTBatchResponse
-from core.models.keyword_extraction_results import KeywordExtractionMetadata
-from core.models.prompt import Prompt
+from core.models.batch_request_objects.gpt_batch_response_blob import GPTBatchResponse
+from core.models.extraction_results.keyword_extraction_results import (
+    KeywordExtractionMetadata,
+)
+from core.models.file_objects.prompt import Prompt
 from core.services.gpt_batch_request_service import dispatch_gpt_batch_request
 from data_etl_app.models.pipeline_nodes.base.base_llm_extraction_node import (
     BaseLLMExtractionNode,

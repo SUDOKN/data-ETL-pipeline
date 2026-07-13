@@ -1,5 +1,5 @@
 from dataclasses import dataclass
-from core.models.base_files import JSONLFile
+from core.models.file_objects.base_files import JSONLFile
 
 
 @dataclass

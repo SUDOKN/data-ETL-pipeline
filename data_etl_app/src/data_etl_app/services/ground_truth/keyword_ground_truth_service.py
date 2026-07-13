@@ -9,7 +9,9 @@ from core.utils.aws.s3.scraped_text_util import (
     download_scraped_text_from_s3_by_filename,
 )
 from core.models.db.manufacturer import Manufacturer
-from core.models.keyword_extraction_results import KeywordExtractionResults
+from core.models.extraction_results.keyword_extraction_results import (
+    KeywordExtractionResults,
+)
 from core.models.db.keyword_ground_truth import (
     HumanKeywordCorrection,
     KeywordGroundTruth,

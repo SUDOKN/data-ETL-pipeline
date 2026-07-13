@@ -2,7 +2,7 @@ import asyncio
 import logging
 import litellm
 
-from core.models.gpt_batch_request_blob import GPTBatchRequestBlob
+from core.models.batch_request_objects.gpt_batch_request_blob import GPTBatchRequestBlob
 from core.models.llm_model import LLM_Model
 from open_ai_key_app.models.gpt_model_params import (
     GPTRequestBody,

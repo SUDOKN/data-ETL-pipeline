@@ -2,7 +2,7 @@ import logging
 from datetime import datetime
 from openai.types.chat import ChatCompletion
 
-from core.models.gpt_batch_response_blob import (
+from core.models.batch_request_objects.gpt_batch_response_blob import (
     GPTBatchResponse,
     ChatCompletionResponse,
     ChatCompletionChoice,

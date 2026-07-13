@@ -81,14 +81,28 @@ def _to_snake_case(name: str) -> str:
     return re.sub(r"([a-z0-9])([A-Z])", r"\1_\2", s1).lower()
 
 
-def _resolve_refs(node: dict, defs: dict) -> dict:
-    """Recursively inline all $ref pointers using the top-level $defs map."""
+def _resolve_refs(node: dict, defs: dict, stack: set[str] | None = None) -> dict:
+    """Recursively inline all $ref pointers using the top-level $defs map.
+
+    Recursive refs are downgraded to a plain object schema so generation can
+    complete for recursive Pydantic models.
+    """
+    if stack is None:
+        stack = set()
+
     if "$ref" in node:
         ref_name = node["$ref"].split("/")[-1]
         if ref_name not in defs:
             logger.warning(f"$ref '{ref_name}' not found in $defs — using empty object")
             return {}
-        resolved = _resolve_refs(defs[ref_name], defs)
+        if ref_name in stack:
+            return {"type": "object"}
+
+        stack.add(ref_name)
+        try:
+            resolved = _resolve_refs(defs[ref_name], defs, stack)
+        finally:
+            stack.remove(ref_name)
         extra = {k: v for k, v in node.items() if k != "$ref"}
         return {**resolved, **extra} if extra else resolved
 
@@ -97,10 +111,10 @@ def _resolve_refs(node: dict, defs: dict) -> dict:
         if key == "$defs":
             continue
         elif isinstance(value, dict):
-            result[key] = _resolve_refs(value, defs)
+            result[key] = _resolve_refs(value, defs, stack)
         elif isinstance(value, list):
             result[key] = [
-                _resolve_refs(item, defs) if isinstance(item, dict) else item
+                _resolve_refs(item, defs, stack) if isinstance(item, dict) else item
                 for item in value
             ]
         else:

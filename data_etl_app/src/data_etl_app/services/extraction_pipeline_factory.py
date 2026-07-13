@@ -1,12 +1,14 @@
 from datetime import datetime
 
 from core.models.llm_model import LLM_Model
-from core.models.llm_phrase_extraction_results import (
+from core.models.extraction_results.llm_phrase_extraction_results import (
     ExtractionNodeMetadata,
     RecursiveSearchNodeMetadata,
 )
-from core.models.prompt import Prompt
-from core.models.single_stage_extraction_results import LLMSingleStageExtractionMetadata
+from core.models.file_objects.prompt import Prompt
+from core.models.extraction_results.single_stage_extraction_results import (
+    LLMSingleStageExtractionMetadata,
+)
 from open_ai_key_app.models.gpt_model_params import GPTModelParams
 
 from data_etl_app.models.chunking_strat import (
@@ -342,7 +344,7 @@ class ExtractionPipelineFactory:
             KeywordTypeEnum.products: ExtractionPipelineFactory.create_keyword_extraction_pipeline(
                 keyword_type=KeywordTypeEnum.products,
                 chunk_strategy=PRODUCT_CHUNKING_STRAT,
-                search_prompt=prompt_service.extract_any_product_prompt,
+                search_prompt=prompt_service.product_phrase_search_prompt,
                 recursive_search_prompt=prompt_service.product_phrase_recursive_search_prompt,
                 phrase_relationship_prompt=prompt_service.product_phrase_relationship_prompt,
                 phrase_relationship_screening_prompt=prompt_service.product_phrase_relationship_screening_prompt,
@@ -357,7 +359,7 @@ class ExtractionPipelineFactory:
                 concept_type=ConceptTypeEnum.certificates,
                 chunk_strategy=CERTIFICATE_CHUNKING_STRAT,
                 ontology=ontology,
-                search_prompt=prompt_service.extract_any_certificate_prompt,
+                search_prompt=prompt_service.certificate_phrase_search_prompt,
                 recursive_search_prompt=prompt_service.certificate_phrase_recursive_search_prompt,
                 phrase_relationship_prompt=prompt_service.certificate_phrase_relationship_prompt,
                 phrase_relationship_screening_prompt=prompt_service.certificate_phrase_relationship_screening_prompt,
@@ -372,7 +374,7 @@ class ExtractionPipelineFactory:
                 concept_type=ConceptTypeEnum.industries,
                 chunk_strategy=INDUSTRY_CHUNKING_STRAT,
                 ontology=ontology,
-                search_prompt=prompt_service.extract_any_industry_prompt,
+                search_prompt=prompt_service.industry_phrase_search_prompt,
                 recursive_search_prompt=prompt_service.industry_phrase_recursive_search_prompt,
                 phrase_relationship_prompt=prompt_service.industry_phrase_relationship_prompt,
                 phrase_relationship_screening_prompt=prompt_service.industry_phrase_relationship_screening_prompt,
@@ -387,7 +389,7 @@ class ExtractionPipelineFactory:
                 concept_type=ConceptTypeEnum.process_caps,
                 chunk_strategy=PROCESS_CAP_CHUNKING_STRAT,
                 ontology=ontology,
-                search_prompt=prompt_service.extract_any_process_cap_prompt,
+                search_prompt=prompt_service.process_cap_phrase_search_prompt,
                 recursive_search_prompt=prompt_service.process_cap_phrase_recursive_search_prompt,
                 phrase_relationship_prompt=prompt_service.process_cap_phrase_relationship_prompt,
                 phrase_relationship_screening_prompt=prompt_service.process_cap_phrase_relationship_screening_prompt,
@@ -402,7 +404,7 @@ class ExtractionPipelineFactory:
                 concept_type=ConceptTypeEnum.material_caps,
                 chunk_strategy=MATERIAL_CAP_CHUNKING_STRAT,
                 ontology=ontology,
-                search_prompt=prompt_service.extract_any_material_cap_prompt,
+                search_prompt=prompt_service.material_cap_phrase_search_prompt,
                 recursive_search_prompt=prompt_service.material_cap_phrase_recursive_search_prompt,
                 phrase_relationship_prompt=prompt_service.material_cap_phrase_relationship_prompt,
                 phrase_relationship_screening_prompt=prompt_service.material_cap_phrase_relationship_screening_prompt,

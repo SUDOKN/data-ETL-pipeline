@@ -2,7 +2,7 @@ from __future__ import annotations
 import logging
 
 from core.models.db.gpt_batch_request import GPTBatchRequest
-from core.models.prompt import Prompt
+from core.models.file_objects.prompt import Prompt
 from data_etl_app.models.skos_concept import Concept
 from data_etl_app.models.pipeline_nodes.base.base_node import PipelineContext
 from data_etl_app.models.pipeline_nodes.multi_stage.llm_phrase_recursive_grounding_node import (

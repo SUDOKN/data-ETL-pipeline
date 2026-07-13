@@ -8,13 +8,13 @@ from datetime import datetime
 from typing import Optional
 
 from core.models.field_types import LLMPhraseRelationshipResults, LLMScreeningResults
-from core.models.prompt import Prompt
+from core.models.file_objects.prompt import Prompt
 from core.models.llm_model import LLM_Model, NO_MODEL
-from core.models.gpt_batch_response_blob import (
+from core.models.batch_request_objects.gpt_batch_response_blob import (
     ChatCompletionChoiceMessage,
 )
 from core.models.db.gpt_batch_request import GPTBatchRequest
-from core.models.deferred_phrase_extraction_requests import (
+from core.models.deferred_extraction.deferred_phrase_extraction_requests import (
     LLMPhraseExtractionRequestMap,
     LLMPhraseExtractionRequestBundle,
 )

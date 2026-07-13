@@ -152,7 +152,7 @@ def calculate_final_keyword_results(
     Returns None if no corrections were made.
     """
 
-    final_results: set[str] = set(keyword_gt.extraction_stats.results)
+    final_results: set[str] = set(keyword_gt.extraction_stats.extraction_results)
 
     last_correction_log = keyword_gt.corrections[-1] if keyword_gt.corrections else None
     if not last_correction_log:

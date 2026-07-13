@@ -2,7 +2,9 @@ import json
 import logging
 from typing import Optional
 
-from core.models.business_description_extraction_result import BusinessDescription
+from core.models.extraction_results.business_description_extraction_result import (
+    BusinessDescription,
+)
 
 logger = logging.getLogger(__name__)
 

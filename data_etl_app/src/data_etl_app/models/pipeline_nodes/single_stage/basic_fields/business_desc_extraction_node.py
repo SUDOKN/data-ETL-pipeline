@@ -4,11 +4,13 @@ import logging
 import traceback
 from typing import TYPE_CHECKING
 
-from core.models.business_description_extraction_result import BusinessDescription
-from core.models.deferred_single_stage_extraction_requests import (
+from core.models.extraction_results.business_description_extraction_result import (
+    BusinessDescription,
+)
+from core.models.deferred_extraction.deferred_single_stage_extraction_requests import (
     SingleStageExtractionRequestBundle,
 )
-from core.models.prompt import Prompt
+from core.models.file_objects.prompt import Prompt
 from core.models.db.gpt_batch_request import GPTBatchRequest
 
 if TYPE_CHECKING:

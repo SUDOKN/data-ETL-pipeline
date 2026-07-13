@@ -29,8 +29,8 @@ from data_etl_app.dependencies.aws_clients import (
 
 from core.models.db.scraping_error import ScrapingError
 from core.models.db.manufacturer import Manufacturer
-from core.models.to_extract_item import ToExtractItem
-from core.models.to_scrape_item import ToScrapeItem
+from core.models.queue_items.to_extract_item import ToExtractItem
+from core.models.queue_items.to_scrape_item import ToScrapeItem
 
 from core.utils.aws.s3.scraped_text_util import (
     delete_scraped_text_from_s3_by_etld1,
@@ -164,10 +164,9 @@ async def process_queue(
 
             # Create single timestamp for this polled item - all errors will use this timestamp
             polled_at = get_current_time()
-            mfg_etld = get_etld1_from_host(item.accessible_normalized_url)
-
+            mfg_etld = get_etld1_from_host(item.start_url)
             logger.info(
-                f"Processing item: {item.accessible_normalized_url} (Batch: {item.batch.title})"
+                f"Processing item: {item.start_url} (Batch: {item.batch.title})"
             )
             try:
                 manufacturer = await find_manufacturer_by_etld1(mfg_etld)
@@ -191,7 +190,7 @@ async def process_queue(
                     manufacturer = Manufacturer(
                         created_at=polled_at,
                         etld1=mfg_etld,
-                        url_accessible_at=item.accessible_normalized_url,
+                        etld1_accessible_at=scraped_file.etld1_accessible_at,
                         scraped_text_file_num_tokens=scraped_file.num_tokens,
                         scraped_text_file_version_id=scraped_file.s3_version_id,
                         batches=[item.batch],
@@ -239,23 +238,19 @@ async def process_queue(
                         f"is not newer than polled_at ({polled_at})"
                     )
             except NoScrapedFileFoundError as e:
-                logger.warning(
-                    f"No scraped file for {item.accessible_normalized_url}: {e}"
-                )
+                logger.warning(f"No scraped file for {item.start_url}: {e}")
                 if item.email_errand:
                     await item.email_errand.run_errand(
                         subject=str(e),
                         html_content=f"<p>{str(e)}</p>",
                     )
             except Exception as e:
-                logger.error(
-                    f"Error processing manufacturer {item.accessible_normalized_url}: {e}"
-                )
+                logger.error(f"Error processing manufacturer {item.start_url}: {e}")
                 await ScrapingError.insert_one(
                     ScrapingError(
                         created_at=polled_at,
                         error=str(e),
-                        url=item.accessible_normalized_url,
+                        url=item.start_url,
                         batch=item.batch,
                     )
                 )
@@ -278,7 +273,7 @@ async def get_valid_scraped_file(
     scraper: ScraperService,
     llm_model: LLM_Model,
 ) -> ScrapedTextFile:
-    mfg_etld = get_etld1_from_host(item.accessible_normalized_url)
+    mfg_etld = get_etld1_from_host(item.start_url)
     existing_scraped_file: ScrapedTextFile | None = None
     if manufacturer:
         logger.info(
@@ -301,7 +296,7 @@ async def get_valid_scraped_file(
                 ScrapingError(
                     created_at=polled_at,
                     error=(f"{subject} details={str(e)}" if e else subject),
-                    url=item.accessible_normalized_url,
+                    url=item.start_url,
                     batch=item.batch,
                 )
             )
@@ -362,7 +357,7 @@ async def get_valid_scraped_file(
                     ScrapingError(
                         created_at=polled_at,
                         error=(f"{subject} details={str(e)}" if e else subject),
-                        url=item.accessible_normalized_url,
+                        url=item.start_url,
                         batch=item.batch,
                     )
                 )
@@ -395,7 +390,7 @@ async def get_valid_scraped_file(
     if not existing_scraped_file:
         logger.info(f"No valid scraped file found for {mfg_etld}. Starting new scrape.")
         # now we must scrape and upload a new file
-        scraping_result = scraper.scrape(item.accessible_normalized_url, llm_model)
+        scraping_result = scraper.scrape(item.start_url, llm_model)
         # Save individual URL errors to database (using consistent timestamp)
         if scraping_result.has_errors:
             logger.warning(
@@ -406,7 +401,7 @@ async def get_valid_scraped_file(
                     ScrapingError(
                         created_at=polled_at,  # Use consistent timestamp from main loop
                         error=f"URL: {error_info['url']} (depth {error_info['depth']}) - {error_info['error_type']}: {error_info['error']}",
-                        url=item.accessible_normalized_url,  # Main manufacturer URL for grouping
+                        url=item.start_url,  # Main manufacturer URL for grouping
                         batch=item.batch,
                     )
                 )
@@ -414,21 +409,19 @@ async def get_valid_scraped_file(
                 await item.email_errand.run_errand(
                     subject=f"GT: Scraping completed for {mfg_etld} with errors",
                     html_content=(
-                        f"<p>Scraping completed for {item.accessible_normalized_url} with errors.</p>"
+                        f"<p>Scraping completed for {item.start_url} with errors.</p>"
                         f"<p>We have saved the error details to our database and will review them shortly.</p>"
                         f"<p>Please try again in a few minutes.</p>"
                     ),
                 )
         # Log scraping statistics
-        logger.info(f"📊 Scraping stats for {item.accessible_normalized_url}:")
+        logger.info(f"📊 Scraping stats for {item.start_url}:")
         scraping_result.print_stats()
 
         existing_scraped_file = await ScrapedTextFile.upload_to_s3_and_create(  # throws error if not valid or scraping_result.timed_out
             item.batch, scraping_result, mfg_etld
         )
-        logger.info(
-            f"Uploaded new scraped text file for {item.accessible_normalized_url} to S3."
-        )
+        logger.info(f"Uploaded new scraped text file for {item.start_url} to S3.")
 
     return existing_scraped_file
 

@@ -9,7 +9,7 @@ from urllib.parse import urlparse
 from aiobotocore.session import get_session
 from core.utils.aws.queue.sqs_scraper_client_util import make_sqs_scraper_client
 from core.utils.aws.queue.scrape_queue_util import push_item_to_scrape_queue
-from core.models.to_scrape_item import ToScrapeItem
+from core.models.queue_items.to_scrape_item import ToScrapeItem
 from core.models.db.manufacturer import Batch
 
 logger = logging.getLogger(__name__)
@@ -66,12 +66,12 @@ async def main():
                 batch = Batch(title=batch_title, timestamp=datetime.now())
 
                 # Create ToScrapeItem
-                item = ToScrapeItem(accessible_normalized_url=url, batch=batch)
+                item = ToScrapeItem(start_url=url, batch=batch)
 
                 # Push to queue
                 await push_item_to_scrape_queue(sqs_client, item)
                 logger.info(
-                    f"Pushed {item.accessible_normalized_url} to scrape queue with batch '{batch_title}'"
+                    f"Pushed {item.start_url} to scrape queue with batch '{batch_title}'"
                 )
 
             except Exception as e:

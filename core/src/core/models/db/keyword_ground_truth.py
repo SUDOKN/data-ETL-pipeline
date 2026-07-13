@@ -5,7 +5,7 @@ from pydantic import BaseModel, ValidationInfo, computed_field, Field, field_val
 
 from core.utils.time_util import get_current_time
 from core.models.field_types import MfgETLDType, S3FileVersionIDType
-from core.models.keyword_extraction_results import (
+from core.models.extraction_results.keyword_extraction_results import (
     KeywordExtractionMetadata,
     KeywordExtractionStats,
 )

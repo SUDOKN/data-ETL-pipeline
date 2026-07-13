@@ -2,7 +2,7 @@ import os
 import json
 import logging
 
-from core.models.to_extract_item import ToExtractItem
+from core.models.queue_items.to_extract_item import ToExtractItem
 from core.constants import LONG_POLL_INTERVAL
 from core.dependencies.aws_clients import (
     get_extract_queue_client,

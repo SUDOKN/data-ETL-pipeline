@@ -2,7 +2,7 @@ from __future__ import annotations
 import logging
 from typing import TYPE_CHECKING
 
-from core.models.prompt import Prompt
+from core.models.file_objects.prompt import Prompt
 from data_etl_app.models.pipeline_nodes.multi_stage.llm_phrase_search_node import (
     LLMPhraseSearchNode,
 )

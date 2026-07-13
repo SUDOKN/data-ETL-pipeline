@@ -30,7 +30,7 @@ from core.utils.mongo_client import (
 from core.models.llm_model import GPT_4o_mini
 from core.models.llm_model import LLM_Model
 
-from core.models.binary_classification_result import (
+from core.models.extraction_results.binary_classification_result import (
     BinaryClassificationStats,
     BinaryClassificationStats,
 )

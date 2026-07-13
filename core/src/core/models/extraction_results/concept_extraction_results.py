@@ -1,6 +1,6 @@
 from pydantic import BaseModel
 
-from core.models.llm_phrase_extraction_results import (
+from core.models.extraction_results.llm_phrase_extraction_results import (
     ExtractionNodeMetadata,
     LLMPhraseExtractionStats,
     LLMPhraseExtractionMetadata,

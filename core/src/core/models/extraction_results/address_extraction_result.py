@@ -1,6 +1,6 @@
 from pydantic import BaseModel
 from typing import Optional
-from core.models.single_stage_extraction_results import (
+from core.models.extraction_results.single_stage_extraction_results import (
     SingleStageExtractionResults,
     SingleStageStats,
 )

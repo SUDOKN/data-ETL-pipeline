@@ -113,12 +113,34 @@ DefaultLLMModel: LLM_Model = GPT_4o_mini
 
 MODEL_REGISTRY: list[LLM_Model] = [
     GPT_4o_mini,
+    GPT_4o,
     GPT_4_1,
     GPT_4_1_mini,
+    GPT_4_1_nano,
     GPT_o3_mini,
     GPT_5_nano,
     GPT_5_mini,
     GPT_5,
     GPT_5_1,
     GPT_5_2,
+    Claude_3_5_Haiku,
+    Claude_3_5_Sonnet,
+    Claude_3_7_Sonnet,
+    Gemini_2_0_Flash,
+    Gemini_2_5_Flash,
+    Gemini_2_5_Pro,
+    NO_MODEL,
 ]
+
+
+def get_llm_model_by_name(name: str) -> LLM_Model:
+    """Return the LLM_Model whose name matches the supplied string.
+
+    Matching is case-insensitive. Raises ValueError if no registered model
+    matches the requested name.
+    """
+    normalized = name.lower()
+    for model in MODEL_REGISTRY:
+        if model.name.lower() == normalized:
+            return model
+    raise ValueError(f"Unknown LLM model name: {name}")

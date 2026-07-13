@@ -1,7 +1,7 @@
 from pydantic import BaseModel, Field
 from typing import Optional
 
-from core.models.llm_phrase_extraction_results import (
+from core.models.extraction_results.llm_phrase_extraction_results import (
     LLMPhraseExtractionMetadata,
 )
 from open_ai_key_app.models.field_types import GPTBatchRequestCustomID

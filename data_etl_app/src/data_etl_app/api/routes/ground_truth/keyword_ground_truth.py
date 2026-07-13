@@ -4,7 +4,7 @@ from fastapi import APIRouter, HTTPException, Request, Query, Depends
 from fastapi.responses import JSONResponse
 
 from core.models.db.manufacturer import Batch
-from core.models.to_scrape_item import ToScrapeItem
+from core.models.queue_items.to_scrape_item import ToScrapeItem
 
 from core.services.manufacturer_service import (
     find_manufacturer_by_etld1,
@@ -26,7 +26,9 @@ from core.utils.aws.s3.scraped_text_util import (
     download_scraped_text_from_s3_by_mfg_etld1,
 )
 
-from core.models.keyword_extraction_results import KeywordExtractionResults
+from core.models.extraction_results.keyword_extraction_results import (
+    KeywordExtractionResults,
+)
 from core.models.db.keyword_ground_truth import (
     HumanKeywordCorrection,
     KeywordGroundTruth,
@@ -82,6 +84,7 @@ async def fetch_keyword_ground_truth_template(
                 status_code=404,
                 detail="Something went wrong finding a random mfg_url. Please provide a valid mfg_url instead.",
             )
+        mfg_url = get_complete_url_with_compatible_protocol(mfg_url)
     else:
         try:
             _, mfg_url = get_normalized_url(
@@ -103,7 +106,7 @@ async def fetch_keyword_ground_truth_template(
         # await push_item_to_priority_scrape_queue(
         await push_item_to_priority_scrape_queue(
             ToScrapeItem(
-                accessible_normalized_url=mfg_url,
+                start_url=mfg_url,
                 batch=Batch(
                     title="Ground Truth API: keyword Extraction Result",
                     timestamp=current_timestamp,  # ISO format for timestamp
@@ -131,7 +134,7 @@ async def fetch_keyword_ground_truth_template(
         # await push_item_to_priority_scrape_queue(
         await push_item_to_priority_scrape_queue(
             ToScrapeItem(
-                accessible_normalized_url=mfg_url,
+                start_url=mfg_url,
                 batch=Batch(
                     title=f"Ground Truth API: Keyword Data for `{keyword_type.value}` missing",
                     timestamp=current_timestamp,  # ISO format for timestamp

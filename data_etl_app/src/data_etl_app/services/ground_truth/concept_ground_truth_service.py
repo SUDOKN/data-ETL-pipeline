@@ -7,7 +7,9 @@ from core.models.db.manufacturer import Manufacturer
 from core.models.field_types import (
     S3FileVersionIDType,
 )
-from core.models.concept_extraction_results import ConceptExtractionResults
+from core.models.extraction_results.concept_extraction_results import (
+    ConceptExtractionResults,
+)
 from core.models.db.concept_ground_truth import (
     ConceptGroundTruth,
     ConceptCorrectionLog,
@@ -464,7 +466,7 @@ async def get_corrected_results(
 
     last_correction_log = concept_gt.corrections[-1] if concept_gt.corrections else None
     if not last_correction_log:
-        return list(concept_gt.extraction_stats.results)
+        return list(concept_gt.extraction_stats.extraction_results)
     else:
         return calculate_corrected_concept_results(
             known_concepts=known_concepts,

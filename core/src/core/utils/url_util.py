@@ -192,3 +192,8 @@ def get_final_landing_url(start_url: str, timeout: float = 10.0) -> str:
             return r.url  # requests resolves relative redirects & updates this
         finally:
             r.close()
+
+
+def get_final_landing_etld1(start_url: str, timeout: float = 10.0) -> str:
+    """Return the eTLD+1 of the final landing URL reached from a start URL."""
+    return get_etld1_from_host(get_final_landing_url(start_url, timeout=timeout))

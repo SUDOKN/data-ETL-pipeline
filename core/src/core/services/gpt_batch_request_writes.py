@@ -4,8 +4,8 @@ from typing import Any, Optional
 from pymongo.errors import BulkWriteError
 from pymongo import UpdateOne
 
-from core.models.gpt_batch_response_blob import GPTBatchResponse
-from core.models.gpt_batch_response_blob import GPTBatchResponse
+from core.models.batch_request_objects.gpt_batch_response_blob import GPTBatchResponse
+from core.models.batch_request_objects.gpt_batch_response_blob import GPTBatchResponse
 from core.models.db.gpt_batch import GPTBatch
 from core.models.db.gpt_batch_request import GPTBatchRequest
 from data_etl_app.models.types_and_enums import LLMExtractedFieldTypeEnum

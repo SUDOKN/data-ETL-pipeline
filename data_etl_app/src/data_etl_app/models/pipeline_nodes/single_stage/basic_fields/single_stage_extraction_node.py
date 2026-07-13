@@ -7,10 +7,12 @@ from typing import TYPE_CHECKING, Optional
 
 from core.models.db.deferred_manufacturer import DeferredManufacturer
 from core.models.db.gpt_batch_request import GPTBatchRequest
-from core.models.gpt_batch_response_blob import GPTBatchResponse
-from core.models.prompt import Prompt
-from core.models.single_stage_extraction_results import LLMSingleStageExtractionMetadata
-from core.models.deferred_single_stage_extraction_requests import (
+from core.models.batch_request_objects.gpt_batch_response_blob import GPTBatchResponse
+from core.models.file_objects.prompt import Prompt
+from core.models.extraction_results.single_stage_extraction_results import (
+    LLMSingleStageExtractionMetadata,
+)
+from core.models.deferred_extraction.deferred_single_stage_extraction_requests import (
     SingleStageExtractionRequestMap,
     SingleStageExtractionRequestBundle,
     DeferredSingleStageExtractionRequests,

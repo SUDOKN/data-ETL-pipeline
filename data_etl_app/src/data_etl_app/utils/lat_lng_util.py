@@ -2,7 +2,7 @@ import os
 from typing import Optional
 import googlemaps
 
-from core.models.address_extraction_result import Address
+from core.models.extraction_results.address_extraction_result import Address
 
 _gmaps: Optional[googlemaps.Client] = None
 

@@ -4,11 +4,11 @@ from datetime import datetime
 import traceback
 from typing import TYPE_CHECKING
 
-from core.models.prompt import Prompt
-from core.models.binary_classification_result import (
+from core.models.file_objects.prompt import Prompt
+from core.models.extraction_results.binary_classification_result import (
     LLMBinaryClassification,
 )
-from core.models.deferred_single_stage_extraction_requests import (
+from core.models.deferred_extraction.deferred_single_stage_extraction_requests import (
     SingleStageExtractionRequestBundle,
 )
 from core.models.db.gpt_batch_request import GPTBatchRequest

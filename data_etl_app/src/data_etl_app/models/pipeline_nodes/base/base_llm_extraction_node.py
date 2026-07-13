@@ -9,21 +9,23 @@ from typing import TYPE_CHECKING, TypeVar, Generic, Union
 from core.models.db.manufacturer import Manufacturer
 from core.models.db.deferred_manufacturer import DeferredManufacturer
 from core.models.db.gpt_batch_request import GPTBatchRequest
-from core.models.gpt_batch_response_blob import (
+from core.models.batch_request_objects.gpt_batch_response_blob import (
     GPTBatchResponse,
 )
-from core.models.deferred_phrase_extraction_requests import (
+from core.models.deferred_extraction.deferred_phrase_extraction_requests import (
     DeferredLLMPhraseExtractionRequests,
     LLMPhraseExtractionRequestMap,
     LLMPhraseExtractionMetadata,
 )
-from core.models.deferred_concept_extraction import (
+from core.models.deferred_extraction.deferred_concept_extraction import (
     ConceptExtractionRequestMap,
     ConceptExtractionMetadata,
     DeferredConceptExtractionRequests,
 )
-from core.models.single_stage_extraction_results import LLMSingleStageExtractionMetadata
-from core.models.deferred_single_stage_extraction_requests import (
+from core.models.extraction_results.single_stage_extraction_results import (
+    LLMSingleStageExtractionMetadata,
+)
+from core.models.deferred_extraction.deferred_single_stage_extraction_requests import (
     SingleStageExtractionRequestMap,
     LLMSingleStageExtractionMetadata,
     DeferredSingleStageExtractionRequests,

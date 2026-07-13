@@ -2,7 +2,7 @@ import os
 import json
 import logging
 
-from core.models.to_scrape_item import ToScrapeItem
+from core.models.queue_items.to_scrape_item import ToScrapeItem
 from core.constants import LONG_POLL_INTERVAL
 from core.dependencies.aws_clients import get_scrape_queue_client
 
@@ -29,7 +29,7 @@ async def push_item_to_scrape_queue(item: ToScrapeItem):
         MessageBody=item.model_dump_json(),
     )
     logger.info(
-        f"Sent ToScrapeItem for {item.accessible_normalized_url} to scrape queue: {SCRAPE_QUEUE_URL}"
+        f"Sent ToScrapeItem for {item.start_url} to scrape queue: {SCRAPE_QUEUE_URL}"
     )
 
 

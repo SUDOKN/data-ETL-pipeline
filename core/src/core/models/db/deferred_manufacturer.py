@@ -5,13 +5,13 @@ from datetime import datetime
 import logging
 
 from core.models.field_types import MfgETLDType, S3FileVersionIDType
-from core.models.deferred_single_stage_extraction_requests import (
+from core.models.deferred_extraction.deferred_single_stage_extraction_requests import (
     DeferredSingleStageExtractionRequests,
 )
-from core.models.deferred_keyword_extraction import (
+from core.models.deferred_extraction.deferred_keyword_extraction import (
     DeferredKeywordExtractionRequests,
 )
-from core.models.deferred_concept_extraction import (
+from core.models.deferred_extraction.deferred_concept_extraction import (
     DeferredConceptExtractionRequests,
 )
 

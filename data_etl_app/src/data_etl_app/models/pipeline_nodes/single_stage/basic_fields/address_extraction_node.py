@@ -5,9 +5,9 @@ import traceback
 from typing import TYPE_CHECKING
 
 from core.models.db.gpt_batch_request import GPTBatchRequest
-from core.models.prompt import Prompt
-from core.models.address_extraction_result import Address
-from core.models.deferred_single_stage_extraction_requests import (
+from core.models.file_objects.prompt import Prompt
+from core.models.extraction_results.address_extraction_result import Address
+from core.models.deferred_extraction.deferred_single_stage_extraction_requests import (
     SingleStageExtractionRequestBundle,
 )
 from data_etl_app.models.types_and_enums import (

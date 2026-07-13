@@ -7,12 +7,14 @@ from typing import TYPE_CHECKING
 
 from core.models.db.manufacturer import Manufacturer
 from core.models.db.deferred_manufacturer import DeferredManufacturer
-from core.models.deferred_single_stage_extraction_requests import (
+from core.models.deferred_extraction.deferred_single_stage_extraction_requests import (
     SingleStageExtractionRequestBundle,
     DeferredSingleStageExtractionRequests,
 )
-from core.models.prompt import Prompt
-from core.models.single_stage_extraction_results import LLMSingleStageExtractionMetadata
+from core.models.file_objects.prompt import Prompt
+from core.models.extraction_results.single_stage_extraction_results import (
+    LLMSingleStageExtractionMetadata,
+)
 from data_etl_app.models.chunking_strat import ChunkingStrategy
 from data_etl_app.models.pipeline_nodes.base.base_node import (
     PipelineContext,

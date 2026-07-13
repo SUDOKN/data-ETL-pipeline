@@ -68,8 +68,8 @@ class DatabaseIndexSeeder:
                 "options": {"name": "mfg_etld1_unique_idx", "unique": True},
             },
             {
-                "keys": [("url_accessible_at", 1)],
-                "options": {"name": "mfg_url_accessible_at_idx", "unique": True},
+                "keys": [("etld1_accessible_at", 1)],
+                "options": {"name": "mfg_etld1_accessible_at_idx", "unique": True},
             },
             {
                 "keys": [("created_at", -1)],

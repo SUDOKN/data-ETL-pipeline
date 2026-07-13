@@ -1,6 +1,6 @@
 from pydantic import BaseModel
 
-from core.models.prompt import Prompt
+from core.models.file_objects.prompt import Prompt
 
 
 class ChunkingStrategy(BaseModel):

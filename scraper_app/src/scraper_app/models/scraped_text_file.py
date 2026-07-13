@@ -4,9 +4,11 @@ from __future__ import (
 import litellm
 import logging
 from datetime import datetime
+from typing import TYPE_CHECKING
 from pydantic import BaseModel, ConfigDict, Field, computed_field
 
 from core.models.llm_model import LLM_Model
+from core.models.field_types import MfgETLDType
 
 from data_etl_app.services.ground_truth.concept_ground_truth_service import (
     does_a_cgt_exist_with_scraped_file_version,
@@ -17,9 +19,6 @@ from data_etl_app.services.ground_truth.keyword_ground_truth_service import (
 from data_etl_app.services.ground_truth.binary_ground_truth_service import (
     does_a_bgt_exist_with_scraped_file_version,
 )
-
-
-from scraper_app.services.url_scraper_service import ScrapingResult
 from core.models.db.manufacturer import Batch
 from core.utils.aws.s3.scraped_text_util import (
     delete_scraped_text_from_s3_by_etld1,
@@ -29,6 +28,9 @@ from core.utils.aws.s3.scraped_text_util import (
     download_scraped_text_from_s3_by_mfg_etld1,
     upload_scraped_text_to_s3,
 )
+
+if TYPE_CHECKING:
+    from scraper_app.services.url_scraper_service import ScrapingResult
 
 logger = logging.getLogger(__name__)
 
@@ -40,6 +42,7 @@ class ScrapedTextFile(BaseModel):
     s3_version_id: str
     last_modified_on: datetime
     etld1: str
+    etld1_accessible_at: MfgETLDType
     text: str = Field(repr=False, exclude=True)
 
     # tags
@@ -62,7 +65,7 @@ class ScrapedTextFile(BaseModel):
     def __repr__(self) -> str:
         # Ensure repr is safe
         return (
-            f"ScrapedTextFile(etld1={self.etld1!r}, s3_version_id={self.s3_version_id!r}, "
+            f"ScrapedTextFile(etld1={self.etld1!r}, etld1_accessible_at={self.etld1_accessible_at!r}, s3_version_id={self.s3_version_id!r}, "
             f"num_tokens={self.num_tokens}, urls_scraped={self.urls_scraped}, "
             f"urls_failed={self.urls_failed}, success_rate={self.success_rate}, "
             f"is_valid={self.is_valid}, text_preview={self.text_preview!r})"
@@ -101,6 +104,7 @@ class ScrapedTextFile(BaseModel):
 
             return cls(
                 etld1=mfg_etld1,
+                etld1_accessible_at=tags.get("etld1_accessible_at", mfg_etld1),
                 s3_version_id=s3_version_id,
                 num_tokens=num_tokens,
                 text=scraped_text,
@@ -168,6 +172,7 @@ class ScrapedTextFile(BaseModel):
                 "urls_failed": str(scrape_result.urls_failed),
                 "success_rate": f"{scrape_result.success_rate:.2}",
                 "num_tokens": str(scrape_result.num_tokens),
+                "etld1_accessible_at": scrape_result.final_landing_etld1,
             },
         )
         logger.info(f"Uploaded to S3: {s3_text_file_full_url}")
@@ -180,6 +185,7 @@ class ScrapedTextFile(BaseModel):
 
         return cls(
             etld1=mfg_etld1,
+            etld1_accessible_at=scrape_result.final_landing_etld1,
             s3_version_id=version_id,
             num_tokens=scrape_result.num_tokens,
             text=scrape_result.content,

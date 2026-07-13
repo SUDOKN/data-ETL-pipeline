@@ -4,8 +4,8 @@ from pymongo.errors import DuplicateKeyError
 
 from core.models.field_types import MfgETLDType, MfgURLType
 from core.models.db.manufacturer import Batch, Manufacturer
-from core.models.queue_item import EmailUserErrand
-from core.models.to_scrape_item import ToScrapeItem
+from core.models.queue_items.queue_item import EmailUserErrand
+from core.models.queue_items.to_scrape_item import ToScrapeItem
 from core.utils.time_util import get_current_time
 from core.utils.aws.queue.priority_scrape_queue_util import (
     push_item_to_priority_scrape_queue,
@@ -107,11 +107,11 @@ async def validate_and_create_from_manufacturer(
         primary_naics=manufacturer.primary_naics,
         secondary_naics=manufacturer.secondary_naics,
         addresses=[addr for addr in manufacturer.addresses.result],
-        products=manufacturer.products.results,
-        certificates=manufacturer.certificates.results,
-        industries=manufacturer.industries.results,
-        process_caps=manufacturer.process_caps.results,
-        material_caps=manufacturer.material_caps.results,
+        products=manufacturer.products.extraction_results,
+        certificates=manufacturer.certificates.extraction_results,
+        industries=manufacturer.industries.extraction_results,
+        process_caps=manufacturer.process_caps.extraction_results,
+        material_caps=manufacturer.material_caps.extraction_results,
         notes=None,
     )
 
@@ -204,7 +204,7 @@ async def enqueue_manufacturer_for_priority_scrape(
     current_timestamp = get_current_time()
     await push_item_to_priority_scrape_queue(
         ToScrapeItem(
-            accessible_normalized_url=mfg_url,
+            start_url=mfg_url,
             batch=Batch(
                 title=title,
                 timestamp=current_timestamp,

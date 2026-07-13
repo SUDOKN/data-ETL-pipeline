@@ -5,10 +5,10 @@ from datetime import datetime
 from typing import TYPE_CHECKING, Optional
 
 from core.models.db.manufacturer import Manufacturer
-from core.models.deferred_keyword_extraction import (
+from core.models.deferred_extraction.deferred_keyword_extraction import (
     DeferredKeywordExtractionRequests,
 )
-from core.models.keyword_extraction_results import (
+from core.models.extraction_results.keyword_extraction_results import (
     KeywordExtractionStats,
     KeywordExtractionResults,
     KeywordExtractionStatsMap,

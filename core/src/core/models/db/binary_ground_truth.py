@@ -3,11 +3,13 @@ from datetime import datetime
 from pydantic import BaseModel, Field, computed_field
 
 from core.models.field_types import MfgETLDType, S3FileVersionIDType
-from core.models.binary_classification_result import (
+from core.models.extraction_results.binary_classification_result import (
     BaseClassificationDecision,
     BinaryClassificationStats,
 )
-from core.models.single_stage_extraction_results import LLMSingleStageExtractionMetadata
+from core.models.extraction_results.single_stage_extraction_results import (
+    LLMSingleStageExtractionMetadata,
+)
 from data_etl_app.models.types_and_enums import (
     GroundTruthSource,
     BinaryClassificationTypeEnum,

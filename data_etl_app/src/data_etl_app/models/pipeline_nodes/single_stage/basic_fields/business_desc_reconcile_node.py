@@ -5,12 +5,12 @@ from datetime import datetime
 from typing import TYPE_CHECKING, Optional
 
 from core.models.db.manufacturer import Manufacturer
-from core.models.business_description_extraction_result import (
+from core.models.extraction_results.business_description_extraction_result import (
     BusinessDescriptionExtractionStats,
     BusinessDescriptionExtractionStatsMap,
     BusinessDescriptionExtractionResult,
 )
-from core.models.deferred_single_stage_extraction_requests import (
+from core.models.deferred_extraction.deferred_single_stage_extraction_requests import (
     DeferredSingleStageExtractionRequests,
 )
 from core.models.db.deferred_manufacturer import DeferredManufacturer

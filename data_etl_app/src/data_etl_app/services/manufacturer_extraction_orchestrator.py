@@ -5,7 +5,7 @@ import logging
 import time
 from typing import TYPE_CHECKING
 
-from core.models.binary_classification_result import (
+from core.models.extraction_results.binary_classification_result import (
     BaseClassificationDecision,
 )
 from core.models.db.manufacturer import Manufacturer

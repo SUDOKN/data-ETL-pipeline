@@ -11,12 +11,12 @@ from core.models.field_types import (
     LLMGroundingResults,
     LLMPhraseRelationshipResults,
 )
-from core.models.prompt import Prompt
-from core.models.gpt_batch_response_blob import (
+from core.models.file_objects.prompt import Prompt
+from core.models.batch_request_objects.gpt_batch_response_blob import (
     ChatCompletionChoiceMessage,
 )
 from core.models.db.gpt_batch_request import GPTBatchRequest
-from core.models.deferred_concept_extraction import (
+from core.models.deferred_extraction.deferred_concept_extraction import (
     ConceptExtractionRequestMap,
     ConceptExtractionRequestBundle,
 )

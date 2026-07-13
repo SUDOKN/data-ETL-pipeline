@@ -9,7 +9,7 @@ from core.models.db.binary_ground_truth import (
     BinaryGroundTruth,
     HumanBinaryDecision,
 )
-from core.models.binary_classification_result import (
+from core.models.extraction_results.binary_classification_result import (
     BinaryClassificationResult,
 )
 from data_etl_app.models.types_and_enums import (

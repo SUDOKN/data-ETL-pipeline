@@ -2,7 +2,7 @@ from __future__ import annotations
 import logging
 
 from core.models.db.gpt_batch_request import GPTBatchRequest
-from core.models.prompt import Prompt
+from core.models.file_objects.prompt import Prompt
 from data_etl_app.models.pipeline_nodes.base.base_node import PipelineContext
 from data_etl_app.models.types_and_enums import ConceptTypeEnum
 from data_etl_app.models.pipeline_nodes.multi_stage.llm_phrase_relationship_screening_node import (

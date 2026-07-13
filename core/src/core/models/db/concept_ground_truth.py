@@ -10,7 +10,7 @@ from core.models.field_types import (
     MfgETLDType,
     S3FileVersionIDType,
 )
-from core.models.concept_extraction_results import (
+from core.models.extraction_results.concept_extraction_results import (
     ConceptExtractionMetadata,
     ConceptExtractionStats,
 )

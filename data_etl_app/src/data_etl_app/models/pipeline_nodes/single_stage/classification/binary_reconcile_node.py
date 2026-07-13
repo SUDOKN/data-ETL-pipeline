@@ -5,13 +5,13 @@ from datetime import datetime
 from typing import TYPE_CHECKING, Optional
 
 from core.models.db.manufacturer import Manufacturer
-from core.models.binary_classification_result import (
+from core.models.extraction_results.binary_classification_result import (
     BinaryClassificationResult,
     BinaryClassificationStats,
     BinaryClassificationStatsMap,
 )
 from core.models.db.deferred_manufacturer import DeferredManufacturer
-from core.models.deferred_single_stage_extraction_requests import (
+from core.models.deferred_extraction.deferred_single_stage_extraction_requests import (
     DeferredSingleStageExtractionRequests,
 )
 from data_etl_app.models.pipeline_nodes.base.base_node import (

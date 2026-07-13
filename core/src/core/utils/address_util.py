@@ -1,4 +1,4 @@
-from core.models.address_extraction_result import Address
+from core.models.extraction_results.address_extraction_result import Address
 
 
 def dedupe_addresses(addresses: list[Address]):

@@ -2,7 +2,7 @@ import json
 import logging
 from typing import Optional
 
-from core.models.address_extraction_result import (
+from core.models.extraction_results.address_extraction_result import (
     Address,
 )
 from core.utils.str_util import make_json_array_parse_safe

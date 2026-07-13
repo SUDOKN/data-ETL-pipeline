@@ -2,9 +2,9 @@ import logging
 import uuid
 from datetime import datetime
 
-from core.models.prompt import Prompt
+from core.models.file_objects.prompt import Prompt
 from core.models.db.gpt_batch_request import GPTBatchRequest
-from core.models.gpt_batch_response_blob import (
+from core.models.batch_request_objects.gpt_batch_response_blob import (
     ChatCompletionChoice,
     ChatCompletionChoiceMessage,
     ChatCompletionResponse,

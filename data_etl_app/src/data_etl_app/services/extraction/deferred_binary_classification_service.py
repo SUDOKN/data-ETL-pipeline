@@ -2,7 +2,9 @@ import json
 import logging
 from typing import Optional
 
-from core.models.binary_classification_result import LLMBinaryClassification
+from core.models.extraction_results.binary_classification_result import (
+    LLMBinaryClassification,
+)
 
 logger = logging.getLogger(__name__)
 

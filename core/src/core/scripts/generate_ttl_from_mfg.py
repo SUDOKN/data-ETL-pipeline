@@ -33,7 +33,7 @@ MFG_FILTER = {
         {"addresses": None},
         {"business_desc": None},
         {"is_manufacturer.answer": False},
-        {"process_caps.results.0": {"$exists": False}},
+        {"process_caps.extraction_results.0": {"$exists": False}},
         {"products": None},
         {"certificates": None},
         {"industries": None},
@@ -213,12 +213,22 @@ async def main():
                     secondary_naics=mfg.secondary_naics,
                     addresses=mfg.addresses or [],
                     business_desc=mfg.business_desc,
-                    products=set(mfg.products.results if mfg.products else []),
-                    certificates=mfg.certificates.results if mfg.certificates else [],
-                    industries=mfg.industries.results if mfg.industries else [],
-                    process_caps=mfg.process_caps.results if mfg.process_caps else [],
+                    products=set(
+                        mfg.products.extraction_results if mfg.products else []
+                    ),
+                    certificates=(
+                        mfg.certificates.extraction_results if mfg.certificates else []
+                    ),
+                    industries=(
+                        mfg.industries.extraction_results if mfg.industries else []
+                    ),
+                    process_caps=(
+                        mfg.process_caps.extraction_results if mfg.process_caps else []
+                    ),
                     material_caps=(
-                        mfg.material_caps.results if mfg.material_caps else []
+                        mfg.material_caps.extraction_results
+                        if mfg.material_caps
+                        else []
                     ),
                     notes="Imported from Manufacturer data",
                 )

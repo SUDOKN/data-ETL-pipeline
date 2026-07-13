@@ -4,14 +4,14 @@ import logging
 from datetime import datetime
 from typing import TYPE_CHECKING, Optional
 
-from core.models.address_extraction_result import (
+from core.models.extraction_results.address_extraction_result import (
     Address,
     AddressExtractionStats,
     AddressExtractionStatsMap,
     AddressExtractionResult,
 )
 from core.models.db.manufacturer import Manufacturer
-from core.models.deferred_single_stage_extraction_requests import (
+from core.models.deferred_extraction.deferred_single_stage_extraction_requests import (
     DeferredSingleStageExtractionRequests,
 )
 from core.models.db.deferred_manufacturer import DeferredManufacturer

@@ -28,8 +28,10 @@ from data_etl_app.dependencies.aws_clients import (
 )
 
 from data_etl_app.models.ontology import Ontology
-from core.models.address_extraction_result import Address
-from core.models.business_description_extraction_result import BusinessDescription
+from core.models.extraction_results.address_extraction_result import Address
+from core.models.extraction_results.business_description_extraction_result import (
+    BusinessDescription,
+)
 from core.services.ttl_generator_service import generate_triples
 from core.models.db.manufacturer_user_form import (
     ManufacturerUserForm,

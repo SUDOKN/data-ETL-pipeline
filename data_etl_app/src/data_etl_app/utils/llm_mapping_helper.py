@@ -4,7 +4,7 @@ from datetime import datetime
 from typing import TypedDict
 
 from core.models.field_types import RawLLMMappingResult
-from core.models.prompt import Prompt
+from core.models.file_objects.prompt import Prompt
 from core.models.db.gpt_batch_request import GPTBatchRequest
 from data_etl_app.models.types_and_enums import ConceptTypeEnum
 from data_etl_app.models.skos_concept import Concept, ConceptJSONEncoder

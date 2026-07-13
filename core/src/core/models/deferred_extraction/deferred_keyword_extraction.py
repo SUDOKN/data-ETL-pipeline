@@ -1,8 +1,8 @@
-from core.models.deferred_phrase_extraction_requests import (
+from core.models.deferred_extraction.deferred_phrase_extraction_requests import (
     DeferredLLMPhraseExtractionRequests,
     LLMPhraseExtractionRequestBundle,
 )
-from core.models.keyword_extraction_results import (
+from core.models.extraction_results.keyword_extraction_results import (
     KeywordExtractionMetadata,
 )
 from open_ai_key_app.models.field_types import GPTBatchRequestCustomID

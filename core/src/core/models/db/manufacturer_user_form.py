@@ -4,8 +4,10 @@ from pydantic import Field
 from datetime import datetime
 from typing import Optional
 
-from core.models.address_extraction_result import Address
-from core.models.business_description_extraction_result import BusinessDescription
+from core.models.extraction_results.address_extraction_result import Address
+from core.models.extraction_results.business_description_extraction_result import (
+    BusinessDescription,
+)
 from core.models.field_types import MfgETLDType, OntologyVersionIDType
 from core.utils.time_util import get_current_time
 

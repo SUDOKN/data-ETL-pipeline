@@ -4,16 +4,20 @@ from datetime import datetime
 from pydantic import BaseModel, Field
 from typing import List, Optional
 
-from core.models.field_types import MfgURLType, MfgETLDType, S3FileVersionIDType
-from core.models.concept_extraction_results import ConceptExtractionResults
-from core.models.keyword_extraction_results import KeywordExtractionResults
-from core.models.binary_classification_result import (
+from core.models.field_types import MfgETLDType, S3FileVersionIDType
+from core.models.extraction_results.concept_extraction_results import (
+    ConceptExtractionResults,
+)
+from core.models.extraction_results.keyword_extraction_results import (
+    KeywordExtractionResults,
+)
+from core.models.extraction_results.binary_classification_result import (
     BinaryClassificationResult,
 )
-from core.models.address_extraction_result import (
+from core.models.extraction_results.address_extraction_result import (
     AddressExtractionResult,
 )
-from core.models.business_description_extraction_result import (
+from core.models.extraction_results.business_description_extraction_result import (
     BusinessDescriptionExtractionResult,
 )
 
@@ -28,8 +32,10 @@ class Batch(BaseModel):
 
 
 class Manufacturer(Document):
-    etld1: MfgETLDType  # effective top-level domain plus one, e.g. "example.com"; ".com" is top level domain, "example" is the second-level domain
-    url_accessible_at: MfgURLType
+    etld1: MfgETLDType  # canonical eTLD+1 derived from the initial URL used to identify the manufacturer
+    etld1_accessible_at: (
+        MfgETLDType  # eTLD+1 of the final landing URL reached during scraping
+    )
 
     created_at: datetime = Field(default_factory=lambda: get_current_time())
     updated_at: datetime = Field(default_factory=lambda: get_current_time())
@@ -78,10 +84,10 @@ db.manufacturers.createIndex(
 
 db.manufacturers.createIndex(
   {
-    url_accessible_at: 1,
+    etld1_accessible_at: 1,
   },
   {
-    name: "mfg_url_accessible_at_idx",
+    name: "mfg_etld1_accessible_at_idx",
     unique: true
   }
 );

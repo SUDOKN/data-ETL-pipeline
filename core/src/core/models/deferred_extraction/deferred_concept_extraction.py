@@ -3,8 +3,10 @@ from pydantic import BaseModel
 from typing import Optional
 
 from core.models.field_types import RecursivelyTaggedConceptNode
-from core.models.concept_extraction_results import ConceptExtractionMetadata
-from core.models.deferred_phrase_extraction_requests import (
+from core.models.extraction_results.concept_extraction_results import (
+    ConceptExtractionMetadata,
+)
+from core.models.deferred_extraction.deferred_phrase_extraction_requests import (
     LLMPhraseExtractionRequestBundle,
 )
 

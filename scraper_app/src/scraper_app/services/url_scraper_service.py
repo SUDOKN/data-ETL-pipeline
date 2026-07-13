@@ -21,7 +21,7 @@ from selenium.common.exceptions import (
 
 from core.models.llm_model import LLM_Model
 
-from core.utils.url_util import get_final_landing_url
+from core.utils.url_util import get_final_landing_url, get_etld1_from_host
 from scraper_app.utils.selenium import (
     ChromeDriverFactory,
     LegacyDriverFactory,
@@ -55,6 +55,7 @@ class ScrapingResult:
     total_time_taken: float  # in seconds
     timed_out: bool
     llm_model: LLM_Model
+    final_landing_etld1: str
 
     @property
     def has_errors(self) -> bool:
@@ -468,6 +469,8 @@ class ScraperService:
             if not scheme:
                 raise ValueError("Start URL must have a valid scheme (http or https).")
 
+            start_landing_etld1 = get_etld1_from_host(start_url)
+
             final_landing_url = get_final_landing_url(start_url)
 
             # Double-check the final landing URL in case of redirects to social media
@@ -479,6 +482,7 @@ class ScraperService:
 
             logger.info("Starting scraping with scheme: %s", scheme)
             logger.info("Final landing URL: %s", final_landing_url)
+            final_landing_etld1 = get_etld1_from_host(final_landing_url)
 
             discovered: set[str] = {final_landing_url}
             results: list[str] = []
@@ -567,6 +571,7 @@ class ScraperService:
                 total_time_taken=total_time_taken,
                 timed_out=False,
                 llm_model=llm_model,
+                final_landing_etld1=final_landing_etld1,
             )
 
         except TimeoutError:
@@ -588,6 +593,7 @@ class ScraperService:
                 total_time_taken=total_time_taken,
                 timed_out=True,
                 llm_model=llm_model,
+                final_landing_etld1=final_landing_etld1,
             )
         except Exception as e:
             total_time_taken = (
@@ -609,4 +615,5 @@ class ScraperService:
                 total_time_taken=total_time_taken,
                 timed_out=False,
                 llm_model=llm_model,
+                final_landing_etld1=start_landing_etld1,
             )

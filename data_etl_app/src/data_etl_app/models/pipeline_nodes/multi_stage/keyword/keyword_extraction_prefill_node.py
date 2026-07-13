@@ -6,14 +6,14 @@ from typing import TYPE_CHECKING
 
 from core.models.db.manufacturer import Manufacturer
 from core.models.db.deferred_manufacturer import DeferredManufacturer
-from core.models.llm_phrase_extraction_results import (
+from core.models.extraction_results.llm_phrase_extraction_results import (
     ExtractionNodeMetadata,
     RecursiveSearchNodeMetadata,
 )
-from core.models.keyword_extraction_results import (
+from core.models.extraction_results.keyword_extraction_results import (
     KeywordExtractionMetadata,
 )
-from core.models.deferred_keyword_extraction import (
+from core.models.deferred_extraction.deferred_keyword_extraction import (
     DeferredKeywordExtractionRequests,
     KeywordExtractionRequestBundle,
 )

@@ -8,7 +8,7 @@ from datetime import datetime
 from typing import Optional
 
 from core.models.db.gpt_batch_request import GPTBatchRequest
-from core.models.deferred_keyword_extraction import (
+from core.models.deferred_extraction.deferred_keyword_extraction import (
     KeywordExtractionRequestBundle,
     KeywordExtractionRequestMap,
 )
@@ -16,9 +16,11 @@ from core.models.field_types import (
     LLMFreehandGroundingResults,
     LLMPhraseRelationshipResults,
 )
-from core.models.gpt_batch_response_blob import ChatCompletionChoiceMessage
+from core.models.batch_request_objects.gpt_batch_response_blob import (
+    ChatCompletionChoiceMessage,
+)
 from core.models.llm_model import LLM_Model, NO_MODEL
-from core.models.prompt import Prompt
+from core.models.file_objects.prompt import Prompt
 from core.services.gpt_batch_request_service import (
     create_base_gpt_batch_request,
     get_dummy_gpt_batch_response,

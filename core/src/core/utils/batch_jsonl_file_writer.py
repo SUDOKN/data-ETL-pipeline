@@ -5,8 +5,8 @@ import logging
 from pathlib import Path
 from typing import Optional
 
-from core.models.gpt_batch_request_blob import GPTBatchRequestBlob
-from core.models.jsonl_batch_file import (
+from core.models.batch_request_objects.gpt_batch_request_blob import GPTBatchRequestBlob
+from core.models.file_objects.jsonl_batch_file import (
     FileContentLimitReachedException,
     JSONLBatchFile,
 )

@@ -28,7 +28,7 @@ from data_etl_app.dependencies.aws_clients import (
 
 from core.models.db.manufacturer import Manufacturer
 from core.models.db.extraction_error import ExtractionError
-from core.models.to_extract_item import ToExtractItem
+from core.models.queue_items.to_extract_item import ToExtractItem
 from data_etl_app.models.types_and_enums import BinaryClassificationTypeEnum
 from open_ai_key_app.models.gpt_model_params import GPTModelParams
 from core.models.llm_model import GPT_4_1, LLM_Model

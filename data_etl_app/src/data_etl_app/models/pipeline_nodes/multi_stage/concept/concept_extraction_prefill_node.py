@@ -5,14 +5,16 @@ from datetime import datetime
 from typing import TYPE_CHECKING
 
 
-from core.models.concept_extraction_results import ConceptExtractionMetadata
-from core.models.llm_phrase_extraction_results import (
+from core.models.extraction_results.concept_extraction_results import (
+    ConceptExtractionMetadata,
+)
+from core.models.extraction_results.llm_phrase_extraction_results import (
     ExtractionNodeMetadata,
     RecursiveSearchNodeMetadata,
 )
 from core.models.db.manufacturer import Manufacturer
 from core.models.db.deferred_manufacturer import DeferredManufacturer
-from core.models.deferred_concept_extraction import (
+from core.models.deferred_extraction.deferred_concept_extraction import (
     ConceptExtractionRequestBundle,
     DeferredConceptExtractionRequests,
 )
