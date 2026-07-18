@@ -153,7 +153,7 @@ async def create_missing_phrase_search_requests(
                 etld1=mfg_etld1,
                 custom_id=llm_search_request_id,
                 context=chunk_text,
-                prompt=search_prompt,
+                prompt_text=search_prompt.text,
                 gpt_model=llm_model,
                 model_params=model_params,
                 batch_id="Eager" if eager else None,

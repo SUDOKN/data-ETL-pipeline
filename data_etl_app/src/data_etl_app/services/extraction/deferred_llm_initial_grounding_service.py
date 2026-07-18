@@ -6,9 +6,10 @@ import logging
 import traceback
 from datetime import datetime
 from typing import Optional
+from requests.structures import CaseInsensitiveDict
 
 from core.models.field_types import (
-    LLMGroundingResults,
+    PhraseToTagAndReasonMap,
     LLMPhraseRelationshipResults,
 )
 from core.models.file_objects.prompt import Prompt
@@ -19,6 +20,10 @@ from core.models.db.gpt_batch_request import GPTBatchRequest
 from core.models.deferred_extraction.deferred_concept_extraction import (
     ConceptExtractionRequestMap,
     ConceptExtractionRequestBundle,
+    TaggedConceptResult,
+    TaggedResult,
+    TagToPhraseAndReasonMap,
+    PhraseToTagAndReasonMap,
 )
 from data_etl_app.models.skos_concept import Concept
 from data_etl_app.models.types_and_enums import (
@@ -49,7 +54,7 @@ logger = logging.getLogger(__name__)
 
 def parse_llm_phrase_initial_grounding_result(
     gpt_response: Optional[str],
-) -> LLMGroundingResults:
+) -> PhraseToTagAndReasonMap:
     if not gpt_response:
         logger.error(f"Invalid gpt_response:{gpt_response}")
         raise ValueError(
@@ -79,14 +84,14 @@ def parse_llm_phrase_initial_grounding_result(
     return raw_llm_initial_grounding_result
 
 
-async def parse_batch_request_result(
+async def parse_initial_grounding_batch_request_result(
     mfg_etld1: str,
     field_type: LLMExtractedFieldTypeEnum,
     chunk_bounds: str,
     extraction_bundle: ConceptExtractionRequestBundle,
     completed_request_map: dict[GPTBatchRequestCustomID, GPTBatchRequest],
     deferred_at: datetime,
-) -> LLMGroundingResults:
+) -> list[TaggedResult]:
     req_id = extraction_bundle.llm_phrase_initial_grounding_req_id
     if not req_id:
         raise ValueError(
@@ -107,7 +112,7 @@ async def parse_batch_request_result(
         phrase_initial_grounding_results = parse_llm_phrase_initial_grounding_result(
             req_obj.response.result
         )
-        return phrase_initial_grounding_results
+
     except Exception as e:
         await record_response_parse_error(
             gpt_batch_request=req_obj,
@@ -119,6 +124,85 @@ async def parse_batch_request_result(
             f"phrase_initial_grounding_node.parse_batch_request_result: Error parsing phrase_initial_grounding results for manufacturer {mfg_etld1} from GPT response: {e}"
         )
         raise
+
+    return get_tagged_results_from_initial_grounding(phrase_initial_grounding_results)
+
+
+def flip_tag_to_phrase_reason_map(
+    map: TagToPhraseAndReasonMap,
+) -> PhraseToTagAndReasonMap:
+    phrase_map: PhraseToTagAndReasonMap = {}
+    for tag, phrase_reason_map in map.items():
+        for phrase, reason in phrase_reason_map.items():
+            existing = phrase_map.get(phrase, {})
+            existing.update({tag: reason})
+
+    return phrase_map
+
+
+def get_tagged_results_from_initial_grounding(
+    grounding_result: PhraseToTagAndReasonMap,
+) -> list[TaggedResult]:
+    tr_map: dict[str, TaggedResult] = {}
+    for phrase, tag_reason_map in grounding_result.items():
+        for tag, reason in tag_reason_map.items():
+            tr = tr_map.get(phrase, TaggedResult(tag=tag, phrase_reason_map={}))
+            tr.phrase_reason_map[phrase] = reason
+
+    return list(tr_map.values())
+
+
+def get_descend_worthy_directly_tagged_concept_results(
+    initially_tagged_trs: list[TaggedResult],
+    level: int | None,
+    match_label_to_concept_map: CaseInsensitiveDict[Concept],
+) -> list[TaggedConceptResult]:
+    concept_to_tc_map: dict[Concept, TaggedConceptResult] = {}
+    for tr in initially_tagged_trs:
+        # to pass,
+        # tc must be in_vocab,
+        # not exactly match the phrase,
+        tagged_concept_obj = match_label_to_concept_map.get(
+            tr.tag
+        )  # at this point, the tag could be alt label getting normalized to concept name for downstream
+        if not tagged_concept_obj:
+            continue
+
+        tc = concept_to_tc_map.get(
+            tagged_concept_obj,
+            TaggedConceptResult(
+                concept=tagged_concept_obj,
+                og_tag_w_phrase_reason_map={},
+            ),
+        )
+        if tr.tag not in tc.og_tag_w_phrase_reason_map:
+            tc.og_tag_w_phrase_reason_map[tr.tag] = tr.phrase_reason_map
+        else:
+            tc.og_tag_w_phrase_reason_map[tr.tag].update(tr.phrase_reason_map)
+
+    descend_worthy_tcs: list[TaggedConceptResult] = []
+    for _concept, tc in concept_to_tc_map.items():
+        for og_tag, phrase_reason_map in tc.og_tag_w_phrase_reason_map.items():
+            # start filtering out phrases that directly matched the tag
+            for phrase in phrase_reason_map:
+                if og_tag == phrase:
+                    phrase_reason_map.pop(phrase)
+
+            if not phrase_reason_map:
+                tc.og_tag_w_phrase_reason_map.pop(og_tag)
+
+        if (
+            tc.og_tag_w_phrase_reason_map
+        ):  # not empty, contains at least one phrase that doesn't exactly match the og tag
+            descend_worthy_tcs.append(tc)
+
+    if level != None:
+        # only return items at the matching level
+        descend_worthy_tcs = [
+            tc for tc in descend_worthy_tcs if tc.concept.level == level
+        ]
+
+    return descend_worthy_tcs
 
 
 async def create_missing_phrase_initial_grounding_requests(
@@ -137,6 +221,7 @@ async def create_missing_phrase_initial_grounding_requests(
         GPTBatchRequestCustomID, GPTBatchRequest
     ],
     known_concepts: set[Concept],  # DO NOT MUTATE
+    match_label_to_concept_map: CaseInsensitiveDict[Concept],
     # metadata
     deferred_at: datetime,
     llm_model: LLM_Model,
@@ -146,6 +231,9 @@ async def create_missing_phrase_initial_grounding_requests(
 ) -> list[GPTBatchRequest]:
     logger.info(
         f"create_missing_phrase_initial_grounding_requests: Generating GPTBatchRequests for {mfg_etld1}:{field_type}"
+    )
+    logger.info(
+        f"match_label_to_concept_map keys: {list(match_label_to_concept_map.keys())}"
     )
 
     batch_requests: list[GPTBatchRequest] = []
@@ -221,6 +309,21 @@ async def create_missing_phrase_initial_grounding_requests(
                 for k, v in llm_phrase_relationship_results.items()
                 if k in screened_phrases_w_reason
             }
+            logger.info(
+                f"verified_phrases_w_og_summary:{verified_phrases_w_og_summary}"
+            )
+            # maybe it's worth filter out phrases that directly match a known concept label, so let's try
+            # before passing on to the initial grounding phase
+            verified_out_of_vocab_phrases_w_og_summary = {
+                k: v
+                for k, v in verified_phrases_w_og_summary.items()
+                # if not any(
+                #     [
+                #         match_label.lower() in k.lower()
+                #         for match_label in match_label_to_concept_map.keys()
+                #     ]
+                # )
+            }
 
             llm_phrase_initial_grounding_request_id = (
                 extraction_bundle.llm_phrase_initial_grounding_req_id
@@ -229,10 +332,10 @@ async def create_missing_phrase_initial_grounding_requests(
                 raise ValueError(
                     f"create_missing_phrase_initial_grounding_requests: llm_phrase_initial_grounding_request_id is None for chunk bounds {chunk_bounds} in {mfg_etld1}:{field_type}"
                 )
-            if not verified_phrases_w_og_summary:
+            if not verified_out_of_vocab_phrases_w_og_summary:
                 # add a dummy response blob with empty dict
                 logger.info(
-                    f"No phrases found in text, for {mfg_etld1}:{field_type}, creating dummy initial grounding request"
+                    f"No out-of-vocab phrases found in text, for {mfg_etld1}:{field_type}, creating dummy initial grounding request."
                 )
                 dummy_batch_request = _create_dummy_completed_phrase_initial_grounding_batch_request(
                     deferred_at=deferred_at,
@@ -244,7 +347,7 @@ async def create_missing_phrase_initial_grounding_requests(
                 new_batch_request = dummy_batch_request
             else:
                 logger.info(
-                    f"Passing on candidates {verified_phrases_w_og_summary} to phrase_relationship phase for {mfg_etld1}:{field_type} chunk {chunk_bounds}"
+                    f"Passing on candidates {verified_out_of_vocab_phrases_w_og_summary} to phrase_relationship phase for {mfg_etld1}:{field_type} chunk {chunk_bounds}"
                 )
                 llm_phrase_grounding_batch_request = create_deferred_phrase_initial_grounding_gpt_request(
                     deferred_at=deferred_at,
@@ -255,7 +358,7 @@ async def create_missing_phrase_initial_grounding_requests(
                     # context variables
                     mfg_name=mfg_name,
                     all_concepts=known_concepts,
-                    verified_phrases_w_og_summary=verified_phrases_w_og_summary,
+                    verified_out_of_vocab_phrases_w_og_summary=verified_out_of_vocab_phrases_w_og_summary,
                     # model info
                     eager=eager,
                     gpt_model=llm_model,
@@ -293,16 +396,11 @@ def _create_dummy_completed_phrase_initial_grounding_batch_request(
         deferred_at=deferred_at,
         etld1=etld1,
         custom_id=llm_phrase_initial_grounding_request_id,
-        context="No phrase relationship screening needed - no phrases found in text.",
-        prompt=Prompt(
-            name="dummy_phrase_relationship_screening_prompt",
-            text="No phrase relationship screening needed - no phrases found in text by brute force or by LLM.",
-            s3_version_id="dummy_s3_version_id",
-            num_tokens=1,
-        ),
+        context="No initial grounding needed - nothing passed relationship screening or no phrases were found in the first place.",
+        prompt_text="No initial grounding needed - nothing passed relationship screening or no phrases were found in the first place.",
         gpt_model=NO_MODEL,
         model_params=model_params,
-        batch_id="Eager" if eager else "dummy_phrase_relationship_batch_id",
+        batch_id="Eager" if eager else "dummy_phrase_initial_grounding_batch_id",
     )
 
     base_gpt_batch_request.response = get_dummy_gpt_batch_response(
@@ -326,7 +424,7 @@ def create_deferred_phrase_initial_grounding_gpt_request(
     # context
     mfg_name: str,
     all_concepts: set[Concept],
-    verified_phrases_w_og_summary: LLMPhraseRelationshipResults,
+    verified_out_of_vocab_phrases_w_og_summary: LLMPhraseRelationshipResults,
     # model info
     gpt_model: LLM_Model,
     eager: bool,
@@ -339,14 +437,14 @@ def create_deferred_phrase_initial_grounding_gpt_request(
         label for concept in all_concepts for label in concept.matchLabels
     ]
 
-    context = f"Manufacturer name: {mfg_name}\n\n extracted phrases:\n{list(verified_phrases_w_og_summary)}\n\noptions of {field_type.name} to choose from:\n{all_concept_labels}"
+    context = f"Manufacturer name: {mfg_name}\n\n extracted phrases:\n{json.dumps(verified_out_of_vocab_phrases_w_og_summary)}\n\noptions of {field_type.name} to choose from:\n{all_concept_labels}"
 
     gpt_batch_request = create_base_gpt_batch_request(
         deferred_at=deferred_at,
         etld1=etld1,
         custom_id=llm_phrase_initial_grounding_request_id,
         context=context,
-        prompt=phrase_initial_grounding_prompt,
+        prompt_text=phrase_initial_grounding_prompt.text,
         gpt_model=gpt_model,
         model_params=model_params,
         batch_id="Eager" if eager else None,

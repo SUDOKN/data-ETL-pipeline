@@ -61,19 +61,19 @@ class LLMPhraseSearchNode(
         mfg_etld1: str,
         pipeline_context: PipelineContext,
         metadata: LLMPhraseExtractionMetadata,
-        request_map: LLMPhraseExtractionRequestMap,
+        chunked_request_map: LLMPhraseExtractionRequestMap,
         timestamp: datetime,
     ):
-        if not request_map:
+        if not chunked_request_map:
             raise ValueError(
                 f"Cannot embed req ids for llm phrase search node, "
-                f"as request_map found empty for mfg:{mfg_etld1}, field:{self.field_type.name}."
+                f"as chunked_request_map found empty for mfg:{mfg_etld1}, field:{self.field_type.name}."
             )
 
         for (
             chunk_bounds,
             extraction_request_bundle,
-        ) in request_map.items():
+        ) in chunked_request_map.items():
             if not extraction_request_bundle.llm_phrase_search_req_id:
                 extraction_request_bundle.llm_phrase_search_req_id = (
                     self.get_request_custom_id(
@@ -87,13 +87,13 @@ class LLMPhraseSearchNode(
     def get_embedded_request_ids(
         self,
         mfg_etld1: str,
-        request_map: LLMPhraseExtractionRequestMap,
+        chunked_request_map: LLMPhraseExtractionRequestMap,
     ) -> set[GPTBatchRequestCustomID]:
         llm_search_req_ids: set[GPTBatchRequestCustomID] = set()
         for (
             chunk_bounds,
             extraction_bundle,
-        ) in request_map.items():
+        ) in chunked_request_map.items():
             if not extraction_bundle.llm_phrase_search_req_id:
                 raise ValueError(
                     f"Cannot get embedded request ids for mfg_etld1:{mfg_etld1}>{chunk_bounds} as "
@@ -117,23 +117,16 @@ class LLMPhraseSearchNode(
 
     async def create_batch_requests(
         self,
-        missing_request_ids: set[GPTBatchRequestCustomID],
-        deferred_mfg: DeferredManufacturer,
+        mfg_etld1: str,
         scraped_text_file: ScrapedTextFile,
-        timestamp: datetime,
+        missing_request_ids: set[GPTBatchRequestCustomID],
+        metadata: LLMPhraseExtractionMetadata,
+        chunked_request_map: LLMPhraseExtractionRequestMap,
         pipeline_context: PipelineContext,
+        timestamp: datetime,
         eager: bool,
     ) -> list[GPTBatchRequest]:
         """Create batch requests for concept search phase."""
-
-        extraction_requests: Optional[DeferredLLMPhraseExtractionRequests] = getattr(
-            deferred_mfg, self.field_type.name
-        )
-        if not extraction_requests:
-            raise ValueError(
-                f"create_batch_requests was called for {self.field_type.name} in {__class__.__name__} but no deferred concept extraction exists."
-            )
-        metadata = extraction_requests.metadata.llm_phrase_search
 
         # create_missing_concept_search_requests only creates batch requests fresh or only missing ones,
         # for e.g., new mfg or some batch requests failed earlier and were deleted to allow re-processing
@@ -141,12 +134,12 @@ class LLMPhraseSearchNode(
             deferred_at=timestamp,
             field_type=self.field_type,
             missing_search_req_ids=missing_request_ids,
-            chunked_request_map=extraction_requests.chunked_request_map,
-            mfg_etld1=deferred_mfg.etld1,
+            chunked_request_map=chunked_request_map,
+            mfg_etld1=mfg_etld1,
             mfg_text=scraped_text_file.text,
             search_prompt=self.phrase_search_prompt,
-            llm_model=metadata.llm_model,
-            model_params=metadata.model_params,
+            llm_model=metadata.llm_phrase_search.llm_model,
+            model_params=metadata.llm_phrase_search.model_params,
             eager=eager,
         )
 

@@ -1,7 +1,9 @@
-from aiobotocore.session import get_session
 import asyncio
 import logging
-from pymongo import ReplaceOne
+import os
+from urllib.parse import urlparse
+
+from pymongo import UpdateOne
 
 from pymongo.errors import BulkWriteError
 
@@ -18,35 +20,93 @@ load_data_etl_env()
 load_open_ai_app_env()
 
 from core.models.db.manufacturer import Manufacturer
-
-# from core.utils.aws.s3.s3_client_util import make_s3_client
-from core.utils.aws.s3.scraped_text_util import (
-    download_scraped_text_from_s3_by_mfg_etld1,
-)
 from core.utils.mongo_client import (
     init_db,
 )
-
-from core.models.llm_model import GPT_4o_mini
-from core.models.llm_model import LLM_Model
-
-from core.models.extraction_results.binary_classification_result import (
-    BinaryClassificationStats,
-    BinaryClassificationStats,
-)
-
-# from data_etl_app.services.knowledge.prompt_service import prompt_service
-from data_etl_app.utils.chunk_util import (
-    get_chunks_respecting_line_boundaries,
-)
+from core.utils.time_util import get_current_time
+from core.utils.url_util import get_etld1_from_host
 
 logger = logging.getLogger(__name__)
+
+
+LLM_RESET_FIELDS = [
+    "is_manufacturer",
+    "is_contract_manufacturer",
+    "is_product_manufacturer",
+    "addresses",
+    "business_desc",
+    "products",
+    "certificates",
+    "industries",
+    "process_caps",
+    "material_caps",
+]
+
+
+def normalize_legacy_accessible_at(value: str) -> str | None:
+    cleaned_value = value.strip()
+    if not cleaned_value:
+        return None
+
+    parsed = urlparse(cleaned_value if "://" in cleaned_value else f"//{cleaned_value}")
+    host = parsed.hostname or cleaned_value
+    normalized = get_etld1_from_host(host)
+    return normalized or None
+
+
+def build_update_operation(doc: dict) -> UpdateOne | None:
+    update_fields: dict[str, object] = {}
+    unset_fields: dict[str, str] = {}
+
+    legacy_accessible_at = doc.get("url_accessible_at")
+    if legacy_accessible_at is not None:
+        normalized_accessible_at = normalize_legacy_accessible_at(
+            str(legacy_accessible_at)
+        )
+        if normalized_accessible_at is not None:
+            update_fields["etld1_accessible_at"] = normalized_accessible_at
+        unset_fields["url_accessible_at"] = ""
+
+    if "email_addresses" not in doc:
+        update_fields["email_addresses"] = None
+
+    for field_name in LLM_RESET_FIELDS:
+        if field_name not in doc or doc.get(field_name) is not None:
+            update_fields[field_name] = None
+
+    if not update_fields and not unset_fields:
+        return None
+
+    update_fields["updated_at"] = get_current_time()
+
+    update_document: dict[str, object] = {"$set": update_fields}
+    if unset_fields:
+        update_document["$unset"] = unset_fields
+
+    return UpdateOne({"_id": doc["_id"]}, update_document)
+
+
+def get_mongo_connection_label() -> str:
+    mongo_uri = os.getenv("MONGO_DB_URI", "")
+    parsed = urlparse(mongo_uri)
+    hosts = parsed.netloc.rsplit("@", 1)[-1] if parsed.netloc else "<unknown>"
+    return hosts or "<unknown>"
+
+
+def get_mongo_database_name() -> str:
+    mongo_uri = os.getenv("MONGO_DB_URI", "")
+    parsed = urlparse(mongo_uri)
+    database_name = parsed.path.lstrip("/")
+    return database_name or "<default>"
 
 
 async def iterate():
     print("Starting iteration over Manufacturer documents...")
     collection = Manufacturer.get_pymongo_collection()
+    print(f"Mongo connection: {get_mongo_connection_label()}")
+    print(f"Mongo database: {get_mongo_database_name()}")
     print("Count:", await collection.count_documents({}))
+    input("Press Enter to continue...")
     cursor = collection.find({})
 
     bulk_operations = []
@@ -55,18 +115,13 @@ async def iterate():
     failed = 0
 
     async for doc in cursor:
-        updated = False
         print(
             f"Processing document {total_count + failed + 1} with etld1: {doc.get('etld1')}"
         )
 
-        # set "email_addresses" to None if it doesn't exist
-        if "email_addresses" not in doc:
-            doc["email_addresses"] = None
-            updated = True
-
-        if updated:
-            bulk_operations.append(ReplaceOne({"_id": doc["_id"]}, doc))
+        update_operation = build_update_operation(doc)
+        if update_operation is not None:
+            bulk_operations.append(update_operation)
 
         # Execute bulk operation when batch size is reached
         if len(bulk_operations) >= batch_size:
@@ -117,8 +172,6 @@ async def iterate():
 async def main():
     await init_db()
     print("Database initialized.")
-    session = get_session()
-    # async with make_s3_client(session) as s3_client:
     await iterate()
 
 

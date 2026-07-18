@@ -58,7 +58,7 @@ class BinaryReconcileNode(ReconcileNode[BinaryClassificationTypeEnum]):
 
         completed_classification_requests = pipeline_context[BinaryClassificationNode]
         first_chunk_bounds, first_req_bundle = list(
-            extraction_requests.request_map.items()
+            extraction_requests.chunked_request_map.items()
         )[0]
         result = await BinaryClassificationNode.parse_batch_request_result(
             mfg_etld1=deferred_mfg.etld1,

@@ -6,6 +6,7 @@ from functools import cached_property
 import json
 import logging
 from rdflib import URIRef
+from pydantic import BaseModel
 
 from typing_extensions import TypedDict
 
@@ -22,24 +23,14 @@ class ConceptNode(TypedDict):
     num_children: int
 
 
-class Concept:
-    def __init__(
-        self,
-        name: str,
-        uri: URIRef,
-        level: int,
-        altLabels: list[str],
-        ancestors: list[str],
-        children: list[str],
-        definition: str,
-    ) -> None:
-        self.name = name
-        self.uri = uri
-        self.level = level
-        self.altLabels = altLabels
-        self.ancestors = ancestors
-        self.children = children
-        self.definition = definition
+class Concept(BaseModel):
+    name: str
+    uri: str
+    level: int
+    altLabels: list[str]
+    ancestors: list[str]
+    children: list[str]
+    definition: str
 
     @cached_property
     def matchLabels(self) -> set[str]:
@@ -59,9 +50,14 @@ class Concept:
 class ConceptJSONEncoder(json.JSONEncoder):
     def default(self, o: object) -> object:
         if isinstance(o, Concept):
+            full_definition = o.definition
+            if o.altLabels:
+                full_definition += f" It is also known as {', '.join(o.altLabels)}."
+            if o.children:
+                full_definition += f" Some subclasses include {', '.join(o.children)}."
             d: dict[str, object] = {
                 "name": o.name,
-                "definition": f"{o.definition}. Also known as {', '.join(o.altLabels)}.",
+                "definition": full_definition,
             }
 
             return d

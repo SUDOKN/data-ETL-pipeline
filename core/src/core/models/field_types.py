@@ -1,6 +1,4 @@
 from __future__ import annotations
-from pydantic import BaseModel
-from open_ai_key_app.models.field_types import GPTBatchRequestCustomID
 
 # Stage 1
 LLMSearchResults = set[str]
@@ -22,41 +20,17 @@ LLMPhraseRelationshipResults = dict[
 # Stage 3
 LLMScreeningResults = dict[str, str]  # To only keep the relationships we care about
 
-# Stage 4
-LLMGroundingResults = dict[
-    str, dict[str, str]  # { phrase -> {concept: reason}, ...}
-]  # The immediate nodes phrases can be linked to, with the reason for the link.
+# Stage 4 and 5
+TagAndReasonMap = dict[str, str]
 
-LLMFreehandGroundingResults = dict[
-    str, dict[str, str]  # { phrase -> {freehand label: reason}, ...}
-]
+PhraseToTagAndReasonMap = dict[
+    str, TagAndReasonMap  # { phrase -> {tag: reason}, ...}
+]  # The tags phrases can be linked to, with the reason for the link.
 
 
-# Stage 5
-class MatchedLabelAndReasonPair(BaseModel):
-    matched_label: str
-    reason: str
+PhraseAndReasonMap = dict[str, str]
+TagToPhraseAndReasonMap = dict[str, PhraseAndReasonMap]
 
-
-class RecursivelyTaggedConceptNode(BaseModel):
-    name: str  # can be in-vocab concept.name, out-of-vocab label or some semantic variant of "None of the above"
-    level: int
-    descend_req_id: GPTBatchRequestCustomID
-
-    directly_tagged_phrase_reason_map: dict[str, MatchedLabelAndReasonPair]
-    # { phrase -> (matched_concept_label, reason) }
-    # produced by initial grounding results
-
-    iteratively_tagged_phrase_reason_map: dict[str, MatchedLabelAndReasonPair]
-    # { phrase -> list[reason] }
-    # produced by iterative traversal of a phrase from its initially grounded concept
-    # CAUTION: may include a phrase which was already directly tagged to this concept initially
-    # and that too multiple times, hence list of reasons
-
-    children: list[RecursivelyTaggedConceptNode]
-
-
-LLMRecursiveGroundingResults = list[RecursivelyTaggedConceptNode]
 
 RawLLMMappingResult = dict[str, dict[str, str]]
 """

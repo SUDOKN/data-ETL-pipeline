@@ -16,4 +16,4 @@ SingleStageExtractionRequestMap = dict[str, SingleStageExtractionRequestBundle]
 
 class DeferredSingleStageExtractionRequests(BaseModel):
     metadata: LLMSingleStageExtractionMetadata
-    request_map: SingleStageExtractionRequestMap
+    chunked_request_map: SingleStageExtractionRequestMap

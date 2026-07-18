@@ -1,20 +1,22 @@
 from __future__ import annotations
-
 import asyncio
 import logging
-from typing import TYPE_CHECKING, Generic, TypeVar
+from abc import abstractmethod
+from datetime import datetime
+from typing import Generic, TypeVar
 
+from core.models.db.gpt_batch_request import GPTBatchRequest
 from core.models.db.deferred_manufacturer import DeferredManufacturer
 from core.models.db.manufacturer import Manufacturer
 from data_etl_app.models.pipeline_nodes.base.base_llm_extraction_node import (
     BaseLLMExtractionNode,
+    ExtractionMetadata,
+    ExtractionRequestMap,
 )
 from data_etl_app.models.pipeline_nodes.base.base_node import PipelineContext
 from data_etl_app.models.types_and_enums import LLMExtractedFieldTypeVar
 from open_ai_key_app.models.field_types import GPTBatchRequestCustomID
-
-if TYPE_CHECKING:
-    from scraper_app.models.scraped_text_file import ScrapedTextFile
+from scraper_app.models.scraped_text_file import ScrapedTextFile
 
 from core.services.gpt_batch_request_queries import (
     find_incomplete_gpt_batch_requests_by_custom_ids,
@@ -40,6 +42,24 @@ class BaseLLMRecursiveExtractionNode(
     creating, dispatching, and recording newly discovered request ids until the
     recursive node reports no missing request ids, then proceed to the next node.
     """
+
+    @abstractmethod  # Child classes must implement this method
+    async def create_batch_requests(
+        self,
+        mfg_etld1: str,
+        scraped_text_file: ScrapedTextFile,
+        missing_request_ids: set[GPTBatchRequestCustomID],
+        metadata: ExtractionMetadata,
+        chunked_request_map: ExtractionRequestMap,
+        timestamp: datetime,
+        pipeline_context: PipelineContext,
+        eager: bool,
+    ) -> list[GPTBatchRequest]:
+        """
+        Create GPT batch requests needed for this extraction phase.
+        Child classes must implement this method.
+        """
+        pass
 
     async def execute(
         self,
@@ -68,32 +88,37 @@ class BaseLLMRecursiveExtractionNode(
             )
 
         metadata = extraction_requests.metadata
-        request_map = extraction_requests.chunked_request_map
+        chunked_request_map = extraction_requests.chunked_request_map
 
         while True:
             await self.embed_request_ids(
                 mfg_etld1=mfg.etld1,
                 pipeline_context=pipeline_context,
                 metadata=metadata,
-                request_map=request_map,
+                chunked_request_map=chunked_request_map,
                 timestamp=timestamp,
             )
 
             missing_req_ids: set[GPTBatchRequestCustomID] = (
                 await self.get_missing_req_ids(
                     mfg_etld1=mfg.etld1,
-                    request_map=request_map,
+                    chunked_request_map=chunked_request_map,
                 )
+            )
+            logger.info(
+                f"[{mfg.etld1}] After embedding request ids for {self.__class__.__name__} ('{self.field_type.name}'), missing_req_ids:{missing_req_ids}"
             )
             if not missing_req_ids:
                 break
 
             batch_requests = await self.create_batch_requests(
                 missing_request_ids=missing_req_ids,
-                deferred_mfg=deferred_mfg,
+                mfg_etld1=deferred_mfg.etld1,
                 scraped_text_file=scraped_text_file,
                 timestamp=timestamp,
                 pipeline_context=pipeline_context,
+                metadata=metadata,
+                chunked_request_map=chunked_request_map,
                 eager=True,
             )
             logger.info(
@@ -105,18 +130,8 @@ class BaseLLMRecursiveExtractionNode(
                 mfg_etld1=mfg.etld1,
             )
 
-            all_request_ids = self.get_embedded_request_ids(
-                mfg_etld1=deferred_mfg.etld1,
-                request_map=request_map,
-            )
-            incomplete_requests = (
-                await find_incomplete_gpt_batch_requests_by_custom_ids(
-                    deferred_mfg.etld1,
-                    list(all_request_ids),
-                )
-            )
             logger.info(
-                f"[{mfg.etld1}] 🚀 Eager execution enabled. Dispatching {len(incomplete_requests)} batch requests for {self.__class__.__name__} ('{self.field_type.name}') immediately."
+                f"[{mfg.etld1}] 🚀 Eager execution enabled. Dispatching {len(batch_requests)} batch requests for {self.__class__.__name__} ('{self.field_type.name}') immediately."
             )
 
             batch_response_blobs = await asyncio.gather(
@@ -125,35 +140,42 @@ class BaseLLMRecursiveExtractionNode(
                         gpt_batch_request=req,
                         metadata=metadata,
                     )
-                    for req in incomplete_requests.values()
+                    for req in batch_requests
                 ]
             )
             modified_count, failed_updates = await bulk_record_gpt_batch_responses(
-                batch_requests=list(incomplete_requests.values()),
+                batch_requests=batch_requests,
                 response_blobs=batch_response_blobs,
                 timestamp=timestamp,
             )
             logger.info(
-                f"[{mfg.etld1}] ✅ Eagerly dispatched {len(incomplete_requests)} batch requests for {self.__class__.__name__} ('{self.field_type.name}') with {modified_count} successful response recordings and {failed_updates} failed updates."
+                f"[{mfg.etld1}] ✅ Eagerly dispatched {len(batch_requests)} batch requests for {self.__class__.__name__} ('{self.field_type.name}') with {modified_count} successful response recordings and {failed_updates} failed updates."
             )
+            await deferred_mfg.save()
 
-        completed_request_map = await self.get_completed_request_map(
+        # check if all requests are complete
+        if await self.are_all_requests_complete(
             mfg_etld1=mfg.etld1,
-            request_map=request_map,
-            all_requests_must_be_complete=True,
-        )
-        pipeline_context[type(self)] = completed_request_map
-        logger.info(
-            f"[{mfg.etld1}] ✅ {self.__class__.__name__} converged for '{self.field_type.name}'. "
-            f"Proceeding to next phase: {self.next_node.__class__.__name__ if self.next_node else 'None'}"
-        )
-
-        if self.next_node:
-            await self.next_node.execute(
-                mfg=mfg,
-                deferred_mfg=deferred_mfg,
-                scraped_text_file=scraped_text_file,
-                pipeline_context=pipeline_context,
-                timestamp=timestamp,
-                eager=eager,
+            chunked_request_map=extraction_requests.chunked_request_map,
+        ):
+            logger.info(
+                f"[{mfg.etld1}] ✅ {self.__class__.__name__} converged for '{self.field_type.name}'. "
+                f"Proceeding to next phase: {self.next_node.__class__.__name__ if self.next_node else 'None'}"
             )
+
+            completed_request_map = await self.get_completed_request_map(
+                mfg_etld1=mfg.etld1,
+                chunked_request_map=chunked_request_map,
+                all_requests_must_be_complete=True,
+            )
+            pipeline_context[type(self)] = completed_request_map
+
+            if self.next_node:
+                await self.next_node.execute(
+                    mfg=mfg,
+                    deferred_mfg=deferred_mfg,
+                    scraped_text_file=scraped_text_file,
+                    pipeline_context=pipeline_context,
+                    timestamp=timestamp,
+                    eager=eager,
+                )

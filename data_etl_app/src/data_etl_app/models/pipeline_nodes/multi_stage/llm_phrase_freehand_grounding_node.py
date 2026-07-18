@@ -4,13 +4,12 @@ import logging
 from datetime import datetime
 from typing import TYPE_CHECKING, Optional
 
-from core.models.db.deferred_manufacturer import DeferredManufacturer
 from core.models.db.gpt_batch_request import GPTBatchRequest
 from core.models.deferred_extraction.deferred_keyword_extraction import (
     DeferredKeywordExtractionRequests,
     KeywordExtractionRequestMap,
 )
-from core.models.field_types import LLMFreehandGroundingResults
+from core.models.field_types import PhraseToTagAndReasonMap
 from core.models.batch_request_objects.gpt_batch_response_blob import GPTBatchResponse
 from core.models.extraction_results.keyword_extraction_results import (
     KeywordExtractionMetadata,
@@ -19,6 +18,8 @@ from core.models.file_objects.prompt import Prompt
 from core.services.gpt_batch_request_service import dispatch_gpt_batch_request
 from data_etl_app.models.pipeline_nodes.base.base_llm_extraction_node import (
     BaseLLMExtractionNode,
+    ExtractionRequestMap,
+    ExtractionMetadata,
 )
 from data_etl_app.models.pipeline_nodes.base.base_node import (
     LLMExtractedFieldTypeVar,
@@ -38,7 +39,7 @@ logger = logging.getLogger(__name__)
 
 
 class LLMPhraseFreehandGroundingNode(
-    BaseLLMExtractionNode[LLMExtractedFieldTypeVar, LLMFreehandGroundingResults]
+    BaseLLMExtractionNode[LLMExtractedFieldTypeVar, PhraseToTagAndReasonMap]
 ):
     def __init__(
         self,
@@ -68,16 +69,16 @@ class LLMPhraseFreehandGroundingNode(
         mfg_etld1: str,
         pipeline_context: PipelineContext,
         metadata: KeywordExtractionMetadata,
-        request_map: KeywordExtractionRequestMap,
+        chunked_request_map: KeywordExtractionRequestMap,
         timestamp: datetime,
     ):
-        if not request_map:
+        if not chunked_request_map:
             raise ValueError(
                 f"Cannot embed req ids for llm freehand grounding node, "
-                f"as request_map found empty for mfg:{mfg_etld1}, field:{self.field_type.name}."
+                f"as chunked_request_map found empty for mfg:{mfg_etld1}, field:{self.field_type.name}."
             )
 
-        for chunk_bounds, extraction_request_bundle in request_map.items():
+        for chunk_bounds, extraction_request_bundle in chunked_request_map.items():
             if not extraction_request_bundle.llm_phrase_freehand_grounding_req_id:
                 extraction_request_bundle.llm_phrase_freehand_grounding_req_id = (
                     self.get_request_custom_id(
@@ -91,10 +92,10 @@ class LLMPhraseFreehandGroundingNode(
     def get_embedded_request_ids(
         self,
         mfg_etld1: str,
-        request_map: KeywordExtractionRequestMap,
+        chunked_request_map: KeywordExtractionRequestMap,
     ) -> set[GPTBatchRequestCustomID]:
         req_ids: set[GPTBatchRequestCustomID] = set()
-        for chunk_bounds, extraction_bundle in request_map.items():
+        for chunk_bounds, extraction_bundle in chunked_request_map.items():
             if not extraction_bundle.llm_phrase_freehand_grounding_req_id:
                 raise ValueError(
                     f"Cannot get embedded request ids for mfg_etld1:{mfg_etld1}>{chunk_bounds} as "
@@ -117,9 +118,11 @@ class LLMPhraseFreehandGroundingNode(
 
     async def create_batch_requests(
         self,
-        missing_request_ids: set[GPTBatchRequestCustomID],
-        deferred_mfg: DeferredManufacturer,
+        mfg_etld1: str,
         scraped_text_file: ScrapedTextFile,
+        missing_request_ids: set[GPTBatchRequestCustomID],
+        metadata: KeywordExtractionMetadata,
+        chunked_request_map: KeywordExtractionRequestMap,
         timestamp: datetime,
         pipeline_context: PipelineContext,
         eager: bool,
@@ -130,22 +133,21 @@ class LLMPhraseFreehandGroundingNode(
                 f"phrase_freehand_grounding_node.create_batch_requests was called for {self.field_type.name} in {self.__class__.__name__} but pipeline_context.mfg_name is not set."
             )
 
-        extraction_requests: Optional[DeferredKeywordExtractionRequests] = getattr(
-            deferred_mfg, self.field_type.name
-        )
-        if not extraction_requests:
-            raise ValueError(
-                f"phrase_freehand_grounding_node.create_batch_requests was called for {self.field_type.name} in {self.__class__.__name__} but no deferred extraction exists."
-            )
-        metadata = extraction_requests.metadata.llm_phrase_freehand_grounding
+        # extraction_requests: Optional[DeferredKeywordExtractionRequests] = getattr(
+        #     deferred_mfg, self.field_type.name
+        # )
+        # if not extraction_requests:
+        #     raise ValueError(
+        #         f"phrase_freehand_grounding_node.create_batch_requests was called for {self.field_type.name} in {self.__class__.__name__} but no deferred extraction exists."
+        #     )
 
         return await create_missing_phrase_freehand_grounding_requests(
             deferred_at=timestamp,
-            mfg_etld1=deferred_mfg.etld1,
+            mfg_etld1=mfg_etld1,
             mfg_name=mfg_name,
             field_type=self.field_type,
             missing_phrase_freehand_grounding_req_ids=missing_request_ids,
-            chunked_request_map=extraction_requests.chunked_request_map,
+            chunked_request_map=chunked_request_map,
             phrase_freehand_grounding_prompt=self.phrase_freehand_grounding_prompt,
             llm_phrase_relationship_gpt_request_map=self.get_upstream_phrase_relationship_map(
                 pipeline_context
@@ -153,8 +155,8 @@ class LLMPhraseFreehandGroundingNode(
             llm_phrase_screening_gpt_request_map=self.get_upstream_phrase_screening_map(
                 pipeline_context
             ),
-            llm_model=metadata.llm_model,
-            model_params=metadata.model_params,
+            llm_model=metadata.llm_phrase_freehand_grounding.llm_model,
+            model_params=metadata.llm_phrase_freehand_grounding.model_params,
             eager=eager,
         )
 

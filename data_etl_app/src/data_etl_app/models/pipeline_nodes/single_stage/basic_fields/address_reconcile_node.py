@@ -61,7 +61,7 @@ class AddressReconcileNode(ReconcileNode[BasicFieldTypeEnum.addresses]):
         for (
             chunk_bounds,
             bundle,
-        ) in extraction_requests.request_map.items():
+        ) in extraction_requests.chunked_request_map.items():
             address_extraction_results = (
                 await AddressExtractionNode.parse_batch_request_result(
                     mfg_etld1=deferred_mfg.etld1,

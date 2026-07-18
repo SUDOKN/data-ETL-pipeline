@@ -4,7 +4,7 @@ import logging
 
 from core.models.db.gpt_batch_request import GPTBatchRequest
 from core.models.deferred_extraction.deferred_single_stage_extraction_requests import (
-    DeferredSingleStageExtractionRequests,
+    SingleStageExtractionRequestMap,
 )
 from core.models.file_objects.prompt import Prompt
 
@@ -24,7 +24,7 @@ async def create_missing_basic_extraction_requests(
     deferred_at: datetime,
     field_type: "BasicFieldTypeEnum | BinaryClassificationTypeEnum",  # used for logging and debugging
     missing_request_ids: set[GPTBatchRequestCustomID],
-    extraction_requests: DeferredSingleStageExtractionRequests,
+    chunked_request_map: SingleStageExtractionRequestMap,
     mfg_etld1: str,
     mfg_text: str,
     prompt: Prompt,
@@ -43,7 +43,7 @@ async def create_missing_basic_extraction_requests(
     for (
         chunk_bounds,
         extraction_bundle,
-    ) in extraction_requests.request_map.items():
+    ) in chunked_request_map.items():
         if extraction_bundle.llm_request_id in missing_request_ids:
             start = chunk_bounds.split(":")[0]
             end = chunk_bounds.split(":")[1]
@@ -66,7 +66,7 @@ async def create_missing_basic_extraction_requests(
                 etld1=mfg_etld1,
                 custom_id=llm_request_id,
                 context=chunk_text,
-                prompt=prompt,
+                prompt_text=prompt.text,
                 gpt_model=llm_model,
                 model_params=model_params,
                 batch_id="Eager" if eager else None,

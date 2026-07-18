@@ -17,6 +17,7 @@ from core.models.batch_request_objects.gpt_batch_response_blob import (
 from core.models.deferred_extraction.deferred_phrase_extraction_requests import (
     LLMPhraseExtractionRequestBundle,
     DeferredLLMPhraseExtractionRequests,
+    LLMPhraseExtractionRequestMap,
 )
 from core.models.deferred_extraction.deferred_concept_extraction import (
     ConceptExtractionRequestBundle,
@@ -125,9 +126,7 @@ async def create_missing_phrase_relationship_requests(
     mfg_etld1: str,
     mfg_name: str,
     field_type: LLMExtractedFieldTypeEnum,  # used for logging and debugging
-    extraction_requests: (
-        DeferredLLMPhraseExtractionRequests | DeferredConceptExtractionRequests
-    ),
+    chunked_request_map: LLMPhraseExtractionRequestMap,
     missing_phrase_relationship_req_ids: set[GPTBatchRequestCustomID],
     mfg_text: str,
     phrase_relationship_prompt: Prompt,
@@ -149,7 +148,7 @@ async def create_missing_phrase_relationship_requests(
     chunk_items = list(
         {
             chunk_bounds: bundle
-            for chunk_bounds, bundle in extraction_requests.chunked_request_map.items()
+            for chunk_bounds, bundle in chunked_request_map.items()
             if bundle.llm_phrase_relationship_req_id
             in missing_phrase_relationship_req_ids
         }.items()
@@ -271,12 +270,7 @@ def _create_dummy_completed_phrase_relationship_batch_request(
         etld1=etld1,
         custom_id=llm_phrase_relationship_request_id,
         context="No phrase_relationship needed - no phrases found in text.",
-        prompt=Prompt(
-            name="dummy_phrase_relationship_prompt",
-            text="No phrase relationships needed - no phrases found in text brute force or by LLM.",
-            s3_version_id="dummy_s3_version_id",
-            num_tokens=1,
-        ),
+        prompt_text="No phrase relationships needed - no phrases found in text brute force or by LLM.",
         gpt_model=NO_MODEL,
         model_params=model_params,
         batch_id="Eager" if eager else "dummy_phrase_relationship_batch_id",
@@ -316,7 +310,7 @@ def create_deferred_phrase_relationship_gpt_request(
         etld1=etld1,
         custom_id=llm_phrase_relationship_request_id,
         context=context,
-        prompt=phrase_relationship_prompt,
+        prompt_text=phrase_relationship_prompt.text,
         gpt_model=gpt_model,
         model_params=model_params,
         batch_id="Eager" if eager else None,

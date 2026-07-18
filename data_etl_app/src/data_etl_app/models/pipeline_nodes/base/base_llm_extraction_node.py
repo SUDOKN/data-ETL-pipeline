@@ -4,13 +4,17 @@ import logging
 from datetime import datetime
 from abc import abstractmethod
 
-from typing import TYPE_CHECKING, TypeVar, Generic, Union
+from typing import TypeVar, Generic, Union
 
 from core.models.db.manufacturer import Manufacturer
 from core.models.db.deferred_manufacturer import DeferredManufacturer
 from core.models.db.gpt_batch_request import GPTBatchRequest
 from core.models.batch_request_objects.gpt_batch_response_blob import (
     GPTBatchResponse,
+)
+from core.models.deferred_extraction.deferred_keyword_extraction import (
+    DeferredKeywordExtractionRequests,
+    KeywordExtractionRequestMap,
 )
 from core.models.deferred_extraction.deferred_phrase_extraction_requests import (
     DeferredLLMPhraseExtractionRequests,
@@ -21,6 +25,9 @@ from core.models.deferred_extraction.deferred_concept_extraction import (
     ConceptExtractionRequestMap,
     ConceptExtractionMetadata,
     DeferredConceptExtractionRequests,
+)
+from core.models.extraction_results.keyword_extraction_results import (
+    KeywordExtractionMetadata,
 )
 from core.models.extraction_results.single_stage_extraction_results import (
     LLMSingleStageExtractionMetadata,
@@ -33,6 +40,7 @@ from core.models.deferred_extraction.deferred_single_stage_extraction_requests i
 from data_etl_app.models.pipeline_nodes.base.base_node import (
     BaseNode,
     PipelineContext,
+    ResultT,
 )
 from data_etl_app.models.pipeline_nodes.base.base_reconcile_node import ReconcileNode
 from data_etl_app.models.types_and_enums import (
@@ -40,9 +48,7 @@ from data_etl_app.models.types_and_enums import (
     LLMExtractedFieldTypeEnum,
 )
 from open_ai_key_app.models.field_types import GPTBatchRequestCustomID
-
-if TYPE_CHECKING:
-    from scraper_app.models.scraped_text_file import ScrapedTextFile
+from scraper_app.models.scraped_text_file import ScrapedTextFile
 
 from core.services.gpt_batch_request_queries import (
     find_completed_gpt_batch_request_ids_only,
@@ -57,29 +63,29 @@ from core.services.gpt_batch_request_writes import (
 
 logger = logging.getLogger(__name__)
 
-ResultT = TypeVar("ResultT")
 
 DeferredExtractionRequests = Union[
     DeferredLLMPhraseExtractionRequests,
     DeferredConceptExtractionRequests,
     DeferredSingleStageExtractionRequests,
+    DeferredKeywordExtractionRequests,
 ]
 ExtractionRequestMap = Union[
     LLMPhraseExtractionRequestMap,
     ConceptExtractionRequestMap,
+    KeywordExtractionRequestMap,
     SingleStageExtractionRequestMap,
 ]
 ExtractionMetadata = Union[
     LLMPhraseExtractionMetadata,
     ConceptExtractionMetadata,
+    KeywordExtractionMetadata,
     LLMSingleStageExtractionMetadata,
 ]
 
 
 # Strategy Pattern
-class BaseLLMExtractionNode(
-    BaseNode[LLMExtractedFieldTypeVar], Generic[LLMExtractedFieldTypeVar, ResultT]
-):
+class BaseLLMExtractionNode(BaseNode[LLMExtractedFieldTypeVar, ResultT]):
     """
     Base class for single phase of extraction.
 
@@ -100,7 +106,7 @@ class BaseLLMExtractionNode(
         mfg_etld1: str,
         pipeline_context: PipelineContext,
         metadata: ExtractionMetadata,
-        request_map: ExtractionRequestMap,
+        chunked_request_map: ExtractionRequestMap,
         timestamp: datetime,
     ):
         pass
@@ -109,7 +115,7 @@ class BaseLLMExtractionNode(
     def get_embedded_request_ids(
         self,
         mfg_etld1: str,
-        request_map: ExtractionRequestMap,
+        chunked_request_map: ExtractionRequestMap,
     ) -> set[GPTBatchRequestCustomID]:
         pass
 
@@ -126,18 +132,25 @@ class BaseLLMExtractionNode(
     async def get_missing_req_ids(
         self,
         mfg_etld1: str,
-        request_map: ExtractionRequestMap,
+        chunked_request_map: ExtractionRequestMap,
     ) -> set[GPTBatchRequestCustomID]:
         """Check if the DB is missing any GPT batch requests for this concept type."""
         # Check if all search requests exist
         req_ids_to_lookup: set[GPTBatchRequestCustomID] = self.get_embedded_request_ids(
             mfg_etld1=mfg_etld1,
-            request_map=request_map,
+            chunked_request_map=chunked_request_map,
         )
+        if not req_ids_to_lookup:
+            return set()
+
         req_ids_missing = req_ids_to_lookup - (
             await find_gpt_batch_request_ids_only(mfg_etld1, list(req_ids_to_lookup))
             # maybe complete maybe not
         )
+        if req_ids_missing:
+            logger.info(f"Could not find batch req docs for {req_ids_missing}")
+        else:
+            logger.info(f"All req docs present.")
 
         # because otherwise even though deferred_address_extraction exists,
         # the batch request wasn't created for some reason
@@ -148,12 +161,12 @@ class BaseLLMExtractionNode(
     async def are_all_requests_complete(
         self,
         mfg_etld1: str,
-        request_map: ExtractionRequestMap,
+        chunked_request_map: ExtractionRequestMap,
     ) -> bool:
         # Check if all search requests are complete
         req_ids_to_lookup: set[GPTBatchRequestCustomID] = self.get_embedded_request_ids(
             mfg_etld1=mfg_etld1,
-            request_map=request_map,
+            chunked_request_map=chunked_request_map,
         )
         incomplete_gpt_req_ids = req_ids_to_lookup - (
             await find_completed_gpt_batch_request_ids_only(
@@ -165,13 +178,13 @@ class BaseLLMExtractionNode(
     async def get_completed_request_map(
         self,
         mfg_etld1: str,
-        request_map: ExtractionRequestMap,
+        chunked_request_map: ExtractionRequestMap,
         all_requests_must_be_complete: bool,
     ) -> dict[GPTBatchRequestCustomID, GPTBatchRequest]:
         # Check if all search requests are complete
         req_ids_to_lookup: set[GPTBatchRequestCustomID] = self.get_embedded_request_ids(
             mfg_etld1=mfg_etld1,
-            request_map=request_map,
+            chunked_request_map=chunked_request_map,
         )
         incomplete_gpt_req_ids = req_ids_to_lookup - (
             await find_completed_gpt_batch_request_ids_only(
@@ -191,9 +204,11 @@ class BaseLLMExtractionNode(
     @abstractmethod  # Child classes must implement this method
     async def create_batch_requests(
         self,
-        missing_request_ids: set[GPTBatchRequestCustomID],
-        deferred_mfg: DeferredManufacturer,
+        mfg_etld1: str,
         scraped_text_file: ScrapedTextFile,
+        missing_request_ids: set[GPTBatchRequestCustomID],
+        metadata: ExtractionMetadata,
+        chunked_request_map: ExtractionRequestMap,
         timestamp: datetime,
         pipeline_context: PipelineContext,
         eager: bool,
@@ -240,23 +255,24 @@ class BaseLLMExtractionNode(
             mfg_etld1=mfg.etld1,
             pipeline_context=pipeline_context,
             metadata=extraction_requests.metadata,
-            request_map=extraction_requests.chunked_request_map,
+            chunked_request_map=extraction_requests.chunked_request_map,
             timestamp=timestamp,
         )
-        # await deferred_mfg.save()  # evaluate this
 
         missing_req_ids = await self.get_missing_req_ids(
             mfg_etld1=mfg.etld1,
-            request_map=extraction_requests.chunked_request_map,
+            chunked_request_map=extraction_requests.chunked_request_map,
         )
         if missing_req_ids:
             logger.info(
                 f"[{mfg.etld1}] 🆕 {self.__class__.__name__}: Missing requests detected for '{self.field_type.name}'. Creating batch requests..."
             )
             batch_requests = await self.create_batch_requests(
-                missing_request_ids=missing_req_ids,
-                deferred_mfg=deferred_mfg,
+                mfg_etld1=deferred_mfg.etld1,
                 scraped_text_file=scraped_text_file,
+                missing_request_ids=missing_req_ids,
+                metadata=extraction_requests.metadata,
+                chunked_request_map=extraction_requests.chunked_request_map,
                 timestamp=timestamp,
                 pipeline_context=pipeline_context,
                 eager=eager,
@@ -268,7 +284,7 @@ class BaseLLMExtractionNode(
             await bulk_upsert_gpt_batch_requests_with_only_req_bodies(
                 batch_requests=batch_requests, mfg_etld1=mfg.etld1
             )
-            # await deferred_mfg.save()
+            await deferred_mfg.save()
         else:
             logger.debug(
                 f"[{mfg.etld1}] ✓ {self.__class__.__name__}: All requests already exist for '{self.field_type.name}'"
@@ -277,7 +293,7 @@ class BaseLLMExtractionNode(
         if eager:
             all_request_ids = self.get_embedded_request_ids(
                 mfg_etld1=deferred_mfg.etld1,
-                request_map=extraction_requests.chunked_request_map,
+                chunked_request_map=extraction_requests.chunked_request_map,
             )
             incomplete_requests = (
                 await find_incomplete_gpt_batch_requests_by_custom_ids(
@@ -309,7 +325,7 @@ class BaseLLMExtractionNode(
         # check if all requests are complete
         if await self.are_all_requests_complete(
             mfg_etld1=mfg.etld1,
-            request_map=extraction_requests.chunked_request_map,
+            chunked_request_map=extraction_requests.chunked_request_map,
         ):
             logger.info(
                 f"[{mfg.etld1}] ✅ {self.__class__.__name__} is COMPLETE for '{self.field_type.name}'. "
@@ -317,7 +333,7 @@ class BaseLLMExtractionNode(
             )
             completed_request_map = await self.get_completed_request_map(
                 mfg_etld1=mfg.etld1,
-                request_map=extraction_requests.chunked_request_map,
+                chunked_request_map=extraction_requests.chunked_request_map,
                 all_requests_must_be_complete=True,
             )
             pipeline_context[type(self)] = completed_request_map

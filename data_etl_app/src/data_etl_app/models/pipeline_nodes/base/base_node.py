@@ -4,7 +4,7 @@ from __future__ import (
 
 import logging
 from abc import ABC, abstractmethod
-from typing import TYPE_CHECKING, Generic, Optional
+from typing import TypeVar, Generic, Optional
 from datetime import datetime
 
 from core.models.db.manufacturer import Manufacturer
@@ -14,20 +14,21 @@ from data_etl_app.models.types_and_enums import (
     LLMExtractedFieldTypeVar,
 )
 from open_ai_key_app.models.field_types import GPTBatchRequestCustomID
-
-if TYPE_CHECKING:
-    from scraper_app.models.scraped_text_file import ScrapedTextFile
+from scraper_app.models.scraped_text_file import ScrapedTextFile
 
 logger = logging.getLogger(__name__)
 
 
-class BaseNode(ABC, Generic[LLMExtractedFieldTypeVar]):
+ResultT = TypeVar("ResultT")
+
+
+class BaseNode(ABC, Generic[LLMExtractedFieldTypeVar, ResultT]):
     """Base class for the phase of reconciliation for any deferred field. Assumes extraction is done."""
 
     def __init__(
         self,
         field_type: LLMExtractedFieldTypeVar,
-        next_node: "BaseNode[LLMExtractedFieldTypeVar] | None",
+        next_node: "BaseNode[LLMExtractedFieldTypeVar, ResultT] | None",
     ) -> None:
         self.field_type: LLMExtractedFieldTypeVar = field_type
         self.next_node = next_node
@@ -45,7 +46,7 @@ class BaseNode(ABC, Generic[LLMExtractedFieldTypeVar]):
         pass
 
 
-class PipelineContext:
+class PipelineContext(Generic[ResultT]):
     """Carries shared state for a single pipeline run.
 
     ``mfg_name`` is pre-populated by the orchestrator before any concept/keyword
@@ -61,20 +62,18 @@ class PipelineContext:
         mfg_name: Optional[str] = None,
     ) -> None:
         self.mfg_name: Optional[str] = mfg_name
-        self._results: dict[
-            type[BaseNode], dict[GPTBatchRequestCustomID, GPTBatchRequest]
-        ] = {}
+        self._results: dict[type[BaseNode], dict[GPTBatchRequestCustomID, ResultT]] = {}
 
     # --- dict-like access so existing ``pipeline_context[NodeClass]`` calls work unchanged ---
 
     def __getitem__(
         self, key: type[BaseNode]
-    ) -> dict[GPTBatchRequestCustomID, GPTBatchRequest]:
+    ) -> dict[GPTBatchRequestCustomID, ResultT]:
         return self._results[key]
 
     def __setitem__(
         self,
         key: type[BaseNode],
-        value: dict[GPTBatchRequestCustomID, GPTBatchRequest],
+        value: dict[GPTBatchRequestCustomID, ResultT],
     ) -> None:
         self._results[key] = value

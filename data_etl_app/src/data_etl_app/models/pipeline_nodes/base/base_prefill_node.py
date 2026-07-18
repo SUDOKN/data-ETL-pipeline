@@ -3,7 +3,7 @@ from __future__ import annotations
 import logging
 from abc import abstractmethod
 from datetime import datetime
-from typing import TYPE_CHECKING
+from typing import Generic
 
 from core.models.db.manufacturer import Manufacturer
 from core.models.db.deferred_manufacturer import DeferredManufacturer
@@ -12,7 +12,7 @@ from data_etl_app.models.chunking_strat import ChunkingStrategy
 from data_etl_app.models.pipeline_nodes.base.base_node import (
     BaseNode,
     PipelineContext,
-    LLMExtractedFieldTypeVar,
+    ResultT,
 )
 from data_etl_app.models.pipeline_nodes.base.base_llm_extraction_node import (
     BaseLLMExtractionNode,
@@ -20,14 +20,14 @@ from data_etl_app.models.pipeline_nodes.base.base_llm_extraction_node import (
 from data_etl_app.models.types_and_enums import (
     LLMExtractedFieldTypeVar,
 )
-
-if TYPE_CHECKING:
-    from scraper_app.models.scraped_text_file import ScrapedTextFile
+from scraper_app.models.scraped_text_file import ScrapedTextFile
 
 logger = logging.getLogger(__name__)
 
 
-class PrefillNode(BaseNode[LLMExtractedFieldTypeVar]):
+class PrefillNode(BaseNode[LLMExtractedFieldTypeVar, ResultT]):
+    next_node: BaseLLMExtractionNode
+
     def __init__(
         self,
         field_type: LLMExtractedFieldTypeVar,
@@ -47,4 +47,11 @@ class PrefillNode(BaseNode[LLMExtractedFieldTypeVar]):
         pipeline_context: PipelineContext,
         eager: bool,  # if True, dispatch all batch requests immediately and then check for completion, basically a sync execution of the entire phase
     ) -> None:
-        pass
+        await self.next_node.execute(
+            mfg=mfg,
+            deferred_mfg=deferred_mfg,
+            scraped_text_file=scraped_text_file,
+            pipeline_context=pipeline_context,
+            timestamp=timestamp,
+            eager=eager,
+        )

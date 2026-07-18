@@ -42,21 +42,24 @@ def _get_single_shot_chunking_strat(
     )
 
 
+DEFAULT_MAX_CHUNKS = 1
+
+
 BINARY_CLASSIFICATION_CHUNKING_STRAT_MAX_TOKENS = 128_000
 BASIC_FIELD_EXTRACTION_CHUNKING_STRAT_MAX_TOKENS = 128_000
 
 PRODUCT_CHUNKING_STRAT = ChunkingStrategy(
-    overlap=0.15, max_tokens_per_chunk=5000, max_chunks=10
+    overlap=0.15, max_tokens_per_chunk=5000, max_chunks=DEFAULT_MAX_CHUNKS
 )
 CERTIFICATE_CHUNKING_STRAT = ChunkingStrategy(
-    overlap=0.0, max_tokens_per_chunk=5000, max_chunks=10
+    overlap=0.0, max_tokens_per_chunk=5000, max_chunks=DEFAULT_MAX_CHUNKS
 )
 MATERIAL_CAP_CHUNKING_STRAT = ChunkingStrategy(
-    overlap=0.15, max_tokens_per_chunk=5000, max_chunks=10
+    overlap=0.15, max_tokens_per_chunk=5000, max_chunks=DEFAULT_MAX_CHUNKS
 )
 PROCESS_CAP_CHUNKING_STRAT = ChunkingStrategy(
-    overlap=0.15, max_tokens_per_chunk=2500, max_chunks=10
+    overlap=0.15, max_tokens_per_chunk=2500, max_chunks=DEFAULT_MAX_CHUNKS
 )
 INDUSTRY_CHUNKING_STRAT = ChunkingStrategy(
-    overlap=0.15, max_tokens_per_chunk=5000, max_chunks=10
+    overlap=0.15, max_tokens_per_chunk=5000, max_chunks=DEFAULT_MAX_CHUNKS
 )

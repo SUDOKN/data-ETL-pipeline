@@ -75,7 +75,7 @@ def create_deferred_mapping_gpt_request(
         etld1=etld1,
         custom_id=llm_mapping_request_id,
         context=context,
-        prompt=mapping_prompt,
+        prompt_text=mapping_prompt.text,
         gpt_model=gpt_model,
         model_params=model_params,
         batch_id="Eager" if eager else None,

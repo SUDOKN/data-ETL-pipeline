@@ -55,7 +55,7 @@ def validate_rdf_graph(graph: Graph) -> dict:
 
         if is_owl_class(graph, uri_str) and uri_str.startswith(SUDOKN_BASE_URI):
             try:
-                build_concept_tree(graph, URIRef(uri_str), set())
+                build_concept_tree(graph, URIRef(uri_str))
                 validated_concept_roots.append(uri_str)
             except Exception as exc:
                 issues.append(

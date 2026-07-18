@@ -35,11 +35,11 @@ from data_etl_app.services.extraction.deferred_llm_relationship_screening_node_s
     parse_batch_request_result as parse_relationhip_screening_batch_req_result,
 )
 from data_etl_app.services.extraction.deferred_llm_initial_grounding_service import (
-    parse_batch_request_result as parse_initial_grounding_batch_req_result,
+    parse_initial_grounding_batch_request_result as parse_initial_grounding_batch_req_result,
 )
 from data_etl_app.services.extraction.deferred_llm_recursive_grounding_service import (
     get_leaf_w_parent_from_tagged_concepts,
-    get_tagged_concepts_from_grounding_results,
+    get_tagged_concepts_from_recursive_grounding_results,
 )
 
 
@@ -112,10 +112,8 @@ class ConceptReconcileNode(ReconcileNode[ConceptTypeEnum]):
             chunk_bounds,
             bundle,
         ) in extraction_requests.chunked_request_map.items():
-            recursively_tagged_concept_nodes = (
-                bundle.llm_phrase_recursive_grounding_root_req_nodes
-            )
-            if recursively_tagged_concept_nodes is None:
+            iteratively_tagged_concept_nodes = bundle.llm_phrase_recursive_tagging_reqs
+            if iteratively_tagged_concept_nodes is None:
                 raise ValueError(
                     f"Cannot proceed to reconcile {self.field_type.name} for {mfg.etld1}:{chunk_bounds} "
                     f"as bundle.llm_phrase_recursive_grounding_root_req_nodes is None implying "
@@ -123,7 +121,7 @@ class ConceptReconcileNode(ReconcileNode[ConceptTypeEnum]):
                 )
 
             recognized_tagged_concepts, unrecognized_tagged_concepts = (
-                get_leaf_w_parent_from_tagged_concepts(recursively_tagged_concept_nodes)
+                get_leaf_w_parent_from_tagged_concepts(iteratively_tagged_concept_nodes)
             )
 
             chunk_initial_grounding_results = (
@@ -140,16 +138,18 @@ class ConceptReconcileNode(ReconcileNode[ConceptTypeEnum]):
             )
             initially_tagged_vocab_agnostic_concepts_from_all_levels: dict[
                 str, RecursivelyTaggedConceptNode
-            ] = get_tagged_concepts_from_grounding_results(
+            ] = get_tagged_concepts_from_recursive_grounding_results(
                 mfg_etld1=mfg.etld1,
                 field_type=self.field_type,
                 chunk_bounds=chunk_bounds,
-                initial=True,
                 grounding_results=chunk_initial_grounding_results,
                 match_label_to_concept_map=self.match_label_to_concept_map,
                 llm_model=extraction_requests.metadata.llm_phrase_initial_grounding.llm_model,
                 model_params=extraction_requests.metadata.llm_phrase_initial_grounding.model_params,
+                initial_grounding_results=True,
                 level=None,
+                in_vocab_only=False,
+                ignore_direct_phrase_match=False,
             )
             initially_tagged_out_of_vocab_concepts_from_all_levels = {
                 tagged_name: node
@@ -209,7 +209,7 @@ class ConceptReconcileNode(ReconcileNode[ConceptTypeEnum]):
                         deferred_at=timestamp,
                     )
                 ),
-                llm_phrase_recursive_grounding=recursively_tagged_concept_nodes,
+                llm_phrase_recursive_grounding=iteratively_tagged_concept_nodes,
             )
 
         final_extraction_result = ConceptExtractionResults(

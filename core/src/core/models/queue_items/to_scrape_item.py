@@ -34,11 +34,11 @@ class ToScrapeItem(QueueItem):
     def mfg_etld1(self) -> str:
         return get_etld1_from_host(self.start_url)
 
-    @field_validator("accessible_normalized_url")
+    @field_validator("start_url")
     @classmethod
     def validate_and_normalize_url(cls, v: str) -> str:
         if not isinstance(v, str) or not v:
-            raise ValueError("accessible_normalized_url must be a non-empty string")
+            raise ValueError("start_url must be a non-empty string")
 
         _, url = get_normalized_url(get_complete_url_with_compatible_protocol(v))
         return url

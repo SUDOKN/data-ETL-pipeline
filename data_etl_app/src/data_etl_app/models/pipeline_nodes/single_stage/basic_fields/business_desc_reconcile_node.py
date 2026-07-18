@@ -56,7 +56,7 @@ class BusinessDescReconcileNode(ReconcileNode[BasicFieldTypeEnum.business_desc])
 
         completed_extraction_requests = pipeline_context[BusinessDescExtractionNode]
         first_chunk_bounds, first_req_bundle = list(
-            extraction_requests.request_map.items()
+            extraction_requests.chunked_request_map.items()
         )[0]
         result = await BusinessDescExtractionNode.parse_batch_request_result(
             mfg_etld1=deferred_mfg.etld1,

@@ -233,12 +233,7 @@ def _create_dummy_completed_phrase_relationships_screening_batch_request(
         etld1=etld1,
         custom_id=llm_phrase_relationship_screening_request_id,
         context="No phrase relationship screening needed - no phrases found in text.",
-        prompt=Prompt(
-            name="dummy_phrase_relationship_screening_prompt",
-            text="No phrase relationship screening needed - no phrases found in text by brute force or by LLM.",
-            s3_version_id="dummy_s3_version_id",
-            num_tokens=1,
-        ),
+        prompt_text="No phrase relationship screening needed - no phrases found in text by brute force or by LLM.",
         gpt_model=NO_MODEL,
         model_params=model_params,
         batch_id="Eager" if eager else "dummy_phrase_relationship_batch_id",
@@ -271,14 +266,14 @@ def create_deferred_phrase_relationships_screening_gpt_request(
     logger.info(
         f"create_deferred_phrase_relationships_screening_gpt_request: Generating GPTBatchRequest for {llm_phrase_relationship_screening_request_id}"
     )
-    context = f"Manufacturer name: {mfg_name}\n\n extracted phrases:\n{list(phrase_relationship_results)}"
+    context = f"Manufacturer name: {mfg_name}\n\n extracted phrases:\n{json.dumps(phrase_relationship_results)}"
 
     gpt_batch_request = create_base_gpt_batch_request(
         deferred_at=deferred_at,
         etld1=etld1,
         custom_id=llm_phrase_relationship_screening_request_id,
         context=context,
-        prompt=phrase_relationship_screening_prompt,
+        prompt_text=phrase_relationship_screening_prompt.text,
         gpt_model=gpt_model,
         model_params=model_params,
         batch_id="Eager" if eager else None,

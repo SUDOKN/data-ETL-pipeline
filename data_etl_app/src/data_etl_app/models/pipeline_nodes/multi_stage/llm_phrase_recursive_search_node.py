@@ -107,13 +107,13 @@ class LLMPhraseRecursiveSearchNode(
         mfg_etld1: str,
         pipeline_context: PipelineContext,
         metadata: LLMPhraseExtractionMetadata,
-        request_map: LLMPhraseExtractionRequestMap,
+        chunked_request_map: LLMPhraseExtractionRequestMap,
         timestamp: datetime,
     ):
-        if not request_map:
+        if not chunked_request_map:
             raise ValueError(
                 f"Cannot embed req ids for llm recursive search node, "
-                f"as request_map found empty for mfg:{mfg_etld1}, field:{self.field_type.name}."
+                f"as chunked_request_map found empty for mfg:{mfg_etld1}, field:{self.field_type.name}."
             )
 
         recursive_meta = metadata.llm_phrase_recursive_search
@@ -124,10 +124,10 @@ class LLMPhraseRecursiveSearchNode(
         # Seed round 1 (index 0) for every chunk on the first entry.
         any_rounds_embedded = any(
             bundle.llm_phrase_recursive_search_req_ids
-            for bundle in request_map.values()
+            for bundle in chunked_request_map.values()
         )
         if not any_rounds_embedded:
-            for chunk_bounds, bundle in request_map.items():
+            for chunk_bounds, bundle in chunked_request_map.items():
                 bundle.llm_phrase_recursive_search_req_ids.append(
                     self.get_request_custom_id(
                         mfg_etld1=mfg_etld1,
@@ -141,7 +141,7 @@ class LLMPhraseRecursiveSearchNode(
 
         # Only advance to the next round once every embedded round has completed.
         if not await self.are_all_requests_complete(
-            mfg_etld1=mfg_etld1, request_map=request_map
+            mfg_etld1=mfg_etld1, chunked_request_map=chunked_request_map
         ):
             logger.info(
                 f"[{mfg_etld1}] Waiting for recursive search rounds to complete before embedding the next round."
@@ -150,12 +150,12 @@ class LLMPhraseRecursiveSearchNode(
 
         completed_recursive_map = await self.get_completed_request_map(
             mfg_etld1=mfg_etld1,
-            request_map=request_map,
+            chunked_request_map=chunked_request_map,
             all_requests_must_be_complete=False,
         )
         first_search_map = self.get_upstream_first_search_map(pipeline_context)
 
-        for chunk_bounds, bundle in request_map.items():
+        for chunk_bounds, bundle in chunked_request_map.items():
             rounds = bundle.llm_phrase_recursive_search_req_ids
             if len(rounds) >= recursive_meta.max_rounds:
                 continue  # hard cap reached for this chunk
@@ -203,36 +203,31 @@ class LLMPhraseRecursiveSearchNode(
     def get_embedded_request_ids(
         self,
         mfg_etld1: str,
-        request_map: LLMPhraseExtractionRequestMap,
+        chunked_request_map: LLMPhraseExtractionRequestMap,
     ) -> set[GPTBatchRequestCustomID]:
         recursive_search_req_ids: set[GPTBatchRequestCustomID] = set()
-        for _chunk_bounds, bundle in request_map.items():
+        for _chunk_bounds, bundle in chunked_request_map.items():
             recursive_search_req_ids.update(bundle.llm_phrase_recursive_search_req_ids)
         return recursive_search_req_ids
 
     async def create_batch_requests(
         self,
-        missing_request_ids: set[GPTBatchRequestCustomID],
-        deferred_mfg: DeferredManufacturer,
+        mfg_etld1: str,
         scraped_text_file: ScrapedTextFile,
-        timestamp: datetime,
+        missing_request_ids: set[GPTBatchRequestCustomID],
+        metadata: LLMPhraseExtractionMetadata,
+        chunked_request_map: LLMPhraseExtractionRequestMap,
         pipeline_context: PipelineContext,
+        timestamp: datetime,
         eager: bool,
     ) -> list[GPTBatchRequest]:
         """Create batch requests for the missing recursive search rounds."""
-        extraction_requests: Optional[DeferredLLMPhraseExtractionRequests] = getattr(
-            deferred_mfg, self.field_type.name
-        )
-        if not extraction_requests:
-            raise ValueError(
-                f"create_batch_requests was called for {self.field_type.name} in {self.__class__.__name__} but no deferred extraction exists."
-            )
-        recursive_meta = extraction_requests.metadata.llm_phrase_recursive_search
+        recursive_meta = metadata.llm_phrase_recursive_search
         first_search_map = self.get_upstream_first_search_map(pipeline_context)
 
         completed_recursive_map = await self.get_completed_request_map(
-            mfg_etld1=deferred_mfg.etld1,
-            request_map=extraction_requests.chunked_request_map,
+            mfg_etld1=mfg_etld1,
+            chunked_request_map=chunked_request_map,
             all_requests_must_be_complete=False,
         )
 
@@ -240,8 +235,8 @@ class LLMPhraseRecursiveSearchNode(
             deferred_at=timestamp,
             field_type=self.field_type,
             missing_recursive_search_req_ids=missing_request_ids,
-            chunked_request_map=extraction_requests.chunked_request_map,
-            mfg_etld1=deferred_mfg.etld1,
+            chunked_request_map=chunked_request_map,
+            mfg_etld1=mfg_etld1,
             mfg_text=scraped_text_file.text,
             recursive_search_prompt=self.recursive_search_prompt,
             first_search_gpt_request_map=first_search_map,

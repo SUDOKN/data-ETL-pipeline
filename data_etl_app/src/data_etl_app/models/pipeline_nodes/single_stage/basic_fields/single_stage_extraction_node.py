@@ -66,19 +66,19 @@ class SingleStageExtractionNode(
         mfg_etld1: str,
         pipeline_context: PipelineContext,
         metadata: LLMSingleStageExtractionMetadata,
-        request_map: SingleStageExtractionRequestMap,
-        deferred_at: datetime,
+        chunked_request_map: SingleStageExtractionRequestMap,
+        timestamp: datetime,
     ):
-        if not request_map:
+        if not chunked_request_map:
             raise ValueError(
                 f"Cannot embed req ids for llm phrase search node, "
-                f"as request_map found empty for mfg:{mfg_etld1}, field:{self.field_type.name}."
+                f"as chunked_request_map found empty for mfg:{mfg_etld1}, field:{self.field_type.name}."
             )
 
         for (
             chunk_bounds,
             extraction_request_bundle,
-        ) in request_map.items():
+        ) in chunked_request_map.items():
             if not extraction_request_bundle.llm_request_id:
                 extraction_request_bundle.llm_request_id = self.get_request_custom_id(
                     mfg_etld1=mfg_etld1,
@@ -90,13 +90,13 @@ class SingleStageExtractionNode(
     def get_embedded_request_ids(
         self,
         mfg_etld1: str,
-        request_map: SingleStageExtractionRequestMap,
+        chunked_request_map: SingleStageExtractionRequestMap,
     ) -> set[GPTBatchRequestCustomID]:
         all_llm_req_ids: set[GPTBatchRequestCustomID] = set()
         for (
             _chunk_bounds,
             extraction_bundle,
-        ) in request_map.items():
+        ) in chunked_request_map.items():
             if not extraction_bundle.llm_request_id:
                 raise ValueError(
                     f"get_embedded_request_ids was called for {mfg_etld1}:{self.field_type.name} but llm_request_id is None for chunk bounds {_chunk_bounds}."
@@ -130,39 +130,32 @@ class SingleStageExtractionNode(
 
     async def create_batch_requests(
         self,
-        missing_request_ids: set[GPTBatchRequestCustomID],
-        deferred_mfg: DeferredManufacturer,
+        mfg_etld1: str,
         scraped_text_file: ScrapedTextFile,
-        timestamp: datetime,
+        missing_request_ids: set[GPTBatchRequestCustomID],
+        metadata: LLMSingleStageExtractionMetadata,
+        chunked_request_map: SingleStageExtractionRequestMap,
         pipeline_context: PipelineContext,
+        timestamp: datetime,
         eager: bool,
     ) -> list[GPTBatchRequest]:
         """Create batch requests for business description extraction phase."""
 
-        extraction_requests: Optional[DeferredSingleStageExtractionRequests] = getattr(
-            deferred_mfg, self.field_type.name
-        )
-        if not extraction_requests:
-            raise ValueError(
-                f"create_batch_requests was called for {self.field_type.name} but no extraction requests exist."
-            )
-        metadata = extraction_requests.metadata.single_stage
-
         batch_requests = await create_missing_basic_extraction_requests(
             deferred_at=timestamp,
-            mfg_etld1=deferred_mfg.etld1,
+            mfg_etld1=mfg_etld1,
             mfg_text=scraped_text_file.text,
             field_type=self.field_type,
-            extraction_requests=extraction_requests,
+            chunked_request_map=chunked_request_map,
             missing_request_ids=missing_request_ids,
             prompt=self.prompt,
-            llm_model=metadata.llm_model,
-            model_params=metadata.model_params,
+            llm_model=metadata.single_stage.llm_model,
+            model_params=metadata.single_stage.model_params,
             eager=eager,
         )
 
         logger.info(
-            f"create_batch_requests: Created {len(batch_requests)} GPTBatchRequest for {deferred_mfg.etld1}:{self.field_type.name}"
+            f"create_batch_requests: Created {len(batch_requests)} GPTBatchRequest for {mfg_etld1}:{self.field_type.name}"
         )
         logger.info(f"{batch_requests}")
 

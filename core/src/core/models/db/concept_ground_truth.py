@@ -20,8 +20,8 @@ from core.utils.time_util import get_current_time
 
 
 class DistillationResultVerificationEnum(str, Enum):
-    YES_PREFIX = "Yes, "
-    NO_PREFIX = "No, "
+    YES_PREFIX = "Yes — "
+    NO_PREFIX = "No — "
     OUT_OF_SCOPE_YES_PREFIX = "Yes_though_out-of-scope, "
     OUT_OF_SCOPE_NO_PREFIX = "No_though_out-of-scope, "
 

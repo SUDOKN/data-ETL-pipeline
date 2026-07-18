@@ -69,7 +69,13 @@ class DatabaseIndexSeeder:
             },
             {
                 "keys": [("etld1_accessible_at", 1)],
-                "options": {"name": "mfg_etld1_accessible_at_idx", "unique": True},
+                "options": {
+                    "name": "mfg_etld1_accessible_at_idx",
+                    "unique": True,
+                    "partialFilterExpression": {
+                        "etld1_accessible_at": {"$type": "string"}
+                    },
+                },
             },
             {
                 "keys": [("created_at", -1)],
@@ -275,6 +281,23 @@ class DatabaseIndexSeeder:
         for index in indexes:
             self._create_index_if_missing(collection, index["keys"], index["options"])
 
+    def create_out_of_vocab_labels_indexes(self):
+        """Create indexes for out_of_vocab_labels collection."""
+        collection = self.db.out_of_vocab_labels
+
+        indexes = [
+            {
+                "keys": [("ontology_version_id", 1), ("concept_type", 1)],
+                "options": {
+                    "name": "out_of_vocab_labels_unique_idx",
+                    "unique": True,
+                },
+            }
+        ]
+
+        for index in indexes:
+            self._create_index_if_missing(collection, index["keys"], index["options"])
+
     def drop_collection_indexes(self, collection_name: str):
         """Drop all indexes for a specific collection (except _id_)."""
         try:
@@ -316,6 +339,7 @@ class DatabaseIndexSeeder:
             "gpt_batches",
             "api_keys",
             "places",
+            "out_of_vocab_labels",
             "mep_requests",
             "scraping_errors",
             "extraction_errors",
@@ -361,6 +385,7 @@ class DatabaseIndexSeeder:
             self.create_gpt_batch_indexes()
             self.create_api_key_bundle_indexes()
             self.create_place_indexes()
+            self.create_out_of_vocab_labels_indexes()
 
             logger.info("Database index seeding completed successfully!")
 
@@ -384,6 +409,7 @@ class DatabaseIndexSeeder:
             "gpt_batches",
             "api_keys",
             "places",
+            "out_of_vocab_labels",
             "mep_requests",
             "scraping_errors",
             "extraction_errors",

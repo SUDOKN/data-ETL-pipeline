@@ -29,8 +29,8 @@ from core.utils.aws.s3.scraped_text_util import (
     upload_scraped_text_to_s3,
 )
 
-if TYPE_CHECKING:
-    from scraper_app.services.url_scraper_service import ScrapingResult
+
+from scraper_app.services.url_scraper_service import ScrapingResult
 
 logger = logging.getLogger(__name__)
 

@@ -87,7 +87,7 @@ class ConceptExtractionPrefillNode(PrefillNode[ConceptTypeEnum]):
 
         1.  initialize metadata as latest
         2.  check if field is brand new
-            yes? chunk up text, set metadata and populate an empty request_map
+            yes? chunk up text, set metadata and populate an empty chunked_request_map
             no?  do nothing
         """
         latest_concept_extraction_metadata = ConceptExtractionMetadata(
@@ -124,7 +124,7 @@ class ConceptExtractionPrefillNode(PrefillNode[ConceptTypeEnum]):
                         llm_phrase_relationship_req_id=None,
                         llm_phrase_relationship_screening_req_id=None,
                         llm_phrase_initial_grounding_req_id=None,
-                        llm_phrase_recursive_grounding_root_req_nodes=None,
+                        llm_phrase_recursive_tagging_reqs=None,
                     )
                     for chunk_bounds, chunk_text in chunk_map.items()
                 },
@@ -148,7 +148,7 @@ class ConceptExtractionPrefillNode(PrefillNode[ConceptTypeEnum]):
                 f"Chunking already done, resuming extraction for mfg_etdl1:{mfg.etld1}"
             )
 
-        await self.next_node.execute(
+        await super().execute(
             mfg=mfg,
             deferred_mfg=deferred_mfg,
             scraped_text_file=scraped_text_file,

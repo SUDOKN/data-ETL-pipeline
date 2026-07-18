@@ -13,7 +13,7 @@ from core.models.deferred_extraction.deferred_keyword_extraction import (
     KeywordExtractionRequestMap,
 )
 from core.models.field_types import (
-    LLMFreehandGroundingResults,
+    PhraseToTagAndReasonMap,
     LLMPhraseRelationshipResults,
 )
 from core.models.batch_request_objects.gpt_batch_response_blob import (
@@ -44,7 +44,7 @@ logger = logging.getLogger(__name__)
 
 def parse_llm_phrase_freehand_grounding_result(
     gpt_response: Optional[str],
-) -> LLMFreehandGroundingResults:
+) -> PhraseToTagAndReasonMap:
     if not gpt_response:
         logger.error(f"Invalid gpt_response:{gpt_response}")
         raise ValueError(
@@ -79,7 +79,7 @@ async def parse_batch_request_result(
     extraction_bundle: KeywordExtractionRequestBundle,
     completed_request_map: dict[GPTBatchRequestCustomID, GPTBatchRequest],
     deferred_at: datetime,
-) -> LLMFreehandGroundingResults:
+) -> PhraseToTagAndReasonMap:
     req_id = extraction_bundle.llm_phrase_freehand_grounding_req_id
     if not req_id:
         raise ValueError(
@@ -257,12 +257,7 @@ def _create_dummy_completed_phrase_freehand_grounding_batch_request(
         etld1=etld1,
         custom_id=llm_phrase_freehand_grounding_request_id,
         context="No phrase freehand grounding needed - no phrases passed screening.",
-        prompt=Prompt(
-            name="dummy_phrase_freehand_grounding_prompt",
-            text="No phrase freehand grounding needed - no phrases passed screening.",
-            s3_version_id="dummy_s3_version_id",
-            num_tokens=1,
-        ),
+        prompt_text="No phrase freehand grounding needed - no phrases passed screening.",
         gpt_model=NO_MODEL,
         model_params=model_params,
         batch_id="Eager" if eager else "dummy_phrase_freehand_grounding_batch_id",
@@ -304,7 +299,7 @@ def create_deferred_phrase_freehand_grounding_gpt_request(
         etld1=etld1,
         custom_id=llm_phrase_freehand_grounding_request_id,
         context=context,
-        prompt=phrase_freehand_grounding_prompt,
+        prompt_text=phrase_freehand_grounding_prompt.text,
         gpt_model=gpt_model,
         model_params=model_params,
         batch_id="Eager" if eager else None,

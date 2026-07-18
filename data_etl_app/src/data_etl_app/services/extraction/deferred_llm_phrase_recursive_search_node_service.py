@@ -149,7 +149,7 @@ async def create_missing_phrase_recursive_search_requests(
                 etld1=mfg_etld1,
                 custom_id=round_req_id,
                 context=context,
-                prompt=recursive_search_prompt,
+                prompt_text=recursive_search_prompt.text,
                 gpt_model=llm_model,
                 model_params=model_params,
                 batch_id="Eager" if eager else None,

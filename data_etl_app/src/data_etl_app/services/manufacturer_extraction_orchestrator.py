@@ -3,7 +3,6 @@ from __future__ import annotations
 from datetime import datetime
 import logging
 import time
-from typing import TYPE_CHECKING
 
 from core.models.extraction_results.binary_classification_result import (
     BaseClassificationDecision,
@@ -16,9 +15,7 @@ from data_etl_app.models.types_and_enums import (
 )
 from core.models.llm_model import LLM_Model
 from open_ai_key_app.models.gpt_model_params import GPTModelParams
-
-if TYPE_CHECKING:
-    from scraper_app.models.scraped_text_file import ScrapedTextFile
+from scraper_app.models.scraped_text_file import ScrapedTextFile
 
 from core.services.manufacturer_service import (
     update_manufacturer,

@@ -28,7 +28,7 @@ def create_base_gpt_batch_request(
     etld1: str,
     custom_id: str,
     context: str,
-    prompt: Prompt,
+    prompt_text: str,
     gpt_model: LLM_Model,
     batch_id: str | None,
     model_params: GPTModelParams,
@@ -37,7 +37,7 @@ def create_base_gpt_batch_request(
 
     request_blob = get_gpt_request_blob(
         custom_id=custom_id,
-        prompt=f"{prompt.text}",  # system role, helps to keep static for kv cache
+        prompt_text=f"{prompt_text}",  # system role, helps to keep static for kv cache
         context=f"{nonce}\n\n{context}",  # user role
         gpt_model=gpt_model,
         model_params=model_params,

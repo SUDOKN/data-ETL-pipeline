@@ -77,7 +77,7 @@ class SingleStageExtractionPrefillNode(PrefillNode[SingleStageFieldTypeVar]):
 
             deferred_basic_extraction = DeferredSingleStageExtractionRequests(
                 metadata=self.extraction_metadata,
-                request_map={
+                chunked_request_map={
                     chunk_bounds: SingleStageExtractionRequestBundle(
                         llm_request_id=None,
                     )

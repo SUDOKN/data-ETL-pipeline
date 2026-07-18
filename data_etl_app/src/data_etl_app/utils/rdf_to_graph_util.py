@@ -5,6 +5,7 @@ import rdflib
 from rdflib.term import URIRef
 from rdflib.namespace import RDFS, SKOS
 from typing import Callable, List, Optional
+from requests.structures import CaseInsensitiveDict
 
 from data_etl_app.models.skos_concept import ConceptNode, Concept
 
@@ -51,8 +52,15 @@ def get_definition(graph: rdflib.Graph, uri: str) -> str:
 def build_concept_tree(
     graph: rdflib.Graph,
     parent_uri: URIRef,
+    allow_root_without_definition: bool = True,
 ) -> ConceptNode:
-    return build_concept_tree_helper(graph, parent_uri, labels_seen=set(), level=0)
+    return build_concept_tree_helper(
+        graph,
+        parent_uri,
+        labels_seen=set(),
+        level=0,
+        allow_root_without_definition=allow_root_without_definition,
+    )
 
 
 def build_concept_tree_helper(
@@ -60,6 +68,7 @@ def build_concept_tree_helper(
     parent_uri: URIRef,
     labels_seen: set[str],
     level: int,
+    allow_root_without_definition: bool = False,
 ) -> ConceptNode:
     """Recursively find subclasses and build children structure."""
     label = get_label(graph, str(parent_uri))
@@ -74,7 +83,12 @@ def build_concept_tree_helper(
             raise ValueError(f"Duplicate altLabel '{alt}' for URI: {parent_uri}.")
         labels_seen.add(alt)
 
-    definition = get_definition(graph, str(parent_uri))
+    definition = ""
+    try:
+        definition = get_definition(graph, str(parent_uri))
+    except ValueError:
+        if not (allow_root_without_definition and level == 0):
+            raise
 
     children: List[ConceptNode] = []
     for subclass, _, _ in graph.triples((None, RDFS.subClassOf, parent_uri)):
@@ -82,7 +96,11 @@ def build_concept_tree_helper(
             raise ValueError("Expected subclass to be a URIRef")
 
         child: ConceptNode = build_concept_tree_helper(
-            graph, subclass, labels_seen, level + 1
+            graph,
+            subclass,
+            labels_seen,
+            level + 1,
+            allow_root_without_definition=allow_root_without_definition,
         )
         children.append(child)
 
@@ -93,7 +111,7 @@ def build_concept_tree_helper(
         "altLabels": alt_labels,
         "definition": definition,
         "children": children,
-        "childrenCount": len(children),
+        "num_children": len(children),
     }
 
 
@@ -146,20 +164,13 @@ def tree_list_to_flat(tree_knowns: list[ConceptNode]) -> set[Concept]:
     return set(flat_knowns)
 
 
-def get_match_label_to_concept_map(concepts: Iterable[Concept]) -> dict[str, Concept]:
-    map: dict[str, Concept] = {}
+def get_match_label_to_concept_map(
+    concepts: Iterable[Concept],
+) -> CaseInsensitiveDict[Concept]:
+    map: CaseInsensitiveDict[Concept] = CaseInsensitiveDict()
     for concept in concepts:
         for label in concept.matchLabels:
             map[label] = concept
-
-    return map
-
-
-def get_concept_label_to_level_map(concepts: Iterable[Concept]) -> dict[str, int]:
-    map = {}
-    for concept in concepts:
-        for label in concept.matchLabels:
-            map[label] = concept.level
 
     return map
 
@@ -210,7 +221,7 @@ def prune_tree_to_depth(
                 "altLabels": node["altLabels"],
                 "definition": node["definition"],
                 "children": children,
-                "childrenCount": node["childrenCount"],
+                "num_children": node["num_children"],
             }
         )
     return pruned

@@ -45,7 +45,7 @@ async def get_gpt_request_blob_async(
 def get_gpt_request_blob(
     custom_id: str,
     context: str,
-    prompt: str,
+    prompt_text: str,
     gpt_model: LLM_Model,
     model_params: GPTModelParams,
 ) -> GPTBatchRequestBlob:
@@ -54,7 +54,7 @@ def get_gpt_request_blob(
 
     Creates a GPT batch request blob with token counting and validation.
     """
-    tokens_prompt = litellm.token_counter(model=gpt_model.name, text=prompt)
+    tokens_prompt = litellm.token_counter(model=gpt_model.name, text=prompt_text)
     tokens_context = litellm.token_counter(model=gpt_model.name, text=context)
     input_tokens = tokens_prompt + tokens_context
     tokens_needed = input_tokens + model_params.max_completion_tokens
@@ -71,7 +71,7 @@ def get_gpt_request_blob(
             | {
                 "model": gpt_model.name,
                 "messages": [
-                    {"role": "system", "content": prompt},
+                    {"role": "system", "content": prompt_text},
                     {"role": "user", "content": context},
                 ],
             }

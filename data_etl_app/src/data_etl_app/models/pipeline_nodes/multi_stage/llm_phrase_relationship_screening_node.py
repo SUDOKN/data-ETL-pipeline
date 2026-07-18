@@ -66,19 +66,19 @@ class LLMPhraseRelationshipScreeningNode(
         mfg_etld1: str,
         pipeline_context: PipelineContext,
         metadata: LLMPhraseExtractionMetadata,
-        request_map: LLMPhraseExtractionRequestMap,
+        chunked_request_map: LLMPhraseExtractionRequestMap,
         timestamp: datetime,
     ):
-        if not request_map:
+        if not chunked_request_map:
             raise ValueError(
                 f"Cannot embed req ids for llm phrase relationship screening, "
-                f"as request_map found empty for mfg:{mfg_etld1}, field:{self.field_type.name}."
+                f"as chunked_request_map found empty for mfg:{mfg_etld1}, field:{self.field_type.name}."
             )
 
         for (
             chunk_bounds,
             extraction_request_bundle,
-        ) in request_map.items():
+        ) in chunked_request_map.items():
             if not extraction_request_bundle.llm_phrase_relationship_screening_req_id:
                 extraction_request_bundle.llm_phrase_relationship_screening_req_id = (
                     self.get_request_custom_id(
@@ -92,13 +92,13 @@ class LLMPhraseRelationshipScreeningNode(
     def get_embedded_request_ids(
         self,
         mfg_etld1: str,
-        request_map: LLMPhraseExtractionRequestMap,
+        chunked_request_map: LLMPhraseExtractionRequestMap,
     ) -> set[GPTBatchRequestCustomID]:
         llm_phrase_relationship_screening_req_ids: set[GPTBatchRequestCustomID] = set()
         for (
             chunk_bounds,
             extraction_bundle,
-        ) in request_map.items():
+        ) in chunked_request_map.items():
             if not extraction_bundle.llm_phrase_relationship_screening_req_id:
                 raise ValueError(
                     f"get_embedded_request_ids was called for {mfg_etld1}:{self.field_type.name} but "
@@ -125,11 +125,13 @@ class LLMPhraseRelationshipScreeningNode(
 
     async def create_batch_requests(
         self,
-        missing_request_ids: set[GPTBatchRequestCustomID],
-        deferred_mfg: DeferredManufacturer,
+        mfg_etld1: str,
         scraped_text_file: ScrapedTextFile,
-        timestamp: datetime,
+        missing_request_ids: set[GPTBatchRequestCustomID],
+        metadata: LLMPhraseExtractionMetadata,
+        chunked_request_map: LLMPhraseExtractionRequestMap,
         pipeline_context: PipelineContext,
+        timestamp: datetime,
         eager: bool,
     ) -> list[GPTBatchRequest]:
         """Create batch requests for the phrase_relationship phase."""
@@ -139,31 +141,22 @@ class LLMPhraseRelationshipScreeningNode(
                 f"llm_phrase_relationship_screening_node.create_batch_requests was called for {self.field_type.name} in {self.__class__.__name__} but pipeline_context.mfg_name is not set. Ensure business_desc is extracted before phrase_relationship."
             )
 
-        extraction_requests: Optional[DeferredLLMPhraseExtractionRequests] = getattr(
-            deferred_mfg, self.field_type.name
-        )
-        if not extraction_requests:
-            raise ValueError(
-                f"llm_phrase_relationship_screening_node.create_batch_requests was called for {self.field_type.name} in {self.__class__.__name__} but no deferred extraction exists."
-            )
-        metadata = extraction_requests.metadata.llm_phrase_relationship_screening
-
         # create_missing_phrase_relationship_requests only creates batch requests fresh or only missing ones,
         # for e.g., new mfg or some batch requests failed earlier and were deleted to allow re-processing
         batch_requests = await create_missing_phrase_relationship_screening_requests(
             deferred_at=timestamp,
-            mfg_etld1=deferred_mfg.etld1,
+            mfg_etld1=mfg_etld1,
             mfg_name=mfg_name,
             field_type=self.field_type,
             missing_phrase_relationship_screening_req_ids=missing_request_ids,
-            chunked_request_map=extraction_requests.chunked_request_map,
+            chunked_request_map=chunked_request_map,
             mfg_text=scraped_text_file.text,
             phrase_relationship_screening_prompt=self.phrase_relationship_screening_prompt,
             llm_phrase_relationship_gpt_request_map=self.get_upstream_phrase_relationship_map(
                 pipeline_context
             ),
-            llm_model=metadata.llm_model,
-            model_params=metadata.model_params,
+            llm_model=metadata.llm_phrase_relationship_screening.llm_model,
+            model_params=metadata.llm_phrase_relationship_screening.model_params,
             eager=eager,
         )
 
