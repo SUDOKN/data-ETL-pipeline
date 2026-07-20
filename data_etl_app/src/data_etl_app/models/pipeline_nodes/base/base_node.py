@@ -46,7 +46,7 @@ class BaseNode(ABC, Generic[LLMExtractedFieldTypeVar, ResultT]):
         pass
 
 
-class PipelineContext(Generic[ResultT]):
+class PipelineContext:
     """Carries shared state for a single pipeline run.
 
     ``mfg_name`` is pre-populated by the orchestrator before any concept/keyword
@@ -62,18 +62,20 @@ class PipelineContext(Generic[ResultT]):
         mfg_name: Optional[str] = None,
     ) -> None:
         self.mfg_name: Optional[str] = mfg_name
-        self._results: dict[type[BaseNode], dict[GPTBatchRequestCustomID, ResultT]] = {}
+        self._results: dict[
+            type[BaseNode], dict[GPTBatchRequestCustomID, GPTBatchRequest]
+        ] = {}
 
     # --- dict-like access so existing ``pipeline_context[NodeClass]`` calls work unchanged ---
 
     def __getitem__(
         self, key: type[BaseNode]
-    ) -> dict[GPTBatchRequestCustomID, ResultT]:
+    ) -> dict[GPTBatchRequestCustomID, GPTBatchRequest]:
         return self._results[key]
 
     def __setitem__(
         self,
         key: type[BaseNode],
-        value: dict[GPTBatchRequestCustomID, ResultT],
+        value: dict[GPTBatchRequestCustomID, GPTBatchRequest],
     ) -> None:
         self._results[key] = value

@@ -8,6 +8,7 @@ from core.models.extraction_results.llm_phrase_extraction_results import (
 )
 from core.models.field_types import (
     PhraseToTagAndReasonMap,
+    IterativeGroundingResult,
 )
 
 
@@ -16,29 +17,13 @@ class ConceptsFound(BaseModel):
     out_of_vocab: set[str]
 
 
-class RecursivelyTaggedPhrase(BaseModel):
-    tag: str  # MUST BE EITHER IN-VOCAB CONCEPT **NAME** or OUT-OF-VOCAB TAG
-
-    # Provision for the case where tag used is an alt label
-    # by explicitly storing original tag as well
-    directly_tagged: PhraseToTagAndReasonMap
-    # { phrase -> (og tag, reason) } because og tag can be an alt label
-    # produced by initial grounding results
-
-    iteratively_tagged: PhraseToTagAndReasonMap
-    # { phrase -> (og tag, reason) }
-    # produced by iterative traversal of a phrase from its initially grounded concept
-
-    # children: list[RecursivelyTaggedConceptNode]
-
-
 class ConceptExtractionStats(LLMPhraseExtractionStats):
     results: ConceptsFound
     brute_search: set[str]  # regex search
     llm_phrase_initial_grounding: PhraseToTagAndReasonMap
-    llm_phrase_recursive_grounding: dict[
-        int, set[RecursivelyTaggedPhrase]
-    ]  # level by level organized nodes
+    llm_phrase_recursive_grounding: (
+        IterativeGroundingResult  # level by level organized nodes
+    )
 
 
 ConceptExtractionStatsMap = dict[

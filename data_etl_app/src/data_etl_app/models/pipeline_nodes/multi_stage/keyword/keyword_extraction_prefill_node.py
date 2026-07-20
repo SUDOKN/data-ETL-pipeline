@@ -21,6 +21,7 @@ from data_etl_app.models.pipeline_nodes.multi_stage.keyword.keyword_phrase_searc
     KeywordPhraseSearchNode,
 )
 from data_etl_app.models.pipeline_nodes.base.base_prefill_node import PrefillNode
+from data_etl_app.models.pipeline_nodes.base.base_node import ResultT
 from data_etl_app.models.types_and_enums import KeywordTypeEnum
 from data_etl_app.models.pipeline_nodes.base.base_node import PipelineContext
 from data_etl_app.models.chunking_strat import ChunkingStrategy
@@ -35,7 +36,7 @@ from data_etl_app.utils.dict_diff import find_diffs
 logger = logging.getLogger(__name__)
 
 
-class KeywordExtractionPrefillNode(PrefillNode[KeywordTypeEnum]):
+class KeywordExtractionPrefillNode(PrefillNode[KeywordTypeEnum, ResultT]):
     next_node: KeywordPhraseSearchNode
 
     def __init__(

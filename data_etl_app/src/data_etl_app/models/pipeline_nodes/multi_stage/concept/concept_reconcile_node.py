@@ -2,7 +2,7 @@ from __future__ import annotations
 
 import logging
 from datetime import datetime
-from typing import TYPE_CHECKING, Optional
+from typing import Optional
 
 from core.models.db.manufacturer import Manufacturer
 from core.models.extraction_results.concept_extraction_results import (
@@ -14,32 +14,38 @@ from core.models.extraction_results.concept_extraction_results import (
 from core.models.db.deferred_manufacturer import DeferredManufacturer
 from core.models.deferred_extraction.deferred_concept_extraction import (
     DeferredConceptExtractionRequests,
-    RecursivelyTaggedConceptNode,
+    IterativeTaggingRequest,
 )
 from data_etl_app.models.types_and_enums import ConceptTypeEnum
-from data_etl_app.models.pipeline_nodes.base.base_node import PipelineContext
-from data_etl_app.models.pipeline_nodes.base.base_reconcile_node import ReconcileNode
 from data_etl_app.models.skos_concept import Concept
-
-if TYPE_CHECKING:
-    from scraper_app.models.scraped_text_file import ScrapedTextFile
+from data_etl_app.models.pipeline_nodes.base.base_node import PipelineContext
+from data_etl_app.models.pipeline_nodes.base.base_reconcile_node import (
+    ReconcileNode,
+)
+from data_etl_app.models.pipeline_nodes.multi_stage.concept.concept_phrase_search_node import (
+    ConceptPhraseSearchNode,
+)
+from data_etl_app.models.pipeline_nodes.multi_stage.concept.concept_relationship_node import (
+    ConceptRelationshipNode,
+)
+from data_etl_app.models.pipeline_nodes.multi_stage.concept.concept_relationship_screening_node import (
+    ConceptRelationshipScreeningNode,
+)
+from data_etl_app.models.pipeline_nodes.multi_stage.concept.concept_initial_grounding_node import (
+    ConceptInitialGroundingNode,
+)
+from data_etl_app.models.pipeline_nodes.multi_stage.concept.concept_recursive_grounding_node import (
+    ConceptRecursiveGroundingNode,
+)
+from scraper_app.models.scraped_text_file import ScrapedTextFile
 
 from core.services.manufacturer_service import update_manufacturer
-from data_etl_app.services.extraction.deferred_llm_phrase_search_node_service import (
-    parse_batch_request_result as parse_phrase_search_batch_req_result,
-)
-from data_etl_app.services.extraction.deferred_llm_phrase_relationship_node_service import (
-    parse_batch_request_result as parse_phrase_relationhip_batch_req_result,
-)
-from data_etl_app.services.extraction.deferred_llm_relationship_screening_node_service import (
-    parse_batch_request_result as parse_relationhip_screening_batch_req_result,
-)
 from data_etl_app.services.extraction.deferred_llm_initial_grounding_service import (
-    parse_initial_grounding_batch_request_result as parse_initial_grounding_batch_req_result,
+    get_tagged_results_from_initial_grounding,
 )
 from data_etl_app.services.extraction.deferred_llm_recursive_grounding_service import (
-    get_leaf_w_parent_from_tagged_concepts,
-    get_tagged_concepts_from_recursive_grounding_results,
+    get_phrase_trails,
+    get_deepest_concepts_and_oov,
 )
 
 
@@ -67,21 +73,6 @@ class ConceptReconcileNode(ReconcileNode[ConceptTypeEnum]):
         pipeline_context: PipelineContext,
         eager: bool,
     ) -> None:
-        from data_etl_app.models.pipeline_nodes.multi_stage.concept.concept_phrase_search_node import (
-            ConceptPhraseSearchNode,
-        )
-        from data_etl_app.models.pipeline_nodes.multi_stage.concept.concept_relationship_node import (
-            ConceptRelationshipNode,
-        )
-        from data_etl_app.models.pipeline_nodes.multi_stage.concept.concept_relationship_screening_node import (
-            ConceptRelationshipScreeningNode,
-        )
-        from data_etl_app.models.pipeline_nodes.multi_stage.concept.concept_initial_grounding_node import (
-            ConceptInitialGroundingNode,
-        )
-        from data_etl_app.models.pipeline_nodes.multi_stage.concept.concept_recursive_grounding_node import (
-            ConceptRecursiveGroundingNode,
-        )
 
         extraction_requests: Optional[DeferredConceptExtractionRequests] = getattr(
             deferred_mfg, self.field_type.name
@@ -103,10 +94,10 @@ class ConceptReconcileNode(ReconcileNode[ConceptTypeEnum]):
         ]
         completed_recursive_grounding_req_map = pipeline_context[
             ConceptRecursiveGroundingNode
-        ]  # TODO: do not rely on saving RecursivelyTaggedConceptNode
+        ]  # TODO: do not rely on saving RecursiveTaggingRequest
 
-        all_recognized_tagged_concepts: set[RecursivelyTaggedConceptNode] = set()
-        all_unrecognized_tagged_concepts: set[RecursivelyTaggedConceptNode] = set()
+        all_recognized_tagged_concepts: set[IterativeTaggingRequest] = set()
+        all_unrecognized_tagged_concepts: set[IterativeTaggingRequest] = set()
         chunk_stats: ConceptExtractionStatsMap = {}
         for (
             chunk_bounds,
@@ -120,96 +111,92 @@ class ConceptReconcileNode(ReconcileNode[ConceptTypeEnum]):
                     f"recursive grounding hasn't been executed yet."
                 )
 
-            recognized_tagged_concepts, unrecognized_tagged_concepts = (
-                get_leaf_w_parent_from_tagged_concepts(iteratively_tagged_concept_nodes)
-            )
+            unrecognized_tagged_concepts: set[str] = set()
+            recognized_tagged_concepts: set[Concept] = set()
 
-            chunk_initial_grounding_results = (
-                await (
-                    parse_initial_grounding_batch_req_result(
-                        mfg_etld1=mfg.etld1,
-                        field_type=self.field_type,
-                        chunk_bounds=chunk_bounds,
-                        extraction_bundle=bundle,
-                        completed_request_map=completed_initial_grounding_req_map,
-                        deferred_at=timestamp,
-                    )
-                )
-            )
-            initially_tagged_vocab_agnostic_concepts_from_all_levels: dict[
-                str, RecursivelyTaggedConceptNode
-            ] = get_tagged_concepts_from_recursive_grounding_results(
+            initially_tagged_trs = await get_tagged_results_from_initial_grounding(
                 mfg_etld1=mfg.etld1,
                 field_type=self.field_type,
                 chunk_bounds=chunk_bounds,
-                grounding_results=chunk_initial_grounding_results,
-                match_label_to_concept_map=self.match_label_to_concept_map,
-                llm_model=extraction_requests.metadata.llm_phrase_initial_grounding.llm_model,
-                model_params=extraction_requests.metadata.llm_phrase_initial_grounding.model_params,
-                initial_grounding_results=True,
-                level=None,
-                in_vocab_only=False,
-                ignore_direct_phrase_match=False,
+                extraction_bundle=bundle,
+                completed_request_map=completed_initial_grounding_req_map,
+                timestamp=timestamp,
             )
-            initially_tagged_out_of_vocab_concepts_from_all_levels = {
-                tagged_name: node
-                for tagged_name, node in initially_tagged_vocab_agnostic_concepts_from_all_levels.items()
-                if tagged_name not in self.match_label_to_concept_map
-            }
+            for tr in initially_tagged_trs:
+                if tr.group_id not in self.match_label_to_concept_map:
+                    unrecognized_tagged_concepts.add(tr.group_id)
+                # else: it will have already entered iterative tagging at some level
 
-            all_recognized_tagged_concepts |= recognized_tagged_concepts
-            all_unrecognized_tagged_concepts |= unrecognized_tagged_concepts
-            all_unrecognized_tagged_concepts |= set(
-                (initially_tagged_out_of_vocab_concepts_from_all_levels.values())
+            lvl_by_lvl_iterative_grounding_results = await ConceptRecursiveGroundingNode.get_result(
+                mfg_etld1=mfg.etld1,
+                field_type=self.field_type,
+                chunk_bounds=chunk_bounds,
+                extraction_bundle=bundle,
+                completed_initial_grounding_req_map=completed_initial_grounding_req_map,
+                completed_recursive_grounding_req_map=completed_recursive_grounding_req_map,
+                match_label_to_concept_map=self.match_label_to_concept_map,
+                timestamp=timestamp,
             )
+            phrase_trails = get_phrase_trails(
+                lvl_by_lvl_iterative_grounding_results=lvl_by_lvl_iterative_grounding_results
+            )
+            for phrase_trail in phrase_trails:
+                recognized_deepest_concepts, oov = get_deepest_concepts_and_oov(
+                    phrase_trail=phrase_trail,
+                    match_label_to_concept_map=self.match_label_to_concept_map,
+                )
+                unrecognized_tagged_concepts.update(oov)
+                recognized_tagged_concepts.update(recognized_deepest_concepts)
+
+            # prune recognized_tagged_concepts to only contain only deepest nodes (may or may not be a leaf)
 
             chunk_stats[chunk_bounds] = ConceptExtractionStats(
                 results=ConceptsFound(
                     in_vocab={c.name for c in recognized_tagged_concepts},
-                    out_of_vocab={uc.name for uc in unrecognized_tagged_concepts},
+                    out_of_vocab={uc for uc in unrecognized_tagged_concepts},
                 ),
                 brute_search=bundle.brute,
                 llm_phrase_search=(
-                    await parse_phrase_search_batch_req_result(
+                    await ConceptPhraseSearchNode.get_result(
                         mfg_etld1=mfg.etld1,
                         field_type=self.field_type,
                         chunk_bounds=chunk_bounds,
                         extraction_bundle=bundle,
-                        all_phrase_search_req_responses_map=completed_phrase_search_req_map,
-                        deferred_at=timestamp,
+                        completed_request_map=completed_phrase_search_req_map,
+                        timestamp=timestamp,
                     )
                 ),
                 llm_phrase_relationship=(
-                    await parse_phrase_relationhip_batch_req_result(
+                    await ConceptRelationshipNode.get_result(
                         mfg_etld1=mfg.etld1,
                         field_type=self.field_type,
                         chunk_bounds=chunk_bounds,
                         extraction_bundle=bundle,
-                        deferred_at=timestamp,
+                        timestamp=timestamp,
                         completed_request_map=completed_phrase_relationship_req_map,
                     )
                 ),
                 llm_phrase_screening=(
-                    await parse_relationhip_screening_batch_req_result(
+                    await ConceptRelationshipScreeningNode.get_result(
                         mfg_etld1=mfg.etld1,
                         field_type=self.field_type,
                         chunk_bounds=chunk_bounds,
                         extraction_bundle=bundle,
                         completed_request_map=completed_relationship_screening_req_map,
-                        deferred_at=timestamp,
+                        timestamp=timestamp,
                     )
                 ),
                 llm_phrase_initial_grounding=(
-                    await parse_initial_grounding_batch_req_result(
+                    await ConceptInitialGroundingNode.get_result(
                         mfg_etld1=mfg.etld1,
                         field_type=self.field_type,
                         chunk_bounds=chunk_bounds,
                         extraction_bundle=bundle,
                         completed_request_map=completed_initial_grounding_req_map,
-                        deferred_at=timestamp,
+                        timestamp=timestamp,
                     )
                 ),
-                llm_phrase_recursive_grounding=iteratively_tagged_concept_nodes,
+                llm_phrase_recursive_grounding=lvl_by_lvl_iterative_grounding_results,
             )
 
         final_extraction_result = ConceptExtractionResults(

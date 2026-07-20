@@ -1,13 +1,14 @@
 from __future__ import annotations
 import logging
 from datetime import datetime
-from typing import TYPE_CHECKING, Optional
+from abc import abstractmethod
 
 from core.models.db.deferred_manufacturer import DeferredManufacturer
 from core.models.db.gpt_batch_request import GPTBatchRequest
 from core.models.batch_request_objects.gpt_batch_response_blob import GPTBatchResponse
 from core.models.deferred_extraction.deferred_phrase_extraction_requests import (
     DeferredLLMPhraseExtractionRequests,
+    LLMPhraseExtractionRequestBundle,
     LLMPhraseExtractionRequestMap,
     LLMPhraseExtractionMetadata,
 )
@@ -23,15 +24,14 @@ from data_etl_app.models.pipeline_nodes.base.base_llm_extraction_node import (
     BaseLLMExtractionNode,
 )
 from open_ai_key_app.models.field_types import GPTBatchRequestCustomID
-
-if TYPE_CHECKING:
-    from scraper_app.models.scraped_text_file import ScrapedTextFile
+from scraper_app.models.scraped_text_file import ScrapedTextFile
 
 from core.services.gpt_batch_request_service import (
     dispatch_gpt_batch_request,
 )
 from data_etl_app.services.extraction.deferred_llm_phrase_relationship_node_service import (
     create_missing_phrase_relationship_requests,
+    get_phrase_relationship_result,
 )
 
 logger = logging.getLogger(__name__)
@@ -53,6 +53,7 @@ class LLMPhraseRelationshipNode(
         )
         self.phrase_relationship_prompt = phrase_relationship_prompt
 
+    @abstractmethod
     def get_upstream_phrase_search_map(
         self, pipeline_context: PipelineContext
     ) -> dict[GPTBatchRequestCustomID, GPTBatchRequest]:
@@ -61,12 +62,13 @@ class LLMPhraseRelationshipNode(
             f"{self.__class__.__name__} must implement get_upstream_phrase_search_map"
         )
 
+    @abstractmethod
     def get_upstream_recursive_search_map(
         self, pipeline_context: PipelineContext
     ) -> dict[GPTBatchRequestCustomID, GPTBatchRequest]:
         """Return completed recursive-search requests when this pipeline has that phase."""
         raise NotImplementedError(
-            f"{self.__class__.__name__} must implement get_upstream_phrase_search_map"
+            f"{self.__class__.__name__} must implement get_upstream_recursive_search_map"
         )
 
     async def embed_request_ids(  # prefill folded into this function
@@ -152,7 +154,7 @@ class LLMPhraseRelationshipNode(
         # create_missing_phrase_relationship_requests only creates batch requests fresh or only missing ones,
         # for e.g., new mfg or some batch requests failed earlier and were deleted to allow re-processing
         batch_requests = await create_missing_phrase_relationship_requests(
-            deferred_at=timestamp,
+            timestamp=timestamp,
             mfg_etld1=mfg_etld1,
             mfg_name=mfg_name,
             field_type=self.field_type,
@@ -172,6 +174,24 @@ class LLMPhraseRelationshipNode(
         )
 
         return batch_requests
+
+    @staticmethod
+    async def get_result(
+        mfg_etld1: str,
+        field_type: LLMExtractedFieldTypeEnum,
+        chunk_bounds: str,
+        extraction_bundle: LLMPhraseExtractionRequestBundle,
+        completed_request_map: dict[GPTBatchRequestCustomID, GPTBatchRequest],
+        timestamp: datetime,  # for recording errors
+    ) -> LLMPhraseRelationshipResults:
+        return await get_phrase_relationship_result(
+            mfg_etld1=mfg_etld1,
+            field_type=field_type,
+            chunk_bounds=chunk_bounds,
+            extraction_bundle=extraction_bundle,
+            completed_request_map=completed_request_map,
+            timestamp=timestamp,
+        )
 
     async def dispatch_batch_request(
         self,

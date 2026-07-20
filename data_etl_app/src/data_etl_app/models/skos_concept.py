@@ -36,7 +36,7 @@ class Concept(BaseModel):
     def matchLabels(self) -> set[str]:
         return set([self.name] + self.altLabels)
 
-    def __hash__(self):
+    def __hash__(self) -> int:
         return hash(self.name)
 
     # DO NOT MODIFY

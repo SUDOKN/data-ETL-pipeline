@@ -2,7 +2,7 @@ from __future__ import annotations
 
 import logging
 from datetime import datetime
-from typing import TYPE_CHECKING, Optional
+from typing import Optional
 
 from core.models.db.manufacturer import Manufacturer
 from core.models.extraction_results.business_description_extraction_result import (
@@ -14,6 +14,7 @@ from core.models.deferred_extraction.deferred_single_stage_extraction_requests i
     DeferredSingleStageExtractionRequests,
 )
 from core.models.db.deferred_manufacturer import DeferredManufacturer
+from data_etl_app.models.pipeline_nodes.base.base_node import ResultT
 from data_etl_app.models.pipeline_nodes.single_stage.basic_fields.business_desc_extraction_node import (
     BusinessDescExtractionNode,
 )
@@ -22,9 +23,7 @@ from data_etl_app.models.pipeline_nodes.base.base_llm_extraction_node import (
 )
 from data_etl_app.models.types_and_enums import BasicFieldTypeEnum
 from data_etl_app.models.pipeline_nodes.base.base_reconcile_node import ReconcileNode
-
-if TYPE_CHECKING:
-    from scraper_app.models.scraped_text_file import ScrapedTextFile
+from scraper_app.models.scraped_text_file import ScrapedTextFile
 
 from core.services.manufacturer_service import update_manufacturer
 
@@ -58,13 +57,13 @@ class BusinessDescReconcileNode(ReconcileNode[BasicFieldTypeEnum.business_desc])
         first_chunk_bounds, first_req_bundle = list(
             extraction_requests.chunked_request_map.items()
         )[0]
-        result = await BusinessDescExtractionNode.parse_batch_request_result(
+        result = await BusinessDescExtractionNode.get_result(
             mfg_etld1=deferred_mfg.etld1,
             field_type=self.field_type,
             chunk_bounds=first_chunk_bounds,
             extraction_bundle=first_req_bundle,
             completed_request_map=completed_extraction_requests,
-            deferred_at=timestamp,
+            timestamp=timestamp,
         )
         chunk_stats: BusinessDescriptionExtractionStatsMap = {
             first_chunk_bounds: BusinessDescriptionExtractionStats(result=result)

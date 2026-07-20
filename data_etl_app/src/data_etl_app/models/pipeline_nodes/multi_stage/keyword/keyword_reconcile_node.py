@@ -31,7 +31,10 @@ from data_etl_app.models.pipeline_nodes.multi_stage.keyword.keyword_freehand_gro
 )
 from data_etl_app.models.types_and_enums import KeywordTypeEnum
 from data_etl_app.models.pipeline_nodes.base.base_node import PipelineContext
-from data_etl_app.models.pipeline_nodes.base.base_reconcile_node import ReconcileNode
+from data_etl_app.models.pipeline_nodes.base.base_reconcile_node import (
+    ReconcileNode,
+    ResultT,
+)
 
 if TYPE_CHECKING:
     from scraper_app.models.scraped_text_file import ScrapedTextFile
@@ -41,10 +44,10 @@ from data_etl_app.services.extraction.deferred_llm_phrase_search_node_service im
     parse_batch_request_result as parse_phrase_search_batch_req_result,
 )
 from data_etl_app.services.extraction.deferred_llm_phrase_relationship_node_service import (
-    parse_batch_request_result as parse_phrase_relationhip_batch_req_result,
+    get_phrase_relationship_result as get_phrase_relationship_result,
 )
 from data_etl_app.services.extraction.deferred_llm_relationship_screening_node_service import (
-    parse_batch_request_result as parse_relationship_screening_batch_req_result,
+    get_phrase_relationship_screening_result as parse_relationship_screening_batch_req_result,
 )
 from data_etl_app.services.extraction.deferred_llm_freehand_grounding_service import (
     parse_batch_request_result as parse_freehand_grounding_batch_req_result,
@@ -53,7 +56,7 @@ from data_etl_app.services.extraction.deferred_llm_freehand_grounding_service im
 logger = logging.getLogger(__name__)
 
 
-class KeywordReconcileNode(ReconcileNode[KeywordTypeEnum]):
+class KeywordReconcileNode(ReconcileNode[KeywordTypeEnum, ResultT]):
     def __init__(self, field_type: KeywordTypeEnum) -> None:
         super().__init__(field_type=field_type)
 
@@ -102,15 +105,13 @@ class KeywordReconcileNode(ReconcileNode[KeywordTypeEnum]):
                 deferred_at=timestamp,
             )
 
-            llm_phrase_relationship_results = (
-                await parse_phrase_relationhip_batch_req_result(
-                    mfg_etld1=deferred_mfg.etld1,
-                    field_type=self.field_type,
-                    chunk_bounds=chunk_bounds,
-                    extraction_bundle=bundle,
-                    completed_request_map=completed_phrase_relationship_requests,
-                    deferred_at=timestamp,
-                )
+            llm_phrase_relationship_results = await get_phrase_relationship_result(
+                mfg_etld1=deferred_mfg.etld1,
+                field_type=self.field_type,
+                chunk_bounds=chunk_bounds,
+                extraction_bundle=bundle,
+                completed_request_map=completed_phrase_relationship_requests,
+                timestamp=timestamp,
             )
 
             llm_phrase_relationship_screening_results = (
@@ -120,7 +121,7 @@ class KeywordReconcileNode(ReconcileNode[KeywordTypeEnum]):
                     chunk_bounds=chunk_bounds,
                     extraction_bundle=bundle,
                     completed_request_map=completed_relationship_screening_requests,
-                    deferred_at=timestamp,
+                    timestamp=timestamp,
                 )
             )
 

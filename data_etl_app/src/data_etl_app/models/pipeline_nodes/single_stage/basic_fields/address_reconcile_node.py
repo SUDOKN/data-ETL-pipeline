@@ -2,7 +2,7 @@ from __future__ import annotations
 
 import logging
 from datetime import datetime
-from typing import TYPE_CHECKING, Optional
+from typing import Optional
 
 from core.models.extraction_results.address_extraction_result import (
     Address,
@@ -16,18 +16,12 @@ from core.models.deferred_extraction.deferred_single_stage_extraction_requests i
 )
 from core.models.db.deferred_manufacturer import DeferredManufacturer
 from data_etl_app.models.types_and_enums import BasicFieldTypeEnum
-from data_etl_app.models.pipeline_nodes.base.base_llm_extraction_node import (
-    PipelineContext,
-)
+from data_etl_app.models.pipeline_nodes.base.base_node import PipelineContext
 from data_etl_app.models.pipeline_nodes.single_stage.basic_fields.address_extraction_node import (
     AddressExtractionNode,
 )
 from data_etl_app.models.pipeline_nodes.base.base_reconcile_node import ReconcileNode
-from core.models.llm_model import LLM_Model
-from open_ai_key_app.models.gpt_model_params import GPTModelParams
-
-if TYPE_CHECKING:
-    from scraper_app.models.scraped_text_file import ScrapedTextFile
+from scraper_app.models.scraped_text_file import ScrapedTextFile
 
 from core.services.manufacturer_service import update_manufacturer
 
@@ -62,15 +56,13 @@ class AddressReconcileNode(ReconcileNode[BasicFieldTypeEnum.addresses]):
             chunk_bounds,
             bundle,
         ) in extraction_requests.chunked_request_map.items():
-            address_extraction_results = (
-                await AddressExtractionNode.parse_batch_request_result(
-                    mfg_etld1=deferred_mfg.etld1,
-                    field_type=self.field_type,
-                    chunk_bounds=chunk_bounds,
-                    extraction_bundle=bundle,
-                    completed_request_map=completed_extraction_requests,
-                    deferred_at=timestamp,
-                )
+            address_extraction_results = await AddressExtractionNode.get_result(
+                mfg_etld1=deferred_mfg.etld1,
+                field_type=self.field_type,
+                chunk_bounds=chunk_bounds,
+                extraction_bundle=bundle,
+                completed_request_map=completed_extraction_requests,
+                timestamp=timestamp,
             )
             chunk_stats[chunk_bounds] = AddressExtractionStats(
                 result=address_extraction_results

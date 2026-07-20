@@ -2,17 +2,15 @@ from __future__ import annotations
 
 import logging
 from datetime import datetime
-from typing import TYPE_CHECKING, Optional
 
-from core.models.db.deferred_manufacturer import DeferredManufacturer
 from core.models.db.gpt_batch_request import GPTBatchRequest
 from core.models.batch_request_objects.gpt_batch_response_blob import GPTBatchResponse
 from core.models.file_objects.prompt import Prompt
 from core.models.field_types import LLMSearchResults
 from core.models.deferred_extraction.deferred_phrase_extraction_requests import (
-    DeferredLLMPhraseExtractionRequests,
     LLMPhraseExtractionMetadata,
     LLMPhraseExtractionRequestMap,
+    LLMPhraseExtractionRequestBundle,
 )
 from data_etl_app.models.pipeline_nodes.base.base_node import (
     LLMExtractedFieldTypeVar,
@@ -26,9 +24,7 @@ from data_etl_app.models.pipeline_nodes.base.base_llm_extraction_node import (
     BaseLLMExtractionNode,
 )
 from open_ai_key_app.models.field_types import GPTBatchRequestCustomID
-
-if TYPE_CHECKING:
-    from scraper_app.models.scraped_text_file import ScrapedTextFile
+from scraper_app.models.scraped_text_file import ScrapedTextFile
 
 
 from core.services.gpt_batch_request_service import (
@@ -36,6 +32,7 @@ from core.services.gpt_batch_request_service import (
 )
 from data_etl_app.services.extraction.deferred_llm_phrase_search_node_service import (
     create_missing_phrase_search_requests,
+    parse_batch_request_result,
 )
 
 logger = logging.getLogger(__name__)
@@ -44,6 +41,13 @@ logger = logging.getLogger(__name__)
 class LLMPhraseSearchNode(
     BaseLLMExtractionNode[LLMExtractedFieldTypeVar, LLMSearchResults]
 ):
+    def __new__(cls, *args, **kwargs):
+        if cls is LLMPhraseSearchNode:
+            raise TypeError(
+                "LLMPhraseSearchNode is abstract and cannot be instantiated directly; use a concrete subclass instead."
+            )
+        return super().__new__(cls)
+
     def __init__(
         self,
         field_type: LLMExtractedFieldTypeVar,
@@ -144,6 +148,24 @@ class LLMPhraseSearchNode(
         )
 
         return batch_requests
+
+    @staticmethod
+    async def get_result(
+        mfg_etld1: str,
+        field_type: LLMExtractedFieldTypeEnum,
+        chunk_bounds: str,
+        extraction_bundle: LLMPhraseExtractionRequestBundle,
+        completed_request_map: dict[GPTBatchRequestCustomID, GPTBatchRequest],
+        timestamp: datetime,  # for recording errors
+    ) -> LLMSearchResults:
+        return await parse_batch_request_result(
+            mfg_etld1=mfg_etld1,
+            field_type=field_type,
+            chunk_bounds=chunk_bounds,
+            extraction_bundle=extraction_bundle,
+            all_phrase_search_req_responses_map=completed_request_map,
+            deferred_at=timestamp,
+        )
 
     async def dispatch_batch_request(
         self,

@@ -1,23 +1,22 @@
 from __future__ import annotations
 import logging
 from datetime import datetime
+from requests.structures import CaseInsensitiveDict
 
 from core.models.db.gpt_batch_request import GPTBatchRequest
 from core.models.batch_request_objects.gpt_batch_response_blob import GPTBatchResponse
-from core.models.field_types import PhraseToTagAndReasonMap
+from core.models.field_types import IterativeGroundingResult
 from core.models.file_objects.prompt import Prompt
 from core.models.llm_model import LLM_Model
 from core.models.deferred_extraction.deferred_concept_extraction import (
+    ConceptExtractionRequestBundle,
     ConceptExtractionRequestMap,
     ConceptExtractionMetadata,
-    RecursiveTaggingRequest,
-    TaggedResult,
-    TaggedConceptResult,
+    IterativeTaggingRequest,
 )
 from data_etl_app.models.skos_concept import Concept
 from data_etl_app.models.types_and_enums import (
     ConceptTypeEnum,
-    LLMExtractedFieldTypeEnum,
 )
 from data_etl_app.models.pipeline_nodes.base.base_node import (
     PipelineContext,
@@ -37,13 +36,13 @@ from core.services.gpt_batch_request_service import (
     dispatch_gpt_batch_request,
 )
 from data_etl_app.services.extraction.deferred_llm_initial_grounding_service import (
-    flip_tag_to_phrase_reason_map,
-    parse_initial_grounding_batch_request_result,
-    get_descend_worthy_directly_tagged_concept_results,
+    get_descend_split_from_tagged_results,
+    get_tagged_results_from_initial_grounding,
 )
 from data_etl_app.services.extraction.deferred_llm_recursive_grounding_service import (
     create_missing_phrase_recursive_grounding_requests,
     parse_recursive_grounding_batch_request_result,
+    get_all_recursive_grounding_results,
 )
 
 
@@ -55,7 +54,7 @@ logger = logging.getLogger(__name__)
 
 
 class LLMPhraseRecursiveGroundingNode(
-    BaseLLMRecursiveExtractionNode[ConceptTypeEnum, list[TaggedResult]]
+    BaseLLMRecursiveExtractionNode[ConceptTypeEnum, IterativeGroundingResult]
 ):
 
     def __init__(
@@ -100,12 +99,13 @@ class LLMPhraseRecursiveGroundingNode(
                 raise ValueError(
                     f"Cannot get embedded req ids for {mfg_etld1}>{chunk_bounds} as bundle.llm_phrase_recursive_grounding_root_req_nodes is empty or None."
                 )
-            for _level, rtrs in bundle.llm_phrase_recursive_tagging_reqs.items():
+            for _level, itrs in bundle.llm_phrase_recursive_tagging_reqs.items():
                 all_chunks_recursive_grounding_req_ids.update(
                     [
-                        rtr.descend_req_id
-                        for rtr in rtrs
-                        if rtr.name in self.match_label_to_concept_map
+                        itr.descend_req_id
+                        for itr in itrs
+                        if itr.name
+                        in self.match_label_to_concept_map  # otherwise they were part of a parent's results, but never descended further
                     ]
                 )
         return all_chunks_recursive_grounding_req_ids
@@ -145,19 +145,20 @@ class LLMPhraseRecursiveGroundingNode(
             chunk_bounds,
             extraction_request_bundle,
         ) in chunked_request_map.items():
-            directly_tagged_descend_worthy_tcs = get_descend_worthy_directly_tagged_concept_results(  # tagged concept result will always be in vocab
-                initially_tagged_trs=(
-                    await parse_initial_grounding_batch_request_result(
-                        mfg_etld1=mfg_etld1,
-                        field_type=self.field_type,
-                        chunk_bounds=chunk_bounds,
-                        extraction_bundle=extraction_request_bundle,
-                        completed_request_map=completed_initial_grounding_req_map,
-                        deferred_at=timestamp,
-                    )
-                ),
-                level=None,
-                match_label_to_concept_map=self.match_label_to_concept_map,
+            _non_descend_worthy, directly_tagged_descend_worthy_tcs = (
+                get_descend_split_from_tagged_results(  # tagged concept result will always be in vocab
+                    initially_tagged_trs=(
+                        await get_tagged_results_from_initial_grounding(
+                            mfg_etld1=mfg_etld1,
+                            field_type=self.field_type,
+                            chunk_bounds=chunk_bounds,
+                            extraction_bundle=extraction_request_bundle,
+                            completed_request_map=completed_initial_grounding_req_map,
+                            timestamp=timestamp,
+                        )
+                    ),
+                    match_label_to_concept_map=self.match_label_to_concept_map,
+                )
             )
 
             if not extraction_request_bundle.llm_phrase_recursive_tagging_reqs:
@@ -176,22 +177,14 @@ class LLMPhraseRecursiveGroundingNode(
                 extraction_request_bundle.llm_phrase_recursive_tagging_reqs.keys(),
                 default=0,
             )
-            last_level_descend_worthy_tagging_reqs = (
-                (
-                    req
-                    for req in extraction_request_bundle.llm_phrase_recursive_tagging_reqs[
-                        last_level_executed
-                    ]
-                    if req.name
-                    in self.match_label_to_concept_map  # otherwise not descend worthy
-                )
-                if last_level_executed != 0
-                else []
-            )
 
-            next_level_tagging_reqs: set[RecursiveTaggingRequest] = set()
+            next_level_tagging_reqs: set[IterativeTaggingRequest] = set()
 
-            for parent_req in last_level_descend_worthy_tagging_reqs:
+            for (
+                parent_req
+            ) in extraction_request_bundle.llm_phrase_recursive_tagging_reqs[
+                last_level_executed
+            ]:
                 parent_concept = self.match_label_to_concept_map.get(parent_req.name)
                 if not parent_concept:
                     if last_level_executed != 1:
@@ -210,14 +203,18 @@ class LLMPhraseRecursiveGroundingNode(
                     deferred_at=timestamp,
                 )
                 for child_tr in tagged_children_trs:
-                    child_concept = self.match_label_to_concept_map.get(child_tr.tag)
+                    child_concept = self.match_label_to_concept_map.get(
+                        child_tr.group_id
+                    )
                     if child_concept:
-                        child_tr.tag = child_concept.name
+                        child_tr.group_id = child_concept.name
                         if child_concept.name not in parent_concept.children:
                             # this helps flag mischiveous in-vocab but not descend worthy in the next round
-                            child_tr.tag += "-FALSE_CHILD"
+                            # ex: it could be a same level cousin but different parent, or be a different level entirely
+                            child_tr.group_id += "-FALSE_CHILD"
 
-                    rtr = RecursiveTaggingRequest(
+                    itr = IterativeTaggingRequest(
+                        parent_descend_req_id=parent_req.descend_req_id,
                         descend_req_id=self.get_request_custom_id(
                             mfg_etld1=mfg_etld1,
                             field_type=self.field_type,
@@ -225,14 +222,14 @@ class LLMPhraseRecursiveGroundingNode(
                             level=(
                                 parent_concept.level + 1  # equal to child_concept.level
                             ),
-                            tag=child_tr.tag,
+                            tag=child_tr.group_id,
                             llm_model=metadata.llm_phrase_recursive_grounding.llm_model,
                             model_params=metadata.llm_phrase_recursive_grounding.model_params,
                         ),
                     )
-                    next_level_tagging_reqs.add(rtr)
+                    next_level_tagging_reqs.add(itr)
                     logger.info(
-                        f"Embedded recursive_tagging_req for {rtr.name}-l[{rtr.level}] with descend_req_id:{rtr.descend_req_id}"
+                        f"Embedded recursive_tagging_req for {itr.name}-l[{itr.level}] with descend_req_id:{itr.descend_req_id}"
                     )
 
             next_level = last_level_executed + 1
@@ -253,7 +250,8 @@ class LLMPhraseRecursiveGroundingNode(
                     if dtc.concept.level == next_level
                 ]
                 for dtc in dtcs_at_next_deeper_level:
-                    rtr = RecursiveTaggingRequest(
+                    itr = IterativeTaggingRequest(
+                        parent_descend_req_id=None,
                         descend_req_id=self.get_request_custom_id(
                             mfg_etld1=mfg_etld1,
                             field_type=self.field_type,
@@ -265,10 +263,10 @@ class LLMPhraseRecursiveGroundingNode(
                         ),
                     )
                     next_level_tagging_reqs.add(
-                        rtr
-                    )  # has no effect if recursion already added this rtr
+                        itr
+                    )  # has no effect if recursion already added this itr
                     logger.info(
-                        f"Embedded initially tagged rtr {rtr.name}-l[{rtr.level}] with descend_req_id:{rtr.descend_req_id}"
+                        f"Embedded initially tagged itr {itr.name}-l[{itr.level}] with descend_req_id:{itr.descend_req_id}"
                     )
 
                 did_any_descend_worthy_reqs_get_embedded = any(
@@ -285,12 +283,12 @@ class LLMPhraseRecursiveGroundingNode(
                 next_level
             ].update(
                 next_level_tagging_reqs
-            )  # .update because there is a chance the rtr from dtcs were found at the same level as next recursion level
+            )  # .update because there is a chance the itr from dtcs were found at the same level as next recursion level
 
     @staticmethod
     def get_request_custom_id(
         mfg_etld1: str,
-        field_type: LLMExtractedFieldTypeEnum,
+        field_type: ConceptTypeEnum,
         chunk_bounds: str,
         level: int,
         tag: str,
@@ -354,6 +352,32 @@ class LLMPhraseRecursiveGroundingNode(
         )
 
         return batch_requests
+
+    @staticmethod
+    async def get_result(
+        mfg_etld1: str,
+        field_type: ConceptTypeEnum,
+        chunk_bounds: str,
+        extraction_bundle: ConceptExtractionRequestBundle,
+        completed_initial_grounding_req_map: dict[
+            GPTBatchRequestCustomID, GPTBatchRequest
+        ],
+        completed_recursive_grounding_req_map: dict[
+            GPTBatchRequestCustomID, GPTBatchRequest
+        ],
+        match_label_to_concept_map: CaseInsensitiveDict[Concept],
+        timestamp: datetime,  # for recording errors
+    ) -> IterativeGroundingResult:
+        return await get_all_recursive_grounding_results(
+            mfg_etld1=mfg_etld1,
+            field_type=field_type,
+            chunk_bounds=chunk_bounds,
+            extraction_bundle=extraction_bundle,
+            completed_initial_grounding_req_map=completed_initial_grounding_req_map,
+            completed_recursive_grounding_req_map=completed_recursive_grounding_req_map,
+            match_label_to_concept_map=match_label_to_concept_map,
+            timestamp=timestamp,
+        )
 
     async def dispatch_batch_request(
         self,

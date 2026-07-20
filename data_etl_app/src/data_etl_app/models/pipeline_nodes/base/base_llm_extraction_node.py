@@ -4,7 +4,7 @@ import logging
 from datetime import datetime
 from abc import abstractmethod
 
-from typing import TypeVar, Generic, Union
+from typing import Union
 
 from core.models.db.manufacturer import Manufacturer
 from core.models.db.deferred_manufacturer import DeferredManufacturer
@@ -15,27 +15,31 @@ from core.models.batch_request_objects.gpt_batch_response_blob import (
 from core.models.deferred_extraction.deferred_keyword_extraction import (
     DeferredKeywordExtractionRequests,
     KeywordExtractionRequestMap,
+    KeywordExtractionRequestBundle,
 )
 from core.models.deferred_extraction.deferred_phrase_extraction_requests import (
     DeferredLLMPhraseExtractionRequests,
     LLMPhraseExtractionRequestMap,
     LLMPhraseExtractionMetadata,
+    LLMPhraseExtractionRequestBundle,
 )
 from core.models.deferred_extraction.deferred_concept_extraction import (
     ConceptExtractionRequestMap,
     ConceptExtractionMetadata,
     DeferredConceptExtractionRequests,
+    ConceptExtractionRequestBundle,
+)
+from core.models.deferred_extraction.deferred_single_stage_extraction_requests import (
+    SingleStageExtractionRequestMap,
+    LLMSingleStageExtractionMetadata,
+    DeferredSingleStageExtractionRequests,
+    SingleStageExtractionRequestBundle,
 )
 from core.models.extraction_results.keyword_extraction_results import (
     KeywordExtractionMetadata,
 )
 from core.models.extraction_results.single_stage_extraction_results import (
     LLMSingleStageExtractionMetadata,
-)
-from core.models.deferred_extraction.deferred_single_stage_extraction_requests import (
-    SingleStageExtractionRequestMap,
-    LLMSingleStageExtractionMetadata,
-    DeferredSingleStageExtractionRequests,
 )
 from data_etl_app.models.pipeline_nodes.base.base_node import (
     BaseNode,
@@ -75,6 +79,12 @@ ExtractionRequestMap = Union[
     ConceptExtractionRequestMap,
     KeywordExtractionRequestMap,
     SingleStageExtractionRequestMap,
+]
+ExtractionRequestBundle = Union[
+    LLMPhraseExtractionRequestBundle,
+    ConceptExtractionRequestBundle,
+    KeywordExtractionRequestBundle,
+    SingleStageExtractionRequestBundle,
 ]
 ExtractionMetadata = Union[
     LLMPhraseExtractionMetadata,
@@ -217,6 +227,18 @@ class BaseLLMExtractionNode(BaseNode[LLMExtractedFieldTypeVar, ResultT]):
         Create GPT batch requests needed for this extraction phase.
         Child classes must implement this method.
         """
+        pass
+
+    @staticmethod
+    @abstractmethod
+    async def get_result(
+        mfg_etld1: str,
+        field_type: LLMExtractedFieldTypeEnum,
+        chunk_bounds: str,
+        extraction_bundle: ExtractionRequestBundle,
+        completed_request_map: dict[GPTBatchRequestCustomID, GPTBatchRequest],
+        timestamp: datetime,  # for recording errors
+    ) -> ResultT:
         pass
 
     @abstractmethod

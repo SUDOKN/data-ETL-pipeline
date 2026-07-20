@@ -28,10 +28,10 @@ from core.services.gpt_batch_request_service import (
 from core.services.gpt_batch_request_writes import record_response_parse_error
 from data_etl_app.models.types_and_enums import LLMExtractedFieldTypeEnum
 from data_etl_app.services.extraction.deferred_llm_phrase_relationship_node_service import (
-    parse_batch_request_result as parse_phrase_relationship_batch_req_result,
+    get_phrase_relationship_result as parse_phrase_relationship_batch_req_result,
 )
 from data_etl_app.services.extraction.deferred_llm_relationship_screening_node_service import (
-    parse_batch_request_result as parse_relationship_screening_batch_req_result,
+    get_phrase_relationship_screening_result as parse_relationship_screening_batch_req_result,
 )
 from data_etl_app.utils.ground_truth_helper_util import (
     get_verified_phrase_relationship_results,
@@ -163,7 +163,7 @@ async def create_missing_phrase_freehand_grounding_requests(
                     chunk_bounds=chunk_bounds,
                     extraction_bundle=extraction_bundle,
                     completed_request_map=llm_phrase_relationship_gpt_request_map,
-                    deferred_at=deferred_at,
+                    timestamp=deferred_at,
                 )
             )
             llm_phrase_relationship_screening_results = (
@@ -173,7 +173,7 @@ async def create_missing_phrase_freehand_grounding_requests(
                     chunk_bounds=chunk_bounds,
                     extraction_bundle=extraction_bundle,
                     completed_request_map=llm_phrase_screening_gpt_request_map,
-                    deferred_at=deferred_at,
+                    timestamp=deferred_at,
                 )
             )
 

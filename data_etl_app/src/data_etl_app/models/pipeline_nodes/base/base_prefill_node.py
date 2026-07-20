@@ -3,7 +3,6 @@ from __future__ import annotations
 import logging
 from abc import abstractmethod
 from datetime import datetime
-from typing import Generic
 
 from core.models.db.manufacturer import Manufacturer
 from core.models.db.deferred_manufacturer import DeferredManufacturer
@@ -25,7 +24,7 @@ from scraper_app.models.scraped_text_file import ScrapedTextFile
 logger = logging.getLogger(__name__)
 
 
-class PrefillNode(BaseNode[LLMExtractedFieldTypeVar, ResultT]):
+class PrefillNode(BaseNode[LLMExtractedFieldTypeVar, None]):
     next_node: BaseLLMExtractionNode
 
     def __init__(

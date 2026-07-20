@@ -24,6 +24,12 @@ from core.models.deferred_extraction.deferred_concept_extraction import (
     DeferredConceptExtractionRequests,
 )
 
+from data_etl_app.models.pipeline_nodes.multi_stage.llm_phrase_recursive_search_node import (
+    LLMPhraseRecursiveSearchNode,
+)
+from data_etl_app.models.pipeline_nodes.multi_stage.llm_phrase_search_node import (
+    LLMPhraseSearchNode,
+)
 from data_etl_app.models.types_and_enums import LLMExtractedFieldTypeEnum
 from open_ai_key_app.models.gpt_model_params import GPTModelParams
 from open_ai_key_app.models.field_types import GPTBatchRequestCustomID
@@ -35,10 +41,6 @@ from core.services.gpt_batch_request_service import (
 )
 from data_etl_app.services.extraction.deferred_llm_phrase_recursive_search_node_service import (
     get_all_recursive_round_results,
-)
-from data_etl_app.services.extraction.deferred_llm_phrase_search_node_service import (
-    parse_batch_request_result as parse_phrase_search_batch_req_result,
-    parse_llm_search_response,
 )
 
 from data_etl_app.utils.ground_truth_helper_util import (
@@ -80,13 +82,13 @@ def parse_llm_phrase_relationship_result(
     return raw_gpt_phrase_relationship_result
 
 
-async def parse_batch_request_result(
+async def get_phrase_relationship_result(
     mfg_etld1: str,
     field_type: LLMExtractedFieldTypeEnum,
     chunk_bounds: str,
     extraction_bundle: LLMPhraseExtractionRequestBundle,
     completed_request_map: dict[GPTBatchRequestCustomID, GPTBatchRequest],
-    deferred_at: datetime,
+    timestamp: datetime,
 ) -> LLMPhraseRelationshipResults:
     req_id = extraction_bundle.llm_phrase_relationship_req_id
     if not req_id:
@@ -113,7 +115,7 @@ async def parse_batch_request_result(
         await record_response_parse_error(
             gpt_batch_request=req_obj,
             error_message=str(e),
-            timestamp=deferred_at,
+            timestamp=timestamp,
             traceback_str=traceback.format_exc(),
         )
         logger.error(
@@ -131,7 +133,7 @@ async def create_missing_phrase_relationship_requests(
     mfg_text: str,
     phrase_relationship_prompt: Prompt,
     llm_phrase_search_gpt_request_map: dict[GPTBatchRequestCustomID, GPTBatchRequest],
-    deferred_at: datetime,
+    timestamp: datetime,
     llm_model: LLM_Model,
     eager: bool,
     model_params: GPTModelParams,
@@ -166,17 +168,24 @@ async def create_missing_phrase_relationship_requests(
         # Process current batch
         for chunk_bounds, extraction_bundle in batch:
             # upstream phrase search results for this chunk
-            llm_phrase_search_results = await parse_phrase_search_batch_req_result(
+            llm_phrase_search_results = await LLMPhraseSearchNode.get_result(
                 mfg_etld1=mfg_etld1,
                 field_type=field_type,
                 chunk_bounds=chunk_bounds,
                 extraction_bundle=extraction_bundle,
-                all_phrase_search_req_responses_map=llm_phrase_search_gpt_request_map,
-                deferred_at=deferred_at,
+                completed_request_map=llm_phrase_search_gpt_request_map,
+                timestamp=timestamp,
             )
 
-            llm_phrase_recursive_search_results = get_all_recursive_round_results(
-                extraction_bundle, llm_phrase_recursive_search_gpt_request_map
+            llm_phrase_recursive_search_results = (
+                await LLMPhraseRecursiveSearchNode.get_result(
+                    mfg_etld1=mfg_etld1,
+                    field_type=field_type,
+                    chunk_bounds=chunk_bounds,
+                    extraction_bundle=extraction_bundle,
+                    completed_request_map=llm_phrase_recursive_search_gpt_request_map,
+                    timestamp=timestamp,
+                )
             )
 
             llm_phrase_search_results |= llm_phrase_recursive_search_results
@@ -211,7 +220,7 @@ async def create_missing_phrase_relationship_requests(
                     f"No phrases found in text, for {mfg_etld1}:{field_type}, creating dummy phrase_relationship request"
                 )
                 dummy_batch_request = _create_dummy_completed_phrase_relationship_batch_request(
-                    deferred_at=deferred_at,
+                    deferred_at=timestamp,
                     etld1=mfg_etld1,
                     llm_phrase_relationship_request_id=llm_phrase_relationship_request_id,
                     model_params=model_params,
@@ -226,7 +235,7 @@ async def create_missing_phrase_relationship_requests(
                     f"Passing on candidates {all_search_results} to phrase_relationship phase for {mfg_etld1}:{field_type} chunk {chunk_bounds}"
                 )
                 phrase_relationship_batch_request = create_deferred_phrase_relationship_gpt_request(
-                    deferred_at=deferred_at,
+                    deferred_at=timestamp,
                     etld1=mfg_etld1,
                     llm_phrase_relationship_request_id=llm_phrase_relationship_request_id,
                     mfg_name=mfg_name,

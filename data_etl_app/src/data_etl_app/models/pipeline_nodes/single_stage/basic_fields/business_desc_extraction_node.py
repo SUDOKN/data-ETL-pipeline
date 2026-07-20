@@ -2,7 +2,6 @@ from __future__ import annotations
 from datetime import datetime
 import logging
 import traceback
-from typing import TYPE_CHECKING
 
 from core.models.extraction_results.business_description_extraction_result import (
     BusinessDescription,
@@ -12,12 +11,9 @@ from core.models.deferred_extraction.deferred_single_stage_extraction_requests i
 )
 from core.models.file_objects.prompt import Prompt
 from core.models.db.gpt_batch_request import GPTBatchRequest
-
-if TYPE_CHECKING:
-    from data_etl_app.models.pipeline_nodes.single_stage.basic_fields.business_desc_reconcile_node import (
-        BusinessDescReconcileNode,
-    )
-
+from data_etl_app.models.pipeline_nodes.single_stage.basic_fields.business_desc_reconcile_node import (
+    BusinessDescReconcileNode,
+)
 from data_etl_app.models.pipeline_nodes.single_stage.basic_fields.single_stage_extraction_node import (
     SingleStageExtractionNode,
 )
@@ -47,28 +43,28 @@ class BusinessDescExtractionNode(SingleStageExtractionNode[BusinessDescription])
         )
 
     @staticmethod
-    async def parse_batch_request_result(
+    async def get_result(
         mfg_etld1: str,
         chunk_bounds: str,
         extraction_bundle: SingleStageExtractionRequestBundle,
         completed_request_map: dict[GPTBatchRequestCustomID, GPTBatchRequest],
-        deferred_at: datetime,
+        timestamp: datetime,
         field_type: BasicFieldTypeEnum = BasicFieldTypeEnum.business_desc,
     ) -> BusinessDescription:
         llm_business_desc_request_id = extraction_bundle.llm_request_id
         if not llm_business_desc_request_id:
             raise ValueError(
-                f"business_desc_extraction_node.parse_batch_request_result: llm_request_id is None for chunk bounds {chunk_bounds} in {mfg_etld1}:{field_type.name}"
+                f"business_desc_extraction_node.get_result: llm_request_id is None for chunk bounds {chunk_bounds} in {mfg_etld1}:{field_type.name}"
             )
 
         llm_business_desc_req = completed_request_map.get(llm_business_desc_request_id)
         if not llm_business_desc_req:
             raise ValueError(
-                f"business_desc_extraction_node.parse_batch_request_result: Missing GPTBatchRequest for mapping request ID {llm_business_desc_request_id} in {mfg_etld1}:{field_type.name}"
+                f"business_desc_extraction_node.get_result: Missing GPTBatchRequest for mapping request ID {llm_business_desc_request_id} in {mfg_etld1}:{field_type.name}"
             )
         elif not llm_business_desc_req.response:
             raise ValueError(
-                f"business_desc_extraction_node.parse_batch_request_result: GPTBatchRequest for mapping request ID {llm_business_desc_request_id} has no response_blob in {mfg_etld1}:{field_type.name}"
+                f"business_desc_extraction_node.get_result: GPTBatchRequest for mapping request ID {llm_business_desc_request_id} has no response_blob in {mfg_etld1}:{field_type.name}"
             )
 
         try:
@@ -80,10 +76,10 @@ class BusinessDescExtractionNode(SingleStageExtractionNode[BusinessDescription])
             await record_response_parse_error(
                 gpt_batch_request=llm_business_desc_req,
                 error_message=str(e),
-                timestamp=deferred_at,
+                timestamp=timestamp,
                 traceback_str=traceback.format_exc(),
             )
             logger.error(
-                f"business_desc_extraction_node.parse_batch_request_result: Error parsing business description extraction results for manufacturer {mfg_etld1} and field type {field_type.name} from GPT response: {e}"
+                f"business_desc_extraction_node.get_result: Error parsing business description extraction results for manufacturer {mfg_etld1} and field type {field_type.name} from GPT response: {e}"
             )
             raise

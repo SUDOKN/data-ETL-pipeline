@@ -1,26 +1,18 @@
 from __future__ import annotations
 import asyncio
 import logging
-from abc import abstractmethod
-from datetime import datetime
-from typing import Generic, TypeVar
 
-from core.models.db.gpt_batch_request import GPTBatchRequest
 from core.models.db.deferred_manufacturer import DeferredManufacturer
 from core.models.db.manufacturer import Manufacturer
 from data_etl_app.models.pipeline_nodes.base.base_llm_extraction_node import (
     BaseLLMExtractionNode,
-    ExtractionMetadata,
-    ExtractionRequestMap,
+    ResultT,
 )
 from data_etl_app.models.pipeline_nodes.base.base_node import PipelineContext
 from data_etl_app.models.types_and_enums import LLMExtractedFieldTypeVar
 from open_ai_key_app.models.field_types import GPTBatchRequestCustomID
 from scraper_app.models.scraped_text_file import ScrapedTextFile
 
-from core.services.gpt_batch_request_queries import (
-    find_incomplete_gpt_batch_requests_by_custom_ids,
-)
 from core.services.gpt_batch_request_writes import (
     bulk_record_gpt_batch_responses,
     bulk_upsert_gpt_batch_requests_with_only_req_bodies,
@@ -28,12 +20,9 @@ from core.services.gpt_batch_request_writes import (
 
 logger = logging.getLogger(__name__)
 
-ResultT = TypeVar("ResultT")
-
 
 class BaseLLMRecursiveExtractionNode(
     BaseLLMExtractionNode[LLMExtractedFieldTypeVar, ResultT],
-    Generic[LLMExtractedFieldTypeVar, ResultT],
 ):
     """Base class for recursive extraction phases.
 
@@ -42,24 +31,6 @@ class BaseLLMRecursiveExtractionNode(
     creating, dispatching, and recording newly discovered request ids until the
     recursive node reports no missing request ids, then proceed to the next node.
     """
-
-    @abstractmethod  # Child classes must implement this method
-    async def create_batch_requests(
-        self,
-        mfg_etld1: str,
-        scraped_text_file: ScrapedTextFile,
-        missing_request_ids: set[GPTBatchRequestCustomID],
-        metadata: ExtractionMetadata,
-        chunked_request_map: ExtractionRequestMap,
-        timestamp: datetime,
-        pipeline_context: PipelineContext,
-        eager: bool,
-    ) -> list[GPTBatchRequest]:
-        """
-        Create GPT batch requests needed for this extraction phase.
-        Child classes must implement this method.
-        """
-        pass
 
     async def execute(
         self,

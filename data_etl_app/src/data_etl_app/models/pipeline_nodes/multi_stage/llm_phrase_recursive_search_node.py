@@ -2,7 +2,7 @@ from __future__ import annotations
 
 import logging
 from datetime import datetime
-from typing import TYPE_CHECKING, Optional, override
+from typing import override
 
 from core.models.db.deferred_manufacturer import DeferredManufacturer
 from core.models.db.gpt_batch_request import GPTBatchRequest
@@ -12,6 +12,7 @@ from core.models.field_types import LLMSearchResults
 from core.models.deferred_extraction.deferred_phrase_extraction_requests import (
     DeferredLLMPhraseExtractionRequests,
     LLMPhraseExtractionMetadata,
+    LLMPhraseExtractionRequestBundle,
     LLMPhraseExtractionRequestMap,
 )
 from data_etl_app.models.pipeline_nodes.base.base_node import (
@@ -29,9 +30,7 @@ from data_etl_app.models.pipeline_nodes.base.base_llm_recursive_extraction_node 
     BaseLLMRecursiveExtractionNode,
 )
 from open_ai_key_app.models.field_types import GPTBatchRequestCustomID
-
-if TYPE_CHECKING:
-    from scraper_app.models.scraped_text_file import ScrapedTextFile
+from scraper_app.models.scraped_text_file import ScrapedTextFile
 
 from core.services.gpt_batch_request_service import dispatch_gpt_batch_request
 from data_etl_app.services.extraction.deferred_llm_phrase_search_node_service import (
@@ -41,6 +40,7 @@ from data_etl_app.services.extraction.deferred_llm_phrase_recursive_search_node_
     create_missing_phrase_recursive_search_requests,
     parse_recursive_search_round_result,
     get_new_phrases_for_latest_round,
+    get_all_recursive_round_results,
 )
 
 logger = logging.getLogger(__name__)
@@ -171,12 +171,22 @@ class LLMPhraseRecursiveSearchNode(
 
             accumulated_before_latest: set[str] = set(first_search_results)
             for prior_round_req_id in rounds[:-1]:
-                accumulated_before_latest |= parse_recursive_search_round_result(
-                    prior_round_req_id, completed_recursive_map
+                accumulated_before_latest |= await parse_recursive_search_round_result(
+                    mfg_etld1=mfg_etld1,
+                    field_type=self.field_type,
+                    chunk_bounds=chunk_bounds,
+                    round_req_id=prior_round_req_id,
+                    completed_request_map=completed_recursive_map,
+                    timestamp=timestamp,
                 )
 
-            latest_round_results = parse_recursive_search_round_result(
-                rounds[-1], completed_recursive_map
+            latest_round_results = await parse_recursive_search_round_result(
+                mfg_etld1=mfg_etld1,
+                field_type=self.field_type,
+                chunk_bounds=chunk_bounds,
+                round_req_id=rounds[-1],
+                completed_request_map=completed_recursive_map,
+                timestamp=timestamp,
             )
             new_phrases = get_new_phrases_for_latest_round(
                 accumulated_before_latest=accumulated_before_latest,
@@ -232,7 +242,7 @@ class LLMPhraseRecursiveSearchNode(
         )
 
         batch_requests = await create_missing_phrase_recursive_search_requests(
-            deferred_at=timestamp,
+            timestamp=timestamp,
             field_type=self.field_type,
             missing_recursive_search_req_ids=missing_request_ids,
             chunked_request_map=chunked_request_map,
@@ -247,6 +257,24 @@ class LLMPhraseRecursiveSearchNode(
         )
 
         return batch_requests
+
+    @staticmethod
+    async def get_result(
+        mfg_etld1: str,
+        field_type: LLMExtractedFieldTypeEnum,
+        chunk_bounds: str,
+        extraction_bundle: LLMPhraseExtractionRequestBundle,
+        completed_request_map: dict[GPTBatchRequestCustomID, GPTBatchRequest],
+        timestamp: datetime,  # for recording errors
+    ) -> LLMSearchResults:
+        return await get_all_recursive_round_results(
+            mfg_etld1=mfg_etld1,
+            field_type=field_type,
+            chunk_bounds=chunk_bounds,
+            extraction_bundle=extraction_bundle,
+            completed_request_map=completed_request_map,
+            timestamp=timestamp,
+        )
 
     async def dispatch_batch_request(
         self,

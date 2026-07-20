@@ -5,9 +5,7 @@ from core.models.extraction_results.llm_phrase_extraction_results import (
     LLMPhraseExtractionStats,
     LLMPhraseExtractionMetadata,
 )
-from core.models.field_types import (
-    PhraseToTagAndReasonMap,
-)
+from core.models.field_types import PhraseToTagAndReasonMap, IterativeGroundingResult
 
 
 class ConceptsFound(BaseModel):
@@ -19,7 +17,7 @@ class ConceptExtractionStats(LLMPhraseExtractionStats):
     results: ConceptsFound
     brute_search: set[str]  # regex search
     llm_phrase_initial_grounding: PhraseToTagAndReasonMap
-    llm_phrase_recursive_grounding: PhraseToTagAndReasonMap
+    llm_phrase_iterative_grounding: IterativeGroundingResult
 
 
 ConceptExtractionStatsMap = dict[

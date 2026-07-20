@@ -116,18 +116,6 @@ class SingleStageExtractionNode(
             f"{metadata.single_stage.model_params.to_custom_id_segment(metadata.single_stage.llm_model.name)}"
         )
 
-    @staticmethod
-    @abstractmethod
-    async def parse_batch_request_result(
-        mfg_etld1: str,
-        field_type: "BasicFieldTypeEnum | BinaryClassificationTypeEnum",
-        chunk_bounds: str,
-        extraction_bundle: SingleStageExtractionRequestBundle,
-        completed_request_map: dict[GPTBatchRequestCustomID, GPTBatchRequest],
-        deferred_at: datetime,
-    ) -> ResultT:
-        pass
-
     async def create_batch_requests(
         self,
         mfg_etld1: str,
@@ -160,6 +148,18 @@ class SingleStageExtractionNode(
         logger.info(f"{batch_requests}")
 
         return batch_requests
+
+    @staticmethod
+    @abstractmethod
+    async def get_result(
+        mfg_etld1: str,
+        field_type: "BasicFieldTypeEnum | BinaryClassificationTypeEnum",
+        chunk_bounds: str,
+        extraction_bundle: SingleStageExtractionRequestBundle,
+        completed_request_map: dict[GPTBatchRequestCustomID, GPTBatchRequest],
+        timestamp: datetime,  # for recording errors
+    ) -> ResultT:
+        pass
 
     async def dispatch_batch_request(
         self,

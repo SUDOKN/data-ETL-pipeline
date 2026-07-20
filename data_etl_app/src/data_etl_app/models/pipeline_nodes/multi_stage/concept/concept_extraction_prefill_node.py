@@ -23,6 +23,7 @@ from data_etl_app.models.pipeline_nodes.multi_stage.concept.concept_phrase_searc
     ConceptPhraseSearchNode,
 )
 from data_etl_app.models.pipeline_nodes.base.base_prefill_node import PrefillNode
+from data_etl_app.models.pipeline_nodes.base.base_node import ResultT
 from data_etl_app.models.types_and_enums import ConceptTypeEnum
 from data_etl_app.models.pipeline_nodes.base.base_node import PipelineContext
 from data_etl_app.models.chunking_strat import ChunkingStrategy
@@ -38,7 +39,7 @@ from data_etl_app.utils.dict_diff import find_diffs
 logger = logging.getLogger(__name__)
 
 
-class ConceptExtractionPrefillNode(PrefillNode[ConceptTypeEnum]):
+class ConceptExtractionPrefillNode(PrefillNode[ConceptTypeEnum, ResultT]):
     next_node: ConceptPhraseSearchNode
 
     def __init__(

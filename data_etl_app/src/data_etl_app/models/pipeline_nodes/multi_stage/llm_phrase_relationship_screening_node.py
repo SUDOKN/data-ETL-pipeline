@@ -8,6 +8,7 @@ from core.models.db.gpt_batch_request import GPTBatchRequest
 from core.models.batch_request_objects.gpt_batch_response_blob import GPTBatchResponse
 from core.models.deferred_extraction.deferred_phrase_extraction_requests import (
     DeferredLLMPhraseExtractionRequests,
+    LLMPhraseExtractionRequestBundle,
     LLMPhraseExtractionRequestMap,
     LLMPhraseExtractionMetadata,
 )
@@ -32,6 +33,7 @@ from core.services.gpt_batch_request_service import (
 )
 from data_etl_app.services.extraction.deferred_llm_relationship_screening_node_service import (
     create_missing_phrase_relationship_screening_requests,
+    get_phrase_relationship_screening_result,
 )
 
 logger = logging.getLogger(__name__)
@@ -161,6 +163,24 @@ class LLMPhraseRelationshipScreeningNode(
         )
 
         return batch_requests
+
+    @staticmethod
+    async def get_result(
+        mfg_etld1: str,
+        field_type: LLMExtractedFieldTypeEnum,
+        chunk_bounds: str,
+        extraction_bundle: LLMPhraseExtractionRequestBundle,
+        completed_request_map: dict[GPTBatchRequestCustomID, GPTBatchRequest],
+        timestamp: datetime,  # for recording errors
+    ) -> LLMScreeningResults:
+        return await get_phrase_relationship_screening_result(
+            mfg_etld1=mfg_etld1,
+            field_type=field_type,
+            chunk_bounds=chunk_bounds,
+            extraction_bundle=extraction_bundle,
+            completed_request_map=completed_request_map,
+            timestamp=timestamp,
+        )
 
     async def dispatch_batch_request(
         self,

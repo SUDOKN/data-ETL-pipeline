@@ -18,6 +18,9 @@ from core.models.deferred_extraction.deferred_phrase_extraction_requests import 
     LLMPhraseExtractionRequestMap,
     LLMPhraseExtractionRequestBundle,
 )
+from data_etl_app.models.pipeline_nodes.multi_stage.llm_phrase_relationship_node import (
+    LLMPhraseRelationshipNode,
+)
 from data_etl_app.models.types_and_enums import LLMExtractedFieldTypeEnum
 from open_ai_key_app.models.gpt_model_params import GPTModelParams
 from open_ai_key_app.models.field_types import GPTBatchRequestCustomID
@@ -26,9 +29,6 @@ from core.services.gpt_batch_request_writes import record_response_parse_error
 from core.services.gpt_batch_request_service import (
     create_base_gpt_batch_request,
     get_dummy_gpt_batch_response,
-)
-from data_etl_app.services.extraction.deferred_llm_phrase_relationship_node_service import (
-    parse_batch_request_result as parse_phrase_relationhip_batch_req_result,
 )
 
 logger = logging.getLogger(__name__)
@@ -68,13 +68,13 @@ def parse_llm_phrase_relationship_screening_result(
     return raw_gpt_phrase_relationship_screening_result
 
 
-async def parse_batch_request_result(
+async def get_phrase_relationship_screening_result(
     mfg_etld1: str,
     field_type: LLMExtractedFieldTypeEnum,
     chunk_bounds: str,
     extraction_bundle: LLMPhraseExtractionRequestBundle,
     completed_request_map: dict[GPTBatchRequestCustomID, GPTBatchRequest],
-    deferred_at: datetime,
+    timestamp: datetime,
 ) -> LLMScreeningResults:
     req_id = extraction_bundle.llm_phrase_relationship_screening_req_id
     if not req_id:
@@ -101,7 +101,7 @@ async def parse_batch_request_result(
         await record_response_parse_error(
             gpt_batch_request=req_obj,
             error_message=str(e),
-            timestamp=deferred_at,
+            timestamp=timestamp,
             traceback_str=traceback.format_exc(),
         )
         logger.error(
@@ -152,13 +152,13 @@ async def create_missing_phrase_relationship_screening_requests(
 
         # Process current batch
         for chunk_bounds, extraction_bundle in batch:
-            llm_phrase_relationships = await parse_phrase_relationhip_batch_req_result(
+            llm_phrase_relationships = await LLMPhraseRelationshipNode.get_result(
                 mfg_etld1=mfg_etld1,
                 field_type=field_type,
                 chunk_bounds=chunk_bounds,
                 extraction_bundle=extraction_bundle,
                 completed_request_map=llm_phrase_relationship_gpt_request_map,
-                deferred_at=deferred_at,
+                timestamp=deferred_at,
             )
             llm_phrase_relationship_screening_request_id = (
                 extraction_bundle.llm_phrase_relationship_screening_req_id

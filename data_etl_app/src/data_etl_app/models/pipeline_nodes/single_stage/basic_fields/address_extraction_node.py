@@ -44,28 +44,28 @@ class AddressExtractionNode(SingleStageExtractionNode[list[Address]]):
         )
 
     @staticmethod
-    async def parse_batch_request_result(
+    async def get_result(
         mfg_etld1: str,
         chunk_bounds: str,
         extraction_bundle: SingleStageExtractionRequestBundle,
         completed_request_map: dict[GPTBatchRequestCustomID, GPTBatchRequest],
-        deferred_at: datetime,
+        timestamp: datetime,
         field_type: BasicFieldTypeEnum = BasicFieldTypeEnum.addresses,
     ) -> list[Address]:
         llm_address_request_id = extraction_bundle.llm_request_id
         if not llm_address_request_id:
             raise ValueError(
-                f"address_extraction_node.parse_batch_request_result: llm_request_id is None for chunk bounds {chunk_bounds} in {mfg_etld1}:{field_type.name}"
+                f"address_extraction_node.get_result: llm_request_id is None for chunk bounds {chunk_bounds} in {mfg_etld1}:{field_type.name}"
             )
 
         llm_address_req = completed_request_map.get(llm_address_request_id)
         if not llm_address_req:
             raise ValueError(
-                f"address_extraction_node.parse_batch_request_result: Missing GPTBatchRequest for mapping request ID {llm_address_request_id} in {mfg_etld1}:{field_type.name}"
+                f"address_extraction_node.get_result: Missing GPTBatchRequest for mapping request ID {llm_address_request_id} in {mfg_etld1}:{field_type.name}"
             )
         elif not llm_address_req.response:
             raise ValueError(
-                f"address_extraction_node.parse_batch_request_result: GPTBatchRequest for mapping request ID {llm_address_request_id} has no response_blob in {mfg_etld1}:{field_type.name}"
+                f"address_extraction_node.get_result: GPTBatchRequest for mapping request ID {llm_address_request_id} has no response_blob in {mfg_etld1}:{field_type.name}"
             )
 
         try:
@@ -77,10 +77,10 @@ class AddressExtractionNode(SingleStageExtractionNode[list[Address]]):
             await record_response_parse_error(
                 gpt_batch_request=llm_address_req,
                 error_message=str(e),
-                timestamp=deferred_at,
+                timestamp=timestamp,
                 traceback_str=traceback.format_exc(),
             )
             logger.error(
-                f"address_extraction_node.parse_batch_request_result: Error parsing address extraction results for manufacturer {mfg_etld1} from GPT response: {e}"
+                f"address_extraction_node.get_result: Error parsing address extraction results for manufacturer {mfg_etld1} from GPT response: {e}"
             )
             raise

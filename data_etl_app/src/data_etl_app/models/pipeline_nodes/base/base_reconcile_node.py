@@ -1,27 +1,20 @@
 from __future__ import annotations
 
 import logging
-from datetime import datetime
-from abc import abstractmethod
-from typing import TYPE_CHECKING
 
-from core.models.db.manufacturer import Manufacturer
 from core.models.db.deferred_manufacturer import DeferredManufacturer
 from data_etl_app.models.pipeline_nodes.base.base_node import (
     BaseNode,
-    PipelineContext,
     LLMExtractedFieldTypeVar,
+    ResultT,
 )
 from open_ai_key_app.models.field_types import GPTBatchRequestCustomID
-
-if TYPE_CHECKING:
-    from scraper_app.models.scraped_text_file import ScrapedTextFile
 
 logger = logging.getLogger(__name__)
 
 
 # Strategy Pattern
-class ReconcileNode(BaseNode[LLMExtractedFieldTypeVar]):
+class ReconcileNode(BaseNode[LLMExtractedFieldTypeVar, None]):
     """Base class for the phase of reconciliation for any deferred field. Assumes extraction is done."""
 
     def __init__(
@@ -29,18 +22,6 @@ class ReconcileNode(BaseNode[LLMExtractedFieldTypeVar]):
         field_type: LLMExtractedFieldTypeVar,
     ) -> None:
         super().__init__(field_type=field_type, next_node=None)
-
-    @abstractmethod
-    async def execute(
-        self,
-        mfg: Manufacturer,
-        deferred_mfg: DeferredManufacturer,
-        scraped_text_file: ScrapedTextFile,
-        timestamp: datetime,
-        pipeline_context: PipelineContext,
-        eager: bool = False,  # doesn't do anything for reconcile node, but needed in signature for next_node calls from extraction node
-    ) -> None:
-        pass
 
     async def wipe_down(
         self,

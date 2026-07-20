@@ -20,15 +20,19 @@ from core.models.db.gpt_batch_request import GPTBatchRequest
 from core.models.deferred_extraction.deferred_concept_extraction import (
     ConceptExtractionRequestMap,
     ConceptExtractionRequestBundle,
-    TaggedConceptResult,
-    TaggedResult,
+    TaggingResultsGroupedByConcept,
+    TaggingResult,
     TagToPhraseAndReasonMap,
-    PhraseToTagAndReasonMap,
 )
 from data_etl_app.models.skos_concept import Concept
 from data_etl_app.models.types_and_enums import (
     ConceptTypeEnum,
-    LLMExtractedFieldTypeEnum,
+)
+from data_etl_app.models.pipeline_nodes.multi_stage.llm_phrase_relationship_node import (
+    LLMPhraseRelationshipNode,
+)
+from data_etl_app.models.pipeline_nodes.multi_stage.llm_phrase_relationship_screening_node import (
+    LLMPhraseRelationshipScreeningNode,
 )
 from data_etl_app.utils.ground_truth_helper_util import (
     get_verified_phrase_relationship_results,
@@ -41,12 +45,6 @@ from core.services.gpt_batch_request_writes import record_response_parse_error
 from core.services.gpt_batch_request_service import (
     create_base_gpt_batch_request,
     get_dummy_gpt_batch_response,
-)
-from data_etl_app.services.extraction.deferred_llm_phrase_relationship_node_service import (
-    parse_batch_request_result as parse_phrase_relationhip_batch_req_result,
-)
-from data_etl_app.services.extraction.deferred_llm_relationship_screening_node_service import (
-    parse_batch_request_result as parse_relationhip_screening_batch_req_result,
 )
 
 logger = logging.getLogger(__name__)
@@ -84,14 +82,14 @@ def parse_llm_phrase_initial_grounding_result(
     return raw_llm_initial_grounding_result
 
 
-async def parse_initial_grounding_batch_request_result(
+async def get_initial_grounding_result(
     mfg_etld1: str,
-    field_type: LLMExtractedFieldTypeEnum,
+    field_type: ConceptTypeEnum,
     chunk_bounds: str,
     extraction_bundle: ConceptExtractionRequestBundle,
     completed_request_map: dict[GPTBatchRequestCustomID, GPTBatchRequest],
-    deferred_at: datetime,
-) -> list[TaggedResult]:
+    timestamp: datetime,
+) -> PhraseToTagAndReasonMap:
     req_id = extraction_bundle.llm_phrase_initial_grounding_req_id
     if not req_id:
         raise ValueError(
@@ -112,12 +110,12 @@ async def parse_initial_grounding_batch_request_result(
         phrase_initial_grounding_results = parse_llm_phrase_initial_grounding_result(
             req_obj.response.result
         )
-
+        return phrase_initial_grounding_results
     except Exception as e:
         await record_response_parse_error(
             gpt_batch_request=req_obj,
             error_message=str(e),
-            timestamp=deferred_at,
+            timestamp=timestamp,
             traceback_str=traceback.format_exc(),
         )
         logger.error(
@@ -125,7 +123,27 @@ async def parse_initial_grounding_batch_request_result(
         )
         raise
 
-    return get_tagged_results_from_initial_grounding(phrase_initial_grounding_results)
+    # return get_tagged_results_from_initial_grounding(phrase_initial_grounding_results)
+
+
+async def get_tagged_results_from_initial_grounding(
+    mfg_etld1: str,
+    field_type: ConceptTypeEnum,
+    chunk_bounds: str,
+    extraction_bundle: ConceptExtractionRequestBundle,
+    completed_request_map: dict[GPTBatchRequestCustomID, GPTBatchRequest],
+    timestamp: datetime,
+) -> list[TaggingResult]:
+    return get_grounding_results_grouped_by_tags(
+        await get_initial_grounding_result(
+            mfg_etld1=mfg_etld1,
+            field_type=field_type,
+            chunk_bounds=chunk_bounds,
+            extraction_bundle=extraction_bundle,
+            completed_request_map=completed_request_map,
+            timestamp=timestamp,
+        )
+    )
 
 
 def flip_tag_to_phrase_reason_map(
@@ -140,52 +158,94 @@ def flip_tag_to_phrase_reason_map(
     return phrase_map
 
 
-def get_tagged_results_from_initial_grounding(
+def get_grounding_results_grouped_by_tags(
     grounding_result: PhraseToTagAndReasonMap,
-) -> list[TaggedResult]:
-    tr_map: dict[str, TaggedResult] = {}
+) -> list[TaggingResult]:
+    tr_map: dict[str, TaggingResult] = {}
     for phrase, tag_reason_map in grounding_result.items():
         for tag, reason in tag_reason_map.items():
-            tr = tr_map.get(phrase, TaggedResult(tag=tag, phrase_reason_map={}))
+            tr = tr_map.get(phrase, TaggingResult(group_id=tag, phrase_reason_map={}))
             tr.phrase_reason_map[phrase] = reason
 
     return list(tr_map.values())
 
 
-def get_descend_worthy_directly_tagged_concept_results(
-    initially_tagged_trs: list[TaggedResult],
-    level: int | None,
-    match_label_to_concept_map: CaseInsensitiveDict[Concept],
-) -> list[TaggedConceptResult]:
-    concept_to_tc_map: dict[Concept, TaggedConceptResult] = {}
-    for tr in initially_tagged_trs:
-        # to pass,
-        # tc must be in_vocab,
-        # not exactly match the phrase,
-        tagged_concept_obj = match_label_to_concept_map.get(
-            tr.tag
-        )  # at this point, the tag could be alt label getting normalized to concept name for downstream
-        if not tagged_concept_obj:
+def get_tcs_and_oov_trs_from_trs(
+    trs: list[TaggingResult],
+    match_label_to_concept_map: CaseInsensitiveDict[Concept],  # DO NOT MUTATE
+) -> tuple[list[TaggingResult], list[TaggingResultsGroupedByConcept]]:
+    oov_trs: list[TaggingResult] = []
+    concept_to_tc_map: dict[Concept, TaggingResultsGroupedByConcept] = {}
+
+    for tr in trs:
+        concept_obj = match_label_to_concept_map.get(
+            tr.group_id
+        )  # NOTE: multiple group tags may point to same concept_obj because they can be name/altLabels
+
+        if not concept_obj:
+            oov_trs.append(tr)
             continue
 
         tc = concept_to_tc_map.get(
-            tagged_concept_obj,
-            TaggedConceptResult(
-                concept=tagged_concept_obj,
+            concept_obj,
+            TaggingResultsGroupedByConcept(
+                concept=concept_obj,
                 og_tag_w_phrase_reason_map={},
             ),
         )
-        if tr.tag not in tc.og_tag_w_phrase_reason_map:
-            tc.og_tag_w_phrase_reason_map[tr.tag] = tr.phrase_reason_map
-        else:
-            tc.og_tag_w_phrase_reason_map[tr.tag].update(tr.phrase_reason_map)
+        if tr.group_id in tc.og_tag_w_phrase_reason_map:
+            raise ValueError(
+                f"tr.group_tag:{tr.group_id} was already present in "
+                f"tc.og_tag_w_phrase_reason_map[tr.group_tag]:{tc.og_tag_w_phrase_reason_map[tr.group_id]}"
+            )
+        tc.og_tag_w_phrase_reason_map[tr.group_id] = tr.phrase_reason_map
+        # else:
+        #     tc.og_tag_w_phrase_reason_map[tr.group_tag].update(tr.phrase_reason_map)
 
-    descend_worthy_tcs: list[TaggedConceptResult] = []
-    for _concept, tc in concept_to_tc_map.items():
+    return (oov_trs, list(concept_to_tc_map.values()))
+
+
+def get_descend_split_from_tagged_results(
+    initially_tagged_trs: list[TaggingResult],
+    match_label_to_concept_map: CaseInsensitiveDict[Concept],
+) -> tuple[list[TaggingResult], list[TaggingResultsGroupedByConcept]]:
+    descend_worthy_tcs: list[TaggingResultsGroupedByConcept] = []
+    oov_trs, tcs = get_tcs_and_oov_trs_from_trs(
+        trs=initially_tagged_trs, match_label_to_concept_map=match_label_to_concept_map
+    )
+    non_descend_worthy_trs: list[TaggingResult] = oov_trs
+    """
+    TaggedConceptResult
+    {
+        concept: C
+        og_tag_w_phrase_reason_map: {
+            C.name: {
+                p1: r11
+            },
+            C.altLabel1: {
+                p1: r12,
+                p2: r2
+            }
+            C.altLabel3: {
+                p3: r3
+            },
+            oov_1: { # gets kicked out by get_tcs_from_trs
+                p1: r13,
+                p4: r4
+            }
+        }
+    }
+    """
+
+    for tc in tcs:
         for og_tag, phrase_reason_map in tc.og_tag_w_phrase_reason_map.items():
             # start filtering out phrases that directly matched the tag
-            for phrase in phrase_reason_map:
-                if og_tag == phrase:
+            tmp = phrase_reason_map.copy()
+            for phrase in phrase_reason_map:  # p1, p2..
+                if phrase in tc.concept.matchLabels:
+                    # matchLabels = C.name, C.altLabel1, C.altLabel2,
+                    # one of these was the og_tag but cross comparison
+                    # allows more pruning
                     phrase_reason_map.pop(phrase)
 
             if not phrase_reason_map:
@@ -195,14 +255,12 @@ def get_descend_worthy_directly_tagged_concept_results(
             tc.og_tag_w_phrase_reason_map
         ):  # not empty, contains at least one phrase that doesn't exactly match the og tag
             descend_worthy_tcs.append(tc)
+        else:
+            non_descend_worthy_trs.append(
+                TaggingResult(group_id=og_tag, phrase_reason_map=tmp)
+            )
 
-    if level != None:
-        # only return items at the matching level
-        descend_worthy_tcs = [
-            tc for tc in descend_worthy_tcs if tc.concept.level == level
-        ]
-
-    return descend_worthy_tcs
+    return (non_descend_worthy_trs, descend_worthy_tcs)
 
 
 async def create_missing_phrase_initial_grounding_requests(
@@ -262,24 +320,24 @@ async def create_missing_phrase_initial_grounding_requests(
         # Process current batch
         for chunk_bounds, extraction_bundle in batch:
             llm_phrase_relationship_results = (
-                await parse_phrase_relationhip_batch_req_result(
+                await LLMPhraseRelationshipNode.get_result(
                     mfg_etld1=mfg_etld1,
                     field_type=field_type,
                     chunk_bounds=chunk_bounds,
                     extraction_bundle=extraction_bundle,
                     completed_request_map=llm_phrase_relationship_gpt_request_map,
-                    deferred_at=deferred_at,
+                    timestamp=deferred_at,
                 )
             )
 
             llm_phrase_relationship_screening_results = (
-                await parse_relationhip_screening_batch_req_result(
+                await LLMPhraseRelationshipScreeningNode.get_result(
                     mfg_etld1=mfg_etld1,
                     field_type=field_type,
                     chunk_bounds=chunk_bounds,
                     extraction_bundle=extraction_bundle,
                     completed_request_map=llm_phrase_screening_gpt_request_map,
-                    deferred_at=deferred_at,
+                    timestamp=deferred_at,
                 )
             )
 

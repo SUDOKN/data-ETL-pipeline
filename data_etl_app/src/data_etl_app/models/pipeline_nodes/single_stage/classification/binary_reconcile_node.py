@@ -2,7 +2,7 @@ from __future__ import annotations
 
 import logging
 from datetime import datetime
-from typing import TYPE_CHECKING, Optional
+from typing import Optional
 
 from core.models.db.manufacturer import Manufacturer
 from core.models.extraction_results.binary_classification_result import (
@@ -14,9 +14,7 @@ from core.models.db.deferred_manufacturer import DeferredManufacturer
 from core.models.deferred_extraction.deferred_single_stage_extraction_requests import (
     DeferredSingleStageExtractionRequests,
 )
-from data_etl_app.models.pipeline_nodes.base.base_node import (
-    PipelineContext,
-)
+from data_etl_app.models.pipeline_nodes.base.base_node import PipelineContext
 from data_etl_app.models.types_and_enums import (
     BinaryClassificationTypeEnum,
 )
@@ -24,9 +22,7 @@ from data_etl_app.models.pipeline_nodes.base.base_reconcile_node import Reconcil
 from data_etl_app.models.pipeline_nodes.single_stage.classification.binary_classification_node import (
     BinaryClassificationNode,
 )
-
-if TYPE_CHECKING:
-    from scraper_app.models.scraped_text_file import ScrapedTextFile
+from scraper_app.models.scraped_text_file import ScrapedTextFile
 
 from core.services.manufacturer_service import update_manufacturer
 
@@ -60,13 +56,13 @@ class BinaryReconcileNode(ReconcileNode[BinaryClassificationTypeEnum]):
         first_chunk_bounds, first_req_bundle = list(
             extraction_requests.chunked_request_map.items()
         )[0]
-        result = await BinaryClassificationNode.parse_batch_request_result(
+        result = await BinaryClassificationNode.get_result(
             mfg_etld1=deferred_mfg.etld1,
             field_type=self.field_type,
             chunk_bounds=first_chunk_bounds,
             extraction_bundle=first_req_bundle,
             completed_request_map=completed_classification_requests,
-            deferred_at=timestamp,
+            timestamp=timestamp,
         )
         chunk_stats: BinaryClassificationStatsMap = {
             first_chunk_bounds: BinaryClassificationStats(result=result)
