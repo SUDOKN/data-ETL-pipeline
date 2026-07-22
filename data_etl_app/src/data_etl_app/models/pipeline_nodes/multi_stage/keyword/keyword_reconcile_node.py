@@ -2,7 +2,7 @@ from __future__ import annotations
 
 import logging
 from datetime import datetime
-from typing import TYPE_CHECKING, Optional
+from typing import Optional
 
 from core.models.db.manufacturer import Manufacturer
 from core.models.deferred_extraction.deferred_keyword_extraction import (
@@ -33,11 +33,10 @@ from data_etl_app.models.types_and_enums import KeywordTypeEnum
 from data_etl_app.models.pipeline_nodes.base.base_node import PipelineContext
 from data_etl_app.models.pipeline_nodes.base.base_reconcile_node import (
     ReconcileNode,
-    ResultT,
 )
+from scraper_app.models.scraped_text_file import ScrapedTextFile
 
-if TYPE_CHECKING:
-    from scraper_app.models.scraped_text_file import ScrapedTextFile
+# if TYPE_CHECKING:
 
 from core.services.manufacturer_service import update_manufacturer
 from data_etl_app.services.extraction.deferred_llm_phrase_search_node_service import (
@@ -56,7 +55,7 @@ from data_etl_app.services.extraction.deferred_llm_freehand_grounding_service im
 logger = logging.getLogger(__name__)
 
 
-class KeywordReconcileNode(ReconcileNode[KeywordTypeEnum, ResultT]):
+class KeywordReconcileNode(ReconcileNode[KeywordTypeEnum]):
     def __init__(self, field_type: KeywordTypeEnum) -> None:
         super().__init__(field_type=field_type)
 

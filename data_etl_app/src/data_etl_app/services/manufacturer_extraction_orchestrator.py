@@ -27,7 +27,7 @@ from core.services.deferred_manufacturer_service import (
 from core.services.gpt_batch_request_writes import (
     bulk_delete_gpt_batch_requests_by_mfg_etld1_and_field,
 )
-from data_etl_app.models.pipeline_nodes.base.base_node import PipelineContext
+from data_etl_app.models.pipeline_nodes import PipelineContext
 from data_etl_app.models.ontology import Ontology
 from data_etl_app.services.knowledge.prompt_service import PromptService
 from data_etl_app.services.extraction_pipeline_factory import ExtractionPipelineFactory

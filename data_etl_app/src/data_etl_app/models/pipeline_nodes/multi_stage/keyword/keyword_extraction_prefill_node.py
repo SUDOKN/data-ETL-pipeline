@@ -36,7 +36,7 @@ from data_etl_app.utils.dict_diff import find_diffs
 logger = logging.getLogger(__name__)
 
 
-class KeywordExtractionPrefillNode(PrefillNode[KeywordTypeEnum, ResultT]):
+class KeywordExtractionPrefillNode(PrefillNode[KeywordTypeEnum]):
     next_node: KeywordPhraseSearchNode
 
     def __init__(

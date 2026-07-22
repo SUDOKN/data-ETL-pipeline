@@ -87,7 +87,8 @@ async def find_completed_gpt_batch_requests_by_custom_ids(
     if gpt_batch_request_custom_ids is None:
         raise ValueError("gpt_batch_request_custom_ids cannot be None")
     elif len(gpt_batch_request_custom_ids) == 0:
-        raise ValueError("gpt_batch_request_custom_ids cannot be empty")
+        # raise ValueError("gpt_batch_request_custom_ids cannot be empty")
+        return {}
     elif any(cid is None for cid in gpt_batch_request_custom_ids):
         raise ValueError("gpt_batch_request_custom_ids cannot contain None values")
 
@@ -110,7 +111,7 @@ async def find_completed_gpt_batch_request_ids_only(
     if gpt_batch_request_custom_ids is None:
         raise ValueError("gpt_batch_request_custom_ids cannot be None")
     elif len(gpt_batch_request_custom_ids) == 0:
-        raise ValueError("gpt_batch_request_custom_ids cannot be empty")
+        return set()
     elif any(cid is None for cid in gpt_batch_request_custom_ids):
         raise ValueError("gpt_batch_request_custom_ids cannot contain None values")
 

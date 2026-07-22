@@ -6,7 +6,7 @@ from functools import cached_property
 import json
 import logging
 from rdflib import URIRef
-from pydantic import BaseModel
+from pydantic import BaseModel, field_validator
 
 from typing_extensions import TypedDict
 
@@ -31,6 +31,13 @@ class Concept(BaseModel):
     ancestors: list[str]
     children: list[str]
     definition: str
+
+    @field_validator("definition", mode="before")
+    @classmethod
+    def normalize_definition_whitespace(cls, value: object) -> object:
+        if isinstance(value, str):
+            return " ".join(value.split())
+        return value
 
     @cached_property
     def matchLabels(self) -> set[str]:

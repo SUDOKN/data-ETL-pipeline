@@ -194,45 +194,49 @@ async def get_all_recursive_grounding_results(
     return retval
 
 
-def get_pruned_rtp(
-    rtp: IterativelyTaggedPhraseGroup,
+def get_pruned_itp_group(
+    itp_group: IterativelyTaggedPhraseGroup,
 ) -> IterativelyTaggedPhraseGroup:
     """
     LOGIC
 
     To pass
-    1. rtp.tag must be in vocab
+    1. itp_group.tag must be in vocab
     2. some phrases still remain after removing nested phrases that exactly match the tag
 
     Return the pruned version or None
     """
 
-    for phrase, tag_w_reason in rtp.direct_phrases_to_og_tag_w_reason.items():
+    for phrase, tag_w_reason in list(
+        itp_group.direct_phrases_to_og_tag_w_reason.items()
+    ):
         for tag in tag_w_reason:
             if phrase in [
                 tag,
-                rtp.group_id,
+                itp_group.group_id,
             ]:  # tag and rtp.tag won't be same if phrase was tagged to concept with altLabel, in which case rtp.tag is concept name and tag is altLabel
-                rtp.direct_phrases_to_og_tag_w_reason.pop(phrase)
+                itp_group.direct_phrases_to_og_tag_w_reason.pop(phrase)
 
-    for phrase, tag_w_reason in rtp.iterative_phrases_to_og_tag_w_reason.items():
+    for phrase, tag_w_reason in list(
+        itp_group.iterative_phrases_to_og_tag_w_reason.items()
+    ):
         for tag in tag_w_reason:
             if phrase in [
                 tag,
-                rtp.group_id,
+                itp_group.group_id,
             ]:  # tag and rtp.tag won't be same if phrase was tagged to concept with altLabel, in which case rtp.tag is concept name and tag is altLabel
-                rtp.iterative_phrases_to_og_tag_w_reason.pop(phrase)
+                itp_group.iterative_phrases_to_og_tag_w_reason.pop(phrase)
 
-    return rtp
+    return itp_group
 
 
 def is_rtp_descend_worthy(
-    rtp: IterativelyTaggedPhraseGroup,
+    itp_group: IterativelyTaggedPhraseGroup,
     match_label_to_concept_map: CaseInsensitiveDict[Concept],  # DO NOT MUTATE
 ) -> bool:
-    return rtp.group_id in match_label_to_concept_map and bool(
-        rtp.direct_phrases_to_og_tag_w_reason
-        or rtp.iterative_phrases_to_og_tag_w_reason
+    return itp_group.group_id in match_label_to_concept_map and bool(
+        itp_group.direct_phrases_to_og_tag_w_reason
+        or itp_group.iterative_phrases_to_og_tag_w_reason
     )
 
 
@@ -339,6 +343,10 @@ async def get_itp_from_itr(
             f"Cannot create batch requests for recursive grounding as llm_phrase_recursive_grounding_root_req_nodes is empty."
         )
 
+    logger.info(
+        f"Creating IterativelyTaggedPhraseGroup for it_req: l{it_req.level}>{it_req.name} in chunk {chunk_bounds} for {mfg_etld1}:{field_type.name}"
+    )
+
     itp: IterativelyTaggedPhraseGroup = IterativelyTaggedPhraseGroup(
         parent_group_id=(
             get_name_from_recursive_grounding_request_custom_id(
@@ -353,32 +361,43 @@ async def get_itp_from_itr(
     )
 
     # directly_tagged_phrases: PhraseToTagAndReasonMap = {}
-    for tr in initially_tagged_trs:
-        if (tr.group_id == it_req.name) or (
-            (concept := match_label_to_concept_map.get(tr.group_id))
+    for initial_tr in initially_tagged_trs:
+        if (initial_tr.group_id == it_req.name) or (
+            (concept := match_label_to_concept_map.get(initial_tr.group_id))
             and concept.name == it_req.name
         ):
             logger.info(
-                f"initially tagged tr.group_tag:{tr.group_id} matches rt_req.name:{it_req.name}, copying over phrase reason map."
+                f"initially tagged tr.group_tag:{initial_tr.group_id} matches rt_req.name:{it_req.name}, copying over phrase reason map."
             )
             for (
                 phrase,
                 reason,
-            ) in tr.phrase_reason_map.items():
-                itp.direct_phrases_to_og_tag_w_reason[phrase] = {tr.group_id: reason}
+            ) in initial_tr.phrase_reason_map.items():
+                itp.direct_phrases_to_og_tag_w_reason[phrase] = {
+                    initial_tr.group_id: reason
+                }
 
     # iteratively_tagged: PhraseToTagAndReasonMap = {}
-    parent_itr = next(
-        (
-            parent_itr
-            for parent_itr in bundle.llm_phrase_recursive_tagging_reqs[it_req.level - 1]
-            if parent_itr.is_parent_of(
-                child_tagging_req=it_req,
-            )
-        ),
-        None,
+    logger.info(
+        f"Searching for parent_itr for it_req: l{it_req.level}>{it_req.name} in chunk {chunk_bounds} for {mfg_etld1}:{field_type.name}"
     )
-    if it_req.level != 1 and parent_itr is None:
+    parent_itr = (
+        next(
+            (
+                parent_itr
+                for parent_itr in bundle.llm_phrase_recursive_tagging_reqs[
+                    it_req.level - 1
+                ]
+                if parent_itr.is_parent_of(
+                    child_tagging_req=it_req,
+                )
+            ),
+            None,
+        )
+        if it_req.level != 1
+        else None
+    )
+    if it_req.level != 1 and it_req.parent_descend_req_id and parent_itr is None:
         raise ValueError(
             f"Previous level parent of {it_req.name} could not be located."
         )
@@ -414,7 +433,7 @@ def get_tagging_results_from_recursive_grounding_results(
     tag_to_tr_map: dict[str, TaggingResult] = {}
     for phrase, tag_reason_map in grounding_result.items():
         for tag, reason in tag_reason_map.items():
-            tr = tag_to_tr_map.get(
+            tr = tag_to_tr_map.setdefault(
                 tag, TaggingResult(group_id=tag, phrase_reason_map={})
             )
             tr.phrase_reason_map[phrase] = reason
@@ -448,6 +467,8 @@ async def create_missing_phrase_recursive_grounding_requests(
     # defaults
     BATCH_SIZE=100,
 ) -> list[GPTBatchRequest]:
+    if not missing_phrase_recursive_grounding_req_ids:
+        raise ValueError(f"missing_phrase_recursive_grounding_req_ids is empty.")
 
     logger.info(
         f"create_missing_recursive_grounding_requests: Generating GPTBatchRequests for {mfg_etld1}:{field_type}"
@@ -478,6 +499,7 @@ async def create_missing_phrase_recursive_grounding_requests(
         pending_level = max(
             bundle.llm_phrase_recursive_tagging_reqs.keys(),
         )
+        logger.info(f"Found pending level:{pending_level}")
         initially_tagged_trs = await get_tagged_results_from_initial_grounding(
             mfg_etld1=mfg_etld1,
             field_type=field_type,
@@ -491,16 +513,26 @@ async def create_missing_phrase_recursive_grounding_requests(
             (req, match_label_to_concept_map.get(req.name))
             for req in bundle.llm_phrase_recursive_tagging_reqs[pending_level]
             if req.name
-            in match_label_to_concept_map  # otherwise not descend worthy, assumed embed is blind
+            in match_label_to_concept_map  # otherwise not descend worthy, because embedding may contain a last executed req which resulted in non descend worthy child
         ]
-        if len({c for _req, c in pending_tagging_req_w_concept_pair}) != len(
-            pending_tagging_req_w_concept_pair
-        ):
-            raise ValueError(
-                f"No concept must repeat across tagging requests at the same level:{pending_level}"
-            )
+        tmp_set: set[Concept] = set()
+        for _req, c in pending_tagging_req_w_concept_pair:
+            if c in tmp_set:
+                raise ValueError(
+                    f"Concept: {c} repeats across tagging requests at the same level:{pending_level}"
+                )
+            else:
+                assert c
+                tmp_set.add(c)
+
+        logger.info(
+            f"Pending tagging requests for chunk {chunk_bounds} in {mfg_etld1}:{field_type} \nat level {pending_level}: {[req.name for req, _c in pending_tagging_req_w_concept_pair]}"
+        )
 
         for pending_tagging_req, concept_obj in pending_tagging_req_w_concept_pair:
+            logger.info(
+                f"Processing pending_tagging_req {pending_tagging_req.name} in chunk {chunk_bounds} for {mfg_etld1}:{field_type} at level {pending_level}"
+            )
             if (
                 pending_tagging_req.descend_req_id
                 not in missing_phrase_recursive_grounding_req_ids
@@ -508,7 +540,10 @@ async def create_missing_phrase_recursive_grounding_requests(
                 raise ValueError(
                     f"descend_req_id:{pending_tagging_req.descend_req_id} from last level was not passed as missing"
                 )
-            assert concept_obj
+            elif not concept_obj:
+                logger.info(
+                    f"Skipping pending_tagging_req {pending_tagging_req.name} as concept_obj is None"
+                )
 
             itp = await get_itp_from_itr(
                 mfg_etld1=mfg_etld1,
@@ -522,9 +557,12 @@ async def create_missing_phrase_recursive_grounding_requests(
                 timestamp=timestamp,
             )
 
-            itp = get_pruned_rtp(itp)
+            logger.info(f"itp before pruning: {itp}")
+            itp = get_pruned_itp_group(itp)
+            logger.info(f"itp after pruning: {itp}")
+
             if not is_rtp_descend_worthy(
-                rtp=itp, match_label_to_concept_map=match_label_to_concept_map
+                itp_group=itp, match_label_to_concept_map=match_label_to_concept_map
             ):
                 continue
 

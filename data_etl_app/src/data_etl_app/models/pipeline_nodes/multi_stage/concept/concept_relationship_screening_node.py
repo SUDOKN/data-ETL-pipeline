@@ -1,5 +1,6 @@
 from __future__ import annotations
 import logging
+from typing import TYPE_CHECKING
 
 from core.models.db.gpt_batch_request import GPTBatchRequest
 from core.models.file_objects.prompt import Prompt
@@ -8,13 +9,15 @@ from data_etl_app.models.types_and_enums import ConceptTypeEnum
 from data_etl_app.models.pipeline_nodes.multi_stage.llm_phrase_relationship_screening_node import (
     LLMPhraseRelationshipScreeningNode,
 )
-from data_etl_app.models.pipeline_nodes.multi_stage.concept.concept_initial_grounding_node import (
-    ConceptInitialGroundingNode,
-)
 from data_etl_app.models.types_and_enums import (
     ConceptTypeEnum,
 )
 from open_ai_key_app.models.field_types import GPTBatchRequestCustomID
+
+if TYPE_CHECKING:
+    from data_etl_app.models.pipeline_nodes.multi_stage.concept.concept_initial_grounding_node import (
+        ConceptInitialGroundingNode,
+    )
 
 logger = logging.getLogger(__name__)
 

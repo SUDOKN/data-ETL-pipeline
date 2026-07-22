@@ -2,7 +2,7 @@ from __future__ import annotations
 
 import logging
 from datetime import datetime
-from typing import Optional
+from typing import TYPE_CHECKING, Optional
 
 from core.models.db.manufacturer import Manufacturer
 from core.models.extraction_results.business_description_extraction_result import (
@@ -14,10 +14,6 @@ from core.models.deferred_extraction.deferred_single_stage_extraction_requests i
     DeferredSingleStageExtractionRequests,
 )
 from core.models.db.deferred_manufacturer import DeferredManufacturer
-from data_etl_app.models.pipeline_nodes.base.base_node import ResultT
-from data_etl_app.models.pipeline_nodes.single_stage.basic_fields.business_desc_extraction_node import (
-    BusinessDescExtractionNode,
-)
 from data_etl_app.models.pipeline_nodes.base.base_llm_extraction_node import (
     PipelineContext,
 )
@@ -26,6 +22,11 @@ from data_etl_app.models.pipeline_nodes.base.base_reconcile_node import Reconcil
 from scraper_app.models.scraped_text_file import ScrapedTextFile
 
 from core.services.manufacturer_service import update_manufacturer
+
+# if TYPE_CHECKING:
+#     from data_etl_app.models.pipeline_nodes.single_stage.basic_fields.business_desc_extraction_node import (
+#         BusinessDescExtractionNode,
+#     )
 
 logger = logging.getLogger(__name__)
 
@@ -45,6 +46,10 @@ class BusinessDescReconcileNode(ReconcileNode[BasicFieldTypeEnum.business_desc])
         pipeline_context: PipelineContext,
         eager: bool,
     ) -> None:
+        from data_etl_app.models.pipeline_nodes.single_stage.basic_fields.business_desc_extraction_node import (
+            BusinessDescExtractionNode,
+        )
+
         extraction_requests: Optional[DeferredSingleStageExtractionRequests] = getattr(
             deferred_mfg, self.field_type.name
         )

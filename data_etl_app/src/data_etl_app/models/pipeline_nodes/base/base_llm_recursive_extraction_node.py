@@ -62,6 +62,9 @@ class BaseLLMRecursiveExtractionNode(
         chunked_request_map = extraction_requests.chunked_request_map
 
         while True:
+            logger.info(
+                f"Embedding request ids for {self.__class__.__name__} ('{self.field_type.name}') for {mfg.etld1}"
+            )
             await self.embed_request_ids(
                 mfg_etld1=mfg.etld1,
                 pipeline_context=pipeline_context,
@@ -69,6 +72,10 @@ class BaseLLMRecursiveExtractionNode(
                 chunked_request_map=chunked_request_map,
                 timestamp=timestamp,
             )
+            logger.info(
+                f"Saving deferred_mfg after embedding request ids for {mfg.etld1}"
+            )
+            await deferred_mfg.save()
 
             missing_req_ids: set[GPTBatchRequestCustomID] = (
                 await self.get_missing_req_ids(
@@ -77,7 +84,7 @@ class BaseLLMRecursiveExtractionNode(
                 )
             )
             logger.info(
-                f"[{mfg.etld1}] After embedding request ids for {self.__class__.__name__} ('{self.field_type.name}'), missing_req_ids:{missing_req_ids}"
+                f"[{mfg.etld1}] After embedding all request ids for {self.__class__.__name__} ('{self.field_type.name}'), missing_req_ids:{[missing_req_ids]}"
             )
             if not missing_req_ids:
                 break
@@ -122,7 +129,6 @@ class BaseLLMRecursiveExtractionNode(
             logger.info(
                 f"[{mfg.etld1}] ✅ Eagerly dispatched {len(batch_requests)} batch requests for {self.__class__.__name__} ('{self.field_type.name}') with {modified_count} successful response recordings and {failed_updates} failed updates."
             )
-            await deferred_mfg.save()
 
         # check if all requests are complete
         if await self.are_all_requests_complete(
@@ -137,7 +143,6 @@ class BaseLLMRecursiveExtractionNode(
             completed_request_map = await self.get_completed_request_map(
                 mfg_etld1=mfg.etld1,
                 chunked_request_map=chunked_request_map,
-                all_requests_must_be_complete=True,
             )
             pipeline_context[type(self)] = completed_request_map
 

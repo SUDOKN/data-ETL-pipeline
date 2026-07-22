@@ -39,6 +39,11 @@ class IterativeTaggingRequest(
     def level(self):
         return get_level_from_recursive_request_custom_id(self.descend_req_id)
 
+    def __eq__(self, other: object) -> bool:
+        if not isinstance(other, IterativeTaggingRequest):
+            return NotImplemented
+        return self.name == other.name
+
     def __hash__(self) -> int:
         return hash(self.name)
 
@@ -62,6 +67,9 @@ class TaggingResult(BaseModel):
 
     def __hash__(self) -> int:
         return hash(self.group_id)
+
+    def __repr__(self) -> str:
+        return f"TaggingResult(group_id={self.group_id}, phrase_reason_map={self.phrase_reason_map})"
 
 
 class TaggingResultsGroupedByConcept(

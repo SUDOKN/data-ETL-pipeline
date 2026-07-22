@@ -178,6 +178,9 @@ class BaseLLMExtractionNode(BaseNode[LLMExtractedFieldTypeVar, ResultT]):
             mfg_etld1=mfg_etld1,
             chunked_request_map=chunked_request_map,
         )
+        logger.info(
+            f"Checking if all requests are complete for the following request IDs: {req_ids_to_lookup}"
+        )
         incomplete_gpt_req_ids = req_ids_to_lookup - (
             await find_completed_gpt_batch_request_ids_only(
                 mfg_etld1, list(req_ids_to_lookup)
@@ -189,7 +192,7 @@ class BaseLLMExtractionNode(BaseNode[LLMExtractedFieldTypeVar, ResultT]):
         self,
         mfg_etld1: str,
         chunked_request_map: ExtractionRequestMap,
-        all_requests_must_be_complete: bool,
+        all_requests_must_be_complete: bool = True,
     ) -> dict[GPTBatchRequestCustomID, GPTBatchRequest]:
         # Check if all search requests are complete
         req_ids_to_lookup: set[GPTBatchRequestCustomID] = self.get_embedded_request_ids(
@@ -205,7 +208,9 @@ class BaseLLMExtractionNode(BaseNode[LLMExtractedFieldTypeVar, ResultT]):
             raise ValueError(
                 f"get_completed_request_map was called for {self.field_type.name} in {__class__.__name__} but not all requests are complete. Incomplete request IDs: {incomplete_gpt_req_ids}"
             )
-
+        logger.info(
+            f"[{mfg_etld1}] All requests are complete for {self.__class__.__name__} ('{self.field_type.name}'). Retrieving completed request map for {list(req_ids_to_lookup)}."
+        )
         gpt_request_map = await find_completed_gpt_batch_requests_by_custom_ids(
             mfg_etld1, list(req_ids_to_lookup)
         )
@@ -280,6 +285,7 @@ class BaseLLMExtractionNode(BaseNode[LLMExtractedFieldTypeVar, ResultT]):
             chunked_request_map=extraction_requests.chunked_request_map,
             timestamp=timestamp,
         )
+        await deferred_mfg.save()
 
         missing_req_ids = await self.get_missing_req_ids(
             mfg_etld1=mfg.etld1,
@@ -306,7 +312,6 @@ class BaseLLMExtractionNode(BaseNode[LLMExtractedFieldTypeVar, ResultT]):
             await bulk_upsert_gpt_batch_requests_with_only_req_bodies(
                 batch_requests=batch_requests, mfg_etld1=mfg.etld1
             )
-            await deferred_mfg.save()
         else:
             logger.debug(
                 f"[{mfg.etld1}] ✓ {self.__class__.__name__}: All requests already exist for '{self.field_type.name}'"
@@ -356,7 +361,6 @@ class BaseLLMExtractionNode(BaseNode[LLMExtractedFieldTypeVar, ResultT]):
             completed_request_map = await self.get_completed_request_map(
                 mfg_etld1=mfg.etld1,
                 chunked_request_map=extraction_requests.chunked_request_map,
-                all_requests_must_be_complete=True,
             )
             pipeline_context[type(self)] = completed_request_map
             if self.next_node:

@@ -3,7 +3,7 @@ import logging
 from typing import TYPE_CHECKING
 
 from core.models.file_objects.prompt import Prompt
-from data_etl_app.models.pipeline_nodes import (
+from data_etl_app.models.pipeline_nodes.multi_stage.llm_phrase_search_node import (
     LLMPhraseSearchNode,
 )
 from data_etl_app.models.types_and_enums import (
@@ -11,7 +11,7 @@ from data_etl_app.models.types_and_enums import (
 )
 
 if TYPE_CHECKING:
-    from data_etl_app.models.pipeline_nodes import (
+    from data_etl_app.models.pipeline_nodes.multi_stage.concept.concept_recursive_search_node import (
         ConceptRecursiveSearchNode,
     )
 

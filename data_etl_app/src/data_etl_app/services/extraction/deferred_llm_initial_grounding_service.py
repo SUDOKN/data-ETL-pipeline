@@ -152,7 +152,7 @@ def flip_tag_to_phrase_reason_map(
     phrase_map: PhraseToTagAndReasonMap = {}
     for tag, phrase_reason_map in map.items():
         for phrase, reason in phrase_reason_map.items():
-            existing = phrase_map.get(phrase, {})
+            existing = phrase_map.setdefault(phrase, {})
             existing.update({tag: reason})
 
     return phrase_map
@@ -161,11 +161,22 @@ def flip_tag_to_phrase_reason_map(
 def get_grounding_results_grouped_by_tags(
     grounding_result: PhraseToTagAndReasonMap,
 ) -> list[TaggingResult]:
+    # logger.info(f"grounding_result:{json.dumps(grounding_result, indent=2)}")
     tr_map: dict[str, TaggingResult] = {}
     for phrase, tag_reason_map in grounding_result.items():
         for tag, reason in tag_reason_map.items():
-            tr = tr_map.get(phrase, TaggingResult(group_id=tag, phrase_reason_map={}))
+            tr = tr_map.setdefault(
+                tag, TaggingResult(group_id=tag, phrase_reason_map={})
+            )
+            if phrase in tr.phrase_reason_map:
+                raise ValueError(
+                    f"phrase:{phrase} was already present in "
+                    f"tr.phrase_reason_map[phrase]:{tr.phrase_reason_map[phrase]}"
+                )
+
             tr.phrase_reason_map[phrase] = reason
+            # logger.info(f"After updating tr.phrase_reason_map:{tr.phrase_reason_map}")
+        # logger.info(f"After updating tr_map.get(tag={tag}):{tr_map.get(tag)}")
 
     return list(tr_map.values())
 
@@ -186,7 +197,7 @@ def get_tcs_and_oov_trs_from_trs(
             oov_trs.append(tr)
             continue
 
-        tc = concept_to_tc_map.get(
+        tc = concept_to_tc_map.setdefault(
             concept_obj,
             TaggingResultsGroupedByConcept(
                 concept=concept_obj,
@@ -195,8 +206,8 @@ def get_tcs_and_oov_trs_from_trs(
         )
         if tr.group_id in tc.og_tag_w_phrase_reason_map:
             raise ValueError(
-                f"tr.group_tag:{tr.group_id} was already present in "
-                f"tc.og_tag_w_phrase_reason_map[tr.group_tag]:{tc.og_tag_w_phrase_reason_map[tr.group_id]}"
+                f"tr.group_id:{tr.group_id} was already present in "
+                f"tc.og_tag_w_phrase_reason_map[tr.group_id]:{tc.og_tag_w_phrase_reason_map[tr.group_id]}"
             )
         tc.og_tag_w_phrase_reason_map[tr.group_id] = tr.phrase_reason_map
         # else:
@@ -205,15 +216,17 @@ def get_tcs_and_oov_trs_from_trs(
     return (oov_trs, list(concept_to_tc_map.values()))
 
 
-def get_descend_split_from_tagged_results(
+def get_descend_worthy_tcs_from_tagged_results(
     initially_tagged_trs: list[TaggingResult],
     match_label_to_concept_map: CaseInsensitiveDict[Concept],
-) -> tuple[list[TaggingResult], list[TaggingResultsGroupedByConcept]]:
+) -> list[TaggingResultsGroupedByConcept]:
     descend_worthy_tcs: list[TaggingResultsGroupedByConcept] = []
     oov_trs, tcs = get_tcs_and_oov_trs_from_trs(
         trs=initially_tagged_trs, match_label_to_concept_map=match_label_to_concept_map
     )
-    non_descend_worthy_trs: list[TaggingResult] = oov_trs
+    # non_descend_worthy_trs: list[TaggingResult] = oov_trs
+    logger.info(f"initially_tagged_trs:{initially_tagged_trs}")
+
     """
     TaggedConceptResult
     {
@@ -223,8 +236,8 @@ def get_descend_split_from_tagged_results(
                 p1: r11
             },
             C.altLabel1: {
-                p1: r12,
-                p2: r2
+                p1: r12, 
+                p2: r2      # may get pruned if p2 matches C.name or C.altLabel2 or C.altLabel3
             }
             C.altLabel3: {
                 p3: r3
@@ -238,10 +251,9 @@ def get_descend_split_from_tagged_results(
     """
 
     for tc in tcs:
-        for og_tag, phrase_reason_map in tc.og_tag_w_phrase_reason_map.items():
+        for og_tag, phrase_reason_map in list(tc.og_tag_w_phrase_reason_map.items()):
             # start filtering out phrases that directly matched the tag
-            tmp = phrase_reason_map.copy()
-            for phrase in phrase_reason_map:  # p1, p2..
+            for phrase in list(phrase_reason_map.keys()):  # p1, p2..
                 if phrase in tc.concept.matchLabels:
                     # matchLabels = C.name, C.altLabel1, C.altLabel2,
                     # one of these was the og_tag but cross comparison
@@ -255,12 +267,8 @@ def get_descend_split_from_tagged_results(
             tc.og_tag_w_phrase_reason_map
         ):  # not empty, contains at least one phrase that doesn't exactly match the og tag
             descend_worthy_tcs.append(tc)
-        else:
-            non_descend_worthy_trs.append(
-                TaggingResult(group_id=og_tag, phrase_reason_map=tmp)
-            )
 
-    return (non_descend_worthy_trs, descend_worthy_tcs)
+    return descend_worthy_tcs
 
 
 async def create_missing_phrase_initial_grounding_requests(

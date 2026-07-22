@@ -151,7 +151,6 @@ class LLMPhraseRecursiveSearchNode(
         completed_recursive_map = await self.get_completed_request_map(
             mfg_etld1=mfg_etld1,
             chunked_request_map=chunked_request_map,
-            all_requests_must_be_complete=False,
         )
         first_search_map = self.get_upstream_first_search_map(pipeline_context)
 

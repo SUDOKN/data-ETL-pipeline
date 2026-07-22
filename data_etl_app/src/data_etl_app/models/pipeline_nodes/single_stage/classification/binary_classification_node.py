@@ -12,13 +12,17 @@ from core.models.deferred_extraction.deferred_single_stage_extraction_requests i
 )
 from core.models.db.gpt_batch_request import GPTBatchRequest
 from core.services.gpt_batch_request_writes import record_response_parse_error
+from typing import TYPE_CHECKING
+
 from data_etl_app.models.pipeline_nodes.single_stage.basic_fields.single_stage_extraction_node import (
     SingleStageExtractionNode,
 )
-from data_etl_app.models.pipeline_nodes.single_stage.classification.binary_reconcile_node import (
-    BinaryReconcileNode,
-)
 from data_etl_app.models.types_and_enums import BinaryClassificationTypeEnum
+
+if TYPE_CHECKING:
+    from data_etl_app.models.pipeline_nodes.single_stage.classification.binary_reconcile_node import (
+        BinaryReconcileNode,
+    )
 from data_etl_app.services.extraction.deferred_binary_classification_service import (
     parse_binary_classification_result_from_gpt_response,
 )
