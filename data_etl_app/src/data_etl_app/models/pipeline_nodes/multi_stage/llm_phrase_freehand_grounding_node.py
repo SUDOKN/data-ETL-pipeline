@@ -2,12 +2,11 @@ from __future__ import annotations
 
 import logging
 from datetime import datetime
-from typing import TYPE_CHECKING, Optional
 
 from core.models.db.gpt_batch_request import GPTBatchRequest
 from core.models.deferred_extraction.deferred_keyword_extraction import (
-    DeferredKeywordExtractionRequests,
     KeywordExtractionRequestMap,
+    KeywordExtractionRequestBundle,
 )
 from core.models.field_types import PhraseToTagAndReasonMap
 from core.models.batch_request_objects.gpt_batch_response_blob import GPTBatchResponse
@@ -18,8 +17,6 @@ from core.models.file_objects.prompt import Prompt
 from core.services.gpt_batch_request_service import dispatch_gpt_batch_request
 from data_etl_app.models.pipeline_nodes.base.base_llm_extraction_node import (
     BaseLLMExtractionNode,
-    ExtractionRequestMap,
-    ExtractionMetadata,
 )
 from data_etl_app.models.pipeline_nodes.base.base_node import (
     LLMExtractedFieldTypeVar,
@@ -27,13 +24,13 @@ from data_etl_app.models.pipeline_nodes.base.base_node import (
 )
 from data_etl_app.models.pipeline_nodes.base.base_reconcile_node import ReconcileNode
 from data_etl_app.models.types_and_enums import LLMExtractedFieldTypeEnum
+
 from data_etl_app.services.extraction.deferred_llm_freehand_grounding_service import (
     create_missing_phrase_freehand_grounding_requests,
+    get_freehand_grounding_result,
 )
 from open_ai_key_app.models.field_types import GPTBatchRequestCustomID
-
-if TYPE_CHECKING:
-    from scraper_app.models.scraped_text_file import ScrapedTextFile
+from scraper_app.models.scraped_text_file import ScrapedTextFile
 
 logger = logging.getLogger(__name__)
 
@@ -158,6 +155,24 @@ class LLMPhraseFreehandGroundingNode(
             llm_model=metadata.llm_phrase_freehand_grounding.llm_model,
             model_params=metadata.llm_phrase_freehand_grounding.model_params,
             eager=eager,
+        )
+
+    @staticmethod
+    async def get_result(
+        mfg_etld1: str,
+        field_type: LLMExtractedFieldTypeEnum,
+        chunk_bounds: str,
+        extraction_bundle: KeywordExtractionRequestBundle,
+        completed_request_map: dict[GPTBatchRequestCustomID, GPTBatchRequest],
+        timestamp: datetime,  # for recording errors
+    ) -> PhraseToTagAndReasonMap:
+        return await get_freehand_grounding_result(
+            mfg_etld1=mfg_etld1,
+            field_type=field_type,
+            chunk_bounds=chunk_bounds,
+            extraction_bundle=extraction_bundle,
+            completed_request_map=completed_request_map,
+            timestamp=timestamp,
         )
 
     async def dispatch_batch_request(

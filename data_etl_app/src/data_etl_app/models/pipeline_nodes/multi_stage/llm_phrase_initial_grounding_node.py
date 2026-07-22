@@ -181,7 +181,7 @@ class LLMPhraseInitialGroundingNode(
     @staticmethod
     async def get_result(
         mfg_etld1: str,
-        field_type: LLMExtractedFieldTypeEnum,
+        field_type: ConceptTypeEnum,
         chunk_bounds: str,
         extraction_bundle: ConceptExtractionRequestBundle,
         completed_request_map: dict[GPTBatchRequestCustomID, GPTBatchRequest],

@@ -123,8 +123,6 @@ async def get_initial_grounding_result(
         )
         raise
 
-    # return get_tagged_results_from_initial_grounding(phrase_initial_grounding_results)
-
 
 async def get_tagged_results_from_initial_grounding(
     mfg_etld1: str,

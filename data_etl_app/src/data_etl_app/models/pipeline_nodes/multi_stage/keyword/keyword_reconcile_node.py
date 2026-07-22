@@ -49,7 +49,7 @@ from data_etl_app.services.extraction.deferred_llm_relationship_screening_node_s
     get_phrase_relationship_screening_result as parse_relationship_screening_batch_req_result,
 )
 from data_etl_app.services.extraction.deferred_llm_freehand_grounding_service import (
-    parse_batch_request_result as parse_freehand_grounding_batch_req_result,
+    get_freehand_grounding_result as parse_freehand_grounding_batch_req_result,
 )
 
 logger = logging.getLogger(__name__)
@@ -131,7 +131,7 @@ class KeywordReconcileNode(ReconcileNode[KeywordTypeEnum]):
                     chunk_bounds=chunk_bounds,
                     extraction_bundle=bundle,
                     completed_request_map=completed_freehand_grounding_requests,
-                    deferred_at=timestamp,
+                    timestamp=timestamp,
                 )
             )
             grounded_keywords = {

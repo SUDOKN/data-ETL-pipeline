@@ -72,13 +72,13 @@ def parse_llm_phrase_freehand_grounding_result(
     return raw_llm_freehand_grounding_result
 
 
-async def parse_batch_request_result(
+async def get_freehand_grounding_result(
     mfg_etld1: str,
     field_type: LLMExtractedFieldTypeEnum,
     chunk_bounds: str,
     extraction_bundle: KeywordExtractionRequestBundle,
     completed_request_map: dict[GPTBatchRequestCustomID, GPTBatchRequest],
-    deferred_at: datetime,
+    timestamp: datetime,
 ) -> PhraseToTagAndReasonMap:
     req_id = extraction_bundle.llm_phrase_freehand_grounding_req_id
     if not req_id:
@@ -102,7 +102,7 @@ async def parse_batch_request_result(
         await record_response_parse_error(
             gpt_batch_request=req_obj,
             error_message=str(e),
-            timestamp=deferred_at,
+            timestamp=timestamp,
             traceback_str=traceback.format_exc(),
         )
         logger.error(
