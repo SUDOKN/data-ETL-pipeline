@@ -52,16 +52,16 @@ class BaseLLMRecursiveExtractionNode(
             )
             return
 
-        extraction_requests = getattr(deferred_mfg, self.field_type.name)
-        if not extraction_requests:
-            raise ValueError(
-                f"execute was called for {self.field_type.name} in {self.__class__.__name__} but no deferred extraction exists."
-            )
-
-        metadata = extraction_requests.metadata
-        chunked_request_map = extraction_requests.chunked_request_map
-
         while True:
+            extraction_requests = getattr(deferred_mfg, self.field_type.name)
+            if not extraction_requests:
+                raise ValueError(
+                    f"execute was called for {self.field_type.name} in {self.__class__.__name__} but no deferred extraction exists."
+                )
+
+            metadata = extraction_requests.metadata
+            chunked_request_map = extraction_requests.chunked_request_map
+
             logger.info(
                 f"Embedding request ids for {self.__class__.__name__} ('{self.field_type.name}') for {mfg.etld1}"
             )
@@ -75,6 +75,7 @@ class BaseLLMRecursiveExtractionNode(
             logger.info(
                 f"Saving deferred_mfg after embedding request ids for {mfg.etld1}"
             )
+
             await deferred_mfg.save()
 
             missing_req_ids: set[GPTBatchRequestCustomID] = (
@@ -130,6 +131,12 @@ class BaseLLMRecursiveExtractionNode(
                 f"[{mfg.etld1}] ✅ Eagerly dispatched {len(batch_requests)} batch requests for {self.__class__.__name__} ('{self.field_type.name}') with {modified_count} successful response recordings and {failed_updates} failed updates."
             )
 
+        extraction_requests = getattr(deferred_mfg, self.field_type.name)
+        if not extraction_requests:
+            raise ValueError(
+                f"execute was called for {self.field_type.name} in {self.__class__.__name__} but no deferred extraction exists."
+            )
+
         # check if all requests are complete
         if await self.are_all_requests_complete(
             mfg_etld1=mfg.etld1,
@@ -142,7 +149,7 @@ class BaseLLMRecursiveExtractionNode(
 
             completed_request_map = await self.get_completed_request_map(
                 mfg_etld1=mfg.etld1,
-                chunked_request_map=chunked_request_map,
+                chunked_request_map=extraction_requests.chunked_request_map,
             )
             pipeline_context[type(self)] = completed_request_map
 

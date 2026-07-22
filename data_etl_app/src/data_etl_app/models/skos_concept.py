@@ -46,6 +46,11 @@ class Concept(BaseModel):
     def __hash__(self) -> int:
         return hash(self.name)
 
+    def __eq__(self, other: object) -> bool:
+        if not isinstance(other, Concept):
+            return NotImplemented
+        return self.__hash__() == other.__hash__()
+
     # DO NOT MODIFY
     def __str__(self) -> str:
         return f"{self.name}"

@@ -53,6 +53,11 @@ class IterativelyTaggedPhraseGroup(BaseModel):
     def __hash__(self) -> int:
         return hash(self.group_id)
 
+    def __eq__(self, other: object) -> bool:
+        if not isinstance(other, IterativelyTaggedPhraseGroup):
+            return NotImplemented
+        return self.__hash__() == other.__hash__()
+
 
 IterativeGroundingResult = dict[int, set[IterativelyTaggedPhraseGroup]]
 
@@ -73,6 +78,11 @@ class IterativelyTaggedPhrase(BaseModel):
 
     def __hash__(self) -> int:
         return hash(self.group_id)
+
+    def __eq__(self, other: object) -> bool:
+        if not isinstance(other, IterativelyTaggedPhrase):
+            return NotImplemented
+        return self.__hash__() == other.__hash__()
 
 
 # Others

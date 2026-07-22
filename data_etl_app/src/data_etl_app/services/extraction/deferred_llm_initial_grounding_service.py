@@ -370,19 +370,17 @@ async def create_missing_phrase_initial_grounding_requests(
             screened_phrases_w_reason = get_verified_phrase_relationship_results(
                 llm_phrase_relationship_screening_results
             )
-            verified_phrases_w_og_summary = {
+            verified_phrases_w_summary = {
                 k: v
                 for k, v in llm_phrase_relationship_results.items()
                 if k in screened_phrases_w_reason
             }
-            logger.info(
-                f"verified_phrases_w_og_summary:{verified_phrases_w_og_summary}"
-            )
+            logger.info(f"verified_phrases_w_og_summary:{verified_phrases_w_summary}")
             # maybe it's worth filter out phrases that directly match a known concept label, so let's try
             # before passing on to the initial grounding phase
-            verified_out_of_vocab_phrases_w_og_summary = {
+            verified_out_of_vocab_phrases_w_summary = {
                 k: v
-                for k, v in verified_phrases_w_og_summary.items()
+                for k, v in verified_phrases_w_summary.items()
                 # if not any(
                 #     [
                 #         match_label.lower() in k.lower()
@@ -398,7 +396,7 @@ async def create_missing_phrase_initial_grounding_requests(
                 raise ValueError(
                     f"create_missing_phrase_initial_grounding_requests: llm_phrase_initial_grounding_request_id is None for chunk bounds {chunk_bounds} in {mfg_etld1}:{field_type}"
                 )
-            if not verified_out_of_vocab_phrases_w_og_summary:
+            if not verified_out_of_vocab_phrases_w_summary:
                 # add a dummy response blob with empty dict
                 logger.info(
                     f"No out-of-vocab phrases found in text, for {mfg_etld1}:{field_type}, creating dummy initial grounding request."
@@ -413,7 +411,7 @@ async def create_missing_phrase_initial_grounding_requests(
                 new_batch_request = dummy_batch_request
             else:
                 logger.info(
-                    f"Passing on candidates {verified_out_of_vocab_phrases_w_og_summary} to phrase_relationship phase for {mfg_etld1}:{field_type} chunk {chunk_bounds}"
+                    f"Passing on candidates {verified_out_of_vocab_phrases_w_summary} to phrase_relationship phase for {mfg_etld1}:{field_type} chunk {chunk_bounds}"
                 )
                 llm_phrase_grounding_batch_request = create_deferred_phrase_initial_grounding_gpt_request(
                     deferred_at=deferred_at,
@@ -424,7 +422,7 @@ async def create_missing_phrase_initial_grounding_requests(
                     # context variables
                     mfg_name=mfg_name,
                     all_concepts=known_concepts,
-                    verified_out_of_vocab_phrases_w_og_summary=verified_out_of_vocab_phrases_w_og_summary,
+                    verified_out_of_vocab_phrases_w_summary=verified_out_of_vocab_phrases_w_summary,
                     # model info
                     eager=eager,
                     gpt_model=llm_model,
@@ -490,7 +488,7 @@ def create_deferred_phrase_initial_grounding_gpt_request(
     # context
     mfg_name: str,
     all_concepts: set[Concept],
-    verified_out_of_vocab_phrases_w_og_summary: LLMPhraseRelationshipResults,
+    verified_out_of_vocab_phrases_w_summary: LLMPhraseRelationshipResults,
     # model info
     gpt_model: LLM_Model,
     eager: bool,
@@ -503,7 +501,7 @@ def create_deferred_phrase_initial_grounding_gpt_request(
         label for concept in all_concepts for label in concept.matchLabels
     ]
 
-    context = f"Manufacturer name: {mfg_name}\n\n extracted phrases:\n{json.dumps(verified_out_of_vocab_phrases_w_og_summary)}\n\noptions of {field_type.name} to choose from:\n{all_concept_labels}"
+    context = f"Manufacturer name: {mfg_name}\n\n extracted phrases:\n{json.dumps(verified_out_of_vocab_phrases_w_summary)}\n\noptions of {field_type.name} to choose from:\n{all_concept_labels}"
 
     gpt_batch_request = create_base_gpt_batch_request(
         deferred_at=deferred_at,

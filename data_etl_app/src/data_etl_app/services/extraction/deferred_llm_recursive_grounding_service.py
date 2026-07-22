@@ -272,6 +272,8 @@ def get_phrase_trails(
                     ),
                 )
                 matching_itp.direct_og_tag_w_reason.update(og_tag_reason_map)
+                phrase_trail.lvl_by_lvl_itps[lvl].add(matching_itp)
+                retval_dict[d_phrase] = phrase_trail
             for (
                 i_phrase,
                 og_tag_reason_map,
@@ -294,6 +296,8 @@ def get_phrase_trails(
                     ),
                 )
                 matching_itp.iterative_og_tag_w_reason.update(og_tag_reason_map)
+                phrase_trail.lvl_by_lvl_itps[lvl].add(matching_itp)
+                retval_dict[i_phrase] = phrase_trail
 
     return list(retval_dict.values())
 
@@ -696,7 +700,7 @@ def create_deferred_phrase_recursive_grounding_gpt_request(
             cls=ConceptJSONEncoder,
         ),
     )
-    context = f"Manufacturer name: {mfg_name}\n\n extracted phrases:\n{json.dumps(verified_phrases_w_og_summary)}"
+    context = f"Manufacturer name: {mfg_name}\n\n extracted phrases:\n{list(verified_phrases_w_og_summary.keys())}\n extracted phrases with summaries:\n{json.dumps(verified_phrases_w_og_summary)}"
 
     gpt_batch_request = create_base_gpt_batch_request(
         deferred_at=deferred_at,

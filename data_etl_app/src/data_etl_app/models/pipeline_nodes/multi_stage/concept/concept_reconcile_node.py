@@ -96,8 +96,8 @@ class ConceptReconcileNode(ReconcileNode[ConceptTypeEnum]):
             ConceptRecursiveGroundingNode
         ]  # TODO: do not rely on saving RecursiveTaggingRequest
 
-        all_recognized_tagged_concepts: set[IterativeTaggingRequest] = set()
-        all_unrecognized_tagged_concepts: set[IterativeTaggingRequest] = set()
+        all_recognized_tagged_concepts: set[Concept] = set()
+        all_unrecognized_tagged_concepts: set[str] = set()
         chunk_stats: ConceptExtractionStatsMap = {}
         for (
             chunk_bounds,
@@ -199,11 +199,14 @@ class ConceptReconcileNode(ReconcileNode[ConceptTypeEnum]):
                 llm_phrase_recursive_grounding=lvl_by_lvl_iterative_grounding_results,
             )
 
+            all_recognized_tagged_concepts.update(recognized_tagged_concepts)
+            all_unrecognized_tagged_concepts.update(unrecognized_tagged_concepts)
+
         final_extraction_result = ConceptExtractionResults(
             metadata=extraction_requests.metadata,
             results=ConceptsFound(
                 in_vocab={c.name for c in all_recognized_tagged_concepts},
-                out_of_vocab={uc.name for uc in all_unrecognized_tagged_concepts},
+                out_of_vocab={uc for uc in all_unrecognized_tagged_concepts},
             ),
             chunked_extraction_stats=chunk_stats,
         )
