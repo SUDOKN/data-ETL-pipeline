@@ -17,7 +17,7 @@ from core.models.deferred_extraction.deferred_keyword_extraction import (
     DeferredKeywordExtractionRequests,
     KeywordExtractionRequestBundle,
 )
-from data_etl_app.models.pipeline_nodes.multi_stage.keyword.keyword_phrase_search_node import (
+from data_etl_app.models.pipeline_nodes.multi_stage.keyword.base.keyword_phrase_search_node import (
     KeywordPhraseSearchNode,
 )
 from data_etl_app.models.pipeline_nodes.base.base_prefill_node import PrefillNode

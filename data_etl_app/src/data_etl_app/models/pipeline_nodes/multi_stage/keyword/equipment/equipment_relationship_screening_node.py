@@ -1,0 +1,51 @@
+from __future__ import annotations
+import logging
+from typing import TYPE_CHECKING
+
+from core.models.db.gpt_batch_request import GPTBatchRequest
+from core.models.file_objects.prompt import Prompt
+from data_etl_app.models.pipeline_nodes.base.base_node import PipelineContext
+from data_etl_app.models.pipeline_nodes.multi_stage.keyword.base.keyword_relationship_screening_node import (
+    KeywordRelationshipScreeningNode,
+)
+from data_etl_app.models.types_and_enums import KeywordTypeEnum
+from open_ai_key_app.models.field_types import GPTBatchRequestCustomID
+
+if TYPE_CHECKING:
+    from data_etl_app.models.pipeline_nodes.multi_stage.keyword.equipment.equipment_freehand_grounding_node import (
+        EquipmentFreehandGroundingNode,
+    )
+
+logger = logging.getLogger(__name__)
+
+
+class EquipmentRelationshipScreeningNode(KeywordRelationshipScreeningNode):
+    """Phase 4: screen/normalize equipment relationships.
+
+    Uses the equipment screening prompt (``equipment_phrase_relationship_screening``),
+    which normalizes surviving phrases to ``<Brand/Model> <generalized category>``
+    (or the category alone) and omits any phrase for which no generalized
+    category can be determined (omission == failure, per ``LLMScreeningResults``
+    semantics).
+    """
+
+    def __init__(
+        self,
+        field_type: KeywordTypeEnum,
+        next_node: EquipmentFreehandGroundingNode,
+        phrase_relationship_screening_prompt: Prompt,
+    ):
+        super().__init__(
+            field_type=field_type,
+            phrase_relationship_screening_prompt=phrase_relationship_screening_prompt,
+            next_node=next_node,
+        )
+
+    def get_upstream_phrase_relationship_map(
+        self, pipeline_context: PipelineContext
+    ) -> dict[GPTBatchRequestCustomID, GPTBatchRequest]:
+        from data_etl_app.models.pipeline_nodes.multi_stage.keyword.equipment.equipment_relationship_node import (
+            EquipmentRelationshipNode,
+        )
+
+        return pipeline_context[EquipmentRelationshipNode]

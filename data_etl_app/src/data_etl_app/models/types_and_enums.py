@@ -4,6 +4,8 @@ from typing import TypeVar
 
 class KeywordTypeEnum(str, Enum):
     products = "products"
+    contract_products = "contract_products"
+    equipments = "equipments"
 
 
 class ConceptTypeEnum(str, Enum):

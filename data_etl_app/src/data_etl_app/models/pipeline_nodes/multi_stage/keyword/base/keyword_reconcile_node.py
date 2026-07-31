@@ -13,22 +13,10 @@ from core.models.extraction_results.keyword_extraction_results import (
     KeywordExtractionResults,
     KeywordExtractionStatsMap,
 )
+from core.models.extraction_results.llm_phrase_extraction_results import (
+    partition_by_search_round,
+)
 from core.models.db.deferred_manufacturer import DeferredManufacturer
-from data_etl_app.models.pipeline_nodes.multi_stage.keyword.keyword_phrase_search_node import (
-    KeywordPhraseSearchNode,
-)
-from data_etl_app.models.pipeline_nodes.multi_stage.keyword.keyword_recursive_search_node import (
-    KeywordRecursiveSearchNode,
-)
-from data_etl_app.models.pipeline_nodes.multi_stage.keyword.keyword_relationship_node import (
-    KeywordRelationshipNode,
-)
-from data_etl_app.models.pipeline_nodes.multi_stage.keyword.keyword_relationship_screening_node import (
-    KeywordRelationshipScreeningNode,
-)
-from data_etl_app.models.pipeline_nodes.multi_stage.keyword.keyword_freehand_grounding_node import (
-    KeywordFreehandGroundingNode,
-)
 from data_etl_app.models.types_and_enums import KeywordTypeEnum
 from data_etl_app.models.pipeline_nodes.base.base_node import PipelineContext
 from data_etl_app.models.pipeline_nodes.base.base_reconcile_node import (
@@ -39,8 +27,8 @@ from scraper_app.models.scraped_text_file import ScrapedTextFile
 # if TYPE_CHECKING:
 
 from core.services.manufacturer_service import update_manufacturer
-from data_etl_app.services.extraction.deferred_llm_phrase_search_node_service import (
-    parse_batch_request_result as parse_phrase_search_batch_req_result,
+from data_etl_app.services.extraction.deferred_llm_phrase_recursive_search_node_service import (
+    build_llm_phrase_search_results,
 )
 from data_etl_app.services.extraction.deferred_llm_phrase_relationship_node_service import (
     get_phrase_relationship_result as get_phrase_relationship_result,
@@ -51,13 +39,54 @@ from data_etl_app.services.extraction.deferred_llm_relationship_screening_node_s
 from data_etl_app.services.extraction.deferred_llm_freehand_grounding_service import (
     get_freehand_grounding_result as parse_freehand_grounding_batch_req_result,
 )
+from data_etl_app.utils.phrase_trail_dump_util import (
+    build_keyword_phrase_trail_entry,
+    write_phrase_trails_dump,
+)
 
 logger = logging.getLogger(__name__)
 
 
 class KeywordReconcileNode(ReconcileNode[KeywordTypeEnum]):
+    """Base class: phase 6, aggregate & write final results.
+
+    This is a BASE class: the 5 ``get_upstream_*_map`` getters are left
+    unimplemented here. Concrete leaves such as ``PureProductReconcileNode`` /
+    ``ContractProductReconcileNode`` must implement them, pointing at their own
+    sibling node classes.
+    """
+
     def __init__(self, field_type: KeywordTypeEnum) -> None:
         super().__init__(field_type=field_type)
+
+    def get_upstream_search_map(self, pipeline_context: PipelineContext) -> dict:
+        raise NotImplementedError(
+            f"{self.__class__.__name__} must implement get_upstream_search_map"
+        )
+
+    def get_upstream_recursive_search_map(
+        self, pipeline_context: PipelineContext
+    ) -> dict:
+        raise NotImplementedError(
+            f"{self.__class__.__name__} must implement get_upstream_recursive_search_map"
+        )
+
+    def get_upstream_relationship_map(self, pipeline_context: PipelineContext) -> dict:
+        raise NotImplementedError(
+            f"{self.__class__.__name__} must implement get_upstream_relationship_map"
+        )
+
+    def get_upstream_screening_map(self, pipeline_context: PipelineContext) -> dict:
+        raise NotImplementedError(
+            f"{self.__class__.__name__} must implement get_upstream_screening_map"
+        )
+
+    def get_upstream_freehand_grounding_map(
+        self, pipeline_context: PipelineContext
+    ) -> dict:
+        raise NotImplementedError(
+            f"{self.__class__.__name__} must implement get_upstream_freehand_grounding_map"
+        )
 
     async def execute(
         self,
@@ -76,35 +105,37 @@ class KeywordReconcileNode(ReconcileNode[KeywordTypeEnum]):
                 f"execute was called for {self.field_type.name} but no deferred extraction requests exist."
             )
 
-        completed_search_requests = pipeline_context[KeywordPhraseSearchNode]
-        completed_recursive_search_requests = pipeline_context[
-            KeywordRecursiveSearchNode
-        ]
-        completed_phrase_relationship_requests = pipeline_context[
-            KeywordRelationshipNode
-        ]
-        completed_relationship_screening_requests = pipeline_context[
-            KeywordRelationshipScreeningNode
-        ]
-        completed_freehand_grounding_requests = pipeline_context[
-            KeywordFreehandGroundingNode
-        ]
+        completed_search_requests = self.get_upstream_search_map(pipeline_context)
+        completed_recursive_search_requests = self.get_upstream_recursive_search_map(
+            pipeline_context
+        )
+        completed_phrase_relationship_requests = self.get_upstream_relationship_map(
+            pipeline_context
+        )
+        completed_relationship_screening_requests = self.get_upstream_screening_map(
+            pipeline_context
+        )
+        completed_freehand_grounding_requests = (
+            self.get_upstream_freehand_grounding_map(pipeline_context)
+        )
         all_keywords: set[str] = set()
         chunk_stats: KeywordExtractionStatsMap = {}
+        chunked_phrase_trails_dump: dict[str, list[dict[str, object]]] = {}
         for (
             chunk_bounds,
             bundle,
         ) in extraction_requests.chunked_request_map.items():
-            llm_search_results = await parse_phrase_search_batch_req_result(
+            llm_search_results = await build_llm_phrase_search_results(
                 mfg_etld1=deferred_mfg.etld1,
                 field_type=self.field_type,
                 chunk_bounds=chunk_bounds,
                 extraction_bundle=bundle,
-                all_phrase_search_req_responses_map=completed_search_requests,
-                deferred_at=timestamp,
+                completed_search_req_map=completed_search_requests,
+                completed_recursive_search_req_map=completed_recursive_search_requests,
+                timestamp=timestamp,
             )
 
-            llm_phrase_relationship_results = await get_phrase_relationship_result(
+            llm_phrase_relationship_flat = await get_phrase_relationship_result(
                 mfg_etld1=deferred_mfg.etld1,
                 field_type=self.field_type,
                 chunk_bounds=chunk_bounds,
@@ -113,7 +144,7 @@ class KeywordReconcileNode(ReconcileNode[KeywordTypeEnum]):
                 timestamp=timestamp,
             )
 
-            llm_phrase_relationship_screening_results = (
+            llm_phrase_screening_flat = (
                 await parse_relationship_screening_batch_req_result(
                     mfg_etld1=deferred_mfg.etld1,
                     field_type=self.field_type,
@@ -124,7 +155,7 @@ class KeywordReconcileNode(ReconcileNode[KeywordTypeEnum]):
                 )
             )
 
-            llm_phrase_freehand_grounding_results = (
+            llm_phrase_freehand_grounding_flat = (
                 await parse_freehand_grounding_batch_req_result(
                     mfg_etld1=deferred_mfg.etld1,
                     field_type=self.field_type,
@@ -134,20 +165,58 @@ class KeywordReconcileNode(ReconcileNode[KeywordTypeEnum]):
                     timestamp=timestamp,
                 )
             )
+
+            # Partition flat dicts into per-round dicts by earliest search round.
+            llm_phrase_relationship_results = partition_by_search_round(
+                llm_phrase_relationship_flat, llm_search_results
+            )
+            llm_phrase_screening_results = partition_by_search_round(
+                llm_phrase_screening_flat, llm_search_results
+            )
+            llm_phrase_freehand_grounding_results = partition_by_search_round(
+                llm_phrase_freehand_grounding_flat, llm_search_results
+            )
+
+            # phrase -> earliest round index (for trail dump)
+            phrase_to_round: dict[str, int] = {}
+            for round_idx in sorted(llm_search_results.keys()):
+                for phrase in llm_search_results[round_idx]:
+                    if phrase not in phrase_to_round:
+                        phrase_to_round[phrase] = round_idx
+
             grounded_keywords = {
                 grounded_label
-                for phrase_groundings in llm_phrase_freehand_grounding_results.values()
+                for phrase_groundings in llm_phrase_freehand_grounding_flat.values()
                 for grounded_label in phrase_groundings.keys()
             }
+            chunked_phrase_trails_dump[chunk_bounds] = [
+                build_keyword_phrase_trail_entry(
+                    phrase=phrase,
+                    search_round=phrase_to_round.get(phrase, 0),
+                    relationship_result=llm_phrase_relationship_results,
+                    screening_result=llm_phrase_screening_results,
+                    phrase_groundings=phrase_groundings,
+                )
+                for phrase, phrase_groundings in sorted(
+                    llm_phrase_freehand_grounding_flat.items()
+                )
+            ]
 
             chunk_stats[chunk_bounds] = KeywordExtractionStats(
                 results=grounded_keywords,
                 llm_phrase_search=llm_search_results,
                 llm_phrase_relationship=llm_phrase_relationship_results,
-                llm_phrase_screening=llm_phrase_relationship_screening_results,
+                llm_phrase_screening=llm_phrase_screening_results,
                 llm_phrase_freehand_grounding=llm_phrase_freehand_grounding_results,
             )
             all_keywords.update(grounded_keywords)
+
+        write_phrase_trails_dump(
+            mfg_etld1=mfg.etld1,
+            field_type=self.field_type,
+            timestamp=timestamp,
+            chunked_phrase_trails=chunked_phrase_trails_dump,
+        )
 
         final_extraction_result = KeywordExtractionResults(
             metadata=extraction_requests.metadata,

@@ -1,5 +1,8 @@
+from __future__ import annotations
+
 from pydantic import BaseModel
 from datetime import datetime
+from typing import TypeVar
 
 
 from core.models.field_types import (
@@ -12,6 +15,34 @@ from core.models.field_types import (
 from core.models.llm_model import LLM_Model
 from data_etl_app.models.chunking_strat import ChunkingStrategy
 from open_ai_key_app.models.gpt_model_params import GPTModelParams
+
+_T = TypeVar("_T")
+
+
+def partition_by_search_round(
+    flat_results: dict[str, _T],
+    search_rounds: dict[int, LLMSearchResults],
+) -> dict[int, dict[str, _T]]:
+    """Assign each phrase in *flat_results* to its earliest search round.
+
+    Iterates *search_rounds* in ascending key order; the first round a phrase
+    appears in wins. Round 0 is reserved for brute-force search survivors
+    (empty for keyword-type fields). Phrases absent from all rounds (an
+    anomaly, since every phrase reaching *flat_results* should already be in
+    brute or an LLM search round) fall back to round 0 as a defensive default.
+    Returns a dict mapping round index → {phrase: value}.
+    """
+    phrase_to_round: dict[str, int] = {}
+    for round_idx in sorted(search_rounds.keys()):
+        for phrase in search_rounds[round_idx]:
+            if phrase not in phrase_to_round:
+                phrase_to_round[phrase] = round_idx
+
+    rounds: dict[int, dict[str, _T]] = {}
+    for phrase, value in flat_results.items():
+        round_idx = phrase_to_round.get(phrase, 0)
+        rounds.setdefault(round_idx, {})[phrase] = value
+    return rounds
 
 
 class BaseExtractionMetadata(BaseModel):
@@ -42,6 +73,13 @@ class LLMPhraseExtractionMetadata(BaseExtractionMetadata):
 
 
 class LLMPhraseExtractionStats(BaseModel):
-    llm_phrase_search: LLMSearchResults
-    llm_phrase_relationship: LLMPhraseRelationshipResults
-    llm_phrase_screening: LLMScreeningResults
+    # round -> phrases found independently that round (NOT cumulative).
+    # Round 0 is reserved for brute-force search survivors (overlap-filtered
+    # against LLM results; empty for keyword-type fields, which have no
+    # brute-force phase). Round 1 is the first LLM search; round N (N>=2) is
+    # recursive round N-1.
+    llm_phrase_search: dict[int, LLMSearchResults]
+    # round → {phrase: relationship} — each phrase assigned to its earliest search round
+    llm_phrase_relationship: dict[int, LLMPhraseRelationshipResults]
+    # round → {phrase: screening verdict} — each phrase assigned to its earliest search round
+    llm_phrase_screening: dict[int, LLMScreeningResults]

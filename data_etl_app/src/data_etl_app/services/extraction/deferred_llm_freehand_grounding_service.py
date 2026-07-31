@@ -290,7 +290,7 @@ def create_deferred_phrase_freehand_grounding_gpt_request(
         f"create_deferred_phrase_freehand_grounding_gpt_request: Generating GPTBatchRequest for {llm_phrase_freehand_grounding_request_id}"
     )
     context = (
-        f"Manufacturer name: {mfg_name}\n\n"
+        # f"Manufacturer name: {mfg_name}\n\n"
         f"screened product phrases and evidence:\n{json.dumps(verified_phrases_w_og_summary, indent=2)}"
     )
 

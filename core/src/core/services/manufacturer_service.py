@@ -2,9 +2,10 @@ from datetime import datetime
 import logging
 
 from beanie.operators import In
-from core.models.db.manufacturer import Manufacturer
+from core.models.db.manufacturer import Batch, Manufacturer
 from core.models.field_types import MfgURLType, MfgETLDType
 from core.utils.url_util import get_etld1_from_host
+from scraper_app.models.scraped_text_file import ScrapedTextFile
 
 logger = logging.getLogger(__name__)
 
@@ -21,6 +22,8 @@ def reset_llm_extracted_fields(manufacturer: Manufacturer):
     # manufacturer.is_product_manufacturer = None
 
     manufacturer.products = None
+    manufacturer.contract_products = None
+    manufacturer.equipments = None
 
     manufacturer.certificates = None
     manufacturer.industries = None
@@ -29,6 +32,42 @@ def reset_llm_extracted_fields(manufacturer: Manufacturer):
 
     logger.info(
         f"Reset LLM extracted fields for manufacturer with etld1: {manufacturer.etld1}"
+    )
+
+
+async def create_new_manufacturer(
+    created_at: datetime,
+    mfg_etld1: MfgETLDType,
+    scraped_file: ScrapedTextFile,
+    batch: Batch,
+) -> Manufacturer:
+    return Manufacturer(
+        created_at=created_at,
+        etld1=mfg_etld1,
+        etld1_accessible_at=scraped_file.etld1_accessible_at,
+        scraped_text_file_num_tokens=scraped_file.num_tokens,
+        scraped_text_file_version_id=scraped_file.s3_version_id,
+        batches=[batch],
+        # Following fields will be set later during extraction
+        name=None,
+        is_manufacturer=None,
+        is_contract_manufacturer=None,
+        is_product_manufacturer=None,
+        founded_in=None,
+        email_addresses=None,
+        num_employees=None,
+        business_desc=None,
+        business_statuses=None,
+        primary_naics=None,
+        secondary_naics=None,
+        addresses=None,
+        products=None,
+        contract_products=None,
+        equipments=None,
+        certificates=None,
+        industries=None,
+        process_caps=None,
+        material_caps=None,
     )
 
 

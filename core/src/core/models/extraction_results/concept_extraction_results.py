@@ -20,7 +20,8 @@ class ConceptsFound(BaseModel):
 class ConceptExtractionStats(LLMPhraseExtractionStats):
     results: ConceptsFound
     brute_search: set[str]  # regex search
-    llm_phrase_initial_grounding: PhraseToTagAndReasonMap
+    # round → {phrase: {tag: reason}} — each phrase assigned to its earliest search round
+    llm_phrase_initial_grounding: dict[int, PhraseToTagAndReasonMap]
     llm_phrase_recursive_grounding: (
         IterativeGroundingResult  # level by level organized nodes
     )

@@ -115,6 +115,36 @@ async def get_product_phrase_search_prompt(
         raise HTTPException(status_code=500, detail=str(e))
 
 
+@router.get(
+    "/prompts/product_phrase_screening_pure_product", response_class=JSONResponse
+)
+async def get_product_phrase_screening_pure_product_prompt(
+    model_name: str = Query(description="LLM model name used for token counting"),
+):
+    """Get the pure-product phrase relationship screening prompt."""
+    try:
+        llm_model = _resolve_llm_model(model_name)
+        prompt_service = await get_prompt_service(llm_model)
+        prompt = prompt_service.product_phrase_screening_pure_product_prompt
+        return prompt.model_dump()
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+@router.get("/prompts/product_phrase_screening_contract", response_class=JSONResponse)
+async def get_product_phrase_screening_contract_prompt(
+    model_name: str = Query(description="LLM model name used for token counting"),
+):
+    """Get the contract-manufacturing phrase relationship screening prompt."""
+    try:
+        llm_model = _resolve_llm_model(model_name)
+        prompt_service = await get_prompt_service(llm_model)
+        prompt = prompt_service.product_phrase_screening_contract_prompt
+        return prompt.model_dump()
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
+
 @router.get("/prompts/certificate_phrase_search", response_class=JSONResponse)
 async def get_certificate_phrase_search_prompt(
     model_name: str = Query(description="LLM model name used for token counting"),

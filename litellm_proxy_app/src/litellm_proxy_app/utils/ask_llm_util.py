@@ -89,6 +89,16 @@ async def fetch_llm_chat_completion_result(
     client = _get_client()
     api_call_start = time.time()
 
+    # response_format (and any other OpenAI-only fields such as tools,
+    # logprobs, etc.) only exist on GPTModelParams, not the base
+    # LLMModelParams used by non-OpenAI litellm proxy callers. Forward it
+    # only when present and set, so it isn't silently dropped for GPT
+    # requests, without breaking callers that pass a plain LLMModelParams.
+    optional_kwargs = {}
+    response_format = getattr(model_params, "response_format", None)
+    if response_format is not None:
+        optional_kwargs["response_format"] = response_format
+
     response = await client.chat.completions.create(
         model=gpt_model.name,
         messages=[
@@ -101,6 +111,7 @@ async def fetch_llm_chat_completion_result(
         presence_penalty=model_params.presence_penalty,
         frequency_penalty=model_params.frequency_penalty,
         seed=model_params.seed,
+        **optional_kwargs,
     )
 
     api_call_duration = time.time() - api_call_start

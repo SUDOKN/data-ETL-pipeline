@@ -12,7 +12,7 @@ from data_etl_app.models.pipeline_nodes.multi_stage.concept.concept_phrase_searc
 from data_etl_app.models.pipeline_nodes.multi_stage.concept.concept_recursive_search_node import (
     ConceptRecursiveSearchNode,
 )
-from data_etl_app.models.pipeline_nodes.multi_stage.llm_phrase_relationship_node import (
+from data_etl_app.models.pipeline_nodes.multi_stage.base.llm_phrase_relationship_node import (
     LLMPhraseRelationshipNode,
 )
 from open_ai_key_app.models.field_types import GPTBatchRequestCustomID

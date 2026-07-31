@@ -53,6 +53,7 @@
             "bsonType": "object",
             "required": [
               "max_completion_tokens",
+              "response_format",
               "temperature",
               "top_p",
               "presence_penalty",
@@ -155,10 +156,7 @@
                 ]
               },
               "response_format": {
-                "bsonType": [
-                  "object",
-                  "null"
-                ]
+                "bsonType": "object"
               },
               "temperature": {
                 "bsonType": "double"

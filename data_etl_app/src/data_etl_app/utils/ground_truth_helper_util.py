@@ -116,6 +116,26 @@ def get_verified_results_from_raw_mapping(
     return verified_mapped_known_concepts
 
 
+def filter_non_overlapping_brute_results(
+    llm_search_results: set[str],
+    brute_search_results: set[str],
+) -> set[str]:
+    """
+    Filter brute force search results down to those not already covered by an LLM result.
+
+    A brute force result is kept only when it is not already a substring of any
+    LLM search result, avoiding redundancy while preserving recall. Preserves
+    casing of the brute results, but does case-insensitive comparison for
+    filtering.
+    """
+    lowered_llm = {r.lower() for r in llm_search_results}
+    return {
+        r
+        for r in brute_search_results
+        if not any(r.lower() in llm_result for llm_result in lowered_llm)
+    }
+
+
 def merge_llm_and_brute_search_results(
     llm_search_results: set[str],
     brute_search_results: set[str],
@@ -129,12 +149,10 @@ def merge_llm_and_brute_search_results(
     comparison for filtering.
     """
 
-    lowered_llm = {r.lower() for r in llm_search_results}
-    filtered_brute = {
-        r
-        for r in brute_search_results
-        if not any(r.lower() in llm_result for llm_result in lowered_llm)
-    }
+    filtered_brute = filter_non_overlapping_brute_results(
+        llm_search_results=llm_search_results,
+        brute_search_results=brute_search_results,
+    )
     logger.info(f"LLM search results: {llm_search_results}")
     logger.info(f"Brute force search results: {brute_search_results}")
     logger.info(f"Non-overlapping brute force results: {filtered_brute}")
@@ -152,7 +170,7 @@ def calculate_final_keyword_results(
     Returns None if no corrections were made.
     """
 
-    final_results: set[str] = set(keyword_gt.extraction_stats.extraction_results)
+    final_results: set[str] = set(keyword_gt.extraction_stats.results)
 
     last_correction_log = keyword_gt.corrections[-1] if keyword_gt.corrections else None
     if not last_correction_log:

@@ -32,6 +32,7 @@ async def validate_and_create_from_manufacturer(
         - email_addresses must not be None, even if empty list
         - business_desc must not be None
         - products must not be None, even if empty list
+        - equipment must not be None, even if empty list
         - certificates must not be None, even if empty list
         - industries must not be None, even if empty list
         - process_caps must not be None, even if empty list
@@ -81,6 +82,8 @@ async def validate_and_create_from_manufacturer(
 
     if manufacturer.products is None:
         raise AssertionError("products must not be None")
+    if manufacturer.equipments is None:
+        raise AssertionError("equipments must not be None")
     if manufacturer.certificates is None:
         raise AssertionError("certificates must not be None")
     if manufacturer.industries is None:
@@ -108,6 +111,7 @@ async def validate_and_create_from_manufacturer(
         secondary_naics=manufacturer.secondary_naics,
         addresses=[addr for addr in manufacturer.addresses.result],
         products=manufacturer.products.extraction_results,
+        equipment=manufacturer.equipments.extraction_results,
         certificates=manufacturer.certificates.extraction_results,
         industries=manufacturer.industries.extraction_results,
         process_caps=manufacturer.process_caps.extraction_results,
@@ -177,6 +181,7 @@ async def create_blank_manufacturer_user_form(
         addresses=[],
         business_desc=None,
         products=set(),
+        equipment=set(),
         certificates=[],
         industries=[],
         process_caps=[],

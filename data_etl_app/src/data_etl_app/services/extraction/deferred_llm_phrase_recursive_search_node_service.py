@@ -3,6 +3,7 @@ from __future__ import annotations
 import asyncio
 import logging
 from datetime import datetime
+from typing import Optional
 import traceback
 
 from core.models.db.gpt_batch_request import GPTBatchRequest
@@ -13,7 +14,7 @@ from core.models.deferred_extraction.deferred_phrase_extraction_requests import 
     LLMPhraseExtractionRequestMap,
     LLMPhraseExtractionRequestBundle,
 )
-from data_etl_app.models.pipeline_nodes.multi_stage.llm_phrase_search_node import (
+from data_etl_app.models.pipeline_nodes.multi_stage.base.llm_phrase_search_node import (
     LLMPhraseSearchNode,
 )
 from data_etl_app.models.types_and_enums import (
@@ -26,6 +27,9 @@ from core.services.gpt_batch_request_writes import record_response_parse_error
 from core.services.gpt_batch_request_service import create_base_gpt_batch_request
 from data_etl_app.services.extraction.deferred_llm_phrase_search_node_service import (
     parse_llm_search_response,
+)
+from data_etl_app.utils.ground_truth_helper_util import (
+    filter_non_overlapping_brute_results,
 )
 
 logger = logging.getLogger(__name__)
@@ -85,6 +89,63 @@ async def get_all_recursive_round_results(
             timestamp=timestamp,
         )
     return all_results
+
+
+async def build_llm_phrase_search_results(
+    mfg_etld1: str,
+    field_type: LLMExtractedFieldTypeEnum,
+    chunk_bounds: str,
+    extraction_bundle: LLMPhraseExtractionRequestBundle,
+    completed_search_req_map: dict[GPTBatchRequestCustomID, GPTBatchRequest],
+    completed_recursive_search_req_map: dict[GPTBatchRequestCustomID, GPTBatchRequest],
+    timestamp: datetime,
+    brute_search_results: Optional[LLMSearchResults] = None,
+) -> dict[int, LLMSearchResults]:
+    """Build the per-round search results stat.
+
+    Round 0 is reserved for brute-force search survivors (concept-type fields
+    only; always empty for keyword-type fields, which have no brute-force
+    phase) — specifically, the subset of *brute_search_results* that is NOT
+    already a substring of any LLM-found phrase (the same overlap filter used
+    to decide what's passed on to phrase_relationship). Round 1 is the first
+    LLM search; round N (N>=2) is recursive round N-1. Each round's set is
+    independent (NOT cumulative). Returns a dict mapping each search round
+    index to the phrases found independently that round.
+    """
+    first_search_results = await LLMPhraseSearchNode.get_result(
+        mfg_etld1=mfg_etld1,
+        field_type=field_type,
+        chunk_bounds=chunk_bounds,
+        extraction_bundle=extraction_bundle,
+        completed_request_map=completed_search_req_map,
+        timestamp=timestamp,
+    )
+
+    rounds: dict[int, LLMSearchResults] = {1: first_search_results}
+    for round_index, round_req_id in enumerate(
+        extraction_bundle.llm_phrase_recursive_search_req_ids, start=2
+    ):
+        rounds[round_index] = await parse_recursive_search_round_result(
+            mfg_etld1=mfg_etld1,
+            field_type=field_type,
+            chunk_bounds=chunk_bounds,
+            round_req_id=round_req_id,
+            completed_request_map=completed_recursive_search_req_map,
+            timestamp=timestamp,
+        )
+
+    all_llm_phrases: set[str] = set(first_search_results)
+    for round_index in range(
+        2, 2 + len(extraction_bundle.llm_phrase_recursive_search_req_ids)
+    ):
+        all_llm_phrases |= rounds[round_index]
+
+    rounds[0] = filter_non_overlapping_brute_results(
+        llm_search_results=all_llm_phrases,
+        brute_search_results=brute_search_results or set(),
+    )
+
+    return rounds
 
 
 def get_new_phrases_for_latest_round(

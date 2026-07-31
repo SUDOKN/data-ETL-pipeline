@@ -89,7 +89,7 @@ async def dispatch_gpt_batch_request(
     model_params: GPTModelParams,
 ) -> GPTBatchResponse:
     if (
-        gpt_batch_request.is_batch_request_pending
+        gpt_batch_request.is_batch_request_pending()
         and gpt_batch_request.batch_id != "Eager"
     ):
         raise ValueError(

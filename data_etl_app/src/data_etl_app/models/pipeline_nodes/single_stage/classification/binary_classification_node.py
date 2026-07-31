@@ -14,7 +14,7 @@ from core.models.db.gpt_batch_request import GPTBatchRequest
 from core.services.gpt_batch_request_writes import record_response_parse_error
 from typing import TYPE_CHECKING
 
-from data_etl_app.models.pipeline_nodes.single_stage.basic_fields.single_stage_extraction_node import (
+from data_etl_app.models.pipeline_nodes.single_stage.base.single_stage_extraction_node import (
     SingleStageExtractionNode,
 )
 from data_etl_app.models.types_and_enums import BinaryClassificationTypeEnum

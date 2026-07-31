@@ -3,13 +3,13 @@ import logging
 from typing import TYPE_CHECKING
 
 from core.models.file_objects.prompt import Prompt
-from data_etl_app.models.pipeline_nodes.multi_stage.llm_phrase_search_node import (
+from data_etl_app.models.pipeline_nodes.multi_stage.base.llm_phrase_search_node import (
     LLMPhraseSearchNode,
 )
 from data_etl_app.models.types_and_enums import KeywordTypeEnum
 
 if TYPE_CHECKING:
-    from data_etl_app.models.pipeline_nodes.multi_stage.keyword.keyword_recursive_search_node import (
+    from data_etl_app.models.pipeline_nodes.multi_stage.keyword.base.keyword_recursive_search_node import (
         KeywordRecursiveSearchNode,
     )
 

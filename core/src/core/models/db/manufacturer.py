@@ -59,6 +59,8 @@ class Manufacturer(Document):
     business_desc: Optional[BusinessDescriptionExtractionResult]
 
     products: Optional[KeywordExtractionResults]
+    contract_products: Optional[KeywordExtractionResults]
+    equipments: Optional[KeywordExtractionResults]
 
     certificates: Optional[ConceptExtractionResults]
     industries: Optional[ConceptExtractionResults]

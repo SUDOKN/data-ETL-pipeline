@@ -18,7 +18,7 @@ from core.models.deferred_extraction.deferred_phrase_extraction_requests import 
     LLMPhraseExtractionRequestMap,
     LLMPhraseExtractionRequestBundle,
 )
-from data_etl_app.models.pipeline_nodes.multi_stage.llm_phrase_relationship_node import (
+from data_etl_app.models.pipeline_nodes.multi_stage.base.llm_phrase_relationship_node import (
     LLMPhraseRelationshipNode,
 )
 from data_etl_app.models.types_and_enums import LLMExtractedFieldTypeEnum
@@ -188,7 +188,7 @@ async def create_missing_phrase_relationship_screening_requests(
                 logger.info(
                     f"Passing on candidates {llm_phrase_relationships} to phrase_relationship phase for {mfg_etld1}:{field_type} chunk {chunk_bounds}"
                 )
-                phrase_relationships_screening_batch_request = create_deferred_phrase_relationships_screening_gpt_request(
+                phrase_relationships_screening_batch_request = create_deferred_phrase_relationship_screening_gpt_request(
                     deferred_at=deferred_at,
                     etld1=mfg_etld1,
                     llm_phrase_relationship_screening_request_id=llm_phrase_relationship_screening_request_id,
@@ -251,7 +251,7 @@ def _create_dummy_completed_phrase_relationships_screening_batch_request(
     return base_gpt_batch_request
 
 
-def create_deferred_phrase_relationships_screening_gpt_request(
+def create_deferred_phrase_relationship_screening_gpt_request(
     deferred_at: datetime,
     etld1: str,
     llm_phrase_relationship_screening_request_id: str,
@@ -264,9 +264,12 @@ def create_deferred_phrase_relationships_screening_gpt_request(
     model_params: GPTModelParams,
 ) -> GPTBatchRequest:
     logger.info(
-        f"create_deferred_phrase_relationships_screening_gpt_request: Generating GPTBatchRequest for {llm_phrase_relationship_screening_request_id}"
+        f"create_deferred_phrase_relationship_screening_gpt_request: Generating GPTBatchRequest for {llm_phrase_relationship_screening_request_id}"
     )
-    context = f"Manufacturer name: {mfg_name}\n\n extracted phrases:\n{json.dumps(phrase_relationship_results)}"
+    context = (
+        f"Manufacturer name: {mfg_name}\n\n "
+        f"extracted phrases:\n{json.dumps(phrase_relationship_results)}"
+    )
 
     gpt_batch_request = create_base_gpt_batch_request(
         deferred_at=deferred_at,

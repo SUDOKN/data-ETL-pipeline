@@ -10,7 +10,8 @@ from core.models.field_types import PhraseToTagAndReasonMap
 
 class KeywordExtractionStats(LLMPhraseExtractionStats):
     results: set[str]
-    llm_phrase_freehand_grounding: PhraseToTagAndReasonMap
+    # round → {phrase: {tag: reason}} — each phrase assigned to its earliest search round
+    llm_phrase_freehand_grounding: dict[int, PhraseToTagAndReasonMap]
 
 
 KeywordExtractionStatsMap = dict[str, KeywordExtractionStats]

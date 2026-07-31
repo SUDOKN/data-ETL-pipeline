@@ -34,6 +34,8 @@ class DeferredManufacturer(Document):
     business_desc: Optional[DeferredSingleStageExtractionRequests]
 
     products: Optional[DeferredKeywordExtractionRequests]
+    contract_products: Optional[DeferredKeywordExtractionRequests]
+    equipments: Optional[DeferredKeywordExtractionRequests]
 
     certificates: Optional[DeferredConceptExtractionRequests]
     industries: Optional[DeferredConceptExtractionRequests]

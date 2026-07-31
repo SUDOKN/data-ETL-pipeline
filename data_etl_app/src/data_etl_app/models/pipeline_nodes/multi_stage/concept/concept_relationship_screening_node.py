@@ -6,7 +6,7 @@ from core.models.db.gpt_batch_request import GPTBatchRequest
 from core.models.file_objects.prompt import Prompt
 from data_etl_app.models.pipeline_nodes.base.base_node import PipelineContext
 from data_etl_app.models.types_and_enums import ConceptTypeEnum
-from data_etl_app.models.pipeline_nodes.multi_stage.llm_phrase_relationship_screening_node import (
+from data_etl_app.models.pipeline_nodes.multi_stage.base.llm_phrase_relationship_screening_node import (
     LLMPhraseRelationshipScreeningNode,
 )
 from data_etl_app.models.types_and_enums import (

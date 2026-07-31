@@ -18,7 +18,7 @@ from data_etl_app.models.pipeline_nodes.base.base_node import (
     PipelineContext,
 )
 from data_etl_app.models.pipeline_nodes.base.base_prefill_node import PrefillNode
-from data_etl_app.models.pipeline_nodes.single_stage.basic_fields.single_stage_extraction_node import (
+from data_etl_app.models.pipeline_nodes.single_stage.base.single_stage_extraction_node import (
     SingleStageExtractionNode,
 )
 from data_etl_app.models.types_and_enums import (

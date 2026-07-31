@@ -593,6 +593,7 @@ async def async_main():
         frequency_penalty=0,  # Same — keep it neutral
         seed=12345,  # NEW: explicitly request deterministic sampling,
         max_completion_tokens=7500,  # Limit the response length to avoid excessive token usage
+        response_format={"type": "json_object"},
     )
 
     prompt_service = await get_prompt_service(llm_model)

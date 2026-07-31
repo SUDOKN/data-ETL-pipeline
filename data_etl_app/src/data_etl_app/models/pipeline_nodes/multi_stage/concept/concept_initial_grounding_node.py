@@ -8,7 +8,7 @@ from core.models.llm_model import LLM_Model
 from data_etl_app.models.skos_concept import Concept
 from data_etl_app.models.pipeline_nodes.base.base_node import PipelineContext
 from data_etl_app.models.types_and_enums import ConceptTypeEnum
-from data_etl_app.models.pipeline_nodes.multi_stage.llm_phrase_initial_grounding_node import (
+from data_etl_app.models.pipeline_nodes.multi_stage.base.llm_phrase_initial_grounding_node import (
     LLMPhraseInitialGroundingNode,
 )
 from data_etl_app.models.types_and_enums import (
@@ -18,8 +18,8 @@ from open_ai_key_app.models.field_types import GPTBatchRequestCustomID
 from open_ai_key_app.models.gpt_model_params import GPTModelParams
 
 if TYPE_CHECKING:
-    from data_etl_app.models.pipeline_nodes.multi_stage.concept.concept_recursive_grounding_node import (
-        ConceptRecursiveGroundingNode,
+    from data_etl_app.models.pipeline_nodes.multi_stage.concept.concept_iterative_grounding_node import (
+        ConceptIterativeGroundingNode,
     )
 
 logger = logging.getLogger(__name__)
@@ -30,7 +30,7 @@ class ConceptInitialGroundingNode(LLMPhraseInitialGroundingNode):
     def __init__(
         self,
         concept_type: ConceptTypeEnum,
-        next_node: ConceptRecursiveGroundingNode,
+        next_node: ConceptIterativeGroundingNode,
         phrase_initial_grounding_prompt: Prompt,
         known_concepts: set[Concept],
     ):

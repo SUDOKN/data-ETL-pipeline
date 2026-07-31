@@ -39,16 +39,25 @@ class GPTOutputParams(LLMOutputParams):
     max_completion_tokens: int = 7500
     stop: Optional[str | list[str]] = None  # up to 4 sequences
     n: Optional[int] = Field(default=None, ge=1)  # keep at 1 for batch
-    response_format: Optional[dict] = None
+    # Required (no default) so every call site must consciously choose a mode —
+    # this field silently failing to reach the OpenAI API (dropped by a hand-rolled
+    # kwargs list instead of a full model_dump()) previously let GPT emit
+    # unescaped control characters that broke json.loads downstream.
     # {"type": "text"}
     # {"type": "json_object"}
     # {"type": "json_schema", "json_schema": {"name": "...", "schema": {...}, "strict": True}}
+    response_format: dict
 
     @classmethod
     def with_defaults(cls) -> "GPTOutputParams":
         # max_completion_tokens=0 is a sentinel: real values are always >= 1,
         # so this field always appears in the custom_id segment.
-        return cls(stop=None, max_completion_tokens=7500, response_format=None, n=None)
+        return cls(
+            stop=None,
+            max_completion_tokens=7500,
+            response_format={"type": "json_object"},
+            n=None,
+        )
 
 
 class GPTLogprobParams(BaseModel):

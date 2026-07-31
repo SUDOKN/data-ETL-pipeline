@@ -216,6 +216,9 @@ async def main():
                     products=set(
                         mfg.products.extraction_results if mfg.products else []
                     ),
+                    equipment=set(
+                        mfg.equipments.extraction_results if mfg.equipments else []
+                    ),
                     certificates=(
                         mfg.certificates.extraction_results if mfg.certificates else []
                     ),

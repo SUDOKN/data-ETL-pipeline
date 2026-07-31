@@ -5,25 +5,27 @@ from typing import TYPE_CHECKING
 from core.models.db.gpt_batch_request import GPTBatchRequest
 from core.models.file_objects.prompt import Prompt
 from data_etl_app.models.pipeline_nodes.base.base_node import PipelineContext
-from data_etl_app.models.pipeline_nodes.multi_stage.llm_phrase_freehand_grounding_node import (
-    LLMPhraseFreehandGroundingNode,
+from data_etl_app.models.pipeline_nodes.multi_stage.keyword.base.keyword_freehand_grounding_node import (
+    KeywordFreehandGroundingNode,
 )
 from data_etl_app.models.types_and_enums import KeywordTypeEnum
 from open_ai_key_app.models.field_types import GPTBatchRequestCustomID
 
 if TYPE_CHECKING:
-    from data_etl_app.models.pipeline_nodes.multi_stage.keyword.keyword_reconcile_node import (
-        KeywordReconcileNode,
+    from data_etl_app.models.pipeline_nodes.multi_stage.keyword.pure_product.pure_product_reconcile_node import (
+        PureProductReconcileNode,
     )
 
 logger = logging.getLogger(__name__)
 
 
-class KeywordFreehandGroundingNode(LLMPhraseFreehandGroundingNode[KeywordTypeEnum]):
+class PureProductFreehandGroundingNode(KeywordFreehandGroundingNode):
+    """Phase 5 for the pure-product branch."""
+
     def __init__(
         self,
         field_type: KeywordTypeEnum,
-        next_node: KeywordReconcileNode,
+        next_node: PureProductReconcileNode,
         phrase_freehand_grounding_prompt: Prompt,
     ):
         super().__init__(
@@ -35,17 +37,17 @@ class KeywordFreehandGroundingNode(LLMPhraseFreehandGroundingNode[KeywordTypeEnu
     def get_upstream_phrase_relationship_map(
         self, pipeline_context: PipelineContext
     ) -> dict[GPTBatchRequestCustomID, GPTBatchRequest]:
-        from data_etl_app.models.pipeline_nodes.multi_stage.keyword.keyword_relationship_node import (
-            KeywordRelationshipNode,
+        from data_etl_app.models.pipeline_nodes.multi_stage.keyword.pure_product.pure_product_relationship_node import (
+            PureProductRelationshipNode,
         )
 
-        return pipeline_context[KeywordRelationshipNode]
+        return pipeline_context[PureProductRelationshipNode]
 
     def get_upstream_phrase_screening_map(
         self, pipeline_context: PipelineContext
     ) -> dict[GPTBatchRequestCustomID, GPTBatchRequest]:
-        from data_etl_app.models.pipeline_nodes.multi_stage.keyword.keyword_relationship_screening_node import (
-            KeywordRelationshipScreeningNode,
+        from data_etl_app.models.pipeline_nodes.multi_stage.keyword.pure_product.pure_product_relationship_screening_node import (
+            PureProductRelationshipScreeningNode,
         )
 
-        return pipeline_context[KeywordRelationshipScreeningNode]
+        return pipeline_context[PureProductRelationshipScreeningNode]

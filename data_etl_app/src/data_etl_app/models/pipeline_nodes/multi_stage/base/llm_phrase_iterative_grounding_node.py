@@ -59,7 +59,7 @@ from data_etl_app.utils.rdf_to_graph_util import (
 logger = logging.getLogger(__name__)
 
 
-class LLMPhraseRecursiveGroundingNode(
+class LLMPhraseIterativeGroundingNode(
     BaseLLMRecursiveExtractionNode[ConceptTypeEnum, IterativeGroundingResult]
 ):
 

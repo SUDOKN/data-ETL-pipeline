@@ -250,10 +250,10 @@ class ManufacturerExtractionOrchestrator:
                 )
                 setattr(deferred_mfg, field_type.name, None)
                 await deferred_mfg.save()
-                await bulk_delete_gpt_batch_requests_by_mfg_etld1_and_field(
-                    mfg_etld1=mfg.etld1,
-                    field_type=field_type,
-                )
+                # await bulk_delete_gpt_batch_requests_by_mfg_etld1_and_field(
+                #     mfg_etld1=mfg.etld1,
+                #     field_type=field_type,
+                # ) TODO: uncomment
 
         overall_elapsed = time.perf_counter() - overall_start
         timing_summary = ", ".join(
@@ -295,6 +295,8 @@ class ManufacturerExtractionOrchestrator:
                 addresses=None,
                 business_desc=None,
                 products=None,
+                contract_products=None,
+                equipments=None,
                 certificates=None,
                 industries=None,
                 process_caps=None,

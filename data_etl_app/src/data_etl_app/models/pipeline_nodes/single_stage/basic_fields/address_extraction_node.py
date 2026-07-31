@@ -13,7 +13,7 @@ from core.models.deferred_extraction.deferred_single_stage_extraction_requests i
 from data_etl_app.models.types_and_enums import (
     BasicFieldTypeEnum,
 )
-from data_etl_app.models.pipeline_nodes.single_stage.basic_fields.single_stage_extraction_node import (
+from data_etl_app.models.pipeline_nodes.single_stage.base.single_stage_extraction_node import (
     SingleStageExtractionNode,
 )
 

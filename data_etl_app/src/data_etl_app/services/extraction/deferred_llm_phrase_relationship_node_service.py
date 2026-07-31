@@ -24,10 +24,10 @@ from core.models.deferred_extraction.deferred_concept_extraction import (
     DeferredConceptExtractionRequests,
 )
 
-from data_etl_app.models.pipeline_nodes.multi_stage.llm_phrase_recursive_search_node import (
+from data_etl_app.models.pipeline_nodes.multi_stage.base.llm_phrase_recursive_search_node import (
     LLMPhraseRecursiveSearchNode,
 )
-from data_etl_app.models.pipeline_nodes.multi_stage.llm_phrase_search_node import (
+from data_etl_app.models.pipeline_nodes.multi_stage.base.llm_phrase_search_node import (
     LLMPhraseSearchNode,
 )
 from data_etl_app.models.types_and_enums import LLMExtractedFieldTypeEnum
@@ -312,7 +312,11 @@ def create_deferred_phrase_relationship_gpt_request(
     logger.info(
         f"create_deferred_phrase_relationship_gpt_request: Generating GPTBatchRequest for {llm_phrase_relationship_request_id}"
     )
-    context = f"manufacturer name: {mfg_name}\n\nscraped text:\n{mfg_text} \n\n extracted phrases:\n{list(search_results)}"
+    context = (
+        f"manufacturer name: {mfg_name}\n\n"
+        f"scraped text:\n{mfg_text} \n\n "
+        f"extracted phrases:\n{list(search_results)}"
+    )
 
     gpt_batch_request = create_base_gpt_batch_request(
         deferred_at=deferred_at,

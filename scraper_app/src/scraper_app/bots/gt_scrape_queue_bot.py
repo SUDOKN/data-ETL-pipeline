@@ -40,6 +40,7 @@ from core.utils.mongo_client import init_db
 from core.utils.time_util import get_current_time
 
 from core.services.manufacturer_service import (
+    create_new_manufacturer,
     find_manufacturer_by_etld1,
     reset_llm_extracted_fields,
     update_manufacturer,
@@ -187,31 +188,11 @@ async def process_queue(
                     )
                 else:
                     logger.info(f"Creating new manufacturer for mfg_etld:{mfg_etld}.")
-                    manufacturer = Manufacturer(
+                    manufacturer = await create_new_manufacturer(
                         created_at=polled_at,
-                        etld1=mfg_etld,
-                        etld1_accessible_at=scraped_file.etld1_accessible_at,
-                        scraped_text_file_num_tokens=scraped_file.num_tokens,
-                        scraped_text_file_version_id=scraped_file.s3_version_id,
-                        batches=[item.batch],
-                        # Following fields will be set later during extraction
-                        name=None,
-                        is_manufacturer=None,
-                        is_contract_manufacturer=None,
-                        is_product_manufacturer=None,
-                        founded_in=None,
-                        email_addresses=None,
-                        num_employees=None,
-                        business_desc=None,
-                        business_statuses=None,
-                        primary_naics=None,
-                        secondary_naics=None,
-                        addresses=None,
-                        products=None,
-                        certificates=None,
-                        industries=None,
-                        process_caps=None,
-                        material_caps=None,
+                        mfg_etld1=mfg_etld,
+                        scraped_file=scraped_file,
+                        batch=item.batch,
                     )
                     logger.info(
                         f"Done creating new manufacturer for mfg_etld:{manufacturer.etld1}."
@@ -283,7 +264,7 @@ async def get_valid_scraped_file(
             existing_scraped_file = await ScrapedTextFile.download_from_s3_and_create(
                 mfg_etld,
                 manufacturer.scraped_text_file_version_id,
-                GPT_5_2,
+                llm_model,
             )
         except Exception as e:
             subject = f"GT: Error downloading existing scraped file for {mfg_etld}, version {manufacturer.scraped_text_file_version_id}."
@@ -343,7 +324,7 @@ async def get_valid_scraped_file(
                     await ScrapedTextFile.download_from_s3_and_create(
                         mfg_etld,
                         latest_version_id,
-                        GPT_5_2,
+                        llm_model,
                     )
                 )
             except Exception as e:

@@ -37,6 +37,7 @@ class ManufacturerUserForm(Document):
     addresses: list[Address]
     business_desc: Optional[BusinessDescription]
     products: set[str]
+    equipment: set[str]
 
     certificates: list[str]
     industries: list[str]

@@ -28,10 +28,10 @@ from data_etl_app.models.skos_concept import Concept
 from data_etl_app.models.types_and_enums import (
     ConceptTypeEnum,
 )
-from data_etl_app.models.pipeline_nodes.multi_stage.llm_phrase_relationship_node import (
+from data_etl_app.models.pipeline_nodes.multi_stage.base.llm_phrase_relationship_node import (
     LLMPhraseRelationshipNode,
 )
-from data_etl_app.models.pipeline_nodes.multi_stage.llm_phrase_relationship_screening_node import (
+from data_etl_app.models.pipeline_nodes.multi_stage.base.llm_phrase_relationship_screening_node import (
     LLMPhraseRelationshipScreeningNode,
 )
 from data_etl_app.utils.ground_truth_helper_util import (
@@ -499,7 +499,11 @@ def create_deferred_phrase_initial_grounding_gpt_request(
         label for concept in all_concepts for label in concept.matchLabels
     ]
 
-    context = f"Manufacturer name: {mfg_name}\n\n extracted phrases:\n{json.dumps(verified_out_of_vocab_phrases_w_summary)}\n\noptions of {field_type.name} to choose from:\n{all_concept_labels}"
+    context = (
+        # f"Manufacturer name: {mfg_name}\n\n "
+        f"extracted phrases:\n{json.dumps(verified_out_of_vocab_phrases_w_summary)}\n\n"
+        f"options of {field_type.name} to choose from:\n{all_concept_labels}"
+    )
 
     gpt_batch_request = create_base_gpt_batch_request(
         deferred_at=deferred_at,

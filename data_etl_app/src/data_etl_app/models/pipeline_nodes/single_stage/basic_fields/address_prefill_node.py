@@ -7,7 +7,7 @@ from core.models.file_objects.prompt import Prompt
 from core.models.extraction_results.single_stage_extraction_results import (
     LLMSingleStageExtractionMetadata,
 )
-from data_etl_app.models.pipeline_nodes.single_stage.basic_fields.single_stage_extraction_prefill_node import (
+from data_etl_app.models.pipeline_nodes.single_stage.base.single_stage_extraction_prefill_node import (
     SingleStageExtractionPrefillNode,
 )
 from data_etl_app.models.types_and_enums import (

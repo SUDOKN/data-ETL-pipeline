@@ -6,8 +6,8 @@ from core.models.db.gpt_batch_request import GPTBatchRequest
 from core.models.file_objects.prompt import Prompt
 from data_etl_app.models.skos_concept import Concept
 from data_etl_app.models.pipeline_nodes.base.base_node import PipelineContext
-from data_etl_app.models.pipeline_nodes.multi_stage.llm_phrase_recursive_grounding_node import (
-    LLMPhraseRecursiveGroundingNode,
+from data_etl_app.models.pipeline_nodes.multi_stage.base.llm_phrase_iterative_grounding_node import (
+    LLMPhraseIterativeGroundingNode,
 )
 from data_etl_app.models.types_and_enums import (
     ConceptTypeEnum,
@@ -22,7 +22,7 @@ if TYPE_CHECKING:
 logger = logging.getLogger(__name__)
 
 
-class ConceptRecursiveGroundingNode(LLMPhraseRecursiveGroundingNode):
+class ConceptIterativeGroundingNode(LLMPhraseIterativeGroundingNode):
 
     def __init__(
         self,

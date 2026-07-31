@@ -197,6 +197,8 @@ async def process_queue(
                         secondary_naics=None,
                         addresses=None,
                         products=None,
+                        equipments=None,
+                        contract_products=None,
                         certificates=None,
                         industries=None,
                         process_caps=None,

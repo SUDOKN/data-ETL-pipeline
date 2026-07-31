@@ -5,7 +5,7 @@ from typing import TYPE_CHECKING
 from core.models.db.gpt_batch_request import GPTBatchRequest
 from core.models.file_objects.prompt import Prompt
 from data_etl_app.models.pipeline_nodes.base.base_node import PipelineContext
-from data_etl_app.models.pipeline_nodes.multi_stage.llm_phrase_recursive_search_node import (
+from data_etl_app.models.pipeline_nodes.multi_stage.base.llm_phrase_recursive_search_node import (
     LLMPhraseRecursiveSearchNode,
 )
 from data_etl_app.models.pipeline_nodes.multi_stage.concept.concept_phrase_search_node import (
@@ -27,7 +27,7 @@ logger = logging.getLogger(__name__)
 class ConceptRecursiveSearchNode(LLMPhraseRecursiveSearchNode[ConceptTypeEnum]):
     """Recursive concept phrase search.
 
-    Sits between :class:`ConceptPhraseSearchNode` (round 0) and the relationship
+    Sits between :class:`ConceptPhraseSearchNode` (round 1) and the relationship
     phase, compounding excluded phrases across rounds until convergence.
     """
 
