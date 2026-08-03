@@ -7,31 +7,31 @@ import time
 from core.models.extraction_results.binary_classification_result import (
     BaseClassificationDecision,
 )
-from core.models.db.manufacturer import Manufacturer
-from core.models.db.deferred_manufacturer import DeferredManufacturer
+from data_etl_app.models.db.manufacturer import Manufacturer
+from data_etl_app.models.db.deferred_manufacturer import DeferredManufacturer
 from core.models.db.extraction_error import ExtractionError
-from data_etl_app.models.types_and_enums import (
+from core.models.types_and_enums import (
     BinaryClassificationTypeEnum,
 )
 from core.models.llm_model import LLM_Model
 from open_ai_key_app.models.gpt_model_params import GPTModelParams
 from scraper_app.models.scraped_text_file import ScrapedTextFile
 
-from core.services.manufacturer_service import (
+from data_etl_app.services.manufacturer_service import (
     update_manufacturer,
 )
-from core.services.deferred_manufacturer_service import (
+from data_etl_app.services.deferred_manufacturer_service import (
     delete_deferred_manufacturer_if_empty,
     get_deferred_manufacturer_by_etld1_scraped_file_version,
 )
-from core.services.gpt_batch_request_writes import (
+from core.services.gpt_batch_request.gpt_batch_request_writes import (
     bulk_delete_gpt_batch_requests_by_mfg_etld1_and_field,
 )
 from data_etl_app.models.pipeline_nodes import PipelineContext
-from data_etl_app.models.ontology import Ontology
-from data_etl_app.services.knowledge.prompt_service import PromptService
+from core.models.ontology import Ontology
+from core.services.knowledge.prompt_service import PromptService
 from data_etl_app.services.extraction_pipeline_factory import ExtractionPipelineFactory
-from data_etl_app.services.ground_truth.binary_ground_truth_service import (
+from core.services.ground_truth.binary_ground_truth_service import (
     get_binary_ground_truth,
 )
 

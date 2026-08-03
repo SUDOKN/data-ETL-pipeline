@@ -9,11 +9,10 @@ from concurrent.futures import ThreadPoolExecutor
 from core.models.db.gpt_batch import GPTBatch
 from core.models.db.api_key_bundle import APIKeyBundle
 from core.utils.batch_jsonl_file_writer import JSONLBatchFile
-from data_etl_app.utils.chunk_util import split_bytes_on_line_boundaries
+from core.utils.chunk_util import split_bytes_on_line_boundaries
 
 from openai import OpenAI, OpenAIError, APIConnectionError, RateLimitError
 from openai.types import Batch, Upload
-
 
 logger = logging.getLogger(__name__)
 

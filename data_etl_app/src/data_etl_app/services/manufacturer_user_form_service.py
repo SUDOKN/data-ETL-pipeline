@@ -3,16 +3,16 @@ from typing import Optional
 from pymongo.errors import DuplicateKeyError
 
 from core.models.field_types import MfgETLDType, MfgURLType
-from core.models.db.manufacturer import Batch, Manufacturer
+from data_etl_app.models.db.manufacturer import Batch, Manufacturer
 from core.models.queue_items.queue_item import EmailUserErrand
 from core.models.queue_items.to_scrape_item import ToScrapeItem
 from core.utils.time_util import get_current_time
-from core.utils.aws.queue.priority_scrape_queue_util import (
+from scraper_app.utils.aws.queue.priority_scrape_queue_util import (
     push_item_to_priority_scrape_queue,
 )
 
-from core.models.db.manufacturer_user_form import ManufacturerUserForm
-from data_etl_app.services.knowledge.ontology_service import get_ontology_service
+from data_etl_app.models.db.manufacturer_user_form import ManufacturerUserForm
+from core.services.knowledge.ontology_service import get_ontology_service
 
 
 async def validate_and_create_from_manufacturer(

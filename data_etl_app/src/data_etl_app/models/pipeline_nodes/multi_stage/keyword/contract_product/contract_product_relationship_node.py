@@ -17,7 +17,7 @@ from data_etl_app.models.pipeline_nodes.multi_stage.keyword.contract_product.con
 from data_etl_app.models.pipeline_nodes.multi_stage.keyword.base.keyword_relationship_node import (
     KeywordRelationshipNode,
 )
-from data_etl_app.models.types_and_enums import (
+from core.models.types_and_enums import (
     KeywordTypeEnum,
     LLMExtractedFieldTypeEnum,
 )

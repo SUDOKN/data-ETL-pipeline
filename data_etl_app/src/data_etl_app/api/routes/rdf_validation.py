@@ -3,7 +3,7 @@ import logging
 from fastapi import APIRouter, File, HTTPException, Query, UploadFile
 from fastapi.responses import JSONResponse
 
-from data_etl_app.services.validation.rdf_validation_service import (
+from core.services.validation.rdf_validation_service import (
     validate_rdf_content,
 )
 
@@ -20,7 +20,11 @@ async def validate_rdf_file(
     ),
 ):
     try:
-        include_concept_roots = bool(include_concept_roots) if isinstance(include_concept_roots, bool) else False
+        include_concept_roots = (
+            bool(include_concept_roots)
+            if isinstance(include_concept_roots, bool)
+            else False
+        )
         rdf_bytes = await file.read()
         rdf_text = rdf_bytes.decode("utf-8")
         result = validate_rdf_content(rdf_text)
@@ -29,7 +33,9 @@ async def validate_rdf_file(
             result.pop("validated_concept_roots", None)
         return result
     except UnicodeDecodeError as exc:
-        raise HTTPException(status_code=400, detail=f"RDF file must be UTF-8 encoded: {exc}")
+        raise HTTPException(
+            status_code=400, detail=f"RDF file must be UTF-8 encoded: {exc}"
+        )
     except Exception as exc:
         logger.exception("Failed to validate RDF file")
         raise HTTPException(status_code=400, detail=str(exc))

@@ -16,7 +16,12 @@ class LLMPhraseExtractionRequestBundle(BaseModel):
         default_factory=list
     )
     llm_phrase_relationship_req_id: Optional[GPTBatchRequestCustomID]
-    llm_phrase_relationship_screening_req_id: Optional[GPTBatchRequestCustomID]
+    # Ordered list of screening groups (group 1 == index 0). Each group covers at
+    # most `max_pairs_per_request` phrase-relationship pairs from the upstream
+    # relationship results for this chunk; results are merged back together.
+    llm_phrase_relationship_screening_req_ids: list[GPTBatchRequestCustomID] = Field(
+        default_factory=list
+    )
 
 
 LLMPhraseExtractionRequestMap = dict[str, LLMPhraseExtractionRequestBundle]

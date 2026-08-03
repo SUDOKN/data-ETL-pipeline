@@ -7,10 +7,10 @@ from litellm_proxy_app.models.llm_model_params import LLMModelParams
 from open_ai_key_app.models.gpt_model_params import GPTModelParams
 
 
-from data_etl_app.utils.gpt_batch_request_util import (
+from core.utils.gpt_batch_request_util import (
     build_response_from_chat_completion,
 )
-from data_etl_app.utils.gpt_batch_request_util import (
+from core.utils.gpt_batch_request_util import (
     build_response_from_chat_completion,
 )
 from litellm_proxy_app.utils.ask_llm_util import fetch_llm_chat_completion_result

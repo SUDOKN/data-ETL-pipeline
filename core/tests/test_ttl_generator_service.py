@@ -18,22 +18,18 @@ load_data_etl_env()
 load_open_ai_app_env()
 
 from core.utils.mongo_client import init_db
-from core.dependencies.aws_clients import (
-    cleanup_core_aws_clients,
-    initialize_core_aws_clients,
-)
 from data_etl_app.dependencies.aws_clients import (
     cleanup_data_etl_aws_clients,
     initialize_data_etl_aws_clients,
 )
 
-from data_etl_app.models.ontology import Ontology
-from core.models.extraction_results.address_extraction_result import Address
-from core.models.extraction_results.business_description_extraction_result import (
+from core.models.ontology import Ontology
+from data_etl_app.models.extraction_results.address_extraction_result import Address
+from data_etl_app.models.extraction_results.business_description_extraction_result import (
     BusinessDescription,
 )
-from core.services.ttl_generator_service import generate_triples
-from core.models.db.manufacturer_user_form import (
+from data_etl_app.services.ttl_generator_service import generate_triples
+from data_etl_app.models.db.manufacturer_user_form import (
     ManufacturerUserForm,
 )
 
@@ -45,7 +41,6 @@ async def main():
         await init_db()
 
         # Initialize AWS clients
-        await initialize_core_aws_clients()
         await initialize_data_etl_aws_clients()
 
         ontology_file_path = (
@@ -142,7 +137,6 @@ async def main():
 
     finally:
         # Cleanup AWS clients
-        await cleanup_core_aws_clients()
         await cleanup_data_etl_aws_clients()
 
 

@@ -26,10 +26,6 @@ log_level = os.getenv("LOG_LEVEL", "INFO").upper()
 logger = logging.getLogger(__name__)
 
 from core.utils.mongo_client import init_db
-from core.dependencies.aws_clients import (
-    initialize_core_aws_clients,
-    cleanup_core_aws_clients,
-)
 from data_etl_app.dependencies.aws_clients import (
     initialize_data_etl_aws_clients,
     cleanup_data_etl_aws_clients,
@@ -45,13 +41,11 @@ async def lifespan(app: FastAPI):
     logger.info("Database initialized successfully")
 
     await initialize_data_etl_aws_clients()
-    await initialize_core_aws_clients()
     logger.info("Application startup complete")
     yield
 
     # Shutdown
     await cleanup_data_etl_aws_clients()
-    await cleanup_core_aws_clients()
     logger.info("Application shutting down")
 
 

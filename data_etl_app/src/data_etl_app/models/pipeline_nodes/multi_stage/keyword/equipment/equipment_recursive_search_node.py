@@ -11,7 +11,7 @@ from data_etl_app.models.pipeline_nodes.multi_stage.keyword.equipment.equipment_
 from data_etl_app.models.pipeline_nodes.multi_stage.keyword.base.keyword_recursive_search_node import (
     KeywordRecursiveSearchNode,
 )
-from data_etl_app.models.types_and_enums import KeywordTypeEnum
+from core.models.types_and_enums import KeywordTypeEnum
 from open_ai_key_app.models.field_types import GPTBatchRequestCustomID
 
 if TYPE_CHECKING:

@@ -6,11 +6,11 @@ from typing import TYPE_CHECKING
 
 from core.models.db.gpt_batch_request import GPTBatchRequest
 from core.models.file_objects.prompt import Prompt
-from core.models.extraction_results.address_extraction_result import Address
+from data_etl_app.models.extraction_results.address_extraction_result import Address
 from core.models.deferred_extraction.deferred_single_stage_extraction_requests import (
     SingleStageExtractionRequestBundle,
 )
-from data_etl_app.models.types_and_enums import (
+from core.models.types_and_enums import (
     BasicFieldTypeEnum,
 )
 from data_etl_app.models.pipeline_nodes.single_stage.base.single_stage_extraction_node import (
@@ -23,7 +23,9 @@ if TYPE_CHECKING:  # <-- guard the circular import
     )
 from open_ai_key_app.models.field_types import GPTBatchRequestCustomID
 
-from core.services.gpt_batch_request_writes import record_response_parse_error
+from core.services.gpt_batch_request.gpt_batch_request_writes import (
+    record_response_parse_error,
+)
 from data_etl_app.services.extraction.deferred_address_service import (
     parse_address_list_from_gpt_response,
 )

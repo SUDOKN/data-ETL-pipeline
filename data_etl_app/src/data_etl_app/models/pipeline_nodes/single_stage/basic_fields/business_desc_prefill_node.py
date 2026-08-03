@@ -10,10 +10,10 @@ from core.models.extraction_results.single_stage_extraction_results import (
 from data_etl_app.models.pipeline_nodes.single_stage.base.single_stage_extraction_prefill_node import (
     SingleStageExtractionPrefillNode,
 )
-from data_etl_app.models.types_and_enums import (
+from core.models.types_and_enums import (
     BasicFieldTypeEnum,
 )
-from data_etl_app.models.chunking_strat import ChunkingStrategy
+from core.models.chunking_strat import ChunkingStrategy
 
 if TYPE_CHECKING:
     from data_etl_app.models.pipeline_nodes.single_stage.basic_fields.business_desc_extraction_node import (

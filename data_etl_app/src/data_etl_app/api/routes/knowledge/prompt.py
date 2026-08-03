@@ -3,7 +3,7 @@ from fastapi.responses import JSONResponse
 import logging
 
 from core.models.llm_model import get_llm_model_by_name, LLM_Model
-from data_etl_app.services.knowledge.prompt_service import get_prompt_service
+from core.services.knowledge.prompt_service import get_prompt_service
 
 logger = logging.getLogger(__name__)
 router = APIRouter()

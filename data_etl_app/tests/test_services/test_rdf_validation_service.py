@@ -1,4 +1,4 @@
-from data_etl_app.services.validation.rdf_validation_service import (
+from core.services.validation.rdf_validation_service import (
     validate_rdf_content,
 )
 

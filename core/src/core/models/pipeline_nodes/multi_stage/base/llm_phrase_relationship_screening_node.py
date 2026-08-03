@@ -1,0 +1,225 @@
+from __future__ import annotations
+import logging
+from datetime import datetime
+from math import ceil
+from typing import TYPE_CHECKING, Optional
+
+from core.models.db.gpt_batch_request import GPTBatchRequest
+from core.models.batch_request_objects.gpt_batch_response_blob import GPTBatchResponse
+from core.models.deferred_extraction.deferred_phrase_extraction_requests import (
+    DeferredLLMPhraseExtractionRequests,
+    LLMPhraseExtractionRequestBundle,
+    LLMPhraseExtractionRequestMap,
+    LLMPhraseExtractionMetadata,
+)
+from core.models.extraction_schemas.screening import LiveScreeningResults
+from core.models.file_objects.prompt import Prompt
+from data_etl_app.models.types_and_enums import LLMExtractedFieldTypeEnum
+from data_etl_app.models.pipeline_nodes.base.base_node import (
+    LLMExtractedFieldTypeVar,
+    PipelineContext,
+)
+from data_etl_app.models.pipeline_nodes.base.base_reconcile_node import ReconcileNode
+from data_etl_app.models.pipeline_nodes.base.base_llm_extraction_node import (
+    BaseLLMExtractionNode,
+)
+from data_etl_app.models.pipeline_nodes.multi_stage.base.llm_phrase_relationship_node import (
+    LLMPhraseRelationshipNode,
+)
+from open_ai_key_app.models.field_types import GPTBatchRequestCustomID
+
+if TYPE_CHECKING:
+    from scraper_app.models.scraped_text_file import ScrapedTextFile
+
+from core.services.gpt_batch_request.gpt_batch_request_service import (
+    dispatch_gpt_batch_request,
+)
+from core.services.pipeline_nodes.multi_stage.llm_relationship_screening_node_service import (
+    create_missing_phrase_relationship_screening_requests,
+    get_phrase_relationship_screening_result,
+)
+
+logger = logging.getLogger(__name__)
+
+
+class LLMPhraseRelationshipScreeningNode(
+    BaseLLMExtractionNode[LLMExtractedFieldTypeVar, LiveScreeningResults]
+):
+
+    def __init__(
+        self,
+        field_type: LLMExtractedFieldTypeVar,
+        next_node: BaseLLMExtractionNode | ReconcileNode,
+        phrase_relationship_screening_prompt: Prompt,
+    ):
+        super().__init__(
+            field_type=field_type,
+            next_node=next_node,
+        )
+        self.phrase_relationship_screening_prompt = phrase_relationship_screening_prompt
+
+    def get_upstream_phrase_relationship_map(
+        self, pipeline_context: PipelineContext
+    ) -> dict[GPTBatchRequestCustomID, GPTBatchRequest]:
+        """Return the completed phrase-relationship request map from pipeline context."""
+        raise NotImplementedError(
+            f"{self.__class__.__name__} must implement get_upstream_phrase_relationship_map"
+        )
+
+    async def embed_request_ids(  # prefill folded into this function
+        self,
+        subject_unique_id: str,
+        pipeline_context: PipelineContext,
+        metadata: LLMPhraseExtractionMetadata,
+        chunked_request_map: LLMPhraseExtractionRequestMap,
+        timestamp: datetime,
+    ):
+        if not chunked_request_map:
+            raise ValueError(
+                f"Cannot embed req ids for llm phrase relationship screening, "
+                f"as chunked_request_map found empty for mfg:{subject_unique_id}, field:{self.field_type.name}."
+            )
+
+        # Unlike recursive search, the full set of upstream relationship pairs for
+        # a chunk is already complete by the time screening embeds ids (the
+        # relationship phase has already fully executed), so the group count can
+        # be computed once, upfront — no iterative/eager convergence loop needed.
+        max_pairs_per_request = (
+            metadata.llm_phrase_relationship_screening.max_pairs_per_request
+        )
+        upstream_phrase_relationship_map = self.get_upstream_phrase_relationship_map(
+            pipeline_context
+        )
+
+        for (
+            chunk_bounds,
+            extraction_request_bundle,
+        ) in chunked_request_map.items():
+            if extraction_request_bundle.llm_phrase_relationship_screening_req_ids:
+                continue  # already embedded; group count is stable once computed
+
+            llm_phrase_relationships = await LLMPhraseRelationshipNode.get_result(
+                subject_unique_id=subject_unique_id,
+                field_type=self.field_type,
+                chunk_bounds=chunk_bounds,
+                extraction_bundle=extraction_request_bundle,
+                completed_request_map=upstream_phrase_relationship_map,
+                timestamp=timestamp,
+            )
+            num_groups = max(
+                1, ceil(len(llm_phrase_relationships) / max_pairs_per_request)
+            )
+            extraction_request_bundle.llm_phrase_relationship_screening_req_ids = [
+                self.get_request_custom_id(
+                    subject_unique_id=subject_unique_id,
+                    field_type=self.field_type,
+                    chunk_bounds=chunk_bounds,
+                    group_index=group_index,
+                    metadata=metadata,
+                )
+                for group_index in range(num_groups)
+            ]
+
+    def get_embedded_request_ids(
+        self,
+        subject_unique_id: str,
+        chunked_request_map: LLMPhraseExtractionRequestMap,
+    ) -> set[GPTBatchRequestCustomID]:
+        llm_phrase_relationship_screening_req_ids: set[GPTBatchRequestCustomID] = set()
+        for (
+            chunk_bounds,
+            extraction_bundle,
+        ) in chunked_request_map.items():
+            if not extraction_bundle.llm_phrase_relationship_screening_req_ids:
+                raise ValueError(
+                    f"get_embedded_request_ids was called for {subject_unique_id}:{self.field_type.name} but "
+                    f"extraction_bundle.llm_phrase_relationship_screening_req_ids is empty for chunk bounds {chunk_bounds}."
+                )
+
+            llm_phrase_relationship_screening_req_ids.update(
+                extraction_bundle.llm_phrase_relationship_screening_req_ids
+            )
+
+        return llm_phrase_relationship_screening_req_ids
+
+    @staticmethod
+    def get_request_custom_id(
+        subject_unique_id: str,
+        field_type: LLMExtractedFieldTypeEnum,
+        chunk_bounds: str,
+        group_index: int,
+        metadata: LLMPhraseExtractionMetadata,
+    ) -> GPTBatchRequestCustomID:
+        return (
+            f"{subject_unique_id}>{field_type.name}>llm_phrase_relationship_screening>group>{group_index}>chunk>{chunk_bounds}>"
+            f"{metadata.llm_phrase_relationship_screening.model_params.to_custom_id_segment(metadata.llm_phrase_relationship_screening.llm_model.name)}"
+        )
+
+    async def create_batch_requests(
+        self,
+        subject_unique_id: str,
+        scraped_text_file: ScrapedTextFile,
+        missing_request_ids: set[GPTBatchRequestCustomID],
+        metadata: LLMPhraseExtractionMetadata,
+        chunked_request_map: LLMPhraseExtractionRequestMap,
+        pipeline_context: PipelineContext,
+        timestamp: datetime,
+        eager: bool,
+    ) -> list[GPTBatchRequest]:
+        """Create batch requests for the phrase_relationship phase."""
+        mfg_name = pipeline_context.mfg_name
+        if not mfg_name:
+            raise ValueError(
+                f"llm_phrase_relationship_screening_node.create_batch_requests was called for {self.field_type.name} in {self.__class__.__name__} but pipeline_context.mfg_name is not set. Ensure business_desc is extracted before phrase_relationship."
+            )
+
+        # create_missing_phrase_relationship_requests only creates batch requests fresh or only missing ones,
+        # for e.g., new mfg or some batch requests failed earlier and were deleted to allow re-processing
+        batch_requests = await create_missing_phrase_relationship_screening_requests(
+            deferred_at=timestamp,
+            mfg_etld1=subject_unique_id,
+            mfg_name=mfg_name,
+            field_type=self.field_type,
+            missing_phrase_relationship_screening_req_ids=missing_request_ids,
+            chunked_request_map=chunked_request_map,
+            mfg_text=scraped_text_file.text,
+            phrase_relationship_screening_prompt=self.phrase_relationship_screening_prompt,
+            llm_phrase_relationship_gpt_request_map=self.get_upstream_phrase_relationship_map(
+                pipeline_context
+            ),
+            llm_model=metadata.llm_phrase_relationship_screening.llm_model,
+            model_params=metadata.llm_phrase_relationship_screening.model_params,
+            max_pairs_per_request=metadata.llm_phrase_relationship_screening.max_pairs_per_request,
+            eager=eager,
+        )
+
+        return batch_requests
+
+    @staticmethod
+    async def get_result(
+        subject_unique_id: str,
+        field_type: LLMExtractedFieldTypeEnum,
+        chunk_bounds: str,
+        extraction_bundle: LLMPhraseExtractionRequestBundle,
+        completed_request_map: dict[GPTBatchRequestCustomID, GPTBatchRequest],
+        timestamp: datetime,  # for recording errors
+    ) -> LiveScreeningResults:
+        return await get_phrase_relationship_screening_result(
+            mfg_etld1=subject_unique_id,
+            field_type=field_type,
+            chunk_bounds=chunk_bounds,
+            extraction_bundle=extraction_bundle,
+            completed_request_map=completed_request_map,
+            timestamp=timestamp,
+        )
+
+    async def dispatch_batch_request(
+        self,
+        gpt_batch_request: GPTBatchRequest,
+        metadata: LLMPhraseExtractionMetadata,
+    ) -> GPTBatchResponse:
+        return await dispatch_gpt_batch_request(
+            gpt_batch_request=gpt_batch_request,
+            gpt_model=metadata.llm_phrase_relationship_screening.llm_model,
+            model_params=metadata.llm_phrase_relationship_screening.model_params,
+        )

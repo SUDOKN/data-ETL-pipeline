@@ -6,10 +6,8 @@ from core.models.extraction_results.llm_phrase_extraction_results import (
     LLMPhraseExtractionStats,
     LLMPhraseExtractionMetadata,
 )
-from core.models.field_types import (
-    PhraseToTagAndReasonMap,
-    IterativeGroundingResult,
-)
+from core.models.extraction_schemas.grounding import PhraseToTagAndReasonMap
+from core.models.extraction_schemas.iterative_tagging import IterativeGroundingResult
 
 
 class ConceptsFound(BaseModel):

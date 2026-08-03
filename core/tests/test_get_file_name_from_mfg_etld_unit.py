@@ -1,7 +1,7 @@
 """Unit tests for get_file_name_from_mfg_etld function."""
 
 import pytest
-from core.utils.aws.s3.scraped_text_util import get_file_name_from_mfg_etld
+from scraper_app.utils.aws.s3.scraped_text_util import get_file_name_from_mfg_etld
 
 
 class TestGetFileNameFromMfgEtld:

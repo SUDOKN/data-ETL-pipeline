@@ -4,7 +4,7 @@ from data_etl_app.models.pipeline_nodes.base.base_node import PipelineContext
 from data_etl_app.models.pipeline_nodes.multi_stage.keyword.base.keyword_reconcile_node import (
     KeywordReconcileNode,
 )
-from data_etl_app.models.types_and_enums import KeywordTypeEnum
+from core.models.types_and_enums import KeywordTypeEnum
 
 
 class PureProductReconcileNode(KeywordReconcileNode):

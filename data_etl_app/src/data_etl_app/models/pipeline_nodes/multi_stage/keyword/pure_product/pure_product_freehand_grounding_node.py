@@ -8,7 +8,7 @@ from data_etl_app.models.pipeline_nodes.base.base_node import PipelineContext
 from data_etl_app.models.pipeline_nodes.multi_stage.keyword.base.keyword_freehand_grounding_node import (
     KeywordFreehandGroundingNode,
 )
-from data_etl_app.models.types_and_enums import KeywordTypeEnum
+from core.models.types_and_enums import KeywordTypeEnum
 from open_ai_key_app.models.field_types import GPTBatchRequestCustomID
 
 if TYPE_CHECKING:

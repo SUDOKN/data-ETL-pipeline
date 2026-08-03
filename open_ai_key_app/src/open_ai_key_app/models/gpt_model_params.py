@@ -144,12 +144,20 @@ class GPTModelParams(
             merged.update(sub.with_defaults().model_dump())
         return cls(**merged)
 
+    def with_response_format(self, response_format: dict) -> "GPTModelParams":
+        """Node-owned schema override — lets nodes fix their output shape while
+        callers still control temperature/max_completion_tokens/seed/etc."""
+        return self.model_copy(update={"response_format": response_format})
+
     def to_custom_id_segment(self, model_name: str) -> str:
         defaults = GPTModelParams.with_defaults()
         non_default = [
             f"{field}={getattr(self, field)}"
             for field in self.__class__.model_fields
-            if getattr(self, field) != getattr(defaults, field)
+            # response_format is node-owned (see with_response_format) and can be a
+            # large json_schema dict; excluding it keeps custom_ids short and stable
+            if field != "response_format"
+            and getattr(self, field) != getattr(defaults, field)
         ]
         if non_default:
             return model_name + "|" + "|".join(non_default)

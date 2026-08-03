@@ -4,17 +4,19 @@ from enum import Enum
 from pydantic import BaseModel, Field
 
 from core.models.field_types import (
-    HumanVerificationResults,
-    RawLLMMappingResult,
-    LLMSearchResults,
     MfgETLDType,
     S3FileVersionIDType,
 )
+from core.models.extraction_schemas.legacy_mapping_types import (
+    HumanVerificationResults,
+    RawLLMMappingResult,
+)
+from core.models.extraction_schemas.search import LLMSearchResults
 from core.models.extraction_results.concept_extraction_results import (
     ConceptExtractionMetadata,
     ConceptExtractionStats,
 )
-from data_etl_app.models.types_and_enums import ConceptTypeEnum, GroundTruthSource
+from core.models.types_and_enums import ConceptTypeEnum, GroundTruthSource
 
 from core.utils.time_util import get_current_time
 

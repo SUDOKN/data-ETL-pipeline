@@ -10,7 +10,7 @@ from core.models.extraction_results.binary_classification_result import (
 from core.models.extraction_results.single_stage_extraction_results import (
     LLMSingleStageExtractionMetadata,
 )
-from data_etl_app.models.types_and_enums import (
+from core.models.types_and_enums import (
     GroundTruthSource,
     BinaryClassificationTypeEnum,
 )

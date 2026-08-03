@@ -8,12 +8,12 @@ from typing import TypeVar
 from core.models.field_types import (
     OntologyVersionIDType,
     S3FileVersionIDType,
-    LLMSearchResults,
-    LLMPhraseRelationshipResults,
-    LLMScreeningResults,
 )
+from core.models.extraction_schemas.search import LLMSearchResults
+from core.models.extraction_schemas.relationship import LLMPhraseRelationshipResults
+from core.models.extraction_schemas.screening import LiveScreeningResults
 from core.models.llm_model import LLM_Model
-from data_etl_app.models.chunking_strat import ChunkingStrategy
+from core.models.chunking_strat import ChunkingStrategy
 from open_ai_key_app.models.gpt_model_params import GPTModelParams
 
 _T = TypeVar("_T")
@@ -65,11 +65,19 @@ class RecursiveSearchNodeMetadata(ExtractionNodeMetadata):
     max_rounds: int
 
 
+class BatchedScreeningNodeMetadata(ExtractionNodeMetadata):
+    # Hard cap on the number of phrase-relationship pairs sent to the LLM in a
+    # single screening request. The full set of pairs for a chunk is split into
+    # ceil(num_pairs / max_pairs_per_request) groups, each screened independently
+    # and merged back into one flat result.
+    max_pairs_per_request: int
+
+
 class LLMPhraseExtractionMetadata(BaseExtractionMetadata):
     llm_phrase_search: ExtractionNodeMetadata
     llm_phrase_recursive_search: RecursiveSearchNodeMetadata
     llm_phrase_relationship: ExtractionNodeMetadata
-    llm_phrase_relationship_screening: ExtractionNodeMetadata
+    llm_phrase_relationship_screening: BatchedScreeningNodeMetadata
 
 
 class LLMPhraseExtractionStats(BaseModel):
@@ -82,4 +90,4 @@ class LLMPhraseExtractionStats(BaseModel):
     # round → {phrase: relationship} — each phrase assigned to its earliest search round
     llm_phrase_relationship: dict[int, LLMPhraseRelationshipResults]
     # round → {phrase: screening verdict} — each phrase assigned to its earliest search round
-    llm_phrase_screening: dict[int, LLMScreeningResults]
+    llm_phrase_screening: dict[int, LiveScreeningResults]

@@ -8,7 +8,7 @@ from data_etl_app.models.pipeline_nodes.base.base_node import PipelineContext
 from data_etl_app.models.pipeline_nodes.multi_stage.keyword.base.keyword_relationship_screening_node import (
     KeywordRelationshipScreeningNode,
 )
-from data_etl_app.models.types_and_enums import KeywordTypeEnum
+from core.models.types_and_enums import KeywordTypeEnum
 from open_ai_key_app.models.field_types import GPTBatchRequestCustomID
 
 if TYPE_CHECKING:
@@ -24,9 +24,9 @@ class EquipmentRelationshipScreeningNode(KeywordRelationshipScreeningNode):
 
     Uses the equipment screening prompt (``equipment_phrase_relationship_screening``),
     which normalizes surviving phrases to ``<Brand/Model> <generalized category>``
-    (or the category alone) and omits any phrase for which no generalized
-    category can be determined (omission == failure, per ``LLMScreeningResults``
-    semantics).
+    (or the category alone) and sets ``passed=False`` for any phrase for which no
+    generalized category can be determined. Every input phrase is always present
+    in the output (see ``LiveScreeningResults``).
     """
 
     def __init__(

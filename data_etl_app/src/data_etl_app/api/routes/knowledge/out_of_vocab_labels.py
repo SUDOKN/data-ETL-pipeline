@@ -7,8 +7,8 @@ from core.services.out_of_vocab_labels_service import (
     get_out_of_vocab_labels,
     get_all_out_of_vocab_labels_for_version,
 )
-from data_etl_app.models.types_and_enums import ConceptTypeEnum
-from data_etl_app.services.knowledge.ontology_service import get_ontology_service
+from core.models.types_and_enums import ConceptTypeEnum
+from core.services.knowledge.ontology_service import get_ontology_service
 
 logger = logging.getLogger(__name__)
 router = APIRouter()

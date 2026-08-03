@@ -3,26 +3,26 @@ import random
 from fastapi import APIRouter, HTTPException, Request, Query, Depends
 from fastapi.responses import JSONResponse
 
-from core.models.db.manufacturer import Batch
+from data_etl_app.models.db.manufacturer import Batch
 from core.models.queue_items.to_scrape_item import ToScrapeItem
 
-from core.services.manufacturer_service import (
+from data_etl_app.services.manufacturer_service import (
     find_manufacturer_by_etld1,
     find_manufacturer_by_url,
     find_random_manufacturer_url,
 )
-from core.services.user_service import find_by_email
+from data_etl_app.services.user_service import find_by_email
 
 from core.utils.url_util import (
     get_normalized_url,
     get_complete_url_with_compatible_protocol,
 )
 from core.utils.time_util import get_current_time
-from core.utils.aws.queue.priority_scrape_queue_util import (
+from scraper_app.utils.aws.queue.priority_scrape_queue_util import (
     push_item_to_priority_scrape_queue,
 )
 
-from core.utils.aws.s3.scraped_text_util import (
+from scraper_app.utils.aws.s3.scraped_text_util import (
     download_scraped_text_from_s3_by_mfg_etld1,
 )
 
@@ -34,12 +34,12 @@ from core.models.db.keyword_ground_truth import (
     KeywordGroundTruth,
     KeywordResultCorrection,
 )
-from data_etl_app.services.ground_truth.keyword_ground_truth_service import (
+from core.services.ground_truth.keyword_ground_truth_service import (
     get_keyword_ground_truth,
     save_new_keyword_ground_truth,
     add_new_correction_to_keyword_ground_truth,
 )
-from data_etl_app.models.types_and_enums import GroundTruthSource, KeywordTypeEnum
+from core.models.types_and_enums import GroundTruthSource, KeywordTypeEnum
 
 router = APIRouter()
 

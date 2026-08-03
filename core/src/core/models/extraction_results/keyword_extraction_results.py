@@ -5,7 +5,7 @@ from core.models.extraction_results.llm_phrase_extraction_results import (
     LLMPhraseExtractionMetadata,
     LLMPhraseExtractionStats,
 )
-from core.models.field_types import PhraseToTagAndReasonMap
+from core.models.extraction_schemas.grounding import PhraseToTagAndReasonMap
 
 
 class KeywordExtractionStats(LLMPhraseExtractionStats):

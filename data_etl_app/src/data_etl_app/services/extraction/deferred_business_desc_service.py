@@ -1,10 +1,12 @@
-import json
 import logging
 from typing import Optional
 
-from core.models.extraction_results.business_description_extraction_result import (
+from pydantic import ValidationError
+
+from data_etl_app.models.extraction_results.business_description_extraction_result import (
     BusinessDescription,
 )
+from core.models.extraction_schemas.basic_fields import BusinessDescResponse
 
 logger = logging.getLogger(__name__)
 
@@ -19,17 +21,14 @@ def parse_business_desc_from_gpt_response(
         )
 
     try:
-        gpt_response = gpt_response.replace("```", "").replace("json", "")
-        json_response = json.loads(gpt_response)
-        business_name = json_response.get("name")
-        business_desc = json_response.get("description")
-    except:
+        parsed = BusinessDescResponse.model_validate_json(gpt_response)
+    except ValidationError as e:
         raise ValueError(
             f"parse_business_desc_from_gpt_response: Invalid response from GPT:{gpt_response}"
-        )
+        ) from e
 
     logger.debug(
-        f"parse_business_desc_from_gpt_response:`{business_name}`\n`{business_desc}`"
+        f"parse_business_desc_from_gpt_response:`{parsed.name}`\n`{parsed.description}`"
     )
 
-    return BusinessDescription(name=business_name, description=business_desc)
+    return BusinessDescription(name=parsed.name, description=parsed.description)

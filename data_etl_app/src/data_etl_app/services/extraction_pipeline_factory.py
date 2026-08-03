@@ -4,12 +4,13 @@ from core.models.llm_model import LLM_Model
 from core.models.extraction_results.llm_phrase_extraction_results import (
     ExtractionNodeMetadata,
     RecursiveSearchNodeMetadata,
+    BatchedScreeningNodeMetadata,
 )
 from core.models.file_objects.prompt import Prompt
 from core.models.extraction_results.single_stage_extraction_results import (
     LLMSingleStageExtractionMetadata,
 )
-from data_etl_app.models.chunking_strat import (
+from core.models.chunking_strat import (
     ChunkingStrategy,
     CERTIFICATE_CHUNKING_STRAT,
     EQUIPMENT_CHUNKING_STRAT,
@@ -59,24 +60,25 @@ from data_etl_app.models.pipeline_nodes import (
     EquipmentFreehandGroundingNode,
     EquipmentReconcileNode,
 )
-from data_etl_app.models.skos_concept import Concept
-from data_etl_app.models.types_and_enums import (
+from core.models.skos_concept import Concept
+from core.models.types_and_enums import (
     BinaryClassificationTypeEnum,
     ConceptTypeEnum,
     LLMExtractedFieldTypeEnum,
     KeywordTypeEnum,
     BasicFieldTypeEnum,
 )
-from data_etl_app.models.ontology import Ontology
+from core.models.ontology import Ontology
 from open_ai_key_app.models.gpt_model_params import GPTModelParams
 
-from data_etl_app.services.knowledge.prompt_service import PromptService
+from core.services.knowledge.prompt_service import PromptService
 
 
 class ExtractionPipelineFactory:
     """Creates extraction phase pipelines for each field"""
 
     DEFAULT_RECURSIVE_SEARCH_MAX_ROUNDS = 1
+    DEFAULT_SCREENING_MAX_PAIRS_PER_REQUEST = 15
 
     @staticmethod
     def _metadata(
@@ -108,6 +110,23 @@ class ExtractionPipelineFactory:
             prompt_version_id=prompt.s3_version_id,
             created_at=created_at,
             max_rounds=max_rounds,
+        )
+
+    @staticmethod
+    def _batched_screening_metadata(
+        prompt: Prompt,
+        llm_model: LLM_Model,
+        model_params: GPTModelParams,
+        created_at: datetime,
+        max_pairs_per_request: int,
+    ) -> BatchedScreeningNodeMetadata:
+        return BatchedScreeningNodeMetadata(
+            llm_model=llm_model,
+            model_params=model_params,
+            prompt_name=prompt.name,
+            prompt_version_id=prompt.s3_version_id,
+            created_at=created_at,
+            max_pairs_per_request=max_pairs_per_request,
         )
 
     @staticmethod
@@ -144,6 +163,7 @@ class ExtractionPipelineFactory:
         model_params: GPTModelParams,
         created_at: datetime,
         max_recursive_search_rounds: int = DEFAULT_RECURSIVE_SEARCH_MAX_ROUNDS,
+        max_screening_pairs_per_request: int = DEFAULT_SCREENING_MAX_PAIRS_PER_REQUEST,
     ) -> ConceptExtractionPrefillNode:
         return ConceptExtractionPrefillNode(
             field_type=concept_type,
@@ -162,11 +182,12 @@ class ExtractionPipelineFactory:
             llm_phrase_relationship_metadata=ExtractionPipelineFactory._metadata(
                 phrase_relationship_prompt, llm_model, model_params, created_at
             ),
-            llm_phrase_relationship_screening_metadata=ExtractionPipelineFactory._metadata(
+            llm_phrase_relationship_screening_metadata=ExtractionPipelineFactory._batched_screening_metadata(
                 phrase_relationship_screening_prompt,
                 llm_model,
                 model_params,
                 created_at,
+                max_screening_pairs_per_request,
             ),
             llm_phrase_initial_grounding_metadata=ExtractionPipelineFactory._metadata(
                 phrase_initial_grounding_prompt, llm_model, model_params, created_at
@@ -219,6 +240,7 @@ class ExtractionPipelineFactory:
         model_params: GPTModelParams,
         created_at: datetime,
         max_recursive_search_rounds: int = DEFAULT_RECURSIVE_SEARCH_MAX_ROUNDS,
+        max_screening_pairs_per_request: int = DEFAULT_SCREENING_MAX_PAIRS_PER_REQUEST,
     ) -> KeywordExtractionPrefillNode:
         """Builds the contract-manufacturing product-extraction pipeline.
 
@@ -247,11 +269,12 @@ class ExtractionPipelineFactory:
             llm_phrase_relationship_metadata=ExtractionPipelineFactory._metadata(
                 phrase_relationship_prompt, llm_model, model_params, created_at
             ),
-            llm_phrase_relationship_screening_metadata=ExtractionPipelineFactory._metadata(
+            llm_phrase_relationship_screening_metadata=ExtractionPipelineFactory._batched_screening_metadata(
                 phrase_relationship_screening_prompt,
                 llm_model,
                 model_params,
                 created_at,
+                max_screening_pairs_per_request,
             ),
             llm_phrase_freehand_grounding_metadata=ExtractionPipelineFactory._metadata(
                 phrase_freehand_grounding_prompt, llm_model, model_params, created_at
@@ -294,6 +317,7 @@ class ExtractionPipelineFactory:
         model_params: GPTModelParams,
         created_at: datetime,
         max_recursive_search_rounds: int = DEFAULT_RECURSIVE_SEARCH_MAX_ROUNDS,
+        max_screening_pairs_per_request: int = DEFAULT_SCREENING_MAX_PAIRS_PER_REQUEST,
     ) -> KeywordExtractionPrefillNode:
         """Builds the equipment (machinery/tools a manufacturer operates, owns,
         uses, or otherwise has access to) extraction pipeline.
@@ -319,11 +343,12 @@ class ExtractionPipelineFactory:
             llm_phrase_relationship_metadata=ExtractionPipelineFactory._metadata(
                 phrase_relationship_prompt, llm_model, model_params, created_at
             ),
-            llm_phrase_relationship_screening_metadata=ExtractionPipelineFactory._metadata(
+            llm_phrase_relationship_screening_metadata=ExtractionPipelineFactory._batched_screening_metadata(
                 phrase_relationship_screening_prompt,
                 llm_model,
                 model_params,
                 created_at,
+                max_screening_pairs_per_request,
             ),
             llm_phrase_freehand_grounding_metadata=ExtractionPipelineFactory._metadata(
                 phrase_freehand_grounding_prompt, llm_model, model_params, created_at
@@ -449,6 +474,7 @@ class ExtractionPipelineFactory:
         model_params: GPTModelParams,
         created_at: datetime,
         max_recursive_search_rounds: int = DEFAULT_RECURSIVE_SEARCH_MAX_ROUNDS,
+        max_screening_pairs_per_request: int = DEFAULT_SCREENING_MAX_PAIRS_PER_REQUEST,
     ) -> KeywordExtractionPrefillNode:
         """Builds the pure-product (own/sell own products) extraction pipeline."""
         keyword_type = KeywordTypeEnum.products
@@ -469,11 +495,12 @@ class ExtractionPipelineFactory:
             llm_phrase_relationship_metadata=ExtractionPipelineFactory._metadata(
                 phrase_relationship_prompt, llm_model, model_params, created_at
             ),
-            llm_phrase_relationship_screening_metadata=ExtractionPipelineFactory._metadata(
+            llm_phrase_relationship_screening_metadata=ExtractionPipelineFactory._batched_screening_metadata(
                 phrase_relationship_screening_prompt,
                 llm_model,
                 model_params,
                 created_at,
+                max_screening_pairs_per_request,
             ),
             llm_phrase_freehand_grounding_metadata=ExtractionPipelineFactory._metadata(
                 phrase_freehand_grounding_prompt, llm_model, model_params, created_at

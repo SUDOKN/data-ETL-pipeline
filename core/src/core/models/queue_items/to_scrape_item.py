@@ -3,7 +3,7 @@ from __future__ import (
 )  # This allows you to write self-referential types without quotes, because type annotations are no longer evaluated at function/class definition time
 from pydantic import ConfigDict, computed_field, field_validator
 
-from core.models.db.manufacturer import Batch
+from data_etl_app.models.db.manufacturer import Batch
 from core.models.queue_items.queue_item import QueueItem
 from core.utils.url_util import (
     get_etld1_from_host,

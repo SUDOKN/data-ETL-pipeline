@@ -62,7 +62,7 @@
     {
       "name": "gt-eq-bot",
       "description": "This bot uses the sudokn-new db and updated db models. It extracts using only the first 10 chunks wherever applicable",
-      "script": "./data_etl_app/src/data_etl_app/bots/gt_extract_queue_bot.py",
+      "script": "./scraper_app/src/scraper_app/bots/gt_extract_queue_bot.py",
       "interpreter": "./.venv/bin/python3",
       "args": "--max_concurrent_manufacturers 25 --debug INFO",
       "cwd": "./",
@@ -83,7 +83,7 @@
       "min_uptime": "10s",
       "restart_delay": 5000,
       "env": {
-        "PYTHONPATH": "./data_etl_app/src:./core/src:./open_ai_key_app/src",
+        "PYTHONPATH": "./scraper_app/src:./data_etl_app/src:./core/src:./open_ai_key_app/src:./litellm_proxy_app/src",
         "PYTHONUNBUFFERED": "1",
         "VIRTUAL_ENV": "./.venv",
         "PATH": "./.venv/bin:/usr/local/bin:/usr/bin:/bin"

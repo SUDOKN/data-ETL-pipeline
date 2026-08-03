@@ -4,7 +4,7 @@ import logging
 import traceback
 from typing import TYPE_CHECKING
 
-from core.models.extraction_results.business_description_extraction_result import (
+from data_etl_app.models.extraction_results.business_description_extraction_result import (
     BusinessDescription,
 )
 from core.models.deferred_extraction.deferred_single_stage_extraction_requests import (
@@ -15,7 +15,7 @@ from core.models.db.gpt_batch_request import GPTBatchRequest
 from data_etl_app.models.pipeline_nodes.single_stage.base.single_stage_extraction_node import (
     SingleStageExtractionNode,
 )
-from data_etl_app.models.types_and_enums import (
+from core.models.types_and_enums import (
     BasicFieldTypeEnum,
 )
 from open_ai_key_app.models.field_types import GPTBatchRequestCustomID
@@ -25,7 +25,9 @@ if TYPE_CHECKING:
         BusinessDescReconcileNode,
     )
 
-from core.services.gpt_batch_request_writes import record_response_parse_error
+from core.services.gpt_batch_request.gpt_batch_request_writes import (
+    record_response_parse_error,
+)
 from data_etl_app.services.extraction.deferred_business_desc_service import (
     parse_business_desc_from_gpt_response,
 )

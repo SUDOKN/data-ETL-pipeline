@@ -1,6 +1,6 @@
 from beanie import Document
 from datetime import datetime
-from data_etl_app.models.chunking_strat import ChunkingStrategy
+from core.models.chunking_strat import ChunkingStrategy
 from pydantic import BaseModel, ValidationInfo, computed_field, Field, field_validator
 
 from core.utils.time_util import get_current_time
@@ -9,7 +9,7 @@ from core.models.extraction_results.keyword_extraction_results import (
     KeywordExtractionMetadata,
     KeywordExtractionStats,
 )
-from data_etl_app.models.types_and_enums import GroundTruthSource, KeywordTypeEnum
+from core.models.types_and_enums import GroundTruthSource, KeywordTypeEnum
 
 
 class KeywordResultCorrection(BaseModel):
@@ -59,7 +59,7 @@ class KeywordGroundTruth(Document):
     @computed_field
     @property
     def final_results(self) -> list[str] | None:
-        from data_etl_app.utils.ground_truth_helper_util import (
+        from core.utils.ground_truth_helper_util import (
             calculate_final_keyword_results,
         )
 

@@ -4,7 +4,7 @@ from core.models.file_objects.prompt import Prompt
 from core.models.llm_model import GPT_4o_mini
 from open_ai_key_app.models.gpt_model_params import GPTModelParams
 
-from data_etl_app.models.chunking_strat import EQUIPMENT_CHUNKING_STRAT
+from core.models.chunking_strat import EQUIPMENT_CHUNKING_STRAT
 from data_etl_app.models.pipeline_nodes import (
     EquipmentPhraseSearchNode,
     EquipmentRecursiveSearchNode,
@@ -13,7 +13,7 @@ from data_etl_app.models.pipeline_nodes import (
     EquipmentFreehandGroundingNode,
     EquipmentReconcileNode,
 )
-from data_etl_app.models.types_and_enums import KeywordTypeEnum
+from core.models.types_and_enums import KeywordTypeEnum
 from data_etl_app.services.extraction_pipeline_factory import ExtractionPipelineFactory
 
 

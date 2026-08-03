@@ -9,37 +9,35 @@ from typing import Callable, Awaitable
 from core.dependencies.load_core_env import load_core_env
 from scraper_app.dependencies.load_scraper_env import load_scraper_env
 from open_ai_key_app.dependencies.load_open_ai_app_env import load_open_ai_app_env
-from data_etl_app.dependencies.load_data_etl_env import load_data_etl_env
 
 # Load environment variables
 load_core_env()
 load_scraper_env()
-load_data_etl_env()
 load_open_ai_app_env()
 
 
-from core.dependencies.aws_clients import (
-    cleanup_core_aws_clients,
-    initialize_core_aws_clients,
+from scraper_app.dependencies.aws_clients import (
+    cleanup_scraper_aws_clients,
+    initialize_scraper_aws_clients,
 )
 from data_etl_app.dependencies.aws_clients import (
     cleanup_data_etl_aws_clients,
     initialize_data_etl_aws_clients,
 )
 
-from core.models.db.scraping_error import ScrapingError
-from core.models.db.manufacturer import Manufacturer
+from scraper_app.models.scraping_error import ScrapingError
+from data_etl_app.models.db.manufacturer import Manufacturer
 from core.models.queue_items.to_extract_item import ToExtractItem
 from core.models.queue_items.to_scrape_item import ToScrapeItem
 
-from core.utils.aws.s3.scraped_text_util import (
+from scraper_app.utils.aws.s3.scraped_text_util import (
     delete_scraped_text_from_s3_by_etld1,
     get_latest_version_id_by_mfg_etld,
 )
 from core.utils.mongo_client import init_db
 from core.utils.time_util import get_current_time
 
-from core.services.manufacturer_service import (
+from data_etl_app.services.manufacturer_service import (
     create_new_manufacturer,
     find_manufacturer_by_etld1,
     reset_llm_extracted_fields,
@@ -435,10 +433,10 @@ def parse_args():
 
 async def async_main():
 
-    from core.utils.aws.queue.gt_extract_queue_util import (
+    from scraper_app.utils.aws.queue.gt_extract_queue_util import (
         push_item_to_gt_extract_queue,
     )
-    from core.utils.aws.queue.gt_scrape_queue_util import (
+    from scraper_app.utils.aws.queue.gt_scrape_queue_util import (
         poll_item_from_gt_scrape_queue,
         delete_item_from_gt_scrape_queue,
     )
@@ -446,7 +444,7 @@ async def async_main():
     await init_db()
 
     # Initialize AWS clients
-    await initialize_core_aws_clients()
+    await initialize_scraper_aws_clients()
     await initialize_data_etl_aws_clients()
 
     args = parse_args()
@@ -480,7 +478,7 @@ async def async_main():
     finally:
         # Clean up AWS clients
         await cleanup_data_etl_aws_clients()
-        await cleanup_core_aws_clients()
+        await cleanup_scraper_aws_clients()
 
 
 def main():

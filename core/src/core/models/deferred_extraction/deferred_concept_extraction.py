@@ -3,7 +3,7 @@ from pydantic import BaseModel
 from typing import Optional
 import logging
 
-from core.models.field_types import (
+from core.models.extraction_schemas.legacy_mapping_types import (
     PhraseAndReasonMap,
     TagToPhraseAndReasonMap,
 )
@@ -13,7 +13,7 @@ from core.models.extraction_results.concept_extraction_results import (
 from core.models.deferred_extraction.deferred_phrase_extraction_requests import (
     LLMPhraseExtractionRequestBundle,
 )
-from data_etl_app.models.skos_concept import Concept
+from core.models.skos_concept import Concept
 
 from open_ai_key_app.models.field_types import GPTBatchRequestCustomID
 

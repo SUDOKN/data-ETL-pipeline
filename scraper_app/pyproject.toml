@@ -22,4 +22,8 @@ dependencies = [
   # ^ This means: “install open_ai_key_app from that path as version 0.1.0”
   "core>=0.1.0",
 
+  # Extraction bots (merged in from extractor_app) push to the extract queue and
+  # read manufacturer models/services from data_etl_app:
+  "data_etl_app>=0.1.0",
+
 ]

@@ -4,23 +4,22 @@ from __future__ import (
 import litellm
 import logging
 from datetime import datetime
-from typing import TYPE_CHECKING
 from pydantic import BaseModel, ConfigDict, Field, computed_field
 
 from core.models.llm_model import LLM_Model
 from core.models.field_types import MfgETLDType
 
-from data_etl_app.services.ground_truth.concept_ground_truth_service import (
+from core.services.ground_truth.concept_ground_truth_service import (
     does_a_cgt_exist_with_scraped_file_version,
 )
-from data_etl_app.services.ground_truth.keyword_ground_truth_service import (
+from core.services.ground_truth.keyword_ground_truth_service import (
     does_a_kgt_exist_with_scraped_file_version,
 )
-from data_etl_app.services.ground_truth.binary_ground_truth_service import (
+from core.services.ground_truth.binary_ground_truth_service import (
     does_a_bgt_exist_with_scraped_file_version,
 )
-from core.models.db.manufacturer import Batch
-from core.utils.aws.s3.scraped_text_util import (
+from data_etl_app.models.db.manufacturer import Batch
+from scraper_app.utils.aws.s3.scraped_text_util import (
     delete_scraped_text_from_s3_by_etld1,
     get_file_name_from_mfg_etld,
     get_scraped_text_file_exist_last_modified_on,

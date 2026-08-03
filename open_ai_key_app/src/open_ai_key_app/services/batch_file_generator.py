@@ -7,24 +7,24 @@ from typing import Optional
 
 
 from core.models.file_objects.base_files import CSVFile
-from core.models.db.deferred_manufacturer import DeferredManufacturer
+from data_etl_app.models.db.deferred_manufacturer import DeferredManufacturer
 from core.utils.batch_jsonl_file_writer import (
     BatchRequestJSONLFileWriter,
     MaxFilesReachedException,
 )
-from data_etl_app.services.knowledge.ontology_service import OntologyService
-from data_etl_app.services.knowledge.prompt_service import PromptService
+from core.services.knowledge.ontology_service import OntologyService
+from core.services.knowledge.prompt_service import PromptService
 from open_ai_key_app.models.gpt_model_params import GPTModelParams
 from core.models.llm_model import LLM_Model
 from core.models.llm_model import GPT_4_1_mini
 
-from core.services.manufacturer_service import (
+from data_etl_app.services.manufacturer_service import (
     find_manufacturer_by_etld1,
 )
-from core.services.gpt_batch_request_queries import (
+from core.services.gpt_batch_request.gpt_batch_request_queries import (
     find_gpt_batch_requests_by_custom_ids,
 )
-from core.services.deferred_manufacturer_service import (
+from data_etl_app.services.deferred_manufacturer_service import (
     get_deferred_manufacturer_by_etld1_scraped_file_version,
     get_embedded_gpt_request_ids,
 )

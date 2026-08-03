@@ -20,8 +20,8 @@ from selenium.common.exceptions import (
 )
 
 from core.models.llm_model import LLM_Model
-
 from core.utils.url_util import get_final_landing_url, get_etld1_from_host
+
 from scraper_app.utils.selenium import (
     ChromeDriverFactory,
     LegacyDriverFactory,

@@ -1,11 +1,10 @@
 import pytest
-from core.models.db.manufacturer import Address
-from core.utils.address_util import (
+from data_etl_app.models.db.manufacturer import Address
+from data_etl_app.utils.address_util import (
     dedupe_addresses,
     can_addresses_A_and_B_merge,
     merge_addresses_A_and_B,
 )
-
 
 # ============================================================================
 # Test Fixtures

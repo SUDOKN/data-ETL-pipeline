@@ -4,7 +4,7 @@ import json
 import logging
 from dataclasses import dataclass
 from pymongo import UpdateOne
-from datetime import datetime
+from datetime import UTC, datetime
 from pathlib import Path
 from typing import Optional
 from openai import OpenAI
@@ -28,10 +28,10 @@ from open_ai_key_app.models.gpt_model_params import GPTModelParams
 from core.models.llm_model import LLM_Model
 from scraper_app.models.scraped_text_file import ScrapedTextFile
 
-from core.services.gpt_batch_request_queries import (
+from core.services.gpt_batch_request.gpt_batch_request_queries import (
     get_custom_ids_for_batch,
 )
-from core.services.gpt_batch_request_writes import (
+from core.services.gpt_batch_request.gpt_batch_request_writes import (
     bulk_update_gpt_batch_requests,
     pair_batch_request_custom_ids_with_batch,
     unpair_all_batch_requests_from_batch,
@@ -39,9 +39,9 @@ from core.services.gpt_batch_request_writes import (
 from core.services.api_key_service import (
     get_all_api_key_bundles,
 )
-from core.services.manufacturer_service import find_manufacturers_by_etld1s
-from data_etl_app.models.ontology import Ontology
-from data_etl_app.services.knowledge.prompt_service import PromptService
+from data_etl_app.services.manufacturer_service import find_manufacturers_by_etld1s
+from core.models.ontology import Ontology
+from core.services.knowledge.prompt_service import PromptService
 from open_ai_key_app.services.batch_file_generator import (
     BatchFileGenerationResult,
     iterate_df_manufacturers_and_write_batch_files,
@@ -53,11 +53,11 @@ from open_ai_key_app.services.batch_file_satellite import (
 from data_etl_app.services.manufacturer_extraction_orchestrator import (
     ManufacturerExtractionOrchestrator,
 )
-from data_etl_app.services.knowledge.prompt_service import get_prompt_service
-from data_etl_app.services.knowledge.ontology_service import get_ontology_service
+from core.services.knowledge.prompt_service import get_prompt_service
+from core.services.knowledge.ontology_service import get_ontology_service
 
 from core.utils.time_util import get_current_time
-from data_etl_app.utils.gpt_batch_request_util import (
+from core.utils.gpt_batch_request_util import (
     parse_individual_batch_req_response_raw,
 )
 
@@ -118,11 +118,13 @@ class BatchFileStation:
             raise RuntimeError(
                 "BatchFileStation is a singleton. Use BatchFileStation.get_instance() instead."
             )
+        metadata_init_at = datetime.now(UTC)
         self.mfg_intake_orchestrator = ManufacturerExtractionOrchestrator(
             prompt_service=prompt_service,
             ontology=ontology,
             llm_model=llm_model,
             model_params=model_params,
+            metadata_init_at=metadata_init_at,
         )
         self.satellite = BatchFileSatellite(
             output_dir=Path(FINISHED_BATCHES_DIR_DEFAULT)
@@ -557,9 +559,9 @@ class BatchFileStation:
 
 
 async def async_main():
-    from core.dependencies.aws_clients import (
-        initialize_core_aws_clients,
-        cleanup_core_aws_clients,
+    from scraper_app.dependencies.aws_clients import (
+        initialize_scraper_aws_clients,
+        cleanup_scraper_aws_clients,
     )
     from data_etl_app.dependencies.aws_clients import (
         initialize_data_etl_aws_clients,
@@ -575,7 +577,7 @@ async def async_main():
         server_selection_timeout_ms=60000,  # 30 seconds
         connect_timeout_ms=60000,  # 30 seconds
     )
-    await initialize_core_aws_clients()
+    await initialize_scraper_aws_clients()
     await initialize_data_etl_aws_clients()
 
     log_level = "INFO"
@@ -611,7 +613,7 @@ async def async_main():
     finally:
         # Clean up AWS clients
         await cleanup_data_etl_aws_clients()
-        await cleanup_core_aws_clients()
+        await cleanup_scraper_aws_clients()
 
 
 def main():

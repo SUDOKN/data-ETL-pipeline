@@ -4,8 +4,8 @@ import logging
 from datetime import datetime
 from typing import TYPE_CHECKING, Optional
 
-from core.models.db.manufacturer import Manufacturer
-from core.models.extraction_results.business_description_extraction_result import (
+from data_etl_app.models.db.manufacturer import Manufacturer
+from data_etl_app.models.extraction_results.business_description_extraction_result import (
     BusinessDescriptionExtractionStats,
     BusinessDescriptionExtractionStatsMap,
     BusinessDescriptionExtractionResult,
@@ -13,15 +13,15 @@ from core.models.extraction_results.business_description_extraction_result impor
 from core.models.deferred_extraction.deferred_single_stage_extraction_requests import (
     DeferredSingleStageExtractionRequests,
 )
-from core.models.db.deferred_manufacturer import DeferredManufacturer
+from data_etl_app.models.db.deferred_manufacturer import DeferredManufacturer
 from data_etl_app.models.pipeline_nodes.base.base_llm_extraction_node import (
     PipelineContext,
 )
-from data_etl_app.models.types_and_enums import BasicFieldTypeEnum
+from core.models.types_and_enums import BasicFieldTypeEnum
 from data_etl_app.models.pipeline_nodes.base.base_reconcile_node import ReconcileNode
 from scraper_app.models.scraped_text_file import ScrapedTextFile
 
-from core.services.manufacturer_service import update_manufacturer
+from data_etl_app.services.manufacturer_service import update_manufacturer
 
 # if TYPE_CHECKING:
 #     from data_etl_app.models.pipeline_nodes.single_stage.basic_fields.business_desc_extraction_node import (

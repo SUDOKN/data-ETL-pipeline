@@ -1,7 +1,7 @@
 from typing import Optional
 
 from core.models.db.out_of_vocab_labels import OutOfVocabLabel
-from data_etl_app.models.types_and_enums import ConceptTypeEnum
+from core.models.types_and_enums import ConceptTypeEnum
 
 
 async def upsert_out_of_vocab_labels(

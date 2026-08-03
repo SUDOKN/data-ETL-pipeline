@@ -1,14 +1,16 @@
-from core.services.graph_db_manufacturer_service import replace_manufacturer_in_graph
+from data_etl_app.services.graph_db_manufacturer_service import (
+    replace_manufacturer_in_graph,
+)
 from fastapi import APIRouter, HTTPException, Query
 from fastapi.responses import JSONResponse
 import logging
 from pymongo.errors import DuplicateKeyError
 
-from core.services.manufacturer_service import find_manufacturer_by_etld1
+from data_etl_app.services.manufacturer_service import find_manufacturer_by_etld1
 from core.utils.url_util import get_etld1_from_host
 from core.utils.graph_db_client import SPARQLQueryError
 
-from core.models.db.manufacturer_user_form import ManufacturerUserForm
+from data_etl_app.models.db.manufacturer_user_form import ManufacturerUserForm
 from data_etl_app.services.manufacturer_user_form_service import (
     create_blank_manufacturer_user_form,
     enqueue_manufacturer_for_priority_scrape,

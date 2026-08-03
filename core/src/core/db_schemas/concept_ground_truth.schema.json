@@ -598,7 +598,8 @@
               "model_params",
               "prompt_name",
               "prompt_version_id",
-              "created_at"
+              "created_at",
+              "max_pairs_per_request"
             ],
             "additionalProperties": false,
             "properties": {
@@ -753,6 +754,9 @@
               },
               "created_at": {
                 "bsonType": "date"
+              },
+              "max_pairs_per_request": {
+                "bsonType": "int"
               }
             }
           },
