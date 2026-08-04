@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rdf:RDF
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+    xmlns:skos="http://www.w3.org/2004/02/skos/core#">
+
+    <!-- Process Capability Base -->
+    <rdf:Description rdf:about="http://asu.edu/semantics/SUDOKN/ManufacturingProcessCapability">
+        <rdfs:label>Manufacturing Process Capability</rdfs:label>
+    </rdf:Description>
+
+    <!-- INVALID: Process capability with wrong suffix -->
+    <rdf:Description rdf:about="http://example.com/CuttingProcess">
+        <rdfs:label>Cutting Process</rdfs:label>
+        <rdfs:subClassOf
+            rdf:resource="http://asu.edu/semantics/SUDOKN/ManufacturingProcessCapability" />
+    </rdf:Description>
+
+    <!-- INVALID: Duplicate label -->
+    <rdf:Description rdf:about="http://example.com/DuplicateCapability">
+        <rdfs:label>Cutting Process</rdfs:label>
+        <rdfs:subClassOf
+            rdf:resource="http://asu.edu/semantics/SUDOKN/ManufacturingProcessCapability" />
+    </rdf:Description>
+
+    <!-- Industry Base -->
+    <rdf:Description
+        rdf:about="https://spec.industrialontologies.org/ontology/supplychain/SupplyChain/Industry">
+        <rdfs:label>Industry</rdfs:label>
+    </rdf:Description>
+
+    <!-- INVALID: Industry with wrong suffix -->
+    <rdf:Description rdf:about="http://example.com/AutomotiveSector">
+        <rdfs:label>Automotive Sector</rdfs:label>
+        <rdfs:subClassOf
+            rdf:resource="https://spec.industrialontologies.org/ontology/supplychain/SupplyChain/Industry" />
+    </rdf:Description>
+
+</rdf:RDF>

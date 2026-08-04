@@ -1,0 +1,5 @@
+# About the SUDOKN Ontology
+SUDOKN is developed in the Semantic Computing lab at Arizona State University in the contecxt of the NSF Proto-OKN project (learn more about [SUDOKN project](https://projects.engineering.asu.edu/sudokn/)).
+
+The SUDOKN ontology is specifically designed for this purpose and its objective is to privide the necessary controlled vocabulary and logic-based formalism for representing manufacturing capabilities. The SUDOKN ontology employs a multi-tiered architecture, featuring a top-level domain-neutral ontology as its foundation
+and a suite of mid-level and domain-specific ontologies (IOF ontologies) forming the lower layers. Its design follows a hub-and-spokes pattern, where a central hub consists of a few non-redundant reference ontologies, ensuring consistency across interconnected domain ontologies. These domain-specific ontologies progressively expand in scope, drawing on the standardized structure of the hub for improved semantic alignment. At the core of this framework, the Basic Formal Ontology (BFO) 2020 erves as the top-level ontology due to its wide adoption, simplicity, and ISO standardization.

@@ -1,0 +1,22 @@
+# scraper_app/pyproject.toml
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "scraper_app"                                     # the name your team will pip-install
+version = "0.1.0"
+description = "Fast API wrapped module for Web Scraping"
+readme = "ABOUT.md"                                      # or point to a common README if you like
+requires-python = ">=3.12"
+
+# Any dependencies that your common code needs:
+dependencies = [
+  "playwright>=1.40.0", # For web scraping
+  "selenium >=4.20.0",  # For web scraping with Selenium
+  "litellm>=0.1.0",     # For LLM integration
+
+  "core>=0.1.0",
+  # ^ This means: “install core from that path as version 0.1.0”
+
+]

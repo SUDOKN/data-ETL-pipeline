@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rdf:RDF
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+    xmlns:skos="http://www.w3.org/2004/02/skos/core#">
+
+    <!-- Process Capability Base -->
+    <rdf:Description rdf:about="http://asu.edu/semantics/SUDOKN/ManufacturingProcessCapability">
+        <rdfs:label>Manufacturing Process Capability</rdfs:label>
+        <skos:altLabel>Process Cap</skos:altLabel>
+    </rdf:Description>
+
+    <!-- Example Process Capability with correct suffix -->
+    <rdf:Description rdf:about="http://example.com/CuttingCapability">
+        <rdfs:label>Cutting Capability</rdfs:label>
+        <skos:altLabel>Metal Cutting</skos:altLabel>
+        <rdfs:subClassOf
+            rdf:resource="http://asu.edu/semantics/SUDOKN/ManufacturingProcessCapability" />
+    </rdf:Description>
+
+    <!-- Material Capability Base -->
+    <rdf:Description rdf:about="http://asu.edu/semantics/SUDOKN/MaterialProcessingCapability">
+        <rdfs:label>Material Processing Capability</rdfs:label>
+        <skos:altLabel>Material Cap</skos:altLabel>
+    </rdf:Description>
+
+    <!-- Example Material Capability with correct suffix -->
+    <rdf:Description rdf:about="http://example.com/SteelProcessingCapability">
+        <rdfs:label>Steel Processing Capability</rdfs:label>
+        <skos:altLabel>Steel Processing</skos:altLabel>
+        <rdfs:subClassOf rdf:resource="http://asu.edu/semantics/SUDOKN/MaterialProcessingCapability" />
+    </rdf:Description>
+
+    <!-- Industry Base -->
+    <rdf:Description
+        rdf:about="https://spec.industrialontologies.org/ontology/supplychain/SupplyChain/Industry">
+        <rdfs:label>Industry</rdfs:label>
+        <skos:altLabel>Industrial Sector</skos:altLabel>
+    </rdf:Description>
+
+    <!-- Example Industry with correct suffix -->
+    <rdf:Description rdf:about="http://example.com/AutomotiveIndustry">
+        <rdfs:label>Automotive Industry</rdfs:label>
+        <skos:altLabel>Auto Industry</skos:altLabel>
+        <rdfs:subClassOf
+            rdf:resource="https://spec.industrialontologies.org/ontology/supplychain/SupplyChain/Industry" />
+    </rdf:Description>
+
+    <!-- Certificate Base -->
+    <rdf:Description rdf:about="http://asu.edu/semantics/SUDOKN/Certificate">
+        <rdfs:label>Certificate</rdfs:label>
+        <skos:altLabel>Certification</skos:altLabel>
+    </rdf:Description>
+
+    <!-- Example Certificate with correct suffix -->
+    <rdf:Description rdf:about="http://example.com/ISO9001Certificate">
+        <rdfs:label>ISO 9001 Certificate</rdfs:label>
+        <skos:altLabel>Quality Management Certificate</skos:altLabel>
+        <rdfs:subClassOf rdf:resource="http://asu.edu/semantics/SUDOKN/Certificate" />
+    </rdf:Description>
+
+</rdf:RDF>
