@@ -79,6 +79,17 @@ class OntologyService:
 
         return cls._instance
 
+    @classmethod
+    async def create_for_version(
+        cls, version_id: OntologyVersionIDType
+    ) -> "OntologyService":
+        """Standalone instance pinned to a specific S3 ontology version; independent of the shared singleton."""
+        instance = cls()
+        ontology = await download_ontology_rdf(version_id)
+        await instance._init_data(ontology)
+        instance._initialized = True
+        return instance
+
     async def _init_data(self, ontology: Optional[Ontology] = None) -> None:
         """Initialize ontology data by downloading from S3."""
         try:

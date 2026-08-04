@@ -57,7 +57,12 @@ app = FastAPI(lifespan=lifespan)
 
 
 @app.exception_handler(ValueError)
-async def value_error_handler(request, exc: ValueError):
+async def value_error_handler(request: Request, exc: ValueError):
+    # previously swallowed silently; log so validation failures are visible server-side
+    logger.error(
+        f"ValueError on {request.method} {request.url.path}: {exc}",
+        exc_info=True,
+    )
     return JSONResponse(
         status_code=400, content={"error": "Validation Error", "detail": str(exc)}
     )
@@ -96,6 +101,22 @@ async def validation_exception_handler(request: Request, exc: RequestValidationE
 
     return JSONResponse(
         status_code=422, content={"detail": errors, "error": "Request Validation Error"}
+    )
+
+
+@app.exception_handler(Exception)
+async def unhandled_exception_handler(request: Request, exc: Exception):
+    # Catch-all for anything not already handled above (e.g. KeyError, AttributeError, driver errors)
+    logger.error(
+        f"Unhandled exception on {request.method} {request.url.path}: {exc}",
+        exc_info=True,
+    )
+    return JSONResponse(
+        status_code=500,
+        content={
+            "error": "Internal Server Error",
+            "detail": "An unexpected error occurred. Please try again later.",
+        },
     )
 
 
