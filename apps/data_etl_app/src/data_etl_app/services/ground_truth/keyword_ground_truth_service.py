@@ -3,18 +3,18 @@ import logging
 from datetime import datetime
 
 
-from packages.core.src.core.models.field_types import S3FileVersionIDType
-from apps.data_etl_app.src.data_etl_app.utils.aws.s3.scraped_text_util import (
+from packages.infra.src.infra.field_types import S3FileVersionIDType
+from packages.infra.src.infra.utils.s3.scraped_text_util import (
     get_file_name_from_mfg_etld,
     download_scraped_text_from_s3_by_filename,
 )
-from packages.core.src.core.models.base.extraction_subject import (
+from packages.core.src.core.models.extraction_subject import (
     AbstractExtractionSubject,
 )
 from packages.core.src.core.models.extraction_results.keyword_extraction_results import (
     KeywordExtractionResults,
 )
-from apps.data_etl_app.src.data_etl_app.models.db.keyword_ground_truth import (
+from apps.data_etl_app.src.data_etl_app.db_models.keyword_ground_truth import (
     HumanKeywordCorrection,
     KeywordGroundTruth,
     KeywordCorrectionLog,

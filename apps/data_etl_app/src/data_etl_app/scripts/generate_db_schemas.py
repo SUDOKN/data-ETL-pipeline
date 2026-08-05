@@ -19,30 +19,39 @@ from pathlib import Path
 
 from beanie import Document
 
-from packages.core.src.core.models.db.api_key_bundle import APIKeyBundle
-from apps.data_etl_app.src.data_etl_app.models.db.binary_ground_truth import (
+
+from packages.llm_providers.src.llm_providers.db_models.scraping_error import (
+    ScrapingError,
+)
+from packages.llm_providers.src.llm_providers.db_models.api_key_bundle import (
+    APIKeyBundle,
+)
+from apps.data_etl_app.src.data_etl_app.db_models.binary_ground_truth import (
     BinaryGroundTruth,
 )
-from apps.data_etl_app.src.data_etl_app.models.db.concept_ground_truth import (
+from apps.data_etl_app.src.data_etl_app.db_models.concept_ground_truth import (
     ConceptGroundTruth,
 )
-from apps.data_etl_app.src.data_etl_app.models.db.deferred_manufacturer import (
+from apps.data_etl_app.src.data_etl_app.db_models.deferred_manufacturer import (
     DeferredManufacturer,
 )
-from packages.core.src.core.models.db.extraction_error import ExtractionError
-from packages.core.src.core.models.db.gpt_batch import GPTBatch
-from packages.core.src.core.models.db.gpt_batch_request import GPTBatchRequest
-from apps.data_etl_app.src.data_etl_app.models.db.keyword_ground_truth import (
+from packages.llm_providers.src.llm_providers.db_models.extraction_error import (
+    ExtractionError,
+)
+from packages.llm_providers.src.llm_providers.db_models.gpt_batch import GPTBatch
+from packages.llm_providers.src.llm_providers.db_models.gpt_batch_request import (
+    GPTBatchRequest,
+)
+from apps.data_etl_app.src.data_etl_app.db_models.keyword_ground_truth import (
     KeywordGroundTruth,
 )
-from apps.data_etl_app.src.data_etl_app.models.db.manufacturer import Manufacturer
-from apps.data_etl_app.src.data_etl_app.models.db.manufacturer_user_form import (
+from apps.data_etl_app.src.data_etl_app.db_models.manufacturer import Manufacturer
+from apps.data_etl_app.src.data_etl_app.db_models.manufacturer_user_form import (
     ManufacturerUserForm,
 )
-from apps.data_etl_app.src.data_etl_app.models.db.mep_request import MEPRequest
-from packages.core.src.core.models.db.place import Place
-from core.models.scraping_error import ScrapingError
-from packages.core.src.core.models.db.user import User
+from apps.data_etl_app.src.data_etl_app.db_models.mep_request import MEPRequest
+from apps.data_etl_app.src.data_etl_app.db_models.place import Place
+from apps.data_etl_app.src.data_etl_app.db_models.user import User
 
 MODELS: list[type[Document]] = [
     APIKeyBundle,

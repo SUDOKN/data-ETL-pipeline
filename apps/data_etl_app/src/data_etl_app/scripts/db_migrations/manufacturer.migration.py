@@ -25,12 +25,12 @@ load_scraper_env()
 load_data_etl_env()
 load_open_ai_app_env()
 
-from apps.data_etl_app.src.data_etl_app.models.db.manufacturer import Manufacturer
+from apps.data_etl_app.src.data_etl_app.db_models.manufacturer import Manufacturer
 from core.utils.mongo_client import (
     init_db,
 )
-from packages.core.src.core.utils.time_util import get_current_time
-from packages.core.src.core.utils.url_util import get_etld1_from_host
+from packages.pure_utils.src.pure_utils.time_util import get_current_time
+from packages.pure_utils.src.pure_utils.url_util import get_etld1_from_host
 
 logger = logging.getLogger(__name__)
 

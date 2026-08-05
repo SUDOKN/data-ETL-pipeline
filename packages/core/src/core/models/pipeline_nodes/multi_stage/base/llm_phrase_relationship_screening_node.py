@@ -4,8 +4,10 @@ from datetime import datetime
 from math import ceil
 from typing import TYPE_CHECKING, Optional
 
-from packages.core.src.core.models.db.gpt_batch_request import GPTBatchRequest
-from packages.core.src.core.models.batch_request_objects.gpt_batch_response_blob import (
+from packages.llm_providers.src.llm_providers.db_models.gpt_batch_request import (
+    GPTBatchRequest,
+)
+from packages.llm_providers.src.llm_providers.models.open_ai.gpt_batch_response_blob import (
     GPTBatchResponse,
 )
 from packages.core.src.core.models.deferred_extraction.deferred_phrase_extraction_requests import (
@@ -17,7 +19,7 @@ from packages.core.src.core.models.deferred_extraction.deferred_phrase_extractio
 from packages.core.src.core.models.extraction_schemas.screening import (
     LiveScreeningResults,
 )
-from packages.core.src.core.models.file_objects.prompt import Prompt
+from packages.llm_providers.src.llm_providers.models.file_objects.prompt import Prompt
 from packages.core.src.core.models.types_and_enums import LLMExtractedFieldTypeEnum
 from packages.core.src.core.models.pipeline_nodes.base.base_node import (
     LLMExtractedFieldTypeVar,
@@ -32,14 +34,14 @@ from packages.core.src.core.models.pipeline_nodes.base.base_llm_extraction_node 
 from packages.core.src.core.models.pipeline_nodes.multi_stage.base.llm_phrase_relationship_node import (
     LLMPhraseRelationshipNode,
 )
-from packages.core.src.core.models.field_types import BatchRequestIDType
+from packages.llm_providers.src.llm_providers.field_types import BatchRequestIDType
 
 if TYPE_CHECKING:
-    from apps.data_etl_app.src.data_etl_app.models.scraped_text_file import (
+    from packages.infra.src.infra.models.s3.scraped_text_file import (
         ScrapedTextFile,
     )
 
-from packages.core.src.core.services.gpt_batch_request.gpt_batch_request_service import (
+from packages.llm_providers.src.llm_providers.services.gpt_batch_request.gpt_batch_request_service import (
     dispatch_gpt_batch_request,
 )
 from packages.core.src.core.services.pipeline_nodes.multi_stage.llm_relationship_screening_node_service import (
@@ -175,18 +177,18 @@ class LLMPhraseRelationshipScreeningNode(
         eager: bool,
     ) -> list[GPTBatchRequest]:
         """Create batch requests for the phrase_relationship phase."""
-        mfg_name = pipeline_context.mfg_name
-        if not mfg_name:
+        subject_name = pipeline_context.subject_name
+        if not subject_name:
             raise ValueError(
-                f"llm_phrase_relationship_screening_node.create_batch_requests was called for {self.field_type.name} in {self.__class__.__name__} but pipeline_context.mfg_name is not set. Ensure business_desc is extracted before phrase_relationship."
+                f"llm_phrase_relationship_screening_node.create_batch_requests was called for {self.field_type.name} in {self.__class__.__name__} but pipeline_context.subject_name is not set. Ensure business_desc is extracted before phrase_relationship."
             )
 
         # create_missing_phrase_relationship_requests only creates batch requests fresh or only missing ones,
         # for e.g., new mfg or some batch requests failed earlier and were deleted to allow re-processing
         batch_requests = await create_missing_phrase_relationship_screening_requests(
             deferred_at=timestamp,
-            mfg_etld1=subject_unique_id,
-            mfg_name=mfg_name,
+            subject_unique_id=subject_unique_id,
+            subject_name=subject_name,
             field_type=self.field_type,
             missing_phrase_relationship_screening_req_ids=missing_request_ids,
             chunked_request_map=chunked_request_map,
@@ -213,7 +215,7 @@ class LLMPhraseRelationshipScreeningNode(
         timestamp: datetime,  # for recording errors
     ) -> LiveScreeningResults:
         return await get_phrase_relationship_screening_result(
-            mfg_etld1=subject_unique_id,
+            subject_unique_id=subject_unique_id,
             field_type=field_type,
             chunk_bounds=chunk_bounds,
             extraction_bundle=extraction_bundle,

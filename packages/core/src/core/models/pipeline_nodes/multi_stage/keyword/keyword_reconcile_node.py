@@ -4,7 +4,7 @@ import logging
 from datetime import datetime
 from typing import Optional
 
-from packages.core.src.core.models.base.extraction_subject import (
+from packages.core.src.core.models.extraction_subject import (
     AbstractExtractionSubject,
     AbstractDeferredExtractionSubject,
 )
@@ -24,7 +24,7 @@ from packages.core.src.core.models.pipeline_nodes.base.base_node import Pipeline
 from packages.core.src.core.models.pipeline_nodes.base.base_reconcile_node import (
     ReconcileNode,
 )
-from apps.data_etl_app.src.data_etl_app.models.scraped_text_file import ScrapedTextFile
+from packages.infra.src.infra.models.s3.scraped_text_file import ScrapedTextFile
 
 # if TYPE_CHECKING:
 
@@ -127,7 +127,7 @@ class KeywordReconcileNode(ReconcileNode[KeywordTypeEnum]):
             bundle,
         ) in extraction_requests.chunked_request_map.items():
             llm_search_results = await build_llm_phrase_search_results(
-                mfg_etld1=deferred_subject.subject_unique_id,
+                subject_unique_id=deferred_subject.subject_unique_id,
                 field_type=self.field_type,
                 chunk_bounds=chunk_bounds,
                 extraction_bundle=bundle,
@@ -137,7 +137,7 @@ class KeywordReconcileNode(ReconcileNode[KeywordTypeEnum]):
             )
 
             llm_phrase_relationship_flat = await get_phrase_relationship_result(
-                mfg_etld1=deferred_subject.subject_unique_id,
+                subject_unique_id=deferred_subject.subject_unique_id,
                 field_type=self.field_type,
                 chunk_bounds=chunk_bounds,
                 extraction_bundle=bundle,
@@ -147,7 +147,7 @@ class KeywordReconcileNode(ReconcileNode[KeywordTypeEnum]):
 
             llm_phrase_screening_flat = (
                 await parse_relationship_screening_batch_req_result(
-                    mfg_etld1=deferred_subject.subject_unique_id,
+                    subject_unique_id=deferred_subject.subject_unique_id,
                     field_type=self.field_type,
                     chunk_bounds=chunk_bounds,
                     extraction_bundle=bundle,
@@ -158,7 +158,7 @@ class KeywordReconcileNode(ReconcileNode[KeywordTypeEnum]):
 
             llm_phrase_freehand_grounding_flat = (
                 await parse_freehand_grounding_batch_req_result(
-                    mfg_etld1=deferred_subject.subject_unique_id,
+                    subject_unique_id=deferred_subject.subject_unique_id,
                     field_type=self.field_type,
                     chunk_bounds=chunk_bounds,
                     extraction_bundle=bundle,
@@ -213,7 +213,7 @@ class KeywordReconcileNode(ReconcileNode[KeywordTypeEnum]):
             all_keywords.update(grounded_keywords)
 
         write_phrase_trails_dump(
-            mfg_etld1=subject.subject_unique_id,
+            subject_unique_id=subject.subject_unique_id,
             field_type=self.field_type,
             timestamp=timestamp,
             chunked_phrase_trails=chunked_phrase_trails_dump,

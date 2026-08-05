@@ -26,13 +26,13 @@ print("Python version:", sys.version)
 print("Current working directory:", os.getcwd())
 print("\n\n")
 
-from apps.data_etl_app.src.data_etl_app.utils.ttl_generator_util import uri_strip
-from packages.core.src.core.utils.rdf_to_graph_util import (
+from packages.pure_utils.src.pure_utils.url_util import uri_strip
+from packages.knowledge.src.knowledge.utils.rdf_to_graph_util import (
     build_concept_tree,
     get_alt_labels,
     get_label,
 )
-from packages.core.src.core.models.ontology import Ontology
+from packages.knowledge.src.knowledge.models.ontology import Ontology
 
 # === Step 2: Define helpers ===
 
@@ -107,7 +107,7 @@ def unit_tests(graph: Graph):
 
 async def main():
     try:
-        from apps.data_etl_app.src.data_etl_app.dependencies.aws_clients import (
+        from apps.data_etl_app.src.data_etl_app.dependencies.aws_s3_clients import (
             cleanup_data_etl_aws_clients,
             initialize_data_etl_aws_clients,
         )

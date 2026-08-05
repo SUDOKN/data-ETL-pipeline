@@ -21,7 +21,7 @@ load_scraper_env()
 load_data_etl_env()
 load_open_ai_app_env()
 
-from apps.data_etl_app.src.data_etl_app.models.db.deferred_manufacturer import (
+from apps.data_etl_app.src.data_etl_app.db_models.deferred_manufacturer import (
     DeferredManufacturer,
 )
 from core.utils.mongo_client import init_db

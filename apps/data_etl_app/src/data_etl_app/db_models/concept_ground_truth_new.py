@@ -1,0 +1,119 @@
+from beanie import Document
+from datetime import datetime
+from enum import Enum
+from pydantic import BaseModel, Field
+
+from packages.core.src.core.field_types import (
+    SubjectUniqueIDType,
+)
+from packages.infra.src.infra.field_types import (
+    S3FileVersionIDType,
+)
+from packages.core.src.core.models.extraction_schemas.legacy_mapping_types import (
+    HumanVerificationResults,
+    RawLLMMappingResult,
+)
+from packages.core.src.core.models.extraction_schemas.search import LLMSearchResults
+from packages.core.src.core.models.extraction_results.concept_extraction_results import (
+    ConceptExtractionMetadata,
+    ConceptExtractionStats,
+)
+from packages.core.src.core.models.types_and_enums import (
+    ConceptTypeEnum,
+    GroundTruthSource,
+)
+
+from packages.pure_utils.src.pure_utils.time_util import get_current_time
+
+
+class DistillationResultVerificationEnum(str, Enum):
+    YES_PREFIX = "Yes — "
+    NO_PREFIX = "No — "
+    OUT_OF_SCOPE_YES_PREFIX = "Yes_though_out-of-scope, "
+    OUT_OF_SCOPE_NO_PREFIX = "No_though_out-of-scope, "
+
+
+class MappingResultVerificationEnum(str, Enum):
+    CORRECT_PREFIX = "Correct, "
+    INCORRECT_PREFIX = "Incorrect, "
+
+
+class DistillationResultCorrection(BaseModel):
+    upsert: HumanVerificationResults
+
+
+class SearchResultsCorrection(BaseModel):
+    upsert: LLMSearchResults
+
+
+class MappingResultCorrection(BaseModel):
+    upsert: RawLLMMappingResult
+
+    # constructor from original LLM mapping result
+    @classmethod
+    def from_raw_llm_mapping_result(
+        cls, original_mapping_result: RawLLMMappingResult
+    ) -> "MappingResultCorrection":
+        prefixed_mapping_result: RawLLMMappingResult = original_mapping_result.copy()
+        for _mu, mk_dict in prefixed_mapping_result.items():
+            for mk in mk_dict:
+                mk_dict[mk] = (
+                    f"{MappingResultVerificationEnum.CORRECT_PREFIX}{mk_dict[mk]}"
+                )
+        return cls(upsert=prefixed_mapping_result)
+
+
+class HumanConceptCorrection(BaseModel):
+    author_email: str
+    source: GroundTruthSource
+    llm_search_correction: SearchResultsCorrection
+    llm_phrase_relationship_screening: DistillationResultCorrection
+    llm_mapping_correction: MappingResultCorrection
+
+
+class ConceptCorrectionLog(BaseModel):
+    created_at: datetime  # must be set beforehand, no default provided on purpose
+    human_correction: HumanConceptCorrection
+
+
+class ConceptGroundTruth(Document):
+    created_at: datetime = Field(default_factory=lambda: get_current_time())
+    updated_at: datetime = Field(default_factory=lambda: get_current_time())
+
+    mfg_etld1: SubjectUniqueIDType
+    scraped_text_file_version_id: S3FileVersionIDType
+    concept_type: ConceptTypeEnum
+
+    # chunk identifiers
+    chunk_bounds: str
+    chunk_text: str
+    chunk_no: int  # used as navigation parameter
+    last_chunk_no: int  # informational for the end user
+
+    # following is a copy of what was extracted at the time of creating this ground truth
+    # stored originally in the linked manufacturer
+    metadata: ConceptExtractionMetadata
+    extraction_stats: ConceptExtractionStats
+
+    corrections: list[ConceptCorrectionLog]
+
+    class Settings:
+        name = "concept_ground_truths"
+
+
+"""
+Indexes in MongoDB for ConceptGroundTruth:
+
+db.concept_ground_truths.createIndex(
+  {
+    mfg_etld1: 1,
+    concept_type: 1,
+    scraped_text_file_version_id: 1,
+    chunk_bounds: 1,
+  },
+  { 
+    name: "concept_gt_unique_idx",
+    unique: true 
+  }
+)
+"""

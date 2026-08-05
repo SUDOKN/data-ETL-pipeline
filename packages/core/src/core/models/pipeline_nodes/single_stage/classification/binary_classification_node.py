@@ -3,15 +3,17 @@ import logging
 from datetime import datetime
 import traceback
 
-from packages.core.src.core.models.file_objects.prompt import Prompt
+from packages.llm_providers.src.llm_providers.models.file_objects.prompt import Prompt
 from packages.core.src.core.models.extraction_results.binary_classification_result import (
     LLMBinaryClassification,
 )
 from packages.core.src.core.models.deferred_extraction.deferred_single_stage_extraction_requests import (
     SingleStageExtractionRequestBundle,
 )
-from packages.core.src.core.models.db.gpt_batch_request import GPTBatchRequest
-from packages.core.src.core.services.gpt_batch_request.gpt_batch_request_writes import (
+from packages.llm_providers.src.llm_providers.db_models.gpt_batch_request import (
+    GPTBatchRequest,
+)
+from packages.llm_providers.src.llm_providers.services.gpt_batch_request.gpt_batch_request_writes import (
     record_response_parse_error,
 )
 from typing import TYPE_CHECKING
@@ -28,7 +30,7 @@ if TYPE_CHECKING:
 from packages.core.src.core.services.pipeline_nodes.single_stage.llm_binary_classification_service import (
     parse_binary_classification_result_from_gpt_response,
 )
-from packages.core.src.core.models.field_types import BatchRequestIDType
+from packages.llm_providers.src.llm_providers.field_types import BatchRequestIDType
 
 logger = logging.getLogger(__name__)
 

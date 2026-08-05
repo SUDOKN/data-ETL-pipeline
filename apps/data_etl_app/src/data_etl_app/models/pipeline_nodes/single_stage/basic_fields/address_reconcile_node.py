@@ -10,20 +10,22 @@ from apps.data_etl_app.src.data_etl_app.models.extraction_results.address_extrac
     AddressExtractionStatsMap,
     AddressExtractionResult,
 )
-from apps.data_etl_app.src.data_etl_app.models.db.manufacturer import Manufacturer
+from apps.data_etl_app.src.data_etl_app.db_models.manufacturer import Manufacturer
 from packages.core.src.core.models.deferred_extraction.deferred_single_stage_extraction_requests import (
     DeferredSingleStageExtractionRequests,
 )
-from apps.data_etl_app.src.data_etl_app.models.db.deferred_manufacturer import (
+from apps.data_etl_app.src.data_etl_app.db_models.deferred_manufacturer import (
     DeferredManufacturer,
 )
 from packages.core.src.core.models.types_and_enums import BasicFieldTypeEnum
-from data_etl_app.models.pipeline_nodes.base.base_node import PipelineContext
+from packages.core.src.core.models.pipeline_nodes import PipelineContext
 from apps.data_etl_app.src.data_etl_app.models.pipeline_nodes.single_stage.basic_fields.address_extraction_node import (
     AddressExtractionNode,
 )
-from data_etl_app.models.pipeline_nodes.base.base_reconcile_node import ReconcileNode
-from apps.data_etl_app.src.data_etl_app.models.scraped_text_file import ScrapedTextFile
+from packages.core.src.core.models.pipeline_nodes.base.base_reconcile_node import (
+    ReconcileNode,
+)
+from packages.infra.src.infra.models.s3.scraped_text_file import ScrapedTextFile
 
 from apps.data_etl_app.src.data_etl_app.services.manufacturer_service import (
     update_manufacturer,
@@ -84,7 +86,7 @@ class AddressReconcileNode(ReconcileNode[BasicFieldTypeEnum.addresses]):
 
         # call super wipe_down to clear deferred field and completed GPT requests from pipeline context
         await super().wipe_down(
-            deferred_mfg=deferred_mfg,
+            deferred_subject=deferred_mfg,
             associated_batch_request_custom_ids=list(
                 completed_extraction_requests.keys()
             ),

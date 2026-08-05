@@ -19,19 +19,19 @@ from selenium.common.exceptions import (
     StaleElementReferenceException,
 )
 
-from litellm_proxy_app.models.llm_model import LLM_Model
-from packages.core.src.core.utils.url_util import (
+from packages.llm_providers.src.llm_providers.models.llm_model import LLM_Model
+from packages.pure_utils.src.pure_utils.url_util import (
     get_final_landing_url,
     get_etld1_from_host,
 )
 
-from scraper_app.utils.selenium import (
+from packages.scraper.src.scraper.utils.selenium import (
     ChromeDriverFactory,
     LegacyDriverFactory,
 )
-from scraper_app.utils.social_media_blocker import social_media_blocker
-from scraper_app.utils.dedup_util import deduplicate_scraped_content
-from scraper_app.constants.scraping_constants import (
+from packages.scraper.src.scraper.utils.social_media_blocker import social_media_blocker
+from packages.scraper.src.scraper.utils.dedup_util import deduplicate_scraped_content
+from packages.scraper.src.scraper.constants.scraping_constants import (
     SKIP_EXTENSIONS,
     COOKIE_ACCEPTANCE_PATTERNS,
     COOKIE_BANNER_DETECTION_XPATH,

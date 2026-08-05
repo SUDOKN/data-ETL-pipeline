@@ -1,19 +1,19 @@
 import json
 import random
 from typing import Literal
-from packages.core.src.core.models.queue_items.queue_item import EmailUserErrand
-from apps.data_etl_app.src.data_etl_app.utils.aws.queue.gt_scrape_queue_util import (
+from packages.infra.src.infra.models.queue_items.queue_item import EmailUserErrand
+from packages.infra.src.infra.utils.aws.queue.gt_scrape_queue_util import (
     push_item_to_gt_scrape_queue,
 )
 from fastapi import APIRouter, HTTPException, Request, Query, Depends
 from fastapi.responses import JSONResponse
 
-from apps.data_etl_app.src.data_etl_app.models.db.manufacturer import Batch
-from packages.core.src.core.models.queue_items.to_scrape_item import ToScrapeItem
+from apps.data_etl_app.src.data_etl_app.db_models.manufacturer import Batch
+from packages.infra.src.infra.models.queue_items.to_scrape_item import ToScrapeItem
 from packages.core.src.core.models.extraction_results.concept_extraction_results import (
     ConceptExtractionResults,
 )
-from apps.data_etl_app.src.data_etl_app.models.db.concept_ground_truth import (
+from apps.data_etl_app.src.data_etl_app.db_models.concept_ground_truth import (
     ConceptGroundTruth,
     DistillationResultCorrection,
     HumanConceptCorrection,
@@ -29,24 +29,24 @@ from apps.data_etl_app.src.data_etl_app.services.manufacturer_service import (
     find_manufacturer_by_etld1,
     find_manufacturer_by_url,
 )
-from packages.core.src.core.services.user_service import find_by_email
+from apps.data_etl_app.src.data_etl_app.services.user_service import find_by_email
 from apps.data_etl_app.src.data_etl_app.services.ground_truth.concept_ground_truth_service import (
     get_corrected_results,
     get_extracted_concept_ground_truth,
     save_new_concept_ground_truth,
     add_correction_to_concept_ground_truth,
 )
-from packages.core.src.core.services.knowledge.ontology_service import (
+from packages.knowledge.src.knowledge.services.ontology_service import (
     get_ontology_service,
 )
 
 
-from packages.core.src.core.utils.url_util import (
+from packages.pure_utils.src.pure_utils.url_util import (
     get_normalized_url,
     get_complete_url_with_compatible_protocol,
 )
-from packages.core.src.core.utils.time_util import get_current_time
-from apps.data_etl_app.src.data_etl_app.utils.aws.s3.scraped_text_util import (
+from packages.pure_utils.src.pure_utils.time_util import get_current_time
+from packages.infra.src.infra.utils.s3.scraped_text_util import (
     download_scraped_text_from_s3_by_mfg_etld1,
 )
 

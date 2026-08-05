@@ -6,12 +6,14 @@ from abc import abstractmethod
 
 from typing import Union
 
-from packages.core.src.core.models.base.extraction_subject import (
+from packages.core.src.core.models.extraction_subject import (
     AbstractExtractionSubject,
     AbstractDeferredExtractionSubject,
 )
-from packages.core.src.core.models.db.gpt_batch_request import GPTBatchRequest
-from packages.core.src.core.models.batch_request_objects.gpt_batch_response_blob import (
+from packages.llm_providers.src.llm_providers.db_models.gpt_batch_request import (
+    GPTBatchRequest,
+)
+from packages.llm_providers.src.llm_providers.models.open_ai.gpt_batch_response_blob import (
     GPTBatchResponse,
 )
 from packages.core.src.core.models.deferred_extraction.deferred_keyword_extraction import (
@@ -55,16 +57,16 @@ from packages.core.src.core.models.types_and_enums import (
     LLMExtractedFieldTypeVar,
     LLMExtractedFieldTypeEnum,
 )
-from packages.core.src.core.models.field_types import BatchRequestIDType
-from apps.data_etl_app.src.data_etl_app.models.scraped_text_file import ScrapedTextFile
+from packages.llm_providers.src.llm_providers.field_types import BatchRequestIDType
+from packages.infra.src.infra.models.s3.scraped_text_file import ScrapedTextFile
 
-from packages.core.src.core.services.gpt_batch_request.gpt_batch_request_queries import (
+from packages.llm_providers.src.llm_providers.services.gpt_batch_request.gpt_batch_request_queries import (
     find_completed_gpt_batch_request_ids_only,
     find_completed_gpt_batch_requests_by_custom_ids,
     find_gpt_batch_request_ids_only,
     find_incomplete_gpt_batch_requests_by_custom_ids,
 )
-from packages.core.src.core.services.gpt_batch_request.gpt_batch_request_writes import (
+from packages.llm_providers.src.llm_providers.services.gpt_batch_request.gpt_batch_request_writes import (
     bulk_upsert_gpt_batch_requests_with_only_req_bodies,
     bulk_record_gpt_batch_responses,
 )
@@ -316,7 +318,8 @@ class BaseLLMExtractionNode(BaseNode[LLMExtractedFieldTypeVar, ResultT]):
                 f"batch_requests custom_ids:{[br.request.custom_id for br in batch_requests]}"
             )
             await bulk_upsert_gpt_batch_requests_with_only_req_bodies(
-                batch_requests=batch_requests, mfg_etld1=subject.subject_unique_id
+                batch_requests=batch_requests,
+                subject_unique_id=subject.subject_unique_id,
             )
         else:
             logger.debug(

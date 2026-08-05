@@ -2,7 +2,7 @@ from __future__ import annotations
 import logging
 from typing import TYPE_CHECKING
 
-from packages.core.src.core.models.file_objects.prompt import Prompt
+from packages.llm_providers.src.llm_providers.models.file_objects.prompt import Prompt
 from packages.core.src.core.models.pipeline_nodes.multi_stage.base.llm_phrase_freehand_grounding_node import (
     LLMPhraseFreehandGroundingNode,
 )

@@ -6,7 +6,9 @@ from typing import Optional
 
 from pydantic import ValidationError
 
-from packages.core.src.core.models.db.gpt_batch_request import GPTBatchRequest
+from packages.llm_providers.src.llm_providers.db_models.gpt_batch_request import (
+    GPTBatchRequest,
+)
 from packages.core.src.core.models.extraction_schemas.response_format_util import (
     build_gpt_response_format,
 )
@@ -14,8 +16,8 @@ from packages.core.src.core.models.extraction_schemas.search import (
     LLMSearchResults,
     PhraseSearchResponse,
 )
-from packages.core.src.core.models.file_objects.prompt import Prompt
-from litellm_proxy_app.models.llm_model import LLM_Model
+from packages.llm_providers.src.llm_providers.models.file_objects.prompt import Prompt
+from packages.llm_providers.src.llm_providers.models.llm_model import LLM_Model
 from packages.core.src.core.models.deferred_extraction.deferred_phrase_extraction_requests import (
     LLMPhraseExtractionRequestMap,
     LLMPhraseExtractionRequestBundle,
@@ -23,13 +25,15 @@ from packages.core.src.core.models.deferred_extraction.deferred_phrase_extractio
 from packages.core.src.core.models.types_and_enums import (
     LLMExtractedFieldTypeEnum,
 )
-from packages.core.src.core.models.field_types import BatchRequestIDType
-from open_ai_key_app.models.gpt_model_params import GPTModelParams
+from packages.llm_providers.src.llm_providers.field_types import BatchRequestIDType
+from packages.llm_providers.src.llm_providers.models.open_ai.gpt_model_params import (
+    GPTModelParams,
+)
 
-from packages.core.src.core.services.gpt_batch_request.gpt_batch_request_writes import (
+from packages.llm_providers.src.llm_providers.services.gpt_batch_request.gpt_batch_request_writes import (
     record_response_parse_error,
 )
-from packages.core.src.core.services.gpt_batch_request.gpt_batch_request_service import (
+from packages.llm_providers.src.llm_providers.services.gpt_batch_request.gpt_batch_request_service import (
     create_base_gpt_batch_request,
 )
 
@@ -62,7 +66,7 @@ def parse_llm_search_response(gpt_response: Optional[str]) -> LLMSearchResults:
 
 
 async def parse_batch_request_result(
-    mfg_etld1: str,
+    subject_unique_id: str,
     field_type: LLMExtractedFieldTypeEnum,
     chunk_bounds: str,
     extraction_bundle: LLMPhraseExtractionRequestBundle,
@@ -74,7 +78,7 @@ async def parse_batch_request_result(
     llm_phrase_search_request_id = extraction_bundle.llm_phrase_search_req_id
     if not llm_phrase_search_request_id:
         raise ValueError(
-            f"search_node.parse_batch_request_result: llm_phrase_search_request_id is None for chunk bounds {chunk_bounds} in {mfg_etld1}:{field_type.name}"
+            f"search_node.parse_batch_request_result: llm_phrase_search_request_id is None for chunk bounds {chunk_bounds} in {subject_unique_id}:{field_type.name}"
         )
 
     llm_search_req = all_phrase_search_req_responses_map.get(
@@ -82,11 +86,11 @@ async def parse_batch_request_result(
     )
     if not llm_search_req:
         raise ValueError(
-            f"search_node.parse_batch_request_result: Missing GPTBatchRequest for search request ID {llm_phrase_search_request_id} in {mfg_etld1}:{field_type.name}"
+            f"search_node.parse_batch_request_result: Missing GPTBatchRequest for search request ID {llm_phrase_search_request_id} in {subject_unique_id}:{field_type.name}"
         )
     elif not llm_search_req.response:
         raise ValueError(
-            f"search_node.parse_batch_request_result: GPTBatchRequest for search request ID {llm_phrase_search_request_id} has no response_blob in {mfg_etld1}:{field_type.name}"
+            f"search_node.parse_batch_request_result: GPTBatchRequest for search request ID {llm_phrase_search_request_id} has no response_blob in {subject_unique_id}:{field_type.name}"
         )
 
     try:
@@ -100,7 +104,7 @@ async def parse_batch_request_result(
             traceback_str=traceback.format_exc(),
         )
         logger.error(
-            f"search_node.parse_batch_request_result: Error parsing concept search results for manufacturer {mfg_etld1} from GPT response: {e}"
+            f"search_node.parse_batch_request_result: Error parsing concept search results for manufacturer {subject_unique_id} from GPT response: {e}"
         )
         raise
 
@@ -110,7 +114,7 @@ async def create_missing_phrase_search_requests(
     field_type: LLMExtractedFieldTypeEnum,  # used for logging and debugging
     missing_search_req_ids: set[BatchRequestIDType],
     chunked_request_map: LLMPhraseExtractionRequestMap,
-    mfg_etld1: str,
+    subject_unique_id: str,
     mfg_text: str,
     search_prompt: Prompt,
     llm_model: LLM_Model,
@@ -120,7 +124,7 @@ async def create_missing_phrase_search_requests(
 ) -> list[GPTBatchRequest]:
 
     logger.info(
-        f"create_missing_phrase_search_requests: Generating GPTBatchRequest for {mfg_etld1}:{field_type.name}"
+        f"create_missing_phrase_search_requests: Generating GPTBatchRequest for {subject_unique_id}:{field_type.name}"
     )
 
     batch_requests: list[GPTBatchRequest] = []
@@ -147,7 +151,7 @@ async def create_missing_phrase_search_requests(
         for llm_search_request_id, chunk_text in batch:
             llm_batch_request = create_base_gpt_batch_request(
                 deferred_at=deferred_at,
-                etld1=mfg_etld1,
+                subject_unique_id=subject_unique_id,
                 custom_id=llm_search_request_id,
                 context=chunk_text,
                 prompt_text=search_prompt.text,
@@ -166,7 +170,7 @@ async def create_missing_phrase_search_requests(
         if (i + BATCH_SIZE) % 500 == 0:
             logger.info(
                 f"Created {min(i + BATCH_SIZE, len(chunk_items))}/{len(chunk_items)} "
-                f"gpt request for {mfg_etld1}:{field_type} (Eager: {eager})"
+                f"gpt request for {subject_unique_id}:{field_type} (Eager: {eager})"
             )
 
     return batch_requests

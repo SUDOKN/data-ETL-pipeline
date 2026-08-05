@@ -5,7 +5,7 @@ import logging
 from packages.core.src.core.models.deferred_extraction.deferred_phrase_extraction_requests import (
     DeferredLLMPhraseExtractionRequests,
 )
-from packages.core.src.core.models.field_types import BatchRequestIDType
+from packages.llm_providers.src.llm_providers.field_types import BatchRequestIDType
 from packages.core.src.core.models.deferred_extraction.deferred_single_stage_extraction_requests import (
     DeferredSingleStageExtractionRequests,
 )
@@ -21,7 +21,7 @@ from packages.core.src.core.models.types_and_enums import (
     ConceptTypeEnum,
     KeywordTypeEnum,
 )
-from apps.data_etl_app.src.data_etl_app.models.db.deferred_manufacturer import (
+from apps.data_etl_app.src.data_etl_app.db_models.deferred_manufacturer import (
     DeferredManufacturer,
 )
 

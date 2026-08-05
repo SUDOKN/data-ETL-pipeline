@@ -8,7 +8,9 @@ from typing import Optional
 
 from pydantic import ValidationError
 
-from packages.core.src.core.models.db.gpt_batch_request import GPTBatchRequest
+from packages.llm_providers.src.llm_providers.db_models.gpt_batch_request import (
+    GPTBatchRequest,
+)
 from packages.core.src.core.models.extraction_schemas.relationship import (
     LLMPhraseRelationshipResults,
     PhraseRelationshipResponse,
@@ -17,9 +19,12 @@ from packages.core.src.core.models.extraction_schemas.response_format_util impor
     build_gpt_response_format,
 )
 from packages.core.src.core.models.extraction_schemas.search import LLMSearchResults
-from packages.core.src.core.models.file_objects.prompt import Prompt
-from litellm_proxy_app.models.llm_model import LLM_Model, NO_MODEL
-from packages.core.src.core.models.batch_request_objects.gpt_batch_response_blob import (
+from packages.llm_providers.src.llm_providers.models.file_objects.prompt import Prompt
+from packages.llm_providers.src.llm_providers.models.llm_model import (
+    LLM_Model,
+    NO_MODEL,
+)
+from packages.llm_providers.src.llm_providers.models.open_ai.gpt_batch_response_blob import (
     ChatCompletionChoiceMessage,
 )
 from packages.core.src.core.models.deferred_extraction.deferred_phrase_extraction_requests import (
@@ -39,13 +44,15 @@ from packages.core.src.core.models.pipeline_nodes.multi_stage.base.llm_phrase_se
     LLMPhraseSearchNode,
 )
 from packages.core.src.core.models.types_and_enums import LLMExtractedFieldTypeEnum
-from open_ai_key_app.models.gpt_model_params import GPTModelParams
-from packages.core.src.core.models.field_types import BatchRequestIDType
+from packages.llm_providers.src.llm_providers.models.open_ai.gpt_model_params import (
+    GPTModelParams,
+)
+from packages.llm_providers.src.llm_providers.field_types import BatchRequestIDType
 
-from packages.core.src.core.services.gpt_batch_request.gpt_batch_request_writes import (
+from packages.llm_providers.src.llm_providers.services.gpt_batch_request.gpt_batch_request_writes import (
     record_response_parse_error,
 )
-from packages.core.src.core.services.gpt_batch_request.gpt_batch_request_service import (
+from packages.llm_providers.src.llm_providers.services.gpt_batch_request.gpt_batch_request_service import (
     create_base_gpt_batch_request,
     get_dummy_gpt_batch_response,
 )
@@ -53,7 +60,7 @@ from packages.core.src.core.services.pipeline_nodes.multi_stage.llm_phrase_recur
     get_all_recursive_round_results,
 )
 
-from packages.core.src.core.utils.ground_truth_helper_util import (
+from apps.data_etl_app.src.data_etl_app.utils.ground_truth_helper_util import (
     merge_llm_and_brute_search_results,
 )
 
@@ -97,7 +104,7 @@ def parse_llm_phrase_relationship_result(
 
 
 async def get_phrase_relationship_result(
-    mfg_etld1: str,
+    subject_unique_id: str,
     field_type: LLMExtractedFieldTypeEnum,
     chunk_bounds: str,
     extraction_bundle: LLMPhraseExtractionRequestBundle,
@@ -107,17 +114,17 @@ async def get_phrase_relationship_result(
     req_id = extraction_bundle.llm_phrase_relationship_req_id
     if not req_id:
         raise ValueError(
-            f"phrase_relationship_node.parse_batch_request_result: phrase_relationship_request_id is None for chunk bounds {chunk_bounds} in {mfg_etld1}:{field_type.name}"
+            f"phrase_relationship_node.parse_batch_request_result: phrase_relationship_request_id is None for chunk bounds {chunk_bounds} in {subject_unique_id}:{field_type.name}"
         )
 
     req_obj = completed_request_map.get(req_id)
     if not req_obj:
         raise ValueError(
-            f"phrase_relationship_node.parse_batch_request_result: Missing GPTBatchRequest for phrase_relationship request ID {req_id} in {mfg_etld1}:{field_type.name}"
+            f"phrase_relationship_node.parse_batch_request_result: Missing GPTBatchRequest for phrase_relationship request ID {req_id} in {subject_unique_id}:{field_type.name}"
         )
     elif not req_obj.response:
         raise ValueError(
-            f"phrase_relationship_node.parse_batch_request_result: GPTBatchRequest for phrase_relationship request ID {req_id} has no response_blob in {mfg_etld1}:{field_type.name}"
+            f"phrase_relationship_node.parse_batch_request_result: GPTBatchRequest for phrase_relationship request ID {req_id} has no response_blob in {subject_unique_id}:{field_type.name}"
         )
 
     try:
@@ -133,14 +140,14 @@ async def get_phrase_relationship_result(
             traceback_str=traceback.format_exc(),
         )
         logger.error(
-            f"phrase_relationship_node.parse_batch_request_result: Error parsing phrase_relationship results for manufacturer {mfg_etld1} from GPT response: {e}"
+            f"phrase_relationship_node.parse_batch_request_result: Error parsing phrase_relationship results for manufacturer {subject_unique_id} from GPT response: {e}"
         )
         raise
 
 
 async def create_missing_phrase_relationship_requests(
-    mfg_etld1: str,
-    mfg_name: str,
+    subject_unique_id: str,
+    subject_name: str,
     field_type: LLMExtractedFieldTypeEnum,  # used for logging and debugging
     chunked_request_map: LLMPhraseExtractionRequestMap,
     missing_phrase_relationship_req_ids: set[BatchRequestIDType],
@@ -157,7 +164,7 @@ async def create_missing_phrase_relationship_requests(
     BATCH_SIZE=100,
 ) -> list[GPTBatchRequest]:
     logger.info(
-        f"create_missing_phrase_relationship_requests: Generating GPTBatchRequests for {mfg_etld1}:{field_type}"
+        f"create_missing_phrase_relationship_requests: Generating GPTBatchRequests for {subject_unique_id}:{field_type}"
     )
 
     batch_requests: list[GPTBatchRequest] = []
@@ -172,7 +179,7 @@ async def create_missing_phrase_relationship_requests(
     # Create lookup map: custom_id -> GPTBatchRequest
     if not llm_phrase_search_gpt_request_map:
         raise ValueError(
-            f"create_missing_phrase_relationship_requests: No completed GPTBatchRequests found for {mfg_etld1}:{field_type} in upstream_completed_batch_req_map"
+            f"create_missing_phrase_relationship_requests: No completed GPTBatchRequests found for {subject_unique_id}:{field_type} in upstream_completed_batch_req_map"
         )
 
     # Process chunks in batches to yield control periodically
@@ -183,7 +190,7 @@ async def create_missing_phrase_relationship_requests(
         for chunk_bounds, extraction_bundle in batch:
             # upstream phrase search results for this chunk
             llm_phrase_search_results = await LLMPhraseSearchNode.get_result(
-                mfg_etld1=mfg_etld1,
+                subject_unique_id=subject_unique_id,
                 field_type=field_type,
                 chunk_bounds=chunk_bounds,
                 extraction_bundle=extraction_bundle,
@@ -193,7 +200,7 @@ async def create_missing_phrase_relationship_requests(
 
             llm_phrase_recursive_search_results = (
                 await LLMPhraseRecursiveSearchNode.get_result(
-                    mfg_etld1=mfg_etld1,
+                    subject_unique_id=subject_unique_id,
                     field_type=field_type,
                     chunk_bounds=chunk_bounds,
                     extraction_bundle=extraction_bundle,
@@ -209,7 +216,7 @@ async def create_missing_phrase_relationship_requests(
             )
             if not llm_phrase_relationship_request_id:
                 raise ValueError(
-                    f"create_missing_phrase_relationship_requests: llm_phrase_relationship_request_id is None for chunk bounds {chunk_bounds} in {mfg_etld1}:{field_type}"
+                    f"create_missing_phrase_relationship_requests: llm_phrase_relationship_request_id is None for chunk bounds {chunk_bounds} in {subject_unique_id}:{field_type}"
                 )
 
             # Combine LLM search with brute force results (concept pipelines only) to get the
@@ -231,11 +238,11 @@ async def create_missing_phrase_relationship_requests(
             if not all_search_results:
                 # add a dummy response blob with empty dict
                 logger.info(
-                    f"No phrases found in text, for {mfg_etld1}:{field_type}, creating dummy phrase_relationship request"
+                    f"No phrases found in text, for {subject_unique_id}:{field_type}, creating dummy phrase_relationship request"
                 )
                 dummy_batch_request = _create_dummy_completed_phrase_relationship_batch_request(
                     deferred_at=timestamp,
-                    etld1=mfg_etld1,
+                    subject_unique_id=subject_unique_id,
                     llm_phrase_relationship_request_id=llm_phrase_relationship_request_id,
                     model_params=model_params,
                     eager=eager,
@@ -246,13 +253,13 @@ async def create_missing_phrase_relationship_requests(
                     chunk_bounds.split(":")[1]
                 )
                 logger.info(
-                    f"Passing on candidates {all_search_results} to phrase_relationship phase for {mfg_etld1}:{field_type} chunk {chunk_bounds}"
+                    f"Passing on candidates {all_search_results} to phrase_relationship phase for {subject_unique_id}:{field_type} chunk {chunk_bounds}"
                 )
                 phrase_relationship_batch_request = create_deferred_phrase_relationship_gpt_request(
                     deferred_at=timestamp,
-                    etld1=mfg_etld1,
+                    subject_unique_id=subject_unique_id,
                     llm_phrase_relationship_request_id=llm_phrase_relationship_request_id,
-                    mfg_name=mfg_name,
+                    subject_name=subject_name,
                     mfg_text=mfg_text[start:end],
                     search_results=all_search_results,
                     phrase_relationship_prompt=phrase_relationship_prompt,
@@ -270,7 +277,7 @@ async def create_missing_phrase_relationship_requests(
         if (i + BATCH_SIZE) % 500 == 0:
             logger.info(
                 f"Created {min(i + BATCH_SIZE, len(chunk_items))}/{len(chunk_items)} "
-                f"gpt request for {mfg_etld1}:{field_type}"
+                f"gpt request for {subject_unique_id}:{field_type}"
             )
 
     return batch_requests
@@ -278,7 +285,7 @@ async def create_missing_phrase_relationship_requests(
 
 def _create_dummy_completed_phrase_relationship_batch_request(
     deferred_at: datetime,
-    etld1: str,
+    subject_unique_id: str,
     llm_phrase_relationship_request_id: BatchRequestIDType,
     model_params: GPTModelParams,
     eager: bool,
@@ -290,7 +297,7 @@ def _create_dummy_completed_phrase_relationship_batch_request(
 
     base_gpt_batch_request = create_base_gpt_batch_request(
         deferred_at=deferred_at,
-        etld1=etld1,
+        subject_unique_id=subject_unique_id,
         custom_id=llm_phrase_relationship_request_id,
         context="No phrase_relationship needed - no phrases found in text.",
         prompt_text="No phrase relationships needed - no phrases found in text brute force or by LLM.",
@@ -313,9 +320,9 @@ def _create_dummy_completed_phrase_relationship_batch_request(
 
 def create_deferred_phrase_relationship_gpt_request(
     deferred_at: datetime,
-    etld1: str,
+    subject_unique_id: str,
     llm_phrase_relationship_request_id: str,
-    mfg_name: str,
+    subject_name: str,
     mfg_text: str,
     search_results: LLMSearchResults,
     phrase_relationship_prompt: Prompt,
@@ -327,14 +334,14 @@ def create_deferred_phrase_relationship_gpt_request(
         f"create_deferred_phrase_relationship_gpt_request: Generating GPTBatchRequest for {llm_phrase_relationship_request_id}"
     )
     context = (
-        f"manufacturer name: {mfg_name}\n\n"
+        f"manufacturer name: {subject_name}\n\n"
         f"scraped text:\n{mfg_text} \n\n "
         f"extracted phrases:\n{list(search_results)}"
     )
 
     gpt_batch_request = create_base_gpt_batch_request(
         deferred_at=deferred_at,
-        etld1=etld1,
+        subject_unique_id=subject_unique_id,
         custom_id=llm_phrase_relationship_request_id,
         context=context,
         prompt_text=phrase_relationship_prompt.text,

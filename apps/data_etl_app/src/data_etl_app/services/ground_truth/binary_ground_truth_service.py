@@ -1,23 +1,23 @@
 from datetime import datetime
 import logging
 
-from packages.core.src.core.models.base.extraction_subject import (
+from packages.core.src.core.models.extraction_subject import (
     AbstractExtractionSubject,
 )
-from packages.core.src.core.models.field_types import (
+from packages.infra.src.infra.field_types import (
     S3FileVersionIDType,
 )
 
 from packages.core.src.core.models.types_and_enums import BinaryClassificationTypeEnum
-from apps.data_etl_app.src.data_etl_app.models.db.binary_ground_truth import (
+from apps.data_etl_app.src.data_etl_app.db_models.binary_ground_truth import (
     BinaryGroundTruth,
     HumanDecisionLog,
     HumanBinaryDecision,
 )
-from scraper_app.utils.aws.s3.scraped_text_util import (
+from packages.infra.src.infra.utils.s3.scraped_text_util import (
     download_scraped_text_from_s3_by_mfg_etld1,
 )
-from packages.core.src.core.utils.prompt_s3_util import (
+from packages.infra.src.infra.utils.s3.prompt_s3_util import (
     does_prompt_version_exist,
     get_prompt_filename,
 )
@@ -40,7 +40,7 @@ async def get_binary_ground_truth(
         BinaryGroundTruth.mfg_etld1 == linked_manufacturer.subject_unique_id,
         BinaryGroundTruth.scraped_text_file_version_id
         == linked_manufacturer.scraped_text_file_version_id,
-        BinaryGroundTruth.metadata.prompt_version_id  # CAUTION: does not throw an error if stats doesn't exist
+        BinaryGroundTruth.metadata.single_stage.prompt_version_id  # CAUTION: does not throw an error if stats doesn't exist
         == prompt_version_id,  # critical
         BinaryGroundTruth.classification_type == classification_type,
     )
@@ -151,7 +151,7 @@ async def _validate_binary_ground_truth_correction(
 
     # check if scraped file exists
     await download_scraped_text_from_s3_by_mfg_etld1(
-        etld1=binary_ground_truth.mfg_etld1,
+        subject_unique_id=binary_ground_truth.mfg_etld1,
         version_id=binary_ground_truth.scraped_text_file_version_id,
     )
 
@@ -161,7 +161,7 @@ async def _validate_binary_ground_truth_correction(
     )
 
     if not await does_prompt_version_exist(
-        prompt_filename, binary_ground_truth.metadata.prompt_version_id
+        prompt_filename, binary_ground_truth.metadata.single_stage.prompt_version_id
     ):
         raise ValueError(f"Prompt file '{prompt_filename}' does not exist.")
 

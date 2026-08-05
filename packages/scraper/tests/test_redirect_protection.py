@@ -10,8 +10,8 @@ from unittest.mock import Mock, patch
 # Add the src directory to Python path for imports
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), "src"))
 
-from scraper_app.services.url_scraper_service import ScraperService
-from scraper_app.utils.social_media_blocker import social_media_blocker
+from packages.scraper.src.scraper.services.url_scraper_service import ScraperService
+from packages.scraper.src.scraper.utils.social_media_blocker import social_media_blocker
 
 
 def test_redirect_protection():
@@ -23,7 +23,9 @@ def test_redirect_protection():
     scraper = ScraperService(max_concurrent_browsers=1, max_depth=1, headless=True)
 
     # Test the _extract_text_with_fallback method directly with a mock
-    with patch("scraper_app.services.url_scraper_service.webdriver") as mock_webdriver:
+    with patch(
+        "packages.scraper.src.scraper.services.url_scraper_service.webdriver"
+    ) as mock_webdriver:
         # Create a mock driver
         mock_driver = Mock()
 
@@ -48,7 +50,9 @@ def test_redirect_protection():
             print(f"❌ FAILED: Unexpected error: {e}")
 
     # Test with legitimate redirect (should work)
-    with patch("scraper_app.services.url_scraper_service.webdriver") as mock_webdriver:
+    with patch(
+        "packages.scraper.src.scraper.services.url_scraper_service.webdriver"
+    ) as mock_webdriver:
         mock_driver = Mock()
 
         # Simulate legitimate redirect

@@ -9,10 +9,12 @@ from pymongo.errors import DuplicateKeyError
 from apps.data_etl_app.src.data_etl_app.services.manufacturer_service import (
     find_manufacturer_by_etld1,
 )
-from packages.core.src.core.utils.url_util import get_etld1_from_host
-from packages.core.src.core.utils.graph_db_client import SPARQLQueryError
+from packages.pure_utils.src.pure_utils.url_util import get_etld1_from_host
+from packages.infra.src.infra.utils.db_clients.graph_db_client import (
+    SPARQLQueryError,
+)
 
-from apps.data_etl_app.src.data_etl_app.models.db.manufacturer_user_form import (
+from apps.data_etl_app.src.data_etl_app.db_models.manufacturer_user_form import (
     ManufacturerUserForm,
 )
 from apps.data_etl_app.src.data_etl_app.services.manufacturer_user_form_service import (

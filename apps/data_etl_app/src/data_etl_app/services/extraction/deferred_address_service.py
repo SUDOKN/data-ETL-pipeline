@@ -6,7 +6,7 @@ from pydantic import ValidationError
 from apps.data_etl_app.src.data_etl_app.models.extraction_results.address_extraction_result import (
     Address,
 )
-from packages.core.src.core.models.extraction_schemas.basic_fields import (
+from apps.data_etl_app.src.data_etl_app.models.basic_fields import (
     AddressExtractionResponse,
 )
 

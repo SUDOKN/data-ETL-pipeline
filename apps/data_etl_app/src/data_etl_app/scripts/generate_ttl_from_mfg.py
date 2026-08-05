@@ -27,9 +27,9 @@ load_open_ai_app_env()
 from apps.data_etl_app.src.data_etl_app.services.ttl_generator_service import (
     generate_triples,
 )
-from apps.data_etl_app.src.data_etl_app.models.db.manufacturer import Manufacturer
-from packages.core.src.core.models.ontology import Ontology
-from apps.data_etl_app.src.data_etl_app.models.db.manufacturer_user_form import (
+from apps.data_etl_app.src.data_etl_app.db_models.manufacturer import Manufacturer
+from packages.knowledge.src.knowledge.models.ontology import Ontology
+from apps.data_etl_app.src.data_etl_app.db_models.manufacturer_user_form import (
     ManufacturerUserForm,
 )
 
@@ -129,13 +129,13 @@ async def main():
 
     try:
         # Initialize AWS clients
-        from apps.data_etl_app.src.data_etl_app.dependencies.aws_clients import (
+        from apps.data_etl_app.src.data_etl_app.dependencies.aws_s3_clients import (
             cleanup_data_etl_aws_clients,
             initialize_data_etl_aws_clients,
         )
 
         await initialize_data_etl_aws_clients()
-        from packages.core.src.core.services.knowledge.ontology_service import (
+        from packages.knowledge.src.knowledge.services.ontology_service import (
             get_ontology_service,
         )
 
@@ -201,6 +201,7 @@ async def main():
                 logger.info(f"Processing manufacturer document: {mfg_doc.get('etld1')}")
                 mfg = Manufacturer(**mfg_doc)
                 muf = ManufacturerUserForm(
+                    ontology_version_id=ontology.s3_version_id,
                     author_email="me",
                     etld1=mfg.etld1,
                     name=(

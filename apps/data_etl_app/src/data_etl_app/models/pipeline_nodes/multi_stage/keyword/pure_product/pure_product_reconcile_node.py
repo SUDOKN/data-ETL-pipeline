@@ -1,7 +1,7 @@
 from __future__ import annotations
 
-from data_etl_app.models.pipeline_nodes.base.base_node import PipelineContext
-from data_etl_app.models.pipeline_nodes.multi_stage.keyword.base.keyword_reconcile_node import (
+from packages.core.src.core.models.pipeline_nodes import PipelineContext
+from packages.core.src.core.models.pipeline_nodes.multi_stage.keyword.keyword_reconcile_node import (
     KeywordReconcileNode,
 )
 from packages.core.src.core.models.types_and_enums import KeywordTypeEnum

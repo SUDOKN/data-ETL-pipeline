@@ -1,7 +1,7 @@
 """Unit tests for get_file_name_from_mfg_etld function."""
 
 import pytest
-from apps.data_etl_app.src.data_etl_app.utils.aws.s3.scraped_text_util import (
+from packages.infra.src.infra.utils.s3.scraped_text_util import (
     get_file_name_from_mfg_etld,
 )
 
@@ -18,11 +18,11 @@ class TestGetFileNameFromMfgEtld:
             ("apple.com", "apple.com.txt"),
         ]
 
-        for etld1, expected in test_cases:
-            result = get_file_name_from_mfg_etld(etld1)
+        for subject_unique_id, expected in test_cases:
+            result = get_file_name_from_mfg_etld(subject_unique_id)
             assert (
                 result == expected
-            ), f"Failed for {etld1}: expected {expected}, got {result}"
+            ), f"Failed for {subject_unique_id}: expected {expected}, got {result}"
 
     def test_valid_etld1_complex_tlds(self):
         """Test with valid eTLD+1 domains having complex TLDs."""
@@ -33,11 +33,11 @@ class TestGetFileNameFromMfgEtld:
             ("site.edu.mx", "site.edu.mx.txt"),
         ]
 
-        for etld1, expected in test_cases:
-            result = get_file_name_from_mfg_etld(etld1)
+        for subject_unique_id, expected in test_cases:
+            result = get_file_name_from_mfg_etld(subject_unique_id)
             assert (
                 result == expected
-            ), f"Failed for {etld1}: expected {expected}, got {result}"
+            ), f"Failed for {subject_unique_id}: expected {expected}, got {result}"
 
     def test_invalid_input_full_urls(self):
         """Test that full URLs are rejected."""
@@ -49,7 +49,9 @@ class TestGetFileNameFromMfgEtld:
         ]
 
         for invalid_input in invalid_inputs:
-            with pytest.raises(ValueError, match="etld1:.* passed is inconsistent"):
+            with pytest.raises(
+                ValueError, match="subject_unique_id:.* passed is inconsistent"
+            ):
                 get_file_name_from_mfg_etld(invalid_input)
 
     def test_invalid_input_subdomains(self):
@@ -62,7 +64,9 @@ class TestGetFileNameFromMfgEtld:
         ]
 
         for invalid_input in invalid_inputs:
-            with pytest.raises(ValueError, match="etld1:.* passed is inconsistent"):
+            with pytest.raises(
+                ValueError, match="subject_unique_id:.* passed is inconsistent"
+            ):
                 get_file_name_from_mfg_etld(invalid_input)
 
     def test_invalid_input_no_tld(self):
@@ -102,11 +106,11 @@ class TestGetFileNameFromMfgEtld:
             ("domain123.org", "domain123.org.txt"),  # Numeric end
         ]
 
-        for etld1, expected in test_cases:
-            result = get_file_name_from_mfg_etld(etld1)
+        for subject_unique_id, expected in test_cases:
+            result = get_file_name_from_mfg_etld(subject_unique_id)
             assert (
                 result == expected
-            ), f"Failed for {etld1}: expected {expected}, got {result}"
+            ), f"Failed for {subject_unique_id}: expected {expected}, got {result}"
 
     def test_lowercase_enforcement(self):
         """Test that the function enforces lowercase domains."""
@@ -118,11 +122,11 @@ class TestGetFileNameFromMfgEtld:
             ("mixedcase.org", "mixedcase.org.txt"),
         ]
 
-        for etld1, expected in valid_lowercase_cases:
-            result = get_file_name_from_mfg_etld(etld1)
+        for subject_unique_id, expected in valid_lowercase_cases:
+            result = get_file_name_from_mfg_etld(subject_unique_id)
             assert (
                 result == expected
-            ), f"Failed for {etld1}: expected {expected}, got {result}"
+            ), f"Failed for {subject_unique_id}: expected {expected}, got {result}"
 
     def test_uppercase_domains_rejected(self):
         """Test that uppercase or mixed-case domains are rejected."""
@@ -138,7 +142,9 @@ class TestGetFileNameFromMfgEtld:
         ]
 
         for invalid_input in invalid_case_inputs:
-            with pytest.raises(ValueError, match="etld1:.* passed is inconsistent"):
+            with pytest.raises(
+                ValueError, match="subject_unique_id:.* passed is inconsistent"
+            ):
                 get_file_name_from_mfg_etld(invalid_input)
 
     def test_mixed_case_complex_tlds_rejected(self):
@@ -151,7 +157,9 @@ class TestGetFileNameFromMfgEtld:
         ]
 
         for invalid_input in invalid_mixed_case_tlds:
-            with pytest.raises(ValueError, match="etld1:.* passed is inconsistent"):
+            with pytest.raises(
+                ValueError, match="subject_unique_id:.* passed is inconsistent"
+            ):
                 get_file_name_from_mfg_etld(invalid_input)
 
     def test_international_domains(self):
@@ -162,12 +170,12 @@ class TestGetFileNameFromMfgEtld:
             ("xn--nxasmq6b.com", "xn--nxasmq6b.com.txt"),  # Punycode domain
         ]
 
-        for etld1, expected in test_cases:
+        for subject_unique_id, expected in test_cases:
             try:
-                result = get_file_name_from_mfg_etld(etld1)
+                result = get_file_name_from_mfg_etld(subject_unique_id)
                 assert (
                     result == expected
-                ), f"Failed for {etld1}: expected {expected}, got {result}"
+                ), f"Failed for {subject_unique_id}: expected {expected}, got {result}"
             except ValueError:
                 # Some international domains might not be recognized by tldextract
                 # This is acceptable behavior
@@ -183,11 +191,11 @@ class TestGetFileNameFromMfgEtld:
         """Test that output format is always consistent."""
         test_inputs = ["example.com", "test.org", "company.co.uk"]
 
-        for etld1 in test_inputs:
-            result = get_file_name_from_mfg_etld(etld1)
+        for subject_unique_id in test_inputs:
+            result = get_file_name_from_mfg_etld(subject_unique_id)
             # Should always end with .txt
             assert result.endswith(".txt")
             # Should always start with the input domain
-            assert result.startswith(etld1)
+            assert result.startswith(subject_unique_id)
             # Should be exactly input + ".txt"
-            assert result == f"{etld1}.txt"
+            assert result == f"{subject_unique_id}.txt"

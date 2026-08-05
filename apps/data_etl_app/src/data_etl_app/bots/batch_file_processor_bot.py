@@ -27,47 +27,56 @@ load_data_etl_env()
 load_open_ai_app_env()
 
 
-from packages.core.src.core.models.db.api_key_bundle import APIKeyBundle
-from packages.core.src.core.models.db.gpt_batch import GPTBatch, GPTBatchStatus
-from litellm_proxy_app.models.llm_model import GPT_4o_mini
-from open_ai_key_app.models.gpt_model_params import GPTModelParams
-from litellm_proxy_app.models.llm_model import LLM_Model
-from apps.data_etl_app.src.data_etl_app.models.scraped_text_file import ScrapedTextFile
+from packages.llm_providers.src.llm_providers.db_models.api_key_bundle import (
+    APIKeyBundle,
+)
+from packages.llm_providers.src.llm_providers.db_models.gpt_batch import (
+    GPTBatch,
+    GPTBatchStatus,
+)
+from packages.llm_providers.src.llm_providers.models.llm_model import GPT_4o_mini
+from packages.llm_providers.src.llm_providers.models.open_ai.gpt_model_params import (
+    GPTModelParams,
+)
+from packages.llm_providers.src.llm_providers.models.llm_model import LLM_Model
+from packages.infra.src.infra.models.s3.scraped_text_file import ScrapedTextFile
 
-from packages.core.src.core.services.gpt_batch_request.gpt_batch_request_queries import (
+from packages.llm_providers.src.llm_providers.services.gpt_batch_request.gpt_batch_request_queries import (
     get_custom_ids_for_batch,
 )
-from packages.core.src.core.services.gpt_batch_request.gpt_batch_request_writes import (
+from packages.llm_providers.src.llm_providers.services.gpt_batch_request.gpt_batch_request_writes import (
     bulk_update_gpt_batch_requests,
     pair_batch_request_custom_ids_with_batch,
     unpair_all_batch_requests_from_batch,
 )
-from packages.core.src.core.services.api_key_service import (
+from packages.llm_providers.src.llm_providers.services.api_key_bundle.api_key_bundle_service import (
     get_all_api_key_bundles,
 )
 from apps.data_etl_app.src.data_etl_app.services.manufacturer_service import (
     find_manufacturers_by_etld1s,
 )
-from packages.core.src.core.models.ontology import Ontology
-from packages.core.src.core.services.knowledge.prompt_service import PromptService
-from open_ai_key_app.services.batch_file_generator import (
+from packages.knowledge.src.knowledge.models.ontology import Ontology
+from apps.data_etl_app.src.data_etl_app.services.prompt_service import PromptService
+from apps.data_etl_app.src.data_etl_app.services.batch_file_generator import (
     BatchFileGenerationResult,
     iterate_df_manufacturers_and_write_batch_files,
 )
-from open_ai_key_app.services.batch_file_satellite import (
+from apps.data_etl_app.src.data_etl_app.services.batch_file_satellite import (
     BatchFileSatellite,
     BatchDownloadOutput,
 )
 from apps.data_etl_app.src.data_etl_app.services.manufacturer_extraction_orchestrator import (
     ManufacturerExtractionOrchestrator,
 )
-from packages.core.src.core.services.knowledge.prompt_service import get_prompt_service
-from packages.core.src.core.services.knowledge.ontology_service import (
+from apps.data_etl_app.src.data_etl_app.services.prompt_service import (
+    get_prompt_service,
+)
+from packages.knowledge.src.knowledge.services.ontology_service import (
     get_ontology_service,
 )
 
-from packages.core.src.core.utils.time_util import get_current_time
-from packages.core.src.core.utils.gpt_batch_request_util import (
+from packages.pure_utils.src.pure_utils.time_util import get_current_time
+from packages.llm_providers.src.llm_providers.utils.open_ai.gpt_batch_request_util import (
     parse_individual_batch_req_response_raw,
 )
 
@@ -574,11 +583,11 @@ class BatchFileStation:
 
 
 async def async_main():
-    from apps.data_etl_app.src.data_etl_app.dependencies.aws_clients_scraper import (
+    from apps.data_etl_app.src.data_etl_app.dependencies.aws_sqs_clients import (
         initialize_scraper_aws_clients,
         cleanup_scraper_aws_clients,
     )
-    from apps.data_etl_app.src.data_etl_app.dependencies.aws_clients import (
+    from apps.data_etl_app.src.data_etl_app.dependencies.aws_s3_clients import (
         initialize_data_etl_aws_clients,
         cleanup_data_etl_aws_clients,
     )

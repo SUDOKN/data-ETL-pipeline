@@ -4,11 +4,13 @@ import logging
 from datetime import datetime
 from typing import override
 
-from packages.core.src.core.models.db.gpt_batch_request import GPTBatchRequest
-from packages.core.src.core.models.batch_request_objects.gpt_batch_response_blob import (
+from packages.llm_providers.src.llm_providers.db_models.gpt_batch_request import (
+    GPTBatchRequest,
+)
+from packages.llm_providers.src.llm_providers.models.open_ai.gpt_batch_response_blob import (
     GPTBatchResponse,
 )
-from packages.core.src.core.models.file_objects.prompt import Prompt
+from packages.llm_providers.src.llm_providers.models.file_objects.prompt import Prompt
 from packages.core.src.core.models.extraction_schemas.search import LLMSearchResults
 from packages.core.src.core.models.deferred_extraction.deferred_phrase_extraction_requests import (
     DeferredLLMPhraseExtractionRequests,
@@ -32,10 +34,10 @@ from packages.core.src.core.models.pipeline_nodes.base.base_llm_extraction_node 
 from packages.core.src.core.models.pipeline_nodes.base.base_llm_recursive_extraction_node import (
     BaseLLMRecursiveExtractionNode,
 )
-from packages.core.src.core.models.field_types import BatchRequestIDType
-from scraper_app.models.scraped_text_file import ScrapedTextFile
+from packages.llm_providers.src.llm_providers.field_types import BatchRequestIDType
+from packages.infra.src.infra.models.s3.scraped_text_file import ScrapedTextFile
 
-from packages.core.src.core.services.gpt_batch_request.gpt_batch_request_service import (
+from packages.llm_providers.src.llm_providers.services.gpt_batch_request.gpt_batch_request_service import (
     dispatch_gpt_batch_request,
 )
 from packages.core.src.core.services.pipeline_nodes.multi_stage.llm_phrase_search_node_service import (
@@ -165,7 +167,7 @@ class LLMPhraseRecursiveSearchNode(
                 continue  # hard cap reached for this chunk
 
             first_search_results = await parse_phrase_search_batch_req_result(
-                mfg_etld1=subject_unique_id,
+                subject_unique_id=subject_unique_id,
                 field_type=self.field_type,
                 chunk_bounds=chunk_bounds,
                 extraction_bundle=bundle,
@@ -176,7 +178,7 @@ class LLMPhraseRecursiveSearchNode(
             accumulated_before_latest: set[str] = set(first_search_results)
             for prior_round_req_id in rounds[:-1]:
                 accumulated_before_latest |= await parse_recursive_search_round_result(
-                    mfg_etld1=subject_unique_id,
+                    subject_unique_id=subject_unique_id,
                     field_type=self.field_type,
                     chunk_bounds=chunk_bounds,
                     round_req_id=prior_round_req_id,
@@ -185,7 +187,7 @@ class LLMPhraseRecursiveSearchNode(
                 )
 
             latest_round_results = await parse_recursive_search_round_result(
-                mfg_etld1=subject_unique_id,
+                subject_unique_id=subject_unique_id,
                 field_type=self.field_type,
                 chunk_bounds=chunk_bounds,
                 round_req_id=rounds[-1],
@@ -250,7 +252,7 @@ class LLMPhraseRecursiveSearchNode(
             field_type=self.field_type,
             missing_recursive_search_req_ids=missing_request_ids,
             chunked_request_map=chunked_request_map,
-            mfg_etld1=subject_unique_id,
+            subject_unique_id=subject_unique_id,
             mfg_text=scraped_text_file.text,
             recursive_search_prompt=self.recursive_search_prompt,
             first_search_gpt_request_map=first_search_map,
@@ -272,7 +274,7 @@ class LLMPhraseRecursiveSearchNode(
         timestamp: datetime,  # for recording errors
     ) -> LLMSearchResults:
         return await get_all_recursive_round_results(
-            mfg_etld1=subject_unique_id,
+            subject_unique_id=subject_unique_id,
             field_type=field_type,
             chunk_bounds=chunk_bounds,
             extraction_bundle=extraction_bundle,

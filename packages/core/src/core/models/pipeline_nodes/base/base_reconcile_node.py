@@ -2,7 +2,7 @@ from __future__ import annotations
 
 import logging
 
-from packages.core.src.core.models.base.extraction_subject import (
+from packages.core.src.core.models.extraction_subject import (
     AbstractDeferredExtractionSubject,
 )
 from packages.core.src.core.models.pipeline_nodes.base.base_node import (
@@ -10,7 +10,7 @@ from packages.core.src.core.models.pipeline_nodes.base.base_node import (
     LLMExtractedFieldTypeVar,
     ResultT,
 )
-from packages.core.src.core.models.field_types import BatchRequestIDType
+from packages.llm_providers.src.llm_providers.field_types import BatchRequestIDType
 
 logger = logging.getLogger(__name__)
 
@@ -33,19 +33,19 @@ class ReconcileNode(BaseNode[LLMExtractedFieldTypeVar, None]):
         """Wipe down deferred field and any completed GPT requests in pipeline context related to this field. Called at end of execute."""
 
         # logger.info(
-        #     f"Reconciled {self.field_type.name} data for manufacturer {deferred_mfg.etld1}. "
+        #     f"Reconciled {self.field_type.name} data for manufacturer {deferred_mfg.subject_unique_id}. "
         #     f"Attempting to clean up GPTBatchRequests."
         # )
         # await bulk_delete_gpt_batch_requests_by_custom_ids(
         #     gpt_batch_request_custom_ids=associated_batch_request_custom_ids,
-        #     mfg_etld1=deferred_mfg.etld1,
+        #     subject_unique_id=deferred_mfg.subject_unique_id,
         # )
         # logger.info(
-        #     f"Cleaned up GPTBatchRequests for {self.field_type.name} of manufacturer {deferred_mfg.etld1}. "
+        #     f"Cleaned up GPTBatchRequests for {self.field_type.name} of manufacturer {deferred_mfg.subject_unique_id}. "
         #     f"Attempting to clear deferred_mfg {self.field_type.name} extraction field."
         # )
         # setattr(deferred_mfg, self.field_type.name, None)
         # await deferred_mfg.save()
         # logger.info(
-        #     f"Cleared deferred_mfg {self.field_type.name} extraction field for manufacturer {deferred_mfg.etld1}. Reconciliation complete."
+        #     f"Cleared deferred_mfg {self.field_type.name} extraction field for manufacturer {deferred_mfg.subject_unique_id}. Reconciliation complete."
         # )

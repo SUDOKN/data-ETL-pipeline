@@ -19,11 +19,13 @@ from packages.core.src.core.models.extraction_schemas.relationship import (
 from packages.core.src.core.models.extraction_schemas.response_format_util import (
     build_gpt_response_format,
 )
-from packages.core.src.core.models.file_objects.prompt import Prompt
-from packages.core.src.core.models.batch_request_objects.gpt_batch_response_blob import (
+from packages.llm_providers.src.llm_providers.models.file_objects.prompt import Prompt
+from packages.llm_providers.src.llm_providers.models.open_ai.gpt_batch_response_blob import (
     ChatCompletionChoiceMessage,
 )
-from packages.core.src.core.models.db.gpt_batch_request import GPTBatchRequest
+from packages.llm_providers.src.llm_providers.db_models.gpt_batch_request import (
+    GPTBatchRequest,
+)
 from packages.core.src.core.models.deferred_extraction.deferred_concept_extraction import (
     ConceptExtractionRequestMap,
     ConceptExtractionRequestBundle,
@@ -41,15 +43,22 @@ from packages.core.src.core.models.pipeline_nodes.multi_stage.base.llm_phrase_re
 from packages.core.src.core.models.pipeline_nodes.multi_stage.base.llm_phrase_relationship_screening_node import (
     LLMPhraseRelationshipScreeningNode,
 )
-from core.services.pipeline_nodes.llm_relationship_screening_node_service import (
+from packages.core.src.core.services.pipeline_nodes.multi_stage.llm_relationship_screening_node_service import (
     get_verified_live_screening_results,
 )
-from open_ai_key_app.models.gpt_model_params import GPTModelParams
-from packages.core.src.core.models.field_types import BatchRequestIDType
-from litellm_proxy_app.models.llm_model import NO_MODEL, LLM_Model
+from packages.llm_providers.src.llm_providers.models.open_ai.gpt_model_params import (
+    GPTModelParams,
+)
+from packages.llm_providers.src.llm_providers.field_types import BatchRequestIDType
+from packages.llm_providers.src.llm_providers.models.llm_model import (
+    NO_MODEL,
+    LLM_Model,
+)
 
-from core.services.gpt_batch_request_writes import record_response_parse_error
-from core.services.gpt_batch_request_service import (
+from packages.llm_providers.src.llm_providers.services.gpt_batch_request.gpt_batch_request_writes import (
+    record_response_parse_error,
+)
+from packages.llm_providers.src.llm_providers.services.gpt_batch_request.gpt_batch_request_service import (
     create_base_gpt_batch_request,
     get_dummy_gpt_batch_response,
 )
@@ -94,7 +103,7 @@ def parse_llm_phrase_initial_grounding_result(
 
 
 async def get_initial_grounding_result(
-    mfg_etld1: str,
+    subject_unique_id: str,
     field_type: ConceptTypeEnum,
     chunk_bounds: str,
     extraction_bundle: ConceptExtractionRequestBundle,
@@ -104,17 +113,17 @@ async def get_initial_grounding_result(
     req_id = extraction_bundle.llm_phrase_initial_grounding_req_id
     if not req_id:
         raise ValueError(
-            f"phrase_initial_grounding_node.parse_batch_request_result: phrase_initial_grounding_request_id is None for chunk bounds {chunk_bounds} in {mfg_etld1}:{field_type.name}"
+            f"phrase_initial_grounding_node.parse_batch_request_result: phrase_initial_grounding_request_id is None for chunk bounds {chunk_bounds} in {subject_unique_id}:{field_type.name}"
         )
 
     req_obj = completed_request_map.get(req_id)
     if not req_obj:
         raise ValueError(
-            f"phrase_initial_grounding_node.parse_batch_request_result: Missing GPTBatchRequest for phrase_initial_grounding request ID {req_id} in {mfg_etld1}:{field_type.name}"
+            f"phrase_initial_grounding_node.parse_batch_request_result: Missing GPTBatchRequest for phrase_initial_grounding request ID {req_id} in {subject_unique_id}:{field_type.name}"
         )
     elif not req_obj.response:
         raise ValueError(
-            f"phrase_initial_grounding_node.parse_batch_request_result: GPTBatchRequest for phrase_initial_grounding request ID {req_id} has no response_blob in {mfg_etld1}:{field_type.name}"
+            f"phrase_initial_grounding_node.parse_batch_request_result: GPTBatchRequest for phrase_initial_grounding request ID {req_id} has no response_blob in {subject_unique_id}:{field_type.name}"
         )
 
     try:
@@ -130,13 +139,13 @@ async def get_initial_grounding_result(
             traceback_str=traceback.format_exc(),
         )
         logger.error(
-            f"phrase_initial_grounding_node.parse_batch_request_result: Error parsing phrase_initial_grounding results for manufacturer {mfg_etld1} from GPT response: {e}"
+            f"phrase_initial_grounding_node.parse_batch_request_result: Error parsing phrase_initial_grounding results for manufacturer {subject_unique_id} from GPT response: {e}"
         )
         raise
 
 
 async def get_tagged_results_from_initial_grounding(
-    mfg_etld1: str,
+    subject_unique_id: str,
     field_type: ConceptTypeEnum,
     chunk_bounds: str,
     extraction_bundle: ConceptExtractionRequestBundle,
@@ -145,7 +154,7 @@ async def get_tagged_results_from_initial_grounding(
 ) -> list[TaggingResult]:
     return get_grounding_results_grouped_by_tags(
         await get_initial_grounding_result(
-            mfg_etld1=mfg_etld1,
+            subject_unique_id=subject_unique_id,
             field_type=field_type,
             chunk_bounds=chunk_bounds,
             extraction_bundle=extraction_bundle,
@@ -282,8 +291,8 @@ def get_descend_worthy_tcs_from_tagged_results(
 
 async def create_missing_phrase_initial_grounding_requests(
     # used for logging and debugging
-    mfg_etld1: str,
-    mfg_name: str,
+    subject_unique_id: str,
+    subject_name: str,
     field_type: ConceptTypeEnum,
     # context
     chunked_request_map: ConceptExtractionRequestMap,
@@ -301,7 +310,7 @@ async def create_missing_phrase_initial_grounding_requests(
     BATCH_SIZE=100,
 ) -> list[GPTBatchRequest]:
     logger.info(
-        f"create_missing_phrase_initial_grounding_requests: Generating GPTBatchRequests for {mfg_etld1}:{field_type}"
+        f"create_missing_phrase_initial_grounding_requests: Generating GPTBatchRequests for {subject_unique_id}:{field_type}"
     )
     logger.info(
         f"match_label_to_concept_map keys: {list(match_label_to_concept_map.keys())}"
@@ -323,7 +332,7 @@ async def create_missing_phrase_initial_grounding_requests(
         or not llm_phrase_screening_gpt_request_map
     ):
         raise ValueError(
-            f"create_missing_phrase_initial_grounding_requests: No completed GPTBatchRequests found for {mfg_etld1}:{field_type} in llm_phrase_relationship and llm_phrase_screening gpt_request_maps."
+            f"create_missing_phrase_initial_grounding_requests: No completed GPTBatchRequests found for {subject_unique_id}:{field_type} in llm_phrase_relationship and llm_phrase_screening gpt_request_maps."
         )
 
     # Process chunks in batches to yield control periodically
@@ -334,7 +343,7 @@ async def create_missing_phrase_initial_grounding_requests(
         for chunk_bounds, extraction_bundle in batch:
             llm_phrase_relationship_results = (
                 await LLMPhraseRelationshipNode.get_result(
-                    mfg_etld1=mfg_etld1,
+                    subject_unique_id=subject_unique_id,
                     field_type=field_type,
                     chunk_bounds=chunk_bounds,
                     extraction_bundle=extraction_bundle,
@@ -345,7 +354,7 @@ async def create_missing_phrase_initial_grounding_requests(
 
             llm_phrase_relationship_screening_results = (
                 await LLMPhraseRelationshipScreeningNode.get_result(
-                    mfg_etld1=mfg_etld1,
+                    subject_unique_id=subject_unique_id,
                     field_type=field_type,
                     chunk_bounds=chunk_bounds,
                     extraction_bundle=extraction_bundle,
@@ -360,7 +369,7 @@ async def create_missing_phrase_initial_grounding_requests(
             )
             if left_only_phrases:
                 raise ValueError(
-                    f"Phrases {left_only_phrases} found in relationship results but not in screening results for {mfg_etld1}:{field_type} chunk {chunk_bounds}"
+                    f"Phrases {left_only_phrases} found in relationship results but not in screening results for {subject_unique_id}:{field_type} chunk {chunk_bounds}"
                 )
             right_only_phrases = (
                 llm_phrase_relationship_screening_results.keys()
@@ -368,7 +377,7 @@ async def create_missing_phrase_initial_grounding_requests(
             )
             if right_only_phrases:
                 raise ValueError(
-                    f"Phrases {right_only_phrases} found in screening results but were never listed in relationship results for {mfg_etld1}:{field_type} chunk {chunk_bounds}"
+                    f"Phrases {right_only_phrases} found in screening results but were never listed in relationship results for {subject_unique_id}:{field_type} chunk {chunk_bounds}"
                 )
 
             # Discard phrases from llm_phrase_relationship_results which have been filtered out by the screening phase
@@ -399,16 +408,16 @@ async def create_missing_phrase_initial_grounding_requests(
             )
             if not llm_phrase_initial_grounding_request_id:
                 raise ValueError(
-                    f"create_missing_phrase_initial_grounding_requests: llm_phrase_initial_grounding_request_id is None for chunk bounds {chunk_bounds} in {mfg_etld1}:{field_type}"
+                    f"create_missing_phrase_initial_grounding_requests: llm_phrase_initial_grounding_request_id is None for chunk bounds {chunk_bounds} in {subject_unique_id}:{field_type}"
                 )
             if not verified_out_of_vocab_phrases_w_summary:
                 # add a dummy response blob with empty dict
                 logger.info(
-                    f"No out-of-vocab phrases found in text, for {mfg_etld1}:{field_type}, creating dummy initial grounding request."
+                    f"No out-of-vocab phrases found in text, for {subject_unique_id}:{field_type}, creating dummy initial grounding request."
                 )
                 dummy_batch_request = _create_dummy_completed_phrase_initial_grounding_batch_request(
                     deferred_at=deferred_at,
-                    etld1=mfg_etld1,
+                    subject_unique_id=subject_unique_id,
                     llm_phrase_initial_grounding_request_id=llm_phrase_initial_grounding_request_id,
                     model_params=model_params,
                     eager=eager,
@@ -416,16 +425,16 @@ async def create_missing_phrase_initial_grounding_requests(
                 new_batch_request = dummy_batch_request
             else:
                 logger.info(
-                    f"Passing on candidates {verified_out_of_vocab_phrases_w_summary} to phrase_relationship phase for {mfg_etld1}:{field_type} chunk {chunk_bounds}"
+                    f"Passing on candidates {verified_out_of_vocab_phrases_w_summary} to phrase_relationship phase for {subject_unique_id}:{field_type} chunk {chunk_bounds}"
                 )
                 llm_phrase_grounding_batch_request = create_deferred_phrase_initial_grounding_gpt_request(
                     deferred_at=deferred_at,
-                    etld1=mfg_etld1,
+                    subject_unique_id=subject_unique_id,
                     llm_phrase_initial_grounding_request_id=llm_phrase_initial_grounding_request_id,
                     phrase_initial_grounding_prompt=phrase_initial_grounding_prompt,
                     field_type=field_type,
                     # context variables
-                    mfg_name=mfg_name,
+                    subject_name=subject_name,
                     all_concepts=known_concepts,
                     verified_out_of_vocab_phrases_w_summary=verified_out_of_vocab_phrases_w_summary,
                     # model info
@@ -443,7 +452,7 @@ async def create_missing_phrase_initial_grounding_requests(
         if (i + BATCH_SIZE) % 500 == 0:
             logger.info(
                 f"Created {min(i + BATCH_SIZE, len(chunk_items))}/{len(chunk_items)} "
-                f"gpt request for {mfg_etld1}:{field_type}"
+                f"gpt request for {subject_unique_id}:{field_type}"
             )
 
     return batch_requests
@@ -451,7 +460,7 @@ async def create_missing_phrase_initial_grounding_requests(
 
 def _create_dummy_completed_phrase_initial_grounding_batch_request(
     deferred_at: datetime,
-    etld1: str,
+    subject_unique_id: str,
     llm_phrase_initial_grounding_request_id: BatchRequestIDType,
     model_params: GPTModelParams,
     eager: bool,
@@ -463,7 +472,7 @@ def _create_dummy_completed_phrase_initial_grounding_batch_request(
 
     base_gpt_batch_request = create_base_gpt_batch_request(
         deferred_at=deferred_at,
-        etld1=etld1,
+        subject_unique_id=subject_unique_id,
         custom_id=llm_phrase_initial_grounding_request_id,
         context="No initial grounding needed - nothing passed relationship screening or no phrases were found in the first place.",
         prompt_text="No initial grounding needed - nothing passed relationship screening or no phrases were found in the first place.",
@@ -486,12 +495,12 @@ def _create_dummy_completed_phrase_initial_grounding_batch_request(
 
 def create_deferred_phrase_initial_grounding_gpt_request(
     deferred_at: datetime,
-    etld1: str,
+    subject_unique_id: str,
     llm_phrase_initial_grounding_request_id: str,
     phrase_initial_grounding_prompt: Prompt,
     field_type: ConceptTypeEnum,
     # context
-    mfg_name: str,
+    subject_name: str,
     all_concepts: set[Concept],
     verified_out_of_vocab_phrases_w_summary: LLMPhraseRelationshipResults,
     # model info
@@ -507,14 +516,14 @@ def create_deferred_phrase_initial_grounding_gpt_request(
     ]
 
     context = (
-        # f"Manufacturer name: {mfg_name}\n\n "
+        # f"Manufacturer name: {subject_name}\n\n "
         f"extracted phrases:\n{json.dumps(verified_out_of_vocab_phrases_w_summary)}\n\n"
         f"options of {field_type.name} to choose from:\n{all_concept_labels}"
     )
 
     gpt_batch_request = create_base_gpt_batch_request(
         deferred_at=deferred_at,
-        etld1=etld1,
+        subject_unique_id=subject_unique_id,
         custom_id=llm_phrase_initial_grounding_request_id,
         context=context,
         prompt_text=phrase_initial_grounding_prompt.text,

@@ -9,7 +9,9 @@ from requests.structures import CaseInsensitiveDict
 
 from pydantic import ValidationError
 
-from packages.core.src.core.models.db.gpt_batch_request import GPTBatchRequest
+from packages.llm_providers.src.llm_providers.db_models.gpt_batch_request import (
+    GPTBatchRequest,
+)
 from packages.core.src.core.models.extraction_schemas.grounding import (
     PhraseGroundingResponse,
     PhraseToTagAndReasonMap,
@@ -26,9 +28,12 @@ from packages.core.src.core.models.extraction_schemas.relationship import (
 from packages.core.src.core.models.extraction_schemas.response_format_util import (
     build_gpt_response_format,
 )
-from litellm_proxy_app.models.llm_model import LLM_Model, NO_MODEL
-from packages.core.src.core.models.file_objects.prompt import Prompt
-from packages.core.src.core.models.batch_request_objects.gpt_batch_response_blob import (
+from packages.llm_providers.src.llm_providers.models.llm_model import (
+    LLM_Model,
+    NO_MODEL,
+)
+from packages.llm_providers.src.llm_providers.models.file_objects.prompt import Prompt
+from packages.llm_providers.src.llm_providers.models.open_ai.gpt_batch_response_blob import (
     ChatCompletionChoiceMessage,
 )
 from packages.core.src.core.models.deferred_extraction.deferred_concept_extraction import (
@@ -42,13 +47,15 @@ from packages.core.src.core.models.skos_concept import Concept, ConceptJSONEncod
 from packages.core.src.core.models.types_and_enums import (
     ConceptTypeEnum,
 )
-from open_ai_key_app.models.gpt_model_params import GPTModelParams
-from packages.core.src.core.models.field_types import BatchRequestIDType
+from packages.llm_providers.src.llm_providers.models.open_ai.gpt_model_params import (
+    GPTModelParams,
+)
+from packages.llm_providers.src.llm_providers.field_types import BatchRequestIDType
 
-from packages.core.src.core.services.gpt_batch_request.gpt_batch_request_writes import (
+from packages.llm_providers.src.llm_providers.services.gpt_batch_request.gpt_batch_request_writes import (
     record_response_parse_error,
 )
-from packages.core.src.core.services.gpt_batch_request.gpt_batch_request_service import (
+from packages.llm_providers.src.llm_providers.services.gpt_batch_request.gpt_batch_request_service import (
     create_base_gpt_batch_request,
     get_dummy_gpt_batch_response,
 )
@@ -72,17 +79,17 @@ LLM_PHRASE_RECURSIVE_GROUNDING_RESPONSE_SCHEMA = build_gpt_response_format(
 
 
 def parse_llm_phrase_recursive_grounding_result(
-    mfg_etld1: str,
+    subject_unique_id: str,
     field_type: ConceptTypeEnum,
     gpt_req: GPTBatchRequest,
 ) -> PhraseToTagAndReasonMap:
     if not gpt_req.response:
         raise ValueError(
-            f"phrase_recursive_grounding_node.parse_batch_request_result: GPTBatchRequest for phrase_recursive_grounding request ID {gpt_req.request.custom_id} has no response_blob in {mfg_etld1}:{field_type.name}"
+            f"phrase_recursive_grounding_node.parse_batch_request_result: GPTBatchRequest for phrase_recursive_grounding request ID {gpt_req.request.custom_id} has no response_blob in {subject_unique_id}:{field_type.name}"
         )
     elif not gpt_req.response.result:
         raise ValueError(
-            f"phrase_recursive_grounding_node.parse_batch_request_result: GPTBatchRequest for phrase_recursive_grounding request ID {gpt_req.request.custom_id} has no result in {mfg_etld1}:{field_type.name}"
+            f"phrase_recursive_grounding_node.parse_batch_request_result: GPTBatchRequest for phrase_recursive_grounding request ID {gpt_req.request.custom_id} has no result in {subject_unique_id}:{field_type.name}"
         )
 
     try:
@@ -110,7 +117,7 @@ def parse_llm_phrase_recursive_grounding_result(
 
 
 async def parse_recursive_grounding_batch_request_result(
-    mfg_etld1: str,
+    subject_unique_id: str,
     field_type: ConceptTypeEnum,
     chunk_bounds: str,
     descend_req_id: BatchRequestIDType,
@@ -121,17 +128,17 @@ async def parse_recursive_grounding_batch_request_result(
 ) -> list[TaggingResult]:
     if not descend_req_id:
         raise ValueError(
-            f"phrase_recursive_grounding_node.parse_batch_request_result: phrase_recursive_grounding_request_id is None for chunk bounds {chunk_bounds} in {mfg_etld1}:{field_type.name}"
+            f"phrase_recursive_grounding_node.parse_batch_request_result: phrase_recursive_grounding_request_id is None for chunk bounds {chunk_bounds} in {subject_unique_id}:{field_type.name}"
         )
     gpt_req = completed_request_map.get(descend_req_id)
     if not gpt_req:
         raise ValueError(
-            f"phrase_recursive_grounding_node.parse_batch_request_result: Missing GPTBatchRequest for phrase_recursive_grounding request ID {descend_req_id} in {mfg_etld1}:{field_type.name}"
+            f"phrase_recursive_grounding_node.parse_batch_request_result: Missing GPTBatchRequest for phrase_recursive_grounding request ID {descend_req_id} in {subject_unique_id}:{field_type.name}"
         )
 
     try:
         recursive_grounding_result = parse_llm_phrase_recursive_grounding_result(
-            mfg_etld1=mfg_etld1,
+            subject_unique_id=subject_unique_id,
             field_type=field_type,
             gpt_req=gpt_req,
         )
@@ -143,7 +150,7 @@ async def parse_recursive_grounding_batch_request_result(
             traceback_str=traceback.format_exc(),
         )
         logger.error(
-            f"phrase_recursive_grounding_node.parse_batch_request_result: Error parsing phrase_recursive_grounding results for manufacturer {mfg_etld1} from GPT response: {e}"
+            f"phrase_recursive_grounding_node.parse_batch_request_result: Error parsing phrase_recursive_grounding results for manufacturer {subject_unique_id} from GPT response: {e}"
         )
         raise
 
@@ -154,7 +161,7 @@ async def parse_recursive_grounding_batch_request_result(
 
 
 async def get_all_recursive_grounding_results(
-    mfg_etld1: str,
+    subject_unique_id: str,
     field_type: ConceptTypeEnum,
     chunk_bounds: str,
     extraction_bundle: ConceptExtractionRequestBundle,
@@ -174,7 +181,7 @@ async def get_all_recursive_grounding_results(
     retval: IterativeGroundingResult = {}
 
     all_initially_tagged_dtrs = await get_tagged_results_from_initial_grounding(
-        mfg_etld1=mfg_etld1,
+        subject_unique_id=subject_unique_id,
         field_type=field_type,
         chunk_bounds=chunk_bounds,
         extraction_bundle=extraction_bundle,
@@ -190,7 +197,7 @@ async def get_all_recursive_grounding_results(
         rt_phrases: set[IterativelyTaggedPhraseGroup] = set()
         for rt_req in itr_list:
             rtp = await get_itp_from_itr(
-                mfg_etld1=mfg_etld1,
+                subject_unique_id=subject_unique_id,
                 field_type=field_type,
                 chunk_bounds=chunk_bounds,
                 bundle=extraction_bundle,
@@ -341,7 +348,7 @@ def get_deepest_concepts_and_oov(
 
 
 async def get_itp_from_itr(
-    mfg_etld1: str,
+    subject_unique_id: str,
     field_type: ConceptTypeEnum,
     chunk_bounds: str,
     bundle: ConceptExtractionRequestBundle,
@@ -358,7 +365,7 @@ async def get_itp_from_itr(
         )
 
     logger.info(
-        f"Creating IterativelyTaggedPhraseGroup for it_req: l{it_req.level}>{it_req.name} in chunk {chunk_bounds} for {mfg_etld1}:{field_type.name}"
+        f"Creating IterativelyTaggedPhraseGroup for it_req: l{it_req.level}>{it_req.name} in chunk {chunk_bounds} for {subject_unique_id}:{field_type.name}"
     )
 
     itp: IterativelyTaggedPhraseGroup = IterativelyTaggedPhraseGroup(
@@ -393,7 +400,7 @@ async def get_itp_from_itr(
 
     # iteratively_tagged: PhraseToTagAndReasonMap = {}
     logger.info(
-        f"Searching for parent_itr for it_req: l{it_req.level}>{it_req.name} in chunk {chunk_bounds} for {mfg_etld1}:{field_type.name}"
+        f"Searching for parent_itr for it_req: l{it_req.level}>{it_req.name} in chunk {chunk_bounds} for {subject_unique_id}:{field_type.name}"
     )
     parent_itr = (
         next(
@@ -418,7 +425,7 @@ async def get_itp_from_itr(
 
     if parent_itr:
         tagged_children_trs = await parse_recursive_grounding_batch_request_result(
-            mfg_etld1=mfg_etld1,
+            subject_unique_id=subject_unique_id,
             field_type=field_type,
             chunk_bounds=chunk_bounds,
             descend_req_id=parent_itr.descend_req_id,
@@ -456,8 +463,8 @@ def get_tagging_results_from_recursive_grounding_results(
 
 async def create_missing_phrase_recursive_grounding_requests(
     # used for logging and debugging
-    mfg_etld1: str,
-    mfg_name: str,
+    subject_unique_id: str,
+    subject_name: str,
     field_type: ConceptTypeEnum,
     # context
     chunked_request_map: ConceptExtractionRequestMap,
@@ -481,7 +488,7 @@ async def create_missing_phrase_recursive_grounding_requests(
         raise ValueError(f"missing_phrase_recursive_grounding_req_ids is empty.")
 
     logger.info(
-        f"create_missing_recursive_grounding_requests: Generating GPTBatchRequests for {mfg_etld1}:{field_type}"
+        f"create_missing_recursive_grounding_requests: Generating GPTBatchRequests for {subject_unique_id}:{field_type}"
     )
 
     batch_requests: list[GPTBatchRequest] = []
@@ -491,14 +498,14 @@ async def create_missing_phrase_recursive_grounding_requests(
     ] = []
     for chunk_bounds, bundle in chunked_request_map.items():
         logger.info(
-            f"Processing chunk {chunk_bounds} for {mfg_etld1}:{field_type} to create missing recursive grounding requests. "
+            f"Processing chunk {chunk_bounds} for {subject_unique_id}:{field_type} to create missing recursive grounding requests. "
         )
         if not bundle.llm_phrase_recursive_tagging_reqs:
             raise ValueError(
                 f"Cannot create batch requests for recursive grounding as llm_phrase_recursive_grounding_root_req_nodes is empty."
             )
         llm_phrase_relationship_results = await get_phrase_relationship_result(
-            mfg_etld1=mfg_etld1,
+            subject_unique_id=subject_unique_id,
             field_type=field_type,
             chunk_bounds=chunk_bounds,
             extraction_bundle=bundle,
@@ -511,7 +518,7 @@ async def create_missing_phrase_recursive_grounding_requests(
         )
         logger.info(f"Found pending level:{pending_level}")
         initially_tagged_trs = await get_tagged_results_from_initial_grounding(
-            mfg_etld1=mfg_etld1,
+            subject_unique_id=subject_unique_id,
             field_type=field_type,
             chunk_bounds=chunk_bounds,
             extraction_bundle=bundle,
@@ -536,12 +543,12 @@ async def create_missing_phrase_recursive_grounding_requests(
                 tmp_set.add(c)
 
         logger.info(
-            f"Pending tagging requests for chunk {chunk_bounds} in {mfg_etld1}:{field_type} \nat level {pending_level}: {[req.name for req, _c in pending_tagging_req_w_concept_pair]}"
+            f"Pending tagging requests for chunk {chunk_bounds} in {subject_unique_id}:{field_type} \nat level {pending_level}: {[req.name for req, _c in pending_tagging_req_w_concept_pair]}"
         )
 
         for pending_tagging_req, concept_obj in pending_tagging_req_w_concept_pair:
             logger.info(
-                f"Processing pending_tagging_req {pending_tagging_req.name} in chunk {chunk_bounds} for {mfg_etld1}:{field_type} at level {pending_level}"
+                f"Processing pending_tagging_req {pending_tagging_req.name} in chunk {chunk_bounds} for {subject_unique_id}:{field_type} at level {pending_level}"
             )
             if (
                 pending_tagging_req.descend_req_id
@@ -556,7 +563,7 @@ async def create_missing_phrase_recursive_grounding_requests(
                 )
 
             itp = await get_itp_from_itr(
-                mfg_etld1=mfg_etld1,
+                subject_unique_id=subject_unique_id,
                 field_type=field_type,
                 chunk_bounds=chunk_bounds,
                 bundle=bundle,
@@ -604,17 +611,17 @@ async def create_missing_phrase_recursive_grounding_requests(
             tagged_concept_obj = match_label_to_concept_map.get(pending_itr.name)
             if not tagged_concept_obj:
                 raise ValueError(
-                    f"Cannot create batch requests for recursive grounding for {mfg_etld1}:{mfg_name}:{chunk_bounds} "
+                    f"Cannot create batch requests for recursive grounding for {subject_unique_id}:{subject_name}:{chunk_bounds} "
                     f"as tagged_concept:{pending_itr.name} is unrecognized."
                 )
 
             llm_phrase_grounding_batch_request = create_deferred_phrase_recursive_grounding_gpt_request(
                 # used for logging and debugging
                 deferred_at=timestamp,
-                etld1=mfg_etld1,
+                subject_unique_id=subject_unique_id,
                 field_type=field_type,
                 # context variables
-                mfg_name=mfg_name,
+                subject_name=subject_name,
                 phrase_recursive_grounding_prompt=phrase_recursive_grounding_prompt,
                 llm_phrase_recursive_grounding_request_id=pending_itr.descend_req_id,
                 parent_concept=tagged_concept_obj,
@@ -638,7 +645,7 @@ async def create_missing_phrase_recursive_grounding_requests(
         if (i + BATCH_SIZE) % 500 == 0:
             logger.info(
                 f"Created {min(i + BATCH_SIZE, len(chunk_items))}/{len(chunk_items)} "
-                f"gpt request for {mfg_etld1}:{field_type}"
+                f"gpt request for {subject_unique_id}:{field_type}"
             )
 
     return batch_requests
@@ -647,7 +654,7 @@ async def create_missing_phrase_recursive_grounding_requests(
 # TODO: needs fixing if used, not used right now
 def _create_dummy_completed_phrase_recursive_grounding_batch_request(
     deferred_at: datetime,
-    etld1: str,
+    subject_unique_id: str,
     llm_phrase_recursive_grounding_request_id: BatchRequestIDType,
     model_params: GPTModelParams,
     eager: bool,
@@ -659,7 +666,7 @@ def _create_dummy_completed_phrase_recursive_grounding_batch_request(
 
     base_gpt_batch_request = create_base_gpt_batch_request(
         deferred_at=deferred_at,
-        etld1=etld1,
+        subject_unique_id=subject_unique_id,
         custom_id=llm_phrase_recursive_grounding_request_id,
         context="No phrase recursive grounding needed - nothing was tagged in initial grounding.",
         prompt_text="No phrase recursive grounding needed - nothing was tagged in initial grounding.",
@@ -682,12 +689,12 @@ def _create_dummy_completed_phrase_recursive_grounding_batch_request(
 
 def create_deferred_phrase_recursive_grounding_gpt_request(
     deferred_at: datetime,
-    etld1: str,
+    subject_unique_id: str,
     field_type: ConceptTypeEnum,
     llm_phrase_recursive_grounding_request_id: str,
     phrase_recursive_grounding_prompt: Prompt,
     # context
-    mfg_name: str,
+    subject_name: str,
     parent_concept: Concept,
     child_concepts: set[Concept],
     verified_phrases_w_og_summary: LLMPhraseRelationshipResults,
@@ -730,14 +737,14 @@ def create_deferred_phrase_recursive_grounding_gpt_request(
         ),
     )
     context = (
-        # f"Manufacturer name: {mfg_name}\n\n "
+        # f"Manufacturer name: {subject_name}\n\n "
         f"extracted phrases:\n{list(verified_phrases_w_og_summary.keys())}\n "
         f"extracted phrases with their relationship summaries:\n{json.dumps(verified_phrases_w_og_summary)}"
     )
 
     gpt_batch_request = create_base_gpt_batch_request(
         deferred_at=deferred_at,
-        etld1=etld1,
+        subject_unique_id=subject_unique_id,
         custom_id=llm_phrase_recursive_grounding_request_id,
         context=context,
         prompt_text=refactored_text,

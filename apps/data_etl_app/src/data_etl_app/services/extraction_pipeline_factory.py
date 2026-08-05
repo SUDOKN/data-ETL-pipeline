@@ -1,12 +1,12 @@
 from datetime import datetime
 
-from litellm_proxy_app.models.llm_model import LLM_Model
+from packages.llm_providers.src.llm_providers.models.llm_model import LLM_Model
 from packages.core.src.core.models.extraction_results.llm_phrase_extraction_results import (
     ExtractionNodeMetadata,
     RecursiveSearchNodeMetadata,
     BatchedScreeningNodeMetadata,
 )
-from packages.core.src.core.models.file_objects.prompt import Prompt
+from packages.llm_providers.src.llm_providers.models.file_objects.prompt import Prompt
 from packages.core.src.core.models.extraction_results.single_stage_extraction_results import (
     LLMSingleStageExtractionMetadata,
 )
@@ -70,10 +70,12 @@ from packages.core.src.core.models.types_and_enums import (
     KeywordTypeEnum,
     BasicFieldTypeEnum,
 )
-from packages.core.src.core.models.ontology import Ontology
-from open_ai_key_app.models.gpt_model_params import GPTModelParams
+from packages.knowledge.src.knowledge.models.ontology import Ontology
+from packages.llm_providers.src.llm_providers.models.open_ai.gpt_model_params import (
+    GPTModelParams,
+)
 
-from packages.core.src.core.services.knowledge.prompt_service import PromptService
+from apps.data_etl_app.src.data_etl_app.services.prompt_service import PromptService
 
 
 class ExtractionPipelineFactory:

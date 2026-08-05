@@ -3,11 +3,13 @@ from __future__ import annotations
 import logging
 from datetime import datetime
 
-from packages.core.src.core.models.db.gpt_batch_request import GPTBatchRequest
-from packages.core.src.core.models.batch_request_objects.gpt_batch_response_blob import (
+from packages.llm_providers.src.llm_providers.db_models.gpt_batch_request import (
+    GPTBatchRequest,
+)
+from packages.llm_providers.src.llm_providers.models.open_ai.gpt_batch_response_blob import (
     GPTBatchResponse,
 )
-from packages.core.src.core.models.file_objects.prompt import Prompt
+from packages.llm_providers.src.llm_providers.models.file_objects.prompt import Prompt
 from packages.core.src.core.models.extraction_schemas.search import LLMSearchResults
 from packages.core.src.core.models.deferred_extraction.deferred_phrase_extraction_requests import (
     LLMPhraseExtractionMetadata,
@@ -27,11 +29,11 @@ from packages.core.src.core.models.types_and_enums import (
 from packages.core.src.core.models.pipeline_nodes.base.base_llm_extraction_node import (
     BaseLLMExtractionNode,
 )
-from packages.core.src.core.models.field_types import BatchRequestIDType
-from apps.data_etl_app.src.data_etl_app.models.scraped_text_file import ScrapedTextFile
+from packages.llm_providers.src.llm_providers.field_types import BatchRequestIDType
+from packages.infra.src.infra.models.s3.scraped_text_file import ScrapedTextFile
 
 
-from packages.core.src.core.services.gpt_batch_request.gpt_batch_request_service import (
+from packages.llm_providers.src.llm_providers.services.gpt_batch_request.gpt_batch_request_service import (
     dispatch_gpt_batch_request,
 )
 from packages.core.src.core.services.pipeline_nodes.multi_stage.llm_phrase_search_node_service import (
@@ -143,7 +145,7 @@ class LLMPhraseSearchNode(
             field_type=self.field_type,
             missing_search_req_ids=missing_request_ids,
             chunked_request_map=chunked_request_map,
-            mfg_etld1=subject_unique_id,
+            subject_unique_id=subject_unique_id,
             mfg_text=scraped_text_file.text,
             search_prompt=self.phrase_search_prompt,
             llm_model=metadata.llm_phrase_search.llm_model,
@@ -163,7 +165,7 @@ class LLMPhraseSearchNode(
         timestamp: datetime,  # for recording errors
     ) -> LLMSearchResults:
         return await parse_batch_request_result(
-            mfg_etld1=subject_unique_id,
+            subject_unique_id=subject_unique_id,
             field_type=field_type,
             chunk_bounds=chunk_bounds,
             extraction_bundle=extraction_bundle,

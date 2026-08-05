@@ -6,7 +6,7 @@ from pydantic import ValidationError
 from packages.core.src.core.models.extraction_results.binary_classification_result import (
     LLMBinaryClassification,
 )
-from packages.core.src.core.models.extraction_schemas.basic_fields import (
+from apps.data_etl_app.src.data_etl_app.models.basic_fields import (
     BinaryClassificationResponse,
 )
 

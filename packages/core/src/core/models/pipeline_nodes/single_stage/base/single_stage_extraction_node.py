@@ -5,11 +5,13 @@ from abc import abstractmethod
 from datetime import datetime
 from typing import TYPE_CHECKING, Optional
 
-from packages.core.src.core.models.db.gpt_batch_request import GPTBatchRequest
-from packages.core.src.core.models.batch_request_objects.gpt_batch_response_blob import (
+from packages.llm_providers.src.llm_providers.db_models.gpt_batch_request import (
+    GPTBatchRequest,
+)
+from packages.llm_providers.src.llm_providers.models.open_ai.gpt_batch_response_blob import (
     GPTBatchResponse,
 )
-from packages.core.src.core.models.file_objects.prompt import Prompt
+from packages.llm_providers.src.llm_providers.models.file_objects.prompt import Prompt
 from packages.core.src.core.models.extraction_results.single_stage_extraction_results import (
     LLMSingleStageExtractionMetadata,
 )
@@ -33,14 +35,14 @@ from packages.core.src.core.models.pipeline_nodes.base.base_llm_extraction_node 
     BaseLLMExtractionNode,
     ResultT,
 )
-from packages.core.src.core.models.field_types import BatchRequestIDType
+from packages.llm_providers.src.llm_providers.field_types import BatchRequestIDType
 
 if TYPE_CHECKING:
-    from apps.data_etl_app.src.data_etl_app.models.scraped_text_file import (
+    from packages.infra.src.infra.models.s3.scraped_text_file import (
         ScrapedTextFile,
     )
 
-from packages.core.src.core.services.gpt_batch_request.gpt_batch_request_service import (
+from packages.llm_providers.src.llm_providers.services.gpt_batch_request.gpt_batch_request_service import (
     dispatch_gpt_batch_request,
 )
 
@@ -136,7 +138,7 @@ class SingleStageExtractionNode(
 
         batch_requests = await create_missing_basic_extraction_requests(
             deferred_at=timestamp,
-            mfg_etld1=subject_unique_id,
+            subject_unique_id=subject_unique_id,
             mfg_text=scraped_text_file.text,
             field_type=self.field_type,
             chunked_request_map=chunked_request_map,

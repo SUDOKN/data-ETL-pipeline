@@ -1,14 +1,15 @@
-from urllib.parse import quote
+from rdflib import URIRef
+from rdflib import Namespace
+
+from packages.pure_utils.src.pure_utils.url_util import uri_strip
+
+SDK = Namespace("http://asu.edu/semantics/SUDOKN/")
 
 
-def uri_strip(val: str) -> str:
-    if val is None:
-        raise ValueError("Value for URI stripping cannot be None")
+def get_product_instance_uri(mfg_etld1_stripped: str, product_name: str) -> URIRef:
+    return SDK[f"{mfg_etld1_stripped}-{uri_strip(product_name)}-product-instance"]
 
-    # Safe chars including underscore
-    safe_chars = "~.-_0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
 
-    # Simple percent-encoding, everything except safe chars is encoded
-    suffix = quote(str(val), safe=safe_chars)
-
-    return suffix
+def get_mfg_instance_uri_and_stripped_etld1(mfg_etld1: str) -> tuple[URIRef, str]:
+    stripped_etld1 = uri_strip(mfg_etld1)
+    return SDK[f"{stripped_etld1}-company-instance"], stripped_etld1

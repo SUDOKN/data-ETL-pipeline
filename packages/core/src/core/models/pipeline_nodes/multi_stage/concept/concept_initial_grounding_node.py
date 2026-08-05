@@ -2,9 +2,11 @@ from __future__ import annotations
 import logging
 from typing import TYPE_CHECKING
 
-from packages.core.src.core.models.db.gpt_batch_request import GPTBatchRequest
-from packages.core.src.core.models.file_objects.prompt import Prompt
-from litellm_proxy_app.models.llm_model import LLM_Model
+from packages.llm_providers.src.llm_providers.db_models.gpt_batch_request import (
+    GPTBatchRequest,
+)
+from packages.llm_providers.src.llm_providers.models.file_objects.prompt import Prompt
+from packages.llm_providers.src.llm_providers.models.llm_model import LLM_Model
 from packages.core.src.core.models.skos_concept import Concept
 from packages.core.src.core.models.pipeline_nodes.base.base_node import PipelineContext
 from packages.core.src.core.models.types_and_enums import ConceptTypeEnum
@@ -14,8 +16,10 @@ from packages.core.src.core.models.pipeline_nodes.multi_stage.base.llm_phrase_in
 from packages.core.src.core.models.types_and_enums import (
     ConceptTypeEnum,
 )
-from packages.core.src.core.models.field_types import BatchRequestIDType
-from open_ai_key_app.models.gpt_model_params import GPTModelParams
+from packages.llm_providers.src.llm_providers.field_types import BatchRequestIDType
+from packages.llm_providers.src.llm_providers.models.open_ai.gpt_model_params import (
+    GPTModelParams,
+)
 
 if TYPE_CHECKING:
     from packages.core.src.core.models.pipeline_nodes.multi_stage.concept.concept_iterative_grounding_node import (

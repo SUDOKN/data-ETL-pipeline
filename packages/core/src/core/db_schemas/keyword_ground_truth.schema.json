@@ -2,7 +2,7 @@
   "$jsonSchema": {
     "bsonType": "object",
     "required": [
-      "mfg_etld1",
+      "subject_unique_id",
       "scraped_text_file_version_id",
       "keyword_type",
       "chunk_bounds",
@@ -24,18 +24,14 @@
       "updated_at": {
         "bsonType": "date"
       },
-      "mfg_etld1": {
+      "subject_unique_id": {
         "bsonType": "string"
       },
       "scraped_text_file_version_id": {
         "bsonType": "string"
       },
       "keyword_type": {
-        "enum": [
-          "products",
-          "contract_products",
-          "equipments"
-        ],
+        "enum": ["products", "contract_products", "equipments"],
         "bsonType": "string"
       },
       "chunk_bounds": {
@@ -69,11 +65,7 @@
           },
           "chunk_strat": {
             "bsonType": "object",
-            "required": [
-              "overlap",
-              "max_chunks",
-              "max_tokens_per_chunk"
-            ],
+            "required": ["overlap", "max_chunks", "max_tokens_per_chunk"],
             "additionalProperties": false,
             "properties": {
               "overlap": {
@@ -103,10 +95,7 @@
             "properties": {
               "llm_model": {
                 "bsonType": "object",
-                "required": [
-                  "name",
-                  "max_context_tokens"
-                ],
+                "required": ["name", "max_context_tokens"],
                 "additionalProperties": false,
                 "properties": {
                   "name": {
@@ -130,37 +119,20 @@
                 "additionalProperties": false,
                 "properties": {
                   "reasoning_effort": {
-                    "enum": [
-                      "low",
-                      "medium",
-                      "high",
-                      null
-                    ],
-                    "bsonType": [
-                      "string",
-                      "null"
-                    ]
+                    "enum": ["low", "medium", "high", null],
+                    "bsonType": ["string", "null"]
                   },
                   "logit_bias": {
-                    "bsonType": [
-                      "object",
-                      "null"
-                    ],
+                    "bsonType": ["object", "null"],
                     "additionalProperties": {
                       "bsonType": "int"
                     }
                   },
                   "user": {
-                    "bsonType": [
-                      "string",
-                      "null"
-                    ]
+                    "bsonType": ["string", "null"]
                   },
                   "tools": {
-                    "bsonType": [
-                      "array",
-                      "null"
-                    ],
+                    "bsonType": ["array", "null"],
                     "items": {
                       "bsonType": "object"
                     }
@@ -179,22 +151,13 @@
                     ]
                   },
                   "parallel_tool_calls": {
-                    "bsonType": [
-                      "bool",
-                      "null"
-                    ]
+                    "bsonType": ["bool", "null"]
                   },
                   "logprobs": {
-                    "bsonType": [
-                      "bool",
-                      "null"
-                    ]
+                    "bsonType": ["bool", "null"]
                   },
                   "top_logprobs": {
-                    "bsonType": [
-                      "int",
-                      "null"
-                    ]
+                    "bsonType": ["int", "null"]
                   },
                   "max_completion_tokens": {
                     "bsonType": "int"
@@ -216,10 +179,7 @@
                     ]
                   },
                   "n": {
-                    "bsonType": [
-                      "int",
-                      "null"
-                    ]
+                    "bsonType": ["int", "null"]
                   },
                   "response_format": {
                     "bsonType": "object"
@@ -237,10 +197,7 @@
                     "bsonType": "double"
                   },
                   "seed": {
-                    "bsonType": [
-                      "int",
-                      "null"
-                    ]
+                    "bsonType": ["int", "null"]
                   }
                 }
               },
@@ -269,10 +226,7 @@
             "properties": {
               "llm_model": {
                 "bsonType": "object",
-                "required": [
-                  "name",
-                  "max_context_tokens"
-                ],
+                "required": ["name", "max_context_tokens"],
                 "additionalProperties": false,
                 "properties": {
                   "name": {
@@ -296,37 +250,20 @@
                 "additionalProperties": false,
                 "properties": {
                   "reasoning_effort": {
-                    "enum": [
-                      "low",
-                      "medium",
-                      "high",
-                      null
-                    ],
-                    "bsonType": [
-                      "string",
-                      "null"
-                    ]
+                    "enum": ["low", "medium", "high", null],
+                    "bsonType": ["string", "null"]
                   },
                   "logit_bias": {
-                    "bsonType": [
-                      "object",
-                      "null"
-                    ],
+                    "bsonType": ["object", "null"],
                     "additionalProperties": {
                       "bsonType": "int"
                     }
                   },
                   "user": {
-                    "bsonType": [
-                      "string",
-                      "null"
-                    ]
+                    "bsonType": ["string", "null"]
                   },
                   "tools": {
-                    "bsonType": [
-                      "array",
-                      "null"
-                    ],
+                    "bsonType": ["array", "null"],
                     "items": {
                       "bsonType": "object"
                     }
@@ -345,22 +282,13 @@
                     ]
                   },
                   "parallel_tool_calls": {
-                    "bsonType": [
-                      "bool",
-                      "null"
-                    ]
+                    "bsonType": ["bool", "null"]
                   },
                   "logprobs": {
-                    "bsonType": [
-                      "bool",
-                      "null"
-                    ]
+                    "bsonType": ["bool", "null"]
                   },
                   "top_logprobs": {
-                    "bsonType": [
-                      "int",
-                      "null"
-                    ]
+                    "bsonType": ["int", "null"]
                   },
                   "max_completion_tokens": {
                     "bsonType": "int"
@@ -382,10 +310,7 @@
                     ]
                   },
                   "n": {
-                    "bsonType": [
-                      "int",
-                      "null"
-                    ]
+                    "bsonType": ["int", "null"]
                   },
                   "response_format": {
                     "bsonType": "object"
@@ -403,10 +328,7 @@
                     "bsonType": "double"
                   },
                   "seed": {
-                    "bsonType": [
-                      "int",
-                      "null"
-                    ]
+                    "bsonType": ["int", "null"]
                   }
                 }
               },
@@ -437,10 +359,7 @@
             "properties": {
               "llm_model": {
                 "bsonType": "object",
-                "required": [
-                  "name",
-                  "max_context_tokens"
-                ],
+                "required": ["name", "max_context_tokens"],
                 "additionalProperties": false,
                 "properties": {
                   "name": {
@@ -464,37 +383,20 @@
                 "additionalProperties": false,
                 "properties": {
                   "reasoning_effort": {
-                    "enum": [
-                      "low",
-                      "medium",
-                      "high",
-                      null
-                    ],
-                    "bsonType": [
-                      "string",
-                      "null"
-                    ]
+                    "enum": ["low", "medium", "high", null],
+                    "bsonType": ["string", "null"]
                   },
                   "logit_bias": {
-                    "bsonType": [
-                      "object",
-                      "null"
-                    ],
+                    "bsonType": ["object", "null"],
                     "additionalProperties": {
                       "bsonType": "int"
                     }
                   },
                   "user": {
-                    "bsonType": [
-                      "string",
-                      "null"
-                    ]
+                    "bsonType": ["string", "null"]
                   },
                   "tools": {
-                    "bsonType": [
-                      "array",
-                      "null"
-                    ],
+                    "bsonType": ["array", "null"],
                     "items": {
                       "bsonType": "object"
                     }
@@ -513,22 +415,13 @@
                     ]
                   },
                   "parallel_tool_calls": {
-                    "bsonType": [
-                      "bool",
-                      "null"
-                    ]
+                    "bsonType": ["bool", "null"]
                   },
                   "logprobs": {
-                    "bsonType": [
-                      "bool",
-                      "null"
-                    ]
+                    "bsonType": ["bool", "null"]
                   },
                   "top_logprobs": {
-                    "bsonType": [
-                      "int",
-                      "null"
-                    ]
+                    "bsonType": ["int", "null"]
                   },
                   "max_completion_tokens": {
                     "bsonType": "int"
@@ -550,10 +443,7 @@
                     ]
                   },
                   "n": {
-                    "bsonType": [
-                      "int",
-                      "null"
-                    ]
+                    "bsonType": ["int", "null"]
                   },
                   "response_format": {
                     "bsonType": "object"
@@ -571,10 +461,7 @@
                     "bsonType": "double"
                   },
                   "seed": {
-                    "bsonType": [
-                      "int",
-                      "null"
-                    ]
+                    "bsonType": ["int", "null"]
                   }
                 }
               },
@@ -603,10 +490,7 @@
             "properties": {
               "llm_model": {
                 "bsonType": "object",
-                "required": [
-                  "name",
-                  "max_context_tokens"
-                ],
+                "required": ["name", "max_context_tokens"],
                 "additionalProperties": false,
                 "properties": {
                   "name": {
@@ -630,37 +514,20 @@
                 "additionalProperties": false,
                 "properties": {
                   "reasoning_effort": {
-                    "enum": [
-                      "low",
-                      "medium",
-                      "high",
-                      null
-                    ],
-                    "bsonType": [
-                      "string",
-                      "null"
-                    ]
+                    "enum": ["low", "medium", "high", null],
+                    "bsonType": ["string", "null"]
                   },
                   "logit_bias": {
-                    "bsonType": [
-                      "object",
-                      "null"
-                    ],
+                    "bsonType": ["object", "null"],
                     "additionalProperties": {
                       "bsonType": "int"
                     }
                   },
                   "user": {
-                    "bsonType": [
-                      "string",
-                      "null"
-                    ]
+                    "bsonType": ["string", "null"]
                   },
                   "tools": {
-                    "bsonType": [
-                      "array",
-                      "null"
-                    ],
+                    "bsonType": ["array", "null"],
                     "items": {
                       "bsonType": "object"
                     }
@@ -679,22 +546,13 @@
                     ]
                   },
                   "parallel_tool_calls": {
-                    "bsonType": [
-                      "bool",
-                      "null"
-                    ]
+                    "bsonType": ["bool", "null"]
                   },
                   "logprobs": {
-                    "bsonType": [
-                      "bool",
-                      "null"
-                    ]
+                    "bsonType": ["bool", "null"]
                   },
                   "top_logprobs": {
-                    "bsonType": [
-                      "int",
-                      "null"
-                    ]
+                    "bsonType": ["int", "null"]
                   },
                   "max_completion_tokens": {
                     "bsonType": "int"
@@ -716,10 +574,7 @@
                     ]
                   },
                   "n": {
-                    "bsonType": [
-                      "int",
-                      "null"
-                    ]
+                    "bsonType": ["int", "null"]
                   },
                   "response_format": {
                     "bsonType": "object"
@@ -737,10 +592,7 @@
                     "bsonType": "double"
                   },
                   "seed": {
-                    "bsonType": [
-                      "int",
-                      "null"
-                    ]
+                    "bsonType": ["int", "null"]
                   }
                 }
               },
@@ -771,10 +623,7 @@
             "properties": {
               "llm_model": {
                 "bsonType": "object",
-                "required": [
-                  "name",
-                  "max_context_tokens"
-                ],
+                "required": ["name", "max_context_tokens"],
                 "additionalProperties": false,
                 "properties": {
                   "name": {
@@ -798,37 +647,20 @@
                 "additionalProperties": false,
                 "properties": {
                   "reasoning_effort": {
-                    "enum": [
-                      "low",
-                      "medium",
-                      "high",
-                      null
-                    ],
-                    "bsonType": [
-                      "string",
-                      "null"
-                    ]
+                    "enum": ["low", "medium", "high", null],
+                    "bsonType": ["string", "null"]
                   },
                   "logit_bias": {
-                    "bsonType": [
-                      "object",
-                      "null"
-                    ],
+                    "bsonType": ["object", "null"],
                     "additionalProperties": {
                       "bsonType": "int"
                     }
                   },
                   "user": {
-                    "bsonType": [
-                      "string",
-                      "null"
-                    ]
+                    "bsonType": ["string", "null"]
                   },
                   "tools": {
-                    "bsonType": [
-                      "array",
-                      "null"
-                    ],
+                    "bsonType": ["array", "null"],
                     "items": {
                       "bsonType": "object"
                     }
@@ -847,22 +679,13 @@
                     ]
                   },
                   "parallel_tool_calls": {
-                    "bsonType": [
-                      "bool",
-                      "null"
-                    ]
+                    "bsonType": ["bool", "null"]
                   },
                   "logprobs": {
-                    "bsonType": [
-                      "bool",
-                      "null"
-                    ]
+                    "bsonType": ["bool", "null"]
                   },
                   "top_logprobs": {
-                    "bsonType": [
-                      "int",
-                      "null"
-                    ]
+                    "bsonType": ["int", "null"]
                   },
                   "max_completion_tokens": {
                     "bsonType": "int"
@@ -884,10 +707,7 @@
                     ]
                   },
                   "n": {
-                    "bsonType": [
-                      "int",
-                      "null"
-                    ]
+                    "bsonType": ["int", "null"]
                   },
                   "response_format": {
                     "bsonType": "object"
@@ -905,10 +725,7 @@
                     "bsonType": "double"
                   },
                   "seed": {
-                    "bsonType": [
-                      "int",
-                      "null"
-                    ]
+                    "bsonType": ["int", "null"]
                   }
                 }
               },
@@ -989,10 +806,7 @@
         "bsonType": "array",
         "items": {
           "bsonType": "object",
-          "required": [
-            "created_at",
-            "human_correction"
-          ],
+          "required": ["created_at", "human_correction"],
           "additionalProperties": false,
           "properties": {
             "created_at": {
@@ -1000,29 +814,19 @@
             },
             "human_correction": {
               "bsonType": "object",
-              "required": [
-                "author_email",
-                "source",
-                "llm_search"
-              ],
+              "required": ["author_email", "source", "llm_search"],
               "additionalProperties": false,
               "properties": {
                 "author_email": {
                   "bsonType": "string"
                 },
                 "source": {
-                  "enum": [
-                    "user_form",
-                    "api_survey"
-                  ],
+                  "enum": ["user_form", "api_survey"],
                   "bsonType": "string"
                 },
                 "llm_search": {
                   "bsonType": "object",
-                  "required": [
-                    "add",
-                    "remove"
-                  ],
+                  "required": ["add", "remove"],
                   "additionalProperties": false,
                   "properties": {
                     "add": {

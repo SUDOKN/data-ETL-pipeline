@@ -43,7 +43,7 @@ load_open_ai_app_env()
 
 # Import AWS client initialization
 from core.dependencies.aws_clients import initialize_core_aws_clients
-from apps.data_etl_app.src.data_etl_app.dependencies.aws_clients import (
+from apps.data_etl_app.src.data_etl_app.dependencies.aws_s3_clients import (
     initialize_data_etl_aws_clients,
 )
 
@@ -52,7 +52,7 @@ from apps.data_etl_app.src.data_etl_app.knowledge.ontology.validate_ontology_rdf
     validate_ontology_from_file,
     is_ontology_valid,
 )
-from packages.core.src.core.services.knowledge.ontology_service import (
+from packages.knowledge.src.knowledge.services.ontology_service import (
     get_ontology_service,
 )
 

@@ -1,9 +1,11 @@
-from packages.core.src.core.models.field_types import MfgETLDType
+from packages.core.src.core.field_types import SubjectUniqueIDType
 from apps.data_etl_app.src.data_etl_app.services.ttl_generator_service import (
     generate_triples_for_single_mfg,
 )
-from packages.core.src.core.utils.graph_db_client import send_update_query_to_db
-from packages.core.src.core.services.knowledge.ontology_service import (
+from packages.infra.src.infra.utils.db_clients.graph_db_client import (
+    send_update_query_to_db,
+)
+from packages.knowledge.src.knowledge.services.ontology_service import (
     get_ontology_service,
 )
 from apps.data_etl_app.src.data_etl_app.services.manufacturer_user_form_service import (
@@ -11,7 +13,7 @@ from apps.data_etl_app.src.data_etl_app.services.manufacturer_user_form_service 
 )
 
 
-async def replace_manufacturer_in_graph(mfg_etdl1: MfgETLDType) -> None:
+async def replace_manufacturer_in_graph(mfg_etdl1: SubjectUniqueIDType) -> None:
     mfg_user_form = await get_manufacturer_user_form_by_mfg_etld1(mfg_etdl1)
     if not mfg_user_form:
         raise ValueError(

@@ -3,7 +3,7 @@ from __future__ import annotations
 import logging
 from datetime import datetime
 
-from packages.core.src.core.models.base.extraction_subject import (
+from packages.core.src.core.models.extraction_subject import (
     AbstractExtractionSubject,
     AbstractDeferredExtractionSubject,
 )
@@ -11,7 +11,7 @@ from packages.core.src.core.models.deferred_extraction.deferred_single_stage_ext
     SingleStageExtractionRequestBundle,
     DeferredSingleStageExtractionRequests,
 )
-from packages.core.src.core.models.file_objects.prompt import Prompt
+from packages.llm_providers.src.llm_providers.models.file_objects.prompt import Prompt
 from packages.core.src.core.models.extraction_results.single_stage_extraction_results import (
     LLMSingleStageExtractionMetadata,
 )
@@ -28,7 +28,7 @@ from packages.core.src.core.models.pipeline_nodes.single_stage.base.single_stage
 from packages.core.src.core.models.types_and_enums import (
     SingleStageFieldTypeVar,
 )
-from apps.data_etl_app.src.data_etl_app.models.scraped_text_file import ScrapedTextFile
+from packages.infra.src.infra.models.s3.scraped_text_file import ScrapedTextFile
 
 
 from packages.core.src.core.utils.chunk_util import (

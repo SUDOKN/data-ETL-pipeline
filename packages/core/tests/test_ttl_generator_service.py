@@ -24,12 +24,12 @@ load_data_etl_env()
 load_open_ai_app_env()
 
 from core.utils.mongo_client import init_db
-from apps.data_etl_app.src.data_etl_app.dependencies.aws_clients import (
+from apps.data_etl_app.src.data_etl_app.dependencies.aws_s3_clients import (
     cleanup_data_etl_aws_clients,
     initialize_data_etl_aws_clients,
 )
 
-from packages.core.src.core.models.ontology import Ontology
+from packages.knowledge.src.knowledge.models.ontology import Ontology
 from apps.data_etl_app.src.data_etl_app.models.extraction_results.address_extraction_result import (
     Address,
 )
@@ -39,7 +39,7 @@ from apps.data_etl_app.src.data_etl_app.models.extraction_results.business_descr
 from apps.data_etl_app.src.data_etl_app.services.ttl_generator_service import (
     generate_triples,
 )
-from apps.data_etl_app.src.data_etl_app.models.db.manufacturer_user_form import (
+from apps.data_etl_app.src.data_etl_app.db_models.manufacturer_user_form import (
     ManufacturerUserForm,
 )
 
@@ -66,7 +66,7 @@ async def main():
         manufacturers = [
             ManufacturerUserForm(
                 author_email="info@acmemfg.com",
-                etld1="mfg-001",
+                subject_unique_id="mfg-001",
                 name="Acme Manufacturing",
                 founded_in=1990,
                 email_addresses=["info@acmemfg.com"],
@@ -103,7 +103,7 @@ async def main():
             ),
             ManufacturerUserForm(
                 author_email="info@globex.com",
-                etld1="globex.com",
+                subject_unique_id="globex.com",
                 name="Globex Corporation",
                 founded_in=1985,
                 email_addresses=["info@globex.com"],

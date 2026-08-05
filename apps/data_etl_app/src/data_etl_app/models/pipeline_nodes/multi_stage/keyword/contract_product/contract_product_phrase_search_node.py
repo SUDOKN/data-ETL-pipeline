@@ -5,15 +5,15 @@ from typing import TYPE_CHECKING
 from packages.core.src.core.models.deferred_extraction.deferred_phrase_extraction_requests import (
     LLMPhraseExtractionMetadata,
 )
-from packages.core.src.core.models.file_objects.prompt import Prompt
-from data_etl_app.models.pipeline_nodes.multi_stage.keyword.base.keyword_phrase_search_node import (
+from packages.llm_providers.src.llm_providers.models.file_objects.prompt import Prompt
+from packages.core.src.core.models.pipeline_nodes.multi_stage.keyword.keyword_phrase_search_node import (
     KeywordPhraseSearchNode,
 )
 from packages.core.src.core.models.types_and_enums import (
     KeywordTypeEnum,
     LLMExtractedFieldTypeEnum,
 )
-from packages.core.src.core.models.field_types import BatchRequestIDType
+from packages.llm_providers.src.llm_providers.field_types import BatchRequestIDType
 
 if TYPE_CHECKING:
     from apps.data_etl_app.src.data_etl_app.models.pipeline_nodes.multi_stage.keyword.contract_product.contract_product_recursive_search_node import (
@@ -60,7 +60,7 @@ class ContractProductPhraseSearchNode(KeywordPhraseSearchNode):
         # Deliberately ignore the passed field_type and use the shared "products"
         # identity so this phase's custom_id matches the pure-product branch's.
         return KeywordPhraseSearchNode.get_request_custom_id(
-            mfg_etld1=mfg_etld1,
+            subject_unique_id=mfg_etld1,
             field_type=KeywordTypeEnum.products,
             chunk_bounds=chunk_bounds,
             metadata=metadata,

@@ -7,16 +7,18 @@ from abc import ABC, abstractmethod
 from typing import TypeVar, Generic, Optional
 from datetime import datetime
 
-from packages.core.src.core.models.base.extraction_subject import (
+from packages.core.src.core.models.extraction_subject import (
     AbstractExtractionSubject,
     AbstractDeferredExtractionSubject,
 )
-from packages.core.src.core.models.db.gpt_batch_request import GPTBatchRequest
+from packages.llm_providers.src.llm_providers.db_models.gpt_batch_request import (
+    GPTBatchRequest,
+)
 from packages.core.src.core.models.types_and_enums import (
     LLMExtractedFieldTypeVar,
 )
-from packages.core.src.core.models.field_types import BatchRequestIDType
-from apps.data_etl_app.src.data_etl_app.models.scraped_text_file import ScrapedTextFile
+from packages.llm_providers.src.llm_providers.field_types import BatchRequestIDType
+from packages.infra.src.infra.models.s3.scraped_text_file import ScrapedTextFile
 
 logger = logging.getLogger(__name__)
 
@@ -51,7 +53,7 @@ class BaseNode(ABC, Generic[LLMExtractedFieldTypeVar, ResultT]):
 class PipelineContext:
     """Carries shared state for a single pipeline run.
 
-    ``mfg_name`` is pre-populated by the orchestrator before any concept/keyword
+    ``subject_name`` is pre-populated by the orchestrator before any concept/keyword
     pipeline executes so that phrase_relationship nodes can embed the manufacturer name in
     their batch requests without needing it threaded through every method signature.
 
@@ -61,9 +63,9 @@ class PipelineContext:
 
     def __init__(
         self,
-        mfg_name: Optional[str] = None,
+        subject_name: Optional[str] = None,
     ) -> None:
-        self.mfg_name: Optional[str] = mfg_name
+        self.subject_name: Optional[str] = subject_name
         self._results: dict[
             type[BaseNode], dict[BatchRequestIDType, GPTBatchRequest]
         ] = {}

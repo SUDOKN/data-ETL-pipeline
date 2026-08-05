@@ -4,7 +4,7 @@ import logging
 from abc import abstractmethod
 from datetime import datetime
 
-from packages.core.src.core.models.base.extraction_subject import (
+from packages.core.src.core.models.extraction_subject import (
     AbstractExtractionSubject,
     AbstractDeferredExtractionSubject,
 )
@@ -21,7 +21,7 @@ from packages.core.src.core.models.pipeline_nodes.base.base_llm_extraction_node 
 from packages.core.src.core.models.types_and_enums import (
     LLMExtractedFieldTypeVar,
 )
-from apps.data_etl_app.src.data_etl_app.models.scraped_text_file import ScrapedTextFile
+from packages.infra.src.infra.models.s3.scraped_text_file import ScrapedTextFile
 
 logger = logging.getLogger(__name__)
 

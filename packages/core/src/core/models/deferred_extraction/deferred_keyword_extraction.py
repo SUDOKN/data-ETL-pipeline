@@ -5,7 +5,7 @@ from packages.core.src.core.models.deferred_extraction.deferred_phrase_extractio
 from packages.core.src.core.models.extraction_results.keyword_extraction_results import (
     KeywordExtractionMetadata,
 )
-from packages.core.src.core.models.field_types import BatchRequestIDType
+from packages.llm_providers.src.llm_providers.field_types import BatchRequestIDType
 from typing import Optional
 
 

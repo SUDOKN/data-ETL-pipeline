@@ -6,25 +6,29 @@ from pathlib import Path
 from typing import Optional
 
 
-from packages.core.src.core.models.file_objects.base_files import CSVFile
-from packages.core.src.core.models.ontology import Ontology
-from apps.data_etl_app.src.data_etl_app.models.db.deferred_manufacturer import (
+from packages.llm_providers.src.llm_providers.models.file_objects.base_files import (
+    CSVFile,
+)
+from packages.knowledge.src.knowledge.models.ontology import Ontology
+from apps.data_etl_app.src.data_etl_app.db_models.deferred_manufacturer import (
     DeferredManufacturer,
 )
-from packages.core.src.core.utils.batch_jsonl_file_writer import (
+from packages.llm_providers.src.llm_providers.utils.open_ai.batch_jsonl_file_writer import (
     BatchRequestJSONLFileWriter,
     MaxFilesReachedException,
 )
 
-from packages.core.src.core.services.knowledge.prompt_service import PromptService
-from open_ai_key_app.models.gpt_model_params import GPTModelParams
-from litellm_proxy_app.models.llm_model import LLM_Model
-from litellm_proxy_app.models.llm_model import GPT_4_1_mini
+from apps.data_etl_app.src.data_etl_app.services.prompt_service import PromptService
+from packages.llm_providers.src.llm_providers.models.open_ai.gpt_model_params import (
+    GPTModelParams,
+)
+from packages.llm_providers.src.llm_providers.models.llm_model import LLM_Model
+from packages.llm_providers.src.llm_providers.models.llm_model import GPT_4_1_mini
 
 from apps.data_etl_app.src.data_etl_app.services.manufacturer_service import (
     find_manufacturer_by_etld1,
 )
-from packages.core.src.core.services.gpt_batch_request.gpt_batch_request_queries import (
+from packages.llm_providers.src.llm_providers.services.gpt_batch_request.gpt_batch_request_queries import (
     find_gpt_batch_requests_by_custom_ids,
 )
 from apps.data_etl_app.src.data_etl_app.services.deferred_manufacturer_service import (
@@ -35,8 +39,8 @@ from apps.data_etl_app.src.data_etl_app.services.manufacturer_extraction_orchest
     ManufacturerExtractionOrchestrator,
 )
 
-from packages.core.src.core.utils.time_util import get_timestamp_str
-from apps.data_etl_app.src.data_etl_app.models.scraped_text_file import ScrapedTextFile
+from packages.pure_utils.src.pure_utils.time_util import get_timestamp_str
+from packages.infra.src.infra.models.s3.scraped_text_file import ScrapedTextFile
 
 logger = logging.getLogger(__name__)
 

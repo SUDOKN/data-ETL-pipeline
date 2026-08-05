@@ -1,0 +1,1 @@
+BatchRequestIDType = str

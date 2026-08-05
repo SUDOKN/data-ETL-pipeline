@@ -23,7 +23,7 @@ except ImportError:
 # Add the scraper app to Python path for testing
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "src"))
 
-from scraper_app.utils.selenium.chrome_driver_manager import ChromeDriverManager
+from packages.scraper.src.scraper.utils.selenium import ChromeDriverManager
 
 
 class ChromeProcessMonitor:
@@ -99,7 +99,7 @@ class TestChromeProcessManagement:
 
         # Also patch the module constant
         self.constant_patcher = patch(
-            "scraper_app.utils.selenium.chrome_driver_manager.CHROME_PROFILE_TMPDIR",
+            "packages.scraper.src.scraper.utils.selenium.chrome_driver_manager.CHROME_PROFILE_TMPDIR",
             self.test_profile_dir,
         )
         self.constant_patcher.start()

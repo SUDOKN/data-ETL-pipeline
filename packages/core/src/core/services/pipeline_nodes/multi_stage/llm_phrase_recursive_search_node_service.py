@@ -6,10 +6,12 @@ from datetime import datetime
 from typing import Optional
 import traceback
 
-from packages.core.src.core.models.db.gpt_batch_request import GPTBatchRequest
+from packages.llm_providers.src.llm_providers.db_models.gpt_batch_request import (
+    GPTBatchRequest,
+)
 from packages.core.src.core.models.extraction_schemas.search import LLMSearchResults
-from packages.core.src.core.models.file_objects.prompt import Prompt
-from litellm_proxy_app.models.llm_model import LLM_Model
+from packages.llm_providers.src.llm_providers.models.file_objects.prompt import Prompt
+from packages.llm_providers.src.llm_providers.models.llm_model import LLM_Model
 from packages.core.src.core.models.deferred_extraction.deferred_phrase_extraction_requests import (
     LLMPhraseExtractionRequestMap,
     LLMPhraseExtractionRequestBundle,
@@ -20,20 +22,22 @@ from packages.core.src.core.models.pipeline_nodes.multi_stage.base.llm_phrase_se
 from packages.core.src.core.models.types_and_enums import (
     LLMExtractedFieldTypeEnum,
 )
-from packages.core.src.core.models.field_types import BatchRequestIDType
-from open_ai_key_app.models.gpt_model_params import GPTModelParams
+from packages.llm_providers.src.llm_providers.field_types import BatchRequestIDType
+from packages.llm_providers.src.llm_providers.models.open_ai.gpt_model_params import (
+    GPTModelParams,
+)
 
-from packages.core.src.core.services.gpt_batch_request.gpt_batch_request_writes import (
+from packages.llm_providers.src.llm_providers.services.gpt_batch_request.gpt_batch_request_writes import (
     record_response_parse_error,
 )
-from packages.core.src.core.services.gpt_batch_request.gpt_batch_request_service import (
+from packages.llm_providers.src.llm_providers.services.gpt_batch_request.gpt_batch_request_service import (
     create_base_gpt_batch_request,
 )
 from packages.core.src.core.services.pipeline_nodes.multi_stage.llm_phrase_search_node_service import (
     LLM_SEARCH_RESPONSE_SCHEMA,
     parse_llm_search_response,
 )
-from packages.core.src.core.utils.ground_truth_helper_util import (
+from apps.data_etl_app.src.data_etl_app.utils.ground_truth_helper_util import (
     filter_non_overlapping_brute_results,
 )
 
@@ -41,7 +45,7 @@ logger = logging.getLogger(__name__)
 
 
 async def parse_recursive_search_round_result(
-    mfg_etld1: str,
+    subject_unique_id: str,
     field_type: LLMExtractedFieldTypeEnum,
     chunk_bounds: str,
     round_req_id: BatchRequestIDType,
@@ -69,13 +73,13 @@ async def parse_recursive_search_round_result(
             traceback_str=traceback.format_exc(),
         )
         logger.error(
-            f"recursive_search_node.parse_recursive_search_round_result: Error parsing recursive search results for manufacturer {mfg_etld1} from GPT response: {e}"
+            f"recursive_search_node.parse_recursive_search_round_result: Error parsing recursive search results for manufacturer {subject_unique_id} from GPT response: {e}"
         )
         raise
 
 
 async def get_all_recursive_round_results(
-    mfg_etld1: str,
+    subject_unique_id: str,
     field_type: LLMExtractedFieldTypeEnum,
     chunk_bounds: str,
     extraction_bundle: LLMPhraseExtractionRequestBundle,
@@ -86,7 +90,7 @@ async def get_all_recursive_round_results(
     all_results: set[str] = set()
     for round_req_id in extraction_bundle.llm_phrase_recursive_search_req_ids:
         all_results |= await parse_recursive_search_round_result(
-            mfg_etld1=mfg_etld1,
+            subject_unique_id=subject_unique_id,
             field_type=field_type,
             chunk_bounds=chunk_bounds,
             round_req_id=round_req_id,
@@ -97,7 +101,7 @@ async def get_all_recursive_round_results(
 
 
 async def build_llm_phrase_search_results(
-    mfg_etld1: str,
+    subject_unique_id: str,
     field_type: LLMExtractedFieldTypeEnum,
     chunk_bounds: str,
     extraction_bundle: LLMPhraseExtractionRequestBundle,
@@ -118,7 +122,7 @@ async def build_llm_phrase_search_results(
     index to the phrases found independently that round.
     """
     first_search_results = await LLMPhraseSearchNode.get_result(
-        mfg_etld1=mfg_etld1,
+        subject_unique_id=subject_unique_id,
         field_type=field_type,
         chunk_bounds=chunk_bounds,
         extraction_bundle=extraction_bundle,
@@ -131,7 +135,7 @@ async def build_llm_phrase_search_results(
         extraction_bundle.llm_phrase_recursive_search_req_ids, start=2
     ):
         rounds[round_index] = await parse_recursive_search_round_result(
-            mfg_etld1=mfg_etld1,
+            subject_unique_id=subject_unique_id,
             field_type=field_type,
             chunk_bounds=chunk_bounds,
             round_req_id=round_req_id,
@@ -177,7 +181,7 @@ async def create_missing_phrase_recursive_search_requests(
     field_type: LLMExtractedFieldTypeEnum,  # used for logging and debugging
     missing_recursive_search_req_ids: set[BatchRequestIDType],
     chunked_request_map: LLMPhraseExtractionRequestMap,
-    mfg_etld1: str,
+    subject_unique_id: str,
     mfg_text: str,
     recursive_search_prompt: Prompt,
     first_search_gpt_request_map: dict[BatchRequestIDType, GPTBatchRequest],
@@ -194,7 +198,7 @@ async def create_missing_phrase_recursive_search_requests(
     (LLM phrases only; brute-force results are intentionally excluded).
     """
     logger.info(
-        f"create_missing_phrase_recursive_search_requests: Generating GPTBatchRequests for {mfg_etld1}:{field_type.name}"
+        f"create_missing_phrase_recursive_search_requests: Generating GPTBatchRequests for {subject_unique_id}:{field_type.name}"
     )
 
     batch_requests: list[GPTBatchRequest] = []
@@ -217,7 +221,7 @@ async def create_missing_phrase_recursive_search_requests(
 
             # First search results for this chunk (LLM only).
             first_search_results = await LLMPhraseSearchNode.get_result(
-                mfg_etld1=mfg_etld1,
+                subject_unique_id=subject_unique_id,
                 field_type=field_type,
                 chunk_bounds=chunk_bounds,
                 extraction_bundle=extraction_bundle,
@@ -231,7 +235,7 @@ async def create_missing_phrase_recursive_search_requests(
                 prior_round_req_id
             ) in extraction_bundle.llm_phrase_recursive_search_req_ids[:round_index]:
                 already_extracted |= await parse_recursive_search_round_result(
-                    mfg_etld1=mfg_etld1,
+                    subject_unique_id=subject_unique_id,
                     field_type=field_type,
                     chunk_bounds=chunk_bounds,
                     round_req_id=prior_round_req_id,
@@ -249,7 +253,7 @@ async def create_missing_phrase_recursive_search_requests(
 
             recursive_batch_request = create_base_gpt_batch_request(
                 deferred_at=timestamp,
-                etld1=mfg_etld1,
+                subject_unique_id=subject_unique_id,
                 custom_id=round_req_id,
                 context=context,
                 prompt_text=recursive_search_prompt.text,
@@ -267,7 +271,7 @@ async def create_missing_phrase_recursive_search_requests(
         if (i + BATCH_SIZE) % 500 == 0:
             logger.info(
                 f"Created {min(i + BATCH_SIZE, len(chunk_round_items))}/{len(chunk_round_items)} "
-                f"recursive search gpt requests for {mfg_etld1}:{field_type.name} (Eager: {eager})"
+                f"recursive search gpt requests for {subject_unique_id}:{field_type.name} (Eager: {eager})"
             )
 
     return batch_requests

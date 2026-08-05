@@ -22,7 +22,9 @@ load_scraper_env()
 load_data_etl_env()
 load_open_ai_app_env()
 
-from packages.core.src.core.models.db.gpt_batch_request import GPTBatchRequest
+from packages.llm_providers.src.llm_providers.db_models.gpt_batch_request import (
+    GPTBatchRequest,
+)
 from core.utils.mongo_client import init_db
 
 logger = logging.getLogger(__name__)

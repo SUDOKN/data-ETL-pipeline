@@ -1,6 +1,6 @@
 import logging
 
-from packages.core.src.core.models.file_objects.prompt import Prompt
+from packages.llm_providers.src.llm_providers.models.file_objects.prompt import Prompt
 from packages.core.src.core.models.extraction_results.single_stage_extraction_results import (
     LLMSingleStageExtractionMetadata,
 )

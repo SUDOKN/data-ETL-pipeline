@@ -2,13 +2,14 @@ from datetime import datetime
 import logging
 
 from beanie.operators import In
-from apps.data_etl_app.src.data_etl_app.models.db.manufacturer import (
+from apps.data_etl_app.src.data_etl_app.field_types import MfgURLType
+from apps.data_etl_app.src.data_etl_app.db_models.manufacturer import (
     Batch,
     Manufacturer,
 )
-from packages.core.src.core.models.field_types import MfgURLType, MfgETLDType
-from packages.core.src.core.utils.url_util import get_etld1_from_host
-from apps.data_etl_app.src.data_etl_app.models.scraped_text_file import ScrapedTextFile
+from packages.core.src.core.field_types import SubjectUniqueIDType
+from packages.pure_utils.src.pure_utils.url_util import get_etld1_from_host
+from packages.infra.src.infra.models.s3.scraped_text_file import ScrapedTextFile
 
 logger = logging.getLogger(__name__)
 
@@ -40,7 +41,7 @@ def reset_llm_extracted_fields(manufacturer: Manufacturer):
 
 async def create_new_manufacturer(
     created_at: datetime,
-    mfg_etld1: MfgETLDType,
+    mfg_etld1: SubjectUniqueIDType,
     scraped_file: ScrapedTextFile,
     batch: Batch,
 ) -> Manufacturer:
@@ -145,7 +146,7 @@ async def find_manufacturer_by_url(
 
 
 async def find_manufacturers_by_etld1s(
-    mfg_etld1s: list[MfgETLDType],
+    mfg_etld1s: list[SubjectUniqueIDType],
 ) -> list[Manufacturer]:
     """
     Find a manufacturer by its URL.
@@ -162,7 +163,7 @@ async def find_manufacturers_by_etld1s(
 
 
 async def find_manufacturer_by_etld1(
-    mfg_etld1: MfgETLDType,
+    mfg_etld1: SubjectUniqueIDType,
 ) -> Manufacturer | None:
     """
     Find a manufacturer by its URL.
@@ -195,7 +196,7 @@ async def find_prevalidated_manufacturer_by_url(
 
 
 async def find_prevalidated_manufacturer_by_etld1(
-    mfg_etld1: MfgETLDType,
+    mfg_etld1: SubjectUniqueIDType,
 ) -> Manufacturer:
     """
     Find a valid manufacturer by its URL.
@@ -239,7 +240,7 @@ async def find_manufacturer_by_url_and_scraped_file_version(
 
 
 async def find_manufacturer_by_etld1_and_scraped_file_version(
-    mfg_etld1: MfgETLDType,
+    mfg_etld1: SubjectUniqueIDType,
     scraped_text_file_version_id: str,
 ) -> Manufacturer | None:
     """

@@ -27,8 +27,10 @@ load_scraper_env()
 load_data_etl_env()
 load_open_ai_app_env()
 
-from packages.core.src.core.models.db.api_key_bundle import APIKeyBundle
-from apps.data_etl_app.src.data_etl_app.utils.mongo_client import init_db
+from packages.llm_providers.src.llm_providers.db_models.api_key_bundle import (
+    APIKeyBundle,
+)
+from packages.infra.src.infra.utils.db_clients.mongo_client import init_db
 
 logger = logging.getLogger(__name__)
 logging.basicConfig(

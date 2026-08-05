@@ -7,23 +7,35 @@ from openai import OpenAI, OpenAIError, APIConnectionError
 from openai.types import Batch
 from typing import Optional, Callable, Awaitable
 
-from packages.core.src.core.utils.batch_jsonl_file_writer import JSONLBatchFile
-from packages.core.src.core.models.db.gpt_batch import GPTBatch, GPTBatchMetadata
-from packages.core.src.core.services.gpt_batch_service import (
+from packages.llm_providers.src.llm_providers.utils.open_ai.batch_jsonl_file_writer import (
+    JSONLBatchFile,
+)
+from packages.llm_providers.src.llm_providers.db_models.gpt_batch import (
+    GPTBatch,
+    GPTBatchMetadata,
+)
+from packages.llm_providers.src.llm_providers.services.gpt_batch.gpt_batch_service import (
     insert_gpt_batch_from_response,
     upsert_latest_gpt_batch_by_external_batch,
 )
-from packages.core.src.core.models.file_objects.jsonl_batch_file import (
+from packages.llm_providers.src.llm_providers.models.file_objects.jsonl_batch_file import (
     JSONLBatchFile,
 )
-from packages.core.src.core.models.db.api_key_bundle import APIKeyBundle
-from packages.core.src.core.utils.time_util import get_current_time, get_timestamp_str
-from open_ai_key_app.utils.openai_file_util import (
+from packages.llm_providers.src.llm_providers.db_models.api_key_bundle import (
+    APIKeyBundle,
+)
+from packages.pure_utils.src.pure_utils.time_util import (
+    get_current_time,
+    get_timestamp_str,
+)
+from packages.llm_providers.src.llm_providers.utils.open_ai.openai_file_util import (
     download_openai_file,
     delete_uploaded_batch_file_from_openai,
     upload_file_to_openai_using_parts,
 )
-from open_ai_key_app.utils.openai_batch_util import fetch_all_batches
+from packages.llm_providers.src.llm_providers.utils.open_ai.openai_batch_util import (
+    fetch_all_batches,
+)
 
 logger = logging.getLogger(__name__)
 

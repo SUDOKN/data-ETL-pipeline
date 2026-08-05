@@ -1,8 +1,10 @@
 from datetime import datetime
 
-from packages.core.src.core.models.file_objects.prompt import Prompt
-from litellm_proxy_app.models.llm_model import GPT_4o_mini
-from open_ai_key_app.models.gpt_model_params import GPTModelParams
+from packages.llm_providers.src.llm_providers.models.file_objects.prompt import Prompt
+from packages.llm_providers.src.llm_providers.models.llm_model import GPT_4o_mini
+from packages.llm_providers.src.llm_providers.models.open_ai.gpt_model_params import (
+    GPTModelParams,
+)
 
 from packages.core.src.core.models.chunking_strat import EQUIPMENT_CHUNKING_STRAT
 from apps.data_etl_app.src.data_etl_app.models.pipeline_nodes import (

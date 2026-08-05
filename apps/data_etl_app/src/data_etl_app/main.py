@@ -34,7 +34,7 @@ log_level = os.getenv("LOG_LEVEL", "INFO").upper()
 logger = logging.getLogger(__name__)
 
 from core.utils.mongo_client import init_db
-from apps.data_etl_app.src.data_etl_app.dependencies.aws_clients import (
+from apps.data_etl_app.src.data_etl_app.dependencies.aws_s3_clients import (
     initialize_data_etl_aws_clients,
     cleanup_data_etl_aws_clients,
 )

@@ -7,17 +7,21 @@ import time
 from packages.core.src.core.models.extraction_results.binary_classification_result import (
     BaseClassificationDecision,
 )
-from apps.data_etl_app.src.data_etl_app.models.db.manufacturer import Manufacturer
-from apps.data_etl_app.src.data_etl_app.models.db.deferred_manufacturer import (
+from apps.data_etl_app.src.data_etl_app.db_models.manufacturer import Manufacturer
+from apps.data_etl_app.src.data_etl_app.db_models.deferred_manufacturer import (
     DeferredManufacturer,
 )
-from packages.core.src.core.models.db.extraction_error import ExtractionError
+from packages.llm_providers.src.llm_providers.db_models.extraction_error import (
+    ExtractionError,
+)
 from packages.core.src.core.models.types_and_enums import (
     BinaryClassificationTypeEnum,
 )
-from litellm_proxy_app.models.llm_model import LLM_Model
-from open_ai_key_app.models.gpt_model_params import GPTModelParams
-from apps.data_etl_app.src.data_etl_app.models.scraped_text_file import ScrapedTextFile
+from packages.llm_providers.src.llm_providers.models.llm_model import LLM_Model
+from packages.llm_providers.src.llm_providers.models.open_ai.gpt_model_params import (
+    GPTModelParams,
+)
+from packages.infra.src.infra.models.s3.scraped_text_file import ScrapedTextFile
 
 from apps.data_etl_app.src.data_etl_app.services.manufacturer_service import (
     update_manufacturer,
@@ -26,12 +30,12 @@ from apps.data_etl_app.src.data_etl_app.services.deferred_manufacturer_service i
     delete_deferred_manufacturer_if_empty,
     get_deferred_manufacturer_by_etld1_scraped_file_version,
 )
-from packages.core.src.core.services.gpt_batch_request.gpt_batch_request_writes import (
+from packages.llm_providers.src.llm_providers.services.gpt_batch_request.gpt_batch_request_writes import (
     bulk_delete_gpt_batch_requests_by_mfg_etld1_and_field,
 )
 from packages.core.src.core.models.pipeline_nodes import PipelineContext
-from packages.core.src.core.models.ontology import Ontology
-from packages.core.src.core.services.knowledge.prompt_service import PromptService
+from packages.knowledge.src.knowledge.models.ontology import Ontology
+from apps.data_etl_app.src.data_etl_app.services.prompt_service import PromptService
 from apps.data_etl_app.src.data_etl_app.services.extraction_pipeline_factory import (
     ExtractionPipelineFactory,
 )
@@ -144,7 +148,7 @@ class ManufacturerExtractionOrchestrator:
                         created_at=timestamp,
                         error=str(e),
                         field="is_manufacturer",
-                        mfg_etld1=mfg.etld1,
+                        subject_unique_id=mfg.etld1,
                     )
                 )
                 return  # if is_manufacturer check fails, skip further processing
@@ -154,8 +158,8 @@ class ManufacturerExtractionOrchestrator:
                 logger.info(f"Extracting business description for {mfg.etld1}")
                 _t0 = time.perf_counter()
                 await self.business_desc_pipeline.execute(
-                    mfg=mfg,
-                    deferred_mfg=deferred_mfg,
+                    subject=mfg,
+                    deferred_subject=deferred_mfg,
                     scraped_text_file=scraped_text_file,
                     timestamp=timestamp,
                     pipeline_context=PipelineContext(),
@@ -169,7 +173,7 @@ class ManufacturerExtractionOrchestrator:
                         created_at=timestamp,
                         error=str(e),
                         field="business_desc",
-                        mfg_etld1=mfg.etld1,
+                        subject_unique_id=mfg.etld1,
                     )
                 )
                 return  # if business_desc extraction fails, skip further processing
@@ -203,7 +207,7 @@ class ManufacturerExtractionOrchestrator:
                         created_at=timestamp,
                         error=str(e),
                         field="email_addresses",
-                        mfg_etld1=mfg.etld1,
+                        subject_unique_id=mfg.etld1,
                     )
                 )
 
@@ -247,7 +251,7 @@ class ManufacturerExtractionOrchestrator:
                     scraped_text_file=scraped_text_file,
                     timestamp=timestamp,
                     pipeline_context=PipelineContext(
-                        mfg_name=mfg.business_desc.result.name
+                        subject_name=mfg.business_desc.result.name
                     ),
                     eager=eager,
                 )
@@ -259,7 +263,7 @@ class ManufacturerExtractionOrchestrator:
                 setattr(deferred_mfg, field_type.name, None)
                 await deferred_mfg.save()
                 # await bulk_delete_gpt_batch_requests_by_mfg_etld1_and_field(
-                #     mfg_etld1=mfg.etld1,
+                #     subject_unique_id=mfg.etld1,
                 #     field_type=field_type,
                 # ) TODO: uncomment
 

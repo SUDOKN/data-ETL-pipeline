@@ -3,16 +3,16 @@ import logging
 from datetime import datetime
 
 
-from packages.core.src.core.models.base.extraction_subject import (
+from packages.core.src.core.models.extraction_subject import (
     AbstractExtractionSubject,
 )
-from packages.core.src.core.models.field_types import (
+from packages.infra.src.infra.field_types import (
     S3FileVersionIDType,
 )
 from packages.core.src.core.models.extraction_results.concept_extraction_results import (
     ConceptExtractionResults,
 )
-from apps.data_etl_app.src.data_etl_app.models.db.concept_ground_truth import (
+from apps.data_etl_app.src.data_etl_app.db_models.concept_ground_truth import (
     ConceptGroundTruth,
     ConceptCorrectionLog,
     HumanConceptCorrection,
@@ -20,18 +20,18 @@ from apps.data_etl_app.src.data_etl_app.models.db.concept_ground_truth import (
 from packages.core.src.core.models.skos_concept import Concept
 from packages.core.src.core.models.types_and_enums import ConceptTypeEnum
 
-from packages.core.src.core.services.knowledge.ontology_service import (
+from packages.knowledge.src.knowledge.services.ontology_service import (
     get_ontology_service,
 )
 from packages.core.src.core.services.brute_search_service import word_regex
 
-from apps.data_etl_app.src.data_etl_app.utils.aws.s3.scraped_text_util import (
+from packages.infra.src.infra.utils.s3.scraped_text_util import (
     download_scraped_text_from_s3_by_mfg_etld1,
 )
-from packages.core.src.core.utils.route_url_util import (
+from apps.data_etl_app.src.data_etl_app.utils.route_url_util import (
     get_full_ontology_concept_flat_url,
 )
-from packages.core.src.core.services.out_of_vocab_labels_service import (
+from packages.knowledge.src.knowledge.services.out_of_vocab_labels_service import (
     get_case_matched_existing_label,
     get_out_of_vocab_labels,
     upsert_out_of_vocab_labels,
@@ -75,12 +75,18 @@ async def get_extracted_concept_ground_truth(
         == linked_manufacturer.scraped_text_file_version_id,
         ConceptGroundTruth.metadata.ontology_version_id
         == concept_extraction_results.metadata.ontology_version_id,
-        ConceptGroundTruth.metadata.search_prompt_version_id
-        == concept_extraction_results.metadata.search_prompt_version_id,
-        ConceptGroundTruth.metadata.phrase_relationship_prompt_version_id
-        == concept_extraction_results.metadata.phrase_relationship_prompt_version_id,
-        ConceptGroundTruth.metadata.mapping_prompt_version_id
-        == concept_extraction_results.metadata.mapping_prompt_version_id,
+        ConceptGroundTruth.metadata.llm_phrase_search.prompt_version_id
+        == concept_extraction_results.metadata.llm_phrase_search.prompt_version_id,
+        ConceptGroundTruth.metadata.llm_phrase_recursive_search.prompt_version_id
+        == concept_extraction_results.metadata.llm_phrase_recursive_search.prompt_version_id,
+        ConceptGroundTruth.metadata.llm_phrase_relationship.prompt_version_id
+        == concept_extraction_results.metadata.llm_phrase_relationship.prompt_version_id,
+        ConceptGroundTruth.metadata.llm_phrase_relationship_screening.prompt_version_id
+        == concept_extraction_results.metadata.llm_phrase_relationship_screening.prompt_version_id,
+        ConceptGroundTruth.metadata.llm_phrase_initial_grounding.prompt_version_id
+        == concept_extraction_results.metadata.llm_phrase_initial_grounding.prompt_version_id,
+        ConceptGroundTruth.metadata.llm_phrase_recursive_grounding.prompt_version_id
+        == concept_extraction_results.metadata.llm_phrase_recursive_grounding.prompt_version_id,
         # ---------------------------------------------------- #
         ConceptGroundTruth.chunk_no == chunk_no,
     )
@@ -225,7 +231,7 @@ async def _validate_concept_ground_truth_correction(
 
     # file and version ID check
     scraped_text, version_id = await download_scraped_text_from_s3_by_mfg_etld1(
-        etld1=concept_gt.mfg_etld1,
+        subject_unique_id=concept_gt.mfg_etld1,
         version_id=linked_manufacturer.scraped_text_file_version_id,
     )
     if linked_manufacturer.scraped_text_file_version_id != version_id:

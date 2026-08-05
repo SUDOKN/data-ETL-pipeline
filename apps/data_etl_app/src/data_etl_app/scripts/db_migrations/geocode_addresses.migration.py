@@ -33,11 +33,11 @@ load_scraper_env()
 load_data_etl_env()
 load_open_ai_app_env()
 
-from apps.data_etl_app.src.data_etl_app.models.db.manufacturer import (
+from apps.data_etl_app.src.data_etl_app.db_models.manufacturer import (
     Address,
     Manufacturer,
 )
-from packages.core.src.core.models.db.place import Place
+from apps.data_etl_app.src.data_etl_app.db_models.place import Place
 from core.utils.mongo_client import init_db
 from apps.data_etl_app.src.data_etl_app.utils.lat_lng_util import (
     get_geocode_result_from_address,

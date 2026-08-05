@@ -44,13 +44,13 @@ load_data_etl_env()
 load_open_ai_app_env()
 
 from packages.core.src.core.models.skos_concept import ConceptNode
-from packages.core.src.core.utils.rdf_to_graph_util import (
+from packages.knowledge.src.knowledge.utils.rdf_to_graph_util import (
     get_graph,
     get_label,
     get_alt_labels,
     build_concept_tree,
 )
-from packages.core.src.core.utils.ontology_uri_util import (
+from packages.knowledge.src.knowledge.utils.ontology_uri_util import (
     process_cap_base_uri,
     material_cap_base_uri,
     industry_base_uri,
@@ -515,7 +515,7 @@ async def main():
     # Initialize AWS clients (required for ontology service)
     try:
         from core.dependencies.aws_clients import initialize_core_aws_clients
-        from apps.data_etl_app.src.data_etl_app.dependencies.aws_clients import (
+        from apps.data_etl_app.src.data_etl_app.dependencies.aws_s3_clients import (
             initialize_data_etl_aws_clients,
         )
 

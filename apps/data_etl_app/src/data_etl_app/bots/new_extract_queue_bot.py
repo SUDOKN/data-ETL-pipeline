@@ -5,7 +5,7 @@ from datetime import UTC, datetime
 from typing import Callable, Awaitable
 
 from packages.core.src.core.dependencies.load_core_env import load_core_env
-from litellm_proxy_app.models.llm_model import GPT_4o_mini
+from packages.llm_providers.src.llm_providers.models.llm_model import GPT_4o_mini
 from apps.data_etl_app.src.data_etl_app.dependencies.load_scraper_env import (
     load_scraper_env,
 )
@@ -26,43 +26,49 @@ load_data_etl_env()
 load_open_ai_app_env()
 load_litellm_env()
 
-from apps.data_etl_app.src.data_etl_app.dependencies.aws_clients_scraper import (
+from apps.data_etl_app.src.data_etl_app.dependencies.aws_sqs_clients import (
     initialize_scraper_aws_clients,
     cleanup_scraper_aws_clients,
 )
-from apps.data_etl_app.src.data_etl_app.dependencies.aws_clients import (
+from apps.data_etl_app.src.data_etl_app.dependencies.aws_s3_clients import (
     initialize_data_etl_aws_clients,
     cleanup_data_etl_aws_clients,
 )
 
-from apps.data_etl_app.src.data_etl_app.models.db.manufacturer import Manufacturer
-from packages.core.src.core.models.db.extraction_error import ExtractionError
-from packages.core.src.core.models.queue_items.to_extract_item import ToExtractItem
+from apps.data_etl_app.src.data_etl_app.db_models.manufacturer import Manufacturer
+from packages.llm_providers.src.llm_providers.db_models.extraction_error import (
+    ExtractionError,
+)
+from packages.infra.src.infra.models.queue_items.to_extract_item import ToExtractItem
 from packages.core.src.core.models.extraction_results.binary_classification_result import (
     BaseClassificationDecision,
 )
 from packages.core.src.core.models.types_and_enums import BinaryClassificationTypeEnum
-from open_ai_key_app.models.gpt_model_params import GPTModelParams
-from litellm_proxy_app.models.llm_model import LLM_Model
-from apps.data_etl_app.src.data_etl_app.models.scraped_text_file import ScrapedTextFile
+from packages.llm_providers.src.llm_providers.models.open_ai.gpt_model_params import (
+    GPTModelParams,
+)
+from packages.llm_providers.src.llm_providers.models.llm_model import LLM_Model
+from packages.infra.src.infra.models.s3.scraped_text_file import ScrapedTextFile
 
-from packages.core.src.core.services.user_service import is_user_MEP
+from apps.data_etl_app.src.data_etl_app.services.user_service import is_user_MEP
 from apps.data_etl_app.src.data_etl_app.services.manufacturer_service import (
     find_manufacturer_by_etld1,
 )
 from apps.data_etl_app.src.data_etl_app.services.ground_truth.binary_ground_truth_service import (
     get_binary_ground_truth,
 )
-from packages.core.src.core.services.knowledge.ontology_service import (
+from packages.knowledge.src.knowledge.services.ontology_service import (
     get_ontology_service,
 )
-from packages.core.src.core.services.knowledge.prompt_service import get_prompt_service
+from apps.data_etl_app.src.data_etl_app.services.prompt_service import (
+    get_prompt_service,
+)
 from apps.data_etl_app.src.data_etl_app.services.manufacturer_extraction_orchestrator import (
     ManufacturerExtractionOrchestrator,
 )
 
 from core.utils.mongo_client import init_db
-from packages.core.src.core.utils.time_util import get_current_time
+from packages.pure_utils.src.pure_utils.time_util import get_current_time
 
 logger = logging.getLogger(__name__)
 
@@ -211,7 +217,7 @@ async def process_queue(
                 created_at=get_current_time(),
                 error=str(e),
                 field="general_queue_processing",
-                mfg_etld1="N/A",
+                subject_unique_id="N/A",
             )
         )
     finally:
@@ -233,66 +239,66 @@ async def validate_manufacturer_for_extraction(
     Note: This function does NOT delete from queue - cleanup is handled by caller.
     """
 
-    manufacturer = await find_manufacturer_by_etld1(item.mfg_etld1)
+    manufacturer = await find_manufacturer_by_etld1(item.subject_unique_id)
 
     if not manufacturer:
         logger.warning(
-            f"{INVALID_ITEM_TAG}: Manufacturer {item.mfg_etld1} does not exist. Skipping extraction."
+            f"{INVALID_ITEM_TAG}: Manufacturer {item.subject_unique_id} does not exist. Skipping extraction."
         )
         await ExtractionError.insert_one(
             ExtractionError(
                 created_at=timestamp,
-                error=f"Manufacturer {item.mfg_etld1} does not exist.",
+                error=f"Manufacturer {item.subject_unique_id} does not exist.",
                 field="manufacturer",
-                mfg_etld1=item.mfg_etld1,
+                subject_unique_id=item.subject_unique_id,
             )
         )
         return None, None, False
 
     if not manufacturer.scraped_text_file_version_id:
         logger.warning(
-            f"{INVALID_ITEM_TAG}: Manufacturer {item.mfg_etld1} has no scraped_text_file_version_id, probably needs scraping. Skipping extraction."
+            f"{INVALID_ITEM_TAG}: Manufacturer {item.subject_unique_id} has no scraped_text_file_version_id, probably needs scraping. Skipping extraction."
         )
         await ExtractionError.insert_one(
             ExtractionError(
                 created_at=timestamp,
-                error=f"Manufacturer {item.mfg_etld1} has no scraped_text_file_version_id.",
+                error=f"Manufacturer {item.subject_unique_id} has no scraped_text_file_version_id.",
                 field="scraped_text_file_version_id",
-                mfg_etld1=item.mfg_etld1,
+                subject_unique_id=item.subject_unique_id,
             )
         )
         return None, None, False
 
     try:
         existing_scraped_file = await ScrapedTextFile.download_from_s3_and_create(
-            item.mfg_etld1,
+            item.subject_unique_id,
             manufacturer.scraped_text_file_version_id,
             llm_model,
         )
     except Exception as e:
         logger.error(
-            f"Error downloading scraped text file for {item.mfg_etld1} with version ID {manufacturer.scraped_text_file_version_id}: {e}"
+            f"Error downloading scraped text file for {item.subject_unique_id} with version ID {manufacturer.scraped_text_file_version_id}: {e}"
         )
         await ExtractionError.insert_one(
             ExtractionError(
                 created_at=timestamp,
                 error=str(e),
                 field="scraped_text_file_download",
-                mfg_etld1=item.mfg_etld1,
+                subject_unique_id=item.subject_unique_id,
             )
         )
         return None, None, False
 
     if not existing_scraped_file:
         logger.warning(
-            f"{INVALID_ITEM_TAG}: Scraped text file for {item.mfg_etld1} with version ID {manufacturer.scraped_text_file_version_id} does not exist in S3. Skipping extraction."
+            f"{INVALID_ITEM_TAG}: Scraped text file for {item.subject_unique_id} with version ID {manufacturer.scraped_text_file_version_id} does not exist in S3. Skipping extraction."
         )
         await ExtractionError.insert_one(
             ExtractionError(
                 created_at=timestamp,
-                error=f"Scraped text file for {item.mfg_etld1} with version ID {manufacturer.scraped_text_file_version_id} does not exist in S3.",
+                error=f"Scraped text file for {item.subject_unique_id} with version ID {manufacturer.scraped_text_file_version_id} does not exist in S3.",
                 field="scraped_text_file",
-                mfg_etld1=item.mfg_etld1,
+                subject_unique_id=item.subject_unique_id,
             )
         )
         return None, None, False
@@ -381,7 +387,7 @@ async def extract_and_cleanup(
                 created_at=polled_at,
                 error=str(e),
                 field="general_processing",
-                mfg_etld1=manufacturer.etld1,
+                subject_unique_id=manufacturer.etld1,
             )
         )
     finally:
@@ -391,11 +397,11 @@ async def extract_and_cleanup(
 
 
 async def async_main():
-    from apps.data_etl_app.src.data_etl_app.utils.aws.queue.extract_queue_util import (
+    from packages.infra.src.infra.utils.aws.queue.extract_queue_util import (
         poll_item_from_extract_queue,
         delete_item_from_extract_queue,
     )
-    from apps.data_etl_app.src.data_etl_app.utils.aws.queue.priority_extract_queue_util import (
+    from packages.infra.src.infra.utils.aws.queue.priority_extract_queue_util import (
         poll_item_from_priority_extract_queue,
         delete_item_from_priority_extract_queue,
     )

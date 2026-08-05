@@ -16,7 +16,7 @@ from packages.core.src.core.models.deferred_extraction.deferred_phrase_extractio
 )
 from packages.core.src.core.models.skos_concept import Concept
 
-from packages.core.src.core.models.field_types import BatchRequestIDType
+from packages.llm_providers.src.llm_providers.field_types import BatchRequestIDType
 
 from packages.core.src.core.utils.request_custom_id_util import (
     get_name_from_recursive_grounding_request_custom_id,

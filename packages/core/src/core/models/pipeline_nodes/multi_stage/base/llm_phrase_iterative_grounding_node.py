@@ -3,15 +3,17 @@ import logging
 from datetime import datetime
 from requests.structures import CaseInsensitiveDict
 
-from packages.core.src.core.models.db.gpt_batch_request import GPTBatchRequest
-from packages.core.src.core.models.batch_request_objects.gpt_batch_response_blob import (
+from packages.llm_providers.src.llm_providers.db_models.gpt_batch_request import (
+    GPTBatchRequest,
+)
+from packages.llm_providers.src.llm_providers.models.open_ai.gpt_batch_response_blob import (
     GPTBatchResponse,
 )
 from packages.core.src.core.models.extraction_schemas.iterative_tagging import (
     IterativeGroundingResult,
 )
-from packages.core.src.core.models.file_objects.prompt import Prompt
-from litellm_proxy_app.models.llm_model import LLM_Model
+from packages.llm_providers.src.llm_providers.models.file_objects.prompt import Prompt
+from packages.llm_providers.src.llm_providers.models.llm_model import LLM_Model
 from packages.core.src.core.models.deferred_extraction.deferred_concept_extraction import (
     ConceptExtractionRequestBundle,
     ConceptExtractionRequestMap,
@@ -34,17 +36,19 @@ from packages.core.src.core.models.pipeline_nodes.base.base_llm_extraction_node 
 from packages.core.src.core.models.pipeline_nodes.base.base_llm_recursive_extraction_node import (
     BaseLLMRecursiveExtractionNode,
 )
-from packages.core.src.core.models.field_types import BatchRequestIDType
-from open_ai_key_app.models.gpt_model_params import GPTModelParams
-from apps.data_etl_app.src.data_etl_app.models.scraped_text_file import ScrapedTextFile
+from packages.llm_providers.src.llm_providers.field_types import BatchRequestIDType
+from packages.llm_providers.src.llm_providers.models.open_ai.gpt_model_params import (
+    GPTModelParams,
+)
+from packages.infra.src.infra.models.s3.scraped_text_file import ScrapedTextFile
 
-from packages.core.src.core.services.gpt_batch_request.gpt_batch_request_service import (
+from packages.llm_providers.src.llm_providers.services.gpt_batch_request.gpt_batch_request_service import (
     dispatch_gpt_batch_request,
 )
-from packages.core.src.core.services.gpt_batch_request.gpt_batch_request_writes import (
+from packages.llm_providers.src.llm_providers.services.gpt_batch_request.gpt_batch_request_writes import (
     bulk_delete_gpt_batch_requests_by_custom_ids,
 )
-from packages.core.src.core.services.gpt_batch_request.gpt_batch_request_queries import (
+from packages.llm_providers.src.llm_providers.services.gpt_batch_request.gpt_batch_request_queries import (
     find_completed_gpt_batch_requests_by_custom_ids,
 )
 from packages.core.src.core.services.pipeline_nodes.multi_stage.llm_initial_grounding_service import (
@@ -58,7 +62,7 @@ from packages.core.src.core.services.pipeline_nodes.multi_stage.llm_recursive_gr
 )
 
 
-from packages.core.src.core.utils.rdf_to_graph_util import (
+from packages.knowledge.src.knowledge.utils.rdf_to_graph_util import (
     get_match_label_to_concept_map,
 )
 
@@ -209,7 +213,7 @@ class LLMPhraseIterativeGroundingNode(
             logger.info(f"Deleting batch reqs for:{incomplete_req_ids}")
             await bulk_delete_gpt_batch_requests_by_custom_ids(
                 gpt_batch_request_custom_ids=incomplete_req_ids,
-                mfg_etld1=subject_unique_id,
+                subject_unique_id=subject_unique_id,
             )
 
             return  # let missing req ids logic execute in the caller function
@@ -223,7 +227,7 @@ class LLMPhraseIterativeGroundingNode(
             directly_tagged_descend_worthy_tcs = get_descend_worthy_tcs_from_tagged_results(  # tagged concept result will always be in vocab
                 initially_tagged_trs=(
                     await get_tagged_results_from_initial_grounding(
-                        mfg_etld1=subject_unique_id,
+                        subject_unique_id=subject_unique_id,
                         field_type=self.field_type,
                         chunk_bounds=chunk_bounds,
                         extraction_bundle=bundle,
@@ -328,7 +332,7 @@ class LLMPhraseIterativeGroundingNode(
 
                     parent_itr_results = (
                         await parse_recursive_grounding_batch_request_result(
-                            mfg_etld1=subject_unique_id,
+                            subject_unique_id=subject_unique_id,
                             field_type=self.field_type,
                             chunk_bounds=chunk_bounds,
                             descend_req_id=parent_itr.descend_req_id,
@@ -416,10 +420,10 @@ class LLMPhraseIterativeGroundingNode(
         eager: bool,
     ) -> list[GPTBatchRequest]:
 
-        mfg_name = pipeline_context.mfg_name
-        if not mfg_name:
+        subject_name = pipeline_context.subject_name
+        if not subject_name:
             raise ValueError(
-                f"phrase_relationship_node.create_batch_requests was called for {self.field_type.name} in {self.__class__.__name__} but pipeline_context.mfg_name is not set. Ensure business_desc is extracted before phrase_relationship."
+                f"phrase_relationship_node.create_batch_requests was called for {self.field_type.name} in {self.__class__.__name__} but pipeline_context.subject_name is not set. Ensure business_desc is extracted before phrase_relationship."
             )
 
         completed_initial_grounding_req_map = self.get_upstream_initial_grounding_map(
@@ -435,8 +439,8 @@ class LLMPhraseIterativeGroundingNode(
         # for e.g., new mfg or some batch requests failed earlier and were deleted to allow re-processing
         batch_requests = await create_missing_phrase_recursive_grounding_requests(
             # used for logging and debugging
-            mfg_etld1=subject_unique_id,
-            mfg_name=mfg_name,
+            subject_unique_id=subject_unique_id,
+            subject_name=subject_name,
             field_type=self.field_type,
             # context
             chunked_request_map=chunked_request_map,
@@ -471,7 +475,7 @@ class LLMPhraseIterativeGroundingNode(
         timestamp: datetime,  # for recording errors
     ) -> IterativeGroundingResult:
         return await get_all_recursive_grounding_results(
-            mfg_etld1=subject_unique_id,
+            subject_unique_id=subject_unique_id,
             field_type=field_type,
             chunk_bounds=chunk_bounds,
             extraction_bundle=extraction_bundle,

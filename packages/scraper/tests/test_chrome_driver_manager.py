@@ -17,7 +17,7 @@ from selenium.webdriver.chrome.options import Options
 # Add the scraper app to Python path for testing
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "src"))
 
-from scraper_app.utils.selenium.chrome_driver_manager import ChromeDriverManager
+from packages.scraper.src.scraper.utils.selenium import ChromeDriverManager
 
 
 class TestChromeDriverManagerUnit:

@@ -2,8 +2,10 @@ from __future__ import annotations
 import logging
 from datetime import datetime
 
-from packages.core.src.core.models.db.gpt_batch_request import GPTBatchRequest
-from packages.core.src.core.models.batch_request_objects.gpt_batch_response_blob import (
+from packages.llm_providers.src.llm_providers.db_models.gpt_batch_request import (
+    GPTBatchRequest,
+)
+from packages.llm_providers.src.llm_providers.models.open_ai.gpt_batch_response_blob import (
     GPTBatchResponse,
 )
 from packages.core.src.core.models.deferred_extraction.deferred_concept_extraction import (
@@ -14,7 +16,7 @@ from packages.core.src.core.models.deferred_extraction.deferred_concept_extracti
 from packages.core.src.core.models.extraction_schemas.grounding import (
     PhraseToTagAndReasonMap,
 )
-from packages.core.src.core.models.file_objects.prompt import Prompt
+from packages.llm_providers.src.llm_providers.models.file_objects.prompt import Prompt
 from packages.core.src.core.models.skos_concept import Concept
 from packages.core.src.core.models.types_and_enums import (
     ConceptTypeEnum,
@@ -29,10 +31,10 @@ from packages.core.src.core.models.pipeline_nodes.base.base_reconcile_node impor
 from packages.core.src.core.models.pipeline_nodes.base.base_llm_extraction_node import (
     BaseLLMExtractionNode,
 )
-from packages.core.src.core.models.field_types import BatchRequestIDType
-from apps.data_etl_app.src.data_etl_app.models.scraped_text_file import ScrapedTextFile
+from packages.llm_providers.src.llm_providers.field_types import BatchRequestIDType
+from packages.infra.src.infra.models.s3.scraped_text_file import ScrapedTextFile
 
-from packages.core.src.core.services.gpt_batch_request.gpt_batch_request_service import (
+from packages.llm_providers.src.llm_providers.services.gpt_batch_request.gpt_batch_request_service import (
     dispatch_gpt_batch_request,
 )
 from packages.core.src.core.services.pipeline_nodes.multi_stage.llm_initial_grounding_service import (
@@ -40,7 +42,7 @@ from packages.core.src.core.services.pipeline_nodes.multi_stage.llm_initial_grou
     get_initial_grounding_result,
 )
 
-from packages.core.src.core.utils.rdf_to_graph_util import (
+from packages.knowledge.src.knowledge.utils.rdf_to_graph_util import (
     get_match_label_to_concept_map,
 )
 
@@ -155,18 +157,18 @@ class LLMPhraseInitialGroundingNode(
         eager: bool,
     ) -> list[GPTBatchRequest]:
 
-        mfg_name = pipeline_context.mfg_name
-        if not mfg_name:
+        subject_name = pipeline_context.subject_name
+        if not subject_name:
             raise ValueError(
-                f"phrase_relationship_node.create_batch_requests was called for {self.field_type.name} in {self.__class__.__name__} but pipeline_context.mfg_name is not set. Ensure business_desc is extracted before phrase_relationship."
+                f"phrase_relationship_node.create_batch_requests was called for {self.field_type.name} in {self.__class__.__name__} but pipeline_context.subject_name is not set. Ensure business_desc is extracted before phrase_relationship."
             )
 
         # create_missing_phrase_relationship_requests only creates batch requests fresh or only missing ones,
         # for e.g., new mfg or some batch requests failed earlier and were deleted to allow re-processing
         batch_requests = await create_missing_phrase_initial_grounding_requests(
             deferred_at=timestamp,
-            mfg_etld1=subject_unique_id,
-            mfg_name=mfg_name,
+            subject_unique_id=subject_unique_id,
+            subject_name=subject_name,
             field_type=self.field_type,
             missing_phrase_initial_grounding_req_ids=missing_request_ids,
             chunked_request_map=chunked_request_map,
@@ -196,7 +198,7 @@ class LLMPhraseInitialGroundingNode(
         timestamp: datetime,  # for recording errors
     ) -> PhraseToTagAndReasonMap:
         return await get_initial_grounding_result(
-            mfg_etld1=subject_unique_id,
+            subject_unique_id=subject_unique_id,
             field_type=field_type,
             chunk_bounds=chunk_bounds,
             extraction_bundle=extraction_bundle,

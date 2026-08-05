@@ -1,5 +1,5 @@
 """
-Tests for scraper_app.utils.dedup_util
+Tests for packages.scraper.src.scraper.utils.dedup_util
 =======================================
 
 Unit tests  (self-contained, no external files)
@@ -36,9 +36,14 @@ import types
 
 import pytest
 
-sys.path.insert(0, __import__("os").path.join(__import__("os").path.dirname(__file__), "..", "..", "src"))
+sys.path.insert(
+    0,
+    __import__("os").path.join(
+        __import__("os").path.dirname(__file__), "..", "..", "src"
+    ),
+)
 
-from scraper_app.utils.dedup_util import (
+from packages.scraper.src.scraper.utils.dedup_util import (
     _SEPARATOR,
     _body_lines_of_block,
     _detect_common_header_footer,
@@ -53,6 +58,7 @@ from scraper_app.utils.dedup_util import (
 # ─────────────────────────────────────────────────────────────────────────────
 # Helpers shared across all test classes
 # ─────────────────────────────────────────────────────────────────────────────
+
 
 def _make_block(url: str, body: str) -> str:
     """Construct a single scraper-format block: SEPARATOR + URL + blank line + body."""
@@ -107,9 +113,15 @@ _BOILERPLATE_FOOTER = (
 # blank line, spec table with a per-page whitespace-padded SKU identifier, closing line.
 _UNIQUE_BODIES: list[str] = []
 _PRODUCT_NAMES = [
-    "Aluminum Sheet 4x8", "Steel Tube 2x2", "Copper Pipe 1/2in",
-    "Stainless Bracket L3", "Galvanized Flange DN50", "Titanium Rod 6mm",
-    "Carbon Fibre Panel A2", "Brass Fitting 3/4in", "Cast Iron Plate 10mm",
+    "Aluminum Sheet 4x8",
+    "Steel Tube 2x2",
+    "Copper Pipe 1/2in",
+    "Stainless Bracket L3",
+    "Galvanized Flange DN50",
+    "Titanium Rod 6mm",
+    "Carbon Fibre Panel A2",
+    "Brass Fitting 3/4in",
+    "Cast Iron Plate 10mm",
     "Zinc Die Casting B7",
 ]
 for _i in range(200):
@@ -124,10 +136,11 @@ for _i in range(200):
         f"  Width  : {10 + _i % 50} mm\n"
         f"  Height : {20 + _i % 30} mm\n"
         f"  Weight : {0.5 + _i * 0.1:.1f} kg\n"
-        f"  SKU-{_i:04d}  \n"    # whitespace-padded line unique per page (not boilerplate)
+        f"  SKU-{_i:04d}  \n"  # whitespace-padded line unique per page (not boilerplate)
         f"In stock. Ships within 2 business days.\n"
     )
     _UNIQUE_BODIES.append(_body)
+
 
 def _full_body(page_body: str) -> str:
     """Wrap a page-specific body with the shared boilerplate header and footer."""
@@ -147,28 +160,36 @@ def _build_synthetic_dataset() -> str:
 
     # 200 unique pages
     for i, body in enumerate(_UNIQUE_BODIES):
-        blocks.append(_make_block(f"https://acme-fab.example.com/products/item-{i:04d}", _full_body(body)))
+        blocks.append(
+            _make_block(
+                f"https://acme-fab.example.com/products/item-{i:04d}", _full_body(body)
+            )
+        )
 
     # 50 duplicate pages (same body as items 0-49, different path)
     for i in range(50):
-        blocks.append(_make_block(
-            f"https://acme-fab.example.com/collections/all/products/item-{i:04d}",
-            _full_body(_UNIQUE_BODIES[i]),
-        ))
+        blocks.append(
+            _make_block(
+                f"https://acme-fab.example.com/collections/all/products/item-{i:04d}",
+                _full_body(_UNIQUE_BODIES[i]),
+            )
+        )
 
     # 1 outlier error page — no boilerplate at all
-    blocks.append(_make_block(
-        "https://acme-fab.example.com/cdn/challenge",
-        "Checking your browser before accessing the site.\n"
-        "This process is automatic.\n"
-        "Please wait...\n",
-    ))
+    blocks.append(
+        _make_block(
+            "https://acme-fab.example.com/cdn/challenge",
+            "Checking your browser before accessing the site.\n"
+            "This process is automatic.\n"
+            "Please wait...\n",
+        )
+    )
 
     return "".join(blocks)
 
 
 _SYNTHETIC_RAW = _build_synthetic_dataset()
-_TOTAL_BLOCKS  = 251   # 200 unique + 50 duplicates + 1 outlier
+_TOTAL_BLOCKS = 251  # 200 unique + 50 duplicates + 1 outlier
 
 
 @pytest.fixture(scope="module")
@@ -187,18 +208,21 @@ def synthetic_deduped(synthetic_raw) -> str:
 # _hash_block
 # ─────────────────────────────────────────────────────────────────────────────
 
+
 class TestHashBlock:
     def test_same_body_different_urls_produce_same_hash(self):
         # Two blocks with identical bodies but different URLs must hash to the same value
         # because the URL line is excluded from the digest.
         body = "Line one\nLine two\nLine three"
-        assert _hash_block(_make_block("https://example.com/a", body)) == \
-               _hash_block(_make_block("https://example.com/b", body))
+        assert _hash_block(_make_block("https://example.com/a", body)) == _hash_block(
+            _make_block("https://example.com/b", body)
+        )
 
     def test_different_bodies_produce_different_hashes(self):
         # Distinct body content must produce distinct digests.
-        assert _hash_block(_make_block("https://example.com/a", "Content A")) != \
-               _hash_block(_make_block("https://example.com/b", "Content B"))
+        assert _hash_block(
+            _make_block("https://example.com/a", "Content A")
+        ) != _hash_block(_make_block("https://example.com/b", "Content B"))
 
     def test_same_url_same_body_same_hash(self):
         # Hashing the same block twice returns the same digest (deterministic).
@@ -208,8 +232,9 @@ class TestHashBlock:
     def test_whitespace_normalised_in_hash(self):
         # Leading/trailing whitespace on the body is stripped before hashing,
         # so padded and unpadded variants of the same content hash identically.
-        assert _hash_block(_make_block("https://x.com", "  Body text  ")) == \
-               _hash_block(_make_block("https://x.com", "Body text"))
+        assert _hash_block(
+            _make_block("https://x.com", "  Body text  ")
+        ) == _hash_block(_make_block("https://x.com", "Body text"))
 
     def test_returns_64_char_hex_string(self):
         # SHA-256 produces a 64-character lowercase hex digest.
@@ -221,6 +246,7 @@ class TestHashBlock:
 # ─────────────────────────────────────────────────────────────────────────────
 # _iter_blocks
 # ─────────────────────────────────────────────────────────────────────────────
+
 
 class TestIterBlocks:
     def test_single_block(self):
@@ -272,6 +298,7 @@ class TestIterBlocks:
 # _body_lines_of_block
 # ─────────────────────────────────────────────────────────────────────────────
 
+
 class TestBodyLinesOfBlock:
     def test_returns_body_lines_only(self):
         # The returned lines contain the body text and exclude structural lines.
@@ -309,9 +336,9 @@ class TestBodyLinesOfBlock:
         body_text = "Content line\n\n\n"
         block = _make_block("https://example.com", body_text)
         rejoined = "".join(_body_lines_of_block(block))
-        assert rejoined.endswith("\n\n") or rejoined.endswith("\n\n\n"), (
-            f"Trailing blank lines were stripped: {rejoined!r}"
-        )
+        assert rejoined.endswith("\n\n") or rejoined.endswith(
+            "\n\n\n"
+        ), f"Trailing blank lines were stripped: {rejoined!r}"
 
     def test_whitespace_only_lines_preserved(self):
         # Lines that contain only whitespace characters are part of the body
@@ -336,14 +363,15 @@ class TestBodyLinesOfBlock:
         block = _make_block("https://example.com", body_text)
         stored_body = body_text + "\n"
         rejoined = "".join(_body_lines_of_block(block))
-        assert rejoined == stored_body, (
-            f"Round-trip mismatch.\n  Stored  : {stored_body!r}\n  Rejoined: {rejoined!r}"
-        )
+        assert (
+            rejoined == stored_body
+        ), f"Round-trip mismatch.\n  Stored  : {stored_body!r}\n  Rejoined: {rejoined!r}"
 
 
 # ─────────────────────────────────────────────────────────────────────────────
 # _prefix_lines
 # ─────────────────────────────────────────────────────────────────────────────
+
 
 class TestPrefixLines:
     def test_contains_separator(self):
@@ -386,10 +414,12 @@ class TestPrefixLines:
 # _detect_common_header_footer
 # ─────────────────────────────────────────────────────────────────────────────
 
+
 class TestDetectCommonHeaderFooter:
     def _blocks(self, *bodies):
-        return [_make_block(f"https://example.com/p{i}", b)
-                for i, b in enumerate(bodies)]
+        return [
+            _make_block(f"https://example.com/p{i}", b) for i, b in enumerate(bodies)
+        ]
 
     def test_detects_common_header(self):
         # Three leading lines shared across all blocks are returned as the common header.
@@ -490,10 +520,13 @@ class TestDetectCommonHeaderFooter:
 # _rebuild_block
 # ─────────────────────────────────────────────────────────────────────────────
 
+
 class TestRebuildBlock:
     def test_strips_common_header(self):
         # Lines matching the common header are removed from the start of the body.
-        block = _make_block("https://example.com", "Nav\nLogo\nBanner\nUnique content\nMore")
+        block = _make_block(
+            "https://example.com", "Nav\nLogo\nBanner\nUnique content\nMore"
+        )
         common_header = _body_lines_of_block(block)[:3]
         result = _rebuild_block(block, common_header, [])
         result_body_lines = [l.rstrip("\n") for l in _body_lines_of_block(result)]
@@ -502,7 +535,9 @@ class TestRebuildBlock:
 
     def test_strips_common_footer(self):
         # Lines matching the common footer are removed from the end of the body.
-        block = _make_block("https://example.com", "Unique content\nMore\nFoot1\nFoot2\nFoot3")
+        block = _make_block(
+            "https://example.com", "Unique content\nMore\nFoot1\nFoot2\nFoot3"
+        )
         common_footer = _body_lines_of_block(block)[-3:]
         result = _rebuild_block(block, [], common_footer)
         result_body_lines = [l.rstrip("\n") for l in _body_lines_of_block(result)]
@@ -511,8 +546,10 @@ class TestRebuildBlock:
 
     def test_strips_both_header_and_footer(self):
         # Header and footer removal are applied together; unique content in between survives.
-        block = _make_block("https://example.com",
-                            "Nav\nLogo\nBanner\nUnique content\nFoot1\nFoot2\nFoot3")
+        block = _make_block(
+            "https://example.com",
+            "Nav\nLogo\nBanner\nUnique content\nFoot1\nFoot2\nFoot3",
+        )
         all_lines = _body_lines_of_block(block)
         result = _rebuild_block(block, all_lines[:3], all_lines[-3:])
         result_body_lines = [l.rstrip("\n") for l in _body_lines_of_block(result)]
@@ -535,23 +572,25 @@ class TestRebuildBlock:
         body_text = "Line A\n\nLine B\n   \nLine C\n\n"
         block = _make_block("https://example.com", body_text)
         result = _rebuild_block(block, [], [])
-        assert result == block, (
-            f"Round-trip failed.\n  Input : {block!r}\n  Output: {result!r}"
-        )
+        assert (
+            result == block
+        ), f"Round-trip failed.\n  Input : {block!r}\n  Output: {result!r}"
 
     def test_blank_lines_inside_body_preserved_after_strip(self):
         # Blank lines between content paragraphs are part of the unique body and
         # must not be removed as a side-effect of stripping the header and footer.
-        block = _make_block("https://example.com",
-                            "Nav\nLogo\n\nParagraph one\n\nParagraph two\n\nFoot1\nFoot2\nFoot3")
+        block = _make_block(
+            "https://example.com",
+            "Nav\nLogo\n\nParagraph one\n\nParagraph two\n\nFoot1\nFoot2\nFoot3",
+        )
         all_lines = _body_lines_of_block(block)
         header = all_lines[:2]
         footer = all_lines[-3:]
         result = _rebuild_block(block, header, footer)
         result_body = "".join(_body_lines_of_block(result))
-        assert "\n\n" in result_body, (
-            "Blank lines between paragraphs were lost after header/footer strip"
-        )
+        assert (
+            "\n\n" in result_body
+        ), "Blank lines between paragraphs were lost after header/footer strip"
 
     def test_does_not_strip_if_body_does_not_match_header(self):
         # If the block's leading lines do not match the supplied common header,
@@ -567,8 +606,7 @@ class TestRebuildBlock:
     def test_trailing_blank_lines_preserved_when_footer_stripped(self):
         # Blank lines that appear after the footer region are not part of the
         # footer and must survive the rebuild even when footer lines are removed.
-        block = _make_block("https://example.com",
-                            "Unique\nFoot1\nFoot2\nFoot3\n\n")
+        block = _make_block("https://example.com", "Unique\nFoot1\nFoot2\nFoot3\n\n")
         ref_block = _make_block("https://ref.com", "Unique\nFoot1\nFoot2\nFoot3")
         footer = _body_lines_of_block(ref_block)[-3:]
         result = _rebuild_block(block, [], footer)
@@ -578,6 +616,7 @@ class TestRebuildBlock:
 # ─────────────────────────────────────────────────────────────────────────────
 # deduplicate_scraped_content  (full pipeline — unit level)
 # ─────────────────────────────────────────────────────────────────────────────
+
 
 class TestDeduplicateScrapedContent:
     def test_empty_string_returned_unchanged(self):
@@ -712,7 +751,9 @@ class TestDeduplicateScrapedContent:
 
     def test_no_separator_in_input_returns_empty(self):
         # Input text that contains no separator string yields an empty output string.
-        result = deduplicate_scraped_content("This is plain text with no blocks at all.")
+        result = deduplicate_scraped_content(
+            "This is plain text with no blocks at all."
+        )
         assert result == ""
 
     def test_output_contains_separators(self):
@@ -727,9 +768,18 @@ class TestDeduplicateScrapedContent:
         # Blank lines inside page-specific content are not removed when the
         # pipeline strips the surrounding boilerplate header and footer.
         combined = _make_combined(
-            ("https://a.com", "Nav\nLogo\nBanner\nPara one\n\nPara two\n\nFoot1\nFoot2\nFoot3"),
-            ("https://b.com", "Nav\nLogo\nBanner\nDiff one\n\nDiff two\n\nFoot1\nFoot2\nFoot3"),
-            ("https://c.com", "Nav\nLogo\nBanner\nOthr one\n\nOthr two\n\nFoot1\nFoot2\nFoot3"),
+            (
+                "https://a.com",
+                "Nav\nLogo\nBanner\nPara one\n\nPara two\n\nFoot1\nFoot2\nFoot3",
+            ),
+            (
+                "https://b.com",
+                "Nav\nLogo\nBanner\nDiff one\n\nDiff two\n\nFoot1\nFoot2\nFoot3",
+            ),
+            (
+                "https://c.com",
+                "Nav\nLogo\nBanner\nOthr one\n\nOthr two\n\nFoot1\nFoot2\nFoot3",
+            ),
         )
         result = deduplicate_scraped_content(combined)
         assert "\n\n" in result.replace(_SEPARATOR, "").replace("https://", "")
@@ -740,23 +790,26 @@ class TestDeduplicateScrapedContent:
         body = "Dup one\nDup two\nDup three"
         combined = _make_combined(
             ("https://example.com/orig", body),
-            ("https://example.com/dup",  body),
+            ("https://example.com/dup", body),
         )
         result = deduplicate_scraped_content(combined)
-        stub_part = result[result.find("https://example.com/dup"):]
-        assert stub_part.startswith("https://example.com/dup\n\n"), (
-            "Stub block is missing the blank line between the URL and the duplicate note"
-        )
+        stub_part = result[result.find("https://example.com/dup") :]
+        assert stub_part.startswith(
+            "https://example.com/dup\n\n"
+        ), "Stub block is missing the blank line between the URL and the duplicate note"
 
 
 # ─────────────────────────────────────────────────────────────────────────────
 # deduplicate_scraped_content_stream
 # ─────────────────────────────────────────────────────────────────────────────
 
+
 class TestDeduplicateScrapedContentStream:
     def test_is_generator(self):
         # The function returns a generator object, not a string or list.
-        result = deduplicate_scraped_content_stream(_make_combined(("https://a.com", "Body A")))
+        result = deduplicate_scraped_content_stream(
+            _make_combined(("https://a.com", "Body A"))
+        )
         assert isinstance(result, types.GeneratorType)
 
     def test_stream_matches_non_stream(self):
@@ -768,8 +821,9 @@ class TestDeduplicateScrapedContentStream:
             ("https://c.com", "Nav\nLogo\nBanner\nPage C\nMore C"),
             ("https://d.com", "Nav\nLogo\nBanner\nPage A\nMore A"),  # duplicate of a
         )
-        assert deduplicate_scraped_content(combined) == \
-               "".join(deduplicate_scraped_content_stream(combined))
+        assert deduplicate_scraped_content(combined) == "".join(
+            deduplicate_scraped_content_stream(combined)
+        )
 
     def test_empty_string_yields_once(self):
         # An empty input string causes the generator to yield exactly one empty string.
@@ -821,6 +875,7 @@ class TestDeduplicateScrapedContentStream:
 # Whitespace-preservation regression suite
 # ─────────────────────────────────────────────────────────────────────────────
 
+
 class TestWhitespacePreservation:
     """
     Regression coverage for the bug where splitlines() (without keepends=True)
@@ -835,9 +890,18 @@ class TestWhitespacePreservation:
         """Return a combined string of three blocks that share a 3-line header and
         3-line footer, with body_template (a str.format pattern) as unique content."""
         return _make_combined(
-            ("https://a.com", f"NAV\nNAV2\nNAV3\n{body_template.format('A')}\nFOOT\nFOOT2\nFOOT3"),
-            ("https://b.com", f"NAV\nNAV2\nNAV3\n{body_template.format('B')}\nFOOT\nFOOT2\nFOOT3"),
-            ("https://c.com", f"NAV\nNAV2\nNAV3\n{body_template.format('C')}\nFOOT\nFOOT2\nFOOT3"),
+            (
+                "https://a.com",
+                f"NAV\nNAV2\nNAV3\n{body_template.format('A')}\nFOOT\nFOOT2\nFOOT3",
+            ),
+            (
+                "https://b.com",
+                f"NAV\nNAV2\nNAV3\n{body_template.format('B')}\nFOOT\nFOOT2\nFOOT3",
+            ),
+            (
+                "https://c.com",
+                f"NAV\nNAV2\nNAV3\n{body_template.format('C')}\nFOOT\nFOOT2\nFOOT3",
+            ),
         )
 
     def test_blank_line_between_paragraphs_survives_header_strip(self):
@@ -882,13 +946,18 @@ class TestWhitespacePreservation:
         block_b = _make_block("https://b.com", body_b)
         combined = block_a + block_b
         result = deduplicate_scraped_content(combined)
-        assert body_a in result, "Body A was altered even though no header/footer was stripped"
-        assert body_b in result, "Body B was altered even though no header/footer was stripped"
+        assert (
+            body_a in result
+        ), "Body A was altered even though no header/footer was stripped"
+        assert (
+            body_b in result
+        ), "Body B was altered even though no header/footer was stripped"
 
 
 # ─────────────────────────────────────────────────────────────────────────────
 # Synthetic dataset integration tests  (self-contained, no external files)
 # ─────────────────────────────────────────────────────────────────────────────
+
 
 class TestSyntheticDatasetBlockParsing:
     """Block-parsing correctness across the full 251-block synthetic dataset."""
@@ -906,32 +975,35 @@ class TestSyntheticDatasetBlockParsing:
         for i, block in enumerate(_iter_blocks(synthetic_raw)):
             lines = block.splitlines()
             assert len(lines) >= 2, f"Block {i} has fewer than 2 lines"
-            assert lines[1].strip().startswith("http"), (
-                f"Block {i} URL line does not start with http: {lines[1]!r}"
-            )
+            assert (
+                lines[1].strip().startswith("http")
+            ), f"Block {i} URL line does not start with http: {lines[1]!r}"
 
     def test_body_lines_exclude_separator_and_url(self, synthetic_raw):
         # Body-line extraction omits both the separator and the URL line for every block.
         for i, block in enumerate(_iter_blocks(synthetic_raw)):
             body = _body_lines_of_block(block)
             for ln in body:
-                assert not ln.startswith(_SEPARATOR[:10]), (
-                    f"Block {i} body contains separator text"
-                )
+                assert not ln.startswith(
+                    _SEPARATOR[:10]
+                ), f"Block {i} body contains separator text"
             url_line = block.splitlines()[1].strip()
-            assert url_line not in [l.rstrip("\n") for l in body], (
-                f"Block {i} body contains the URL line"
-            )
+            assert url_line not in [
+                l.rstrip("\n") for l in body
+            ], f"Block {i} body contains the URL line"
 
 
 class TestSyntheticDatasetDeduplicationResults:
     """End-to-end deduplication correctness on the synthetic 251-block dataset."""
 
-    def test_output_block_count_equals_input_block_count(self, synthetic_raw, synthetic_deduped):
+    def test_output_block_count_equals_input_block_count(
+        self, synthetic_raw, synthetic_deduped
+    ):
         # Duplicate bodies are replaced with stubs rather than dropped, so the total
         # number of blocks in the output equals the number in the input.
-        assert len(list(_iter_blocks(synthetic_raw))) == \
-               len(list(_iter_blocks(synthetic_deduped)))
+        assert len(list(_iter_blocks(synthetic_raw))) == len(
+            list(_iter_blocks(synthetic_deduped))
+        )
 
     def test_exactly_50_duplicate_stubs_present(self, synthetic_deduped):
         # The 50 blocks whose bodies duplicate pages 0–49 each produce exactly one stub.
@@ -982,7 +1054,7 @@ class TestSyntheticDatasetHeaderFooterStripping:
         # A line that appears in the shared header of all 250 boilerplate blocks
         # is present far fewer times in the deduped output than in the raw input.
         probe = "ACME Industrial Fabrication"
-        raw_count   = _SYNTHETIC_RAW.count(probe)
+        raw_count = _SYNTHETIC_RAW.count(probe)
         dedup_count = synthetic_deduped = deduplicate_scraped_content(_SYNTHETIC_RAW)
         dedup_count = dedup_count.count(probe)
         assert dedup_count < raw_count
@@ -991,7 +1063,7 @@ class TestSyntheticDatasetHeaderFooterStripping:
         # A line that appears in the shared footer of all 250 boilerplate blocks
         # is reduced in the output after deduplication.
         probe = "Powered by Shopify"
-        raw_count   = _SYNTHETIC_RAW.count(probe)
+        raw_count = _SYNTHETIC_RAW.count(probe)
         dedup_count = synthetic_deduped.count(probe)
         assert dedup_count < raw_count
 
@@ -1019,9 +1091,9 @@ class TestSyntheticDatasetHeaderFooterStripping:
         # boilerplate and must appear in the output for every unique page.
         for i in (0, 1, 50, 99, 199):
             marker = f"  SKU-{i:04d}  "
-            assert marker in synthetic_deduped, (
-                f"Unique whitespace-padded line was incorrectly stripped: {marker!r}"
-            )
+            assert (
+                marker in synthetic_deduped
+            ), f"Unique whitespace-padded line was incorrectly stripped: {marker!r}"
 
     def test_repeated_boilerplate_lines_reduced(self, synthetic_deduped):
         # Every non-blank line in the boilerplate header and footer appears fewer
@@ -1029,12 +1101,12 @@ class TestSyntheticDatasetHeaderFooterStripping:
         for line in (_BOILERPLATE_HEADER + _BOILERPLATE_FOOTER).splitlines():
             if not line.strip():
                 continue
-            raw_count   = _SYNTHETIC_RAW.count(line)
+            raw_count = _SYNTHETIC_RAW.count(line)
             dedup_count = synthetic_deduped.count(line)
             if raw_count > 1:
-                assert dedup_count < raw_count, (
-                    f"Boilerplate line not reduced after dedup: {line!r}"
-                )
+                assert (
+                    dedup_count < raw_count
+                ), f"Boilerplate line not reduced after dedup: {line!r}"
 
 
 class TestSyntheticDatasetStreamVariant:
@@ -1073,4 +1145,3 @@ class TestSyntheticDatasetPerformance:
         deduplicate_scraped_content(synthetic_raw)
         elapsed = time.monotonic() - start
         assert elapsed < 30, f"Deduplication took too long: {elapsed:.2f}s"
-

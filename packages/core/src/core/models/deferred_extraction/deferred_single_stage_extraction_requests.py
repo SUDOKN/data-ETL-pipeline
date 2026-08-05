@@ -4,7 +4,7 @@ from typing import Optional
 from packages.core.src.core.models.extraction_results.single_stage_extraction_results import (
     LLMSingleStageExtractionMetadata,
 )
-from packages.core.src.core.models.field_types import BatchRequestIDType
+from packages.llm_providers.src.llm_providers.field_types import BatchRequestIDType
 
 
 class SingleStageExtractionRequestBundle(BaseModel):

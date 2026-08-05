@@ -3,33 +3,33 @@ import random
 from fastapi import APIRouter, HTTPException, Request, Query, Depends
 from fastapi.responses import JSONResponse
 
-from apps.data_etl_app.src.data_etl_app.models.db.manufacturer import Batch
-from packages.core.src.core.models.queue_items.to_scrape_item import ToScrapeItem
+from apps.data_etl_app.src.data_etl_app.db_models.manufacturer import Batch
+from packages.infra.src.infra.models.queue_items.to_scrape_item import ToScrapeItem
 
 from apps.data_etl_app.src.data_etl_app.services.manufacturer_service import (
     find_manufacturer_by_etld1,
     find_manufacturer_by_url,
     find_random_manufacturer_url,
 )
-from packages.core.src.core.services.user_service import find_by_email
+from apps.data_etl_app.src.data_etl_app.services.user_service import find_by_email
 
-from packages.core.src.core.utils.url_util import (
+from packages.pure_utils.src.pure_utils.url_util import (
     get_normalized_url,
     get_complete_url_with_compatible_protocol,
 )
-from packages.core.src.core.utils.time_util import get_current_time
-from apps.data_etl_app.src.data_etl_app.utils.aws.queue.priority_scrape_queue_util import (
+from packages.pure_utils.src.pure_utils.time_util import get_current_time
+from packages.infra.src.infra.utils.queue.priority_scrape_queue_util import (
     push_item_to_priority_scrape_queue,
 )
 
-from apps.data_etl_app.src.data_etl_app.utils.aws.s3.scraped_text_util import (
+from packages.infra.src.infra.utils.s3.scraped_text_util import (
     download_scraped_text_from_s3_by_mfg_etld1,
 )
 
 from packages.core.src.core.models.extraction_results.keyword_extraction_results import (
     KeywordExtractionResults,
 )
-from apps.data_etl_app.src.data_etl_app.models.db.keyword_ground_truth import (
+from apps.data_etl_app.src.data_etl_app.db_models.keyword_ground_truth import (
     HumanKeywordCorrection,
     KeywordGroundTruth,
     KeywordResultCorrection,

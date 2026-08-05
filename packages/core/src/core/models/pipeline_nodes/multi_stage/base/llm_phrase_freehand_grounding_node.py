@@ -3,7 +3,9 @@ from __future__ import annotations
 import logging
 from datetime import datetime
 
-from packages.core.src.core.models.db.gpt_batch_request import GPTBatchRequest
+from packages.llm_providers.src.llm_providers.db_models.gpt_batch_request import (
+    GPTBatchRequest,
+)
 from packages.core.src.core.models.deferred_extraction.deferred_keyword_extraction import (
     KeywordExtractionRequestMap,
     KeywordExtractionRequestBundle,
@@ -11,14 +13,14 @@ from packages.core.src.core.models.deferred_extraction.deferred_keyword_extracti
 from packages.core.src.core.models.extraction_schemas.grounding import (
     PhraseToTagAndReasonMap,
 )
-from packages.core.src.core.models.batch_request_objects.gpt_batch_response_blob import (
+from packages.llm_providers.src.llm_providers.models.open_ai.gpt_batch_response_blob import (
     GPTBatchResponse,
 )
 from packages.core.src.core.models.extraction_results.keyword_extraction_results import (
     KeywordExtractionMetadata,
 )
-from packages.core.src.core.models.file_objects.prompt import Prompt
-from packages.core.src.core.services.gpt_batch_request.gpt_batch_request_service import (
+from packages.llm_providers.src.llm_providers.models.file_objects.prompt import Prompt
+from packages.llm_providers.src.llm_providers.services.gpt_batch_request.gpt_batch_request_service import (
     dispatch_gpt_batch_request,
 )
 from packages.core.src.core.models.pipeline_nodes.base.base_llm_extraction_node import (
@@ -37,8 +39,8 @@ from packages.core.src.core.services.pipeline_nodes.multi_stage.llm_freehand_gro
     create_missing_phrase_freehand_grounding_requests,
     get_freehand_grounding_result,
 )
-from packages.core.src.core.models.field_types import BatchRequestIDType
-from apps.data_etl_app.src.data_etl_app.models.scraped_text_file import ScrapedTextFile
+from packages.llm_providers.src.llm_providers.field_types import BatchRequestIDType
+from packages.infra.src.infra.models.s3.scraped_text_file import ScrapedTextFile
 
 logger = logging.getLogger(__name__)
 
@@ -132,10 +134,10 @@ class LLMPhraseFreehandGroundingNode(
         pipeline_context: PipelineContext,
         eager: bool,
     ) -> list[GPTBatchRequest]:
-        mfg_name = pipeline_context.mfg_name
-        if not mfg_name:
+        subject_name = pipeline_context.subject_name
+        if not subject_name:
             raise ValueError(
-                f"phrase_freehand_grounding_node.create_batch_requests was called for {self.field_type.name} in {self.__class__.__name__} but pipeline_context.mfg_name is not set."
+                f"phrase_freehand_grounding_node.create_batch_requests was called for {self.field_type.name} in {self.__class__.__name__} but pipeline_context.subject_name is not set."
             )
 
         # extraction_requests: Optional[DeferredKeywordExtractionRequests] = getattr(
@@ -148,8 +150,8 @@ class LLMPhraseFreehandGroundingNode(
 
         return await create_missing_phrase_freehand_grounding_requests(
             deferred_at=timestamp,
-            mfg_etld1=subject_unique_id,
-            mfg_name=mfg_name,
+            subject_unique_id=subject_unique_id,
+            subject_name=subject_name,
             field_type=self.field_type,
             missing_phrase_freehand_grounding_req_ids=missing_request_ids,
             chunked_request_map=chunked_request_map,
@@ -175,7 +177,7 @@ class LLMPhraseFreehandGroundingNode(
         timestamp: datetime,  # for recording errors
     ) -> PhraseToTagAndReasonMap:
         return await get_freehand_grounding_result(
-            mfg_etld1=subject_unique_id,
+            subject_unique_id=subject_unique_id,
             field_type=field_type,
             chunk_bounds=chunk_bounds,
             extraction_bundle=extraction_bundle,

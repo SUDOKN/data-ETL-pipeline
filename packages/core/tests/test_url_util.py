@@ -3,7 +3,7 @@ import pytest
 from unittest.mock import patch, Mock
 import requests
 
-from packages.core.src.core.utils.url_util import (
+from packages.pure_utils.src.pure_utils.url_util import (
     get_normalized_url,
     get_complete_url_with_compatible_protocol,
     get_etld1_from_host,
@@ -14,7 +14,7 @@ from packages.core.src.core.utils.url_util import (
 
 
 def test_etld1():
-    """Test the etld1 function which extracts domain + suffix (eTLD+1)."""
+    """Test the subject_unique_id function which extracts domain + suffix (eTLD+1)."""
 
     # Basic domain + suffix extraction
     assert get_etld1_from_host("http://example.com") == "example.com"
@@ -69,7 +69,7 @@ def test_etld1():
 
 
 def test_etld1_edge_cases():
-    """Test etld1 with additional edge cases and special scenarios."""
+    """Test subject_unique_id with additional edge cases and special scenarios."""
 
     # Empty string returns empty string
     assert get_etld1_from_host("") == ""

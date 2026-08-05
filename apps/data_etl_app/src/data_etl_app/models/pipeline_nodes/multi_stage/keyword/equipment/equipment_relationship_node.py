@@ -2,20 +2,22 @@ from __future__ import annotations
 import logging
 from typing import TYPE_CHECKING
 
-from packages.core.src.core.models.db.gpt_batch_request import GPTBatchRequest
-from packages.core.src.core.models.file_objects.prompt import Prompt
-from data_etl_app.models.pipeline_nodes.base.base_node import PipelineContext
+from packages.llm_providers.src.llm_providers.db_models.gpt_batch_request import (
+    GPTBatchRequest,
+)
+from packages.llm_providers.src.llm_providers.models.file_objects.prompt import Prompt
+from packages.core.src.core.models.pipeline_nodes import PipelineContext
 from apps.data_etl_app.src.data_etl_app.models.pipeline_nodes.multi_stage.keyword.equipment.equipment_phrase_search_node import (
     EquipmentPhraseSearchNode,
 )
 from apps.data_etl_app.src.data_etl_app.models.pipeline_nodes.multi_stage.keyword.equipment.equipment_recursive_search_node import (
     EquipmentRecursiveSearchNode,
 )
-from data_etl_app.models.pipeline_nodes.multi_stage.keyword.base.keyword_relationship_node import (
+from packages.core.src.core.models.pipeline_nodes.multi_stage.keyword.keyword_relationship_node import (
     KeywordRelationshipNode,
 )
 from packages.core.src.core.models.types_and_enums import KeywordTypeEnum
-from packages.core.src.core.models.field_types import BatchRequestIDType
+from packages.llm_providers.src.llm_providers.field_types import BatchRequestIDType
 
 if TYPE_CHECKING:
     from apps.data_etl_app.src.data_etl_app.models.pipeline_nodes.multi_stage.keyword.equipment.equipment_relationship_screening_node import (

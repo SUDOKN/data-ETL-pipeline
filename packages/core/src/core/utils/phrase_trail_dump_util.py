@@ -62,7 +62,7 @@ def build_concept_phrase_trail_entry(
 
 def write_phrase_trails_dump(
     *,
-    mfg_etld1: str,
+    subject_unique_id: str,
     field_type: LLMExtractedFieldTypeEnum,
     timestamp: datetime,
     chunked_phrase_trails: dict[str, list[dict[str, object]]],
@@ -72,10 +72,10 @@ def write_phrase_trails_dump(
     dump_dir.mkdir(parents=True, exist_ok=True)
 
     dump_path = dump_dir / (
-        f"{_safe_path_segment(mfg_etld1)}__{_safe_path_segment(field_type.name)}.json"
+        f"{_safe_path_segment(subject_unique_id)}__{_safe_path_segment(field_type.name)}.json"
     )
     dump_payload = {
-        "mfg_etld1": mfg_etld1,
+        "subject_unique_id": subject_unique_id,
         "field_type": field_type.name,
         "timestamp": timestamp.isoformat(),
         "chunked_phrase_trails": chunked_phrase_trails,

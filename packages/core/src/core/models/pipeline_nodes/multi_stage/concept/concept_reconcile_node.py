@@ -4,7 +4,7 @@ import logging
 from datetime import datetime
 from typing import Optional
 
-from packages.core.src.core.models.base.extraction_subject import (
+from packages.core.src.core.models.extraction_subject import (
     AbstractExtractionSubject,
     AbstractDeferredExtractionSubject,
 )
@@ -45,7 +45,7 @@ from packages.core.src.core.models.pipeline_nodes.multi_stage.concept.concept_in
 from packages.core.src.core.models.pipeline_nodes.multi_stage.concept.concept_iterative_grounding_node import (
     ConceptIterativeGroundingNode,
 )
-from apps.data_etl_app.src.data_etl_app.models.scraped_text_file import ScrapedTextFile
+from packages.infra.src.infra.models.s3.scraped_text_file import ScrapedTextFile
 
 from packages.core.src.core.services.pipeline_nodes.multi_stage.llm_phrase_recursive_search_node_service import (
     build_llm_phrase_search_results,
@@ -59,7 +59,7 @@ from packages.core.src.core.services.pipeline_nodes.multi_stage.llm_recursive_gr
 )
 
 
-from packages.core.src.core.utils.rdf_to_graph_util import (
+from packages.knowledge.src.knowledge.utils.rdf_to_graph_util import (
     get_match_label_to_concept_map,
 )
 from packages.core.src.core.utils.phrase_trail_dump_util import (
@@ -135,7 +135,7 @@ class ConceptReconcileNode(ReconcileNode[ConceptTypeEnum]):
             recognized_tagged_concepts: set[Concept] = set()
 
             initially_tagged_trs = await get_tagged_results_from_initial_grounding(
-                mfg_etld1=subject.subject_unique_id,
+                subject_unique_id=subject.subject_unique_id,
                 field_type=self.field_type,
                 chunk_bounds=chunk_bounds,
                 extraction_bundle=bundle,
@@ -167,7 +167,7 @@ class ConceptReconcileNode(ReconcileNode[ConceptTypeEnum]):
             )
 
             llm_search_results = await build_llm_phrase_search_results(
-                mfg_etld1=subject.subject_unique_id,
+                subject_unique_id=subject.subject_unique_id,
                 field_type=self.field_type,
                 chunk_bounds=chunk_bounds,
                 extraction_bundle=bundle,
@@ -257,7 +257,7 @@ class ConceptReconcileNode(ReconcileNode[ConceptTypeEnum]):
             all_unrecognized_tagged_concepts.update(unrecognized_tagged_concepts)
 
         write_phrase_trails_dump(
-            mfg_etld1=subject.subject_unique_id,
+            subject_unique_id=subject.subject_unique_id,
             field_type=self.field_type,
             timestamp=timestamp,
             chunked_phrase_trails=chunked_phrase_trails_dump,

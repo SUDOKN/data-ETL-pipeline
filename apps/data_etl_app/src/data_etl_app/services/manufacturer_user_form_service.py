@@ -2,22 +2,23 @@ from typing import Optional
 
 from pymongo.errors import DuplicateKeyError
 
-from packages.core.src.core.models.field_types import MfgETLDType, MfgURLType
-from apps.data_etl_app.src.data_etl_app.models.db.manufacturer import (
+from packages.core.src.core.field_types import SubjectUniqueIDType
+from apps.data_etl_app.src.data_etl_app.field_types import MfgURLType
+from apps.data_etl_app.src.data_etl_app.db_models.manufacturer import (
     Batch,
     Manufacturer,
 )
-from packages.core.src.core.models.queue_items.queue_item import EmailUserErrand
-from packages.core.src.core.models.queue_items.to_scrape_item import ToScrapeItem
-from packages.core.src.core.utils.time_util import get_current_time
-from apps.data_etl_app.src.data_etl_app.utils.aws.queue.priority_scrape_queue_util import (
+from packages.infra.src.infra.models.queue_items.queue_item import EmailUserErrand
+from packages.infra.src.infra.models.queue_items.to_scrape_item import ToScrapeItem
+from packages.pure_utils.src.pure_utils.time_util import get_current_time
+from packages.infra.src.infra.utils.queue.priority_scrape_queue_util import (
     push_item_to_priority_scrape_queue,
 )
 
-from apps.data_etl_app.src.data_etl_app.models.db.manufacturer_user_form import (
+from apps.data_etl_app.src.data_etl_app.db_models.manufacturer_user_form import (
     ManufacturerUserForm,
 )
-from packages.core.src.core.services.knowledge.ontology_service import (
+from packages.knowledge.src.knowledge.services.ontology_service import (
     get_ontology_service,
 )
 
@@ -117,18 +118,18 @@ async def validate_and_create_from_manufacturer(
         primary_naics=manufacturer.primary_naics,
         secondary_naics=manufacturer.secondary_naics,
         addresses=[addr for addr in manufacturer.addresses.result],
-        products=manufacturer.products.extraction_results,
-        equipment=manufacturer.equipments.extraction_results,
-        certificates=manufacturer.certificates.extraction_results,
-        industries=manufacturer.industries.extraction_results,
-        process_caps=manufacturer.process_caps.extraction_results,
-        material_caps=manufacturer.material_caps.extraction_results,
+        products=manufacturer.products.results,
+        equipment=manufacturer.equipments.results,
+        certificates=manufacturer.certificates.results,
+        industries=manufacturer.industries.results,
+        process_caps=manufacturer.process_caps.results,
+        material_caps=manufacturer.material_caps.results,
         notes=None,
     )
 
 
 async def get_manufacturer_user_form_by_mfg_etld1(
-    mfg_etld1: MfgETLDType,
+    mfg_etld1: SubjectUniqueIDType,
 ) -> Optional[ManufacturerUserForm]:
     """
     Fetches the ManufacturerUserForm document for the given mfg_etld1.
@@ -162,7 +163,7 @@ async def save_manufacturer_user_form(
 async def create_blank_manufacturer_user_form(
     *,
     author_email: str,
-    mfg_etld1: MfgETLDType,
+    mfg_etld1: SubjectUniqueIDType,
 ) -> ManufacturerUserForm:
     """
     Creates and persists a blank ManufacturerUserForm draft.
@@ -176,7 +177,7 @@ async def create_blank_manufacturer_user_form(
 
     draft = ManufacturerUserForm(
         author_email=author_email,
-        mfg_etld1=mfg_etld1,
+        etld1=mfg_etld1,
         ontology_version_id=latest_ontology.version_id,
         name=None,
         founded_in=None,

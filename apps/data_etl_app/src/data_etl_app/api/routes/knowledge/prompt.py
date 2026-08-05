@@ -2,8 +2,13 @@ from fastapi import APIRouter, HTTPException, Query
 from fastapi.responses import JSONResponse
 import logging
 
-from litellm_proxy_app.models.llm_model import get_llm_model_by_name, LLM_Model
-from packages.core.src.core.services.knowledge.prompt_service import get_prompt_service
+from packages.llm_providers.src.llm_providers.models.llm_model import (
+    get_llm_model_by_name,
+    LLM_Model,
+)
+from apps.data_etl_app.src.data_etl_app.services.prompt_service import (
+    get_prompt_service,
+)
 
 logger = logging.getLogger(__name__)
 router = APIRouter()

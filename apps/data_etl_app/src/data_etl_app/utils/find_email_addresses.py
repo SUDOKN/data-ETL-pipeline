@@ -2,12 +2,14 @@ import logging
 import re
 import asyncio
 from email_validator import validate_email, EmailNotValidError
-from packages.core.src.core.models.field_types import MfgETLDType
+from packages.core.src.core.field_types import SubjectUniqueIDType
 
 logger = logging.getLogger(__name__)
 
 
-def get_validated_emails_from_text(mfg_etld1: MfgETLDType, text: str) -> list[str]:
+def get_validated_emails_from_text(
+    mfg_etld1: SubjectUniqueIDType, text: str
+) -> list[str]:
     """
     Extracts all emails from text using regex,
     validates them with email_validator,
@@ -43,7 +45,7 @@ async def _validate_single_email(email: str, mfg_etld1: str) -> str | None:
 
 
 async def get_validated_emails_from_text_async(
-    mfg_etld1: MfgETLDType, text: str
+    mfg_etld1: SubjectUniqueIDType, text: str
 ) -> list[str]:
     """
     Async version that:

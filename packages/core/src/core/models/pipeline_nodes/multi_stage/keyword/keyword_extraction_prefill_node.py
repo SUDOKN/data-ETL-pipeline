@@ -4,7 +4,7 @@ import logging
 from datetime import datetime
 from typing import TYPE_CHECKING
 
-from packages.core.src.core.models.base.extraction_subject import (
+from packages.core.src.core.models.extraction_subject import (
     AbstractExtractionSubject,
     AbstractDeferredExtractionSubject,
 )
@@ -32,7 +32,7 @@ from packages.core.src.core.models.pipeline_nodes.base.base_node import Pipeline
 from packages.core.src.core.models.chunking_strat import ChunkingStrategy
 
 if TYPE_CHECKING:
-    from apps.data_etl_app.src.data_etl_app.models.scraped_text_file import (
+    from packages.infra.src.infra.models.s3.scraped_text_file import (
         ScrapedTextFile,
     )
 
@@ -40,7 +40,7 @@ if TYPE_CHECKING:
 from packages.core.src.core.utils.chunk_util import (
     get_chunks_respecting_line_boundaries,
 )
-from packages.core.src.core.utils.dict_diff import find_diffs
+from packages.pure_utils.src.pure_utils.dict_diff import find_diffs
 
 logger = logging.getLogger(__name__)
 

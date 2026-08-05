@@ -2,18 +2,22 @@ from datetime import datetime
 import asyncio
 import logging
 
-from packages.core.src.core.models.db.gpt_batch_request import GPTBatchRequest
+from packages.llm_providers.src.llm_providers.db_models.gpt_batch_request import (
+    GPTBatchRequest,
+)
 from packages.core.src.core.models.deferred_extraction.deferred_single_stage_extraction_requests import (
     SingleStageExtractionRequestMap,
 )
-from packages.core.src.core.models.file_objects.prompt import Prompt
+from packages.llm_providers.src.llm_providers.models.file_objects.prompt import Prompt
+from packages.llm_providers.src.llm_providers.services.gpt_batch_request.gpt_batch_request_service import (
+    create_base_gpt_batch_request,
+)
 
-from core.services.gpt_batch_request_service import create_base_gpt_batch_request
 from packages.core.src.core.models.types_and_enums import (
     BasicFieldTypeEnum,
     BinaryClassificationTypeEnum,
 )
-from packages.core.src.core.models.extraction_schemas.basic_fields import (
+from apps.data_etl_app.src.data_etl_app.models.basic_fields import (
     AddressExtractionResponse,
     BinaryClassificationResponse,
     BusinessDescResponse,
@@ -21,9 +25,11 @@ from packages.core.src.core.models.extraction_schemas.basic_fields import (
 from packages.core.src.core.models.extraction_schemas.response_format_util import (
     build_gpt_response_format,
 )
-from packages.core.src.core.models.field_types import BatchRequestIDType
-from litellm_proxy_app.models.llm_model import LLM_Model
-from open_ai_key_app.models.gpt_model_params import GPTModelParams
+from packages.llm_providers.src.llm_providers.field_types import BatchRequestIDType
+from packages.llm_providers.src.llm_providers.models.llm_model import LLM_Model
+from packages.llm_providers.src.llm_providers.models.open_ai.gpt_model_params import (
+    GPTModelParams,
+)
 
 logger = logging.getLogger(__name__)
 
@@ -58,7 +64,7 @@ async def create_missing_basic_extraction_requests(
     field_type: "BasicFieldTypeEnum | BinaryClassificationTypeEnum",  # used for logging and debugging
     missing_request_ids: set[BatchRequestIDType],
     chunked_request_map: SingleStageExtractionRequestMap,
-    mfg_etld1: str,
+    subject_unique_id: str,
     mfg_text: str,
     prompt: Prompt,
     llm_model: LLM_Model,
@@ -68,7 +74,7 @@ async def create_missing_basic_extraction_requests(
 ) -> list[GPTBatchRequest]:
 
     logger.info(
-        f"create_missing_basic_extraction_requests: Generating GPTBatchRequest for {mfg_etld1}:{field_type.name}"
+        f"create_missing_basic_extraction_requests: Generating GPTBatchRequest for {subject_unique_id}:{field_type.name}"
     )
 
     request_model_params = model_params.with_response_format(
@@ -100,7 +106,7 @@ async def create_missing_basic_extraction_requests(
         for llm_request_id, chunk_text in batch:
             llm_batch_request = create_base_gpt_batch_request(
                 deferred_at=deferred_at,
-                etld1=mfg_etld1,
+                subject_unique_id=subject_unique_id,
                 custom_id=llm_request_id,
                 context=chunk_text,
                 prompt_text=prompt.text,
@@ -117,7 +123,7 @@ async def create_missing_basic_extraction_requests(
         if (i + BATCH_SIZE) % 500 == 0:
             logger.info(
                 f"Created {min(i + BATCH_SIZE, len(chunk_items))}/{len(chunk_items)} "
-                f"gpt request for {mfg_etld1}:{field_type.name} (Eager: {eager})"
+                f"gpt request for {subject_unique_id}:{field_type.name} (Eager: {eager})"
             )
 
     return batch_requests

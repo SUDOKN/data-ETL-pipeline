@@ -4,7 +4,7 @@ import logging
 from datetime import datetime
 from typing import Optional
 
-from packages.core.src.core.models.base.extraction_subject import (
+from packages.core.src.core.models.extraction_subject import (
     AbstractExtractionSubject,
     AbstractDeferredExtractionSubject,
 )
@@ -26,7 +26,7 @@ from packages.core.src.core.models.pipeline_nodes.base.base_reconcile_node impor
 from packages.core.src.core.models.pipeline_nodes.single_stage.classification.binary_classification_node import (
     BinaryClassificationNode,
 )
-from apps.data_etl_app.src.data_etl_app.models.scraped_text_file import ScrapedTextFile
+from packages.infra.src.infra.models.s3.scraped_text_file import ScrapedTextFile
 
 logger = logging.getLogger(__name__)
 

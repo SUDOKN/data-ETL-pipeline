@@ -24,26 +24,28 @@ load_data_etl_env()
 load_open_ai_app_env()
 
 
-from apps.data_etl_app.src.data_etl_app.dependencies.aws_clients_scraper import (
+from apps.data_etl_app.src.data_etl_app.dependencies.aws_sqs_clients import (
     cleanup_scraper_aws_clients,
     initialize_scraper_aws_clients,
 )
-from apps.data_etl_app.src.data_etl_app.dependencies.aws_clients import (
+from apps.data_etl_app.src.data_etl_app.dependencies.aws_s3_clients import (
     cleanup_data_etl_aws_clients,
     initialize_data_etl_aws_clients,
 )
 
-from core.models.scraping_error import ScrapingError
-from apps.data_etl_app.src.data_etl_app.models.db.manufacturer import Manufacturer
-from packages.core.src.core.models.queue_items.to_extract_item import ToExtractItem
-from packages.core.src.core.models.queue_items.to_scrape_item import ToScrapeItem
+from packages.llm_providers.src.llm_providers.db_models.scraping_error import (
+    ScrapingError,
+)
+from apps.data_etl_app.src.data_etl_app.db_models.manufacturer import Manufacturer
+from packages.infra.src.infra.models.queue_items.to_extract_item import ToExtractItem
+from packages.infra.src.infra.models.queue_items.to_scrape_item import ToScrapeItem
 
-from apps.data_etl_app.src.data_etl_app.utils.aws.s3.scraped_text_util import (
+from packages.infra.src.infra.utils.s3.scraped_text_util import (
     delete_scraped_text_from_s3_by_etld1,
     get_latest_version_id_by_mfg_etld,
 )
 from core.utils.mongo_client import init_db
-from packages.core.src.core.utils.time_util import get_current_time
+from packages.pure_utils.src.pure_utils.time_util import get_current_time
 
 from apps.data_etl_app.src.data_etl_app.services.manufacturer_service import (
     find_manufacturer_by_etld1,
@@ -51,14 +53,14 @@ from apps.data_etl_app.src.data_etl_app.services.manufacturer_service import (
     update_manufacturer,
 )
 
-from apps.data_etl_app.src.data_etl_app.models.scraped_text_file import ScrapedTextFile
+from packages.infra.src.infra.models.s3.scraped_text_file import ScrapedTextFile
 from scraper_app.services.url_scraper_service import (
     ScraperService,
 )
-from litellm_proxy_app.models.llm_model import GPT_5_2
-from litellm_proxy_app.models.llm_model import LLM_Model
+from packages.llm_providers.src.llm_providers.models.llm_model import GPT_5_2
+from packages.llm_providers.src.llm_providers.models.llm_model import LLM_Model
 
-from packages.core.src.core.utils.url_util import get_etld1_from_host
+from packages.pure_utils.src.pure_utils.url_util import get_etld1_from_host
 
 logger = logging.getLogger(__name__)
 
@@ -430,17 +432,17 @@ def parse_args():
 
 
 async def async_main():
-    from apps.data_etl_app.src.data_etl_app.utils.aws.queue.extract_queue_util import (
+    from packages.infra.src.infra.utils.aws.queue.extract_queue_util import (
         push_item_to_extract_queue,
     )
-    from apps.data_etl_app.src.data_etl_app.utils.aws.queue.priority_extract_queue_util import (
+    from packages.infra.src.infra.utils.aws.queue.priority_extract_queue_util import (
         push_item_to_priority_extract_queue,
     )
-    from apps.data_etl_app.src.data_etl_app.utils.aws.queue.scrape_queue_util import (
+    from packages.infra.src.infra.utils.aws.queue.scrape_queue_util import (
         poll_item_from_scrape_queue,
         delete_item_from_scrape_queue,
     )
-    from apps.data_etl_app.src.data_etl_app.utils.aws.queue.priority_scrape_queue_util import (
+    from packages.infra.src.infra.utils.queue.priority_scrape_queue_util import (
         poll_item_from_priority_scrape_queue,
         delete_item_from_priority_scrape_queue,
     )

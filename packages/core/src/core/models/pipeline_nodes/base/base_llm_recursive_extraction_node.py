@@ -2,7 +2,7 @@ from __future__ import annotations
 import asyncio
 import logging
 
-from packages.core.src.core.models.base.extraction_subject import (
+from packages.core.src.core.models.extraction_subject import (
     AbstractExtractionSubject,
     AbstractDeferredExtractionSubject,
 )
@@ -12,10 +12,10 @@ from packages.core.src.core.models.pipeline_nodes.base.base_llm_extraction_node 
 )
 from packages.core.src.core.models.pipeline_nodes.base.base_node import PipelineContext
 from packages.core.src.core.models.types_and_enums import LLMExtractedFieldTypeVar
-from packages.core.src.core.models.field_types import BatchRequestIDType
-from apps.data_etl_app.src.data_etl_app.models.scraped_text_file import ScrapedTextFile
+from packages.llm_providers.src.llm_providers.field_types import BatchRequestIDType
+from packages.infra.src.infra.models.s3.scraped_text_file import ScrapedTextFile
 
-from packages.core.src.core.services.gpt_batch_request.gpt_batch_request_writes import (
+from packages.llm_providers.src.llm_providers.services.gpt_batch_request.gpt_batch_request_writes import (
     bulk_record_gpt_batch_responses,
     bulk_upsert_gpt_batch_requests_with_only_req_bodies,
 )
@@ -106,7 +106,7 @@ class BaseLLMRecursiveExtractionNode(
             )
             await bulk_upsert_gpt_batch_requests_with_only_req_bodies(
                 batch_requests=batch_requests,
-                mfg_etld1=subject.subject_unique_id,
+                subject_unique_id=subject.subject_unique_id,
             )
 
             logger.info(
