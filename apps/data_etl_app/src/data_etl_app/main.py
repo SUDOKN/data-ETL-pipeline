@@ -20,9 +20,10 @@ log_level = os.getenv("LOG_LEVEL", "INFO").upper()
 logger = logging.getLogger(__name__)
 
 from data_etl_app.dependencies.db import init_app_db
-from infra.utils.s3.aws_s3_clients import (
-    initialize_data_etl_aws_clients,
-    cleanup_data_etl_aws_clients,
+from infra.utils.aws.clients import (
+    AWSClientName,
+    cleanup_aws_clients,
+    initialize_aws_clients,
 )
 
 
@@ -34,12 +35,16 @@ async def lifespan(app: FastAPI):
     mongo_client = await init_app_db()
     logger.info("Database initialized successfully")
 
-    await initialize_data_etl_aws_clients()
+    await initialize_aws_clients(
+        AWSClientName.PROMPT_RDF_S3,
+        AWSClientName.SCRAPED_TEXT_S3,
+        AWSClientName.SCRAPE_QUEUE,
+    )
     logger.info("Application startup complete")
     yield
 
     # Shutdown
-    await cleanup_data_etl_aws_clients()
+    await cleanup_aws_clients()
     await mongo_client.close()
     logger.info("Application shutting down")
 

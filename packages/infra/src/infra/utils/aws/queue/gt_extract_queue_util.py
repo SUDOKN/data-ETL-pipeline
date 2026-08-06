@@ -3,41 +3,44 @@ import logging
 
 from pure_utils.env_util import require_env
 
-from infra.models.queue_items.to_scrape_item import ToScrapeItem
+from infra.models.queue_items.to_extract_item import ToExtractItem
 from infra.constants import LONG_POLL_INTERVAL
-from infra.utils.queue.aws_sqs_clients import (
+from infra.utils.aws.clients import (
+    get_extract_queue_client,
     get_scrape_queue_client,
 )
 
 logger = logging.getLogger(__name__)
 
 
-def _scrape_queue_url() -> str:
-    return require_env("SCRAPE_QUEUE_URL")
+def _gt_extract_queue_url() -> str:
+    return require_env("GT_EXTRACT_QUEUE_URL")
 
 
-async def push_item_to_scrape_queue(item: ToScrapeItem):
+async def push_item_to_gt_extract_queue(item: ToExtractItem):
     """
-    Sends an item to the SQS queue for scraping.
+    Sends an item to the Extract queue for extraction.
 
     :param item: The item to send to the SQS queue.
     """
-    queue_url = _scrape_queue_url()
+    queue_url = _gt_extract_queue_url()
     sqs_client = get_scrape_queue_client()
     await sqs_client.send_message(
         QueueUrl=queue_url,
         MessageBody=item.model_dump_json(),
     )
-    logger.info(f"Sent ToScrapeItem for {item.start_url} to scrape queue: {queue_url}")
+    logger.info(
+        f"Sent ToExtractItem for {item.subject_unique_id} to extract queue: {queue_url}."
+    )
 
 
-async def poll_item_from_scrape_queue() -> tuple[ToScrapeItem, str] | tuple[None, None]:
+async def poll_item_from_gt_extract_queue():
     """
-    Receives a single item from the SQS queue.
+    Receives a single item from the GT Extract queue.
     """
-    queue_url = _scrape_queue_url()
-    sqs_client = get_scrape_queue_client()
-    logger.info(f"Polling Scrape queue: {queue_url}")
+    queue_url = _gt_extract_queue_url()
+    sqs_client = get_extract_queue_client()
+    logger.info(f"Polling SQS GT Extract queue: {queue_url}")
     response = await sqs_client.receive_message(
         QueueUrl=queue_url,
         MaxNumberOfMessages=1,
@@ -58,11 +61,9 @@ async def poll_item_from_scrape_queue() -> tuple[ToScrapeItem, str] | tuple[None
 
     try:
         item_dict = json.loads(body.strip())
-        item = ToScrapeItem(**item_dict)
+        item = ToExtractItem(**item_dict)
     except Exception as e:
-        logger.error(
-            f"Error decoding ToScrapeItem JSON from message body: {e}, deleting message from Scrape queue."
-        )
+        logger.error(f"Error decoding ToExtractItem JSON from message body: {e}")
         # Optionally delete the message if it's malformed
         await sqs_client.delete_message(
             QueueUrl=queue_url,
@@ -73,16 +74,18 @@ async def poll_item_from_scrape_queue() -> tuple[ToScrapeItem, str] | tuple[None
     return item, receipt_handle
 
 
-async def delete_item_from_scrape_queue(receipt_handle: str):
+async def delete_item_from_gt_extract_queue(receipt_handle: str):
     """
-    Deletes an item from the SQS queue.
+    Deletes an item from the GT Extract queue.
 
     :param receipt_handle: The receipt handle of the message to delete.
     """
-    queue_url = _scrape_queue_url()
-    sqs_client = get_scrape_queue_client()
+    queue_url = _gt_extract_queue_url()
+    sqs_client = get_extract_queue_client()
     await sqs_client.delete_message(
         QueueUrl=queue_url,
         ReceiptHandle=receipt_handle,
     )
-    logger.info(f"Deleted item from Scrape queue with receipt handle: {receipt_handle}")
+    logger.info(
+        f"Deleted item from GT Extract queue with receipt handle: {receipt_handle}"
+    )

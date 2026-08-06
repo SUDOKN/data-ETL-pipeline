@@ -14,10 +14,10 @@ from data_etl_app.db_models.binary_ground_truth import (
     HumanDecisionLog,
     HumanBinaryDecision,
 )
-from infra.utils.s3.scraped_text_file_util import (
+from infra.utils.aws.s3.scraped_text_file_util import (
     download_scraped_text_from_s3_by_subject_unique_id,
 )
-from infra.utils.s3.prompt_s3_util import (
+from infra.utils.aws.s3.prompt_s3_util import (
     does_prompt_version_exist,
     get_prompt_filename,
 )

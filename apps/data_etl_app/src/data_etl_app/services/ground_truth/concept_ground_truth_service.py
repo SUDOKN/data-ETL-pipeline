@@ -25,7 +25,7 @@ from core.services.ontology_service import (
 )
 from core.services.brute_search_service import word_regex
 
-from infra.utils.s3.scraped_text_file_util import (
+from infra.utils.aws.s3.scraped_text_file_util import (
     download_scraped_text_from_s3_by_subject_unique_id,
 )
 from data_etl_app.utils.route_url_util import (

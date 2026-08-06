@@ -10,13 +10,10 @@ from data_etl_app.dependencies.env import EXTRACT_BOT_ENV
 
 load_env(EXTRACT_BOT_ENV)
 
-from infra.utils.queue.aws_sqs_clients import (
-    initialize_scraper_aws_clients,
-    cleanup_scraper_aws_clients,
-)
-from infra.utils.s3.aws_s3_clients import (
-    initialize_data_etl_aws_clients,
-    cleanup_data_etl_aws_clients,
+from infra.utils.aws.clients import (
+    AWSClientName,
+    cleanup_aws_clients,
+    initialize_aws_clients,
 )
 
 from data_etl_app.db_models.manufacturer import Manufacturer
@@ -384,9 +381,11 @@ async def async_main():
 
     await init_app_db()
 
-    # Initialize AWS clients
-    await initialize_scraper_aws_clients()
-    await initialize_data_etl_aws_clients()
+    await initialize_aws_clients(
+        AWSClientName.EXTRACT_QUEUE,
+        AWSClientName.SCRAPED_TEXT_S3,
+        AWSClientName.PROMPT_RDF_S3,
+    )
 
     args = parse_args()
 
@@ -424,9 +423,7 @@ async def async_main():
             max_concurrent_manufacturers=args.max_concurrent_manufacturers,
         )
     finally:
-        # Clean up AWS clients
-        await cleanup_data_etl_aws_clients()
-        await cleanup_scraper_aws_clients()
+        await cleanup_aws_clients()
 
 
 def main():

@@ -117,13 +117,13 @@ async def main():
     single_file: bool = args.single_file
 
     try:
-        # Initialize AWS clients
-        from infra.utils.s3.aws_s3_clients import (
-            cleanup_data_etl_aws_clients,
-            initialize_data_etl_aws_clients,
+        from infra.utils.aws.clients import (
+            AWSClientName,
+            cleanup_aws_clients,
+            initialize_aws_clients,
         )
 
-        await initialize_data_etl_aws_clients()
+        await initialize_aws_clients(AWSClientName.PROMPT_RDF_S3)
         from core.services.ontology_service import (
             get_ontology_service,
         )
@@ -276,7 +276,7 @@ async def main():
         sys.exit(1)
     finally:
         # Cleanup AWS clients
-        await cleanup_data_etl_aws_clients()
+        await cleanup_aws_clients()
 
 
 if __name__ == "__main__":

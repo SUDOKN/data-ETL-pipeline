@@ -46,7 +46,7 @@ from pure_utils.url_util import (
     get_complete_url_with_compatible_protocol,
 )
 from pure_utils.time_util import get_current_time
-from infra.utils.s3.scraped_text_file_util import (
+from infra.utils.aws.s3.scraped_text_file_util import (
     download_scraped_text_from_s3_by_subject_unique_id,
 )
 

@@ -11,7 +11,7 @@ from pydantic import BaseModel, ConfigDict, Field, computed_field
 from llm_providers.models.llm_model import LLM_Model
 
 from infra.models.queue_items.to_scrape_item import Batch
-from infra.utils.s3.scraped_text_file_util import (
+from infra.utils.aws.s3.scraped_text_file_util import (
     delete_scraped_text_from_s3_by_subject_unique_id,
     get_file_name_from_subject_unique_id,
     get_scraped_text_file_exist_last_modified_on,

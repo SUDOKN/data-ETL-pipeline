@@ -5,7 +5,7 @@ from typing import Dict, Optional
 
 from llm_providers.models.file_objects.prompt import Prompt
 from llm_providers.models.llm_model import LLM_Model
-from infra.utils.s3.prompt_s3_util import (
+from infra.utils.aws.s3.prompt_s3_util import (
     download_prompt,
 )
 from data_etl_app.utils.local_prompt_util import (

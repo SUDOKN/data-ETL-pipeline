@@ -493,13 +493,12 @@ async def main():
 
     # Initialize AWS clients (required for ontology service)
     try:
-        from core.dependencies.aws_clients import initialize_core_aws_clients
-        from infra.utils.s3.aws_s3_clients import (
-            initialize_data_etl_aws_clients,
+        from infra.utils.aws.clients import (
+            AWSClientName,
+            initialize_aws_clients,
         )
 
-        await initialize_core_aws_clients()
-        await initialize_data_etl_aws_clients()
+        await initialize_aws_clients(AWSClientName.PROMPT_RDF_S3)
         logger.info("AWS clients initialized successfully")
     except Exception as e:
         logger.warning(f"Could not initialize AWS clients: {e}")

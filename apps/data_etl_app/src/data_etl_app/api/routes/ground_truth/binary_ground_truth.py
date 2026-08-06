@@ -29,7 +29,7 @@ from data_etl_app.services.ground_truth.binary_ground_truth_service import (
 )
 
 from pure_utils.time_util import get_current_time
-from infra.utils.s3.scraped_text_file_util import (
+from infra.utils.aws.s3.scraped_text_file_util import (
     download_scraped_text_from_s3_by_subject_unique_id,
 )
 

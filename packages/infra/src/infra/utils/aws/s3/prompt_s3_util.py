@@ -2,7 +2,7 @@ from typing import Optional
 
 from pure_utils.env_util import require_env
 
-from infra.utils.s3.aws_s3_clients import (
+from infra.utils.aws.clients import (
     get_prompt_rdf_s3_client,
 )
 

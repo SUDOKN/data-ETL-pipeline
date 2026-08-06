@@ -4,7 +4,7 @@ from pydantic import BaseModel
 
 logger = logging.getLogger(__name__)
 
-from infra.utils.send_email_util import emailer
+from infra.utils.aws.ses.send_email_util import emailer
 
 
 class EmailUserErrand(BaseModel):

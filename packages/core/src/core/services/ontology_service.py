@@ -3,7 +3,7 @@ import logging
 from typing import Dict, Optional
 
 from core.models.ontology import Ontology
-from infra.utils.s3.ontology_rdf_s3_util import (
+from core.utils.ontology_rdf_s3_util import (
     download_ontology_rdf,
 )
 

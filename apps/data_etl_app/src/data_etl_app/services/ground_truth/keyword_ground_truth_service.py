@@ -4,7 +4,7 @@ from datetime import datetime
 
 
 from infra.field_types import S3FileVersionIDType
-from infra.utils.s3.scraped_text_file_util import (
+from infra.utils.aws.s3.scraped_text_file_util import (
     get_file_name_from_subject_unique_id,
     download_scraped_text_from_s3_by_filename,
 )

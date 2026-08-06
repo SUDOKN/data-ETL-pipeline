@@ -6,7 +6,7 @@ from urllib.parse import urlencode, quote
 
 from pure_utils.env_util import require_env
 
-from infra.utils.queue.aws_sqs_clients import (
+from infra.utils.aws.clients import (
     get_scraped_bucket_s3_client,
 )
 

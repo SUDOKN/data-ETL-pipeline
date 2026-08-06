@@ -22,10 +22,9 @@ from data_etl_app.dependencies.env import ONTOLOGY_SCRIPT_ENV
 
 load_env(ONTOLOGY_SCRIPT_ENV)
 
-# Import AWS client initialization
-from core.dependencies.aws_clients import initialize_core_aws_clients
-from infra.utils.s3.aws_s3_clients import (
-    initialize_data_etl_aws_clients,
+from infra.utils.aws.clients import (
+    AWSClientName,
+    initialize_aws_clients,
 )
 
 from data_etl_app.knowledge.ontology.validate_ontology_rdf import (
@@ -163,9 +162,7 @@ def example_validate_rdf_string():
 
 async def main():
     """Main function demonstrating various validation approaches."""
-    # Initialize AWS clients
-    await initialize_core_aws_clients()
-    await initialize_data_etl_aws_clients()
+    await initialize_aws_clients(AWSClientName.PROMPT_RDF_S3)
 
     args = parse_args()
 

@@ -11,7 +11,7 @@ from data_etl_app.db_models.manufacturer import (
 from infra.models.queue_items.queue_item import EmailUserErrand
 from infra.models.queue_items.to_scrape_item import ToScrapeItem
 from pure_utils.time_util import get_current_time
-from infra.utils.queue.priority_scrape_queue_util import (
+from infra.utils.aws.queue.priority_scrape_queue_util import (
     push_item_to_priority_scrape_queue,
 )
 

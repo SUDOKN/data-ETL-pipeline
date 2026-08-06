@@ -5,7 +5,7 @@ from pure_utils.env_util import require_env
 
 from infra.models.queue_items.to_extract_item import ToExtractItem
 from infra.constants import LONG_POLL_INTERVAL
-from infra.utils.queue.aws_sqs_clients import (
+from infra.utils.aws.clients import (
     get_extract_queue_client,
     get_scrape_queue_client,
 )

@@ -572,13 +572,10 @@ class BatchFileStation:
 
 
 async def async_main():
-    from infra.utils.queue.aws_sqs_clients import (
-        initialize_scraper_aws_clients,
-        cleanup_scraper_aws_clients,
-    )
-    from infra.utils.s3.aws_s3_clients import (
-        initialize_data_etl_aws_clients,
-        cleanup_data_etl_aws_clients,
+    from infra.utils.aws.clients import (
+        AWSClientName,
+        cleanup_aws_clients,
+        initialize_aws_clients,
     )
 
     from data_etl_app.dependencies.db import init_app_db
@@ -590,8 +587,10 @@ async def async_main():
         server_selection_timeout_ms=60000,  # 30 seconds
         connect_timeout_ms=60000,  # 30 seconds
     )
-    await initialize_scraper_aws_clients()
-    await initialize_data_etl_aws_clients()
+    await initialize_aws_clients(
+        AWSClientName.PROMPT_RDF_S3,
+        AWSClientName.SCRAPED_TEXT_S3,
+    )
 
     log_level = "INFO"
     logging.basicConfig(
@@ -624,9 +623,7 @@ async def async_main():
     try:
         await batch_file_station.start_loop(POLL_INTERVAL)
     finally:
-        # Clean up AWS clients
-        await cleanup_data_etl_aws_clients()
-        await cleanup_scraper_aws_clients()
+        await cleanup_aws_clients()
 
 
 def main():

@@ -2,7 +2,6 @@ import logging
 import uuid
 from datetime import datetime
 
-from llm_providers.models.file_objects.prompt import Prompt
 from llm_providers.db_models.gpt_batch_request import (
     GPTBatchRequest,
 )
@@ -19,7 +18,7 @@ from llm_providers.models.llm_model import NO_MODEL
 from llm_providers.models.open_ai.gpt_model_params import (
     GPTModelParams,
 )
-from llm_providers.utils.ask_llm_util import (
+from llm_providers.utils.open_ai.ask_gpt_util import (
     fetch_gpt_batch_response,
 )
 from llm_providers.utils.open_ai.batch_gpt_util import (
