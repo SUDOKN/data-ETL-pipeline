@@ -39,7 +39,7 @@ from packages.llm_providers.src.llm_providers.models.open_ai.gpt_model_params im
     GPTModelParams,
 )
 from packages.llm_providers.src.llm_providers.models.llm_model import LLM_Model
-from packages.infra.src.infra.models.s3.scraped_text_file import ScrapedTextFile
+from apps.data_etl_app.src.data_etl_app.models.s3.scraped_mfg_file import ScrapedMfgFile
 
 from packages.llm_providers.src.llm_providers.services.gpt_batch_request.gpt_batch_request_queries import (
     get_custom_ids_for_batch,
@@ -55,7 +55,7 @@ from packages.llm_providers.src.llm_providers.services.api_key_bundle.api_key_bu
 from apps.data_etl_app.src.data_etl_app.services.manufacturer_service import (
     find_manufacturers_by_etld1s,
 )
-from packages.knowledge.src.knowledge.models.ontology import Ontology
+from core.models.ontology import Ontology
 from apps.data_etl_app.src.data_etl_app.services.prompt_service import PromptService
 from apps.data_etl_app.src.data_etl_app.services.batch_file_generator import (
     BatchFileGenerationResult,
@@ -71,7 +71,7 @@ from apps.data_etl_app.src.data_etl_app.services.manufacturer_extraction_orchest
 from apps.data_etl_app.src.data_etl_app.services.prompt_service import (
     get_prompt_service,
 )
-from packages.knowledge.src.knowledge.services.ontology_service import (
+from core.services.ontology_service import (
     get_ontology_service,
 )
 
@@ -330,7 +330,7 @@ class BatchFileStation:
 
         async def bounded_process(mfg):
             async with semaphore:
-                scraped_text_file = await ScrapedTextFile.download_from_s3_and_create(
+                scraped_text_file = await ScrapedMfgFile.download_from_s3_and_create(
                     mfg.etld1,
                     mfg.scraped_text_file_version_id,
                     llm_model=self.mfg_intake_orchestrator.llm_model,

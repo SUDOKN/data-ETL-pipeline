@@ -28,10 +28,10 @@ from packages.core.src.core.models.pipeline_nodes.single_stage.base.single_stage
 from packages.core.src.core.models.types_and_enums import (
     SingleStageFieldTypeVar,
 )
-from packages.infra.src.infra.models.s3.scraped_text_file import ScrapedTextFile
+from scraper.models.s3.scraped_text_file import ScrapedTextFile
 
 
-from packages.core.src.core.utils.chunk_util import (
+from llm_providers.utils.chunk_util import (
     get_chunks_respecting_line_boundaries,
 )
 

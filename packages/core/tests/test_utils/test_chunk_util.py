@@ -1,6 +1,6 @@
 import pytest
 
-from packages.core.src.core.utils.chunk_util import (
+from llm_providers.utils.chunk_util import (
     get_chunks_respecting_line_boundaries,
     get_roughly_even_chunks,
 )

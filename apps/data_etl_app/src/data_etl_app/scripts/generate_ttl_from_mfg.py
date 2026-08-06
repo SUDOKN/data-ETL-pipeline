@@ -28,7 +28,7 @@ from apps.data_etl_app.src.data_etl_app.services.ttl_generator_service import (
     generate_triples,
 )
 from apps.data_etl_app.src.data_etl_app.db_models.manufacturer import Manufacturer
-from packages.knowledge.src.knowledge.models.ontology import Ontology
+from core.models.ontology import Ontology
 from apps.data_etl_app.src.data_etl_app.db_models.manufacturer_user_form import (
     ManufacturerUserForm,
 )
@@ -135,7 +135,7 @@ async def main():
         )
 
         await initialize_data_etl_aws_clients()
-        from packages.knowledge.src.knowledge.services.ontology_service import (
+        from core.services.ontology_service import (
             get_ontology_service,
         )
 

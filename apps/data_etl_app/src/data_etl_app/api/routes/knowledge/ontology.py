@@ -5,12 +5,12 @@ from fastapi import APIRouter, HTTPException, Query
 from fastapi.responses import JSONResponse
 
 from packages.core.src.core.models.skos_concept import ConceptNode
-from packages.knowledge.src.knowledge.services.ontology_service import (
+from core.services.ontology_service import (
     OntologyService,
     get_ontology_service,
 )
-from packages.knowledge.src.knowledge.models.ontology import Ontology
-from packages.knowledge.src.knowledge.utils.rdf_to_graph_util import (
+from core.models.ontology import Ontology
+from core.utils.rdf_to_graph_util import (
     find_concept_node_by_name,
     prune_tree_to_depth,
     tree_list_to_flat,

@@ -4,14 +4,21 @@ requires = ["setuptools>=61.0", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "open_ai_key_app"                                 # the name your team will pip-install
+name = "llm_providers"                                                                                      # the name your team will pip-install
 version = "0.1.0"
-description = "Service Module for OpenAI Key Management"
-readme = "ABOUT.md"                                      # or point to a common README if you like
+description = "Provider-agnostic LLM model registry, batch/GPT request handling, and OpenAI key management"
+readme = "ABOUT.md"                                                                                         # or point to a common README if you like
 requires-python = ">=3.12"
 
 # Any dependencies that your common code needs:
 dependencies = [
-    "types-redis>=4.0.0", # For Redis type hints
+    "types-redis>=4.0.0",   # For Redis type hints
+    "beanie>=2.0.0,<3.0.0",
+    "pymongo>=4.5,<5.0",
+    "pydantic>=2.10.0",
+    "openai>=1.0.0",
+    "litellm>=1.0.0",
+
     "core>=0.1.0",
+    "pure_utils>=0.1.0",
 ]

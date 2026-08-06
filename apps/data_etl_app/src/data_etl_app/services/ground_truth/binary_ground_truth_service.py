@@ -14,8 +14,8 @@ from apps.data_etl_app.src.data_etl_app.db_models.binary_ground_truth import (
     HumanDecisionLog,
     HumanBinaryDecision,
 )
-from packages.infra.src.infra.utils.s3.scraped_text_util import (
-    download_scraped_text_from_s3_by_mfg_etld1,
+from packages.infra.src.infra.utils.s3.scraped_text_file_util import (
+    download_scraped_text_from_s3_by_subject_unique_id,
 )
 from packages.infra.src.infra.utils.s3.prompt_s3_util import (
     does_prompt_version_exist,
@@ -150,7 +150,7 @@ async def _validate_binary_ground_truth_correction(
         )
 
     # check if scraped file exists
-    await download_scraped_text_from_s3_by_mfg_etld1(
+    await download_scraped_text_from_s3_by_subject_unique_id(
         subject_unique_id=binary_ground_truth.mfg_etld1,
         version_id=binary_ground_truth.scraped_text_file_version_id,
     )

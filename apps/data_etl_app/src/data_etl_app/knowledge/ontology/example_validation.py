@@ -52,7 +52,7 @@ from apps.data_etl_app.src.data_etl_app.knowledge.ontology.validate_ontology_rdf
     validate_ontology_from_file,
     is_ontology_valid,
 )
-from packages.knowledge.src.knowledge.services.ontology_service import (
+from core.services.ontology_service import (
     get_ontology_service,
 )
 

@@ -4,8 +4,8 @@ from datetime import datetime
 
 
 from packages.infra.src.infra.field_types import S3FileVersionIDType
-from packages.infra.src.infra.utils.s3.scraped_text_util import (
-    get_file_name_from_mfg_etld,
+from packages.infra.src.infra.utils.s3.scraped_text_file_util import (
+    get_file_name_from_subject_unique_id,
     download_scraped_text_from_s3_by_filename,
 )
 from packages.core.src.core.models.extraction_subject import (
@@ -182,7 +182,7 @@ async def _validate_keyword_ground_truth_correction(
 
     # file and version ID check
     scraped_text, version_id = await download_scraped_text_from_s3_by_filename(
-        file_name=get_file_name_from_mfg_etld(keyword_gt.subject_unique_id),
+        file_name=get_file_name_from_subject_unique_id(keyword_gt.subject_unique_id),
         version_id=manufacturer.scraped_text_file_version_id,
     )
     if manufacturer.scraped_text_file_version_id != version_id:

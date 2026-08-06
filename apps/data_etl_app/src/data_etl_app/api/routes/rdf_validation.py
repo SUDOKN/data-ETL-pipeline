@@ -3,7 +3,7 @@ import logging
 from fastapi import APIRouter, File, HTTPException, Query, UploadFile
 from fastapi.responses import JSONResponse
 
-from packages.knowledge.src.knowledge.services.rdf_validation_service import (
+from core.services.rdf_validation_service import (
     validate_rdf_content,
 )
 

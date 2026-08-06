@@ -20,18 +20,18 @@ from apps.data_etl_app.src.data_etl_app.db_models.concept_ground_truth import (
 from packages.core.src.core.models.skos_concept import Concept
 from packages.core.src.core.models.types_and_enums import ConceptTypeEnum
 
-from packages.knowledge.src.knowledge.services.ontology_service import (
+from core.services.ontology_service import (
     get_ontology_service,
 )
 from packages.core.src.core.services.brute_search_service import word_regex
 
-from packages.infra.src.infra.utils.s3.scraped_text_util import (
-    download_scraped_text_from_s3_by_mfg_etld1,
+from packages.infra.src.infra.utils.s3.scraped_text_file_util import (
+    download_scraped_text_from_s3_by_subject_unique_id,
 )
 from apps.data_etl_app.src.data_etl_app.utils.route_url_util import (
     get_full_ontology_concept_flat_url,
 )
-from packages.knowledge.src.knowledge.services.out_of_vocab_labels_service import (
+from core.services.out_of_vocab_labels_service import (
     get_case_matched_existing_label,
     get_out_of_vocab_labels,
     upsert_out_of_vocab_labels,
@@ -230,7 +230,7 @@ async def _validate_concept_ground_truth_correction(
         )
 
     # file and version ID check
-    scraped_text, version_id = await download_scraped_text_from_s3_by_mfg_etld1(
+    scraped_text, version_id = await download_scraped_text_from_s3_by_subject_unique_id(
         subject_unique_id=concept_gt.mfg_etld1,
         version_id=linked_manufacturer.scraped_text_file_version_id,
     )

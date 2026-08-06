@@ -21,7 +21,7 @@ from packages.llm_providers.src.llm_providers.models.llm_model import LLM_Model
 from packages.llm_providers.src.llm_providers.models.open_ai.gpt_model_params import (
     GPTModelParams,
 )
-from packages.infra.src.infra.models.s3.scraped_text_file import ScrapedTextFile
+from apps.data_etl_app.src.data_etl_app.models.s3.scraped_mfg_file import ScrapedMfgFile
 
 from apps.data_etl_app.src.data_etl_app.services.manufacturer_service import (
     update_manufacturer,
@@ -30,11 +30,11 @@ from apps.data_etl_app.src.data_etl_app.services.deferred_manufacturer_service i
     delete_deferred_manufacturer_if_empty,
     get_deferred_manufacturer_by_etld1_scraped_file_version,
 )
-from packages.llm_providers.src.llm_providers.services.gpt_batch_request.gpt_batch_request_writes import (
+from apps.data_etl_app.src.data_etl_app.services.gpt_batch_request_service import (
     bulk_delete_gpt_batch_requests_by_mfg_etld1_and_field,
 )
 from packages.core.src.core.models.pipeline_nodes import PipelineContext
-from packages.knowledge.src.knowledge.models.ontology import Ontology
+from core.models.ontology import Ontology
 from apps.data_etl_app.src.data_etl_app.services.prompt_service import PromptService
 from apps.data_etl_app.src.data_etl_app.services.extraction_pipeline_factory import (
     ExtractionPipelineFactory,
@@ -105,7 +105,7 @@ class ManufacturerExtractionOrchestrator:
         self,
         timestamp: datetime,
         mfg: Manufacturer,
-        scraped_text_file: ScrapedTextFile,
+        scraped_text_file: ScrapedMfgFile,
         eager: bool,
     ) -> None:
         """
@@ -114,7 +114,7 @@ class ManufacturerExtractionOrchestrator:
         Args:
             timestamp (datetime): Current timestamp.
             mfg (Manufacturer): Manufacturer to process.
-            scraped_text_file (ScrapedTextFile): Scraped text file associated with the manufacturer.
+            scraped_text_file (ScrapedMfgFile): Scraped text file associated with the manufacturer.
             eager (bool): Whether to process eagerly or not.
         """
 

@@ -1,1 +1,2 @@
 SubjectUniqueIDType = str
+OntologyVersionIDType = str

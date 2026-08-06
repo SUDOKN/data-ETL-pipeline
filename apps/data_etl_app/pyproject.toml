@@ -20,10 +20,11 @@ dependencies = [
   "email_validator>=2.0.0",
   "ijson>=3.1.4",
 
-  # Tell pip that open_ai_key_app, litellm_proxy_app and core are also dependencies:
-  "open_ai_key_app>=0.1.0",
+  # Tell pip that llm_providers, litellm_proxy_app, core and scraper are also dependencies:
+  "llm_providers>=0.1.0",
   "litellm_proxy_app>=0.1.0",
   "core>=0.1.0",
+  "scraper>=0.1.0",
   "googlemaps>=4.10.0",
 
 ]

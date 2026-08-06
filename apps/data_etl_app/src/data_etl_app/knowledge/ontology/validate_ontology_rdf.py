@@ -44,13 +44,13 @@ load_data_etl_env()
 load_open_ai_app_env()
 
 from packages.core.src.core.models.skos_concept import ConceptNode
-from packages.knowledge.src.knowledge.utils.rdf_to_graph_util import (
+from core.utils.rdf_to_graph_util import (
     get_graph,
     get_label,
     get_alt_labels,
     build_concept_tree,
 )
-from packages.knowledge.src.knowledge.utils.ontology_uri_util import (
+from core.utils.ontology_uri_util import (
     process_cap_base_uri,
     material_cap_base_uri,
     industry_base_uri,

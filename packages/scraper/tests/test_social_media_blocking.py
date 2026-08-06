@@ -187,7 +187,7 @@ class TestScraperServiceSocialMediaIntegration:
             assert len(result.errors) == 1
             assert "Social media sites are blocked" in result.errors[0]["error"]
 
-    @patch("scraper_app.services.url_scraper_service.get_final_landing_url")
+    @patch("scraper.services.url_scraper_service.get_final_landing_url")
     def test_scrape_blocks_redirect_to_social_media(self, mock_get_final_url):
         """Test that redirects to social media are blocked."""
         # Mock a redirect from legitimate site to social media

@@ -1,6 +1,6 @@
 from pydantic import BaseModel, ConfigDict
 
-from llm_providers.src.llm_providers.models.open_ai.gpt_request_body import (
+from packages.llm_providers.src.llm_providers.models.open_ai.gpt_request_body import (
     GPTRequestBody,
 )
 

@@ -6,12 +6,12 @@ from pydantic import BaseModel, ConfigDict
 
 from packages.core.src.core.models.types_and_enums import ConceptTypeEnum
 from packages.core.src.core.models.skos_concept import Concept, ConceptNode
-from packages.knowledge.src.knowledge.utils.rdf_to_graph_util import (
+from core.utils.rdf_to_graph_util import (
     build_concept_tree,
     get_graph,
     tree_list_to_flat,
 )
-from packages.knowledge.src.knowledge.utils.ontology_uri_util import (
+from core.utils.ontology_uri_util import (
     certificate_base_uri,
     industry_base_uri,
     material_cap_base_uri,

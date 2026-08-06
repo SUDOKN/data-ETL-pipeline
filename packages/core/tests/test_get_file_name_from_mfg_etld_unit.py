@@ -1,8 +1,8 @@
 """Unit tests for get_file_name_from_mfg_etld function."""
 
 import pytest
-from packages.infra.src.infra.utils.s3.scraped_text_util import (
-    get_file_name_from_mfg_etld,
+from packages.infra.src.infra.utils.s3.scraped_text_file_util import (
+    get_file_name_from_subject_unique_id,
 )
 
 
@@ -19,7 +19,7 @@ class TestGetFileNameFromMfgEtld:
         ]
 
         for subject_unique_id, expected in test_cases:
-            result = get_file_name_from_mfg_etld(subject_unique_id)
+            result = get_file_name_from_subject_unique_id(subject_unique_id)
             assert (
                 result == expected
             ), f"Failed for {subject_unique_id}: expected {expected}, got {result}"
@@ -34,7 +34,7 @@ class TestGetFileNameFromMfgEtld:
         ]
 
         for subject_unique_id, expected in test_cases:
-            result = get_file_name_from_mfg_etld(subject_unique_id)
+            result = get_file_name_from_subject_unique_id(subject_unique_id)
             assert (
                 result == expected
             ), f"Failed for {subject_unique_id}: expected {expected}, got {result}"
@@ -52,7 +52,7 @@ class TestGetFileNameFromMfgEtld:
             with pytest.raises(
                 ValueError, match="subject_unique_id:.* passed is inconsistent"
             ):
-                get_file_name_from_mfg_etld(invalid_input)
+                get_file_name_from_subject_unique_id(invalid_input)
 
     def test_invalid_input_subdomains(self):
         """Test that domains with subdomains are rejected."""
@@ -67,7 +67,7 @@ class TestGetFileNameFromMfgEtld:
             with pytest.raises(
                 ValueError, match="subject_unique_id:.* passed is inconsistent"
             ):
-                get_file_name_from_mfg_etld(invalid_input)
+                get_file_name_from_subject_unique_id(invalid_input)
 
     def test_invalid_input_no_tld(self):
         """Test that inputs without valid TLDs are rejected."""
@@ -81,7 +81,7 @@ class TestGetFileNameFromMfgEtld:
 
         for invalid_input in invalid_inputs:
             with pytest.raises(ValueError, match="Invalid eTLD\\+1 format"):
-                get_file_name_from_mfg_etld(invalid_input)
+                get_file_name_from_subject_unique_id(invalid_input)
 
     def test_invalid_input_empty_or_tld_only(self):
         """Test that empty strings or TLD-only inputs are rejected."""
@@ -95,7 +95,7 @@ class TestGetFileNameFromMfgEtld:
 
         for invalid_input in invalid_inputs:
             with pytest.raises(ValueError, match="Invalid eTLD\\+1 format"):
-                get_file_name_from_mfg_etld(invalid_input)
+                get_file_name_from_subject_unique_id(invalid_input)
 
     def test_edge_cases_valid_domains(self):
         """Test edge cases that should be valid."""
@@ -107,7 +107,7 @@ class TestGetFileNameFromMfgEtld:
         ]
 
         for subject_unique_id, expected in test_cases:
-            result = get_file_name_from_mfg_etld(subject_unique_id)
+            result = get_file_name_from_subject_unique_id(subject_unique_id)
             assert (
                 result == expected
             ), f"Failed for {subject_unique_id}: expected {expected}, got {result}"
@@ -123,7 +123,7 @@ class TestGetFileNameFromMfgEtld:
         ]
 
         for subject_unique_id, expected in valid_lowercase_cases:
-            result = get_file_name_from_mfg_etld(subject_unique_id)
+            result = get_file_name_from_subject_unique_id(subject_unique_id)
             assert (
                 result == expected
             ), f"Failed for {subject_unique_id}: expected {expected}, got {result}"
@@ -145,7 +145,7 @@ class TestGetFileNameFromMfgEtld:
             with pytest.raises(
                 ValueError, match="subject_unique_id:.* passed is inconsistent"
             ):
-                get_file_name_from_mfg_etld(invalid_input)
+                get_file_name_from_subject_unique_id(invalid_input)
 
     def test_mixed_case_complex_tlds_rejected(self):
         """Test that mixed case in complex TLDs is also rejected."""
@@ -160,7 +160,7 @@ class TestGetFileNameFromMfgEtld:
             with pytest.raises(
                 ValueError, match="subject_unique_id:.* passed is inconsistent"
             ):
-                get_file_name_from_mfg_etld(invalid_input)
+                get_file_name_from_subject_unique_id(invalid_input)
 
     def test_international_domains(self):
         """Test with international domains (if they work with tldextract)."""
@@ -172,7 +172,7 @@ class TestGetFileNameFromMfgEtld:
 
         for subject_unique_id, expected in test_cases:
             try:
-                result = get_file_name_from_mfg_etld(subject_unique_id)
+                result = get_file_name_from_subject_unique_id(subject_unique_id)
                 assert (
                     result == expected
                 ), f"Failed for {subject_unique_id}: expected {expected}, got {result}"
@@ -183,7 +183,7 @@ class TestGetFileNameFromMfgEtld:
 
     def test_return_type(self):
         """Test that the function returns a string."""
-        result = get_file_name_from_mfg_etld("example.com")
+        result = get_file_name_from_subject_unique_id("example.com")
         assert isinstance(result, str)
         assert result.endswith(".txt")
 
@@ -192,7 +192,7 @@ class TestGetFileNameFromMfgEtld:
         test_inputs = ["example.com", "test.org", "company.co.uk"]
 
         for subject_unique_id in test_inputs:
-            result = get_file_name_from_mfg_etld(subject_unique_id)
+            result = get_file_name_from_subject_unique_id(subject_unique_id)
             # Should always end with .txt
             assert result.endswith(".txt")
             # Should always start with the input domain

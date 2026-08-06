@@ -22,8 +22,8 @@ from packages.infra.src.infra.utils.queue.priority_scrape_queue_util import (
     push_item_to_priority_scrape_queue,
 )
 
-from packages.infra.src.infra.utils.s3.scraped_text_util import (
-    download_scraped_text_from_s3_by_mfg_etld1,
+from packages.infra.src.infra.utils.s3.scraped_text_file_util import (
+    download_scraped_text_from_s3_by_subject_unique_id,
 )
 
 from packages.core.src.core.models.extraction_results.keyword_extraction_results import (
@@ -193,9 +193,11 @@ async def fetch_keyword_ground_truth_template(
     chunk_bounds, chunk_search_stats = sorted_search_data[chunk_no - 1]
 
     # TODO: maybe cache downloaded text
-    scraped_text, _version_id = await download_scraped_text_from_s3_by_mfg_etld1(
-        etld1=manufacturer.etld1,
-        version_id=manufacturer.scraped_text_file_version_id,
+    scraped_text, _version_id = (
+        await download_scraped_text_from_s3_by_subject_unique_id(
+            subject_unique_id=manufacturer.etld1,
+            version_id=manufacturer.scraped_text_file_version_id,
+        )
     )
 
     start, end = int(chunk_bounds.split(":")[0]), int(chunk_bounds.split(":")[1])

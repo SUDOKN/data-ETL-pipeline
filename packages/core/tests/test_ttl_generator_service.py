@@ -29,7 +29,7 @@ from apps.data_etl_app.src.data_etl_app.dependencies.aws_s3_clients import (
     initialize_data_etl_aws_clients,
 )
 
-from packages.knowledge.src.knowledge.models.ontology import Ontology
+from core.models.ontology import Ontology
 from apps.data_etl_app.src.data_etl_app.models.extraction_results.address_extraction_result import (
     Address,
 )

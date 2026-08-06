@@ -23,7 +23,7 @@ from packages.core.src.core.models.types_and_enums import BasicFieldTypeEnum
 from packages.core.src.core.models.pipeline_nodes.base.base_reconcile_node import (
     ReconcileNode,
 )
-from packages.infra.src.infra.models.s3.scraped_text_file import ScrapedTextFile
+from apps.data_etl_app.src.data_etl_app.models.s3.scraped_mfg_file import ScrapedMfgFile
 
 from apps.data_etl_app.src.data_etl_app.services.manufacturer_service import (
     update_manufacturer,
@@ -47,7 +47,7 @@ class BusinessDescReconcileNode(ReconcileNode[BasicFieldTypeEnum.business_desc])
         self,
         mfg: Manufacturer,
         deferred_mfg: DeferredManufacturer,
-        scraped_text_file: ScrapedTextFile,
+        scraped_text_file: ScrapedMfgFile,
         timestamp: datetime,
         pipeline_context: PipelineContext,
         eager: bool,

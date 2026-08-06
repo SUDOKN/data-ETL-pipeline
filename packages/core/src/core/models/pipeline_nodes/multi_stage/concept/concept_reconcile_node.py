@@ -45,7 +45,7 @@ from packages.core.src.core.models.pipeline_nodes.multi_stage.concept.concept_in
 from packages.core.src.core.models.pipeline_nodes.multi_stage.concept.concept_iterative_grounding_node import (
     ConceptIterativeGroundingNode,
 )
-from packages.infra.src.infra.models.s3.scraped_text_file import ScrapedTextFile
+from scraper.models.s3.scraped_text_file import ScrapedTextFile
 
 from packages.core.src.core.services.pipeline_nodes.multi_stage.llm_phrase_recursive_search_node_service import (
     build_llm_phrase_search_results,
@@ -59,7 +59,7 @@ from packages.core.src.core.services.pipeline_nodes.multi_stage.llm_recursive_gr
 )
 
 
-from packages.knowledge.src.knowledge.utils.rdf_to_graph_util import (
+from core.utils.rdf_to_graph_util import (
     get_match_label_to_concept_map,
 )
 from packages.core.src.core.utils.phrase_trail_dump_util import (

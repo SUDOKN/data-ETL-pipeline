@@ -39,7 +39,7 @@ from apps.data_etl_app.src.data_etl_app.db_models.keyword_ground_truth import (
     KeywordGroundTruth,
 )
 from apps.data_etl_app.src.data_etl_app.db_models.place import Place
-from packages.knowledge.src.knowledge.db_models.out_of_vocab_labels import (
+from core.db_models.out_of_vocab_labels import (
     OutOfVocabLabel,
 )
 

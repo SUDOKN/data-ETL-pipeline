@@ -1,5 +1,5 @@
 import pytest
-from packages.core.src.core.utils.chunk_util import split_bytes_on_line_boundaries
+from llm_providers.utils.chunk_util import split_bytes_on_line_boundaries
 
 
 class TestSplitBytesOnLineBoundaries:

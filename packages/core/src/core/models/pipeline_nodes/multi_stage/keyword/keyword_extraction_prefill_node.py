@@ -32,12 +32,12 @@ from packages.core.src.core.models.pipeline_nodes.base.base_node import Pipeline
 from packages.core.src.core.models.chunking_strat import ChunkingStrategy
 
 if TYPE_CHECKING:
-    from packages.infra.src.infra.models.s3.scraped_text_file import (
+    from scraper.models.s3.scraped_text_file import (
         ScrapedTextFile,
     )
 
 
-from packages.core.src.core.utils.chunk_util import (
+from llm_providers.utils.chunk_util import (
     get_chunks_respecting_line_boundaries,
 )
 from packages.pure_utils.src.pure_utils.dict_diff import find_diffs

@@ -21,7 +21,7 @@ from packages.core.src.core.models.deferred_extraction.deferred_concept_extracti
     ConceptExtractionRequestBundle,
     DeferredConceptExtractionRequests,
 )
-from packages.knowledge.src.knowledge.models.ontology import Ontology
+from core.models.ontology import Ontology
 from packages.core.src.core.models.pipeline_nodes.multi_stage.concept.concept_phrase_search_node import (
     ConceptPhraseSearchNode,
 )
@@ -33,13 +33,13 @@ from packages.core.src.core.models.pipeline_nodes.base.base_node import Pipeline
 from packages.core.src.core.models.chunking_strat import ChunkingStrategy
 
 if TYPE_CHECKING:
-    from packages.infra.src.infra.models.s3.scraped_text_file import (
+    from scraper.models.s3.scraped_text_file import (
         ScrapedTextFile,
     )
 
 from packages.core.src.core.services.brute_search_service import brute_search
 
-from packages.core.src.core.utils.chunk_util import (
+from llm_providers.utils.chunk_util import (
     get_chunks_respecting_line_boundaries,
 )
 from packages.pure_utils.src.pure_utils.dict_diff import find_diffs

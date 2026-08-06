@@ -29,8 +29,8 @@ from apps.data_etl_app.src.data_etl_app.services.ground_truth.binary_ground_trut
 )
 
 from packages.pure_utils.src.pure_utils.time_util import get_current_time
-from packages.infra.src.infra.utils.s3.scraped_text_util import (
-    download_scraped_text_from_s3_by_mfg_etld1,
+from packages.infra.src.infra.utils.s3.scraped_text_file_util import (
+    download_scraped_text_from_s3_by_subject_unique_id,
 )
 
 router = APIRouter()
@@ -117,9 +117,11 @@ async def fetch_binary_classification_user_form_template(
     )[0]
     start, end = first_chunk_bounds.split(":")
     start, end = int(start), int(end)
-    scraped_text, _version_id = await download_scraped_text_from_s3_by_mfg_etld1(
-        etld1=manufacturer.etld1,
-        version_id=manufacturer.scraped_text_file_version_id,
+    scraped_text, _version_id = (
+        await download_scraped_text_from_s3_by_subject_unique_id(
+            subject_unique_id=manufacturer.etld1,
+            version_id=manufacturer.scraped_text_file_version_id,
+        )
     )
     binary_ground_truth = BinaryGroundTruth(
         mfg_etld1=manufacturer.etld1,

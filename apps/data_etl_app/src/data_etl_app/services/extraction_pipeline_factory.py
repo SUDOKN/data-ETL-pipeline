@@ -70,7 +70,7 @@ from packages.core.src.core.models.types_and_enums import (
     KeywordTypeEnum,
     BasicFieldTypeEnum,
 )
-from packages.knowledge.src.knowledge.models.ontology import Ontology
+from core.models.ontology import Ontology
 from packages.llm_providers.src.llm_providers.models.open_ai.gpt_model_params import (
     GPTModelParams,
 )

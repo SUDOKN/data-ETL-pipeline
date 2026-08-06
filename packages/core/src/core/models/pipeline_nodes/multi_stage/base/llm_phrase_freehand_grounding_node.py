@@ -40,7 +40,7 @@ from packages.core.src.core.services.pipeline_nodes.multi_stage.llm_freehand_gro
     get_freehand_grounding_result,
 )
 from packages.llm_providers.src.llm_providers.field_types import BatchRequestIDType
-from packages.infra.src.infra.models.s3.scraped_text_file import ScrapedTextFile
+from scraper.models.s3.scraped_text_file import ScrapedTextFile
 
 logger = logging.getLogger(__name__)
 

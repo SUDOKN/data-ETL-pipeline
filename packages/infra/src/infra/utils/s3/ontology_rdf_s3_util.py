@@ -3,7 +3,7 @@ from typing import Optional
 from apps.data_etl_app.src.data_etl_app.dependencies.aws_s3_clients import (
     get_prompt_rdf_s3_client,
 )
-from packages.knowledge.src.knowledge.models.ontology import Ontology
+from core.models.ontology import Ontology
 
 RDF_BUCKET = os.getenv("RDF_BUCKET")
 RDF_FILENAME = os.getenv("RDF_FILENAME")

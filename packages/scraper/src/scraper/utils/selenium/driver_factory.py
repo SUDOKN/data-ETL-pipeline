@@ -11,7 +11,9 @@ import shutil
 import sys
 from selenium import webdriver
 
-from scraper_app.utils.selenium.chrome_driver_manager import ChromeDriverManager
+from packages.scraper.src.scraper.utils.selenium.chrome_driver_manager import (
+    ChromeDriverManager,
+)
 
 logging.basicConfig(
     level=logging.INFO,

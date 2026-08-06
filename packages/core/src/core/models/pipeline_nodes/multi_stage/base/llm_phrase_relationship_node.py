@@ -31,7 +31,7 @@ from packages.core.src.core.models.pipeline_nodes.base.base_llm_extraction_node 
     BaseLLMExtractionNode,
 )
 from packages.llm_providers.src.llm_providers.field_types import BatchRequestIDType
-from packages.infra.src.infra.models.s3.scraped_text_file import ScrapedTextFile
+from scraper.models.s3.scraped_text_file import ScrapedTextFile
 
 from packages.llm_providers.src.llm_providers.services.gpt_batch_request.gpt_batch_request_service import (
     dispatch_gpt_batch_request,

@@ -40,7 +40,7 @@ from packages.llm_providers.src.llm_providers.field_types import BatchRequestIDT
 from packages.llm_providers.src.llm_providers.models.open_ai.gpt_model_params import (
     GPTModelParams,
 )
-from packages.infra.src.infra.models.s3.scraped_text_file import ScrapedTextFile
+from scraper.models.s3.scraped_text_file import ScrapedTextFile
 
 from packages.llm_providers.src.llm_providers.services.gpt_batch_request.gpt_batch_request_service import (
     dispatch_gpt_batch_request,
@@ -62,7 +62,7 @@ from packages.core.src.core.services.pipeline_nodes.multi_stage.llm_recursive_gr
 )
 
 
-from packages.knowledge.src.knowledge.utils.rdf_to_graph_util import (
+from core.utils.rdf_to_graph_util import (
     get_match_label_to_concept_map,
 )
 

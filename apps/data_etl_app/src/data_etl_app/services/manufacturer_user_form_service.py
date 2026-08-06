@@ -18,7 +18,7 @@ from packages.infra.src.infra.utils.queue.priority_scrape_queue_util import (
 from apps.data_etl_app.src.data_etl_app.db_models.manufacturer_user_form import (
     ManufacturerUserForm,
 )
-from packages.knowledge.src.knowledge.services.ontology_service import (
+from core.services.ontology_service import (
     get_ontology_service,
 )
 

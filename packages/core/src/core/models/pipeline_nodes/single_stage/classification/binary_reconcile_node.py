@@ -26,7 +26,7 @@ from packages.core.src.core.models.pipeline_nodes.base.base_reconcile_node impor
 from packages.core.src.core.models.pipeline_nodes.single_stage.classification.binary_classification_node import (
     BinaryClassificationNode,
 )
-from packages.infra.src.infra.models.s3.scraped_text_file import ScrapedTextFile
+from scraper.models.s3.scraped_text_file import ScrapedTextFile
 
 logger = logging.getLogger(__name__)
 

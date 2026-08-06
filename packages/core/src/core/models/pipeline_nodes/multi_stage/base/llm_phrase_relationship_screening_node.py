@@ -37,7 +37,7 @@ from packages.core.src.core.models.pipeline_nodes.multi_stage.base.llm_phrase_re
 from packages.llm_providers.src.llm_providers.field_types import BatchRequestIDType
 
 if TYPE_CHECKING:
-    from packages.infra.src.infra.models.s3.scraped_text_file import (
+    from scraper.models.s3.scraped_text_file import (
         ScrapedTextFile,
     )
 

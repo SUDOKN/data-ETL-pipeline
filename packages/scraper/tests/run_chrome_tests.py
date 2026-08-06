@@ -114,7 +114,7 @@ def main():
             "python",
             "-m",
             "pytest",
-            "--cov=scraper_app.utils.selenium.chrome_driver_manager",
+            "--cov=scraper.utils.selenium.chrome_driver_manager",
         ]
         cmd.extend(
             [
@@ -136,7 +136,7 @@ def main():
     if args.with_coverage and args.test_type != "coverage":
         cmd.extend(
             [
-                "--cov=scraper_app.utils.selenium.chrome_driver_manager",
+                "--cov=scraper.utils.selenium.chrome_driver_manager",
                 "--cov-report=term-missing",
             ]
         )

@@ -1,6 +1,6 @@
 from rdflib.term import URIRef
 
-from packages.knowledge.src.knowledge.utils.rdf_to_graph_util import (
+from core.utils.rdf_to_graph_util import (
     build_concept_tree,
     get_graph,
     tree_list_to_flat,

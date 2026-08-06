@@ -36,9 +36,9 @@ from apps.data_etl_app.src.data_etl_app.db_models.manufacturer import Manufactur
 from packages.infra.src.infra.models.queue_items.to_extract_item import ToExtractItem
 from packages.infra.src.infra.models.queue_items.to_scrape_item import ToScrapeItem
 
-from packages.infra.src.infra.utils.s3.scraped_text_util import (
-    delete_scraped_text_from_s3_by_etld1,
-    get_latest_version_id_by_mfg_etld,
+from packages.infra.src.infra.utils.s3.scraped_text_file_util import (
+    delete_scraped_text_from_s3_by_subject_unique_id,
+    get_latest_version_id_by_subject_unique_id,
 )
 from core.utils.mongo_client import init_db
 from packages.pure_utils.src.pure_utils.time_util import get_current_time
@@ -50,8 +50,8 @@ from apps.data_etl_app.src.data_etl_app.services.manufacturer_service import (
     update_manufacturer,
 )
 
-from packages.infra.src.infra.models.s3.scraped_text_file import ScrapedTextFile
-from scraper_app.services.url_scraper_service import (
+from apps.data_etl_app.src.data_etl_app.models.s3.scraped_mfg_file import ScrapedMfgFile
+from scraper.services.url_scraper_service import (
     ScraperService,
 )
 from packages.llm_providers.src.llm_providers.models.llm_model import GPT_5_2
@@ -108,13 +108,13 @@ class ScrapingStats:
 
 
 """
-ScrapedTextFile:
+ScrapedMfgFile:
     - automatically downloads the passed version
     - throws error if file does not exist
 
 
 1. check if manufacturer exists
-        Yes? Try creating ScrapedTextFile(existing_manufacturer.scraped_file_version), success?
+        Yes? Try creating ScrapedMfgFile(existing_manufacturer.scraped_file_version), success?
             Yes? check if file is valid
                 Yes? check if redo flag is passed
                     Yes? delete this valid file, set manufacturer.scraped_file_version = None
@@ -125,17 +125,17 @@ ScrapedTextFile:
 
 
 Now, either, manufacturer is None or manufacturer.scraped_file_version is None, both of which mean scraping must be done
-set valid_file: ScrapedTextFile = None
+set valid_file: ScrapedMfgFile = None
 2. check for some existing_scraped_file_version
-        Yes? create ScrapedTextFile(existing_scraped_file_version), but is valid?
-            Yes? set valid_file = ScrapedTextFile(existing_scraped_file_version)
+        Yes? create ScrapedMfgFile(existing_scraped_file_version), but is valid?
+            Yes? set valid_file = ScrapedMfgFile(existing_scraped_file_version)
             No: delete from s3, set valid_file = None (This will clean any old invalid files)
         No: proceed
 
 
 3. check if valid_file is None
         Yes? Go scrape, check if result is valid
-            Yes? upload, valid_file = ScrapedTextFile(new_scraped_file_version)
+            Yes? upload, valid_file = ScrapedMfgFile(new_scraped_file_version)
             No: throw error, let finally block catch this and delete from queue
         No: proceed
 
@@ -257,15 +257,15 @@ async def get_valid_scraped_file(
     redo_extraction_flag: bool,
     scraper: ScraperService,
     llm_model: LLM_Model,
-) -> ScrapedTextFile:
+) -> ScrapedMfgFile:
     mfg_etld = get_etld1_from_host(item.start_url)
-    existing_scraped_file: ScrapedTextFile | None = None
+    existing_scraped_file: ScrapedMfgFile | None = None
     if manufacturer:
         logger.info(
             f"Manufacturer found for {mfg_etld}. Checking if linked scraped file exists."
         )
         try:
-            existing_scraped_file = await ScrapedTextFile.download_from_s3_and_create(
+            existing_scraped_file = await ScrapedMfgFile.download_from_s3_and_create(
                 mfg_etld,
                 manufacturer.scraped_text_file_version_id,
                 llm_model,
@@ -316,7 +316,7 @@ async def get_valid_scraped_file(
         logger.info(
             f"No existing scraped file found for {mfg_etld}. Checking S3 for any version."
         )
-        latest_version_id = await get_latest_version_id_by_mfg_etld(
+        latest_version_id = await get_latest_version_id_by_subject_unique_id(
             mfg_etld,
         )
         if latest_version_id:
@@ -325,7 +325,7 @@ async def get_valid_scraped_file(
             )
             try:
                 existing_scraped_file = (
-                    await ScrapedTextFile.download_from_s3_and_create(
+                    await ScrapedMfgFile.download_from_s3_and_create(
                         mfg_etld,
                         latest_version_id,
                         llm_model,
@@ -354,10 +354,10 @@ async def get_valid_scraped_file(
                     f" Setting existing_scraped_file = None."
                 )
                 (
-                    await delete_scraped_text_from_s3_by_etld1(
+                    await delete_scraped_text_from_s3_by_subject_unique_id(
                         mfg_etld, latest_version_id
                     )
-                    if await ScrapedTextFile.can_delete_version(latest_version_id)
+                    if await ScrapedMfgFile.can_delete_version(latest_version_id)
                     else None
                 )
                 existing_scraped_file = None
@@ -403,7 +403,7 @@ async def get_valid_scraped_file(
         logger.info(f"📊 Scraping stats for {item.start_url}:")
         scraping_result.print_stats()
 
-        existing_scraped_file = await ScrapedTextFile.upload_to_s3_and_create(  # throws error if not valid or scraping_result.timed_out
+        existing_scraped_file = await ScrapedMfgFile.upload_to_s3_and_create(  # throws error if not valid or scraping_result.timed_out
             item.batch, scraping_result, mfg_etld
         )
         logger.info(f"Uploaded new scraped text file for {item.start_url} to S3.")

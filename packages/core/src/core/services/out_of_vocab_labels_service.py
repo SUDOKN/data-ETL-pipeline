@@ -1,6 +1,6 @@
 from typing import Optional
 
-from packages.knowledge.src.knowledge.db_models.out_of_vocab_labels import (
+from core.db_models.out_of_vocab_labels import (
     OutOfVocabLabel,
 )
 from packages.core.src.core.models.types_and_enums import ConceptTypeEnum

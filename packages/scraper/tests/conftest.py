@@ -68,7 +68,7 @@ def mock_chrome_driver():
 @pytest.fixture
 def chrome_driver_manager():
     """Fixture that provides a ChromeDriverManager instance."""
-    from scraper_app.utils.selenium.chrome_driver_manager import ChromeDriverManager
+    from scraper.utils.selenium.chrome_driver_manager import ChromeDriverManager
 
     # Create temporary directory for this test
     test_dir = tempfile.mkdtemp(prefix="test_chrome_manager_")

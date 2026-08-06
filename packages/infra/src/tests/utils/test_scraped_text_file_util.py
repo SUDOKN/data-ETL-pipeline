@@ -12,8 +12,8 @@ from packages.core.src.core.dependencies.load_core_env import load_core_env
 
 load_core_env()
 
-from packages.infra.src.infra.utils.s3.scraped_text_util import (
-    get_file_name_from_mfg_etld,
+from packages.infra.src.infra.utils.s3.scraped_text_file_util import (
+    get_file_name_from_subject_unique_id,
     get_scraped_text_file_exist_last_modified_on,
     upload_scraped_text_to_s3,
     download_scraped_text_from_s3_by_filename,
@@ -21,11 +21,6 @@ from packages.infra.src.infra.utils.s3.scraped_text_util import (
     _get_scraped_text_object_tags_by_filename,
     iterate_scraped_text_objects_and_versions,
     SCRAPED_TEXT_BUCKET,
-)
-
-from data_etl_app.dependencies.aws_clients_scraper import (
-    initialize_scraper_aws_clients,
-    cleanup_scraper_aws_clients,
 )
 
 
@@ -49,7 +44,7 @@ async def upload_scraped_text_to_s3_with_client(
 ) -> tuple[str, str]:
     """Test helper that takes an S3 client and mimics the real function."""
     with patch(
-        "packages.infra.src.infra.utils.s3.scraped_text_util.get_scraped_bucket_s3_client",
+        "packages.infra.src.infra.utils.s3.scraped_text_file_util.get_scraped_bucket_s3_client",
         return_value=s3_client,
     ):
         return await upload_scraped_text_to_s3(file_content, file_name, tags)
@@ -60,7 +55,7 @@ async def get_scraped_text_file_exist_last_modified_on_with_client(
 ) -> datetime | None:
     """Test helper that takes an S3 client and mimics the real function."""
     with patch(
-        "packages.infra.src.infra.utils.s3.scraped_text_util.get_scraped_bucket_s3_client",
+        "packages.infra.src.infra.utils.s3.scraped_text_file_util.get_scraped_bucket_s3_client",
         return_value=s3_client,
     ):
         return await get_scraped_text_file_exist_last_modified_on(file_name, version_id)
@@ -71,7 +66,7 @@ async def download_scraped_text_from_s3_by_filename_with_client(
 ) -> tuple[str, str]:
     """Test helper that takes an S3 client and mimics the real function."""
     with patch(
-        "packages.infra.src.infra.utils.s3.scraped_text_util.get_scraped_bucket_s3_client",
+        "packages.infra.src.infra.utils.s3.scraped_text_file_util.get_scraped_bucket_s3_client",
         return_value=s3_client,
     ):
         return await download_scraped_text_from_s3_by_filename(file_name, version_id)
@@ -82,7 +77,7 @@ async def delete_scraped_text_from_s3_by_filename_with_client(
 ) -> None:
     """Test helper that takes an S3 client and mimics the real function."""
     with patch(
-        "packages.infra.src.infra.utils.s3.scraped_text_util.get_scraped_bucket_s3_client",
+        "packages.infra.src.infra.utils.s3.scraped_text_file_util.get_scraped_bucket_s3_client",
         return_value=s3_client,
     ):
         return await delete_scraped_text_from_s3_by_filename(file_name, version_id)
@@ -93,7 +88,7 @@ async def _get_scraped_text_object_tags_by_filename_with_client(
 ) -> dict[str, str]:
     """Test helper that takes an S3 client and mimics the real function."""
     with patch(
-        "packages.infra.src.infra.utils.s3.scraped_text_util.get_scraped_bucket_s3_client",
+        "packages.infra.src.infra.utils.s3.scraped_text_file_util.get_scraped_bucket_s3_client",
         return_value=s3_client,
     ):
         return await _get_scraped_text_object_tags_by_filename(file_name, version_id)
@@ -104,7 +99,7 @@ async def iterate_scraped_text_objects_and_versions_with_client(
 ):
     """Test helper that takes an S3 client and mimics the real function."""
     with patch(
-        "packages.infra.src.infra.utils.s3.scraped_text_util.get_scraped_bucket_s3_client",
+        "packages.infra.src.infra.utils.s3.scraped_text_file_util.get_scraped_bucket_s3_client",
         return_value=s3_client,
     ):
         async for item in iterate_scraped_text_objects_and_versions(
@@ -116,22 +111,16 @@ async def iterate_scraped_text_objects_and_versions_with_client(
 class TestScrapedTextUtilS3Integration:
     @pytest_asyncio.fixture
     async def s3_client(self):
-        # Initialize AWS clients first
-        await initialize_scraper_aws_clients()
-        try:
-            session = aiobotocore.session.get_session()
-            async with make_s3_client(session) as client:
-                yield client
-        finally:
-            # Cleanup AWS clients
-            await cleanup_scraper_aws_clients()
+        session = aiobotocore.session.get_session()
+        async with make_s3_client(session) as client:
+            yield client
 
     @pytest.mark.asyncio
     async def test_upload_download_delete_cycle(self, s3_client):
         # Generate a unique file name using a proper eTLD+1 format
         # The function expects an eTLD+1 (like "example.com"), not a full URL
         etld1 = f"test-{uuid.uuid4().hex[:8]}.com"  # Generate unique domain like "test-a1b2c3d4.com"
-        file_name = get_file_name_from_mfg_etld(etld1)
+        file_name = get_file_name_from_subject_unique_id(etld1)
         file_content = "Integration test content"
         tags = {"test": "integration"}
 
@@ -474,22 +463,16 @@ class TestIterateScrapedTextObjectsAndVersions:
 class TestScrapedTextUtilS3IntegrationWithTags:
     @pytest_asyncio.fixture
     async def s3_client(self):
-        # Initialize AWS clients first
-        await initialize_scraper_aws_clients()
-        try:
-            session = aiobotocore.session.get_session()
-            async with make_s3_client(session) as client:
-                yield client
-        finally:
-            # Cleanup AWS clients
-            await cleanup_scraper_aws_clients()
+        session = aiobotocore.session.get_session()
+        async with make_s3_client(session) as client:
+            yield client
 
     @pytest.mark.asyncio
     async def test_full_cycle_with_tags_and_iteration(self, s3_client):
         """Integration test for upload, tag retrieval, and iteration."""
         # Generate unique test data
         etld1 = f"test-{uuid.uuid4().hex[:8]}.com"
-        file_name = get_file_name_from_mfg_etld(etld1)
+        file_name = get_file_name_from_subject_unique_id(etld1)
         file_content = "Integration test content with tags"
         tags = {
             "urls_scraped": "15",

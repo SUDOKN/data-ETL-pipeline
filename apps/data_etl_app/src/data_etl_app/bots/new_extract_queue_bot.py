@@ -48,7 +48,7 @@ from packages.llm_providers.src.llm_providers.models.open_ai.gpt_model_params im
     GPTModelParams,
 )
 from packages.llm_providers.src.llm_providers.models.llm_model import LLM_Model
-from packages.infra.src.infra.models.s3.scraped_text_file import ScrapedTextFile
+from apps.data_etl_app.src.data_etl_app.models.s3.scraped_mfg_file import ScrapedMfgFile
 
 from apps.data_etl_app.src.data_etl_app.services.user_service import is_user_MEP
 from apps.data_etl_app.src.data_etl_app.services.manufacturer_service import (
@@ -57,7 +57,7 @@ from apps.data_etl_app.src.data_etl_app.services.manufacturer_service import (
 from apps.data_etl_app.src.data_etl_app.services.ground_truth.binary_ground_truth_service import (
     get_binary_ground_truth,
 )
-from packages.knowledge.src.knowledge.services.ontology_service import (
+from core.services.ontology_service import (
     get_ontology_service,
 )
 from apps.data_etl_app.src.data_etl_app.services.prompt_service import (
@@ -231,7 +231,7 @@ async def validate_manufacturer_for_extraction(
     timestamp: datetime,
     item: ToExtractItem,
     llm_model: LLM_Model,
-) -> tuple[Manufacturer, ScrapedTextFile, bool] | tuple[None, None, bool]:
+) -> tuple[Manufacturer, ScrapedMfgFile, bool] | tuple[None, None, bool]:
     """
     Validate manufacturer for extraction.
     Returns (manufacturer, mfg_txt, version_id, should_continue) where should_continue
@@ -270,7 +270,7 @@ async def validate_manufacturer_for_extraction(
         return None, None, False
 
     try:
-        existing_scraped_file = await ScrapedTextFile.download_from_s3_and_create(
+        existing_scraped_file = await ScrapedMfgFile.download_from_s3_and_create(
             item.subject_unique_id,
             manufacturer.scraped_text_file_version_id,
             llm_model,
@@ -310,7 +310,7 @@ async def extract_and_cleanup(
     mfg_orchestrator: ManufacturerExtractionOrchestrator,
     item: ToExtractItem,
     polled_at: datetime,
-    scraped_text_file: ScrapedTextFile,
+    scraped_text_file: ScrapedMfgFile,
     manufacturer: Manufacturer,
     receipt_handle: str,
     delete_item_from_queue,

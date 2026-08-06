@@ -13,7 +13,7 @@ from apps.data_etl_app.src.data_etl_app.utils.ttl_generator_util import (
     get_mfg_instance_uri_and_stripped_etld1,
     get_product_instance_uri,
 )
-from packages.knowledge.src.knowledge.models.ontology import Ontology
+from core.models.ontology import Ontology
 from packages.pure_utils.src.pure_utils.url_util import uri_strip
 from packages.core.src.core.models.skos_concept import Concept
 from apps.data_etl_app.src.data_etl_app.db_models.manufacturer_user_form import (

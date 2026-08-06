@@ -5,7 +5,7 @@ from apps.data_etl_app.src.data_etl_app.services.ttl_generator_service import (
 from packages.infra.src.infra.utils.db_clients.graph_db_client import (
     send_update_query_to_db,
 )
-from packages.knowledge.src.knowledge.services.ontology_service import (
+from core.services.ontology_service import (
     get_ontology_service,
 )
 from apps.data_etl_app.src.data_etl_app.services.manufacturer_user_form_service import (

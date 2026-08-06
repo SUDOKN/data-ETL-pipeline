@@ -36,7 +36,7 @@ class TestChromeDriverManagerUnit:
 
         # Also patch the imported constant in the module
         self.constant_patcher = patch(
-            "scraper_app.utils.selenium.chrome_driver_manager.CHROME_PROFILE_TMPDIR",
+            "scraper.utils.selenium.chrome_driver_manager.CHROME_PROFILE_TMPDIR",
             self.test_profile_dir,
         )
         self.constant_patcher.start()
@@ -436,10 +436,10 @@ class TestChromeDriverManagerIntegration:
             assert not os.path.exists(profile)
 
     @patch(
-        "scraper_app.utils.selenium.chrome_driver_manager.ChromeDriverManager._create_system_driver"
+        "scraper.utils.selenium.chrome_driver_manager.ChromeDriverManager._create_system_driver"
     )
     @patch(
-        "scraper_app.utils.selenium.chrome_driver_manager.ChromeDriverManager._create_portable_driver"
+        "scraper.utils.selenium.chrome_driver_manager.ChromeDriverManager._create_portable_driver"
     )
     def test_create_driver_fallback_mechanism(self, mock_portable, mock_system):
         """Test that create_driver falls back to portable when system fails."""

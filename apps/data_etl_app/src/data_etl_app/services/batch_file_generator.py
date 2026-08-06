@@ -9,7 +9,7 @@ from typing import Optional
 from packages.llm_providers.src.llm_providers.models.file_objects.base_files import (
     CSVFile,
 )
-from packages.knowledge.src.knowledge.models.ontology import Ontology
+from core.models.ontology import Ontology
 from apps.data_etl_app.src.data_etl_app.db_models.deferred_manufacturer import (
     DeferredManufacturer,
 )
@@ -40,7 +40,7 @@ from apps.data_etl_app.src.data_etl_app.services.manufacturer_extraction_orchest
 )
 
 from packages.pure_utils.src.pure_utils.time_util import get_timestamp_str
-from packages.infra.src.infra.models.s3.scraped_text_file import ScrapedTextFile
+from apps.data_etl_app.src.data_etl_app.models.s3.scraped_mfg_file import ScrapedMfgFile
 
 logger = logging.getLogger(__name__)
 
@@ -76,7 +76,7 @@ async def _process_single_deferred_manufacturer(
             assert (
                 mfg is not None
             ), f"Manufacturer not found for {deferred_mfg.mfg_etld1}"
-            existing_scraped_file = await ScrapedTextFile.download_from_s3_and_create(
+            existing_scraped_file = await ScrapedMfgFile.download_from_s3_and_create(
                 mfg.etld1, mfg.scraped_text_file_version_id, GPT_4_1_mini
             )
             await mfg_orchestrator.process_manufacturer(
@@ -109,7 +109,7 @@ async def _process_single_deferred_manufacturer(
             assert (
                 mfg is not None
             ), f"Manufacturer not found for {deferred_mfg.mfg_etld1}"
-            existing_scraped_file = await ScrapedTextFile.download_from_s3_and_create(
+            existing_scraped_file = await ScrapedMfgFile.download_from_s3_and_create(
                 mfg.etld1, mfg.scraped_text_file_version_id, GPT_4_1_mini
             )
             await mfg_orchestrator.process_manufacturer(

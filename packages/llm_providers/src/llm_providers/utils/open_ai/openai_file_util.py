@@ -12,7 +12,7 @@ from packages.llm_providers.src.llm_providers.db_models.api_key_bundle import (
 from packages.llm_providers.src.llm_providers.utils.open_ai.batch_jsonl_file_writer import (
     JSONLBatchFile,
 )
-from packages.core.src.core.utils.chunk_util import split_bytes_on_line_boundaries
+from llm_providers.utils.chunk_util import split_bytes_on_line_boundaries
 
 from openai import OpenAI, OpenAIError, APIConnectionError, RateLimitError
 from openai.types import Batch, Upload

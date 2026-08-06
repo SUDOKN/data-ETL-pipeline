@@ -443,7 +443,7 @@ class TestChromeResourceManagement:
 
         # Also patch the module constant
         self.constant_patcher = patch(
-            "scraper_app.utils.selenium.chrome_driver_manager.CHROME_PROFILE_TMPDIR",
+            "scraper.utils.selenium.chrome_driver_manager.CHROME_PROFILE_TMPDIR",
             self.test_profile_dir,
         )
         self.constant_patcher.start()

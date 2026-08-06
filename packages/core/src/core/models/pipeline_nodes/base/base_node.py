@@ -18,7 +18,7 @@ from packages.core.src.core.models.types_and_enums import (
     LLMExtractedFieldTypeVar,
 )
 from packages.llm_providers.src.llm_providers.field_types import BatchRequestIDType
-from packages.infra.src.infra.models.s3.scraped_text_file import ScrapedTextFile
+from scraper.models.s3.scraped_text_file import ScrapedTextFile
 
 logger = logging.getLogger(__name__)
 

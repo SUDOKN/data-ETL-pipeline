@@ -5,7 +5,7 @@ from urllib.parse import urlparse
 from rdflib import Graph, OWL, RDF
 from rdflib.term import URIRef
 
-from packages.knowledge.src.knowledge.utils.rdf_to_graph_util import (
+from core.utils.rdf_to_graph_util import (
     build_concept_tree,
     get_graph,
 )

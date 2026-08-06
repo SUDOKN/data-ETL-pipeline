@@ -36,7 +36,7 @@ from apps.data_etl_app.src.data_etl_app.services.ground_truth.concept_ground_tru
     save_new_concept_ground_truth,
     add_correction_to_concept_ground_truth,
 )
-from packages.knowledge.src.knowledge.services.ontology_service import (
+from core.services.ontology_service import (
     get_ontology_service,
 )
 
@@ -46,8 +46,8 @@ from packages.pure_utils.src.pure_utils.url_util import (
     get_complete_url_with_compatible_protocol,
 )
 from packages.pure_utils.src.pure_utils.time_util import get_current_time
-from packages.infra.src.infra.utils.s3.scraped_text_util import (
-    download_scraped_text_from_s3_by_mfg_etld1,
+from packages.infra.src.infra.utils.s3.scraped_text_file_util import (
+    download_scraped_text_from_s3_by_subject_unique_id,
 )
 
 router = APIRouter()
@@ -186,9 +186,11 @@ async def fetch_concept_ground_truth_template(
     # At this point, chunk_no was either picked randomly or provided by user, but no existing concept ground truth was found
 
     # TODO: maybe cache downloaded text
-    scraped_text, _version_id = await download_scraped_text_from_s3_by_mfg_etld1(
-        etld1=manufacturer.etld1,
-        version_id=manufacturer.scraped_text_file_version_id,
+    scraped_text, _version_id = (
+        await download_scraped_text_from_s3_by_subject_unique_id(
+            subject_unique_id=manufacturer.etld1,
+            version_id=manufacturer.scraped_text_file_version_id,
+        )
     )
 
     start, end = int(chunk_bounds.split(":")[0]), int(chunk_bounds.split(":")[1])
@@ -365,9 +367,11 @@ async def collect_concept_extraction_ground_truth(
         ]
         last_chunk_no = len(sorted_search_data)
         chunk_bounds, chunk_stats = sorted_search_data[concept_gt.chunk_no - 1]
-        scraped_text, _version_id = await download_scraped_text_from_s3_by_mfg_etld1(
-            etld1=manufacturer.etld1,
-            version_id=manufacturer.scraped_text_file_version_id,
+        scraped_text, _version_id = (
+            await download_scraped_text_from_s3_by_subject_unique_id(
+                subject_unique_id=manufacturer.etld1,
+                version_id=manufacturer.scraped_text_file_version_id,
+            )
         )
         start, end = int(chunk_bounds.split(":")[0]), int(chunk_bounds.split(":")[1])
         if start < 0 or end > len(scraped_text):

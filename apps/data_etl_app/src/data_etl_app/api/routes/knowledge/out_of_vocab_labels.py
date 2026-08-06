@@ -3,12 +3,12 @@ from typing import Optional
 from fastapi import APIRouter, HTTPException, Query
 from fastapi.responses import JSONResponse
 
-from packages.knowledge.src.knowledge.services.out_of_vocab_labels_service import (
+from core.services.out_of_vocab_labels_service import (
     get_out_of_vocab_labels,
     get_all_out_of_vocab_labels_for_version,
 )
 from packages.core.src.core.models.types_and_enums import ConceptTypeEnum
-from packages.knowledge.src.knowledge.services.ontology_service import (
+from core.services.ontology_service import (
     get_ontology_service,
 )
 

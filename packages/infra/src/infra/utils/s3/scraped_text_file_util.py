@@ -17,7 +17,7 @@ if not SCRAPED_TEXT_BUCKET:
 logger = logging.getLogger(__name__)
 
 
-def get_file_name_from_mfg_etld(subject_unique_id: str) -> str:
+def get_file_name_from_subject_unique_id(subject_unique_id: str) -> str:
     """Generates a file name for the scraped text based on the manufacturer subject_unique_id."""
     # check if the input is not exactly a subject_unique_id (i.e., effective top level domain)
 
@@ -113,16 +113,16 @@ async def upload_scraped_text_to_s3(
     return response["VersionId"], f"s3://{SCRAPED_TEXT_BUCKET}/{file_name}"
 
 
-async def get_latest_version_id_by_mfg_etld(
+async def get_latest_version_id_by_subject_unique_id(
     subject_unique_id: str,
 ) -> Optional[str]:
     """
-    Gets the latest version ID of a file based on the manufacturer subject_unique_id.
+    Gets the latest version ID of a file based on the subject_unique_id.
 
-    :param subject_unique_id: The eTLD+1 of the manufacturer to get the latest version ID for.
+    :param subject_unique_id: The subject_unique_id to get the latest version ID for.
     :return: The latest version ID of the file, or None if the file doesn't exist.
     """
-    file_name = get_file_name_from_mfg_etld(subject_unique_id)
+    file_name = get_file_name_from_subject_unique_id(subject_unique_id)
     return await get_latest_version_id_by_filename(file_name)
 
 
@@ -162,17 +162,17 @@ async def get_latest_version_id_by_filename(
         raise  # Re-raise other exceptions
 
 
-async def download_scraped_text_from_s3_by_mfg_etld1(
+async def download_scraped_text_from_s3_by_subject_unique_id(
     subject_unique_id: str,
     version_id: str,
 ) -> tuple[str, str]:
     """
-    Downloads a file from S3 based on the manufacturer subject_unique_id and returns its content as a string.
+    Downloads a file from S3 based on the subject_unique_id and returns its content as a string.
 
-    :param subject_unique_id: The eTLD+1 of the manufacturer to download the corresponding file from S3.
+    :param subject_unique_id: The subject_unique_id to download the corresponding file from S3.
     :return: The content of the downloaded file as a string.
     """
-    file_name = get_file_name_from_mfg_etld(subject_unique_id)
+    file_name = get_file_name_from_subject_unique_id(subject_unique_id)
     return await download_scraped_text_from_s3_by_filename(file_name, version_id)
 
 
@@ -218,31 +218,31 @@ async def download_scraped_text_from_s3_by_filename(
     return content.decode("utf-8"), version_id
 
 
-async def get_latest_scraped_text_object_tags_by_mfg_etld1(
+async def get_latest_scraped_text_object_tags_by_subject_unique_id(
     subject_unique_id: str,
 ) -> dict[str, str]:
     """
-    Gets the tags for a specific object version in the scraped text bucket based on the manufacturer subject_unique_id.
+    Gets the tags for a specific object version in the scraped text bucket based on the subject_unique_id.
 
-    :param subject_unique_id: The eTLD+1 of the manufacturer to get the corresponding file tags from S3.
+    :param subject_unique_id: The subject_unique_id to get the corresponding file tags from S3.
     :param version_id: The version ID of the object.
     :return: Dictionary of tags with tag keys as dictionary keys and tag values as dictionary values.
     """
-    file_name = get_file_name_from_mfg_etld(subject_unique_id)
+    file_name = get_file_name_from_subject_unique_id(subject_unique_id)
     return await _get_scraped_text_object_tags_by_filename(file_name, None)
 
 
-async def get_scraped_text_object_tags_by_mfg_etld1(
+async def get_scraped_text_object_tags_by_subject_unique_id(
     subject_unique_id: str, version_id: str
 ) -> dict[str, str]:
     """
-    Gets the tags for a specific object version in the scraped text bucket based on the manufacturer subject_unique_id.
+    Gets the tags for a specific object version in the scraped text bucket based on the subject_unique_id.
 
-    :param subject_unique_id: The eTLD+1 of the manufacturer to get the corresponding file tags from S3.
+    :param subject_unique_id: The subject_unique_id to get the corresponding file tags from S3.
     :param version_id: The version ID of the object.
     :return: Dictionary of tags with tag keys as dictionary keys and tag values as dictionary values.
     """
-    file_name = get_file_name_from_mfg_etld(subject_unique_id)
+    file_name = get_file_name_from_subject_unique_id(subject_unique_id)
     return await _get_scraped_text_object_tags_by_filename(file_name, version_id)
 
 
@@ -391,16 +391,16 @@ async def get_all_scraped_text_objects_summary(prefix: str = "") -> dict:
     }
 
 
-async def delete_scraped_text_from_s3_by_etld1(
+async def delete_scraped_text_from_s3_by_subject_unique_id(
     subject_unique_id: str, version_id: Optional[str] = None
 ) -> None:
     """
-    Deletes a file from S3 based on the manufacturer subject_unique_id. If version_id is None, deletes all versions of the file.
+    Deletes a file from S3 based on the subject_unique_id. If version_id is None, deletes all versions of the file.
 
-    :param subject_unique_id: The eTLD+1 of the manufacturer to delete the corresponding file from S3.
+    :param subject_unique_id: The subject_unique_id to delete the corresponding file from S3.
     :param version_id: Optional version ID to delete a specific version of the file. If None, deletes all versions.
     """
-    file_name = get_file_name_from_mfg_etld(subject_unique_id)
+    file_name = get_file_name_from_subject_unique_id(subject_unique_id)
     await delete_scraped_text_from_s3_by_filename(file_name, version_id)
 
 

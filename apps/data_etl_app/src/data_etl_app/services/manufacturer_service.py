@@ -9,7 +9,7 @@ from apps.data_etl_app.src.data_etl_app.db_models.manufacturer import (
 )
 from packages.core.src.core.field_types import SubjectUniqueIDType
 from packages.pure_utils.src.pure_utils.url_util import get_etld1_from_host
-from packages.infra.src.infra.models.s3.scraped_text_file import ScrapedTextFile
+from apps.data_etl_app.src.data_etl_app.models.s3.scraped_mfg_file import ScrapedMfgFile
 
 logger = logging.getLogger(__name__)
 
@@ -42,7 +42,7 @@ def reset_llm_extracted_fields(manufacturer: Manufacturer):
 async def create_new_manufacturer(
     created_at: datetime,
     mfg_etld1: SubjectUniqueIDType,
-    scraped_file: ScrapedTextFile,
+    scraped_file: ScrapedMfgFile,
     batch: Batch,
 ) -> Manufacturer:
     return Manufacturer(

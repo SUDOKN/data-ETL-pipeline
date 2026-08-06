@@ -24,7 +24,7 @@ from packages.core.src.core.models.pipeline_nodes.base.base_node import Pipeline
 from packages.core.src.core.models.pipeline_nodes.base.base_reconcile_node import (
     ReconcileNode,
 )
-from packages.infra.src.infra.models.s3.scraped_text_file import ScrapedTextFile
+from scraper.models.s3.scraped_text_file import ScrapedTextFile
 
 # if TYPE_CHECKING:
 

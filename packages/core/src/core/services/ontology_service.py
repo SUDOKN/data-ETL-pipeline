@@ -2,7 +2,7 @@ import asyncio
 import logging
 from typing import Dict, Optional
 
-from packages.knowledge.src.knowledge.models.ontology import Ontology
+from core.models.ontology import Ontology
 from packages.infra.src.infra.utils.s3.ontology_rdf_s3_util import (
     download_ontology_rdf,
 )

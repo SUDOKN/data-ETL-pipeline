@@ -14,7 +14,7 @@ from packages.llm_providers.src.llm_providers.db_models.gpt_batch import GPTBatc
 from packages.llm_providers.src.llm_providers.db_models.gpt_batch_request import (
     GPTBatchRequest,
 )
-from packages.core.src.core.models.types_and_enums import LLMExtractedFieldTypeEnum
+
 from packages.llm_providers.src.llm_providers.field_types import BatchRequestIDType
 
 logger = logging.getLogger(__name__)
@@ -574,16 +574,16 @@ async def bulk_delete_gpt_batch_requests_by_custom_ids(
     return result.deleted_count
 
 
-async def bulk_delete_gpt_batch_requests_by_mfg_etld1_and_field(
+async def bulk_delete_gpt_batch_requests_by_subject_id_and_field(
     subject_unique_id: str,
-    field_type: Optional[LLMExtractedFieldTypeEnum],
+    field_name: Optional[str],
 ) -> int:
     """
     Bulk delete GPT batch requests associated with a manufacturer subject_unique_id and field type.
 
     Args:
         subject_unique_id: Manufacturer subject_unique_id for which to delete batch requests
-        field_type: Field type to narrow deletion scope
+        field_name: Field name to narrow deletion scope
 
     Returns:
         Number of deleted documents
@@ -591,8 +591,8 @@ async def bulk_delete_gpt_batch_requests_by_mfg_etld1_and_field(
     query_filter: dict[str, Any] = {
         GPTBatchRequest.subject_unique_id: subject_unique_id
     }
-    if field_type:
-        prefix = f"{subject_unique_id}>{field_type.name}>"
+    if field_name:
+        prefix = f"{subject_unique_id}>{field_name}>"
         query_filter[GPTBatchRequest.request.custom_id] = {
             "$gte": prefix,
             "$lt": prefix + "\uffff",
@@ -600,7 +600,7 @@ async def bulk_delete_gpt_batch_requests_by_mfg_etld1_and_field(
 
     result = await GPTBatchRequest.get_pymongo_collection().delete_many(
         query_filter,
-        hint=[(GPTBatchRequest.request.custom_id, 1)] if field_type else None,
+        hint=[(GPTBatchRequest.request.custom_id, 1)] if field_name else None,
     )
 
     logger.debug(
