@@ -4,18 +4,18 @@ from typing import Any, Optional
 from pymongo.errors import BulkWriteError
 from pymongo import UpdateOne
 
-from packages.llm_providers.src.llm_providers.models.open_ai.gpt_batch_response_blob import (
+from llm_providers.models.open_ai.gpt_batch_response_blob import (
     GPTBatchResponse,
 )
-from packages.llm_providers.src.llm_providers.models.open_ai.gpt_batch_response_blob import (
+from llm_providers.models.open_ai.gpt_batch_response_blob import (
     GPTBatchResponse,
 )
-from packages.llm_providers.src.llm_providers.db_models.gpt_batch import GPTBatch
-from packages.llm_providers.src.llm_providers.db_models.gpt_batch_request import (
+from llm_providers.db_models.gpt_batch import GPTBatch
+from llm_providers.db_models.gpt_batch_request import (
     GPTBatchRequest,
 )
 
-from packages.llm_providers.src.llm_providers.field_types import BatchRequestIDType
+from llm_providers.field_types import BatchRequestIDType
 
 logger = logging.getLogger(__name__)
 

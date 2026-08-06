@@ -29,10 +29,11 @@ from typing import Dict, Optional, Tuple
 
 from pymongo import MongoClient
 
-from packages.core.src.core.dependencies.load_core_env import load_core_env
+from pure_utils.env_util import load_env
 
-# Load environment variables
-load_core_env()
+from data_etl_app.dependencies.env import MIGRATION_ENV
+
+load_env(MIGRATION_ENV)
 
 logger = logging.getLogger(__name__)
 # Configure logging

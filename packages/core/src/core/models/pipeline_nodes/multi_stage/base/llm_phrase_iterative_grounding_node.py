@@ -3,59 +3,59 @@ import logging
 from datetime import datetime
 from requests.structures import CaseInsensitiveDict
 
-from packages.llm_providers.src.llm_providers.db_models.gpt_batch_request import (
+from llm_providers.db_models.gpt_batch_request import (
     GPTBatchRequest,
 )
-from packages.llm_providers.src.llm_providers.models.open_ai.gpt_batch_response_blob import (
+from llm_providers.models.open_ai.gpt_batch_response_blob import (
     GPTBatchResponse,
 )
-from packages.core.src.core.models.extraction_schemas.iterative_tagging import (
+from core.models.extraction_schemas.iterative_tagging import (
     IterativeGroundingResult,
 )
-from packages.llm_providers.src.llm_providers.models.file_objects.prompt import Prompt
-from packages.llm_providers.src.llm_providers.models.llm_model import LLM_Model
-from packages.core.src.core.models.deferred_extraction.deferred_concept_extraction import (
+from llm_providers.models.file_objects.prompt import Prompt
+from llm_providers.models.llm_model import LLM_Model
+from core.models.deferred_extraction.deferred_concept_extraction import (
     ConceptExtractionRequestBundle,
     ConceptExtractionRequestMap,
     ConceptExtractionMetadata,
     IterativeTaggingRequest,
 )
-from packages.core.src.core.models.skos_concept import Concept
-from packages.core.src.core.models.types_and_enums import (
+from core.models.skos_concept import Concept
+from core.models.types_and_enums import (
     ConceptTypeEnum,
 )
-from packages.core.src.core.models.pipeline_nodes.base.base_node import (
+from core.models.pipeline_nodes.base.base_node import (
     PipelineContext,
 )
-from packages.core.src.core.models.pipeline_nodes.base.base_reconcile_node import (
+from core.models.pipeline_nodes.base.base_reconcile_node import (
     ReconcileNode,
 )
-from packages.core.src.core.models.pipeline_nodes.base.base_llm_extraction_node import (
+from core.models.pipeline_nodes.base.base_llm_extraction_node import (
     BaseLLMExtractionNode,
 )
-from packages.core.src.core.models.pipeline_nodes.base.base_llm_recursive_extraction_node import (
+from core.models.pipeline_nodes.base.base_llm_recursive_extraction_node import (
     BaseLLMRecursiveExtractionNode,
 )
-from packages.llm_providers.src.llm_providers.field_types import BatchRequestIDType
-from packages.llm_providers.src.llm_providers.models.open_ai.gpt_model_params import (
+from llm_providers.field_types import BatchRequestIDType
+from llm_providers.models.open_ai.gpt_model_params import (
     GPTModelParams,
 )
 from scraper.models.s3.scraped_text_file import ScrapedTextFile
 
-from packages.llm_providers.src.llm_providers.services.gpt_batch_request.gpt_batch_request_service import (
+from llm_providers.services.gpt_batch_request.gpt_batch_request_service import (
     dispatch_gpt_batch_request,
 )
-from packages.llm_providers.src.llm_providers.services.gpt_batch_request.gpt_batch_request_writes import (
+from llm_providers.services.gpt_batch_request.gpt_batch_request_writes import (
     bulk_delete_gpt_batch_requests_by_custom_ids,
 )
-from packages.llm_providers.src.llm_providers.services.gpt_batch_request.gpt_batch_request_queries import (
+from llm_providers.services.gpt_batch_request.gpt_batch_request_queries import (
     find_completed_gpt_batch_requests_by_custom_ids,
 )
-from packages.core.src.core.services.pipeline_nodes.multi_stage.llm_initial_grounding_service import (
+from core.services.pipeline_nodes.multi_stage.llm_initial_grounding_service import (
     get_descend_worthy_tcs_from_tagged_results,
     get_tagged_results_from_initial_grounding,
 )
-from packages.core.src.core.services.pipeline_nodes.multi_stage.llm_recursive_grounding_service import (
+from core.services.pipeline_nodes.multi_stage.llm_recursive_grounding_service import (
     create_missing_phrase_recursive_grounding_requests,
     parse_recursive_grounding_batch_request_result,
     get_all_recursive_grounding_results,

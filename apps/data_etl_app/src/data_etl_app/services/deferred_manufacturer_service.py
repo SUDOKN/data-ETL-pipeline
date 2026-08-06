@@ -2,26 +2,28 @@ from datetime import datetime
 from typing import Optional
 import logging
 
-from packages.core.src.core.models.deferred_extraction.deferred_phrase_extraction_requests import (
+from core.models.deferred_extraction.deferred_phrase_extraction_requests import (
     DeferredLLMPhraseExtractionRequests,
 )
-from packages.llm_providers.src.llm_providers.field_types import BatchRequestIDType
-from packages.core.src.core.models.deferred_extraction.deferred_single_stage_extraction_requests import (
+from llm_providers.field_types import BatchRequestIDType
+from core.models.deferred_extraction.deferred_single_stage_extraction_requests import (
     DeferredSingleStageExtractionRequests,
 )
-from packages.core.src.core.models.deferred_extraction.deferred_keyword_extraction import (
+from core.models.deferred_extraction.deferred_keyword_extraction import (
     DeferredKeywordExtractionRequests,
 )
-from packages.core.src.core.models.deferred_extraction.deferred_concept_extraction import (
+from core.models.deferred_extraction.deferred_concept_extraction import (
     DeferredConceptExtractionRequests,
 )
-from packages.core.src.core.models.types_and_enums import (
-    BasicFieldTypeEnum,
+from core.models.types_and_enums import (
     BinaryClassificationTypeEnum,
     ConceptTypeEnum,
     KeywordTypeEnum,
 )
-from apps.data_etl_app.src.data_etl_app.db_models.deferred_manufacturer import (
+from data_etl_app.models.types_and_enums import (
+    BasicFieldTypeEnum,
+)
+from data_etl_app.db_models.deferred_manufacturer import (
     DeferredManufacturer,
 )
 

@@ -1,36 +1,36 @@
 import json
 import random
 from typing import Literal
-from packages.infra.src.infra.models.queue_items.queue_item import EmailUserErrand
-from packages.infra.src.infra.utils.aws.queue.gt_scrape_queue_util import (
+from infra.models.queue_items.queue_item import EmailUserErrand
+from infra.utils.aws.queue.gt_scrape_queue_util import (
     push_item_to_gt_scrape_queue,
 )
 from fastapi import APIRouter, HTTPException, Request, Query, Depends
 from fastapi.responses import JSONResponse
 
-from apps.data_etl_app.src.data_etl_app.db_models.manufacturer import Batch
-from packages.infra.src.infra.models.queue_items.to_scrape_item import ToScrapeItem
-from packages.core.src.core.models.extraction_results.concept_extraction_results import (
+from data_etl_app.db_models.manufacturer import Batch
+from infra.models.queue_items.to_scrape_item import ToScrapeItem
+from core.models.extraction_results.concept_extraction_results import (
     ConceptExtractionResults,
 )
-from apps.data_etl_app.src.data_etl_app.db_models.concept_ground_truth import (
+from data_etl_app.db_models.concept_ground_truth import (
     ConceptGroundTruth,
     DistillationResultCorrection,
     HumanConceptCorrection,
     SearchResultsCorrection,
     MappingResultCorrection,
 )
-from packages.core.src.core.models.types_and_enums import (
+from core.models.types_and_enums import (
     ConceptTypeEnum,
     GroundTruthSource,
 )
 
-from apps.data_etl_app.src.data_etl_app.services.manufacturer_service import (
+from data_etl_app.services.manufacturer_service import (
     find_manufacturer_by_etld1,
     find_manufacturer_by_url,
 )
-from apps.data_etl_app.src.data_etl_app.services.user_service import find_by_email
-from apps.data_etl_app.src.data_etl_app.services.ground_truth.concept_ground_truth_service import (
+from data_etl_app.services.user_service import find_by_email
+from data_etl_app.services.ground_truth.concept_ground_truth_service import (
     get_corrected_results,
     get_extracted_concept_ground_truth,
     save_new_concept_ground_truth,
@@ -41,12 +41,12 @@ from core.services.ontology_service import (
 )
 
 
-from packages.pure_utils.src.pure_utils.url_util import (
+from pure_utils.url_util import (
     get_normalized_url,
     get_complete_url_with_compatible_protocol,
 )
-from packages.pure_utils.src.pure_utils.time_util import get_current_time
-from packages.infra.src.infra.utils.s3.scraped_text_file_util import (
+from pure_utils.time_util import get_current_time
+from infra.utils.s3.scraped_text_file_util import (
     download_scraped_text_from_s3_by_subject_unique_id,
 )
 

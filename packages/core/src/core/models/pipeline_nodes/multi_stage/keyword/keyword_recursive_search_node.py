@@ -2,16 +2,16 @@ from __future__ import annotations
 import logging
 from typing import TYPE_CHECKING
 
-from packages.llm_providers.src.llm_providers.models.file_objects.prompt import Prompt
-from packages.core.src.core.models.pipeline_nodes.multi_stage.base.llm_phrase_recursive_search_node import (
+from llm_providers.models.file_objects.prompt import Prompt
+from core.models.pipeline_nodes.multi_stage.base.llm_phrase_recursive_search_node import (
     LLMPhraseRecursiveSearchNode,
 )
-from packages.core.src.core.models.types_and_enums import (
+from core.models.types_and_enums import (
     KeywordTypeEnum,
 )
 
 if TYPE_CHECKING:
-    from packages.core.src.core.models.pipeline_nodes.multi_stage.keyword.keyword_relationship_node import (
+    from core.models.pipeline_nodes.multi_stage.keyword.keyword_relationship_node import (
         KeywordRelationshipNode,
     )
 

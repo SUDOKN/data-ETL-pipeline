@@ -7,17 +7,17 @@ from abc import ABC, abstractmethod
 from typing import TypeVar, Generic, Optional
 from datetime import datetime
 
-from packages.core.src.core.models.extraction_subject import (
+from core.models.extraction_subject import (
     AbstractExtractionSubject,
     AbstractDeferredExtractionSubject,
 )
-from packages.llm_providers.src.llm_providers.db_models.gpt_batch_request import (
+from llm_providers.db_models.gpt_batch_request import (
     GPTBatchRequest,
 )
-from packages.core.src.core.models.types_and_enums import (
+from core.models.types_and_enums import (
     LLMExtractedFieldTypeVar,
 )
-from packages.llm_providers.src.llm_providers.field_types import BatchRequestIDType
+from llm_providers.field_types import BatchRequestIDType
 from scraper.models.s3.scraped_text_file import ScrapedTextFile
 
 logger = logging.getLogger(__name__)

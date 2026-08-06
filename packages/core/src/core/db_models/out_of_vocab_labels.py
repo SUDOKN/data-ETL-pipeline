@@ -1,7 +1,7 @@
 from beanie import Document
 from pydantic import Field
 
-from packages.core.src.core.models.types_and_enums import ConceptTypeEnum
+from core.models.types_and_enums import ConceptTypeEnum
 
 
 class OutOfVocabLabel(Document):

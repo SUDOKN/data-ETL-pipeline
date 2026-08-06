@@ -1,22 +1,20 @@
-import os
 import json
 import logging
 
-from packages.infra.src.infra.models.queue_items.to_extract_item import ToExtractItem
-from packages.infra.src.infra.constants import LONG_POLL_INTERVAL
-from apps.data_etl_app.src.data_etl_app.dependencies.aws_sqs_clients import (
+from pure_utils.env_util import require_env
+
+from infra.models.queue_items.to_extract_item import ToExtractItem
+from infra.constants import LONG_POLL_INTERVAL
+from infra.utils.queue.aws_sqs_clients import (
     get_extract_queue_client,
     get_scrape_queue_client,
 )
 
 logger = logging.getLogger(__name__)
-PRIORITY_EXTRACT_QUEUE_URL = os.getenv("PRIORITY_EXTRACT_QUEUE_URL")
 
 
-if not PRIORITY_EXTRACT_QUEUE_URL:
-    raise ValueError(
-        "AWS PRIORITY_EXTRACT_QUEUE_URL is not set. Please set it in your .env file."
-    )
+def _priority_extract_queue_url() -> str:
+    return require_env("PRIORITY_EXTRACT_QUEUE_URL")
 
 
 async def push_item_to_priority_extract_queue(item: ToExtractItem):
@@ -25,15 +23,13 @@ async def push_item_to_priority_extract_queue(item: ToExtractItem):
 
     :param item: The item to send to the SQS queue.
     """
-    assert PRIORITY_EXTRACT_QUEUE_URL, "PRIORITY_EXTRACT_QUEUE_URL is not set"
+    queue_url = _priority_extract_queue_url()
     sqs_client = get_scrape_queue_client()
     await sqs_client.send_message(
-        QueueUrl=PRIORITY_EXTRACT_QUEUE_URL,
+        QueueUrl=queue_url,
         MessageBody=item.model_dump_json(),
     )
-    logger.info(
-        f"Sent ToExtractItem for {item} to priority extract queue: {PRIORITY_EXTRACT_QUEUE_URL}"
-    )
+    logger.info(f"Sent ToExtractItem for {item} to priority extract queue: {queue_url}")
 
 
 async def poll_item_from_priority_extract_queue() -> (
@@ -42,11 +38,11 @@ async def poll_item_from_priority_extract_queue() -> (
     """
     Receives a single item from the Extract queue.
     """
-    assert PRIORITY_EXTRACT_QUEUE_URL, "PRIORITY_EXTRACT_QUEUE_URL is not set"
+    queue_url = _priority_extract_queue_url()
     sqs_client = get_extract_queue_client()
-    logger.info(f"Polling SQS Priority Extract queue: {PRIORITY_EXTRACT_QUEUE_URL}")
+    logger.info(f"Polling SQS Priority Extract queue: {queue_url}")
     response = await sqs_client.receive_message(
-        QueueUrl=PRIORITY_EXTRACT_QUEUE_URL,
+        QueueUrl=queue_url,
         MaxNumberOfMessages=1,
         WaitTimeSeconds=LONG_POLL_INTERVAL,
     )
@@ -70,7 +66,7 @@ async def poll_item_from_priority_extract_queue() -> (
         logger.error(f"Error decoding ToExtractItem JSON from message body: {e}")
         # Optionally delete the message if it's malformed
         await sqs_client.delete_message(
-            QueueUrl=PRIORITY_EXTRACT_QUEUE_URL,
+            QueueUrl=queue_url,
             ReceiptHandle=receipt_handle,
         )
         return None, None
@@ -84,10 +80,10 @@ async def delete_item_from_priority_extract_queue(receipt_handle: str) -> None:
 
     :param receipt_handle: The receipt handle of the message to delete.
     """
-    assert PRIORITY_EXTRACT_QUEUE_URL, "PRIORITY_EXTRACT_QUEUE_URL is not set"
+    queue_url = _priority_extract_queue_url()
     sqs_client = get_extract_queue_client()
     await sqs_client.delete_message(
-        QueueUrl=PRIORITY_EXTRACT_QUEUE_URL,
+        QueueUrl=queue_url,
         ReceiptHandle=receipt_handle,
     )
     logger.info(

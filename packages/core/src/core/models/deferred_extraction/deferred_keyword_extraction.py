@@ -1,11 +1,11 @@
-from packages.core.src.core.models.deferred_extraction.deferred_phrase_extraction_requests import (
+from core.models.deferred_extraction.deferred_phrase_extraction_requests import (
     DeferredLLMPhraseExtractionRequests,
     LLMPhraseExtractionRequestBundle,
 )
-from packages.core.src.core.models.extraction_results.keyword_extraction_results import (
+from core.models.extraction_results.keyword_extraction_results import (
     KeywordExtractionMetadata,
 )
-from packages.llm_providers.src.llm_providers.field_types import BatchRequestIDType
+from llm_providers.field_types import BatchRequestIDType
 from typing import Optional
 
 

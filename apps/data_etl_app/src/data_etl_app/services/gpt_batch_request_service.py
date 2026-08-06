@@ -3,7 +3,7 @@ from typing import Optional
 from llm_providers.services.gpt_batch_request.gpt_batch_request_writes import (
     bulk_delete_gpt_batch_requests_by_subject_id_and_field,
 )
-from packages.core.src.core.models.types_and_enums import LLMExtractedFieldTypeEnum
+from core.models.types_and_enums import LLMExtractedFieldTypeEnum
 
 
 async def bulk_delete_gpt_batch_requests_by_mfg_etld1_and_field(

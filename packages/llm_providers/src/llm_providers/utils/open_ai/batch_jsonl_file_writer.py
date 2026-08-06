@@ -5,14 +5,14 @@ import logging
 from pathlib import Path
 from typing import Optional
 
-from packages.llm_providers.src.llm_providers.models.open_ai.gpt_batch_request_blob import (
+from llm_providers.models.open_ai.gpt_batch_request_blob import (
     GPTBatchRequestBlob,
 )
-from packages.llm_providers.src.llm_providers.models.file_objects.jsonl_batch_file import (
+from llm_providers.models.file_objects.jsonl_batch_file import (
     FileContentLimitReachedException,
     JSONLBatchFile,
 )
-from packages.pure_utils.src.pure_utils.time_util import get_timestamp_str
+from pure_utils.time_util import get_timestamp_str
 
 logger = logging.getLogger(__name__)
 logging.basicConfig(

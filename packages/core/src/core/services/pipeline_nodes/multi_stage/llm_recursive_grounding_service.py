@@ -9,64 +9,64 @@ from requests.structures import CaseInsensitiveDict
 
 from pydantic import ValidationError
 
-from packages.llm_providers.src.llm_providers.db_models.gpt_batch_request import (
+from llm_providers.db_models.gpt_batch_request import (
     GPTBatchRequest,
 )
-from packages.core.src.core.models.extraction_schemas.grounding import (
+from core.models.extraction_schemas.grounding import (
     PhraseGroundingResponse,
     PhraseToTagAndReasonMap,
 )
-from packages.core.src.core.models.extraction_schemas.iterative_tagging import (
+from core.models.extraction_schemas.iterative_tagging import (
     IterativelyTaggedPhraseGroup,
     IterativeGroundingResult,
     IterativelyTaggedPhrase,
     PhraseTrail,
 )
-from packages.core.src.core.models.extraction_schemas.relationship import (
+from core.models.extraction_schemas.relationship import (
     LLMPhraseRelationshipResults,
 )
-from packages.core.src.core.models.extraction_schemas.response_format_util import (
+from core.models.extraction_schemas.response_format_util import (
     build_gpt_response_format,
 )
-from packages.llm_providers.src.llm_providers.models.llm_model import (
+from llm_providers.models.llm_model import (
     LLM_Model,
     NO_MODEL,
 )
-from packages.llm_providers.src.llm_providers.models.file_objects.prompt import Prompt
-from packages.llm_providers.src.llm_providers.models.open_ai.gpt_batch_response_blob import (
+from llm_providers.models.file_objects.prompt import Prompt
+from llm_providers.models.open_ai.gpt_batch_response_blob import (
     ChatCompletionChoiceMessage,
 )
-from packages.core.src.core.models.deferred_extraction.deferred_concept_extraction import (
+from core.models.deferred_extraction.deferred_concept_extraction import (
     ConceptExtractionRequestBundle,
     ConceptExtractionRequestMap,
     IterativeTaggingRequest,
     TaggingResult,
     TaggingResultsGroupedByConcept,
 )
-from packages.core.src.core.models.skos_concept import Concept, ConceptJSONEncoder
-from packages.core.src.core.models.types_and_enums import (
+from core.models.skos_concept import Concept, ConceptJSONEncoder
+from core.models.types_and_enums import (
     ConceptTypeEnum,
 )
-from packages.llm_providers.src.llm_providers.models.open_ai.gpt_model_params import (
+from llm_providers.models.open_ai.gpt_model_params import (
     GPTModelParams,
 )
-from packages.llm_providers.src.llm_providers.field_types import BatchRequestIDType
+from llm_providers.field_types import BatchRequestIDType
 
-from packages.llm_providers.src.llm_providers.services.gpt_batch_request.gpt_batch_request_writes import (
+from llm_providers.services.gpt_batch_request.gpt_batch_request_writes import (
     record_response_parse_error,
 )
-from packages.llm_providers.src.llm_providers.services.gpt_batch_request.gpt_batch_request_service import (
+from llm_providers.services.gpt_batch_request.gpt_batch_request_service import (
     create_base_gpt_batch_request,
     get_dummy_gpt_batch_response,
 )
-from packages.core.src.core.services.pipeline_nodes.multi_stage.llm_phrase_relationship_node_service import (
+from core.services.pipeline_nodes.multi_stage.llm_phrase_relationship_node_service import (
     get_phrase_relationship_result,
 )
-from packages.core.src.core.services.pipeline_nodes.multi_stage.llm_initial_grounding_service import (
+from core.services.pipeline_nodes.multi_stage.llm_initial_grounding_service import (
     get_tagged_results_from_initial_grounding,
 )
 
-from packages.core.src.core.utils.request_custom_id_util import (
+from core.utils.request_custom_id_util import (
     get_name_from_recursive_grounding_request_custom_id,
 )
 

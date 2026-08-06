@@ -1,21 +1,19 @@
-import os
 import json
 import logging
 
-from packages.infra.src.infra.models.queue_items.to_scrape_item import ToScrapeItem
-from packages.infra.src.infra.constants import LONG_POLL_INTERVAL
-from apps.data_etl_app.src.data_etl_app.dependencies.aws_sqs_clients import (
+from pure_utils.env_util import require_env
+
+from infra.models.queue_items.to_scrape_item import ToScrapeItem
+from infra.constants import LONG_POLL_INTERVAL
+from infra.utils.queue.aws_sqs_clients import (
     get_scrape_queue_client,
 )
 
-SCRAPE_QUEUE_URL = os.getenv("SCRAPE_QUEUE_URL")
 logger = logging.getLogger(__name__)
 
 
-if not SCRAPE_QUEUE_URL:
-    raise ValueError(
-        "AWS SCRAPE_QUEUE_URL is not set. Please set it in your .env file."
-    )
+def _scrape_queue_url() -> str:
+    return require_env("SCRAPE_QUEUE_URL")
 
 
 async def push_item_to_scrape_queue(item: ToScrapeItem):
@@ -24,26 +22,24 @@ async def push_item_to_scrape_queue(item: ToScrapeItem):
 
     :param item: The item to send to the SQS queue.
     """
-    assert SCRAPE_QUEUE_URL, "SCRAPE_QUEUE_URL is not set"
+    queue_url = _scrape_queue_url()
     sqs_client = get_scrape_queue_client()
     await sqs_client.send_message(
-        QueueUrl=SCRAPE_QUEUE_URL,
+        QueueUrl=queue_url,
         MessageBody=item.model_dump_json(),
     )
-    logger.info(
-        f"Sent ToScrapeItem for {item.start_url} to scrape queue: {SCRAPE_QUEUE_URL}"
-    )
+    logger.info(f"Sent ToScrapeItem for {item.start_url} to scrape queue: {queue_url}")
 
 
 async def poll_item_from_scrape_queue() -> tuple[ToScrapeItem, str] | tuple[None, None]:
     """
     Receives a single item from the SQS queue.
     """
-    assert SCRAPE_QUEUE_URL, "SCRAPE_QUEUE_URL is not set"
+    queue_url = _scrape_queue_url()
     sqs_client = get_scrape_queue_client()
-    logger.info(f"Polling Scrape queue: {SCRAPE_QUEUE_URL}")
+    logger.info(f"Polling Scrape queue: {queue_url}")
     response = await sqs_client.receive_message(
-        QueueUrl=SCRAPE_QUEUE_URL,
+        QueueUrl=queue_url,
         MaxNumberOfMessages=1,
         WaitTimeSeconds=LONG_POLL_INTERVAL,
     )
@@ -69,7 +65,7 @@ async def poll_item_from_scrape_queue() -> tuple[ToScrapeItem, str] | tuple[None
         )
         # Optionally delete the message if it's malformed
         await sqs_client.delete_message(
-            QueueUrl=SCRAPE_QUEUE_URL,
+            QueueUrl=queue_url,
             ReceiptHandle=receipt_handle,
         )
         return None, None
@@ -83,10 +79,10 @@ async def delete_item_from_scrape_queue(receipt_handle: str):
 
     :param receipt_handle: The receipt handle of the message to delete.
     """
-    assert SCRAPE_QUEUE_URL, "SCRAPE_QUEUE_URL is not set"
+    queue_url = _scrape_queue_url()
     sqs_client = get_scrape_queue_client()
     await sqs_client.delete_message(
-        QueueUrl=SCRAPE_QUEUE_URL,
+        QueueUrl=queue_url,
         ReceiptHandle=receipt_handle,
     )
     logger.info(f"Deleted item from Scrape queue with receipt handle: {receipt_handle}")

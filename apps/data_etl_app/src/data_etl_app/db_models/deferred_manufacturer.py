@@ -4,26 +4,26 @@ from pydantic import Field
 from datetime import datetime
 import logging
 
-from packages.infra.src.infra.field_types import (
+from infra.field_types import (
     S3FileVersionIDType,
 )
-from packages.core.src.core.field_types import (
+from core.field_types import (
     SubjectUniqueIDType,
 )
-from packages.core.src.core.models.extraction_subject import (
+from core.models.extraction_subject import (
     AbstractDeferredExtractionSubject,
 )
-from packages.core.src.core.models.deferred_extraction.deferred_single_stage_extraction_requests import (
+from core.models.deferred_extraction.deferred_single_stage_extraction_requests import (
     DeferredSingleStageExtractionRequests,
 )
-from packages.core.src.core.models.deferred_extraction.deferred_keyword_extraction import (
+from core.models.deferred_extraction.deferred_keyword_extraction import (
     DeferredKeywordExtractionRequests,
 )
-from packages.core.src.core.models.deferred_extraction.deferred_concept_extraction import (
+from core.models.deferred_extraction.deferred_concept_extraction import (
     DeferredConceptExtractionRequests,
 )
 
-from packages.pure_utils.src.pure_utils.time_util import get_current_time
+from pure_utils.time_util import get_current_time
 
 logger = logging.getLogger(__name__)
 

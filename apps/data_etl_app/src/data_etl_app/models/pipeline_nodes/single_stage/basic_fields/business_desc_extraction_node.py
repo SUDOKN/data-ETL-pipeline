@@ -4,37 +4,45 @@ import logging
 import traceback
 from typing import TYPE_CHECKING
 
-from apps.data_etl_app.src.data_etl_app.models.extraction_results.business_description_extraction_result import (
+from data_etl_app.models.extraction_results.business_description_extraction_result import (
     BusinessDescription,
+    BusinessDescResponse,
 )
-from packages.core.src.core.models.deferred_extraction.deferred_single_stage_extraction_requests import (
+from core.models.deferred_extraction.deferred_single_stage_extraction_requests import (
     SingleStageExtractionRequestBundle,
 )
-from packages.llm_providers.src.llm_providers.models.file_objects.prompt import Prompt
-from packages.llm_providers.src.llm_providers.db_models.gpt_batch_request import (
+from llm_providers.models.file_objects.prompt import Prompt
+from llm_providers.db_models.gpt_batch_request import (
     GPTBatchRequest,
 )
-from packages.core.src.core.models.pipeline_nodes.single_stage.base.single_stage_extraction_node import (
+from core.models.pipeline_nodes.single_stage.base.single_stage_extraction_node import (
     SingleStageExtractionNode,
 )
-from packages.core.src.core.models.types_and_enums import (
+from data_etl_app.models.types_and_enums import (
     BasicFieldTypeEnum,
 )
-from packages.llm_providers.src.llm_providers.field_types import BatchRequestIDType
+from core.models.extraction_schemas.response_format_util import (
+    build_gpt_response_format,
+)
+from llm_providers.field_types import BatchRequestIDType
 
 if TYPE_CHECKING:
-    from apps.data_etl_app.src.data_etl_app.models.pipeline_nodes.single_stage.basic_fields.business_desc_reconcile_node import (
+    from data_etl_app.models.pipeline_nodes.single_stage.basic_fields.business_desc_reconcile_node import (
         BusinessDescReconcileNode,
     )
 
-from packages.llm_providers.src.llm_providers.services.gpt_batch_request.gpt_batch_request_writes import (
+from llm_providers.services.gpt_batch_request.gpt_batch_request_writes import (
     record_response_parse_error,
 )
-from apps.data_etl_app.src.data_etl_app.services.extraction.deferred_business_desc_service import (
+from data_etl_app.services.extraction.deferred_business_desc_service import (
     parse_business_desc_from_gpt_response,
 )
 
 logger = logging.getLogger(__name__)
+
+BUSINESS_DESC_RESPONSE_SCHEMA = build_gpt_response_format(
+    BusinessDescResponse, name="business_desc_extraction"
+)
 
 
 class BusinessDescExtractionNode(SingleStageExtractionNode[BusinessDescription]):
@@ -48,6 +56,10 @@ class BusinessDescExtractionNode(SingleStageExtractionNode[BusinessDescription])
             prompt=extract_prompt,
             next_node=next_node,
         )
+
+    @staticmethod
+    def get_response_schema() -> dict:
+        return BUSINESS_DESC_RESPONSE_SCHEMA
 
     @staticmethod
     async def get_result(

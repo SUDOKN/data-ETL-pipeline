@@ -11,36 +11,16 @@ These tests verify that the validation logic correctly identifies:
 
 import unittest
 from unittest.mock import patch, MagicMock
-import sys
 import os
-from pathlib import Path
 
-# Add the src directories to the path
-base_path = Path(__file__).parent.parent.parent.parent.parent
-sys.path.insert(0, str(base_path / "data_etl_app" / "src"))
-sys.path.insert(0, str(base_path / "core" / "src"))
-sys.path.insert(0, str(base_path / "scraper_app" / "src"))
-sys.path.insert(0, str(base_path / "open_ai_key_app" / "src"))
+# Load environment variables using the shared loader
+from pure_utils.env_util import load_env
 
-# Load environment variables using the proper dependency loaders
-from packages.core.src.core.dependencies.load_core_env import load_core_env
-from apps.data_etl_app.src.data_etl_app.dependencies.load_scraper_env import (
-    load_scraper_env,
-)
-from apps.data_etl_app.src.data_etl_app.dependencies.load_open_ai_app_env import (
-    load_open_ai_app_env,
-)
-from apps.data_etl_app.src.data_etl_app.dependencies.load_data_etl_env import (
-    load_data_etl_env,
-)
+from data_etl_app.dependencies.env import ONTOLOGY_SCRIPT_ENV
 
-# Load environment variables
-load_core_env()
-load_scraper_env()
-load_data_etl_env()
-load_open_ai_app_env()
+load_env(ONTOLOGY_SCRIPT_ENV)
 
-from apps.data_etl_app.src.data_etl_app.knowledge.ontology.validate_ontology_rdf import (
+from data_etl_app.knowledge.ontology.validate_ontology_rdf import (
     ValidationResult,
     ValidationError,
     _is_valid_uri,
@@ -50,7 +30,7 @@ from apps.data_etl_app.src.data_etl_app.knowledge.ontology.validate_ontology_rdf
     validate_ontology_rdf,
     is_ontology_valid,
 )
-from packages.core.src.core.models.skos_concept import ConceptNode
+from core.models.skos_concept import ConceptNode
 
 
 class TestValidationResult(unittest.TestCase):

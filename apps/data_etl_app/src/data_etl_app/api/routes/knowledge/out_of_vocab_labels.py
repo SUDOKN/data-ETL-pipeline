@@ -7,7 +7,7 @@ from core.services.out_of_vocab_labels_service import (
     get_out_of_vocab_labels,
     get_all_out_of_vocab_labels_for_version,
 )
-from packages.core.src.core.models.types_and_enums import ConceptTypeEnum
+from core.models.types_and_enums import ConceptTypeEnum
 from core.services.ontology_service import (
     get_ontology_service,
 )

@@ -1,7 +1,7 @@
 import json
 import pytest
 
-from packages.core.src.core.utils.str_util import make_json_array_parse_safe
+from core.utils.str_util import make_json_array_parse_safe
 
 
 def test_make_json_parse_safe_already_valid_json():

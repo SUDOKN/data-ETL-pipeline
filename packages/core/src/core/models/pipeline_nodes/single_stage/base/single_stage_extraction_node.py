@@ -5,48 +5,47 @@ from abc import abstractmethod
 from datetime import datetime
 from typing import TYPE_CHECKING, Optional
 
-from packages.llm_providers.src.llm_providers.db_models.gpt_batch_request import (
+from llm_providers.db_models.gpt_batch_request import (
     GPTBatchRequest,
 )
-from packages.llm_providers.src.llm_providers.models.open_ai.gpt_batch_response_blob import (
+from llm_providers.models.open_ai.gpt_batch_response_blob import (
     GPTBatchResponse,
 )
-from packages.llm_providers.src.llm_providers.models.file_objects.prompt import Prompt
-from packages.core.src.core.models.extraction_results.single_stage_extraction_results import (
+from llm_providers.models.file_objects.prompt import Prompt
+from core.models.extraction_results.single_stage_extraction_results import (
     LLMSingleStageExtractionMetadata,
 )
-from packages.core.src.core.models.deferred_extraction.deferred_single_stage_extraction_requests import (
+from core.models.deferred_extraction.deferred_single_stage_extraction_requests import (
     SingleStageExtractionRequestMap,
     SingleStageExtractionRequestBundle,
     DeferredSingleStageExtractionRequests,
 )
-from packages.core.src.core.models.pipeline_nodes.base.base_reconcile_node import (
+from core.models.pipeline_nodes.base.base_reconcile_node import (
     ReconcileNode,
 )
-from packages.core.src.core.models.types_and_enums import (
-    BasicFieldTypeEnum,
+from core.models.types_and_enums import (
     BinaryClassificationTypeEnum,
     SingleStageFieldTypeEnum,
 )
-from packages.core.src.core.models.pipeline_nodes.base.base_node import (
+from core.models.pipeline_nodes.base.base_node import (
     PipelineContext,
 )
-from packages.core.src.core.models.pipeline_nodes.base.base_llm_extraction_node import (
+from core.models.pipeline_nodes.base.base_llm_extraction_node import (
     BaseLLMExtractionNode,
     ResultT,
 )
-from packages.llm_providers.src.llm_providers.field_types import BatchRequestIDType
+from llm_providers.field_types import BatchRequestIDType
 
 if TYPE_CHECKING:
     from scraper.models.s3.scraped_text_file import (
         ScrapedTextFile,
     )
 
-from packages.llm_providers.src.llm_providers.services.gpt_batch_request.gpt_batch_request_service import (
+from llm_providers.services.gpt_batch_request.gpt_batch_request_service import (
     dispatch_gpt_batch_request,
 )
 
-from packages.core.src.core.services.pipeline_nodes.single_stage.llm_basic_field_extraction_service import (
+from core.services.pipeline_nodes.single_stage.llm_basic_field_extraction_service import (
     create_missing_basic_extraction_requests,
 )
 
@@ -58,7 +57,7 @@ class SingleStageExtractionNode(
 ):
     def __init__(
         self,
-        field_type: "BasicFieldTypeEnum | BinaryClassificationTypeEnum",
+        field_type: "str | BinaryClassificationTypeEnum",
         next_node: ReconcileNode,
         prompt: Prompt,
     ):
@@ -67,6 +66,12 @@ class SingleStageExtractionNode(
             next_node=next_node,
         )
         self.prompt = prompt
+
+    @staticmethod
+    @abstractmethod
+    def get_response_schema() -> dict:
+        """GPT response_format schema dict for this node's field type; owned by the concrete node."""
+        pass
 
     async def embed_request_ids(  # prefill folded into this function
         self,
@@ -79,7 +84,7 @@ class SingleStageExtractionNode(
         if not chunked_request_map:
             raise ValueError(
                 f"Cannot embed req ids for llm phrase search node, "
-                f"as chunked_request_map found empty for mfg:{subject_unique_id}, field:{self.field_type.name}."
+                f"as chunked_request_map found empty for mfg:{subject_unique_id}, field:{self.field_type}."
             )
 
         for (
@@ -106,7 +111,7 @@ class SingleStageExtractionNode(
         ) in chunked_request_map.items():
             if not extraction_bundle.llm_request_id:
                 raise ValueError(
-                    f"get_embedded_request_ids was called for {subject_unique_id}:{self.field_type.name} but llm_request_id is None for chunk bounds {_chunk_bounds}."
+                    f"get_embedded_request_ids was called for {subject_unique_id}:{self.field_type} but llm_request_id is None for chunk bounds {_chunk_bounds}."
                 )
             all_llm_req_ids.add(extraction_bundle.llm_request_id)
         return all_llm_req_ids
@@ -114,12 +119,12 @@ class SingleStageExtractionNode(
     @staticmethod
     def get_request_custom_id(
         subject_unique_id: str,
-        field_type: "BasicFieldTypeEnum | BinaryClassificationTypeEnum",
+        field_type: "str | BinaryClassificationTypeEnum",
         chunk_bounds: str,
         metadata: LLMSingleStageExtractionMetadata,
     ) -> BatchRequestIDType:
         return (
-            f"{subject_unique_id}>{field_type.name}>llm_request>chunk>{chunk_bounds}>"
+            f"{subject_unique_id}>{field_type}>llm_request>chunk>{chunk_bounds}>"
             f"{metadata.single_stage.model_params.to_custom_id_segment(metadata.single_stage.llm_model.name)}"
         )
 
@@ -146,11 +151,12 @@ class SingleStageExtractionNode(
             prompt=self.prompt,
             llm_model=metadata.single_stage.llm_model,
             model_params=metadata.single_stage.model_params,
+            response_schema=self.get_response_schema(),
             eager=eager,
         )
 
         logger.info(
-            f"create_batch_requests: Created {len(batch_requests)} GPTBatchRequest for {subject_unique_id}:{self.field_type.name}"
+            f"create_batch_requests: Created {len(batch_requests)} GPTBatchRequest for {subject_unique_id}:{self.field_type}"
         )
         logger.info(f"{batch_requests}")
 
@@ -160,7 +166,7 @@ class SingleStageExtractionNode(
     @abstractmethod
     async def get_result(
         subject_unique_id: str,
-        field_type: "BasicFieldTypeEnum | BinaryClassificationTypeEnum",
+        field_type: "str | BinaryClassificationTypeEnum",
         chunk_bounds: str,
         extraction_bundle: SingleStageExtractionRequestBundle,
         completed_request_map: dict[BatchRequestIDType, GPTBatchRequest],

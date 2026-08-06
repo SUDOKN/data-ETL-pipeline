@@ -1,27 +1,28 @@
 import logging
 
-from apps.data_etl_app.src.data_etl_app.db_models.concept_ground_truth import (
+from data_etl_app.db_models.concept_ground_truth import (
     DistillationResultVerificationEnum,
     MappingResultVerificationEnum,
     HumanConceptCorrection,
 )
-from apps.data_etl_app.src.data_etl_app.db_models.keyword_ground_truth import (
+from data_etl_app.db_models.keyword_ground_truth import (
     KeywordGroundTruth,
 )
-from packages.core.src.core.models.extraction_schemas.legacy_mapping_types import (
+from core.models.extraction_schemas.legacy_mapping_types import (
     HumanVerificationResults,
     RawLLMMappingResult,
 )
-from packages.core.src.core.models.extraction_schemas.relationship import (
+from core.models.extraction_schemas.relationship import (
     LLMPhraseRelationshipResults,
 )
-from packages.core.src.core.models.extraction_schemas.screening import (
+from core.models.extraction_schemas.screening import (
     LLMScreeningResults,
 )
-from packages.core.src.core.models.skos_concept import Concept
+from core.models.skos_concept import Concept
 
-from data_etl_app.utils.llm_mapping_helper import (
+from core.services.brute_search_service import (
     get_matched_concepts_and_unmatched_keywords,
+    filter_non_overlapping_brute_results,
 )
 
 logger = logging.getLogger(__name__)
@@ -118,52 +119,6 @@ def get_verified_results_from_raw_mapping(
             if reason.startswith(MappingResultVerificationEnum.CORRECT_PREFIX):
                 verified_mapped_known_concepts.add(mk)
     return verified_mapped_known_concepts
-
-
-def filter_non_overlapping_brute_results(
-    llm_search_results: set[str],
-    brute_search_results: set[str],
-) -> set[str]:
-    """
-    Filter brute force search results down to those not already covered by an LLM result.
-
-    A brute force result is kept only when it is not already a substring of any
-    LLM search result, avoiding redundancy while preserving recall. Preserves
-    casing of the brute results, but does case-insensitive comparison for
-    filtering.
-    """
-    lowered_llm = {r.lower() for r in llm_search_results}
-    return {
-        r
-        for r in brute_search_results
-        if not any(r.lower() in llm_result for llm_result in lowered_llm)
-    }
-
-
-def merge_llm_and_brute_search_results(
-    llm_search_results: set[str],
-    brute_search_results: set[str],
-) -> set[str]:
-    """
-    Merge LLM search results with filtered brute force search results.
-
-    A brute force result is included only when it is not already a substring of
-    any LLM search result, avoiding redundancy while preserving recall.
-    Preserves casing of both LLM and brute results, but does case-insensitive
-    comparison for filtering.
-    """
-
-    filtered_brute = filter_non_overlapping_brute_results(
-        llm_search_results=llm_search_results,
-        brute_search_results=brute_search_results,
-    )
-    logger.info(f"LLM search results: {llm_search_results}")
-    logger.info(f"Brute force search results: {brute_search_results}")
-    logger.info(f"Non-overlapping brute force results: {filtered_brute}")
-
-    merged_results = llm_search_results | filtered_brute
-    logger.info(f"Merged search results: {merged_results}")
-    return merged_results
 
 
 def calculate_final_keyword_results(

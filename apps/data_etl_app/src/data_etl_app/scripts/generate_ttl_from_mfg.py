@@ -7,29 +7,18 @@ import logging
 import sys
 from pathlib import Path
 
-from packages.core.src.core.dependencies.load_core_env import load_core_env
-from apps.data_etl_app.src.data_etl_app.dependencies.load_scraper_env import (
-    load_scraper_env,
-)
-from apps.data_etl_app.src.data_etl_app.dependencies.load_open_ai_app_env import (
-    load_open_ai_app_env,
-)
-from apps.data_etl_app.src.data_etl_app.dependencies.load_data_etl_env import (
-    load_data_etl_env,
-)
+from pure_utils.env_util import load_env
 
-# Load environment variables
-load_core_env()
-load_scraper_env()
-load_data_etl_env()
-load_open_ai_app_env()
+from data_etl_app.dependencies.env import ONTOLOGY_SCRIPT_ENV
 
-from apps.data_etl_app.src.data_etl_app.services.ttl_generator_service import (
+load_env(ONTOLOGY_SCRIPT_ENV)
+
+from data_etl_app.services.ttl_generator_service import (
     generate_triples,
 )
-from apps.data_etl_app.src.data_etl_app.db_models.manufacturer import Manufacturer
+from data_etl_app.db_models.manufacturer import Manufacturer
 from core.models.ontology import Ontology
-from apps.data_etl_app.src.data_etl_app.db_models.manufacturer_user_form import (
+from data_etl_app.db_models.manufacturer_user_form import (
     ManufacturerUserForm,
 )
 
@@ -129,7 +118,7 @@ async def main():
 
     try:
         # Initialize AWS clients
-        from apps.data_etl_app.src.data_etl_app.dependencies.aws_s3_clients import (
+        from infra.utils.s3.aws_s3_clients import (
             cleanup_data_etl_aws_clients,
             initialize_data_etl_aws_clients,
         )
@@ -139,9 +128,9 @@ async def main():
             get_ontology_service,
         )
 
-        from core.utils.mongo_client import init_db
+        from data_etl_app.dependencies.db import init_app_db
 
-        await init_db(
+        await init_app_db(
             max_pool_size=200,
             min_pool_size=50,
             socket_timeout_ms=300000,  # 5 minutes for bulk operations

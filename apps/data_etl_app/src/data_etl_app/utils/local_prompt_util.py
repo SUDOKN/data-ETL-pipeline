@@ -1,8 +1,6 @@
-import os
 from pathlib import Path
 
-# Relative (or absolute) path to the local prompts directory, set via the env.
-LOCAL_PROMPTS_DIR = os.getenv("LOCAL_PROMPTS_DIR")
+from pure_utils.env_util import require_env
 
 
 def get_local_prompts_dir() -> Path:
@@ -10,10 +8,7 @@ def get_local_prompts_dir() -> Path:
 
     A relative path is resolved against the current working directory.
     """
-    if not LOCAL_PROMPTS_DIR:
-        raise ValueError("LOCAL_PROMPTS_DIR is not set. Please check your .env file.")
-
-    prompts_dir = Path(LOCAL_PROMPTS_DIR).expanduser()
+    prompts_dir = Path(require_env("LOCAL_PROMPTS_DIR")).expanduser()
     if not prompts_dir.is_absolute():
         prompts_dir = (Path.cwd() / prompts_dir).resolve()
 

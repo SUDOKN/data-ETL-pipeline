@@ -2,14 +2,14 @@ from datetime import datetime
 import logging
 
 from beanie.operators import In
-from apps.data_etl_app.src.data_etl_app.field_types import MfgURLType
-from apps.data_etl_app.src.data_etl_app.db_models.manufacturer import (
+from data_etl_app.field_types import MfgURLType
+from data_etl_app.db_models.manufacturer import (
     Batch,
     Manufacturer,
 )
-from packages.core.src.core.field_types import SubjectUniqueIDType
-from packages.pure_utils.src.pure_utils.url_util import get_etld1_from_host
-from apps.data_etl_app.src.data_etl_app.models.s3.scraped_mfg_file import ScrapedMfgFile
+from core.field_types import SubjectUniqueIDType
+from pure_utils.url_util import get_etld1_from_host
+from data_etl_app.models.s3.scraped_mfg_file import ScrapedMfgFile
 
 logger = logging.getLogger(__name__)
 

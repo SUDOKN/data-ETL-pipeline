@@ -1,20 +1,19 @@
-import os
 import json
 import logging
 
-from packages.infra.src.infra.models.queue_items.to_scrape_item import ToScrapeItem
-from packages.infra.src.infra.constants import LONG_POLL_INTERVAL
-from apps.data_etl_app.src.data_etl_app.dependencies.aws_sqs_clients import (
+from pure_utils.env_util import require_env
+
+from infra.models.queue_items.to_scrape_item import ToScrapeItem
+from infra.constants import LONG_POLL_INTERVAL
+from infra.utils.queue.aws_sqs_clients import (
     get_scrape_queue_client,
 )
 
 logger = logging.getLogger(__name__)
-PRIORITY_SCRAPE_QUEUE_URL = os.getenv("PRIORITY_SCRAPE_QUEUE_URL")
 
-if not PRIORITY_SCRAPE_QUEUE_URL:
-    raise ValueError(
-        "AWS PRIORITY_SCRAPE_QUEUE_URL is not set. Please set it in your .env file."
-    )
+
+def _priority_scrape_queue_url() -> str:
+    return require_env("PRIORITY_SCRAPE_QUEUE_URL")
 
 
 async def push_item_to_priority_scrape_queue(item: ToScrapeItem):
@@ -23,26 +22,24 @@ async def push_item_to_priority_scrape_queue(item: ToScrapeItem):
 
     :param item: The item to send to the SQS queue.
     """
-    assert PRIORITY_SCRAPE_QUEUE_URL, "PRIORITY_SCRAPE_QUEUE_URL is not set"
+    queue_url = _priority_scrape_queue_url()
     sqs_client = get_scrape_queue_client()
     await sqs_client.send_message(
-        QueueUrl=PRIORITY_SCRAPE_QUEUE_URL,
+        QueueUrl=queue_url,
         MessageBody=item.model_dump_json(),
     )
-    logger.info(
-        f"Sent ToScrapeItem for {item} to priority scrape queue: {PRIORITY_SCRAPE_QUEUE_URL}"
-    )
+    logger.info(f"Sent ToScrapeItem for {item} to priority scrape queue: {queue_url}")
 
 
 async def poll_item_from_priority_scrape_queue():
     """
     Receives a single item from the Priority Scrape queue.
     """
-    assert PRIORITY_SCRAPE_QUEUE_URL, "PRIORITY_SCRAPE_QUEUE_URL is not set"
+    queue_url = _priority_scrape_queue_url()
     sqs_client = get_scrape_queue_client()
-    logger.info(f"Polling Priority Scrape queue: {PRIORITY_SCRAPE_QUEUE_URL}")
+    logger.info(f"Polling Priority Scrape queue: {queue_url}")
     response = await sqs_client.receive_message(
-        QueueUrl=PRIORITY_SCRAPE_QUEUE_URL,
+        QueueUrl=queue_url,
         MaxNumberOfMessages=1,
         WaitTimeSeconds=LONG_POLL_INTERVAL,
     )
@@ -66,7 +63,7 @@ async def poll_item_from_priority_scrape_queue():
         logger.error(f"Error decoding ToScrapeItem JSON from message body: {e}")
         # Optionally delete the message if it's malformed
         await sqs_client.delete_message(
-            QueueUrl=PRIORITY_SCRAPE_QUEUE_URL,
+            QueueUrl=queue_url,
             ReceiptHandle=receipt_handle,
         )
         return None, None
@@ -80,10 +77,10 @@ async def delete_item_from_priority_scrape_queue(receipt_handle: str):
 
     :param receipt_handle: The receipt handle of the message to delete.
     """
-    assert PRIORITY_SCRAPE_QUEUE_URL, "PRIORITY_SCRAPE_QUEUE_URL is not set"
+    queue_url = _priority_scrape_queue_url()
     sqs_client = get_scrape_queue_client()
     await sqs_client.delete_message(
-        QueueUrl=PRIORITY_SCRAPE_QUEUE_URL,
+        QueueUrl=queue_url,
         ReceiptHandle=receipt_handle,
     )
     logger.info(

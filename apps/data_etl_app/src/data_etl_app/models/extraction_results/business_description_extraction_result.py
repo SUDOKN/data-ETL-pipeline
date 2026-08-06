@@ -1,6 +1,6 @@
-from pydantic import BaseModel
+from pydantic import BaseModel, ConfigDict
 from typing import Optional
-from packages.core.src.core.models.extraction_results.single_stage_extraction_results import (
+from core.models.extraction_results.single_stage_extraction_results import (
     SingleStageExtractionResults,
     SingleStageStats,
 )
@@ -9,6 +9,10 @@ from packages.core.src.core.models.extraction_results.single_stage_extraction_re
 class BusinessDescription(BaseModel):
     name: Optional[str]
     description: Optional[str]
+
+
+class BusinessDescResponse(BusinessDescription):
+    model_config = ConfigDict(extra="forbid")
 
 
 class BusinessDescriptionExtractionStats(SingleStageStats[BusinessDescription]):

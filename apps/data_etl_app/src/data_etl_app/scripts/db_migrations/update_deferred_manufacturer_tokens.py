@@ -4,28 +4,17 @@ import argparse
 from pymongo import UpdateOne
 from pymongo.errors import BulkWriteError
 
-from packages.core.src.core.dependencies.load_core_env import load_core_env
-from apps.data_etl_app.src.data_etl_app.dependencies.load_scraper_env import (
-    load_scraper_env,
-)
-from apps.data_etl_app.src.data_etl_app.dependencies.load_open_ai_app_env import (
-    load_open_ai_app_env,
-)
-from apps.data_etl_app.src.data_etl_app.dependencies.load_data_etl_env import (
-    load_data_etl_env,
-)
+from pure_utils.env_util import load_env
 
-# Load environment variables
-load_core_env()
-load_scraper_env()
-load_data_etl_env()
-load_open_ai_app_env()
+from data_etl_app.dependencies.env import MIGRATION_ENV
 
-from apps.data_etl_app.src.data_etl_app.db_models.manufacturer import Manufacturer
-from apps.data_etl_app.src.data_etl_app.db_models.deferred_manufacturer import (
+load_env(MIGRATION_ENV)
+
+from data_etl_app.db_models.manufacturer import Manufacturer
+from data_etl_app.db_models.deferred_manufacturer import (
     DeferredManufacturer,
 )
-from core.utils.mongo_client import init_db
+from data_etl_app.dependencies.db import init_app_db
 
 logger = logging.getLogger(__name__)
 
@@ -185,7 +174,7 @@ async def main():
     )
     args = parser.parse_args()
 
-    await init_db()
+    await init_app_db()
     print("Database initialized.")
     await update_deferred_manufacturer_tokens(
         limit=args.limit, mfg_etld1=args.mfg_etld1

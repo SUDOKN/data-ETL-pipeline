@@ -3,36 +3,44 @@ import logging
 from datetime import datetime
 import traceback
 
-from packages.llm_providers.src.llm_providers.models.file_objects.prompt import Prompt
-from packages.core.src.core.models.extraction_results.binary_classification_result import (
+from llm_providers.models.file_objects.prompt import Prompt
+from core.models.extraction_results.binary_classification_result import (
     LLMBinaryClassification,
 )
-from packages.core.src.core.models.deferred_extraction.deferred_single_stage_extraction_requests import (
+from core.models.deferred_extraction.deferred_single_stage_extraction_requests import (
     SingleStageExtractionRequestBundle,
 )
-from packages.llm_providers.src.llm_providers.db_models.gpt_batch_request import (
+from llm_providers.db_models.gpt_batch_request import (
     GPTBatchRequest,
 )
-from packages.llm_providers.src.llm_providers.services.gpt_batch_request.gpt_batch_request_writes import (
+from llm_providers.services.gpt_batch_request.gpt_batch_request_writes import (
     record_response_parse_error,
 )
 from typing import TYPE_CHECKING
 
-from packages.core.src.core.models.pipeline_nodes.single_stage.base.single_stage_extraction_node import (
+from core.models.pipeline_nodes.single_stage.base.single_stage_extraction_node import (
     SingleStageExtractionNode,
 )
-from packages.core.src.core.models.types_and_enums import BinaryClassificationTypeEnum
+from core.models.types_and_enums import BinaryClassificationTypeEnum
+from core.models.extraction_schemas.response_format_util import (
+    build_gpt_response_format,
+)
 
 if TYPE_CHECKING:
-    from packages.core.src.core.models.pipeline_nodes.single_stage.classification.binary_reconcile_node import (
+    from core.models.pipeline_nodes.single_stage.classification.binary_reconcile_node import (
         BinaryReconcileNode,
     )
-from packages.core.src.core.services.pipeline_nodes.single_stage.llm_binary_classification_service import (
+from core.services.pipeline_nodes.single_stage.llm_binary_classification_service import (
     parse_binary_classification_result_from_gpt_response,
 )
-from packages.llm_providers.src.llm_providers.field_types import BatchRequestIDType
+from llm_providers.field_types import BatchRequestIDType
 
 logger = logging.getLogger(__name__)
+
+# Reusable across binary classification tasks (is_manufacturer, etc.); owned by core.
+BINARY_CLASSIFICATION_RESPONSE_SCHEMA = build_gpt_response_format(
+    LLMBinaryClassification, name="binary_classification"
+)
 
 
 class BinaryClassificationNode(SingleStageExtractionNode[LLMBinaryClassification]):
@@ -49,6 +57,10 @@ class BinaryClassificationNode(SingleStageExtractionNode[LLMBinaryClassification
             prompt=classification_prompt,
             next_node=next_node,
         )
+
+    @staticmethod
+    def get_response_schema() -> dict:
+        return BINARY_CLASSIFICATION_RESPONSE_SCHEMA
 
     @staticmethod
     async def get_result(

@@ -1,23 +1,23 @@
 from datetime import datetime
 import logging
 
-from packages.core.src.core.models.extraction_subject import (
+from core.models.extraction_subject import (
     AbstractExtractionSubject,
 )
-from packages.infra.src.infra.field_types import (
+from infra.field_types import (
     S3FileVersionIDType,
 )
 
-from packages.core.src.core.models.types_and_enums import BinaryClassificationTypeEnum
-from apps.data_etl_app.src.data_etl_app.db_models.binary_ground_truth import (
+from core.models.types_and_enums import BinaryClassificationTypeEnum
+from data_etl_app.db_models.binary_ground_truth import (
     BinaryGroundTruth,
     HumanDecisionLog,
     HumanBinaryDecision,
 )
-from packages.infra.src.infra.utils.s3.scraped_text_file_util import (
+from infra.utils.s3.scraped_text_file_util import (
     download_scraped_text_from_s3_by_subject_unique_id,
 )
-from packages.infra.src.infra.utils.s3.prompt_s3_util import (
+from infra.utils.s3.prompt_s3_util import (
     does_prompt_version_exist,
     get_prompt_filename,
 )

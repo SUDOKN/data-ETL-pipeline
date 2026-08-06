@@ -7,7 +7,7 @@ from rdflib.namespace import RDFS, SKOS
 from typing import Callable, List, Optional
 from requests.structures import CaseInsensitiveDict
 
-from packages.core.src.core.models.skos_concept import ConceptNode, Concept
+from core.models.skos_concept import ConceptNode, Concept
 
 logger = logging.getLogger(__name__)
 

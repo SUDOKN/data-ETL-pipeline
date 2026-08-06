@@ -5,9 +5,9 @@ from datetime import datetime
 
 from pydantic import BaseModel, Field
 
-from packages.core.src.core.field_types import SubjectUniqueIDType
-from packages.infra.src.infra.field_types import S3FileVersionIDType
-from packages.pure_utils.src.pure_utils.time_util import get_current_time
+from core.field_types import SubjectUniqueIDType
+from infra.field_types import S3FileVersionIDType
+from pure_utils.time_util import get_current_time
 
 
 class AbstractExtractionSubject(BaseModel, ABC):

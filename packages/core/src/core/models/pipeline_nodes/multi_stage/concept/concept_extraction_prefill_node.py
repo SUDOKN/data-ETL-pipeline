@@ -5,44 +5,44 @@ from datetime import datetime
 from typing import TYPE_CHECKING
 
 
-from packages.core.src.core.models.extraction_results.concept_extraction_results import (
+from core.models.extraction_results.concept_extraction_results import (
     ConceptExtractionMetadata,
 )
-from packages.core.src.core.models.extraction_results.llm_phrase_extraction_results import (
+from core.models.extraction_results.llm_phrase_extraction_results import (
     ExtractionNodeMetadata,
     RecursiveSearchNodeMetadata,
     BatchedScreeningNodeMetadata,
 )
-from packages.core.src.core.models.extraction_subject import (
+from core.models.extraction_subject import (
     AbstractExtractionSubject,
     AbstractDeferredExtractionSubject,
 )
-from packages.core.src.core.models.deferred_extraction.deferred_concept_extraction import (
+from core.models.deferred_extraction.deferred_concept_extraction import (
     ConceptExtractionRequestBundle,
     DeferredConceptExtractionRequests,
 )
 from core.models.ontology import Ontology
-from packages.core.src.core.models.pipeline_nodes.multi_stage.concept.concept_phrase_search_node import (
+from core.models.pipeline_nodes.multi_stage.concept.concept_phrase_search_node import (
     ConceptPhraseSearchNode,
 )
-from packages.core.src.core.models.pipeline_nodes.base.base_prefill_node import (
+from core.models.pipeline_nodes.base.base_prefill_node import (
     PrefillNode,
 )
-from packages.core.src.core.models.types_and_enums import ConceptTypeEnum
-from packages.core.src.core.models.pipeline_nodes.base.base_node import PipelineContext
-from packages.core.src.core.models.chunking_strat import ChunkingStrategy
+from core.models.types_and_enums import ConceptTypeEnum
+from core.models.pipeline_nodes.base.base_node import PipelineContext
+from core.models.chunking_strat import ChunkingStrategy
 
 if TYPE_CHECKING:
     from scraper.models.s3.scraped_text_file import (
         ScrapedTextFile,
     )
 
-from packages.core.src.core.services.brute_search_service import brute_search
+from core.services.brute_search_service import brute_search
 
 from llm_providers.utils.chunk_util import (
     get_chunks_respecting_line_boundaries,
 )
-from packages.pure_utils.src.pure_utils.dict_diff import find_diffs
+from pure_utils.dict_diff import find_diffs
 
 logger = logging.getLogger(__name__)
 

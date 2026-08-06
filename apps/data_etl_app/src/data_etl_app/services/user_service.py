@@ -1,5 +1,5 @@
 from typing import Optional
-from apps.data_etl_app.src.data_etl_app.db_models.user import User, UserRole
+from data_etl_app.db_models.user import User, UserRole
 
 
 async def find_by_email(

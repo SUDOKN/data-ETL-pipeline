@@ -9,11 +9,11 @@ GOOGLE_MAPS_API_KEY to be set in the environment.
 """
 
 import pytest
-import apps.data_etl_app.src.data_etl_app.utils.lat_lng_util as lat_lng_module
-from apps.data_etl_app.src.data_etl_app.utils.lat_lng_util import (
+import data_etl_app.utils.lat_lng_util as lat_lng_module
+from data_etl_app.utils.lat_lng_util import (
     get_lat_lng_from_address,
 )
-from apps.data_etl_app.src.data_etl_app.models.extraction_results.address_extraction_result import (
+from data_etl_app.models.extraction_results.address_extraction_result import (
     Address,
 )
 

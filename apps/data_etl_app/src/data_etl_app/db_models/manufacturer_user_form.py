@@ -4,19 +4,17 @@ from pydantic import Field
 from datetime import datetime
 from typing import Optional
 
-from apps.data_etl_app.src.data_etl_app.models.extraction_results.address_extraction_result import (
+from data_etl_app.models.extraction_results.address_extraction_result import (
     Address,
 )
-from apps.data_etl_app.src.data_etl_app.models.extraction_results.business_description_extraction_result import (
+from data_etl_app.models.extraction_results.business_description_extraction_result import (
     BusinessDescription,
 )
-from packages.core.src.core.field_types import (
+from core.field_types import (
     SubjectUniqueIDType,
-)
-from packages.knowledge.src.knowledge.field_types import (
     OntologyVersionIDType,
 )
-from packages.pure_utils.src.pure_utils.time_util import get_current_time
+from pure_utils.time_util import get_current_time
 
 logger = logging.getLogger(__name__)
 

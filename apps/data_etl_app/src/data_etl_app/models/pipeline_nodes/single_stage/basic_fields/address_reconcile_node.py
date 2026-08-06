@@ -4,30 +4,32 @@ import logging
 from datetime import datetime
 from typing import Optional
 
-from apps.data_etl_app.src.data_etl_app.models.extraction_results.address_extraction_result import (
+from data_etl_app.models.extraction_results.address_extraction_result import (
     Address,
     AddressExtractionStats,
     AddressExtractionStatsMap,
     AddressExtractionResult,
 )
-from apps.data_etl_app.src.data_etl_app.db_models.manufacturer import Manufacturer
-from packages.core.src.core.models.deferred_extraction.deferred_single_stage_extraction_requests import (
+from data_etl_app.db_models.manufacturer import Manufacturer
+from core.models.deferred_extraction.deferred_single_stage_extraction_requests import (
     DeferredSingleStageExtractionRequests,
 )
-from apps.data_etl_app.src.data_etl_app.db_models.deferred_manufacturer import (
+from data_etl_app.db_models.deferred_manufacturer import (
     DeferredManufacturer,
 )
-from packages.core.src.core.models.types_and_enums import BasicFieldTypeEnum
-from packages.core.src.core.models.pipeline_nodes import PipelineContext
-from apps.data_etl_app.src.data_etl_app.models.pipeline_nodes.single_stage.basic_fields.address_extraction_node import (
+from data_etl_app.models.types_and_enums import (
+    BasicFieldTypeEnum,
+)
+from core.models.pipeline_nodes import PipelineContext
+from data_etl_app.models.pipeline_nodes.single_stage.basic_fields.address_extraction_node import (
     AddressExtractionNode,
 )
-from packages.core.src.core.models.pipeline_nodes.base.base_reconcile_node import (
+from core.models.pipeline_nodes.base.base_reconcile_node import (
     ReconcileNode,
 )
-from apps.data_etl_app.src.data_etl_app.models.s3.scraped_mfg_file import ScrapedMfgFile
+from data_etl_app.models.s3.scraped_mfg_file import ScrapedMfgFile
 
-from apps.data_etl_app.src.data_etl_app.services.manufacturer_service import (
+from data_etl_app.services.manufacturer_service import (
     update_manufacturer,
 )
 

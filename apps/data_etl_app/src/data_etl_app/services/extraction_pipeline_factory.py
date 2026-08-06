@@ -1,16 +1,16 @@
 from datetime import datetime
 
-from packages.llm_providers.src.llm_providers.models.llm_model import LLM_Model
-from packages.core.src.core.models.extraction_results.llm_phrase_extraction_results import (
+from llm_providers.models.llm_model import LLM_Model
+from core.models.extraction_results.llm_phrase_extraction_results import (
     ExtractionNodeMetadata,
     RecursiveSearchNodeMetadata,
     BatchedScreeningNodeMetadata,
 )
-from packages.llm_providers.src.llm_providers.models.file_objects.prompt import Prompt
-from packages.core.src.core.models.extraction_results.single_stage_extraction_results import (
+from llm_providers.models.file_objects.prompt import Prompt
+from core.models.extraction_results.single_stage_extraction_results import (
     LLMSingleStageExtractionMetadata,
 )
-from packages.core.src.core.models.chunking_strat import (
+from core.models.chunking_strat import (
     ChunkingStrategy,
     CERTIFICATE_CHUNKING_STRAT,
     EQUIPMENT_CHUNKING_STRAT,
@@ -21,7 +21,7 @@ from packages.core.src.core.models.chunking_strat import (
     get_basic_field_chunking_strat,
     get_binary_classification_chunking_strat,
 )
-from apps.data_etl_app.src.data_etl_app.models.pipeline_nodes import (
+from data_etl_app.models.pipeline_nodes import (
     AddressPrefillNode,
     AddressExtractionNode,
     AddressReconcileNode,
@@ -47,7 +47,7 @@ from apps.data_etl_app.src.data_etl_app.models.pipeline_nodes import (
     EquipmentFreehandGroundingNode,
     EquipmentReconcileNode,
 )
-from packages.core.src.core.models.pipeline_nodes import (
+from core.models.pipeline_nodes import (
     PrefillNode,
     BinaryClassificationNode,
     BinaryClassificationPrefillNode,
@@ -62,20 +62,22 @@ from packages.core.src.core.models.pipeline_nodes import (
     ConceptRecursiveSearchNode,
     KeywordExtractionPrefillNode,
 )
-from packages.core.src.core.models.skos_concept import Concept
-from packages.core.src.core.models.types_and_enums import (
+from core.models.skos_concept import Concept
+from core.models.types_and_enums import (
     BinaryClassificationTypeEnum,
     ConceptTypeEnum,
     LLMExtractedFieldTypeEnum,
     KeywordTypeEnum,
+)
+from data_etl_app.models.types_and_enums import (
     BasicFieldTypeEnum,
 )
 from core.models.ontology import Ontology
-from packages.llm_providers.src.llm_providers.models.open_ai.gpt_model_params import (
+from llm_providers.models.open_ai.gpt_model_params import (
     GPTModelParams,
 )
 
-from apps.data_etl_app.src.data_etl_app.services.prompt_service import PromptService
+from data_etl_app.services.prompt_service import PromptService
 
 
 class ExtractionPipelineFactory:

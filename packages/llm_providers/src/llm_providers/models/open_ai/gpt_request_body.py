@@ -2,7 +2,7 @@ from __future__ import annotations
 from pydantic import BaseModel, ConfigDict, Field
 from typing import Literal, Optional
 
-from packages.llm_providers.src.llm_providers.models.open_ai.gpt_model_params import (
+from llm_providers.models.open_ai.gpt_model_params import (
     GPTModelParams,
 )
 

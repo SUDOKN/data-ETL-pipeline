@@ -4,26 +4,26 @@ import logging
 from datetime import datetime
 from typing import Optional
 
-from packages.core.src.core.models.extraction_subject import (
+from core.models.extraction_subject import (
     AbstractExtractionSubject,
     AbstractDeferredExtractionSubject,
 )
-from packages.core.src.core.models.extraction_results.binary_classification_result import (
+from core.models.extraction_results.binary_classification_result import (
     BinaryClassificationResult,
     BinaryClassificationStats,
     BinaryClassificationStatsMap,
 )
-from packages.core.src.core.models.deferred_extraction.deferred_single_stage_extraction_requests import (
+from core.models.deferred_extraction.deferred_single_stage_extraction_requests import (
     DeferredSingleStageExtractionRequests,
 )
-from packages.core.src.core.models.pipeline_nodes.base.base_node import PipelineContext
-from packages.core.src.core.models.types_and_enums import (
+from core.models.pipeline_nodes.base.base_node import PipelineContext
+from core.models.types_and_enums import (
     BinaryClassificationTypeEnum,
 )
-from packages.core.src.core.models.pipeline_nodes.base.base_reconcile_node import (
+from core.models.pipeline_nodes.base.base_reconcile_node import (
     ReconcileNode,
 )
-from packages.core.src.core.models.pipeline_nodes.single_stage.classification.binary_classification_node import (
+from core.models.pipeline_nodes.single_stage.classification.binary_classification_node import (
     BinaryClassificationNode,
 )
 from scraper.models.s3.scraped_text_file import ScrapedTextFile

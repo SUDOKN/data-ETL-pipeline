@@ -1,6 +1,6 @@
 import pytest
-from apps.data_etl_app.src.data_etl_app.db_models.manufacturer import Address
-from apps.data_etl_app.src.data_etl_app.utils.address_util import (
+from data_etl_app.models.extraction_results.address_extraction_result import Address
+from data_etl_app.utils.address_util import (
     dedupe_addresses,
     can_addresses_A_and_B_merge,
     merge_addresses_A_and_B,

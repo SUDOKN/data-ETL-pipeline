@@ -3,27 +3,27 @@ from datetime import datetime
 from enum import Enum
 from pydantic import BaseModel, Field
 
-from packages.infra.src.infra.field_types import (
+from infra.field_types import (
     S3FileVersionIDType,
 )
-from packages.core.src.core.field_types import (
+from core.field_types import (
     SubjectUniqueIDType,
 )
-from packages.core.src.core.models.extraction_schemas.legacy_mapping_types import (
+from core.models.extraction_schemas.legacy_mapping_types import (
     HumanVerificationResults,
     RawLLMMappingResult,
 )
-from packages.core.src.core.models.extraction_schemas.search import LLMSearchResults
-from packages.core.src.core.models.extraction_results.concept_extraction_results import (
+from core.models.extraction_schemas.search import LLMSearchResults
+from core.models.extraction_results.concept_extraction_results import (
     ConceptExtractionMetadata,
     ConceptExtractionStats,
 )
-from packages.core.src.core.models.types_and_enums import (
+from core.models.types_and_enums import (
     ConceptTypeEnum,
     GroundTruthSource,
 )
 
-from packages.pure_utils.src.pure_utils.time_util import get_current_time
+from pure_utils.time_util import get_current_time
 
 
 class DistillationResultVerificationEnum(str, Enum):

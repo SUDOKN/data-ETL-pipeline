@@ -3,12 +3,12 @@ import logging
 import litellm
 from typing import Dict, Optional
 
-from packages.llm_providers.src.llm_providers.models.file_objects.prompt import Prompt
-from packages.llm_providers.src.llm_providers.models.llm_model import LLM_Model
-from packages.infra.src.infra.utils.s3.prompt_s3_util import (
+from llm_providers.models.file_objects.prompt import Prompt
+from llm_providers.models.llm_model import LLM_Model
+from infra.utils.s3.prompt_s3_util import (
     download_prompt,
 )
-from apps.data_etl_app.src.data_etl_app.utils.local_prompt_util import (
+from data_etl_app.utils.local_prompt_util import (
     read_local_prompt,
 )
 

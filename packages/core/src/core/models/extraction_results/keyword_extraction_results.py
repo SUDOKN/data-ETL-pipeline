@@ -1,11 +1,11 @@
 from pydantic import BaseModel
 
-from packages.core.src.core.models.extraction_results.llm_phrase_extraction_results import (
+from core.models.extraction_results.llm_phrase_extraction_results import (
     ExtractionNodeMetadata,
     LLMPhraseExtractionMetadata,
     LLMPhraseExtractionStats,
 )
-from packages.core.src.core.models.extraction_schemas.grounding import (
+from core.models.extraction_schemas.grounding import (
     PhraseToTagAndReasonMap,
 )
 

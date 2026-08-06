@@ -1,14 +1,14 @@
-import os
 import httpx
 
-# === Configuration ===
-GRAPH_DB_BASE_URL = os.getenv("GRAPH_DB_BASE_URL")
-if not GRAPH_DB_BASE_URL:
-    raise ValueError("GRAPH_DB_BASE_URL environment variable is not set")
+from pure_utils.env_util import optional_env, require_env
 
-GRAPH_DB_UPDATE_TIMEOUT_SECONDS = float(
-    os.getenv("GRAPH_DB_UPDATE_TIMEOUT_SECONDS", "120")
-)
+
+def _graph_db_base_url() -> str:
+    return require_env("GRAPH_DB_BASE_URL")
+
+
+def _graph_db_update_timeout_seconds() -> float:
+    return float(optional_env("GRAPH_DB_UPDATE_TIMEOUT_SECONDS", "120"))
 
 
 class SPARQLQueryError(Exception):
@@ -19,8 +19,7 @@ class SPARQLQueryError(Exception):
 
 async def send_update_query_to_db(payload: str, debug: bool = False) -> None:
     """Send a SPARQL UPDATE (INSERT/DELETE) query to the /statements endpoint."""
-    assert GRAPH_DB_BASE_URL is not None
-    endpoint = f"{GRAPH_DB_BASE_URL.rstrip('/')}/statements"
+    endpoint = f"{_graph_db_base_url().rstrip('/')}/statements"
 
     headers = {
         "Accept": "application/sparql-results+json",
@@ -33,7 +32,7 @@ async def send_update_query_to_db(payload: str, debug: bool = False) -> None:
                 endpoint,
                 content=payload,
                 headers=headers,
-                timeout=GRAPH_DB_UPDATE_TIMEOUT_SECONDS,
+                timeout=_graph_db_update_timeout_seconds(),
             )
     except httpx.RequestError as e:
         raise SPARQLQueryError(f"Network error while querying {endpoint}") from e

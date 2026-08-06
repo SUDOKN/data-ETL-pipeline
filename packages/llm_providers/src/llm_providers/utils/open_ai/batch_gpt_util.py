@@ -2,11 +2,11 @@ import asyncio
 import logging
 import litellm
 
-from packages.llm_providers.src.llm_providers.models.open_ai.gpt_batch_request_blob import (
+from llm_providers.models.open_ai.gpt_batch_request_blob import (
     GPTBatchRequestBlob,
 )
-from packages.llm_providers.src.llm_providers.models.llm_model import LLM_Model
-from packages.llm_providers.src.llm_providers.models.open_ai.gpt_request_body import (
+from llm_providers.models.llm_model import LLM_Model
+from llm_providers.models.open_ai.gpt_request_body import (
     GPTRequestBody,
     GPTModelParams,
 )

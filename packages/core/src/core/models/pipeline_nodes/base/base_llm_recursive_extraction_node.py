@@ -2,20 +2,20 @@ from __future__ import annotations
 import asyncio
 import logging
 
-from packages.core.src.core.models.extraction_subject import (
+from core.models.extraction_subject import (
     AbstractExtractionSubject,
     AbstractDeferredExtractionSubject,
 )
-from packages.core.src.core.models.pipeline_nodes.base.base_llm_extraction_node import (
+from core.models.pipeline_nodes.base.base_llm_extraction_node import (
     BaseLLMExtractionNode,
     ResultT,
 )
-from packages.core.src.core.models.pipeline_nodes.base.base_node import PipelineContext
-from packages.core.src.core.models.types_and_enums import LLMExtractedFieldTypeVar
-from packages.llm_providers.src.llm_providers.field_types import BatchRequestIDType
+from core.models.pipeline_nodes.base.base_node import PipelineContext
+from core.models.types_and_enums import LLMExtractedFieldTypeVar
+from llm_providers.field_types import BatchRequestIDType
 from scraper.models.s3.scraped_text_file import ScrapedTextFile
 
-from packages.llm_providers.src.llm_providers.services.gpt_batch_request.gpt_batch_request_writes import (
+from llm_providers.services.gpt_batch_request.gpt_batch_request_writes import (
     bulk_record_gpt_batch_responses,
     bulk_upsert_gpt_batch_requests_with_only_req_bodies,
 )

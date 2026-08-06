@@ -1,9 +1,9 @@
 from pydantic import BaseModel
 
-from packages.infra.src.infra.field_types import (
+from infra.field_types import (
     S3FileVersionIDType,
 )
-from packages.llm_providers.src.llm_providers.field_types import BatchRequestIDType
+from llm_providers.field_types import BatchRequestIDType
 
 
 class DeferredBinaryClassification(BaseModel):

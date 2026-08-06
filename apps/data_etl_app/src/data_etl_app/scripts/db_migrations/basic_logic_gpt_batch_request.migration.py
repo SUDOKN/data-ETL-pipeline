@@ -13,27 +13,16 @@ import logging
 from datetime import datetime
 from pymongo import UpdateOne
 
-from packages.core.src.core.dependencies.load_core_env import load_core_env
-from apps.data_etl_app.src.data_etl_app.dependencies.load_scraper_env import (
-    load_scraper_env,
-)
-from apps.data_etl_app.src.data_etl_app.dependencies.load_open_ai_app_env import (
-    load_open_ai_app_env,
-)
-from apps.data_etl_app.src.data_etl_app.dependencies.load_data_etl_env import (
-    load_data_etl_env,
-)
+from pure_utils.env_util import load_env
 
-# Load environment variables
-load_core_env()
-load_scraper_env()
-load_data_etl_env()
-load_open_ai_app_env()
+from data_etl_app.dependencies.env import MIGRATION_ENV
 
-from packages.llm_providers.src.llm_providers.db_models.gpt_batch_request import (
+load_env(MIGRATION_ENV)
+
+from llm_providers.db_models.gpt_batch_request import (
     GPTBatchRequest,
 )
-from core.utils.mongo_client import init_db
+from data_etl_app.dependencies.db import init_app_db
 
 logger = logging.getLogger(__name__)
 logging.basicConfig(
@@ -158,7 +147,7 @@ async def update_basic_logic_requests(collection):
 
 
 async def main():
-    await init_db()
+    await init_app_db()
     logger.info("Database initialized.\n")
 
     collection = GPTBatchRequest.get_pymongo_collection()

@@ -6,35 +6,21 @@ from fastapi import FastAPI, Request
 from fastapi.responses import JSONResponse
 from fastapi.exceptions import RequestValidationError
 
+from pure_utils.env_util import load_env
+
+from data_etl_app.dependencies.env import WEB_APP_ENV
+
 logging.basicConfig(
     level=logging.INFO, format="%(asctime)s - %(name)s - %(levelname)s - %(message)s"
 )
-from packages.core.src.core.dependencies.load_core_env import load_core_env
-from apps.litellm_proxy_app.src.litellm_proxy_app.dependencies.load_litellm_env import (
-    load_litellm_env,
-)
-from apps.data_etl_app.src.data_etl_app.dependencies.load_scraper_env import (
-    load_scraper_env,
-)
-from apps.data_etl_app.src.data_etl_app.dependencies.load_open_ai_app_env import (
-    load_open_ai_app_env,
-)
-from apps.data_etl_app.src.data_etl_app.dependencies.load_data_etl_env import (
-    load_data_etl_env,
-)
 
-# Load environment variables
-load_core_env()
-load_litellm_env()
-load_scraper_env()
-load_data_etl_env()
-load_open_ai_app_env()
+load_env(WEB_APP_ENV)
 
 log_level = os.getenv("LOG_LEVEL", "INFO").upper()
 logger = logging.getLogger(__name__)
 
-from core.utils.mongo_client import init_db
-from apps.data_etl_app.src.data_etl_app.dependencies.aws_s3_clients import (
+from data_etl_app.dependencies.db import init_app_db
+from infra.utils.s3.aws_s3_clients import (
     initialize_data_etl_aws_clients,
     cleanup_data_etl_aws_clients,
 )
@@ -45,7 +31,7 @@ async def lifespan(app: FastAPI):
 
     # Startup
 
-    await init_db()
+    mongo_client = await init_app_db()
     logger.info("Database initialized successfully")
 
     await initialize_data_etl_aws_clients()
@@ -54,6 +40,7 @@ async def lifespan(app: FastAPI):
 
     # Shutdown
     await cleanup_data_etl_aws_clients()
+    await mongo_client.close()
     logger.info("Application shutting down")
 
 
@@ -112,28 +99,28 @@ async def health_check():
     return {"status": "ok", "message": "Application is running"}
 
 
-from apps.data_etl_app.src.data_etl_app.api.routes.knowledge.ontology import (
+from data_etl_app.api.routes.knowledge.ontology import (
     router as ontology_router,
 )
-from apps.data_etl_app.src.data_etl_app.api.routes.knowledge.prompt import (
+from data_etl_app.api.routes.knowledge.prompt import (
     router as prompt_router,
 )
-from apps.data_etl_app.src.data_etl_app.api.routes.knowledge.out_of_vocab_labels import (
+from data_etl_app.api.routes.knowledge.out_of_vocab_labels import (
     router as out_of_vocab_labels_router,
 )
-from apps.data_etl_app.src.data_etl_app.api.routes.rdf_validation import (
+from data_etl_app.api.routes.rdf_validation import (
     router as rdf_validation_router,
 )
-from apps.data_etl_app.src.data_etl_app.api.routes.manufacturer_user_form import (
+from data_etl_app.api.routes.manufacturer_user_form import (
     router as manufacturer_user_form_router,
 )
-from apps.data_etl_app.src.data_etl_app.api.routes.ground_truth.binary_ground_truth import (
+from data_etl_app.api.routes.ground_truth.binary_ground_truth import (
     router as binary_ground_truth_router,
 )
-from apps.data_etl_app.src.data_etl_app.api.routes.ground_truth.concept_ground_truth import (
+from data_etl_app.api.routes.ground_truth.concept_ground_truth import (
     router as concept_ground_truth_router,
 )
-from apps.data_etl_app.src.data_etl_app.api.routes.ground_truth.keyword_ground_truth import (
+from data_etl_app.api.routes.ground_truth.keyword_ground_truth import (
     router as keyword_ground_truth_router,
 )
 

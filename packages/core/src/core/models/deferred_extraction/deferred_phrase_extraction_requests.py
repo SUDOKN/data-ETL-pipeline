@@ -1,10 +1,10 @@
 from pydantic import BaseModel, Field
 from typing import Optional
 
-from packages.core.src.core.models.extraction_results.llm_phrase_extraction_results import (
+from core.models.extraction_results.llm_phrase_extraction_results import (
     LLMPhraseExtractionMetadata,
 )
-from packages.llm_providers.src.llm_providers.field_types import BatchRequestIDType
+from llm_providers.field_types import BatchRequestIDType
 
 
 class LLMPhraseExtractionRequestBundle(BaseModel):

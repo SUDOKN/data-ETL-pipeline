@@ -4,8 +4,8 @@ from typing import Dict, List
 import rdflib
 from pydantic import BaseModel, ConfigDict
 
-from packages.core.src.core.models.types_and_enums import ConceptTypeEnum
-from packages.core.src.core.models.skos_concept import Concept, ConceptNode
+from core.models.types_and_enums import ConceptTypeEnum
+from core.models.skos_concept import Concept, ConceptNode
 from core.utils.rdf_to_graph_util import (
     build_concept_tree,
     get_graph,

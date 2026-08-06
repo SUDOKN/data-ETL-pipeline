@@ -15,25 +15,18 @@ class ConceptTypeEnum(str, Enum):
     process_caps = "process_caps"
 
 
-class BasicFieldTypeEnum(str, Enum):
-    addresses = "addresses"
-    business_desc = "business_desc"
-
-
 class BinaryClassificationTypeEnum(str, Enum):
     is_manufacturer = "is_manufacturer"
     is_product_manufacturer = "is_product_manufacturer"
     is_contract_manufacturer = "is_contract_manufacturer"
 
 
+# str stands in for app-declared basic field types (e.g. data_etl_app.BasicFieldTypeEnum)
 LLMExtractedFieldTypeEnum = (
-    KeywordTypeEnum
-    | ConceptTypeEnum
-    | BasicFieldTypeEnum
-    | BinaryClassificationTypeEnum
+    KeywordTypeEnum | ConceptTypeEnum | str | BinaryClassificationTypeEnum
 )
 
-SingleStageFieldTypeEnum = BasicFieldTypeEnum | BinaryClassificationTypeEnum
+SingleStageFieldTypeEnum = str | BinaryClassificationTypeEnum
 
 # Define a type variable that must be a LLMExtractedFieldTypeEnum
 LLMExtractedFieldTypeVar = TypeVar(

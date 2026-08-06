@@ -4,7 +4,7 @@ from typing_extensions import Literal
 from fastapi import APIRouter, HTTPException, Query
 from fastapi.responses import JSONResponse
 
-from packages.core.src.core.models.skos_concept import ConceptNode
+from core.models.skos_concept import ConceptNode
 from core.services.ontology_service import (
     OntologyService,
     get_ontology_service,
@@ -15,7 +15,7 @@ from core.utils.rdf_to_graph_util import (
     prune_tree_to_depth,
     tree_list_to_flat,
 )
-from apps.data_etl_app.src.data_etl_app.utils.route_url_util import (
+from data_etl_app.utils.route_url_util import (
     ONTOLOGY_REFRESH_URL,
 )
 

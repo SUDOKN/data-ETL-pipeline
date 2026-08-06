@@ -2,11 +2,11 @@ from fastapi import APIRouter, HTTPException, Query
 from fastapi.responses import JSONResponse
 import logging
 
-from packages.llm_providers.src.llm_providers.models.llm_model import (
+from llm_providers.models.llm_model import (
     get_llm_model_by_name,
     LLM_Model,
 )
-from apps.data_etl_app.src.data_etl_app.services.prompt_service import (
+from data_etl_app.services.prompt_service import (
     get_prompt_service,
 )
 

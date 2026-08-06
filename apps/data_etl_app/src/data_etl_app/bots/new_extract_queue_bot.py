@@ -4,71 +4,57 @@ import logging
 from datetime import UTC, datetime
 from typing import Callable, Awaitable
 
-from packages.core.src.core.dependencies.load_core_env import load_core_env
-from packages.llm_providers.src.llm_providers.models.llm_model import GPT_4o_mini
-from apps.data_etl_app.src.data_etl_app.dependencies.load_scraper_env import (
-    load_scraper_env,
-)
-from apps.data_etl_app.src.data_etl_app.dependencies.load_open_ai_app_env import (
-    load_open_ai_app_env,
-)
-from apps.data_etl_app.src.data_etl_app.dependencies.load_data_etl_env import (
-    load_data_etl_env,
-)
-from apps.litellm_proxy_app.src.litellm_proxy_app.dependencies.load_litellm_env import (
-    load_litellm_env,
-)
+from pure_utils.env_util import load_env
 
-# Load environment variables
-load_core_env()
-load_scraper_env()
-load_data_etl_env()
-load_open_ai_app_env()
-load_litellm_env()
+from data_etl_app.dependencies.env import EXTRACT_BOT_ENV
 
-from apps.data_etl_app.src.data_etl_app.dependencies.aws_sqs_clients import (
+load_env(EXTRACT_BOT_ENV)
+
+from llm_providers.models.llm_model import GPT_4o_mini
+
+from infra.utils.queue.aws_sqs_clients import (
     initialize_scraper_aws_clients,
     cleanup_scraper_aws_clients,
 )
-from apps.data_etl_app.src.data_etl_app.dependencies.aws_s3_clients import (
+from infra.utils.s3.aws_s3_clients import (
     initialize_data_etl_aws_clients,
     cleanup_data_etl_aws_clients,
 )
 
-from apps.data_etl_app.src.data_etl_app.db_models.manufacturer import Manufacturer
-from packages.llm_providers.src.llm_providers.db_models.extraction_error import (
+from data_etl_app.db_models.manufacturer import Manufacturer
+from llm_providers.db_models.extraction_error import (
     ExtractionError,
 )
-from packages.infra.src.infra.models.queue_items.to_extract_item import ToExtractItem
-from packages.core.src.core.models.extraction_results.binary_classification_result import (
+from infra.models.queue_items.to_extract_item import ToExtractItem
+from core.models.extraction_results.binary_classification_result import (
     BaseClassificationDecision,
 )
-from packages.core.src.core.models.types_and_enums import BinaryClassificationTypeEnum
-from packages.llm_providers.src.llm_providers.models.open_ai.gpt_model_params import (
+from core.models.types_and_enums import BinaryClassificationTypeEnum
+from llm_providers.models.open_ai.gpt_model_params import (
     GPTModelParams,
 )
-from packages.llm_providers.src.llm_providers.models.llm_model import LLM_Model
-from apps.data_etl_app.src.data_etl_app.models.s3.scraped_mfg_file import ScrapedMfgFile
+from llm_providers.models.llm_model import LLM_Model
+from data_etl_app.models.s3.scraped_mfg_file import ScrapedMfgFile
 
-from apps.data_etl_app.src.data_etl_app.services.user_service import is_user_MEP
-from apps.data_etl_app.src.data_etl_app.services.manufacturer_service import (
+from data_etl_app.services.user_service import is_user_MEP
+from data_etl_app.services.manufacturer_service import (
     find_manufacturer_by_etld1,
 )
-from apps.data_etl_app.src.data_etl_app.services.ground_truth.binary_ground_truth_service import (
+from data_etl_app.services.ground_truth.binary_ground_truth_service import (
     get_binary_ground_truth,
 )
 from core.services.ontology_service import (
     get_ontology_service,
 )
-from apps.data_etl_app.src.data_etl_app.services.prompt_service import (
+from data_etl_app.services.prompt_service import (
     get_prompt_service,
 )
-from apps.data_etl_app.src.data_etl_app.services.manufacturer_extraction_orchestrator import (
+from data_etl_app.services.manufacturer_extraction_orchestrator import (
     ManufacturerExtractionOrchestrator,
 )
 
-from core.utils.mongo_client import init_db
-from packages.pure_utils.src.pure_utils.time_util import get_current_time
+from data_etl_app.dependencies.db import init_app_db
+from pure_utils.time_util import get_current_time
 
 logger = logging.getLogger(__name__)
 
@@ -397,16 +383,16 @@ async def extract_and_cleanup(
 
 
 async def async_main():
-    from packages.infra.src.infra.utils.aws.queue.extract_queue_util import (
+    from infra.utils.aws.queue.extract_queue_util import (
         poll_item_from_extract_queue,
         delete_item_from_extract_queue,
     )
-    from packages.infra.src.infra.utils.aws.queue.priority_extract_queue_util import (
+    from infra.utils.aws.queue.priority_extract_queue_util import (
         poll_item_from_priority_extract_queue,
         delete_item_from_priority_extract_queue,
     )
 
-    await init_db()
+    await init_app_db()
 
     # Initialize AWS clients
     await initialize_scraper_aws_clients()

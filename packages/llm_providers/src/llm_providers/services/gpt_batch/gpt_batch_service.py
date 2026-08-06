@@ -5,12 +5,12 @@ from typing import Optional
 from openai import OpenAIError
 from openai.types import Batch
 
-from packages.llm_providers.src.llm_providers.db_models.gpt_batch import (
+from llm_providers.db_models.gpt_batch import (
     GPTBatch,
     GPTBatchStatus,
     GPTBatchMetadata,
 )
-from packages.llm_providers.src.llm_providers.db_models.api_key_bundle import (
+from llm_providers.db_models.api_key_bundle import (
     APIKeyBundle,
 )
 

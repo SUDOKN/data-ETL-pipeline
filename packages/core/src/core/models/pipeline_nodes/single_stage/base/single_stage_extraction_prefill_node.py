@@ -3,29 +3,29 @@ from __future__ import annotations
 import logging
 from datetime import datetime
 
-from packages.core.src.core.models.extraction_subject import (
+from core.models.extraction_subject import (
     AbstractExtractionSubject,
     AbstractDeferredExtractionSubject,
 )
-from packages.core.src.core.models.deferred_extraction.deferred_single_stage_extraction_requests import (
+from core.models.deferred_extraction.deferred_single_stage_extraction_requests import (
     SingleStageExtractionRequestBundle,
     DeferredSingleStageExtractionRequests,
 )
-from packages.llm_providers.src.llm_providers.models.file_objects.prompt import Prompt
-from packages.core.src.core.models.extraction_results.single_stage_extraction_results import (
+from llm_providers.models.file_objects.prompt import Prompt
+from core.models.extraction_results.single_stage_extraction_results import (
     LLMSingleStageExtractionMetadata,
 )
-from packages.core.src.core.models.chunking_strat import ChunkingStrategy
-from packages.core.src.core.models.pipeline_nodes.base.base_node import (
+from core.models.chunking_strat import ChunkingStrategy
+from core.models.pipeline_nodes.base.base_node import (
     PipelineContext,
 )
-from packages.core.src.core.models.pipeline_nodes.base.base_prefill_node import (
+from core.models.pipeline_nodes.base.base_prefill_node import (
     PrefillNode,
 )
-from packages.core.src.core.models.pipeline_nodes.single_stage.base.single_stage_extraction_node import (
+from core.models.pipeline_nodes.single_stage.base.single_stage_extraction_node import (
     SingleStageExtractionNode,
 )
-from packages.core.src.core.models.types_and_enums import (
+from core.models.types_and_enums import (
     SingleStageFieldTypeVar,
 )
 from scraper.models.s3.scraped_text_file import ScrapedTextFile

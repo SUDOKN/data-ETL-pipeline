@@ -1,12 +1,13 @@
-from pydantic import BaseModel
+from pydantic import BaseModel, ConfigDict
 
-from packages.core.src.core.models.extraction_results.single_stage_extraction_results import (
+from core.models.extraction_results.single_stage_extraction_results import (
     SingleStageExtractionResults,
     SingleStageStats,
 )
 
 
 class BaseClassificationDecision(BaseModel):
+    model_config = ConfigDict(extra="forbid")
     answer: bool
     reason: str
 

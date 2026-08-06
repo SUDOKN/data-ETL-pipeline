@@ -6,41 +6,41 @@ from pathlib import Path
 from typing import Optional
 
 
-from packages.llm_providers.src.llm_providers.models.file_objects.base_files import (
+from llm_providers.models.file_objects.base_files import (
     CSVFile,
 )
 from core.models.ontology import Ontology
-from apps.data_etl_app.src.data_etl_app.db_models.deferred_manufacturer import (
+from data_etl_app.db_models.deferred_manufacturer import (
     DeferredManufacturer,
 )
-from packages.llm_providers.src.llm_providers.utils.open_ai.batch_jsonl_file_writer import (
+from llm_providers.utils.open_ai.batch_jsonl_file_writer import (
     BatchRequestJSONLFileWriter,
     MaxFilesReachedException,
 )
 
-from apps.data_etl_app.src.data_etl_app.services.prompt_service import PromptService
-from packages.llm_providers.src.llm_providers.models.open_ai.gpt_model_params import (
+from data_etl_app.services.prompt_service import PromptService
+from llm_providers.models.open_ai.gpt_model_params import (
     GPTModelParams,
 )
-from packages.llm_providers.src.llm_providers.models.llm_model import LLM_Model
-from packages.llm_providers.src.llm_providers.models.llm_model import GPT_4_1_mini
+from llm_providers.models.llm_model import LLM_Model
+from llm_providers.models.llm_model import GPT_4_1_mini
 
-from apps.data_etl_app.src.data_etl_app.services.manufacturer_service import (
+from data_etl_app.services.manufacturer_service import (
     find_manufacturer_by_etld1,
 )
-from packages.llm_providers.src.llm_providers.services.gpt_batch_request.gpt_batch_request_queries import (
+from llm_providers.services.gpt_batch_request.gpt_batch_request_queries import (
     find_gpt_batch_requests_by_custom_ids,
 )
-from apps.data_etl_app.src.data_etl_app.services.deferred_manufacturer_service import (
+from data_etl_app.services.deferred_manufacturer_service import (
     get_deferred_manufacturer_by_etld1_scraped_file_version,
     get_embedded_gpt_request_ids,
 )
-from apps.data_etl_app.src.data_etl_app.services.manufacturer_extraction_orchestrator import (
+from data_etl_app.services.manufacturer_extraction_orchestrator import (
     ManufacturerExtractionOrchestrator,
 )
 
-from packages.pure_utils.src.pure_utils.time_util import get_timestamp_str
-from apps.data_etl_app.src.data_etl_app.models.s3.scraped_mfg_file import ScrapedMfgFile
+from pure_utils.time_util import get_timestamp_str
+from data_etl_app.models.s3.scraped_mfg_file import ScrapedMfgFile
 
 logger = logging.getLogger(__name__)
 

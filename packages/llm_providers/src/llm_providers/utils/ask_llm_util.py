@@ -7,8 +7,8 @@ from typing import Optional
 from openai import AsyncOpenAI
 from openai.types.chat import ChatCompletion
 
-from packages.llm_providers.src.llm_providers.models.llm_model import LLM_Model
-from packages.llm_providers.src.llm_providers.models.llm_model_params import (
+from llm_providers.models.llm_model import LLM_Model
+from llm_providers.models.llm_model_params import (
     LLMModelParams,
     LLMSamplingParams,
 )

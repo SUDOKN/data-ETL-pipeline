@@ -1,10 +1,10 @@
 from __future__ import annotations
 
-from packages.core.src.core.models.pipeline_nodes import PipelineContext
-from packages.core.src.core.models.pipeline_nodes.multi_stage.keyword.keyword_reconcile_node import (
+from core.models.pipeline_nodes import PipelineContext
+from core.models.pipeline_nodes.multi_stage.keyword.keyword_reconcile_node import (
     KeywordReconcileNode,
 )
-from packages.core.src.core.models.types_and_enums import KeywordTypeEnum
+from core.models.types_and_enums import KeywordTypeEnum
 
 
 class EquipmentReconcileNode(KeywordReconcileNode):
@@ -19,7 +19,7 @@ class EquipmentReconcileNode(KeywordReconcileNode):
         super().__init__(field_type=field_type)
 
     def get_upstream_search_map(self, pipeline_context: PipelineContext) -> dict:
-        from apps.data_etl_app.src.data_etl_app.models.pipeline_nodes.multi_stage.keyword.equipment.equipment_phrase_search_node import (
+        from data_etl_app.models.pipeline_nodes.multi_stage.keyword.equipment.equipment_phrase_search_node import (
             EquipmentPhraseSearchNode,
         )
 
@@ -28,21 +28,21 @@ class EquipmentReconcileNode(KeywordReconcileNode):
     def get_upstream_recursive_search_map(
         self, pipeline_context: PipelineContext
     ) -> dict:
-        from apps.data_etl_app.src.data_etl_app.models.pipeline_nodes.multi_stage.keyword.equipment.equipment_recursive_search_node import (
+        from data_etl_app.models.pipeline_nodes.multi_stage.keyword.equipment.equipment_recursive_search_node import (
             EquipmentRecursiveSearchNode,
         )
 
         return pipeline_context[EquipmentRecursiveSearchNode]
 
     def get_upstream_relationship_map(self, pipeline_context: PipelineContext) -> dict:
-        from apps.data_etl_app.src.data_etl_app.models.pipeline_nodes.multi_stage.keyword.equipment.equipment_relationship_node import (
+        from data_etl_app.models.pipeline_nodes.multi_stage.keyword.equipment.equipment_relationship_node import (
             EquipmentRelationshipNode,
         )
 
         return pipeline_context[EquipmentRelationshipNode]
 
     def get_upstream_screening_map(self, pipeline_context: PipelineContext) -> dict:
-        from apps.data_etl_app.src.data_etl_app.models.pipeline_nodes.multi_stage.keyword.equipment.equipment_relationship_screening_node import (
+        from data_etl_app.models.pipeline_nodes.multi_stage.keyword.equipment.equipment_relationship_screening_node import (
             EquipmentRelationshipScreeningNode,
         )
 
@@ -51,7 +51,7 @@ class EquipmentReconcileNode(KeywordReconcileNode):
     def get_upstream_freehand_grounding_map(
         self, pipeline_context: PipelineContext
     ) -> dict:
-        from apps.data_etl_app.src.data_etl_app.models.pipeline_nodes.multi_stage.keyword.equipment.equipment_freehand_grounding_node import (
+        from data_etl_app.models.pipeline_nodes.multi_stage.keyword.equipment.equipment_freehand_grounding_node import (
             EquipmentFreehandGroundingNode,
         )
 

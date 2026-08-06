@@ -1,5 +1,5 @@
 from scraper.models.s3.scraped_text_file import ScrapedTextFile
-from apps.data_etl_app.src.data_etl_app.utils.s3.scraped_mfg_file_util import (
+from data_etl_app.utils.s3.scraped_mfg_file_util import (
     is_scraped_mfg_file_version_deletable,
 )
 

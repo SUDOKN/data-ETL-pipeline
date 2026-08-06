@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from packages.core.src.core.models.extraction_schemas.relationship import (
+from core.models.extraction_schemas.relationship import (
     LLMPhraseRelationshipResults,
 )
 

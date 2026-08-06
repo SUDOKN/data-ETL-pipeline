@@ -1,12 +1,14 @@
-import os
 from typing import Optional
-from apps.data_etl_app.src.data_etl_app.dependencies.aws_s3_clients import (
+
+from pure_utils.env_util import require_env
+
+from infra.utils.s3.aws_s3_clients import (
     get_prompt_rdf_s3_client,
 )
 
-PROMPT_BUCKET = os.getenv("PROMPT_BUCKET")
-if not PROMPT_BUCKET:
-    raise ValueError("Prompt bucket is not set. Please check your .env file.")
+
+def _prompt_bucket() -> str:
+    return require_env("PROMPT_BUCKET")
 
 
 def get_prompt_filename(prompt_name: str) -> str:
@@ -23,13 +25,14 @@ async def does_prompt_version_exist(prompt_filename: str, version_id: str) -> bo
     :param version_id: Version ID to check for a specific version of the file.
     :return: True if the file version exists, False otherwise.
     """
-    assert PROMPT_BUCKET and prompt_filename, "Prompt bucket or filename is not set"
+    assert prompt_filename, "Prompt filename is not set"
+    bucket = _prompt_bucket()
     s3_client = get_prompt_rdf_s3_client()
     from botocore.exceptions import ClientError
 
     try:
         await s3_client.head_object(
-            Bucket=PROMPT_BUCKET, Key=prompt_filename, VersionId=version_id
+            Bucket=bucket, Key=prompt_filename, VersionId=version_id
         )
         return True
     except ClientError as e:
@@ -49,26 +52,27 @@ async def download_prompt(
     :param version_id: Optional version ID to download a specific version
     :return: Tuple of (prompt_content, version_id)
     """
-    assert PROMPT_BUCKET and prompt_filename, "Prompt bucket or filename is not set"
+    assert prompt_filename, "Prompt filename is not set"
+    bucket = _prompt_bucket()
     s3_client = get_prompt_rdf_s3_client()
 
     if version_id:
         obj = await s3_client.get_object(
-            Bucket=PROMPT_BUCKET, Key=prompt_filename, VersionId=version_id
+            Bucket=bucket, Key=prompt_filename, VersionId=version_id
         )
     else:
-        obj = await s3_client.get_object(Bucket=PROMPT_BUCKET, Key=prompt_filename)
+        obj = await s3_client.get_object(Bucket=bucket, Key=prompt_filename)
 
     # check if the object does not exist
     if "Body" not in obj:
         raise ValueError(
-            f"Object {prompt_filename}:{version_id} not found in bucket {PROMPT_BUCKET}. Please check the bucket and filename."
+            f"Object {prompt_filename}:{version_id} not found in bucket {bucket}. Please check the bucket and filename."
         )
 
     actual_version_id = obj.get("VersionId")
     if not actual_version_id:
         raise ValueError(
-            f"Version ID not found for the file: {prompt_filename}. Ensure that versioning is enabled on the {PROMPT_BUCKET} bucket."
+            f"Version ID not found for the file: {prompt_filename}. Ensure that versioning is enabled on the {bucket} bucket."
         )
 
     body_bytes = await obj["Body"].read()

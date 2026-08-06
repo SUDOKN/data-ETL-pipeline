@@ -1,8 +1,8 @@
 from __future__ import annotations
 from pydantic import ConfigDict
 
-from packages.infra.src.infra.models.queue_items.to_scrape_item import ToScrapeItem
-from packages.infra.src.infra.models.queue_items.queue_item import QueueItem
+from infra.models.queue_items.to_scrape_item import ToScrapeItem
+from infra.models.queue_items.queue_item import QueueItem
 
 
 class ToExtractItem(QueueItem):

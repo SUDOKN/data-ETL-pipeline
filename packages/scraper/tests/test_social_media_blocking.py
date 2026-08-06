@@ -3,12 +3,12 @@
 import pytest
 from unittest.mock import Mock, patch
 
-from packages.llm_providers.src.llm_providers.models.llm_model import NO_MODEL
-from packages.scraper.src.scraper.utils.social_media_blocker import (
+from llm_providers.models.llm_model import NO_MODEL
+from scraper.utils.social_media_blocker import (
     SocialMediaBlocker,
     social_media_blocker,
 )
-from packages.scraper.src.scraper.services.url_scraper_service import ScraperService
+from scraper.services.url_scraper_service import ScraperService
 
 
 class TestSocialMediaBlocker:

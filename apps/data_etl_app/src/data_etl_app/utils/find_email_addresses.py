@@ -2,7 +2,7 @@ import logging
 import re
 import asyncio
 from email_validator import validate_email, EmailNotValidError
-from packages.core.src.core.field_types import SubjectUniqueIDType
+from core.field_types import SubjectUniqueIDType
 
 logger = logging.getLogger(__name__)
 

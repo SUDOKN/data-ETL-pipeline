@@ -4,28 +4,30 @@ import logging
 from datetime import datetime
 from typing import TYPE_CHECKING, Optional
 
-from apps.data_etl_app.src.data_etl_app.db_models.manufacturer import Manufacturer
-from apps.data_etl_app.src.data_etl_app.models.extraction_results.business_description_extraction_result import (
+from data_etl_app.db_models.manufacturer import Manufacturer
+from data_etl_app.models.extraction_results.business_description_extraction_result import (
     BusinessDescriptionExtractionStats,
     BusinessDescriptionExtractionStatsMap,
     BusinessDescriptionExtractionResult,
 )
-from packages.core.src.core.models.deferred_extraction.deferred_single_stage_extraction_requests import (
+from core.models.deferred_extraction.deferred_single_stage_extraction_requests import (
     DeferredSingleStageExtractionRequests,
 )
-from apps.data_etl_app.src.data_etl_app.db_models.deferred_manufacturer import (
+from data_etl_app.db_models.deferred_manufacturer import (
     DeferredManufacturer,
 )
-from packages.core.src.core.models.pipeline_nodes.base.base_llm_extraction_node import (
+from core.models.pipeline_nodes.base.base_llm_extraction_node import (
     PipelineContext,
 )
-from packages.core.src.core.models.types_and_enums import BasicFieldTypeEnum
-from packages.core.src.core.models.pipeline_nodes.base.base_reconcile_node import (
+from data_etl_app.models.types_and_enums import (
+    BasicFieldTypeEnum,
+)
+from core.models.pipeline_nodes.base.base_reconcile_node import (
     ReconcileNode,
 )
-from apps.data_etl_app.src.data_etl_app.models.s3.scraped_mfg_file import ScrapedMfgFile
+from data_etl_app.models.s3.scraped_mfg_file import ScrapedMfgFile
 
-from apps.data_etl_app.src.data_etl_app.services.manufacturer_service import (
+from data_etl_app.services.manufacturer_service import (
     update_manufacturer,
 )
 
@@ -52,7 +54,7 @@ class BusinessDescReconcileNode(ReconcileNode[BasicFieldTypeEnum.business_desc])
         pipeline_context: PipelineContext,
         eager: bool,
     ) -> None:
-        from apps.data_etl_app.src.data_etl_app.models.pipeline_nodes.single_stage.basic_fields.business_desc_extraction_node import (
+        from data_etl_app.models.pipeline_nodes.single_stage.basic_fields.business_desc_extraction_node import (
             BusinessDescExtractionNode,
         )
 

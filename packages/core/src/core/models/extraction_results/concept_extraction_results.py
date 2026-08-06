@@ -1,15 +1,15 @@
 from __future__ import annotations
 from pydantic import BaseModel
 
-from packages.core.src.core.models.extraction_results.llm_phrase_extraction_results import (
+from core.models.extraction_results.llm_phrase_extraction_results import (
     ExtractionNodeMetadata,
     LLMPhraseExtractionStats,
     LLMPhraseExtractionMetadata,
 )
-from packages.core.src.core.models.extraction_schemas.grounding import (
+from core.models.extraction_schemas.grounding import (
     PhraseToTagAndReasonMap,
 )
-from packages.core.src.core.models.extraction_schemas.iterative_tagging import (
+from core.models.extraction_schemas.iterative_tagging import (
     IterativeGroundingResult,
 )
 

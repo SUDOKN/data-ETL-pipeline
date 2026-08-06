@@ -11,7 +11,7 @@ import shutil
 import sys
 from selenium import webdriver
 
-from packages.scraper.src.scraper.utils.selenium.chrome_driver_manager import (
+from scraper.utils.selenium.chrome_driver_manager import (
     ChromeDriverManager,
 )
 

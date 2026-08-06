@@ -16,30 +16,18 @@ from datetime import datetime, timezone
 from pymongo import UpdateOne
 from pymongo.errors import BulkWriteError
 
-from packages.core.src.core.dependencies.load_core_env import load_core_env
-from apps.data_etl_app.src.data_etl_app.dependencies.load_scraper_env import (
-    load_scraper_env,
-)
-from apps.data_etl_app.src.data_etl_app.dependencies.load_open_ai_app_env import (
-    load_open_ai_app_env,
-)
-from apps.data_etl_app.src.data_etl_app.dependencies.load_data_etl_env import (
-    load_data_etl_env,
-)
+from pure_utils.env_util import load_env
 
-# Load environment variables before importing app modules that depend on them
-load_core_env()
-load_scraper_env()
-load_data_etl_env()
-load_open_ai_app_env()
+from data_etl_app.dependencies.env import MIGRATION_ENV
+from data_etl_app.required_env import GOOGLE_MAPS
 
-from apps.data_etl_app.src.data_etl_app.db_models.manufacturer import (
-    Address,
-    Manufacturer,
-)
-from apps.data_etl_app.src.data_etl_app.db_models.place import Place
-from core.utils.mongo_client import init_db
-from apps.data_etl_app.src.data_etl_app.utils.lat_lng_util import (
+load_env([*MIGRATION_ENV, *GOOGLE_MAPS])
+
+from data_etl_app.db_models.manufacturer import Manufacturer
+from data_etl_app.models.extraction_results.address_extraction_result import Address
+from data_etl_app.db_models.place import Place
+from data_etl_app.dependencies.db import init_app_db
+from data_etl_app.utils.lat_lng_util import (
     get_geocode_result_from_address,
 )
 
@@ -236,7 +224,7 @@ async def iterate(dry_run: bool) -> None:
 
 
 async def main(dry_run: bool) -> None:
-    await init_db()
+    await init_app_db()
     print("Database initialized.")
     await iterate(dry_run)
 

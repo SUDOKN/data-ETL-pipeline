@@ -18,9 +18,6 @@ async def test_empty_text_returns_empty_dict():
 @pytest.mark.asyncio
 async def test_chunks_with_overlap_and_correct_boundaries(monkeypatch):
     # Monkeypatch token-count function so each line counts as 1 token
-    monkeypatch.setattr(
-        "data_etl_app.utils.chunk_util.num_tokens_from_string", lambda line: 1
-    )
     # Prepare text with 5 lines
     text = """\
 L1
@@ -49,10 +46,6 @@ L5"""  # note: only first 4 lines end with newline when splitlines(keepends=True
 
 @pytest.mark.asyncio
 async def test_full_text_as_single_chunk_when_under_limit(monkeypatch):
-    monkeypatch.setattr(
-        "data_etl_app.utils.chunk_util.num_tokens_from_string",
-        lambda line: len(line),  # small count to ensure under limit
-    )
     text = "Hello world!"  # single line
     result = await get_chunks_respecting_line_boundaries(
         text, soft_limit_tokens=100, overlap_ratio=0.5, max_chunks=10
@@ -69,9 +62,6 @@ async def test_full_text_as_single_chunk_when_under_limit(monkeypatch):
 @pytest.mark.asyncio
 async def test_chunks_with_zero_overlap(monkeypatch):
     # Monkeypatch token-count to 1 token per line
-    monkeypatch.setattr(
-        "data_etl_app.utils.chunk_util.num_tokens_from_string", lambda line: 1
-    )
     # Prepare text with 5 lines
     text = "L1\nL2\nL3\nL4\nL5"
     # Use max_tokens=3 and zero overlap
@@ -98,9 +88,7 @@ def test_get_roughly_even_chunks_empty_text():
 
 def test_get_roughly_even_chunks_text_under_target(monkeypatch):
     """Test when total tokens is under target_chunk_tokens"""
-    monkeypatch.setattr(
-        "data_etl_app.utils.chunk_util.num_tokens_from_string", lambda line: 10
-    )
+
     text = "Short text"
     result = get_roughly_even_chunks(
         text, max_tokens_allowed_per_chunk=100, overlap_ratio=0.25
@@ -121,10 +109,6 @@ def test_get_roughly_even_chunks_calculates_divisions_correctly(monkeypatch):
         else:
             return 1000  # Each line is 1000 tokens to force chunking
 
-    monkeypatch.setattr(
-        "data_etl_app.utils.chunk_util.num_tokens_from_string", mock_token_count
-    )
-
     text = "Line1\nLine2\nLine3\nLine4\nLine5\nLine6"
     # target_chunk_tokens=2500, using integer division:
     # 6000 // 1 = 6000 > 2500, so num_divisions = 2
@@ -141,9 +125,7 @@ def test_get_roughly_even_chunks_calculates_divisions_correctly(monkeypatch):
 
 def test_get_roughly_even_chunks_with_large_target(monkeypatch):
     """Test when target is much larger than text"""
-    monkeypatch.setattr(
-        "data_etl_app.utils.chunk_util.num_tokens_from_string", lambda line: 50
-    )
+
     text = "Small text content"
     result = get_roughly_even_chunks(
         text, max_tokens_allowed_per_chunk=10000, overlap_ratio=0.25
@@ -163,10 +145,6 @@ def test_get_roughly_even_chunks_division_calculation(monkeypatch):
             return 15000  # Total tokens
         else:
             return 100  # Each line/chunk
-
-    monkeypatch.setattr(
-        "data_etl_app.utils.chunk_util.num_tokens_from_string", mock_token_count
-    )
 
     text = "full_text_content_here"
     # target_chunk_tokens=4000, using integer division:
@@ -200,14 +178,6 @@ def test_get_roughly_even_chunks_passes_correct_parameters(monkeypatch):
 
     def mock_token_count(text):
         return 8000  # Total tokens
-
-    monkeypatch.setattr(
-        "data_etl_app.utils.chunk_util.num_tokens_from_string", mock_token_count
-    )
-    monkeypatch.setattr(
-        "data_etl_app.utils.chunk_util.get_chunks_respecting_line_boundaries_sync",
-        mock_get_chunks_respecting_boundaries,
-    )
 
     text = "Test text content"
     target_tokens = 3000
@@ -243,10 +213,6 @@ def test_get_roughly_even_chunks_realistic_scenario(monkeypatch):
     def mock_token_count(text):
         # Simulate realistic token counting: ~10 tokens per line
         return len(text.split("\n")) * 10
-
-    monkeypatch.setattr(
-        "data_etl_app.utils.chunk_util.num_tokens_from_string", mock_token_count
-    )
 
     # Target 100 tokens per chunk, with 20% overlap
     result = get_roughly_even_chunks(
@@ -287,14 +253,6 @@ def test_get_roughly_even_chunks_integer_division_behavior(monkeypatch):
         captured_divisions.append(soft_limit_tokens)
         return {"0:10": text[:10]}
 
-    monkeypatch.setattr(
-        "data_etl_app.utils.chunk_util.num_tokens_from_string", mock_token_count
-    )
-    monkeypatch.setattr(
-        "data_etl_app.utils.chunk_util.get_chunks_respecting_line_boundaries_sync",
-        mock_get_chunks_respecting_boundaries,
-    )
-
     # Test case where integer division makes a difference
     # 10000 // 3333 = 3, but 10000 / 3333 = 3.0003
     target_tokens = 3333
@@ -324,10 +282,6 @@ def test_get_roughly_even_chunks_validates_chunk_count_and_sizes(monkeypatch):
             return len(text.split("\n")) * 100
         else:
             return 100  # Individual lines have 100 tokens each
-
-    monkeypatch.setattr(
-        "data_etl_app.utils.chunk_util.num_tokens_from_string", mock_token_count
-    )
 
     # Create text with 10 lines = 1000 total tokens
     text = "\n".join([f"Line {i} with content" for i in range(1, 11)])
@@ -404,14 +358,6 @@ def test_get_roughly_even_chunks_specific_division_scenarios(monkeypatch):
             # Create fake chunks based on the chunk size
             num_chunks = max(1, case["total_tokens"] // soft_limit_tokens)
             return {f"{i*100}:{(i+1)*100}": f"chunk_{i}" for i in range(num_chunks)}
-
-        monkeypatch.setattr(
-            "data_etl_app.utils.chunk_util.num_tokens_from_string", mock_token_count
-        )
-        monkeypatch.setattr(
-            "data_etl_app.utils.chunk_util.get_chunks_respecting_line_boundaries_sync",
-            mock_get_chunks_respecting_boundaries,
-        )
 
         result = get_roughly_even_chunks(
             "test text", max_tokens_allowed_per_chunk=case["target_tokens"]

@@ -6,58 +6,51 @@ import logging
 
 from typing import Callable, Awaitable
 
-from packages.core.src.core.dependencies.load_core_env import load_core_env
-from apps.data_etl_app.src.data_etl_app.dependencies.load_scraper_env import (
-    load_scraper_env,
-)
-from apps.data_etl_app.src.data_etl_app.dependencies.load_open_ai_app_env import (
-    load_open_ai_app_env,
-)
+from pure_utils.env_util import load_env
 
-# Load environment variables
-load_core_env()
-load_scraper_env()
-load_open_ai_app_env()
+from data_etl_app.dependencies.env import SCRAPE_BOT_ENV
+
+load_env(SCRAPE_BOT_ENV)
 
 
-from apps.data_etl_app.src.data_etl_app.dependencies.aws_sqs_clients import (
+from infra.utils.queue.aws_sqs_clients import (
     cleanup_scraper_aws_clients,
     initialize_scraper_aws_clients,
 )
-from apps.data_etl_app.src.data_etl_app.dependencies.aws_s3_clients import (
+from infra.utils.s3.aws_s3_clients import (
     cleanup_data_etl_aws_clients,
     initialize_data_etl_aws_clients,
 )
 
-from packages.llm_providers.src.llm_providers.db_models.scraping_error import (
+from llm_providers.db_models.scraping_error import (
     ScrapingError,
 )
-from apps.data_etl_app.src.data_etl_app.db_models.manufacturer import Manufacturer
-from packages.infra.src.infra.models.queue_items.to_extract_item import ToExtractItem
-from packages.infra.src.infra.models.queue_items.to_scrape_item import ToScrapeItem
+from data_etl_app.db_models.manufacturer import Manufacturer
+from infra.models.queue_items.to_extract_item import ToExtractItem
+from infra.models.queue_items.to_scrape_item import ToScrapeItem
 
-from packages.infra.src.infra.utils.s3.scraped_text_file_util import (
+from infra.utils.s3.scraped_text_file_util import (
     delete_scraped_text_from_s3_by_subject_unique_id,
     get_latest_version_id_by_subject_unique_id,
 )
-from core.utils.mongo_client import init_db
-from packages.pure_utils.src.pure_utils.time_util import get_current_time
+from data_etl_app.dependencies.db import init_app_db
+from pure_utils.time_util import get_current_time
 
-from apps.data_etl_app.src.data_etl_app.services.manufacturer_service import (
+from data_etl_app.services.manufacturer_service import (
     create_new_manufacturer,
     find_manufacturer_by_etld1,
     reset_llm_extracted_fields,
     update_manufacturer,
 )
 
-from apps.data_etl_app.src.data_etl_app.models.s3.scraped_mfg_file import ScrapedMfgFile
+from data_etl_app.models.s3.scraped_mfg_file import ScrapedMfgFile
 from scraper.services.url_scraper_service import (
     ScraperService,
 )
-from packages.llm_providers.src.llm_providers.models.llm_model import GPT_5_2
-from packages.llm_providers.src.llm_providers.models.llm_model import LLM_Model
+from llm_providers.models.llm_model import GPT_5_2
+from llm_providers.models.llm_model import LLM_Model
 
-from packages.pure_utils.src.pure_utils.url_util import get_etld1_from_host
+from pure_utils.url_util import get_etld1_from_host
 
 logger = logging.getLogger(__name__)
 
@@ -439,15 +432,15 @@ def parse_args():
 
 async def async_main():
 
-    from packages.infra.src.infra.utils.aws.queue.gt_extract_queue_util import (
+    from infra.utils.aws.queue.gt_extract_queue_util import (
         push_item_to_gt_extract_queue,
     )
-    from packages.infra.src.infra.utils.aws.queue.gt_scrape_queue_util import (
+    from infra.utils.aws.queue.gt_scrape_queue_util import (
         poll_item_from_gt_scrape_queue,
         delete_item_from_gt_scrape_queue,
     )
 
-    await init_db()
+    await init_app_db()
 
     # Initialize AWS clients
     await initialize_scraper_aws_clients()

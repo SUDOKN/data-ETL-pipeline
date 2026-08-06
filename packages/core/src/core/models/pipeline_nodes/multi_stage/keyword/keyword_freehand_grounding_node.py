@@ -2,14 +2,14 @@ from __future__ import annotations
 import logging
 from typing import TYPE_CHECKING
 
-from packages.llm_providers.src.llm_providers.models.file_objects.prompt import Prompt
-from packages.core.src.core.models.pipeline_nodes.multi_stage.base.llm_phrase_freehand_grounding_node import (
+from llm_providers.models.file_objects.prompt import Prompt
+from core.models.pipeline_nodes.multi_stage.base.llm_phrase_freehand_grounding_node import (
     LLMPhraseFreehandGroundingNode,
 )
-from packages.core.src.core.models.types_and_enums import KeywordTypeEnum
+from core.models.types_and_enums import KeywordTypeEnum
 
 if TYPE_CHECKING:
-    from packages.core.src.core.models.pipeline_nodes.multi_stage.keyword.keyword_reconcile_node import (
+    from core.models.pipeline_nodes.multi_stage.keyword.keyword_reconcile_node import (
         KeywordReconcileNode,
     )
 

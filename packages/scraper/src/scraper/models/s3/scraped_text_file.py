@@ -8,10 +8,10 @@ from datetime import datetime
 from typing import Self
 from pydantic import BaseModel, ConfigDict, Field, computed_field
 
-from packages.llm_providers.src.llm_providers.models.llm_model import LLM_Model
+from llm_providers.models.llm_model import LLM_Model
 
-from packages.infra.src.infra.models.queue_items.to_scrape_item import Batch
-from packages.infra.src.infra.utils.s3.scraped_text_file_util import (
+from infra.models.queue_items.to_scrape_item import Batch
+from infra.utils.s3.scraped_text_file_util import (
     delete_scraped_text_from_s3_by_subject_unique_id,
     get_file_name_from_subject_unique_id,
     get_scraped_text_file_exist_last_modified_on,
@@ -20,7 +20,7 @@ from packages.infra.src.infra.utils.s3.scraped_text_file_util import (
     upload_scraped_text_to_s3,
 )
 
-from packages.scraper.src.scraper.services.url_scraper_service import ScrapingResult
+from scraper.services.url_scraper_service import ScrapingResult
 
 logger = logging.getLogger(__name__)
 

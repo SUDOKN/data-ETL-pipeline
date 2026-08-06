@@ -5,16 +5,16 @@ import logging
 from datetime import datetime
 from pathlib import Path
 
-from packages.core.src.core.models.extraction_schemas.iterative_tagging import (
+from core.models.extraction_schemas.iterative_tagging import (
     PhraseTrail,
 )
-from packages.core.src.core.models.extraction_schemas.relationship import (
+from core.models.extraction_schemas.relationship import (
     LLMPhraseRelationshipResults,
 )
-from packages.core.src.core.models.extraction_schemas.screening import (
+from core.models.extraction_schemas.screening import (
     LiveScreeningResults,
 )
-from packages.core.src.core.models.types_and_enums import LLMExtractedFieldTypeEnum
+from core.models.types_and_enums import LLMExtractedFieldTypeEnum
 
 logger = logging.getLogger(__name__)
 

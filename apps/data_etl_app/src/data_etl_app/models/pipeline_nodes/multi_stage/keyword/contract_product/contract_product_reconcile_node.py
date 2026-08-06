@@ -1,10 +1,10 @@
 from __future__ import annotations
 
-from packages.core.src.core.models.pipeline_nodes import PipelineContext
-from packages.core.src.core.models.pipeline_nodes.multi_stage.keyword.keyword_reconcile_node import (
+from core.models.pipeline_nodes import PipelineContext
+from core.models.pipeline_nodes.multi_stage.keyword.keyword_reconcile_node import (
     KeywordReconcileNode,
 )
-from packages.core.src.core.models.types_and_enums import KeywordTypeEnum
+from core.models.types_and_enums import KeywordTypeEnum
 
 
 class ContractProductReconcileNode(KeywordReconcileNode):
@@ -21,7 +21,7 @@ class ContractProductReconcileNode(KeywordReconcileNode):
         super().__init__(field_type=field_type)
 
     def get_upstream_search_map(self, pipeline_context: PipelineContext) -> dict:
-        from apps.data_etl_app.src.data_etl_app.models.pipeline_nodes.multi_stage.keyword.contract_product.contract_product_phrase_search_node import (
+        from data_etl_app.models.pipeline_nodes.multi_stage.keyword.contract_product.contract_product_phrase_search_node import (
             ContractProductPhraseSearchNode,
         )
 
@@ -30,21 +30,21 @@ class ContractProductReconcileNode(KeywordReconcileNode):
     def get_upstream_recursive_search_map(
         self, pipeline_context: PipelineContext
     ) -> dict:
-        from apps.data_etl_app.src.data_etl_app.models.pipeline_nodes.multi_stage.keyword.contract_product.contract_product_recursive_search_node import (
+        from data_etl_app.models.pipeline_nodes.multi_stage.keyword.contract_product.contract_product_recursive_search_node import (
             ContractProductRecursiveSearchNode,
         )
 
         return pipeline_context[ContractProductRecursiveSearchNode]
 
     def get_upstream_relationship_map(self, pipeline_context: PipelineContext) -> dict:
-        from apps.data_etl_app.src.data_etl_app.models.pipeline_nodes.multi_stage.keyword.contract_product.contract_product_relationship_node import (
+        from data_etl_app.models.pipeline_nodes.multi_stage.keyword.contract_product.contract_product_relationship_node import (
             ContractProductRelationshipNode,
         )
 
         return pipeline_context[ContractProductRelationshipNode]
 
     def get_upstream_screening_map(self, pipeline_context: PipelineContext) -> dict:
-        from apps.data_etl_app.src.data_etl_app.models.pipeline_nodes.multi_stage.keyword.contract_product.contract_product_relationship_screening_node import (
+        from data_etl_app.models.pipeline_nodes.multi_stage.keyword.contract_product.contract_product_relationship_screening_node import (
             ContractProductRelationshipScreeningNode,
         )
 
@@ -53,7 +53,7 @@ class ContractProductReconcileNode(KeywordReconcileNode):
     def get_upstream_freehand_grounding_map(
         self, pipeline_context: PipelineContext
     ) -> dict:
-        from apps.data_etl_app.src.data_etl_app.models.pipeline_nodes.multi_stage.keyword.contract_product.contract_product_freehand_grounding_node import (
+        from data_etl_app.models.pipeline_nodes.multi_stage.keyword.contract_product.contract_product_freehand_grounding_node import (
             ContractProductFreehandGroundingNode,
         )
 

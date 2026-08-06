@@ -2,15 +2,15 @@ from __future__ import annotations
 
 import logging
 
-from packages.core.src.core.models.extraction_subject import (
+from core.models.extraction_subject import (
     AbstractDeferredExtractionSubject,
 )
-from packages.core.src.core.models.pipeline_nodes.base.base_node import (
+from core.models.pipeline_nodes.base.base_node import (
     BaseNode,
     LLMExtractedFieldTypeVar,
     ResultT,
 )
-from packages.llm_providers.src.llm_providers.field_types import BatchRequestIDType
+from llm_providers.field_types import BatchRequestIDType
 
 logger = logging.getLogger(__name__)
 

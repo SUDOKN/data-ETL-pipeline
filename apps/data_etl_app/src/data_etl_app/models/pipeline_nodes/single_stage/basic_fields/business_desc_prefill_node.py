@@ -3,20 +3,20 @@ from __future__ import annotations
 import logging
 from typing import TYPE_CHECKING
 
-from packages.llm_providers.src.llm_providers.models.file_objects.prompt import Prompt
-from packages.core.src.core.models.extraction_results.single_stage_extraction_results import (
+from llm_providers.models.file_objects.prompt import Prompt
+from core.models.extraction_results.single_stage_extraction_results import (
     LLMSingleStageExtractionMetadata,
 )
-from packages.core.src.core.models.pipeline_nodes.single_stage.base.single_stage_extraction_prefill_node import (
+from core.models.pipeline_nodes.single_stage.base.single_stage_extraction_prefill_node import (
     SingleStageExtractionPrefillNode,
 )
-from packages.core.src.core.models.types_and_enums import (
+from data_etl_app.models.types_and_enums import (
     BasicFieldTypeEnum,
 )
-from packages.core.src.core.models.chunking_strat import ChunkingStrategy
+from core.models.chunking_strat import ChunkingStrategy
 
 if TYPE_CHECKING:
-    from apps.data_etl_app.src.data_etl_app.models.pipeline_nodes.single_stage.basic_fields.business_desc_extraction_node import (
+    from data_etl_app.models.pipeline_nodes.single_stage.basic_fields.business_desc_extraction_node import (
         BusinessDescExtractionNode,
     )
 

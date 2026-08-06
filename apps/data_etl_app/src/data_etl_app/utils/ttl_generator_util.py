@@ -1,7 +1,7 @@
 from rdflib import URIRef
 from rdflib import Namespace
 
-from packages.pure_utils.src.pure_utils.url_util import uri_strip
+from pure_utils.url_util import uri_strip
 
 SDK = Namespace("http://asu.edu/semantics/SUDOKN/")
 

@@ -5,8 +5,8 @@ from datetime import datetime
 from pydantic import ConfigDict, computed_field, field_validator, BaseModel
 
 
-from packages.infra.src.infra.models.queue_items.queue_item import QueueItem
-from packages.pure_utils.src.pure_utils.url_util import (
+from infra.models.queue_items.queue_item import QueueItem
+from pure_utils.url_util import (
     get_etld1_from_host,
     get_normalized_url,
     get_complete_url_with_compatible_protocol,

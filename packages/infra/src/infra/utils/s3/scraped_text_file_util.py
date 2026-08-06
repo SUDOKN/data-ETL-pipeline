@@ -1,20 +1,20 @@
-import os
 import logging
 import tldextract
 from datetime import datetime
 from typing import Optional
 from urllib.parse import urlencode, quote
 
-from apps.data_etl_app.src.data_etl_app.dependencies.aws_sqs_clients import (
+from pure_utils.env_util import require_env
+
+from infra.utils.queue.aws_sqs_clients import (
     get_scraped_bucket_s3_client,
 )
 
-SCRAPED_TEXT_BUCKET = os.getenv("SCRAPED_TEXT_BUCKET")
-if not SCRAPED_TEXT_BUCKET:
-    raise ValueError("SCRAPED_TEXT_BUCKET is not set. Please check your .env file.")
-
-
 logger = logging.getLogger(__name__)
+
+
+def _scraped_text_bucket() -> str:
+    return require_env("SCRAPED_TEXT_BUCKET")
 
 
 def get_file_name_from_subject_unique_id(subject_unique_id: str) -> str:
@@ -48,20 +48,18 @@ async def get_scraped_text_file_exist_last_modified_on(
     :return: Last modified date if the file exists, None otherwise.
     """
     s3_client = get_scraped_bucket_s3_client()
-    assert SCRAPED_TEXT_BUCKET is not None, "SCRAPED_TEXT_BUCKET is None"
-    logger.debug(
-        f"Checking existence of file: {file_name} in bucket: {SCRAPED_TEXT_BUCKET}"
-    )
+    bucket = _scraped_text_bucket()
+    logger.debug(f"Checking existence of file: {file_name} in bucket: {bucket}")
     if not version_id:
         return None
 
     try:
         response = await s3_client.head_object(
-            Bucket=SCRAPED_TEXT_BUCKET, Key=file_name, VersionId=version_id
+            Bucket=bucket, Key=file_name, VersionId=version_id
         )
         last_modified = response["LastModified"]
         logger.debug(
-            f"File {file_name} with version ID {version_id} exists in bucket {SCRAPED_TEXT_BUCKET}. Last modified: {last_modified}"
+            f"File {file_name} with version ID {version_id} exists in bucket {bucket}. Last modified: {last_modified}"
         )
         return last_modified
     except s3_client.exceptions.ClientError as e:
@@ -98,19 +96,19 @@ async def upload_scraped_text_to_s3(
     :return: The S3 URL of the uploaded file.
     """
     s3_client = get_scraped_bucket_s3_client()
-    assert SCRAPED_TEXT_BUCKET is not None, "SCRAPED_TEXT_BUCKET is None"
+    bucket = _scraped_text_bucket()
     tags = {
         k: str(v).replace(":", "-").replace("+", "").replace(",", "")
         for k, v in tags.items()
     }
     tagging_string = urlencode(tags, quote_via=quote)
     response = await s3_client.put_object(
-        Bucket=SCRAPED_TEXT_BUCKET,
+        Bucket=bucket,
         Key=file_name,
         Body=file_content.encode("utf-8"),
         Tagging=tagging_string,
     )
-    return response["VersionId"], f"s3://{SCRAPED_TEXT_BUCKET}/{file_name}"
+    return response["VersionId"], f"s3://{bucket}/{file_name}"
 
 
 async def get_latest_version_id_by_subject_unique_id(
@@ -136,19 +134,17 @@ async def get_latest_version_id_by_filename(
     :return: The latest version ID of the file, or None if the file doesn't exist.
     """
     s3_client = get_scraped_bucket_s3_client()
-    assert SCRAPED_TEXT_BUCKET is not None, "SCRAPED_TEXT_BUCKET is None"
+    bucket = _scraped_text_bucket()
     logger.info(f"Getting latest version ID for file: {file_name}")
 
     try:
         # Use head_object to get the latest version info efficiently
-        response = await s3_client.head_object(
-            Bucket=SCRAPED_TEXT_BUCKET, Key=file_name
-        )
+        response = await s3_client.head_object(Bucket=bucket, Key=file_name)
         version_id = response.get("VersionId")
 
         if not version_id:
             logger.warning(
-                f"Version ID not found for file: {file_name}. Ensure that versioning is enabled on the {SCRAPED_TEXT_BUCKET} bucket."
+                f"Version ID not found for file: {file_name}. Ensure that versioning is enabled on the {bucket} bucket."
             )
             return None
 
@@ -157,7 +153,7 @@ async def get_latest_version_id_by_filename(
 
     except s3_client.exceptions.ClientError as e:
         if e.response["Error"]["Code"] == "404":
-            logger.info(f"File {file_name} not found in bucket {SCRAPED_TEXT_BUCKET}")
+            logger.info(f"File {file_name} not found in bucket {bucket}")
             return None
         raise  # Re-raise other exceptions
 
@@ -187,14 +183,14 @@ async def download_scraped_text_from_s3_by_filename(
     :return: tuple [the content of the downloaded file as a string, its version ID]
     """
     s3_client = get_scraped_bucket_s3_client()
-    assert SCRAPED_TEXT_BUCKET is not None, "SCRAPED_TEXT_BUCKET is None"
+    bucket = _scraped_text_bucket()
     # Use centralized s3_client to download
     if version_id:
         logger.debug(
             f"Attempting to download `{file_name}` with version ID `{version_id}` from S3"
         )
         obj = await s3_client.get_object(
-            Bucket=SCRAPED_TEXT_BUCKET, Key=file_name, VersionId=version_id
+            Bucket=bucket, Key=file_name, VersionId=version_id
         )
         logger.debug(f"Streaming `{file_name}` from S3")
         async with obj["Body"] as stream:
@@ -203,7 +199,7 @@ async def download_scraped_text_from_s3_by_filename(
         logger.debug(
             f"Attempting to download `{file_name}` from S3 without specifying version ID"
         )
-        obj = await s3_client.get_object(Bucket=SCRAPED_TEXT_BUCKET, Key=file_name)
+        obj = await s3_client.get_object(Bucket=bucket, Key=file_name)
         async with obj["Body"] as stream:
             content = await stream.read()
 
@@ -212,7 +208,7 @@ async def download_scraped_text_from_s3_by_filename(
         )  # This will be None if versioning is off or suspended
         if not version_id:
             raise ValueError(
-                f"Version ID not found for the file: {file_name}. Ensure that versioning is enabled on the {SCRAPED_TEXT_BUCKET} bucket."
+                f"Version ID not found for the file: {file_name}. Ensure that versioning is enabled on the {bucket} bucket."
             )
         logger.info(f"Downloaded file {file_name} with version ID: {version_id}")
     return content.decode("utf-8"), version_id
@@ -260,15 +256,13 @@ async def _get_scraped_text_object_tags_by_filename(
         f"Fetching tags for file: {file_name} with version ID: {version_id if version_id else 'latest'}"
     )
     s3_client = get_scraped_bucket_s3_client()
-    assert SCRAPED_TEXT_BUCKET is not None, "SCRAPED_TEXT_BUCKET is None"
+    bucket = _scraped_text_bucket()
 
     if not version_id:
-        tags_response = await s3_client.get_object_tagging(
-            Bucket=SCRAPED_TEXT_BUCKET, Key=file_name
-        )
+        tags_response = await s3_client.get_object_tagging(Bucket=bucket, Key=file_name)
     else:
         tags_response = await s3_client.get_object_tagging(
-            Bucket=SCRAPED_TEXT_BUCKET, Key=file_name, VersionId=version_id
+            Bucket=bucket, Key=file_name, VersionId=version_id
         )
     return {tag["Key"]: tag["Value"] for tag in tags_response.get("TagSet", [])}
 
@@ -293,14 +287,14 @@ async def iterate_scraped_text_objects_and_versions(
             - 'Tags': Dictionary of custom tags (only if include_tags=True)
     """
     s3_client = get_scraped_bucket_s3_client()
-    assert SCRAPED_TEXT_BUCKET is not None, "SCRAPED_TEXT_BUCKET is None"
+    bucket = _scraped_text_bucket()
     logger.info(
-        f"Iterating over objects in bucket: {SCRAPED_TEXT_BUCKET} with prefix: '{prefix}', include_tags: {include_tags}"
+        f"Iterating over objects in bucket: {bucket} with prefix: '{prefix}', include_tags: {include_tags}"
     )
 
     paginator = s3_client.get_paginator("list_object_versions")
 
-    async for page in paginator.paginate(Bucket=SCRAPED_TEXT_BUCKET, Prefix=prefix):
+    async for page in paginator.paginate(Bucket=bucket, Prefix=prefix):
         # Process regular versions
         for version in page.get("Versions", []):
             obj_data = {
@@ -354,8 +348,6 @@ async def get_all_scraped_text_objects_summary(prefix: str = "") -> dict:
              - 'objects_with_multiple_versions': Number of objects that have multiple versions
              - 'delete_markers': Number of delete markers
     """
-    assert SCRAPED_TEXT_BUCKET is not None, "SCRAPED_TEXT_BUCKET is None"
-
     objects_summary = {}
     total_size = 0
     delete_marker_count = 0
@@ -414,25 +406,23 @@ async def delete_scraped_text_from_s3_by_filename(
     :param version_id: Optional version ID to delete a specific version of the file. If None, deletes all versions.
     """
     s3_client = get_scraped_bucket_s3_client()
-    assert SCRAPED_TEXT_BUCKET is not None, "SCRAPED_TEXT_BUCKET is None"
+    bucket = _scraped_text_bucket()
     if version_id:
         logger.info(f"Attempting to delete {file_name} (version: {version_id}) from S3")
         await s3_client.delete_object(
-            Bucket=SCRAPED_TEXT_BUCKET, Key=file_name, VersionId=version_id
+            Bucket=bucket, Key=file_name, VersionId=version_id
         )
         logger.info(f"Successfully deleted {file_name} (version: {version_id}) from S3")
     else:
         # Delete all versions of the object
         logger.info(f"Attempting to delete all versions of {file_name} from S3")
         paginator = s3_client.get_paginator("list_object_versions")
-        async for page in paginator.paginate(
-            Bucket=SCRAPED_TEXT_BUCKET, Prefix=file_name
-        ):
+        async for page in paginator.paginate(Bucket=bucket, Prefix=file_name):
             versions = page.get("Versions", []) + page.get("DeleteMarkers", [])
             for v in versions:
                 if v["Key"] == file_name:
                     await s3_client.delete_object(
-                        Bucket=SCRAPED_TEXT_BUCKET,
+                        Bucket=bucket,
                         Key=file_name,
                         VersionId=v["VersionId"],
                     )

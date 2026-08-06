@@ -5,7 +5,7 @@ import logging
 from urllib.parse import urlparse
 from typing import List, Set
 
-from packages.scraper.src.scraper.constants.scraping_constants import (
+from scraper.constants.scraping_constants import (
     BLOCKED_SOCIAL_MEDIA_DOMAINS,
     BLOCKED_SOCIAL_MEDIA_PATTERNS,
 )

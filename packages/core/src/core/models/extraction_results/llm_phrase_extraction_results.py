@@ -5,22 +5,22 @@ from datetime import datetime
 from typing import TypeVar
 
 
-from packages.knowledge.src.knowledge.field_types import (
+from core.field_types import (
     OntologyVersionIDType,
 )
-from packages.infra.src.infra.field_types import (
+from infra.field_types import (
     S3FileVersionIDType,
 )
-from packages.core.src.core.models.extraction_schemas.search import LLMSearchResults
-from packages.core.src.core.models.extraction_schemas.relationship import (
+from core.models.extraction_schemas.search import LLMSearchResults
+from core.models.extraction_schemas.relationship import (
     LLMPhraseRelationshipResults,
 )
-from packages.core.src.core.models.extraction_schemas.screening import (
+from core.models.extraction_schemas.screening import (
     LiveScreeningResults,
 )
-from packages.llm_providers.src.llm_providers.models.llm_model import LLM_Model
-from packages.core.src.core.models.chunking_strat import ChunkingStrategy
-from packages.llm_providers.src.llm_providers.models.open_ai.gpt_model_params import (
+from llm_providers.models.llm_model import LLM_Model
+from core.models.chunking_strat import ChunkingStrategy
+from llm_providers.models.open_ai.gpt_model_params import (
     GPTModelParams,
 )
 

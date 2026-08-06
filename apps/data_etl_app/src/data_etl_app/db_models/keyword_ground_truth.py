@@ -1,20 +1,20 @@
 from beanie import Document
 from datetime import datetime
-from packages.core.src.core.models.chunking_strat import ChunkingStrategy
+from core.models.chunking_strat import ChunkingStrategy
 from pydantic import BaseModel, ValidationInfo, computed_field, Field, field_validator
 
-from packages.pure_utils.src.pure_utils.time_util import get_current_time
-from packages.infra.src.infra.field_types import (
+from pure_utils.time_util import get_current_time
+from infra.field_types import (
     S3FileVersionIDType,
 )
-from packages.core.src.core.field_types import (
+from core.field_types import (
     SubjectUniqueIDType,
 )
-from packages.core.src.core.models.extraction_results.keyword_extraction_results import (
+from core.models.extraction_results.keyword_extraction_results import (
     KeywordExtractionMetadata,
     KeywordExtractionStats,
 )
-from packages.core.src.core.models.types_and_enums import (
+from core.models.types_and_enums import (
     GroundTruthSource,
     KeywordTypeEnum,
 )
@@ -67,7 +67,7 @@ class KeywordGroundTruth(Document):
     @computed_field
     @property
     def final_results(self) -> list[str] | None:
-        from apps.data_etl_app.src.data_etl_app.utils.ground_truth_helper_util import (
+        from data_etl_app.utils.ground_truth_helper_util import (
             calculate_final_keyword_results,
         )
 

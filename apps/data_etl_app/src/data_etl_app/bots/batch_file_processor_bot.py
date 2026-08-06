@@ -9,74 +9,63 @@ from pathlib import Path
 from typing import Optional
 from openai import OpenAI
 
-from packages.core.src.core.dependencies.load_core_env import load_core_env
-from apps.data_etl_app.src.data_etl_app.dependencies.load_scraper_env import (
-    load_scraper_env,
-)
-from apps.data_etl_app.src.data_etl_app.dependencies.load_open_ai_app_env import (
-    load_open_ai_app_env,
-)
-from apps.data_etl_app.src.data_etl_app.dependencies.load_data_etl_env import (
-    load_data_etl_env,
-)
+from pure_utils.env_util import load_env
 
-# Load environment variables (entry point)
-load_core_env()
-load_scraper_env()
-load_data_etl_env()
-load_open_ai_app_env()
+from data_etl_app.dependencies.env import EXTRACT_BOT_ENV
+
+load_env(EXTRACT_BOT_ENV)
 
 
-from packages.llm_providers.src.llm_providers.db_models.api_key_bundle import (
+from llm_providers.db_models.api_key_bundle import (
     APIKeyBundle,
 )
-from packages.llm_providers.src.llm_providers.db_models.gpt_batch import (
+from llm_providers.db_models.gpt_batch import (
     GPTBatch,
     GPTBatchStatus,
 )
-from packages.llm_providers.src.llm_providers.models.llm_model import GPT_4o_mini
-from packages.llm_providers.src.llm_providers.models.open_ai.gpt_model_params import (
+from llm_providers.models.llm_model import GPT_4o_mini
+from llm_providers.models.open_ai.gpt_model_params import (
     GPTModelParams,
 )
-from packages.llm_providers.src.llm_providers.models.llm_model import LLM_Model
-from apps.data_etl_app.src.data_etl_app.models.s3.scraped_mfg_file import ScrapedMfgFile
+from llm_providers.models.llm_model import LLM_Model
+from data_etl_app.models.s3.scraped_mfg_file import ScrapedMfgFile
 
-from packages.llm_providers.src.llm_providers.services.gpt_batch_request.gpt_batch_request_queries import (
+from llm_providers.services.gpt_batch_request.gpt_batch_request_queries import (
     get_custom_ids_for_batch,
 )
-from packages.llm_providers.src.llm_providers.services.gpt_batch_request.gpt_batch_request_writes import (
+from llm_providers.services.gpt_batch_request.gpt_batch_request_writes import (
     bulk_update_gpt_batch_requests,
     pair_batch_request_custom_ids_with_batch,
     unpair_all_batch_requests_from_batch,
 )
-from packages.llm_providers.src.llm_providers.services.api_key_bundle.api_key_bundle_service import (
+from llm_providers.services.api_key_bundle.api_key_bundle_service import (
     get_all_api_key_bundles,
 )
-from apps.data_etl_app.src.data_etl_app.services.manufacturer_service import (
+from data_etl_app.services.manufacturer_service import (
     find_manufacturers_by_etld1s,
 )
 from core.models.ontology import Ontology
-from apps.data_etl_app.src.data_etl_app.services.prompt_service import PromptService
-from apps.data_etl_app.src.data_etl_app.services.batch_file_generator import (
+from data_etl_app.services.prompt_service import PromptService
+from data_etl_app.services.batch_file_generator import (
     BatchFileGenerationResult,
     iterate_df_manufacturers_and_write_batch_files,
 )
-from apps.data_etl_app.src.data_etl_app.services.batch_file_satellite import (
+from data_etl_app.services.batch_file_satellite import (
     BatchFileSatellite,
     BatchDownloadOutput,
 )
-from apps.data_etl_app.src.data_etl_app.services.manufacturer_extraction_orchestrator import (
+from data_etl_app.services.manufacturer_extraction_orchestrator import (
     ManufacturerExtractionOrchestrator,
 )
-from apps.data_etl_app.src.data_etl_app.services.prompt_service import (
+from data_etl_app.services.prompt_service import (
     get_prompt_service,
 )
 from core.services.ontology_service import (
     get_ontology_service,
 )
 
-from packages.pure_utils.src.pure_utils.time_util import get_current_time
-from packages.llm_providers.src.llm_providers.utils.open_ai.gpt_batch_request_util import (
+from pure_utils.time_util import get_current_time
+from llm_providers.utils.open_ai.gpt_batch_request_util import (
     parse_individual_batch_req_response_raw,
 )
 
@@ -583,18 +572,18 @@ class BatchFileStation:
 
 
 async def async_main():
-    from apps.data_etl_app.src.data_etl_app.dependencies.aws_sqs_clients import (
+    from infra.utils.queue.aws_sqs_clients import (
         initialize_scraper_aws_clients,
         cleanup_scraper_aws_clients,
     )
-    from apps.data_etl_app.src.data_etl_app.dependencies.aws_s3_clients import (
+    from infra.utils.s3.aws_s3_clients import (
         initialize_data_etl_aws_clients,
         cleanup_data_etl_aws_clients,
     )
 
-    from core.utils.mongo_client import init_db
+    from data_etl_app.dependencies.db import init_app_db
 
-    await init_db(
+    await init_app_db(
         max_pool_size=200,
         min_pool_size=50,
         socket_timeout_ms=300000,  # 5 minutes for bulk operations

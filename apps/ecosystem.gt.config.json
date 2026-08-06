@@ -4,7 +4,7 @@
       "name": "litellm-proxy",
       "script": "./.venv/bin/litellm",
       "interpreter": "none",
-      "args": "--config ./litellm_proxy_app/src/litellm_proxy_app/config/litellm.yaml --port 4000",
+      "args": "--config ./apps/litellm_proxy_app/src/litellm_proxy_app/config/litellm.yaml --port 4000",
       "cwd": "./",
       "instances": 1,
       "autorestart": true,
@@ -32,7 +32,7 @@
     {
       "name": "gt-sq-bot",
       "description": "This bot uses the same s3 bucket as regular scrape bots but interacts with sudokn-new db with the new updated db models.",
-      "script": "./scraper_app/src/scraper_app/bots/gt_scrape_queue_bot.py",
+      "script": "./apps/data_etl_app/src/data_etl_app/bots/gt_scrape_queue_bot.py",
       "interpreter": "./.venv/bin/python3",
       "args": "--max_concurrent_browsers 2 --max_depth 5 --scrape_timeout 60",
       "cwd": "./",
@@ -53,7 +53,6 @@
       "min_uptime": "10s",
       "restart_delay": 2000,
       "env": {
-        "PYTHONPATH": "./scraper_app/src:./core/src:./open_ai_key_app/src:./litellm_proxy_app/src",
         "PYTHONUNBUFFERED": "1",
         "VIRTUAL_ENV": "./.venv",
         "PATH": "./.venv/bin:/usr/local/bin:/usr/bin:/bin"
@@ -62,7 +61,7 @@
     {
       "name": "gt-eq-bot",
       "description": "This bot uses the sudokn-new db and updated db models. It extracts using only the first 10 chunks wherever applicable",
-      "script": "./scraper_app/src/scraper_app/bots/gt_extract_queue_bot.py",
+      "script": "./apps/data_etl_app/src/data_etl_app/bots/gt_extract_queue_bot.py",
       "interpreter": "./.venv/bin/python3",
       "args": "--max_concurrent_manufacturers 25 --debug INFO",
       "cwd": "./",
@@ -83,7 +82,6 @@
       "min_uptime": "10s",
       "restart_delay": 5000,
       "env": {
-        "PYTHONPATH": "./scraper_app/src:./data_etl_app/src:./core/src:./open_ai_key_app/src:./litellm_proxy_app/src",
         "PYTHONUNBUFFERED": "1",
         "VIRTUAL_ENV": "./.venv",
         "PATH": "./.venv/bin:/usr/local/bin:/usr/bin:/bin"
@@ -113,7 +111,6 @@
       "min_uptime": "10s",
       "restart_delay": 5000,
       "env": {
-        "PYTHONPATH": "./data_etl_app/src:./core/src:./open_ai_key_app/src:./scraper_app/src:./litellm_proxy_app/src",
         "PYTHONUNBUFFERED": "1",
         "NODE_ENV": "production",
         "LOG_LEVEL": "INFO",

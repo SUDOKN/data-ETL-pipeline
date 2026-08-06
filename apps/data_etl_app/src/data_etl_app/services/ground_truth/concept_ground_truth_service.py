@@ -3,32 +3,32 @@ import logging
 from datetime import datetime
 
 
-from packages.core.src.core.models.extraction_subject import (
+from core.models.extraction_subject import (
     AbstractExtractionSubject,
 )
-from packages.infra.src.infra.field_types import (
+from infra.field_types import (
     S3FileVersionIDType,
 )
-from packages.core.src.core.models.extraction_results.concept_extraction_results import (
+from core.models.extraction_results.concept_extraction_results import (
     ConceptExtractionResults,
 )
-from apps.data_etl_app.src.data_etl_app.db_models.concept_ground_truth import (
+from data_etl_app.db_models.concept_ground_truth import (
     ConceptGroundTruth,
     ConceptCorrectionLog,
     HumanConceptCorrection,
 )
-from packages.core.src.core.models.skos_concept import Concept
-from packages.core.src.core.models.types_and_enums import ConceptTypeEnum
+from core.models.skos_concept import Concept
+from core.models.types_and_enums import ConceptTypeEnum
 
 from core.services.ontology_service import (
     get_ontology_service,
 )
-from packages.core.src.core.services.brute_search_service import word_regex
+from core.services.brute_search_service import word_regex
 
-from packages.infra.src.infra.utils.s3.scraped_text_file_util import (
+from infra.utils.s3.scraped_text_file_util import (
     download_scraped_text_from_s3_by_subject_unique_id,
 )
-from apps.data_etl_app.src.data_etl_app.utils.route_url_util import (
+from data_etl_app.utils.route_url_util import (
     get_full_ontology_concept_flat_url,
 )
 from core.services.out_of_vocab_labels_service import (

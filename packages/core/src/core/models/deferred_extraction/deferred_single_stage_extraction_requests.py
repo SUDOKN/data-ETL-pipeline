@@ -1,10 +1,10 @@
 from pydantic import BaseModel
 from typing import Optional
 
-from packages.core.src.core.models.extraction_results.single_stage_extraction_results import (
+from core.models.extraction_results.single_stage_extraction_results import (
     LLMSingleStageExtractionMetadata,
 )
-from packages.llm_providers.src.llm_providers.field_types import BatchRequestIDType
+from llm_providers.field_types import BatchRequestIDType
 
 
 class SingleStageExtractionRequestBundle(BaseModel):

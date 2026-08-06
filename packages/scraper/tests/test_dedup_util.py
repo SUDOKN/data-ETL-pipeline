@@ -1,5 +1,5 @@
 """
-Tests for packages.scraper.src.scraper.utils.dedup_util
+Tests for scraper.utils.dedup_util
 =======================================
 
 Unit tests  (self-contained, no external files)
@@ -43,7 +43,7 @@ sys.path.insert(
     ),
 )
 
-from packages.scraper.src.scraper.utils.dedup_util import (
+from scraper.utils.dedup_util import (
     _SEPARATOR,
     _body_lines_of_block,
     _detect_common_header_footer,

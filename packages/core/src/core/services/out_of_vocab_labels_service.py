@@ -3,7 +3,7 @@ from typing import Optional
 from core.db_models.out_of_vocab_labels import (
     OutOfVocabLabel,
 )
-from packages.core.src.core.models.types_and_enums import ConceptTypeEnum
+from core.models.types_and_enums import ConceptTypeEnum
 
 
 async def upsert_out_of_vocab_labels(

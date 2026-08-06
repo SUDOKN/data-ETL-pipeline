@@ -5,7 +5,7 @@ import asyncio
 from concurrent.futures import ThreadPoolExecutor
 import litellm
 
-from packages.llm_providers.src.llm_providers.models.llm_model import LLM_Model
+from llm_providers.models.llm_model import LLM_Model
 
 logger = logging.getLogger(__name__)
 

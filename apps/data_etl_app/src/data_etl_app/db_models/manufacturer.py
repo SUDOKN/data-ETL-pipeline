@@ -4,33 +4,33 @@ from datetime import datetime
 from pydantic import BaseModel, Field
 from typing import List, Optional
 
-from packages.core.src.core.field_types import (
+from core.field_types import (
     SubjectUniqueIDType,
 )
-from packages.infra.src.infra.field_types import (
+from infra.field_types import (
     S3FileVersionIDType,
 )
-from packages.infra.src.infra.models.queue_items.to_scrape_item import Batch
-from packages.core.src.core.models.extraction_subject import (
+from infra.models.queue_items.to_scrape_item import Batch
+from core.models.extraction_subject import (
     AbstractExtractionSubject,
 )
-from packages.core.src.core.models.extraction_results.concept_extraction_results import (
+from core.models.extraction_results.concept_extraction_results import (
     ConceptExtractionResults,
 )
-from packages.core.src.core.models.extraction_results.keyword_extraction_results import (
+from core.models.extraction_results.keyword_extraction_results import (
     KeywordExtractionResults,
 )
-from packages.core.src.core.models.extraction_results.binary_classification_result import (
+from core.models.extraction_results.binary_classification_result import (
     BinaryClassificationResult,
 )
-from apps.data_etl_app.src.data_etl_app.models.extraction_results.address_extraction_result import (
+from data_etl_app.models.extraction_results.address_extraction_result import (
     AddressExtractionResult,
 )
-from apps.data_etl_app.src.data_etl_app.models.extraction_results.business_description_extraction_result import (
+from data_etl_app.models.extraction_results.business_description_extraction_result import (
     BusinessDescriptionExtractionResult,
 )
 
-from packages.pure_utils.src.pure_utils.time_util import get_current_time
+from pure_utils.time_util import get_current_time
 
 logger = logging.getLogger(__name__)
 

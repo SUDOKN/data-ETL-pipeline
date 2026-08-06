@@ -2,20 +2,20 @@ from typing import Optional
 
 from pymongo.errors import DuplicateKeyError
 
-from packages.core.src.core.field_types import SubjectUniqueIDType
-from apps.data_etl_app.src.data_etl_app.field_types import MfgURLType
-from apps.data_etl_app.src.data_etl_app.db_models.manufacturer import (
+from core.field_types import SubjectUniqueIDType
+from data_etl_app.field_types import MfgURLType
+from data_etl_app.db_models.manufacturer import (
     Batch,
     Manufacturer,
 )
-from packages.infra.src.infra.models.queue_items.queue_item import EmailUserErrand
-from packages.infra.src.infra.models.queue_items.to_scrape_item import ToScrapeItem
-from packages.pure_utils.src.pure_utils.time_util import get_current_time
-from packages.infra.src.infra.utils.queue.priority_scrape_queue_util import (
+from infra.models.queue_items.queue_item import EmailUserErrand
+from infra.models.queue_items.to_scrape_item import ToScrapeItem
+from pure_utils.time_util import get_current_time
+from infra.utils.queue.priority_scrape_queue_util import (
     push_item_to_priority_scrape_queue,
 )
 
-from apps.data_etl_app.src.data_etl_app.db_models.manufacturer_user_form import (
+from data_etl_app.db_models.manufacturer_user_form import (
     ManufacturerUserForm,
 )
 from core.services.ontology_service import (

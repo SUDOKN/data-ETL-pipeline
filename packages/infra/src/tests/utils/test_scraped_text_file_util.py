@@ -8,11 +8,13 @@ from unittest.mock import AsyncMock, MagicMock, patch
 from datetime import datetime
 
 # Load environment variables first
-from packages.core.src.core.dependencies.load_core_env import load_core_env
+from pure_utils.env_util import load_env
 
-load_core_env()
+from infra.required_env import S3_SCRAPED_TEXT
 
-from packages.infra.src.infra.utils.s3.scraped_text_file_util import (
+load_env(S3_SCRAPED_TEXT)
+
+from infra.utils.s3.scraped_text_file_util import (
     get_file_name_from_subject_unique_id,
     get_scraped_text_file_exist_last_modified_on,
     upload_scraped_text_to_s3,
@@ -20,8 +22,10 @@ from packages.infra.src.infra.utils.s3.scraped_text_file_util import (
     delete_scraped_text_from_s3_by_filename,
     _get_scraped_text_object_tags_by_filename,
     iterate_scraped_text_objects_and_versions,
-    SCRAPED_TEXT_BUCKET,
+    _scraped_text_bucket,
 )
+
+SCRAPED_TEXT_BUCKET = _scraped_text_bucket()
 
 
 def make_s3_client(session):
@@ -44,7 +48,7 @@ async def upload_scraped_text_to_s3_with_client(
 ) -> tuple[str, str]:
     """Test helper that takes an S3 client and mimics the real function."""
     with patch(
-        "packages.infra.src.infra.utils.s3.scraped_text_file_util.get_scraped_bucket_s3_client",
+        "infra.utils.s3.scraped_text_file_util.get_scraped_bucket_s3_client",
         return_value=s3_client,
     ):
         return await upload_scraped_text_to_s3(file_content, file_name, tags)
@@ -55,7 +59,7 @@ async def get_scraped_text_file_exist_last_modified_on_with_client(
 ) -> datetime | None:
     """Test helper that takes an S3 client and mimics the real function."""
     with patch(
-        "packages.infra.src.infra.utils.s3.scraped_text_file_util.get_scraped_bucket_s3_client",
+        "infra.utils.s3.scraped_text_file_util.get_scraped_bucket_s3_client",
         return_value=s3_client,
     ):
         return await get_scraped_text_file_exist_last_modified_on(file_name, version_id)
@@ -66,7 +70,7 @@ async def download_scraped_text_from_s3_by_filename_with_client(
 ) -> tuple[str, str]:
     """Test helper that takes an S3 client and mimics the real function."""
     with patch(
-        "packages.infra.src.infra.utils.s3.scraped_text_file_util.get_scraped_bucket_s3_client",
+        "infra.utils.s3.scraped_text_file_util.get_scraped_bucket_s3_client",
         return_value=s3_client,
     ):
         return await download_scraped_text_from_s3_by_filename(file_name, version_id)
@@ -77,7 +81,7 @@ async def delete_scraped_text_from_s3_by_filename_with_client(
 ) -> None:
     """Test helper that takes an S3 client and mimics the real function."""
     with patch(
-        "packages.infra.src.infra.utils.s3.scraped_text_file_util.get_scraped_bucket_s3_client",
+        "infra.utils.s3.scraped_text_file_util.get_scraped_bucket_s3_client",
         return_value=s3_client,
     ):
         return await delete_scraped_text_from_s3_by_filename(file_name, version_id)
@@ -88,7 +92,7 @@ async def _get_scraped_text_object_tags_by_filename_with_client(
 ) -> dict[str, str]:
     """Test helper that takes an S3 client and mimics the real function."""
     with patch(
-        "packages.infra.src.infra.utils.s3.scraped_text_file_util.get_scraped_bucket_s3_client",
+        "infra.utils.s3.scraped_text_file_util.get_scraped_bucket_s3_client",
         return_value=s3_client,
     ):
         return await _get_scraped_text_object_tags_by_filename(file_name, version_id)
@@ -99,7 +103,7 @@ async def iterate_scraped_text_objects_and_versions_with_client(
 ):
     """Test helper that takes an S3 client and mimics the real function."""
     with patch(
-        "packages.infra.src.infra.utils.s3.scraped_text_file_util.get_scraped_bucket_s3_client",
+        "infra.utils.s3.scraped_text_file_util.get_scraped_bucket_s3_client",
         return_value=s3_client,
     ):
         async for item in iterate_scraped_text_objects_and_versions(

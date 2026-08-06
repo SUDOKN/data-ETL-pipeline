@@ -3,25 +3,25 @@ import logging
 from datetime import datetime
 
 
-from packages.infra.src.infra.field_types import S3FileVersionIDType
-from packages.infra.src.infra.utils.s3.scraped_text_file_util import (
+from infra.field_types import S3FileVersionIDType
+from infra.utils.s3.scraped_text_file_util import (
     get_file_name_from_subject_unique_id,
     download_scraped_text_from_s3_by_filename,
 )
-from packages.core.src.core.models.extraction_subject import (
+from core.models.extraction_subject import (
     AbstractExtractionSubject,
 )
-from packages.core.src.core.models.extraction_results.keyword_extraction_results import (
+from core.models.extraction_results.keyword_extraction_results import (
     KeywordExtractionResults,
 )
-from apps.data_etl_app.src.data_etl_app.db_models.keyword_ground_truth import (
+from data_etl_app.db_models.keyword_ground_truth import (
     HumanKeywordCorrection,
     KeywordGroundTruth,
     KeywordCorrectionLog,
 )
-from packages.core.src.core.models.types_and_enums import KeywordTypeEnum
+from core.models.types_and_enums import KeywordTypeEnum
 
-from packages.core.src.core.services.brute_search_service import word_regex
+from core.services.brute_search_service import word_regex
 
 # Configure logger
 logger = logging.getLogger(__name__)

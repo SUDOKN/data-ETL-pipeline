@@ -3,10 +3,8 @@ from typing import Optional
 
 from pydantic import ValidationError
 
-from apps.data_etl_app.src.data_etl_app.models.extraction_results.address_extraction_result import (
+from data_etl_app.models.extraction_results.address_extraction_result import (
     Address,
-)
-from apps.data_etl_app.src.data_etl_app.models.basic_fields import (
     AddressExtractionResponse,
 )
 

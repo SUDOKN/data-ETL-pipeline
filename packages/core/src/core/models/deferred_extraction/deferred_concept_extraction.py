@@ -3,22 +3,22 @@ from pydantic import BaseModel
 from typing import Optional
 import logging
 
-from packages.core.src.core.models.extraction_schemas.legacy_mapping_types import (
+from core.models.extraction_schemas.legacy_mapping_types import (
     PhraseAndReasonMap,
     TagToPhraseAndReasonMap,
 )
-from packages.core.src.core.models.extraction_results.concept_extraction_results import (
+from core.models.extraction_results.concept_extraction_results import (
     ConceptExtractionMetadata,
 )
-from packages.core.src.core.models.deferred_extraction.deferred_phrase_extraction_requests import (
+from core.models.deferred_extraction.deferred_phrase_extraction_requests import (
     DeferredLLMPhraseExtractionRequests,
     LLMPhraseExtractionRequestBundle,
 )
-from packages.core.src.core.models.skos_concept import Concept
+from core.models.skos_concept import Concept
 
-from packages.llm_providers.src.llm_providers.field_types import BatchRequestIDType
+from llm_providers.field_types import BatchRequestIDType
 
-from packages.core.src.core.utils.request_custom_id_util import (
+from core.utils.request_custom_id_util import (
     get_name_from_recursive_grounding_request_custom_id,
     get_level_from_recursive_request_custom_id,
 )

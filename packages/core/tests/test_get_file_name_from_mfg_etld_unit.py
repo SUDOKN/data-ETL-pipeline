@@ -1,7 +1,7 @@
 """Unit tests for get_file_name_from_mfg_etld function."""
 
 import pytest
-from packages.infra.src.infra.utils.s3.scraped_text_file_util import (
+from infra.utils.s3.scraped_text_file_util import (
     get_file_name_from_subject_unique_id,
 )
 

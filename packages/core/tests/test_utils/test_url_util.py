@@ -3,7 +3,7 @@ import pytest
 from unittest.mock import patch, Mock
 import requests
 
-from packages.pure_utils.src.pure_utils.url_util import (
+from pure_utils.url_util import (
     get_normalized_url,
     get_complete_url_with_compatible_protocol,
     get_etld1_from_host,

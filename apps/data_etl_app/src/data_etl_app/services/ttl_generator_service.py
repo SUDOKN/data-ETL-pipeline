@@ -2,21 +2,21 @@ from typing import Optional
 from rdflib import Graph, Namespace, Literal, URIRef
 from rdflib.namespace import RDF, RDFS, XSD
 
-from apps.data_etl_app.src.data_etl_app.models.extraction_results.address_extraction_result import (
+from data_etl_app.models.extraction_results.address_extraction_result import (
     Address,
 )
-from apps.data_etl_app.src.data_etl_app.models.extraction_results.business_description_extraction_result import (
+from data_etl_app.models.extraction_results.business_description_extraction_result import (
     BusinessDescription,
 )
-from apps.data_etl_app.src.data_etl_app.utils.address_util import dedupe_addresses
-from apps.data_etl_app.src.data_etl_app.utils.ttl_generator_util import (
+from data_etl_app.utils.address_util import dedupe_addresses
+from data_etl_app.utils.ttl_generator_util import (
     get_mfg_instance_uri_and_stripped_etld1,
     get_product_instance_uri,
 )
 from core.models.ontology import Ontology
-from packages.pure_utils.src.pure_utils.url_util import uri_strip
-from packages.core.src.core.models.skos_concept import Concept
-from apps.data_etl_app.src.data_etl_app.db_models.manufacturer_user_form import (
+from pure_utils.url_util import uri_strip
+from core.models.skos_concept import Concept
+from data_etl_app.db_models.manufacturer_user_form import (
     ManufacturerUserForm,
 )
 import logging

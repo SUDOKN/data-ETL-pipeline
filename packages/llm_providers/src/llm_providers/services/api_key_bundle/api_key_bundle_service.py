@@ -1,9 +1,9 @@
 from beanie.operators import In
 
-from packages.llm_providers.src.llm_providers.db_models.api_key_bundle import (
+from llm_providers.db_models.api_key_bundle import (
     APIKeyBundle,
 )
-from packages.llm_providers.src.llm_providers.db_models.gpt_batch import GPTBatch
+from llm_providers.db_models.gpt_batch import GPTBatch
 
 
 async def get_all_api_key_bundles() -> list[APIKeyBundle]:

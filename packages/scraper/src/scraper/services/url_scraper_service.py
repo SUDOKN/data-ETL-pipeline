@@ -17,20 +17,20 @@ from selenium.common.exceptions import (
     StaleElementReferenceException,
 )
 
-from packages.llm_providers.src.llm_providers.models.llm_model import LLM_Model
-from packages.scraper.src.scraper.models.scraping_result import ScrapingResult
+from llm_providers.models.llm_model import LLM_Model
+from scraper.models.scraping_result import ScrapingResult
 
-from packages.scraper.src.scraper.utils.selenium import (
+from scraper.utils.selenium import (
     ChromeDriverFactory,
     LegacyDriverFactory,
 )
-from packages.scraper.src.scraper.utils.social_media_blocker import social_media_blocker
-from packages.scraper.src.scraper.utils.dedup_util import deduplicate_scraped_content
-from packages.pure_utils.src.pure_utils.url_util import (
+from scraper.utils.social_media_blocker import social_media_blocker
+from scraper.utils.dedup_util import deduplicate_scraped_content
+from pure_utils.url_util import (
     get_final_landing_url,
     get_etld1_from_host,
 )
-from packages.scraper.src.scraper.constants.scraping_constants import (
+from scraper.constants.scraping_constants import (
     SKIP_EXTENSIONS,
     COOKIE_ACCEPTANCE_PATTERNS,
     COOKIE_BANNER_DETECTION_XPATH,

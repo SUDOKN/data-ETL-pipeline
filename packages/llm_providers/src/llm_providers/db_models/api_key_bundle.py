@@ -3,7 +3,7 @@ from datetime import datetime, timedelta
 from pydantic import Field
 import logging
 
-from packages.pure_utils.src.pure_utils.time_util import get_current_time
+from pure_utils.time_util import get_current_time
 
 logger = logging.getLogger(__name__)
 

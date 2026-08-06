@@ -2,7 +2,7 @@ from datetime import datetime
 from beanie import Document, Indexed
 from pydantic import Field
 
-from packages.pure_utils.src.pure_utils.time_util import get_current_time
+from pure_utils.time_util import get_current_time
 
 
 class Place(Document):

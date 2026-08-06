@@ -5,11 +5,11 @@ import threading
 from typing import Optional
 from concurrent.futures import ThreadPoolExecutor
 
-from packages.llm_providers.src.llm_providers.db_models.gpt_batch import GPTBatch
-from packages.llm_providers.src.llm_providers.db_models.api_key_bundle import (
+from llm_providers.db_models.gpt_batch import GPTBatch
+from llm_providers.db_models.api_key_bundle import (
     APIKeyBundle,
 )
-from packages.llm_providers.src.llm_providers.utils.open_ai.batch_jsonl_file_writer import (
+from llm_providers.utils.open_ai.batch_jsonl_file_writer import (
     JSONLBatchFile,
 )
 from llm_providers.utils.chunk_util import split_bytes_on_line_boundaries

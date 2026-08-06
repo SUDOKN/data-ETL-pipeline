@@ -1,11 +1,9 @@
 import pytest
-from apps.data_etl_app.src.data_etl_app.dependencies.load_data_etl_env import (
-    load_data_etl_env,
-)
+from pure_utils.env_util import load_env
 
 # Load .env once for the entire test session so env vars like
 # GOOGLE_MAPS_API_KEY are available to integration tests.
-load_data_etl_env(required=False)
+load_env([])
 
 
 @pytest.fixture

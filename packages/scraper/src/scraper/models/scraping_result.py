@@ -5,7 +5,7 @@ import sys
 from dataclasses import dataclass
 from typing import List, Optional
 
-from packages.llm_providers.src.llm_providers.models.llm_model import LLM_Model
+from llm_providers.models.llm_model import LLM_Model
 
 # -------------------------------- Logging --------------------------------
 logging.basicConfig(

@@ -2,20 +2,23 @@ from __future__ import (
     annotations,
 )  # This allows you to write self-referential types without quotes, because type annotations are no longer evaluated at function/class definition time
 
-import os
 import logging
 import asyncio
 from typing import Optional
 
 import aiobotocore.session
 
+from pure_utils.env_util import optional_env, require_env
+
 logger = logging.getLogger(__name__)
 
-SES_FROM_EMAIL = os.environ.get("SES_FROM_EMAIL")
-if not SES_FROM_EMAIL:
-    raise ValueError("SES_FROM_EMAIL is not set. Please check your .env file.")
 
-SES_REGION = os.environ.get("SES_REGION", "us-east-1")
+def _ses_from_email() -> str:
+    return require_env("SES_FROM_EMAIL")
+
+
+def _ses_region() -> str:
+    return optional_env("SES_REGION", "us-east-1")
 
 
 class SESEmailer:
@@ -33,7 +36,9 @@ class SESEmailer:
         async with self._client_lock:
             if self._client is None:
                 session = aiobotocore.session.get_session()
-                self._client_ctx = session.create_client("ses", region_name=SES_REGION)
+                self._client_ctx = session.create_client(
+                    "ses", region_name=_ses_region()
+                )
                 self._client = await self._client_ctx.__aenter__()
         return self._client
 
@@ -48,7 +53,7 @@ class SESEmailer:
             client = await self._get_client()
             logger.info(f"Sending email to {to_emails} with subject '{subject}'")
             response = await client.send_email(
-                Source=SES_FROM_EMAIL,
+                Source=_ses_from_email(),
                 Destination={"ToAddresses": to_emails},
                 Message={
                     "Subject": {"Data": subject, "Charset": "UTF-8"},

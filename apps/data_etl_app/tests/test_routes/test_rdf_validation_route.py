@@ -1,7 +1,7 @@
 import pytest
 from fastapi import HTTPException
 
-from apps.data_etl_app.src.data_etl_app.api.routes.rdf_validation import (
+from data_etl_app.api.routes.rdf_validation import (
     validate_rdf_file,
 )
 

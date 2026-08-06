@@ -2,11 +2,11 @@ import logging
 import uuid
 from datetime import datetime
 
-from packages.llm_providers.src.llm_providers.models.file_objects.prompt import Prompt
-from packages.llm_providers.src.llm_providers.db_models.gpt_batch_request import (
+from llm_providers.models.file_objects.prompt import Prompt
+from llm_providers.db_models.gpt_batch_request import (
     GPTBatchRequest,
 )
-from packages.llm_providers.src.llm_providers.models.open_ai.gpt_batch_response_blob import (
+from llm_providers.models.open_ai.gpt_batch_response_blob import (
     ChatCompletionChoice,
     ChatCompletionChoiceMessage,
     ChatCompletionResponse,
@@ -14,15 +14,15 @@ from packages.llm_providers.src.llm_providers.models.open_ai.gpt_batch_response_
     GPTBatchResponse,
 )
 
-from packages.llm_providers.src.llm_providers.models.llm_model import LLM_Model
-from packages.llm_providers.src.llm_providers.models.llm_model import NO_MODEL
-from packages.llm_providers.src.llm_providers.models.open_ai.gpt_model_params import (
+from llm_providers.models.llm_model import LLM_Model
+from llm_providers.models.llm_model import NO_MODEL
+from llm_providers.models.open_ai.gpt_model_params import (
     GPTModelParams,
 )
-from packages.llm_providers.src.llm_providers.utils.ask_llm_util import (
+from llm_providers.utils.ask_llm_util import (
     fetch_gpt_batch_response,
 )
-from packages.llm_providers.src.llm_providers.utils.open_ai.batch_gpt_util import (
+from llm_providers.utils.open_ai.batch_gpt_util import (
     get_gpt_request_blob,
 )
 

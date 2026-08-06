@@ -7,30 +7,16 @@ from pymongo import UpdateOne
 
 from pymongo.errors import BulkWriteError
 
-from packages.core.src.core.dependencies.load_core_env import load_core_env
-from apps.data_etl_app.src.data_etl_app.dependencies.load_scraper_env import (
-    load_scraper_env,
-)
+from pure_utils.env_util import load_env
 
-from apps.data_etl_app.src.data_etl_app.dependencies.load_open_ai_app_env import (
-    load_open_ai_app_env,
-)
-from apps.data_etl_app.src.data_etl_app.dependencies.load_data_etl_env import (
-    load_data_etl_env,
-)
+from data_etl_app.dependencies.env import MIGRATION_ENV
 
-# Load environment variables
-load_core_env()
-load_scraper_env()
-load_data_etl_env()
-load_open_ai_app_env()
+load_env(MIGRATION_ENV)
 
-from apps.data_etl_app.src.data_etl_app.db_models.manufacturer import Manufacturer
-from core.utils.mongo_client import (
-    init_db,
-)
-from packages.pure_utils.src.pure_utils.time_util import get_current_time
-from packages.pure_utils.src.pure_utils.url_util import get_etld1_from_host
+from data_etl_app.db_models.manufacturer import Manufacturer
+from data_etl_app.dependencies.db import init_app_db
+from pure_utils.time_util import get_current_time
+from pure_utils.url_util import get_etld1_from_host
 
 logger = logging.getLogger(__name__)
 
@@ -176,7 +162,7 @@ async def iterate():
 
 
 async def main():
-    await init_db()
+    await init_app_db()
     print("Database initialized.")
     await iterate()
 

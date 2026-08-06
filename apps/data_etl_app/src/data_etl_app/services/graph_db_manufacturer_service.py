@@ -1,14 +1,14 @@
-from packages.core.src.core.field_types import SubjectUniqueIDType
-from apps.data_etl_app.src.data_etl_app.services.ttl_generator_service import (
+from core.field_types import SubjectUniqueIDType
+from data_etl_app.services.ttl_generator_service import (
     generate_triples_for_single_mfg,
 )
-from packages.infra.src.infra.utils.db_clients.graph_db_client import (
+from infra.utils.db_clients.graph_db_client import (
     send_update_query_to_db,
 )
 from core.services.ontology_service import (
     get_ontology_service,
 )
-from apps.data_etl_app.src.data_etl_app.services.manufacturer_user_form_service import (
+from data_etl_app.services.manufacturer_user_form_service import (
     get_manufacturer_user_form_by_mfg_etld1,
 )
 

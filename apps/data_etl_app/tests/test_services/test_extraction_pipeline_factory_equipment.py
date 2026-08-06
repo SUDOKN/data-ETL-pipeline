@@ -1,13 +1,13 @@
 from datetime import datetime
 
-from packages.llm_providers.src.llm_providers.models.file_objects.prompt import Prompt
-from packages.llm_providers.src.llm_providers.models.llm_model import GPT_4o_mini
-from packages.llm_providers.src.llm_providers.models.open_ai.gpt_model_params import (
+from llm_providers.models.file_objects.prompt import Prompt
+from llm_providers.models.llm_model import GPT_4o_mini
+from llm_providers.models.open_ai.gpt_model_params import (
     GPTModelParams,
 )
 
-from packages.core.src.core.models.chunking_strat import EQUIPMENT_CHUNKING_STRAT
-from apps.data_etl_app.src.data_etl_app.models.pipeline_nodes import (
+from core.models.chunking_strat import EQUIPMENT_CHUNKING_STRAT
+from data_etl_app.models.pipeline_nodes import (
     EquipmentPhraseSearchNode,
     EquipmentRecursiveSearchNode,
     EquipmentRelationshipNode,
@@ -15,8 +15,8 @@ from apps.data_etl_app.src.data_etl_app.models.pipeline_nodes import (
     EquipmentFreehandGroundingNode,
     EquipmentReconcileNode,
 )
-from packages.core.src.core.models.types_and_enums import KeywordTypeEnum
-from apps.data_etl_app.src.data_etl_app.services.extraction_pipeline_factory import (
+from core.models.types_and_enums import KeywordTypeEnum
+from data_etl_app.services.extraction_pipeline_factory import (
     ExtractionPipelineFactory,
 )
 

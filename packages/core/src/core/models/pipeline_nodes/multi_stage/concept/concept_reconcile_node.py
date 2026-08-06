@@ -4,56 +4,56 @@ import logging
 from datetime import datetime
 from typing import Optional
 
-from packages.core.src.core.models.extraction_subject import (
+from core.models.extraction_subject import (
     AbstractExtractionSubject,
     AbstractDeferredExtractionSubject,
 )
-from packages.core.src.core.models.extraction_results.concept_extraction_results import (
+from core.models.extraction_results.concept_extraction_results import (
     ConceptsFound,
     ConceptExtractionStatsMap,
     ConceptExtractionStats,
     ConceptExtractionResults,
 )
-from packages.core.src.core.models.extraction_results.llm_phrase_extraction_results import (
+from core.models.extraction_results.llm_phrase_extraction_results import (
     partition_by_search_round,
 )
-from packages.core.src.core.models.deferred_extraction.deferred_concept_extraction import (
+from core.models.deferred_extraction.deferred_concept_extraction import (
     DeferredConceptExtractionRequests,
     IterativeTaggingRequest,
 )
-from packages.core.src.core.models.types_and_enums import ConceptTypeEnum
-from packages.core.src.core.models.skos_concept import Concept
-from packages.core.src.core.models.pipeline_nodes.base.base_node import PipelineContext
-from packages.core.src.core.models.pipeline_nodes.base.base_reconcile_node import (
+from core.models.types_and_enums import ConceptTypeEnum
+from core.models.skos_concept import Concept
+from core.models.pipeline_nodes.base.base_node import PipelineContext
+from core.models.pipeline_nodes.base.base_reconcile_node import (
     ReconcileNode,
 )
-from packages.core.src.core.models.pipeline_nodes.multi_stage.concept.concept_phrase_search_node import (
+from core.models.pipeline_nodes.multi_stage.concept.concept_phrase_search_node import (
     ConceptPhraseSearchNode,
 )
-from packages.core.src.core.models.pipeline_nodes.multi_stage.concept.concept_recursive_search_node import (
+from core.models.pipeline_nodes.multi_stage.concept.concept_recursive_search_node import (
     ConceptRecursiveSearchNode,
 )
-from packages.core.src.core.models.pipeline_nodes.multi_stage.concept.concept_relationship_node import (
+from core.models.pipeline_nodes.multi_stage.concept.concept_relationship_node import (
     ConceptRelationshipNode,
 )
-from packages.core.src.core.models.pipeline_nodes.multi_stage.concept.concept_relationship_screening_node import (
+from core.models.pipeline_nodes.multi_stage.concept.concept_relationship_screening_node import (
     ConceptRelationshipScreeningNode,
 )
-from packages.core.src.core.models.pipeline_nodes.multi_stage.concept.concept_initial_grounding_node import (
+from core.models.pipeline_nodes.multi_stage.concept.concept_initial_grounding_node import (
     ConceptInitialGroundingNode,
 )
-from packages.core.src.core.models.pipeline_nodes.multi_stage.concept.concept_iterative_grounding_node import (
+from core.models.pipeline_nodes.multi_stage.concept.concept_iterative_grounding_node import (
     ConceptIterativeGroundingNode,
 )
 from scraper.models.s3.scraped_text_file import ScrapedTextFile
 
-from packages.core.src.core.services.pipeline_nodes.multi_stage.llm_phrase_recursive_search_node_service import (
+from core.services.pipeline_nodes.multi_stage.llm_phrase_recursive_search_node_service import (
     build_llm_phrase_search_results,
 )
-from packages.core.src.core.services.pipeline_nodes.multi_stage.llm_initial_grounding_service import (
+from core.services.pipeline_nodes.multi_stage.llm_initial_grounding_service import (
     get_tagged_results_from_initial_grounding,
 )
-from packages.core.src.core.services.pipeline_nodes.multi_stage.llm_recursive_grounding_service import (
+from core.services.pipeline_nodes.multi_stage.llm_recursive_grounding_service import (
     get_phrase_trails,
     get_deepest_concepts_and_oov,
 )
@@ -62,7 +62,7 @@ from packages.core.src.core.services.pipeline_nodes.multi_stage.llm_recursive_gr
 from core.utils.rdf_to_graph_util import (
     get_match_label_to_concept_map,
 )
-from packages.core.src.core.utils.phrase_trail_dump_util import (
+from core.utils.phrase_trail_dump_util import (
     build_concept_phrase_trail_entry,
     write_phrase_trails_dump,
 )

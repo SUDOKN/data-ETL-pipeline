@@ -1,0 +1,10 @@
+"""Environment variables required by `core`, grouped by concern."""
+
+ONTOLOGY_URIS = [
+    "SUDOKN_PROCESS_CAP_BASE_URI",
+    "SUDOKN_MATERIAL_CAP_BASE_URI",
+    "SUDOKN_INDUSTRY_BASE_URI",
+    "SUDOKN_CERTIFICATE_BASE_URI",
+    "SUDOKN_OWNERSHIP_STATUS_BASE_URI",
+    "SUDOKN_NAICS_BASE_URI",
+]

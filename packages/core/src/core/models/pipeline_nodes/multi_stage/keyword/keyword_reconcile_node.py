@@ -4,43 +4,43 @@ import logging
 from datetime import datetime
 from typing import Optional
 
-from packages.core.src.core.models.extraction_subject import (
+from core.models.extraction_subject import (
     AbstractExtractionSubject,
     AbstractDeferredExtractionSubject,
 )
-from packages.core.src.core.models.deferred_extraction.deferred_keyword_extraction import (
+from core.models.deferred_extraction.deferred_keyword_extraction import (
     DeferredKeywordExtractionRequests,
 )
-from packages.core.src.core.models.extraction_results.keyword_extraction_results import (
+from core.models.extraction_results.keyword_extraction_results import (
     KeywordExtractionStats,
     KeywordExtractionResults,
     KeywordExtractionStatsMap,
 )
-from packages.core.src.core.models.extraction_results.llm_phrase_extraction_results import (
+from core.models.extraction_results.llm_phrase_extraction_results import (
     partition_by_search_round,
 )
-from packages.core.src.core.models.types_and_enums import KeywordTypeEnum
-from packages.core.src.core.models.pipeline_nodes.base.base_node import PipelineContext
-from packages.core.src.core.models.pipeline_nodes.base.base_reconcile_node import (
+from core.models.types_and_enums import KeywordTypeEnum
+from core.models.pipeline_nodes.base.base_node import PipelineContext
+from core.models.pipeline_nodes.base.base_reconcile_node import (
     ReconcileNode,
 )
 from scraper.models.s3.scraped_text_file import ScrapedTextFile
 
 # if TYPE_CHECKING:
 
-from packages.core.src.core.services.pipeline_nodes.multi_stage.llm_phrase_recursive_search_node_service import (
+from core.services.pipeline_nodes.multi_stage.llm_phrase_recursive_search_node_service import (
     build_llm_phrase_search_results,
 )
-from packages.core.src.core.services.pipeline_nodes.multi_stage.llm_phrase_relationship_node_service import (
+from core.services.pipeline_nodes.multi_stage.llm_phrase_relationship_node_service import (
     get_phrase_relationship_result as get_phrase_relationship_result,
 )
-from packages.core.src.core.services.pipeline_nodes.multi_stage.llm_relationship_screening_node_service import (
+from core.services.pipeline_nodes.multi_stage.llm_relationship_screening_node_service import (
     get_phrase_relationship_screening_result as parse_relationship_screening_batch_req_result,
 )
-from packages.core.src.core.services.pipeline_nodes.multi_stage.llm_freehand_grounding_service import (
+from core.services.pipeline_nodes.multi_stage.llm_freehand_grounding_service import (
     get_freehand_grounding_result as parse_freehand_grounding_batch_req_result,
 )
-from packages.core.src.core.utils.phrase_trail_dump_util import (
+from core.utils.phrase_trail_dump_util import (
     build_keyword_phrase_trail_entry,
     write_phrase_trails_dump,
 )

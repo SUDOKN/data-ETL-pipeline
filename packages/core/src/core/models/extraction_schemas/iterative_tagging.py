@@ -4,7 +4,7 @@ from typing import Optional
 
 from pydantic import BaseModel
 
-from packages.core.src.core.models.extraction_schemas.grounding import (
+from core.models.extraction_schemas.grounding import (
     PhraseToTagAndReasonMap,
     TagAndReasonMap,
 )

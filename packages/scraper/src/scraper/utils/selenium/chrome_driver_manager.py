@@ -21,14 +21,16 @@ from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.chrome.service import Service
 from selenium.common.exceptions import WebDriverException
 
+from pure_utils.env_util import require_env
+
 logger = logging.getLogger(__name__)
 
-CHROME_PROFILE_TMPDIR = os.getenv("CHROME_PROFILE_TMPDIR")
-if not CHROME_PROFILE_TMPDIR:
-    raise ValueError("CHROME_PROFILE_TMPDIR environment variable is not set.")
 
-# Ensure the Chrome profile directory exists
-os.makedirs(CHROME_PROFILE_TMPDIR, exist_ok=True)
+def _chrome_profile_tmpdir() -> str:
+    """Resolve the Chrome profile scratch directory, creating it if needed."""
+    tmpdir = require_env("CHROME_PROFILE_TMPDIR")
+    os.makedirs(tmpdir, exist_ok=True)
+    return tmpdir
 
 
 class ChromeDriverManager:
@@ -60,21 +62,19 @@ class ChromeDriverManager:
     def _cleanup_temp_profiles(self):
         """Clean up temporary Chrome profiles (contents only, not the base directory)."""
         try:
-            # Ensure the directory exists first
-            if CHROME_PROFILE_TMPDIR:
-                os.makedirs(CHROME_PROFILE_TMPDIR, exist_ok=True)
+            tmpdir = _chrome_profile_tmpdir()
 
-                temp_pattern = f"{CHROME_PROFILE_TMPDIR}/chrome_scrape_*"
-                cleaned_count = 0
+            temp_pattern = f"{tmpdir}/chrome_scrape_*"
+            cleaned_count = 0
 
-                for profile_dir in glob.glob(temp_pattern):
-                    if os.path.isdir(profile_dir):
-                        _shutil.rmtree(profile_dir, ignore_errors=True)
-                        cleaned_count += 1
+            for profile_dir in glob.glob(temp_pattern):
+                if os.path.isdir(profile_dir):
+                    _shutil.rmtree(profile_dir, ignore_errors=True)
+                    cleaned_count += 1
 
-                logger.info(
-                    f"Cleaned up {cleaned_count} temporary Chrome profiles from {CHROME_PROFILE_TMPDIR}"
-                )
+            logger.info(
+                f"Cleaned up {cleaned_count} temporary Chrome profiles from {tmpdir}"
+            )
         except Exception as e:
             logger.warning(f"Could not cleanup temp profiles: {e}")
 
@@ -89,7 +89,9 @@ class ChromeDriverManager:
 
     def create_temp_profile(self) -> str:
         """Create a temporary profile directory."""
-        temp_dir = tempfile.mkdtemp(prefix="chrome_scrape_", dir=CHROME_PROFILE_TMPDIR)
+        temp_dir = tempfile.mkdtemp(
+            prefix="chrome_scrape_", dir=_chrome_profile_tmpdir()
+        )
         logger.info(f"Created temp directory: {temp_dir}")
         return temp_dir
 

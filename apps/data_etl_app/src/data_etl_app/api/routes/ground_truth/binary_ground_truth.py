@@ -4,32 +4,32 @@ import logging
 from fastapi import APIRouter, HTTPException, Request, Query, Depends
 from fastapi.responses import JSONResponse
 
-from apps.data_etl_app.src.data_etl_app.db_models.user import User
-from apps.data_etl_app.src.data_etl_app.db_models.binary_ground_truth import (
+from data_etl_app.db_models.user import User
+from data_etl_app.db_models.binary_ground_truth import (
     BinaryGroundTruth,
     HumanBinaryDecision,
 )
-from packages.core.src.core.models.extraction_results.binary_classification_result import (
+from core.models.extraction_results.binary_classification_result import (
     BinaryClassificationResult,
 )
-from packages.core.src.core.models.types_and_enums import (
+from core.models.types_and_enums import (
     BinaryClassificationTypeEnum,
     GroundTruthSource,
 )
 
-from apps.data_etl_app.src.data_etl_app.services.manufacturer_service import (
+from data_etl_app.services.manufacturer_service import (
     find_manufacturer_by_etld1,
     find_manufacturer_by_url,
 )
-from apps.data_etl_app.src.data_etl_app.services.user_service import find_by_email
-from apps.data_etl_app.src.data_etl_app.services.ground_truth.binary_ground_truth_service import (
+from data_etl_app.services.user_service import find_by_email
+from data_etl_app.services.ground_truth.binary_ground_truth_service import (
     get_binary_ground_truth,
     save_new_binary_ground_truth,
     add_decision_to_binary_ground_truth,
 )
 
-from packages.pure_utils.src.pure_utils.time_util import get_current_time
-from packages.infra.src.infra.utils.s3.scraped_text_file_util import (
+from pure_utils.time_util import get_current_time
+from infra.utils.s3.scraped_text_file_util import (
     download_scraped_text_from_s3_by_subject_unique_id,
 )
 

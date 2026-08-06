@@ -20,38 +20,38 @@ from pathlib import Path
 from beanie import Document
 
 
-from packages.llm_providers.src.llm_providers.db_models.scraping_error import (
+from llm_providers.db_models.scraping_error import (
     ScrapingError,
 )
-from packages.llm_providers.src.llm_providers.db_models.api_key_bundle import (
+from llm_providers.db_models.api_key_bundle import (
     APIKeyBundle,
 )
-from apps.data_etl_app.src.data_etl_app.db_models.binary_ground_truth import (
+from data_etl_app.db_models.binary_ground_truth import (
     BinaryGroundTruth,
 )
-from apps.data_etl_app.src.data_etl_app.db_models.concept_ground_truth import (
+from data_etl_app.db_models.concept_ground_truth import (
     ConceptGroundTruth,
 )
-from apps.data_etl_app.src.data_etl_app.db_models.deferred_manufacturer import (
+from data_etl_app.db_models.deferred_manufacturer import (
     DeferredManufacturer,
 )
-from packages.llm_providers.src.llm_providers.db_models.extraction_error import (
+from llm_providers.db_models.extraction_error import (
     ExtractionError,
 )
-from packages.llm_providers.src.llm_providers.db_models.gpt_batch import GPTBatch
-from packages.llm_providers.src.llm_providers.db_models.gpt_batch_request import (
+from llm_providers.db_models.gpt_batch import GPTBatch
+from llm_providers.db_models.gpt_batch_request import (
     GPTBatchRequest,
 )
-from apps.data_etl_app.src.data_etl_app.db_models.keyword_ground_truth import (
+from data_etl_app.db_models.keyword_ground_truth import (
     KeywordGroundTruth,
 )
-from apps.data_etl_app.src.data_etl_app.db_models.manufacturer import Manufacturer
-from apps.data_etl_app.src.data_etl_app.db_models.manufacturer_user_form import (
+from data_etl_app.db_models.manufacturer import Manufacturer
+from data_etl_app.db_models.manufacturer_user_form import (
     ManufacturerUserForm,
 )
-from apps.data_etl_app.src.data_etl_app.db_models.mep_request import MEPRequest
-from apps.data_etl_app.src.data_etl_app.db_models.place import Place
-from apps.data_etl_app.src.data_etl_app.db_models.user import User
+from data_etl_app.db_models.mep_request import MEPRequest
+from data_etl_app.db_models.place import Place
+from data_etl_app.db_models.user import User
 
 MODELS: list[type[Document]] = [
     APIKeyBundle,

@@ -1,5 +1,5 @@
 from dataclasses import dataclass
-from packages.llm_providers.src.llm_providers.models.file_objects.base_files import (
+from llm_providers.models.file_objects.base_files import (
     JSONLFile,
 )
 

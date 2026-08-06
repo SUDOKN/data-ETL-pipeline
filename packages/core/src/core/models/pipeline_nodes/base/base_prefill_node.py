@@ -4,21 +4,21 @@ import logging
 from abc import abstractmethod
 from datetime import datetime
 
-from packages.core.src.core.models.extraction_subject import (
+from core.models.extraction_subject import (
     AbstractExtractionSubject,
     AbstractDeferredExtractionSubject,
 )
 
-from packages.core.src.core.models.chunking_strat import ChunkingStrategy
-from packages.core.src.core.models.pipeline_nodes.base.base_node import (
+from core.models.chunking_strat import ChunkingStrategy
+from core.models.pipeline_nodes.base.base_node import (
     BaseNode,
     PipelineContext,
     ResultT,
 )
-from packages.core.src.core.models.pipeline_nodes.base.base_llm_extraction_node import (
+from core.models.pipeline_nodes.base.base_llm_extraction_node import (
     BaseLLMExtractionNode,
 )
-from packages.core.src.core.models.types_and_enums import (
+from core.models.types_and_enums import (
     LLMExtractedFieldTypeVar,
 )
 from scraper.models.s3.scraped_text_file import ScrapedTextFile

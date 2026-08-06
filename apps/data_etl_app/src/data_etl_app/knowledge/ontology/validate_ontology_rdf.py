@@ -8,42 +8,21 @@ This module provides comprehensive validation for ontology RDF data, including:
 """
 
 import logging
-import sys
 from collections import defaultdict
 from typing import Dict, List, Set, Tuple
 from urllib.parse import urlparse
-from pathlib import Path
 
 import rdflib
 from rdflib.term import URIRef
 from rdflib.namespace import RDFS
 
-base_path = Path(__file__).parent.parent.parent.parent.parent.parent
-print(base_path)
-sys.path.insert(0, str(base_path / "data_etl_app" / "src"))
-sys.path.insert(0, str(base_path / "core" / "src"))
-sys.path.insert(0, str(base_path / "scraper_app" / "src"))
-sys.path.insert(0, str(base_path / "open_ai_key_app" / "src"))
+from pure_utils.env_util import load_env
 
+from data_etl_app.dependencies.env import ONTOLOGY_SCRIPT_ENV
 
-from packages.core.src.core.dependencies.load_core_env import load_core_env
-from apps.data_etl_app.src.data_etl_app.dependencies.load_scraper_env import (
-    load_scraper_env,
-)
-from apps.data_etl_app.src.data_etl_app.dependencies.load_open_ai_app_env import (
-    load_open_ai_app_env,
-)
-from apps.data_etl_app.src.data_etl_app.dependencies.load_data_etl_env import (
-    load_data_etl_env,
-)
+load_env(ONTOLOGY_SCRIPT_ENV)
 
-# Load environment variables
-load_core_env()
-load_scraper_env()
-load_data_etl_env()
-load_open_ai_app_env()
-
-from packages.core.src.core.models.skos_concept import ConceptNode
+from core.models.skos_concept import ConceptNode
 from core.utils.rdf_to_graph_util import (
     get_graph,
     get_label,
@@ -515,7 +494,7 @@ async def main():
     # Initialize AWS clients (required for ontology service)
     try:
         from core.dependencies.aws_clients import initialize_core_aws_clients
-        from apps.data_etl_app.src.data_etl_app.dependencies.aws_s3_clients import (
+        from infra.utils.s3.aws_s3_clients import (
             initialize_data_etl_aws_clients,
         )
 

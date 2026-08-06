@@ -4,46 +4,46 @@ from datetime import datetime
 import logging
 import time
 
-from packages.core.src.core.models.extraction_results.binary_classification_result import (
+from core.models.extraction_results.binary_classification_result import (
     BaseClassificationDecision,
 )
-from apps.data_etl_app.src.data_etl_app.db_models.manufacturer import Manufacturer
-from apps.data_etl_app.src.data_etl_app.db_models.deferred_manufacturer import (
+from data_etl_app.db_models.manufacturer import Manufacturer
+from data_etl_app.db_models.deferred_manufacturer import (
     DeferredManufacturer,
 )
-from packages.llm_providers.src.llm_providers.db_models.extraction_error import (
+from llm_providers.db_models.extraction_error import (
     ExtractionError,
 )
-from packages.core.src.core.models.types_and_enums import (
+from core.models.types_and_enums import (
     BinaryClassificationTypeEnum,
 )
-from packages.llm_providers.src.llm_providers.models.llm_model import LLM_Model
-from packages.llm_providers.src.llm_providers.models.open_ai.gpt_model_params import (
+from llm_providers.models.llm_model import LLM_Model
+from llm_providers.models.open_ai.gpt_model_params import (
     GPTModelParams,
 )
-from apps.data_etl_app.src.data_etl_app.models.s3.scraped_mfg_file import ScrapedMfgFile
+from data_etl_app.models.s3.scraped_mfg_file import ScrapedMfgFile
 
-from apps.data_etl_app.src.data_etl_app.services.manufacturer_service import (
+from data_etl_app.services.manufacturer_service import (
     update_manufacturer,
 )
-from apps.data_etl_app.src.data_etl_app.services.deferred_manufacturer_service import (
+from data_etl_app.services.deferred_manufacturer_service import (
     delete_deferred_manufacturer_if_empty,
     get_deferred_manufacturer_by_etld1_scraped_file_version,
 )
-from apps.data_etl_app.src.data_etl_app.services.gpt_batch_request_service import (
+from data_etl_app.services.gpt_batch_request_service import (
     bulk_delete_gpt_batch_requests_by_mfg_etld1_and_field,
 )
-from packages.core.src.core.models.pipeline_nodes import PipelineContext
+from core.models.pipeline_nodes import PipelineContext
 from core.models.ontology import Ontology
-from apps.data_etl_app.src.data_etl_app.services.prompt_service import PromptService
-from apps.data_etl_app.src.data_etl_app.services.extraction_pipeline_factory import (
+from data_etl_app.services.prompt_service import PromptService
+from data_etl_app.services.extraction_pipeline_factory import (
     ExtractionPipelineFactory,
 )
-from apps.data_etl_app.src.data_etl_app.services.ground_truth.binary_ground_truth_service import (
+from data_etl_app.services.ground_truth.binary_ground_truth_service import (
     get_binary_ground_truth,
 )
 
-from apps.data_etl_app.src.data_etl_app.utils.find_email_addresses import (
+from data_etl_app.utils.find_email_addresses import (
     get_validated_emails_from_text_async,
 )
 

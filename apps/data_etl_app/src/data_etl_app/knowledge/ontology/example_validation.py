@@ -11,43 +11,24 @@ Usage:
 If no file is provided, the script will run example validations.
 """
 
-import sys
 import asyncio
 import argparse
 from pathlib import Path
 
-# Add the src directories to the path so we can import our modules
-base_path = Path(__file__).parent.parent.parent.parent.parent
-sys.path.insert(0, str(base_path / "data_etl_app" / "src"))
-sys.path.insert(0, str(base_path / "core" / "src"))
-sys.path.insert(0, str(base_path / "scraper_app" / "src"))
-sys.path.insert(0, str(base_path / "open_ai_key_app" / "src"))
+# Load environment variables using the shared loader
+from pure_utils.env_util import load_env
 
-# Load environment variables using the proper dependency loaders
-from packages.core.src.core.dependencies.load_core_env import load_core_env
-from apps.data_etl_app.src.data_etl_app.dependencies.load_scraper_env import (
-    load_scraper_env,
-)
-from apps.data_etl_app.src.data_etl_app.dependencies.load_open_ai_app_env import (
-    load_open_ai_app_env,
-)
-from apps.data_etl_app.src.data_etl_app.dependencies.load_data_etl_env import (
-    load_data_etl_env,
-)
+from data_etl_app.dependencies.env import ONTOLOGY_SCRIPT_ENV
 
-# Load environment variables
-load_core_env()
-load_scraper_env()
-load_data_etl_env()
-load_open_ai_app_env()
+load_env(ONTOLOGY_SCRIPT_ENV)
 
 # Import AWS client initialization
 from core.dependencies.aws_clients import initialize_core_aws_clients
-from apps.data_etl_app.src.data_etl_app.dependencies.aws_s3_clients import (
+from infra.utils.s3.aws_s3_clients import (
     initialize_data_etl_aws_clients,
 )
 
-from apps.data_etl_app.src.data_etl_app.knowledge.ontology.validate_ontology_rdf import (
+from data_etl_app.knowledge.ontology.validate_ontology_rdf import (
     validate_ontology_rdf,
     validate_ontology_from_file,
     is_ontology_valid,

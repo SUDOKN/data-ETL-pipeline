@@ -2,7 +2,7 @@ from beanie import Document
 from datetime import datetime
 from pydantic import Field
 
-from packages.pure_utils.src.pure_utils.time_util import get_current_time
+from pure_utils.time_util import get_current_time
 
 
 class ExtractionError(Document):

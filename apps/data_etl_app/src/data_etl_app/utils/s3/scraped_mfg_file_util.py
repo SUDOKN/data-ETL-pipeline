@@ -1,10 +1,10 @@
-from apps.data_etl_app.src.data_etl_app.services.ground_truth.concept_ground_truth_service import (
+from data_etl_app.services.ground_truth.concept_ground_truth_service import (
     does_a_cgt_exist_with_scraped_file_version,
 )
-from apps.data_etl_app.src.data_etl_app.services.ground_truth.keyword_ground_truth_service import (
+from data_etl_app.services.ground_truth.keyword_ground_truth_service import (
     does_a_kgt_exist_with_scraped_file_version,
 )
-from apps.data_etl_app.src.data_etl_app.services.ground_truth.binary_ground_truth_service import (
+from data_etl_app.services.ground_truth.binary_ground_truth_service import (
     does_a_bgt_exist_with_scraped_file_version,
 )
 
