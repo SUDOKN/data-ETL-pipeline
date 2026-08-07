@@ -4,13 +4,13 @@ from core.models.pipeline_nodes import PipelineContext
 from core.models.pipeline_nodes.multi_stage.keyword.keyword_reconcile_node import (
     KeywordReconcileNode,
 )
-from core.models.types_and_enums import KeywordTypeEnum
+from data_etl_app.models.types_and_enums import KeywordTypeEnum
 
 
 class PureProductReconcileNode(KeywordReconcileNode):
     """Phase 6 for the pure-product branch.
 
-    Reads/writes ``deferred_mfg.products`` / ``mfg.products`` (via
+    Reads/writes ``deferred_subject.products`` / ``subject.products`` (via
     ``field_type=KeywordTypeEnum.products``) and points the 5 upstream lookups
     at the ``PureProduct*`` sibling node classes.
     """

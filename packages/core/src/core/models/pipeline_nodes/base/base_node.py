@@ -14,7 +14,7 @@ from core.models.extraction_subject import (
 from llm_providers.db_models.gpt_batch_request import (
     GPTBatchRequest,
 )
-from core.models.types_and_enums import (
+from core.models.field_types import (
     LLMExtractedFieldTypeVar,
 )
 from llm_providers.field_types import BatchRequestIDType
@@ -54,7 +54,7 @@ class PipelineContext:
     """Carries shared state for a single pipeline run.
 
     ``subject_name`` is pre-populated by the orchestrator before any concept/keyword
-    pipeline executes so that phrase_relationship nodes can embed the manufacturer name in
+    pipeline executes so that phrase_relationship nodes can embed the subject name in
     their batch requests without needing it threaded through every method signature.
 
     The internal ``_results`` dict preserves the existing keying convention of

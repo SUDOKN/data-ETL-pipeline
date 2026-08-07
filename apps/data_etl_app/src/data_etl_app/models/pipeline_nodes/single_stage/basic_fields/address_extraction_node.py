@@ -21,6 +21,7 @@ from data_etl_app.models.types_and_enums import (
 from core.models.pipeline_nodes.single_stage.base.single_stage_extraction_node import (
     SingleStageExtractionNode,
 )
+from core.models.field_types import ExtractionFieldType
 from core.models.extraction_schemas.response_format_util import (
     build_gpt_response_format,
 )
@@ -63,27 +64,27 @@ class AddressExtractionNode(SingleStageExtractionNode[list[Address]]):
 
     @staticmethod
     async def get_result(
-        mfg_etld1: str,
+        subject_unique_id: str,
+        field_type: ExtractionFieldType,
         chunk_bounds: str,
         extraction_bundle: SingleStageExtractionRequestBundle,
         completed_request_map: dict[BatchRequestIDType, GPTBatchRequest],
         timestamp: datetime,
-        field_type: BasicFieldTypeEnum = BasicFieldTypeEnum.addresses,
     ) -> list[Address]:
         llm_address_request_id = extraction_bundle.llm_request_id
         if not llm_address_request_id:
             raise ValueError(
-                f"address_extraction_node.get_result: llm_request_id is None for chunk bounds {chunk_bounds} in {mfg_etld1}:{field_type.name}"
+                f"address_extraction_node.get_result: llm_request_id is None for chunk bounds {chunk_bounds} in {subject_unique_id}:{field_type.name}"
             )
 
         llm_address_req = completed_request_map.get(llm_address_request_id)
         if not llm_address_req:
             raise ValueError(
-                f"address_extraction_node.get_result: Missing GPTBatchRequest for mapping request ID {llm_address_request_id} in {mfg_etld1}:{field_type.name}"
+                f"address_extraction_node.get_result: Missing GPTBatchRequest for mapping request ID {llm_address_request_id} in {subject_unique_id}:{field_type.name}"
             )
         elif not llm_address_req.response:
             raise ValueError(
-                f"address_extraction_node.get_result: GPTBatchRequest for mapping request ID {llm_address_request_id} has no response_blob in {mfg_etld1}:{field_type.name}"
+                f"address_extraction_node.get_result: GPTBatchRequest for mapping request ID {llm_address_request_id} has no response_blob in {subject_unique_id}:{field_type.name}"
             )
 
         try:
@@ -99,6 +100,6 @@ class AddressExtractionNode(SingleStageExtractionNode[list[Address]]):
                 traceback_str=traceback.format_exc(),
             )
             logger.error(
-                f"address_extraction_node.get_result: Error parsing address extraction results for manufacturer {mfg_etld1} from GPT response: {e}"
+                f"address_extraction_node.get_result: Error parsing address extraction results for manufacturer {subject_unique_id} from GPT response: {e}"
             )
             raise

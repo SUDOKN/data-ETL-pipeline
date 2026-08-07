@@ -3,7 +3,7 @@ import logging
 from typing import TYPE_CHECKING
 
 from llm_providers.models.file_objects.prompt import Prompt
-from core.models.types_and_enums import KeywordTypeEnum
+from core.models.field_types import ExtractionFieldType
 from core.models.pipeline_nodes.multi_stage.base.llm_phrase_relationship_node import (
     LLMPhraseRelationshipNode,
 )
@@ -16,7 +16,7 @@ if TYPE_CHECKING:
 logger = logging.getLogger(__name__)
 
 
-class KeywordRelationshipNode(LLMPhraseRelationshipNode[KeywordTypeEnum]):
+class KeywordRelationshipNode(LLMPhraseRelationshipNode[ExtractionFieldType]):
     """Base class: phase 3, LLM distills keywords from the phrases with context of the text.
 
     This is a BASE class: it narrows the constructor types but leaves
@@ -28,7 +28,7 @@ class KeywordRelationshipNode(LLMPhraseRelationshipNode[KeywordTypeEnum]):
 
     def __init__(
         self,
-        field_type: KeywordTypeEnum,
+        field_type: ExtractionFieldType,
         phrase_relationship_prompt: Prompt,
         next_node: KeywordRelationshipScreeningNode,
     ):

@@ -23,9 +23,8 @@ from core.models.deferred_extraction.deferred_single_stage_extraction_requests i
 from core.models.pipeline_nodes.base.base_reconcile_node import (
     ReconcileNode,
 )
-from core.models.types_and_enums import (
-    BinaryClassificationTypeEnum,
-    SingleStageFieldTypeEnum,
+from core.models.field_types import (
+    ExtractionFieldType,
 )
 from core.models.pipeline_nodes.base.base_node import (
     PipelineContext,
@@ -52,12 +51,10 @@ from core.services.pipeline_nodes.single_stage.llm_basic_field_extraction_servic
 logger = logging.getLogger(__name__)
 
 
-class SingleStageExtractionNode(
-    BaseLLMExtractionNode[SingleStageFieldTypeEnum, ResultT]
-):
+class SingleStageExtractionNode(BaseLLMExtractionNode[ExtractionFieldType, ResultT]):
     def __init__(
         self,
-        field_type: "str | BinaryClassificationTypeEnum",
+        field_type: ExtractionFieldType,
         next_node: ReconcileNode,
         prompt: Prompt,
     ):
@@ -84,7 +81,7 @@ class SingleStageExtractionNode(
         if not chunked_request_map:
             raise ValueError(
                 f"Cannot embed req ids for llm phrase search node, "
-                f"as chunked_request_map found empty for mfg:{subject_unique_id}, field:{self.field_type}."
+                f"as chunked_request_map found empty for subject:{subject_unique_id}, field:{self.field_type.name}."
             )
 
         for (
@@ -111,7 +108,7 @@ class SingleStageExtractionNode(
         ) in chunked_request_map.items():
             if not extraction_bundle.llm_request_id:
                 raise ValueError(
-                    f"get_embedded_request_ids was called for {subject_unique_id}:{self.field_type} but llm_request_id is None for chunk bounds {_chunk_bounds}."
+                    f"get_embedded_request_ids was called for {subject_unique_id}:{self.field_type.name} but llm_request_id is None for chunk bounds {_chunk_bounds}."
                 )
             all_llm_req_ids.add(extraction_bundle.llm_request_id)
         return all_llm_req_ids
@@ -119,12 +116,12 @@ class SingleStageExtractionNode(
     @staticmethod
     def get_request_custom_id(
         subject_unique_id: str,
-        field_type: "str | BinaryClassificationTypeEnum",
+        field_type: ExtractionFieldType,
         chunk_bounds: str,
         metadata: LLMSingleStageExtractionMetadata,
     ) -> BatchRequestIDType:
         return (
-            f"{subject_unique_id}>{field_type}>llm_request>chunk>{chunk_bounds}>"
+            f"{subject_unique_id}>{field_type.name}>llm_request>chunk>{chunk_bounds}>"
             f"{metadata.single_stage.model_params.to_custom_id_segment(metadata.single_stage.llm_model.name)}"
         )
 
@@ -144,7 +141,7 @@ class SingleStageExtractionNode(
         batch_requests = await create_missing_basic_extraction_requests(
             deferred_at=timestamp,
             subject_unique_id=subject_unique_id,
-            mfg_text=scraped_text_file.text,
+            subject_text=scraped_text_file.text,
             field_type=self.field_type,
             chunked_request_map=chunked_request_map,
             missing_request_ids=missing_request_ids,
@@ -156,7 +153,7 @@ class SingleStageExtractionNode(
         )
 
         logger.info(
-            f"create_batch_requests: Created {len(batch_requests)} GPTBatchRequest for {subject_unique_id}:{self.field_type}"
+            f"create_batch_requests: Created {len(batch_requests)} GPTBatchRequest for {subject_unique_id}:{self.field_type.name}"
         )
         logger.info(f"{batch_requests}")
 
@@ -166,7 +163,7 @@ class SingleStageExtractionNode(
     @abstractmethod
     async def get_result(
         subject_unique_id: str,
-        field_type: "str | BinaryClassificationTypeEnum",
+        field_type: ExtractionFieldType,
         chunk_bounds: str,
         extraction_bundle: SingleStageExtractionRequestBundle,
         completed_request_map: dict[BatchRequestIDType, GPTBatchRequest],

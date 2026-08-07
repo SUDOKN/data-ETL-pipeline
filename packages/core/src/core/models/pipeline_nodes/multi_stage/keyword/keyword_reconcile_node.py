@@ -19,7 +19,7 @@ from core.models.extraction_results.keyword_extraction_results import (
 from core.models.extraction_results.llm_phrase_extraction_results import (
     partition_by_search_round,
 )
-from core.models.types_and_enums import KeywordTypeEnum
+from core.models.field_types import ExtractionFieldType
 from core.models.pipeline_nodes.base.base_node import PipelineContext
 from core.models.pipeline_nodes.base.base_reconcile_node import (
     ReconcileNode,
@@ -48,7 +48,7 @@ from core.utils.phrase_trail_dump_util import (
 logger = logging.getLogger(__name__)
 
 
-class KeywordReconcileNode(ReconcileNode[KeywordTypeEnum]):
+class KeywordReconcileNode(ReconcileNode[ExtractionFieldType]):
     """Base class: phase 6, aggregate & write final results.
 
     This is a BASE class: the 5 ``get_upstream_*_map`` getters are left
@@ -57,7 +57,7 @@ class KeywordReconcileNode(ReconcileNode[KeywordTypeEnum]):
     sibling node classes.
     """
 
-    def __init__(self, field_type: KeywordTypeEnum) -> None:
+    def __init__(self, field_type: ExtractionFieldType) -> None:
         super().__init__(field_type=field_type)
 
     def get_upstream_search_map(self, pipeline_context: PipelineContext) -> dict:

@@ -6,7 +6,7 @@ from llm_providers.models.file_objects.prompt import Prompt
 from core.models.pipeline_nodes.multi_stage.base.llm_phrase_search_node import (
     LLMPhraseSearchNode,
 )
-from core.models.types_and_enums import KeywordTypeEnum
+from core.models.field_types import ExtractionFieldType
 
 if TYPE_CHECKING:
     from core.models.pipeline_nodes.multi_stage.keyword.keyword_recursive_search_node import (
@@ -17,12 +17,12 @@ if TYPE_CHECKING:
 logger = logging.getLogger(__name__)
 
 
-class KeywordPhraseSearchNode(LLMPhraseSearchNode[KeywordTypeEnum]):
+class KeywordPhraseSearchNode(LLMPhraseSearchNode[ExtractionFieldType]):
     """Phase 1: LLM Search for keywords"""
 
     def __init__(
         self,
-        field_type: KeywordTypeEnum,
+        field_type: ExtractionFieldType,
         search_prompt: Prompt,
         next_node: KeywordRecursiveSearchNode,
     ):

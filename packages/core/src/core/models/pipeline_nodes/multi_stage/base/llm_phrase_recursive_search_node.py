@@ -25,8 +25,8 @@ from core.models.pipeline_nodes.base.base_node import (
 from core.models.pipeline_nodes.base.base_reconcile_node import (
     ReconcileNode,
 )
-from core.models.types_and_enums import (
-    LLMExtractedFieldTypeEnum,
+from core.models.field_types import (
+    ExtractionFieldType,
 )
 from core.models.pipeline_nodes.base.base_llm_extraction_node import (
     BaseLLMExtractionNode,
@@ -98,7 +98,7 @@ class LLMPhraseRecursiveSearchNode(
     @override
     def get_request_custom_id(
         subject_unique_id: str,
-        field_type: LLMExtractedFieldTypeEnum,
+        field_type: ExtractionFieldType,
         chunk_bounds: str,
         round_index: int,
         metadata: LLMPhraseExtractionMetadata,
@@ -120,7 +120,7 @@ class LLMPhraseRecursiveSearchNode(
         if not chunked_request_map:
             raise ValueError(
                 f"Cannot embed req ids for llm recursive search node, "
-                f"as chunked_request_map found empty for mfg:{subject_unique_id}, field:{self.field_type.name}."
+                f"as chunked_request_map found empty for subject:{subject_unique_id}, field:{self.field_type.name}."
             )
 
         recursive_meta = metadata.llm_phrase_recursive_search
@@ -253,7 +253,7 @@ class LLMPhraseRecursiveSearchNode(
             missing_recursive_search_req_ids=missing_request_ids,
             chunked_request_map=chunked_request_map,
             subject_unique_id=subject_unique_id,
-            mfg_text=scraped_text_file.text,
+            subject_text=scraped_text_file.text,
             recursive_search_prompt=self.recursive_search_prompt,
             first_search_gpt_request_map=first_search_map,
             completed_recursive_search_req_map=completed_recursive_map,
@@ -267,7 +267,7 @@ class LLMPhraseRecursiveSearchNode(
     @staticmethod
     async def get_result(
         subject_unique_id: str,
-        field_type: LLMExtractedFieldTypeEnum,
+        field_type: ExtractionFieldType,
         chunk_bounds: str,
         extraction_bundle: LLMPhraseExtractionRequestBundle,
         completed_request_map: dict[BatchRequestIDType, GPTBatchRequest],

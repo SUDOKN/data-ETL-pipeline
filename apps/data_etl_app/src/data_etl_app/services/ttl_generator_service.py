@@ -16,6 +16,11 @@ from data_etl_app.utils.ttl_generator_util import (
 from core.models.ontology import Ontology
 from pure_utils.url_util import uri_strip
 from core.models.skos_concept import Concept
+from data_etl_app.models.types_and_enums import ConceptTypeEnum
+from data_etl_app.utils.ontology_uri_util import (
+    naics_base_uri,
+    ownership_status_base_uri,
+)
 from data_etl_app.db_models.manufacturer_user_form import (
     ManufacturerUserForm,
 )
@@ -35,45 +40,44 @@ logger = logging.getLogger(__name__)
 
 
 def get_ownership_status_concept(ontology: Ontology, label: str) -> Concept:
-    concept = ontology.ownership_status_map.get(label)
+    concept = ontology.concept_map(
+        ownership_status_base_uri(), include_alt_labels=True
+    ).get(label)
     if not concept:
         raise ValueError(f"Ownership status '{label}' not found in ontology.")
     return concept
 
 
 def get_naics_concept(ontology: Ontology, code: str) -> Concept:
-    concept = ontology.naics_code_map.get(code)
+    concept = ontology.concept_map(naics_base_uri()).get(code)
     if not concept:
         raise ValueError(f"NAICS code {code} not found in ontology.")
     return concept
 
 
 def get_certificate_concept(ontology: Ontology, label: str) -> Concept:
-    concept = ontology.certificate_map.get(label)
+    concept = ontology.concept_map(ConceptTypeEnum.certificates.base_uri).get(label)
     if not concept:
         raise ValueError(f"Certificate '{label}' not found in ontology.")
     return concept
 
 
 def get_industry_concept(ontology: Ontology, label: str) -> Concept:
-    # logger.debug("Looking up industry concept for label:", label)
-    # logger.debug(type(ontology.industry_map))
-    # logger.debug(type(ontology.industry_map))
-    concept = ontology.industry_map.get(label)
+    concept = ontology.concept_map(ConceptTypeEnum.industries.base_uri).get(label)
     if not concept:
         raise ValueError(f"Industry '{label}' not found in ontology.")
     return concept
 
 
 def get_process_cap_concept(ontology: Ontology, label: str) -> Concept:
-    concept = ontology.process_cap_map.get(label)
+    concept = ontology.concept_map(ConceptTypeEnum.process_caps.base_uri).get(label)
     if not concept:
         raise ValueError(f"Process capability '{label}' not found in ontology.")
     return concept
 
 
 def get_material_cap_concept(ontology: Ontology, label: str) -> Concept:
-    concept = ontology.material_cap_map.get(label)
+    concept = ontology.concept_map(ConceptTypeEnum.material_caps.base_uri).get(label)
     if not concept:
         raise ValueError(f"Material capability '{label}' not found in ontology.")
     return concept

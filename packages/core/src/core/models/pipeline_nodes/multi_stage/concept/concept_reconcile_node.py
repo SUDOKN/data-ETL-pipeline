@@ -21,7 +21,7 @@ from core.models.deferred_extraction.deferred_concept_extraction import (
     DeferredConceptExtractionRequests,
     IterativeTaggingRequest,
 )
-from core.models.types_and_enums import ConceptTypeEnum
+from core.models.field_types import ConceptFieldType
 from core.models.skos_concept import Concept
 from core.models.pipeline_nodes.base.base_node import PipelineContext
 from core.models.pipeline_nodes.base.base_reconcile_node import (
@@ -70,10 +70,10 @@ from core.utils.phrase_trail_dump_util import (
 logger = logging.getLogger(__name__)
 
 
-class ConceptReconcileNode(ReconcileNode[ConceptTypeEnum]):
+class ConceptReconcileNode(ReconcileNode[ConceptFieldType]):
     def __init__(
         self,
-        concept_type: ConceptTypeEnum,
+        concept_type: ConceptFieldType,
         known_concepts: set[Concept],
     ):
         super().__init__(field_type=concept_type)

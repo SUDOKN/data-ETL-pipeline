@@ -14,7 +14,7 @@ from core.models.extraction_results.keyword_extraction_results import (
     KeywordExtractionMetadata,
     KeywordExtractionStats,
 )
-from core.models.types_and_enums import (
+from data_etl_app.models.types_and_enums import (
     GroundTruthSource,
     KeywordTypeEnum,
 )

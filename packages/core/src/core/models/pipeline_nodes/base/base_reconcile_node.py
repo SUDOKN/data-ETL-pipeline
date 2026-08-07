@@ -33,19 +33,19 @@ class ReconcileNode(BaseNode[LLMExtractedFieldTypeVar, None]):
         """Wipe down deferred field and any completed GPT requests in pipeline context related to this field. Called at end of execute."""
 
         # logger.info(
-        #     f"Reconciled {self.field_type.name} data for manufacturer {deferred_mfg.subject_unique_id}. "
+        #     f"Reconciled {self.field_type.name} data for subject {deferred_subject.subject_unique_id}. "
         #     f"Attempting to clean up GPTBatchRequests."
         # )
         # await bulk_delete_gpt_batch_requests_by_custom_ids(
         #     gpt_batch_request_custom_ids=associated_batch_request_custom_ids,
-        #     subject_unique_id=deferred_mfg.subject_unique_id,
+        #     subject_unique_id=deferred_subject.subject_unique_id,
         # )
         # logger.info(
-        #     f"Cleaned up GPTBatchRequests for {self.field_type.name} of manufacturer {deferred_mfg.subject_unique_id}. "
-        #     f"Attempting to clear deferred_mfg {self.field_type.name} extraction field."
+        #     f"Cleaned up GPTBatchRequests for {self.field_type.name} of subject {deferred_subject.subject_unique_id}. "
+        #     f"Attempting to clear deferred_subject {self.field_type.name} extraction field."
         # )
-        # setattr(deferred_mfg, self.field_type.name, None)
-        # await deferred_mfg.save()
+        # setattr(deferred_subject, self.field_type.name, None)
+        # await deferred_subject.save()
         # logger.info(
-        #     f"Cleared deferred_mfg {self.field_type.name} extraction field for manufacturer {deferred_mfg.subject_unique_id}. Reconciliation complete."
+        #     f"Cleared deferred_subject {self.field_type.name} extraction field for subject {deferred_subject.subject_unique_id}. Reconciliation complete."
         # )

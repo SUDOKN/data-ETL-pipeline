@@ -8,7 +8,7 @@ from infra.field_types import (
     S3FileVersionIDType,
 )
 
-from core.models.types_and_enums import BinaryClassificationTypeEnum
+from data_etl_app.models.types_and_enums import BinaryClassificationTypeEnum
 from data_etl_app.db_models.binary_ground_truth import (
     BinaryGroundTruth,
     HumanDecisionLog,

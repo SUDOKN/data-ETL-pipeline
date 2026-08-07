@@ -10,7 +10,7 @@ from core.models.pipeline_nodes import PipelineContext
 from core.models.pipeline_nodes.multi_stage.base.llm_phrase_freehand_grounding_node import (
     LLMPhraseFreehandGroundingNode,
 )
-from core.models.types_and_enums import KeywordTypeEnum
+from data_etl_app.models.types_and_enums import KeywordTypeEnum
 from llm_providers.field_types import BatchRequestIDType
 
 if TYPE_CHECKING:

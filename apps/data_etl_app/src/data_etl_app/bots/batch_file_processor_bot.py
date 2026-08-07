@@ -46,11 +46,11 @@ from data_etl_app.services.manufacturer_service import (
 )
 from core.models.ontology import Ontology
 from data_etl_app.services.prompt_service import PromptService
-from data_etl_app.services.batch_file_generator import (
+from data_etl_app.services.batched_processing.batch_file_generator import (
     BatchFileGenerationResult,
     iterate_df_manufacturers_and_write_batch_files,
 )
-from data_etl_app.services.batch_file_satellite import (
+from data_etl_app.services.batched_processing.batch_file_satellite import (
     BatchFileSatellite,
     BatchDownloadOutput,
 )

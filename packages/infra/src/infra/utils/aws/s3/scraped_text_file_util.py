@@ -18,7 +18,7 @@ def _scraped_text_bucket() -> str:
 
 
 def get_file_name_from_subject_unique_id(subject_unique_id: str) -> str:
-    """Generates a file name for the scraped text based on the manufacturer subject_unique_id."""
+    """Generates a file name for the scraped text based on the subject's subject_unique_id."""
     # check if the input is not exactly a subject_unique_id (i.e., effective top level domain)
 
     extracted = tldextract.extract(

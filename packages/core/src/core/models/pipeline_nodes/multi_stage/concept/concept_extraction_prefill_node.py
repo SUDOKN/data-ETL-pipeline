@@ -28,7 +28,7 @@ from core.models.pipeline_nodes.multi_stage.concept.concept_phrase_search_node i
 from core.models.pipeline_nodes.base.base_prefill_node import (
     PrefillNode,
 )
-from core.models.types_and_enums import ConceptTypeEnum
+from core.models.field_types import ConceptFieldType
 from core.models.pipeline_nodes.base.base_node import PipelineContext
 from core.models.chunking_strat import ChunkingStrategy
 
@@ -47,12 +47,12 @@ from pure_utils.dict_diff import find_diffs
 logger = logging.getLogger(__name__)
 
 
-class ConceptExtractionPrefillNode(PrefillNode[ConceptTypeEnum]):
+class ConceptExtractionPrefillNode(PrefillNode[ConceptFieldType]):
     next_node: ConceptPhraseSearchNode
 
     def __init__(
         self,
-        field_type: ConceptTypeEnum,
+        field_type: ConceptFieldType,
         chunk_strategy: ChunkingStrategy,
         next_node: ConceptPhraseSearchNode,
         ontology: Ontology,
@@ -149,12 +149,12 @@ class ConceptExtractionPrefillNode(PrefillNode[ConceptTypeEnum]):
                 latest = latest_concept_extraction_metadata.model_dump()
                 diffs = find_diffs(existing, latest, exclude={"created_at"})
                 raise ValueError(
-                    f"Cannot proceed {__class__.__name__} for mfg:{subject.subject_unique_id} as "
+                    f"Cannot proceed {__class__.__name__} for subject:{subject.subject_unique_id} as "
                     f"Metadata mismatch for {subject.subject_unique_id}.{self.field_type.name} — differing fields: {diffs}"
                 )
 
             logger.info(
-                f"Chunking already done, resuming extraction for mfg_etdl1:{subject.subject_unique_id}"
+                f"Chunking already done, resuming extraction for subject:{subject.subject_unique_id}"
             )
 
         await super().execute(

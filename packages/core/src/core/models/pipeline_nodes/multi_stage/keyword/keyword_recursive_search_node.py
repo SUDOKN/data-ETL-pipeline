@@ -6,8 +6,8 @@ from llm_providers.models.file_objects.prompt import Prompt
 from core.models.pipeline_nodes.multi_stage.base.llm_phrase_recursive_search_node import (
     LLMPhraseRecursiveSearchNode,
 )
-from core.models.types_and_enums import (
-    KeywordTypeEnum,
+from core.models.field_types import (
+    ExtractionFieldType,
 )
 
 if TYPE_CHECKING:
@@ -18,7 +18,7 @@ if TYPE_CHECKING:
 logger = logging.getLogger(__name__)
 
 
-class KeywordRecursiveSearchNode(LLMPhraseRecursiveSearchNode[KeywordTypeEnum]):
+class KeywordRecursiveSearchNode(LLMPhraseRecursiveSearchNode[ExtractionFieldType]):
     """Base class for recursive keyword phrase search (round 1 -> relationship phase).
 
     This is a BASE class: it narrows the constructor types but leaves
@@ -30,7 +30,7 @@ class KeywordRecursiveSearchNode(LLMPhraseRecursiveSearchNode[KeywordTypeEnum]):
 
     def __init__(
         self,
-        field_type: KeywordTypeEnum,
+        field_type: ExtractionFieldType,
         next_node: KeywordRelationshipNode,
         second_search_prompt: Prompt,
     ):

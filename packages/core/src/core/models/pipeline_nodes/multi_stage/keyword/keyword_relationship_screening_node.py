@@ -6,7 +6,7 @@ from llm_providers.models.file_objects.prompt import Prompt
 from core.models.pipeline_nodes.multi_stage.base.llm_phrase_relationship_screening_node import (
     LLMPhraseRelationshipScreeningNode,
 )
-from core.models.types_and_enums import KeywordTypeEnum
+from core.models.field_types import ExtractionFieldType
 
 if TYPE_CHECKING:
     from core.models.pipeline_nodes.multi_stage.keyword.keyword_freehand_grounding_node import (
@@ -17,7 +17,7 @@ logger = logging.getLogger(__name__)
 
 
 class KeywordRelationshipScreeningNode(
-    LLMPhraseRelationshipScreeningNode[KeywordTypeEnum]
+    LLMPhraseRelationshipScreeningNode[ExtractionFieldType]
 ):
     """Base class: phase 4, screen relationship phrases.
 
@@ -29,7 +29,7 @@ class KeywordRelationshipScreeningNode(
 
     def __init__(
         self,
-        field_type: KeywordTypeEnum,
+        field_type: ExtractionFieldType,
         next_node: KeywordFreehandGroundingNode,
         phrase_relationship_screening_prompt: Prompt,
     ):

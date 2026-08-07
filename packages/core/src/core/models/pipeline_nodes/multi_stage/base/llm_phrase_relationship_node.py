@@ -19,7 +19,7 @@ from core.models.extraction_schemas.relationship import (
     LLMPhraseRelationshipResults,
 )
 from llm_providers.models.file_objects.prompt import Prompt
-from core.models.types_and_enums import LLMExtractedFieldTypeEnum
+from core.models.field_types import ExtractionFieldType
 from core.models.pipeline_nodes.base.base_node import (
     LLMExtractedFieldTypeVar,
     PipelineContext,
@@ -89,7 +89,7 @@ class LLMPhraseRelationshipNode(
         if not chunked_request_map:
             raise ValueError(
                 f"Cannot embed req ids for llm phrase relationhip, "
-                f"as chunked_request_map found empty for mfg:{subject_unique_id}, field:{self.field_type.name}."
+                f"as chunked_request_map found empty for subject:{subject_unique_id}, field:{self.field_type.name}."
             )
 
         for (
@@ -131,7 +131,7 @@ class LLMPhraseRelationshipNode(
     @staticmethod
     def get_request_custom_id(
         subject_unique_id: str,
-        field_type: LLMExtractedFieldTypeEnum,
+        field_type: ExtractionFieldType,
         chunk_bounds: str,
         metadata: LLMPhraseExtractionMetadata,
     ) -> BatchRequestIDType:
@@ -159,7 +159,7 @@ class LLMPhraseRelationshipNode(
             )
 
         # create_missing_phrase_relationship_requests only creates batch requests fresh or only missing ones,
-        # for e.g., new mfg or some batch requests failed earlier and were deleted to allow re-processing
+        # for e.g., new subject or some batch requests failed earlier and were deleted to allow re-processing
         batch_requests = await create_missing_phrase_relationship_requests(
             timestamp=timestamp,
             subject_unique_id=subject_unique_id,
@@ -167,7 +167,7 @@ class LLMPhraseRelationshipNode(
             field_type=self.field_type,
             missing_phrase_relationship_req_ids=missing_request_ids,
             chunked_request_map=chunked_request_map,
-            mfg_text=scraped_text_file.text,
+            subject_text=scraped_text_file.text,
             phrase_relationship_prompt=self.phrase_relationship_prompt,
             llm_phrase_search_gpt_request_map=self.get_upstream_phrase_search_map(
                 pipeline_context
@@ -185,7 +185,7 @@ class LLMPhraseRelationshipNode(
     @staticmethod
     async def get_result(
         subject_unique_id: str,
-        field_type: LLMExtractedFieldTypeEnum,
+        field_type: ExtractionFieldType,
         chunk_bounds: str,
         extraction_bundle: LLMPhraseExtractionRequestBundle,
         completed_request_map: dict[BatchRequestIDType, GPTBatchRequest],

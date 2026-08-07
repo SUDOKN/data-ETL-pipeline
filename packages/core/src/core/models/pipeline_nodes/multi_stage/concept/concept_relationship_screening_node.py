@@ -7,12 +7,12 @@ from llm_providers.db_models.gpt_batch_request import (
 )
 from llm_providers.models.file_objects.prompt import Prompt
 from core.models.pipeline_nodes.base.base_node import PipelineContext
-from core.models.types_and_enums import ConceptTypeEnum
+from core.models.field_types import ConceptFieldType
 from core.models.pipeline_nodes.multi_stage.base.llm_phrase_relationship_screening_node import (
     LLMPhraseRelationshipScreeningNode,
 )
-from core.models.types_and_enums import (
-    ConceptTypeEnum,
+from core.models.field_types import (
+    ConceptFieldType,
 )
 from llm_providers.field_types import BatchRequestIDType
 
@@ -25,12 +25,12 @@ logger = logging.getLogger(__name__)
 
 
 class ConceptRelationshipScreeningNode(
-    LLMPhraseRelationshipScreeningNode[ConceptTypeEnum]
+    LLMPhraseRelationshipScreeningNode[ConceptFieldType]
 ):
 
     def __init__(
         self,
-        concept_type: ConceptTypeEnum,
+        concept_type: ConceptFieldType,
         next_node: ConceptInitialGroundingNode,
         phrase_relationship_screening_prompt: Prompt,
     ):

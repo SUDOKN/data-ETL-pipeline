@@ -13,8 +13,8 @@ from core.models.pipeline_nodes.multi_stage.base.llm_phrase_recursive_search_nod
 from core.models.pipeline_nodes.multi_stage.concept.concept_phrase_search_node import (
     ConceptPhraseSearchNode,
 )
-from core.models.types_and_enums import (
-    ConceptTypeEnum,
+from core.models.field_types import (
+    ConceptFieldType,
 )
 from llm_providers.field_types import BatchRequestIDType
 
@@ -26,7 +26,7 @@ if TYPE_CHECKING:
 logger = logging.getLogger(__name__)
 
 
-class ConceptRecursiveSearchNode(LLMPhraseRecursiveSearchNode[ConceptTypeEnum]):
+class ConceptRecursiveSearchNode(LLMPhraseRecursiveSearchNode[ConceptFieldType]):
     """Recursive concept phrase search.
 
     Sits between :class:`ConceptPhraseSearchNode` (round 1) and the relationship
@@ -35,7 +35,7 @@ class ConceptRecursiveSearchNode(LLMPhraseRecursiveSearchNode[ConceptTypeEnum]):
 
     def __init__(
         self,
-        concept_type: ConceptTypeEnum,
+        concept_type: ConceptFieldType,
         next_node: ConceptRelationshipNode,
         second_search_prompt: Prompt,
     ):

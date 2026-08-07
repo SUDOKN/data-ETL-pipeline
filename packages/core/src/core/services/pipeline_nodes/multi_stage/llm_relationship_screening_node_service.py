@@ -35,10 +35,10 @@ from core.models.deferred_extraction.deferred_phrase_extraction_requests import 
     LLMPhraseExtractionRequestMap,
     LLMPhraseExtractionRequestBundle,
 )
-from core.models.pipeline_nodes.multi_stage.base.llm_phrase_relationship_node import (
-    LLMPhraseRelationshipNode,
+from core.services.pipeline_nodes.multi_stage.llm_phrase_relationship_node_service import (
+    get_phrase_relationship_result,
 )
-from core.models.types_and_enums import LLMExtractedFieldTypeEnum
+from core.models.field_types import ExtractionFieldType
 from llm_providers.models.open_ai.gpt_model_params import (
     GPTModelParams,
 )
@@ -109,7 +109,7 @@ def get_verified_live_screening_results(
 
 async def parse_phrase_relationship_screening_group_result(
     subject_unique_id: str,
-    field_type: LLMExtractedFieldTypeEnum,
+    field_type: ExtractionFieldType,
     chunk_bounds: str,
     group_req_id: BatchRequestIDType,
     completed_request_map: dict[BatchRequestIDType, GPTBatchRequest],
@@ -136,14 +136,14 @@ async def parse_phrase_relationship_screening_group_result(
             traceback_str=traceback.format_exc(),
         )
         logger.error(
-            f"llm_phrase_relationship_screening_node.parse_batch_request_result: Error parsing phrase_relationship results for manufacturer {subject_unique_id} from GPT response: {e}"
+            f"llm_phrase_relationship_screening_node.parse_batch_request_result: Error parsing phrase_relationship results for subject {subject_unique_id} from GPT response: {e}"
         )
         raise
 
 
 async def get_phrase_relationship_screening_result(
     subject_unique_id: str,
-    field_type: LLMExtractedFieldTypeEnum,
+    field_type: ExtractionFieldType,
     chunk_bounds: str,
     extraction_bundle: LLMPhraseExtractionRequestBundle,
     completed_request_map: dict[BatchRequestIDType, GPTBatchRequest],
@@ -187,10 +187,10 @@ def _split_into_pair_groups(
 async def create_missing_phrase_relationship_screening_requests(
     subject_unique_id: str,
     subject_name: str,
-    field_type: LLMExtractedFieldTypeEnum,  # used for logging and debugging
+    field_type: ExtractionFieldType,  # used for logging and debugging
     chunked_request_map: LLMPhraseExtractionRequestMap,
     missing_phrase_relationship_screening_req_ids: set[BatchRequestIDType],
-    mfg_text: str,
+    subject_text: str,
     phrase_relationship_screening_prompt: Prompt,
     llm_phrase_relationship_gpt_request_map: dict[BatchRequestIDType, GPTBatchRequest],
     deferred_at: datetime,
@@ -223,7 +223,7 @@ async def create_missing_phrase_relationship_screening_requests(
 
         # Process current batch
         for chunk_bounds, extraction_bundle in batch:
-            llm_phrase_relationships = await LLMPhraseRelationshipNode.get_result(
+            llm_phrase_relationships = await get_phrase_relationship_result(
                 subject_unique_id=subject_unique_id,
                 field_type=field_type,
                 chunk_bounds=chunk_bounds,
@@ -283,7 +283,7 @@ async def create_missing_phrase_relationship_screening_requests(
                         subject_unique_id=subject_unique_id,
                         llm_phrase_relationship_screening_request_id=group_req_id,
                         subject_name=subject_name,
-                        mfg_text=mfg_text[start:end],
+                        subject_text=subject_text[start:end],
                         phrase_relationship_results=pair_group,
                         phrase_relationship_screening_prompt=phrase_relationship_screening_prompt,
                         eager=eager,
@@ -345,7 +345,7 @@ def create_deferred_phrase_relationship_screening_gpt_request(
     subject_unique_id: str,
     llm_phrase_relationship_screening_request_id: str,
     subject_name: str,
-    mfg_text: str,
+    subject_text: str,
     phrase_relationship_results: LLMPhraseRelationshipResults,
     phrase_relationship_screening_prompt: Prompt,
     gpt_model: LLM_Model,

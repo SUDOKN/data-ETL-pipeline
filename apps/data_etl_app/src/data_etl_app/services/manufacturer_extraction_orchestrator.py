@@ -14,7 +14,7 @@ from data_etl_app.db_models.deferred_manufacturer import (
 from llm_providers.db_models.extraction_error import (
     ExtractionError,
 )
-from core.models.types_and_enums import (
+from data_etl_app.models.types_and_enums import (
     BinaryClassificationTypeEnum,
 )
 from llm_providers.models.llm_model import LLM_Model

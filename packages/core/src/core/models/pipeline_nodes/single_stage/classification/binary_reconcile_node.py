@@ -17,8 +17,8 @@ from core.models.deferred_extraction.deferred_single_stage_extraction_requests i
     DeferredSingleStageExtractionRequests,
 )
 from core.models.pipeline_nodes.base.base_node import PipelineContext
-from core.models.types_and_enums import (
-    BinaryClassificationTypeEnum,
+from core.models.field_types import (
+    ExtractionFieldType,
 )
 from core.models.pipeline_nodes.base.base_reconcile_node import (
     ReconcileNode,
@@ -31,9 +31,9 @@ from scraper.models.s3.scraped_text_file import ScrapedTextFile
 logger = logging.getLogger(__name__)
 
 
-class BinaryReconcileNode(ReconcileNode[BinaryClassificationTypeEnum]):
+class BinaryReconcileNode(ReconcileNode[ExtractionFieldType]):
 
-    def __init__(self, binary_field_type: BinaryClassificationTypeEnum) -> None:
+    def __init__(self, binary_field_type: ExtractionFieldType) -> None:
         super().__init__(field_type=binary_field_type)
 
     async def execute(

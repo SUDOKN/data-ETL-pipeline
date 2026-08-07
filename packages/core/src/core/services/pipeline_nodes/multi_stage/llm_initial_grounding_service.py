@@ -34,17 +34,15 @@ from core.models.deferred_extraction.deferred_concept_extraction import (
     TagToPhraseAndReasonMap,
 )
 from core.models.skos_concept import Concept
-from core.models.types_and_enums import (
-    ConceptTypeEnum,
+from core.models.field_types import (
+    ConceptFieldType,
 )
-from core.models.pipeline_nodes.multi_stage.base.llm_phrase_relationship_node import (
-    LLMPhraseRelationshipNode,
-)
-from core.models.pipeline_nodes.multi_stage.base.llm_phrase_relationship_screening_node import (
-    LLMPhraseRelationshipScreeningNode,
+from core.services.pipeline_nodes.multi_stage.llm_phrase_relationship_node_service import (
+    get_phrase_relationship_result,
 )
 from core.services.pipeline_nodes.multi_stage.llm_relationship_screening_node_service import (
     get_verified_live_screening_results,
+    get_phrase_relationship_screening_result,
 )
 from llm_providers.models.open_ai.gpt_model_params import (
     GPTModelParams,
@@ -104,7 +102,7 @@ def parse_llm_phrase_initial_grounding_result(
 
 async def get_initial_grounding_result(
     subject_unique_id: str,
-    field_type: ConceptTypeEnum,
+    field_type: ConceptFieldType,
     chunk_bounds: str,
     extraction_bundle: ConceptExtractionRequestBundle,
     completed_request_map: dict[BatchRequestIDType, GPTBatchRequest],
@@ -139,14 +137,14 @@ async def get_initial_grounding_result(
             traceback_str=traceback.format_exc(),
         )
         logger.error(
-            f"phrase_initial_grounding_node.parse_batch_request_result: Error parsing phrase_initial_grounding results for manufacturer {subject_unique_id} from GPT response: {e}"
+            f"phrase_initial_grounding_node.parse_batch_request_result: Error parsing phrase_initial_grounding results for subject {subject_unique_id} from GPT response: {e}"
         )
         raise
 
 
 async def get_tagged_results_from_initial_grounding(
     subject_unique_id: str,
-    field_type: ConceptTypeEnum,
+    field_type: ConceptFieldType,
     chunk_bounds: str,
     extraction_bundle: ConceptExtractionRequestBundle,
     completed_request_map: dict[BatchRequestIDType, GPTBatchRequest],
@@ -293,7 +291,7 @@ async def create_missing_phrase_initial_grounding_requests(
     # used for logging and debugging
     subject_unique_id: str,
     subject_name: str,
-    field_type: ConceptTypeEnum,
+    field_type: ConceptFieldType,
     # context
     chunked_request_map: ConceptExtractionRequestMap,
     missing_phrase_initial_grounding_req_ids: set[BatchRequestIDType],
@@ -341,19 +339,17 @@ async def create_missing_phrase_initial_grounding_requests(
 
         # Process current batch
         for chunk_bounds, extraction_bundle in batch:
-            llm_phrase_relationship_results = (
-                await LLMPhraseRelationshipNode.get_result(
-                    subject_unique_id=subject_unique_id,
-                    field_type=field_type,
-                    chunk_bounds=chunk_bounds,
-                    extraction_bundle=extraction_bundle,
-                    completed_request_map=llm_phrase_relationship_gpt_request_map,
-                    timestamp=deferred_at,
-                )
+            llm_phrase_relationship_results = await get_phrase_relationship_result(
+                subject_unique_id=subject_unique_id,
+                field_type=field_type,
+                chunk_bounds=chunk_bounds,
+                extraction_bundle=extraction_bundle,
+                completed_request_map=llm_phrase_relationship_gpt_request_map,
+                timestamp=deferred_at,
             )
 
             llm_phrase_relationship_screening_results = (
-                await LLMPhraseRelationshipScreeningNode.get_result(
+                await get_phrase_relationship_screening_result(
                     subject_unique_id=subject_unique_id,
                     field_type=field_type,
                     chunk_bounds=chunk_bounds,
@@ -498,7 +494,7 @@ def create_deferred_phrase_initial_grounding_gpt_request(
     subject_unique_id: str,
     llm_phrase_initial_grounding_request_id: str,
     phrase_initial_grounding_prompt: Prompt,
-    field_type: ConceptTypeEnum,
+    field_type: ConceptFieldType,
     # context
     subject_name: str,
     all_concepts: set[Concept],

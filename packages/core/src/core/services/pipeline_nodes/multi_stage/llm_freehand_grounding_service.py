@@ -41,7 +41,7 @@ from llm_providers.services.gpt_batch_request.gpt_batch_request_service import (
 from llm_providers.services.gpt_batch_request.gpt_batch_request_writes import (
     record_response_parse_error,
 )
-from core.models.types_and_enums import LLMExtractedFieldTypeEnum
+from core.models.field_types import ExtractionFieldType
 from core.services.pipeline_nodes.multi_stage.llm_phrase_relationship_node_service import (
     get_phrase_relationship_result as parse_phrase_relationship_batch_req_result,
 )
@@ -93,7 +93,7 @@ def parse_llm_phrase_freehand_grounding_result(
 
 async def get_freehand_grounding_result(
     subject_unique_id: str,
-    field_type: LLMExtractedFieldTypeEnum,
+    field_type: ExtractionFieldType,
     chunk_bounds: str,
     extraction_bundle: KeywordExtractionRequestBundle,
     completed_request_map: dict[BatchRequestIDType, GPTBatchRequest],
@@ -125,7 +125,7 @@ async def get_freehand_grounding_result(
             traceback_str=traceback.format_exc(),
         )
         logger.error(
-            f"phrase_freehand_grounding_node.parse_batch_request_result: Error parsing phrase_freehand_grounding results for manufacturer {subject_unique_id} from GPT response: {e}"
+            f"phrase_freehand_grounding_node.parse_batch_request_result: Error parsing phrase_freehand_grounding results for subject {subject_unique_id} from GPT response: {e}"
         )
         raise
 
@@ -133,7 +133,7 @@ async def get_freehand_grounding_result(
 async def create_missing_phrase_freehand_grounding_requests(
     subject_unique_id: str,
     subject_name: str,
-    field_type: LLMExtractedFieldTypeEnum,
+    field_type: ExtractionFieldType,
     chunked_request_map: KeywordExtractionRequestMap,
     missing_phrase_freehand_grounding_req_ids: set[BatchRequestIDType],
     phrase_freehand_grounding_prompt: Prompt,

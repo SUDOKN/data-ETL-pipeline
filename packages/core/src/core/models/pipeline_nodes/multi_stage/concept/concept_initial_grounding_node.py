@@ -9,12 +9,12 @@ from llm_providers.models.file_objects.prompt import Prompt
 from llm_providers.models.llm_model import LLM_Model
 from core.models.skos_concept import Concept
 from core.models.pipeline_nodes.base.base_node import PipelineContext
-from core.models.types_and_enums import ConceptTypeEnum
+from core.models.field_types import ConceptFieldType
 from core.models.pipeline_nodes.multi_stage.base.llm_phrase_initial_grounding_node import (
     LLMPhraseInitialGroundingNode,
 )
-from core.models.types_and_enums import (
-    ConceptTypeEnum,
+from core.models.field_types import (
+    ConceptFieldType,
 )
 from llm_providers.field_types import BatchRequestIDType
 from llm_providers.models.open_ai.gpt_model_params import (
@@ -33,7 +33,7 @@ class ConceptInitialGroundingNode(LLMPhraseInitialGroundingNode):
 
     def __init__(
         self,
-        concept_type: ConceptTypeEnum,
+        concept_type: ConceptFieldType,
         next_node: ConceptIterativeGroundingNode,
         phrase_initial_grounding_prompt: Prompt,
         known_concepts: set[Concept],

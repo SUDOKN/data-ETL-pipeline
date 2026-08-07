@@ -11,8 +11,8 @@ from core.models.pipeline_nodes.base.base_node import PipelineContext
 from core.models.pipeline_nodes.multi_stage.base.llm_phrase_iterative_grounding_node import (
     LLMPhraseIterativeGroundingNode,
 )
-from core.models.types_and_enums import (
-    ConceptTypeEnum,
+from core.models.field_types import (
+    ConceptFieldType,
 )
 from llm_providers.field_types import BatchRequestIDType
 
@@ -28,7 +28,7 @@ class ConceptIterativeGroundingNode(LLMPhraseIterativeGroundingNode):
 
     def __init__(
         self,
-        concept_type: ConceptTypeEnum,
+        concept_type: ConceptFieldType,
         next_node: ConceptReconcileNode,
         phrase_recursive_grounding_prompt: Prompt,
         known_concepts: set[Concept],

@@ -1,8 +1,6 @@
 from beanie import Document
 from pydantic import Field
 
-from core.models.types_and_enums import ConceptTypeEnum
-
 
 class OutOfVocabLabel(Document):
     """
@@ -16,7 +14,8 @@ class OutOfVocabLabel(Document):
     """
 
     ontology_version_id: str
-    concept_type: ConceptTypeEnum
+    # `ConceptFieldType.name` of an app-declared concept type; the vocabulary is app policy.
+    concept_type: str
     labels: set[str] = Field(default_factory=set)
 
     class Settings:

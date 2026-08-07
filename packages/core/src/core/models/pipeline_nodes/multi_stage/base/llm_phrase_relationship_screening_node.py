@@ -20,7 +20,7 @@ from core.models.extraction_schemas.screening import (
     LiveScreeningResults,
 )
 from llm_providers.models.file_objects.prompt import Prompt
-from core.models.types_and_enums import LLMExtractedFieldTypeEnum
+from core.models.field_types import ExtractionFieldType
 from core.models.pipeline_nodes.base.base_node import (
     LLMExtractedFieldTypeVar,
     PipelineContext,
@@ -87,7 +87,7 @@ class LLMPhraseRelationshipScreeningNode(
         if not chunked_request_map:
             raise ValueError(
                 f"Cannot embed req ids for llm phrase relationship screening, "
-                f"as chunked_request_map found empty for mfg:{subject_unique_id}, field:{self.field_type.name}."
+                f"as chunked_request_map found empty for subject:{subject_unique_id}, field:{self.field_type.name}."
             )
 
         # Unlike recursive search, the full set of upstream relationship pairs for
@@ -155,7 +155,7 @@ class LLMPhraseRelationshipScreeningNode(
     @staticmethod
     def get_request_custom_id(
         subject_unique_id: str,
-        field_type: LLMExtractedFieldTypeEnum,
+        field_type: ExtractionFieldType,
         chunk_bounds: str,
         group_index: int,
         metadata: LLMPhraseExtractionMetadata,
@@ -184,7 +184,7 @@ class LLMPhraseRelationshipScreeningNode(
             )
 
         # create_missing_phrase_relationship_requests only creates batch requests fresh or only missing ones,
-        # for e.g., new mfg or some batch requests failed earlier and were deleted to allow re-processing
+        # for e.g., new subject or some batch requests failed earlier and were deleted to allow re-processing
         batch_requests = await create_missing_phrase_relationship_screening_requests(
             deferred_at=timestamp,
             subject_unique_id=subject_unique_id,
@@ -192,7 +192,7 @@ class LLMPhraseRelationshipScreeningNode(
             field_type=self.field_type,
             missing_phrase_relationship_screening_req_ids=missing_request_ids,
             chunked_request_map=chunked_request_map,
-            mfg_text=scraped_text_file.text,
+            subject_text=scraped_text_file.text,
             phrase_relationship_screening_prompt=self.phrase_relationship_screening_prompt,
             llm_phrase_relationship_gpt_request_map=self.get_upstream_phrase_relationship_map(
                 pipeline_context
@@ -208,7 +208,7 @@ class LLMPhraseRelationshipScreeningNode(
     @staticmethod
     async def get_result(
         subject_unique_id: str,
-        field_type: LLMExtractedFieldTypeEnum,
+        field_type: ExtractionFieldType,
         chunk_bounds: str,
         extraction_bundle: LLMPhraseExtractionRequestBundle,
         completed_request_map: dict[BatchRequestIDType, GPTBatchRequest],

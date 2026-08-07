@@ -15,7 +15,7 @@ from data_etl_app.models.pipeline_nodes import (
     EquipmentFreehandGroundingNode,
     EquipmentReconcileNode,
 )
-from core.models.types_and_enums import KeywordTypeEnum
+from data_etl_app.models.types_and_enums import KeywordTypeEnum
 from data_etl_app.services.extraction_pipeline_factory import (
     ExtractionPipelineFactory,
 )

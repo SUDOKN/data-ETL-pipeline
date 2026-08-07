@@ -35,13 +35,7 @@ from core.models.deferred_extraction.deferred_concept_extraction import (
     ConceptExtractionRequestBundle,
 )
 
-from core.models.pipeline_nodes.multi_stage.base.llm_phrase_recursive_search_node import (
-    LLMPhraseRecursiveSearchNode,
-)
-from core.models.pipeline_nodes.multi_stage.base.llm_phrase_search_node import (
-    LLMPhraseSearchNode,
-)
-from core.models.types_and_enums import LLMExtractedFieldTypeEnum
+from core.models.field_types import ExtractionFieldType
 from llm_providers.models.open_ai.gpt_model_params import (
     GPTModelParams,
 )
@@ -56,6 +50,12 @@ from llm_providers.services.gpt_batch_request.gpt_batch_request_service import (
 )
 from core.services.brute_search_service import (
     merge_llm_and_brute_search_results,
+)
+from core.services.pipeline_nodes.multi_stage.llm_phrase_search_node_service import (
+    parse_batch_request_result as parse_phrase_search_batch_req_result,
+)
+from core.services.pipeline_nodes.multi_stage.llm_phrase_recursive_search_node_service import (
+    get_all_recursive_round_results,
 )
 
 logger = logging.getLogger(__name__)
@@ -99,7 +99,7 @@ def parse_llm_phrase_relationship_result(
 
 async def get_phrase_relationship_result(
     subject_unique_id: str,
-    field_type: LLMExtractedFieldTypeEnum,
+    field_type: ExtractionFieldType,
     chunk_bounds: str,
     extraction_bundle: LLMPhraseExtractionRequestBundle,
     completed_request_map: dict[BatchRequestIDType, GPTBatchRequest],
@@ -134,7 +134,7 @@ async def get_phrase_relationship_result(
             traceback_str=traceback.format_exc(),
         )
         logger.error(
-            f"phrase_relationship_node.parse_batch_request_result: Error parsing phrase_relationship results for manufacturer {subject_unique_id} from GPT response: {e}"
+            f"phrase_relationship_node.parse_batch_request_result: Error parsing phrase_relationship results for subject {subject_unique_id} from GPT response: {e}"
         )
         raise
 
@@ -142,10 +142,10 @@ async def get_phrase_relationship_result(
 async def create_missing_phrase_relationship_requests(
     subject_unique_id: str,
     subject_name: str,
-    field_type: LLMExtractedFieldTypeEnum,  # used for logging and debugging
+    field_type: ExtractionFieldType,  # used for logging and debugging
     chunked_request_map: LLMPhraseExtractionRequestMap,
     missing_phrase_relationship_req_ids: set[BatchRequestIDType],
-    mfg_text: str,
+    subject_text: str,
     phrase_relationship_prompt: Prompt,
     llm_phrase_search_gpt_request_map: dict[BatchRequestIDType, GPTBatchRequest],
     timestamp: datetime,
@@ -183,24 +183,22 @@ async def create_missing_phrase_relationship_requests(
         # Process current batch
         for chunk_bounds, extraction_bundle in batch:
             # upstream phrase search results for this chunk
-            llm_phrase_search_results = await LLMPhraseSearchNode.get_result(
+            llm_phrase_search_results = await parse_phrase_search_batch_req_result(
                 subject_unique_id=subject_unique_id,
                 field_type=field_type,
                 chunk_bounds=chunk_bounds,
                 extraction_bundle=extraction_bundle,
-                completed_request_map=llm_phrase_search_gpt_request_map,
-                timestamp=timestamp,
+                all_phrase_search_req_responses_map=llm_phrase_search_gpt_request_map,
+                deferred_at=timestamp,
             )
 
-            llm_phrase_recursive_search_results = (
-                await LLMPhraseRecursiveSearchNode.get_result(
-                    subject_unique_id=subject_unique_id,
-                    field_type=field_type,
-                    chunk_bounds=chunk_bounds,
-                    extraction_bundle=extraction_bundle,
-                    completed_request_map=llm_phrase_recursive_search_gpt_request_map,
-                    timestamp=timestamp,
-                )
+            llm_phrase_recursive_search_results = await get_all_recursive_round_results(
+                subject_unique_id=subject_unique_id,
+                field_type=field_type,
+                chunk_bounds=chunk_bounds,
+                extraction_bundle=extraction_bundle,
+                completed_request_map=llm_phrase_recursive_search_gpt_request_map,
+                timestamp=timestamp,
             )
 
             llm_phrase_search_results |= llm_phrase_recursive_search_results
@@ -254,7 +252,7 @@ async def create_missing_phrase_relationship_requests(
                     subject_unique_id=subject_unique_id,
                     llm_phrase_relationship_request_id=llm_phrase_relationship_request_id,
                     subject_name=subject_name,
-                    mfg_text=mfg_text[start:end],
+                    subject_text=subject_text[start:end],
                     search_results=all_search_results,
                     phrase_relationship_prompt=phrase_relationship_prompt,
                     eager=eager,
@@ -317,7 +315,7 @@ def create_deferred_phrase_relationship_gpt_request(
     subject_unique_id: str,
     llm_phrase_relationship_request_id: str,
     subject_name: str,
-    mfg_text: str,
+    subject_text: str,
     search_results: LLMSearchResults,
     phrase_relationship_prompt: Prompt,
     gpt_model: LLM_Model,
@@ -329,7 +327,7 @@ def create_deferred_phrase_relationship_gpt_request(
     )
     context = (
         f"manufacturer name: {subject_name}\n\n"
-        f"scraped text:\n{mfg_text} \n\n "
+        f"scraped text:\n{subject_text} \n\n "
         f"extracted phrases:\n{list(search_results)}"
     )
 

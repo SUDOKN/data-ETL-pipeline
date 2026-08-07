@@ -39,7 +39,7 @@ from core.services.ground_truth.keyword_ground_truth_service import (
     save_new_keyword_ground_truth,
     add_new_correction_to_keyword_ground_truth,
 )
-from core.models.types_and_enums import (
+from data_etl_app.models.types_and_enums import (
     GroundTruthSource,
     KeywordTypeEnum,
 )

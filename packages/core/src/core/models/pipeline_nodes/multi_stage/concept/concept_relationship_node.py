@@ -6,7 +6,7 @@ from llm_providers.db_models.gpt_batch_request import (
     GPTBatchRequest,
 )
 from llm_providers.models.file_objects.prompt import Prompt
-from core.models.types_and_enums import ConceptTypeEnum
+from core.models.field_types import ConceptFieldType
 from core.models.pipeline_nodes.base.base_node import PipelineContext
 from core.models.pipeline_nodes.multi_stage.concept.concept_phrase_search_node import (
     ConceptPhraseSearchNode,
@@ -27,7 +27,7 @@ if TYPE_CHECKING:
 logger = logging.getLogger(__name__)
 
 
-class ConceptRelationshipNode(LLMPhraseRelationshipNode[ConceptTypeEnum]):
+class ConceptRelationshipNode(LLMPhraseRelationshipNode[ConceptFieldType]):
     """Phase 2: LLM distills concepts from the phrases with context of the text.
 
     Thin wrapper over the shared ``PhraseRelationshipNode`` that narrows the constructor types and
@@ -36,7 +36,7 @@ class ConceptRelationshipNode(LLMPhraseRelationshipNode[ConceptTypeEnum]):
 
     def __init__(
         self,
-        concept_type: ConceptTypeEnum,
+        concept_type: ConceptFieldType,
         phrase_relationship_prompt: Prompt,
         next_node: ConceptRelationshipScreeningNode,
     ):

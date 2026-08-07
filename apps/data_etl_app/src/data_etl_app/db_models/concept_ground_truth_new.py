@@ -18,7 +18,7 @@ from core.models.extraction_results.concept_extraction_results import (
     ConceptExtractionMetadata,
     ConceptExtractionStats,
 )
-from core.models.types_and_enums import (
+from data_etl_app.models.types_and_enums import (
     ConceptTypeEnum,
     GroundTruthSource,
 )

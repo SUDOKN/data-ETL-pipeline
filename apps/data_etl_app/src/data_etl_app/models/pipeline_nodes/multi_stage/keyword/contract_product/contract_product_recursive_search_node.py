@@ -16,9 +16,9 @@ from data_etl_app.models.pipeline_nodes.multi_stage.keyword.contract_product.con
 from core.models.pipeline_nodes.multi_stage.keyword.keyword_recursive_search_node import (
     KeywordRecursiveSearchNode,
 )
-from core.models.types_and_enums import (
+from core.models.field_types import ExtractionFieldType
+from data_etl_app.models.types_and_enums import (
     KeywordTypeEnum,
-    LLMExtractedFieldTypeEnum,
 )
 from llm_providers.field_types import BatchRequestIDType
 
@@ -57,14 +57,14 @@ class ContractProductRecursiveSearchNode(KeywordRecursiveSearchNode):
 
     @staticmethod
     def get_request_custom_id(
-        mfg_etld1: str,
-        field_type: LLMExtractedFieldTypeEnum,
+        subject_unique_id: str,
+        field_type: ExtractionFieldType,
         chunk_bounds: str,
         round_index: int,
         metadata: LLMPhraseExtractionMetadata,
     ) -> BatchRequestIDType:
         return KeywordRecursiveSearchNode.get_request_custom_id(
-            subject_unique_id=mfg_etld1,
+            subject_unique_id=subject_unique_id,
             field_type=KeywordTypeEnum.products,
             chunk_bounds=chunk_bounds,
             round_index=round_index,

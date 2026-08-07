@@ -3,12 +3,12 @@ from typing import Optional
 from core.db_models.out_of_vocab_labels import (
     OutOfVocabLabel,
 )
-from core.models.types_and_enums import ConceptTypeEnum
+from core.models.field_types import ConceptFieldType
 
 
 async def upsert_out_of_vocab_labels(
     ontology_version_id: str,
-    concept_type: ConceptTypeEnum,
+    concept_type: ConceptFieldType,
     new_labels: set[str],
 ) -> None:
     """
@@ -20,7 +20,7 @@ async def upsert_out_of_vocab_labels(
 
     existing = await OutOfVocabLabel.find_one(
         OutOfVocabLabel.ontology_version_id == ontology_version_id,
-        OutOfVocabLabel.concept_type == concept_type,
+        OutOfVocabLabel.concept_type == concept_type.name,
     )
     if existing:
         lowered_existing_labels = {label.lower() for label in existing.labels}
@@ -31,13 +31,13 @@ async def upsert_out_of_vocab_labels(
     else:
         await OutOfVocabLabel(
             ontology_version_id=ontology_version_id,
-            concept_type=concept_type,
+            concept_type=concept_type.name,
             labels=new_labels,
         ).insert()
 
 
 async def get_out_of_vocab_labels(
-    concept_type: ConceptTypeEnum,
+    concept_type: ConceptFieldType,
     ontology_version_id: str,
 ) -> OutOfVocabLabel | None:
     """
@@ -46,7 +46,7 @@ async def get_out_of_vocab_labels(
     """
     return await OutOfVocabLabel.find_one(
         OutOfVocabLabel.ontology_version_id == ontology_version_id,
-        OutOfVocabLabel.concept_type == concept_type,
+        OutOfVocabLabel.concept_type == concept_type.name,
     )
 
 

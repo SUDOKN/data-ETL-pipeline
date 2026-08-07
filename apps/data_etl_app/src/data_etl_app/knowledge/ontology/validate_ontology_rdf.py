@@ -29,7 +29,7 @@ from core.utils.rdf_to_graph_util import (
     get_alt_labels,
     build_concept_tree,
 )
-from core.utils.ontology_uri_util import (
+from data_etl_app.utils.ontology_uri_util import (
     process_cap_base_uri,
     material_cap_base_uri,
     industry_base_uri,

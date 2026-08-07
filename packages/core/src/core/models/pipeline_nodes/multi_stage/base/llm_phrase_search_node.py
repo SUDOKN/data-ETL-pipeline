@@ -23,8 +23,8 @@ from core.models.pipeline_nodes.base.base_node import (
 from core.models.pipeline_nodes.base.base_reconcile_node import (
     ReconcileNode,
 )
-from core.models.types_and_enums import (
-    LLMExtractedFieldTypeEnum,
+from core.models.field_types import (
+    ExtractionFieldType,
 )
 from core.models.pipeline_nodes.base.base_llm_extraction_node import (
     BaseLLMExtractionNode,
@@ -77,7 +77,7 @@ class LLMPhraseSearchNode(
         if not chunked_request_map:
             raise ValueError(
                 f"Cannot embed req ids for llm phrase search node, "
-                f"as chunked_request_map found empty for mfg:{subject_unique_id}, field:{self.field_type.name}."
+                f"as chunked_request_map found empty for subject:{subject_unique_id}, field:{self.field_type.name}."
             )
 
         for (
@@ -116,7 +116,7 @@ class LLMPhraseSearchNode(
     @staticmethod
     def get_request_custom_id(
         subject_unique_id: str,
-        field_type: LLMExtractedFieldTypeEnum,
+        field_type: ExtractionFieldType,
         chunk_bounds: str,
         metadata: LLMPhraseExtractionMetadata,
     ) -> BatchRequestIDType:
@@ -139,14 +139,14 @@ class LLMPhraseSearchNode(
         """Create batch requests for concept search phase."""
 
         # create_missing_concept_search_requests only creates batch requests fresh or only missing ones,
-        # for e.g., new mfg or some batch requests failed earlier and were deleted to allow re-processing
+        # for e.g., new subject or some batch requests failed earlier and were deleted to allow re-processing
         batch_requests = await create_missing_phrase_search_requests(
             deferred_at=timestamp,
             field_type=self.field_type,
             missing_search_req_ids=missing_request_ids,
             chunked_request_map=chunked_request_map,
             subject_unique_id=subject_unique_id,
-            mfg_text=scraped_text_file.text,
+            subject_text=scraped_text_file.text,
             search_prompt=self.phrase_search_prompt,
             llm_model=metadata.llm_phrase_search.llm_model,
             model_params=metadata.llm_phrase_search.model_params,
@@ -158,7 +158,7 @@ class LLMPhraseSearchNode(
     @staticmethod
     async def get_result(
         subject_unique_id: str,
-        field_type: LLMExtractedFieldTypeEnum,
+        field_type: ExtractionFieldType,
         chunk_bounds: str,
         extraction_bundle: LLMPhraseExtractionRequestBundle,
         completed_request_map: dict[BatchRequestIDType, GPTBatchRequest],

@@ -14,7 +14,7 @@ from core.models.extraction_schemas.relationship import (
 from core.models.extraction_schemas.screening import (
     LiveScreeningResults,
 )
-from core.models.types_and_enums import LLMExtractedFieldTypeEnum
+from core.models.field_types import ExtractionFieldType
 
 logger = logging.getLogger(__name__)
 
@@ -63,7 +63,7 @@ def build_concept_phrase_trail_entry(
 def write_phrase_trails_dump(
     *,
     subject_unique_id: str,
-    field_type: LLMExtractedFieldTypeEnum,
+    field_type: ExtractionFieldType,
     timestamp: datetime,
     chunked_phrase_trails: dict[str, list[dict[str, object]]],
 ) -> None:

@@ -27,7 +27,7 @@ from core.models.pipeline_nodes.base.base_prefill_node import (
     PrefillNode,
 )
 from core.models.pipeline_nodes.base.base_node import ResultT
-from core.models.types_and_enums import KeywordTypeEnum
+from core.models.field_types import ExtractionFieldType
 from core.models.pipeline_nodes.base.base_node import PipelineContext
 from core.models.chunking_strat import ChunkingStrategy
 
@@ -45,12 +45,12 @@ from pure_utils.dict_diff import find_diffs
 logger = logging.getLogger(__name__)
 
 
-class KeywordExtractionPrefillNode(PrefillNode[KeywordTypeEnum]):
+class KeywordExtractionPrefillNode(PrefillNode[ExtractionFieldType]):
     next_node: KeywordPhraseSearchNode
 
     def __init__(
         self,
-        field_type: KeywordTypeEnum,
+        field_type: ExtractionFieldType,
         chunk_strategy: ChunkingStrategy,
         next_node: KeywordPhraseSearchNode,
         ontology_version_id: str,
@@ -129,12 +129,12 @@ class KeywordExtractionPrefillNode(PrefillNode[KeywordTypeEnum]):
             diffs = find_diffs(existing, latest, exclude={"created_at"})
             if diffs:
                 raise ValueError(
-                    f"Cannot proceed {__class__.__name__} for mfg:{subject.subject_unique_id} as "
+                    f"Cannot proceed {__class__.__name__} for subject:{subject.subject_unique_id} as "
                     f"Metadata mismatch for {subject.subject_unique_id}.{self.field_type.name} — differing fields: {diffs}"
                 )
 
             logger.info(
-                f"Chunking already done, resuming extraction for mfg_etdl1:{subject.subject_unique_id}"
+                f"Chunking already done, resuming extraction for subject:{subject.subject_unique_id}"
             )
 
         await self.next_node.execute(

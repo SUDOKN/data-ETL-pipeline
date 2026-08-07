@@ -6,7 +6,7 @@ from llm_providers.models.file_objects.prompt import Prompt
 from core.models.pipeline_nodes.multi_stage.keyword.keyword_phrase_search_node import (
     KeywordPhraseSearchNode,
 )
-from core.models.types_and_enums import KeywordTypeEnum
+from data_etl_app.models.types_and_enums import KeywordTypeEnum
 
 if TYPE_CHECKING:
     from data_etl_app.models.pipeline_nodes.multi_stage.keyword.equipment.equipment_recursive_search_node import (

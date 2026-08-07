@@ -22,8 +22,8 @@ from core.models.deferred_extraction.deferred_phrase_extraction_requests import 
     LLMPhraseExtractionRequestMap,
     LLMPhraseExtractionRequestBundle,
 )
-from core.models.types_and_enums import (
-    LLMExtractedFieldTypeEnum,
+from core.models.field_types import (
+    ExtractionFieldType,
 )
 from llm_providers.field_types import BatchRequestIDType
 from llm_providers.models.open_ai.gpt_model_params import (
@@ -67,7 +67,7 @@ def parse_llm_search_response(gpt_response: Optional[str]) -> LLMSearchResults:
 
 async def parse_batch_request_result(
     subject_unique_id: str,
-    field_type: LLMExtractedFieldTypeEnum,
+    field_type: ExtractionFieldType,
     chunk_bounds: str,
     extraction_bundle: LLMPhraseExtractionRequestBundle,
     all_phrase_search_req_responses_map: dict[  # contains requests of this phase(which can be identified by its particular custom id) across all chunks
@@ -104,18 +104,18 @@ async def parse_batch_request_result(
             traceback_str=traceback.format_exc(),
         )
         logger.error(
-            f"search_node.parse_batch_request_result: Error parsing concept search results for manufacturer {subject_unique_id} from GPT response: {e}"
+            f"search_node.parse_batch_request_result: Error parsing concept search results for subject {subject_unique_id} from GPT response: {e}"
         )
         raise
 
 
 async def create_missing_phrase_search_requests(
     deferred_at: datetime,
-    field_type: LLMExtractedFieldTypeEnum,  # used for logging and debugging
+    field_type: ExtractionFieldType,  # used for logging and debugging
     missing_search_req_ids: set[BatchRequestIDType],
     chunked_request_map: LLMPhraseExtractionRequestMap,
     subject_unique_id: str,
-    mfg_text: str,
+    subject_text: str,
     search_prompt: Prompt,
     llm_model: LLM_Model,
     model_params: GPTModelParams,
@@ -139,7 +139,7 @@ async def create_missing_phrase_search_requests(
             chunk_items.append(
                 (
                     extraction_bundle.llm_phrase_search_req_id,
-                    mfg_text[int(start) : int(end)],
+                    subject_text[int(start) : int(end)],
                 )
             )
 

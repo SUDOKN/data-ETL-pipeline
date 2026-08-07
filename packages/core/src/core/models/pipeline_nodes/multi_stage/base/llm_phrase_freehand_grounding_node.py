@@ -33,7 +33,7 @@ from core.models.pipeline_nodes.base.base_node import (
 from core.models.pipeline_nodes.base.base_reconcile_node import (
     ReconcileNode,
 )
-from core.models.types_and_enums import LLMExtractedFieldTypeEnum
+from core.models.field_types import ExtractionFieldType
 
 from core.services.pipeline_nodes.multi_stage.llm_freehand_grounding_service import (
     create_missing_phrase_freehand_grounding_requests,
@@ -82,7 +82,7 @@ class LLMPhraseFreehandGroundingNode(
         if not chunked_request_map:
             raise ValueError(
                 f"Cannot embed req ids for llm freehand grounding node, "
-                f"as chunked_request_map found empty for mfg:{subject_unique_id}, field:{self.field_type.name}."
+                f"as chunked_request_map found empty for subject:{subject_unique_id}, field:{self.field_type.name}."
             )
 
         for chunk_bounds, extraction_request_bundle in chunked_request_map.items():
@@ -114,7 +114,7 @@ class LLMPhraseFreehandGroundingNode(
     @staticmethod
     def get_request_custom_id(
         subject_unique_id: str,
-        field_type: LLMExtractedFieldTypeEnum,
+        field_type: ExtractionFieldType,
         chunk_bounds: str,
         metadata: KeywordExtractionMetadata,
     ) -> BatchRequestIDType:
@@ -141,7 +141,7 @@ class LLMPhraseFreehandGroundingNode(
             )
 
         # extraction_requests: Optional[DeferredKeywordExtractionRequests] = getattr(
-        #     deferred_mfg, self.field_type.name
+        #     deferred_subject, self.field_type.name
         # )
         # if not extraction_requests:
         #     raise ValueError(
@@ -170,7 +170,7 @@ class LLMPhraseFreehandGroundingNode(
     @staticmethod
     async def get_result(
         subject_unique_id: str,
-        field_type: LLMExtractedFieldTypeEnum,
+        field_type: ExtractionFieldType,
         chunk_bounds: str,
         extraction_bundle: KeywordExtractionRequestBundle,
         completed_request_map: dict[BatchRequestIDType, GPTBatchRequest],

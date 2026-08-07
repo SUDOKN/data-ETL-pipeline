@@ -15,6 +15,11 @@ from core.utils.rdf_to_graph_util import (
     prune_tree_to_depth,
     tree_list_to_flat,
 )
+from data_etl_app.models.types_and_enums import ConceptTypeEnum
+from data_etl_app.utils.ontology_uri_util import (
+    naics_base_uri,
+    ownership_status_base_uri,
+)
 from data_etl_app.utils.route_url_util import (
     ONTOLOGY_REFRESH_URL,
 )
@@ -102,7 +107,7 @@ async def get_process_caps(
         ontology = await _resolve_ontology(version)
         return _build_concept_response(
             ontology,
-            ontology.process_capability_concept_nodes,
+            ontology.concept_nodes(ConceptTypeEnum.process_caps.base_uri),
             "process_caps",
             mode,
             depth,
@@ -132,7 +137,7 @@ async def get_material_caps(
         ontology = await _resolve_ontology(version)
         return _build_concept_response(
             ontology,
-            ontology.material_capability_concept_nodes,
+            ontology.concept_nodes(ConceptTypeEnum.material_caps.base_uri),
             "material_caps",
             mode,
             depth,
@@ -162,7 +167,7 @@ async def get_industries(
         ontology = await _resolve_ontology(version)
         return _build_concept_response(
             ontology,
-            ontology.industry_concept_nodes,
+            ontology.concept_nodes(ConceptTypeEnum.industries.base_uri),
             "industries",
             mode,
             depth,
@@ -192,7 +197,7 @@ async def get_certificates(
         ontology = await _resolve_ontology(version)
         return _build_concept_response(
             ontology,
-            ontology.certificate_concept_nodes,
+            ontology.concept_nodes(ConceptTypeEnum.certificates.base_uri),
             "certificates",
             mode,
             depth,
@@ -222,7 +227,7 @@ async def get_ownership_statuses(
         ontology = await _resolve_ontology(version)
         return _build_concept_response(
             ontology,
-            ontology.ownership_concept_nodes,
+            ontology.concept_nodes(ownership_status_base_uri()),
             "ownership_statuses",
             mode,
             depth,
@@ -252,7 +257,7 @@ async def get_naics_codes(
         ontology = await _resolve_ontology(version)
         return _build_concept_response(
             ontology,
-            ontology.naics_concept_nodes,
+            ontology.concept_nodes(naics_base_uri()),
             "naics",
             mode,
             depth,

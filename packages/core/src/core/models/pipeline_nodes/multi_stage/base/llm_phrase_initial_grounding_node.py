@@ -18,9 +18,9 @@ from core.models.extraction_schemas.grounding import (
 )
 from llm_providers.models.file_objects.prompt import Prompt
 from core.models.skos_concept import Concept
-from core.models.types_and_enums import (
-    ConceptTypeEnum,
-    LLMExtractedFieldTypeEnum,
+from core.models.field_types import (
+    ConceptFieldType,
+    ExtractionFieldType,
 )
 from core.models.pipeline_nodes.base.base_node import (
     PipelineContext,
@@ -50,11 +50,11 @@ logger = logging.getLogger(__name__)
 
 
 class LLMPhraseInitialGroundingNode(
-    BaseLLMExtractionNode[ConceptTypeEnum, PhraseToTagAndReasonMap]
+    BaseLLMExtractionNode[ConceptFieldType, PhraseToTagAndReasonMap]
 ):
     def __init__(
         self,
-        field_type: ConceptTypeEnum,
+        field_type: ConceptFieldType,
         next_node: BaseLLMExtractionNode | ReconcileNode,
         phrase_initial_grounding_prompt: Prompt,
         known_concepts: set[Concept],
@@ -94,7 +94,7 @@ class LLMPhraseInitialGroundingNode(
         if not chunked_request_map:
             raise ValueError(
                 f"Cannot embed req ids for llm initial grounding node, "
-                f"as chunked_request_map found empty for mfg:{subject_unique_id}, field:{self.field_type.name}."
+                f"as chunked_request_map found empty for subject:{subject_unique_id}, field:{self.field_type.name}."
             )
 
         for (
@@ -136,7 +136,7 @@ class LLMPhraseInitialGroundingNode(
     @staticmethod
     def get_request_custom_id(
         subject_unique_id: str,
-        field_type: LLMExtractedFieldTypeEnum,
+        field_type: ExtractionFieldType,
         chunk_bounds: str,
         metadata: ConceptExtractionMetadata,
     ) -> BatchRequestIDType:
@@ -164,7 +164,7 @@ class LLMPhraseInitialGroundingNode(
             )
 
         # create_missing_phrase_relationship_requests only creates batch requests fresh or only missing ones,
-        # for e.g., new mfg or some batch requests failed earlier and were deleted to allow re-processing
+        # for e.g., new subject or some batch requests failed earlier and were deleted to allow re-processing
         batch_requests = await create_missing_phrase_initial_grounding_requests(
             deferred_at=timestamp,
             subject_unique_id=subject_unique_id,
@@ -191,7 +191,7 @@ class LLMPhraseInitialGroundingNode(
     @staticmethod
     async def get_result(
         subject_unique_id: str,
-        field_type: ConceptTypeEnum,
+        field_type: ConceptFieldType,
         chunk_bounds: str,
         extraction_bundle: ConceptExtractionRequestBundle,
         completed_request_map: dict[BatchRequestIDType, GPTBatchRequest],

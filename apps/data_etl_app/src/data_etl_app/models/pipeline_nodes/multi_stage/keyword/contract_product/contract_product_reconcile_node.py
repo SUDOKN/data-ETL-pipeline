@@ -4,7 +4,7 @@ from core.models.pipeline_nodes import PipelineContext
 from core.models.pipeline_nodes.multi_stage.keyword.keyword_reconcile_node import (
     KeywordReconcileNode,
 )
-from core.models.types_and_enums import KeywordTypeEnum
+from data_etl_app.models.types_and_enums import KeywordTypeEnum
 
 
 class ContractProductReconcileNode(KeywordReconcileNode):
@@ -13,7 +13,7 @@ class ContractProductReconcileNode(KeywordReconcileNode):
     Reads/writes the SAME 5-phase shape as :class:`KeywordReconcileNode`, but
     points the upstream lookups at the ``Contract*`` node classes and, via
     ``field_type=KeywordTypeEnum.contract_products``, reads/writes
-    ``deferred_mfg.contract_products`` / ``mfg.contract_products`` instead of
+    ``deferred_subject.contract_products`` / ``subject.contract_products`` instead of
     ``products``.
     """
 

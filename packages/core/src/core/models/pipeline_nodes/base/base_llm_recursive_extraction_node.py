@@ -11,7 +11,7 @@ from core.models.pipeline_nodes.base.base_llm_extraction_node import (
     ResultT,
 )
 from core.models.pipeline_nodes.base.base_node import PipelineContext
-from core.models.types_and_enums import LLMExtractedFieldTypeVar
+from core.models.field_types import LLMExtractedFieldTypeVar
 from llm_providers.field_types import BatchRequestIDType
 from scraper.models.s3.scraped_text_file import ScrapedTextFile
 
@@ -75,7 +75,7 @@ class BaseLLMRecursiveExtractionNode(
                 timestamp=timestamp,
             )
             logger.info(
-                f"Saving deferred_mfg after embedding request ids for {subject.subject_unique_id}"
+                f"Saving deferred subject after embedding request ids for {subject.subject_unique_id}"
             )
 
             await deferred_subject.save()

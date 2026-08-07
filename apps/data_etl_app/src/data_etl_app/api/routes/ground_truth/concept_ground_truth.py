@@ -20,7 +20,7 @@ from data_etl_app.db_models.concept_ground_truth import (
     SearchResultsCorrection,
     MappingResultCorrection,
 )
-from core.models.types_and_enums import (
+from data_etl_app.models.types_and_enums import (
     ConceptTypeEnum,
     GroundTruthSource,
 )
@@ -518,14 +518,7 @@ async def get_concept_coverage_stats(
     else:
         ontology = await ontology_svc.get_latest_ontology()
 
-    _concept_type_to_map = {
-        ConceptTypeEnum.process_caps: ontology.process_cap_map,
-        ConceptTypeEnum.material_caps: ontology.material_cap_map,
-        ConceptTypeEnum.industries: ontology.industry_map,
-        ConceptTypeEnum.certificates: ontology.certificate_map,
-    }
-
-    concept_map = _concept_type_to_map[concept_type]
+    concept_map = ontology.concept_map(concept_type.base_uri)
     effective_ontology_version_id: str = ontology.version_id
 
     gt_docs: list[ConceptGroundTruth] = await ConceptGroundTruth.find(

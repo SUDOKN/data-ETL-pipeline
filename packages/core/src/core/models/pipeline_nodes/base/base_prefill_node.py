@@ -18,7 +18,7 @@ from core.models.pipeline_nodes.base.base_node import (
 from core.models.pipeline_nodes.base.base_llm_extraction_node import (
     BaseLLMExtractionNode,
 )
-from core.models.types_and_enums import (
+from core.models.field_types import (
     LLMExtractedFieldTypeVar,
 )
 from scraper.models.s3.scraped_text_file import ScrapedTextFile

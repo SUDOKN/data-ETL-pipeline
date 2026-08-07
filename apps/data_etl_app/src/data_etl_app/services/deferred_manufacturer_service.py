@@ -15,7 +15,7 @@ from core.models.deferred_extraction.deferred_keyword_extraction import (
 from core.models.deferred_extraction.deferred_concept_extraction import (
     DeferredConceptExtractionRequests,
 )
-from core.models.types_and_enums import (
+from data_etl_app.models.types_and_enums import (
     BinaryClassificationTypeEnum,
     ConceptTypeEnum,
     KeywordTypeEnum,

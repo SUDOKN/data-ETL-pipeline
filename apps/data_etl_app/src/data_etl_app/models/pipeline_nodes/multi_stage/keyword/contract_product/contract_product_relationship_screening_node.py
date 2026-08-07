@@ -10,7 +10,7 @@ from core.models.pipeline_nodes import PipelineContext
 from core.models.pipeline_nodes.multi_stage.base.llm_phrase_relationship_screening_node import (
     LLMPhraseRelationshipScreeningNode,
 )
-from core.models.types_and_enums import KeywordTypeEnum
+from data_etl_app.models.types_and_enums import KeywordTypeEnum
 from llm_providers.field_types import BatchRequestIDType
 
 if TYPE_CHECKING:
@@ -29,7 +29,7 @@ class ContractProductRelationshipScreeningNode(
     Unlike the search/recursive-search/relationship phases, this phase is NOT
     shared with the pure-product branch: it uses the real
     ``field_type=KeywordTypeEnum.contract_products`` identity (own custom_id, own
-    storage under ``deferred_mfg.contract_products``) and the contract-specific
+    storage under ``deferred_subject.contract_products``) and the contract-specific
     screening prompt (``product_phrase_screening_contract``).
     """
 

@@ -5,7 +5,7 @@ from pydantic import BaseModel, ConfigDict
 # Stage 2
 LLMPhraseRelationshipResults = dict[
     str, str
-]  # Describe relationship between phrases extracted and the subject, the manufacturer.
+]  # Describe relationship between phrases extracted and the extraction subject.
 
 
 class PhraseRelationshipEntry(BaseModel):

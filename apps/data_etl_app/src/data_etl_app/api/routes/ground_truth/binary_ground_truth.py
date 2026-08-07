@@ -12,7 +12,7 @@ from data_etl_app.db_models.binary_ground_truth import (
 from core.models.extraction_results.binary_classification_result import (
     BinaryClassificationResult,
 )
-from core.models.types_and_enums import (
+from data_etl_app.models.types_and_enums import (
     BinaryClassificationTypeEnum,
     GroundTruthSource,
 )

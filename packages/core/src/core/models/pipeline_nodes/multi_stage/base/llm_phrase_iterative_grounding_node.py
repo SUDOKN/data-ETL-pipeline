@@ -21,8 +21,8 @@ from core.models.deferred_extraction.deferred_concept_extraction import (
     IterativeTaggingRequest,
 )
 from core.models.skos_concept import Concept
-from core.models.types_and_enums import (
-    ConceptTypeEnum,
+from core.models.field_types import (
+    ConceptFieldType,
 )
 from core.models.pipeline_nodes.base.base_node import (
     PipelineContext,
@@ -70,12 +70,12 @@ logger = logging.getLogger(__name__)
 
 
 class LLMPhraseIterativeGroundingNode(
-    BaseLLMRecursiveExtractionNode[ConceptTypeEnum, IterativeGroundingResult]
+    BaseLLMRecursiveExtractionNode[ConceptFieldType, IterativeGroundingResult]
 ):
 
     def __init__(
         self,
-        field_type: ConceptTypeEnum,
+        field_type: ConceptFieldType,
         next_node: BaseLLMExtractionNode | ReconcileNode,
         phrase_recursive_grounding_prompt: Prompt,
         known_concepts: set[Concept],
@@ -107,7 +107,7 @@ class LLMPhraseIterativeGroundingNode(
     @staticmethod
     def get_request_custom_id(
         subject_unique_id: str,
-        field_type: ConceptTypeEnum,
+        field_type: ConceptFieldType,
         chunk_bounds: str,
         level: int,
         tag: str,
@@ -155,7 +155,7 @@ class LLMPhraseIterativeGroundingNode(
         if not chunked_request_map:
             raise ValueError(
                 f"Cannot embed req ids for llm recursive grounding node, "
-                f"as chunked_request_map found empty for mfg:{subject_unique_id}, field:{self.field_type.name}."
+                f"as chunked_request_map found empty for subject:{subject_unique_id}, field:{self.field_type.name}."
             )
 
         # BASIC INITIALIZATION
@@ -165,7 +165,7 @@ class LLMPhraseIterativeGroundingNode(
         if not completed_initial_grounding_req_map:
             raise ValueError(
                 f"Cannot embed req ids for llm recursive grounding node, "
-                f"as recursive grounding req map is empty for mfg:{subject_unique_id}, field:{self.field_type.name}."
+                f"as recursive grounding req map is empty for subject:{subject_unique_id}, field:{self.field_type.name}."
             )
 
         max_concept_level = max(c.level for c in self.known_concepts)
@@ -436,7 +436,7 @@ class LLMPhraseIterativeGroundingNode(
         )
 
         # create_missing_phrase_relationship_requests only creates batch requests fresh or only missing ones,
-        # for e.g., new mfg or some batch requests failed earlier and were deleted to allow re-processing
+        # for e.g., new subject or some batch requests failed earlier and were deleted to allow re-processing
         batch_requests = await create_missing_phrase_recursive_grounding_requests(
             # used for logging and debugging
             subject_unique_id=subject_unique_id,
@@ -464,7 +464,7 @@ class LLMPhraseIterativeGroundingNode(
     @staticmethod
     async def get_result(
         subject_unique_id: str,
-        field_type: ConceptTypeEnum,
+        field_type: ConceptFieldType,
         chunk_bounds: str,
         extraction_bundle: ConceptExtractionRequestBundle,
         completed_initial_grounding_req_map: dict[BatchRequestIDType, GPTBatchRequest],

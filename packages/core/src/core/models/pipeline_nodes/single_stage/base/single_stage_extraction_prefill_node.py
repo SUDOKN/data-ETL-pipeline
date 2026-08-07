@@ -25,7 +25,7 @@ from core.models.pipeline_nodes.base.base_prefill_node import (
 from core.models.pipeline_nodes.single_stage.base.single_stage_extraction_node import (
     SingleStageExtractionNode,
 )
-from core.models.types_and_enums import (
+from core.models.field_types import (
     SingleStageFieldTypeVar,
 )
 from scraper.models.s3.scraped_text_file import ScrapedTextFile

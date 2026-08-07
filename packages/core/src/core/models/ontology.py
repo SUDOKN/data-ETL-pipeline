@@ -2,31 +2,24 @@ from functools import cached_property
 from typing import Dict, List
 
 import rdflib
-from pydantic import BaseModel, ConfigDict
+from pydantic import BaseModel, ConfigDict, PrivateAttr
 
-from core.models.types_and_enums import ConceptTypeEnum
+from core.models.field_types import ConceptFieldType
 from core.models.skos_concept import Concept, ConceptNode
 from core.utils.rdf_to_graph_util import (
     build_concept_tree,
     get_graph,
     tree_list_to_flat,
 )
-from core.utils.ontology_uri_util import (
-    certificate_base_uri,
-    industry_base_uri,
-    material_cap_base_uri,
-    naics_base_uri,
-    ownership_status_base_uri,
-    process_cap_base_uri,
-)
 
 
 class Ontology(BaseModel):
     """
-    Ontology model representing a versioned RDF ontology with lazy-loaded concept properties.
+    Ontology model representing a versioned RDF ontology with lazy-loaded concept subtrees.
 
     Each instance represents a specific version of the ontology (identified by s3_version_id).
-    Concept hierarchies are built on-demand and cached using @cached_property.
+    Concept hierarchies are built on-demand and cached per subtree base URI. *Which* subtrees
+    exist is the consuming app's concern — this model only knows how to resolve one.
     """
 
     model_config = ConfigDict(frozen=True)
@@ -34,22 +27,51 @@ class Ontology(BaseModel):
     s3_version_id: str
     rdf: str
 
-    def get_concepts_flat(self, concept_type: ConceptTypeEnum) -> set[Concept]:
-        retval = None
-        match concept_type:
-            case ConceptTypeEnum.certificates:
-                retval = self.certificates
-            case ConceptTypeEnum.industries:
-                retval = self.industries
-            case ConceptTypeEnum.material_caps:
-                retval = self.material_caps
-            case ConceptTypeEnum.process_caps:
-                retval = self.process_caps
-            case _:
-                raise ValueError(
-                    f"Cannot get concept:{concept_type.name} from ontology:{s3_version_id}."
-                )
-        return retval
+    _concept_nodes_cache: Dict[str, List[ConceptNode]] = PrivateAttr(
+        default_factory=dict
+    )
+    _concepts_flat_cache: Dict[str, set[Concept]] = PrivateAttr(default_factory=dict)
+    _concept_map_cache: Dict[str, Dict[str, Concept]] = PrivateAttr(
+        default_factory=dict
+    )
+
+    def concept_nodes(self, base_uri: str) -> List[ConceptNode]:
+        """Root concept nodes of the subtree under `base_uri`."""
+        if not base_uri:
+            raise ValueError(
+                f"Cannot build a concept tree from ontology:{self.s3_version_id} without a base URI."
+            )
+        if base_uri not in self._concept_nodes_cache:
+            self._concept_nodes_cache[base_uri] = build_concept_tree(
+                self.graph, rdflib.URIRef(base_uri)
+            )["children"]
+        return self._concept_nodes_cache[base_uri]
+
+    def concepts_flat(self, base_uri: str) -> set[Concept]:
+        """Flattened concepts of the subtree under `base_uri`."""
+        if base_uri not in self._concepts_flat_cache:
+            self._concepts_flat_cache[base_uri] = tree_list_to_flat(
+                self.concept_nodes(base_uri)
+            )
+        return self._concepts_flat_cache[base_uri]
+
+    def concept_map(
+        self, base_uri: str, include_alt_labels: bool = False
+    ) -> Dict[str, Concept]:
+        """Map concept names (optionally also altLabels) to Concept objects."""
+        cache_key = f"{base_uri}|{include_alt_labels}"
+        if cache_key not in self._concept_map_cache:
+            mapping: Dict[str, Concept] = {}
+            for concept in self.concepts_flat(base_uri):
+                mapping[concept.name] = concept
+                if include_alt_labels:
+                    for alt_label in concept.altLabels:
+                        mapping[alt_label] = concept
+            self._concept_map_cache[cache_key] = mapping
+        return self._concept_map_cache[cache_key]
+
+    def get_concepts_flat(self, concept_type: ConceptFieldType) -> set[Concept]:
+        return self.concepts_flat(concept_type.base_uri)
 
     @property
     def version_id(self) -> str:
@@ -60,122 +82,3 @@ class Ontology(BaseModel):
     def graph(self) -> rdflib.Graph:
         """Parse and cache the RDF graph."""
         return get_graph(self.rdf)
-
-    # Process capabilities
-    @cached_property
-    def process_capability_concept_nodes(self) -> List[ConceptNode]:
-        """Build and cache process capability concept tree."""
-        base_uri = process_cap_base_uri()
-        if not base_uri:
-            raise ValueError("Process capability base URI is not set.")
-        return build_concept_tree(self.graph, rdflib.URIRef(base_uri))["children"]
-
-    @cached_property
-    def process_caps(self) -> set[Concept]:
-        """Flatten process capability concept tree."""
-        return tree_list_to_flat(self.process_capability_concept_nodes)
-
-    @cached_property
-    def process_cap_map(self) -> Dict[str, Concept]:
-        """Map process capability names to Concept objects."""
-        return {cap.name: cap for cap in self.process_caps}
-
-    # Material capabilities
-    @cached_property
-    def material_capability_concept_nodes(self) -> List[ConceptNode]:
-        """Build and cache material capability concept tree."""
-        base_uri = material_cap_base_uri()
-        if not base_uri:
-            raise ValueError("Material capability base URI is not set.")
-        return build_concept_tree(self.graph, rdflib.URIRef(base_uri))["children"]
-
-    @cached_property
-    def material_caps(self) -> set[Concept]:
-        """Flatten material capability concept tree."""
-        return tree_list_to_flat(self.material_capability_concept_nodes)
-
-    @cached_property
-    def material_cap_map(self) -> Dict[str, Concept]:
-        """Map material capability names to Concept objects."""
-        return {cap.name: cap for cap in self.material_caps}
-
-    # Industries
-    @cached_property
-    def industry_concept_nodes(self) -> List[ConceptNode]:
-        """Build and cache industry concept tree."""
-        base_uri = industry_base_uri()
-        if not base_uri:
-            raise ValueError("Industry base URI is not set.")
-        return build_concept_tree(self.graph, rdflib.URIRef(base_uri))["children"]
-
-    @cached_property
-    def industries(self) -> set[Concept]:
-        """Flatten industry concept tree."""
-        return tree_list_to_flat(self.industry_concept_nodes)
-
-    @cached_property
-    def industry_map(self) -> Dict[str, Concept]:
-        """Map industry names to Concept objects."""
-        return {ind.name: ind for ind in self.industries}
-
-    # Certificates
-    @cached_property
-    def certificate_concept_nodes(self) -> List[ConceptNode]:
-        """Build and cache certificate concept tree."""
-        base_uri = certificate_base_uri()
-        if not base_uri:
-            raise ValueError("Certificate base URI is not set.")
-        return build_concept_tree(self.graph, rdflib.URIRef(base_uri))["children"]
-
-    @cached_property
-    def certificates(self) -> set[Concept]:
-        """Flatten certificate concept tree."""
-        return tree_list_to_flat(self.certificate_concept_nodes)
-
-    @cached_property
-    def certificate_map(self) -> Dict[str, Concept]:
-        """Map certificate names to Concept objects."""
-        return {cert.name: cert for cert in self.certificates}
-
-    # Ownership statuses
-    @cached_property
-    def ownership_concept_nodes(self) -> List[ConceptNode]:
-        """Build and cache ownership status concept tree."""
-        base_uri = ownership_status_base_uri()
-        if not base_uri:
-            raise ValueError("Ownership status base URI is not set.")
-        return build_concept_tree(self.graph, rdflib.URIRef(base_uri))["children"]
-
-    @cached_property
-    def ownership_statuses(self) -> set[Concept]:
-        """Flatten ownership status concept tree."""
-        return tree_list_to_flat(self.ownership_concept_nodes)
-
-    @cached_property
-    def ownership_status_map(self) -> Dict[str, Concept]:
-        """Map ownership status names (including altLabels) to Concept objects."""
-        result = {}
-        for status in self.ownership_statuses:
-            result[status.name] = status
-            for alt_label in status.altLabels:
-                result[alt_label] = status
-        return result
-
-    # NAICS codes
-    @cached_property
-    def naics_concept_nodes(self) -> List[ConceptNode]:
-        """Build and cache NAICS code concept tree."""
-        base_uri = naics_base_uri()
-        if not base_uri:
-            raise ValueError("NAICS base URI is not set.")
-        return build_concept_tree(self.graph, rdflib.URIRef(base_uri))["children"]
-
-    @cached_property
-    def naics_codes(self) -> set[Concept]:
-        """Flatten NAICS code concept tree."""
-        return tree_list_to_flat(self.naics_concept_nodes)
-
-    @cached_property
-    def naics_code_map(self) -> Dict[str, Concept]:
-        """Map NAICS code names to Concept objects."""
-        return {code.name: code for code in self.naics_codes}

@@ -19,7 +19,7 @@ from data_etl_app.db_models.keyword_ground_truth import (
     KeywordGroundTruth,
     KeywordCorrectionLog,
 )
-from core.models.types_and_enums import KeywordTypeEnum
+from data_etl_app.models.types_and_enums import KeywordTypeEnum
 
 from core.services.brute_search_service import word_regex
 

@@ -189,7 +189,7 @@ class BatchRequestJSONLFileWriter:
     ):
         """Thread-safe async version of write_item_request_blobs.
 
-        Use this method when processing manufacturers in parallel to ensure
+        Use this method when processing subjects in parallel to ensure
         safe concurrent writes to batch files.
         """
         async with self._lock:

@@ -10,8 +10,8 @@ from core.models.pipeline_nodes.single_stage.classification.binary_classificatio
 from core.models.pipeline_nodes.single_stage.base.single_stage_extraction_prefill_node import (
     SingleStageExtractionPrefillNode,
 )
-from core.models.types_and_enums import (
-    BinaryClassificationTypeEnum,
+from core.models.field_types import (
+    ExtractionFieldType,
 )
 from core.models.chunking_strat import ChunkingStrategy
 
@@ -22,7 +22,7 @@ class BinaryClassificationPrefillNode(SingleStageExtractionPrefillNode):
 
     def __init__(
         self,
-        binary_field_type: BinaryClassificationTypeEnum,
+        binary_field_type: ExtractionFieldType,
         next_node: BinaryClassificationNode,
         chunk_strategy: ChunkingStrategy,
         prompt: Prompt,

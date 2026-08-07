@@ -26,7 +26,7 @@ async def get_gpt_request_blob_async(
 
     Tokenization is the main bottleneck (~70ms per call), so we run it
     in a thread pool to avoid blocking the event loop and allow other
-    manufacturers to process concurrently.
+    subjects to process concurrently.
     """
     logger.info(f"Generating GPT request blob for {custom_id}.")
     loop = asyncio.get_event_loop()

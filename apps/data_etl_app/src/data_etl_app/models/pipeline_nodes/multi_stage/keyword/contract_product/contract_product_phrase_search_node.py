@@ -9,9 +9,9 @@ from llm_providers.models.file_objects.prompt import Prompt
 from core.models.pipeline_nodes.multi_stage.keyword.keyword_phrase_search_node import (
     KeywordPhraseSearchNode,
 )
-from core.models.types_and_enums import (
+from core.models.field_types import ExtractionFieldType
+from data_etl_app.models.types_and_enums import (
     KeywordTypeEnum,
-    LLMExtractedFieldTypeEnum,
 )
 from llm_providers.field_types import BatchRequestIDType
 
@@ -52,15 +52,15 @@ class ContractProductPhraseSearchNode(KeywordPhraseSearchNode):
 
     @staticmethod
     def get_request_custom_id(
-        mfg_etld1: str,
-        field_type: LLMExtractedFieldTypeEnum,
+        subject_unique_id: str,
+        field_type: ExtractionFieldType,
         chunk_bounds: str,
         metadata: LLMPhraseExtractionMetadata,
     ) -> BatchRequestIDType:
         # Deliberately ignore the passed field_type and use the shared "products"
         # identity so this phase's custom_id matches the pure-product branch's.
         return KeywordPhraseSearchNode.get_request_custom_id(
-            subject_unique_id=mfg_etld1,
+            subject_unique_id=subject_unique_id,
             field_type=KeywordTypeEnum.products,
             chunk_bounds=chunk_bounds,
             metadata=metadata,

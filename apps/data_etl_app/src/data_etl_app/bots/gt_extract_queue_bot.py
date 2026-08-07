@@ -21,7 +21,7 @@ from llm_providers.db_models.extraction_error import (
     ExtractionError,
 )
 from infra.models.queue_items.to_extract_item import ToExtractItem
-from core.models.types_and_enums import BinaryClassificationTypeEnum
+from data_etl_app.models.types_and_enums import BinaryClassificationTypeEnum
 from llm_providers.models.open_ai.gpt_model_params import (
     GPTModelParams,
 )

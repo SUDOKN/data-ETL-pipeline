@@ -21,7 +21,7 @@ from typing import TYPE_CHECKING
 from core.models.pipeline_nodes.single_stage.base.single_stage_extraction_node import (
     SingleStageExtractionNode,
 )
-from core.models.types_and_enums import BinaryClassificationTypeEnum
+from core.models.field_types import ExtractionFieldType
 from core.models.extraction_schemas.response_format_util import (
     build_gpt_response_format,
 )
@@ -49,7 +49,7 @@ class BinaryClassificationNode(SingleStageExtractionNode[LLMBinaryClassification
     def __init__(
         self,
         classification_prompt: Prompt,
-        binary_field_type: BinaryClassificationTypeEnum,
+        binary_field_type: ExtractionFieldType,
         next_node: BinaryReconcileNode,
     ):
         super().__init__(
@@ -65,7 +65,7 @@ class BinaryClassificationNode(SingleStageExtractionNode[LLMBinaryClassification
     @staticmethod
     async def get_result(
         subject_unique_id: str,
-        field_type: BinaryClassificationTypeEnum,
+        field_type: ExtractionFieldType,
         chunk_bounds: str,
         extraction_bundle: SingleStageExtractionRequestBundle,
         completed_request_map: dict[BatchRequestIDType, GPTBatchRequest],
@@ -102,6 +102,6 @@ class BinaryClassificationNode(SingleStageExtractionNode[LLMBinaryClassification
                 traceback_str=traceback.format_exc(),
             )
             logger.error(
-                f"binary_classification_node.get_result: Error parsing binary classification results for manufacturer {subject_unique_id} and field type {field_type.name} from GPT response: {e}"
+                f"binary_classification_node.get_result: Error parsing binary classification results for subject {subject_unique_id} and field type {field_type.name} from GPT response: {e}"
             )
             raise

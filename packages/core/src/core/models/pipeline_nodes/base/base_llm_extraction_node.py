@@ -53,9 +53,9 @@ from core.models.pipeline_nodes.base.base_node import (
 from core.models.pipeline_nodes.base.base_reconcile_node import (
     ReconcileNode,
 )
-from core.models.types_and_enums import (
+from core.models.field_types import (
     LLMExtractedFieldTypeVar,
-    LLMExtractedFieldTypeEnum,
+    ExtractionFieldType,
 )
 from llm_providers.field_types import BatchRequestIDType
 from scraper.models.s3.scraped_text_file import ScrapedTextFile
@@ -139,7 +139,7 @@ class BaseLLMExtractionNode(BaseNode[LLMExtractedFieldTypeVar, ResultT]):
     @abstractmethod
     def get_request_custom_id(
         subject_unique_id: str,
-        field_type: LLMExtractedFieldTypeEnum,
+        field_type: ExtractionFieldType,
         chunk_bounds: str,
         metadata: ExtractionMetadata,
     ) -> BatchRequestIDType:
@@ -246,7 +246,7 @@ class BaseLLMExtractionNode(BaseNode[LLMExtractedFieldTypeVar, ResultT]):
     @abstractmethod
     async def get_result(
         subject_unique_id: str,
-        field_type: LLMExtractedFieldTypeEnum,
+        field_type: ExtractionFieldType,
         chunk_bounds: str,
         extraction_bundle: ExtractionRequestBundle,
         completed_request_map: dict[BatchRequestIDType, GPTBatchRequest],

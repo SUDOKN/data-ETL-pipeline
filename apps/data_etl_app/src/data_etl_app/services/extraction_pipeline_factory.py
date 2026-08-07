@@ -63,10 +63,10 @@ from core.models.pipeline_nodes import (
     KeywordExtractionPrefillNode,
 )
 from core.models.skos_concept import Concept
-from core.models.types_and_enums import (
+from core.models.field_types import ExtractionFieldType
+from data_etl_app.models.types_and_enums import (
     BinaryClassificationTypeEnum,
     ConceptTypeEnum,
-    LLMExtractedFieldTypeEnum,
     KeywordTypeEnum,
 )
 from data_etl_app.models.types_and_enums import (
@@ -543,7 +543,7 @@ class ExtractionPipelineFactory:
         llm_model: LLM_Model,
         model_params: GPTModelParams,
         created_at: datetime,
-    ) -> dict[LLMExtractedFieldTypeEnum, PrefillNode]:
+    ) -> dict[ExtractionFieldType, PrefillNode]:
         """
         Returns a dict mapping field names to their phase pipelines.
         Each pipeline is the head of a chain of phases.
@@ -621,7 +621,7 @@ class ExtractionPipelineFactory:
                 phrase_relationship_screening_prompt=prompt_service.certificate_phrase_relationship_screening_prompt,
                 phrase_initial_grounding_prompt=prompt_service.certificate_phrase_initial_grounding_prompt,
                 phrase_recursive_grounding_prompt=prompt_service.certificate_phrase_recursive_grounding_prompt,
-                known_concepts=ontology.certificates,
+                known_concepts=ontology.get_concepts_flat(ConceptTypeEnum.certificates),
                 llm_model=llm_model,
                 model_params=model_params,
                 created_at=created_at,
@@ -636,7 +636,7 @@ class ExtractionPipelineFactory:
                 phrase_relationship_screening_prompt=prompt_service.industry_phrase_relationship_screening_prompt,
                 phrase_initial_grounding_prompt=prompt_service.industry_phrase_initial_grounding_prompt,
                 phrase_recursive_grounding_prompt=prompt_service.industry_phrase_recursive_grounding_prompt,
-                known_concepts=ontology.industries,
+                known_concepts=ontology.get_concepts_flat(ConceptTypeEnum.industries),
                 llm_model=llm_model,
                 model_params=model_params,
                 created_at=created_at,
@@ -651,7 +651,7 @@ class ExtractionPipelineFactory:
                 phrase_relationship_screening_prompt=prompt_service.process_cap_phrase_relationship_screening_prompt,
                 phrase_initial_grounding_prompt=prompt_service.process_cap_phrase_initial_grounding_prompt,
                 phrase_recursive_grounding_prompt=prompt_service.process_cap_phrase_recursive_grounding_prompt,
-                known_concepts=ontology.process_caps,
+                known_concepts=ontology.get_concepts_flat(ConceptTypeEnum.process_caps),
                 llm_model=llm_model,
                 model_params=model_params,
                 created_at=created_at,
@@ -666,7 +666,9 @@ class ExtractionPipelineFactory:
                 phrase_relationship_screening_prompt=prompt_service.material_cap_phrase_relationship_screening_prompt,
                 phrase_initial_grounding_prompt=prompt_service.material_cap_phrase_initial_grounding_prompt,
                 phrase_recursive_grounding_prompt=prompt_service.material_cap_phrase_recursive_grounding_prompt,
-                known_concepts=ontology.material_caps,
+                known_concepts=ontology.get_concepts_flat(
+                    ConceptTypeEnum.material_caps
+                ),
                 llm_model=llm_model,
                 model_params=model_params,
                 created_at=created_at,

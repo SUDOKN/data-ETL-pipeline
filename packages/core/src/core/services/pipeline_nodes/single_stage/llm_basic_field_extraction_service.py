@@ -8,6 +8,7 @@ from llm_providers.db_models.gpt_batch_request import (
 from core.models.deferred_extraction.deferred_single_stage_extraction_requests import (
     SingleStageExtractionRequestMap,
 )
+from core.models.field_types import ExtractionFieldType
 from llm_providers.models.file_objects.prompt import Prompt
 from llm_providers.services.gpt_batch_request.gpt_batch_request_service import (
     create_base_gpt_batch_request,
@@ -24,11 +25,11 @@ logger = logging.getLogger(__name__)
 
 async def create_missing_basic_extraction_requests(
     deferred_at: datetime,
-    field_type: str,  # used for logging and debugging only
+    field_type: ExtractionFieldType,  # used for logging and debugging only
     missing_request_ids: set[BatchRequestIDType],
     chunked_request_map: SingleStageExtractionRequestMap,
     subject_unique_id: str,
-    mfg_text: str,
+    subject_text: str,
     prompt: Prompt,
     llm_model: LLM_Model,
     model_params: GPTModelParams,
@@ -38,7 +39,7 @@ async def create_missing_basic_extraction_requests(
 ) -> list[GPTBatchRequest]:
 
     logger.info(
-        f"create_missing_basic_extraction_requests: Generating GPTBatchRequest for {subject_unique_id}:{field_type}"
+        f"create_missing_basic_extraction_requests: Generating GPTBatchRequest for {subject_unique_id}:{field_type.name}"
     )
 
     request_model_params = model_params.with_response_format(response_schema)
@@ -55,7 +56,7 @@ async def create_missing_basic_extraction_requests(
             chunk_items.append(
                 (
                     extraction_bundle.llm_request_id,
-                    mfg_text[int(start) : int(end)],
+                    subject_text[int(start) : int(end)],
                 )
             )
 
@@ -85,7 +86,7 @@ async def create_missing_basic_extraction_requests(
         if (i + BATCH_SIZE) % 500 == 0:
             logger.info(
                 f"Created {min(i + BATCH_SIZE, len(chunk_items))}/{len(chunk_items)} "
-                f"gpt request for {subject_unique_id}:{field_type} (Eager: {eager})"
+                f"gpt request for {subject_unique_id}:{field_type.name} (Eager: {eager})"
             )
 
     return batch_requests

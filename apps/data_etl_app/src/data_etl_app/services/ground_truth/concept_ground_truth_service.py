@@ -18,7 +18,7 @@ from data_etl_app.db_models.concept_ground_truth import (
     HumanConceptCorrection,
 )
 from core.models.skos_concept import Concept
-from core.models.types_and_enums import ConceptTypeEnum
+from data_etl_app.models.types_and_enums import ConceptTypeEnum
 
 from core.services.ontology_service import (
     get_ontology_service,

@@ -44,8 +44,8 @@ from core.models.deferred_extraction.deferred_concept_extraction import (
     TaggingResultsGroupedByConcept,
 )
 from core.models.skos_concept import Concept, ConceptJSONEncoder
-from core.models.types_and_enums import (
-    ConceptTypeEnum,
+from core.models.field_types import (
+    ConceptFieldType,
 )
 from llm_providers.models.open_ai.gpt_model_params import (
     GPTModelParams,
@@ -80,7 +80,7 @@ LLM_PHRASE_RECURSIVE_GROUNDING_RESPONSE_SCHEMA = build_gpt_response_format(
 
 def parse_llm_phrase_recursive_grounding_result(
     subject_unique_id: str,
-    field_type: ConceptTypeEnum,
+    field_type: ConceptFieldType,
     gpt_req: GPTBatchRequest,
 ) -> PhraseToTagAndReasonMap:
     if not gpt_req.response:
@@ -118,7 +118,7 @@ def parse_llm_phrase_recursive_grounding_result(
 
 async def parse_recursive_grounding_batch_request_result(
     subject_unique_id: str,
-    field_type: ConceptTypeEnum,
+    field_type: ConceptFieldType,
     chunk_bounds: str,
     descend_req_id: BatchRequestIDType,
     completed_request_map: dict[BatchRequestIDType, GPTBatchRequest],
@@ -150,7 +150,7 @@ async def parse_recursive_grounding_batch_request_result(
             traceback_str=traceback.format_exc(),
         )
         logger.error(
-            f"phrase_recursive_grounding_node.parse_batch_request_result: Error parsing phrase_recursive_grounding results for manufacturer {subject_unique_id} from GPT response: {e}"
+            f"phrase_recursive_grounding_node.parse_batch_request_result: Error parsing phrase_recursive_grounding results for subject {subject_unique_id} from GPT response: {e}"
         )
         raise
 
@@ -162,7 +162,7 @@ async def parse_recursive_grounding_batch_request_result(
 
 async def get_all_recursive_grounding_results(
     subject_unique_id: str,
-    field_type: ConceptTypeEnum,
+    field_type: ConceptFieldType,
     chunk_bounds: str,
     extraction_bundle: ConceptExtractionRequestBundle,
     completed_initial_grounding_req_map: dict[BatchRequestIDType, GPTBatchRequest],
@@ -349,7 +349,7 @@ def get_deepest_concepts_and_oov(
 
 async def get_itp_from_itr(
     subject_unique_id: str,
-    field_type: ConceptTypeEnum,
+    field_type: ConceptFieldType,
     chunk_bounds: str,
     bundle: ConceptExtractionRequestBundle,
     it_req: IterativeTaggingRequest,
@@ -465,7 +465,7 @@ async def create_missing_phrase_recursive_grounding_requests(
     # used for logging and debugging
     subject_unique_id: str,
     subject_name: str,
-    field_type: ConceptTypeEnum,
+    field_type: ConceptFieldType,
     # context
     chunked_request_map: ConceptExtractionRequestMap,
     missing_phrase_recursive_grounding_req_ids: set[  # will all belong to the same level
@@ -690,7 +690,7 @@ def _create_dummy_completed_phrase_recursive_grounding_batch_request(
 def create_deferred_phrase_recursive_grounding_gpt_request(
     deferred_at: datetime,
     subject_unique_id: str,
-    field_type: ConceptTypeEnum,
+    field_type: ConceptFieldType,
     llm_phrase_recursive_grounding_request_id: str,
     phrase_recursive_grounding_prompt: Prompt,
     # context
@@ -706,26 +706,9 @@ def create_deferred_phrase_recursive_grounding_gpt_request(
     logger.info(
         f"create_deferred_phrase_recursive_grounding_gpt_request: Generating GPTBatchRequest for {llm_phrase_recursive_grounding_request_id}"
     )
-    if field_type not in ConceptTypeEnum:
-        raise ValueError(
-            f"create_deferred_phrase_recursive_grounding_gpt_request: Unsupported field_type: {field_type}"
-        )
-
-    parent_placeholder_stem = ""
-    child_placeholder_stem = ""
-    match field_type:
-        case ConceptTypeEnum.material_caps:
-            parent_placeholder_stem = "{{parent_material}}"
-            child_placeholder_stem = "{{types_of_parent_material}}"
-        case ConceptTypeEnum.process_caps:
-            parent_placeholder_stem = "{{parent_process_cap}}"
-            child_placeholder_stem = "{{types_of_process_cap}}"
-        case ConceptTypeEnum.certificates:
-            parent_placeholder_stem = "{{parent_certificate}}"
-            child_placeholder_stem = "{{types_of_parent_certificate}}"
-        case ConceptTypeEnum.industries:
-            parent_placeholder_stem = "{{parent_industry}}"
-            child_placeholder_stem = "{{types_of_parent_industry}}"
+    parent_placeholder_stem, child_placeholder_stem = (
+        field_type.recursive_grounding_placeholders
+    )
 
     refactored_text = phrase_recursive_grounding_prompt.text.replace(
         parent_placeholder_stem, parent_concept.name

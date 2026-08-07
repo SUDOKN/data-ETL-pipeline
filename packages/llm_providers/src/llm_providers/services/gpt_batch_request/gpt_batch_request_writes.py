@@ -344,7 +344,7 @@ async def bulk_upsert_gpt_batch_requests_with_only_req_bodies(
 
     Args:
         batch_requests: List of GPTBatchRequest objects to upsert
-        subject_unique_id: Manufacturer subject_unique_id for logging purposes
+        subject_unique_id: Subject unique id, for logging purposes
         chunk_size: Number of requests to upsert per chunk (default: 5000)
 
     Returns:
@@ -554,7 +554,7 @@ async def bulk_delete_gpt_batch_requests_by_custom_ids(
 
     Args:
         gpt_batch_request_custom_ids: List of GPTBatchRequest custom IDs to delete
-        subject_unique_id: Manufacturer subject_unique_id for logging purposes
+        subject_unique_id: Subject unique id, for logging purposes
 
     Returns:
         Number of deleted documents
@@ -579,10 +579,10 @@ async def bulk_delete_gpt_batch_requests_by_subject_id_and_field(
     field_name: Optional[str],
 ) -> int:
     """
-    Bulk delete GPT batch requests associated with a manufacturer subject_unique_id and field type.
+    Bulk delete GPT batch requests associated with a subject_unique_id and field type.
 
     Args:
-        subject_unique_id: Manufacturer subject_unique_id for which to delete batch requests
+        subject_unique_id: Subject unique id for which to delete batch requests
         field_name: Field name to narrow deletion scope
 
     Returns:

@@ -1,6 +1,6 @@
 from pure_utils.env_util import require_env
 
-from core.models.types_and_enums import ConceptTypeEnum
+from data_etl_app.models.types_and_enums import ConceptTypeEnum
 
 ONTOLOGY_REFRESH_URL = "/ontology/refresh"
 

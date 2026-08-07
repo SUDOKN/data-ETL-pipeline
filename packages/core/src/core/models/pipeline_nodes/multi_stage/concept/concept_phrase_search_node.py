@@ -6,8 +6,8 @@ from llm_providers.models.file_objects.prompt import Prompt
 from core.models.pipeline_nodes.multi_stage.base.llm_phrase_search_node import (
     LLMPhraseSearchNode,
 )
-from core.models.types_and_enums import (
-    ConceptTypeEnum,
+from core.models.field_types import (
+    ConceptFieldType,
 )
 
 if TYPE_CHECKING:
@@ -19,12 +19,12 @@ if TYPE_CHECKING:
 logger = logging.getLogger(__name__)
 
 
-class ConceptPhraseSearchNode(LLMPhraseSearchNode[ConceptTypeEnum]):
+class ConceptPhraseSearchNode(LLMPhraseSearchNode[ConceptFieldType]):
     """Phase 1: LLM Search for concepts"""
 
     def __init__(
         self,
-        concept_type: ConceptTypeEnum,
+        concept_type: ConceptFieldType,
         next_node: ConceptRecursiveSearchNode,
         search_prompt: Prompt,
     ):

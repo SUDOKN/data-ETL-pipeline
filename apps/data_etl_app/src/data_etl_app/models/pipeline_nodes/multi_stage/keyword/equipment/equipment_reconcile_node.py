@@ -4,13 +4,13 @@ from core.models.pipeline_nodes import PipelineContext
 from core.models.pipeline_nodes.multi_stage.keyword.keyword_reconcile_node import (
     KeywordReconcileNode,
 )
-from core.models.types_and_enums import KeywordTypeEnum
+from data_etl_app.models.types_and_enums import KeywordTypeEnum
 
 
 class EquipmentReconcileNode(KeywordReconcileNode):
     """Phase 6: aggregate & write final equipment results.
 
-    Reads/writes ``deferred_mfg.equipments`` / ``mfg.equipments`` (via
+    Reads/writes ``deferred_subject.equipments`` / ``subject.equipments`` (via
     ``field_type=KeywordTypeEnum.equipments``) and points the 5 upstream lookups
     at the ``Equipment*`` sibling node classes.
     """
