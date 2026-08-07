@@ -15,13 +15,29 @@
   - `apps/` — `data_etl_app`, `litellm_proxy_app`
 - Dependency rule: `core` may import from any package; **no package may import from `core`**.
   `pure_utils` is a leaf — it must not depend on any other package in this repo.
-- Run tests with `pytest` from inside the relevant package/app directory **after**
-  activating `.venv`, e.g.:
+- Test/lint tooling lives in each package's `[project.optional-dependencies].dev` extra,
+  not in runtime `dependencies`. Install with `pip install -e "packages/core[dev]"`.
+
+## Tests
+
+- Pytest is configured once at the repo root in `pytest.ini` (`rootdir` = repo root).
+  There are no per-package pytest sections — don't add any.
+- Tests live in `<package>/tests/`, never under `src/`. Test directories have **no**
+  `__init__.py`; the root config uses `--import-mode=importlib`.
+- A test belongs to the package that owns the code under test. If you're testing
+  `infra.*`, the test goes in `packages/infra/tests/`, not in whichever package you
+  happened to be working in.
+- Tests needing live external services (AWS, Google Maps, real Chrome, network) must be
+  marked `@pytest.mark.integration`. The root config deselects them by default.
 
   ```bash
   source .venv/bin/activate
-  cd apps/data_etl_app && python -m pytest -q
+  python -m pytest                  # whole monorepo, integration deselected
+  python -m pytest -m integration   # only the live-service tests
+  python -m pytest packages/infra   # one package
   ```
+
+- `--strict-markers` is on, so any new marker must be declared in `pytest.ini`.
 
 ## Imports
 

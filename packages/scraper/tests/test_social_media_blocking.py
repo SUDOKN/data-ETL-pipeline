@@ -203,7 +203,6 @@ class TestScraperServiceSocialMediaIntegration:
 
     def test_extract_text_with_fallback_blocks_redirects(self):
         """Test that _extract_text_with_fallback blocks redirects to social media."""
-        from unittest.mock import Mock
 
         # Create a mock driver that simulates redirect to social media
         mock_driver = Mock()
@@ -217,7 +216,6 @@ class TestScraperServiceSocialMediaIntegration:
 
     def test_extract_text_with_fallback_allows_legitimate_redirects(self):
         """Test that _extract_text_with_fallback allows legitimate redirects."""
-        from unittest.mock import Mock, patch
 
         # Create a mock driver that simulates legitimate redirect
         mock_driver = Mock()

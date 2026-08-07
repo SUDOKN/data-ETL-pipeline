@@ -644,7 +644,7 @@ def test_get_url_with_compatible_protocol_invalid_input():
         get_complete_url_with_compatible_protocol([])  # type: ignore
 
 
-@patch("core.utils.url_util.requests")
+@patch("pure_utils.url_util.requests")
 def test_get_url_with_compatible_protocol_https_success(mock_requests):
     """Test successful HTTPS connection."""
     # Mock successful HTTPS response
@@ -662,7 +662,7 @@ def test_get_url_with_compatible_protocol_https_success(mock_requests):
     assert call_args[1]["verify"] is True  # TLS verification enabled
 
 
-@patch("core.utils.url_util.requests.head")
+@patch("pure_utils.url_util.requests.head")
 def test_get_url_with_compatible_protocol_http_fallback(mock_head):
     """Test HTTP fallback when HTTPS fails."""
     # Import real requests for the exceptions
@@ -686,7 +686,7 @@ def test_get_url_with_compatible_protocol_http_fallback(mock_head):
     assert mock_head.call_count == 2
 
 
-@patch("core.utils.url_util.requests")
+@patch("pure_utils.url_util.requests")
 def test_get_url_with_compatible_protocol_head_blocked_get_success(mock_requests):
     """Test fallback to GET when HEAD is blocked."""
     mock_head_response = Mock()
@@ -710,7 +710,7 @@ def test_get_url_with_compatible_protocol_head_blocked_get_success(mock_requests
     assert get_call_args[1]["stream"] is True
 
 
-@patch("core.utils.url_util.requests")
+@patch("pure_utils.url_util.requests")
 def test_get_url_with_compatible_protocol_forbidden_fallback_to_get(mock_requests):
     """Test fallback to GET when HEAD returns 403 Forbidden."""
     mock_head_response = Mock()
@@ -729,7 +729,7 @@ def test_get_url_with_compatible_protocol_forbidden_fallback_to_get(mock_request
     mock_requests.get.assert_called_once()
 
 
-@patch("core.utils.url_util.requests.head")
+@patch("pure_utils.url_util.requests.head")
 def test_get_url_with_compatible_protocol_all_fail(mock_head):
     """Test when both HTTPS and HTTP fail."""
     # Mock both HTTPS and HTTP failures
@@ -744,7 +744,7 @@ def test_get_url_with_compatible_protocol_all_fail(mock_head):
     assert mock_head.call_count == 2
 
 
-@patch("core.utils.url_util.requests.head")
+@patch("pure_utils.url_util.requests.head")
 def test_get_url_with_compatible_protocol_timeout_handling(mock_head):
     """Test timeout handling."""
 
@@ -764,7 +764,7 @@ def test_get_url_with_compatible_protocol_timeout_handling(mock_head):
     assert result == "http://slowsite.example"
 
 
-@patch("core.utils.url_util.requests")
+@patch("pure_utils.url_util.requests")
 def test_get_url_with_compatible_protocol_strips_existing_scheme(mock_requests):
     """Test that existing scheme is stripped before testing protocols."""
     mock_response = Mock()
@@ -781,7 +781,7 @@ def test_get_url_with_compatible_protocol_strips_existing_scheme(mock_requests):
     assert call_args[0][0] == "https://example.com/path"
 
 
-@patch("core.utils.url_util.requests")
+@patch("pure_utils.url_util.requests")
 def test_get_url_with_compatible_protocol_user_agent(mock_requests):
     """Test that proper User-Agent header is set."""
     mock_response = Mock()
@@ -796,7 +796,7 @@ def test_get_url_with_compatible_protocol_user_agent(mock_requests):
     assert "DataAnalyzer" in headers["User-Agent"]
 
 
-@patch("core.utils.url_util.requests")
+@patch("pure_utils.url_util.requests")
 def test_get_url_with_compatible_protocol_redirects_allowed(mock_requests):
     """Test that redirects are followed."""
     mock_response = Mock()
@@ -809,7 +809,7 @@ def test_get_url_with_compatible_protocol_redirects_allowed(mock_requests):
     assert call_args[1]["allow_redirects"] is True
 
 
-@patch("core.utils.url_util.requests")
+@patch("pure_utils.url_util.requests")
 def test_get_url_with_compatible_protocol_status_codes(mock_requests):
     """Test various HTTP status code handling."""
     test_cases = [
@@ -843,47 +843,25 @@ def test_get_url_with_compatible_protocol_status_codes(mock_requests):
                 get_complete_url_with_compatible_protocol("example.com")
 
 
+@pytest.mark.integration
 def test_get_url_with_compatible_protocol_for_valid_http():
-    """Integration test with real HTTP-only sites (if accessible)."""
-    # These tests use real network calls and may be flaky
-    # They're kept for integration testing but could be skipped in CI
-    try:
-        assert (
-            get_complete_url_with_compatible_protocol("www.claytonchem.com")
-            == "http://www.claytonchem.com"
-        )
-        assert (
-            get_complete_url_with_compatible_protocol("www.buffalosteel.net")
-            == "http://www.buffalosteel.net"
-        )
-        assert (
-            get_complete_url_with_compatible_protocol("www.containerresearch.com")
-            == "http://www.containerresearch.com"
-        )
-    except ValueError:
-        # Skip if sites are not accessible
-        pytest.skip("Real HTTP sites not accessible")
+    """Hits real HTTP-only sites; these domains go offline over time and need pruning."""
+    assert (
+        get_complete_url_with_compatible_protocol("www.buffalosteel.net")
+        == "http://www.buffalosteel.net"
+    )
+    assert (
+        get_complete_url_with_compatible_protocol("www.idl.com") == "http://www.idl.com"
+    )
 
 
+@pytest.mark.integration
 def test_get_url_with_compatible_protocol_for_valid_https():
-    """Integration test with real HTTPS sites (if accessible)."""
-    # These tests use real network calls and may be flaky
-    try:
-        assert (
-            get_complete_url_with_compatible_protocol("www.sohoart.com")
-            == "https://www.sohoart.com"
-        )
-        assert (
-            get_complete_url_with_compatible_protocol("www.nrpjones.com")
-            == "https://www.nrpjones.com"
-        )
-        assert (
-            get_complete_url_with_compatible_protocol("www.idl.com")
-            == "http://www.idl.com"
-        )
-    except ValueError:
-        # Skip if sites are not accessible
-        pytest.skip("Real HTTPS sites not accessible")
+    """Hits a real HTTPS site; these domains go offline over time and need pruning."""
+    assert (
+        get_complete_url_with_compatible_protocol("www.nrpjones.com")
+        == "https://www.nrpjones.com"
+    )
 
 
 def test_get_final_landing_url_invalid_input():
@@ -906,7 +884,7 @@ def test_get_final_landing_url_invalid_input():
         get_final_landing_url("://example.com")
 
 
-@patch("core.utils.url_util.requests.Session")
+@patch("pure_utils.url_util.requests.Session")
 def test_get_final_landing_url_successful_head(mock_session_class):
     """Test get_final_landing_url when HEAD request succeeds."""
 
@@ -930,7 +908,7 @@ def test_get_final_landing_url_successful_head(mock_session_class):
     mock_session.get.assert_not_called()
 
 
-@patch("core.utils.url_util.requests.Session")
+@patch("pure_utils.url_util.requests.Session")
 def test_get_final_landing_url_head_fails_fallback_to_get(mock_session_class):
     """Test get_final_landing_url when HEAD fails with 405/403 and GET succeeds."""
 
@@ -960,7 +938,7 @@ def test_get_final_landing_url_head_fails_fallback_to_get(mock_session_class):
     mock_get_response.close.assert_called_once()
 
 
-@patch("core.utils.url_util.requests.Session")
+@patch("pure_utils.url_util.requests.Session")
 def test_get_final_landing_url_head_403_fallback_to_get(mock_session_class):
     """Test get_final_landing_url when HEAD returns 403 and GET succeeds."""
 
@@ -985,7 +963,7 @@ def test_get_final_landing_url_head_403_fallback_to_get(mock_session_class):
     mock_session.get.assert_called_once()
 
 
-@patch("core.utils.url_util.requests.Session")
+@patch("pure_utils.url_util.requests.Session")
 def test_get_final_landing_url_head_4xx_5xx_fallback(mock_session_class):
     """Test get_final_landing_url when HEAD returns 4xx/5xx and GET succeeds."""
 
@@ -1008,7 +986,7 @@ def test_get_final_landing_url_head_4xx_5xx_fallback(mock_session_class):
     assert result == "https://example.com/final"
 
 
-@patch("core.utils.url_util.requests.Session")
+@patch("pure_utils.url_util.requests.Session")
 def test_get_final_landing_url_head_exception_fallback(mock_session_class):
     """Test get_final_landing_url when HEAD raises exception and GET succeeds."""
 
@@ -1035,7 +1013,7 @@ def test_get_final_landing_url_head_exception_fallback(mock_session_class):
     )
 
 
-@patch("core.utils.url_util.requests.Session")
+@patch("pure_utils.url_util.requests.Session")
 def test_get_final_landing_url_custom_timeout(mock_session_class):
     """Test get_final_landing_url with custom timeout parameter."""
 
@@ -1055,7 +1033,7 @@ def test_get_final_landing_url_custom_timeout(mock_session_class):
     )
 
 
-@patch("core.utils.url_util.requests.Session")
+@patch("pure_utils.url_util.requests.Session")
 def test_get_final_landing_url_user_agent_header(mock_session_class):
     """Test that get_final_landing_url sets the correct User-Agent header."""
 
@@ -1075,7 +1053,7 @@ def test_get_final_landing_url_user_agent_header(mock_session_class):
     )
 
 
-@patch("core.utils.url_util.requests.Session")
+@patch("pure_utils.url_util.requests.Session")
 def test_get_final_landing_url_redirect_chain(mock_session_class):
     """Test get_final_landing_url follows redirect chain correctly."""
 
@@ -1099,7 +1077,7 @@ def test_get_final_landing_url_redirect_chain(mock_session_class):
     )
 
 
-@patch("core.utils.url_util.requests.Session")
+@patch("pure_utils.url_util.requests.Session")
 def test_get_final_landing_url_get_with_stream(mock_session_class):
     """Test that GET request uses stream=True when falling back from HEAD."""
 
@@ -1123,7 +1101,7 @@ def test_get_final_landing_url_get_with_stream(mock_session_class):
     )
 
 
-@patch("core.utils.url_util.requests.Session")
+@patch("pure_utils.url_util.requests.Session")
 def test_get_final_landing_url_response_cleanup(mock_session_class):
     """Test that responses are properly closed even if exceptions occur."""
 
@@ -1142,7 +1120,7 @@ def test_get_final_landing_url_response_cleanup(mock_session_class):
     mock_response.close.assert_called_once()
 
 
-@patch("core.utils.url_util.requests.Session")
+@patch("pure_utils.url_util.requests.Session")
 def test_get_final_landing_url_various_schemes(mock_session_class):
     """Test get_final_landing_url with different URL schemes."""
 
@@ -1164,7 +1142,7 @@ def test_get_final_landing_url_various_schemes(mock_session_class):
     assert result == "http://example.com/final"
 
 
-@patch("core.utils.url_util.requests.Session")
+@patch("pure_utils.url_util.requests.Session")
 def test_get_final_landing_url_network_errors_propagated(mock_session_class):
     """Test that network errors from both HEAD and GET are properly propagated."""
 
@@ -1183,7 +1161,7 @@ def test_get_final_landing_url_network_errors_propagated(mock_session_class):
     mock_session.get.assert_called_once()
 
 
-@patch("core.utils.url_util.requests.Session")
+@patch("pure_utils.url_util.requests.Session")
 def test_get_final_landing_url_ssl_errors_propagated(mock_session_class):
     """Test that SSL errors are properly propagated."""
 
@@ -1206,7 +1184,7 @@ def test_get_final_landing_url_edge_case_urls():
     """Test get_final_landing_url with edge case URLs that have valid schemes."""
 
     # URLs with ports
-    with patch("core.utils.url_util.requests.Session") as mock_session_class:
+    with patch("pure_utils.url_util.requests.Session") as mock_session_class:
         mock_session = Mock()
         mock_session_class.return_value.__enter__.return_value = mock_session
 
@@ -1219,7 +1197,7 @@ def test_get_final_landing_url_edge_case_urls():
         assert result == "https://example.com:8080/final"
 
     # URLs with query parameters
-    with patch("core.utils.url_util.requests.Session") as mock_session_class:
+    with patch("pure_utils.url_util.requests.Session") as mock_session_class:
         mock_session = Mock()
         mock_session_class.return_value.__enter__.return_value = mock_session
 
@@ -1232,7 +1210,7 @@ def test_get_final_landing_url_edge_case_urls():
         assert result == "https://example.com/final?redirected=true"
 
     # URLs with fragments (though fragments aren't sent to server)
-    with patch("core.utils.url_util.requests.Session") as mock_session_class:
+    with patch("pure_utils.url_util.requests.Session") as mock_session_class:
         mock_session = Mock()
         mock_session_class.return_value.__enter__.return_value = mock_session
 
@@ -1258,7 +1236,7 @@ def test_get_final_landing_url():
         pytest.skip("Real HTTP sites not accessible")
 
 
-@patch("core.utils.url_util.get_final_landing_url")
+@patch("pure_utils.url_util.get_final_landing_url")
 def test_get_final_landing_etld1(mock_get_final_landing_url):
     """Test that the final landing eTLD+1 is derived from the resolved landing URL."""
     mock_get_final_landing_url.return_value = "https://blog.example.co.uk/path"

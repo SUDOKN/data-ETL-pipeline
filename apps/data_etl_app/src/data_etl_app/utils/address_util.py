@@ -36,7 +36,7 @@ def can_addresses_A_and_B_merge(A: Address, B: Address) -> bool:
     A_addr_line_set = {addr_line for addr_line in A.address_lines}
     B_addr_line_set = {addr_line for addr_line in B.address_lines}
 
-    return bool(A_addr_line_set | B_addr_line_set)  # atleast one address line matches
+    return bool(A_addr_line_set & B_addr_line_set)  # atleast one address line matches
 
 
 def merge_addresses_A_and_B(A: Address, B: Address) -> Address | None:
@@ -63,6 +63,6 @@ def merge_addresses_A_and_B(A: Address, B: Address) -> Address | None:
         postal_code=A.postal_code or B.postal_code,
         latitude=A.latitude,
         longitude=A.longitude,
-        phone_numbers=list(A_phone_nums & B_phone_nums),
-        fax_numbers=list(A_fax_nums & B_fax_nums),
+        phone_numbers=list(A_phone_nums | B_phone_nums),
+        fax_numbers=list(A_fax_nums | B_fax_nums),
     )

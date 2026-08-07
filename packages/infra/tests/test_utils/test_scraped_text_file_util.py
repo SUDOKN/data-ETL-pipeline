@@ -1,4 +1,3 @@
-pytest_plugins = ["pytest_asyncio"]
 import uuid
 import pytest
 import pytest_asyncio
@@ -6,13 +5,6 @@ import aiobotocore.session
 import os
 from unittest.mock import AsyncMock, MagicMock, patch
 from datetime import datetime
-
-# Load environment variables first
-from pure_utils.env_util import load_env
-
-from infra.required_env import S3_SCRAPED_TEXT
-
-load_env(S3_SCRAPED_TEXT)
 
 from infra.utils.aws.s3.scraped_text_file_util import (
     get_file_name_from_subject_unique_id,
@@ -98,20 +90,23 @@ async def _get_scraped_text_object_tags_by_filename_with_client(
         return await _get_scraped_text_object_tags_by_filename(file_name, version_id)
 
 
-async def iterate_scraped_text_objects_and_versions_with_client(
+async def collect_scraped_text_objects_and_versions_with_client(
     s3_client, prefix: str = "", include_tags: bool = False
-):
-    """Test helper that takes an S3 client and mimics the real function."""
+) -> list[dict]:
+    """Collect inside the patch context; a suspended generator would unpatch on GC."""
     with patch(
         "infra.utils.aws.s3.scraped_text_file_util.get_scraped_bucket_s3_client",
         return_value=s3_client,
     ):
-        async for item in iterate_scraped_text_objects_and_versions(
-            prefix, include_tags
-        ):
-            yield item
+        return [
+            item
+            async for item in iterate_scraped_text_objects_and_versions(
+                prefix, include_tags
+            )
+        ]
 
 
+@pytest.mark.integration
 class TestScrapedTextUtilS3Integration:
     @pytest_asyncio.fixture
     async def s3_client(self):
@@ -289,7 +284,7 @@ class TestIterateScrapedTextObjectsAndVersions:
 
         # Collect results
         results = []
-        async for obj_version in iterate_scraped_text_objects_and_versions_with_client(
+        for obj_version in await collect_scraped_text_objects_and_versions_with_client(
             mock_s3_client
         ):
             results.append(obj_version)
@@ -386,7 +381,7 @@ class TestIterateScrapedTextObjectsAndVersions:
 
         # Collect results with tags
         results = []
-        async for obj_version in iterate_scraped_text_objects_and_versions_with_client(
+        for obj_version in await collect_scraped_text_objects_and_versions_with_client(
             mock_s3_client, include_tags=True
         ):
             results.append(obj_version)
@@ -428,7 +423,7 @@ class TestIterateScrapedTextObjectsAndVersions:
 
         prefix = "test-prefix/"
         results = []
-        async for obj_version in iterate_scraped_text_objects_and_versions_with_client(
+        for obj_version in await collect_scraped_text_objects_and_versions_with_client(
             mock_s3_client, prefix=prefix
         ):
             results.append(obj_version)
@@ -456,7 +451,7 @@ class TestIterateScrapedTextObjectsAndVersions:
         mock_paginator.paginate.return_value = mock_paginate_async()
 
         results = []
-        async for obj_version in iterate_scraped_text_objects_and_versions_with_client(
+        for obj_version in await collect_scraped_text_objects_and_versions_with_client(
             mock_s3_client
         ):
             results.append(obj_version)
@@ -464,6 +459,7 @@ class TestIterateScrapedTextObjectsAndVersions:
         assert len(results) == 0
 
 
+@pytest.mark.integration
 class TestScrapedTextUtilS3IntegrationWithTags:
     @pytest_asyncio.fixture
     async def s3_client(self):
@@ -500,9 +496,9 @@ class TestScrapedTextUtilS3IntegrationWithTags:
 
             # Test iteration without tags
             found_without_tags = False
-            async for (
+            for (
                 obj_version
-            ) in iterate_scraped_text_objects_and_versions_with_client(
+            ) in await collect_scraped_text_objects_and_versions_with_client(
                 s3_client, prefix=file_name
             ):
                 if (
@@ -519,9 +515,9 @@ class TestScrapedTextUtilS3IntegrationWithTags:
 
             # Test iteration with tags
             found_with_tags = False
-            async for (
+            for (
                 obj_version
-            ) in iterate_scraped_text_objects_and_versions_with_client(
+            ) in await collect_scraped_text_objects_and_versions_with_client(
                 s3_client, prefix=file_name, include_tags=True
             ):
                 if (

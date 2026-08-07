@@ -41,6 +41,7 @@ class ScrapedTextFile(BaseModel, ABC):
     num_tokens: int
     urls_scraped: int
     urls_failed: int
+    etld1_accessible_at: str  # eTLD+1 of the final landing URL reached during scraping
 
     # meta
     success_rate: float  # TODO: computed property
@@ -88,6 +89,10 @@ class ScrapedTextFile(BaseModel, ABC):
 
             urls_scraped = int(tags.get("urls_scraped", 0)) if tags else 0
             urls_failed = int(tags.get("urls_failed", 0)) if tags else 0
+            # Tag is absent on objects uploaded before it was introduced.
+            etld1_accessible_at = (
+                tags.get("etld1_accessible_at") if tags else None
+            ) or subject_unique_id
             success_rate = ScrapingResult.get_success_rate(urls_scraped, urls_failed)
 
             is_valid = ScrapingResult.is_scrape_valid(
@@ -101,6 +106,7 @@ class ScrapedTextFile(BaseModel, ABC):
                 text=scraped_text,
                 urls_scraped=urls_scraped,
                 urls_failed=urls_failed,
+                etld1_accessible_at=etld1_accessible_at,
                 success_rate=success_rate,
                 is_valid=is_valid,
                 last_modified_on=last_modified_on,
@@ -177,6 +183,7 @@ class ScrapedTextFile(BaseModel, ABC):
             text=scrape_result.content,
             urls_scraped=scrape_result.urls_scraped,
             urls_failed=scrape_result.urls_failed,
+            etld1_accessible_at=scrape_result.final_landing_etld1,
             success_rate=scrape_result.success_rate,
             is_valid=is_valid,
             last_modified_on=last_modified_on,

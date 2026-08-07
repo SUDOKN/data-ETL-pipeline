@@ -36,13 +36,15 @@ from core.services.out_of_vocab_labels_service import (
     get_out_of_vocab_labels,
     upsert_out_of_vocab_labels,
 )
+from core.services.brute_search_service import (
+    merge_llm_and_brute_search_results,
+)
 from data_etl_app.utils.ground_truth_helper_util import (
     MappingResultVerificationEnum,
     get_verified_results_from_human_phrase_relationship_correction,
     calculate_corrected_concept_results,
     is_phrase_relationship_evidence_format_correct,
     is_mapping_reason_format_correct,
-    merge_llm_and_brute_search_results,
 )
 
 # Configure logger

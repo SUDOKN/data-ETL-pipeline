@@ -1,5 +1,4 @@
 import json
-import pytest
 
 from core.utils.str_util import make_json_array_parse_safe
 

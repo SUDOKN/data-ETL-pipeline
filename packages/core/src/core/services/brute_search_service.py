@@ -28,6 +28,33 @@ def brute_search(text: str, concepts: set[Concept]) -> set[str]:
     return found_brute_search_labels
 
 
+def get_matched_concepts_and_unmatched_keywords(
+    known_concepts: set[Concept], confirmed_keywords_w_evidence: dict[str, str]
+) -> tuple[set[Concept], dict[str, str]]:
+    """
+    Split confirmed keywords into the known concepts they resolve to and the
+    leftovers that matched nothing.
+
+    Matching is case-insensitive against `Concept.matchLabels`: the LLM often
+    returns a keyword with different capitalization than the ontology label
+    ("semiconductor" vs "Semiconductor") and those are still valid matches.
+    """
+    confirmed_keywords: set[str] = set(confirmed_keywords_w_evidence.keys())
+    unmatched_keywords: dict[str, str] = confirmed_keywords_w_evidence.copy()
+    matched_concepts: set[Concept] = set()
+
+    for confirmed_keyword in confirmed_keywords:
+        for concept in known_concepts:
+            if any(
+                confirmed_keyword.lower() == label.lower()
+                for label in concept.matchLabels
+            ):
+                matched_concepts.add(concept)
+                unmatched_keywords.pop(confirmed_keyword, None)
+
+    return matched_concepts, unmatched_keywords
+
+
 def filter_non_overlapping_brute_results(
     llm_search_results: set[str],
     brute_search_results: set[str],

@@ -4,13 +4,12 @@ Tests the multi-process behavior and cleanup of Chrome browsers.
 """
 
 import os
-import sys
 import time
 import subprocess
 import tempfile
 import pytest
 from unittest.mock import Mock, patch, call
-from typing import List, Dict, Set
+from typing import Dict
 
 try:
     import psutil
@@ -19,9 +18,6 @@ try:
 except ImportError:
     HAS_PSUTIL = False
     psutil = None
-
-# Add the scraper app to Python path for testing
-sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "src"))
 
 from scraper.utils.selenium import ChromeDriverManager
 
@@ -97,13 +93,6 @@ class TestChromeProcessManagement:
         )
         self.env_patcher.start()
 
-        # Also patch the module constant
-        self.constant_patcher = patch(
-            "scraper.utils.selenium.chrome_driver_manager.CHROME_PROFILE_TMPDIR",
-            self.test_profile_dir,
-        )
-        self.constant_patcher.start()
-
         # Start monitoring Chrome processes
         self.process_monitor = ChromeProcessMonitor()
         self.created_drivers = []
@@ -120,7 +109,6 @@ class TestChromeProcessManagement:
                 pass
 
         self.env_patcher.stop()
-        self.constant_patcher.stop()
 
         # Force kill any remaining test processes
         self._cleanup_test_processes()
@@ -182,11 +170,7 @@ class TestChromeProcessManagement:
         # If we get here, test passes
 
     @pytest.mark.skipif(not HAS_PSUTIL, reason="psutil not available")
-    @pytest.mark.slow
-    @pytest.mark.skipif(
-        not os.getenv("RUN_CHROME_PROCESS_TESTS"),
-        reason="Chrome process tests require RUN_CHROME_PROCESS_TESTS=1",
-    )
+    @pytest.mark.integration
     def test_chrome_multiprocess_architecture(self):
         """Test that Chrome creates multiple processes as expected."""
         manager = ChromeDriverManager(headless=True)
@@ -234,11 +218,7 @@ class TestChromeProcessManagement:
             pytest.skip(f"Chrome not available for process testing: {e}")
 
     @pytest.mark.skipif(not HAS_PSUTIL, reason="psutil not available")
-    @pytest.mark.slow
-    @pytest.mark.skipif(
-        not os.getenv("RUN_CHROME_PROCESS_TESTS"),
-        reason="Chrome process tests require RUN_CHROME_PROCESS_TESTS=1",
-    )
+    @pytest.mark.integration
     def test_multiple_drivers_process_isolation(self):
         """Test that multiple Chrome drivers create separate process groups."""
         manager = ChromeDriverManager(headless=True)
@@ -441,17 +421,9 @@ class TestChromeResourceManagement:
         )
         self.env_patcher.start()
 
-        # Also patch the module constant
-        self.constant_patcher = patch(
-            "scraper.utils.selenium.chrome_driver_manager.CHROME_PROFILE_TMPDIR",
-            self.test_profile_dir,
-        )
-        self.constant_patcher.start()
-
     def teardown_method(self):
         """Clean up resource management tests."""
         self.env_patcher.stop()
-        self.constant_patcher.stop()
         if os.path.exists(self.test_profile_dir):
             import shutil
 

@@ -30,18 +30,10 @@ Synthetic dataset integration tests
   and performance on a realistic multi-block input
 """
 
-import sys
 import time
 import types
 
 import pytest
-
-sys.path.insert(
-    0,
-    __import__("os").path.join(
-        __import__("os").path.dirname(__file__), "..", "..", "src"
-    ),
-)
 
 from scraper.utils.dedup_util import (
     _SEPARATOR,

@@ -9,9 +9,6 @@ import shutil
 import pytest
 from unittest.mock import patch
 
-# Add source paths for testing
-sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "src"))
-
 
 @pytest.fixture(scope="session")
 def chrome_test_env():
@@ -80,52 +77,6 @@ def chrome_driver_manager():
     # Clean up
     if os.path.exists(test_dir):
         shutil.rmtree(test_dir, ignore_errors=True)
-
-
-def pytest_configure(config):
-    """Configure pytest with custom markers."""
-    config.addinivalue_line(
-        "markers", "slow: marks tests as slow (require --run-slow to run)"
-    )
-    config.addinivalue_line(
-        "markers", "chrome_required: marks tests that require Chrome to be installed"
-    )
-    config.addinivalue_line("markers", "integration: marks tests as integration tests")
-
-
-def pytest_collection_modifyitems(config, items):
-    """Modify test collection based on command line options."""
-    # Skip slow tests unless --run-slow is provided
-    if not config.getoption("--run-slow", default=False):
-        skip_slow = pytest.mark.skip(reason="need --run-slow option to run")
-        for item in items:
-            if "slow" in item.keywords:
-                item.add_marker(skip_slow)
-
-    # Skip Chrome tests unless Chrome is available or forced
-    if not (
-        config.getoption("--force-chrome", default=False)
-        or os.getenv("RUN_CHROME_PROCESS_TESTS")
-    ):
-        skip_chrome = pytest.mark.skip(
-            reason="need --force-chrome option or RUN_CHROME_PROCESS_TESTS=1"
-        )
-        for item in items:
-            if "chrome_required" in item.keywords:
-                item.add_marker(skip_chrome)
-
-
-def pytest_addoption(parser):
-    """Add custom command line options."""
-    parser.addoption(
-        "--run-slow", action="store_true", default=False, help="run slow tests"
-    )
-    parser.addoption(
-        "--force-chrome",
-        action="store_true",
-        default=False,
-        help="force running Chrome tests even if Chrome might not be available",
-    )
 
 
 # Test utilities

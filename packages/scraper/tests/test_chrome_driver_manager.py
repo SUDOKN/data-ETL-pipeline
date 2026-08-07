@@ -4,7 +4,6 @@ Tests both unit functionality and integration scenarios.
 """
 
 import os
-import sys
 import tempfile
 import shutil
 import pytest
@@ -14,10 +13,9 @@ from unittest.mock import Mock, patch, call
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 
-# Add the scraper app to Python path for testing
-sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "src"))
-
+from pure_utils.env_util import MissingEnvironmentVariables
 from scraper.utils.selenium import ChromeDriverManager
+from scraper.utils.selenium.chrome_driver_manager import _chrome_profile_tmpdir
 
 
 class TestChromeDriverManagerUnit:
@@ -28,18 +26,10 @@ class TestChromeDriverManagerUnit:
         # Mock environment variable
         self.test_profile_dir = tempfile.mkdtemp(prefix="test_chrome_profiles_")
 
-        # Patch both the environment variable and the module constant
         self.env_patcher = patch.dict(
             os.environ, {"CHROME_PROFILE_TMPDIR": self.test_profile_dir}
         )
         self.env_patcher.start()
-
-        # Also patch the imported constant in the module
-        self.constant_patcher = patch(
-            "scraper.utils.selenium.chrome_driver_manager.CHROME_PROFILE_TMPDIR",
-            self.test_profile_dir,
-        )
-        self.constant_patcher.start()
 
         # Create manager instance
         self.manager = ChromeDriverManager(headless=True, channel="Stable")
@@ -47,7 +37,6 @@ class TestChromeDriverManagerUnit:
     def teardown_method(self):
         """Clean up after each test method."""
         self.env_patcher.stop()
-        self.constant_patcher.stop()
 
         # Clean up test directory
         if os.path.exists(self.test_profile_dir):
@@ -60,22 +49,10 @@ class TestChromeDriverManagerUnit:
         assert os.path.isdir(self.test_profile_dir)
 
     def test_initialization_without_env_var_raises_error(self):
-        """Test that missing CHROME_PROFILE_TMPDIR would raise ValueError."""
-        # Since the environment variable check happens at import time,
-        # and the module is already imported, we'll test the logic directly
-
-        # Test the environment variable retrieval logic
-        with patch("os.getenv", return_value=None):
-            # Simulate what happens at import time
-            chrome_profile_tmpdir = os.getenv("CHROME_PROFILE_TMPDIR")
-            with pytest.raises(
-                ValueError,
-                match="CHROME_PROFILE_TMPDIR environment variable is not set",
-            ):
-                if not chrome_profile_tmpdir:
-                    raise ValueError(
-                        "CHROME_PROFILE_TMPDIR environment variable is not set."
-                    )
+        """Resolving the profile dir with no CHROME_PROFILE_TMPDIR set must fail loudly."""
+        with patch.dict(os.environ, {}, clear=True):
+            with pytest.raises(MissingEnvironmentVariables):
+                _chrome_profile_tmpdir()
 
     @patch("subprocess.run")
     def test_kill_orphaned_chrome(self, mock_subprocess):
@@ -345,7 +322,7 @@ class TestChromeDriverManagerIntegration:
         if os.path.exists(self.test_profile_dir):
             shutil.rmtree(self.test_profile_dir, ignore_errors=True)
 
-    @pytest.mark.slow
+    @pytest.mark.integration
     def test_create_system_driver_success(self):
         """Test creating driver with system Chrome (if available)."""
         profile_dir = self.manager.create_temp_profile()

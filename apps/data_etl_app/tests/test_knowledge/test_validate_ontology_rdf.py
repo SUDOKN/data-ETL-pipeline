@@ -11,18 +11,9 @@ These tests verify that the validation logic correctly identifies:
 
 import unittest
 from unittest.mock import patch, MagicMock
-import os
-
-# Load environment variables using the shared loader
-from pure_utils.env_util import load_env
-
-from data_etl_app.dependencies.env import ONTOLOGY_SCRIPT_ENV
-
-load_env(ONTOLOGY_SCRIPT_ENV)
 
 from data_etl_app.knowledge.ontology.validate_ontology_rdf import (
     ValidationResult,
-    ValidationError,
     _is_valid_uri,
     _validate_uri_suffix,
     _validate_labels_uniqueness,
@@ -228,10 +219,12 @@ class TestConceptNodeValidation(unittest.TestCase):
 class TestRDFValidation(unittest.TestCase):
     """Test full RDF validation with mocked dependencies."""
 
-    @patch("data_etl_app.knowledge.ontology.validate_ontology_rdf.process_cap_uri")
-    @patch("data_etl_app.knowledge.ontology.validate_ontology_rdf.material_cap_uri")
-    @patch("data_etl_app.knowledge.ontology.validate_ontology_rdf.industry_uri")
-    @patch("data_etl_app.knowledge.ontology.validate_ontology_rdf.certificate_uri")
+    @patch("data_etl_app.knowledge.ontology.validate_ontology_rdf.process_cap_base_uri")
+    @patch(
+        "data_etl_app.knowledge.ontology.validate_ontology_rdf.material_cap_base_uri"
+    )
+    @patch("data_etl_app.knowledge.ontology.validate_ontology_rdf.industry_base_uri")
+    @patch("data_etl_app.knowledge.ontology.validate_ontology_rdf.certificate_base_uri")
     @patch("data_etl_app.knowledge.ontology.validate_ontology_rdf.get_graph")
     @patch("data_etl_app.knowledge.ontology.validate_ontology_rdf.get_label")
     @patch("data_etl_app.knowledge.ontology.validate_ontology_rdf.get_alt_labels")
@@ -306,7 +299,7 @@ class TestEdgeCases(unittest.TestCase):
         self.assertFalse(result.is_valid)
         self.assertGreater(len(result.errors), 0)
 
-    @patch("data_etl_app.knowledge.ontology.validate_ontology_rdf.process_cap_uri")
+    @patch("data_etl_app.knowledge.ontology.validate_ontology_rdf.process_cap_base_uri")
     def test_missing_base_uri_configuration(self, mock_process):
         """Test handling of missing base URI configuration."""
         mock_process.return_value = None

@@ -17,8 +17,6 @@ dependencies = [
   "pydantic>=2.10.0",         # Data validation
   "pydantic_settings>=1.0.0", # For settings management
   "typing_extensions>=4.0.0", # For type hints in Python 3.9+
-  "pytest>=7.0.0",            # Testing framework
-  "pytest-asyncio>=0.20.0",   # Async testing support
 
   "python-dotenv>=1.1.0",      # For loading environment variables from .env files
   "fastapi>=0.116.0",          # Modern, fast web framework for building APIs
@@ -38,9 +36,18 @@ dependencies = [
   "tiktoken>=0.5.0",   # Add the version you need
 
   "psutil>=5.9.0",
+]
+
+[project.optional-dependencies]
+dev = [
+  "pytest>=8.0.0",
+  "pytest-asyncio>=1.0.0",
   "pytest-cov>=3.0.0",
   "ruff>=0.8.0",
 ]
+
+[tool.setuptools.packages.find]
+where = ["src"]
 
 [tool.ruff]
 # Set line length

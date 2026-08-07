@@ -17,6 +17,24 @@ from data_etl_app.models.extraction_results.address_extraction_result import (
     Address,
 )
 
+
+def make_address(**overrides) -> Address:
+    """Address inherits every field as required from the strict AddressWire LLM schema."""
+    fields = {
+        "name": None,
+        "address_lines": [],
+        "city": "",
+        "state": "",
+        "postal_code": "",
+        "country": "US",
+        "phone_numbers": [],
+        "fax_numbers": [],
+    }
+    fields.update(overrides)
+    return Address(**fields)
+
+
+
 # ---------------------------------------------------------------------------
 # Helpers
 # ---------------------------------------------------------------------------
@@ -56,7 +74,7 @@ def test_returns_existing_coords_without_calling_api(monkeypatch):
 
     _patch_gmaps(monkeypatch, NeverCallGmaps())
 
-    addr = Address(
+    addr = make_address(
         city="Phoenix",
         state="AZ",
         country="US",
@@ -74,7 +92,7 @@ def test_geocodes_full_address(monkeypatch):
     """Happy path: full address geocoded on first attempt."""
     _patch_gmaps(monkeypatch, _make_gmaps_mock(_make_gmaps_result(33.4484, -112.0740)))
 
-    addr = Address(
+    addr = make_address(
         address_lines=["1 S Washington St"],
         city="Phoenix",
         state="AZ",
@@ -102,7 +120,7 @@ def test_falls_back_to_shorter_query_on_no_results(monkeypatch):
 
     _patch_gmaps(monkeypatch, PartialFallbackGmaps())
 
-    addr = Address(
+    addr = make_address(
         address_lines=["Unknown Street 999"],
         city="Phoenix",
         state="AZ",
@@ -118,7 +136,7 @@ def test_returns_none_when_all_queries_return_no_results(monkeypatch):
     """If every fallback query returns nothing, return None."""
     _patch_gmaps(monkeypatch, _make_gmaps_mock([]))
 
-    addr = Address(city="Nowhere", state="XX", country="ZZ")
+    addr = make_address(city="Nowhere", state="XX", country="ZZ")
     result = get_lat_lng_from_address(addr)
 
     assert result is None
@@ -133,7 +151,7 @@ def test_returns_none_when_api_raises_exception(monkeypatch):
 
     _patch_gmaps(monkeypatch, ErrorGmaps())
 
-    addr = Address(city="Phoenix", state="AZ", country="US")
+    addr = make_address(city="Phoenix", state="AZ", country="US")
     result = get_lat_lng_from_address(addr)
 
     assert result is None
@@ -150,7 +168,7 @@ def test_excludes_not_applicable_state_from_query(monkeypatch):
 
     _patch_gmaps(monkeypatch, CapturingGmaps())
 
-    addr = Address(city="New York", state="Not Applicable", country="US")
+    addr = make_address(city="New York", state="Not Applicable", country="US")
     get_lat_lng_from_address(addr)
 
     assert captured_queries, "geocode should have been called"
@@ -162,7 +180,7 @@ def test_address_with_no_useful_fields_returns_none(monkeypatch):
     """An address whose only fields are empty/Not Applicable builds no query and returns None."""
     _patch_gmaps(monkeypatch, _make_gmaps_mock([]))
 
-    addr = Address(city="", state="Not Applicable", country="")
+    addr = make_address(city="", state="Not Applicable", country="")
     result = get_lat_lng_from_address(addr)
 
     assert result is None
@@ -179,7 +197,7 @@ def test_uses_only_first_address_line(monkeypatch):
 
     _patch_gmaps(monkeypatch, CapturingGmaps())
 
-    addr = Address(
+    addr = make_address(
         address_lines=["100 Main St", "Suite 200", "Floor 3"],
         city="Tempe",
         state="AZ",
@@ -201,7 +219,7 @@ def test_uses_only_first_address_line(monkeypatch):
 @pytest.mark.integration
 def test_integration_geocodes_real_address():
     """Sanity-check the live API with a well-known address."""
-    addr = Address(
+    addr = make_address(
         address_lines=["1600 Amphitheatre Pkwy"],
         city="Mountain View",
         state="CA",
@@ -215,4 +233,4 @@ def test_integration_geocodes_real_address():
     # Google HQ is approximately 37.42°N, 122.08°W
     assert 37.0 < lat < 38.0, f"Unexpected latitude: {lat}"
     assert -123.0 < lng < -121.0, f"Unexpected longitude: {lng}"
-    assert place_id is not None, f"Expected a place_id from the real API, got None"
+    assert place_id is not None, "Expected a place_id from the real API, got None"
