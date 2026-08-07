@@ -4,7 +4,7 @@
     "required": [
       "error",
       "field",
-      "mfg_etld1"
+      "subject_unique_id"
     ],
     "additionalProperties": false,
     "properties": {
@@ -20,7 +20,7 @@
       "field": {
         "bsonType": "string"
       },
-      "mfg_etld1": {
+      "subject_unique_id": {
         "bsonType": "string"
       }
     }

@@ -2,16 +2,22 @@
   "$jsonSchema": {
     "bsonType": "object",
     "required": [
+      "scraped_text_file_version_id",
       "etld1",
       "etld1_accessible_at",
       "scraped_text_file_num_tokens",
-      "scraped_text_file_version_id",
       "batches"
     ],
     "additionalProperties": false,
     "properties": {
       "_id": {
         "bsonType": "objectId"
+      },
+      "scraped_text_file_version_id": {
+        "bsonType": "string"
+      },
+      "updated_at": {
+        "bsonType": "date"
       },
       "etld1": {
         "bsonType": "string"
@@ -22,14 +28,8 @@
       "created_at": {
         "bsonType": "date"
       },
-      "updated_at": {
-        "bsonType": "date"
-      },
       "scraped_text_file_num_tokens": {
         "bsonType": "int"
-      },
-      "scraped_text_file_version_id": {
-        "bsonType": "string"
       },
       "batches": {
         "bsonType": "array",
@@ -1128,20 +1128,15 @@
             "items": {
               "bsonType": "object",
               "required": [
+                "address_lines",
                 "city",
-                "state"
+                "state",
+                "postal_code",
+                "phone_numbers",
+                "fax_numbers"
               ],
               "additionalProperties": false,
               "properties": {
-                "city": {
-                  "bsonType": "string"
-                },
-                "state": {
-                  "bsonType": "string"
-                },
-                "country": {
-                  "bsonType": "string"
-                },
                 "name": {
                   "bsonType": [
                     "string",
@@ -1149,21 +1144,36 @@
                   ]
                 },
                 "address_lines": {
-                  "bsonType": [
-                    "array",
-                    "null"
-                  ],
+                  "bsonType": "array",
+                  "items": {
+                    "bsonType": "string"
+                  }
+                },
+                "city": {
+                  "bsonType": "string"
+                },
+                "state": {
+                  "bsonType": "string"
+                },
+                "postal_code": {
+                  "bsonType": "string"
+                },
+                "country": {
+                  "bsonType": "string"
+                },
+                "phone_numbers": {
+                  "bsonType": "array",
+                  "items": {
+                    "bsonType": "string"
+                  }
+                },
+                "fax_numbers": {
+                  "bsonType": "array",
                   "items": {
                     "bsonType": "string"
                   }
                 },
                 "county": {
-                  "bsonType": [
-                    "string",
-                    "null"
-                  ]
-                },
-                "postal_code": {
                   "bsonType": [
                     "string",
                     "null"
@@ -1186,24 +1196,6 @@
                     "string",
                     "null"
                   ]
-                },
-                "phone_numbers": {
-                  "bsonType": [
-                    "array",
-                    "null"
-                  ],
-                  "items": {
-                    "bsonType": "string"
-                  }
-                },
-                "fax_numbers": {
-                  "bsonType": [
-                    "array",
-                    "null"
-                  ],
-                  "items": {
-                    "bsonType": "string"
-                  }
                 }
               }
             }
@@ -1222,20 +1214,15 @@
                   "items": {
                     "bsonType": "object",
                     "required": [
+                      "address_lines",
                       "city",
-                      "state"
+                      "state",
+                      "postal_code",
+                      "phone_numbers",
+                      "fax_numbers"
                     ],
                     "additionalProperties": false,
                     "properties": {
-                      "city": {
-                        "bsonType": "string"
-                      },
-                      "state": {
-                        "bsonType": "string"
-                      },
-                      "country": {
-                        "bsonType": "string"
-                      },
                       "name": {
                         "bsonType": [
                           "string",
@@ -1243,21 +1230,36 @@
                         ]
                       },
                       "address_lines": {
-                        "bsonType": [
-                          "array",
-                          "null"
-                        ],
+                        "bsonType": "array",
+                        "items": {
+                          "bsonType": "string"
+                        }
+                      },
+                      "city": {
+                        "bsonType": "string"
+                      },
+                      "state": {
+                        "bsonType": "string"
+                      },
+                      "postal_code": {
+                        "bsonType": "string"
+                      },
+                      "country": {
+                        "bsonType": "string"
+                      },
+                      "phone_numbers": {
+                        "bsonType": "array",
+                        "items": {
+                          "bsonType": "string"
+                        }
+                      },
+                      "fax_numbers": {
+                        "bsonType": "array",
                         "items": {
                           "bsonType": "string"
                         }
                       },
                       "county": {
-                        "bsonType": [
-                          "string",
-                          "null"
-                        ]
-                      },
-                      "postal_code": {
                         "bsonType": [
                           "string",
                           "null"
@@ -1280,24 +1282,6 @@
                           "string",
                           "null"
                         ]
-                      },
-                      "phone_numbers": {
-                        "bsonType": [
-                          "array",
-                          "null"
-                        ],
-                        "items": {
-                          "bsonType": "string"
-                        }
-                      },
-                      "fax_numbers": {
-                        "bsonType": [
-                          "array",
-                          "null"
-                        ],
-                        "items": {
-                          "bsonType": "string"
-                        }
                       }
                     }
                   }
@@ -2503,7 +2487,20 @@
                   "additionalProperties": {
                     "bsonType": "object",
                     "additionalProperties": {
-                      "bsonType": "string"
+                      "bsonType": "object",
+                      "required": [
+                        "passed",
+                        "reason"
+                      ],
+                      "additionalProperties": false,
+                      "properties": {
+                        "passed": {
+                          "bsonType": "bool"
+                        },
+                        "reason": {
+                          "bsonType": "string"
+                        }
+                      }
                     }
                   }
                 },
@@ -3462,7 +3459,20 @@
                   "additionalProperties": {
                     "bsonType": "object",
                     "additionalProperties": {
-                      "bsonType": "string"
+                      "bsonType": "object",
+                      "required": [
+                        "passed",
+                        "reason"
+                      ],
+                      "additionalProperties": false,
+                      "properties": {
+                        "passed": {
+                          "bsonType": "bool"
+                        },
+                        "reason": {
+                          "bsonType": "string"
+                        }
+                      }
                     }
                   }
                 },
@@ -4421,7 +4431,20 @@
                   "additionalProperties": {
                     "bsonType": "object",
                     "additionalProperties": {
-                      "bsonType": "string"
+                      "bsonType": "object",
+                      "required": [
+                        "passed",
+                        "reason"
+                      ],
+                      "additionalProperties": false,
+                      "properties": {
+                        "passed": {
+                          "bsonType": "bool"
+                        },
+                        "reason": {
+                          "bsonType": "string"
+                        }
+                      }
                     }
                   }
                 },
@@ -5565,7 +5588,20 @@
                   "additionalProperties": {
                     "bsonType": "object",
                     "additionalProperties": {
-                      "bsonType": "string"
+                      "bsonType": "object",
+                      "required": [
+                        "passed",
+                        "reason"
+                      ],
+                      "additionalProperties": false,
+                      "properties": {
+                        "passed": {
+                          "bsonType": "bool"
+                        },
+                        "reason": {
+                          "bsonType": "string"
+                        }
+                      }
                     }
                   }
                 },
@@ -6778,7 +6814,20 @@
                   "additionalProperties": {
                     "bsonType": "object",
                     "additionalProperties": {
-                      "bsonType": "string"
+                      "bsonType": "object",
+                      "required": [
+                        "passed",
+                        "reason"
+                      ],
+                      "additionalProperties": false,
+                      "properties": {
+                        "passed": {
+                          "bsonType": "bool"
+                        },
+                        "reason": {
+                          "bsonType": "string"
+                        }
+                      }
                     }
                   }
                 },
@@ -7991,7 +8040,20 @@
                   "additionalProperties": {
                     "bsonType": "object",
                     "additionalProperties": {
-                      "bsonType": "string"
+                      "bsonType": "object",
+                      "required": [
+                        "passed",
+                        "reason"
+                      ],
+                      "additionalProperties": false,
+                      "properties": {
+                        "passed": {
+                          "bsonType": "bool"
+                        },
+                        "reason": {
+                          "bsonType": "string"
+                        }
+                      }
                     }
                   }
                 },
@@ -9204,7 +9266,20 @@
                   "additionalProperties": {
                     "bsonType": "object",
                     "additionalProperties": {
-                      "bsonType": "string"
+                      "bsonType": "object",
+                      "required": [
+                        "passed",
+                        "reason"
+                      ],
+                      "additionalProperties": false,
+                      "properties": {
+                        "passed": {
+                          "bsonType": "bool"
+                        },
+                        "reason": {
+                          "bsonType": "string"
+                        }
+                      }
                     }
                   }
                 },

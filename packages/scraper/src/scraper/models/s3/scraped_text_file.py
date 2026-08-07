@@ -9,6 +9,7 @@ from typing import Self
 from pydantic import BaseModel, ConfigDict, Field, computed_field
 
 from llm_providers.models.llm_model import LLM_Model
+from pure_utils.text_normalize import normalize_scraped_text
 
 from infra.models.queue_items.to_scrape_item import Batch
 from infra.utils.aws.s3.scraped_text_file_util import (
@@ -76,6 +77,8 @@ class ScrapedTextFile(BaseModel, ABC):
                     subject_unique_id, s3_version_id
                 )
             )
+            # Canonicalize once, before tokenizing/chunking, so extracted phrase keys are stable.
+            scraped_text = normalize_scraped_text(scraped_text)
             last_modified_on = await get_scraped_text_file_exist_last_modified_on(
                 get_file_name_from_subject_unique_id(subject_unique_id), s3_version_id
             )

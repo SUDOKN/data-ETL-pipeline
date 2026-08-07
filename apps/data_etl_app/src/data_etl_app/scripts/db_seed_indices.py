@@ -20,6 +20,7 @@ import os
 
 from pure_utils.env_util import load_env
 
+from data_etl_app.db_models import DOCUMENT_MODELS
 from data_etl_app.dependencies.env import MIGRATION_ENV
 
 load_env(MIGRATION_ENV)
@@ -29,6 +30,11 @@ logger = logging.getLogger(__name__)
 logging.basicConfig(
     level=logging.INFO, format="%(asctime)s - %(name)s - %(levelname)s - %(message)s"
 )
+
+# Derived from DOCUMENT_MODELS so it can't drift from the registered models.
+COLLECTION_NAMES: list[str] = [
+    getattr(model, "Settings").name for model in DOCUMENT_MODELS
+]
 
 
 class DatabaseIndexSeeder:
@@ -299,6 +305,18 @@ class DatabaseIndexSeeder:
         for index in indexes:
             self._create_index_if_missing(collection, index["keys"], index["options"])
 
+    def create_mep_request_indexes(self):
+        """No custom indexes needed for mep_requests yet; _id_ is sufficient."""
+        pass
+
+    def create_scraping_error_indexes(self):
+        """No custom indexes needed for scraping_errors yet; _id_ is sufficient."""
+        pass
+
+    def create_extraction_error_indexes(self):
+        """No custom indexes needed for extraction_errors yet; _id_ is sufficient."""
+        pass
+
     def drop_collection_indexes(self, collection_name: str):
         """Drop all indexes for a specific collection (except _id_)."""
         try:
@@ -328,27 +346,9 @@ class DatabaseIndexSeeder:
 
     def drop_all_indexes(self):
         """Drop all custom indexes from all collections."""
-        collections = [
-            "manufacturers",
-            "users",
-            "manufacturer_user_forms",
-            "binary_ground_truths",
-            "concept_ground_truths",
-            "keyword_ground_truths",
-            "gpt_batch_requests",
-            "deferred_manufacturers",
-            "gpt_batches",
-            "api_keys",
-            "places",
-            "out_of_vocab_labels",
-            "mep_requests",
-            "scraping_errors",
-            "extraction_errors",
-        ]
-
         logger.info("Dropping all existing custom indexes...")
 
-        for collection_name in collections:
+        for collection_name in COLLECTION_NAMES:
             self.drop_collection_indexes(collection_name)
 
         logger.info("Completed dropping existing indexes")
@@ -387,6 +387,9 @@ class DatabaseIndexSeeder:
             self.create_api_key_bundle_indexes()
             self.create_place_indexes()
             self.create_out_of_vocab_labels_indexes()
+            self.create_mep_request_indexes()
+            self.create_scraping_error_indexes()
+            self.create_extraction_error_indexes()
 
             logger.info("Database index seeding completed successfully!")
 
@@ -398,27 +401,9 @@ class DatabaseIndexSeeder:
 
     def list_existing_indexes(self):
         """List all existing indexes in the database collections."""
-        collections = [
-            "manufacturers",
-            "users",
-            "manufacturer_user_forms",
-            "binary_ground_truths",
-            "concept_ground_truths",
-            "keyword_ground_truths",
-            "gpt_batch_requests",
-            "deferred_manufacturers",
-            "gpt_batches",
-            "api_keys",
-            "places",
-            "out_of_vocab_labels",
-            "mep_requests",
-            "scraping_errors",
-            "extraction_errors",
-        ]
-
         logger.info("Listing existing indexes...")
 
-        for collection_name in collections:
+        for collection_name in COLLECTION_NAMES:
             try:
                 collection = self.db[collection_name]
                 indexes = collection.index_information()

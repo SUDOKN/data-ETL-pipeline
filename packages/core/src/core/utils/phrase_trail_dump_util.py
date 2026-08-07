@@ -4,6 +4,7 @@ import json
 import logging
 from datetime import datetime
 from pathlib import Path
+from typing import Optional, TypeVar
 
 from core.models.extraction_schemas.iterative_tagging import (
     PhraseTrail,
@@ -17,6 +18,26 @@ from core.models.extraction_schemas.screening import (
 from core.models.field_types import ExtractionFieldType
 
 logger = logging.getLogger(__name__)
+
+_T = TypeVar("_T")
+
+
+def _resolve_phrase_value(
+    partitioned: dict[int, dict[str, _T]],
+    phrase: str,
+) -> Optional[_T]:
+    """Return *phrase*'s value from any round bucket, or None if absent.
+
+    The search / relationship / screening / grounding phrase sets are produced
+    by separate LLM calls and can diverge, so a phrase may not appear in every
+    stage at the round computed from search results. Scan all rounds instead of
+    indexing by a presumed round so a drifted phrase yields None rather than a
+    KeyError that crashes the diagnostic dump.
+    """
+    for round_map in partitioned.values():
+        if phrase in round_map:
+            return round_map[phrase]
+    return None
 
 
 def _safe_path_segment(value: str) -> str:
@@ -34,11 +55,12 @@ def build_keyword_phrase_trail_entry(
     screening_result: dict[int, LiveScreeningResults],
     phrase_groundings: dict[str, str],
 ) -> dict[str, object]:
+    screening = _resolve_phrase_value(screening_result, phrase)
     return {
         "phrase": phrase,
         "search_round": search_round,
-        "relationship": relationship_result[search_round][phrase],
-        "screening": screening_result[search_round][phrase].model_dump(),
+        "relationship": _resolve_phrase_value(relationship_result, phrase),
+        "screening": screening.model_dump() if screening is not None else None,
         "freehand_grounding": phrase_groundings,
     }
 
@@ -51,11 +73,12 @@ def build_concept_phrase_trail_entry(
     screening_result: dict[int, LiveScreeningResults],
 ) -> dict[str, object]:
     phrase_trail_dump = phrase_trail.model_dump(mode="json")
+    screening = _resolve_phrase_value(screening_result, phrase_trail.phrase)
     return {
         "phrase": phrase_trail.phrase,
         "search_round": search_round,
-        "relationship": relationship_result[search_round][phrase_trail.phrase],
-        "screening": screening_result[search_round][phrase_trail.phrase].model_dump(),
+        "relationship": _resolve_phrase_value(relationship_result, phrase_trail.phrase),
+        "screening": screening.model_dump() if screening is not None else None,
         "lvl_by_lvl_itps": phrase_trail_dump["lvl_by_lvl_itps"],
     }
 

@@ -19,56 +19,7 @@ from pathlib import Path
 
 from beanie import Document
 
-
-from llm_providers.db_models.scraping_error import (
-    ScrapingError,
-)
-from llm_providers.db_models.api_key_bundle import (
-    APIKeyBundle,
-)
-from data_etl_app.db_models.binary_ground_truth import (
-    BinaryGroundTruth,
-)
-from data_etl_app.db_models.concept_ground_truth import (
-    ConceptGroundTruth,
-)
-from data_etl_app.db_models.deferred_manufacturer import (
-    DeferredManufacturer,
-)
-from llm_providers.db_models.extraction_error import (
-    ExtractionError,
-)
-from llm_providers.db_models.gpt_batch import GPTBatch
-from llm_providers.db_models.gpt_batch_request import (
-    GPTBatchRequest,
-)
-from data_etl_app.db_models.keyword_ground_truth import (
-    KeywordGroundTruth,
-)
-from data_etl_app.db_models.manufacturer import Manufacturer
-from data_etl_app.db_models.manufacturer_user_form import (
-    ManufacturerUserForm,
-)
-from data_etl_app.db_models.mep_request import MEPRequest
-from data_etl_app.db_models.place import Place
-from data_etl_app.db_models.user import User
-
-MODELS: list[type[Document]] = [
-    APIKeyBundle,
-    BinaryGroundTruth,
-    ConceptGroundTruth,
-    DeferredManufacturer,
-    ExtractionError,
-    GPTBatch,
-    GPTBatchRequest,
-    KeywordGroundTruth,
-    Manufacturer,
-    ManufacturerUserForm,
-    MEPRequest,
-    Place,
-    ScrapingError,
-    User,
-]
+from data_etl_app.db_models import DOCUMENT_MODELS as MODELS
 
 SCHEMAS_DIR = Path(__file__).parent.parent / "db_schemas"
 
@@ -279,6 +230,14 @@ def generate_schema_for_model(model: type[Document]) -> dict:
 
 def main() -> None:
     SCHEMAS_DIR.mkdir(parents=True, exist_ok=True)
+
+    expected_filenames = {
+        f"{_to_snake_case(model.__name__)}.schema.json" for model in MODELS
+    }
+    for stale_path in SCHEMAS_DIR.glob("*.schema.json"):
+        if stale_path.name not in expected_filenames:
+            stale_path.unlink()
+            logger.info(f"✗ removed stale schema {stale_path.name}")
 
     ok = 0
     fail = 0

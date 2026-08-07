@@ -1,0 +1,120 @@
+{
+  "$jsonSchema": {
+    "bsonType": "object",
+    "required": [
+      "external_batch_id",
+      "endpoint",
+      "input_file_id",
+      "completion_window",
+      "status",
+      "created_at",
+      "expires_at",
+      "request_counts",
+      "metadata",
+      "api_key_label"
+    ],
+    "additionalProperties": false,
+    "properties": {
+      "_id": {
+        "bsonType": "objectId"
+      },
+      "external_batch_id": {
+        "bsonType": "string"
+      },
+      "endpoint": {
+        "bsonType": "string"
+      },
+      "input_file_id": {
+        "bsonType": "string"
+      },
+      "completion_window": {
+        "bsonType": "string"
+      },
+      "status": {
+        "bsonType": "string"
+      },
+      "output_file_id": {
+        "bsonType": [
+          "string",
+          "null"
+        ]
+      },
+      "error_file_id": {
+        "bsonType": [
+          "string",
+          "null"
+        ]
+      },
+      "created_at": {
+        "bsonType": "date"
+      },
+      "in_progress_at": {
+        "bsonType": [
+          "date",
+          "null"
+        ]
+      },
+      "expires_at": {
+        "bsonType": "date"
+      },
+      "completed_at": {
+        "bsonType": [
+          "date",
+          "null"
+        ]
+      },
+      "failed_at": {
+        "bsonType": [
+          "date",
+          "null"
+        ]
+      },
+      "expired_at": {
+        "bsonType": [
+          "date",
+          "null"
+        ]
+      },
+      "request_counts": {
+        "bsonType": "object"
+      },
+      "metadata": {
+        "bsonType": "object",
+        "required": [
+          "original_filename",
+          "num_manufacturers",
+          "total_requests",
+          "total_tokens",
+          "api_key_label"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "original_filename": {
+            "bsonType": "string"
+          },
+          "num_manufacturers": {
+            "bsonType": "int"
+          },
+          "total_requests": {
+            "bsonType": "int"
+          },
+          "total_tokens": {
+            "bsonType": "int"
+          },
+          "api_key_label": {
+            "bsonType": "string"
+          }
+        }
+      },
+      "api_key_label": {
+        "bsonType": "string"
+      },
+      "processing_completed_at": {
+        "bsonType": [
+          "date",
+          "null"
+        ]
+      }
+    }
+  }
+}

@@ -89,20 +89,15 @@
         "items": {
           "bsonType": "object",
           "required": [
+            "address_lines",
             "city",
-            "state"
+            "state",
+            "postal_code",
+            "phone_numbers",
+            "fax_numbers"
           ],
           "additionalProperties": false,
           "properties": {
-            "city": {
-              "bsonType": "string"
-            },
-            "state": {
-              "bsonType": "string"
-            },
-            "country": {
-              "bsonType": "string"
-            },
             "name": {
               "bsonType": [
                 "string",
@@ -110,21 +105,36 @@
               ]
             },
             "address_lines": {
-              "bsonType": [
-                "array",
-                "null"
-              ],
+              "bsonType": "array",
+              "items": {
+                "bsonType": "string"
+              }
+            },
+            "city": {
+              "bsonType": "string"
+            },
+            "state": {
+              "bsonType": "string"
+            },
+            "postal_code": {
+              "bsonType": "string"
+            },
+            "country": {
+              "bsonType": "string"
+            },
+            "phone_numbers": {
+              "bsonType": "array",
+              "items": {
+                "bsonType": "string"
+              }
+            },
+            "fax_numbers": {
+              "bsonType": "array",
               "items": {
                 "bsonType": "string"
               }
             },
             "county": {
-              "bsonType": [
-                "string",
-                "null"
-              ]
-            },
-            "postal_code": {
               "bsonType": [
                 "string",
                 "null"
@@ -147,24 +157,6 @@
                 "string",
                 "null"
               ]
-            },
-            "phone_numbers": {
-              "bsonType": [
-                "array",
-                "null"
-              ],
-              "items": {
-                "bsonType": "string"
-              }
-            },
-            "fax_numbers": {
-              "bsonType": [
-                "array",
-                "null"
-              ],
-              "items": {
-                "bsonType": "string"
-              }
             }
           }
         }

@@ -15,6 +15,7 @@ from data_etl_app.db_models.deferred_manufacturer import DeferredManufacturer
 from data_etl_app.db_models.keyword_ground_truth import KeywordGroundTruth
 from data_etl_app.db_models.manufacturer import Manufacturer
 from data_etl_app.db_models.manufacturer_user_form import ManufacturerUserForm
+from data_etl_app.db_models.mep_request import MEPRequest
 from data_etl_app.db_models.place import Place
 from data_etl_app.db_models.user import User
 
@@ -25,6 +26,7 @@ APP_DOCUMENT_MODELS: list[type[Document]] = [
     KeywordGroundTruth,
     Manufacturer,
     ManufacturerUserForm,
+    MEPRequest,
     Place,
     User,
 ]

@@ -357,7 +357,8 @@ def create_deferred_phrase_relationship_screening_gpt_request(
     )
     context = (
         f"Manufacturer name: {subject_name}\n\n "
-        f"extracted phrases:\n{json.dumps(phrase_relationship_results)}"
+        f"extracted phrases:\n{json.dumps(list(phrase_relationship_results.keys()))}\n "
+        f"extracted phrases with their relationship summaries:\n{json.dumps(phrase_relationship_results)}"
     )
 
     gpt_batch_request = create_base_gpt_batch_request(

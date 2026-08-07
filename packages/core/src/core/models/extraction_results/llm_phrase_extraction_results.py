@@ -50,6 +50,9 @@ def partition_by_search_round(
     for phrase, value in flat_results.items():
         round_idx = phrase_to_round.get(phrase, 0)
         rounds.setdefault(round_idx, {})[phrase] = value
+    # Round 0 (brute survivors / unassigned fallback) is a reserved bucket; keep
+    # it present even when empty so consumers can index it unconditionally.
+    rounds.setdefault(0, {})
     return rounds
 
 

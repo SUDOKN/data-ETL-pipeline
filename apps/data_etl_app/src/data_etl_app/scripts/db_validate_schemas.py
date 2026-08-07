@@ -31,7 +31,9 @@ from pymongo import MongoClient
 
 from pure_utils.env_util import load_env
 
+from data_etl_app.db_models import DOCUMENT_MODELS
 from data_etl_app.dependencies.env import MIGRATION_ENV
+from data_etl_app.scripts.generate_db_schemas import _to_snake_case
 
 load_env(MIGRATION_ENV)
 
@@ -51,23 +53,10 @@ class SchemaValidationError(Exception):
 class DatabaseSchemaValidator:
     """Validates MongoDB collection schemas against expected schema files."""
 
-    # Mapping of collection names to their schema filenames
-    SCHEMA_MAPPINGS = {
-        "manufacturers": "manufacturer.schema.json",
-        "users": "user.schema.json",
-        "binary_ground_truths": "binary_ground_truth.schema.json",
-        "concept_ground_truths": "concept_ground_truth.schema.json",
-        "keyword_ground_truths": "keyword_ground_truth.schema.json",
-        "scraping_errors": "scraping_error.schema.json",
-        "extraction_errors": "extraction_error.schema.json",
-        "gpt_batch_requests": "gpt_batch_request.schema.json",
-        "deferred_manufacturers": "deferred_manufacturer.schema.json",
-        "gpt_batches": "gpt_batch.schema.json",
-        "api_keys": "api_key_bundle.schema.json",
-        "manufacturer_user_forms": "manufacturer_user_form.schema.json",
-        "mep_requests": "mep_request.schema.json",
-        "places": "place.schema.json",
-        "user_role_access_requests": "user_role_access_request.schema.json",
+    # Derived from DOCUMENT_MODELS so it can't drift from the registered models.
+    SCHEMA_MAPPINGS: Dict[str, str] = {
+        getattr(model, "Settings").name: f"{_to_snake_case(model.__name__)}.schema.json"
+        for model in DOCUMENT_MODELS
     }
 
     def __init__(self, connection_string: str):

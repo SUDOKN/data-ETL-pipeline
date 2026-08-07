@@ -142,7 +142,7 @@ class SingleStageExtractionNode(BaseLLMExtractionNode[ExtractionFieldType, Resul
             deferred_at=timestamp,
             subject_unique_id=subject_unique_id,
             subject_text=scraped_text_file.text,
-            field_type=self.field_type.name,
+            field_type=self.field_type,
             chunked_request_map=chunked_request_map,
             missing_request_ids=missing_request_ids,
             prompt=self.prompt,

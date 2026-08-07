@@ -2,22 +2,26 @@
   "$jsonSchema": {
     "bsonType": "object",
     "required": [
-      "error",
-      "subject_unique_id"
+      "ontology_version_id",
+      "concept_type"
     ],
     "additionalProperties": false,
     "properties": {
       "_id": {
         "bsonType": "objectId"
       },
-      "created_at": {
-        "bsonType": "date"
-      },
-      "error": {
+      "ontology_version_id": {
         "bsonType": "string"
       },
-      "subject_unique_id": {
+      "concept_type": {
         "bsonType": "string"
+      },
+      "labels": {
+        "bsonType": "array",
+        "items": {
+          "bsonType": "string"
+        },
+        "uniqueItems": true
       }
     }
   }
