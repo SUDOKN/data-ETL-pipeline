@@ -1,0 +1,98 @@
+{
+  "catalog_version": "equipment_phrase_freehand_grounding.2026.08.6",
+  "prompt_name": "equipment_phrase_freehand_grounding",
+  "stage": "phrase_freehand_grounding",
+  "field_types": [
+    "equipments"
+  ],
+  "entity_noun": "equipment category",
+  "entity_relationships": {
+    "base": "operate, own, use, or otherwise have access to",
+    "third_person": "operates, owns, uses, or otherwise has access to",
+    "gerund": "operating, owning, using, or otherwise having access to"
+  },
+  "outcome_vocab": {
+    "condition": [
+      "satisfied",
+      "failed",
+      "not_triggered"
+    ],
+    "preference": [
+      "chosen"
+    ]
+  },
+  "sections": [
+    {
+      "section_id": "attribution",
+      "heading": "For each distinct {{entity_noun}} you identify, this must hold:",
+      "combinator": "all",
+      "rules": [
+        {
+          "id": "FGR-Q1",
+          "kind": "condition",
+          "reportable": true,
+          "report_when": "always",
+          "text": "The phrase and its relationship summary support the manufacturer itself {{entity_relationships.gerund}} at least one instance of the {{entity_noun}}, not merely relating to it."
+        }
+      ]
+    },
+    {
+      "section_id": "category_qualification",
+      "heading": "The {{entity_noun}} you name must qualify, in BOTH of these ways:",
+      "combinator": "all",
+      "rules": [
+        {
+          "id": "FGR-Q2",
+          "kind": "condition",
+          "reportable": true,
+          "report_when": "always",
+          "text": "It is a determinate category: neither an individual unit — a brand name, model number, serial number, asset tag, or one-off description — nor a term so general it fixes nothing, such as \"equipment\", \"machinery\", or \"tooling\". A phrase naming a specific machine is reported as the category that machine belongs to.",
+          "combinator": "note",
+          "children": [
+            {
+              "id": "FGR-Q2a",
+              "kind": "note",
+              "reportable": false,
+              "report_when": "never",
+              "text": "\"Haas VF-2\" is an individual unit; the category it belongs to is \"CNC vertical machining center\". Name the category, and never carry the brand or model into it."
+            }
+          ]
+        },
+        {
+          "id": "FGR-Q3",
+          "kind": "condition",
+          "reportable": true,
+          "report_when": "always",
+          "text": "It is distinct from every other {{entity_noun}} named for the same phrase. Two names for the same {{entity_noun}} in different words are one, not two."
+        }
+      ]
+    },
+    {
+      "section_id": "naming",
+      "heading": "Name each {{entity_noun}} by the first of these rules that applies, in order:",
+      "combinator": "ordered",
+      "rules": [
+        {
+          "id": "FGR-M1",
+          "kind": "preference",
+          "reportable": true,
+          "report_when": "when_chosen",
+          "text": "An {{entity_noun}} can be determined from the phrase and its relationship summary, and it is named directly."
+        },
+        {
+          "id": "FGR-M2",
+          "kind": "preference",
+          "reportable": true,
+          "report_when": "when_chosen",
+          "text": "No {{entity_noun}} can be determined from the phrase and its relationship summary, and \"Cannot categorize\" is named as the only entry for the phrase."
+        }
+      ]
+    }
+  ],
+  "published": {
+    "s3_version_id": "witRsBj.5EbCgmVLlYsfoeYSrRWPkBXy",
+    "rendered_sha256": "fc16be74c6ed0c49351caf3d65e9b103eb6a2311e424ed0ea9cddd85aa7ed580",
+    "uploaded_at": "2026-08-11T20:17:56.321588+00:00"
+  },
+  "sentinel_tag": "Cannot categorize"
+}

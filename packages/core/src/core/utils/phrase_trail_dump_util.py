@@ -6,6 +6,9 @@ from datetime import datetime
 from pathlib import Path
 from typing import Optional, TypeVar
 
+from core.models.extraction_schemas.grounding import (
+    TagToAppliedRulesMap,
+)
 from core.models.extraction_schemas.iterative_tagging import (
     PhraseTrail,
 )
@@ -53,7 +56,7 @@ def build_keyword_phrase_trail_entry(
     search_round: int,
     relationship_result: dict[int, LLMPhraseRelationshipResults],
     screening_result: dict[int, LiveScreeningResults],
-    phrase_groundings: dict[str, str],
+    phrase_groundings: TagToAppliedRulesMap,
 ) -> dict[str, object]:
     screening = _resolve_phrase_value(screening_result, phrase)
     return {
@@ -61,7 +64,12 @@ def build_keyword_phrase_trail_entry(
         "search_round": search_round,
         "relationship": _resolve_phrase_value(relationship_result, phrase),
         "screening": screening.model_dump() if screening is not None else None,
-        "freehand_grounding": phrase_groundings,
+        # Dumped here rather than at write time because the dump is handed to
+        # json.dumps, which cannot serialize the AppliedRule models.
+        "freehand_grounding": {
+            tag: [rule.model_dump(mode="json") for rule in applied_rules]
+            for tag, applied_rules in phrase_groundings.items()
+        },
     }
 
 

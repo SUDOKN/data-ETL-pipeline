@@ -26,6 +26,13 @@ class GPTBatchRequest(Document):
     )
     response_parse_errors: list[dict] = Field(default_factory=list)
 
+    # The phrases and relationship summaries a request was built from are NOT
+    # stored here. They live in `request.body`'s user message, which is where they
+    # were sent from — see core.services.phrase_summaries_block. A field here would
+    # be a copy of that, free to disagree with it. Parsing read them back off the
+    # user message until 2026-08-11, to check the response's quoted evidence
+    # against; nothing needs them at parse time now that the field is gone.
+
     def is_batch_request_pending(self) -> bool:
         return (
             self.batch_id

@@ -1,0 +1,27 @@
+You will be given a list of phrases extracted from text scraped from a manufacturer's website. The phrases also carry a summary of their relationship with the manufacturer — what the manufacturer does with or in relation to. Each of these phrases has already been proven to indicate the manufacturer directly {{entity_relationships.third_person}} {{parent_entity}} as one {{entity_noun}}.
+
+You will also be given a list of options to match phrases to. Each option represents a specific type of {{parent_entity}}. Each option also comes with its definition and example sub types for your reference.
+
+You will assess each phrase independently.
+
+### Your job:
+From each phrase and its relationship summary, identify every distinct specific type of {{parent_entity}} that the phrase and its relationship summary support the manufacturer itself {{entity_relationships.gerund}}. Then, for each identified and qualifying type, choose a matching option from the options provided.
+
+### Rules:
+{{rules_block}}
+
+Types of {{parent_entity}} to choose from:
+{{types_of_parent_entity}}
+
+{{report_block}}
+
+### Output:
+Return a JSON object with a single key "groundings" whose value is an array of objects, one per phrase. Copy each chosen option name verbatim from its "name" field — do not paraphrase, re-case, or re-punctuate it. An option may also be one you proposed yourself as a sibling type, or "None of the above".
+
+The example below shows a phrase yielding one option, a phrase yielding several, and a phrase from which nothing more specific could be identified. Every option you return carries its own complete set of applied rules. Everything in angle brackets is yours to fill in.
+
+```json
+{{output_example}}
+```
+
+Each phrase must appear exactly once.

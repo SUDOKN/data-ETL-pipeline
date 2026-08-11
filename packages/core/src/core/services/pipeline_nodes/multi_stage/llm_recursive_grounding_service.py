@@ -13,8 +13,10 @@ from llm_providers.db_models.gpt_batch_request import (
     GPTBatchRequest,
 )
 from core.models.extraction_schemas.grounding import (
-    PhraseGroundingResponse,
-    PhraseToTagAndReasonMap,
+    PhraseOptionGroundingResponse,
+    PhraseToTagAndRulesMap,
+    TagToAppliedRulesMap,
+    is_sentinel_grounding_label,
 )
 from core.models.extraction_schemas.iterative_tagging import (
     IterativelyTaggedPhraseGroup,
@@ -22,6 +24,12 @@ from core.models.extraction_schemas.iterative_tagging import (
     IterativelyTaggedPhrase,
     PhraseTrail,
 )
+from core.models.rule_catalog import STAGE_RECURSIVE_GROUNDING
+from core.services.applied_rule_validation import (
+    check_applied_rules,
+    raise_for_violations,
+)
+from core.services.rule_catalog_registry import get_rule_catalog
 from core.models.extraction_schemas.relationship import (
     LLMPhraseRelationshipResults,
 )
@@ -33,6 +41,7 @@ from llm_providers.models.llm_model import (
     NO_MODEL,
 )
 from llm_providers.models.file_objects.prompt import Prompt
+from core.services.phrase_summaries_block import render_phrase_summaries_block
 from llm_providers.models.open_ai.gpt_batch_response_blob import (
     ChatCompletionChoiceMessage,
 )
@@ -74,7 +83,7 @@ logger = logging.getLogger(__name__)
 
 
 LLM_PHRASE_RECURSIVE_GROUNDING_RESPONSE_SCHEMA = build_gpt_response_format(
-    PhraseGroundingResponse, name="phrase_recursive_grounding_result"
+    PhraseOptionGroundingResponse, name="phrase_recursive_grounding_result"
 )
 
 
@@ -82,7 +91,7 @@ def parse_llm_phrase_recursive_grounding_result(
     subject_unique_id: str,
     field_type: ConceptFieldType,
     gpt_req: GPTBatchRequest,
-) -> PhraseToTagAndReasonMap:
+) -> PhraseToTagAndRulesMap:
     if not gpt_req.response:
         raise ValueError(
             f"phrase_recursive_grounding_node.parse_batch_request_result: GPTBatchRequest for phrase_recursive_grounding request ID {gpt_req.request.custom_id} has no response_blob in {subject_unique_id}:{field_type.name}"
@@ -93,21 +102,35 @@ def parse_llm_phrase_recursive_grounding_result(
         )
 
     try:
-        parsed = PhraseGroundingResponse.model_validate_json(gpt_req.response.result)
+        parsed = PhraseOptionGroundingResponse.model_validate_json(gpt_req.response.result)
     except ValidationError as e:
         raise ValueError(
             f"parse_llm_phrase_recursive_grounding_result: Invalid response from GPT:{gpt_req.response.result}"
         ) from e
 
-    raw_llm_recursive_grounding_result: PhraseToTagAndReasonMap = {}
+    raw_llm_recursive_grounding_result: PhraseToTagAndRulesMap = {}
+    violations: list[str] = []
     for entry in parsed.groundings:
         if entry.phrase in raw_llm_recursive_grounding_result:
             raise ValueError(
                 f"parse_llm_phrase_recursive_grounding_result: Duplicate phrase {entry.phrase!r} in groundings response"
             )
-        raw_llm_recursive_grounding_result[entry.phrase] = {
-            tag.tag: tag.reason for tag in entry.tags
-        }
+        catalog = get_rule_catalog(STAGE_RECURSIVE_GROUNDING, field_type.name)
+        rules_by_option: TagToAppliedRulesMap = {}
+        for option in entry.options:
+            # Collected across every option of every phrase, then raised once at
+            # the end: a response is measured whole or its defect rate is a
+            # function of where the scan stopped.
+            report = check_applied_rules(
+                catalog=catalog,
+                applied_rules=option.applied_rules,
+                where=f"phrase {entry.phrase!r} option {option.option!r}",
+            )
+            violations.extend(report.problems)
+            rules_by_option[option.option] = option.applied_rules
+        raw_llm_recursive_grounding_result[entry.phrase] = rules_by_option
+
+    raise_for_violations(violations)
 
     logger.debug(
         f"raw_llm_recursive_grounding_result:{raw_llm_recursive_grounding_result}"
@@ -226,25 +249,25 @@ def get_pruned_itp_group(
     Return the pruned version or None
     """
 
-    for phrase, tag_w_reason in list(
-        itp_group.direct_phrases_to_og_tag_w_reason.items()
+    for phrase, tag_w_rules in list(
+        itp_group.direct_phrases_to_og_tag_w_rules.items()
     ):
-        for tag in tag_w_reason:
+        for tag in tag_w_rules:
             if phrase in [
                 tag,
                 itp_group.group_id,
             ]:  # tag and rtp.tag won't be same if phrase was tagged to concept with altLabel, in which case rtp.tag is concept name and tag is altLabel
-                itp_group.direct_phrases_to_og_tag_w_reason.pop(phrase)
+                itp_group.direct_phrases_to_og_tag_w_rules.pop(phrase)
 
-    for phrase, tag_w_reason in list(
-        itp_group.iterative_phrases_to_og_tag_w_reason.items()
+    for phrase, tag_w_rules in list(
+        itp_group.iterative_phrases_to_og_tag_w_rules.items()
     ):
-        for tag in tag_w_reason:
+        for tag in tag_w_rules:
             if phrase in [
                 tag,
                 itp_group.group_id,
             ]:  # tag and rtp.tag won't be same if phrase was tagged to concept with altLabel, in which case rtp.tag is concept name and tag is altLabel
-                itp_group.iterative_phrases_to_og_tag_w_reason.pop(phrase)
+                itp_group.iterative_phrases_to_og_tag_w_rules.pop(phrase)
 
     return itp_group
 
@@ -254,8 +277,8 @@ def is_rtp_descend_worthy(
     match_label_to_concept_map: CaseInsensitiveDict[Concept],  # DO NOT MUTATE
 ) -> bool:
     return itp_group.group_id in match_label_to_concept_map and bool(
-        itp_group.direct_phrases_to_og_tag_w_reason
-        or itp_group.iterative_phrases_to_og_tag_w_reason
+        itp_group.direct_phrases_to_og_tag_w_rules
+        or itp_group.iterative_phrases_to_og_tag_w_rules
     )
 
 
@@ -271,8 +294,8 @@ def get_phrase_trails(
             # break ITP Group into individual phrases and their tags
             for (
                 d_phrase,
-                og_tag_reason_map,
-            ) in itp_group.direct_phrases_to_og_tag_w_reason.items():
+                og_tag_rules_map,
+            ) in itp_group.direct_phrases_to_og_tag_w_rules.items():
                 phrase_trail = retval_dict.get(
                     d_phrase, PhraseTrail(phrase=d_phrase, lvl_by_lvl_itps={})
                 )
@@ -286,17 +309,17 @@ def get_phrase_trails(
                     IterativelyTaggedPhrase(
                         parent_group_id=itp_group.parent_group_id,
                         group_id=itp_group.group_id,
-                        direct_og_tag_w_reason={},
-                        iterative_og_tag_w_reason={},
+                        direct_og_tag_w_rules={},
+                        iterative_og_tag_w_rules={},
                     ),
                 )
-                matching_itp.direct_og_tag_w_reason.update(og_tag_reason_map)
+                matching_itp.direct_og_tag_w_rules.update(og_tag_rules_map)
                 phrase_trail.lvl_by_lvl_itps[lvl].add(matching_itp)
                 retval_dict[d_phrase] = phrase_trail
             for (
                 i_phrase,
-                og_tag_reason_map,
-            ) in itp_group.iterative_phrases_to_og_tag_w_reason.items():
+                og_tag_rules_map,
+            ) in itp_group.iterative_phrases_to_og_tag_w_rules.items():
                 phrase_trail = retval_dict.get(
                     i_phrase, PhraseTrail(phrase=i_phrase, lvl_by_lvl_itps={})
                 )
@@ -310,11 +333,11 @@ def get_phrase_trails(
                     IterativelyTaggedPhrase(
                         parent_group_id=itp_group.parent_group_id,
                         group_id=itp_group.group_id,
-                        direct_og_tag_w_reason={},
-                        iterative_og_tag_w_reason={},
+                        direct_og_tag_w_rules={},
+                        iterative_og_tag_w_rules={},
                     ),
                 )
-                matching_itp.iterative_og_tag_w_reason.update(og_tag_reason_map)
+                matching_itp.iterative_og_tag_w_rules.update(og_tag_rules_map)
                 phrase_trail.lvl_by_lvl_itps[lvl].add(matching_itp)
                 retval_dict[i_phrase] = phrase_trail
 
@@ -328,6 +351,12 @@ def get_deepest_concepts_and_oov(
     oov: set[str] = set()
     for lvl, itps in phrase_trail.lvl_by_lvl_itps.items():
         for itp in itps:
+            if is_sentinel_grounding_label(itp.group_id):
+                # Records that the descent stopped here, not a label that was
+                # found. Skipping also leaves the parent tag in place, which is
+                # exactly what "nothing more specific qualifies" should mean.
+                continue
+
             concept = match_label_to_concept_map.get(itp.group_id)
             if concept:
                 if itp.parent_group_id:
@@ -377,28 +406,28 @@ async def get_itp_from_itr(
             else None
         ),
         group_id=it_req.name,
-        direct_phrases_to_og_tag_w_reason={},
-        iterative_phrases_to_og_tag_w_reason={},
+        direct_phrases_to_og_tag_w_rules={},
+        iterative_phrases_to_og_tag_w_rules={},
     )
 
-    # directly_tagged_phrases: PhraseToTagAndReasonMap = {}
+    # directly_tagged_phrases: PhraseToTagAndRulesMap = {}
     for initial_tr in initially_tagged_trs:
         if (initial_tr.group_id == it_req.name) or (
             (concept := match_label_to_concept_map.get(initial_tr.group_id))
             and concept.name == it_req.name
         ):
             logger.info(
-                f"initially tagged tr.group_tag:{initial_tr.group_id} matches rt_req.name:{it_req.name}, copying over phrase reason map."
+                f"initially tagged tr.group_tag:{initial_tr.group_id} matches rt_req.name:{it_req.name}, copying over phrase rules map."
             )
             for (
                 phrase,
-                reason,
-            ) in initial_tr.phrase_reason_map.items():
-                itp.direct_phrases_to_og_tag_w_reason[phrase] = {
-                    initial_tr.group_id: reason
+                applied_rules,
+            ) in initial_tr.phrase_rules_map.items():
+                itp.direct_phrases_to_og_tag_w_rules[phrase] = {
+                    initial_tr.group_id: applied_rules
                 }
 
-    # iteratively_tagged: PhraseToTagAndReasonMap = {}
+    # iteratively_tagged: PhraseToTagAndRulesMap = {}
     logger.info(
         f"Searching for parent_itr for it_req: l{it_req.level}>{it_req.name} in chunk {chunk_bounds} for {subject_unique_id}:{field_type.name}"
     )
@@ -438,26 +467,26 @@ async def get_itp_from_itr(
                 and concept.name == it_req.name
             ):
                 logger.info(
-                    f"child_tr.group_tag:{child_tr.group_id} matches rt_req.name:{it_req.name}, copying over phrase reason map."
+                    f"child_tr.group_tag:{child_tr.group_id} matches rt_req.name:{it_req.name}, copying over phrase rules map."
                 )
-                for phrase, reason in child_tr.phrase_reason_map.items():
-                    itp.iterative_phrases_to_og_tag_w_reason[phrase] = {
-                        child_tr.group_id: reason
+                for phrase, applied_rules in child_tr.phrase_rules_map.items():
+                    itp.iterative_phrases_to_og_tag_w_rules[phrase] = {
+                        child_tr.group_id: applied_rules
                     }
 
     return itp
 
 
 def get_tagging_results_from_recursive_grounding_results(
-    grounding_result: PhraseToTagAndReasonMap,
+    grounding_result: PhraseToTagAndRulesMap,
 ) -> list[TaggingResult]:
     tag_to_tr_map: dict[str, TaggingResult] = {}
-    for phrase, tag_reason_map in grounding_result.items():
-        for tag, reason in tag_reason_map.items():
+    for phrase, tag_rules_map in grounding_result.items():
+        for tag, applied_rules in tag_rules_map.items():
             tr = tag_to_tr_map.setdefault(
-                tag, TaggingResult(group_id=tag, phrase_reason_map={})
+                tag, TaggingResult(group_id=tag, phrase_rules_map={})
             )
-            tr.phrase_reason_map[phrase] = reason
+            tr.phrase_rules_map[phrase] = applied_rules
     return list(tag_to_tr_map.values())
 
 
@@ -584,8 +613,8 @@ async def create_missing_phrase_recursive_grounding_requests(
                 continue
 
             phrases_referenced_in_node = set(
-                itp.direct_phrases_to_og_tag_w_reason.keys()
-            ) | set(itp.iterative_phrases_to_og_tag_w_reason.keys())
+                itp.direct_phrases_to_og_tag_w_rules.keys()
+            ) | set(itp.iterative_phrases_to_og_tag_w_rules.keys())
             phrases_referenced_in_node_w_summary = {
                 phrase: summary
                 for phrase, summary in llm_phrase_relationship_results.items()
@@ -668,7 +697,11 @@ def _create_dummy_completed_phrase_recursive_grounding_batch_request(
         deferred_at=deferred_at,
         subject_unique_id=subject_unique_id,
         custom_id=llm_phrase_recursive_grounding_request_id,
-        context="No phrase recursive grounding needed - nothing was tagged in initial grounding.",
+        # Still carries a block, empty — an absent one has to stay an error.
+        context=(
+            "No phrase recursive grounding needed - nothing was tagged in initial "
+            f"grounding.\n{render_phrase_summaries_block({})}"
+        ),
         prompt_text="No phrase recursive grounding needed - nothing was tagged in initial grounding.",
         gpt_model=NO_MODEL,
         model_params=model_params,
@@ -721,8 +754,9 @@ def create_deferred_phrase_recursive_grounding_gpt_request(
     )
     context = (
         # f"Manufacturer name: {subject_name}\n\n "
-        f"extracted phrases:\n{list(verified_phrases_w_og_summary.keys())}\n "
-        f"extracted phrases with their relationship summaries:\n{json.dumps(verified_phrases_w_og_summary)}"
+        f"extracted phrases:\n{json.dumps(list(verified_phrases_w_og_summary.keys()))}\n "
+        f"extracted phrases with their relationship summaries:\n"
+        f"{render_phrase_summaries_block(verified_phrases_w_og_summary)}"
     )
 
     gpt_batch_request = create_base_gpt_batch_request(

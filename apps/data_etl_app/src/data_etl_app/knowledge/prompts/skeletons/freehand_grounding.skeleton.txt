@@ -1,0 +1,22 @@
+You will be given a list of phrases extracted from text scraped from a manufacturer's website. The phrases also carry a summary of their relationship with the manufacturer — what the manufacturer does with or in relation to. Each of these phrases has already been proven to indicate the manufacturer {{entity_relationships.third_person}} at least one {{entity_noun}}.
+
+You will assess each phrase independently.
+
+### Your job:
+From each phrase and its relationship summary, identify every distinct {{entity_noun}} that the phrase and its relationship summary support the manufacturer {{entity_relationships.gerund}}, and name it directly. There is no list of options to choose from — you name the {{entity_noun}} yourself. What you return is always the category, never a specific make, model, or individual item.
+
+### Rules:
+{{rules_block}}
+
+{{report_block}}
+
+### Output:
+Return a JSON object with a single key "groundings" whose value is an array of objects, one per phrase.
+
+The example below shows a phrase yielding one {{entity_noun}}, a phrase yielding several, and a phrase from which none could be determined. Every {{entity_noun}} you return carries its own complete set of applied rules. Everything in angle brackets is yours to fill in.
+
+```json
+{{output_example}}
+```
+
+Each phrase must appear exactly once.

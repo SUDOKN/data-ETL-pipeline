@@ -5,8 +5,8 @@ from typing import Optional
 from pydantic import BaseModel
 
 from core.models.extraction_schemas.grounding import (
-    PhraseToTagAndReasonMap,
-    TagAndReasonMap,
+    PhraseToTagAndRulesMap,
+    TagToAppliedRulesMap,
 )
 
 
@@ -17,18 +17,18 @@ class IterativelyTaggedPhraseGroup(BaseModel):
 
     # Provision for the case where tag used is an alt label
     # by explicitly storing original tag as well
-    direct_phrases_to_og_tag_w_reason: PhraseToTagAndReasonMap
-    # { phrase -> (og tag, reason) } because og tag can be an alt label
+    direct_phrases_to_og_tag_w_rules: PhraseToTagAndRulesMap
+    # { phrase -> (og tag, applied rules) } because og tag can be an alt label
     # produced by initial grounding results
 
-    iterative_phrases_to_og_tag_w_reason: PhraseToTagAndReasonMap
-    # { phrase -> (og tag, reason) }
+    iterative_phrases_to_og_tag_w_rules: PhraseToTagAndRulesMap
+    # { phrase -> (og tag, applied rules) }
     # produced by iterative traversal of a phrase from its initially grounded concept
 
-    # the tag inside each PhraseToTagAndReasonMap
+    # the tag inside each PhraseToTagAndRulesMap
     # will either be name/altLabel of in-vocab concept or out-of-vocab term
     # depending on the tag_id being in-vocab or not
-    # but that's what each PhraseToTagAndReasonMap will have in common with
+    # but that's what each PhraseToTagAndRulesMap will have in common with
     # the tag_id
 
     def __hash__(self) -> int:
@@ -54,8 +54,8 @@ class PhraseTrail(BaseModel):
 class IterativelyTaggedPhrase(BaseModel):
     parent_group_id: Optional[str]
     group_id: str
-    direct_og_tag_w_reason: TagAndReasonMap
-    iterative_og_tag_w_reason: TagAndReasonMap
+    direct_og_tag_w_rules: TagToAppliedRulesMap
+    iterative_og_tag_w_rules: TagToAppliedRulesMap
 
     def __hash__(self) -> int:
         return hash(self.group_id)

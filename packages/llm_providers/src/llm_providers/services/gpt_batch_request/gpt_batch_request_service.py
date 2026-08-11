@@ -107,8 +107,8 @@ async def dispatch_gpt_batch_request(
         f"Dispatching GPT batch request with id {gpt_batch_request.request.custom_id}"
     )
     prompt, context = (
-        gpt_batch_request.request.body.messages[0]["content"],
-        gpt_batch_request.request.body.messages[1]["content"],
+        gpt_batch_request.request.body.system_message(),
+        gpt_batch_request.request.body.user_message(),
     )
     gpt_response_blob = await fetch_gpt_batch_response(
         context=context,

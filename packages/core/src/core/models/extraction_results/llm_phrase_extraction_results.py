@@ -2,7 +2,7 @@ from __future__ import annotations
 
 from pydantic import BaseModel
 from datetime import datetime
-from typing import TypeVar
+from typing import Optional, TypeVar
 
 
 from core.field_types import (
@@ -67,6 +67,11 @@ class ExtractionNodeMetadata(BaseModel):
     model_params: GPTModelParams
     prompt_name: str
     prompt_version_id: S3FileVersionIDType
+    # Which rule catalog produced this prompt. Stored alongside the S3 version so
+    # an applied_rule record can be joined back to the rule text that asked for
+    # it, even after the catalog has since been edited. None for prompts that
+    # have no catalog (search, relationship, single-stage).
+    catalog_version: Optional[str] = None
     created_at: datetime
 
 

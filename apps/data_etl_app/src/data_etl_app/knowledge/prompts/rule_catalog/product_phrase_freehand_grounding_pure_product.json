@@ -1,0 +1,108 @@
+{
+  "catalog_version": "product_phrase_freehand_grounding_pure_product.2026.08.6",
+  "prompt_name": "product_phrase_freehand_grounding_pure_product",
+  "stage": "phrase_freehand_grounding",
+  "field_types": [
+    "products"
+  ],
+  "entity_noun": "product category",
+  "entity_relationships": {
+    "base": "manufacture and sell as its own",
+    "third_person": "manufactures and sells as its own",
+    "gerund": "manufacturing and selling as its own"
+  },
+  "outcome_vocab": {
+    "condition": [
+      "satisfied",
+      "failed",
+      "not_triggered"
+    ],
+    "preference": [
+      "chosen"
+    ]
+  },
+  "sections": [
+    {
+      "section_id": "attribution",
+      "heading": "For each distinct {{entity_noun}} you identify, this must hold:",
+      "combinator": "all",
+      "rules": [
+        {
+          "id": "FGR-Q1",
+          "kind": "condition",
+          "reportable": true,
+          "report_when": "always",
+          "text": "The phrase and its relationship summary support the manufacturer itself {{entity_relationships.gerund}} at least one item in the {{entity_noun}}, not merely relating to it.",
+          "combinator": "note",
+          "children": [
+            {
+              "id": "FGR-Q1a",
+              "kind": "note",
+              "reportable": false,
+              "report_when": "never",
+              "text": "The evidence may be a described activity, owned equipment, stated capacity, supplied offering, or product use."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "section_id": "category_qualification",
+      "heading": "The {{entity_noun}} you name must qualify, in BOTH of these ways:",
+      "combinator": "all",
+      "rules": [
+        {
+          "id": "FGR-Q2",
+          "kind": "condition",
+          "reportable": true,
+          "report_when": "always",
+          "text": "It is a determinate category: neither an individual item — a brand name, model number, part number, catalog code, or one-off description — nor a term so general it fixes nothing, such as \"products\", \"parts\", or \"components\". A phrase naming a specific item is reported as the category that item belongs to.",
+          "combinator": "note",
+          "children": [
+            {
+              "id": "FGR-Q2a",
+              "kind": "note",
+              "reportable": false,
+              "report_when": "never",
+              "text": "\"Model 4200-B hydraulic manifold\" is an individual item; the category it belongs to is \"hydraulic manifold\". Name the category, and never carry the brand, model, or part number into it."
+            }
+          ]
+        },
+        {
+          "id": "FGR-Q3",
+          "kind": "condition",
+          "reportable": true,
+          "report_when": "always",
+          "text": "It is distinct from every other {{entity_noun}} named for the same phrase. Two names for the same {{entity_noun}} in different words are one, not two."
+        }
+      ]
+    },
+    {
+      "section_id": "naming",
+      "heading": "Name each {{entity_noun}} by the first of these rules that applies, in order:",
+      "combinator": "ordered",
+      "rules": [
+        {
+          "id": "FGR-M1",
+          "kind": "preference",
+          "reportable": true,
+          "report_when": "when_chosen",
+          "text": "A {{entity_noun}} can be determined from the phrase and its relationship summary, and it is named directly."
+        },
+        {
+          "id": "FGR-M2",
+          "kind": "preference",
+          "reportable": true,
+          "report_when": "when_chosen",
+          "text": "No {{entity_noun}} can be determined from the phrase and its relationship summary, and \"Cannot categorize\" is named as the only entry for the phrase."
+        }
+      ]
+    }
+  ],
+  "published": {
+    "s3_version_id": "aFLUczfPmqfCikDgitAgcXx3qe2nsW0x",
+    "rendered_sha256": "d9393870563ff303d818ce67ae1538d0730d9685d7fa9f44d6f72392e3fed734",
+    "uploaded_at": "2026-08-11T20:17:56.321588+00:00"
+  },
+  "sentinel_tag": "Cannot categorize"
+}

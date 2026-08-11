@@ -238,6 +238,12 @@
               "prompt_version_id": {
                 "bsonType": "string"
               },
+              "catalog_version": {
+                "bsonType": [
+                  "string",
+                  "null"
+                ]
+              },
               "created_at": {
                 "bsonType": "date"
               }

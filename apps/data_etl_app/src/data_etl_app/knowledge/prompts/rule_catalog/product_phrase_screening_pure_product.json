@@ -1,0 +1,117 @@
+{
+  "catalog_version": "product_phrase_screening_pure_product.2026.08.5",
+  "prompt_name": "product_phrase_screening_pure_product",
+  "stage": "phrase_relationship_screening",
+  "field_types": [
+    "products"
+  ],
+  "entity_noun": "product category",
+  "entity_relationships": {
+    "base": "manufacture and sell as its own",
+    "third_person": "manufactures and sells as its own",
+    "gerund": "manufacturing and selling as its own"
+  },
+  "outcome_vocab": {
+    "condition": [
+      "satisfied",
+      "failed",
+      "not_triggered"
+    ],
+    "guard": [
+      "violated"
+    ]
+  },
+  "sections": [
+    {
+      "section_id": "pass_conditions",
+      "heading": "A candidate {{entity_noun}} qualifies only if ALL of these conditions hold for it:",
+      "combinator": "all",
+      "rules": [
+        {
+          "id": "SCR-1",
+          "kind": "condition",
+          "reportable": true,
+          "report_when": "always",
+          "text": "At least one {{entity_noun}} is explicitly stated in the phrase or its relationship summary.",
+          "combinator": "note",
+          "children": [
+            {
+              "id": "SCR-1a",
+              "kind": "note",
+              "reportable": false,
+              "report_when": "never",
+              "text": "It must be stated, not inferred. It may not be derived from industry context, markets served, certifications, standards, equipment, facilities, materials, or process names. A named process or capability with no stated output does not satisfy this condition. A phrase naming a specific item does satisfy it — name the category that item belongs to, never its brand, model, or part number."
+            }
+          ]
+        },
+        {
+          "id": "SCR-2",
+          "kind": "condition",
+          "reportable": true,
+          "report_when": "always",
+          "text": "The phrase and its relationship summary show real, concrete involvement with the identified {{entity_noun}}: some party is shown to {{entity_relationships.base}} that {{entity_noun}}, not merely to name, list, or mention it in passing.",
+          "combinator": "note",
+          "children": [
+            {
+              "id": "SCR-2a",
+              "kind": "note",
+              "reportable": false,
+              "report_when": "never",
+              "text": "Involvement that is not making and selling does not satisfy this condition: a {{entity_noun}} only serviced, repaired, installed, tested, inspected, or certified, or used as an input, tool, or piece of equipment, is not one being manufactured and sold."
+            }
+          ]
+        },
+        {
+          "id": "SCR-3",
+          "kind": "condition",
+          "reportable": true,
+          "report_when": "always",
+          "text": "It is the manufacturer itself that {{entity_relationships.third_person}} the identified {{entity_noun}} — not a customer, supplier, distributor, or other third party that the manufacturer merely relates to.",
+          "combinator": "note",
+          "children": [
+            {
+              "id": "SCR-3a",
+              "kind": "note",
+              "reportable": false,
+              "report_when": "never",
+              "text": "Verbs that leave the arrangement unstated — such as \"supplies\", \"offers\", \"provides\", \"works with\", \"handles\", or \"deals in\" — do not by themselves show whether the manufacturer is the party that {{entity_relationships.third_person}} it."
+            },
+            {
+              "id": "SCR-3b",
+              "kind": "note",
+              "reportable": false,
+              "report_when": "never",
+              "text": "The manufacturer is not the one making and selling it when items in the {{entity_noun}} are made to a customer's specification, design, drawing, formula, or brand, or produced for a client, OEM, or brand owner, or when another party is the maker and the manufacturer only purchases, sources, resells, distributes, or represents them."
+            },
+            {
+              "id": "SCR-3c",
+              "kind": "note",
+              "reportable": false,
+              "report_when": "never",
+              "text": "Judge each candidate on its own. A phrase that also describes contract or customer-directed work still passes on a different candidate that clears this condition, so rule the failing candidate out and go on to the next one rather than rejecting the phrase. A phrase may legitimately pass both this screen and the separate contract-services screen."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "section_id": "guards",
+      "heading": "A candidate {{entity_noun}} is ruled out if ANY of these guards is violated by it. Ruling out one candidate does not reject the phrase — another candidate may still qualify:",
+      "combinator": "any",
+      "rules": [
+        {
+          "id": "SCR-G2",
+          "kind": "guard",
+          "reportable": true,
+          "report_when": "on_violation",
+          "text": "The manufacturer's making and selling of the identified {{entity_noun}} is only aspirational, hoped-for, planned, or discontinued, rather than current and actual."
+        }
+      ]
+    }
+  ],
+  "published": {
+    "s3_version_id": "OMrJ.aljvWYu2lNbLza.kaXe6aBYfUQ4",
+    "rendered_sha256": "0d7589698b8cdd05161a885148b6cbcee33c9bb37a3c39c2f08b9f5bbc0a164d",
+    "uploaded_at": "2026-08-11T20:17:56.321588+00:00"
+  }
+}

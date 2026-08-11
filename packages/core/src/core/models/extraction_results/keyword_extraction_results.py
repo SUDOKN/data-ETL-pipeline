@@ -6,14 +6,14 @@ from core.models.extraction_results.llm_phrase_extraction_results import (
     LLMPhraseExtractionStats,
 )
 from core.models.extraction_schemas.grounding import (
-    PhraseToTagAndReasonMap,
+    PhraseToTagAndRulesMap,
 )
 
 
 class KeywordExtractionStats(LLMPhraseExtractionStats):
     results: set[str]
-    # round → {phrase: {tag: reason}} — each phrase assigned to its earliest search round
-    llm_phrase_freehand_grounding: dict[int, PhraseToTagAndReasonMap]
+    # round → {phrase: {tag: [applied_rule, ...]}} — each phrase assigned to its earliest search round
+    llm_phrase_freehand_grounding: dict[int, PhraseToTagAndRulesMap]
 
 
 KeywordExtractionStatsMap = dict[str, KeywordExtractionStats]

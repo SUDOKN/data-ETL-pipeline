@@ -25,10 +25,11 @@ class EquipmentRelationshipScreeningNode(KeywordRelationshipScreeningNode):
     """Phase 4: screen/normalize equipment relationships.
 
     Uses the equipment screening prompt (``equipment_phrase_relationship_screening``),
-    which normalizes surviving phrases to ``<Brand/Model> <generalized category>``
-    (or the category alone) and sets ``passed=False`` for any phrase for which no
-    generalized category can be determined. Every input phrase is always present
-    in the output (see ``LiveScreeningResults``).
+    which names the equipment CATEGORY a phrase supports — never a brand, model, or
+    individual unit — and rejects any phrase for which no category can be determined.
+    The reject is derived from the reported rules rather than declared (see
+    ``passed_implied_by``). Every input phrase is always present in the output (see
+    ``LiveScreeningResults``).
     """
 
     def __init__(

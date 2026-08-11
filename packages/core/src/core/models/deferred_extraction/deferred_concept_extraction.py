@@ -1,11 +1,11 @@
 from __future__ import annotations
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 from typing import Optional
 import logging
 
-from core.models.extraction_schemas.legacy_mapping_types import (
-    PhraseAndReasonMap,
-    TagToPhraseAndReasonMap,
+from core.models.extraction_schemas.grounding import (
+    PhraseToAppliedRulesMap,
+    TagToPhraseAndRulesMap,
 )
 from core.models.extraction_results.concept_extraction_results import (
     ConceptExtractionMetadata,
@@ -64,7 +64,7 @@ class TaggingResult(BaseModel):
     """
 
     group_id: str  # can be out-of-vocab tag, in-vocab name or in-vocab altLabel, converting to tcr will combine name/altLabel under one concept
-    phrase_reason_map: PhraseAndReasonMap
+    phrase_rules_map: PhraseToAppliedRulesMap
 
     def __hash__(self) -> int:
         return hash(self.group_id)
@@ -75,14 +75,14 @@ class TaggingResult(BaseModel):
         return self.__hash__() == other.__hash__()
 
     def __repr__(self) -> str:
-        return f"TaggingResult(group_id={self.group_id}, phrase_reason_map={self.phrase_reason_map})"
+        return f"TaggingResult(group_id={self.group_id}, phrase_rules_map={self.phrase_rules_map})"
 
 
 class TaggingResultsGroupedByConcept(
     BaseModel
 ):  # used to group phrases and their og tags(name/alt labels) by only concept names
     concept: Concept
-    og_tag_w_phrase_reason_map: TagToPhraseAndReasonMap
+    og_tag_w_phrase_rules_map: TagToPhraseAndRulesMap
 
     # og_tag may be != concept.name
     # og_tag is group_tag from multiple TaggedResults
@@ -97,7 +97,12 @@ class TaggingResultsGroupedByConcept(
 
 class ConceptExtractionRequestBundle(LLMPhraseExtractionRequestBundle):
     brute: set[str]
-    llm_phrase_initial_grounding_req_id: Optional[BatchRequestIDType]
+    # Ordered list of initial-grounding groups (group 1 == index 0). Each group
+    # covers at most `max_pairs_per_request` screened out-of-vocab phrases for
+    # this chunk; results are merged back together.
+    llm_phrase_initial_grounding_req_ids: list[BatchRequestIDType] = Field(
+        default_factory=list
+    )
     llm_phrase_recursive_tagging_reqs: Optional[dict[int, set[IterativeTaggingRequest]]]
 
 

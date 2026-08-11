@@ -11,7 +11,7 @@ from core.models.deferred_extraction.deferred_keyword_extraction import (
     KeywordExtractionRequestBundle,
 )
 from core.models.extraction_schemas.grounding import (
-    PhraseToTagAndReasonMap,
+    PhraseToTagAndRulesMap,
 )
 from llm_providers.models.open_ai.gpt_batch_response_blob import (
     GPTBatchResponse,
@@ -46,7 +46,7 @@ logger = logging.getLogger(__name__)
 
 
 class LLMPhraseFreehandGroundingNode(
-    BaseLLMExtractionNode[LLMExtractedFieldTypeVar, PhraseToTagAndReasonMap]
+    BaseLLMExtractionNode[LLMExtractedFieldTypeVar, PhraseToTagAndRulesMap]
 ):
     def __init__(
         self,
@@ -175,7 +175,7 @@ class LLMPhraseFreehandGroundingNode(
         extraction_bundle: KeywordExtractionRequestBundle,
         completed_request_map: dict[BatchRequestIDType, GPTBatchRequest],
         timestamp: datetime,  # for recording errors
-    ) -> PhraseToTagAndReasonMap:
+    ) -> PhraseToTagAndRulesMap:
         return await get_freehand_grounding_result(
             subject_unique_id=subject_unique_id,
             field_type=field_type,

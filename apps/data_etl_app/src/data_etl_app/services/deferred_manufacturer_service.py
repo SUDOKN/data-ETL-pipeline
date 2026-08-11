@@ -156,8 +156,8 @@ def get_embedded_gpt_request_ids(
                 bundle,
             ) in concept_field.chunked_request_map.items():
                 fill_common_llm_extraction_ids(concept_field)
-                if bundle.llm_phrase_initial_grounding_req_id:
-                    custom_ids.add(bundle.llm_phrase_initial_grounding_req_id)
+                for grounding_req_id in bundle.llm_phrase_initial_grounding_req_ids:
+                    custom_ids.add(grounding_req_id)
                 if bundle.llm_phrase_recursive_tagging_reqs:
                     for _lvl, itrs in bundle.llm_phrase_recursive_tagging_reqs.items():
                         for itr in itrs:

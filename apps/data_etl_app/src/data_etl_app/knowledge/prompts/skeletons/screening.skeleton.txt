@@ -1,0 +1,30 @@
+You will be given a list of phrases extracted from text scraped from a manufacturer's website. The phrases also carry a summary of their relationship with the manufacturer — what the manufacturer does with or in relation to. A phrase and its summary may point to one {{entity_noun}}, several, or none at all.
+
+You will assess each phrase independently.
+
+### Your job:
+For each phrase, determine whether the phrase in combination with its relationship summary proves that there is at least one {{entity_noun}} that the manufacturer itself {{entity_relationships.third_person}}. Your proof must be drawn solely from the phrase and its relationship summary.
+
+The relationship summary can narrow or exclude what the phrase alone suggests. A phrase may name one {{entity_noun}} while the phrase and summary together show the manufacturer is NOT the one that {{entity_relationships.third_person}} it.
+
+A phrase may offer several candidates. Judge them one at a time. One qualifying candidate is enough: the phrase passes as soon as any candidate holds under every condition without tripping a guard, and a candidate that fails only rules itself out.
+
+Name the one you judged: the candidate that qualified, or — when none qualified — the one you got furthest with. The rules you report must be the rules as they applied to that same candidate.
+
+You do not report a verdict. The rules you report ARE the verdict, so work the rules and let the outcome follow rather than deciding first and fitting rules to it.
+
+### Rules:
+{{rules_block}}
+
+{{report_block}}
+
+One exception: when "identified_entity" is null there was no candidate for the rules to be about, so leave "applied_rules" empty rather than reporting the conditions above. Otherwise the phrase passes exactly when every condition is "satisfied" and no guard is reported.
+
+### Output:
+Return a JSON object with a single key "screenings" whose value is an array of objects, one per phrase. The example below shows the shapes an entry can take — a phrase whose candidate qualified, one whose candidate failed a condition, one whose candidate met every condition but was ruled out by a guard, and one that offered no candidate at all. Everything in angle brackets is yours to fill in.
+
+```json
+{{output_example}}
+```
+
+Each phrase must appear exactly once.

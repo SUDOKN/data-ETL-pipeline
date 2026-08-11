@@ -15,6 +15,13 @@ from core.models.extraction_schemas.relationship import (
 from core.models.extraction_schemas.response_format_util import (
     build_gpt_response_format,
 )
+from core.models.rule_catalog import STAGE_RELATIONSHIP_SCREENING
+from core.services.applied_rule_validation import (
+    passed_implied_by,
+    check_applied_rules,
+    raise_for_violations,
+)
+from core.services.rule_catalog_registry import get_rule_catalog
 from core.models.extraction_schemas.screening import (
     LiveScreeningResults,
     PhraseRelationshipScreeningResponse,
@@ -42,6 +49,7 @@ from core.models.field_types import ExtractionFieldType
 from llm_providers.models.open_ai.gpt_model_params import (
     GPTModelParams,
 )
+from core.services.phrase_summaries_block import render_phrase_summaries_block
 from llm_providers.field_types import BatchRequestIDType
 
 from llm_providers.services.gpt_batch_request.gpt_batch_request_writes import (
@@ -62,6 +70,7 @@ LLM_PHRASE_RELATIONSHIP_SCREENING_RESPONSE_SCHEMA = build_gpt_response_format(
 
 def parse_llm_phrase_relationship_screening_result(
     gpt_response: Optional[str],
+    field_type: ExtractionFieldType,
 ) -> LiveScreeningResults:
     if not gpt_response:
         logger.error(f"Invalid gpt_response:{gpt_response}")
@@ -77,14 +86,54 @@ def parse_llm_phrase_relationship_screening_result(
         ) from e
 
     raw_gpt_phrase_relationship_screening_result: LiveScreeningResults = {}
+    violations: list[str] = []
     for entry in parsed.screenings:
         if entry.phrase in raw_gpt_phrase_relationship_screening_result:
             raise ValueError(
                 f"parse_llm_phrase_relationship_screening_result: Duplicate phrase {entry.phrase!r} in screenings response"
             )
+        catalog = get_rule_catalog(STAGE_RELATIONSHIP_SCREENING, field_type.name)
+
+        # Nothing identified means the conditions have no candidate to be about, and
+        # "SCR-1 failed, SCR-2 not_triggered, SCR-3 not_triggered" says exactly what
+        # an empty list says on the commonest negative case. Anything else — a named
+        # candidate, or rules offered alongside a null one — is validated in full.
+        reported_nothing = entry.identified_entity is None and not entry.applied_rules
+        if not reported_nothing:
+            report = check_applied_rules(
+                catalog=catalog,
+                applied_rules=entry.applied_rules,
+                where=f"phrase {entry.phrase!r}",
+            )
+            if report.problems:
+                violations.extend(report.problems)
+                # Keep walking so the error names every phrase that needs fixing —
+                # the request is lost either way — but derive nothing from a report
+                # that failed its own catalog. passed_implied_by below indexes
+                # rules_by_id directly and would KeyError on an unknown rule id.
+                continue
+
+        # Derived, never reported. passed_implied_by rejects an empty list, which is
+        # what the shortcut above leaves behind, so both paths land on the same rule.
+        passed = passed_implied_by(catalog, entry.applied_rules)
+
+        # A pass is a claim about a named entity, so the name has to be there. The
+        # converse is deliberately allowed: a rejected phrase still reports which
+        # candidate it got furthest with, and null only when none was found at all.
+        if passed and entry.identified_entity is None:
+            raise ValueError(
+                f"parse_llm_phrase_relationship_screening_result: phrase "
+                f"{entry.phrase!r} reported rules that imply a pass but named no "
+                f"identified_entity"
+            )
+
         raw_gpt_phrase_relationship_screening_result[entry.phrase] = ScreeningVerdict(
-            passed=entry.passed, reason=entry.reason
+            passed=passed,
+            identified_entity=entry.identified_entity,
+            applied_rules=entry.applied_rules,
         )
+
+    raise_for_violations(violations)
 
     logger.debug(
         f"raw_gpt_phrase_relationship_screening_result:{raw_gpt_phrase_relationship_screening_result}"
@@ -127,7 +176,10 @@ async def parse_phrase_relationship_screening_group_result(
         )
 
     try:
-        return parse_llm_phrase_relationship_screening_result(req_obj.response.result)
+        return parse_llm_phrase_relationship_screening_result(
+            gpt_response=req_obj.response.result,
+            field_type=field_type,
+        )
     except Exception as e:
         await record_response_parse_error(
             gpt_batch_request=req_obj,
@@ -321,7 +373,11 @@ def _create_dummy_completed_phrase_relationships_screening_batch_request(
         deferred_at=deferred_at,
         subject_unique_id=subject_unique_id,
         custom_id=llm_phrase_relationship_screening_request_id,
-        context="No phrase relationship screening needed - no phrases found in text.",
+        # Still carries a block, empty — an absent one has to stay an error.
+        context=(
+            "No phrase relationship screening needed - no phrases found in text.\n"
+            f"{render_phrase_summaries_block({})}"
+        ),
         prompt_text="No phrase relationship screening needed - no phrases found in text by brute force or by LLM.",
         gpt_model=NO_MODEL,
         model_params=model_params,
@@ -358,7 +414,8 @@ def create_deferred_phrase_relationship_screening_gpt_request(
     context = (
         f"Manufacturer name: {subject_name}\n\n "
         f"extracted phrases:\n{json.dumps(list(phrase_relationship_results.keys()))}\n "
-        f"extracted phrases with their relationship summaries:\n{json.dumps(phrase_relationship_results)}"
+        f"extracted phrases with their relationship summaries:\n"
+        f"{render_phrase_summaries_block(phrase_relationship_results)}"
     )
 
     gpt_batch_request = create_base_gpt_batch_request(

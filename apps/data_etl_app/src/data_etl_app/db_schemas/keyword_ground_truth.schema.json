@@ -250,6 +250,12 @@
               "prompt_version_id": {
                 "bsonType": "string"
               },
+              "catalog_version": {
+                "bsonType": [
+                  "string",
+                  "null"
+                ]
+              },
               "created_at": {
                 "bsonType": "date"
               }
@@ -415,6 +421,12 @@
               },
               "prompt_version_id": {
                 "bsonType": "string"
+              },
+              "catalog_version": {
+                "bsonType": [
+                  "string",
+                  "null"
+                ]
               },
               "created_at": {
                 "bsonType": "date"
@@ -584,6 +596,12 @@
               "prompt_version_id": {
                 "bsonType": "string"
               },
+              "catalog_version": {
+                "bsonType": [
+                  "string",
+                  "null"
+                ]
+              },
               "created_at": {
                 "bsonType": "date"
               }
@@ -749,6 +767,12 @@
               },
               "prompt_version_id": {
                 "bsonType": "string"
+              },
+              "catalog_version": {
+                "bsonType": [
+                  "string",
+                  "null"
+                ]
               },
               "created_at": {
                 "bsonType": "date"
@@ -918,6 +942,12 @@
               "prompt_version_id": {
                 "bsonType": "string"
               },
+              "catalog_version": {
+                "bsonType": [
+                  "string",
+                  "null"
+                ]
+              },
               "created_at": {
                 "bsonType": "date"
               }
@@ -963,15 +993,41 @@
                 "bsonType": "object",
                 "required": [
                   "passed",
-                  "reason"
+                  "applied_rules"
                 ],
                 "additionalProperties": false,
                 "properties": {
                   "passed": {
                     "bsonType": "bool"
                   },
-                  "reason": {
-                    "bsonType": "string"
+                  "identified_entity": {
+                    "bsonType": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "applied_rules": {
+                    "bsonType": "array",
+                    "items": {
+                      "bsonType": "object",
+                      "required": [
+                        "rule_id",
+                        "outcome",
+                        "explanation"
+                      ],
+                      "additionalProperties": false,
+                      "properties": {
+                        "rule_id": {
+                          "bsonType": "string"
+                        },
+                        "outcome": {
+                          "bsonType": "string"
+                        },
+                        "explanation": {
+                          "bsonType": "string"
+                        }
+                      }
+                    }
                   }
                 }
               }
@@ -991,7 +1047,27 @@
               "additionalProperties": {
                 "bsonType": "object",
                 "additionalProperties": {
-                  "bsonType": "string"
+                  "bsonType": "array",
+                  "items": {
+                    "bsonType": "object",
+                    "required": [
+                      "rule_id",
+                      "outcome",
+                      "explanation"
+                    ],
+                    "additionalProperties": false,
+                    "properties": {
+                      "rule_id": {
+                        "bsonType": "string"
+                      },
+                      "outcome": {
+                        "bsonType": "string"
+                      },
+                      "explanation": {
+                        "bsonType": "string"
+                      }
+                    }
+                  }
                 }
               }
             }

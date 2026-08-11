@@ -1,6 +1,7 @@
 from __future__ import annotations
 import logging
 from datetime import datetime
+from math import ceil
 
 from llm_providers.db_models.gpt_batch_request import (
     GPTBatchRequest,
@@ -14,7 +15,7 @@ from core.models.deferred_extraction.deferred_concept_extraction import (
     ConceptExtractionMetadata,
 )
 from core.models.extraction_schemas.grounding import (
-    PhraseToTagAndReasonMap,
+    PhraseToTagAndRulesMap,
 )
 from llm_providers.models.file_objects.prompt import Prompt
 from core.models.skos_concept import Concept
@@ -40,6 +41,7 @@ from llm_providers.services.gpt_batch_request.gpt_batch_request_service import (
 from core.services.pipeline_nodes.multi_stage.llm_initial_grounding_service import (
     create_missing_phrase_initial_grounding_requests,
     get_initial_grounding_result,
+    get_verified_out_of_vocab_phrases_w_summary,
 )
 
 from core.utils.rdf_to_graph_util import (
@@ -50,7 +52,7 @@ logger = logging.getLogger(__name__)
 
 
 class LLMPhraseInitialGroundingNode(
-    BaseLLMExtractionNode[ConceptFieldType, PhraseToTagAndReasonMap]
+    BaseLLMExtractionNode[ConceptFieldType, PhraseToTagAndRulesMap]
 ):
     def __init__(
         self,
@@ -97,19 +99,53 @@ class LLMPhraseInitialGroundingNode(
                 f"as chunked_request_map found empty for subject:{subject_unique_id}, field:{self.field_type.name}."
             )
 
+        # The screened out-of-vocab phrase set for a chunk is already complete by
+        # the time grounding embeds ids (relationship + screening have fully
+        # executed), so the group count can be computed once, upfront.
+        max_pairs_per_request = (
+            metadata.llm_phrase_initial_grounding.max_pairs_per_request
+        )
+        upstream_relationship_map = self.get_upstream_phrase_relationship_map(
+            pipeline_context
+        )
+        upstream_screening_map = self.get_upstream_phrase_screening_map(
+            pipeline_context
+        )
+
         for (
             chunk_bounds,
             extraction_request_bundle,
         ) in chunked_request_map.items():
-            if not extraction_request_bundle.llm_phrase_initial_grounding_req_id:
-                extraction_request_bundle.llm_phrase_initial_grounding_req_id = (
-                    self.get_request_custom_id(
-                        subject_unique_id=subject_unique_id,
-                        field_type=self.field_type,
-                        chunk_bounds=chunk_bounds,
-                        metadata=metadata,
-                    )
+            if extraction_request_bundle.llm_phrase_initial_grounding_req_ids:
+                continue  # already embedded; group count is stable once computed
+
+            verified_out_of_vocab_phrases_w_summary = (
+                await get_verified_out_of_vocab_phrases_w_summary(
+                    subject_unique_id=subject_unique_id,
+                    field_type=self.field_type,
+                    chunk_bounds=chunk_bounds,
+                    extraction_bundle=extraction_request_bundle,
+                    llm_phrase_relationship_gpt_request_map=upstream_relationship_map,
+                    llm_phrase_screening_gpt_request_map=upstream_screening_map,
+                    timestamp=timestamp,
                 )
+            )
+            num_groups = max(
+                1,
+                ceil(
+                    len(verified_out_of_vocab_phrases_w_summary) / max_pairs_per_request
+                ),
+            )
+            extraction_request_bundle.llm_phrase_initial_grounding_req_ids = [
+                self.get_request_custom_id(
+                    subject_unique_id=subject_unique_id,
+                    field_type=self.field_type,
+                    chunk_bounds=chunk_bounds,
+                    group_index=group_index,
+                    metadata=metadata,
+                )
+                for group_index in range(num_groups)
+            ]
 
     def get_embedded_request_ids(
         self,
@@ -121,14 +157,14 @@ class LLMPhraseInitialGroundingNode(
             chunk_bounds,
             extraction_bundle,
         ) in chunked_request_map.items():
-            if not extraction_bundle.llm_phrase_initial_grounding_req_id:
+            if not extraction_bundle.llm_phrase_initial_grounding_req_ids:
                 raise ValueError(
                     f"Cannot get embedded request ids for subject_unique_id:{subject_unique_id}>{chunk_bounds} as "
-                    f"llm_phrase_initial_grounding_request is absent in the extraction_bundle."
+                    f"llm_phrase_initial_grounding_req_ids is empty in the extraction_bundle."
                 )
 
-            llm_phrase_initial_grounding_req_ids.add(
-                extraction_bundle.llm_phrase_initial_grounding_req_id
+            llm_phrase_initial_grounding_req_ids.update(
+                extraction_bundle.llm_phrase_initial_grounding_req_ids
             )
 
         return llm_phrase_initial_grounding_req_ids
@@ -138,10 +174,11 @@ class LLMPhraseInitialGroundingNode(
         subject_unique_id: str,
         field_type: ExtractionFieldType,
         chunk_bounds: str,
+        group_index: int,
         metadata: ConceptExtractionMetadata,
     ) -> BatchRequestIDType:
         return (
-            f"{subject_unique_id}>{field_type.name}>llm_phrase_initial_grounding>chunk>{chunk_bounds}>"
+            f"{subject_unique_id}>{field_type.name}>llm_phrase_initial_grounding>group>{group_index}>chunk>{chunk_bounds}>"
             f"{metadata.llm_phrase_initial_grounding.model_params.to_custom_id_segment(metadata.llm_phrase_initial_grounding.llm_model.name)}"
         )
 
@@ -183,6 +220,7 @@ class LLMPhraseInitialGroundingNode(
             match_label_to_concept_map=self.match_label_to_concept_map,
             llm_model=metadata.llm_phrase_initial_grounding.llm_model,
             model_params=metadata.llm_phrase_initial_grounding.model_params,
+            max_pairs_per_request=metadata.llm_phrase_initial_grounding.max_pairs_per_request,
             eager=eager,
         )
 
@@ -196,7 +234,7 @@ class LLMPhraseInitialGroundingNode(
         extraction_bundle: ConceptExtractionRequestBundle,
         completed_request_map: dict[BatchRequestIDType, GPTBatchRequest],
         timestamp: datetime,  # for recording errors
-    ) -> PhraseToTagAndReasonMap:
+    ) -> PhraseToTagAndRulesMap:
         return await get_initial_grounding_result(
             subject_unique_id=subject_unique_id,
             field_type=field_type,

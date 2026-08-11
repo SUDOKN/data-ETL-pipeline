@@ -6,6 +6,9 @@ from core.models.extraction_results.llm_phrase_extraction_results import (
     RecursiveSearchNodeMetadata,
     BatchedScreeningNodeMetadata,
 )
+from core.models.extraction_results.concept_extraction_results import (
+    BatchedInitialGroundingNodeMetadata,
+)
 from llm_providers.models.file_objects.prompt import Prompt
 from core.models.extraction_results.single_stage_extraction_results import (
     LLMSingleStageExtractionMetadata,
@@ -78,6 +81,10 @@ from llm_providers.models.open_ai.gpt_model_params import (
 )
 
 from data_etl_app.services.prompt_service import PromptService
+from data_etl_app.services.prompt_assembly_service import (
+    build_rule_catalog_lookup,
+)
+from core.services.rule_catalog_registry import set_rule_catalog_lookup
 
 
 class ExtractionPipelineFactory:
@@ -85,6 +92,7 @@ class ExtractionPipelineFactory:
 
     DEFAULT_RECURSIVE_SEARCH_MAX_ROUNDS = 1
     DEFAULT_SCREENING_MAX_PAIRS_PER_REQUEST = 15
+    DEFAULT_INITIAL_GROUNDING_MAX_PAIRS_PER_REQUEST = 15
 
     @staticmethod
     def _metadata(
@@ -98,6 +106,7 @@ class ExtractionPipelineFactory:
             model_params=model_params,
             prompt_name=prompt.name,
             prompt_version_id=prompt.s3_version_id,
+            catalog_version=prompt.catalog_version,
             created_at=created_at,
         )
 
@@ -114,6 +123,7 @@ class ExtractionPipelineFactory:
             model_params=model_params,
             prompt_name=prompt.name,
             prompt_version_id=prompt.s3_version_id,
+            catalog_version=prompt.catalog_version,
             created_at=created_at,
             max_rounds=max_rounds,
         )
@@ -131,6 +141,25 @@ class ExtractionPipelineFactory:
             model_params=model_params,
             prompt_name=prompt.name,
             prompt_version_id=prompt.s3_version_id,
+            catalog_version=prompt.catalog_version,
+            created_at=created_at,
+            max_pairs_per_request=max_pairs_per_request,
+        )
+
+    @staticmethod
+    def _batched_initial_grounding_metadata(
+        prompt: Prompt,
+        llm_model: LLM_Model,
+        model_params: GPTModelParams,
+        created_at: datetime,
+        max_pairs_per_request: int,
+    ) -> BatchedInitialGroundingNodeMetadata:
+        return BatchedInitialGroundingNodeMetadata(
+            llm_model=llm_model,
+            model_params=model_params,
+            prompt_name=prompt.name,
+            prompt_version_id=prompt.s3_version_id,
+            catalog_version=prompt.catalog_version,
             created_at=created_at,
             max_pairs_per_request=max_pairs_per_request,
         )
@@ -170,6 +199,7 @@ class ExtractionPipelineFactory:
         created_at: datetime,
         max_recursive_search_rounds: int = DEFAULT_RECURSIVE_SEARCH_MAX_ROUNDS,
         max_screening_pairs_per_request: int = DEFAULT_SCREENING_MAX_PAIRS_PER_REQUEST,
+        max_initial_grounding_pairs_per_request: int = DEFAULT_INITIAL_GROUNDING_MAX_PAIRS_PER_REQUEST,
     ) -> ConceptExtractionPrefillNode:
         return ConceptExtractionPrefillNode(
             field_type=concept_type,
@@ -195,8 +225,12 @@ class ExtractionPipelineFactory:
                 created_at,
                 max_screening_pairs_per_request,
             ),
-            llm_phrase_initial_grounding_metadata=ExtractionPipelineFactory._metadata(
-                phrase_initial_grounding_prompt, llm_model, model_params, created_at
+            llm_phrase_initial_grounding_metadata=ExtractionPipelineFactory._batched_initial_grounding_metadata(
+                phrase_initial_grounding_prompt,
+                llm_model,
+                model_params,
+                created_at,
+                max_initial_grounding_pairs_per_request,
             ),
             llm_phrase_recursive_grounding_metadata=ExtractionPipelineFactory._metadata(
                 phrase_recursive_grounding_prompt, llm_model, model_params, created_at
@@ -548,6 +582,10 @@ class ExtractionPipelineFactory:
         Returns a dict mapping field names to their phase pipelines.
         Each pipeline is the head of a chain of phases.
         """
+        # Rule catalogs live in this app but are read by the parse functions in
+        # `core`, which cannot import from here. Registering at pipeline
+        # construction covers every path that goes on to parse a response.
+        set_rule_catalog_lookup(build_rule_catalog_lookup())
 
         return {
             # Single-stage extractions
@@ -580,7 +618,7 @@ class ExtractionPipelineFactory:
                 recursive_search_prompt=prompt_service.product_phrase_recursive_search_prompt,
                 phrase_relationship_prompt=prompt_service.product_phrase_relationship_prompt,
                 phrase_relationship_screening_prompt=prompt_service.product_phrase_screening_pure_product_prompt,
-                phrase_freehand_grounding_prompt=prompt_service.product_phrase_freehand_grounding_prompt,
+                phrase_freehand_grounding_prompt=prompt_service.product_phrase_freehand_grounding_pure_product_prompt,
                 ontology_version_id=ontology.s3_version_id,
                 llm_model=llm_model,
                 model_params=model_params,
@@ -593,7 +631,7 @@ class ExtractionPipelineFactory:
                 recursive_search_prompt=prompt_service.product_phrase_recursive_search_prompt,
                 phrase_relationship_prompt=prompt_service.product_phrase_relationship_prompt,
                 phrase_relationship_screening_prompt=prompt_service.product_phrase_screening_contract_prompt,
-                phrase_freehand_grounding_prompt=prompt_service.product_phrase_freehand_grounding_prompt,
+                phrase_freehand_grounding_prompt=prompt_service.product_phrase_freehand_grounding_contract_prompt,
                 llm_model=llm_model,
                 model_params=model_params,
                 created_at=created_at,

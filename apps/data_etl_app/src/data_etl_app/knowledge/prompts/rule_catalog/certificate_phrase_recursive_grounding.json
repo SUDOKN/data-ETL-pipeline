@@ -1,0 +1,142 @@
+{
+  "catalog_version": "certificate_phrase_recursive_grounding.2026.08.5",
+  "prompt_name": "certificate_phrase_recursive_grounding",
+  "stage": "phrase_recursive_grounding",
+  "field_types": [
+    "certificates"
+  ],
+  "entity_noun": "certification, accreditation, registration, standard, or compliance",
+  "entity_relationships": {
+    "base": "hold or conform to",
+    "third_person": "holds or conforms to",
+    "gerund": "holding or conforming to"
+  },
+  "outcome_vocab": {
+    "condition": [
+      "satisfied",
+      "failed",
+      "not_triggered"
+    ],
+    "preference": [
+      "chosen"
+    ],
+    "quality": [
+      "appropriate",
+      "over_descended",
+      "under_descended",
+      "not_triggered"
+    ]
+  },
+  "sections": [
+    {
+      "section_id": "attribution",
+      "heading": "For each distinct specific type of {{parent_entity}} you identify, ALL of these must hold:",
+      "combinator": "all",
+      "rules": [
+        {
+          "id": "RGR-Q1",
+          "kind": "condition",
+          "reportable": true,
+          "report_when": "always",
+          "text": "The specific type of {{parent_entity}} you identified is one the phrase and its relationship summary support the manufacturer itself {{entity_relationships.gerund}}, not one it merely relates to."
+        },
+        {
+          "id": "RGR-Q2",
+          "kind": "condition",
+          "reportable": true,
+          "report_when": "always",
+          "text": "This specific type qualifies on its own merits using only the immediate evidence in the phrase and its relationship summary; general evidence that the manufacturer {{entity_relationships.third_person}} {{parent_entity}} does not by itself prove any specific type of it."
+        }
+      ]
+    },
+    {
+      "section_id": "match_qualification",
+      "heading": "The option you match it to must qualify:",
+      "combinator": "all",
+      "rules": [
+        {
+          "id": "RGR-Q3",
+          "kind": "condition",
+          "reportable": true,
+          "report_when": "always",
+          "text": "The option is chosen by comparing underlying meanings and definitions with the identified type, not by lexical or name similarity, and without forced or contrived links that rely on assumptions beyond the phrase and its relationship summary.",
+          "combinator": "note",
+          "children": [
+            {
+              "id": "RGR-Q3a",
+              "kind": "note",
+              "reportable": false,
+              "report_when": "never",
+              "text": "In particular, do not choose an option whose name resembles the identified type when the option's definition excludes this case."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "section_id": "matching",
+      "heading": "Match each specific type you identified by the first of these rules that applies, in order:",
+      "combinator": "ordered",
+      "rules": [
+        {
+          "id": "RGR-M1",
+          "kind": "preference",
+          "reportable": true,
+          "report_when": "when_chosen",
+          "text": "An option whose meaning exactly matches the identified type is chosen."
+        },
+        {
+          "id": "RGR-M2",
+          "kind": "preference",
+          "reportable": true,
+          "report_when": "when_chosen",
+          "text": "When no option exactly matches, an option whose meaning generalizes the identified type while remaining more specific than {{parent_entity}} is chosen."
+        },
+        {
+          "id": "RGR-M3",
+          "kind": "preference",
+          "reportable": true,
+          "report_when": "when_chosen",
+          "text": "When no option exactly matches or generalizes the identified type while remaining more specific than {{parent_entity}}, the identified type is proposed as an option of its own, a sibling of the ones provided.",
+          "combinator": "note",
+          "children": [
+            {
+              "id": "RGR-M3a",
+              "kind": "note",
+              "reportable": false,
+              "report_when": "never",
+              "text": "Unless the proposed option restates the meaning of an existing option under different words; in that case that existing option is chosen instead."
+            }
+          ]
+        },
+        {
+          "id": "RGR-M4",
+          "kind": "preference",
+          "reportable": true,
+          "report_when": "when_chosen",
+          "text": "When nothing more specific than {{parent_entity}} can be identified and qualify from the phrase and its relationship summary, nothing is recorded for the phrase except \"None of the above\"."
+        }
+      ]
+    },
+    {
+      "section_id": "quality",
+      "heading": "For each specific type you matched, judge its granularity:",
+      "combinator": "all",
+      "rules": [
+        {
+          "id": "RGR-QC1",
+          "kind": "quality",
+          "reportable": true,
+          "report_when": "always",
+          "text": "The specific type you settled on sits at the granularity the evidence supports: not broader than the evidence warrants (\"under_descended\" — stopping short of a more specific type the evidence proves) and not narrower than the evidence warrants (\"over_descended\" — descending to a more specific type the evidence does not prove). Otherwise it is \"appropriate\"."
+        }
+      ]
+    }
+  ],
+  "published": {
+    "s3_version_id": "JCOYn7jbBXqeB7a7jQhWHSF1fr4I2GUt",
+    "rendered_sha256": "fc933ea9f493e7d4141296b9754a682e69c266534c6c9f1495a06f69da4b352b",
+    "uploaded_at": "2026-08-11T20:17:56.321588+00:00"
+  },
+  "sentinel_tag": "None of the above"
+}

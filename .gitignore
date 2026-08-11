@@ -1,6 +1,7 @@
 __pycache__/
 .DS_Store
 *.ipynb
+!apps/data_etl_app/src/data_etl_app/scripts/mfg_extraction_test.ipynb
 *.egg-info/
 *.egg
 tmp/
@@ -17,7 +18,6 @@ logs/
 data_statistics/
 secure-chain-final/
 .idea/
-data_etl_app/src/data_etl_app/knowledge
 *.pem
 *.ttl
 scratch.ipynb
@@ -26,6 +26,8 @@ keys.py
 # Ignore any .json file that does NOT have .schema before .json
 # Example: data.json (ignored), data.schema.json (not ignored)
 *.json
+
+
 !*..manufacturers.json
 !*.schema.json
 !*.config.json
@@ -38,3 +40,13 @@ prompts/
 archive/
 envs/
 sample_pipeline_requests/
+
+
+apps/data_etl_app/src/data_etl_app/knowledge
+!apps/data_etl_app/src/data_etl_app/knowledge/
+!apps/data_etl_app/src/data_etl_app/knowledge/prompts/
+!apps/data_etl_app/src/data_etl_app/knowledge/prompts/rule_catalog/
+!apps/data_etl_app/src/data_etl_app/knowledge/prompts/rule_catalog/*.json
+apps/data_etl_app/src/data_etl_app/knowledge/prompts/final_texts/
+!apps/data_etl_app/src/data_etl_app/knowledge/prompts/skeletons/
+!apps/data_etl_app/src/data_etl_app/knowledge/prompts/skeletons/*.txt

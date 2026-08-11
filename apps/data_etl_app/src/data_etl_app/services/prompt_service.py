@@ -1,15 +1,14 @@
 import asyncio
+import hashlib
 import logging
 import litellm
-from typing import Dict, Optional
+from typing import Dict, NamedTuple, Optional
 
 from llm_providers.models.file_objects.prompt import Prompt
 from llm_providers.models.llm_model import LLM_Model
 from infra.utils.aws.s3.prompt_s3_util import (
+    PromptObject,
     download_prompt,
-)
-from data_etl_app.utils.local_prompt_util import (
-    read_local_prompt,
 )
 
 logger = logging.getLogger(__name__)
@@ -46,7 +45,10 @@ STAGED_PROMPT_FILE_PATHS = {
     "product_phrase_screening_contract": "multi_stage/4_phrase_relationship_screening/product_phrase_screening_contract.txt",
     "equipment_phrase_relationship_screening": "multi_stage/4_phrase_relationship_screening/equipment_phrase_relationship_screening.txt",
     # freehand grounding
-    "product_phrase_freehand_grounding": "multi_stage/5_freehand_grounding/product_phrase_freehand_grounding.txt",
+    # Split per manufacturing arrangement: the shared prompt asserted a
+    # pure-product relationship that was false for contract work.
+    "product_phrase_freehand_grounding_pure_product": "multi_stage/5_freehand_grounding/product_phrase_freehand_grounding_pure_product.txt",
+    "product_phrase_freehand_grounding_contract": "multi_stage/5_freehand_grounding/product_phrase_freehand_grounding_contract.txt",
     "equipment_phrase_freehand_grounding": "multi_stage/5_freehand_grounding/equipment_phrase_freehand_grounding.txt",
     # initial grounding
     "certificate_phrase_initial_grounding": "multi_stage/5_initial_grounding/certificate_phrase_initial_grounding.txt",
@@ -80,96 +82,181 @@ PROMPT_NAMES = [
 ]
 
 
+class PromptProvenanceError(Exception):
+    """A prompt read from S3 is not the one its rule catalog describes.
+
+    Raised at init, before any LLM spend: the catalog in the deployed code is what
+    ``core`` validates ``applied_rules`` against, so a prompt rendered from a
+    different catalog would have every rule report checked against the wrong rule
+    set — silently, and in a way that corrupts the persisted results rather than
+    failing them.
+    """
+
+
+class _CatalogPin(NamedTuple):
+    """What a catalog says its published prompt should be. ``s3_version_id`` and
+    ``rendered_sha256`` are None for a catalog that has never been published."""
+
+    catalog_version: str
+    s3_version_id: Optional[str]
+    rendered_sha256: Optional[str]
+
+
+def _catalog_pins() -> Dict[str, _CatalogPin]:
+    """``prompt_name -> _CatalogPin`` for every catalog-derived prompt.
+
+    Pinning is what makes a run reproducible: without it the service fetches
+    whatever is currently latest, so a prompt could change under a resumed
+    extraction. Prompts with no catalog (search, relationship, single-stage) are
+    absent from this map entirely; catalogs present but unpublished fall back to
+    latest, and are still provenance-checked against whatever comes back.
+    """
+    # Imported here rather than at module scope so a catalog problem cannot stop
+    # the module from importing.
+    from data_etl_app.services.prompt_assembly_service import load_all_catalogs
+
+    pins: Dict[str, _CatalogPin] = {}
+    unpublished: list[str] = []
+    for prompt_name, catalog in load_all_catalogs().items():
+        pins[prompt_name] = _CatalogPin(
+            catalog_version=catalog.catalog_version,
+            s3_version_id=catalog.published.s3_version_id,
+            rendered_sha256=catalog.published.rendered_sha256,
+        )
+        if not catalog.published.s3_version_id:
+            unpublished.append(prompt_name)
+
+    if unpublished:
+        logger.warning(
+            "%d rule-catalog prompt(s) have no published S3 version and will be "
+            "fetched as 'latest', so runs using them are not reproducible: %s. "
+            "Run `assemble_prompts.py adopt` (or `publish`) to pin them.",
+            len(unpublished),
+            ", ".join(sorted(unpublished)),
+        )
+    return pins
+
+
+def _verify_provenance(
+    prompt_name: str, obj: PromptObject, pin: _CatalogPin
+) -> None:
+    """Check that the bytes in hand are the ones this catalog published.
+
+    Three separate failures, because no one of them implies the others: a catalog
+    version can be bumped without changing the rendered text, and the text can
+    change without the version being bumped (a skeleton edit does exactly that).
+    """
+    if obj.catalog_version is None or obj.rendered_sha256 is None:
+        raise PromptProvenanceError(
+            f"{prompt_name}: S3 object {obj.version_id} carries no provenance "
+            f"stamp, so it cannot be shown to match catalog "
+            f"{pin.catalog_version}. Re-publish it with "
+            f"`assemble_prompts.py publish --force --only {prompt_name}`."
+        )
+
+    if obj.catalog_version != pin.catalog_version:
+        raise PromptProvenanceError(
+            f"{prompt_name}: S3 object {obj.version_id} was rendered from catalog "
+            f"{obj.catalog_version}, but the deployed catalog is "
+            f"{pin.catalog_version}. Publish the catalog, or deploy the code "
+            f"matching the published prompt."
+        )
+
+    if pin.rendered_sha256 and obj.rendered_sha256 != pin.rendered_sha256:
+        raise PromptProvenanceError(
+            f"{prompt_name}: S3 object {obj.version_id} is stamped with digest "
+            f"{obj.rendered_sha256[:12]} but the catalog recorded "
+            f"{pin.rendered_sha256[:12]} at publish time. The prompt was "
+            f"re-uploaded out of band."
+        )
+
+    actual = hashlib.sha256(obj.text.encode("utf-8")).hexdigest()
+    if actual != obj.rendered_sha256:
+        raise PromptProvenanceError(
+            f"{prompt_name}: S3 object {obj.version_id} does not hash to its own "
+            f"stamp (got {actual[:12]}, stamped {obj.rendered_sha256[:12]}). The "
+            f"object body was modified after it was stamped."
+        )
+
+
 class PromptService:
-    # One cached instance per (model_name, use_local) combination so that
-    # token counts remain correct when callers switch between LLM models.
-    _instances: dict[tuple[str, bool], "PromptService"] = {}
+    # One cached instance per model name so that token counts remain correct when
+    # callers switch between LLM models.
+    _instances: dict[str, "PromptService"] = {}
     _lock = asyncio.Lock()
 
     def __init__(self):
         self._prompt_cache: Dict[str, Prompt] = {}
-        self._use_local: bool = False
         self.llm_model: LLM_Model
         self._initialized = False
 
     @classmethod
-    async def get_instance(
-        cls, llm_model: LLM_Model, use_local: bool = False
-    ) -> "PromptService":
+    async def get_instance(cls, llm_model: LLM_Model) -> "PromptService":
         """Get the cached instance for the requested LLM model.
 
         :param llm_model: The LLM model used for token counting.
-        :param use_local: If True, load prompts from the local prompts directory
-            (LOCAL_PROMPTS_DIR) instead of downloading them from S3.
         """
-        key = (llm_model.name, use_local)
+        key = llm_model.name
         if key not in cls._instances:
             async with cls._lock:
                 if key not in cls._instances:
                     logger.info(
-                        f"Creating new PromptService instance for model={llm_model.name}, "
-                        f"use_local={use_local}"
+                        f"Creating new PromptService instance for model={llm_model.name}"
                     )
                     service = cls()
-                    await service._init_data(llm_model, use_local)
+                    await service._init_data(llm_model)
                     cls._instances[key] = service
 
         return cls._instances[key]
 
-    async def _init_data(self, llm_model: LLM_Model, use_local: bool = False) -> None:
-        """Initialize prompt cache from local files or by downloading from S3."""
+    async def _init_data(self, llm_model: LLM_Model) -> None:
+        """Initialize the prompt cache by downloading from S3.
+
+        S3 is the only source. Local development points PROMPT_BUCKET at its own
+        bucket rather than taking a separate code path, so the pinning and
+        provenance checks below are exercised everywhere they are relied on.
+        """
         self.llm_model = llm_model
-        self._use_local = use_local
         self._prompt_cache = {}
         self._initialized = False
-        source = "local" if use_local else "S3"
+        pins = _catalog_pins()
         try:
             for prompt_name in PROMPT_NAMES:
-                if use_local:
-                    self._prompt_cache[prompt_name] = self._load_local_prompt(
-                        prompt_name, self.llm_model
-                    )
-                else:
-                    self._prompt_cache[prompt_name] = await self._download_prompt(
-                        prompt_name, self.llm_model, None
-                    )
-                logger.info(
-                    f"Loaded {prompt_name} prompt from {source} with {(self._prompt_cache[prompt_name]).num_tokens} tokens"
+                self._prompt_cache[prompt_name] = await self._download_prompt(
+                    prompt_name,
+                    self.llm_model,
+                    pins.get(prompt_name),
                 )
-            logger.info(f"PromptService initialized and prompts loaded from {source}")
+                logger.info(
+                    f"Loaded {prompt_name} prompt from S3 with {(self._prompt_cache[prompt_name]).num_tokens} tokens"
+                )
+            logger.info("PromptService initialized and prompts loaded from S3")
             self._initialized = True
         except Exception as e:
             logger.error(f"Failed to initialize prompt service: {e}")
             raise
 
     async def _download_prompt(
-        self, prompt_name: str, llm_model: LLM_Model, version_id: Optional[str]
+        self, prompt_name: str, llm_model: LLM_Model, pin: Optional[_CatalogPin]
     ) -> Prompt:
 
         prompt_file_name = self._get_prompt_file_path(prompt_name)
-        prompt_content, actual_version_id = await download_prompt(
-            prompt_file_name, version_id
-        )
-        if version_id and actual_version_id != version_id:
+        version_id = pin.s3_version_id if pin else None
+        obj = await download_prompt(prompt_file_name, version_id)
+        if version_id and obj.version_id != version_id:
             raise ValueError(
-                f"Requested version ID {version_id} but got {actual_version_id} for {prompt_name}"
+                f"Requested version ID {version_id} but got {obj.version_id} for {prompt_name}"
             )
+        # Only catalog-derived prompts carry a stamp; the hand-written ones have
+        # no catalog to check against.
+        if pin is not None:
+            _verify_provenance(prompt_name, obj, pin)
         return Prompt(
-            s3_version_id=actual_version_id,
+            s3_version_id=obj.version_id,
             name=prompt_name,
-            text=prompt_content,
-            num_tokens=litellm.token_counter(model=llm_model.name, text=prompt_content),
-        )
-
-    def _load_local_prompt(self, prompt_name: str, llm_model: LLM_Model) -> Prompt:
-        """Load a prompt from the local prompts directory (LOCAL_PROMPTS_DIR)."""
-        prompt_file_name = self._get_prompt_file_path(prompt_name)
-        prompt_content = read_local_prompt(prompt_file_name)
-        return Prompt(
-            s3_version_id="local",
-            name=prompt_name,
-            text=prompt_content,
-            num_tokens=litellm.token_counter(model=llm_model.name, text=prompt_content),
+            text=obj.text,
+            num_tokens=litellm.token_counter(model=llm_model.name, text=obj.text),
+            catalog_version=obj.catalog_version,
         )
 
     def _get_prompt_file_path(self, prompt_name: str) -> str:
@@ -180,11 +267,11 @@ class PromptService:
         )
 
     async def refresh(self) -> None:
-        """Reload prompt data from the current source (local or S3)."""
+        """Reload prompt data from S3."""
         logger.info("Refreshing prompt data")
         async with self._lock:
             logger.info("Lock acquired, starting prompt refresh")
-            await self._init_data(self.llm_model, self._use_local)
+            await self._init_data(self.llm_model)
 
     def _get_prompt(self, prompt_name: str) -> Prompt:
         """Helper method to get prompt from cache with validation."""
@@ -239,8 +326,12 @@ class PromptService:
         return self._get_prompt("product_phrase_screening_contract")
 
     @property
-    def product_phrase_freehand_grounding_prompt(self) -> Prompt:
-        return self._get_prompt("product_phrase_freehand_grounding")
+    def product_phrase_freehand_grounding_pure_product_prompt(self) -> Prompt:
+        return self._get_prompt("product_phrase_freehand_grounding_pure_product")
+
+    @property
+    def product_phrase_freehand_grounding_contract_prompt(self) -> Prompt:
+        return self._get_prompt("product_phrase_freehand_grounding_contract")
 
     @property
     def equipment_phrase_search_prompt(self) -> Prompt:
@@ -360,8 +451,6 @@ class PromptService:
 
 
 # Factory function for getting the service instance
-async def get_prompt_service(
-    llm_model: LLM_Model, use_local: bool = False
-) -> PromptService:
+async def get_prompt_service(llm_model: LLM_Model) -> PromptService:
     """Factory function to get the PromptService instance."""
-    return await PromptService.get_instance(llm_model=llm_model, use_local=use_local)
+    return await PromptService.get_instance(llm_model=llm_model)

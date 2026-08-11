@@ -19,6 +19,9 @@ from core.models.extraction_results.keyword_extraction_results import (
 from core.models.extraction_results.llm_phrase_extraction_results import (
     partition_by_search_round,
 )
+from core.models.extraction_schemas.grounding import (
+    is_sentinel_grounding_label,
+)
 from core.models.field_types import ExtractionFieldType
 from core.models.pipeline_nodes.base.base_node import PipelineContext
 from core.models.pipeline_nodes.base.base_reconcile_node import (
@@ -189,6 +192,7 @@ class KeywordReconcileNode(ReconcileNode[ExtractionFieldType]):
                 grounded_label
                 for phrase_groundings in llm_phrase_freehand_grounding_flat.values()
                 for grounded_label in phrase_groundings.keys()
+                if not is_sentinel_grounding_label(grounded_label)
             }
             chunked_phrase_trails_dump[chunk_bounds] = [
                 build_keyword_phrase_trail_entry(

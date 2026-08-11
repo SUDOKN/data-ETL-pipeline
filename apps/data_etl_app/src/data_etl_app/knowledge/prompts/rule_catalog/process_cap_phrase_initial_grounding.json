@@ -1,0 +1,107 @@
+{
+  "catalog_version": "process_cap_phrase_initial_grounding.2026.08.5",
+  "prompt_name": "process_cap_phrase_initial_grounding",
+  "stage": "phrase_initial_grounding",
+  "field_types": [
+    "process_caps"
+  ],
+  "entity_noun": "manufacturing process, operation, or capability",
+  "entity_relationships": {
+    "base": "perform, offer, or specialize in",
+    "third_person": "performs, offers, or specializes in",
+    "gerund": "performing, offering, or specializing in"
+  },
+  "outcome_vocab": {
+    "condition": [
+      "satisfied",
+      "failed",
+      "not_triggered"
+    ],
+    "preference": [
+      "chosen"
+    ]
+  },
+  "sections": [
+    {
+      "section_id": "attribution",
+      "heading": "For each distinct {{entity_noun}} you identify, this must hold:",
+      "combinator": "all",
+      "rules": [
+        {
+          "id": "IGR-Q1",
+          "kind": "condition",
+          "reportable": true,
+          "report_when": "always",
+          "text": "The {{entity_noun}} you identified is one the phrase and its relationship summary support the manufacturer itself {{entity_relationships.gerund}}."
+        }
+      ]
+    },
+    {
+      "section_id": "match_qualification",
+      "heading": "The option you match it to must qualify:",
+      "combinator": "all",
+      "rules": [
+        {
+          "id": "IGR-Q2",
+          "kind": "condition",
+          "reportable": true,
+          "report_when": "always",
+          "text": "The option is chosen by comparing underlying meanings and definitions with the identified {{entity_noun}}, not by lexical or name similarity, and without forced or contrived links that rely on assumptions beyond the phrase and its relationship summary.",
+          "combinator": "note",
+          "children": [
+            {
+              "id": "IGR-Q2a",
+              "kind": "note",
+              "reportable": false,
+              "report_when": "never",
+              "text": "In particular, do not choose an option whose name resembles the identified {{entity_noun}} when the option's definition excludes this case."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "section_id": "matching",
+      "heading": "Match each {{entity_noun}} you identified by the first of these rules that applies, in order:",
+      "combinator": "ordered",
+      "rules": [
+        {
+          "id": "IGR-M1",
+          "kind": "preference",
+          "reportable": true,
+          "report_when": "when_chosen",
+          "text": "An option whose meaning exactly matches the identified {{entity_noun}} is chosen."
+        },
+        {
+          "id": "IGR-M2",
+          "kind": "preference",
+          "reportable": true,
+          "report_when": "when_chosen",
+          "text": "When no option exactly matches, an option whose meaning generalizes the identified {{entity_noun}} is chosen."
+        },
+        {
+          "id": "IGR-M3",
+          "kind": "preference",
+          "reportable": true,
+          "report_when": "when_chosen",
+          "text": "When no option exactly matches or generalizes the identified {{entity_noun}}, the identified {{entity_noun}} is proposed as an option of its own.",
+          "combinator": "note",
+          "children": [
+            {
+              "id": "IGR-M3a",
+              "kind": "note",
+              "reportable": false,
+              "report_when": "never",
+              "text": "Unless the proposed option restates the meaning of an existing option under different words; in that case that existing option is chosen instead."
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "published": {
+    "s3_version_id": "_k2wtCvplIADto_YrnL.nG7z5om_nvIb",
+    "rendered_sha256": "39edf0845f34ef33b55d428f5d4a946d8992c1178dc88bdcf7c8b7f8ad8665d0",
+    "uploaded_at": "2026-08-11T20:17:56.321588+00:00"
+  }
+}

@@ -1,0 +1,108 @@
+{
+  "catalog_version": "product_phrase_freehand_grounding_contract.2026.08.6",
+  "prompt_name": "product_phrase_freehand_grounding_contract",
+  "stage": "phrase_freehand_grounding",
+  "field_types": [
+    "contract_products"
+  ],
+  "entity_noun": "product category",
+  "entity_relationships": {
+    "base": "perform contract or customer-directed work on",
+    "third_person": "performs contract or customer-directed work on",
+    "gerund": "performing contract or customer-directed work on"
+  },
+  "outcome_vocab": {
+    "condition": [
+      "satisfied",
+      "failed",
+      "not_triggered"
+    ],
+    "preference": [
+      "chosen"
+    ]
+  },
+  "sections": [
+    {
+      "section_id": "attribution",
+      "heading": "For each distinct {{entity_noun}} you identify, this must hold:",
+      "combinator": "all",
+      "rules": [
+        {
+          "id": "FGR-Q1",
+          "kind": "condition",
+          "reportable": true,
+          "report_when": "always",
+          "text": "The phrase and its relationship summary support the manufacturer {{entity_relationships.gerund}} at least one item in the {{entity_noun}} on behalf of another party, not merely relating to it.",
+          "combinator": "note",
+          "children": [
+            {
+              "id": "FGR-Q1a",
+              "kind": "note",
+              "reportable": false,
+              "report_when": "never",
+              "text": "The manufacturer does not need to sell the item. In contract work the customer owns and sells it, so the absence of any sale by the manufacturer is not a reason to withhold a {{entity_noun}}."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "section_id": "category_qualification",
+      "heading": "The {{entity_noun}} you name must qualify, in BOTH of these ways:",
+      "combinator": "all",
+      "rules": [
+        {
+          "id": "FGR-Q2",
+          "kind": "condition",
+          "reportable": true,
+          "report_when": "always",
+          "text": "It is a determinate category: neither an individual item — a brand name, model number, part number, catalog code, or one-off description — nor a term so general it fixes nothing, such as \"products\", \"parts\", or \"components\". A phrase naming a specific item is reported as the category that item belongs to.",
+          "combinator": "note",
+          "children": [
+            {
+              "id": "FGR-Q2a",
+              "kind": "note",
+              "reportable": false,
+              "report_when": "never",
+              "text": "\"Model 4200-B hydraulic manifold\" is an individual item; the category it belongs to is \"hydraulic manifold\". Name the category, and never carry the brand, model, or part number into it."
+            }
+          ]
+        },
+        {
+          "id": "FGR-Q3",
+          "kind": "condition",
+          "reportable": true,
+          "report_when": "always",
+          "text": "It is distinct from every other {{entity_noun}} named for the same phrase. Two names for the same {{entity_noun}} in different words are one, not two."
+        }
+      ]
+    },
+    {
+      "section_id": "naming",
+      "heading": "Name each {{entity_noun}} by the first of these rules that applies, in order:",
+      "combinator": "ordered",
+      "rules": [
+        {
+          "id": "FGR-M1",
+          "kind": "preference",
+          "reportable": true,
+          "report_when": "when_chosen",
+          "text": "A {{entity_noun}} can be determined from the phrase and its relationship summary, and it is named directly."
+        },
+        {
+          "id": "FGR-M2",
+          "kind": "preference",
+          "reportable": true,
+          "report_when": "when_chosen",
+          "text": "No {{entity_noun}} can be determined from the phrase and its relationship summary, and \"Cannot categorize\" is named as the only entry for the phrase."
+        }
+      ]
+    }
+  ],
+  "published": {
+    "s3_version_id": "djaIQG9ojWY7H3aYObNpK0nInH5EKkPa",
+    "rendered_sha256": "4dab832c2629f66e8d120ee681af8fdd15d7b5311b439ad8f2c00d369b1cf4fc",
+    "uploaded_at": "2026-08-11T20:17:56.321588+00:00"
+  },
+  "sentinel_tag": "Cannot categorize"
+}

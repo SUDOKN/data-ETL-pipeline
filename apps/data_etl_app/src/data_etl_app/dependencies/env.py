@@ -48,6 +48,12 @@ MIGRATION_ENV = [
     *infra_env.MONGO,
 ]
 
+# assemble_prompts.py: renders prompts from rule catalogs and publishes them.
+# Touches S3 only — no database.
+PROMPT_SCRIPT_ENV = [
+    *infra_env.S3_PROMPTS,
+]
+
 ONTOLOGY_SCRIPT_ENV = [
     *infra_env.MONGO,
     *infra_env.GRAPH_DB,

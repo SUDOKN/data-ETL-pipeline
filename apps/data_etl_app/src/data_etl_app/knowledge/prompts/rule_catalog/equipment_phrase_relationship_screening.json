@@ -1,0 +1,107 @@
+{
+  "catalog_version": "equipment_phrase_relationship_screening.2026.08.5",
+  "prompt_name": "equipment_phrase_relationship_screening",
+  "stage": "phrase_relationship_screening",
+  "field_types": [
+    "equipments"
+  ],
+  "entity_noun": "equipment category",
+  "entity_relationships": {
+    "base": "operate or use",
+    "third_person": "operates or uses",
+    "gerund": "operating or using"
+  },
+  "outcome_vocab": {
+    "condition": [
+      "satisfied",
+      "failed",
+      "not_triggered"
+    ],
+    "guard": [
+      "violated"
+    ]
+  },
+  "sections": [
+    {
+      "section_id": "pass_conditions",
+      "heading": "A candidate {{entity_noun}} qualifies only if ALL of these conditions hold for it:",
+      "combinator": "all",
+      "rules": [
+        {
+          "id": "SCR-1",
+          "kind": "condition",
+          "reportable": true,
+          "report_when": "always",
+          "text": "At least one {{entity_noun}} can be identified from the phrase and its relationship summary.",
+          "combinator": "note",
+          "children": [
+            {
+              "id": "SCR-1a",
+              "kind": "note",
+              "reportable": false,
+              "report_when": "never",
+              "text": "The category must actually be determinable. A phrase that mentions only \"equipment\" or \"machinery\" in general terms, with nothing that fixes a category, does not satisfy this condition. A phrase naming a specific machine does satisfy it — name the category that machine belongs to, never its brand or model."
+            }
+          ]
+        },
+        {
+          "id": "SCR-2",
+          "kind": "condition",
+          "reportable": true,
+          "report_when": "always",
+          "text": "The phrase and its relationship summary show real, concrete involvement with the identified {{entity_noun}}: some party is shown to {{entity_relationships.base}} that {{entity_noun}}, not merely to name, list, or mention it in passing."
+        },
+        {
+          "id": "SCR-3",
+          "kind": "condition",
+          "reportable": true,
+          "report_when": "always",
+          "text": "It is the manufacturer itself that {{entity_relationships.third_person}} the identified {{entity_noun}} — not a customer, supplier, distributor, or other third party that the manufacturer merely relates to.",
+          "combinator": "note",
+          "children": [
+            {
+              "id": "SCR-3a",
+              "kind": "note",
+              "reportable": false,
+              "report_when": "never",
+              "text": "How the manufacturer comes to have the {{entity_noun}} does not matter: direct ownership, leasing, partnership, and access through a parent or sister company all count as the manufacturer itself. The phrase and summary do not have to state who owns it."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "section_id": "guards",
+      "heading": "A candidate {{entity_noun}} is ruled out if ANY of these guards is violated by it. Ruling out one candidate does not reject the phrase — another candidate may still qualify:",
+      "combinator": "any",
+      "rules": [
+        {
+          "id": "SCR-G2",
+          "kind": "guard",
+          "reportable": true,
+          "report_when": "on_violation",
+          "text": "The identified {{entity_noun}} is generic office equipment or furniture — for example desks, printers, or phones — with no explicit tie to production."
+        },
+        {
+          "id": "SCR-G3",
+          "kind": "guard",
+          "reportable": true,
+          "report_when": "on_violation",
+          "text": "The identified {{entity_noun}} is something the manufacturer sells rather than something it {{entity_relationships.third_person}} — a machine on its product line, not one on its floor."
+        },
+        {
+          "id": "SCR-G4",
+          "kind": "guard",
+          "reportable": true,
+          "report_when": "on_violation",
+          "text": "The manufacturer's use of the identified {{entity_noun}} is only aspirational, hoped-for, planned, on order, or discontinued, rather than current and actual."
+        }
+      ]
+    }
+  ],
+  "published": {
+    "s3_version_id": "ibUogdKet9D2FM08hdJu8HLB8VKwVXRt",
+    "rendered_sha256": "edc055c7e9b61da7da2092aabc1512f37432f415ceae8925db3c98d4a6cd8946",
+    "uploaded_at": "2026-08-11T20:17:56.321588+00:00"
+  }
+}

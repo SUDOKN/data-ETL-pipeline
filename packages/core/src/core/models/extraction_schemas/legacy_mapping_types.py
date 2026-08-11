@@ -4,11 +4,6 @@ from core.models.extraction_schemas.relationship import (
     LLMPhraseRelationshipResults,
 )
 
-# Others
-PhraseAndReasonMap = dict[str, str]
-TagToPhraseAndReasonMap = dict[str, PhraseAndReasonMap]
-
-
 RawLLMMappingResult = dict[str, dict[str, str]]
 """
 { unknown --> {"mapped_known_1": "matching reason"}, {"mapped_known_2": "matching reason"} } where evidence is the text snippet from which LLM derived the mapping

@@ -309,6 +309,12 @@
                   "prompt_version_id": {
                     "bsonType": "string"
                   },
+                  "catalog_version": {
+                    "bsonType": [
+                      "string",
+                      "null"
+                    ]
+                  },
                   "created_at": {
                     "bsonType": "date"
                   }
@@ -577,6 +583,12 @@
                   },
                   "prompt_version_id": {
                     "bsonType": "string"
+                  },
+                  "catalog_version": {
+                    "bsonType": [
+                      "string",
+                      "null"
+                    ]
                   },
                   "created_at": {
                     "bsonType": "date"
@@ -847,6 +859,12 @@
                   "prompt_version_id": {
                     "bsonType": "string"
                   },
+                  "catalog_version": {
+                    "bsonType": [
+                      "string",
+                      "null"
+                    ]
+                  },
                   "created_at": {
                     "bsonType": "date"
                   }
@@ -1115,6 +1133,12 @@
                   },
                   "prompt_version_id": {
                     "bsonType": "string"
+                  },
+                  "catalog_version": {
+                    "bsonType": [
+                      "string",
+                      "null"
+                    ]
                   },
                   "created_at": {
                     "bsonType": "date"
@@ -1499,6 +1523,12 @@
                   "prompt_version_id": {
                     "bsonType": "string"
                   },
+                  "catalog_version": {
+                    "bsonType": [
+                      "string",
+                      "null"
+                    ]
+                  },
                   "created_at": {
                     "bsonType": "date"
                   }
@@ -1768,6 +1798,12 @@
                   "prompt_version_id": {
                     "bsonType": "string"
                   },
+                  "catalog_version": {
+                    "bsonType": [
+                      "string",
+                      "null"
+                    ]
+                  },
                   "created_at": {
                     "bsonType": "date"
                   }
@@ -1933,6 +1969,12 @@
                   },
                   "prompt_version_id": {
                     "bsonType": "string"
+                  },
+                  "catalog_version": {
+                    "bsonType": [
+                      "string",
+                      "null"
+                    ]
                   },
                   "created_at": {
                     "bsonType": "date"
@@ -2102,6 +2144,12 @@
                   "prompt_version_id": {
                     "bsonType": "string"
                   },
+                  "catalog_version": {
+                    "bsonType": [
+                      "string",
+                      "null"
+                    ]
+                  },
                   "created_at": {
                     "bsonType": "date"
                   }
@@ -2267,6 +2315,12 @@
                   },
                   "prompt_version_id": {
                     "bsonType": "string"
+                  },
+                  "catalog_version": {
+                    "bsonType": [
+                      "string",
+                      "null"
+                    ]
                   },
                   "created_at": {
                     "bsonType": "date"
@@ -2436,6 +2490,12 @@
                   "prompt_version_id": {
                     "bsonType": "string"
                   },
+                  "catalog_version": {
+                    "bsonType": [
+                      "string",
+                      "null"
+                    ]
+                  },
                   "created_at": {
                     "bsonType": "date"
                   }
@@ -2490,15 +2550,41 @@
                       "bsonType": "object",
                       "required": [
                         "passed",
-                        "reason"
+                        "applied_rules"
                       ],
                       "additionalProperties": false,
                       "properties": {
                         "passed": {
                           "bsonType": "bool"
                         },
-                        "reason": {
-                          "bsonType": "string"
+                        "identified_entity": {
+                          "bsonType": [
+                            "string",
+                            "null"
+                          ]
+                        },
+                        "applied_rules": {
+                          "bsonType": "array",
+                          "items": {
+                            "bsonType": "object",
+                            "required": [
+                              "rule_id",
+                              "outcome",
+                              "explanation"
+                            ],
+                            "additionalProperties": false,
+                            "properties": {
+                              "rule_id": {
+                                "bsonType": "string"
+                              },
+                              "outcome": {
+                                "bsonType": "string"
+                              },
+                              "explanation": {
+                                "bsonType": "string"
+                              }
+                            }
+                          }
                         }
                       }
                     }
@@ -2518,7 +2604,27 @@
                     "additionalProperties": {
                       "bsonType": "object",
                       "additionalProperties": {
-                        "bsonType": "string"
+                        "bsonType": "array",
+                        "items": {
+                          "bsonType": "object",
+                          "required": [
+                            "rule_id",
+                            "outcome",
+                            "explanation"
+                          ],
+                          "additionalProperties": false,
+                          "properties": {
+                            "rule_id": {
+                              "bsonType": "string"
+                            },
+                            "outcome": {
+                              "bsonType": "string"
+                            },
+                            "explanation": {
+                              "bsonType": "string"
+                            }
+                          }
+                        }
                       }
                     }
                   }
@@ -2740,6 +2846,12 @@
                   "prompt_version_id": {
                     "bsonType": "string"
                   },
+                  "catalog_version": {
+                    "bsonType": [
+                      "string",
+                      "null"
+                    ]
+                  },
                   "created_at": {
                     "bsonType": "date"
                   }
@@ -2905,6 +3017,12 @@
                   },
                   "prompt_version_id": {
                     "bsonType": "string"
+                  },
+                  "catalog_version": {
+                    "bsonType": [
+                      "string",
+                      "null"
+                    ]
                   },
                   "created_at": {
                     "bsonType": "date"
@@ -3074,6 +3192,12 @@
                   "prompt_version_id": {
                     "bsonType": "string"
                   },
+                  "catalog_version": {
+                    "bsonType": [
+                      "string",
+                      "null"
+                    ]
+                  },
                   "created_at": {
                     "bsonType": "date"
                   }
@@ -3239,6 +3363,12 @@
                   },
                   "prompt_version_id": {
                     "bsonType": "string"
+                  },
+                  "catalog_version": {
+                    "bsonType": [
+                      "string",
+                      "null"
+                    ]
                   },
                   "created_at": {
                     "bsonType": "date"
@@ -3408,6 +3538,12 @@
                   "prompt_version_id": {
                     "bsonType": "string"
                   },
+                  "catalog_version": {
+                    "bsonType": [
+                      "string",
+                      "null"
+                    ]
+                  },
                   "created_at": {
                     "bsonType": "date"
                   }
@@ -3462,15 +3598,41 @@
                       "bsonType": "object",
                       "required": [
                         "passed",
-                        "reason"
+                        "applied_rules"
                       ],
                       "additionalProperties": false,
                       "properties": {
                         "passed": {
                           "bsonType": "bool"
                         },
-                        "reason": {
-                          "bsonType": "string"
+                        "identified_entity": {
+                          "bsonType": [
+                            "string",
+                            "null"
+                          ]
+                        },
+                        "applied_rules": {
+                          "bsonType": "array",
+                          "items": {
+                            "bsonType": "object",
+                            "required": [
+                              "rule_id",
+                              "outcome",
+                              "explanation"
+                            ],
+                            "additionalProperties": false,
+                            "properties": {
+                              "rule_id": {
+                                "bsonType": "string"
+                              },
+                              "outcome": {
+                                "bsonType": "string"
+                              },
+                              "explanation": {
+                                "bsonType": "string"
+                              }
+                            }
+                          }
                         }
                       }
                     }
@@ -3490,7 +3652,27 @@
                     "additionalProperties": {
                       "bsonType": "object",
                       "additionalProperties": {
-                        "bsonType": "string"
+                        "bsonType": "array",
+                        "items": {
+                          "bsonType": "object",
+                          "required": [
+                            "rule_id",
+                            "outcome",
+                            "explanation"
+                          ],
+                          "additionalProperties": false,
+                          "properties": {
+                            "rule_id": {
+                              "bsonType": "string"
+                            },
+                            "outcome": {
+                              "bsonType": "string"
+                            },
+                            "explanation": {
+                              "bsonType": "string"
+                            }
+                          }
+                        }
                       }
                     }
                   }
@@ -3712,6 +3894,12 @@
                   "prompt_version_id": {
                     "bsonType": "string"
                   },
+                  "catalog_version": {
+                    "bsonType": [
+                      "string",
+                      "null"
+                    ]
+                  },
                   "created_at": {
                     "bsonType": "date"
                   }
@@ -3877,6 +4065,12 @@
                   },
                   "prompt_version_id": {
                     "bsonType": "string"
+                  },
+                  "catalog_version": {
+                    "bsonType": [
+                      "string",
+                      "null"
+                    ]
                   },
                   "created_at": {
                     "bsonType": "date"
@@ -4046,6 +4240,12 @@
                   "prompt_version_id": {
                     "bsonType": "string"
                   },
+                  "catalog_version": {
+                    "bsonType": [
+                      "string",
+                      "null"
+                    ]
+                  },
                   "created_at": {
                     "bsonType": "date"
                   }
@@ -4211,6 +4411,12 @@
                   },
                   "prompt_version_id": {
                     "bsonType": "string"
+                  },
+                  "catalog_version": {
+                    "bsonType": [
+                      "string",
+                      "null"
+                    ]
                   },
                   "created_at": {
                     "bsonType": "date"
@@ -4380,6 +4586,12 @@
                   "prompt_version_id": {
                     "bsonType": "string"
                   },
+                  "catalog_version": {
+                    "bsonType": [
+                      "string",
+                      "null"
+                    ]
+                  },
                   "created_at": {
                     "bsonType": "date"
                   }
@@ -4434,15 +4646,41 @@
                       "bsonType": "object",
                       "required": [
                         "passed",
-                        "reason"
+                        "applied_rules"
                       ],
                       "additionalProperties": false,
                       "properties": {
                         "passed": {
                           "bsonType": "bool"
                         },
-                        "reason": {
-                          "bsonType": "string"
+                        "identified_entity": {
+                          "bsonType": [
+                            "string",
+                            "null"
+                          ]
+                        },
+                        "applied_rules": {
+                          "bsonType": "array",
+                          "items": {
+                            "bsonType": "object",
+                            "required": [
+                              "rule_id",
+                              "outcome",
+                              "explanation"
+                            ],
+                            "additionalProperties": false,
+                            "properties": {
+                              "rule_id": {
+                                "bsonType": "string"
+                              },
+                              "outcome": {
+                                "bsonType": "string"
+                              },
+                              "explanation": {
+                                "bsonType": "string"
+                              }
+                            }
+                          }
                         }
                       }
                     }
@@ -4462,7 +4700,27 @@
                     "additionalProperties": {
                       "bsonType": "object",
                       "additionalProperties": {
-                        "bsonType": "string"
+                        "bsonType": "array",
+                        "items": {
+                          "bsonType": "object",
+                          "required": [
+                            "rule_id",
+                            "outcome",
+                            "explanation"
+                          ],
+                          "additionalProperties": false,
+                          "properties": {
+                            "rule_id": {
+                              "bsonType": "string"
+                            },
+                            "outcome": {
+                              "bsonType": "string"
+                            },
+                            "explanation": {
+                              "bsonType": "string"
+                            }
+                          }
+                        }
                       }
                     }
                   }
@@ -4685,6 +4943,12 @@
                   "prompt_version_id": {
                     "bsonType": "string"
                   },
+                  "catalog_version": {
+                    "bsonType": [
+                      "string",
+                      "null"
+                    ]
+                  },
                   "created_at": {
                     "bsonType": "date"
                   }
@@ -4850,6 +5114,12 @@
                   },
                   "prompt_version_id": {
                     "bsonType": "string"
+                  },
+                  "catalog_version": {
+                    "bsonType": [
+                      "string",
+                      "null"
+                    ]
                   },
                   "created_at": {
                     "bsonType": "date"
@@ -5019,6 +5289,12 @@
                   "prompt_version_id": {
                     "bsonType": "string"
                   },
+                  "catalog_version": {
+                    "bsonType": [
+                      "string",
+                      "null"
+                    ]
+                  },
                   "created_at": {
                     "bsonType": "date"
                   }
@@ -5185,6 +5461,12 @@
                   "prompt_version_id": {
                     "bsonType": "string"
                   },
+                  "catalog_version": {
+                    "bsonType": [
+                      "string",
+                      "null"
+                    ]
+                  },
                   "created_at": {
                     "bsonType": "date"
                   },
@@ -5200,7 +5482,8 @@
                   "model_params",
                   "prompt_name",
                   "prompt_version_id",
-                  "created_at"
+                  "created_at",
+                  "max_pairs_per_request"
                 ],
                 "additionalProperties": false,
                 "properties": {
@@ -5353,8 +5636,17 @@
                   "prompt_version_id": {
                     "bsonType": "string"
                   },
+                  "catalog_version": {
+                    "bsonType": [
+                      "string",
+                      "null"
+                    ]
+                  },
                   "created_at": {
                     "bsonType": "date"
+                  },
+                  "max_pairs_per_request": {
+                    "bsonType": "int"
                   }
                 }
               },
@@ -5518,6 +5810,12 @@
                   "prompt_version_id": {
                     "bsonType": "string"
                   },
+                  "catalog_version": {
+                    "bsonType": [
+                      "string",
+                      "null"
+                    ]
+                  },
                   "created_at": {
                     "bsonType": "date"
                   }
@@ -5591,15 +5889,41 @@
                       "bsonType": "object",
                       "required": [
                         "passed",
-                        "reason"
+                        "applied_rules"
                       ],
                       "additionalProperties": false,
                       "properties": {
                         "passed": {
                           "bsonType": "bool"
                         },
-                        "reason": {
-                          "bsonType": "string"
+                        "identified_entity": {
+                          "bsonType": [
+                            "string",
+                            "null"
+                          ]
+                        },
+                        "applied_rules": {
+                          "bsonType": "array",
+                          "items": {
+                            "bsonType": "object",
+                            "required": [
+                              "rule_id",
+                              "outcome",
+                              "explanation"
+                            ],
+                            "additionalProperties": false,
+                            "properties": {
+                              "rule_id": {
+                                "bsonType": "string"
+                              },
+                              "outcome": {
+                                "bsonType": "string"
+                              },
+                              "explanation": {
+                                "bsonType": "string"
+                              }
+                            }
+                          }
                         }
                       }
                     }
@@ -5643,7 +5967,27 @@
                     "additionalProperties": {
                       "bsonType": "object",
                       "additionalProperties": {
-                        "bsonType": "string"
+                        "bsonType": "array",
+                        "items": {
+                          "bsonType": "object",
+                          "required": [
+                            "rule_id",
+                            "outcome",
+                            "explanation"
+                          ],
+                          "additionalProperties": false,
+                          "properties": {
+                            "rule_id": {
+                              "bsonType": "string"
+                            },
+                            "outcome": {
+                              "bsonType": "string"
+                            },
+                            "explanation": {
+                              "bsonType": "string"
+                            }
+                          }
+                        }
                       }
                     }
                   }
@@ -5656,8 +6000,8 @@
                       "bsonType": "object",
                       "required": [
                         "group_id",
-                        "direct_phrases_to_og_tag_w_reason",
-                        "iterative_phrases_to_og_tag_w_reason"
+                        "direct_phrases_to_og_tag_w_rules",
+                        "iterative_phrases_to_og_tag_w_rules"
                       ],
                       "additionalProperties": false,
                       "properties": {
@@ -5670,21 +6014,61 @@
                         "group_id": {
                           "bsonType": "string"
                         },
-                        "direct_phrases_to_og_tag_w_reason": {
+                        "direct_phrases_to_og_tag_w_rules": {
                           "bsonType": "object",
                           "additionalProperties": {
                             "bsonType": "object",
                             "additionalProperties": {
-                              "bsonType": "string"
+                              "bsonType": "array",
+                              "items": {
+                                "bsonType": "object",
+                                "required": [
+                                  "rule_id",
+                                  "outcome",
+                                  "explanation"
+                                ],
+                                "additionalProperties": false,
+                                "properties": {
+                                  "rule_id": {
+                                    "bsonType": "string"
+                                  },
+                                  "outcome": {
+                                    "bsonType": "string"
+                                  },
+                                  "explanation": {
+                                    "bsonType": "string"
+                                  }
+                                }
+                              }
                             }
                           }
                         },
-                        "iterative_phrases_to_og_tag_w_reason": {
+                        "iterative_phrases_to_og_tag_w_rules": {
                           "bsonType": "object",
                           "additionalProperties": {
                             "bsonType": "object",
                             "additionalProperties": {
-                              "bsonType": "string"
+                              "bsonType": "array",
+                              "items": {
+                                "bsonType": "object",
+                                "required": [
+                                  "rule_id",
+                                  "outcome",
+                                  "explanation"
+                                ],
+                                "additionalProperties": false,
+                                "properties": {
+                                  "rule_id": {
+                                    "bsonType": "string"
+                                  },
+                                  "outcome": {
+                                    "bsonType": "string"
+                                  },
+                                  "explanation": {
+                                    "bsonType": "string"
+                                  }
+                                }
+                              }
                             }
                           }
                         }
@@ -5911,6 +6295,12 @@
                   "prompt_version_id": {
                     "bsonType": "string"
                   },
+                  "catalog_version": {
+                    "bsonType": [
+                      "string",
+                      "null"
+                    ]
+                  },
                   "created_at": {
                     "bsonType": "date"
                   }
@@ -6076,6 +6466,12 @@
                   },
                   "prompt_version_id": {
                     "bsonType": "string"
+                  },
+                  "catalog_version": {
+                    "bsonType": [
+                      "string",
+                      "null"
+                    ]
                   },
                   "created_at": {
                     "bsonType": "date"
@@ -6245,6 +6641,12 @@
                   "prompt_version_id": {
                     "bsonType": "string"
                   },
+                  "catalog_version": {
+                    "bsonType": [
+                      "string",
+                      "null"
+                    ]
+                  },
                   "created_at": {
                     "bsonType": "date"
                   }
@@ -6411,6 +6813,12 @@
                   "prompt_version_id": {
                     "bsonType": "string"
                   },
+                  "catalog_version": {
+                    "bsonType": [
+                      "string",
+                      "null"
+                    ]
+                  },
                   "created_at": {
                     "bsonType": "date"
                   },
@@ -6426,7 +6834,8 @@
                   "model_params",
                   "prompt_name",
                   "prompt_version_id",
-                  "created_at"
+                  "created_at",
+                  "max_pairs_per_request"
                 ],
                 "additionalProperties": false,
                 "properties": {
@@ -6579,8 +6988,17 @@
                   "prompt_version_id": {
                     "bsonType": "string"
                   },
+                  "catalog_version": {
+                    "bsonType": [
+                      "string",
+                      "null"
+                    ]
+                  },
                   "created_at": {
                     "bsonType": "date"
+                  },
+                  "max_pairs_per_request": {
+                    "bsonType": "int"
                   }
                 }
               },
@@ -6744,6 +7162,12 @@
                   "prompt_version_id": {
                     "bsonType": "string"
                   },
+                  "catalog_version": {
+                    "bsonType": [
+                      "string",
+                      "null"
+                    ]
+                  },
                   "created_at": {
                     "bsonType": "date"
                   }
@@ -6817,15 +7241,41 @@
                       "bsonType": "object",
                       "required": [
                         "passed",
-                        "reason"
+                        "applied_rules"
                       ],
                       "additionalProperties": false,
                       "properties": {
                         "passed": {
                           "bsonType": "bool"
                         },
-                        "reason": {
-                          "bsonType": "string"
+                        "identified_entity": {
+                          "bsonType": [
+                            "string",
+                            "null"
+                          ]
+                        },
+                        "applied_rules": {
+                          "bsonType": "array",
+                          "items": {
+                            "bsonType": "object",
+                            "required": [
+                              "rule_id",
+                              "outcome",
+                              "explanation"
+                            ],
+                            "additionalProperties": false,
+                            "properties": {
+                              "rule_id": {
+                                "bsonType": "string"
+                              },
+                              "outcome": {
+                                "bsonType": "string"
+                              },
+                              "explanation": {
+                                "bsonType": "string"
+                              }
+                            }
+                          }
                         }
                       }
                     }
@@ -6869,7 +7319,27 @@
                     "additionalProperties": {
                       "bsonType": "object",
                       "additionalProperties": {
-                        "bsonType": "string"
+                        "bsonType": "array",
+                        "items": {
+                          "bsonType": "object",
+                          "required": [
+                            "rule_id",
+                            "outcome",
+                            "explanation"
+                          ],
+                          "additionalProperties": false,
+                          "properties": {
+                            "rule_id": {
+                              "bsonType": "string"
+                            },
+                            "outcome": {
+                              "bsonType": "string"
+                            },
+                            "explanation": {
+                              "bsonType": "string"
+                            }
+                          }
+                        }
                       }
                     }
                   }
@@ -6882,8 +7352,8 @@
                       "bsonType": "object",
                       "required": [
                         "group_id",
-                        "direct_phrases_to_og_tag_w_reason",
-                        "iterative_phrases_to_og_tag_w_reason"
+                        "direct_phrases_to_og_tag_w_rules",
+                        "iterative_phrases_to_og_tag_w_rules"
                       ],
                       "additionalProperties": false,
                       "properties": {
@@ -6896,21 +7366,61 @@
                         "group_id": {
                           "bsonType": "string"
                         },
-                        "direct_phrases_to_og_tag_w_reason": {
+                        "direct_phrases_to_og_tag_w_rules": {
                           "bsonType": "object",
                           "additionalProperties": {
                             "bsonType": "object",
                             "additionalProperties": {
-                              "bsonType": "string"
+                              "bsonType": "array",
+                              "items": {
+                                "bsonType": "object",
+                                "required": [
+                                  "rule_id",
+                                  "outcome",
+                                  "explanation"
+                                ],
+                                "additionalProperties": false,
+                                "properties": {
+                                  "rule_id": {
+                                    "bsonType": "string"
+                                  },
+                                  "outcome": {
+                                    "bsonType": "string"
+                                  },
+                                  "explanation": {
+                                    "bsonType": "string"
+                                  }
+                                }
+                              }
                             }
                           }
                         },
-                        "iterative_phrases_to_og_tag_w_reason": {
+                        "iterative_phrases_to_og_tag_w_rules": {
                           "bsonType": "object",
                           "additionalProperties": {
                             "bsonType": "object",
                             "additionalProperties": {
-                              "bsonType": "string"
+                              "bsonType": "array",
+                              "items": {
+                                "bsonType": "object",
+                                "required": [
+                                  "rule_id",
+                                  "outcome",
+                                  "explanation"
+                                ],
+                                "additionalProperties": false,
+                                "properties": {
+                                  "rule_id": {
+                                    "bsonType": "string"
+                                  },
+                                  "outcome": {
+                                    "bsonType": "string"
+                                  },
+                                  "explanation": {
+                                    "bsonType": "string"
+                                  }
+                                }
+                              }
                             }
                           }
                         }
@@ -7137,6 +7647,12 @@
                   "prompt_version_id": {
                     "bsonType": "string"
                   },
+                  "catalog_version": {
+                    "bsonType": [
+                      "string",
+                      "null"
+                    ]
+                  },
                   "created_at": {
                     "bsonType": "date"
                   }
@@ -7302,6 +7818,12 @@
                   },
                   "prompt_version_id": {
                     "bsonType": "string"
+                  },
+                  "catalog_version": {
+                    "bsonType": [
+                      "string",
+                      "null"
+                    ]
                   },
                   "created_at": {
                     "bsonType": "date"
@@ -7471,6 +7993,12 @@
                   "prompt_version_id": {
                     "bsonType": "string"
                   },
+                  "catalog_version": {
+                    "bsonType": [
+                      "string",
+                      "null"
+                    ]
+                  },
                   "created_at": {
                     "bsonType": "date"
                   }
@@ -7637,6 +8165,12 @@
                   "prompt_version_id": {
                     "bsonType": "string"
                   },
+                  "catalog_version": {
+                    "bsonType": [
+                      "string",
+                      "null"
+                    ]
+                  },
                   "created_at": {
                     "bsonType": "date"
                   },
@@ -7652,7 +8186,8 @@
                   "model_params",
                   "prompt_name",
                   "prompt_version_id",
-                  "created_at"
+                  "created_at",
+                  "max_pairs_per_request"
                 ],
                 "additionalProperties": false,
                 "properties": {
@@ -7805,8 +8340,17 @@
                   "prompt_version_id": {
                     "bsonType": "string"
                   },
+                  "catalog_version": {
+                    "bsonType": [
+                      "string",
+                      "null"
+                    ]
+                  },
                   "created_at": {
                     "bsonType": "date"
+                  },
+                  "max_pairs_per_request": {
+                    "bsonType": "int"
                   }
                 }
               },
@@ -7970,6 +8514,12 @@
                   "prompt_version_id": {
                     "bsonType": "string"
                   },
+                  "catalog_version": {
+                    "bsonType": [
+                      "string",
+                      "null"
+                    ]
+                  },
                   "created_at": {
                     "bsonType": "date"
                   }
@@ -8043,15 +8593,41 @@
                       "bsonType": "object",
                       "required": [
                         "passed",
-                        "reason"
+                        "applied_rules"
                       ],
                       "additionalProperties": false,
                       "properties": {
                         "passed": {
                           "bsonType": "bool"
                         },
-                        "reason": {
-                          "bsonType": "string"
+                        "identified_entity": {
+                          "bsonType": [
+                            "string",
+                            "null"
+                          ]
+                        },
+                        "applied_rules": {
+                          "bsonType": "array",
+                          "items": {
+                            "bsonType": "object",
+                            "required": [
+                              "rule_id",
+                              "outcome",
+                              "explanation"
+                            ],
+                            "additionalProperties": false,
+                            "properties": {
+                              "rule_id": {
+                                "bsonType": "string"
+                              },
+                              "outcome": {
+                                "bsonType": "string"
+                              },
+                              "explanation": {
+                                "bsonType": "string"
+                              }
+                            }
+                          }
                         }
                       }
                     }
@@ -8095,7 +8671,27 @@
                     "additionalProperties": {
                       "bsonType": "object",
                       "additionalProperties": {
-                        "bsonType": "string"
+                        "bsonType": "array",
+                        "items": {
+                          "bsonType": "object",
+                          "required": [
+                            "rule_id",
+                            "outcome",
+                            "explanation"
+                          ],
+                          "additionalProperties": false,
+                          "properties": {
+                            "rule_id": {
+                              "bsonType": "string"
+                            },
+                            "outcome": {
+                              "bsonType": "string"
+                            },
+                            "explanation": {
+                              "bsonType": "string"
+                            }
+                          }
+                        }
                       }
                     }
                   }
@@ -8108,8 +8704,8 @@
                       "bsonType": "object",
                       "required": [
                         "group_id",
-                        "direct_phrases_to_og_tag_w_reason",
-                        "iterative_phrases_to_og_tag_w_reason"
+                        "direct_phrases_to_og_tag_w_rules",
+                        "iterative_phrases_to_og_tag_w_rules"
                       ],
                       "additionalProperties": false,
                       "properties": {
@@ -8122,21 +8718,61 @@
                         "group_id": {
                           "bsonType": "string"
                         },
-                        "direct_phrases_to_og_tag_w_reason": {
+                        "direct_phrases_to_og_tag_w_rules": {
                           "bsonType": "object",
                           "additionalProperties": {
                             "bsonType": "object",
                             "additionalProperties": {
-                              "bsonType": "string"
+                              "bsonType": "array",
+                              "items": {
+                                "bsonType": "object",
+                                "required": [
+                                  "rule_id",
+                                  "outcome",
+                                  "explanation"
+                                ],
+                                "additionalProperties": false,
+                                "properties": {
+                                  "rule_id": {
+                                    "bsonType": "string"
+                                  },
+                                  "outcome": {
+                                    "bsonType": "string"
+                                  },
+                                  "explanation": {
+                                    "bsonType": "string"
+                                  }
+                                }
+                              }
                             }
                           }
                         },
-                        "iterative_phrases_to_og_tag_w_reason": {
+                        "iterative_phrases_to_og_tag_w_rules": {
                           "bsonType": "object",
                           "additionalProperties": {
                             "bsonType": "object",
                             "additionalProperties": {
-                              "bsonType": "string"
+                              "bsonType": "array",
+                              "items": {
+                                "bsonType": "object",
+                                "required": [
+                                  "rule_id",
+                                  "outcome",
+                                  "explanation"
+                                ],
+                                "additionalProperties": false,
+                                "properties": {
+                                  "rule_id": {
+                                    "bsonType": "string"
+                                  },
+                                  "outcome": {
+                                    "bsonType": "string"
+                                  },
+                                  "explanation": {
+                                    "bsonType": "string"
+                                  }
+                                }
+                              }
                             }
                           }
                         }
@@ -8363,6 +8999,12 @@
                   "prompt_version_id": {
                     "bsonType": "string"
                   },
+                  "catalog_version": {
+                    "bsonType": [
+                      "string",
+                      "null"
+                    ]
+                  },
                   "created_at": {
                     "bsonType": "date"
                   }
@@ -8528,6 +9170,12 @@
                   },
                   "prompt_version_id": {
                     "bsonType": "string"
+                  },
+                  "catalog_version": {
+                    "bsonType": [
+                      "string",
+                      "null"
+                    ]
                   },
                   "created_at": {
                     "bsonType": "date"
@@ -8697,6 +9345,12 @@
                   "prompt_version_id": {
                     "bsonType": "string"
                   },
+                  "catalog_version": {
+                    "bsonType": [
+                      "string",
+                      "null"
+                    ]
+                  },
                   "created_at": {
                     "bsonType": "date"
                   }
@@ -8863,6 +9517,12 @@
                   "prompt_version_id": {
                     "bsonType": "string"
                   },
+                  "catalog_version": {
+                    "bsonType": [
+                      "string",
+                      "null"
+                    ]
+                  },
                   "created_at": {
                     "bsonType": "date"
                   },
@@ -8878,7 +9538,8 @@
                   "model_params",
                   "prompt_name",
                   "prompt_version_id",
-                  "created_at"
+                  "created_at",
+                  "max_pairs_per_request"
                 ],
                 "additionalProperties": false,
                 "properties": {
@@ -9031,8 +9692,17 @@
                   "prompt_version_id": {
                     "bsonType": "string"
                   },
+                  "catalog_version": {
+                    "bsonType": [
+                      "string",
+                      "null"
+                    ]
+                  },
                   "created_at": {
                     "bsonType": "date"
+                  },
+                  "max_pairs_per_request": {
+                    "bsonType": "int"
                   }
                 }
               },
@@ -9196,6 +9866,12 @@
                   "prompt_version_id": {
                     "bsonType": "string"
                   },
+                  "catalog_version": {
+                    "bsonType": [
+                      "string",
+                      "null"
+                    ]
+                  },
                   "created_at": {
                     "bsonType": "date"
                   }
@@ -9269,15 +9945,41 @@
                       "bsonType": "object",
                       "required": [
                         "passed",
-                        "reason"
+                        "applied_rules"
                       ],
                       "additionalProperties": false,
                       "properties": {
                         "passed": {
                           "bsonType": "bool"
                         },
-                        "reason": {
-                          "bsonType": "string"
+                        "identified_entity": {
+                          "bsonType": [
+                            "string",
+                            "null"
+                          ]
+                        },
+                        "applied_rules": {
+                          "bsonType": "array",
+                          "items": {
+                            "bsonType": "object",
+                            "required": [
+                              "rule_id",
+                              "outcome",
+                              "explanation"
+                            ],
+                            "additionalProperties": false,
+                            "properties": {
+                              "rule_id": {
+                                "bsonType": "string"
+                              },
+                              "outcome": {
+                                "bsonType": "string"
+                              },
+                              "explanation": {
+                                "bsonType": "string"
+                              }
+                            }
+                          }
                         }
                       }
                     }
@@ -9321,7 +10023,27 @@
                     "additionalProperties": {
                       "bsonType": "object",
                       "additionalProperties": {
-                        "bsonType": "string"
+                        "bsonType": "array",
+                        "items": {
+                          "bsonType": "object",
+                          "required": [
+                            "rule_id",
+                            "outcome",
+                            "explanation"
+                          ],
+                          "additionalProperties": false,
+                          "properties": {
+                            "rule_id": {
+                              "bsonType": "string"
+                            },
+                            "outcome": {
+                              "bsonType": "string"
+                            },
+                            "explanation": {
+                              "bsonType": "string"
+                            }
+                          }
+                        }
                       }
                     }
                   }
@@ -9334,8 +10056,8 @@
                       "bsonType": "object",
                       "required": [
                         "group_id",
-                        "direct_phrases_to_og_tag_w_reason",
-                        "iterative_phrases_to_og_tag_w_reason"
+                        "direct_phrases_to_og_tag_w_rules",
+                        "iterative_phrases_to_og_tag_w_rules"
                       ],
                       "additionalProperties": false,
                       "properties": {
@@ -9348,21 +10070,61 @@
                         "group_id": {
                           "bsonType": "string"
                         },
-                        "direct_phrases_to_og_tag_w_reason": {
+                        "direct_phrases_to_og_tag_w_rules": {
                           "bsonType": "object",
                           "additionalProperties": {
                             "bsonType": "object",
                             "additionalProperties": {
-                              "bsonType": "string"
+                              "bsonType": "array",
+                              "items": {
+                                "bsonType": "object",
+                                "required": [
+                                  "rule_id",
+                                  "outcome",
+                                  "explanation"
+                                ],
+                                "additionalProperties": false,
+                                "properties": {
+                                  "rule_id": {
+                                    "bsonType": "string"
+                                  },
+                                  "outcome": {
+                                    "bsonType": "string"
+                                  },
+                                  "explanation": {
+                                    "bsonType": "string"
+                                  }
+                                }
+                              }
                             }
                           }
                         },
-                        "iterative_phrases_to_og_tag_w_reason": {
+                        "iterative_phrases_to_og_tag_w_rules": {
                           "bsonType": "object",
                           "additionalProperties": {
                             "bsonType": "object",
                             "additionalProperties": {
-                              "bsonType": "string"
+                              "bsonType": "array",
+                              "items": {
+                                "bsonType": "object",
+                                "required": [
+                                  "rule_id",
+                                  "outcome",
+                                  "explanation"
+                                ],
+                                "additionalProperties": false,
+                                "properties": {
+                                  "rule_id": {
+                                    "bsonType": "string"
+                                  },
+                                  "outcome": {
+                                    "bsonType": "string"
+                                  },
+                                  "explanation": {
+                                    "bsonType": "string"
+                                  }
+                                }
+                              }
                             }
                           }
                         }

@@ -1,7 +1,6 @@
 from __future__ import annotations
 
 import asyncio
-import json
 import logging
 import traceback
 from datetime import datetime
@@ -17,9 +16,16 @@ from core.models.deferred_extraction.deferred_keyword_extraction import (
     KeywordExtractionRequestMap,
 )
 from core.models.extraction_schemas.grounding import (
-    PhraseGroundingResponse,
-    PhraseToTagAndReasonMap,
+    PhraseCategoryGroundingResponse,
+    PhraseToTagAndRulesMap,
+    TagToAppliedRulesMap,
 )
+from core.models.rule_catalog import STAGE_FREEHAND_GROUNDING
+from core.services.applied_rule_validation import (
+    check_applied_rules,
+    raise_for_violations,
+)
+from core.services.rule_catalog_registry import get_rule_catalog
 from core.models.extraction_schemas.relationship import (
     LLMPhraseRelationshipResults,
 )
@@ -34,6 +40,7 @@ from llm_providers.models.llm_model import (
     NO_MODEL,
 )
 from llm_providers.models.file_objects.prompt import Prompt
+from core.services.phrase_summaries_block import render_phrase_summaries_block
 from llm_providers.services.gpt_batch_request.gpt_batch_request_service import (
     create_base_gpt_batch_request,
     get_dummy_gpt_batch_response,
@@ -58,13 +65,14 @@ logger = logging.getLogger(__name__)
 
 
 LLM_PHRASE_FREEHAND_GROUNDING_RESPONSE_SCHEMA = build_gpt_response_format(
-    PhraseGroundingResponse, name="phrase_freehand_grounding_result"
+    PhraseCategoryGroundingResponse, name="phrase_freehand_grounding_result"
 )
 
 
 def parse_llm_phrase_freehand_grounding_result(
     gpt_response: Optional[str],
-) -> PhraseToTagAndReasonMap:
+    field_type: ExtractionFieldType,
+) -> PhraseToTagAndRulesMap:
     if not gpt_response:
         logger.error(f"Invalid gpt_response:{gpt_response}")
         raise ValueError(
@@ -72,21 +80,37 @@ def parse_llm_phrase_freehand_grounding_result(
         )
 
     try:
-        parsed = PhraseGroundingResponse.model_validate_json(gpt_response)
+        parsed = PhraseCategoryGroundingResponse.model_validate_json(gpt_response)
     except ValidationError as e:
         raise ValueError(
             f"parse_llm_phrase_freehand_grounding_result: Invalid response from GPT:{gpt_response}"
         ) from e
 
-    raw_llm_freehand_grounding_result: PhraseToTagAndReasonMap = {}
+    raw_llm_freehand_grounding_result: PhraseToTagAndRulesMap = {}
+    violations: list[str] = []
     for entry in parsed.groundings:
         if entry.phrase in raw_llm_freehand_grounding_result:
             raise ValueError(
                 f"parse_llm_phrase_freehand_grounding_result: Duplicate phrase {entry.phrase!r} in groundings response"
             )
-        raw_llm_freehand_grounding_result[entry.phrase] = {
-            tag.tag: tag.reason for tag in entry.tags
-        }
+        catalog = get_rule_catalog(STAGE_FREEHAND_GROUNDING, field_type.name)
+        rules_by_category: TagToAppliedRulesMap = {}
+        for category in entry.categories:
+            # Collected across every category of every phrase, then raised once at
+            # the end: a response is measured whole or its defect rate is a
+            # function of where the scan stopped.
+            report = check_applied_rules(
+                catalog=catalog,
+                applied_rules=category.applied_rules,
+                where=f"phrase {entry.phrase!r} category {category.category!r}",
+            )
+            violations.extend(report.problems)
+            rules_by_category[category.category] = category.applied_rules
+        # Collapses to the shared tag-keyed map here; see grounding.py on why the
+        # category naming stops at the wire schema.
+        raw_llm_freehand_grounding_result[entry.phrase] = rules_by_category
+
+    raise_for_violations(violations)
 
     return raw_llm_freehand_grounding_result
 
@@ -98,7 +122,7 @@ async def get_freehand_grounding_result(
     extraction_bundle: KeywordExtractionRequestBundle,
     completed_request_map: dict[BatchRequestIDType, GPTBatchRequest],
     timestamp: datetime,
-) -> PhraseToTagAndReasonMap:
+) -> PhraseToTagAndRulesMap:
     req_id = extraction_bundle.llm_phrase_freehand_grounding_req_id
     if not req_id:
         raise ValueError(
@@ -116,7 +140,10 @@ async def get_freehand_grounding_result(
         )
 
     try:
-        return parse_llm_phrase_freehand_grounding_result(req_obj.response.result)
+        return parse_llm_phrase_freehand_grounding_result(
+            gpt_response=req_obj.response.result,
+            field_type=field_type,
+        )
     except Exception as e:
         await record_response_parse_error(
             gpt_batch_request=req_obj,
@@ -209,13 +236,13 @@ async def create_missing_phrase_freehand_grounding_requests(
                     f"Phrases {right_only_phrases} found in screening results:{extraction_bundle.llm_phrase_relationship_screening_req_ids} but were never listed in relationship results:{extraction_bundle.llm_phrase_relationship_req_id} for {subject_unique_id}:{field_type} chunk {chunk_bounds}"
                 )
 
-            screened_phrases_w_reason = get_verified_live_screening_results(
+            screened_phrases = get_verified_live_screening_results(
                 llm_phrase_relationship_screening_results
             )
             verified_phrases_w_og_summary: LLMPhraseRelationshipResults = {
                 k: v
                 for k, v in llm_phrase_relationship_results.items()
-                if k in screened_phrases_w_reason
+                if k in screened_phrases
             }
 
             req_id = extraction_bundle.llm_phrase_freehand_grounding_req_id
@@ -271,7 +298,11 @@ def _create_dummy_completed_phrase_freehand_grounding_batch_request(
         deferred_at=deferred_at,
         subject_unique_id=subject_unique_id,
         custom_id=llm_phrase_freehand_grounding_request_id,
-        context="No phrase freehand grounding needed - no phrases passed screening.",
+        # Still carries a block, empty — an absent one has to stay an error.
+        context=(
+            "No phrase freehand grounding needed - no phrases passed screening.\n"
+            f"{render_phrase_summaries_block({})}"
+        ),
         prompt_text="No phrase freehand grounding needed - no phrases passed screening.",
         gpt_model=NO_MODEL,
         model_params=model_params,
@@ -306,7 +337,8 @@ def create_deferred_phrase_freehand_grounding_gpt_request(
     )
     context = (
         # f"Manufacturer name: {subject_name}\n\n"
-        f"screened product phrases and evidence:\n{json.dumps(verified_phrases_w_og_summary, indent=2)}"
+        f"screened product phrases and evidence:\n"
+        f"{render_phrase_summaries_block(verified_phrases_w_og_summary)}"
     )
 
     return create_base_gpt_batch_request(

@@ -1,0 +1,73 @@
+{
+  "catalog_version": "process_cap_phrase_relationship_screening.2026.08.4",
+  "prompt_name": "process_cap_phrase_relationship_screening",
+  "stage": "phrase_relationship_screening",
+  "field_types": [
+    "process_caps"
+  ],
+  "entity_noun": "manufacturing process, operation, or capability",
+  "entity_relationships": {
+    "base": "perform, offer, or specialize in",
+    "third_person": "performs, offers, or specializes in",
+    "gerund": "performing, offering, or specializing in"
+  },
+  "outcome_vocab": {
+    "condition": [
+      "satisfied",
+      "failed",
+      "not_triggered"
+    ],
+    "guard": [
+      "violated"
+    ]
+  },
+  "sections": [
+    {
+      "section_id": "pass_conditions",
+      "heading": "A candidate {{entity_noun}} qualifies only if ALL of these conditions hold for it:",
+      "combinator": "all",
+      "rules": [
+        {
+          "id": "SCR-1",
+          "kind": "condition",
+          "reportable": true,
+          "report_when": "always",
+          "text": "At least one {{entity_noun}} can be identified from the phrase and its relationship summary."
+        },
+        {
+          "id": "SCR-2",
+          "kind": "condition",
+          "reportable": true,
+          "report_when": "always",
+          "text": "The phrase and its relationship summary show real, concrete involvement with the identified {{entity_noun}}: some party is shown to {{entity_relationships.base}} that {{entity_noun}}, not merely to name, list, or mention it in passing."
+        },
+        {
+          "id": "SCR-3",
+          "kind": "condition",
+          "reportable": true,
+          "report_when": "always",
+          "text": "It is the manufacturer itself that {{entity_relationships.third_person}} the identified {{entity_noun}} — not a customer, supplier, distributor, or other third party that the manufacturer merely relates to."
+        }
+      ]
+    },
+    {
+      "section_id": "guards",
+      "heading": "A candidate {{entity_noun}} is ruled out if ANY of these guards is violated by it. Ruling out one candidate does not reject the phrase — another candidate may still qualify:",
+      "combinator": "any",
+      "rules": [
+        {
+          "id": "SCR-G2",
+          "kind": "guard",
+          "reportable": true,
+          "report_when": "on_violation",
+          "text": "The manufacturer's involvement in the identified {{entity_noun}} is only aspirational, hoped-for, planned, or discontinued, rather than current and actual."
+        }
+      ]
+    }
+  ],
+  "published": {
+    "s3_version_id": "ipTFn4ros9x.AXEcVe.HFvzwauDntoMW",
+    "rendered_sha256": "35b30fb9332203d78fbb730b08580cabee946a78b08a298ec0a30f58f535c5f6",
+    "uploaded_at": "2026-08-11T20:17:56.321588+00:00"
+  }
+}

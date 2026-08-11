@@ -21,7 +21,6 @@ logger = logging.getLogger(__name__)
 
 # str() cast needed because Pylance infers these as non-hashable Pydantic model types
 _RESPONSE_FIELD = "response"
-_REQUEST_BODY_FIELD = "request.body"
 
 
 async def _bulk_update(
@@ -224,6 +223,41 @@ async def bulk_update_gpt_batch_requests(
     return total_upserted, total_modified
 
 
+def build_request_body_update_document(req: GPTBatchRequest) -> dict:
+    """Build the update half of the upsert that creates a batch request doc, or
+    refreshes the parts of an existing one derived from the current pipeline state.
+
+    ``request.body`` is ``$set`` rather than write-once because it is derived from
+    the current pipeline state and a re-created request must be able to correct it.
+    Everything else is identity or bookkeeping and only lands on insert.
+
+    Every persisted field of ``GPTBatchRequest`` must appear here — a field left
+    out is silently never written, and surfaces only as a ``None`` far downstream
+    at parse time. ``test_gpt_batch_request_writes`` pins that. Field names are
+    literals rather than ``GPTBatchRequest.<field>`` expression fields so this
+    stays a pure function: Beanie only attaches those attributes to the class
+    once ``init_beanie`` has run against a live database.
+    """
+    return {
+        "$set": {
+            "request.body": req.request.body.model_dump(),
+            "updated_at": req.updated_at,
+        },
+        "$setOnInsert": {
+            "created_at": req.created_at,
+            "batch_id": req.batch_id,
+            "subject_unique_id": req.subject_unique_id,
+            "num_batches_paired_with": req.num_batches_paired_with,
+            "request.custom_id": req.request.custom_id,
+            "request.method": req.request.method,
+            "request.url": req.request.url,
+            "request.input_tokens": req.request.input_tokens,
+            "response": (req.response.model_dump() if req.response else None),
+            "response_parse_errors": req.response_parse_errors,
+        },
+    }
+
+
 async def _upsert_chunk_with_only_request_body(
     chunk: list[GPTBatchRequest],
     chunk_num: int,
@@ -241,25 +275,7 @@ async def _upsert_chunk_with_only_request_body(
         operations = [
             UpdateOne(
                 {GPTBatchRequest.request.custom_id: req.request.custom_id},
-                {
-                    "$set": {
-                        _REQUEST_BODY_FIELD: req.request.body.model_dump(),
-                        GPTBatchRequest.updated_at: req.updated_at,
-                    },
-                    "$setOnInsert": {
-                        GPTBatchRequest.created_at: req.created_at,
-                        GPTBatchRequest.batch_id: req.batch_id,
-                        GPTBatchRequest.subject_unique_id: req.subject_unique_id,
-                        GPTBatchRequest.num_batches_paired_with: req.num_batches_paired_with,
-                        GPTBatchRequest.request.custom_id: req.request.custom_id,
-                        GPTBatchRequest.request.method: req.request.method,
-                        GPTBatchRequest.request.url: req.request.url,
-                        GPTBatchRequest.request.input_tokens: req.request.input_tokens,
-                        _RESPONSE_FIELD: (
-                            req.response.model_dump() if req.response else None
-                        ),
-                    },
-                },
+                build_request_body_update_document(req),
                 upsert=True,
             )
             for req in chunk
