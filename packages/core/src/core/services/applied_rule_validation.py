@@ -188,20 +188,16 @@ def check_applied_rules(
                 f"Allowed: {sorted(allowed)}"
             )
 
-        # A guard is reported only to say it fired; a preference only to say it
-        # was the branch taken. Any other outcome means the model reported a rule
-        # the catalog told it to stay silent about.
-        if rule.report_when == "on_violation" and applied.outcome != "violated":
-            problems.append(
-                f"{catalog.prompt_name}: {where}: guard {applied.rule_id!r} is "
-                f"reported only when violated, but its outcome was "
-                f"{applied.outcome!r}"
-            )
-        if rule.report_when == "when_chosen" and applied.outcome != "chosen":
-            problems.append(
-                f"{catalog.prompt_name}: {where}: {applied.rule_id!r} is reported "
-                f"only when chosen, but its outcome was {applied.outcome!r}"
-            )
+        # A guard is reported only to say it fired and a preference only to say
+        # it was the branch taken — and the outcome check above ALREADY rejects
+        # anything else, because
+        # ONLY_REACHABLE_OUTCOME_BY_REPORT_WHEN pins those kinds' vocabulary to
+        # the single value they can carry. Separate checks stood here until
+        # 2026-08-11 and could not fire without the vocabulary check firing on
+        # the same rule, so one defect was counted twice. That is a real cost
+        # rather than noise: this function is exhaustive precisely so the problem
+        # count measures how much of a response was wrong, and a preference
+        # reported with the wrong outcome inflated that count by one every time.
 
         # An explanation is the whole of the justification now that no structured
         # evidence rides alongside it, so a blank one is a rule reported with no

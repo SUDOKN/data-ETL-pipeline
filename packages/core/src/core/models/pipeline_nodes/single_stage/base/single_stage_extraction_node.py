@@ -122,7 +122,7 @@ class SingleStageExtractionNode(BaseLLMExtractionNode[ExtractionFieldType, Resul
     ) -> BatchRequestIDType:
         return (
             f"{subject_unique_id}>{field_type.name}>llm_request>chunk>{chunk_bounds}>"
-            f"{metadata.single_stage.model_params.to_custom_id_segment(metadata.single_stage.llm_model.name)}"
+            f"{metadata.single_stage.to_custom_id_segment()}"
         )
 
     async def create_batch_requests(

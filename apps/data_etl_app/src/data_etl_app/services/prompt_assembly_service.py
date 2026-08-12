@@ -23,7 +23,7 @@ from __future__ import annotations
 import hashlib
 import json
 from pathlib import Path
-from typing import Any, Callable, Optional
+from typing import Any, Callable, NamedTuple, Optional
 
 from core.models.rule_catalog import NOTE_KIND, RuleCatalog, RuleNode, RuleSection
 
@@ -59,6 +59,112 @@ STAGE_DIR_BY_STAGE = {
 # `multi_stage/...` S3 keys — the assembled/static split is local only.
 ASSEMBLED_PROMPTS_DIR = _PROMPTS_DIR / "final_texts" / "assembled"
 STATIC_PROMPTS_DIR = _PROMPTS_DIR / "final_texts" / "static"
+
+# Where a static prompt's published version is recorded. A catalog prompt keeps
+# its pin inside its own catalog; a static prompt has no catalog, so the pins live
+# together in one file. It is `.config.json` because `final_texts/` and bare
+# `*.json` are both gitignored and this file must be tracked: the prompt texts
+# themselves are build artifacts that never reach git, which leaves this digest as
+# the only version-controlled record of what a release actually sent.
+STATIC_PIN_FILE = _PROMPTS_DIR / "static_prompt_pins.config.json"
+
+
+class StaticPromptPin(NamedTuple):
+    """What `publish` recorded about a hand-written prompt it uploaded."""
+
+    s3_key: str
+    s3_version_id: str
+    rendered_sha256: str
+    uploaded_at: str
+
+
+class PromptPin(NamedTuple):
+    """Where a prompt was published, in the form the read side needs it.
+
+    ``catalog_version`` is None for a hand-written prompt, and that is the only
+    difference `PromptService` has to know about: with no catalog to be rendered
+    from, the digest is the whole of a static prompt's provenance rather than one
+    of two independent checks. Both kinds reach the runtime as this one type so
+    that pinning and verification have a single implementation — the asymmetry
+    that let static prompts go unpinned for as long as they did lived in there
+    being no shared shape to put them in.
+    """
+
+    s3_key: str
+    s3_version_id: Optional[str]
+    rendered_sha256: Optional[str]
+    catalog_version: Optional[str] = None
+
+
+def static_prompt_s3_key(path: Path) -> str:
+    """The S3 key a static prompt publishes to: its path under `static/`.
+
+    The assembled/static split is local only — both trees publish into the same
+    flat `multi_stage/...` namespace, which is what lets a prompt move from
+    hand-written to catalog-rendered without changing where the pipeline reads it.
+    """
+    return path.relative_to(STATIC_PROMPTS_DIR).as_posix()
+
+
+def load_static_prompts(
+    static_dir: Path = STATIC_PROMPTS_DIR,
+) -> dict[str, tuple[str, str]]:
+    """``prompt_name -> (s3 key, text)`` for every hand-written prompt on disk.
+
+    Discovered by walking the tree rather than read from a registry: a static
+    prompt that exists but is not listed anywhere is exactly the prompt that goes
+    unpublished, which is the failure this whole path exists to close.
+    """
+    found: dict[str, tuple[str, str]] = {}
+    for path in sorted(static_dir.rglob("*.txt")):
+        name = path.stem
+        if name in found:
+            raise PromptAssemblyError(
+                f"two static prompts are named {name!r}: {found[name][0]} and "
+                f"{static_prompt_s3_key(path)}. Prompt names are the key the "
+                f"pipeline asks for, so they must be unique across the tree."
+            )
+        found[name] = (
+            static_prompt_s3_key(path),
+            path.read_text(encoding="utf-8"),
+        )
+    return found
+
+
+def load_static_pins(pin_file: Path = STATIC_PIN_FILE) -> dict[str, StaticPromptPin]:
+    """``prompt_name -> StaticPromptPin`` for static prompts already published.
+
+    A missing file means nothing has been published yet, which is a valid state
+    (every prompt falls back to S3 latest) and not an error.
+    """
+    if not pin_file.exists():
+        return {}
+
+    raw = json.loads(pin_file.read_text(encoding="utf-8"))
+    try:
+        return {
+            name: StaticPromptPin(**record)
+            for name, record in sorted(raw["prompts"].items())
+        }
+    except (KeyError, TypeError) as exc:
+        raise PromptAssemblyError(
+            f"{pin_file.name}: malformed static prompt pins: {exc}"
+        ) from exc
+
+
+def save_static_pins(
+    pins: dict[str, StaticPromptPin], pin_file: Path = STATIC_PIN_FILE
+) -> None:
+    """Rewrite the pin file, sorted, so publishing two prompts in either order
+    produces the same diff."""
+    payload = {
+        "prompts": {
+            name: pins[name]._asdict() for name in sorted(pins)
+        }
+    }
+    pin_file.write_text(
+        json.dumps(payload, indent=2, ensure_ascii=False) + "\n", encoding="utf-8"
+    )
 
 
 def prompt_s3_key(catalog: RuleCatalog) -> str:
@@ -125,6 +231,49 @@ def load_all_catalogs(catalog_dir: Path = CATALOG_DIR) -> dict[str, RuleCatalog]
         catalog.prompt_name: catalog
         for catalog in (load_catalog(p) for p in sorted(catalog_dir.glob("*.json")))
     }
+
+
+def load_prompt_pins(
+    catalog_dir: Path = CATALOG_DIR, pin_file: Path = STATIC_PIN_FILE
+) -> dict[str, PromptPin]:
+    """``prompt_name -> PromptPin`` over both records `publish` writes.
+
+    The two kinds are recorded apart — a catalog owns its own `published` block,
+    static prompts share the pin file — because what there is to record differs.
+    They are read together because what the read side does with a pin does not
+    differ: fetch that version, check that digest.
+
+    A catalog prompt appears even when unpublished, with version and digest None,
+    since the catalog on disk is proof the prompt exists. A static prompt with no
+    pin is simply absent: the pin file is the only record of it that a deployed
+    image carries, the prompt texts themselves never reaching git.
+    """
+    pins: dict[str, PromptPin] = {
+        name: PromptPin(
+            s3_key=prompt_s3_key(catalog),
+            s3_version_id=catalog.published.s3_version_id,
+            rendered_sha256=catalog.published.rendered_sha256,
+            catalog_version=catalog.catalog_version,
+        )
+        for name, catalog in load_all_catalogs(catalog_dir).items()
+    }
+
+    for name, static in load_static_pins(pin_file).items():
+        if name in pins:
+            raise PromptAssemblyError(
+                f"{name} is pinned as both a catalog prompt ({pins[name].s3_key}) "
+                f"and a hand-written one ({static.s3_key}). A prompt that gains a "
+                f"catalog keeps its S3 key and its name, so there is no way to tell "
+                f"which record a run should trust; delete its entry from "
+                f"{pin_file.name}."
+            )
+        pins[name] = PromptPin(
+            s3_key=static.s3_key,
+            s3_version_id=static.s3_version_id,
+            rendered_sha256=static.rendered_sha256,
+        )
+
+    return pins
 
 
 def build_rule_catalog_lookup(
@@ -267,6 +416,19 @@ def _render_report_block(catalog: RuleCatalog) -> str:
         "For every rule you report, give the rule id, the outcome you reached, and "
         "your explanation. Each explanation must cite the phrase and its "
         "relationship summary, quoting the words you relied on.",
+        "",
+        # The anti-rubber-stamp block (2026-08-11). The failure it targets:
+        # explanations that restate the rule as a verdict ("'tooling equipment' is a
+        # determinate category") without engaging its failure conditions, and
+        # explanations whose own quotes contradict the reported outcome ("used in
+        # the manufacture of Class 8 heavy trucks" reported as proof of making
+        # trucks). Stated once here so every catalog-rendered prompt carries it.
+        "An explanation that merely restates a rule as its own conclusion is not "
+        "an explanation. Before you write an outcome, name to yourself the most "
+        "plausible way that rule could fail for this candidate and check it "
+        "against the words you are quoting; report the outcome only if that "
+        "failure is not what is happening. If the words you quote cut against "
+        "the outcome you report, the outcome is wrong, not the quote.",
         "",
     ]
 

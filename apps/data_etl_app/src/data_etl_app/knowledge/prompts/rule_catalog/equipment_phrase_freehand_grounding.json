@@ -1,5 +1,5 @@
 {
-  "catalog_version": "equipment_phrase_freehand_grounding.2026.08.6",
+  "catalog_version": "equipment_phrase_freehand_grounding.2026.08.3",
   "prompt_name": "equipment_phrase_freehand_grounding",
   "stage": "phrase_freehand_grounding",
   "field_types": [
@@ -32,7 +32,17 @@
           "kind": "condition",
           "reportable": true,
           "report_when": "always",
-          "text": "The phrase and its relationship summary support the manufacturer itself {{entity_relationships.gerund}} at least one instance of the {{entity_noun}}, not merely relating to it."
+          "text": "The phrase and its relationship summary support the manufacturer itself {{entity_relationships.gerund}} at least one instance of the {{entity_noun}}, not merely relating to it.",
+          "combinator": "note",
+          "children": [
+            {
+              "id": "FGR-Q1a",
+              "kind": "note",
+              "reportable": false,
+              "report_when": "never",
+              "text": "Equipment named only as something the manufacturer's output goes into or supports, or that a customer or other party operates, is not an {{entity_noun}} the manufacturer {{entity_relationships.third_person}}."
+            }
+          ]
         }
       ]
     },
@@ -46,7 +56,7 @@
           "kind": "condition",
           "reportable": true,
           "report_when": "always",
-          "text": "It is a determinate category: neither an individual unit — a brand name, model number, serial number, asset tag, or one-off description — nor a term so general it fixes nothing, such as \"equipment\", \"machinery\", or \"tooling\". A phrase naming a specific machine is reported as the category that machine belongs to.",
+          "text": "It is a determinate category: neither an individual unit — one specimen, identified as itself rather than as a kind — nor a term so general it fixes nothing. A phrase naming a specific unit is reported as the category that unit belongs to.",
           "combinator": "note",
           "children": [
             {
@@ -54,7 +64,14 @@
               "kind": "note",
               "reportable": false,
               "report_when": "never",
-              "text": "\"Haas VF-2\" is an individual unit; the category it belongs to is \"CNC vertical machining center\". Name the category, and never carry the brand or model into it."
+              "text": "A phrase that identifies one particular specimen — by its maker, its designation, or any other mark that singles that one out from others like it — names a unit rather than a category. Report the kind that specimen belongs to, and carry none of what singled it out into the category name."
+            },
+            {
+              "id": "FGR-Q2b",
+              "kind": "note",
+              "reportable": false,
+              "report_when": "never",
+              "text": "Qualifying a term that fixes nothing does not make it determinate. Where the head noun names no particular kind, a modifier describing what the thing is for, how good it is, or where it sits leaves it fixing nothing still."
             }
           ]
         },
@@ -90,9 +107,9 @@
     }
   ],
   "published": {
-    "s3_version_id": "witRsBj.5EbCgmVLlYsfoeYSrRWPkBXy",
-    "rendered_sha256": "fc16be74c6ed0c49351caf3d65e9b103eb6a2311e424ed0ea9cddd85aa7ed580",
-    "uploaded_at": "2026-08-11T20:17:56.321588+00:00"
+    "s3_version_id": "3AY3fmqtmWD2kTTCkTr1s3M9afpeZLmH",
+    "rendered_sha256": "4657d389bc58362a1045dd08a72c5b571860fef1ecc0bd8b59aa5693178cb815",
+    "uploaded_at": "2026-08-12T04:33:58.773590+00:00"
   },
   "sentinel_tag": "Cannot categorize"
 }

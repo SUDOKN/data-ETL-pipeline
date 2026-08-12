@@ -1,5 +1,5 @@
 {
-  "catalog_version": "industry_phrase_initial_grounding.2026.08.5",
+  "catalog_version": "industry_phrase_initial_grounding.2026.08.4",
   "prompt_name": "industry_phrase_initial_grounding",
   "stage": "phrase_initial_grounding",
   "field_types": [
@@ -80,11 +80,18 @@
           "text": "When no option exactly matches, an option whose meaning generalizes the identified {{entity_noun}} is chosen."
         },
         {
+          "id": "IGR-M4",
+          "kind": "preference",
+          "reportable": true,
+          "report_when": "when_chosen",
+          "text": "When what you identified is not a {{entity_noun}} of the kind the provided options name, \"None of the above\" is chosen. The options define that kind between them: judge membership against what they collectively name, not against the wording of the phrase."
+        },
+        {
           "id": "IGR-M3",
           "kind": "preference",
           "reportable": true,
           "report_when": "when_chosen",
-          "text": "When no option exactly matches or generalizes the identified {{entity_noun}}, the identified {{entity_noun}} is proposed as an option of its own.",
+          "text": "When no option exactly matches or generalizes it, but it is a {{entity_noun}} of that kind, the identified {{entity_noun}} is proposed as an option of its own.",
           "combinator": "note",
           "children": [
             {
@@ -100,8 +107,9 @@
     }
   ],
   "published": {
-    "s3_version_id": "NEfn2xqq_jSUlLnJvxY8oXBZgii4eQgA",
-    "rendered_sha256": "714c2151887e88b732a958dcff24405be2feddd08aa659c9e93edcbc8eefd84f",
-    "uploaded_at": "2026-08-11T20:17:56.321588+00:00"
-  }
+    "s3_version_id": "AJ_9JlVQb_XK7NcbQwBe0BqnnVEwa8JK",
+    "rendered_sha256": "ca705b5a0aae04482f3569126e3ba5a86c12ca04d7602174a0d81ded8ece12c0",
+    "uploaded_at": "2026-08-12T04:33:58.773590+00:00"
+  },
+  "sentinel_tag": "None of the above"
 }

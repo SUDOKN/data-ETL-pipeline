@@ -124,8 +124,8 @@ def get_embedded_gpt_request_ids(
                     custom_ids.add(bundle.llm_phrase_search_req_id)
                 for recursive_req_id in bundle.llm_phrase_recursive_search_req_ids:
                     custom_ids.add(recursive_req_id)
-                if bundle.llm_phrase_relationship_req_id:
-                    custom_ids.add(bundle.llm_phrase_relationship_req_id)
+                for relationship_req_id in bundle.llm_phrase_relationship_req_ids:
+                    custom_ids.add(relationship_req_id)
                 for (
                     screening_req_id
                 ) in bundle.llm_phrase_relationship_screening_req_ids:

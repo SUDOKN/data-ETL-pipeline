@@ -122,7 +122,7 @@ class LLMPhraseSearchNode(
     ) -> BatchRequestIDType:
         return (
             f"{subject_unique_id}>{field_type.name}>llm_search>chunk>{chunk_bounds}>"
-            f"{metadata.llm_phrase_search.model_params.to_custom_id_segment(metadata.llm_phrase_search.llm_model.name)}"
+            f"{metadata.llm_phrase_search.to_custom_id_segment()}"
         )
 
     async def create_batch_requests(

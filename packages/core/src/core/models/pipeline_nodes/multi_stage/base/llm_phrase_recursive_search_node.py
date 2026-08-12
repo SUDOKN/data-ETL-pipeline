@@ -106,7 +106,7 @@ class LLMPhraseRecursiveSearchNode(
         recursive_meta = metadata.llm_phrase_recursive_search
         return (
             f"{subject_unique_id}>{field_type.name}>llm_recursive_search>round>{round_index}>chunk>{chunk_bounds}>"
-            f"{recursive_meta.model_params.to_custom_id_segment(recursive_meta.llm_model.name)}"
+            f"{recursive_meta.to_custom_id_segment()}"
         )
 
     async def embed_request_ids(  # prefill folded into this function

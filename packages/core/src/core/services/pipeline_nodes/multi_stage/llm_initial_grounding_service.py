@@ -13,6 +13,7 @@ from core.models.extraction_schemas.grounding import (
     PhraseOptionGroundingResponse,
     PhraseToTagAndRulesMap,
     TagToAppliedRulesMap,
+    is_sentinel_grounding_label,
 )
 from core.models.rule_catalog import STAGE_INITIAL_GROUNDING
 from core.services.applied_rule_validation import (
@@ -241,6 +242,16 @@ def get_tcs_and_oov_trs_from_trs(
     concept_to_tc_map: dict[Concept, TaggingResultsGroupedByConcept] = {}
 
     for tr in trs:
+        # A sentinel records that the model declined to match, not a label it
+        # found. It matches no concept by construction, so without this it would
+        # fall through to `oov_trs` and be persisted as a discovered
+        # out-of-vocabulary label — the leak already closed on the recursive path
+        # (get_deepest_concepts_and_oov) and the freehand one (reconcile nodes).
+        # This path had no filter because initial grounding had no escape hatch
+        # to produce one; it does now.
+        if is_sentinel_grounding_label(tr.group_id):
+            continue
+
         concept_obj = match_label_to_concept_map.get(
             tr.group_id
         )  # NOTE: multiple group tags may point to same concept_obj because they can be name/altLabels
@@ -321,6 +332,44 @@ def get_descend_worthy_tcs_from_tagged_results(
             descend_worthy_tcs.append(tc)
 
     return descend_worthy_tcs
+
+
+def get_settled_concepts_and_oov_from_trs(
+    initially_tagged_trs: list[TaggingResult],
+    match_label_to_concept_map: CaseInsensitiveDict[Concept],
+) -> tuple[set[Concept], set[str]]:
+    """The initial tags the phrase trail cannot carry, so reconcile must take
+    them from here.
+
+    Out-of-vocab tags never enter iterative tagging. Neither does a recognized
+    concept whose every phrase exactly matches one of its own matchLabels:
+    get_descend_worthy_tcs_from_tagged_results prunes those phrases — an exact
+    label match carries no evidence for any more specific subtype — and a
+    concept left with no phrases never gets a descent request, so it never
+    appears in the trail get_deepest_concepts_and_oov reads. Such a concept is
+    settled: proven at its own level, with nowhere further to go.
+
+    The descend-worthy filter is re-run here on deep copies because it prunes
+    phrase maps in place, and the caller's TaggingResults must stay intact.
+    """
+    oov_trs, tcs = get_tcs_and_oov_trs_from_trs(
+        trs=initially_tagged_trs,
+        match_label_to_concept_map=match_label_to_concept_map,
+    )
+    descend_worthy_concepts = {
+        tc.concept
+        for tc in get_descend_worthy_tcs_from_tagged_results(
+            initially_tagged_trs=[
+                tr.model_copy(deep=True) for tr in initially_tagged_trs
+            ],
+            match_label_to_concept_map=match_label_to_concept_map,
+        )
+    }
+    settled_concepts = {
+        tc.concept for tc in tcs if tc.concept not in descend_worthy_concepts
+    }
+    oov_tags = {tr.group_id for tr in oov_trs}
+    return settled_concepts, oov_tags
 
 
 async def get_verified_out_of_vocab_phrases_w_summary(

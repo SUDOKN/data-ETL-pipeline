@@ -43,6 +43,7 @@ from core.services.pipeline_nodes.multi_stage.llm_relationship_screening_node_se
 from core.services.pipeline_nodes.multi_stage.llm_freehand_grounding_service import (
     get_freehand_grounding_result as parse_freehand_grounding_batch_req_result,
 )
+from core.utils.label_dedupe_util import dedupe_equivalent_keywords
 from core.utils.phrase_trail_dump_util import (
     build_keyword_phrase_trail_entry,
     write_phrase_trails_dump,
@@ -225,7 +226,10 @@ class KeywordReconcileNode(ReconcileNode[ExtractionFieldType]):
 
         final_extraction_result = KeywordExtractionResults(
             metadata=extraction_requests.metadata,
-            results=all_keywords,
+            # Freehand grounding names categories independently per chunk and
+            # round, so the union carries case and singular/plural variants of
+            # one category; per-chunk stats keep them raw.
+            results=dedupe_equivalent_keywords(all_keywords),
             chunk_stats=chunk_stats,
         )
 

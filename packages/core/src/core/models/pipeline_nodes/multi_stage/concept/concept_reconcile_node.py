@@ -51,6 +51,7 @@ from core.services.pipeline_nodes.multi_stage.llm_phrase_recursive_search_node_s
     build_llm_phrase_search_results,
 )
 from core.services.pipeline_nodes.multi_stage.llm_initial_grounding_service import (
+    get_settled_concepts_and_oov_from_trs,
     get_tagged_results_from_initial_grounding,
 )
 from core.services.pipeline_nodes.multi_stage.llm_recursive_grounding_service import (
@@ -59,6 +60,7 @@ from core.services.pipeline_nodes.multi_stage.llm_recursive_grounding_service im
 )
 
 
+from core.utils.label_dedupe_util import dedupe_case_insensitive
 from core.utils.rdf_to_graph_util import (
     get_match_label_to_concept_map,
 )
@@ -142,10 +144,19 @@ class ConceptReconcileNode(ReconcileNode[ConceptFieldType]):
                 completed_request_map=completed_initial_grounding_req_map,
                 timestamp=timestamp,
             )
-            for tr in initially_tagged_trs:
-                if tr.group_id not in self.match_label_to_concept_map:
-                    unrecognized_tagged_concepts.add(tr.group_id)
-                # else: it will have already entered iterative tagging at some level
+            # A recognized tag only reaches the phrase trail if it entered
+            # iterative tagging, and the descend-worthy filter withholds a
+            # concept whose every phrase exactly matches its own labels — the
+            # phrase 'Automotive' tagged to Automotive proves the concept but
+            # carries nothing to descend on. Those settled concepts, and every
+            # out-of-vocab tag, are collected here; the trail below cannot
+            # carry either.
+            settled_concepts, oov_tags = get_settled_concepts_and_oov_from_trs(
+                initially_tagged_trs=initially_tagged_trs,
+                match_label_to_concept_map=self.match_label_to_concept_map,
+            )
+            recognized_tagged_concepts.update(settled_concepts)
+            unrecognized_tagged_concepts.update(oov_tags)
 
             llm_phrase_relationship_flat = await ConceptRelationshipNode.get_result(
                 subject_unique_id=subject.subject_unique_id,
@@ -267,7 +278,9 @@ class ConceptReconcileNode(ReconcileNode[ConceptFieldType]):
             metadata=extraction_requests.metadata,
             results=ConceptsFound(
                 in_vocab={c.name for c in all_recognized_tagged_concepts},
-                out_of_vocab={uc for uc in all_unrecognized_tagged_concepts},
+                # Chunks propose out-of-vocab labels independently, so the union
+                # carries case variants of one label; per-chunk stats keep them raw.
+                out_of_vocab=dedupe_case_insensitive(all_unrecognized_tagged_concepts),
             ),
             chunked_extraction_stats=chunk_stats,
         )

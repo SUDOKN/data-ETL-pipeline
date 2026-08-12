@@ -1,5 +1,5 @@
 {
-  "catalog_version": "product_phrase_screening_contract.2026.08.5",
+  "catalog_version": "product_phrase_screening_contract.2026.08.3",
   "prompt_name": "product_phrase_screening_contract",
   "stage": "phrase_relationship_screening",
   "field_types": [
@@ -81,7 +81,7 @@
               "kind": "note",
               "reportable": false,
               "report_when": "never",
-              "text": "Verbs that leave the arrangement unstated — such as \"supplies\", \"offers\", \"provides\", \"works with\", \"handles\", or \"deals in\" — do not by themselves show whether the manufacturer is the party that {{entity_relationships.third_person}} it."
+              "text": "A verb that leaves the commercial arrangement unstated does not by itself show whether the manufacturer is the party that {{entity_relationships.third_person}} it. Where the wording says only that the manufacturer deals in the thing, without fixing in what capacity, the arrangement has not been established."
             },
             {
               "id": "SCR-3b",
@@ -117,8 +117,8 @@
     }
   ],
   "published": {
-    "s3_version_id": "uabDrHwPldVO6RnAlzHd0c2OB06sLbbr",
-    "rendered_sha256": "65ac37001f58b5afa9e3704305f997d3f3e6117ec6cf2db0f9a7255358baa76a",
-    "uploaded_at": "2026-08-11T20:17:56.321588+00:00"
+    "s3_version_id": "2dOQFXNS2oBateIHfaS88wGESHzVlmO3",
+    "rendered_sha256": "40d043dcc5212e04b3d73d7271d278855033a4c12073284e48b513cf616cc633",
+    "uploaded_at": "2026-08-12T04:33:58.773590+00:00"
   }
 }

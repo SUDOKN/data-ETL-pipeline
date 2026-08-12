@@ -4,6 +4,7 @@ from core.models.extraction_schemas.applied_rule import AppliedRule
 from core.models.rule_catalog import RuleCatalog
 from core.services.applied_rule_validation import (
     AppliedRuleValidationError,
+    check_applied_rules,
     passed_implied_by,
     validate_applied_rules,
 )
@@ -211,13 +212,28 @@ def test_preference_reported_with_a_non_chosen_outcome_is_rejected():
 
 
 def test_guard_is_reported_only_when_violated():
-    """"clear" is not in the guard vocabulary any more, so the outcome check catches
-    it first; the report-policy check behind it still stands for a guard vocabulary
-    built in code rather than loaded from a catalog."""
+    """A guard's vocabulary holds "violated" alone, so the outcome check is the
+    whole of the enforcement. A second report-policy check used to sit behind it
+    and is gone: it could not fire without this one firing on the same rule."""
     with pytest.raises(AppliedRuleValidationError, match="cannot have outcome"):
         _check([_rule("Q1", "satisfied"), _rule("M1", "chosen"), _rule("G1", "clear")])
 
     _check([_rule("Q1", "satisfied"), _rule("M1", "chosen"), _rule("G1", "violated")])
+
+
+@pytest.mark.parametrize("rule_id", ["G1", "M1"])
+def test_one_wrong_outcome_is_one_problem(rule_id):
+    """The problem count is the measurement — it says how much of a response was
+    wrong — so a single defect must not report twice. A guard or preference given
+    an outcome outside its vocabulary tripped both the vocabulary check and a
+    redundant report-policy check, and every such defect was counted double."""
+    report = check_applied_rules(
+        catalog=CATALOG,
+        applied_rules=[_rule("Q1", "satisfied"), _rule(rule_id, "not_triggered")],
+        where="test unit",
+    )
+    outcome_problems = [p for p in report.problems if "cannot have outcome" in p]
+    assert len(outcome_problems) == 1, report.problems
 
 
 def test_note_cannot_be_reported():

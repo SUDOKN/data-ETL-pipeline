@@ -2,7 +2,7 @@ import asyncio
 import hashlib
 import logging
 import litellm
-from typing import Dict, NamedTuple, Optional
+from typing import TYPE_CHECKING, Dict, Optional
 
 from llm_providers.models.file_objects.prompt import Prompt
 from llm_providers.models.llm_model import LLM_Model
@@ -10,6 +10,11 @@ from infra.utils.aws.s3.prompt_s3_util import (
     PromptObject,
     download_prompt,
 )
+
+if TYPE_CHECKING:
+    # Type-only, so that the assembly module — and with it every rule catalog —
+    # still loads no earlier than the first call that needs a pin.
+    from data_etl_app.services.prompt_assembly_service import PromptPin
 
 logger = logging.getLogger(__name__)
 
@@ -93,68 +98,69 @@ class PromptProvenanceError(Exception):
     """
 
 
-class _CatalogPin(NamedTuple):
-    """What a catalog says its published prompt should be. ``s3_version_id`` and
-    ``rendered_sha256`` are None for a catalog that has never been published."""
-
-    catalog_version: str
-    s3_version_id: Optional[str]
-    rendered_sha256: Optional[str]
-
-
-def _catalog_pins() -> Dict[str, _CatalogPin]:
-    """``prompt_name -> _CatalogPin`` for every catalog-derived prompt.
+def _prompt_pins() -> Dict[str, "PromptPin"]:
+    """``prompt_name -> PromptPin`` for every prompt with a published record.
 
     Pinning is what makes a run reproducible: without it the service fetches
     whatever is currently latest, so a prompt could change under a resumed
-    extraction. Prompts with no catalog (search, relationship, single-stage) are
-    absent from this map entirely; catalogs present but unpublished fall back to
-    latest, and are still provenance-checked against whatever comes back.
+    extraction. That applies to the hand-written prompts (search, recursive search,
+    relationship, single-stage) exactly as it does to the catalog-derived ones —
+    they went unpinned until 2026-08-11 only because nothing published them, and an
+    edit to a relationship prompt sat on one machine while every run read the
+    superseded S3 copy.
+
+    A catalog present but unpublished falls back to latest and is still
+    provenance-checked against whatever comes back. A static prompt missing from
+    the pin file falls back to latest with nothing to check it against, which is
+    what the warning below is for.
     """
     # Imported here rather than at module scope so a catalog problem cannot stop
     # the module from importing.
-    from data_etl_app.services.prompt_assembly_service import load_all_catalogs
+    from data_etl_app.services.prompt_assembly_service import load_prompt_pins
 
-    pins: Dict[str, _CatalogPin] = {}
-    unpublished: list[str] = []
-    for prompt_name, catalog in load_all_catalogs().items():
-        pins[prompt_name] = _CatalogPin(
-            catalog_version=catalog.catalog_version,
-            s3_version_id=catalog.published.s3_version_id,
-            rendered_sha256=catalog.published.rendered_sha256,
-        )
-        if not catalog.published.s3_version_id:
-            unpublished.append(prompt_name)
-
-    if unpublished:
+    pins = load_prompt_pins()
+    unpinned = [
+        name
+        for name in PROMPT_NAMES
+        if name not in pins or pins[name].s3_version_id is None
+    ]
+    if unpinned:
         logger.warning(
-            "%d rule-catalog prompt(s) have no published S3 version and will be "
-            "fetched as 'latest', so runs using them are not reproducible: %s. "
+            "%d prompt(s) have no published S3 version and will be fetched as "
+            "'latest', so runs using them are not reproducible: %s. "
             "Run `assemble_prompts.py adopt` (or `publish`) to pin them.",
-            len(unpublished),
-            ", ".join(sorted(unpublished)),
+            len(unpinned),
+            ", ".join(sorted(unpinned)),
         )
     return pins
 
 
 def _verify_provenance(
-    prompt_name: str, obj: PromptObject, pin: _CatalogPin
+    prompt_name: str, obj: PromptObject, pin: "PromptPin"
 ) -> None:
-    """Check that the bytes in hand are the ones this catalog published.
+    """Check that the bytes in hand are the ones this prompt's record published.
 
-    Three separate failures, because no one of them implies the others: a catalog
+    Four separate failures, because no one of them implies the others: a catalog
     version can be bumped without changing the rendered text, and the text can
     change without the version being bumped (a skeleton edit does exactly that).
+
+    A hand-written prompt carries no catalog version, so for it the digest is the
+    whole check rather than one of two. That is not a weaker guarantee about the
+    bytes — a digest match is a digest match — only a narrower one: it proves the
+    object is what was published, and says nothing about which rule set the
+    deployed code will validate against, because a static prompt has no rules.
     """
-    if obj.catalog_version is None or obj.rendered_sha256 is None:
+    expects_catalog = pin.catalog_version is not None
+
+    if obj.rendered_sha256 is None or (expects_catalog and obj.catalog_version is None):
         raise PromptProvenanceError(
             f"{prompt_name}: S3 object {obj.version_id} carries no provenance "
-            f"stamp, so it cannot be shown to match catalog "
-            f"{pin.catalog_version}. Re-publish it with "
+            f"stamp, so it cannot be shown to match what was published. "
+            f"Re-publish it with "
             f"`assemble_prompts.py publish --force --only {prompt_name}`."
         )
 
-    if obj.catalog_version != pin.catalog_version:
+    if expects_catalog and obj.catalog_version != pin.catalog_version:
         raise PromptProvenanceError(
             f"{prompt_name}: S3 object {obj.version_id} was rendered from catalog "
             f"{obj.catalog_version}, but the deployed catalog is "
@@ -162,10 +168,20 @@ def _verify_provenance(
             f"matching the published prompt."
         )
 
+    if not expects_catalog and obj.catalog_version is not None:
+        raise PromptProvenanceError(
+            f"{prompt_name}: S3 object {obj.version_id} was rendered from catalog "
+            f"{obj.catalog_version}, but this prompt is pinned as hand-written. "
+            f"The prompt gained a catalog after it was pinned: delete its entry "
+            f"from the static pin file so the catalog's own record is what a run "
+            f"reads."
+        )
+
     if pin.rendered_sha256 and obj.rendered_sha256 != pin.rendered_sha256:
+        recorded_by = "the catalog" if expects_catalog else "the static pin file"
         raise PromptProvenanceError(
             f"{prompt_name}: S3 object {obj.version_id} is stamped with digest "
-            f"{obj.rendered_sha256[:12]} but the catalog recorded "
+            f"{obj.rendered_sha256[:12]} but {recorded_by} recorded "
             f"{pin.rendered_sha256[:12]} at publish time. The prompt was "
             f"re-uploaded out of band."
         )
@@ -219,7 +235,7 @@ class PromptService:
         self.llm_model = llm_model
         self._prompt_cache = {}
         self._initialized = False
-        pins = _catalog_pins()
+        pins = _prompt_pins()
         try:
             for prompt_name in PROMPT_NAMES:
                 self._prompt_cache[prompt_name] = await self._download_prompt(
@@ -237,18 +253,26 @@ class PromptService:
             raise
 
     async def _download_prompt(
-        self, prompt_name: str, llm_model: LLM_Model, pin: Optional[_CatalogPin]
+        self, prompt_name: str, llm_model: LLM_Model, pin: Optional["PromptPin"]
     ) -> Prompt:
 
         prompt_file_name = self._get_prompt_file_path(prompt_name)
+        if pin is not None and pin.s3_key != prompt_file_name:
+            raise PromptProvenanceError(
+                f"{prompt_name}: published to {pin.s3_key} but this service reads "
+                f"{prompt_file_name}. The publish-side key and the runtime map have "
+                f"drifted, which leaves one of them pointing at a prompt nobody "
+                f"maintains."
+            )
+
         version_id = pin.s3_version_id if pin else None
         obj = await download_prompt(prompt_file_name, version_id)
         if version_id and obj.version_id != version_id:
             raise ValueError(
                 f"Requested version ID {version_id} but got {obj.version_id} for {prompt_name}"
             )
-        # Only catalog-derived prompts carry a stamp; the hand-written ones have
-        # no catalog to check against.
+        # A prompt with no pin has never been published and falls back to latest,
+        # so there is nothing recorded to check the bytes against.
         if pin is not None:
             _verify_provenance(prompt_name, obj, pin)
         return Prompt(

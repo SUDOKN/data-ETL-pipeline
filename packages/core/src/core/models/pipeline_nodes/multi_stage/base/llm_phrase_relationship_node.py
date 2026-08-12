@@ -1,6 +1,7 @@
 from __future__ import annotations
 import logging
 from datetime import datetime
+from math import ceil
 from abc import abstractmethod
 
 from llm_providers.db_models.gpt_batch_request import (
@@ -39,6 +40,7 @@ from llm_providers.services.gpt_batch_request.gpt_batch_request_service import (
 from core.services.pipeline_nodes.multi_stage.llm_phrase_relationship_node_service import (
     create_missing_phrase_relationship_requests,
     get_phrase_relationship_result,
+    get_relationship_candidates,
 )
 
 logger = logging.getLogger(__name__)
@@ -92,19 +94,47 @@ class LLMPhraseRelationshipNode(
                 f"as chunked_request_map found empty for subject:{subject_unique_id}, field:{self.field_type.name}."
             )
 
+        # Both search phases have fully executed by the time relationship embeds
+        # ids — a node only reaches its successor once all of its own requests are
+        # complete — so the candidate list for a chunk is final and the group count
+        # can be computed once, upfront.
+        max_phrases_per_request = (
+            metadata.llm_phrase_relationship.max_phrases_per_request
+        )
+        upstream_phrase_search_map = self.get_upstream_phrase_search_map(
+            pipeline_context
+        )
+        upstream_recursive_search_map = self.get_upstream_recursive_search_map(
+            pipeline_context
+        )
+
         for (
             chunk_bounds,
             extraction_request_bundle,
         ) in chunked_request_map.items():
-            if not extraction_request_bundle.llm_phrase_relationship_req_id:
-                extraction_request_bundle.llm_phrase_relationship_req_id = (
-                    self.get_request_custom_id(
-                        subject_unique_id=subject_unique_id,
-                        field_type=self.field_type,
-                        chunk_bounds=chunk_bounds,
-                        metadata=metadata,
-                    )
+            if extraction_request_bundle.llm_phrase_relationship_req_ids:
+                continue  # already embedded; group count is stable once computed
+
+            candidates = await get_relationship_candidates(
+                subject_unique_id=subject_unique_id,
+                field_type=self.field_type,
+                chunk_bounds=chunk_bounds,
+                extraction_bundle=extraction_request_bundle,
+                llm_phrase_search_gpt_request_map=upstream_phrase_search_map,
+                llm_phrase_recursive_search_gpt_request_map=upstream_recursive_search_map,
+                timestamp=timestamp,
+            )
+            num_groups = max(1, ceil(len(candidates) / max_phrases_per_request))
+            extraction_request_bundle.llm_phrase_relationship_req_ids = [
+                self.get_request_custom_id(
+                    subject_unique_id=subject_unique_id,
+                    field_type=self.field_type,
+                    chunk_bounds=chunk_bounds,
+                    group_index=group_index,
+                    metadata=metadata,
                 )
+                for group_index in range(num_groups)
+            ]
 
     def get_embedded_request_ids(
         self,
@@ -116,14 +146,14 @@ class LLMPhraseRelationshipNode(
             chunk_bounds,
             extraction_bundle,
         ) in chunked_request_map.items():
-            if not extraction_bundle.llm_phrase_relationship_req_id:
+            if not extraction_bundle.llm_phrase_relationship_req_ids:
                 raise ValueError(
                     f"get_embedded_request_ids was called for {subject_unique_id}:{self.field_type.name} but "
-                    f"extraction_bundle.llm_phrase_relationship_request is None for chunk bounds {chunk_bounds}."
+                    f"extraction_bundle.llm_phrase_relationship_req_ids is empty for chunk bounds {chunk_bounds}."
                 )
 
-            llm_phrase_relationship_req_ids.add(
-                extraction_bundle.llm_phrase_relationship_req_id
+            llm_phrase_relationship_req_ids.update(
+                extraction_bundle.llm_phrase_relationship_req_ids
             )
 
         return llm_phrase_relationship_req_ids
@@ -133,11 +163,12 @@ class LLMPhraseRelationshipNode(
         subject_unique_id: str,
         field_type: ExtractionFieldType,
         chunk_bounds: str,
+        group_index: int,
         metadata: LLMPhraseExtractionMetadata,
     ) -> BatchRequestIDType:
         return (
-            f"{subject_unique_id}>{field_type.name}>llm_phrase_relationship>chunk>{chunk_bounds}>"
-            f"{metadata.llm_phrase_relationship.model_params.to_custom_id_segment(metadata.llm_phrase_relationship.llm_model.name)}"
+            f"{subject_unique_id}>{field_type.name}>llm_phrase_relationship>group>{group_index}>chunk>{chunk_bounds}>"
+            f"{metadata.llm_phrase_relationship.to_custom_id_segment()}"
         )
 
     async def create_batch_requests(
@@ -177,6 +208,7 @@ class LLMPhraseRelationshipNode(
             ),
             llm_model=metadata.llm_phrase_relationship.llm_model,
             model_params=metadata.llm_phrase_relationship.model_params,
+            max_phrases_per_request=metadata.llm_phrase_relationship.max_phrases_per_request,
             eager=eager,
         )
 

@@ -14,6 +14,9 @@ from core.models.extraction_schemas.iterative_tagging import (
 )
 from llm_providers.models.file_objects.prompt import Prompt
 from llm_providers.models.llm_model import LLM_Model
+from core.models.extraction_results.llm_phrase_extraction_results import (
+    ExtractionNodeMetadata,
+)
 from core.models.deferred_extraction.deferred_concept_extraction import (
     ConceptExtractionRequestBundle,
     ConceptExtractionRequestMap,
@@ -111,12 +114,11 @@ class LLMPhraseIterativeGroundingNode(
         chunk_bounds: str,
         level: int,
         tag: str,
-        llm_model: LLM_Model,
-        model_params: GPTModelParams,
+        node_metadata: ExtractionNodeMetadata,
     ) -> BatchRequestIDType:
         return (
             f"{subject_unique_id}>{field_type.name}>llm_phrase_recursive_grounding>chunk>"
-            f"{chunk_bounds}>l[{level}]>{tag}>{model_params.to_custom_id_segment(llm_model.name)}"
+            f"{chunk_bounds}>l[{level}]>{tag}>{node_metadata.to_custom_id_segment()}"
         )
 
     def get_embedded_request_ids(
@@ -260,8 +262,7 @@ class LLMPhraseIterativeGroundingNode(
                         chunk_bounds=chunk_bounds,
                         level=1,
                         tag=dtc.concept.name,
-                        llm_model=metadata.llm_phrase_recursive_grounding.llm_model,
-                        model_params=metadata.llm_phrase_recursive_grounding.model_params,
+                        node_metadata=metadata.llm_phrase_recursive_grounding,
                     ),
                 )
                 new_itrs.add(itr)  # has no effect if recursion already added this itr
@@ -370,8 +371,7 @@ class LLMPhraseIterativeGroundingNode(
                                     # = child_concept.level; when child_concept available
                                 ),
                                 tag=child_tr.group_id,
-                                llm_model=metadata.llm_phrase_recursive_grounding.llm_model,
-                                model_params=metadata.llm_phrase_recursive_grounding.model_params,
+                                node_metadata=metadata.llm_phrase_recursive_grounding,
                             ),
                         )
                         new_itrs.add(itr)
@@ -394,8 +394,7 @@ class LLMPhraseIterativeGroundingNode(
                             chunk_bounds=chunk_bounds,
                             level=dtc.concept.level,
                             tag=dtc.concept.name,
-                            llm_model=metadata.llm_phrase_recursive_grounding.llm_model,
-                            model_params=metadata.llm_phrase_recursive_grounding.model_params,
+                            node_metadata=metadata.llm_phrase_recursive_grounding,
                         ),
                     )
                     new_itrs.add(

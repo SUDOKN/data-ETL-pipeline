@@ -15,7 +15,12 @@ class LLMPhraseExtractionRequestBundle(BaseModel):
     llm_phrase_recursive_search_req_ids: list[BatchRequestIDType] = Field(
         default_factory=list
     )
-    llm_phrase_relationship_req_id: Optional[BatchRequestIDType]
+    # Ordered list of relationship groups (group 1 == index 0). Each group covers
+    # at most `max_phrases_per_request` of the chunk's candidate phrases; every
+    # group sees the same full chunk text, and results are merged back together.
+    llm_phrase_relationship_req_ids: list[BatchRequestIDType] = Field(
+        default_factory=list
+    )
     # Ordered list of screening groups (group 1 == index 0). Each group covers at
     # most `max_pairs_per_request` phrase-relationship pairs from the upstream
     # relationship results for this chunk; results are merged back together.

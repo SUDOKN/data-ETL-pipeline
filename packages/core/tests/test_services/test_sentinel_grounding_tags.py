@@ -9,7 +9,11 @@ from core.models.extraction_schemas.iterative_tagging import (
     IterativelyTaggedPhrase,
     PhraseTrail,
 )
+from core.models.deferred_extraction.deferred_concept_extraction import TaggingResult
 from core.models.skos_concept import Concept
+from core.services.pipeline_nodes.multi_stage.llm_initial_grounding_service import (
+    get_tcs_and_oov_trs_from_trs,
+)
 from core.services.pipeline_nodes.multi_stage.llm_recursive_grounding_service import (
     get_deepest_concepts_and_oov,
 )
@@ -41,6 +45,53 @@ def _match_label_map(*concepts: Concept) -> CaseInsensitiveDict:
         for label in concept.matchLabels:
             match_label_to_concept_map[label] = concept
     return match_label_to_concept_map
+
+
+def test_initial_grounding_sentinel_is_not_an_out_of_vocab_discovery():
+    """Initial grounding gained an escape hatch (2026-08-11), so "None of the
+    above" now reaches this split. It matches no concept by construction, and
+    without a filter every declined phrase would land in ``oov_trs`` and persist
+    as a discovered label — the same leak already closed on the recursive and
+    freehand paths."""
+    metal = _concept("Metal", level=1, ancestors=[])
+
+    oov_trs, tcs = get_tcs_and_oov_trs_from_trs(
+        trs=[
+            TaggingResult(
+                group_id="Metal",
+                phrase_rules_map={"we work with metals": _rules("names metal")},
+            ),
+            TaggingResult(
+                group_id=NONE_OF_THE_ABOVE_TAG,
+                phrase_rules_map={
+                    "perform inspections": _rules("not a process of this kind")
+                },
+            ),
+        ],
+        match_label_to_concept_map=_match_label_map(metal),
+    )
+
+    assert oov_trs == []
+    assert [tc.concept for tc in tcs] == [metal]
+
+
+def test_initial_grounding_still_reports_genuine_out_of_vocab_tags():
+    """The filter must catch the sentinel only — a real label the ontology does
+    not carry is a discovery and has to survive."""
+    metal = _concept("Metal", level=1, ancestors=[])
+
+    oov_trs, tcs = get_tcs_and_oov_trs_from_trs(
+        trs=[
+            TaggingResult(
+                group_id="Inconel",
+                phrase_rules_map={"we machine inconel": _rules("names inconel")},
+            )
+        ],
+        match_label_to_concept_map=_match_label_map(metal),
+    )
+
+    assert [tr.group_id for tr in oov_trs] == ["Inconel"]
+    assert tcs == []
 
 
 def test_is_sentinel_grounding_label_ignores_case_and_surrounding_whitespace():

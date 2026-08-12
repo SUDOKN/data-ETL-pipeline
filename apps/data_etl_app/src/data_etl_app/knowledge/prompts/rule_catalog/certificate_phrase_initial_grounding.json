@@ -1,5 +1,5 @@
 {
-  "catalog_version": "certificate_phrase_initial_grounding.2026.08.5",
+  "catalog_version": "certificate_phrase_initial_grounding.2026.08.4",
   "prompt_name": "certificate_phrase_initial_grounding",
   "stage": "phrase_initial_grounding",
   "field_types": [
@@ -55,6 +55,13 @@
               "reportable": false,
               "report_when": "never",
               "text": "In particular, do not choose an option whose name resembles the identified {{entity_noun}} when the option's definition excludes this case."
+            },
+            {
+              "id": "IGR-Q2b",
+              "kind": "note",
+              "reportable": false,
+              "report_when": "never",
+              "text": "Never map a claim of meeting customer or industry specifications, or of operating quality systems, onto a specific named standard the phrase and its relationship summary do not themselves name."
             }
           ]
         }
@@ -80,11 +87,18 @@
           "text": "When no option exactly matches, an option whose meaning generalizes the identified {{entity_noun}} is chosen."
         },
         {
+          "id": "IGR-M4",
+          "kind": "preference",
+          "reportable": true,
+          "report_when": "when_chosen",
+          "text": "When what you identified is not a {{entity_noun}} of the kind the provided options name, \"None of the above\" is chosen. The options define that kind between them: judge membership against what they collectively name, not against the wording of the phrase."
+        },
+        {
           "id": "IGR-M3",
           "kind": "preference",
           "reportable": true,
           "report_when": "when_chosen",
-          "text": "When no option exactly matches or generalizes the identified {{entity_noun}}, the identified {{entity_noun}} is proposed as an option of its own.",
+          "text": "When no option exactly matches or generalizes it, but it is a {{entity_noun}} of that kind, the identified {{entity_noun}} is proposed as an option of its own.",
           "combinator": "note",
           "children": [
             {
@@ -100,8 +114,9 @@
     }
   ],
   "published": {
-    "s3_version_id": "T7EJc4579LnUA2sVzab4GcsR5WxoYhJa",
-    "rendered_sha256": "69748e935bd3e1675dfe6cde1a4b20b8ed2948e85a2775b1d4795a3119c6e0f9",
-    "uploaded_at": "2026-08-11T20:17:56.321588+00:00"
-  }
+    "s3_version_id": "qEMSzik6pju6MISb7Xiga4.Ah_fSWBJK",
+    "rendered_sha256": "dbfc6f08e9fc5aaebf12895db3aafff473378f48f079a7053640ab646ac286d3",
+    "uploaded_at": "2026-08-12T04:33:58.773590+00:00"
+  },
+  "sentinel_tag": "None of the above"
 }

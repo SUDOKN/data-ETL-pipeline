@@ -68,11 +68,13 @@ class ContractProductRelationshipNode(KeywordRelationshipNode):
         subject_unique_id: str,
         field_type: ExtractionFieldType,
         chunk_bounds: str,
+        group_index: int,
         metadata: LLMPhraseExtractionMetadata,
     ) -> BatchRequestIDType:
         return KeywordRelationshipNode.get_request_custom_id(
             subject_unique_id=subject_unique_id,
             field_type=KeywordTypeEnum.products,
             chunk_bounds=chunk_bounds,
+            group_index=group_index,
             metadata=metadata,
         )

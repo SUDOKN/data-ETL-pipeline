@@ -12,6 +12,7 @@ from core.models.extraction_results.concept_extraction_results import (
 from core.models.extraction_results.llm_phrase_extraction_results import (
     ExtractionNodeMetadata,
     RecursiveSearchNodeMetadata,
+    BatchedRelationshipNodeMetadata,
     BatchedScreeningNodeMetadata,
 )
 from core.models.extraction_subject import (
@@ -59,7 +60,7 @@ class ConceptExtractionPrefillNode(PrefillNode[ConceptFieldType]):
         ontology: Ontology,
         llm_phrase_search_metadata: ExtractionNodeMetadata,
         llm_phrase_recursive_search_metadata: RecursiveSearchNodeMetadata,
-        llm_phrase_relationship_metadata: ExtractionNodeMetadata,
+        llm_phrase_relationship_metadata: BatchedRelationshipNodeMetadata,
         llm_phrase_relationship_screening_metadata: BatchedScreeningNodeMetadata,
         llm_phrase_initial_grounding_metadata: BatchedInitialGroundingNodeMetadata,
         llm_phrase_recursive_grounding_metadata: ExtractionNodeMetadata,
@@ -131,7 +132,7 @@ class ConceptExtractionPrefillNode(PrefillNode[ConceptFieldType]):
                         },
                         llm_phrase_search_req_id=None,
                         llm_phrase_recursive_search_req_ids=[],
-                        llm_phrase_relationship_req_id=None,
+                        llm_phrase_relationship_req_ids=[],
                         llm_phrase_relationship_screening_req_ids=[],
                         llm_phrase_initial_grounding_req_ids=[],
                         llm_phrase_recursive_tagging_reqs=None,

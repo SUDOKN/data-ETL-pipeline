@@ -225,7 +225,7 @@ async def create_missing_phrase_freehand_grounding_requests(
             )
             if left_only_phrases:
                 raise ValueError(
-                    f"Phrases {left_only_phrases} found in relationship results:{extraction_bundle.llm_phrase_relationship_req_id} but not in screening results:{extraction_bundle.llm_phrase_relationship_screening_req_ids} for {subject_unique_id}:{field_type} chunk {chunk_bounds}"
+                    f"Phrases {left_only_phrases} found in relationship results:{extraction_bundle.llm_phrase_relationship_req_ids} but not in screening results:{extraction_bundle.llm_phrase_relationship_screening_req_ids} for {subject_unique_id}:{field_type} chunk {chunk_bounds}"
                 )
             right_only_phrases = (
                 llm_phrase_relationship_screening_results.keys()
@@ -233,7 +233,7 @@ async def create_missing_phrase_freehand_grounding_requests(
             )
             if right_only_phrases:
                 raise ValueError(
-                    f"Phrases {right_only_phrases} found in screening results:{extraction_bundle.llm_phrase_relationship_screening_req_ids} but were never listed in relationship results:{extraction_bundle.llm_phrase_relationship_req_id} for {subject_unique_id}:{field_type} chunk {chunk_bounds}"
+                    f"Phrases {right_only_phrases} found in screening results:{extraction_bundle.llm_phrase_relationship_screening_req_ids} but were never listed in relationship results:{extraction_bundle.llm_phrase_relationship_req_ids} for {subject_unique_id}:{field_type} chunk {chunk_bounds}"
                 )
 
             screened_phrases = get_verified_live_screening_results(

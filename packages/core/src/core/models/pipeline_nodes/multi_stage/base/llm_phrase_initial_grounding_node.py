@@ -179,7 +179,7 @@ class LLMPhraseInitialGroundingNode(
     ) -> BatchRequestIDType:
         return (
             f"{subject_unique_id}>{field_type.name}>llm_phrase_initial_grounding>group>{group_index}>chunk>{chunk_bounds}>"
-            f"{metadata.llm_phrase_initial_grounding.model_params.to_custom_id_segment(metadata.llm_phrase_initial_grounding.llm_model.name)}"
+            f"{metadata.llm_phrase_initial_grounding.to_custom_id_segment()}"
         )
 
     async def create_batch_requests(

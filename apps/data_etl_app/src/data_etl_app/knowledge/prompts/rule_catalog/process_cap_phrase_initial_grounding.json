@@ -1,11 +1,11 @@
 {
-  "catalog_version": "process_cap_phrase_initial_grounding.2026.08.5",
+  "catalog_version": "process_cap_phrase_initial_grounding.2026.08.4",
   "prompt_name": "process_cap_phrase_initial_grounding",
   "stage": "phrase_initial_grounding",
   "field_types": [
     "process_caps"
   ],
-  "entity_noun": "manufacturing process, operation, or capability",
+  "entity_noun": "manufacturing process",
   "entity_relationships": {
     "base": "perform, offer, or specialize in",
     "third_person": "performs, offers, or specializes in",
@@ -80,11 +80,18 @@
           "text": "When no option exactly matches, an option whose meaning generalizes the identified {{entity_noun}} is chosen."
         },
         {
+          "id": "IGR-M4",
+          "kind": "preference",
+          "reportable": true,
+          "report_when": "when_chosen",
+          "text": "When what you identified is not a {{entity_noun}} of the kind the provided options name, \"None of the above\" is chosen. The options define that kind between them: judge membership against what they collectively name, not against the wording of the phrase."
+        },
+        {
           "id": "IGR-M3",
           "kind": "preference",
           "reportable": true,
           "report_when": "when_chosen",
-          "text": "When no option exactly matches or generalizes the identified {{entity_noun}}, the identified {{entity_noun}} is proposed as an option of its own.",
+          "text": "When no option exactly matches or generalizes it, but it is a {{entity_noun}} of that kind, the identified {{entity_noun}} is proposed as an option of its own.",
           "combinator": "note",
           "children": [
             {
@@ -100,8 +107,9 @@
     }
   ],
   "published": {
-    "s3_version_id": "_k2wtCvplIADto_YrnL.nG7z5om_nvIb",
-    "rendered_sha256": "39edf0845f34ef33b55d428f5d4a946d8992c1178dc88bdcf7c8b7f8ad8665d0",
-    "uploaded_at": "2026-08-11T20:17:56.321588+00:00"
-  }
+    "s3_version_id": "Rs1LhvqgLkrDrpqzUS6TQBI0J4E44rVi",
+    "rendered_sha256": "360683c850b7d36152bc4cef167688caf2ebc91c6bf1da4a51b153acd06ac6f5",
+    "uploaded_at": "2026-08-12T04:33:58.773590+00:00"
+  },
+  "sentinel_tag": "None of the above"
 }
