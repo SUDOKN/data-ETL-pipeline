@@ -1,7 +1,6 @@
 from __future__ import annotations
 
 import asyncio
-import json
 import logging
 import traceback
 from datetime import datetime
@@ -51,11 +50,14 @@ from core.models.field_types import ExtractionFieldType
 from llm_providers.models.open_ai.gpt_model_params import (
     GPTModelParams,
 )
-from core.services.phrase_summaries_block import render_phrase_summaries_block
+from core.services.phrase_blocks_contract import (
+    hold_response_to_sent_phrases,
+    render_phrase_blocks,
+)
 from llm_providers.field_types import BatchRequestIDType
 
 from llm_providers.services.gpt_batch_request.gpt_batch_request_writes import (
-    record_response_parse_error,
+    record_response_parse_error_capped,
 )
 from llm_providers.services.gpt_batch_request.gpt_batch_request_service import (
     create_base_gpt_batch_request,
@@ -172,6 +174,7 @@ async def parse_phrase_relationship_screening_group_result(
     group_req_id: BatchRequestIDType,
     completed_request_map: dict[BatchRequestIDType, GPTBatchRequest],
     timestamp: datetime,
+    repairs: Optional[dict[str, str]] = None,
 ) -> LiveScreeningResults:
     """Parse the screening verdicts returned by a single screening group request."""
     req_obj = completed_request_map.get(group_req_id)
@@ -185,12 +188,30 @@ async def parse_phrase_relationship_screening_group_result(
         )
 
     try:
-        return parse_llm_phrase_relationship_screening_result(
+        parsed_map = parse_llm_phrase_relationship_screening_result(
             gpt_response=req_obj.response.result,
             field_type=field_type,
         )
+        # Screening was the one phrase stage that RENDERED the sent-phrases line
+        # and never read it back, so a response that answered under a different
+        # string passed schema validation and surfaced two nodes later as a
+        # phrase-set mismatch in freehand grounding's embed — an abort with no
+        # error recorded and therefore no re-dispatch, permanently stuck
+        # (steelcraft.com, 2026-08-12). `raise` rather than `drop` because
+        # screening is a TOTAL function: measured over that run, all 26 groups
+        # returned a verdict for every phrase sent. It filters downstream in
+        # get_verified_live_screening_results, never by omitting an entry. Safe
+        # to re-dispatch: embed_request_ids skips chunks whose ids exist, so it
+        # never wipes the error history the cap counts.
+        return hold_response_to_sent_phrases(
+            user_message=req_obj.request.body.user_message(),
+            response_by_phrase=parsed_map,
+            where=f"{subject_unique_id}:{field_type.name} relationship screening {group_req_id}",
+            on_missing="raise",
+            repairs=repairs,
+        )
     except Exception as e:
-        await record_response_parse_error(
+        await record_response_parse_error_capped(
             gpt_batch_request=req_obj,
             error_message=str(e),
             timestamp=timestamp,
@@ -209,8 +230,13 @@ async def get_phrase_relationship_screening_result(
     extraction_bundle: LLMPhraseExtractionRequestBundle,
     completed_request_map: dict[BatchRequestIDType, GPTBatchRequest],
     timestamp: datetime,
+    repairs: Optional[dict[str, str]] = None,
 ) -> LiveScreeningResults:
-    """Merge screening verdicts across every group embedded for the chunk."""
+    """Merge screening verdicts across every group embedded for the chunk.
+
+    ``repairs`` is forwarded to the per-group hold; see
+    ``hold_response_to_sent_phrases``.
+    """
     group_req_ids = extraction_bundle.llm_phrase_relationship_screening_req_ids
     if not group_req_ids:
         raise ValueError(
@@ -227,6 +253,7 @@ async def get_phrase_relationship_screening_result(
                 group_req_id=group_req_id,
                 completed_request_map=completed_request_map,
                 timestamp=timestamp,
+                repairs=repairs,
             )
         )
     return merged_results
@@ -386,7 +413,7 @@ def _create_dummy_completed_phrase_relationships_screening_batch_request(
         # Still carries a block, empty — an absent one has to stay an error.
         context=(
             "No phrase relationship screening needed - no phrases found in text.\n"
-            f"{render_phrase_summaries_block({})}"
+            f"{render_phrase_blocks({})}"
         ),
         prompt_text="No phrase relationship screening needed - no phrases found in text by brute force or by LLM.",
         gpt_model=NO_MODEL,
@@ -423,10 +450,12 @@ def create_deferred_phrase_relationship_screening_gpt_request(
         f"create_deferred_phrase_relationship_screening_gpt_request: Generating GPTBatchRequest for {llm_phrase_relationship_screening_request_id}"
     )
     context = (
-        f"Manufacturer name: {subject_name}\n\n "
-        f"extracted phrases:\n{json.dumps(list(phrase_relationship_results.keys()))}\n "
-        f"extracted phrases with their relationship summaries:\n"
-        f"{render_phrase_summaries_block(phrase_relationship_results)}"
+        # Keep the blocks at column 0. `_PHRASES_RE` tolerates leading spaces on
+        # the fence lines now, but only because this stage once ended its prefix
+        # with `\n\n ` and that single space hid the block from the reader for the
+        # stage's whole life -- rendered every request, read back never.
+        f"Manufacturer name: {subject_name}\n\n"
+        f"{render_phrase_blocks(phrase_relationship_results)}"
     )
 
     gpt_batch_request = create_base_gpt_batch_request(

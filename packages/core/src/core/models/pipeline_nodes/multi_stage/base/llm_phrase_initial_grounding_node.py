@@ -1,5 +1,6 @@
 from __future__ import annotations
 import logging
+from typing import Optional
 from datetime import datetime
 from math import ceil
 
@@ -234,6 +235,7 @@ class LLMPhraseInitialGroundingNode(
         extraction_bundle: ConceptExtractionRequestBundle,
         completed_request_map: dict[BatchRequestIDType, GPTBatchRequest],
         timestamp: datetime,  # for recording errors
+        repairs: Optional[dict[str, str]] = None,
     ) -> PhraseToTagAndRulesMap:
         return await get_initial_grounding_result(
             subject_unique_id=subject_unique_id,
@@ -242,6 +244,7 @@ class LLMPhraseInitialGroundingNode(
             extraction_bundle=extraction_bundle,
             completed_request_map=completed_request_map,
             timestamp=timestamp,
+            repairs=repairs,
         )
 
     async def dispatch_batch_request(

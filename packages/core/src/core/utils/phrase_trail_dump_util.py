@@ -5,8 +5,7 @@ introduced that screening never saw — kept visible rather than dropped, since
 that drift is itself a defect worth reading). The old dump emitted a row per
 GROUNDED phrase, which made ``screening.passed`` a constant ``true`` and hid
 exactly the phrases a reviewer most needs: the screened-out majority, the
-exact-label settled concepts, the out-of-vocab proposals, and the initial
-sentinel verdicts.
+out-of-vocab proposals, and the initial sentinel verdicts.
 
 Row anatomy:
 
@@ -17,9 +16,6 @@ Row anatomy:
     * ``screened_out``   — failed relationship screening; no grounding fields.
     * ``grounded``       — at least one real tag survived: an iterative-tagging
                            node or an out-of-vocab proposal.
-    * ``settled``        — its only real tags are exact-label concepts that
-                           never entered iterative tagging (proven at their own
-                           level, nowhere further to go).
     * ``no_match``       — grounding saw it and every verdict was a stop
                            (sentinel / false child).
     * ``grounding_dropped`` — passed screening but no grounding response carries
@@ -31,16 +27,15 @@ Row anatomy:
   ``search_round: null, provenance: "unmatched"`` rather than a fake round 0.
 - ``lvl_by_lvl_itps`` — option-B shape: every tag sits at an explicit level.
   Tags with no tree position (initial-grounding sentinels and out-of-vocab
-  proposals) sit at level 0 with ``parent_group_id: null``; a settled concept
-  sits at its own level; iterative-tagging nodes keep their real position.
-  Each node carries:
+  proposals) sit at level 0 with ``parent_group_id: null``; iterative-tagging
+  nodes keep their real position. Each node carries:
     * ``origin`` — which stage produced its rules (``initial_grounding`` /
       ``recursive_grounding`` / ``both``), derived from which rule maps are
       non-empty.
     * ``source`` — how the node entered the dump (``iterative_tagging`` or one
       of the synthesized kinds). ``origin`` says who spoke; ``source`` says why
-      the row exists — a settled node and a trail node can be field-identical
-      without it, which would make ``status`` under-determined.
+      the row exists — a synthesized node and a trail node can be
+      field-identical without it.
     * ``in_vocab`` — whether ``group_id`` resolves in the ontology.
 """
 
@@ -75,7 +70,12 @@ from core.models.skos_concept import Concept
 logger = logging.getLogger(__name__)
 
 _SOURCE_TRAIL = "iterative_tagging"
-_SOURCE_SETTLED = "initial_grounding_settled"
+# Defensive: an in-vocab direct tag whose concept has no real trail node to
+# carry it. Every recognized tag descends now (the exact-label settle policy
+# is gone), so this fires only for a concept the level walk stopped elsewhere
+# (false child / sentinel kills its direct copies) or failed to seed — the tag
+# still has to reach the dump either way.
+_SOURCE_UNWALKED = "initial_grounding_unwalked"
 _SOURCE_SENTINEL = "initial_grounding_sentinel"
 _SOURCE_OOV = "initial_grounding_oov"
 
@@ -135,9 +135,26 @@ def _status_from_fields(
     real_nodes = [node for node in all_nodes if _node_is_real(node)]
     if not real_nodes:
         return "no_match"
-    if all(node["source"] == _SOURCE_SETTLED for node in real_nodes):
-        return "settled"
     return "grounded"
+
+
+def merge_stage_repairs(
+    repairs_by_stage: dict[str, dict[str, str]],
+) -> dict[str, dict[str, str]]:
+    """Invert ``{stage: {phrase: answered}}`` into ``{phrase: {stage: answered}}``.
+
+    Per stage, not one flat map: more than one stage holds its response now, so
+    the same phrase can be mis-echoed twice — screening under one drifted string
+    and grounding under another. A flat map keeps whichever stage happened to be
+    parsed last and loses the other without saying so, which is the exact class
+    of silent loss this field exists to end. Stage keys are the row's own field
+    names so a reader can line them up.
+    """
+    merged: dict[str, dict[str, str]] = {}
+    for stage, repairs in repairs_by_stage.items():
+        for phrase, answered in repairs.items():
+            merged.setdefault(phrase, {})[stage] = answered
+    return merged
 
 
 def _finish_row(
@@ -148,6 +165,7 @@ def _finish_row(
     relationship: Optional[str],
     levels: dict[int, list[dict[str, object]]],
     search_rounds: dict[int, LLMSearchResults],
+    repairs_flat: dict[str, dict[str, str]],
 ) -> dict[str, object]:
     rederived = _status_from_fields(screening_dump, levels)
     if rederived != status:
@@ -174,6 +192,14 @@ def _finish_row(
         "relationship": relationship,
         "screening": screening_dump,
     }
+    # Present ONLY when the model answered under a different string and the
+    # reconciler rewrote it back. Every other field on this row is keyed by the
+    # sent phrase, which is what makes the stages joinable; without this the
+    # substitution leaves no trace outside a log line and the trail reads as if
+    # the model echoed cleanly. Absent means "answered verbatim" — do not emit
+    # null, or every clean row grows a field to say nothing happened.
+    if phrase in repairs_flat:
+        row["phrase_as_answered"] = repairs_flat[phrase]
     if screening_dump is None:
         # A grounding response introduced this phrase; screening never saw it.
         # Visible on purpose — response-vs-input validation is the real fix.
@@ -194,6 +220,7 @@ def build_concept_phrase_rows(
     phrase_trails: list[PhraseTrail],
     search_rounds: dict[int, LLMSearchResults],
     match_label_to_concept_map: CaseInsensitiveDict[Concept],
+    repairs_flat: Optional[dict[str, dict[str, str]]] = None,
 ) -> list[dict[str, object]]:
     trails_by_phrase = {trail.phrase: trail for trail in phrase_trails}
     phrases = sorted(
@@ -222,6 +249,7 @@ def build_concept_phrase_rows(
                     relationship=relationship,
                     levels={},
                     search_rounds=search_rounds,
+                    repairs_flat=repairs_flat or {},
                 )
             )
             continue
@@ -243,8 +271,7 @@ def build_concept_phrase_rows(
                     levels.setdefault(lvl, []).append(node)
 
         # Initial-grounding tags the trail cannot carry, each at its level:
-        # settled concepts at their own, positionless tags (sentinels and
-        # out-of-vocab proposals) at level 0.
+        # positionless tags (sentinels and out-of-vocab proposals) at level 0.
         trail_real_group_ids = {
             str(node["group_id"])
             for nodes in levels.values()
@@ -258,6 +285,11 @@ def build_concept_phrase_rows(
                     # The concept entered iterative tagging; the trail node
                     # above already carries this tag via the direct copy.
                     continue
+                logger.warning(
+                    f"phrase {phrase!r}: in-vocab tag {tag!r} has no real "
+                    f"trail node for concept {concept.name!r} — every "
+                    f"recognized tag should enter iterative tagging now"
+                )
                 levels.setdefault(concept.level, []).append(
                     {
                         "parent_group_id": None,
@@ -268,7 +300,7 @@ def build_concept_phrase_rows(
                         },
                         "iterative_og_tag_w_rules": {},
                         "origin": "initial_grounding",
-                        "source": _SOURCE_SETTLED,
+                        "source": _SOURCE_UNWALKED,
                         "in_vocab": True,
                     }
                 )
@@ -303,8 +335,6 @@ def build_concept_phrase_rows(
             )
         elif not real_nodes:
             status = "no_match"
-        elif all(node["source"] == _SOURCE_SETTLED for node in real_nodes):
-            status = "settled"
         else:
             status = "grounded"
 
@@ -316,6 +346,7 @@ def build_concept_phrase_rows(
                 relationship=relationship,
                 levels=levels,
                 search_rounds=search_rounds,
+                repairs_flat=repairs_flat or {},
             )
         )
 
@@ -328,6 +359,7 @@ def build_keyword_phrase_rows(
     relationship_flat: LLMPhraseRelationshipResults,
     freehand_grounding_flat: PhraseToTagAndRulesMap,
     search_rounds: dict[int, LLMSearchResults],
+    repairs_flat: Optional[dict[str, dict[str, str]]] = None,
 ) -> list[dict[str, object]]:
     """Keyword-path rows. No ontology, so no levels: the grounded categories sit
     in ``freehand_grounding`` and status distinguishes real categories from the
@@ -353,6 +385,7 @@ def build_keyword_phrase_rows(
                 relationship=relationship,
                 levels={},
                 search_rounds=search_rounds,
+                repairs_flat=repairs_flat or {},
             )
             rows.append(row)
             continue
@@ -385,6 +418,11 @@ def build_keyword_phrase_rows(
                 for tag, applied_rules in groundings.items()
             },
         }
+        # This branch builds its row inline rather than through _finish_row, so
+        # the repair field has to be repeated here. Same rule: present only when
+        # the model answered under a different string.
+        if repairs_flat and phrase in repairs_flat:
+            row["phrase_as_answered"] = repairs_flat[phrase]
         if screening_dump is None:
             row["note"] = "phrase_not_in_screening"
             logger.warning(

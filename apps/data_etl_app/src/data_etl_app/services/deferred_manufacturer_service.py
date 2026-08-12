@@ -140,8 +140,8 @@ def get_embedded_gpt_request_ids(
                 bundle,
             ) in keyword_field.chunked_request_map.items():
                 fill_common_llm_extraction_ids(keyword_field)
-                if bundle.llm_phrase_freehand_grounding_req_id:
-                    custom_ids.add(bundle.llm_phrase_freehand_grounding_req_id)
+                for grounding_req_id in bundle.llm_phrase_freehand_grounding_req_ids:
+                    custom_ids.add(grounding_req_id)
 
     fill_keyword_ids(deferred_mfg.products)
     fill_keyword_ids(deferred_mfg.equipments)

@@ -42,7 +42,11 @@ from llm_providers.models.open_ai.gpt_model_params import (
 from llm_providers.field_types import BatchRequestIDType
 
 from llm_providers.services.gpt_batch_request.gpt_batch_request_writes import (
-    record_response_parse_error,
+    record_response_parse_error_capped,
+)
+from core.services.phrase_blocks_contract import (
+    hold_response_to_sent_phrases,
+    render_phrases_block,
 )
 from llm_providers.services.gpt_batch_request.gpt_batch_request_service import (
     create_base_gpt_batch_request,
@@ -104,6 +108,7 @@ async def parse_phrase_relationship_group_result(
     group_req_id: BatchRequestIDType,
     completed_request_map: dict[BatchRequestIDType, GPTBatchRequest],
     timestamp: datetime,
+    repairs: Optional[dict[str, str]] = None,
 ) -> LLMPhraseRelationshipResults:
     """Parse the phrase→description pairs returned by a single relationship group."""
     req_obj = completed_request_map.get(group_req_id)
@@ -120,9 +125,21 @@ async def parse_phrase_relationship_group_result(
         phrase_relationship_results = parse_llm_phrase_relationship_result(
             req_obj.response.result
         )
-        return phrase_relationship_results
+        # The stage where phrase IDENTITY is set. Its response keys become the
+        # phrase for screening, for grounding and for the trail join, so a drift
+        # here does not crash — it silently renames the phrase, and _provenance
+        # then matches no search round. `raise`, because relationship is a TOTAL
+        # function of its candidate list: measured over the steelcraft.com run,
+        # 381 sent and 381 returned, nothing dropped and nothing invented.
+        return hold_response_to_sent_phrases(
+            user_message=req_obj.request.body.user_message(),
+            response_by_phrase=phrase_relationship_results,
+            where=f"{subject_unique_id}:{field_type.name} relationship {group_req_id}",
+            on_missing="raise",
+            repairs=repairs,
+        )
     except Exception as e:
-        await record_response_parse_error(
+        await record_response_parse_error_capped(
             gpt_batch_request=req_obj,
             error_message=str(e),
             timestamp=timestamp,
@@ -141,8 +158,13 @@ async def get_phrase_relationship_result(
     extraction_bundle: LLMPhraseExtractionRequestBundle,
     completed_request_map: dict[BatchRequestIDType, GPTBatchRequest],
     timestamp: datetime,
+    repairs: Optional[dict[str, str]] = None,
 ) -> LLMPhraseRelationshipResults:
-    """Merge relationship descriptions across every group embedded for the chunk."""
+    """Merge relationship descriptions across every group embedded for the chunk.
+
+    ``repairs`` is forwarded to the per-group hold; see
+    ``hold_response_to_sent_phrases``.
+    """
     group_req_ids = extraction_bundle.llm_phrase_relationship_req_ids
     if not group_req_ids:
         raise ValueError(
@@ -159,6 +181,7 @@ async def get_phrase_relationship_result(
                 group_req_id=group_req_id,
                 completed_request_map=completed_request_map,
                 timestamp=timestamp,
+                repairs=repairs,
             )
         )
     return merged_results
@@ -424,10 +447,15 @@ def create_deferred_phrase_relationship_gpt_request(
     logger.info(
         f"create_deferred_phrase_relationship_gpt_request: Generating GPTBatchRequest for {llm_phrase_relationship_request_id}"
     )
+    # The block, not `{search_results}`: a Python list repr is not JSON, and this
+    # is the one context that embeds the raw scraped chunk — which sits BEFORE
+    # the block and could otherwise forge the old bare marker. See
+    # phrase_blocks_contract on why the format is fenced.
     context = (
         f"manufacturer name: {subject_name}\n\n"
-        f"scraped text:\n{subject_text} \n\n "
-        f"extracted phrases:\n{search_results}"
+        f"scraped text:\n{subject_text}\n\n"
+        # Phrases alone: this stage runs before summaries exist to pair them with.
+        f"{render_phrases_block(search_results)}"
     )
 
     gpt_batch_request = create_base_gpt_batch_request(

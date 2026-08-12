@@ -41,13 +41,16 @@ from llm_providers.models.llm_model import (
     NO_MODEL,
 )
 from llm_providers.models.file_objects.prompt import Prompt
-from core.services.phrase_summaries_block import render_phrase_summaries_block
 from llm_providers.services.gpt_batch_request.gpt_batch_request_service import (
     create_base_gpt_batch_request,
     get_dummy_gpt_batch_response,
 )
 from llm_providers.services.gpt_batch_request.gpt_batch_request_writes import (
-    record_response_parse_error,
+    record_response_parse_error_capped,
+)
+from core.services.phrase_blocks_contract import (
+    hold_response_to_sent_phrases,
+    render_phrase_blocks,
 )
 from core.models.field_types import ExtractionFieldType
 from core.services.pipeline_nodes.multi_stage.llm_phrase_relationship_node_service import (
@@ -56,6 +59,7 @@ from core.services.pipeline_nodes.multi_stage.llm_phrase_relationship_node_servi
 from core.services.pipeline_nodes.multi_stage.llm_relationship_screening_node_service import (
     get_phrase_relationship_screening_result as parse_relationship_screening_batch_req_result,
     get_verified_live_screening_results,
+    _split_into_pair_groups,
 )
 from llm_providers.field_types import BatchRequestIDType
 from llm_providers.models.open_ai.gpt_model_params import (
@@ -121,37 +125,44 @@ def parse_llm_phrase_freehand_grounding_result(
     return raw_llm_freehand_grounding_result
 
 
-async def get_freehand_grounding_result(
+async def parse_phrase_freehand_grounding_group_result(
     subject_unique_id: str,
     field_type: ExtractionFieldType,
     chunk_bounds: str,
-    extraction_bundle: KeywordExtractionRequestBundle,
+    group_req_id: BatchRequestIDType,
     completed_request_map: dict[BatchRequestIDType, GPTBatchRequest],
     timestamp: datetime,
+    repairs: Optional[dict[str, str]] = None,
 ) -> PhraseToTagAndRulesMap:
-    req_id = extraction_bundle.llm_phrase_freehand_grounding_req_id
-    if not req_id:
-        raise ValueError(
-            f"phrase_freehand_grounding_node.parse_batch_request_result: phrase_freehand_grounding_request_id is None for chunk bounds {chunk_bounds} in {subject_unique_id}:{field_type.name}"
-        )
-
-    req_obj = completed_request_map.get(req_id)
+    """Parse the groundings returned by a single freehand-grounding group request."""
+    req_obj = completed_request_map.get(group_req_id)
     if not req_obj:
         raise ValueError(
-            f"phrase_freehand_grounding_node.parse_batch_request_result: Missing GPTBatchRequest for phrase_freehand_grounding request ID {req_id} in {subject_unique_id}:{field_type.name}"
+            f"phrase_freehand_grounding_node.parse_batch_request_result: Missing GPTBatchRequest for phrase_freehand_grounding request ID {group_req_id} in {subject_unique_id}:{field_type.name}"
         )
     if not req_obj.response:
         raise ValueError(
-            f"phrase_freehand_grounding_node.parse_batch_request_result: GPTBatchRequest for phrase_freehand_grounding request ID {req_id} has no response_blob in {subject_unique_id}:{field_type.name}"
+            f"phrase_freehand_grounding_node.parse_batch_request_result: GPTBatchRequest for phrase_freehand_grounding request ID {group_req_id} has no response_blob in {subject_unique_id}:{field_type.name}"
         )
 
     try:
-        return parse_llm_phrase_freehand_grounding_result(
+        parsed_map = parse_llm_phrase_freehand_grounding_result(
             gpt_response=req_obj.response.result,
             field_type=field_type,
         )
+        # Missing phrases raise from here, inside the try, so an under-answering
+        # response is recorded and re-dispatched like any other parse failure —
+        # the observed failure shape is a response that closes its groundings
+        # array a few entries in and validates cleanly against the schema.
+        return hold_response_to_sent_phrases(
+            user_message=req_obj.request.body.user_message(),
+            response_by_phrase=parsed_map,
+            where=f"{subject_unique_id}:{field_type.name} freehand grounding {group_req_id}",
+            on_missing="raise",
+            repairs=repairs,
+        )
     except Exception as e:
-        await record_response_parse_error(
+        await record_response_parse_error_capped(
             gpt_batch_request=req_obj,
             error_message=str(e),
             timestamp=timestamp,
@@ -161,6 +172,102 @@ async def get_freehand_grounding_result(
             f"phrase_freehand_grounding_node.parse_batch_request_result: Error parsing phrase_freehand_grounding results for subject {subject_unique_id} from GPT response: {e}"
         )
         raise
+
+
+async def get_freehand_grounding_result(
+    subject_unique_id: str,
+    field_type: ExtractionFieldType,
+    chunk_bounds: str,
+    extraction_bundle: KeywordExtractionRequestBundle,
+    completed_request_map: dict[BatchRequestIDType, GPTBatchRequest],
+    timestamp: datetime,
+    repairs: Optional[dict[str, str]] = None,
+) -> PhraseToTagAndRulesMap:
+    """Merge groundings across every group embedded for the chunk.
+
+    ``repairs`` is forwarded to the per-group hold; see
+    ``hold_response_to_sent_phrases``.
+    """
+    group_req_ids = extraction_bundle.llm_phrase_freehand_grounding_req_ids
+    if not group_req_ids:
+        raise ValueError(
+            f"phrase_freehand_grounding_node.parse_batch_request_result: llm_phrase_freehand_grounding_req_ids is empty for chunk bounds {chunk_bounds} in {subject_unique_id}:{field_type.name}"
+        )
+
+    merged_results: PhraseToTagAndRulesMap = {}
+    for group_req_id in group_req_ids:
+        merged_results.update(
+            await parse_phrase_freehand_grounding_group_result(
+                subject_unique_id=subject_unique_id,
+                field_type=field_type,
+                chunk_bounds=chunk_bounds,
+                group_req_id=group_req_id,
+                completed_request_map=completed_request_map,
+                timestamp=timestamp,
+                repairs=repairs,
+            )
+        )
+    return merged_results
+
+
+async def get_verified_phrases_w_og_summary(
+    subject_unique_id: str,
+    field_type: ExtractionFieldType,
+    chunk_bounds: str,
+    extraction_bundle: KeywordExtractionRequestBundle,
+    llm_phrase_relationship_gpt_request_map: dict[BatchRequestIDType, GPTBatchRequest],
+    llm_phrase_screening_gpt_request_map: dict[BatchRequestIDType, GPTBatchRequest],
+    timestamp: datetime,
+) -> LLMPhraseRelationshipResults:
+    """Return the screened phrase->summary map for a chunk: the relationship pairs
+    whose phrase passed screening. This is the exact input set the freehand-grounding
+    phase splits into groups, so id-embedding (group count) and request creation
+    (group content) derive from it identically."""
+    llm_phrase_relationship_results = await parse_phrase_relationship_batch_req_result(
+        subject_unique_id=subject_unique_id,
+        field_type=field_type,
+        chunk_bounds=chunk_bounds,
+        extraction_bundle=extraction_bundle,
+        completed_request_map=llm_phrase_relationship_gpt_request_map,
+        timestamp=timestamp,
+    )
+    llm_phrase_relationship_screening_results = (
+        await parse_relationship_screening_batch_req_result(
+            subject_unique_id=subject_unique_id,
+            field_type=field_type,
+            chunk_bounds=chunk_bounds,
+            extraction_bundle=extraction_bundle,
+            completed_request_map=llm_phrase_screening_gpt_request_map,
+            timestamp=timestamp,
+        )
+    )
+
+    left_only_phrases = (
+        llm_phrase_relationship_results.keys()
+        - llm_phrase_relationship_screening_results.keys()
+    )
+    if left_only_phrases:
+        raise ValueError(
+            f"Phrases {left_only_phrases} found in relationship results:{extraction_bundle.llm_phrase_relationship_req_ids} but not in screening results:{extraction_bundle.llm_phrase_relationship_screening_req_ids} for {subject_unique_id}:{field_type} chunk {chunk_bounds}"
+        )
+    right_only_phrases = (
+        llm_phrase_relationship_screening_results.keys()
+        - llm_phrase_relationship_results.keys()
+    )
+    if right_only_phrases:
+        raise ValueError(
+            f"Phrases {right_only_phrases} found in screening results:{extraction_bundle.llm_phrase_relationship_screening_req_ids} but were never listed in relationship results:{extraction_bundle.llm_phrase_relationship_req_ids} for {subject_unique_id}:{field_type} chunk {chunk_bounds}"
+        )
+
+    # Discard phrases which have been filtered out by the screening phase
+    screened_phrases = get_verified_live_screening_results(
+        llm_phrase_relationship_screening_results
+    )
+    return {
+        k: v
+        for k, v in llm_phrase_relationship_results.items()
+        if k in screened_phrases
+    }
 
 
 async def create_missing_phrase_freehand_grounding_requests(
@@ -175,6 +282,7 @@ async def create_missing_phrase_freehand_grounding_requests(
     deferred_at: datetime,
     llm_model: LLM_Model,
     model_params: GPTModelParams,
+    max_pairs_per_request: int,
     eager: bool,
     BATCH_SIZE=100,
 ) -> list[GPTBatchRequest]:
@@ -195,8 +303,8 @@ async def create_missing_phrase_freehand_grounding_requests(
         {
             chunk_bounds: bundle
             for chunk_bounds, bundle in chunked_request_map.items()
-            if bundle.llm_phrase_freehand_grounding_req_id
-            in missing_phrase_freehand_grounding_req_ids
+            if set(bundle.llm_phrase_freehand_grounding_req_ids)
+            & missing_phrase_freehand_grounding_req_ids
         }.items()
     )
 
@@ -204,84 +312,67 @@ async def create_missing_phrase_freehand_grounding_requests(
         batch = chunk_items[i : i + BATCH_SIZE]
 
         for chunk_bounds, extraction_bundle in batch:
-            llm_phrase_relationship_results = (
-                await parse_phrase_relationship_batch_req_result(
-                    subject_unique_id=subject_unique_id,
-                    field_type=field_type,
-                    chunk_bounds=chunk_bounds,
-                    extraction_bundle=extraction_bundle,
-                    completed_request_map=llm_phrase_relationship_gpt_request_map,
-                    timestamp=deferred_at,
-                )
-            )
-            llm_phrase_relationship_screening_results = (
-                await parse_relationship_screening_batch_req_result(
-                    subject_unique_id=subject_unique_id,
-                    field_type=field_type,
-                    chunk_bounds=chunk_bounds,
-                    extraction_bundle=extraction_bundle,
-                    completed_request_map=llm_phrase_screening_gpt_request_map,
-                    timestamp=deferred_at,
-                )
+            verified_phrases_w_og_summary = await get_verified_phrases_w_og_summary(
+                subject_unique_id=subject_unique_id,
+                field_type=field_type,
+                chunk_bounds=chunk_bounds,
+                extraction_bundle=extraction_bundle,
+                llm_phrase_relationship_gpt_request_map=llm_phrase_relationship_gpt_request_map,
+                llm_phrase_screening_gpt_request_map=llm_phrase_screening_gpt_request_map,
+                timestamp=deferred_at,
             )
 
-            left_only_phrases = (
-                llm_phrase_relationship_results.keys()
-                - llm_phrase_relationship_screening_results.keys()
+            phrase_groups = _split_into_pair_groups(
+                verified_phrases_w_og_summary, max_pairs_per_request
             )
-            if left_only_phrases:
+            group_req_ids = extraction_bundle.llm_phrase_freehand_grounding_req_ids
+            if len(group_req_ids) != len(phrase_groups):
                 raise ValueError(
-                    f"Phrases {left_only_phrases} found in relationship results:{extraction_bundle.llm_phrase_relationship_req_ids} but not in screening results:{extraction_bundle.llm_phrase_relationship_screening_req_ids} for {subject_unique_id}:{field_type} chunk {chunk_bounds}"
-                )
-            right_only_phrases = (
-                llm_phrase_relationship_screening_results.keys()
-                - llm_phrase_relationship_results.keys()
-            )
-            if right_only_phrases:
-                raise ValueError(
-                    f"Phrases {right_only_phrases} found in screening results:{extraction_bundle.llm_phrase_relationship_screening_req_ids} but were never listed in relationship results:{extraction_bundle.llm_phrase_relationship_req_ids} for {subject_unique_id}:{field_type} chunk {chunk_bounds}"
+                    f"create_missing_phrase_freehand_grounding_requests: embedded group count "
+                    f"({len(group_req_ids)}) does not match computed group count ({len(phrase_groups)}) "
+                    f"for chunk bounds {chunk_bounds} in {subject_unique_id}:{field_type}. Group counts are "
+                    f"computed once, upfront, from the same screened phrases, so this should not happen."
                 )
 
-            screened_phrases = get_verified_live_screening_results(
-                llm_phrase_relationship_screening_results
-            )
-            verified_phrases_w_og_summary: LLMPhraseRelationshipResults = {
-                k: v
-                for k, v in llm_phrase_relationship_results.items()
-                if k in screened_phrases
-            }
+            for group_index, group_req_id in enumerate(group_req_ids):
+                if group_req_id not in missing_phrase_freehand_grounding_req_ids:
+                    continue
 
-            req_id = extraction_bundle.llm_phrase_freehand_grounding_req_id
-            if not req_id:
-                raise ValueError(
-                    f"create_missing_phrase_freehand_grounding_requests: llm_phrase_freehand_grounding_req_id is None for chunk bounds {chunk_bounds} in {subject_unique_id}:{field_type}"
-                )
-
-            if not verified_phrases_w_og_summary:
-                new_batch_request = (
-                    _create_dummy_completed_phrase_freehand_grounding_batch_request(
+                phrase_group = phrase_groups[group_index]
+                if not phrase_group:
+                    # _split_into_pair_groups only ever produces an empty group as the
+                    # sole element of a single-group list (zero screened phrases total)
+                    if len(phrase_groups) != 1:
+                        raise ValueError(
+                            f"create_missing_phrase_freehand_grounding_requests: unexpected empty "
+                            f"phrase group at index {group_index} of {len(phrase_groups)} groups for chunk "
+                            f"bounds {chunk_bounds} in {subject_unique_id}:{field_type}. Only a single group should "
+                            f"ever be empty (the zero-screened-phrases case)."
+                        )
+                    new_batch_request = (
+                        _create_dummy_completed_phrase_freehand_grounding_batch_request(
+                            deferred_at=deferred_at,
+                            subject_unique_id=subject_unique_id,
+                            llm_phrase_freehand_grounding_request_id=group_req_id,
+                            model_params=model_params,
+                            eager=eager,
+                        )
+                    )
+                else:
+                    new_batch_request = create_deferred_phrase_freehand_grounding_gpt_request(
                         deferred_at=deferred_at,
                         subject_unique_id=subject_unique_id,
-                        llm_phrase_freehand_grounding_request_id=req_id,
-                        model_params=model_params,
+                        field_type=field_type,
+                        llm_phrase_freehand_grounding_request_id=group_req_id,
+                        phrase_freehand_grounding_prompt=phrase_freehand_grounding_prompt,
+                        subject_name=subject_name,
+                        verified_phrases_w_og_summary=phrase_group,
+                        gpt_model=llm_model,
                         eager=eager,
+                        model_params=model_params,
                     )
-                )
-            else:
-                new_batch_request = create_deferred_phrase_freehand_grounding_gpt_request(
-                    deferred_at=deferred_at,
-                    subject_unique_id=subject_unique_id,
-                    field_type=field_type,
-                    llm_phrase_freehand_grounding_request_id=req_id,
-                    phrase_freehand_grounding_prompt=phrase_freehand_grounding_prompt,
-                    subject_name=subject_name,
-                    verified_phrases_w_og_summary=verified_phrases_w_og_summary,
-                    gpt_model=llm_model,
-                    eager=eager,
-                    model_params=model_params,
-                )
 
-            batch_requests.append(new_batch_request)
+                batch_requests.append(new_batch_request)
 
         await asyncio.sleep(0)
 
@@ -308,7 +399,7 @@ def _create_dummy_completed_phrase_freehand_grounding_batch_request(
         # Still carries a block, empty — an absent one has to stay an error.
         context=(
             "No phrase freehand grounding needed - no phrases passed screening.\n"
-            f"{render_phrase_summaries_block({})}"
+            f"{render_phrase_blocks({})}"
         ),
         prompt_text="No phrase freehand grounding needed - no phrases passed screening.",
         gpt_model=NO_MODEL,
@@ -343,11 +434,8 @@ def create_deferred_phrase_freehand_grounding_gpt_request(
     logger.info(
         f"create_deferred_phrase_freehand_grounding_gpt_request: Generating GPTBatchRequest for {llm_phrase_freehand_grounding_request_id}"
     )
-    context = (
-        # f"Manufacturer name: {subject_name}\n\n"
-        f"screened product phrases and evidence:\n"
-        f"{render_phrase_summaries_block(verified_phrases_w_og_summary)}"
-    )
+    # f"Manufacturer name: {subject_name}\n\n"
+    context = render_phrase_blocks(verified_phrases_w_og_summary)
 
     return create_base_gpt_batch_request(
         deferred_at=deferred_at,

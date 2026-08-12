@@ -1965,7 +1965,8 @@
                   "model_params",
                   "prompt_name",
                   "prompt_version_id",
-                  "created_at"
+                  "created_at",
+                  "max_pairs_per_request"
                 ],
                 "additionalProperties": false,
                 "properties": {
@@ -2126,6 +2127,9 @@
                   },
                   "created_at": {
                     "bsonType": "date"
+                  },
+                  "max_pairs_per_request": {
+                    "bsonType": "int"
                   }
                 }
               }
@@ -2161,11 +2165,11 @@
                     "bsonType": "string"
                   }
                 },
-                "llm_phrase_freehand_grounding_req_id": {
-                  "bsonType": [
-                    "string",
-                    "null"
-                  ]
+                "llm_phrase_freehand_grounding_req_ids": {
+                  "bsonType": "array",
+                  "items": {
+                    "bsonType": "string"
+                  }
                 }
               }
             }
@@ -2926,7 +2930,8 @@
                   "model_params",
                   "prompt_name",
                   "prompt_version_id",
-                  "created_at"
+                  "created_at",
+                  "max_pairs_per_request"
                 ],
                 "additionalProperties": false,
                 "properties": {
@@ -3087,6 +3092,9 @@
                   },
                   "created_at": {
                     "bsonType": "date"
+                  },
+                  "max_pairs_per_request": {
+                    "bsonType": "int"
                   }
                 }
               }
@@ -3122,11 +3130,11 @@
                     "bsonType": "string"
                   }
                 },
-                "llm_phrase_freehand_grounding_req_id": {
-                  "bsonType": [
-                    "string",
-                    "null"
-                  ]
+                "llm_phrase_freehand_grounding_req_ids": {
+                  "bsonType": "array",
+                  "items": {
+                    "bsonType": "string"
+                  }
                 }
               }
             }
@@ -3887,7 +3895,8 @@
                   "model_params",
                   "prompt_name",
                   "prompt_version_id",
-                  "created_at"
+                  "created_at",
+                  "max_pairs_per_request"
                 ],
                 "additionalProperties": false,
                 "properties": {
@@ -4048,6 +4057,9 @@
                   },
                   "created_at": {
                     "bsonType": "date"
+                  },
+                  "max_pairs_per_request": {
+                    "bsonType": "int"
                   }
                 }
               }
@@ -4083,11 +4095,11 @@
                     "bsonType": "string"
                   }
                 },
-                "llm_phrase_freehand_grounding_req_id": {
-                  "bsonType": [
-                    "string",
-                    "null"
-                  ]
+                "llm_phrase_freehand_grounding_req_ids": {
+                  "bsonType": "array",
+                  "items": {
+                    "bsonType": "string"
+                  }
                 }
               }
             }

@@ -51,7 +51,7 @@ from core.services.pipeline_nodes.multi_stage.llm_phrase_recursive_search_node_s
     build_llm_phrase_search_results,
 )
 from core.services.pipeline_nodes.multi_stage.llm_initial_grounding_service import (
-    get_settled_concepts_and_oov_from_trs,
+    get_oov_tags_from_trs,
     get_tagged_results_from_initial_grounding,
 )
 from core.services.pipeline_nodes.multi_stage.llm_recursive_grounding_service import (
@@ -66,6 +66,7 @@ from core.utils.rdf_to_graph_util import (
 )
 from core.utils.phrase_trail_dump_util import (
     build_concept_phrase_rows,
+    merge_stage_repairs,
     write_phrase_trails_dump,
 )
 
@@ -144,19 +145,15 @@ class ConceptReconcileNode(ReconcileNode[ConceptFieldType]):
                 completed_request_map=completed_initial_grounding_req_map,
                 timestamp=timestamp,
             )
-            # A recognized tag only reaches the phrase trail if it entered
-            # iterative tagging, and the descend-worthy filter withholds a
-            # concept whose every phrase exactly matches its own labels — the
-            # phrase 'Automotive' tagged to Automotive proves the concept but
-            # carries nothing to descend on. Those settled concepts, and every
-            # out-of-vocab tag, are collected here; the trail below cannot
-            # carry either.
-            settled_concepts, oov_tags = get_settled_concepts_and_oov_from_trs(
-                initially_tagged_trs=initially_tagged_trs,
-                match_label_to_concept_map=self.match_label_to_concept_map,
+            # Out-of-vocab tags never enter iterative tagging, so the trail
+            # below cannot carry them; they are collected here. Every
+            # recognized tag descends now, so the trail carries all of those.
+            unrecognized_tagged_concepts.update(
+                get_oov_tags_from_trs(
+                    initially_tagged_trs=initially_tagged_trs,
+                    match_label_to_concept_map=self.match_label_to_concept_map,
+                )
             )
-            recognized_tagged_concepts.update(settled_concepts)
-            unrecognized_tagged_concepts.update(oov_tags)
 
             llm_phrase_relationship_flat = await ConceptRelationshipNode.get_result(
                 subject_unique_id=subject.subject_unique_id,
@@ -166,6 +163,13 @@ class ConceptReconcileNode(ReconcileNode[ConceptFieldType]):
                 timestamp=timestamp,
                 completed_request_map=completed_phrase_relationship_req_map,
             )
+            # Collected per chunk so the dump can say which phrases the model
+            # answered under a different string. One sink PER STAGE: the same
+            # phrase can be mis-echoed at more than one, and a shared dict would
+            # keep only whichever was parsed last. Relationship is the only stage
+            # still unheld, so a repair there stays invisible here.
+            screening_repairs: dict[str, str] = {}
+            initial_grounding_repairs: dict[str, str] = {}
             llm_phrase_screening_flat = (
                 await ConceptRelationshipScreeningNode.get_result(
                     subject_unique_id=subject.subject_unique_id,
@@ -174,6 +178,7 @@ class ConceptReconcileNode(ReconcileNode[ConceptFieldType]):
                     extraction_bundle=bundle,
                     completed_request_map=completed_relationship_screening_req_map,
                     timestamp=timestamp,
+                    repairs=screening_repairs,
                 )
             )
 
@@ -195,6 +200,7 @@ class ConceptReconcileNode(ReconcileNode[ConceptFieldType]):
                     extraction_bundle=bundle,
                     completed_request_map=completed_initial_grounding_req_map,
                     timestamp=timestamp,
+                    repairs=initial_grounding_repairs,
                 )
             )
 
@@ -224,8 +230,8 @@ class ConceptReconcileNode(ReconcileNode[ConceptFieldType]):
             )
             # Rows are driven by the SCREENED phrase set (plus any drifted
             # grounding-only phrases), joined against the flat pre-partition
-            # maps — the trail alone cannot carry screened-out, settled,
-            # sentinel, or out-of-vocab verdicts.
+            # maps — the trail alone cannot carry screened-out, sentinel, or
+            # out-of-vocab verdicts.
             chunked_phrase_trails_dump[chunk_bounds] = build_concept_phrase_rows(
                 screening_flat=llm_phrase_screening_flat,
                 relationship_flat=llm_phrase_relationship_flat,
@@ -233,6 +239,12 @@ class ConceptReconcileNode(ReconcileNode[ConceptFieldType]):
                 phrase_trails=phrase_trails,
                 search_rounds=llm_search_results,
                 match_label_to_concept_map=self.match_label_to_concept_map,
+                repairs_flat=merge_stage_repairs(
+                    {
+                        "screening": screening_repairs,
+                        "initial_grounding": initial_grounding_repairs,
+                    }
+                ),
             )
             for phrase_trail in phrase_trails:
                 recognized_deepest_concepts, oov = get_deepest_concepts_and_oov(

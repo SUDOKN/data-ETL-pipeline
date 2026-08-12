@@ -6,6 +6,9 @@ from llm_providers.models.open_ai.gpt_model_params import GPTModelParams
 from core.models.extraction_results.concept_extraction_results import (
     BatchedInitialGroundingNodeMetadata,
 )
+from core.models.extraction_results.keyword_extraction_results import (
+    BatchedFreehandGroundingNodeMetadata,
+)
 from core.models.extraction_results.llm_phrase_extraction_results import (
     BatchedRelationshipNodeMetadata,
     BatchedScreeningNodeMetadata,
@@ -31,10 +34,14 @@ def test_every_batched_stage_carries_its_group_size():
     )
     screening = BatchedScreeningNodeMetadata(**_COMMON, max_pairs_per_request=15)
     grounding = BatchedInitialGroundingNodeMetadata(**_COMMON, max_pairs_per_request=15)
+    freehand = BatchedFreehandGroundingNodeMetadata(
+        **_COMMON, max_pairs_per_request=50
+    )
 
     assert relationship.to_custom_id_segment().endswith("|gs=50")
     assert screening.to_custom_id_segment().endswith("|gs=15")
     assert grounding.to_custom_id_segment().endswith("|gs=15")
+    assert freehand.to_custom_id_segment().endswith("|gs=50")
 
 
 def test_changing_the_cap_changes_request_identity():

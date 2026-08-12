@@ -15,6 +15,7 @@ from core.models.extraction_results.llm_phrase_extraction_results import (
     BatchedScreeningNodeMetadata,
 )
 from core.models.extraction_results.keyword_extraction_results import (
+    BatchedFreehandGroundingNodeMetadata,
     KeywordExtractionMetadata,
 )
 from core.models.deferred_extraction.deferred_keyword_extraction import (
@@ -59,7 +60,7 @@ class KeywordExtractionPrefillNode(PrefillNode[ExtractionFieldType]):
         llm_phrase_recursive_search_metadata: RecursiveSearchNodeMetadata,
         llm_phrase_relationship_metadata: BatchedRelationshipNodeMetadata,
         llm_phrase_relationship_screening_metadata: BatchedScreeningNodeMetadata,
-        llm_phrase_freehand_grounding_metadata: ExtractionNodeMetadata,
+        llm_phrase_freehand_grounding_metadata: BatchedFreehandGroundingNodeMetadata,
     ):
         super().__init__(
             field_type=field_type,
@@ -114,7 +115,7 @@ class KeywordExtractionPrefillNode(PrefillNode[ExtractionFieldType]):
                         llm_phrase_recursive_search_req_ids=[],
                         llm_phrase_relationship_req_ids=[],
                         llm_phrase_relationship_screening_req_ids=[],
-                        llm_phrase_freehand_grounding_req_id=None,
+                        llm_phrase_freehand_grounding_req_ids=[],
                     )
                     for chunk_bounds, _chunk_text in chunk_map.items()
                 },

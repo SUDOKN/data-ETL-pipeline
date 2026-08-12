@@ -1,11 +1,11 @@
 """The rewritten phrase-trail dump rows (2026-08-12).
 
 The old dump emitted one row per GROUNDED phrase: screening.passed was a
-constant true, exact-label settled concepts and out-of-vocab proposals had no
-row at all, and an unmatched phrase was filed as search round 0 — the bucket
-reserved for brute-search survivors. These tests pin the row-per-screened-
-phrase shape: statuses, level-0 placement for positionless tags, settled rows
-at their concept's own level, and honest provenance.
+constant true, out-of-vocab proposals had no row at all, and an unmatched
+phrase was filed as search round 0 — the bucket reserved for brute-search
+survivors. These tests pin the row-per-screened-phrase shape: statuses,
+level-0 placement for positionless tags, the defensive row for an in-vocab
+tag the trail failed to carry, and honest provenance.
 """
 
 from requests.structures import CaseInsensitiveDict
@@ -21,6 +21,7 @@ from core.models.skos_concept import Concept
 from core.utils.phrase_trail_dump_util import (
     build_concept_phrase_rows,
     build_keyword_phrase_rows,
+    merge_stage_repairs,
 )
 
 
@@ -156,21 +157,23 @@ def test_initial_sentinel_lands_at_level_zero_as_no_match():
     assert node["in_vocab"] is False
 
 
-def test_exact_label_settled_concept_gets_a_row_at_its_own_level():
-    """The Automotive regression: settled concepts reached results.in_vocab but
-    had no trail row, so the dump and the results disagreed."""
+def test_in_vocab_tag_without_a_trail_node_still_gets_a_row():
+    """Defensive branch: every recognized tag descends now (the exact-label
+    settle policy is gone), so an in-vocab tag with no real trail node marks a
+    walk gap — but the tag must still reach the dump at its concept's level,
+    as a grounded row, rather than vanish."""
     rows = _rows(
         screening_flat={"Automotive": _verdict(True)},
         initial_grounding_flat={"Automotive": {"Automotive": _rules("exact label")}},
     )
 
     row = rows["Automotive"]
-    assert row["status"] == "settled"
+    assert row["status"] == "grounded"
     assert row["search_round"] == 0
     assert row["provenance"] == "brute"
     (node,) = row["lvl_by_lvl_itps"][AUTOMOTIVE.level]
     assert node["group_id"] == "Automotive"
-    assert node["source"] == "initial_grounding_settled"
+    assert node["source"] == "initial_grounding_unwalked"
     assert node["in_vocab"] is True
 
 
@@ -188,17 +191,16 @@ def test_oov_proposal_lands_at_level_zero_as_grounded():
     )
 
     row = rows["complex welded assemblies"]
-    # A real label left grounding (the proposal and the settled concept), so
-    # grounded outranks settled.
     assert row["status"] == "grounded"
     (oov_node,) = row["lvl_by_lvl_itps"][0]
     assert oov_node["group_id"] == "Welding"
     assert oov_node["source"] == "initial_grounding_oov"
     assert oov_node["in_vocab"] is False
-    # The alt-label tag resolves to Joining and settles at Joining's level.
-    (settled_node,) = row["lvl_by_lvl_itps"][JOINING.level]
-    assert settled_node["group_id"] == "Joining"
-    assert settled_node["source"] == "initial_grounding_settled"
+    # The alt-label tag resolves to Joining; with no trail node built in this
+    # fixture it lands on the defensive branch at Joining's level.
+    (direct_node,) = row["lvl_by_lvl_itps"][JOINING.level]
+    assert direct_node["group_id"] == "Joining"
+    assert direct_node["source"] == "initial_grounding_unwalked"
 
 
 def test_drifted_grounding_phrase_is_kept_and_noted():
@@ -257,3 +259,82 @@ def test_keyword_rows_cover_all_statuses():
     assert rows["declined phrase"]["status"] == "no_match"
     assert rows["dropped phrase"]["status"] == "grounding_dropped"
     assert rows["grounded phrase"]["freehand_grounding"].keys() == {"Metal Stampings"}
+
+
+def test_a_repaired_phrase_names_the_stage_and_clean_rows_stay_bare():
+    """The trail joins every stage on the phrase string, so a row keyed by the
+    sent phrase after the model answered under a different one is joinable but
+    not auditable. `phrase_as_answered` carries the substitution, keyed by the
+    stage that made it; rows the model echoed verbatim must not grow a null
+    field to say nothing happened."""
+    screening = {
+        "Schlage\u00ae hardware": _verdict(True),
+        "brake components": _verdict(True),
+    }
+    freehand = {
+        "Schlage\u00ae hardware": {"Door Hardware": _rules("a product category")},
+        "brake components": {"Brakes": _rules("a product category")},
+    }
+
+    rows = {
+        row["phrase"]: row
+        for row in build_keyword_phrase_rows(
+            screening_flat=screening,
+            relationship_flat={},
+            freehand_grounding_flat=freehand,
+            search_rounds={1: set(screening)},
+            repairs_flat=merge_stage_repairs(
+                {
+                    "screening": {
+                        "Schlage\u00ae hardware": "Schlage\u0000ae hardware"
+                    },
+                    "freehand_grounding": {},
+                }
+            ),
+        )
+    }
+
+    assert rows["Schlage\u00ae hardware"]["phrase_as_answered"] == {
+        "screening": "Schlage\u0000ae hardware"
+    }
+    assert "phrase_as_answered" not in rows["brake components"]
+
+
+def test_a_phrase_mis_echoed_at_two_stages_keeps_both():
+    """The reason the field is keyed by stage. A flat map would keep whichever
+    stage was parsed last and drop the other silently — the same class of loss
+    the field exists to end."""
+    phrase = "Paladin\u2122 PW Series"
+    merged = merge_stage_repairs(
+        {
+            "screening": {phrase: "Paladin\u00122 PW Series"},
+            "freehand_grounding": {phrase: "Paladin PW Series"},
+        }
+    )
+
+    (row,) = build_keyword_phrase_rows(
+        screening_flat={phrase: _verdict(True)},
+        relationship_flat={},
+        freehand_grounding_flat={phrase: {"Doors": _rules("a product category")}},
+        search_rounds={1: {phrase}},
+        repairs_flat=merged,
+    )
+
+    assert row["phrase_as_answered"] == {
+        "screening": "Paladin\u00122 PW Series",
+        "freehand_grounding": "Paladin PW Series",
+    }
+
+
+def test_repairs_default_to_absent_so_existing_callers_are_unchanged():
+    screening = {"brake components": _verdict(True)}
+    freehand = {"brake components": {"Brakes": _rules("a product category")}}
+
+    (row,) = build_keyword_phrase_rows(
+        screening_flat=screening,
+        relationship_flat={},
+        freehand_grounding_flat=freehand,
+        search_rounds={1: set(screening)},
+    )
+
+    assert "phrase_as_answered" not in row

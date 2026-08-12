@@ -10,6 +10,9 @@ from core.models.extraction_results.llm_phrase_extraction_results import (
 from core.models.extraction_results.concept_extraction_results import (
     BatchedInitialGroundingNodeMetadata,
 )
+from core.models.extraction_results.keyword_extraction_results import (
+    BatchedFreehandGroundingNodeMetadata,
+)
 from llm_providers.models.file_objects.prompt import Prompt
 from core.models.extraction_results.single_stage_extraction_results import (
     LLMSingleStageExtractionMetadata,
@@ -92,9 +95,13 @@ class ExtractionPipelineFactory:
     """Creates extraction phase pipelines for each field"""
 
     DEFAULT_RECURSIVE_SEARCH_MAX_ROUNDS = 1
+    # Keyword (open-vocabulary) pipelines skip recursive search by default;
+    # max_rounds=0 makes the recursive-search node a no-op pass-through.
+    DEFAULT_KEYWORD_RECURSIVE_SEARCH_MAX_ROUNDS = 0
     DEFAULT_RELATIONSHIP_MAX_PHRASES_PER_REQUEST = 50
     DEFAULT_SCREENING_MAX_PAIRS_PER_REQUEST = 15
     DEFAULT_INITIAL_GROUNDING_MAX_PAIRS_PER_REQUEST = 15
+    DEFAULT_FREEHAND_GROUNDING_MAX_PAIRS_PER_REQUEST = 25
 
     @staticmethod
     def _metadata(
@@ -175,6 +182,24 @@ class ExtractionPipelineFactory:
         max_pairs_per_request: int,
     ) -> BatchedInitialGroundingNodeMetadata:
         return BatchedInitialGroundingNodeMetadata(
+            llm_model=llm_model,
+            model_params=model_params,
+            prompt_name=prompt.name,
+            prompt_version_id=prompt.s3_version_id,
+            catalog_version=prompt.catalog_version,
+            created_at=created_at,
+            max_pairs_per_request=max_pairs_per_request,
+        )
+
+    @staticmethod
+    def _batched_freehand_grounding_metadata(
+        prompt: Prompt,
+        llm_model: LLM_Model,
+        model_params: GPTModelParams,
+        created_at: datetime,
+        max_pairs_per_request: int,
+    ) -> BatchedFreehandGroundingNodeMetadata:
+        return BatchedFreehandGroundingNodeMetadata(
             llm_model=llm_model,
             model_params=model_params,
             prompt_name=prompt.name,
@@ -304,9 +329,10 @@ class ExtractionPipelineFactory:
         llm_model: LLM_Model,
         model_params: GPTModelParams,
         created_at: datetime,
-        max_recursive_search_rounds: int = DEFAULT_RECURSIVE_SEARCH_MAX_ROUNDS,
+        max_recursive_search_rounds: int = DEFAULT_KEYWORD_RECURSIVE_SEARCH_MAX_ROUNDS,
         max_relationship_phrases_per_request: int = DEFAULT_RELATIONSHIP_MAX_PHRASES_PER_REQUEST,
         max_screening_pairs_per_request: int = DEFAULT_SCREENING_MAX_PAIRS_PER_REQUEST,
+        max_freehand_grounding_pairs_per_request: int = DEFAULT_FREEHAND_GROUNDING_MAX_PAIRS_PER_REQUEST,
     ) -> KeywordExtractionPrefillNode:
         """Builds the contract-manufacturing product-extraction pipeline.
 
@@ -346,8 +372,12 @@ class ExtractionPipelineFactory:
                 created_at,
                 max_screening_pairs_per_request,
             ),
-            llm_phrase_freehand_grounding_metadata=ExtractionPipelineFactory._metadata(
-                phrase_freehand_grounding_prompt, llm_model, model_params, created_at
+            llm_phrase_freehand_grounding_metadata=ExtractionPipelineFactory._batched_freehand_grounding_metadata(
+                phrase_freehand_grounding_prompt,
+                llm_model,
+                model_params,
+                created_at,
+                max_freehand_grounding_pairs_per_request,
             ),
             next_node=ContractProductPhraseSearchNode(
                 field_type=keyword_type,
@@ -386,9 +416,10 @@ class ExtractionPipelineFactory:
         llm_model: LLM_Model,
         model_params: GPTModelParams,
         created_at: datetime,
-        max_recursive_search_rounds: int = DEFAULT_RECURSIVE_SEARCH_MAX_ROUNDS,
+        max_recursive_search_rounds: int = DEFAULT_KEYWORD_RECURSIVE_SEARCH_MAX_ROUNDS,
         max_relationship_phrases_per_request: int = DEFAULT_RELATIONSHIP_MAX_PHRASES_PER_REQUEST,
         max_screening_pairs_per_request: int = DEFAULT_SCREENING_MAX_PAIRS_PER_REQUEST,
+        max_freehand_grounding_pairs_per_request: int = DEFAULT_FREEHAND_GROUNDING_MAX_PAIRS_PER_REQUEST,
     ) -> KeywordExtractionPrefillNode:
         """Builds the equipment (machinery/tools a manufacturer operates, owns,
         uses, or otherwise has access to) extraction pipeline.
@@ -425,8 +456,12 @@ class ExtractionPipelineFactory:
                 created_at,
                 max_screening_pairs_per_request,
             ),
-            llm_phrase_freehand_grounding_metadata=ExtractionPipelineFactory._metadata(
-                phrase_freehand_grounding_prompt, llm_model, model_params, created_at
+            llm_phrase_freehand_grounding_metadata=ExtractionPipelineFactory._batched_freehand_grounding_metadata(
+                phrase_freehand_grounding_prompt,
+                llm_model,
+                model_params,
+                created_at,
+                max_freehand_grounding_pairs_per_request,
             ),
             next_node=EquipmentPhraseSearchNode(
                 field_type=keyword_type,
@@ -552,9 +587,10 @@ class ExtractionPipelineFactory:
         llm_model: LLM_Model,
         model_params: GPTModelParams,
         created_at: datetime,
-        max_recursive_search_rounds: int = DEFAULT_RECURSIVE_SEARCH_MAX_ROUNDS,
+        max_recursive_search_rounds: int = DEFAULT_KEYWORD_RECURSIVE_SEARCH_MAX_ROUNDS,
         max_relationship_phrases_per_request: int = DEFAULT_RELATIONSHIP_MAX_PHRASES_PER_REQUEST,
         max_screening_pairs_per_request: int = DEFAULT_SCREENING_MAX_PAIRS_PER_REQUEST,
+        max_freehand_grounding_pairs_per_request: int = DEFAULT_FREEHAND_GROUNDING_MAX_PAIRS_PER_REQUEST,
     ) -> KeywordExtractionPrefillNode:
         """Builds the pure-product (own/sell own products) extraction pipeline."""
         keyword_type = KeywordTypeEnum.products
@@ -586,8 +622,12 @@ class ExtractionPipelineFactory:
                 created_at,
                 max_screening_pairs_per_request,
             ),
-            llm_phrase_freehand_grounding_metadata=ExtractionPipelineFactory._metadata(
-                phrase_freehand_grounding_prompt, llm_model, model_params, created_at
+            llm_phrase_freehand_grounding_metadata=ExtractionPipelineFactory._batched_freehand_grounding_metadata(
+                phrase_freehand_grounding_prompt,
+                llm_model,
+                model_params,
+                created_at,
+                max_freehand_grounding_pairs_per_request,
             ),
             next_node=PureProductPhraseSearchNode(
                 field_type=keyword_type,

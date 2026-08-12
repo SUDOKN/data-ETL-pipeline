@@ -213,6 +213,7 @@ class LLMPhraseRelationshipScreeningNode(
         extraction_bundle: LLMPhraseExtractionRequestBundle,
         completed_request_map: dict[BatchRequestIDType, GPTBatchRequest],
         timestamp: datetime,  # for recording errors
+        repairs: Optional[dict[str, str]] = None,
     ) -> LiveScreeningResults:
         return await get_phrase_relationship_screening_result(
             subject_unique_id=subject_unique_id,
@@ -221,6 +222,7 @@ class LLMPhraseRelationshipScreeningNode(
             extraction_bundle=extraction_bundle,
             completed_request_map=completed_request_map,
             timestamp=timestamp,
+            repairs=repairs,
         )
 
     async def validate_own_responses(

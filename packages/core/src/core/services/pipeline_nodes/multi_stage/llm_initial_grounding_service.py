@@ -1,7 +1,6 @@
 from __future__ import annotations
 
 import asyncio
-import json
 import logging
 import traceback
 from datetime import datetime
@@ -29,7 +28,6 @@ from core.models.extraction_schemas.catalog_wire_schema import (
     response_format_for,
 )
 from llm_providers.models.file_objects.prompt import Prompt
-from core.services.phrase_summaries_block import render_phrase_summaries_block
 from llm_providers.models.open_ai.gpt_batch_response_blob import (
     ChatCompletionChoiceMessage,
 )
@@ -64,11 +62,15 @@ from llm_providers.models.llm_model import (
 )
 
 from llm_providers.services.gpt_batch_request.gpt_batch_request_writes import (
-    record_response_parse_error,
+    record_response_parse_error_capped,
 )
 from llm_providers.services.gpt_batch_request.gpt_batch_request_service import (
     create_base_gpt_batch_request,
     get_dummy_gpt_batch_response,
+)
+from core.services.phrase_blocks_contract import (
+    hold_response_to_sent_phrases,
+    render_phrase_blocks,
 )
 
 logger = logging.getLogger(__name__)
@@ -137,6 +139,7 @@ async def parse_phrase_initial_grounding_group_result(
     group_req_id: BatchRequestIDType,
     completed_request_map: dict[BatchRequestIDType, GPTBatchRequest],
     timestamp: datetime,
+    repairs: Optional[dict[str, str]] = None,
 ) -> PhraseToTagAndRulesMap:
     """Parse the groundings returned by a single initial-grounding group request."""
     req_obj = completed_request_map.get(group_req_id)
@@ -150,12 +153,21 @@ async def parse_phrase_initial_grounding_group_result(
         )
 
     try:
-        return parse_llm_phrase_initial_grounding_result(
+        parsed_map = parse_llm_phrase_initial_grounding_result(
             gpt_response=req_obj.response.result,
             field_type=field_type,
         )
+        # Missing phrases raise from here, inside the try, so an under-answering
+        # response is recorded and re-dispatched like any other parse failure.
+        return hold_response_to_sent_phrases(
+            user_message=req_obj.request.body.user_message(),
+            response_by_phrase=parsed_map,
+            where=f"{subject_unique_id}:{field_type.name} initial grounding {group_req_id}",
+            on_missing="raise",
+            repairs=repairs,
+        )
     except Exception as e:
-        await record_response_parse_error(
+        await record_response_parse_error_capped(
             gpt_batch_request=req_obj,
             error_message=str(e),
             timestamp=timestamp,
@@ -174,8 +186,13 @@ async def get_initial_grounding_result(
     extraction_bundle: ConceptExtractionRequestBundle,
     completed_request_map: dict[BatchRequestIDType, GPTBatchRequest],
     timestamp: datetime,
+    repairs: Optional[dict[str, str]] = None,
 ) -> PhraseToTagAndRulesMap:
-    """Merge groundings across every group embedded for the chunk."""
+    """Merge groundings across every group embedded for the chunk.
+
+    ``repairs`` is forwarded to the per-group hold; see
+    ``hold_response_to_sent_phrases``.
+    """
     group_req_ids = extraction_bundle.llm_phrase_initial_grounding_req_ids
     if not group_req_ids:
         raise ValueError(
@@ -192,6 +209,7 @@ async def get_initial_grounding_result(
                 group_req_id=group_req_id,
                 completed_request_map=completed_request_map,
                 timestamp=timestamp,
+                repairs=repairs,
             )
         )
     return merged_results
@@ -289,101 +307,38 @@ def get_descend_worthy_tcs_from_tagged_results(
     initially_tagged_trs: list[TaggingResult],
     match_label_to_concept_map: CaseInsensitiveDict[Concept],
 ) -> list[TaggingResultsGroupedByConcept]:
-    descend_worthy_tcs: list[TaggingResultsGroupedByConcept] = []
-    oov_trs, tcs = get_tcs_and_oov_trs_from_trs(
+    """Every recognized tagged concept, grouped: they all descend.
+
+    Until 2026-08-12 this pruned each phrase that exactly matched one of its
+    concept's own matchLabels, on the theory that an exact label match carries
+    no evidence for a more specific subtype — and a fully-pruned concept was
+    diverted to reconcile through a separate "settled" channel. The theory
+    ignored the relationship summary, where the descent evidence actually
+    lives ('Automotive' descended to Automotive Components on its summary,
+    'Assembly' to Mechanical Joining, in every pre-policy baseline), so the
+    prune and the settled channel are gone. Leaf concepts still never descend,
+    but that is the descent gate's business (get_descendable_concept), not a
+    label comparison's.
+    """
+    _, tcs = get_tcs_and_oov_trs_from_trs(
         trs=initially_tagged_trs, match_label_to_concept_map=match_label_to_concept_map
     )
-    # non_descend_worthy_trs: list[TaggingResult] = oov_trs
     logger.info(f"initially_tagged_trs:{initially_tagged_trs}")
-
-    """
-    TaggedConceptResult
-    {
-        concept: C
-        og_tag_w_phrase_rules_map: {
-            C.name: {
-                p1: r11
-            },
-            C.altLabel1: {
-                p1: r12, 
-                p2: r2      # may get pruned if p2 matches C.name or C.altLabel2 or C.altLabel3
-            }
-            C.altLabel3: {
-                p3: r3
-            },
-            oov_1: { # gets kicked out by get_tcs_from_trs
-                p1: r13,
-                p4: r4
-            }
-        }
-    }
-    """
-
-    for tc in tcs:
-        # Folded because the model's casing drifts between calls and every other
-        # label comparison already ignores case (match_label_to_concept_map,
-        # is_sentinel_grounding_label). A raw `in matchLabels` check made
-        # descend-worthiness depend on response casing: 'household products'
-        # escaped the prune while 'Household Products' would not have.
-        match_labels_folded = {
-            label.strip().casefold() for label in tc.concept.matchLabels
-        }
-        for og_tag, phrase_rules_map in list(tc.og_tag_w_phrase_rules_map.items()):
-            # start filtering out phrases that directly matched the tag
-            for phrase in list(phrase_rules_map.keys()):  # p1, p2..
-                if phrase.strip().casefold() in match_labels_folded:
-                    # matchLabels = C.name, C.altLabel1, C.altLabel2,
-                    # one of these was the og_tag but cross comparison
-                    # allows more pruning
-                    phrase_rules_map.pop(phrase)
-
-            if not phrase_rules_map:
-                tc.og_tag_w_phrase_rules_map.pop(og_tag)
-
-        if (
-            tc.og_tag_w_phrase_rules_map
-        ):  # not empty, contains at least one phrase that doesn't exactly match the og tag
-            descend_worthy_tcs.append(tc)
-
-    return descend_worthy_tcs
+    return tcs
 
 
-def get_settled_concepts_and_oov_from_trs(
+def get_oov_tags_from_trs(
     initially_tagged_trs: list[TaggingResult],
     match_label_to_concept_map: CaseInsensitiveDict[Concept],
-) -> tuple[set[Concept], set[str]]:
+) -> set[str]:
     """The initial tags the phrase trail cannot carry, so reconcile must take
-    them from here.
-
-    Out-of-vocab tags never enter iterative tagging. Neither does a recognized
-    concept whose every phrase exactly matches one of its own matchLabels:
-    get_descend_worthy_tcs_from_tagged_results prunes those phrases — an exact
-    label match carries no evidence for any more specific subtype — and a
-    concept left with no phrases never gets a descent request, so it never
-    appears in the trail get_deepest_concepts_and_oov reads. Such a concept is
-    settled: proven at its own level, with nowhere further to go.
-
-    The descend-worthy filter is re-run here on deep copies because it prunes
-    phrase maps in place, and the caller's TaggingResults must stay intact.
-    """
-    oov_trs, tcs = get_tcs_and_oov_trs_from_trs(
+    them from here: out-of-vocab tags never enter iterative tagging, and the
+    trail get_deepest_concepts_and_oov reads never sees them."""
+    oov_trs, _ = get_tcs_and_oov_trs_from_trs(
         trs=initially_tagged_trs,
         match_label_to_concept_map=match_label_to_concept_map,
     )
-    descend_worthy_concepts = {
-        tc.concept
-        for tc in get_descend_worthy_tcs_from_tagged_results(
-            initially_tagged_trs=[
-                tr.model_copy(deep=True) for tr in initially_tagged_trs
-            ],
-            match_label_to_concept_map=match_label_to_concept_map,
-        )
-    }
-    settled_concepts = {
-        tc.concept for tc in tcs if tc.concept not in descend_worthy_concepts
-    }
-    oov_tags = {tr.group_id for tr in oov_trs}
-    return settled_concepts, oov_tags
+    return {tr.group_id for tr in oov_trs}
 
 
 async def get_verified_out_of_vocab_phrases_w_summary(
@@ -607,7 +562,7 @@ def _create_dummy_completed_phrase_initial_grounding_batch_request(
         context=(
             "No initial grounding needed - nothing passed relationship screening "
             "or no phrases were found in the first place.\n"
-            f"{render_phrase_summaries_block({})}"
+            f"{render_phrase_blocks({})}"
         ),
         prompt_text="No initial grounding needed - nothing passed relationship screening or no phrases were found in the first place.",
         gpt_model=NO_MODEL,
@@ -651,8 +606,7 @@ def create_deferred_phrase_initial_grounding_gpt_request(
 
     context = (
         # f"Manufacturer name: {subject_name}\n\n "
-        f"extracted phrases:\n{json.dumps(list(verified_out_of_vocab_phrases_w_summary.keys()))}\n "
-        f"{render_phrase_summaries_block(verified_out_of_vocab_phrases_w_summary)}\n\n"
+        f"{render_phrase_blocks(verified_out_of_vocab_phrases_w_summary)}\n\n"
         f"options of {field_type.name} to choose from:\n{all_concept_labels}"
     )
 

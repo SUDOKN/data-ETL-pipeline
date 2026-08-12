@@ -46,6 +46,7 @@ from core.services.pipeline_nodes.multi_stage.llm_freehand_grounding_service imp
 from core.utils.label_dedupe_util import dedupe_equivalent_keywords
 from core.utils.phrase_trail_dump_util import (
     build_keyword_phrase_rows,
+    merge_stage_repairs,
     write_phrase_trails_dump,
 )
 
@@ -149,6 +150,13 @@ class KeywordReconcileNode(ReconcileNode[ExtractionFieldType]):
                 timestamp=timestamp,
             )
 
+            # Collected per chunk so the dump can say which phrases the model
+            # answered under a different string. One sink PER STAGE: the same
+            # phrase can be mis-echoed at more than one, and a shared dict would
+            # keep only whichever was parsed last. Relationship is the only stage
+            # still unheld, so a repair there stays invisible here.
+            screening_repairs: dict[str, str] = {}
+            freehand_grounding_repairs: dict[str, str] = {}
             llm_phrase_screening_flat = (
                 await parse_relationship_screening_batch_req_result(
                     subject_unique_id=deferred_subject.subject_unique_id,
@@ -157,6 +165,7 @@ class KeywordReconcileNode(ReconcileNode[ExtractionFieldType]):
                     extraction_bundle=bundle,
                     completed_request_map=completed_relationship_screening_requests,
                     timestamp=timestamp,
+                    repairs=screening_repairs,
                 )
             )
 
@@ -168,6 +177,7 @@ class KeywordReconcileNode(ReconcileNode[ExtractionFieldType]):
                     extraction_bundle=bundle,
                     completed_request_map=completed_freehand_grounding_requests,
                     timestamp=timestamp,
+                    repairs=freehand_grounding_repairs,
                 )
             )
 
@@ -196,6 +206,12 @@ class KeywordReconcileNode(ReconcileNode[ExtractionFieldType]):
                 relationship_flat=llm_phrase_relationship_flat,
                 freehand_grounding_flat=llm_phrase_freehand_grounding_flat,
                 search_rounds=llm_search_results,
+                repairs_flat=merge_stage_repairs(
+                    {
+                        "screening": screening_repairs,
+                        "freehand_grounding": freehand_grounding_repairs,
+                    }
+                ),
             )
 
             chunk_stats[chunk_bounds] = KeywordExtractionStats(

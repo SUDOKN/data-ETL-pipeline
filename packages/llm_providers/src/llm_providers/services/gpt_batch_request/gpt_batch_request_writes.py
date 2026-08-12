@@ -652,3 +652,42 @@ async def record_response_parse_error(
         }
     )
     await gpt_batch_request.save()
+
+
+RESPONSE_PARSE_ERROR_CAP = 3
+
+
+class RepeatedParseFailure(Exception):
+    """A request's responses kept failing parse after every allowed retry.
+
+    Raised INSTEAD of recording: recording clears batch_id and response, which
+    re-dispatches the request on the next pass, so a response that fails parse
+    every time would otherwise cycle forever. The request is left untouched —
+    its error history and last response stay inspectable."""
+
+
+async def record_response_parse_error_capped(
+    gpt_batch_request: GPTBatchRequest,
+    error_message: str,
+    timestamp: datetime,
+    traceback_str: str,
+) -> None:
+    """``record_response_parse_error``, unless the request has already recorded
+    ``RESPONSE_PARSE_ERROR_CAP`` parse errors — then ``RepeatedParseFailure``.
+
+    The cap counts recorded errors, so a request gets CAP re-dispatches (CAP+1
+    total attempts) before the failure is allowed to surface as the run's
+    error. Retries can genuinely differ — system_fingerprint drift — which is
+    why re-dispatching is worth anything at all."""
+    if len(gpt_batch_request.response_parse_errors) >= RESPONSE_PARSE_ERROR_CAP:
+        raise RepeatedParseFailure(
+            f"request {gpt_batch_request.request.custom_id} has failed response "
+            f"parsing {RESPONSE_PARSE_ERROR_CAP} time(s) already and is out of "
+            f"re-dispatches. Latest error: {error_message}"
+        )
+    await record_response_parse_error(
+        gpt_batch_request=gpt_batch_request,
+        error_message=error_message,
+        timestamp=timestamp,
+        traceback_str=traceback_str,
+    )

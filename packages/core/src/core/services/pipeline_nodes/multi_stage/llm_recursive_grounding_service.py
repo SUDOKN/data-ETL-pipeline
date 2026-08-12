@@ -44,7 +44,10 @@ from llm_providers.models.llm_model import (
     NO_MODEL,
 )
 from llm_providers.models.file_objects.prompt import Prompt
-from core.services.phrase_summaries_block import render_phrase_summaries_block
+from core.services.phrase_blocks_contract import (
+    hold_response_to_sent_phrases,
+    render_phrase_blocks,
+)
 from llm_providers.models.open_ai.gpt_batch_response_blob import (
     ChatCompletionChoiceMessage,
 )
@@ -183,6 +186,18 @@ async def parse_recursive_grounding_batch_request_result(
         )
         raise
 
+    # Warn-and-drop, never raise: the embed path deletes incomplete descent
+    # requests, wiping the error history a retry cap would count against, so a
+    # raise here could re-dispatch forever. A thinned descent costs depth on
+    # the dropped phrases, not their existence — their node keeps the parent's
+    # groundings.
+    recursive_grounding_result = hold_response_to_sent_phrases(
+        user_message=gpt_req.request.body.user_message(),
+        response_by_phrase=recursive_grounding_result,
+        where=f"{subject_unique_id}:{field_type.name} recursive grounding {descend_req_id}",
+        on_missing="drop",
+    )
+
     return get_tagging_results_from_recursive_grounding_results(
         # expected_tagged_concept_level=expected_tagged_concept_level,
         grounding_result=recursive_grounding_result,
@@ -240,42 +255,6 @@ async def get_all_recursive_grounding_results(
         retval[level] = rt_phrases  # this will insert if rt_phrases empty too
 
     return retval
-
-
-def get_pruned_itp_group(
-    itp_group: IterativelyTaggedPhraseGroup,
-) -> IterativelyTaggedPhraseGroup:
-    """
-    LOGIC
-
-    To pass
-    1. itp_group.tag must be in vocab
-    2. some phrases still remain after removing nested phrases that exactly match the tag
-
-    Return the pruned version or None
-    """
-
-    for phrase, tag_w_rules in list(
-        itp_group.direct_phrases_to_og_tag_w_rules.items()
-    ):
-        for tag in tag_w_rules:
-            if phrase in [
-                tag,
-                itp_group.group_id,
-            ]:  # tag and rtp.tag won't be same if phrase was tagged to concept with altLabel, in which case rtp.tag is concept name and tag is altLabel
-                itp_group.direct_phrases_to_og_tag_w_rules.pop(phrase)
-
-    for phrase, tag_w_rules in list(
-        itp_group.iterative_phrases_to_og_tag_w_rules.items()
-    ):
-        for tag in tag_w_rules:
-            if phrase in [
-                tag,
-                itp_group.group_id,
-            ]:  # tag and rtp.tag won't be same if phrase was tagged to concept with altLabel, in which case rtp.tag is concept name and tag is altLabel
-                itp_group.iterative_phrases_to_og_tag_w_rules.pop(phrase)
-
-    return itp_group
 
 
 def get_descendable_concept(
@@ -674,10 +653,6 @@ async def create_missing_phrase_recursive_grounding_requests(
                 timestamp=timestamp,
             )
 
-            logger.info(f"itp before pruning: {itp}")
-            # itp = get_pruned_itp_group(itp)
-            logger.info(f"itp after pruning: {itp}")
-
             if not is_rtp_descend_worthy(
                 itp_group=itp, match_label_to_concept_map=match_label_to_concept_map
             ):
@@ -771,7 +746,7 @@ def _create_dummy_completed_phrase_recursive_grounding_batch_request(
         # Still carries a block, empty — an absent one has to stay an error.
         context=(
             "No phrase recursive grounding needed - nothing was tagged in initial "
-            f"grounding.\n{render_phrase_summaries_block({})}"
+            f"grounding.\n{render_phrase_blocks({})}"
         ),
         prompt_text="No phrase recursive grounding needed - nothing was tagged in initial grounding.",
         gpt_model=NO_MODEL,
@@ -823,12 +798,8 @@ def create_deferred_phrase_recursive_grounding_gpt_request(
             cls=ConceptJSONEncoder,
         ),
     )
-    context = (
-        # f"Manufacturer name: {subject_name}\n\n "
-        f"extracted phrases:\n{json.dumps(list(verified_phrases_w_og_summary.keys()))}\n "
-        f"extracted phrases with their relationship summaries:\n"
-        f"{render_phrase_summaries_block(verified_phrases_w_og_summary)}"
-    )
+    # f"Manufacturer name: {subject_name}\n\n "
+    context = render_phrase_blocks(verified_phrases_w_og_summary)
 
     gpt_batch_request = create_base_gpt_batch_request(
         deferred_at=deferred_at,

@@ -1,7 +1,9 @@
 from __future__ import annotations
 
 import logging
+from typing import Optional
 from datetime import datetime
+from math import ceil
 
 from llm_providers.db_models.gpt_batch_request import (
     GPTBatchRequest,
@@ -38,6 +40,7 @@ from core.models.field_types import ExtractionFieldType
 from core.services.pipeline_nodes.multi_stage.llm_freehand_grounding_service import (
     create_missing_phrase_freehand_grounding_requests,
     get_freehand_grounding_result,
+    get_verified_phrases_w_og_summary,
 )
 from llm_providers.field_types import BatchRequestIDType
 from scraper.models.s3.scraped_text_file import ScrapedTextFile
@@ -85,16 +88,46 @@ class LLMPhraseFreehandGroundingNode(
                 f"as chunked_request_map found empty for subject:{subject_unique_id}, field:{self.field_type.name}."
             )
 
+        # The screened phrase set for a chunk is already complete by the time
+        # freehand grounding embeds ids (relationship + screening have fully
+        # executed), so the group count can be computed once, upfront.
+        max_pairs_per_request = (
+            metadata.llm_phrase_freehand_grounding.max_pairs_per_request
+        )
+        upstream_relationship_map = self.get_upstream_phrase_relationship_map(
+            pipeline_context
+        )
+        upstream_screening_map = self.get_upstream_phrase_screening_map(
+            pipeline_context
+        )
+
         for chunk_bounds, extraction_request_bundle in chunked_request_map.items():
-            if not extraction_request_bundle.llm_phrase_freehand_grounding_req_id:
-                extraction_request_bundle.llm_phrase_freehand_grounding_req_id = (
-                    self.get_request_custom_id(
-                        subject_unique_id=subject_unique_id,
-                        field_type=self.field_type,
-                        chunk_bounds=chunk_bounds,
-                        metadata=metadata,
-                    )
+            if extraction_request_bundle.llm_phrase_freehand_grounding_req_ids:
+                continue  # already embedded; group count is stable once computed
+
+            verified_phrases_w_og_summary = await get_verified_phrases_w_og_summary(
+                subject_unique_id=subject_unique_id,
+                field_type=self.field_type,
+                chunk_bounds=chunk_bounds,
+                extraction_bundle=extraction_request_bundle,
+                llm_phrase_relationship_gpt_request_map=upstream_relationship_map,
+                llm_phrase_screening_gpt_request_map=upstream_screening_map,
+                timestamp=timestamp,
+            )
+            num_groups = max(
+                1,
+                ceil(len(verified_phrases_w_og_summary) / max_pairs_per_request),
+            )
+            extraction_request_bundle.llm_phrase_freehand_grounding_req_ids = [
+                self.get_request_custom_id(
+                    subject_unique_id=subject_unique_id,
+                    field_type=self.field_type,
+                    chunk_bounds=chunk_bounds,
+                    group_index=group_index,
+                    metadata=metadata,
                 )
+                for group_index in range(num_groups)
+            ]
 
     def get_embedded_request_ids(
         self,
@@ -103,12 +136,12 @@ class LLMPhraseFreehandGroundingNode(
     ) -> set[BatchRequestIDType]:
         req_ids: set[BatchRequestIDType] = set()
         for chunk_bounds, extraction_bundle in chunked_request_map.items():
-            if not extraction_bundle.llm_phrase_freehand_grounding_req_id:
+            if not extraction_bundle.llm_phrase_freehand_grounding_req_ids:
                 raise ValueError(
                     f"Cannot get embedded request ids for subject_unique_id:{subject_unique_id}>{chunk_bounds} as "
-                    f"llm_phrase_freehand_grounding_req_id is absent in the extraction_bundle."
+                    f"llm_phrase_freehand_grounding_req_ids is empty in the extraction_bundle."
                 )
-            req_ids.add(extraction_bundle.llm_phrase_freehand_grounding_req_id)
+            req_ids.update(extraction_bundle.llm_phrase_freehand_grounding_req_ids)
         return req_ids
 
     @staticmethod
@@ -116,10 +149,11 @@ class LLMPhraseFreehandGroundingNode(
         subject_unique_id: str,
         field_type: ExtractionFieldType,
         chunk_bounds: str,
+        group_index: int,
         metadata: KeywordExtractionMetadata,
     ) -> BatchRequestIDType:
         return (
-            f"{subject_unique_id}>{field_type.name}>llm_phrase_freehand_grounding>chunk>{chunk_bounds}>"
+            f"{subject_unique_id}>{field_type.name}>llm_phrase_freehand_grounding>group>{group_index}>chunk>{chunk_bounds}>"
             f"{metadata.llm_phrase_freehand_grounding.to_custom_id_segment()}"
         )
 
@@ -164,6 +198,7 @@ class LLMPhraseFreehandGroundingNode(
             ),
             llm_model=metadata.llm_phrase_freehand_grounding.llm_model,
             model_params=metadata.llm_phrase_freehand_grounding.model_params,
+            max_pairs_per_request=metadata.llm_phrase_freehand_grounding.max_pairs_per_request,
             eager=eager,
         )
 
@@ -175,6 +210,7 @@ class LLMPhraseFreehandGroundingNode(
         extraction_bundle: KeywordExtractionRequestBundle,
         completed_request_map: dict[BatchRequestIDType, GPTBatchRequest],
         timestamp: datetime,  # for recording errors
+        repairs: Optional[dict[str, str]] = None,
     ) -> PhraseToTagAndRulesMap:
         return await get_freehand_grounding_result(
             subject_unique_id=subject_unique_id,
@@ -183,6 +219,7 @@ class LLMPhraseFreehandGroundingNode(
             extraction_bundle=extraction_bundle,
             completed_request_map=completed_request_map,
             timestamp=timestamp,
+            repairs=repairs,
         )
 
     async def dispatch_batch_request(
