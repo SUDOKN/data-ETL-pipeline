@@ -18,7 +18,7 @@ You do not report a verdict. The rules you report ARE the verdict, so work the r
 
 {{report_block}}
 
-One exception: when "identified_entity" is null there was no candidate for the rules to be about, so leave "applied_rules" empty rather than reporting the conditions above. Otherwise the phrase passes exactly when every condition is "satisfied" and no guard is reported.
+Each phrase takes one of two forms, and you choose which. Where you identified a candidate, "outcome" is "judged": name it and work every condition above against it. Where the phrase offered no candidate at all, "outcome" is "no_candidate": there is nothing for the conditions to be about, so give only a short "explanation" of why none could be identified. A judged phrase passes exactly when every condition is "satisfied" and no guard is reported.
 
 ### Output:
 Return a JSON object with a single key "screenings" whose value is an array of objects, one per phrase. The example below shows the shapes an entry can take — a phrase whose candidate qualified, one whose candidate failed a condition, one whose candidate met every condition but was ruled out by a guard, and one that offered no candidate at all. Everything in angle brackets is yours to fill in.

@@ -1211,6 +1211,12 @@
                         }
                       }
                     }
+                  },
+                  "no_candidate_explanation": {
+                    "bsonType": [
+                      "string",
+                      "null"
+                    ]
                   }
                 }
               }
@@ -1300,6 +1306,17 @@
                   },
                   "group_id": {
                     "bsonType": "string"
+                  },
+                  "stop_reason": {
+                    "enum": [
+                      "sentinel",
+                      "false_child",
+                      null
+                    ],
+                    "bsonType": [
+                      "string",
+                      "null"
+                    ]
                   },
                   "direct_phrases_to_og_tag_w_rules": {
                     "bsonType": "object",

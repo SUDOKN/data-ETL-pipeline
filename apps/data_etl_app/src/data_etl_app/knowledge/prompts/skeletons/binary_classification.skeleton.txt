@@ -1,0 +1,21 @@
+You are given text scraped from a business's website. Your task is to determine whether the text proves that there is at least one {{entity_noun}} that the business itself {{entity_relationships.third_person}}. Your proof must be drawn solely from the given text.
+
+The text may offer several candidates. Judge them one at a time. One qualifying candidate is enough: the classification is positive as soon as any candidate holds under every condition without tripping a guard, and a candidate that fails only rules itself out.
+
+Name the one you judged in "identified_entity": the candidate that qualified, or — when none qualified — the one you got furthest with. The rules you report must be the rules as they applied to that same candidate. When the text offers no candidate at all, set "identified_entity" to null, report the first condition as "failed", and the conditions after it as "not_triggered".
+
+You do not report a verdict. The rules you report ARE the verdict, so work the rules and let the outcome follow rather than deciding first and fitting rules to it. The classification is derived from your report: positive exactly when every condition is "satisfied" and no guard is reported.
+
+### Rules:
+{{rules_block}}
+
+{{report_block}}
+
+Also report "confidence": an integer from 0 to 100 expressing how certain you are of the overall assessment your reported rules add up to — the assessment as a whole, not any single rule.
+
+### Output:
+Return a single JSON object. The example below shows its shape; everything in angle brackets is yours to fill in. Report each condition with the outcome it actually reached, in the order the conditions are stated.
+
+```json
+{{output_example}}
+```

@@ -4,21 +4,33 @@ Every failure here raises. Callers sit inside the parse path, so a raise routes 
 ``record_response_parse_error`` and fails that one group request, which can then be
 re-run on its own.
 
-What is checked is the REPORT's internal consistency against the catalog: that
-every rule id is known and reportable, that each is reported once, that its
-outcome is one the catalog allows for its kind, that guards and preferences are
-reported only under the conditions the catalog names, that every
-always-reported rule is present, that exactly one branch of a matching ladder is
-chosen, and that a chain of conditions does not claim to hold behind one that did
-not.
+What is left to check is SEMANTIC: that a chain of conditions does not claim to
+hold behind one that did not, and that no rule is reported with a blank
+justification. Both are judgments the model makes and can get wrong.
 
-What is NOT checked is the ``explanation`` prose. Until 2026-08-11 each rule also
-carried a structured ``evidence`` array of quoted slices, and roughly half of this
-module was a matcher that located each slice in its declared source, in order,
-under a normalising ladder. That went with the field. The prompts still ask for
-the phrase and its relationship summary to be cited and for the relied-on words to
-be quoted, but a paraphrase is now a weakness a reader can see rather than a parse
-failure that costs a whole group request.
+What used to be checked here — that every rule id is known and reportable, that
+each appears once, that its outcome is one its kind allows, that every
+always-reported rule is present, that exactly one branch of a matching ladder is
+chosen — is now unrepresentable rather than rejected. Those were all cardinality
+and vocabulary constraints the catalog already declared, re-checked by hand
+because the wire format was a flat ``list[AppliedRule]`` that could express none
+of them. ``catalog_wire_schema`` generates the schema from the same catalog that
+writes the prompt, so the rules arrive as required properties named for their ids
+with enum-typed outcomes, and a strict decoder cannot produce any of those
+defects. See that module for what drove the change.
+
+That deletion is also what makes the count below mean something. The docstring on
+``check_applied_rules`` says the caller is measuring, not just gating — but while
+formatting slips and reasoning errors both landed here, the number pooled the two.
+Every problem it reports now is a reasoning defect.
+
+What is NOT checked is the ``explanation`` prose beyond its emptiness. Until
+2026-08-11 each rule also carried a structured ``evidence`` array of quoted
+slices, and roughly half of this module was a matcher that located each slice in
+its declared source, in order, under a normalising ladder. That went with the
+field. The prompts still ask for the phrase and its relationship summary to be
+cited and for the relied-on words to be quoted, but a paraphrase is now a weakness
+a reader can see rather than a parse failure that costs a whole group request.
 """
 
 from __future__ import annotations
@@ -100,10 +112,11 @@ def passed_implied_by(
     ``failed`` one does. Guards appear only when violated, so the mere presence of
     one is the rejection.
 
-    An empty list rejects rather than vacuously accepting. Validation requires every
-    always-reported rule to be present, so the only report that reaches here with no
-    rules is the null-entity shortcut in the screening parser — a phrase that offered
-    no candidate at all, which is the plainest reject there is.
+    An empty list rejects rather than vacuously accepting. Every catalog declares at
+    least one always-reported rule and the wire schema makes each a required
+    property, so a judged unit always arrives with rules; the only empty list that
+    reaches here is screening's no-candidate branch — a phrase that offered no
+    candidate at all, which is the plainest reject there is.
     """
     if not applied_rules:
         return False
@@ -137,8 +150,9 @@ def check_applied_rules(
 ) -> AppliedRuleReport:
     """Every way ``applied_rules`` fails ``catalog``, not merely the first.
 
-    Checks the report's internal consistency only. There is no verdict to check it
-    against: screening derives ``passed`` from these rules via ``passed_implied_by``
+    Checks the report's semantic consistency only — the shape is the wire schema's
+    job now (see the module docstring). There is no verdict to check it against
+    either: screening derives ``passed`` from these rules via ``passed_implied_by``
     rather than asking the model to declare one, and grounding drops a category
     instead of flagging it.
 
@@ -153,81 +167,21 @@ def check_applied_rules(
     :param where: identifies the unit being checked in error messages, e.g.
         ``"phrase 'we serve aerospace' category 'Aerospace'"``.
     """
-    rules_by_id = catalog.rules_by_id()
     problems: list[str] = []
 
-    seen: set[str] = set()
+    # An explanation is the whole of the justification now that no structured
+    # evidence rides alongside it, so a blank one is a rule reported with no
+    # reason at all. Its CONTENT is not checked — the prompt asks it to cite
+    # and quote its sources, and a paraphrase that ignores that is for a
+    # reader to weigh, not for this to reject.
+    #
+    # Strict mode makes the field required but not non-empty: `minLength` is not in
+    # its keyword subset, so this is the one shape check the schema cannot absorb.
     for applied in applied_rules:
-        rule = rules_by_id.get(applied.rule_id)
-        if rule is None:
-            # Everything below reads `rule`, and an id the catalog does not know
-            # has no kind, vocabulary or reporting policy to check against.
-            problems.append(
-                f"{catalog.prompt_name}: {where}: reported unknown rule "
-                f"{applied.rule_id!r}. Known rules: {sorted(rules_by_id)}"
-            )
-            continue
-        if not rule.reportable:
-            problems.append(
-                f"{catalog.prompt_name}: {where}: reported {applied.rule_id!r}, "
-                f"which is guidance folded into its parent rule and must not be "
-                f"reported"
-            )
-        if applied.rule_id in seen:
-            problems.append(
-                f"{catalog.prompt_name}: {where}: reported {applied.rule_id!r} more "
-                f"than once"
-            )
-        seen.add(applied.rule_id)
-
-        allowed = catalog.valid_outcomes(applied.rule_id)
-        if applied.outcome not in allowed:
-            problems.append(
-                f"{catalog.prompt_name}: {where}: rule {applied.rule_id!r} is a "
-                f"{rule.kind} and cannot have outcome {applied.outcome!r}. "
-                f"Allowed: {sorted(allowed)}"
-            )
-
-        # A guard is reported only to say it fired and a preference only to say
-        # it was the branch taken — and the outcome check above ALREADY rejects
-        # anything else, because
-        # ONLY_REACHABLE_OUTCOME_BY_REPORT_WHEN pins those kinds' vocabulary to
-        # the single value they can carry. Separate checks stood here until
-        # 2026-08-11 and could not fire without the vocabulary check firing on
-        # the same rule, so one defect was counted twice. That is a real cost
-        # rather than noise: this function is exhaustive precisely so the problem
-        # count measures how much of a response was wrong, and a preference
-        # reported with the wrong outcome inflated that count by one every time.
-
-        # An explanation is the whole of the justification now that no structured
-        # evidence rides alongside it, so a blank one is a rule reported with no
-        # reason at all. Its CONTENT is not checked — the prompt asks it to cite
-        # and quote its sources, and a paraphrase that ignores that is for a
-        # reader to weigh, not for this to reject.
         if not applied.explanation.strip():
             problems.append(
                 f"{catalog.prompt_name}: {where}: rule {applied.rule_id!r} was "
                 f"reported with an empty explanation"
-            )
-
-    missing = catalog.always_reported_rule_ids() - seen
-    if missing:
-        problems.append(
-            f"{catalog.prompt_name}: {where}: did not report {sorted(missing)}, "
-            f"which must be reported whichever outcome they reach"
-        )
-
-    # The matching ladder is one decision, so exactly one branch is reported.
-    # Stages without a ladder (screening) declare no preference rules and skip this.
-    preference_ids = {
-        rule.id for rule in catalog.walk_rules() if rule.report_when == "when_chosen"
-    }
-    if preference_ids:
-        chosen = seen & preference_ids
-        if len(chosen) != 1:
-            problems.append(
-                f"{catalog.prompt_name}: {where}: expected exactly one chosen rule "
-                f"from {sorted(preference_ids)}, got {sorted(chosen) or 'none'}"
             )
 
     problems.extend(_condition_chain_problems(catalog, applied_rules, where))

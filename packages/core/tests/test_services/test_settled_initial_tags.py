@@ -4,6 +4,7 @@ from core.models.deferred_extraction.deferred_concept_extraction import TaggingR
 from core.models.extraction_schemas.applied_rule import AppliedRule
 from core.models.skos_concept import Concept
 from core.services.pipeline_nodes.multi_stage.llm_initial_grounding_service import (
+    get_descend_worthy_tcs_from_tagged_results,
     get_settled_concepts_and_oov_from_trs,
 )
 
@@ -120,6 +121,58 @@ def test_alt_label_phrase_settles_too():
 
     assert settled == {tool_and_die}
     assert oov == set()
+
+
+def test_casing_variant_of_label_settles_like_the_label_itself():
+    """The prune must be case-insensitive (2026-08-12): with a raw
+    `phrase in matchLabels` check, 'household products' escaped the prune while
+    'Household Products' would not have — whether a concept descended depended
+    on the model's casing that call. Both casings must settle identically."""
+    household = _concept("Household Products", level=2)
+
+    for phrase in ("household products", "Household Products", " Household Products "):
+        trs = [
+            TaggingResult(
+                group_id="Household Products",
+                phrase_rules_map={phrase: _rules("casing/whitespace variant")},
+            )
+        ]
+
+        settled, oov = get_settled_concepts_and_oov_from_trs(
+            initially_tagged_trs=trs,
+            match_label_to_concept_map=_match_label_map(household),
+        )
+
+        assert settled == {household}, f"{phrase!r} did not settle"
+        assert oov == set()
+
+
+def test_prune_drops_only_label_variants_keeping_concept_descend_worthy():
+    """Mixed map: the casing variant of the label is pruned, the free phrase
+    survives, so the concept stays descend-worthy carrying only the free
+    phrase."""
+    household = _concept("Household Products", level=2)
+    trs = [
+        TaggingResult(
+            group_id="Household Products",
+            phrase_rules_map={
+                "household products": _rules("casing variant of the label"),
+                "kitchen appliance housings": _rules("free phrase"),
+            },
+        )
+    ]
+
+    descend_worthy = get_descend_worthy_tcs_from_tagged_results(
+        initially_tagged_trs=trs,
+        match_label_to_concept_map=_match_label_map(household),
+    )
+
+    assert [tc.concept for tc in descend_worthy] == [household]
+    assert descend_worthy[0].og_tag_w_phrase_rules_map == {
+        "Household Products": {
+            "kitchen appliance housings": _rules("free phrase"),
+        }
+    }
 
 
 def test_out_of_vocab_tag_is_reported_as_oov():

@@ -13,6 +13,13 @@ STAGE_RELATIONSHIP_SCREENING = "phrase_relationship_screening"
 STAGE_INITIAL_GROUNDING = "phrase_initial_grounding"
 STAGE_RECURSIVE_GROUNDING = "phrase_recursive_grounding"
 STAGE_FREEHAND_GROUNDING = "phrase_freehand_grounding"
+# Whole-text yes/no questions (is_manufacturer etc.). Structurally these are
+# screening applied to the site instead of to a phrase — one candidate entity
+# judged through a chained conjunction — so they share the screening kinds
+# (condition + guard) and derive the verdict the same way. ``field_type`` here is
+# the classification name itself, which keeps (stage, field_type) one-to-one with
+# a prompt.
+STAGE_BINARY_CLASSIFICATION = "binary_classification"
 
 # A rule's kind fixes both whether it is reported and when. Keeping the mapping
 # here rather than in each catalog file means a catalog cannot declare a rule that
@@ -133,6 +140,13 @@ class RuleCatalog(BaseModel):
     outcome_vocab: dict[str, list[str]]
     sections: list[RuleSection]
     published: PublishedRecord
+
+    # What an explanation is asked to cite — rendered into the report block and
+    # into the example's explanation slots. The multi-stage prompts judge a phrase
+    # against its relationship summary; binary classification judges the scraped
+    # text itself, and an instruction to cite a relationship summary that the
+    # request does not carry would teach the model to invent one.
+    evidence_source: str = "the phrase and its relationship summary"
 
     # The reserved label this prompt's escape-hatch branch tells the model to
     # return, for the catalogs that have one — recursive grounding and freehand.

@@ -223,6 +223,30 @@ class LLMPhraseRelationshipScreeningNode(
             timestamp=timestamp,
         )
 
+    async def validate_own_responses(
+        self,
+        subject_unique_id: str,
+        chunked_request_map: LLMPhraseExtractionRequestMap,
+        completed_request_map: dict[BatchRequestIDType, GPTBatchRequest],
+        timestamp: datetime,
+    ) -> None:
+        """Parse every screening response here, where the requests were made.
+
+        ``get_result`` is a pure parse over a map already in memory, so the
+        downstream node parsing it again costs nothing but CPU on a JSON blob —
+        cheap against being told which of this node's requests to re-run by the
+        node that made them, one phase before a consumer trips over it.
+        """
+        for chunk_bounds, extraction_bundle in chunked_request_map.items():
+            await self.get_result(
+                subject_unique_id=subject_unique_id,
+                field_type=self.field_type,
+                chunk_bounds=chunk_bounds,
+                extraction_bundle=extraction_bundle,
+                completed_request_map=completed_request_map,
+                timestamp=timestamp,
+            )
+
     async def dispatch_batch_request(
         self,
         gpt_batch_request: GPTBatchRequest,

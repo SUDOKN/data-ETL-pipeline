@@ -16,7 +16,6 @@ from core.models.deferred_extraction.deferred_keyword_extraction import (
     KeywordExtractionRequestMap,
 )
 from core.models.extraction_schemas.grounding import (
-    PhraseCategoryGroundingResponse,
     PhraseToTagAndRulesMap,
     TagToAppliedRulesMap,
 )
@@ -29,8 +28,10 @@ from core.services.rule_catalog_registry import get_rule_catalog
 from core.models.extraction_schemas.relationship import (
     LLMPhraseRelationshipResults,
 )
-from core.models.extraction_schemas.response_format_util import (
-    build_gpt_response_format,
+from core.models.extraction_schemas.catalog_wire_schema import (
+    flatten_rule_slots,
+    grounding_response_model,
+    response_format_for,
 )
 from llm_providers.models.open_ai.gpt_batch_response_blob import (
     ChatCompletionChoiceMessage,
@@ -64,9 +65,12 @@ from llm_providers.models.open_ai.gpt_model_params import (
 logger = logging.getLogger(__name__)
 
 
-LLM_PHRASE_FREEHAND_GROUNDING_RESPONSE_SCHEMA = build_gpt_response_format(
-    PhraseCategoryGroundingResponse, name="phrase_freehand_grounding_result"
-)
+def get_freehand_grounding_response_schema(field_type: ExtractionFieldType) -> dict:
+    """This stage's strict ``response_format``, for one field type. Per catalog
+    rather than a module constant — see ``catalog_wire_schema``."""
+    return response_format_for(
+        get_rule_catalog(STAGE_FREEHAND_GROUNDING, field_type.name)
+    )
 
 
 def parse_llm_phrase_freehand_grounding_result(
@@ -79,8 +83,10 @@ def parse_llm_phrase_freehand_grounding_result(
             "parse_llm_phrase_freehand_grounding_result: Empty or invalid response from GPT"
         )
 
+    catalog = get_rule_catalog(STAGE_FREEHAND_GROUNDING, field_type.name)
+
     try:
-        parsed = PhraseCategoryGroundingResponse.model_validate_json(gpt_response)
+        parsed = grounding_response_model(catalog).model_validate_json(gpt_response)
     except ValidationError as e:
         raise ValueError(
             f"parse_llm_phrase_freehand_grounding_result: Invalid response from GPT:{gpt_response}"
@@ -93,19 +99,19 @@ def parse_llm_phrase_freehand_grounding_result(
             raise ValueError(
                 f"parse_llm_phrase_freehand_grounding_result: Duplicate phrase {entry.phrase!r} in groundings response"
             )
-        catalog = get_rule_catalog(STAGE_FREEHAND_GROUNDING, field_type.name)
         rules_by_category: TagToAppliedRulesMap = {}
         for category in entry.categories:
+            applied_rules = flatten_rule_slots(catalog, category)
             # Collected across every category of every phrase, then raised once at
             # the end: a response is measured whole or its defect rate is a
             # function of where the scan stopped.
             report = check_applied_rules(
                 catalog=catalog,
-                applied_rules=category.applied_rules,
+                applied_rules=applied_rules,
                 where=f"phrase {entry.phrase!r} category {category.category!r}",
             )
             violations.extend(report.problems)
-            rules_by_category[category.category] = category.applied_rules
+            rules_by_category[category.category] = applied_rules
         # Collapses to the shared tag-keyed map here; see grounding.py on why the
         # category naming stops at the wire schema.
         raw_llm_freehand_grounding_result[entry.phrase] = rules_by_category
@@ -265,6 +271,7 @@ async def create_missing_phrase_freehand_grounding_requests(
                 new_batch_request = create_deferred_phrase_freehand_grounding_gpt_request(
                     deferred_at=deferred_at,
                     subject_unique_id=subject_unique_id,
+                    field_type=field_type,
                     llm_phrase_freehand_grounding_request_id=req_id,
                     phrase_freehand_grounding_prompt=phrase_freehand_grounding_prompt,
                     subject_name=subject_name,
@@ -324,6 +331,7 @@ def _create_dummy_completed_phrase_freehand_grounding_batch_request(
 def create_deferred_phrase_freehand_grounding_gpt_request(
     deferred_at: datetime,
     subject_unique_id: str,
+    field_type: ExtractionFieldType,
     llm_phrase_freehand_grounding_request_id: BatchRequestIDType,
     phrase_freehand_grounding_prompt: Prompt,
     subject_name: str,
@@ -349,7 +357,7 @@ def create_deferred_phrase_freehand_grounding_gpt_request(
         prompt_text=phrase_freehand_grounding_prompt.text,
         gpt_model=gpt_model,
         model_params=model_params.with_response_format(
-            LLM_PHRASE_FREEHAND_GROUNDING_RESPONSE_SCHEMA
+            get_freehand_grounding_response_schema(field_type)
         ),
         batch_id="Eager" if eager else None,
     )

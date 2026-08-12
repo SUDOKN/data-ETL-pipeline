@@ -64,10 +64,15 @@ class SingleStageExtractionNode(BaseLLMExtractionNode[ExtractionFieldType, Resul
         )
         self.prompt = prompt
 
-    @staticmethod
     @abstractmethod
-    def get_response_schema() -> dict:
-        """GPT response_format schema dict for this node's field type; owned by the concrete node."""
+    def get_response_schema(self) -> dict:
+        """GPT response_format schema dict for this node's field type; owned by the
+        concrete node.
+
+        An instance method rather than a static one because a catalogued node's
+        schema is generated from its own catalog — the rule ids it requires are
+        this field type's. See ``catalog_wire_schema``.
+        """
         pass
 
     async def embed_request_ids(  # prefill folded into this function

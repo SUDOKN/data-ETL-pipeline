@@ -1,0 +1,99 @@
+{
+  "catalog_version": "is_manufacturer.2026.08.1",
+  "prompt_name": "is_manufacturer",
+  "stage": "binary_classification",
+  "field_types": [
+    "is_manufacturer"
+  ],
+  "entity_noun": "production activity",
+  "entity_relationships": {
+    "base": "carry out",
+    "third_person": "carries out",
+    "gerund": "carrying out"
+  },
+  "evidence_source": "the given text",
+  "outcome_vocab": {
+    "condition": [
+      "satisfied",
+      "failed",
+      "not_triggered"
+    ],
+    "guard": [
+      "violated"
+    ]
+  },
+  "sections": [
+    {
+      "section_id": "pass_conditions",
+      "heading": "A candidate {{entity_noun}} qualifies only if ALL of these conditions hold for it:",
+      "combinator": "all",
+      "rules": [
+        {
+          "id": "MFG-1",
+          "kind": "condition",
+          "reportable": true,
+          "report_when": "always",
+          "text": "At least one {{entity_noun}} can be identified from the text — specific work in which a tangible good is brought into being, or has its physical form, state, or composition changed. Work that only moves, stores, sells, inspects, designs, or advises on goods that others make is not a {{entity_noun}}.",
+          "children": [
+            {
+              "id": "MFG-1a",
+              "kind": "note",
+              "reportable": false,
+              "report_when": "never",
+              "text": "A single step of a longer production sequence — treating, finishing, assembling, or otherwise transforming goods that arrive from and return to other parties — is a {{entity_noun}} in its own right; nothing requires the business to make a complete or finished good."
+            }
+          ]
+        },
+        {
+          "id": "MFG-2",
+          "kind": "condition",
+          "reportable": true,
+          "report_when": "always",
+          "text": "The text shows real, concrete engagement with the identified {{entity_noun}}: some party is shown to {{entity_relationships.base}} that {{entity_noun}}, not merely to name it, list it as a topic, or claim familiarity with it."
+        },
+        {
+          "id": "MFG-3",
+          "kind": "condition",
+          "reportable": true,
+          "report_when": "always",
+          "text": "It is this business that {{entity_relationships.third_person}} the identified {{entity_noun}} — with its own workforce, in an operation it runs — not a supplier, subcontractor, partner, parent, customer, or other party whose work the text describes.",
+          "children": [
+            {
+              "id": "MFG-3a",
+              "kind": "note",
+              "reportable": false,
+              "report_when": "never",
+              "text": "Work at a leased or jointly operated site, or by a division of the same business, counts as this business; work bought in from another party does not, however the resulting goods are named or branded."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "section_id": "guards",
+      "heading": "A candidate {{entity_noun}} is ruled out if ANY of these guards is violated by it. Ruling out one candidate does not settle the classification — another candidate may still qualify:",
+      "combinator": "any",
+      "rules": [
+        {
+          "id": "MFG-G1",
+          "kind": "guard",
+          "reportable": true,
+          "report_when": "on_violation",
+          "text": "The business's engagement with the identified {{entity_noun}} is only planned, hoped-for, under construction, or discontinued, rather than current and actual."
+        },
+        {
+          "id": "MFG-G2",
+          "kind": "guard",
+          "reportable": true,
+          "report_when": "on_violation",
+          "text": "The identified {{entity_noun}} is performed on finished items already in service — repairing, refurbishing, or maintaining them for the parties that use them — rather than on goods being brought toward supply."
+        }
+      ]
+    }
+  ],
+  "published": {
+    "s3_version_id": "9320z7ti8VqCd3yRuftQAIo1wuqjaiCO",
+    "rendered_sha256": "0c450ba0407e56d5a3383fe6d20ebe6484b0ff39cb18a6f31c36eda64ee41ff0",
+    "uploaded_at": "2026-08-12T07:50:48.382035+00:00"
+  }
+}

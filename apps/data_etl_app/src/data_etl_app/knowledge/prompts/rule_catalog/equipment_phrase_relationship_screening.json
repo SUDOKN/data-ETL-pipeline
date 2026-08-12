@@ -1,11 +1,11 @@
 {
-  "catalog_version": "equipment_phrase_relationship_screening.2026.08.3",
+  "catalog_version": "equipment_phrase_relationship_screening.2026.08.4",
   "prompt_name": "equipment_phrase_relationship_screening",
   "stage": "phrase_relationship_screening",
   "field_types": [
     "equipments"
   ],
-  "entity_noun": "equipment category",
+  "entity_noun": "production machine category",
   "entity_relationships": {
     "base": "operate or use",
     "third_person": "operates or uses",
@@ -32,7 +32,7 @@
           "kind": "condition",
           "reportable": true,
           "report_when": "always",
-          "text": "At least one {{entity_noun}} can be identified from the phrase and its relationship summary.",
+          "text": "At least one {{entity_noun}} can be named from the phrase and its relationship summary — a particular kind of machine, not an umbrella that covers many kinds.",
           "combinator": "note",
           "children": [
             {
@@ -40,7 +40,14 @@
               "kind": "note",
               "reportable": false,
               "report_when": "never",
-              "text": "The category must actually be determinable. A phrase that speaks of equipment only in general terms, with nothing that fixes a kind, does not satisfy this condition. Where a phrase identifies one particular machine, name the kind that machine belongs to, never what singled that one out."
+              "text": "A term that names no operation performed on the work covers every machine that performs any of them, and so fixes no kind. Qualifying such a term — by what it is for, how new it is, how much of it there is, or where it sits — leaves it fixing no kind still. A phrase that supplies nothing beyond such a term does not satisfy this condition."
+            },
+            {
+              "id": "SCR-1b",
+              "kind": "note",
+              "reportable": false,
+              "report_when": "never",
+              "text": "Where a phrase identifies one particular machine — by its maker, its model, or any other mark that singles that one out — name the kind that machine belongs to, and carry none of what singled it out into the name. Name it no more capably than the words do: a capability the words do not state is not part of the kind."
             }
           ]
         },
@@ -80,7 +87,24 @@
           "kind": "guard",
           "reportable": true,
           "report_when": "on_violation",
-          "text": "The identified {{entity_noun}} has no part in production — it is equipment any business would operate regardless of what, if anything, it makes."
+          "text": "What the identified {{entity_noun}} names is not in fact a production machine: a device, tool, or system that acts on the work itself, used directly to process, shape, assemble, or convert raw materials into finished goods for commercial use. Equipment that keeps the operation running without acting on the work — powering or conditioning the plant, moving or storing what it makes, or serving the business rather than the making — is ruled out however necessary it is.",
+          "combinator": "note",
+          "children": [
+            {
+              "id": "SCR-G2a",
+              "kind": "note",
+              "reportable": false,
+              "report_when": "never",
+              "text": "Equipment that only measures, inspects, or tests does not act on the work either. It establishes what the work already is and leaves it as it was, and is ruled out on the same ground."
+            },
+            {
+              "id": "SCR-G2b",
+              "kind": "note",
+              "reportable": false,
+              "report_when": "never",
+              "text": "Tooling is not a machine. What is mounted in, held by, or driven by a machine — what it cuts, forms, or positions the work with — performs no operation of its own; the machine driving it is what qualifies."
+            }
+          ]
         },
         {
           "id": "SCR-G3",
@@ -100,8 +124,8 @@
     }
   ],
   "published": {
-    "s3_version_id": "7gr4NijrQtOh7D7i2qe7pknpxkCpAlSI",
-    "rendered_sha256": "017f38857f28885d91e87fe7ad4d74d622dd7f449aa78e73d0a4f40279970f62",
-    "uploaded_at": "2026-08-12T04:33:58.773590+00:00"
+    "s3_version_id": "FQbdfEgZRrDBkMg7FxUJ25mBMxOI9bNd",
+    "rendered_sha256": "df815abc820dcdf6c4d683a9d370ca205130d56763b02a43f756abbb9f874086",
+    "uploaded_at": "2026-08-12T07:50:48.382035+00:00"
   }
 }

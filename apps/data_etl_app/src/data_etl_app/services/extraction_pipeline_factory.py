@@ -462,6 +462,10 @@ class ExtractionPipelineFactory:
         ontology: Ontology,
         created_at: datetime,
     ) -> BinaryClassificationPrefillNode:
+        # Binary classification parses against a catalog too, and this pipeline is
+        # built standalone (is_manufacturer in the orchestrator) rather than only
+        # through create_pipelines, so it registers the lookup itself.
+        set_rule_catalog_lookup(build_rule_catalog_lookup())
         chunk_strategy = get_binary_classification_chunking_strat(prompt=prompt)
         return BinaryClassificationPrefillNode(
             binary_field_type=binary_field_type,

@@ -1,0 +1,108 @@
+{
+  "catalog_version": "is_contract_manufacturer.2026.08.1",
+  "prompt_name": "is_contract_manufacturer",
+  "stage": "binary_classification",
+  "field_types": [
+    "is_contract_manufacturer"
+  ],
+  "entity_noun": "instance of production for another party",
+  "entity_relationships": {
+    "base": "perform",
+    "third_person": "performs",
+    "gerund": "performing"
+  },
+  "evidence_source": "the given text",
+  "outcome_vocab": {
+    "condition": [
+      "satisfied",
+      "failed",
+      "not_triggered"
+    ],
+    "guard": [
+      "violated"
+    ]
+  },
+  "sections": [
+    {
+      "section_id": "pass_conditions",
+      "heading": "A candidate {{entity_noun}} qualifies only if ALL of these conditions hold for it:",
+      "combinator": "all",
+      "rules": [
+        {
+          "id": "CON-1",
+          "kind": "condition",
+          "reportable": true,
+          "report_when": "always",
+          "text": "At least one {{entity_noun}} can be identified from the text — goods the business makes, or production steps it carries out on goods, on behalf of a party other than itself.",
+          "children": [
+            {
+              "id": "CON-1a",
+              "kind": "note",
+              "reportable": false,
+              "report_when": "never",
+              "text": "A standing offer to produce to other parties' requirements identifies such production even where no individual customer is named."
+            }
+          ]
+        },
+        {
+          "id": "CON-2",
+          "kind": "condition",
+          "reportable": true,
+          "report_when": "always",
+          "text": "The text shows real, concrete engagement with the identified {{entity_noun}}: some party is shown to {{entity_relationships.base}} or concretely offer it, not merely to name it, list it as a topic, or mention it in passing."
+        },
+        {
+          "id": "CON-3",
+          "kind": "condition",
+          "reportable": true,
+          "report_when": "always",
+          "text": "The identified {{entity_noun}} is undertaken to the other party's order: what is produced is fixed by that party's design, specification, or requirements, or the output is supplied for that party to offer as its own — rather than being a good this business offers on its own account.",
+          "children": [
+            {
+              "id": "CON-3a",
+              "kind": "note",
+              "reportable": false,
+              "report_when": "never",
+              "text": "Design, engineering, or manufacturability input from this business does not change whose order it is; production of the business's own design still qualifies when the output is made for and supplied to the commissioning party."
+            }
+          ]
+        },
+        {
+          "id": "CON-4",
+          "kind": "condition",
+          "reportable": true,
+          "report_when": "always",
+          "text": "It is this business that {{entity_relationships.third_person}} the identified {{entity_noun}} — in an operation it runs — rather than arranging, brokering, or reselling production performed by another party.",
+          "children": [
+            {
+              "id": "CON-4a",
+              "kind": "note",
+              "reportable": false,
+              "report_when": "never",
+              "text": "A business that has its own goods produced elsewhere is buying such production, not performing it."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "section_id": "guards",
+      "heading": "A candidate {{entity_noun}} is ruled out if ANY of these guards is violated by it. Ruling out one candidate does not settle the classification — another candidate may still qualify:",
+      "combinator": "any",
+      "rules": [
+        {
+          "id": "CON-G1",
+          "kind": "guard",
+          "reportable": true,
+          "report_when": "on_violation",
+          "text": "The arrangement behind the identified {{entity_noun}} is only sought, planned, or being set up, or has been discontinued, rather than current and actual."
+        }
+      ]
+    }
+  ],
+  "published": {
+    "s3_version_id": "QTDTjKSKurVOERTeftmEqqqkp3oB6FEJ",
+    "rendered_sha256": "b4c8a12196a4a99fab6cbc61118d7f5cde21465e42681917c4afbb2fb6b71a49",
+    "uploaded_at": "2026-08-12T07:50:48.382035+00:00"
+  }
+}

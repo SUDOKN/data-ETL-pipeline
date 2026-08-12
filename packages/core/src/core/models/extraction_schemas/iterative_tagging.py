@@ -6,6 +6,7 @@ from pydantic import BaseModel
 
 from core.models.extraction_schemas.grounding import (
     PhraseToTagAndRulesMap,
+    StopReason,
     TagToAppliedRulesMap,
 )
 
@@ -14,6 +15,9 @@ from core.models.extraction_schemas.grounding import (
 class IterativelyTaggedPhraseGroup(BaseModel):
     parent_group_id: Optional[str]
     group_id: str  # MUST BE EITHER IN-VOCAB CONCEPT **NAME** or OUT-OF-VOCAB TAG, no altLabel allowed
+    # Why this node exists but was never descended (sentinel / false child).
+    # None for ordinary nodes. Mirrors IterativeTaggingRequest.stop_reason.
+    stop_reason: Optional[StopReason] = None
 
     # Provision for the case where tag used is an alt label
     # by explicitly storing original tag as well
@@ -31,13 +35,19 @@ class IterativelyTaggedPhraseGroup(BaseModel):
     # but that's what each PhraseToTagAndRulesMap will have in common with
     # the tag_id
 
+    # Identity matches IterativeTaggingRequest: (parent, group). Two parents
+    # whose descents both stopped at the same non-label are distinct records; a
+    # group_id-only hash collapsed them per level and lost one parent's verdicts.
     def __hash__(self) -> int:
-        return hash(self.group_id)
+        return hash((self.parent_group_id, self.group_id))
 
     def __eq__(self, other: object) -> bool:
         if not isinstance(other, IterativelyTaggedPhraseGroup):
             return NotImplemented
-        return self.__hash__() == other.__hash__()
+        return (self.parent_group_id, self.group_id) == (
+            other.parent_group_id,
+            other.group_id,
+        )
 
 
 IterativeGroundingResult = dict[int, set[IterativelyTaggedPhraseGroup]]
@@ -54,13 +64,20 @@ class PhraseTrail(BaseModel):
 class IterativelyTaggedPhrase(BaseModel):
     parent_group_id: Optional[str]
     group_id: str
+    stop_reason: Optional[StopReason] = None
     direct_og_tag_w_rules: TagToAppliedRulesMap
     iterative_og_tag_w_rules: TagToAppliedRulesMap
 
+    # (parent, group) identity, same reasoning as IterativelyTaggedPhraseGroup:
+    # one phrase can reach the same non-label under two parents at one level,
+    # and both verdicts belong in its trail.
     def __hash__(self) -> int:
-        return hash(self.group_id)
+        return hash((self.parent_group_id, self.group_id))
 
     def __eq__(self, other: object) -> bool:
         if not isinstance(other, IterativelyTaggedPhrase):
             return NotImplemented
-        return self.__hash__() == other.__hash__()
+        return (self.parent_group_id, self.group_id) == (
+            other.parent_group_id,
+            other.group_id,
+        )

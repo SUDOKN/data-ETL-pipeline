@@ -58,8 +58,7 @@ class BusinessDescExtractionNode(SingleStageExtractionNode[BusinessDescription])
             next_node=next_node,
         )
 
-    @staticmethod
-    def get_response_schema() -> dict:
+    def get_response_schema(self) -> dict:
         return BUSINESS_DESC_RESPONSE_SCHEMA
 
     @staticmethod

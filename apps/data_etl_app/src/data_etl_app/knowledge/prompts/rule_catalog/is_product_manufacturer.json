@@ -1,0 +1,99 @@
+{
+  "catalog_version": "is_product_manufacturer.2026.08.1",
+  "prompt_name": "is_product_manufacturer",
+  "stage": "binary_classification",
+  "field_types": [
+    "is_product_manufacturer"
+  ],
+  "entity_noun": "product of the business's own design",
+  "entity_relationships": {
+    "base": "produce and offer",
+    "third_person": "produces and offers",
+    "gerund": "producing and offering"
+  },
+  "evidence_source": "the given text",
+  "outcome_vocab": {
+    "condition": [
+      "satisfied",
+      "failed",
+      "not_triggered"
+    ],
+    "guard": [
+      "violated"
+    ]
+  },
+  "sections": [
+    {
+      "section_id": "pass_conditions",
+      "heading": "A candidate {{entity_noun}} qualifies only if ALL of these conditions hold for it:",
+      "combinator": "all",
+      "rules": [
+        {
+          "id": "PRD-1",
+          "kind": "condition",
+          "reportable": true,
+          "report_when": "always",
+          "text": "At least one {{entity_noun}} can be identified from the text — a tangible good, or line of goods, that the text presents as something the business {{entity_relationships.third_person}}, rather than a service, a capability, or a kind of work performed on other parties' goods."
+        },
+        {
+          "id": "PRD-2",
+          "kind": "condition",
+          "reportable": true,
+          "report_when": "always",
+          "text": "The text shows real, concrete engagement with the identified {{entity_noun}}: the business is shown to {{entity_relationships.base}} it, not merely to name it, list it as a category it works in, or cite it as an example of what its field produces."
+        },
+        {
+          "id": "PRD-3",
+          "kind": "condition",
+          "reportable": true,
+          "report_when": "always",
+          "text": "What the identified {{entity_noun}} is — its design, specification, formulation, or composition — originates with and belongs to this business, rather than being supplied or dictated by the party that buys it.",
+          "children": [
+            {
+              "id": "PRD-3a",
+              "kind": "note",
+              "reportable": false,
+              "report_when": "never",
+              "text": "A good the business designed remains its own even when it is made for another party or sold under that party's name; what settles this condition is whose design it is, not whose name it carries."
+            }
+          ]
+        },
+        {
+          "id": "PRD-4",
+          "kind": "condition",
+          "reportable": true,
+          "report_when": "always",
+          "text": "It is this business that produces the identified {{entity_noun}} — in an operation it runs — rather than having another party produce it and offering the result as its own.",
+          "children": [
+            {
+              "id": "PRD-4a",
+              "kind": "note",
+              "reportable": false,
+              "report_when": "never",
+              "text": "Production by a division of the same business, or at a site the business operates, counts as this business; goods bought in finished and re-branded or resold do not."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "section_id": "guards",
+      "heading": "A candidate {{entity_noun}} is ruled out if ANY of these guards is violated by it. Ruling out one candidate does not settle the classification — another candidate may still qualify:",
+      "combinator": "any",
+      "rules": [
+        {
+          "id": "PRD-G1",
+          "kind": "guard",
+          "reportable": true,
+          "report_when": "on_violation",
+          "text": "The business's engagement with the identified {{entity_noun}} is only planned, in development, or discontinued, rather than current and actual."
+        }
+      ]
+    }
+  ],
+  "published": {
+    "s3_version_id": "odm6Oyr.zouXLJI.Pb4HgfgR6U0qEQUv",
+    "rendered_sha256": "8409d2bcadec1e174b078dd80aace452194df33e9cf3fad632d7008df3e4fceb",
+    "uploaded_at": "2026-08-12T07:50:48.382035+00:00"
+  }
+}

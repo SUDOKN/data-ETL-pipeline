@@ -5,6 +5,7 @@ import logging
 
 from core.models.extraction_schemas.grounding import (
     PhraseToAppliedRulesMap,
+    StopReason,
     TagToPhraseAndRulesMap,
 )
 from core.models.extraction_results.concept_extraction_results import (
@@ -18,35 +19,47 @@ from core.models.skos_concept import Concept
 
 from llm_providers.field_types import BatchRequestIDType
 
-from core.utils.request_custom_id_util import (
-    get_name_from_recursive_grounding_request_custom_id,
-    get_level_from_recursive_request_custom_id,
-)
-
 logger = logging.getLogger(__name__)
 
 
-class IterativeTaggingRequest(
-    BaseModel
-):  # must always corresponds to a valid in-vocab concept
+class IterativeTaggingRequest(BaseModel):
+    """A node in the per-chunk descent tree.
+
+    ``name``/``level``/``parent_name`` are explicit fields rather than parsed
+    positionally out of ``descend_req_id`` — the ID stays the request's address,
+    not its data. A node exists for anything a grounding stage tagged (in-vocab
+    concept, out-of-vocab proposal, sentinel, false child) so its evidence can
+    reach the phrase trail; only descendable nodes (see
+    ``get_itr_descendable_concept``) ever get a request created for
+    ``descend_req_id``.
+
+    Identity is ``(parent_descend_req_id, name)``: two parents whose responses
+    both stop at "None of the above" (or both propose the same out-of-vocab
+    label) are two distinct records — a name-only hash collapsed them per level
+    and silently discarded one parent's verdicts. Real concepts still appear
+    once per level: the embed walk dedupes descendable nodes by concept name at
+    creation time, because a concept's identity is global, its phrase evidence
+    pools across parents, and one descent per concept per chunk is asserted
+    downstream.
+    """
+
     parent_descend_req_id: Optional[BatchRequestIDType]
     descend_req_id: BatchRequestIDType
-
-    @property
-    def name(self):
-        return get_name_from_recursive_grounding_request_custom_id(self.descend_req_id)
-
-    @property
-    def level(self):
-        return get_level_from_recursive_request_custom_id(self.descend_req_id)
+    name: str
+    level: int
+    parent_name: Optional[str] = None
+    stop_reason: Optional[StopReason] = None
 
     def __hash__(self) -> int:
-        return hash(self.name)
+        return hash((self.parent_descend_req_id, self.name))
 
     def __eq__(self, other: object) -> bool:
         if not isinstance(other, IterativeTaggingRequest):
             return NotImplemented
-        return self.__hash__() == other.__hash__()
+        return (self.parent_descend_req_id, self.name) == (
+            other.parent_descend_req_id,
+            other.name,
+        )
 
     def is_parent_of(
         self,

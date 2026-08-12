@@ -2,7 +2,7 @@ from __future__ import annotations
 
 from typing import Optional
 
-from pydantic import BaseModel, ConfigDict
+from pydantic import BaseModel
 
 from core.models.extraction_schemas.applied_rule import AppliedRule
 
@@ -20,33 +20,26 @@ class ScreeningVerdict(BaseModel):
     because every downstream reader wants the answer rather than the derivation.
 
     ``applied_rules`` is the model's own report, checked against the catalog that
-    asked for it but otherwise stored as returned."""
+    asked for it but otherwise stored as returned. Empty exactly when the phrase
+    offered no candidate — every catalog declares at least one always-reported
+    condition, so a judged phrase always carries rules.
+
+    The WIRE shape is generated per catalog by ``catalog_wire_schema``; this is the
+    stored shape it flattens into. The two were deliberately one type while the
+    wire format was a flat rule list, and are two now because the wire type carries
+    cardinality guarantees a stored record has no way to express and no need to.
+    """
 
     passed: bool
     identified_entity: Optional[str]
     applied_rules: list[AppliedRule]
 
+    # Why nothing was identified — populated only on the no-candidate branch, where
+    # there are no rules to carry the reasoning. Before it existed, ~45% of screened
+    # phrases were rejected with no recorded reason at all, and the report that broke
+    # the parser on 2026-08-11 was a model trying to volunteer one into a slot the
+    # schema did not have.
+    no_candidate_explanation: Optional[str] = None
+
 
 LiveScreeningResults = dict[str, ScreeningVerdict]  # phrase -> verdict
-
-
-class PhraseScreeningEntry(BaseModel):
-    """What the model returns. No ``passed`` field: the rules ARE the decision
-    procedure, so asking for a separate boolean only created a second channel that
-    could contradict the first — and a contradiction failed the whole group request.
-    The parser derives it instead (``passed_implied_by``)."""
-
-    model_config = ConfigDict(extra="forbid")
-
-    phrase: str
-    # Nullable but required: a phrase that identified nothing still reports why.
-    # Declared Optional with no default so it stays in the schema's `required`,
-    # which OpenAI strict mode demands.
-    identified_entity: Optional[str]
-    applied_rules: list[AppliedRule]
-
-
-class PhraseRelationshipScreeningResponse(BaseModel):
-    model_config = ConfigDict(extra="forbid")
-
-    screenings: list[PhraseScreeningEntry]

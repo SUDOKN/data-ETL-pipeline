@@ -275,6 +275,35 @@
               },
               "confidence": {
                 "bsonType": "int"
+              },
+              "identified_entity": {
+                "bsonType": [
+                  "string",
+                  "null"
+                ]
+              },
+              "applied_rules": {
+                "bsonType": "array",
+                "items": {
+                  "bsonType": "object",
+                  "required": [
+                    "rule_id",
+                    "outcome",
+                    "explanation"
+                  ],
+                  "additionalProperties": false,
+                  "properties": {
+                    "rule_id": {
+                      "bsonType": "string"
+                    },
+                    "outcome": {
+                      "bsonType": "string"
+                    },
+                    "explanation": {
+                      "bsonType": "string"
+                    }
+                  }
+                }
               }
             }
           }

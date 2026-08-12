@@ -58,8 +58,7 @@ class AddressExtractionNode(SingleStageExtractionNode[list[Address]]):
             prompt=extract_prompt,
         )
 
-    @staticmethod
-    def get_response_schema() -> dict:
+    def get_response_schema(self) -> dict:
         return ADDRESS_RESPONSE_SCHEMA
 
     @staticmethod

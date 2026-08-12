@@ -12,8 +12,11 @@ from pydantic import ValidationError
 from core.models.extraction_schemas.relationship import (
     LLMPhraseRelationshipResults,
 )
-from core.models.extraction_schemas.response_format_util import (
-    build_gpt_response_format,
+from core.models.extraction_schemas.catalog_wire_schema import (
+    NO_CANDIDATE,
+    flatten_rule_slots,
+    response_format_for,
+    screening_response_model,
 )
 from core.models.rule_catalog import STAGE_RELATIONSHIP_SCREENING
 from core.services.applied_rule_validation import (
@@ -24,7 +27,6 @@ from core.services.applied_rule_validation import (
 from core.services.rule_catalog_registry import get_rule_catalog
 from core.models.extraction_schemas.screening import (
     LiveScreeningResults,
-    PhraseRelationshipScreeningResponse,
     ScreeningVerdict,
 )
 from llm_providers.models.file_objects.prompt import Prompt
@@ -63,9 +65,16 @@ from llm_providers.services.gpt_batch_request.gpt_batch_request_service import (
 logger = logging.getLogger(__name__)
 
 
-LLM_PHRASE_RELATIONSHIP_SCREENING_RESPONSE_SCHEMA = build_gpt_response_format(
-    PhraseRelationshipScreeningResponse, name="phrase_relationship_screening_result"
-)
+def get_screening_response_schema(field_type: ExtractionFieldType) -> dict:
+    """This stage's strict ``response_format``, for one field type.
+
+    Per catalog rather than a module constant, because the schema now names the
+    catalog's own rule ids as required properties — which is what stops a response
+    omitting one. See ``catalog_wire_schema``.
+    """
+    return response_format_for(
+        get_rule_catalog(STAGE_RELATIONSHIP_SCREENING, field_type.name)
+    )
 
 
 def parse_llm_phrase_relationship_screening_result(
@@ -78,8 +87,10 @@ def parse_llm_phrase_relationship_screening_result(
             "parse_llm_phrase_relationship_screening_result: Empty or invalid response from GPT"
         )
 
+    catalog = get_rule_catalog(STAGE_RELATIONSHIP_SCREENING, field_type.name)
+
     try:
-        parsed = PhraseRelationshipScreeningResponse.model_validate_json(gpt_response)
+        parsed = screening_response_model(catalog).model_validate_json(gpt_response)
     except ValidationError as e:
         raise ValueError(
             f"parse_llm_phrase_relationship_screening_result: Invalid response from GPT:{gpt_response}"
@@ -92,45 +103,43 @@ def parse_llm_phrase_relationship_screening_result(
             raise ValueError(
                 f"parse_llm_phrase_relationship_screening_result: Duplicate phrase {entry.phrase!r} in screenings response"
             )
-        catalog = get_rule_catalog(STAGE_RELATIONSHIP_SCREENING, field_type.name)
 
-        # Nothing identified means the conditions have no candidate to be about, and
-        # "SCR-1 failed, SCR-2 not_triggered, SCR-3 not_triggered" says exactly what
-        # an empty list says on the commonest negative case. Anything else — a named
-        # candidate, or rules offered alongside a null one — is validated in full.
-        reported_nothing = entry.identified_entity is None and not entry.applied_rules
-        if not reported_nothing:
-            report = check_applied_rules(
-                catalog=catalog,
-                applied_rules=entry.applied_rules,
-                where=f"phrase {entry.phrase!r}",
+        # The no-candidate branch (locked #21): nothing was identified, so the
+        # conditions had no candidate to be about and there are no rules to report.
+        # It is a branch of the wire union rather than an empty rule list, so a
+        # response cannot half-take it the way one did on 2026-08-11 — reporting a
+        # null entity AND a single failed condition, which matched neither shape.
+        if entry.outcome == NO_CANDIDATE:
+            raw_gpt_phrase_relationship_screening_result[entry.phrase] = (
+                ScreeningVerdict(
+                    passed=False,
+                    identified_entity=None,
+                    applied_rules=[],
+                    no_candidate_explanation=entry.explanation,
+                )
             )
-            if report.problems:
-                violations.extend(report.problems)
-                # Keep walking so the error names every phrase that needs fixing —
-                # the request is lost either way — but derive nothing from a report
-                # that failed its own catalog. passed_implied_by below indexes
-                # rules_by_id directly and would KeyError on an unknown rule id.
-                continue
+            continue
 
-        # Derived, never reported. passed_implied_by rejects an empty list, which is
-        # what the shortcut above leaves behind, so both paths land on the same rule.
-        passed = passed_implied_by(catalog, entry.applied_rules)
+        applied_rules = flatten_rule_slots(catalog, entry)
+        report = check_applied_rules(
+            catalog=catalog,
+            applied_rules=applied_rules,
+            where=f"phrase {entry.phrase!r}",
+        )
+        if report.problems:
+            violations.extend(report.problems)
+            # Keep walking so the error names every phrase that needs fixing — the
+            # request is lost either way — but derive nothing from a report that
+            # failed its own catalog.
+            continue
 
-        # A pass is a claim about a named entity, so the name has to be there. The
-        # converse is deliberately allowed: a rejected phrase still reports which
-        # candidate it got furthest with, and null only when none was found at all.
-        if passed and entry.identified_entity is None:
-            raise ValueError(
-                f"parse_llm_phrase_relationship_screening_result: phrase "
-                f"{entry.phrase!r} reported rules that imply a pass but named no "
-                f"identified_entity"
-            )
-
+        # Derived, never reported: the rules ARE the decision procedure.
+        # ``identified_entity`` needs no pass/null cross-check any more — it is
+        # non-null by construction on this branch.
         raw_gpt_phrase_relationship_screening_result[entry.phrase] = ScreeningVerdict(
-            passed=passed,
+            passed=passed_implied_by(catalog, applied_rules),
             identified_entity=entry.identified_entity,
-            applied_rules=entry.applied_rules,
+            applied_rules=applied_rules,
         )
 
     raise_for_violations(violations)
@@ -336,6 +345,7 @@ async def create_missing_phrase_relationship_screening_requests(
                         llm_phrase_relationship_screening_request_id=group_req_id,
                         subject_name=subject_name,
                         subject_text=subject_text[start:end],
+                        field_type=field_type,
                         phrase_relationship_results=pair_group,
                         phrase_relationship_screening_prompt=phrase_relationship_screening_prompt,
                         eager=eager,
@@ -402,6 +412,7 @@ def create_deferred_phrase_relationship_screening_gpt_request(
     llm_phrase_relationship_screening_request_id: str,
     subject_name: str,
     subject_text: str,
+    field_type: ExtractionFieldType,
     phrase_relationship_results: LLMPhraseRelationshipResults,
     phrase_relationship_screening_prompt: Prompt,
     gpt_model: LLM_Model,
@@ -426,7 +437,7 @@ def create_deferred_phrase_relationship_screening_gpt_request(
         prompt_text=phrase_relationship_screening_prompt.text,
         gpt_model=gpt_model,
         model_params=model_params.with_response_format(
-            LLM_PHRASE_RELATIONSHIP_SCREENING_RESPONSE_SCHEMA
+            get_screening_response_schema(field_type)
         ),
         batch_id="Eager" if eager else None,
     )

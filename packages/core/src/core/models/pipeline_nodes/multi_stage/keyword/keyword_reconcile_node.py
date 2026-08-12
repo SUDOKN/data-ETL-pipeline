@@ -45,7 +45,7 @@ from core.services.pipeline_nodes.multi_stage.llm_freehand_grounding_service imp
 )
 from core.utils.label_dedupe_util import dedupe_equivalent_keywords
 from core.utils.phrase_trail_dump_util import (
-    build_keyword_phrase_trail_entry,
+    build_keyword_phrase_rows,
     write_phrase_trails_dump,
 )
 
@@ -182,31 +182,21 @@ class KeywordReconcileNode(ReconcileNode[ExtractionFieldType]):
                 llm_phrase_freehand_grounding_flat, llm_search_results
             )
 
-            # phrase -> earliest round index (for trail dump)
-            phrase_to_round: dict[str, int] = {}
-            for round_idx in sorted(llm_search_results.keys()):
-                for phrase in llm_search_results[round_idx]:
-                    if phrase not in phrase_to_round:
-                        phrase_to_round[phrase] = round_idx
-
             grounded_keywords = {
                 grounded_label
                 for phrase_groundings in llm_phrase_freehand_grounding_flat.values()
                 for grounded_label in phrase_groundings.keys()
                 if not is_sentinel_grounding_label(grounded_label)
             }
-            chunked_phrase_trails_dump[chunk_bounds] = [
-                build_keyword_phrase_trail_entry(
-                    phrase=phrase,
-                    search_round=phrase_to_round.get(phrase, 0),
-                    relationship_result=llm_phrase_relationship_results,
-                    screening_result=llm_phrase_screening_results,
-                    phrase_groundings=phrase_groundings,
-                )
-                for phrase, phrase_groundings in sorted(
-                    llm_phrase_freehand_grounding_flat.items()
-                )
-            ]
+            # Rows are driven by the SCREENED phrase set (plus any drifted
+            # grounding-only phrases) — a grounding-driven dump made
+            # screening.passed a constant and hid the screened-out majority.
+            chunked_phrase_trails_dump[chunk_bounds] = build_keyword_phrase_rows(
+                screening_flat=llm_phrase_screening_flat,
+                relationship_flat=llm_phrase_relationship_flat,
+                freehand_grounding_flat=llm_phrase_freehand_grounding_flat,
+                search_rounds=llm_search_results,
+            )
 
             chunk_stats[chunk_bounds] = KeywordExtractionStats(
                 results=grounded_keywords,

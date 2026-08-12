@@ -99,6 +99,19 @@ Screening (SCR): section pass_conditions(all): THREE flat conditions, each posit
   guard heading ("Reject the phrase if ANY of these guards is violated") contradicted the
   existential the conditions were written against — "ISO 9001 certified; AS9100 in progress"
   rejected a real certification on the strength of a different candidate.
+  EQUIPMENT SCOPE (2026-08-12): the field is PRODUCTION MACHINES only. entity_noun became
+  "production machine category" in both equipment catalogs, so the prompts never hand the model
+  the bare word "equipment" as the thing it is naming — the observed failure was freehand
+  returning "production equipment" as a tag for a phrase that fixed no kind. SCR-1 is now a
+  determinacy test alone (a particular kind of machine, not an umbrella) and SCR-G2 carries ALL
+  of the scope, so a rejection on scope has exactly one locus and the record cannot be ambiguous
+  between "no kind identifiable" and "identified, but out of scope". SCR-G2 states the positive
+  definition (acts on the work itself: process, shape, assemble, convert raw materials into
+  finished goods) and rules out support equipment, with notes for the two classes that read as
+  machines but are not: measurement/inspection/testing (establishes what the work already is and
+  leaves it as it was) and tooling (mounted in or driven by a machine, no operation of its own).
+  Inspection equipment leaving the field is a DELIBERATE narrowing — the search prompts listed
+  CMMs and spectrometers as in-scope until this change.
   Equipment: the ownership condition (briefly a second SCR-4) is a NOTE under SCR-2, not an
   AND-term — websites state operation, not title, so as a condition it failed nearly every true
   positive. Its negative case is already SCR-G1. Equipment also gained SCR-G4 (aspirational /
@@ -121,6 +134,25 @@ Freehand grounding (FGR) — uniform across all 3 catalogs as of 2026-08-10, CAT
   step. Equipment's FGR-F1 had said the OPPOSITE of products' — it prescribed a
   "<Brand/Model> <category>" tag — so the two stages disagreed on the same id. Deleting it also
   drops one reported rule (with its explanation) per category per phrase.
+  EQUIPMENT GRANULARITY (2026-08-12): equipment gained FGR-Q4, a two-sided band on WHERE in the
+  hierarchy the name lands. Naming descends in steps — the operation the machine performs on the
+  work, then the configuration telling machines performing that same operation apart — and the
+  rule is "every step the words supply, and stop at the first one they do not". That single rule
+  carries both halves of the ask: as specific as possible (take every step) and never more
+  advanced than stated (typicality is not evidence). They are one rule because as two they can be
+  traded off against each other. FGR-Q2 gained note children for the two ways a name fixes
+  nothing: an umbrella term naming no operation, and a trade/service/line-of-business with a word
+  for machines attached to it ("tool and die business" -> "tool and die equipment"). Equipment
+  also gained FGR-QC1, a `quality` rule self-reporting member_level vs family_level, so
+  family-capped output is measurable as a property of the TEXT rather than invisible. Its vocab
+  must include not_triggered: the output-example builder emits that outcome for the
+  Cannot-categorize entry, and a vocab without it would ship an example the parser rejects.
+  NO CONCRETE ANCHORS (2026-08-12): equipment's rule text names no machine, brand, or worked
+  example — the same policy the output-example builder already followed. The abstractions doing
+  the work are "operation performed on the work" (the family test and the umbrella floor) and
+  "the configuration that tells machines performing the same operation apart" (the descent step).
+  The trade, accepted: the model instantiates those itself instead of pattern-matching a list, so
+  expect more variance in where FGR-Q4 stops descending. FGR-QC1 is what makes that visible.
   Equipment's matching heading previously said "assign exactly one tag per phrase", contradicting
   both the job statement and the array schema and making FGR-Q3 vacuous; many-per-phrase is now
   uniform. Previously FGR-Q2 meant granularity in equipment and dedup in products — the same id for
@@ -280,6 +312,48 @@ ordered section already carries its ordinal in the ids (M1 before M2).
 "Rules you must report" block: report every condition+quality; report guard only if violated;
 report the single chosen preference. Output JSON example must be GENERIC (show the record shape
 once, reference "one of the rule IDs above") — never enumerate specific IDs.
+
+## BINARY CLASSIFICATION (2026-08-11): whole-text screening
+is_manufacturer / is_product_manufacturer / is_contract_manufacturer converted from static
+single-stage prompts to catalogs. Framing: each IS screening applied to the site instead of a
+phrase — one existence proof ("at least one <entity> the business itself <rel>") through a chained
+pass_conditions(all) + guards(any), same kinds, same chain check, verdict derived by
+passed_implied_by. Stage = `binary_classification`; field_type = the classification name itself
+(keeps (stage, field_type) 1:1 with a prompt); ids MFG-*/PRD-*/CON-* so a stored applied_rule names
+its classifier without a join. Ordinal semantics shared across all three: identify → real →
+(discriminate) → attribute.
+- MFG: entity "production activity" (carry out). MFG-1 identify (transformation of tangible goods;
+  moves/stores/sells/inspects/designs/advises excluded; note: single step suffices), MFG-2 real,
+  MFG-3 this business's own operation (note: lease/JV/division count, bought-in work does not).
+  Guards: MFG-G1 tense, MFG-G2 repair/refurb/maintenance of items already in service (USER CALL
+  2026-08-11: not manufacturers, for now).
+- PRD: entity "product of the business's own design" (produce and offer). PRD-1 identify (tangible
+  good, not service/capability), PRD-2 real, PRD-3 design originates with and belongs to the
+  business (note: sold under another party's name still counts — ODM decision), PRD-4 produces it
+  itself (note: division/site counts; bought-finished-and-rebranded does not). Guard PRD-G1 tense.
+  NO own-brand/general-buyers condition: USER CALL 2026-08-11 — an ODM (owns design IP,
+  manufactures for a client's brand) is BOTH a product and a contract manufacturer.
+- CON: entity "instance of production for another party" (perform). CON-1 identify (note: standing
+  offer to produce to others' requirements counts, no named customer needed), CON-2 real, CON-3
+  commissioned — to the other party's order: their spec fixes the good OR output supplied for them
+  to offer as their own (note: the business's own design still qualifies — the other half of the
+  ODM decision), CON-4 performs it itself, not brokered (note: having your own goods made elsewhere
+  is buying, not performing). Guard CON-G1 tense/prospective.
+Envelope: wire = {identified_entity nullable, confidence int, applied_rules[]} (
+BinaryClassificationReport). `answer` DERIVED, `reason` SYNTHESIZED at parse time as the full
+[id outcome] explanation trail — humans read it (GT survey, keyword API message), so no editorial
+picking of a "decisive" rule. `confidence` KEPT deliberately: directionless, so not a second
+verdict channel; recorded, never gated on; calibration measurable against
+BinaryGroundTruth.final_decision, delete later only if measured flat. NO empty-rules shortcut
+(unlike screening): one unit per request, so a no-candidate text reports first condition failed +
+rest not_triggered.
+Assembler: `evidence_source` catalog header ("the given text" here, default "the phrase and its
+relationship summary") threads into report block + example explanation slots. STAGE_DIR_BY_STAGE
+values became full prefixes so `single_stage/` fits; S3 keys unchanged (the keys the hand-written
+prompts occupied). Binary example is ONE object; condition outcomes are alternatives slots (a
+worked satisfied-chain would anchor accept bias), chain shape carried by skeleton prose.
+Old hand-written prompts archived at knowledge/archive/prompts/pre_catalog_single_stage/, their
+static pins deleted. find_business_desc + extract_any_address remain static (no yes/no to derive).
 
 ## OPEN / NEXT STEPS (assembler + pydantic — NOT started)
 1. Assembler: load catalog by (stage, field_type); resolve {{entity_noun}}/{{entity_relationships.*}}

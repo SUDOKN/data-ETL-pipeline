@@ -5,6 +5,16 @@ from typing import Iterator
 import pytest
 
 from core.models.extraction_schemas.applied_rule import AppliedRule
+from core.models.extraction_schemas.catalog_wire_schema import (
+    CHOSEN_SLOT,
+    GUARDS_SLOT,
+    NO_CANDIDATE,
+    response_format_for,
+    response_model_for,
+)
+from core.models.extraction_schemas.response_format_util import (
+    assert_strict_schema_supported,
+)
 from core.models.rule_catalog import RuleCatalog
 from core.services.applied_rule_validation import (
     passed_implied_by,
@@ -12,7 +22,10 @@ from core.services.applied_rule_validation import (
 )
 
 from data_etl_app.models.types_and_enums import ConceptTypeEnum
-from data_etl_app.services.prompt_service import STAGED_PROMPT_FILE_PATHS
+from data_etl_app.services.prompt_service import (
+    SINGLE_STAGE_PROMPT_FILE_PATHS,
+    STAGED_PROMPT_FILE_PATHS,
+)
 from data_etl_app.services.prompt_assembly_service import (
     PARENT_ENTITY_TOKEN,
     SKELETON_BY_STAGE,
@@ -37,17 +50,49 @@ def _rendered_example(catalog: RuleCatalog) -> dict:
     return json.loads(render_prompt(catalog).split("```json")[1].split("```")[0])
 
 
-def _example_units(example: dict) -> Iterator[tuple[str, list[dict]]]:
-    """``(where, applied_rules)`` for every unit in the example that reports rules —
-    the entry itself in screening, each option or category in grounding."""
+def _example_units(catalog: RuleCatalog, example: dict) -> Iterator[tuple[str, dict]]:
+    """``(where, unit)`` for every unit in the example that carries rule slots —
+    the whole response in binary classification, the entry itself in screening,
+    each option or category in grounding.
+
+    Rule slots are hoisted onto the unit now (see ``catalog_wire_schema``), so a
+    unit IS the thing that carries them rather than holding an ``applied_rules``
+    list. Screening's no-candidate entries carry none at all, by design.
+    """
+    if catalog.stage == "binary_classification":  # one object, one unit
+        yield "response", example
+        return
     for entries in example.values():
         for entry in entries:
-            if "applied_rules" in entry:
-                yield entry["phrase"], entry["applied_rules"]
+            if catalog.stage == "phrase_relationship_screening":
+                if entry.get("outcome") == NO_CANDIDATE:
+                    continue
+                yield entry["phrase"], entry
                 continue
             for unit in entry.get("options", entry.get("categories", [])):
                 label = unit.get("option", unit.get("category"))
-                yield f"{entry['phrase']} / {label}", unit["applied_rules"]
+                yield f"{entry['phrase']} / {label}", unit
+
+
+def _rules_of(catalog: RuleCatalog, unit: dict) -> list[dict]:
+    """A unit's hoisted slots back as ``{rule_id, outcome, explanation}`` dicts.
+
+    The same reconstruction ``flatten_rule_slots`` performs at parse time, over the
+    example's placeholder text rather than a decoded model — so these tests keep
+    asserting about the STORED shape, which is what the parser and the catalog's
+    report policy are both expressed in.
+    """
+    rules: list[dict] = []
+    for rule in catalog.walk_rules():
+        if rule.report_when == "always" and rule.id in unit:
+            rules.append({"rule_id": rule.id, **unit[rule.id]})
+    if CHOSEN_SLOT in unit:
+        rules.append({"rule_id": unit[CHOSEN_SLOT]["rule_id"], "outcome": "chosen",
+                      "explanation": unit[CHOSEN_SLOT]["explanation"]})
+    for fired in unit.get(GUARDS_SLOT, []):
+        rules.append({"rule_id": fired["rule_id"], "outcome": "violated",
+                      "explanation": fired["explanation"]})
+    return rules
 
 
 def _resolve_slots(rule: dict) -> dict:
@@ -60,12 +105,89 @@ def _resolve_slots(rule: dict) -> dict:
     return resolved
 
 
-def _applied_rules_of(entry: dict) -> list[AppliedRule]:
-    """One entry's rules, with the model's slots resolved to one alternative."""
+def _applied_rules_of(catalog: RuleCatalog, unit: dict) -> list[AppliedRule]:
+    """One unit's rules, with the model's slots resolved to one alternative."""
     return [
         AppliedRule.model_validate(_resolve_slots(rule))
-        for rule in entry["applied_rules"]
+        for rule in _rules_of(catalog, unit)
     ]
+
+
+def _fill_placeholders(node, schema: dict, root: dict):
+    """The example with every ``<...>`` slot replaced by a value legal at that
+    position, read off the schema itself.
+
+    The example is deliberately full of slots the model fills — decision #22 keeps
+    the matching ladder and the condition outcomes open rather than naming one, so
+    the example anchors no branch. That makes it un-decodable as written, which is
+    correct and is why this resolves against the schema instead of guessing.
+    """
+    while "$ref" in schema:
+        target = root
+        for part in schema["$ref"].lstrip("#/").split("/"):
+            target = target[part]
+        schema = target
+
+    if "anyOf" in schema:
+        # Pick the branch whose tag matches the entry's own, so a no-candidate entry
+        # is not filled in as a judged one.
+        for branch in schema["anyOf"]:
+            filled = _fill_placeholders(node, branch, root)
+            if filled is not None:
+                return filled
+        return None
+
+    if isinstance(node, dict):
+        properties = schema.get("properties", {})
+        if set(node) != set(properties):
+            return None  # not this branch
+        return {
+            key: _fill_placeholders(value, properties[key], root)
+            for key, value in node.items()
+        }
+    if isinstance(node, list):
+        return [_fill_placeholders(item, schema["items"], root) for item in node]
+    if isinstance(node, str):
+        if "enum" in schema:
+            return node if node in schema["enum"] else schema["enum"][0]
+        if not node.startswith("<"):
+            return node
+        # A slot in a field that is not a string. Every slot is written as prose in
+        # angle brackets, so `"confidence": "<integer from 0 to 100>"` is a string
+        # standing in for an int — the convention, not a defect. Strict decoding
+        # emits the real type regardless.
+        return {"integer": 0, "number": 0, "boolean": False}.get(
+            schema.get("type"), "x"
+        )
+    return node
+
+
+@pytest.mark.parametrize("prompt_name", sorted(CATALOGS))
+def test_the_worked_example_decodes_under_the_schema_the_model_is_sent(prompt_name):
+    """The invariant the 2026-08-11 abort came down to: the prompt and the parser
+    must agree on the shape.
+
+    They are generated from one catalog now, so this pins that they stay generated
+    from it — an example showing a field the schema forbids, or omitting one it
+    requires, is a whole group request lost every time the model copies it.
+    """
+    catalog = CATALOGS[prompt_name]
+    schema = response_format_for(catalog)["json_schema"]["schema"]
+
+    filled = _fill_placeholders(_rendered_example(catalog), schema, schema)
+    assert filled is not None, f"{prompt_name}: example matches no branch of the schema"
+
+    response_model_for(catalog).model_validate(filled)
+
+
+@pytest.mark.parametrize("prompt_name", sorted(CATALOGS))
+def test_the_generated_schema_is_one_strict_mode_accepts(prompt_name):
+    """Catalog-generated schemas can outgrow OpenAI's limits as rules are added, and
+    the failure mode is every request for that stage rejected at run time. Checked
+    here so a catalog edit that crosses a limit fails in CI instead."""
+    assert_strict_schema_supported(
+        response_format_for(CATALOGS[prompt_name]), where=prompt_name
+    )
 
 
 def test_derived_paths_agree_with_prompt_service():
@@ -74,7 +196,9 @@ def test_derived_paths_agree_with_prompt_service():
     break PromptService init for a prompt not yet in S3. They must still agree for
     every prompt the service already knows about."""
     for prompt_name, catalog in CATALOGS.items():
-        registered = STAGED_PROMPT_FILE_PATHS.get(prompt_name)
+        registered = STAGED_PROMPT_FILE_PATHS.get(
+            prompt_name
+        ) or SINGLE_STAGE_PROMPT_FILE_PATHS.get(prompt_name)
         if registered is None:
             continue  # not published yet; added to the service in the publish step
         assert prompt_s3_key(catalog) == registered
@@ -171,8 +295,9 @@ def test_report_block_separates_always_from_chosen_and_violated():
     for rule_id in always:
         assert re.search(rf"whichever outcome it reached:[^\n]*{rule_id}", text)
 
-    # The matching ladder is a single choice, not four independent reports.
-    assert re.search(r"exactly one of these[^\n]*RGR-M1", text)
+    # The matching ladder is a single choice, not four independent reports — one
+    # field on the wire, so the prompt names the field rather than a count.
+    assert re.search(r'"chosen" holds the single branch[^\n]*RGR-M1', text)
 
 
 def test_the_example_serialiser_matches_json_dumps_where_it_inlines_nothing():
@@ -194,17 +319,22 @@ def test_the_example_inlines_rule_objects_and_empty_entries(prompt_name):
     Reading the JSON back cannot see formatting, hence the assertion on text."""
     example = render_prompt(CATALOGS[prompt_name]).split("```json")[1].split("```")[0]
 
-    assert '"rule_id"' in example, "no rule objects to check"
+    inlined = 0
     for line in example.splitlines():
         stripped = line.strip()
-        if '"rule_id"' in stripped:
+        # A rule's slot, under the field named for its id; or a fired guard / the
+        # chosen branch, which name the id inside because the model picks it.
+        if '"explanation":' in stripped:
             assert stripped.endswith(("},", "}")), (
                 f"rule object was split across lines: {stripped[:60]}..."
             )
-        if '"identified_entity": null' in stripped:
+            inlined += 1
+        if f'"{NO_CANDIDATE}"' in stripped:
             assert stripped.startswith("{"), (
-                f"null-candidate entry was split across lines: {stripped[:60]}..."
+                f"no-candidate entry was split across lines: {stripped[:60]}..."
             )
+
+    assert inlined, "no rule objects to check"
 
 
 @pytest.mark.parametrize("prompt_name", sorted(CATALOGS))
@@ -218,16 +348,10 @@ def test_output_example_would_survive_parse_time_validation(prompt_name):
     """
     catalog = CATALOGS[prompt_name]
 
-    for where, applied_rules in _example_units(_rendered_example(catalog)):
-        if not applied_rules:
-            continue  # the null-entity entry reports nothing, by design
-
+    for where, unit in _example_units(catalog, _rendered_example(catalog)):
         validate_applied_rules(
             catalog=catalog,
-            applied_rules=[
-                AppliedRule.model_validate(_resolve_slots(rule))
-                for rule in applied_rules
-            ],
+            applied_rules=_applied_rules_of(catalog, unit),
             where=where,
         )
 
@@ -241,30 +365,22 @@ def test_every_example_rule_asks_for_a_real_explanation(prompt_name):
 
     ``not_triggered`` is the deliberate exception: nothing was evaluated, so there is
     nothing to quote and its placeholder says only why."""
-    example = _rendered_example(CATALOGS[prompt_name])
+    catalog = CATALOGS[prompt_name]
 
     checked = 0
-    for entries in example.values():
-        for entry in entries:
-            units = entry.get("options", entry.get("categories"))
-            unit_rules = (
-                [entry["applied_rules"]]
-                if units is None
-                else [unit["applied_rules"] for unit in units]
+    for _, unit in _example_units(catalog, _rendered_example(catalog)):
+        for rule in _rules_of(catalog, unit):
+            explanation = rule["explanation"]
+            assert explanation.strip(), f"{prompt_name}: {rule['rule_id']}"
+            checked += 1
+            if rule["outcome"] == "not_triggered":
+                continue
+            # What there is to cite differs by stage, so the slot must name the
+            # catalog's own evidence_source rather than any fixed phrase.
+            assert f"citing {catalog.evidence_source}" in explanation, (
+                f"{prompt_name}: {rule['rule_id']} shows an explanation slot "
+                f"that does not name the sources to cite: {explanation!r}"
             )
-            for rules in unit_rules:
-                for rule in rules:
-                    explanation = rule["explanation"]
-                    assert explanation.strip(), f"{prompt_name}: {rule['rule_id']}"
-                    checked += 1
-                    if rule["outcome"] == "not_triggered":
-                        continue
-                    assert "citing the phrase and its relationship summary" in (
-                        explanation
-                    ), (
-                        f"{prompt_name}: {rule['rule_id']} shows an explanation slot "
-                        f"that does not name the sources to cite: {explanation!r}"
-                    )
 
     assert checked, f"{prompt_name}: example carries no rules to check"
 
@@ -300,10 +416,8 @@ def test_output_example_reports_every_always_reported_rule(prompt_name):
     catalog = CATALOGS[prompt_name]
     required = catalog.always_reported_rule_ids()
 
-    for where, applied_rules in _example_units(_rendered_example(catalog)):
-        if not applied_rules:
-            continue
-        reported = {rule["rule_id"] for rule in applied_rules}
+    for where, unit in _example_units(catalog, _rendered_example(catalog)):
+        reported = {rule["rule_id"] for rule in _rules_of(catalog, unit)}
         assert required <= reported, f"{where} omits {sorted(required - reported)}"
 
 
@@ -324,11 +438,15 @@ def test_screening_example_covers_every_verdict_path(prompt_name):
     assert len(entries) == 4
 
     verdicts = [
-        passed_implied_by(catalog, _applied_rules_of(entry)) for entry in entries
+        passed_implied_by(catalog, _applied_rules_of(catalog, entry))
+        for entry in entries
     ]
     assert verdicts == [True, False, False, False]
-    assert entries[-1]["identified_entity"] is None
-    assert entries[-1]["applied_rules"] == []
+    # The other branch of the union: no candidate, so no rule slots at all, and an
+    # explanation carrying the whole of its record.
+    assert entries[-1]["outcome"] == NO_CANDIDATE
+    assert "identified_entity" not in entries[-1]
+    assert entries[-1]["explanation"]
 
 
 @pytest.mark.parametrize(
@@ -345,7 +463,7 @@ def test_screening_example_shows_a_guard_overriding_satisfied_conditions(prompt_
     one thing no other entry does."""
     catalog = CATALOGS[prompt_name]
     guard_entry = _rendered_example(catalog)["screenings"][2]
-    rules = _applied_rules_of(guard_entry)
+    rules = _applied_rules_of(catalog, guard_entry)
 
     conditions = {rule.id for rule in catalog.walk_rules() if rule.kind == "condition"}
     guards = {rule.id for rule in catalog.walk_rules() if rule.kind == "guard"}

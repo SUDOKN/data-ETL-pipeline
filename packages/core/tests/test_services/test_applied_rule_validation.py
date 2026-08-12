@@ -1,10 +1,14 @@
 import pytest
+from pydantic import ValidationError
 
 from core.models.extraction_schemas.applied_rule import AppliedRule
+from core.models.extraction_schemas.catalog_wire_schema import (
+    flatten_rule_slots,
+    response_model_for,
+)
 from core.models.rule_catalog import RuleCatalog
 from core.services.applied_rule_validation import (
     AppliedRuleValidationError,
-    check_applied_rules,
     passed_implied_by,
     validate_applied_rules,
 )
@@ -153,19 +157,16 @@ def test_every_violation_in_a_unit_is_reported_not_just_the_first():
     Under a fail-fast scan only the first was ever visible, so the defect rate read
     off a run was a function of where the scan stopped."""
     rules = [
-        _rule("Q1", "satisfied"),
-        _rule("Q1", "failed"),
-        _rule("M1", "chosen", explanation=""),
-        _rule("NOPE", "satisfied"),
+        _rule("Q1", "satisfied", explanation=""),
+        _rule("M1", "chosen", explanation="   "),
+        _rule("G1", "violated", explanation=""),
     ]
     with pytest.raises(AppliedRuleValidationError) as excinfo:
         _check(rules)
 
     message = str(excinfo.value)
     assert message.startswith("3 rule-report violations:")
-    assert "reported 'Q1' more than once" in message
-    assert "empty explanation" in message
-    assert "unknown rule 'NOPE'" in message
+    assert message.count("empty explanation") == 3
 
 
 def test_a_lone_violation_keeps_its_bare_message():
@@ -178,82 +179,100 @@ def test_a_lone_violation_keeps_its_bare_message():
     assert str(excinfo.value).startswith("test_catalog: test unit:")
 
 
-def test_an_unknown_rule_id_does_not_suppress_the_checks_after_it():
-    """An unknown id skips the per-rule checks that need its kind, and nothing
-    else. The missing-rule and one-chosen checks still run over what remains."""
-    with pytest.raises(AppliedRuleValidationError) as excinfo:
-        _check([_rule("NOPE", "satisfied")])
-
-    message = str(excinfo.value)
-    assert "unknown rule 'NOPE'" in message
-    assert "did not report" in message
-    assert "expected exactly one chosen rule" in message
-
-
-# --- the catalog's reporting policy ----------------------------------------------
+# --- the catalog's reporting policy, now enforced by the wire schema -------------
+#
+# Everything below used to be a check in `check_applied_rules` with a test above:
+# an omitted always-reported rule, an unknown or duplicate id, an outcome outside
+# its kind's vocabulary, a note reported, a ladder with none or several branches.
+# All of them were cardinality and vocabulary constraints the catalog already
+# declared, re-checked by hand because the wire format was a flat list that could
+# express none of them. They are now properties of the generated schema, so these
+# assert the defect cannot be BUILT rather than that it is caught.
 
 
-def test_always_reported_rule_cannot_be_omitted():
-    with pytest.raises(AppliedRuleValidationError, match=r"did not report \['Q1'\]"):
-        _check([_rule("M1", "chosen")])
+def _wire_model():
+    return response_model_for(CATALOG)
+
+
+def _judged(**overrides):
+    """A conforming grounding option in the new wire shape."""
+    option = {
+        "option": "Shipbuilding",
+        "Q1": {"outcome": "satisfied", "explanation": "because"},
+        "chosen": {"rule_id": "M1", "explanation": "because"},
+        "guards": [],
+    }
+    option.update(overrides)
+    return {"groundings": [{"phrase": "p", "options": [option]}]}
+
+
+def test_the_new_wire_shape_round_trips_to_the_stored_one():
+    parsed = _wire_model().model_validate(_judged())
+    option = parsed.groundings[0].options[0]
+    assert [(r.rule_id, r.outcome) for r in flatten_rule_slots(CATALOG, option)] == [
+        ("Q1", "satisfied"),
+        ("M1", "chosen"),
+    ]
+
+
+def test_an_always_reported_rule_cannot_be_omitted():
+    """The 2026-08-11 failure, in its general form: a report that stops early.
+    `Q1` is a required property, so there is no such document to decode."""
+    payload = _judged()
+    del payload["groundings"][0]["options"][0]["Q1"]
+    with pytest.raises(ValidationError, match="Q1"):
+        _wire_model().model_validate(payload)
 
 
 def test_exactly_one_branch_of_the_ladder_is_chosen():
-    with pytest.raises(AppliedRuleValidationError, match="exactly one chosen rule"):
-        _check([_rule("Q1", "satisfied"), _rule("M1", "chosen"), _rule("M2", "chosen")])
-
-    with pytest.raises(AppliedRuleValidationError, match="exactly one chosen rule"):
-        _check([_rule("Q1", "satisfied")])
-
-
-def test_preference_reported_with_a_non_chosen_outcome_is_rejected():
-    with pytest.raises(AppliedRuleValidationError, match="cannot have outcome"):
-        _check([_rule("Q1", "satisfied"), _rule("M1", "skipped")])
+    """`chosen` is a single required field, so neither none nor several is a
+    document that exists — the count check it replaced had to run after the fact."""
+    payload = _judged()
+    del payload["groundings"][0]["options"][0]["chosen"]
+    with pytest.raises(ValidationError, match="chosen"):
+        _wire_model().model_validate(payload)
 
 
-def test_guard_is_reported_only_when_violated():
-    """A guard's vocabulary holds "violated" alone, so the outcome check is the
-    whole of the enforcement. A second report-policy check used to sit behind it
-    and is gone: it could not fire without this one firing on the same rule."""
-    with pytest.raises(AppliedRuleValidationError, match="cannot have outcome"):
-        _check([_rule("Q1", "satisfied"), _rule("M1", "chosen"), _rule("G1", "clear")])
-
-    _check([_rule("Q1", "satisfied"), _rule("M1", "chosen"), _rule("G1", "violated")])
+def test_an_outcome_outside_its_kinds_vocabulary_cannot_be_built():
+    with pytest.raises(ValidationError, match="satisfied"):
+        _wire_model().model_validate(
+            _judged(Q1={"outcome": "chosen", "explanation": "because"})
+        )
 
 
-@pytest.mark.parametrize("rule_id", ["G1", "M1"])
-def test_one_wrong_outcome_is_one_problem(rule_id):
-    """The problem count is the measurement — it says how much of a response was
-    wrong — so a single defect must not report twice. A guard or preference given
-    an outcome outside its vocabulary tripped both the vocabulary check and a
-    redundant report-policy check, and every such defect was counted double."""
-    report = check_applied_rules(
-        catalog=CATALOG,
-        applied_rules=[_rule("Q1", "satisfied"), _rule(rule_id, "not_triggered")],
-        where="test unit",
+def test_an_unknown_rule_id_cannot_be_built():
+    """Rule ids are property names and guard/branch ids are enums, so there is
+    nowhere to put one the catalog does not know. Property names also make a
+    duplicate report inexpressible, which was a check of its own."""
+    with pytest.raises(ValidationError):
+        _wire_model().model_validate(
+            _judged(chosen={"rule_id": "NOPE", "explanation": "because"})
+        )
+    with pytest.raises(ValidationError, match="extra_forbidden"):
+        _wire_model().model_validate(
+            _judged(NOPE={"outcome": "satisfied", "explanation": "because"})
+        )
+
+
+def test_a_note_has_no_slot_to_be_reported_in():
+    """Q1a is guidance folded into Q1. Only reportable rules get slots."""
+    with pytest.raises(ValidationError, match="extra_forbidden"):
+        _wire_model().model_validate(
+            _judged(Q1a={"outcome": "satisfied", "explanation": "because"})
+        )
+
+
+def test_a_guard_carries_no_outcome_on_the_wire():
+    """`violated` is the only outcome a guard can reach, so the schema fixes it and
+    `flatten_rule_slots` puts it back — asking the model to type a constant spends
+    completion tokens on a field with no information in it."""
+    parsed = _wire_model().model_validate(
+        _judged(guards=[{"rule_id": "G1", "explanation": "because"}])
     )
-    outcome_problems = [p for p in report.problems if "cannot have outcome" in p]
-    assert len(outcome_problems) == 1, report.problems
-
-
-def test_note_cannot_be_reported():
-    with pytest.raises(AppliedRuleValidationError, match="must not be reported"):
-        _check([_rule("Q1", "satisfied"), _rule("M1", "chosen"), _rule("Q1a", "satisfied")])
-
-
-def test_unknown_rule_is_rejected():
-    with pytest.raises(AppliedRuleValidationError, match="unknown rule"):
-        _check([_rule("Q1", "satisfied"), _rule("M1", "chosen"), _rule("Q9", "satisfied")])
-
-
-def test_outcome_must_belong_to_the_rules_kind():
-    with pytest.raises(AppliedRuleValidationError, match="cannot have outcome"):
-        _check([_rule("Q1", "chosen"), _rule("M1", "chosen")])
-
-
-def test_duplicate_rule_is_rejected():
-    with pytest.raises(AppliedRuleValidationError, match="more than once"):
-        _check([_rule("Q1", "satisfied"), _rule("Q1", "failed"), _rule("M1", "chosen")])
+    option = parsed.groundings[0].options[0]
+    assert ("G1", "violated") in [
+        (r.rule_id, r.outcome) for r in flatten_rule_slots(CATALOG, option)
+    ]
 
 
 # --- outcome vocabularies may only offer outcomes the parser accepts -------------

@@ -5246,7 +5246,9 @@
                     "items": {
                       "bsonType": "object",
                       "required": [
-                        "descend_req_id"
+                        "descend_req_id",
+                        "name",
+                        "level"
                       ],
                       "additionalProperties": false,
                       "properties": {
@@ -5258,6 +5260,29 @@
                         },
                         "descend_req_id": {
                           "bsonType": "string"
+                        },
+                        "name": {
+                          "bsonType": "string"
+                        },
+                        "level": {
+                          "bsonType": "int"
+                        },
+                        "parent_name": {
+                          "bsonType": [
+                            "string",
+                            "null"
+                          ]
+                        },
+                        "stop_reason": {
+                          "enum": [
+                            "sentinel",
+                            "false_child",
+                            null
+                          ],
+                          "bsonType": [
+                            "string",
+                            "null"
+                          ]
                         }
                       }
                     },
@@ -6421,7 +6446,9 @@
                     "items": {
                       "bsonType": "object",
                       "required": [
-                        "descend_req_id"
+                        "descend_req_id",
+                        "name",
+                        "level"
                       ],
                       "additionalProperties": false,
                       "properties": {
@@ -6433,6 +6460,29 @@
                         },
                         "descend_req_id": {
                           "bsonType": "string"
+                        },
+                        "name": {
+                          "bsonType": "string"
+                        },
+                        "level": {
+                          "bsonType": "int"
+                        },
+                        "parent_name": {
+                          "bsonType": [
+                            "string",
+                            "null"
+                          ]
+                        },
+                        "stop_reason": {
+                          "enum": [
+                            "sentinel",
+                            "false_child",
+                            null
+                          ],
+                          "bsonType": [
+                            "string",
+                            "null"
+                          ]
                         }
                       }
                     },
@@ -7596,7 +7646,9 @@
                     "items": {
                       "bsonType": "object",
                       "required": [
-                        "descend_req_id"
+                        "descend_req_id",
+                        "name",
+                        "level"
                       ],
                       "additionalProperties": false,
                       "properties": {
@@ -7608,6 +7660,29 @@
                         },
                         "descend_req_id": {
                           "bsonType": "string"
+                        },
+                        "name": {
+                          "bsonType": "string"
+                        },
+                        "level": {
+                          "bsonType": "int"
+                        },
+                        "parent_name": {
+                          "bsonType": [
+                            "string",
+                            "null"
+                          ]
+                        },
+                        "stop_reason": {
+                          "enum": [
+                            "sentinel",
+                            "false_child",
+                            null
+                          ],
+                          "bsonType": [
+                            "string",
+                            "null"
+                          ]
                         }
                       }
                     },
@@ -8771,7 +8846,9 @@
                     "items": {
                       "bsonType": "object",
                       "required": [
-                        "descend_req_id"
+                        "descend_req_id",
+                        "name",
+                        "level"
                       ],
                       "additionalProperties": false,
                       "properties": {
@@ -8783,6 +8860,29 @@
                         },
                         "descend_req_id": {
                           "bsonType": "string"
+                        },
+                        "name": {
+                          "bsonType": "string"
+                        },
+                        "level": {
+                          "bsonType": "int"
+                        },
+                        "parent_name": {
+                          "bsonType": [
+                            "string",
+                            "null"
+                          ]
+                        },
+                        "stop_reason": {
+                          "enum": [
+                            "sentinel",
+                            "false_child",
+                            null
+                          ],
+                          "bsonType": [
+                            "string",
+                            "null"
+                          ]
                         }
                       }
                     },

@@ -339,6 +339,35 @@
               },
               "confidence": {
                 "bsonType": "int"
+              },
+              "identified_entity": {
+                "bsonType": [
+                  "string",
+                  "null"
+                ]
+              },
+              "applied_rules": {
+                "bsonType": "array",
+                "items": {
+                  "bsonType": "object",
+                  "required": [
+                    "rule_id",
+                    "outcome",
+                    "explanation"
+                  ],
+                  "additionalProperties": false,
+                  "properties": {
+                    "rule_id": {
+                      "bsonType": "string"
+                    },
+                    "outcome": {
+                      "bsonType": "string"
+                    },
+                    "explanation": {
+                      "bsonType": "string"
+                    }
+                  }
+                }
               }
             }
           },
@@ -368,6 +397,35 @@
                     },
                     "confidence": {
                       "bsonType": "int"
+                    },
+                    "identified_entity": {
+                      "bsonType": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "applied_rules": {
+                      "bsonType": "array",
+                      "items": {
+                        "bsonType": "object",
+                        "required": [
+                          "rule_id",
+                          "outcome",
+                          "explanation"
+                        ],
+                        "additionalProperties": false,
+                        "properties": {
+                          "rule_id": {
+                            "bsonType": "string"
+                          },
+                          "outcome": {
+                            "bsonType": "string"
+                          },
+                          "explanation": {
+                            "bsonType": "string"
+                          }
+                        }
+                      }
                     }
                   }
                 }
@@ -614,6 +672,35 @@
               },
               "confidence": {
                 "bsonType": "int"
+              },
+              "identified_entity": {
+                "bsonType": [
+                  "string",
+                  "null"
+                ]
+              },
+              "applied_rules": {
+                "bsonType": "array",
+                "items": {
+                  "bsonType": "object",
+                  "required": [
+                    "rule_id",
+                    "outcome",
+                    "explanation"
+                  ],
+                  "additionalProperties": false,
+                  "properties": {
+                    "rule_id": {
+                      "bsonType": "string"
+                    },
+                    "outcome": {
+                      "bsonType": "string"
+                    },
+                    "explanation": {
+                      "bsonType": "string"
+                    }
+                  }
+                }
               }
             }
           },
@@ -643,6 +730,35 @@
                     },
                     "confidence": {
                       "bsonType": "int"
+                    },
+                    "identified_entity": {
+                      "bsonType": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "applied_rules": {
+                      "bsonType": "array",
+                      "items": {
+                        "bsonType": "object",
+                        "required": [
+                          "rule_id",
+                          "outcome",
+                          "explanation"
+                        ],
+                        "additionalProperties": false,
+                        "properties": {
+                          "rule_id": {
+                            "bsonType": "string"
+                          },
+                          "outcome": {
+                            "bsonType": "string"
+                          },
+                          "explanation": {
+                            "bsonType": "string"
+                          }
+                        }
+                      }
                     }
                   }
                 }
@@ -889,6 +1005,35 @@
               },
               "confidence": {
                 "bsonType": "int"
+              },
+              "identified_entity": {
+                "bsonType": [
+                  "string",
+                  "null"
+                ]
+              },
+              "applied_rules": {
+                "bsonType": "array",
+                "items": {
+                  "bsonType": "object",
+                  "required": [
+                    "rule_id",
+                    "outcome",
+                    "explanation"
+                  ],
+                  "additionalProperties": false,
+                  "properties": {
+                    "rule_id": {
+                      "bsonType": "string"
+                    },
+                    "outcome": {
+                      "bsonType": "string"
+                    },
+                    "explanation": {
+                      "bsonType": "string"
+                    }
+                  }
+                }
               }
             }
           },
@@ -918,6 +1063,35 @@
                     },
                     "confidence": {
                       "bsonType": "int"
+                    },
+                    "identified_entity": {
+                      "bsonType": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "applied_rules": {
+                      "bsonType": "array",
+                      "items": {
+                        "bsonType": "object",
+                        "required": [
+                          "rule_id",
+                          "outcome",
+                          "explanation"
+                        ],
+                        "additionalProperties": false,
+                        "properties": {
+                          "rule_id": {
+                            "bsonType": "string"
+                          },
+                          "outcome": {
+                            "bsonType": "string"
+                          },
+                          "explanation": {
+                            "bsonType": "string"
+                          }
+                        }
+                      }
                     }
                   }
                 }
@@ -2589,6 +2763,12 @@
                               }
                             }
                           }
+                        },
+                        "no_candidate_explanation": {
+                          "bsonType": [
+                            "string",
+                            "null"
+                          ]
                         }
                       }
                     }
@@ -3641,6 +3821,12 @@
                               }
                             }
                           }
+                        },
+                        "no_candidate_explanation": {
+                          "bsonType": [
+                            "string",
+                            "null"
+                          ]
                         }
                       }
                     }
@@ -4693,6 +4879,12 @@
                               }
                             }
                           }
+                        },
+                        "no_candidate_explanation": {
+                          "bsonType": [
+                            "string",
+                            "null"
+                          ]
                         }
                       }
                     }
@@ -5940,6 +6132,12 @@
                               }
                             }
                           }
+                        },
+                        "no_candidate_explanation": {
+                          "bsonType": [
+                            "string",
+                            "null"
+                          ]
                         }
                       }
                     }
@@ -6029,6 +6227,17 @@
                         },
                         "group_id": {
                           "bsonType": "string"
+                        },
+                        "stop_reason": {
+                          "enum": [
+                            "sentinel",
+                            "false_child",
+                            null
+                          ],
+                          "bsonType": [
+                            "string",
+                            "null"
+                          ]
                         },
                         "direct_phrases_to_og_tag_w_rules": {
                           "bsonType": "object",
@@ -7296,6 +7505,12 @@
                               }
                             }
                           }
+                        },
+                        "no_candidate_explanation": {
+                          "bsonType": [
+                            "string",
+                            "null"
+                          ]
                         }
                       }
                     }
@@ -7385,6 +7600,17 @@
                         },
                         "group_id": {
                           "bsonType": "string"
+                        },
+                        "stop_reason": {
+                          "enum": [
+                            "sentinel",
+                            "false_child",
+                            null
+                          ],
+                          "bsonType": [
+                            "string",
+                            "null"
+                          ]
                         },
                         "direct_phrases_to_og_tag_w_rules": {
                           "bsonType": "object",
@@ -8652,6 +8878,12 @@
                               }
                             }
                           }
+                        },
+                        "no_candidate_explanation": {
+                          "bsonType": [
+                            "string",
+                            "null"
+                          ]
                         }
                       }
                     }
@@ -8741,6 +8973,17 @@
                         },
                         "group_id": {
                           "bsonType": "string"
+                        },
+                        "stop_reason": {
+                          "enum": [
+                            "sentinel",
+                            "false_child",
+                            null
+                          ],
+                          "bsonType": [
+                            "string",
+                            "null"
+                          ]
                         },
                         "direct_phrases_to_og_tag_w_rules": {
                           "bsonType": "object",
@@ -10008,6 +10251,12 @@
                               }
                             }
                           }
+                        },
+                        "no_candidate_explanation": {
+                          "bsonType": [
+                            "string",
+                            "null"
+                          ]
                         }
                       }
                     }
@@ -10097,6 +10346,17 @@
                         },
                         "group_id": {
                           "bsonType": "string"
+                        },
+                        "stop_reason": {
+                          "enum": [
+                            "sentinel",
+                            "false_child",
+                            null
+                          ],
+                          "bsonType": [
+                            "string",
+                            "null"
+                          ]
                         },
                         "direct_phrases_to_og_tag_w_rules": {
                           "bsonType": "object",

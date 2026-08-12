@@ -10,7 +10,6 @@ from pydantic import ValidationError
 from requests.structures import CaseInsensitiveDict
 
 from core.models.extraction_schemas.grounding import (
-    PhraseOptionGroundingResponse,
     PhraseToTagAndRulesMap,
     TagToAppliedRulesMap,
     is_sentinel_grounding_label,
@@ -24,8 +23,10 @@ from core.services.rule_catalog_registry import get_rule_catalog
 from core.models.extraction_schemas.relationship import (
     LLMPhraseRelationshipResults,
 )
-from core.models.extraction_schemas.response_format_util import (
-    build_gpt_response_format,
+from core.models.extraction_schemas.catalog_wire_schema import (
+    flatten_rule_slots,
+    grounding_response_model,
+    response_format_for,
 )
 from llm_providers.models.file_objects.prompt import Prompt
 from core.services.phrase_summaries_block import render_phrase_summaries_block
@@ -73,9 +74,12 @@ from llm_providers.services.gpt_batch_request.gpt_batch_request_service import (
 logger = logging.getLogger(__name__)
 
 
-LLM_PHRASE_INITIAL_GROUNDING_RESPONSE_SCHEMA = build_gpt_response_format(
-    PhraseOptionGroundingResponse, name="phrase_initial_grounding_result"
-)
+def get_initial_grounding_response_schema(field_type: ConceptFieldType) -> dict:
+    """This stage's strict ``response_format``, for one field type. Per catalog
+    rather than a module constant — see ``catalog_wire_schema``."""
+    return response_format_for(
+        get_rule_catalog(STAGE_INITIAL_GROUNDING, field_type.name)
+    )
 
 
 def parse_llm_phrase_initial_grounding_result(
@@ -88,8 +92,10 @@ def parse_llm_phrase_initial_grounding_result(
             "parse_llm_phrase_initial_grounding_result: Empty or invalid response from GPT"
         )
 
+    catalog = get_rule_catalog(STAGE_INITIAL_GROUNDING, field_type.name)
+
     try:
-        parsed = PhraseOptionGroundingResponse.model_validate_json(gpt_response)
+        parsed = grounding_response_model(catalog).model_validate_json(gpt_response)
     except ValidationError as e:
         raise ValueError(
             f"parse_llm_phrase_initial_grounding_result: Invalid response from GPT:{gpt_response}"
@@ -102,19 +108,19 @@ def parse_llm_phrase_initial_grounding_result(
             raise ValueError(
                 f"parse_llm_phrase_initial_grounding_result: Duplicate phrase {entry.phrase!r} in groundings response"
             )
-        catalog = get_rule_catalog(STAGE_INITIAL_GROUNDING, field_type.name)
         rules_by_option: TagToAppliedRulesMap = {}
         for option in entry.options:
+            applied_rules = flatten_rule_slots(catalog, option)
             # Collected across every option of every phrase, then raised once at
             # the end: a response is measured whole or its defect rate is a
             # function of where the scan stopped.
             report = check_applied_rules(
                 catalog=catalog,
-                applied_rules=option.applied_rules,
+                applied_rules=applied_rules,
                 where=f"phrase {entry.phrase!r} option {option.option!r}",
             )
             violations.extend(report.problems)
-            rules_by_option[option.option] = option.applied_rules
+            rules_by_option[option.option] = applied_rules
         raw_llm_initial_grounding_result[entry.phrase] = rules_by_option
 
     raise_for_violations(violations)
@@ -314,10 +320,18 @@ def get_descend_worthy_tcs_from_tagged_results(
     """
 
     for tc in tcs:
+        # Folded because the model's casing drifts between calls and every other
+        # label comparison already ignores case (match_label_to_concept_map,
+        # is_sentinel_grounding_label). A raw `in matchLabels` check made
+        # descend-worthiness depend on response casing: 'household products'
+        # escaped the prune while 'Household Products' would not have.
+        match_labels_folded = {
+            label.strip().casefold() for label in tc.concept.matchLabels
+        }
         for og_tag, phrase_rules_map in list(tc.og_tag_w_phrase_rules_map.items()):
             # start filtering out phrases that directly matched the tag
             for phrase in list(phrase_rules_map.keys()):  # p1, p2..
-                if phrase in tc.concept.matchLabels:
+                if phrase.strip().casefold() in match_labels_folded:
                     # matchLabels = C.name, C.altLabel1, C.altLabel2,
                     # one of these was the og_tag but cross comparison
                     # allows more pruning
@@ -637,7 +651,7 @@ def create_deferred_phrase_initial_grounding_gpt_request(
 
     context = (
         # f"Manufacturer name: {subject_name}\n\n "
-        f"extracted phrases:\n"
+        f"extracted phrases:\n{json.dumps(list(verified_out_of_vocab_phrases_w_summary.keys()))}\n "
         f"{render_phrase_summaries_block(verified_out_of_vocab_phrases_w_summary)}\n\n"
         f"options of {field_type.name} to choose from:\n{all_concept_labels}"
     )
@@ -650,7 +664,7 @@ def create_deferred_phrase_initial_grounding_gpt_request(
         prompt_text=phrase_initial_grounding_prompt.text,
         gpt_model=gpt_model,
         model_params=model_params.with_response_format(
-            LLM_PHRASE_INITIAL_GROUNDING_RESPONSE_SCHEMA
+            get_initial_grounding_response_schema(field_type)
         ),
         batch_id="Eager" if eager else None,
     )

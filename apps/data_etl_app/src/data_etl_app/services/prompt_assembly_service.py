@@ -25,7 +25,20 @@ import json
 from pathlib import Path
 from typing import Any, Callable, NamedTuple, Optional
 
-from core.models.rule_catalog import NOTE_KIND, RuleCatalog, RuleNode, RuleSection
+from core.models.extraction_schemas.catalog_wire_schema import (
+    CHOSEN_SLOT,
+    GUARDS_SLOT,
+    JUDGED,
+    NO_CANDIDATE,
+)
+from core.models.rule_catalog import (
+    NOTE_KIND,
+    ONLY_REACHABLE_OUTCOME_BY_REPORT_WHEN,
+    REPORT_WHEN_BY_KIND,
+    RuleCatalog,
+    RuleNode,
+    RuleSection,
+)
 
 from data_etl_app.models.types_and_enums import ConceptTypeEnum
 
@@ -38,18 +51,24 @@ SKELETON_BY_STAGE = {
     "phrase_initial_grounding": "initial_grounding.skeleton.txt",
     "phrase_recursive_grounding": "recursive_grounding.skeleton.txt",
     "phrase_freehand_grounding": "freehand_grounding.skeleton.txt",
+    "binary_classification": "binary_classification.skeleton.txt",
 }
 
-# The S3 key a prompt is published under. Derived from the stage rather than read
-# out of PromptService.STAGED_PROMPT_FILE_PATHS, because that map also feeds
-# PROMPT_NAMES: listing a prompt there before it exists in S3 would break
+# The S3 key prefix a prompt is published under. Derived from the stage rather
+# than read out of PromptService.STAGED_PROMPT_FILE_PATHS, because that map also
+# feeds PROMPT_NAMES: listing a prompt there before it exists in S3 would break
 # PromptService init for every bot. test_prompt_assembly_service asserts the two
 # agree for prompts that are already published.
+#
+# Full prefixes rather than directory names under a hardcoded `multi_stage/`,
+# because binary classification publishes under `single_stage/` — the keys its
+# hand-written predecessors always occupied.
 STAGE_DIR_BY_STAGE = {
-    "phrase_relationship_screening": "4_phrase_relationship_screening",
-    "phrase_freehand_grounding": "5_freehand_grounding",
-    "phrase_initial_grounding": "5_initial_grounding",
-    "phrase_recursive_grounding": "6_recursive_grounding",
+    "phrase_relationship_screening": "multi_stage/4_phrase_relationship_screening",
+    "phrase_freehand_grounding": "multi_stage/5_freehand_grounding",
+    "phrase_initial_grounding": "multi_stage/5_initial_grounding",
+    "phrase_recursive_grounding": "multi_stage/6_recursive_grounding",
+    "binary_classification": "single_stage",
 }
 
 # Rendered prompts are written HERE. `final_texts/` is build output and is
@@ -176,7 +195,7 @@ def prompt_s3_key(catalog: RuleCatalog) -> str:
             f"{catalog.prompt_name}: no output directory registered for stage "
             f"{catalog.stage!r}"
         )
-    return f"multi_stage/{stage_dir}/{catalog.prompt_name}.txt"
+    return f"{stage_dir}/{catalog.prompt_name}.txt"
 
 
 def assembled_prompt_path(catalog: RuleCatalog) -> Path:
@@ -413,9 +432,9 @@ def _render_report_block(catalog: RuleCatalog) -> str:
         # half — cite the sources, quote what you relied on — carried in prose,
         # where a paraphrase is a weakness an annotator can see rather than a parse
         # failure that costs the whole group request.
-        "For every rule you report, give the rule id, the outcome you reached, and "
-        "your explanation. Each explanation must cite the phrase and its "
-        "relationship summary, quoting the words you relied on.",
+        f"Every rule you report carries the outcome you reached and your "
+        f"explanation, under the field named for its rule id. Each explanation must "
+        f"cite {catalog.evidence_source}, quoting the words you relied on.",
         "",
         # The anti-rubber-stamp block (2026-08-11). The failure it targets:
         # explanations that restate the rule as a verdict ("'tooling equipment' is a
@@ -441,32 +460,46 @@ def _render_report_block(catalog: RuleCatalog) -> str:
             "reporting.",
         ]
 
+    # Describes the SLOTS the response schema declares, not a membership policy the
+    # model has to apply. Each always-reported rule is a required field named for
+    # its id, so it arrives whatever happens; what the model still owes is a
+    # judgment in each. Written this way because the old wording ("report every one
+    # of these") described the choice the schema has since taken away, and an
+    # instruction to do what is already guaranteed reads as optional.
     if grouped.get("always"):
         lines.append(
-            f"- Report every one of these, whichever outcome it reached: "
-            f"{', '.join(grouped['always'])}."
+            f"- Each of these has its own field, which you must fill in whichever "
+            f"outcome it reached: {', '.join(grouped['always'])}."
         )
     if grouped.get("when_chosen"):
         lines.append(
-            f"- Report exactly one of these — the one you chose, with outcome "
-            f"\"chosen\": {', '.join(grouped['when_chosen'])}."
+            f'- "{CHOSEN_SLOT}" holds the single branch you took, named by its rule '
+            f"id: {', '.join(grouped['when_chosen'])}."
         )
     if grouped.get("on_violation"):
         lines.append(
-            f"- Report any of these ONLY when you find it violated: "
-            f"{', '.join(grouped['on_violation'])}."
+            f'- "{GUARDS_SLOT}" lists any of these you found violated, and is empty '
+            f"when none was: {', '.join(grouped['on_violation'])}."
         )
 
-    lines.append("")
-    lines.append("The outcome you give must be one allowed for that rule:")
+    # Only the kinds that carry a choice. A guard is named only to say it fired and
+    # a branch only to say it was taken, so their one reachable outcome is fixed by
+    # the schema and never written — listing it here would advertise a field that
+    # does not exist (decision #12, one level down).
+    outcome_lines = []
     for kind, outcomes in catalog.outcome_vocab.items():
-        ids = sorted(
-            rule.id for rule in catalog.walk_rules() if rule.kind == kind
-        )
-        lines.append(f"- {', '.join(ids)} → {', '.join(outcomes)}")
+        if ONLY_REACHABLE_OUTCOME_BY_REPORT_WHEN.get(REPORT_WHEN_BY_KIND[kind]):
+            continue
+        ids = sorted(rule.id for rule in catalog.walk_rules() if rule.kind == kind)
+        outcome_lines.append(f"- {', '.join(ids)} → {', '.join(outcomes)}")
         gloss = OUTCOME_GLOSS_BY_KIND.get(kind)
         if gloss:
-            lines.append(f"  {gloss}")
+            outcome_lines.append(f"  {gloss}")
+
+    if outcome_lines:
+        lines.append("")
+        lines.append("The outcome you give must be one allowed for that rule:")
+        lines.extend(outcome_lines)
 
     return "\n".join(lines)
 
@@ -498,16 +531,18 @@ def _render_report_block(catalog: RuleCatalog) -> str:
 #
 # `not_triggered` is the one outcome with nothing to cite: the rule never got a
 # candidate to be about, so it explains why instead of quoting.
-_EXPLANATION_BY_OUTCOME = {
-    "satisfied": "<why this held, citing the phrase and its relationship summary>",
-    "failed": "<why this did not hold, citing the phrase and its relationship summary>",
+#
+# Templates over `{src}` — the catalog's evidence_source — because what there is
+# to cite differs by stage: a phrase and its relationship summary in the
+# multi-stage prompts, the scraped text itself in binary classification.
+_EXPLANATION_TEMPLATE_BY_OUTCOME = {
+    "satisfied": "<why this held, citing {src}>",
+    "failed": "<why this did not hold, citing {src}>",
     "not_triggered": "<why there was nothing here to evaluate>",
-    "chosen": "<why this is the branch that applied, citing the phrase and its relationship summary>",
-    "violated": "<why this guard fired, citing the phrase and its relationship summary>",
+    "chosen": "<why this is the branch that applied, citing {src}>",
+    "violated": "<why this guard fired, citing {src}>",
 }
-_FALLBACK_EXPLANATION = (
-    "<why this is the outcome, citing the phrase and its relationship summary>"
-)
+_FALLBACK_EXPLANATION_TEMPLATE = "<why this is the outcome, citing {src}>"
 
 # How the always-reported conditions come out under each scenario.
 _HELD = "held"
@@ -515,11 +550,30 @@ _DID_NOT_HOLD = "did_not_hold"
 _NOTHING_IDENTIFIED = "nothing_identified"
 
 
-def _example_rule(rule_id: str, outcome: str) -> dict[str, Any]:
+def _example_report(outcome: str, evidence_source: str) -> dict[str, Any]:
+    """An always-reported rule's slot. The rule id is the KEY that holds this, not a
+    field inside it — see ``catalog_wire_schema``."""
+    template = _EXPLANATION_TEMPLATE_BY_OUTCOME.get(
+        outcome, _FALLBACK_EXPLANATION_TEMPLATE
+    )
+    return {
+        "outcome": outcome,
+        "explanation": template.format(src=evidence_source),
+    }
+
+
+def _example_fired(
+    rule_id: str, outcome: str, evidence_source: str
+) -> dict[str, Any]:
+    """A guard that fired or the ladder branch taken. Carries no ``outcome``: these
+    are reported only on one outcome, so the wire schema fixes it and the parser
+    puts it back rather than spending completion tokens on a constant."""
+    template = _EXPLANATION_TEMPLATE_BY_OUTCOME.get(
+        outcome, _FALLBACK_EXPLANATION_TEMPLATE
+    )
     return {
         "rule_id": rule_id,
-        "outcome": outcome,
-        "explanation": _EXPLANATION_BY_OUTCOME.get(outcome, _FALLBACK_EXPLANATION),
+        "explanation": template.format(src=evidence_source),
     }
 
 
@@ -601,47 +655,53 @@ def _guard_placeholder(catalog: RuleCatalog) -> Optional[str]:
     return f"<whichever of {', '.join(guards)} you found violated>"
 
 
-def _example_applied_rules(
+def _example_rule_slots(
     catalog: RuleCatalog,
     *,
     mode: str,
     branch: Optional[str] = None,
     guard: Optional[str] = None,
-) -> list[dict[str, Any]]:
-    """Every rule this scenario must report, in the order the rules are stated.
+) -> dict[str, Any]:
+    """This scenario's rule slots, to merge into the entry that carries them.
 
-    Emitting them in document order puts the chosen branch where the matching
-    ladder sits among the sections, and a fired guard after the conditions it
-    overrides, so the example reads in the same sequence as the rules above it.
+    Emitted in document order so the example reads in the same sequence as the
+    rules above it: the always-reported rules under their own ids, then the chosen
+    branch where the matching ladder sits among the sections, then the guards.
+
+    ``chosen`` and ``guards`` appear whenever the catalog declares those kinds at
+    all — both are required properties of the wire schema, so an entry with no
+    guard fired still carries an empty ``guards``. Showing that is the point:
+    omitting it is the shape the schema rejects.
     """
     condition_outcomes = _condition_outcomes(catalog, mode)
-    applied: list[dict[str, Any]] = []
-    branch_emitted = False
-    guard_emitted = False
+    slots: dict[str, Any] = {}
 
     for rule in catalog.walk_rules():
-        if rule.report_when == "always":
-            outcome = condition_outcomes.get(rule.id)
-            if outcome is None:
-                # A non-condition reported regardless of outcome — granularity, say.
-                outcome = (
-                    "not_triggered"
-                    if mode == _NOTHING_IDENTIFIED
-                    else _outcome_placeholder(catalog.outcome_vocab[rule.kind])
-                )
-            applied.append(_example_rule(rule.id, outcome))
-        elif (
-            rule.report_when == "when_chosen" and branch is not None and not branch_emitted
-        ):
-            applied.append(_example_rule(branch, "chosen"))
-            branch_emitted = True
-        elif (
-            rule.report_when == "on_violation" and guard is not None and not guard_emitted
-        ):
-            applied.append(_example_rule(guard, "violated"))
-            guard_emitted = True
+        if rule.report_when != "always":
+            continue
+        outcome = condition_outcomes.get(rule.id)
+        if outcome is None:
+            # A non-condition reported regardless of outcome — granularity, say.
+            outcome = (
+                "not_triggered"
+                if mode == _NOTHING_IDENTIFIED
+                else _outcome_placeholder(catalog.outcome_vocab[rule.kind])
+            )
+        slots[rule.id] = _example_report(outcome, catalog.evidence_source)
 
-    return applied
+    if branch is not None:
+        slots[CHOSEN_SLOT] = _example_fired(
+            branch, "chosen", catalog.evidence_source
+        )
+
+    if any(rule.report_when == "on_violation" for rule in catalog.walk_rules()):
+        slots[GUARDS_SLOT] = (
+            [_example_fired(guard, "violated", catalog.evidence_source)]
+            if guard is not None
+            else []
+        )
+
+    return slots
 
 
 def _screening_example(catalog: RuleCatalog) -> dict[str, Any]:
@@ -657,14 +717,16 @@ def _screening_example(catalog: RuleCatalog) -> dict[str, Any]:
     """
     entries = [
         {
+            "outcome": JUDGED,
             "phrase": "<phrase copied verbatim from the input, whose candidate qualified>",
             "identified_entity": "<the {{entity_noun}} you judged>",
-            "applied_rules": _example_applied_rules(catalog, mode=_HELD),
+            **_example_rule_slots(catalog, mode=_HELD),
         },
         {
+            "outcome": JUDGED,
             "phrase": "<another phrase, whose candidate did not qualify>",
             "identified_entity": "<the {{entity_noun}} you got furthest with>",
-            "applied_rules": _example_applied_rules(catalog, mode=_DID_NOT_HOLD),
+            **_example_rule_slots(catalog, mode=_DID_NOT_HOLD),
         },
     ]
 
@@ -672,19 +734,21 @@ def _screening_example(catalog: RuleCatalog) -> dict[str, Any]:
     if guard is not None:
         entries.append(
             {
+                "outcome": JUDGED,
                 "phrase": "<another phrase, whose candidate every condition held for, but which a guard ruled out>",
                 "identified_entity": "<the {{entity_noun}} the guard ruled out>",
-                "applied_rules": _example_applied_rules(
-                    catalog, mode=_HELD, guard=guard
-                ),
+                **_example_rule_slots(catalog, mode=_HELD, guard=guard),
             }
         )
 
+    # The other branch of the union, and the only entry with no rule slots at all:
+    # nothing was identified, so no condition had a candidate to be about. Its
+    # explanation is the whole of its record, which is why it has one.
     entries.append(
         {
+            "outcome": NO_CANDIDATE,
             "phrase": "<another phrase, which offered no candidate at all>",
-            "identified_entity": None,
-            "applied_rules": [],
+            "explanation": "<why no {{entity_noun}} could be identified from it>",
         }
     )
     return {"screenings": entries}
@@ -710,7 +774,7 @@ def _grounding_example(
     def unit(label: str, *, mode: str, branch: Optional[str]) -> dict[str, Any]:
         return {
             unit_key: label,
-            "applied_rules": _example_applied_rules(catalog, mode=mode, branch=branch),
+            **_example_rule_slots(catalog, mode=mode, branch=branch),
         }
 
     entries: list[dict[str, Any]] = [
@@ -727,14 +791,20 @@ def _grounding_example(
         },
     ]
 
+    # Both or neither: RuleCatalog requires exactly one preference rule to spell the
+    # sentinel verbatim whenever `sentinel_tag` is set, so `_sentinel_branch_id`
+    # finds a branch exactly when there is a tag to put in it. Narrowing on the tag
+    # as well as the branch is what makes that readable to a type checker — and the
+    # label is the half that would otherwise reach `unit` as Optional.
+    sentinel_tag = catalog.sentinel_tag
     sentinel_branch = _sentinel_branch_id(catalog)
-    if sentinel_branch is not None:
+    if sentinel_tag is not None and sentinel_branch is not None:
         entries.append(
             {
                 "phrase": "<another phrase, from which none could be identified>",
                 units_key: [
                     unit(
-                        catalog.sentinel_tag,
+                        sentinel_tag,
                         mode=_NOTHING_IDENTIFIED,
                         branch=sentinel_branch,
                     )
@@ -768,11 +838,42 @@ def _category_grounding_example(catalog: RuleCatalog) -> dict[str, Any]:
     )
 
 
+def _binary_classification_example(catalog: RuleCatalog) -> dict[str, Any]:
+    """One response object, not an array: the stage judges the whole text once.
+
+    A single object cannot show scenarios the way screening's four entries do, so
+    per locked convention it is literal only where the catalog fixes the value —
+    which rules must appear — and a placeholder where the model still decides:
+    every condition outcome is an alternatives slot rather than a worked
+    "satisfied" chain, which would anchor an accept bias the report block exists
+    to fight. The chain shape (satisfied* failed? not_triggered*) is stated in
+    prose by the skeleton. Guards are absent by the report policy: they appear
+    only when violated.
+    """
+    condition_slot = f"<whichever of {', '.join(catalog.outcome_vocab['condition'])} applied>"
+    slots: dict[str, Any] = {
+        rule.id: _example_report(condition_slot, catalog.evidence_source)
+        for rule in catalog.walk_rules()
+        if rule.report_when == "always"
+    }
+    if any(rule.report_when == "on_violation" for rule in catalog.walk_rules()):
+        slots[GUARDS_SLOT] = []
+    return {
+        "identified_entity": (
+            "<the {{entity_noun}} you judged — the one that qualified, or the one "
+            "you got furthest with — or null when the text offered no candidate>"
+        ),
+        "confidence": "<integer from 0 to 100>",
+        **slots,
+    }
+
+
 EXAMPLE_BUILDER_BY_STAGE = {
     "phrase_relationship_screening": _screening_example,
     "phrase_initial_grounding": _option_grounding_example,
     "phrase_recursive_grounding": _option_grounding_example,
     "phrase_freehand_grounding": _category_grounding_example,
+    "binary_classification": _binary_classification_example,
 }
 
 
@@ -792,10 +893,13 @@ def _prints_on_one_line(node: Any) -> bool:
     if not isinstance(node, dict):
         return False
     if "rule_id" in node:
-        return True  # a rule object: three short fields
-    # An entry that identified no candidate: two short fields and an empty list,
-    # which indent=2 otherwise spends five lines on.
-    return "identified_entity" in node and node["identified_entity"] is None
+        return True  # a fired guard or chosen branch: two short fields
+    if len(node) == 2 and "outcome" in node and "explanation" in node:
+        return True  # an always-reported rule's slot, under its id
+    # An entry that identified no candidate: three short fields, which indent=2
+    # otherwise spends five lines on. The commonest entry in a screening response
+    # by some margin — 45% of them in the run this shape was designed against.
+    return node.get("outcome") == NO_CANDIDATE
 
 
 def _dumps_example(node: Any, _level: int = 0) -> str:

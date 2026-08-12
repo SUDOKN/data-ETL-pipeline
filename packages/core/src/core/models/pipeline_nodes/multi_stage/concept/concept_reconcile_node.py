@@ -65,7 +65,7 @@ from core.utils.rdf_to_graph_util import (
     get_match_label_to_concept_map,
 )
 from core.utils.phrase_trail_dump_util import (
-    build_concept_phrase_trail_entry,
+    build_concept_phrase_rows,
     write_phrase_trails_dump,
 )
 
@@ -209,13 +209,6 @@ class ConceptReconcileNode(ReconcileNode[ConceptFieldType]):
                 llm_phrase_initial_grounding_flat, llm_search_results
             )
 
-            # phrase -> earliest round index (for trail dump)
-            phrase_to_round: dict[str, int] = {}
-            for round_idx in sorted(llm_search_results.keys()):
-                for phrase in llm_search_results[round_idx]:
-                    if phrase not in phrase_to_round:
-                        phrase_to_round[phrase] = round_idx
-
             lvl_by_lvl_iterative_grounding_results = await ConceptIterativeGroundingNode.get_result(
                 subject_unique_id=subject.subject_unique_id,
                 field_type=self.field_type,
@@ -229,18 +222,18 @@ class ConceptReconcileNode(ReconcileNode[ConceptFieldType]):
             phrase_trails = get_phrase_trails(
                 lvl_by_lvl_iterative_grounding_results=lvl_by_lvl_iterative_grounding_results
             )
-            chunked_phrase_trails_dump[chunk_bounds] = [
-                build_concept_phrase_trail_entry(
-                    phrase_trail=phrase_trail,
-                    search_round=phrase_to_round.get(phrase_trail.phrase, 0),
-                    relationship_result=llm_phrase_relationship_results,
-                    screening_result=llm_phrase_screening_results,
-                )
-                for phrase_trail in sorted(
-                    phrase_trails,
-                    key=lambda phrase_trail: phrase_trail.phrase,
-                )
-            ]
+            # Rows are driven by the SCREENED phrase set (plus any drifted
+            # grounding-only phrases), joined against the flat pre-partition
+            # maps — the trail alone cannot carry screened-out, settled,
+            # sentinel, or out-of-vocab verdicts.
+            chunked_phrase_trails_dump[chunk_bounds] = build_concept_phrase_rows(
+                screening_flat=llm_phrase_screening_flat,
+                relationship_flat=llm_phrase_relationship_flat,
+                initial_grounding_flat=llm_phrase_initial_grounding_flat,
+                phrase_trails=phrase_trails,
+                search_rounds=llm_search_results,
+                match_label_to_concept_map=self.match_label_to_concept_map,
+            )
             for phrase_trail in phrase_trails:
                 recognized_deepest_concepts, oov = get_deepest_concepts_and_oov(
                     phrase_trail=phrase_trail,

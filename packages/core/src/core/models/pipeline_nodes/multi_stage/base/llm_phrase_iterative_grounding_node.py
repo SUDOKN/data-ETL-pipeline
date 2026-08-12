@@ -1,6 +1,8 @@
 from __future__ import annotations
 import logging
 from datetime import datetime
+from typing import Optional
+
 from requests.structures import CaseInsensitiveDict
 
 from llm_providers.db_models.gpt_batch_request import (
@@ -8,6 +10,10 @@ from llm_providers.db_models.gpt_batch_request import (
 )
 from llm_providers.models.open_ai.gpt_batch_response_blob import (
     GPTBatchResponse,
+)
+from core.models.extraction_schemas.grounding import (
+    StopReason,
+    is_sentinel_grounding_label,
 )
 from core.models.extraction_schemas.iterative_tagging import (
     IterativeGroundingResult,
@@ -60,6 +66,7 @@ from core.services.pipeline_nodes.multi_stage.llm_initial_grounding_service impo
 )
 from core.services.pipeline_nodes.multi_stage.llm_recursive_grounding_service import (
     create_missing_phrase_recursive_grounding_requests,
+    get_itr_descendable_concept,
     parse_recursive_grounding_batch_request_result,
     get_all_recursive_grounding_results,
 )
@@ -70,6 +77,52 @@ from core.utils.rdf_to_graph_util import (
 )
 
 logger = logging.getLogger(__name__)
+
+
+def _merge_itrs_into_level(
+    level_set: set[IterativeTaggingRequest],
+    candidates: list[IterativeTaggingRequest],
+    match_label_to_concept_map: CaseInsensitiveDict[Concept],
+) -> list[IterativeTaggingRequest]:
+    """Add candidate nodes to a level's set, deduping ordinary nodes by concept.
+
+    Node identity is (parent, name), so the set alone would keep a direct-tagged
+    concept node (parent None) next to the same concept named by its parent's
+    response — two descents of one concept, where downstream asserts one per
+    level. Ordinary in-vocab nodes therefore merge by concept name, first-in
+    wins: an earlier pass's node may already carry a dispatched request, so the
+    existing node must survive. Stopped (sentinel / false-child) and
+    out-of-vocab nodes keep per-parent identity — each parent's verdict is its
+    own record.
+
+    Returns the candidates actually added, so the walk waits only on requests
+    that can still be created.
+    """
+    claimed_concept_names = {
+        concept.name
+        for itr in level_set
+        if itr.stop_reason is None
+        and (concept := match_label_to_concept_map.get(itr.name)) is not None
+    }
+    added: list[IterativeTaggingRequest] = []
+    for itr in candidates:
+        if itr in level_set:
+            # The same (parent, name) node from an earlier pass; its request,
+            # if any, is already accounted for.
+            continue
+        if itr.stop_reason is None and (
+            concept := match_label_to_concept_map.get(itr.name)
+        ):
+            if concept.name in claimed_concept_names:
+                logger.info(
+                    f"Skipping duplicate node for concept {concept.name!r} "
+                    f"(parent {itr.parent_name!r}); the concept already has a node at this level."
+                )
+                continue
+            claimed_concept_names.add(concept.name)
+        level_set.add(itr)
+        added.append(itr)
+    return added
 
 
 class LLMPhraseIterativeGroundingNode(
@@ -114,11 +167,17 @@ class LLMPhraseIterativeGroundingNode(
         chunk_bounds: str,
         level: int,
         tag: str,
+        parent_tag: Optional[str],
         node_metadata: ExtractionNodeMetadata,
     ) -> BatchRequestIDType:
+        # p[...] carries the parent because node identity is (parent, name): two
+        # same-named nodes under different parents must not share an ID. ROOT
+        # marks a direct-tagged node. Placed after the tag so anything reading
+        # the tag positionally (right after l[N]>) keeps working.
         return (
             f"{subject_unique_id}>{field_type.name}>llm_phrase_recursive_grounding>chunk>"
-            f"{chunk_bounds}>l[{level}]>{tag}>{node_metadata.to_custom_id_segment()}"
+            f"{chunk_bounds}>l[{level}]>{tag}>p[{parent_tag or 'ROOT'}]>"
+            f"{node_metadata.to_custom_id_segment()}"
         )
 
     def get_embedded_request_ids(
@@ -140,8 +199,17 @@ class LLMPhraseIterativeGroundingNode(
                     [
                         itr.descend_req_id
                         for itr in itrs
-                        if itr.name
-                        in self.match_label_to_concept_map  # otherwise they were part of a parent's results, but never descended further or will not be descended further
+                        # Only descendable nodes (in-vocab, with children, not
+                        # stopped) ever get a request created; declaring any
+                        # other ID here would make it expected-but-never-created
+                        # and stall the completeness checks forever.
+                        # Non-descendable nodes (out-of-vocab, sentinel,
+                        # false-child, leaf) still live in the tree for the
+                        # phrase trail — they just carry no request.
+                        if get_itr_descendable_concept(
+                            itr, self.match_label_to_concept_map
+                        )
+                        is not None
                     ]
                 )
         return all_chunks_recursive_grounding_req_ids
@@ -206,8 +274,15 @@ class LLMPhraseIterativeGroundingNode(
                 assert bundle.llm_phrase_recursive_tagging_reqs
                 for _lvl, itrs in bundle.llm_phrase_recursive_tagging_reqs.items():
                     for itr in itrs:
+                        # Non-descendable nodes never had a request; collecting
+                        # them here would issue deletes for docs that don't
+                        # exist and mislabel them incomplete in the logs.
                         if (
-                            itr.descend_req_id
+                            get_itr_descendable_concept(
+                                itr, self.match_label_to_concept_map
+                            )
+                            is not None
+                            and itr.descend_req_id
                             not in completed_recursive_grounding_req_map
                         ):
                             incomplete_req_ids.append(itr.descend_req_id)
@@ -247,7 +322,7 @@ class LLMPhraseIterativeGroundingNode(
             # now we only want to use and iterate directly_tagged_descend_worthy_tcs once, so better to iterate each level to check
             # if all reqs
             # curr_level = 1
-            new_itrs: set[IterativeTaggingRequest] = set()
+            candidate_itrs: list[IterativeTaggingRequest] = []
             dtcs_at_next_level = [
                 dtc
                 for dtc in directly_tagged_descend_worthy_tcs
@@ -262,15 +337,23 @@ class LLMPhraseIterativeGroundingNode(
                         chunk_bounds=chunk_bounds,
                         level=1,
                         tag=dtc.concept.name,
+                        parent_tag=None,
                         node_metadata=metadata.llm_phrase_recursive_grounding,
                     ),
+                    name=dtc.concept.name,
+                    level=1,
+                    parent_name=None,
                 )
-                new_itrs.add(itr)  # has no effect if recursion already added this itr
+                candidate_itrs.append(itr)
 
             assert bundle.llm_phrase_recursive_tagging_reqs is not None
-            bundle.llm_phrase_recursive_tagging_reqs.setdefault(1, set()).update(
-                new_itrs
-            )  # this will throw error if [curr_level] is not initialized preemptively
+            # new_itrs carries only the nodes actually added this pass — the
+            # walk below waits solely on requests that can still be created.
+            new_itrs = _merge_itrs_into_level(
+                bundle.llm_phrase_recursive_tagging_reqs.setdefault(1, set()),
+                candidate_itrs,
+                self.match_label_to_concept_map,
+            )
 
             next_level = 2
             while next_level <= max_concept_level + 1:
@@ -278,8 +361,14 @@ class LLMPhraseIterativeGroundingNode(
                 descend_worthy_new_itr_ids = [
                     next_level_itr.descend_req_id
                     for next_level_itr in new_itrs
-                    if next_level_itr.name
-                    in self.match_label_to_concept_map  # we don't care about others
+                    # Same gate as get_embedded_request_ids: waiting on a
+                    # non-descendable node (out-of-vocab, sentinel, false-child,
+                    # leaf) would block the walk on a request that will never be
+                    # created.
+                    if get_itr_descendable_concept(
+                        next_level_itr, self.match_label_to_concept_map
+                    )
+                    is not None
                 ]
                 # we update the completed req map and break out of the loop if any next_level_itr is missing
                 logger.info(f"Updating completed req map just in case.")
@@ -299,7 +388,7 @@ class LLMPhraseIterativeGroundingNode(
                     break
 
                 # else explore
-                new_itrs = set()
+                candidate_itrs = []
                 # find next level children from curr level parents
                 for parent_itr in bundle.llm_phrase_recursive_tagging_reqs[
                     next_level - 1
@@ -307,16 +396,21 @@ class LLMPhraseIterativeGroundingNode(
                     logger.info(
                         f"Parsing results for parent_itr: l{parent_itr.level}>{parent_itr.name} in chunk {chunk_bounds} for {subject_unique_id}:{self.field_type.name}"
                     )
-                    parent_concept = self.match_label_to_concept_map.get(
-                        parent_itr.name
+                    parent_concept = get_itr_descendable_concept(
+                        parent_itr, self.match_label_to_concept_map
                     )
                     if not parent_concept:
                         if next_level == 1:
                             raise ValueError(
                                 f"First level is allowed to only have in-vocab concepts, {parent_itr.name} not recognized."
                             )
-                        # else this req was never descended in the first place
-                        logger.info(f"Skipping oov parent_itr:{parent_itr.name}")
+                        # else this req was never descended in the first place:
+                        # out-of-vocab/sentinel names have no concept, and a
+                        # leaf concept gets no descent request — either way
+                        # there is no result to parse for children.
+                        logger.info(
+                            f"Skipping non-descendable parent_itr:{parent_itr.name}"
+                        )
                         continue
                     elif parent_concept.level != next_level - 1:
                         raise ValueError(
@@ -345,19 +439,30 @@ class LLMPhraseIterativeGroundingNode(
                         child_concept = self.match_label_to_concept_map.get(
                             child_tr.group_id
                         )
+                        stop_reason: Optional[StopReason] = None
                         if child_concept:
                             child_tr.group_id = child_concept.name
                             if child_concept.name not in parent_concept.children:
-                                # this helps flag mischiveous in-vocab but not descend worthy in the next round
-                                # ex: it could be a same level cousin but different parent, or be a different level entirely
+                                # A real concept, but not a child of the parent
+                                # it was asked under (a same-level cousin, or a
+                                # different level entirely). Recorded as data —
+                                # the old name suffix ("-FALSE_CHILD") made the
+                                # node unmatchable and silently erased the
+                                # event from trail and results.
                                 logger.warning(
-                                    f"Child concept {child_concept.name} is not a child of parent concept {parent_concept.name}. Marking as FALSE_CHILD."
+                                    f"Child concept {child_concept.name} is not a child of parent concept {parent_concept.name}. Marking as false child."
                                 )
-                                child_tr.group_id += "-FALSE_CHILD"
+                                stop_reason = "false_child"
                             else:
                                 logger.info(
                                     f"Found a descend worthy child:{child_tr.group_id}."
                                 )
+                        elif is_sentinel_grounding_label(child_tr.group_id):
+                            # The parent's response declined — the descent
+                            # stopped here by the model's own verdict. Marked
+                            # explicitly rather than relying on the label
+                            # missing from the vocabulary.
+                            stop_reason = "sentinel"
                         itr = IterativeTaggingRequest(
                             parent_descend_req_id=parent_itr.descend_req_id,
                             descend_req_id=self.get_request_custom_id(
@@ -371,10 +476,15 @@ class LLMPhraseIterativeGroundingNode(
                                     # = child_concept.level; when child_concept available
                                 ),
                                 tag=child_tr.group_id,
+                                parent_tag=parent_itr.name,
                                 node_metadata=metadata.llm_phrase_recursive_grounding,
                             ),
+                            name=child_tr.group_id,
+                            level=next_level,
+                            parent_name=parent_itr.name,
+                            stop_reason=stop_reason,
                         )
-                        new_itrs.add(itr)
+                        candidate_itrs.append(itr)
                         logger.info(
                             f"Adding recursive_tagging_req for {itr.name}-l[{itr.level}] with descend_req_id:{itr.descend_req_id} for embedding downstream."
                         )
@@ -394,16 +504,25 @@ class LLMPhraseIterativeGroundingNode(
                             chunk_bounds=chunk_bounds,
                             level=dtc.concept.level,
                             tag=dtc.concept.name,
+                            parent_tag=None,
                             node_metadata=metadata.llm_phrase_recursive_grounding,
                         ),
+                        name=dtc.concept.name,
+                        level=dtc.concept.level,
+                        parent_name=None,
                     )
-                    new_itrs.add(
-                        itr
-                    )  # has no effect if recursion already added this itr
+                    # Appended after the response-derived children so that when
+                    # both name one concept, the parented node claims it and the
+                    # merge drops this one.
+                    candidate_itrs.append(itr)
 
-                bundle.llm_phrase_recursive_tagging_reqs.setdefault(
-                    next_level, set()
-                ).update(new_itrs)
+                new_itrs = _merge_itrs_into_level(
+                    bundle.llm_phrase_recursive_tagging_reqs.setdefault(
+                        next_level, set()
+                    ),
+                    candidate_itrs,
+                    self.match_label_to_concept_map,
+                )
 
                 next_level += 1
 

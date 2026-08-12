@@ -1,11 +1,11 @@
 {
-  "catalog_version": "equipment_phrase_freehand_grounding.2026.08.3",
+  "catalog_version": "equipment_phrase_freehand_grounding.2026.08.4",
   "prompt_name": "equipment_phrase_freehand_grounding",
   "stage": "phrase_freehand_grounding",
   "field_types": [
     "equipments"
   ],
-  "entity_noun": "equipment category",
+  "entity_noun": "production machine category",
   "entity_relationships": {
     "base": "operate, own, use, or otherwise have access to",
     "third_person": "operates, owns, uses, or otherwise has access to",
@@ -19,6 +19,11 @@
     ],
     "preference": [
       "chosen"
+    ],
+    "quality": [
+      "member_level",
+      "family_level",
+      "not_triggered"
     ]
   },
   "sections": [
@@ -40,7 +45,7 @@
               "kind": "note",
               "reportable": false,
               "report_when": "never",
-              "text": "Equipment named only as something the manufacturer's output goes into or supports, or that a customer or other party operates, is not an {{entity_noun}} the manufacturer {{entity_relationships.third_person}}."
+              "text": "A machine named only as something the manufacturer's output goes into or supports, or that a customer or other party operates, is not a {{entity_noun}} the manufacturer {{entity_relationships.third_person}}."
             }
           ]
         }
@@ -48,7 +53,7 @@
     },
     {
       "section_id": "category_qualification",
-      "heading": "The {{entity_noun}} you name must qualify, in BOTH of these ways:",
+      "heading": "The {{entity_noun}} you name must qualify in ALL of these ways:",
       "combinator": "all",
       "rules": [
         {
@@ -71,7 +76,14 @@
               "kind": "note",
               "reportable": false,
               "report_when": "never",
-              "text": "Qualifying a term that fixes nothing does not make it determinate. Where the head noun names no particular kind, a modifier describing what the thing is for, how good it is, or where it sits leaves it fixing nothing still."
+              "text": "Qualifying a term that fixes nothing does not make it determinate. A term that names no operation performed on the work names no kind of machine, and a modifier saying how good it is, how new it is, how much of it there is, or that it is on site leaves it naming no kind still. Such a term is never a category you return."
+            },
+            {
+              "id": "FGR-Q2c",
+              "kind": "note",
+              "reportable": false,
+              "report_when": "never",
+              "text": "A trade, a service, or a line of business is not a machine. Where a phrase names what the manufacturer does, or what it sells itself as, a category follows only if the phrase or its summary names the machines it does that work with. A name for the work with a word for machines attached to it is not a category the words support."
             }
           ]
         },
@@ -81,6 +93,30 @@
           "reportable": true,
           "report_when": "always",
           "text": "It is distinct from every other {{entity_noun}} named for the same phrase. Two names for the same {{entity_noun}} in different words are one, not two."
+        },
+        {
+          "id": "FGR-Q4",
+          "kind": "condition",
+          "reportable": true,
+          "report_when": "always",
+          "text": "It is named at the deepest level the phrase and its relationship summary fix, and no deeper. Naming descends in steps: first the operation the machine performs on the work, then the configuration that tells machines performing that same operation apart — how they are oriented, driven, controlled, or arranged. Take every step the words supply, and stop at the first step they do not.",
+          "combinator": "note",
+          "children": [
+            {
+              "id": "FGR-Q4a",
+              "kind": "note",
+              "reportable": false,
+              "report_when": "never",
+              "text": "Where the phrase or its summary names both a kind and a narrower kind within it, the narrower one is the category. The broader name is already implied by it, so returning that as well adds nothing."
+            },
+            {
+              "id": "FGR-Q4b",
+              "kind": "note",
+              "reportable": false,
+              "report_when": "never",
+              "text": "A step the words do not supply is never taken, however likely it is that a manufacturer like this one would have it. Typicality is not evidence: name the machine with the control, precision, automation, or capacity the words state, and with none they do not."
+            }
+          ]
         }
       ]
     },
@@ -94,7 +130,7 @@
           "kind": "preference",
           "reportable": true,
           "report_when": "when_chosen",
-          "text": "An {{entity_noun}} can be determined from the phrase and its relationship summary, and it is named directly."
+          "text": "A {{entity_noun}} can be determined from the phrase and its relationship summary, and it is named directly."
         },
         {
           "id": "FGR-M2",
@@ -104,12 +140,26 @@
           "text": "No {{entity_noun}} can be determined from the phrase and its relationship summary, and \"Cannot categorize\" is named as the only entry for the phrase."
         }
       ]
+    },
+    {
+      "section_id": "quality",
+      "heading": "For each {{entity_noun}} you named, record how specific the name is:",
+      "combinator": "all",
+      "rules": [
+        {
+          "id": "FGR-QC1",
+          "kind": "quality",
+          "reportable": true,
+          "report_when": "always",
+          "text": "Report the level you named it at: \"member_level\" when the category names a distinct kind of machine — one that could be told apart on the floor from others performing the same operation — and \"family_level\" when the words fixed the operation and went no further. Naming at family level is not an error when the words stop there; reporting it is how that shows up as a property of the text rather than of your naming."
+        }
+      ]
     }
   ],
   "published": {
-    "s3_version_id": "3AY3fmqtmWD2kTTCkTr1s3M9afpeZLmH",
-    "rendered_sha256": "4657d389bc58362a1045dd08a72c5b571860fef1ecc0bd8b59aa5693178cb815",
-    "uploaded_at": "2026-08-12T04:33:58.773590+00:00"
+    "s3_version_id": "ceeSJhDGR.94pFc5HbCvVB0oSOjWZxOq",
+    "rendered_sha256": "5381f9ea2f94c38a516f68f020c666b5685a3e1d757b1bb1c3acac67cc423897",
+    "uploaded_at": "2026-08-12T07:50:48.382035+00:00"
   },
   "sentinel_tag": "Cannot categorize"
 }

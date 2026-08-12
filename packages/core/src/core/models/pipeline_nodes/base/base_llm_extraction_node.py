@@ -254,6 +254,36 @@ class BaseLLMExtractionNode(BaseNode[LLMExtractedFieldTypeVar, ResultT]):
     ) -> ResultT:
         pass
 
+    async def validate_own_responses(
+        self,
+        subject_unique_id: str,
+        chunked_request_map: ExtractionRequestMap,
+        completed_request_map: dict[BatchRequestIDType, GPTBatchRequest],
+        timestamp: datetime,
+    ) -> None:
+        """Parse this node's own responses before any downstream node reads them.
+
+        A node's responses were, until now, first parsed by whichever LATER node
+        consumed them. On 2026-08-11 that meant the screening node logged COMPLETE
+        and published its map at :57.211, and the grounding node discovered a
+        malformed screening response at :57.276 — the failure surfaced against the
+        node that read the data rather than the node that paid for it, one phase
+        after the request that could be re-run had already been declared done.
+
+        Overriding this puts the check back where the request was made: a bad
+        response fails here, ``record_response_parse_error`` marks THIS node's
+        request, and the map is never published to the pipeline context.
+
+        Opt-in rather than a default that calls ``get_result``, because that is
+        only safe where ``get_result`` is a pure parse over the map it is handed.
+        ``LLMPhraseIterativeGroundingNode`` takes two request maps and a concept
+        map, so it cannot be called from here at all, and the recursive-search
+        nodes fold convergence work into theirs. A node opts in when parsing it
+        twice is free, which it is wherever the work is JSON over a response that
+        is already in memory.
+        """
+        return None
+
     @abstractmethod
     async def dispatch_batch_request(
         self,
@@ -370,6 +400,12 @@ class BaseLLMExtractionNode(BaseNode[LLMExtractedFieldTypeVar, ResultT]):
             completed_request_map = await self.get_completed_request_map(
                 subject_unique_id=subject.subject_unique_id,
                 chunked_request_map=extraction_requests.chunked_request_map,
+            )
+            await self.validate_own_responses(
+                subject_unique_id=subject.subject_unique_id,
+                chunked_request_map=extraction_requests.chunked_request_map,
+                completed_request_map=completed_request_map,
+                timestamp=timestamp,
             )
             pipeline_context[type(self)] = completed_request_map
             if self.next_node:

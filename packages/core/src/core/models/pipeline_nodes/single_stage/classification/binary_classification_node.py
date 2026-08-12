@@ -22,25 +22,19 @@ from core.models.pipeline_nodes.single_stage.base.single_stage_extraction_node i
     SingleStageExtractionNode,
 )
 from core.models.field_types import ExtractionFieldType
-from core.models.extraction_schemas.response_format_util import (
-    build_gpt_response_format,
-)
 
 if TYPE_CHECKING:
     from core.models.pipeline_nodes.single_stage.classification.binary_reconcile_node import (
         BinaryReconcileNode,
     )
 from core.services.pipeline_nodes.single_stage.llm_binary_classification_service import (
+    get_binary_classification_response_schema,
     parse_binary_classification_result_from_gpt_response,
 )
 from llm_providers.field_types import BatchRequestIDType
 
 logger = logging.getLogger(__name__)
 
-# Reusable across binary classification tasks (is_manufacturer, etc.); owned by core.
-BINARY_CLASSIFICATION_RESPONSE_SCHEMA = build_gpt_response_format(
-    LLMBinaryClassification, name="binary_classification"
-)
 
 
 class BinaryClassificationNode(SingleStageExtractionNode[LLMBinaryClassification]):
@@ -58,9 +52,8 @@ class BinaryClassificationNode(SingleStageExtractionNode[LLMBinaryClassification
             next_node=next_node,
         )
 
-    @staticmethod
-    def get_response_schema() -> dict:
-        return BINARY_CLASSIFICATION_RESPONSE_SCHEMA
+    def get_response_schema(self) -> dict:
+        return get_binary_classification_response_schema(self.field_type)
 
     @staticmethod
     async def get_result(
@@ -90,7 +83,8 @@ class BinaryClassificationNode(SingleStageExtractionNode[LLMBinaryClassification
         try:
             classification_result = (
                 parse_binary_classification_result_from_gpt_response(
-                    classification_req.response.result
+                    classification_req.response.result,
+                    field_type=field_type,
                 )
             )
             return classification_result

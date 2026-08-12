@@ -5,6 +5,8 @@ import json
 import logging
 import traceback
 from datetime import datetime
+from typing import Optional
+
 from requests.structures import CaseInsensitiveDict
 
 from pydantic import ValidationError
@@ -13,7 +15,6 @@ from llm_providers.db_models.gpt_batch_request import (
     GPTBatchRequest,
 )
 from core.models.extraction_schemas.grounding import (
-    PhraseOptionGroundingResponse,
     PhraseToTagAndRulesMap,
     TagToAppliedRulesMap,
     is_sentinel_grounding_label,
@@ -33,8 +34,10 @@ from core.services.rule_catalog_registry import get_rule_catalog
 from core.models.extraction_schemas.relationship import (
     LLMPhraseRelationshipResults,
 )
-from core.models.extraction_schemas.response_format_util import (
-    build_gpt_response_format,
+from core.models.extraction_schemas.catalog_wire_schema import (
+    flatten_rule_slots,
+    grounding_response_model,
+    response_format_for,
 )
 from llm_providers.models.llm_model import (
     LLM_Model,
@@ -75,16 +78,15 @@ from core.services.pipeline_nodes.multi_stage.llm_initial_grounding_service impo
     get_tagged_results_from_initial_grounding,
 )
 
-from core.utils.request_custom_id_util import (
-    get_name_from_recursive_grounding_request_custom_id,
-)
-
 logger = logging.getLogger(__name__)
 
 
-LLM_PHRASE_RECURSIVE_GROUNDING_RESPONSE_SCHEMA = build_gpt_response_format(
-    PhraseOptionGroundingResponse, name="phrase_recursive_grounding_result"
-)
+def get_recursive_grounding_response_schema(field_type: ConceptFieldType) -> dict:
+    """This stage's strict ``response_format``, for one field type. Per catalog
+    rather than a module constant — see ``catalog_wire_schema``."""
+    return response_format_for(
+        get_rule_catalog(STAGE_RECURSIVE_GROUNDING, field_type.name)
+    )
 
 
 def parse_llm_phrase_recursive_grounding_result(
@@ -101,8 +103,12 @@ def parse_llm_phrase_recursive_grounding_result(
             f"phrase_recursive_grounding_node.parse_batch_request_result: GPTBatchRequest for phrase_recursive_grounding request ID {gpt_req.request.custom_id} has no result in {subject_unique_id}:{field_type.name}"
         )
 
+    catalog = get_rule_catalog(STAGE_RECURSIVE_GROUNDING, field_type.name)
+
     try:
-        parsed = PhraseOptionGroundingResponse.model_validate_json(gpt_req.response.result)
+        parsed = grounding_response_model(catalog).model_validate_json(
+            gpt_req.response.result
+        )
     except ValidationError as e:
         raise ValueError(
             f"parse_llm_phrase_recursive_grounding_result: Invalid response from GPT:{gpt_req.response.result}"
@@ -115,19 +121,19 @@ def parse_llm_phrase_recursive_grounding_result(
             raise ValueError(
                 f"parse_llm_phrase_recursive_grounding_result: Duplicate phrase {entry.phrase!r} in groundings response"
             )
-        catalog = get_rule_catalog(STAGE_RECURSIVE_GROUNDING, field_type.name)
         rules_by_option: TagToAppliedRulesMap = {}
         for option in entry.options:
+            applied_rules = flatten_rule_slots(catalog, option)
             # Collected across every option of every phrase, then raised once at
             # the end: a response is measured whole or its defect rate is a
             # function of where the scan stopped.
             report = check_applied_rules(
                 catalog=catalog,
-                applied_rules=option.applied_rules,
+                applied_rules=applied_rules,
                 where=f"phrase {entry.phrase!r} option {option.option!r}",
             )
             violations.extend(report.problems)
-            rules_by_option[option.option] = option.applied_rules
+            rules_by_option[option.option] = applied_rules
         raw_llm_recursive_grounding_result[entry.phrase] = rules_by_option
 
     raise_for_violations(violations)
@@ -272,13 +278,55 @@ def get_pruned_itp_group(
     return itp_group
 
 
+def get_descendable_concept(
+    label: str,
+    match_label_to_concept_map: CaseInsensitiveDict[Concept],  # DO NOT MUTATE
+) -> Optional[Concept]:
+    """The single descent gate: the concept a node can be descended INTO, or None.
+
+    A label is descendable only when it resolves to a known concept that has
+    children — a descent prompt offers the children as options, so a leaf
+    concept renders an empty option list and the model can only answer the
+    sentinel (measured 2026-08-12: 30 of 55 descent calls in one run were
+    leaves). Every place that expects, awaits, creates, or parses a descent
+    request must consult this same gate, or an ID becomes expected-but-never-
+    created and the level walk deadlocks waiting for it. Node CREATION is not
+    gated here: a leaf still gets its tagging-request node so its phrases and
+    rules reach the phrase trail.
+
+    Returns the concept rather than a bool so callers don't look it up twice.
+    """
+    concept = match_label_to_concept_map.get(label)
+    if concept is None or not concept.children:
+        return None
+    return concept
+
+
+def get_itr_descendable_concept(
+    itr: IterativeTaggingRequest,
+    match_label_to_concept_map: CaseInsensitiveDict[Concept],  # DO NOT MUTATE
+) -> Optional[Concept]:
+    """The label gate plus the node's own history: a node whose creation already
+    recorded why descent must stop (sentinel answer, false child) is never
+    descended even when its name resolves to a descendable concept — a false
+    child IS a real concept with children, just not under this parent."""
+    if itr.stop_reason is not None:
+        return None
+    return get_descendable_concept(itr.name, match_label_to_concept_map)
+
+
 def is_rtp_descend_worthy(
     itp_group: IterativelyTaggedPhraseGroup,
     match_label_to_concept_map: CaseInsensitiveDict[Concept],  # DO NOT MUTATE
 ) -> bool:
-    return itp_group.group_id in match_label_to_concept_map and bool(
-        itp_group.direct_phrases_to_og_tag_w_rules
-        or itp_group.iterative_phrases_to_og_tag_w_rules
+    return (
+        itp_group.stop_reason is None
+        and get_descendable_concept(itp_group.group_id, match_label_to_concept_map)
+        is not None
+        and bool(
+            itp_group.direct_phrases_to_og_tag_w_rules
+            or itp_group.iterative_phrases_to_og_tag_w_rules
+        )
     )
 
 
@@ -300,15 +348,20 @@ def get_phrase_trails(
                     d_phrase, PhraseTrail(phrase=d_phrase, lvl_by_lvl_itps={})
                 )
                 phrase_trail.lvl_by_lvl_itps.setdefault(lvl, set())
+                # Matched on (parent, group) like the models' identity: two
+                # groups sharing a name under different parents are distinct
+                # records, and folding them lost one parent's verdicts.
                 matching_itp = next(
                     (
                         itp
                         for itp in phrase_trail.lvl_by_lvl_itps[lvl]
                         if itp.group_id == itp_group.group_id
+                        and itp.parent_group_id == itp_group.parent_group_id
                     ),
                     IterativelyTaggedPhrase(
                         parent_group_id=itp_group.parent_group_id,
                         group_id=itp_group.group_id,
+                        stop_reason=itp_group.stop_reason,
                         direct_og_tag_w_rules={},
                         iterative_og_tag_w_rules={},
                     ),
@@ -329,10 +382,12 @@ def get_phrase_trails(
                         itp
                         for itp in phrase_trail.lvl_by_lvl_itps[lvl]
                         if itp.group_id == itp_group.group_id
+                        and itp.parent_group_id == itp_group.parent_group_id
                     ),
                     IterativelyTaggedPhrase(
                         parent_group_id=itp_group.parent_group_id,
                         group_id=itp_group.group_id,
+                        stop_reason=itp_group.stop_reason,
                         direct_og_tag_w_rules={},
                         iterative_og_tag_w_rules={},
                     ),
@@ -351,10 +406,17 @@ def get_deepest_concepts_and_oov(
     oov: set[str] = set()
     for lvl, itps in phrase_trail.lvl_by_lvl_itps.items():
         for itp in itps:
-            if is_sentinel_grounding_label(itp.group_id):
+            if itp.stop_reason is not None or is_sentinel_grounding_label(
+                itp.group_id
+            ):
                 # Records that the descent stopped here, not a label that was
                 # found. Skipping also leaves the parent tag in place, which is
                 # exactly what "nothing more specific qualifies" should mean.
+                # stop_reason covers the false child too: the model named a
+                # concept that is not a child of the parent it was asked under,
+                # so the parent stands and the named concept is not asserted.
+                # (The label check remains for trails built before stop_reason
+                # existed.)
                 continue
 
             concept = match_label_to_concept_map.get(itp.group_id)
@@ -398,34 +460,37 @@ async def get_itp_from_itr(
     )
 
     itp: IterativelyTaggedPhraseGroup = IterativelyTaggedPhraseGroup(
-        parent_group_id=(
-            get_name_from_recursive_grounding_request_custom_id(
-                it_req.parent_descend_req_id
-            )
-            if it_req.parent_descend_req_id
-            else None
-        ),
+        parent_group_id=it_req.parent_name,
         group_id=it_req.name,
+        stop_reason=it_req.stop_reason,
         direct_phrases_to_og_tag_w_rules={},
         iterative_phrases_to_og_tag_w_rules={},
     )
 
-    # directly_tagged_phrases: PhraseToTagAndRulesMap = {}
-    for initial_tr in initially_tagged_trs:
-        if (initial_tr.group_id == it_req.name) or (
-            (concept := match_label_to_concept_map.get(initial_tr.group_id))
-            and concept.name == it_req.name
-        ):
-            logger.info(
-                f"initially tagged tr.group_tag:{initial_tr.group_id} matches rt_req.name:{it_req.name}, copying over phrase rules map."
-            )
-            for (
-                phrase,
-                applied_rules,
-            ) in initial_tr.phrase_rules_map.items():
-                itp.direct_phrases_to_og_tag_w_rules[phrase] = {
-                    initial_tr.group_id: applied_rules
-                }
+    # A stopped node carries only what its own parent's response said about it
+    # (the iterative map below). Initial-grounding tags matched here by NAME
+    # would be a different event wearing the same label: the initial sentinel
+    # verdict has no tree position and used to fan out into every same-named
+    # sentinel node at every level, re-emitting one decision as many; a false
+    # child's direct evidence belongs to the concept's real node, not to the
+    # record of the misparenting.
+    if it_req.stop_reason is None:
+        # directly_tagged_phrases: PhraseToTagAndRulesMap = {}
+        for initial_tr in initially_tagged_trs:
+            if (initial_tr.group_id == it_req.name) or (
+                (concept := match_label_to_concept_map.get(initial_tr.group_id))
+                and concept.name == it_req.name
+            ):
+                logger.info(
+                    f"initially tagged tr.group_tag:{initial_tr.group_id} matches rt_req.name:{it_req.name}, copying over phrase rules map."
+                )
+                for (
+                    phrase,
+                    applied_rules,
+                ) in initial_tr.phrase_rules_map.items():
+                    itp.direct_phrases_to_og_tag_w_rules[phrase] = {
+                        initial_tr.group_id: applied_rules
+                    }
 
     # iteratively_tagged: PhraseToTagAndRulesMap = {}
     logger.info(
@@ -556,10 +621,16 @@ async def create_missing_phrase_recursive_grounding_requests(
         )
 
         pending_tagging_req_w_concept_pair = [
-            (req, match_label_to_concept_map.get(req.name))
+            (req, concept)
             for req in bundle.llm_phrase_recursive_tagging_reqs[pending_level]
-            if req.name
-            in match_label_to_concept_map  # otherwise not descend worthy, because embedding may contain a last executed req which resulted in non descend worthy child
+            # Same gate as get_embedded_request_ids: a non-descendable node
+            # (out-of-vocab, sentinel/false-child, or leaf) never gets a request
+            # created, so it is never among the missing IDs — including it here
+            # would trip the not-passed-as-missing check below.
+            if (
+                concept := get_itr_descendable_concept(req, match_label_to_concept_map)
+            )
+            is not None
         ]
         tmp_set: set[Concept] = set()
         for _req, c in pending_tagging_req_w_concept_pair:
@@ -767,7 +838,7 @@ def create_deferred_phrase_recursive_grounding_gpt_request(
         prompt_text=refactored_text,
         gpt_model=gpt_model,
         model_params=model_params.with_response_format(
-            LLM_PHRASE_RECURSIVE_GROUNDING_RESPONSE_SCHEMA
+            get_recursive_grounding_response_schema(field_type)
         ),
         batch_id="Eager" if eager else None,
     )

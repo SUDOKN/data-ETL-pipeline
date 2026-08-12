@@ -1,5 +1,7 @@
 from __future__ import annotations
 
+from typing import Literal
+
 from pydantic import BaseModel, ConfigDict
 
 from core.models.extraction_schemas.applied_rule import AppliedRule
@@ -28,6 +30,16 @@ def is_sentinel_grounding_label(label: str) -> bool:
     between calls, and label lookups elsewhere (``match_label_to_concept_map``) are
     already case-insensitive."""
     return label.strip().casefold() in _SENTINEL_GROUNDING_LABELS_FOLDED
+
+
+# Why a descent node exists but must never be descended. "sentinel": the parent's
+# response answered a reserved non-label — the descent stopped there by the
+# model's own verdict. "false_child": the response named a real concept that is
+# not a child of the parent it was asked under — recorded as the event it is
+# rather than asserted as a finding. Carried as data on the node (previously a
+# "-FALSE_CHILD" suffix mangled into the node name, which made the name
+# unmatchable and silently erased the record).
+StopReason = Literal["sentinel", "false_child"]
 
 
 # Stage 4. Every map below is on the STORED side of parsing. It carries the same
@@ -62,47 +74,9 @@ TagToPhraseAndRulesMap = dict[
 # parsing, and everything downstream of that keeps its existing tag-based names —
 # initial and recursive grounding also land in those types and do not produce
 # categories, so "tag" stays the right word for the shared side.
-
-
-class PhraseGroundingCategory(BaseModel):
-    model_config = ConfigDict(extra="forbid")
-
-    category: str
-    applied_rules: list[AppliedRule]
-
-
-class PhraseCategoryGroundingEntry(BaseModel):
-    model_config = ConfigDict(extra="forbid")
-
-    phrase: str
-    categories: list[PhraseGroundingCategory]
-
-
-class PhraseCategoryGroundingResponse(BaseModel):
-    """Wire schema for freehand grounding, where the model names the category itself."""
-
-    model_config = ConfigDict(extra="forbid")
-
-    groundings: list[PhraseCategoryGroundingEntry]
-
-
-class PhraseGroundingOption(BaseModel):
-    model_config = ConfigDict(extra="forbid")
-
-    option: str
-    applied_rules: list[AppliedRule]
-
-
-class PhraseOptionGroundingEntry(BaseModel):
-    model_config = ConfigDict(extra="forbid")
-
-    phrase: str
-    options: list[PhraseGroundingOption]
-
-
-class PhraseOptionGroundingResponse(BaseModel):
-    """Wire schema for initial and recursive grounding, which choose from options."""
-
-    model_config = ConfigDict(extra="forbid")
-
-    groundings: list[PhraseOptionGroundingEntry]
+#
+# Both wire schemas are GENERATED per catalog now, by
+# `catalog_wire_schema.build_option_grounding_response_model` and its category
+# twin: the rule slots an entry carries are named for that catalog's own rule ids,
+# so there is no one class either stage could share. The distinction above lives on
+# in the `unit_key` those builders take.
