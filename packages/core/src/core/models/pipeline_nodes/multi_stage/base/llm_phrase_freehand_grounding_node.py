@@ -44,6 +44,8 @@ from core.services.pipeline_nodes.multi_stage.llm_freehand_grounding_service imp
 )
 from llm_providers.field_types import BatchRequestIDType
 from scraper.models.s3.scraped_text_file import ScrapedTextFile
+from typing import ClassVar
+from core.models.pipeline_nodes.base.pipeline_stage import PipelineStage
 
 logger = logging.getLogger(__name__)
 
@@ -51,6 +53,8 @@ logger = logging.getLogger(__name__)
 class LLMPhraseFreehandGroundingNode(
     BaseLLMExtractionNode[LLMExtractedFieldTypeVar, PhraseToTagAndRulesMap]
 ):
+    stage: ClassVar[PipelineStage] = PipelineStage.freehand_grounding
+
     def __init__(
         self,
         field_type: LLMExtractedFieldTypeVar,

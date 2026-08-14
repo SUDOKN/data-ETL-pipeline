@@ -19,7 +19,7 @@ from core.models.extraction_results.single_stage_extraction_results import (
 )
 from core.models.chunking_strat import (
     ChunkingStrategy,
-    CERTIFICATE_CHUNKING_STRAT,
+    CONFORMITY_ATTESTATION_CHUNKING_STRAT,
     EQUIPMENT_CHUNKING_STRAT,
     INDUSTRY_CHUNKING_STRAT,
     MATERIAL_CAP_CHUNKING_STRAT,
@@ -733,17 +733,17 @@ class ExtractionPipelineFactory:
                 created_at=created_at,
             ),
             # Three-stage extractions (search -> phrase_relationship -> mapping)
-            ConceptTypeEnum.certificates: ExtractionPipelineFactory.create_concept_extraction_pipeline(
-                concept_type=ConceptTypeEnum.certificates,
-                chunk_strategy=CERTIFICATE_CHUNKING_STRAT,
+            ConceptTypeEnum.conformity_attestations: ExtractionPipelineFactory.create_concept_extraction_pipeline(
+                concept_type=ConceptTypeEnum.conformity_attestations,
+                chunk_strategy=CONFORMITY_ATTESTATION_CHUNKING_STRAT,
                 ontology=ontology,
-                search_prompt=prompt_service.certificate_phrase_search_prompt,
-                recursive_search_prompt=prompt_service.certificate_phrase_recursive_search_prompt,
-                phrase_relationship_prompt=prompt_service.certificate_phrase_relationship_prompt,
-                phrase_relationship_screening_prompt=prompt_service.certificate_phrase_relationship_screening_prompt,
-                phrase_initial_grounding_prompt=prompt_service.certificate_phrase_initial_grounding_prompt,
-                phrase_recursive_grounding_prompt=prompt_service.certificate_phrase_recursive_grounding_prompt,
-                known_concepts=ontology.get_concepts_flat(ConceptTypeEnum.certificates),
+                search_prompt=prompt_service.conformity_attestation_phrase_search_prompt,
+                recursive_search_prompt=prompt_service.conformity_attestation_phrase_recursive_search_prompt,
+                phrase_relationship_prompt=prompt_service.conformity_attestation_phrase_relationship_prompt,
+                phrase_relationship_screening_prompt=prompt_service.conformity_attestation_phrase_relationship_screening_prompt,
+                phrase_initial_grounding_prompt=prompt_service.conformity_attestation_phrase_initial_grounding_prompt,
+                phrase_recursive_grounding_prompt=prompt_service.conformity_attestation_phrase_recursive_grounding_prompt,
+                known_concepts=ontology.get_concepts_flat(ConceptTypeEnum.conformity_attestations),
                 llm_model=llm_model,
                 model_params=model_params,
                 created_at=created_at,

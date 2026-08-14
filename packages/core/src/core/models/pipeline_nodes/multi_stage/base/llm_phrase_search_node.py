@@ -40,6 +40,8 @@ from core.services.pipeline_nodes.multi_stage.llm_phrase_search_node_service imp
     create_missing_phrase_search_requests,
     parse_batch_request_result,
 )
+from typing import ClassVar
+from core.models.pipeline_nodes.base.pipeline_stage import PipelineStage
 
 logger = logging.getLogger(__name__)
 
@@ -47,6 +49,8 @@ logger = logging.getLogger(__name__)
 class LLMPhraseSearchNode(
     BaseLLMExtractionNode[LLMExtractedFieldTypeVar, LLMSearchResults]
 ):
+    stage: ClassVar[PipelineStage] = PipelineStage.phrase_search
+
     def __new__(cls, *args, **kwargs):
         if cls is LLMPhraseSearchNode:
             raise TypeError(

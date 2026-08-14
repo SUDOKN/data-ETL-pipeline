@@ -21,28 +21,28 @@ logger = logging.getLogger(__name__)
 
 STAGED_PROMPT_FILE_PATHS = {
     # phrase search
-    "certificate_phrase_search": "multi_stage/1_phrase_search/certificate_phrase_search.txt",
+    "conformity_attestation_phrase_search": "multi_stage/1_phrase_search/conformity_attestation_phrase_search.txt",
     "industry_phrase_search": "multi_stage/1_phrase_search/industry_phrase_search.txt",
     "material_cap_phrase_search": "multi_stage/1_phrase_search/material_cap_phrase_search.txt",
     "process_cap_phrase_search": "multi_stage/1_phrase_search/process_cap_phrase_search.txt",
     "product_phrase_search": "multi_stage/1_phrase_search/product_phrase_search.txt",
     "equipment_phrase_search": "multi_stage/1_phrase_search/equipment_phrase_search.txt",
     # recursive phrase search
-    "certificate_phrase_recursive_search": "multi_stage/2_phrase_recursive_search/certificate_phrase_recursive_search.txt",
+    "conformity_attestation_phrase_recursive_search": "multi_stage/2_phrase_recursive_search/conformity_attestation_phrase_recursive_search.txt",
     "industry_phrase_recursive_search": "multi_stage/2_phrase_recursive_search/industry_phrase_recursive_search.txt",
     "material_cap_phrase_recursive_search": "multi_stage/2_phrase_recursive_search/material_cap_phrase_recursive_search.txt",
     "process_cap_phrase_recursive_search": "multi_stage/2_phrase_recursive_search/process_cap_phrase_recursive_search.txt",
     "product_phrase_recursive_search": "multi_stage/2_phrase_recursive_search/product_phrase_recursive_search.txt",
     "equipment_phrase_recursive_search": "multi_stage/2_phrase_recursive_search/equipment_phrase_recursive_search.txt",
     # phrase relationship
-    "certificate_phrase_relationship": "multi_stage/3_phrase_relationship/certificate_phrase_relationship.txt",
+    "conformity_attestation_phrase_relationship": "multi_stage/3_phrase_relationship/conformity_attestation_phrase_relationship.txt",
     "industry_phrase_relationship": "multi_stage/3_phrase_relationship/industry_phrase_relationship.txt",
     "material_cap_phrase_relationship": "multi_stage/3_phrase_relationship/material_cap_phrase_relationship.txt",
     "process_cap_phrase_relationship": "multi_stage/3_phrase_relationship/process_cap_phrase_relationship.txt",
     "product_phrase_relationship": "multi_stage/3_phrase_relationship/product_phrase_relationship.txt",
     "equipment_phrase_relationship": "multi_stage/3_phrase_relationship/equipment_phrase_relationship.txt",
     # relationship screening
-    "certificate_phrase_relationship_screening": "multi_stage/4_phrase_relationship_screening/certificate_phrase_relationship_screening.txt",
+    "conformity_attestation_phrase_relationship_screening": "multi_stage/4_phrase_relationship_screening/conformity_attestation_phrase_relationship_screening.txt",
     "industry_phrase_relationship_screening": "multi_stage/4_phrase_relationship_screening/industry_phrase_relationship_screening.txt",
     "material_cap_phrase_relationship_screening": "multi_stage/4_phrase_relationship_screening/material_cap_phrase_relationship_screening.txt",
     "process_cap_phrase_relationship_screening": "multi_stage/4_phrase_relationship_screening/process_cap_phrase_relationship_screening.txt",
@@ -56,12 +56,12 @@ STAGED_PROMPT_FILE_PATHS = {
     "product_phrase_freehand_grounding_contract": "multi_stage/5_freehand_grounding/product_phrase_freehand_grounding_contract.txt",
     "equipment_phrase_freehand_grounding": "multi_stage/5_freehand_grounding/equipment_phrase_freehand_grounding.txt",
     # initial grounding
-    "certificate_phrase_initial_grounding": "multi_stage/5_initial_grounding/certificate_phrase_initial_grounding.txt",
+    "conformity_attestation_phrase_initial_grounding": "multi_stage/5_initial_grounding/conformity_attestation_phrase_initial_grounding.txt",
     "industry_phrase_initial_grounding": "multi_stage/5_initial_grounding/industry_phrase_initial_grounding.txt",
     "material_cap_phrase_initial_grounding": "multi_stage/5_initial_grounding/material_cap_phrase_initial_grounding.txt",
     "process_cap_phrase_initial_grounding": "multi_stage/5_initial_grounding/process_cap_phrase_initial_grounding.txt",
     # recursive grounding
-    "certificate_phrase_recursive_grounding": "multi_stage/6_recursive_grounding/certificate_phrase_recursive_grounding.txt",
+    "conformity_attestation_phrase_recursive_grounding": "multi_stage/6_recursive_grounding/conformity_attestation_phrase_recursive_grounding.txt",
     "industry_phrase_recursive_grounding": "multi_stage/6_recursive_grounding/industry_phrase_recursive_grounding.txt",
     "material_cap_phrase_recursive_grounding": "multi_stage/6_recursive_grounding/material_cap_phrase_recursive_grounding.txt",
     "process_cap_phrase_recursive_grounding": "multi_stage/6_recursive_grounding/process_cap_phrase_recursive_grounding.txt",
@@ -378,8 +378,8 @@ class PromptService:
         return self._get_prompt("equipment_phrase_freehand_grounding")
 
     @property
-    def certificate_phrase_search_prompt(self) -> Prompt:
-        return self._get_prompt("certificate_phrase_search")
+    def conformity_attestation_phrase_search_prompt(self) -> Prompt:
+        return self._get_prompt("conformity_attestation_phrase_search")
 
     @property
     def industry_phrase_search_prompt(self) -> Prompt:
@@ -394,8 +394,8 @@ class PromptService:
         return self._get_prompt("process_cap_phrase_search")
 
     @property
-    def certificate_phrase_relationship_prompt(self) -> Prompt:
-        return self._get_prompt("certificate_phrase_relationship")
+    def conformity_attestation_phrase_relationship_prompt(self) -> Prompt:
+        return self._get_prompt("conformity_attestation_phrase_relationship")
 
     @property
     def industry_phrase_relationship_prompt(self) -> Prompt:
@@ -410,8 +410,8 @@ class PromptService:
         return self._get_prompt("process_cap_phrase_relationship")
 
     @property
-    def certificate_phrase_recursive_search_prompt(self) -> Prompt:
-        return self._get_prompt("certificate_phrase_recursive_search")
+    def conformity_attestation_phrase_recursive_search_prompt(self) -> Prompt:
+        return self._get_prompt("conformity_attestation_phrase_recursive_search")
 
     @property
     def industry_phrase_recursive_search_prompt(self) -> Prompt:
@@ -426,8 +426,8 @@ class PromptService:
         return self._get_prompt("process_cap_phrase_recursive_search")
 
     @property
-    def certificate_phrase_relationship_screening_prompt(self) -> Prompt:
-        return self._get_prompt("certificate_phrase_relationship_screening")
+    def conformity_attestation_phrase_relationship_screening_prompt(self) -> Prompt:
+        return self._get_prompt("conformity_attestation_phrase_relationship_screening")
 
     @property
     def industry_phrase_relationship_screening_prompt(self) -> Prompt:
@@ -442,8 +442,8 @@ class PromptService:
         return self._get_prompt("process_cap_phrase_relationship_screening")
 
     @property
-    def certificate_phrase_initial_grounding_prompt(self) -> Prompt:
-        return self._get_prompt("certificate_phrase_initial_grounding")
+    def conformity_attestation_phrase_initial_grounding_prompt(self) -> Prompt:
+        return self._get_prompt("conformity_attestation_phrase_initial_grounding")
 
     @property
     def industry_phrase_initial_grounding_prompt(self) -> Prompt:
@@ -458,8 +458,8 @@ class PromptService:
         return self._get_prompt("process_cap_phrase_initial_grounding")
 
     @property
-    def certificate_phrase_recursive_grounding_prompt(self) -> Prompt:
-        return self._get_prompt("certificate_phrase_recursive_grounding")
+    def conformity_attestation_phrase_recursive_grounding_prompt(self) -> Prompt:
+        return self._get_prompt("conformity_attestation_phrase_recursive_grounding")
 
     @property
     def industry_phrase_recursive_grounding_prompt(self) -> Prompt:

@@ -98,11 +98,13 @@ class TestURIValidation(unittest.TestCase):
             ("http://example.com/TestCapability", "process", True),
             ("http://example.com/TestCapability", "material", True),
             ("http://example.com/TestIndustry", "industry", True),
-            ("http://example.com/TestCertificate", "certificate", True),
+            ("http://example.com/TestCertificate", "conformity_attestation", True),
+            ("http://example.com/TestAccreditation", "conformity_attestation", True),
+            ("http://example.com/TestRegistration", "conformity_attestation", True),
             ("http://example.com/TestWrong", "process", False),
             ("http://example.com/TestWrong", "material", False),
             ("http://example.com/TestWrong", "industry", False),
-            ("http://example.com/TestWrong", "certificate", False),
+            ("http://example.com/TestWrong", "conformity_attestation", False),
         ]
 
         for uri, resource_type, expected in test_cases:
@@ -224,7 +226,7 @@ class TestRDFValidation(unittest.TestCase):
         "data_etl_app.knowledge.ontology.validate_ontology_rdf.material_cap_base_uri"
     )
     @patch("data_etl_app.knowledge.ontology.validate_ontology_rdf.industry_base_uri")
-    @patch("data_etl_app.knowledge.ontology.validate_ontology_rdf.certificate_base_uri")
+    @patch("data_etl_app.knowledge.ontology.validate_ontology_rdf.conformity_attestation_base_uri")
     @patch("data_etl_app.knowledge.ontology.validate_ontology_rdf.get_graph")
     @patch("data_etl_app.knowledge.ontology.validate_ontology_rdf.get_label")
     @patch("data_etl_app.knowledge.ontology.validate_ontology_rdf.get_alt_labels")
@@ -243,7 +245,7 @@ class TestRDFValidation(unittest.TestCase):
         mock_process.return_value = "http://example.com/ProcessCapability"
         mock_material.return_value = "http://example.com/MaterialCapability"
         mock_industry.return_value = "http://example.com/Industry"
-        mock_cert.return_value = "http://example.com/Certificate"
+        mock_cert.return_value = "http://example.com/ConformityAttestation"
 
         # Create counter for unique labels
         label_counter = 0

@@ -434,6 +434,69 @@ def build_keyword_phrase_rows(
     return rows
 
 
+def build_partial_phrase_rows(
+    *,
+    search_rounds: dict[int, LLMSearchResults],
+    relationship_flat: Optional[LLMPhraseRelationshipResults],
+    screening_flat: Optional[LiveScreeningResults],
+    grounding_flat: Optional[PhraseToTagAndRulesMap],
+    grounding_stage: Optional[str] = None,
+    repairs_flat: Optional[dict[str, dict[str, str]]] = None,
+) -> list[dict[str, object]]:
+    """Rows for a run that stopped before reconcile.
+
+    Separate from the two full builders rather than a flag on them, because
+    ``status`` cannot be derived here: ``grounded`` / ``no_match`` /
+    ``screened_out`` are statements about a chain that finished, and a stopped
+    run has no business claiming any of them. Rows carry the stage fields and
+    let the reader draw the conclusion.
+
+    A stage that ran but had nothing for a phrase emits an explicit ``null``; a
+    stage that never ran has its key OMITTED. The distinction is the whole point
+    of a partial dump — "screening rejected it" and "screening never happened"
+    must not read the same.
+
+    Driven by the union of every stage that ran, search rounds included, so a
+    run stopped after search still dumps its phrases instead of an empty file.
+    """
+    phrases: set[str] = set()
+    for round_phrases in search_rounds.values():
+        phrases |= set(round_phrases)
+    for stage_flat in (relationship_flat, screening_flat, grounding_flat):
+        if stage_flat is not None:
+            phrases |= set(stage_flat)
+
+    repairs_flat = repairs_flat or {}
+    rows: list[dict[str, object]] = []
+    for phrase in sorted(phrases):
+        search_round, provenance = _provenance(phrase, search_rounds)
+        row: dict[str, object] = {
+            "phrase": phrase,
+            "search_round": search_round,
+            "provenance": provenance,
+        }
+        if relationship_flat is not None:
+            row["relationship"] = relationship_flat.get(phrase)
+        if screening_flat is not None:
+            verdict = screening_flat.get(phrase)
+            row["screening"] = verdict.model_dump() if verdict is not None else None
+        if grounding_flat is not None:
+            groundings = grounding_flat.get(phrase)
+            row[grounding_stage or "grounding"] = (
+                {
+                    tag: [rule.model_dump(mode="json") for rule in applied_rules]
+                    for tag, applied_rules in groundings.items()
+                }
+                if groundings is not None
+                else None
+            )
+        if phrase in repairs_flat:
+            row["phrase_as_answered"] = repairs_flat[phrase]
+        rows.append(row)
+
+    return rows
+
+
 def _safe_path_segment(value: str) -> str:
     return "".join(
         character if character.isalnum() or character in {"-", "_"} else "_"
@@ -447,19 +510,27 @@ def write_phrase_trails_dump(
     field_type: ExtractionFieldType,
     timestamp: datetime,
     chunked_phrase_trails: dict[str, list[dict[str, object]]],
+    run_summary: Optional[dict[str, object]] = None,
+    name_suffix: str = "",
 ) -> None:
     dump_root = Path(__file__).resolve().parents[4] / "logs" / "phrase_trails"
     dump_dir = dump_root / timestamp.strftime("%Y%m%dT%H%M%S")
     dump_dir.mkdir(parents=True, exist_ok=True)
 
     dump_path = dump_dir / (
-        f"{_safe_path_segment(subject_unique_id)}__{_safe_path_segment(field_type.name)}.json"
+        f"{_safe_path_segment(subject_unique_id)}__"
+        f"{_safe_path_segment(field_type.name)}{name_suffix}.json"
     )
-    dump_payload = {
+    dump_payload: dict[str, object] = {
         "subject_unique_id": subject_unique_id,
         "field_type": field_type.name,
         "timestamp": timestamp.isoformat(),
-        "chunked_phrase_trails": chunked_phrase_trails,
     }
+    # Ahead of the rows on purpose: a reader opening a partial dump has to learn
+    # which stages are missing before reading a single row, or they will read an
+    # absent stage as an absent result.
+    if run_summary is not None:
+        dump_payload["run"] = run_summary
+    dump_payload["chunked_phrase_trails"] = chunked_phrase_trails
     dump_path.write_text(json.dumps(dump_payload, indent=2), encoding="utf-8")
     logger.info("Saved phrase trail dump to %s", dump_path)

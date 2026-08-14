@@ -22,11 +22,15 @@ from core.models.field_types import (
     LLMExtractedFieldTypeVar,
 )
 from scraper.models.s3.scraped_text_file import ScrapedTextFile
+from typing import ClassVar
+from core.models.pipeline_nodes.base.pipeline_stage import PipelineStage
 
 logger = logging.getLogger(__name__)
 
 
 class PrefillNode(BaseNode[LLMExtractedFieldTypeVar, None]):
+    stage: ClassVar[PipelineStage] = PipelineStage.prefill
+
     next_node: BaseLLMExtractionNode
 
     def __init__(

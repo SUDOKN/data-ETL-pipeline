@@ -42,6 +42,8 @@ from core.services.pipeline_nodes.multi_stage.llm_phrase_relationship_node_servi
     get_phrase_relationship_result,
     get_relationship_candidates,
 )
+from typing import ClassVar
+from core.models.pipeline_nodes.base.pipeline_stage import PipelineStage
 
 logger = logging.getLogger(__name__)
 
@@ -49,6 +51,8 @@ logger = logging.getLogger(__name__)
 class LLMPhraseRelationshipNode(
     BaseLLMExtractionNode[LLMExtractedFieldTypeVar, LLMPhraseRelationshipResults]
 ):
+
+    stage: ClassVar[PipelineStage] = PipelineStage.relationship
 
     def __init__(
         self,

@@ -1,0 +1,20 @@
+You are analyzing text scraped from a manufacturer's website. The text is provided at the very bottom.
+
+## Task
+Your task is to find every phrase in the text that names, states or implies an industry, market, or sector. Extract the phrase as it appears in the text. Where the text allows, extract separate phrases for separate industries, markets, or sectors rather than one phrase that bundles several together.
+
+## What qualifies as a phrase
+A qualifying phrase names, states or implies an industry, market, or sector — a recognizable domain of economic activity that a manufacturer's goods or services can serve.
+
+## Rejection
+Do not extract a phrase if it does not name, state or imply any industry, market, or sector at all, even with the help of surrounding context.
+
+## Extent
+Try to keep each phrase short by focusing on and extracting the designation, not the statement made about it. Rather than extracting the long span as a single phrase, split it into shorter verbatim sub-phrases — but keep only the qualifying sub-phrases that each still name, state or imply an industry, market, or sector on their own.
+
+## Output
+Return a JSON object with a single key "phrases" whose value is an array of strings. Each string is a phrase taken directly from the text. Preserve original wording — do not paraphrase or normalize. If no phrases are found, use an empty array.
+
+```json
+{"phrases": ["phrase one", "phrase two", ...]}
+```

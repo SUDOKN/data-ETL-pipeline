@@ -33,7 +33,7 @@ from data_etl_app.utils.ontology_uri_util import (
     process_cap_base_uri,
     material_cap_base_uri,
     industry_base_uri,
-    certificate_base_uri,
+    conformity_attestation_base_uri,
 )
 
 logger = logging.getLogger(__name__)
@@ -92,13 +92,29 @@ def _is_valid_uri(uri: str) -> bool:
         return False
 
 
+# Class-name endings observed across the ConformityAttestation subtree
+# (Certificate, Accreditation, and RegulatoryAuthorization branches).
+CONFORMITY_ATTESTATION_SUFFIXES = (
+    "Attestation",
+    "Certificate",
+    "Certification",
+    "Accreditation",
+    "Authorization",
+    "Approval",
+    "Clearance",
+    "License",
+    "Marking",
+    "Registration",
+)
+
+
 def _validate_uri_suffix(uri: str, resource_type: str) -> bool:
     """
     Validate that URI ends with the correct suffix based on resource type.
 
     Args:
         uri: The URI to validate
-        resource_type: One of 'process', 'material', 'industry', 'certificate'
+        resource_type: One of 'process', 'material', 'industry', 'conformity_attestation'
 
     Returns:
         True if URI has correct suffix, False otherwise
@@ -107,7 +123,9 @@ def _validate_uri_suffix(uri: str, resource_type: str) -> bool:
         "process": "Capability",
         "material": "Capability",
         "industry": "Industry",
-        "certificate": "Certificate",
+        # ConformityAttestation spans certificates, accreditations, and
+        # regulatory authorizations, whose class names end differently.
+        "conformity_attestation": CONFORMITY_ATTESTATION_SUFFIXES,
     }
 
     required_suffix = suffix_requirements.get(resource_type)
@@ -168,7 +186,7 @@ def _validate_concept_node(
     Args:
         node: The concept node to validate
         uri: The URI of the concept
-        resource_type: Type of resource ('process', 'material', 'industry', 'certificate')
+        resource_type: Type of resource ('process', 'material', 'industry', 'conformity_attestation')
         seen_labels: Set of previously seen labels (modified in-place)
         validation_result: Result container to accumulate errors
     """
@@ -183,7 +201,7 @@ def _validate_concept_node(
             "process": "Capability",
             "material": "Capability",
             "industry": "Industry",
-            "certificate": "Certificate",
+            "conformity_attestation": CONFORMITY_ATTESTATION_SUFFIXES,
         }
         expected_suffix = suffix_map.get(resource_type, "Unknown")
         validation_result.add_error(
@@ -358,7 +376,7 @@ def validate_ontology_rdf(rdf_content: str) -> ValidationResult:
             "process": process_cap_base_uri(),
             "material": material_cap_base_uri(),
             "industry": industry_base_uri(),
-            "certificate": certificate_base_uri(),
+            "conformity_attestation": conformity_attestation_base_uri(),
         }
 
         # Get all subjects (URIs) in the RDF graph

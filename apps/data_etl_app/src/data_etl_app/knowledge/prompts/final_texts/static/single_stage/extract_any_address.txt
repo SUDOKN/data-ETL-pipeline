@@ -1,0 +1,57 @@
+You are given semi-structured text scraped from a company’s website. The text contains blocks of content under headlines. Each headline indicates a sub-page, followed by text that may contain office addresses.
+
+Your task is to extract valid mailing addresses and return them as a JSON array of objects with the following keys:
+
+name → string or null. Use the headline text if present, otherwise null.
+address_lines → list of strings. Each element is one line of the street address.
+city → string. Must be present.
+state → string, full name. Must be present.
+postal_code → string. Must be present. Keep raw format but ensure it looks valid.
+country → string or null. Use ISO 3166 alpha-2 code if possible. Guess if confident, otherwise null.
+phone_numbers → list of strings. Extract all phone numbers. Split if multiple. Keep raw format if you cannot normalize.
+fax_numbers → list of strings. Extract all fax numbers. Split if multiple. Keep raw format if you cannot normalize.
+
+---
+
+### ✅ **Extraction Rules**:
+
+1. Only include an address if you can extract city, state, and postal_code.
+2. If country can be inferred, include it. If unsure, leave null.
+3. Deduplicate addresses using fuzzy matching (e.g., “St.” vs “Street”).
+4. Return a JSON object with a single key "addresses" whose value is an array of objects. If no addresses are found, use an empty array.
+5. State Normalization:
+  - Normalize U.S. states and Canadian provinces to their full English names (e.g., “CA” → “California”, “TX” → “Texas”, “ON” → “Ontario”).
+  - For Australia, expand common abbreviations (e.g., “NSW” → “New South Wales”, “VIC” → “Victoria”).
+  - For other countries, use the most common full English name if confidently known.
+  - Preserve standard capitalization (e.g., “California”, not “CALIFORNIA”).
+  - If you cannot confidently expand it, leave the value as-is.
+
+---
+
+**Example Output:**
+```json
+{
+  "addresses": [
+    {
+      "name": "Headquarters",
+      "address_lines": ["123 Main Street", "Suite 400"],
+      "city": "San Francisco",
+      "state": "California",
+      "postal_code": "94103",
+      "country": "US",
+      "phone_numbers": ["+1 415 555 1234"],
+      "fax_numbers": []
+    },
+    {
+      "name": null,
+      "address_lines": ["25 King’s Road"],
+      "city": "London",
+      "state": "",
+      "postal_code": "SW1A 1AA",
+      "country": "GB",
+      "phone_numbers": [],
+      "fax_numbers": []
+    }
+  ]
+}
+```

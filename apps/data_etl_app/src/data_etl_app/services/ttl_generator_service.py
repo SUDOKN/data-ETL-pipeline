@@ -55,10 +55,12 @@ def get_naics_concept(ontology: Ontology, code: str) -> Concept:
     return concept
 
 
-def get_certificate_concept(ontology: Ontology, label: str) -> Concept:
-    concept = ontology.concept_map(ConceptTypeEnum.certificates.base_uri).get(label)
+def get_conformity_attestation_concept(ontology: Ontology, label: str) -> Concept:
+    concept = ontology.concept_map(
+        ConceptTypeEnum.conformity_attestations.base_uri
+    ).get(label)
     if not concept:
-        raise ValueError(f"Certificate '{label}' not found in ontology.")
+        raise ValueError(f"Conformity attestation '{label}' not found in ontology.")
     return concept
 
 
@@ -452,29 +454,31 @@ def add_product_triples(
         g.add((mfg_inst_uri, SDK.manufactures, prod_inst_uri))
 
 
-def add_certificate_triples(
+def add_conformity_attestation_triples(
     mfg_inst_uri: URIRef,
-    certificates: Optional[list[str]],
+    conformity_attestations: Optional[list[str]],
     ontology: Ontology,
     g: Graph,
     strict: bool,
 ):
-    if certificates is None:
+    if conformity_attestations is None:
         if strict:
-            raise ValueError("Certificates cannot be empty")
+            raise ValueError("Conformity attestations cannot be empty")
         else:
-            logger.debug(f"  skipping empty certificates")
+            logger.debug(f"  skipping empty conformity attestations")
             return
 
-    for cert in certificates:
-        if not cert:
-            raise ValueError("Certificate name cannot be empty")
-        logger.debug(f"  with certificate: {cert}")
-        cert_concept = get_certificate_concept(ontology, cert)
-        cert_ind_uri = SDK[f"{uri_strip(cert_concept.name)}-certificate-individual"]
-        g.add((cert_ind_uri, RDF.type, cert_concept.uri))
-        # g.add((cert_ind_uri, RDFS.label, Literal(cert_concept.name)))
-        g.add((mfg_inst_uri, SDK.hasCertificate, cert_ind_uri))
+    for attestation in conformity_attestations:
+        if not attestation:
+            raise ValueError("Conformity attestation name cannot be empty")
+        logger.debug(f"  with conformity attestation: {attestation}")
+        attestation_concept = get_conformity_attestation_concept(ontology, attestation)
+        attestation_ind_uri = SDK[
+            f"{uri_strip(attestation_concept.name)}-conformity-attestation-individual"
+        ]
+        g.add((attestation_ind_uri, RDF.type, attestation_concept.uri))
+        # g.add((attestation_ind_uri, RDFS.label, Literal(attestation_concept.name)))
+        g.add((mfg_inst_uri, SDK.hasConformityAttestation, attestation_ind_uri))
 
 
 def add_industry_triples(
@@ -594,7 +598,9 @@ def add_manufacturer_triples(
         mfg_inst_uri, mfg.business_desc, mfg_etld1_stripped, g, False
     )
     add_product_triples(mfg_inst_uri, mfg.products, mfg_etld1_stripped, g, strict)
-    add_certificate_triples(mfg_inst_uri, mfg.certificates, ontology, g, strict)
+    add_conformity_attestation_triples(
+        mfg_inst_uri, mfg.conformity_attestations, ontology, g, strict
+    )
     add_industry_triples(mfg_inst_uri, mfg.industries, ontology, g, strict)
     add_process_capability_triples(
         mfg_inst_uri, mfg_etld1_stripped, mfg.process_caps, ontology, g, strict

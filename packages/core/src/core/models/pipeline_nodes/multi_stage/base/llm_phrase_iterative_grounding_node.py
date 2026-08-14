@@ -75,6 +75,8 @@ from core.services.pipeline_nodes.multi_stage.llm_recursive_grounding_service im
 from core.utils.rdf_to_graph_util import (
     get_match_label_to_concept_map,
 )
+from typing import ClassVar
+from core.models.pipeline_nodes.base.pipeline_stage import PipelineStage
 
 logger = logging.getLogger(__name__)
 
@@ -128,6 +130,8 @@ def _merge_itrs_into_level(
 class LLMPhraseIterativeGroundingNode(
     BaseLLMRecursiveExtractionNode[ConceptFieldType, IterativeGroundingResult]
 ):
+
+    stage: ClassVar[PipelineStage] = PipelineStage.iterative_grounding
 
     def __init__(
         self,

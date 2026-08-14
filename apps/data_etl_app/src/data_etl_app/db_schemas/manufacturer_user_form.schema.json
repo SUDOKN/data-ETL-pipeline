@@ -8,7 +8,7 @@
       "addresses",
       "products",
       "equipment",
-      "certificates",
+      "conformity_attestations",
       "industries",
       "process_caps",
       "material_caps"
@@ -196,7 +196,7 @@
         },
         "uniqueItems": true
       },
-      "certificates": {
+      "conformity_attestations": {
         "bsonType": "array",
         "items": {
           "bsonType": "string"

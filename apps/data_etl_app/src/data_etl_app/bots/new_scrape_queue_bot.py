@@ -193,7 +193,7 @@ async def process_queue(
                         products=None,
                         equipments=None,
                         contract_products=None,
-                        certificates=None,
+                        conformity_attestations=None,
                         industries=None,
                         process_caps=None,
                         material_caps=None,

@@ -43,6 +43,17 @@ class BaseLLMRecursiveExtractionNode(
         pipeline_context: PipelineContext,
         eager: bool,
     ) -> None:
+        # Gated here too, not only in the base: the eager branch below never
+        # reaches super().execute(), so a check that lived only there would let
+        # a disabled recursive stage run its whole convergence loop.
+        if await self.stop_if_stage_disabled(
+            subject=subject,
+            deferred_subject=deferred_subject,
+            timestamp=timestamp,
+            pipeline_context=pipeline_context,
+        ):
+            return
+
         if not eager:
             await super().execute(
                 subject=subject,

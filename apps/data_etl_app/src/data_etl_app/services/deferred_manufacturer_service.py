@@ -62,7 +62,7 @@ def is_deferred_manufacturer_empty(deferred_manufacturer: DeferredManufacturer) 
             BasicFieldTypeEnum.addresses.name,
             BasicFieldTypeEnum.business_desc.name,
             KeywordTypeEnum.products.name,
-            ConceptTypeEnum.certificates.name,
+            ConceptTypeEnum.conformity_attestations.name,
             ConceptTypeEnum.industries.name,
             ConceptTypeEnum.process_caps.name,
             ConceptTypeEnum.material_caps.name,
@@ -163,7 +163,7 @@ def get_embedded_gpt_request_ids(
                         for itr in itrs:
                             custom_ids.add(itr.descend_req_id)
 
-    fill_concept_ids(deferred_mfg.certificates)
+    fill_concept_ids(deferred_mfg.conformity_attestations)
     fill_concept_ids(deferred_mfg.industries)
     fill_concept_ids(deferred_mfg.process_caps)
     fill_concept_ids(deferred_mfg.material_caps)

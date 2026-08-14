@@ -15,8 +15,8 @@ def industry_base_uri() -> str:
     return require_env("SUDOKN_INDUSTRY_BASE_URI")
 
 
-def certificate_base_uri() -> str:
-    return require_env("SUDOKN_CERTIFICATE_BASE_URI")
+def conformity_attestation_base_uri() -> str:
+    return require_env("SUDOKN_CONFORMITY_ATTESTATION_BASE_URI")
 
 
 def ownership_status_base_uri() -> str:

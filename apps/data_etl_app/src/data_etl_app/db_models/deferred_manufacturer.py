@@ -45,7 +45,7 @@ class DeferredManufacturer(Document, AbstractDeferredExtractionSubject):
     contract_products: Optional[DeferredKeywordExtractionRequests]
     equipments: Optional[DeferredKeywordExtractionRequests]
 
-    certificates: Optional[DeferredConceptExtractionRequests]
+    conformity_attestations: Optional[DeferredConceptExtractionRequests]
     industries: Optional[DeferredConceptExtractionRequests]
     process_caps: Optional[DeferredConceptExtractionRequests]
     material_caps: Optional[DeferredConceptExtractionRequests]

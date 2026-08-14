@@ -92,6 +92,13 @@ class ConceptReconcileNode(ReconcileNode[ConceptFieldType]):
         pipeline_context: PipelineContext,
         eager: bool,
     ) -> None:
+        if await self.stop_if_stage_disabled(
+            subject=subject,
+            deferred_subject=deferred_subject,
+            timestamp=timestamp,
+            pipeline_context=pipeline_context,
+        ):
+            return
 
         extraction_requests: Optional[DeferredConceptExtractionRequests] = getattr(
             deferred_subject, self.field_type.name

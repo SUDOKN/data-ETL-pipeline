@@ -230,15 +230,15 @@ def enrich_company_rdf(
             g.add((pc_uri, RDFS_NS.label, Literal(pc)))
             g.add((subj, SDK.hasProcessCapability, pc_uri))
 
-    # Certifications
-    certs_dict = company.get("certificates")
+    # Conformity attestations
+    certs_dict = company.get("conformity_attestations")
     certs = certs_dict.get("results", []) if isinstance(certs_dict, dict) else []
     for cert in certs:
         if cert:
             cert_uri = SDK[f"{gid_stripped}-{uri_strip(cert)}"]
             g.add((cert_uri, RDF.type, SDK[uri_strip(cert)]))
             g.add((cert_uri, RDFS_NS.label, Literal(cert)))
-            g.add((subj, SDK.hasCertificate, cert_uri))
+            g.add((subj, SDK.hasConformityAttestation, cert_uri))
 
     # Material capabilities
     mcaps = company.get("material_caps")

@@ -454,7 +454,7 @@ def create_deferred_phrase_relationship_screening_gpt_request(
         # the fence lines now, but only because this stage once ended its prefix
         # with `\n\n ` and that single space hid the block from the reader for the
         # stage's whole life -- rendered every request, read back never.
-        f"Manufacturer name: {subject_name}\n\n"
+        # f"Manufacturer name: {subject_name}\n\n"
         f"{render_phrase_blocks(phrase_relationship_results)}"
     )
 

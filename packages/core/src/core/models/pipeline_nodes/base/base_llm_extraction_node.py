@@ -302,6 +302,14 @@ class BaseLLMExtractionNode(BaseNode[LLMExtractedFieldTypeVar, ResultT]):
         eager: bool,  # if True, dispatch all batch requests immediately and then check for completion, basically a sync execution of the entire phase
     ) -> None:
         """Execute this extraction phase if needed, and proceed to the next phase."""
+        if await self.stop_if_stage_disabled(
+            subject=subject,
+            deferred_subject=deferred_subject,
+            timestamp=timestamp,
+            pipeline_context=pipeline_context,
+        ):
+            return
+
         logger.debug(
             f"[{subject.subject_unique_id}] 🔄 Executing {self.__class__.__name__} for field '{self.field_type.name}'"
         )

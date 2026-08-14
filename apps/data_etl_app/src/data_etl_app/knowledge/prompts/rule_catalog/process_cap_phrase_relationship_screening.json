@@ -1,5 +1,5 @@
 {
-  "catalog_version": "process_cap_phrase_relationship_screening.2026.08.2",
+  "catalog_version": "process_cap_phrase_relationship_screening.2026.08.3",
   "prompt_name": "process_cap_phrase_relationship_screening",
   "stage": "phrase_relationship_screening",
   "field_types": [
@@ -32,7 +32,17 @@
           "kind": "condition",
           "reportable": true,
           "report_when": "always",
-          "text": "At least one {{entity_noun}} can be identified from the phrase and its relationship summary."
+          "text": "At least one {{entity_noun}} can be identified from the phrase and its relationship summary.",
+          "combinator": "note",
+          "children": [
+            {
+              "id": "SCR-1a",
+              "kind": "note",
+              "reportable": false,
+              "report_when": "never",
+              "text": "The {{entity_noun}} must be identifiable as an operation performed on the work. A business, legal, or contractual undertaking that describes how a company deals with other parties rather than what is done to the work identifies no {{entity_noun}}; neither does a certification, credential, program, or philosophy about quality or improvement that names no operation performed on the work, nor general praise of experience, service, or capability that names no particular operation. Inspection, testing, and measurement performed on the work are operations, and are identifiable as a {{entity_noun}}."
+            }
+          ]
         },
         {
           "id": "SCR-2",
@@ -66,8 +76,8 @@
     }
   ],
   "published": {
-    "s3_version_id": "s5..1XyXiipQdHhahOMUWNnnpB9lE2gT",
-    "rendered_sha256": "4deb7de08527c3a9211780a2c3d09817f1745f0609aac680d17b59f52194a5d5",
-    "uploaded_at": "2026-08-12T07:50:48.382035+00:00"
+    "s3_version_id": "2USN_yXjlkTbzQ931HRz7LEZi43Ncgpm",
+    "rendered_sha256": "5754cb081e13e7351b01948cdcff49bb91f2183a72d03a52cb1b8140ab89a13a",
+    "uploaded_at": "2026-08-13T23:53:48.786655+00:00"
   }
 }

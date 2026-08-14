@@ -150,15 +150,15 @@ async def get_product_phrase_screening_contract_prompt(
         raise HTTPException(status_code=500, detail=str(e))
 
 
-@router.get("/prompts/certificate_phrase_search", response_class=JSONResponse)
-async def get_certificate_phrase_search_prompt(
+@router.get("/prompts/conformity_attestation_phrase_search", response_class=JSONResponse)
+async def get_conformity_attestation_phrase_search_prompt(
     model_name: str = Query(description="LLM model name used for token counting"),
 ):
-    """Get the certificate phrase search prompt."""
+    """Get the conformity attestation phrase search prompt."""
     try:
         llm_model = _resolve_llm_model(model_name)
         prompt_service = await get_prompt_service(llm_model)
-        prompt = prompt_service.certificate_phrase_search_prompt
+        prompt = prompt_service.conformity_attestation_phrase_search_prompt
         return prompt.model_dump()
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
@@ -207,16 +207,16 @@ async def get_process_cap_phrase_search_prompt(
 
 
 @router.get(
-    "/prompts/certificate_phrase_initial_grounding", response_class=JSONResponse
+    "/prompts/conformity_attestation_phrase_initial_grounding", response_class=JSONResponse
 )
-async def get_certificate_phrase_initial_grounding_prompt(
+async def get_conformity_attestation_phrase_initial_grounding_prompt(
     model_name: str = Query(description="LLM model name used for token counting"),
 ):
-    """Get the certificate phrase initial grounding prompt."""
+    """Get the conformity attestation phrase initial grounding prompt."""
     try:
         llm_model = _resolve_llm_model(model_name)
         prompt_service = await get_prompt_service(llm_model)
-        prompt = prompt_service.certificate_phrase_initial_grounding_prompt
+        prompt = prompt_service.conformity_attestation_phrase_initial_grounding_prompt
         return prompt.model_dump()
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
@@ -282,11 +282,11 @@ async def get_all_prompts(
             "is_manufacturer",
             "is_product_manufacturer",
             "is_contract_manufacturer",
-            "certificate_phrase_search",
+            "conformity_attestation_phrase_search",
             "industry_phrase_search",
             "material_cap_phrase_search",
             "process_cap_phrase_search",
-            "certificate_phrase_initial_grounding",
+            "conformity_attestation_phrase_initial_grounding",
             "industry_phrase_initial_grounding",
             "material_cap_phrase_initial_grounding",
             "process_cap_phrase_initial_grounding",

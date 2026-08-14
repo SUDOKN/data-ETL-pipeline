@@ -84,6 +84,16 @@ PHRASES_OPEN = "<<<PHRASES"
 PHRASES_CLOSE = "PHRASES>>>"
 SUMMARIES_OPEN = "<<<PHRASES_WITH_SUMMARIES"
 SUMMARIES_CLOSE = "PHRASES_WITH_SUMMARIES>>>"
+# Recursive search is the one stage whose phrase list is an EXCLUSION set rather
+# than the question, so it gets its own fence instead of reusing the phrases one:
+# a `<<<PHRASES` block means "answer about exactly these", and `_PHRASES_RE` is
+# what enforces that downstream. Handing recursive search the same token would
+# name the opposite instruction with the reader's word for it. Both tokens here
+# begin `<<<ALREADY_`, so neither fence line can match `_PHRASES_RE`, which
+# anchors at `^[ \t]*` -- the close token being a suffix of `PHRASES>>>` is
+# harmless for that reason, and only for that reason.
+ALREADY_EXTRACTED_OPEN = "<<<ALREADY_EXTRACTED_PHRASES"
+ALREADY_EXTRACTED_CLOSE = "ALREADY_EXTRACTED_PHRASES>>>"
 
 # The summaries block is per-request and never cached, so its whitespace is paid
 # for on every call -- indent=2 would be about 6% of a flat map of strings. The
@@ -124,6 +134,20 @@ def render_phrases_block(phrases: Iterable[str]) -> str:
     # Keep the array on one line: the reader takes exactly the fence's middle.
     payload = json.dumps(list(phrases), ensure_ascii=False)
     return f"{PHRASES_OPEN}\n{payload}\n{PHRASES_CLOSE}"
+
+
+def render_already_extracted_block(phrases: Iterable[str]) -> str:
+    """The exclusion set shown to recursive search, as a fenced JSON block.
+
+    Sorted, because the caller holds a `set` and its iteration order is not
+    stable across processes: unsorted, the same chunk renders a different
+    prompt on every run, which defeats seeded/zero-temperature comparison of
+    two prompt versions and silently perturbs any cache keyed on the text.
+    `ensure_ascii=False` and the one-line array for the same reasons as
+    ``render_phrases_block``.
+    """
+    payload = json.dumps(sorted(phrases), ensure_ascii=False)
+    return f"{ALREADY_EXTRACTED_OPEN}\n{payload}\n{ALREADY_EXTRACTED_CLOSE}"
 
 
 def render_summaries_block(summaries: LLMPhraseRelationshipResults) -> str:

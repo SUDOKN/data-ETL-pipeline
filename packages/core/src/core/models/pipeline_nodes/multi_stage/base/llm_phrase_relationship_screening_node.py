@@ -48,6 +48,8 @@ from core.services.pipeline_nodes.multi_stage.llm_relationship_screening_node_se
     create_missing_phrase_relationship_screening_requests,
     get_phrase_relationship_screening_result,
 )
+from typing import ClassVar
+from core.models.pipeline_nodes.base.pipeline_stage import PipelineStage
 
 logger = logging.getLogger(__name__)
 
@@ -55,6 +57,8 @@ logger = logging.getLogger(__name__)
 class LLMPhraseRelationshipScreeningNode(
     BaseLLMExtractionNode[LLMExtractedFieldTypeVar, LiveScreeningResults]
 ):
+
+    stage: ClassVar[PipelineStage] = PipelineStage.screening
 
     def __init__(
         self,

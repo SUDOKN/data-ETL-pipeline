@@ -142,7 +142,7 @@ def _check_static(only: str | None) -> list[str]:
 
     for name, (s3_key, text) in _static_all(only).items():
         pin = pins.get(name)
-        if pin is None:
+        if pin is None or pin.rendered_sha256 is None:
             logger.error("UNPINNED   %s (never published; run `publish`)", s3_key)
             stale.append(name)
             continue

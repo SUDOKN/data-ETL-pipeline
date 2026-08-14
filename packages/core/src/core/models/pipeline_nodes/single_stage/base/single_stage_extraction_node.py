@@ -47,11 +47,15 @@ from llm_providers.services.gpt_batch_request.gpt_batch_request_service import (
 from core.services.pipeline_nodes.single_stage.llm_basic_field_extraction_service import (
     create_missing_basic_extraction_requests,
 )
+from typing import ClassVar
+from core.models.pipeline_nodes.base.pipeline_stage import PipelineStage
 
 logger = logging.getLogger(__name__)
 
 
 class SingleStageExtractionNode(BaseLLMExtractionNode[ExtractionFieldType, ResultT]):
+    stage: ClassVar[PipelineStage] = PipelineStage.single_stage_extraction
+
     def __init__(
         self,
         field_type: ExtractionFieldType,

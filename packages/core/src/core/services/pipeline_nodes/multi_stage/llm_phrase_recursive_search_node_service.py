@@ -24,6 +24,9 @@ from llm_providers.models.open_ai.gpt_model_params import (
     GPTModelParams,
 )
 
+from core.services.phrase_blocks_contract import (
+    render_already_extracted_block,
+)
 from core.services.brute_search_service import (
     filter_non_overlapping_brute_results,
 )
@@ -168,9 +171,12 @@ def _build_recursive_search_context(
     chunk_text: str,
     already_extracted_phrases: LLMSearchResults,
 ) -> str:
+    # The block, not a bare marker line: this context embeds the raw scraped
+    # chunk BEFORE the list, which is exactly the shape that made the phrases
+    # marker forgeable by a scraped page. See phrase_blocks_contract.
     return (
-        f"scraped text:\n{chunk_text}\n\n"
-        f"already extracted phrases:\n{list(already_extracted_phrases)}"
+        f"text scraped from a manufacturer's website:\n{chunk_text}\n\n"
+        f"{render_already_extracted_block(already_extracted_phrases)}"
     )
 
 

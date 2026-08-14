@@ -1,9 +1,9 @@
 {
-  "catalog_version": "certificate_phrase_relationship_screening.2026.08.6",
-  "prompt_name": "certificate_phrase_relationship_screening",
+  "catalog_version": "conformity_attestation_phrase_relationship_screening.2026.08.1",
+  "prompt_name": "conformity_attestation_phrase_relationship_screening",
   "stage": "phrase_relationship_screening",
   "field_types": [
-    "certificates"
+    "conformity_attestations"
   ],
   "entity_noun": "certification, accreditation, registration, standard, or compliance",
   "entity_relationships": {
@@ -40,7 +40,7 @@
               "kind": "note",
               "reportable": false,
               "report_when": "never",
-              "text": "The {{entity_noun}} must be identifiable by its own name, number, or issuing body from the phrase and its relationship summary. Meeting a customer's or an industry's specifications, or operating quality assurance systems, is not itself a nameable {{entity_noun}} — never substitute a named standard the phrase and summary do not name."
+              "text": "The {{entity_noun}} must be identifiable by its own name, number, or issuing body from the phrase and its relationship summary. Meeting a customer's or an industry's specifications, or operating quality assurance systems, is not itself a nameable {{entity_noun}} — never substitute a named standard the phrase and summary do not name. A statement of commitment, values, or goals, or general praise of quality, reliability, or standing, names nothing that could specifically be held, met, or followed, and identifies no {{entity_noun}}."
             }
           ]
         },
@@ -86,8 +86,8 @@
     }
   ],
   "published": {
-    "s3_version_id": "YoJDMnV1sAFnksLAd3FACsdUfPu_ZeO2",
-    "rendered_sha256": "423d3e6a153fa55490e5a264a100284ed22f79a41e58250f0a7b1c505fe4313e",
-    "uploaded_at": "2026-08-12T07:50:48.382035+00:00"
+    "s3_version_id": "vADWPCCclG.QR120f_tsSZi30xHV.V1k",
+    "rendered_sha256": "2bf31daedfb76511474b7906a2b3c6046861f13dcc075957b796d26425af2f04",
+    "uploaded_at": "2026-08-13T23:53:48.786655+00:00"
   }
 }

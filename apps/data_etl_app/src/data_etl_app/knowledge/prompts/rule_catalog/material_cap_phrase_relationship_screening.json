@@ -1,5 +1,5 @@
 {
-  "catalog_version": "material_cap_phrase_relationship_screening.2026.08.2",
+  "catalog_version": "material_cap_phrase_relationship_screening.2026.08.3",
   "prompt_name": "material_cap_phrase_relationship_screening",
   "stage": "phrase_relationship_screening",
   "field_types": [
@@ -40,7 +40,7 @@
               "kind": "note",
               "reportable": false,
               "report_when": "never",
-              "text": "The {{entity_noun}} must actually be determinable: a phrase that speaks of {{entity_noun}}s only in general terms, with nothing that fixes which one, does not satisfy this condition. Where a phrase names a specific form or designation of a {{entity_noun}}, name the {{entity_noun}} it is a form of."
+              "text": "The {{entity_noun}} must actually be determinable: a phrase that speaks of {{entity_noun}}s only in general terms, with nothing that fixes which one, does not satisfy this condition. Where a phrase names a specific form or designation of a {{entity_noun}}, name the {{entity_noun}} it is a form of. An object, part, or assembly made of a {{entity_noun}} is not itself the {{entity_noun}} — identify the {{entity_noun}} only where the phrase and its relationship summary name which one it is made of."
             }
           ]
         },
@@ -76,8 +76,8 @@
     }
   ],
   "published": {
-    "s3_version_id": "EyBvZwBhSpE_giHq_Lp0dw4QcoCCvpJJ",
-    "rendered_sha256": "f1d8d5709a003163c61d54b7b2b91066ed44e248f48b02ba633294e185b8aad0",
-    "uploaded_at": "2026-08-12T07:50:48.382035+00:00"
+    "s3_version_id": "sbo8L.R3IM3wrVDNrxD6.vws4IM.j8h5",
+    "rendered_sha256": "a528f453b225b522b9e9a8fa44231d09c53f27849335e859ec701a4884f27dfb",
+    "uploaded_at": "2026-08-13T23:53:48.786655+00:00"
   }
 }

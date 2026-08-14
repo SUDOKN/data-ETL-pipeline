@@ -1,7 +1,7 @@
 from enum import Enum
 
 from data_etl_app.utils.ontology_uri_util import (
-    certificate_base_uri,
+    conformity_attestation_base_uri,
     industry_base_uri,
     material_cap_base_uri,
     process_cap_base_uri,
@@ -23,7 +23,7 @@ class ConceptTypeEnum(str, Enum):
     """Satisfies `core.models.field_types.ConceptFieldType`."""
 
     industries = "industries"
-    certificates = "certificates"
+    conformity_attestations = "conformity_attestations"
     material_caps = "material_caps"
     process_caps = "process_caps"
 
@@ -39,16 +39,16 @@ class ConceptTypeEnum(str, Enum):
 # Resolved lazily so importing this module never reads the environment.
 _CONCEPT_BASE_URI_RESOLVERS = {
     ConceptTypeEnum.industries: industry_base_uri,
-    ConceptTypeEnum.certificates: certificate_base_uri,
+    ConceptTypeEnum.conformity_attestations: conformity_attestation_base_uri,
     ConceptTypeEnum.material_caps: material_cap_base_uri,
     ConceptTypeEnum.process_caps: process_cap_base_uri,
 }
 
 _RECURSIVE_GROUNDING_PLACEHOLDERS = {
     ConceptTypeEnum.industries: ("{{parent_industry}}", "{{types_of_parent_industry}}"),
-    ConceptTypeEnum.certificates: (
-        "{{parent_certificate}}",
-        "{{types_of_parent_certificate}}",
+    ConceptTypeEnum.conformity_attestations: (
+        "{{parent_conformity_attestation}}",
+        "{{types_of_parent_conformity_attestation}}",
     ),
     ConceptTypeEnum.material_caps: (
         "{{parent_material}}",

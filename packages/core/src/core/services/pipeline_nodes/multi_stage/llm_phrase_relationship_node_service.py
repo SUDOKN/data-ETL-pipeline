@@ -358,12 +358,14 @@ async def create_missing_phrase_relationship_requests(
                     logger.info(
                         f"No phrases found in text, for {subject_unique_id}:{field_type}, creating dummy phrase_relationship request"
                     )
-                    new_batch_request = _create_dummy_completed_phrase_relationship_batch_request(
-                        deferred_at=timestamp,
-                        subject_unique_id=subject_unique_id,
-                        llm_phrase_relationship_request_id=group_req_id,
-                        model_params=model_params,
-                        eager=eager,
+                    new_batch_request = (
+                        _create_dummy_completed_phrase_relationship_batch_request(
+                            deferred_at=timestamp,
+                            subject_unique_id=subject_unique_id,
+                            llm_phrase_relationship_request_id=group_req_id,
+                            model_params=model_params,
+                            eager=eager,
+                        )
                     )
                 else:
                     logger.info(
@@ -452,8 +454,8 @@ def create_deferred_phrase_relationship_gpt_request(
     # the block and could otherwise forge the old bare marker. See
     # phrase_blocks_contract on why the format is fenced.
     context = (
-        f"manufacturer name: {subject_name}\n\n"
-        f"scraped text:\n{subject_text}\n\n"
+        f"the name of the manufacturer in question: {subject_name}\n\n"
+        f"scraped text from their website:\n{subject_text}\n\n"
         # Phrases alone: this stage runs before summaries exist to pair them with.
         f"{render_phrases_block(search_results)}"
     )

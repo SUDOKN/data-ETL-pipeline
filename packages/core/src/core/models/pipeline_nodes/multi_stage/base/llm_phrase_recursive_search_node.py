@@ -49,6 +49,8 @@ from core.services.pipeline_nodes.multi_stage.llm_phrase_recursive_search_node_s
     get_new_phrases_for_latest_round,
     get_all_recursive_round_results,
 )
+from typing import ClassVar
+from core.models.pipeline_nodes.base.pipeline_stage import PipelineStage
 
 logger = logging.getLogger(__name__)
 
@@ -69,6 +71,8 @@ class LLMPhraseRecursiveSearchNode(
     ``execute`` loop advances to the next node with the union available via
     ``pipeline_context[type(self)]``.
     """
+
+    stage: ClassVar[PipelineStage] = PipelineStage.recursive_search
 
     def __init__(
         self,

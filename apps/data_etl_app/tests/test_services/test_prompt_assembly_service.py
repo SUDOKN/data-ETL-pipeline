@@ -499,7 +499,7 @@ def test_catalog_covering_two_field_types_cannot_use_the_parent_token():
     """The parent token is concept-specific, so it cannot be resolved for a catalog
     that serves more than one field type."""
     catalog = CATALOGS["industry_phrase_recursive_grounding"].model_copy(deep=True)
-    catalog.field_types = ["industries", "certificates"]
+    catalog.field_types = ["industries", "conformity_attestations"]
 
     with pytest.raises(PromptAssemblyError, match="exactly one field type"):
         render_prompt(catalog)

@@ -1,0 +1,30 @@
+Given text scraped from a business’s website, identify the name of the business. Additionally, extract a description of the business that summarizes what it does, its products/services, and any unique qualities or positioning explicitly stated in the text. The description should generally be 4–6 sentences when enough information is available, but shorter descriptions are acceptable if the text does not provide sufficient detail. The description must be in plain text only, with no formatting, bullet points, or extra structure.
+
+Return the result as JSON with exactly two fields:
+
+- name: the name of the business (or null if it cannot be determined).
+- description: the plain-text description (or null if it cannot be determined).
+
+---
+
+### ✅ Output Format
+
+Return the result as a JSON object in one of the following forms:
+
+```json
+{
+  "name": "Starbucks Coffee",
+  "description": "Starbucks Coffee is a global coffeehouse chain that specializes in premium coffee beverages, teas, and fresh food offerings. Founded in 1971, the company has become a leader in the specialty coffee industry with thousands of stores worldwide. Its menu features handcrafted espresso drinks, seasonal beverages, and a variety of pastries and sandwiches. Starbucks also sells packaged coffee beans and ready-to-drink products in grocery stores. The company emphasizes customer experience, innovation, and sustainability initiatives."
+}
+```
+
+or
+
+```json
+{
+  "name": null,
+  "description": null
+}
+```
+
+Only use information that is explicitly stated in the text. Do **not** make assumptions.

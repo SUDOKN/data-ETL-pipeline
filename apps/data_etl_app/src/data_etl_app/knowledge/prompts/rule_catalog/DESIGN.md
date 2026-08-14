@@ -25,14 +25,14 @@ grounding (different pipeline) — NOT covered by catalogs yet.
 | field_type | entity_noun | rel base / third_person / gerund | recursive parent token |
 |---|---|---|---|
 | industries | industry, market, or sector | serve,supply,or operate in / serves,supplies,or operates in / serving,supplying,or operating in | {{parent_industry}} |
-| certificates | certification, accreditation, registration, standard, or compliance | hold or conform to / holds or conforms to / holding or conforming to | {{parent_certificate}} |
+| conformity_attestations | certification, accreditation, registration, standard, or compliance | hold or conform to / holds or conforms to / holding or conforming to | {{parent_conformity_attestation}} |
 | materials | material | process / processes / processing | {{parent_material}} |
 | processes | manufacturing process, operation, or capability | perform,offer,or specialize in / performs,offers,or specializes in / performing,offering,or specializing in | {{parent_process_cap}} |
 Note: process uses {{types_of_process_cap}} (not types_of_parent_process_cap) in template.
 
 ## CATALOG FILES (DONE — all 12 created & JSON-validated)
 Dir: apps/data_etl_app/src/data_etl_app/knowledge/rule_catalog/
-{screening,initial_grounding,recursive_grounding}.{industries,certificates,materials,processes}.json
+{screening,initial_grounding,recursive_grounding}.{industries,conformity_attestations,materials,processes}.json
 Per-stage rule counts (uniform across concepts): screening=5 leaves, initial=7, recursive=10.
 
 ## CATALOG SCHEMA (the stable, generic envelope)

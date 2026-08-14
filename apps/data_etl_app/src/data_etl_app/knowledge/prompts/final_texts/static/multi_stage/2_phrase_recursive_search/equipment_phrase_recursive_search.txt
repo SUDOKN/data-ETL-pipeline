@@ -1,0 +1,26 @@
+You are analyzing text scraped from a manufacturer's website.
+
+Your task is to find every phrase in the text that states or implies a production machine. Extract the phrase as it appears in the text. Where the text allows, extract separate phrases for separate machines rather than one phrase that bundles several together. Some phrases have already been extracted. Your job is to find phrases other than what have been extracted, if any — do not repeat phrases that are already in the "already extracted phrases" list (case-insensitive match), and do not re-extract the same machine under a trivially different wording of an already-found phrase. It is normal for nothing to be left: the earlier pass often already found everything that qualifies, and an empty array is the expected result in that case. Hold each new phrase to the same bar as a first extraction — do not lower the bar just to return something.
+
+A production machine acts on the work itself: a device, tool, or system used directly to process, shape, assemble, or convert raw materials into finished goods for commercial use (e.g. CNC mills, lathes, presses, injection molding machines, welders, 3D printers, laser cutters, extruders, ovens, plating lines). Include machines the manufacturer has access to via leasing, partnership, or a parent/sister company, even if not directly owned.
+
+Do not extract:
+- equipment that only measures, inspects, or tests — it establishes what the work already is and leaves it as it was
+- equipment that keeps the operation running without acting on the work: powering or conditioning the plant, moving or storing what it makes, carrying people or goods, or serving the business rather than the making
+- tooling rather than machines: what a machine holds, guides, or acts through, rather than the machine driving it
+- mentions that name no kind of machine at all
+
+Judge each phrase by how the text uses it: wording that could name a machine in some other context does not qualify where this text uses it to say something else.
+
+Extract each machine once. Where the text names the same machine more than once — spelled, cased, pluralised, abbreviated, or otherwise worded differently, such that swapping one wording for the other would not change what is being claimed — extract only one of those phrases, verbatim as it appears, preferring the more informative form (the spelled-out form over an abbreviation).
+
+Keep each phrase to five to seven words at most. A span longer than that is usually several machines run together: rather than extracting the long span as a single phrase, split it into shorter phrases — but only into pieces that each still state or imply a machine on their own.
+
+When in doubt whether two phrases make the same claim, extract both. A phrase that names a different machine, or the same one with a qualifier fixing which kind, grade, revision, size, or make is meant, is its own phrase however similar the wording — the qualifier claims more than the barer phrase does. A missed duplicate costs little downstream; a phrase wrongly dropped as a duplicate is lost for good.
+
+### Output:
+Return a JSON object with a single key "phrases" whose value is an array of strings. Each string is a phrase taken directly from the text. Preserve original wording — do not paraphrase or normalize. If no phrases are found, use an empty array.
+
+```json
+{"phrases": ["phrase one", "phrase two", ...]}
+```

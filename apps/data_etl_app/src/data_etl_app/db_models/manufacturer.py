@@ -66,7 +66,7 @@ class Manufacturer(Document, AbstractExtractionSubject):
     contract_products: Optional[KeywordExtractionResults]
     equipments: Optional[KeywordExtractionResults]
 
-    certificates: Optional[ConceptExtractionResults]
+    conformity_attestations: Optional[ConceptExtractionResults]
     industries: Optional[ConceptExtractionResults]
     process_caps: Optional[ConceptExtractionResults]
     material_caps: Optional[ConceptExtractionResults]

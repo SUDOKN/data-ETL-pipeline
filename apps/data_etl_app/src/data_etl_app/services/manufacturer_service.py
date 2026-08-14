@@ -29,7 +29,7 @@ def reset_llm_extracted_fields(manufacturer: Manufacturer):
     manufacturer.contract_products = None
     manufacturer.equipments = None
 
-    manufacturer.certificates = None
+    manufacturer.conformity_attestations = None
     manufacturer.industries = None
     manufacturer.material_caps = None
     manufacturer.process_caps = None
@@ -68,7 +68,7 @@ async def create_new_manufacturer(
         products=None,
         contract_products=None,
         equipments=None,
-        certificates=None,
+        conformity_attestations=None,
         industries=None,
         process_caps=None,
         material_caps=None,
@@ -97,7 +97,7 @@ def is_llm_extraction_complete(manufacturer: Manufacturer) -> bool:
         manufacturer.is_product_manufacturer,
         manufacturer.business_desc,
         manufacturer.products,
-        manufacturer.certificates,
+        manufacturer.conformity_attestations,
         manufacturer.industries,
         manufacturer.material_caps,
         manufacturer.process_caps,

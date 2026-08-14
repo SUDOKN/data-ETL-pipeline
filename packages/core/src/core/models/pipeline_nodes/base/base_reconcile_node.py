@@ -11,6 +11,8 @@ from core.models.pipeline_nodes.base.base_node import (
     ResultT,
 )
 from llm_providers.field_types import BatchRequestIDType
+from typing import ClassVar
+from core.models.pipeline_nodes.base.pipeline_stage import PipelineStage
 
 logger = logging.getLogger(__name__)
 
@@ -18,6 +20,8 @@ logger = logging.getLogger(__name__)
 # Strategy Pattern
 class ReconcileNode(BaseNode[LLMExtractedFieldTypeVar, None]):
     """Base class for the phase of reconciliation for any deferred field. Assumes extraction is done."""
+
+    stage: ClassVar[PipelineStage] = PipelineStage.reconcile
 
     def __init__(
         self,

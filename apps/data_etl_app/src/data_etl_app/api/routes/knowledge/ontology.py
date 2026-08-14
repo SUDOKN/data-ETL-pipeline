@@ -179,9 +179,9 @@ async def get_industries(
         raise HTTPException(status_code=500, detail=str(e))
 
 
-@router.get("/ontology/certificates", response_class=JSONResponse)
-@router.get("/ontology/certificates/{node}", response_class=JSONResponse)
-async def get_certificates(
+@router.get("/ontology/conformity_attestations", response_class=JSONResponse)
+@router.get("/ontology/conformity_attestations/{node}", response_class=JSONResponse)
+async def get_conformity_attestations(
     node: Optional[str] = None,
     mode: Mode = Query("tree", description="Response shape: 'tree' or 'flat'."),
     depth: Optional[int] = Query(
@@ -197,8 +197,8 @@ async def get_certificates(
         ontology = await _resolve_ontology(version)
         return _build_concept_response(
             ontology,
-            ontology.concept_nodes(ConceptTypeEnum.certificates.base_uri),
-            "certificates",
+            ontology.concept_nodes(ConceptTypeEnum.conformity_attestations.base_uri),
+            "conformity_attestations",
             mode,
             depth,
             node,

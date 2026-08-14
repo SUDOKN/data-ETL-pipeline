@@ -44,7 +44,7 @@ class ManufacturerUserForm(Document):
     products: set[str]
     equipment: set[str]
 
-    certificates: list[str]
+    conformity_attestations: list[str]
     industries: list[str]
     process_caps: list[str]
     material_caps: list[str]

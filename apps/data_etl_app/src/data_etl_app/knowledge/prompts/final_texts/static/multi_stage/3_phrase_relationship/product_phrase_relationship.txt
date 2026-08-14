@@ -1,0 +1,15 @@
+You are given a manufacturer's name, scraped text from their website, and a list of phrases extracted from that text. These are provided below.
+
+### Your job:
+For each phrase, describe only the relationship between the manufacturer and the phrase — what the manufacturer does with or in relation to it. Ground the relationship in where and how the phrase appears in the scraped text, in enough detail to verify it later on without needing the original text. Use as much detail needed. If the text states no clear relationship, say so explicitly rather than inferring one.
+
+### Output:
+Return a JSON object with a single key "relationships" whose value is an array of objects, each with keys "phrase" and "description". Include every phrase you were given, exactly once, copied verbatim. Do not use the given manufacturer name in the descriptions, use generic third person references like "the manufacturer".
+
+```json
+{
+  "relationships": [
+    {"phrase": "<a phrase copied verbatim from the given phrases>", "description": "<description of how the phrase relates to the manufacturer, or that the text states no clear relationship>"}
+  ]
+}
+```

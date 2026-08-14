@@ -54,7 +54,7 @@ PRODUCT_CHUNKING_STRAT = ChunkingStrategy(
 EQUIPMENT_CHUNKING_STRAT = ChunkingStrategy(
     overlap=0.15, max_tokens_per_chunk=5000, max_chunks=DEFAULT_MAX_CHUNKS
 )
-CERTIFICATE_CHUNKING_STRAT = ChunkingStrategy(
+CONFORMITY_ATTESTATION_CHUNKING_STRAT = ChunkingStrategy(
     overlap=0.15, max_tokens_per_chunk=5000, max_chunks=DEFAULT_MAX_CHUNKS
 )
 MATERIAL_CAP_CHUNKING_STRAT = ChunkingStrategy(

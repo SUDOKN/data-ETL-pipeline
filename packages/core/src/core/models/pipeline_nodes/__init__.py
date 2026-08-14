@@ -2,6 +2,10 @@ from core.models.pipeline_nodes.base.base_node import (
     BaseNode,
     PipelineContext,
 )
+from core.models.pipeline_nodes.base.pipeline_stage import (
+    PipelineStage,
+    StageToggles,
+)
 from core.models.pipeline_nodes.base.base_prefill_node import (
     PrefillNode,
 )
@@ -96,6 +100,8 @@ from core.models.pipeline_nodes.multi_stage.keyword.keyword_recursive_search_nod
 __all__ = [
     "BaseNode",
     "PipelineContext",
+    "PipelineStage",
+    "StageToggles",
     "PrefillNode",
     "ReconcileNode",
     "BaseLLMExtractionNode",

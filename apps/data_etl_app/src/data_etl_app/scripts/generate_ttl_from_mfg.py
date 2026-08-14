@@ -32,7 +32,7 @@ MFG_FILTER = {
         {"is_manufacturer.answer": False},
         {"process_caps.extraction_results.0": {"$exists": False}},
         {"products": None},
-        {"certificates": None},
+        {"conformity_attestations": None},
         {"industries": None},
         {"material_caps": None},
         {"process_caps": None},
@@ -212,8 +212,8 @@ async def main():
                     equipment=set(
                         mfg.equipments.extraction_results if mfg.equipments else []
                     ),
-                    certificates=(
-                        mfg.certificates.extraction_results if mfg.certificates else []
+                    conformity_attestations=(
+                        mfg.conformity_attestations.extraction_results if mfg.conformity_attestations else []
                     ),
                     industries=(
                         mfg.industries.extraction_results if mfg.industries else []

@@ -1,5 +1,5 @@
 {
-  "catalog_version": "industry_phrase_relationship_screening.2026.08.4",
+  "catalog_version": "industry_phrase_relationship_screening.2026.08.5",
   "prompt_name": "industry_phrase_relationship_screening",
   "stage": "phrase_relationship_screening",
   "field_types": [
@@ -46,7 +46,24 @@
           "kind": "condition",
           "reportable": true,
           "report_when": "always",
-          "text": "It is the manufacturer itself that {{entity_relationships.third_person}} the identified {{entity_noun}} — not a customer, supplier, distributor, or other third party that the manufacturer merely relates to."
+          "text": "It is the manufacturer itself that {{entity_relationships.third_person}} the identified {{entity_noun}} — not a customer, supplier, distributor, or other third party that the manufacturer merely relates to.",
+          "combinator": "note",
+          "children": [
+            {
+              "id": "SCR-3a",
+              "kind": "note",
+              "reportable": false,
+              "report_when": "never",
+              "text": "Summaries refer to companies by their standing rather than by name. A brand, trade name, former name, division, plant, or business unit of the manufacturer IS the manufacturer itself. A statement about the manufacturer's parent company or a sister brand counts as one about the manufacturer itself, and does not fail this condition merely for being attributed to them — unless the summary shows the activity belongs to that company alone and not to the manufacturer."
+            },
+            {
+              "id": "SCR-3b",
+              "kind": "note",
+              "reportable": false,
+              "report_when": "never",
+              "text": "That a third party is named does not on its own fail this condition. What decides it is which party {{entity_relationships.third_person}} the identified {{entity_noun}}: where the manufacturer supplies or sells to a party that operates in it, it is the manufacturer that {{entity_relationships.third_person}} that {{entity_noun}}."
+            }
+          ]
         }
       ]
     },
@@ -66,8 +83,8 @@
     }
   ],
   "published": {
-    "s3_version_id": "9O4LEfzNx_z5wsDuPHuEiM2LBquYs2_m",
-    "rendered_sha256": "d1c8dab9c7a2125b2fe6b734401889e13c49591bb7978ce3b10d89319e2907d4",
-    "uploaded_at": "2026-08-12T07:50:48.382035+00:00"
+    "s3_version_id": "7eXcYF6wT25t60mMqxpu3KF52PhD2kYv",
+    "rendered_sha256": "9c9639e9490c9ccd1ea3a58b4166776a654704d352e7c93adc3b03dbaaf3ef49",
+    "uploaded_at": "2026-08-13T07:15:05.011333+00:00"
   }
 }

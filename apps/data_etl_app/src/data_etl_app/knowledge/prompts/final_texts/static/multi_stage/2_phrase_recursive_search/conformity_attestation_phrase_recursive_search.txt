@@ -1,0 +1,27 @@
+You are analyzing text scraped from a manufacturer's website, along with the phrases a previous pass already found in that text, fenced between `<<<ALREADY_EXTRACTED_PHRASES` and `ALREADY_EXTRACTED_PHRASES>>>`.
+
+## Task
+Your task is to find phrases in the text that name, state or imply a certification, accreditation, registration, standard, or compliance and are not yet covered by the already extracted phrases. Extract the phrase as it appears in the text. Where the text allows, extract separate phrases for separate certifications, accreditations, registrations, standards, or compliances rather than one phrase that bundles several together.
+
+## What qualifies as a phrase
+A qualifying phrase names, states or implies a certification, accreditation, registration, standard, or compliance — one with an identity of its own, such as a name, number, mark, or issuing body, that a company, its people, its sites, or its products could specifically hold, meet, or follow.
+
+## Rejection
+Do not extract a phrase if it does not name, state or imply any certification, accreditation, registration, standard, or compliance at all, even with the help of surrounding context.
+
+## Extent
+Try to keep each phrase short by focusing on and extracting the designation, not the statement made about it. Rather than extracting the long span as a single phrase, split it into shorter verbatim sub-phrases — but keep only the qualifying sub-phrases that each still name, state or imply a certification, accreditation, registration, standard, or compliance on their own.
+
+## Deduplication/Disambiguation/Uniqueness
+- Any new phrases you find from the text must not be present in the already extracted phrases.
+- If the new phrase you found is not present in the already extracted phrases, but is just a different wording of an entry in that fenced list — through a different spelling, casing, pluralisation, abbreviation, or otherwise something similarly trivial — skip it.
+
+## When nothing remains
+It is normal for nothing to remain. The previous pass has often already found everything in the text that qualifies, and an empty array is the expected result in that case. Hold every phrase you return to the same bar as a first extraction. Do not lower the bar to return something.
+
+## Output:
+Return a JSON object with a single key "phrases" whose value is an array of strings. Each string is a phrase taken directly from the text that is not already covered by the already extracted phrases. Preserve original wording — do not paraphrase or normalize. If no phrases are found, use an empty array.
+
+```json
+{"phrases": ["phrase one", "phrase two", ...]}
+```

@@ -41,7 +41,7 @@ async def validate_and_create_from_manufacturer(
         - business_desc must not be None
         - products must not be None, even if empty list
         - equipment must not be None, even if empty list
-        - certificates must not be None, even if empty list
+        - conformity_attestations must not be None, even if empty list
         - industries must not be None, even if empty list
         - process_caps must not be None, even if empty list
         - material_caps must not be None, even if empty list
@@ -92,8 +92,8 @@ async def validate_and_create_from_manufacturer(
         raise AssertionError("products must not be None")
     if manufacturer.equipments is None:
         raise AssertionError("equipments must not be None")
-    if manufacturer.certificates is None:
-        raise AssertionError("certificates must not be None")
+    if manufacturer.conformity_attestations is None:
+        raise AssertionError("conformity_attestations must not be None")
     if manufacturer.industries is None:
         raise AssertionError("industries must not be None")
     if manufacturer.process_caps is None:
@@ -103,7 +103,7 @@ async def validate_and_create_from_manufacturer(
 
     # Extract ontology_version_id from one of the concept extraction results
     # All concept extractions should have the same ontology version
-    ontology_version_id = manufacturer.certificates.metadata.ontology_version_id
+    ontology_version_id = manufacturer.conformity_attestations.metadata.ontology_version_id
 
     return ManufacturerUserForm(
         author_email="",  # to be filled later
@@ -120,7 +120,7 @@ async def validate_and_create_from_manufacturer(
         addresses=[addr for addr in manufacturer.addresses.result],
         products=manufacturer.products.results,
         equipment=manufacturer.equipments.results,
-        certificates=manufacturer.certificates.results,
+        conformity_attestations=manufacturer.conformity_attestations.results,
         industries=manufacturer.industries.results,
         process_caps=manufacturer.process_caps.results,
         material_caps=manufacturer.material_caps.results,
@@ -190,7 +190,7 @@ async def create_blank_manufacturer_user_form(
         business_desc=None,
         products=set(),
         equipment=set(),
-        certificates=[],
+        conformity_attestations=[],
         industries=[],
         process_caps=[],
         material_caps=[],

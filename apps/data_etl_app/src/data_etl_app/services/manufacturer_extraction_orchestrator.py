@@ -15,6 +15,7 @@ from llm_providers.db_models.extraction_error import (
     ExtractionError,
 )
 from data_etl_app.models.types_and_enums import (
+    BasicFieldTypeEnum,
     BinaryClassificationTypeEnum,
 )
 from llm_providers.models.llm_model import LLM_Model
@@ -33,7 +34,7 @@ from data_etl_app.services.deferred_manufacturer_service import (
 from data_etl_app.services.gpt_batch_request_service import (
     bulk_delete_gpt_batch_requests_by_mfg_etld1_and_field,
 )
-from core.models.pipeline_nodes import PipelineContext
+from core.models.pipeline_nodes import PipelineContext, StageToggles
 from core.models.ontology import Ontology
 from data_etl_app.services.prompt_service import PromptService
 from data_etl_app.services.extraction_pipeline_factory import (
@@ -69,7 +70,18 @@ class ManufacturerExtractionOrchestrator:
         llm_model: LLM_Model,
         model_params: GPTModelParams,
         metadata_init_at: datetime,
+        stage_toggles: StageToggles | None = None,
     ):
+        # Which (field, stage) pairs this orchestrator is allowed to run. None
+        # means the whole chain, which is what every production path passes;
+        # a partial set is a testing tool for iterating on a stage without
+        # paying for the ones after it.
+        self.stage_toggles = stage_toggles or StageToggles()
+        if self.stage_toggles.any_disabled():
+            logger.warning(
+                f"⚠️  Stage-gated run: {self.stage_toggles!r}. Fields whose chain "
+                f"stops early will NOT have a final result written."
+            )
         self.is_manufacturer_pipeline = (
             ExtractionPipelineFactory.create_binary_classification_pipeline(
                 binary_field_type=BinaryClassificationTypeEnum.is_manufacturer,
@@ -137,7 +149,13 @@ class ManufacturerExtractionOrchestrator:
                     deferred_subject=deferred_mfg,
                     scraped_text_file=scraped_text_file,
                     timestamp=timestamp,
-                    pipeline_context=PipelineContext(),
+                    pipeline_context=PipelineContext(
+                        # Prerequisite pipeline: a blanket toggle is not aimed
+                        # at it, only a toggle naming this field is.
+                        stage_toggles=self.stage_toggles.explicit_only(
+                            BinaryClassificationTypeEnum.is_manufacturer
+                        )
+                    ),
                     eager=eager,
                 )
                 field_timings["is_manufacturer"] = time.perf_counter() - _t0
@@ -162,7 +180,12 @@ class ManufacturerExtractionOrchestrator:
                     deferred_subject=deferred_mfg,
                     scraped_text_file=scraped_text_file,
                     timestamp=timestamp,
-                    pipeline_context=PipelineContext(),
+                    pipeline_context=PipelineContext(
+                        # Prerequisite pipeline — see is_manufacturer above.
+                        stage_toggles=self.stage_toggles.explicit_only(
+                            BasicFieldTypeEnum.business_desc
+                        )
+                    ),
                     eager=eager,
                 )
                 field_timings["business_desc"] = time.perf_counter() - _t0
@@ -251,7 +274,8 @@ class ManufacturerExtractionOrchestrator:
                     scraped_text_file=scraped_text_file,
                     timestamp=timestamp,
                     pipeline_context=PipelineContext(
-                        subject_name=mfg.business_desc.result.name
+                        subject_name=mfg.business_desc.result.name,
+                        stage_toggles=self.stage_toggles,
                     ),
                     eager=eager,
                 )
@@ -309,7 +333,7 @@ class ManufacturerExtractionOrchestrator:
                 products=None,
                 contract_products=None,
                 equipments=None,
-                certificates=None,
+                conformity_attestations=None,
                 industries=None,
                 process_caps=None,
                 material_caps=None,

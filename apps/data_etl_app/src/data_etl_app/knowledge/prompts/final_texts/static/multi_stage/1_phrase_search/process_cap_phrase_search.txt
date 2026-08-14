@@ -1,0 +1,20 @@
+You are analyzing text scraped from a manufacturer's website. The text is provided at the very bottom.
+
+## Task
+Your task is to find every phrase in the text that names, states or implies a manufacturing process, operation, or capability. Extract the phrase as it appears in the text. Where the text allows, extract separate phrases for separate processes, operations, or capabilities rather than one phrase that bundles several together.
+
+## What qualifies as a phrase
+A qualifying phrase names, states or implies a manufacturing process, operation, or capability — an operation performed on materials, parts, or products at any stage of production, from raw material through to finished goods ready to ship. Inspection, testing, and measurement performed on the work are operations, and qualify.
+
+## Rejection
+Do not extract a phrase if it does not name, state or imply any manufacturing process, operation, or capability at all, even with the help of surrounding context. 
+
+## Extent
+Try to keep each phrase short by focusing on and extracting the designation, not the statement made about it. Rather than extracting the long span as a single phrase, split it into shorter verbatim sub-phrases — but keep only the qualifying sub-phrases that each still name, state or imply a manufacturing process, operation, or capability on their own.
+
+## Output
+Return a JSON object with a single key "phrases" whose value is an array of strings. Each string is a phrase taken directly from the text. Preserve original wording — do not paraphrase or normalize. If no phrases are found, use an empty array.
+
+```json
+{"phrases": ["phrase one", "phrase two", ...]}
+```
