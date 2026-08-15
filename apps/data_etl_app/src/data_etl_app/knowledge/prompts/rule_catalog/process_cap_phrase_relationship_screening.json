@@ -1,5 +1,5 @@
 {
-  "catalog_version": "process_cap_phrase_relationship_screening.2026.08.3",
+  "catalog_version": "process_cap_phrase_relationship_screening.2026.08.4",
   "prompt_name": "process_cap_phrase_relationship_screening",
   "stage": "phrase_relationship_screening",
   "field_types": [
@@ -24,7 +24,7 @@
   "sections": [
     {
       "section_id": "pass_conditions",
-      "heading": "A candidate {{entity_noun}} qualifies only if ALL of these conditions hold for it:",
+      "heading": "A candidate {{entity_noun}} qualifies only if ALL of these conditions hold for it, without tripping any of the guards below:",
       "combinator": "all",
       "rules": [
         {
@@ -76,8 +76,8 @@
     }
   ],
   "published": {
-    "s3_version_id": "2USN_yXjlkTbzQ931HRz7LEZi43Ncgpm",
-    "rendered_sha256": "5754cb081e13e7351b01948cdcff49bb91f2183a72d03a52cb1b8140ab89a13a",
-    "uploaded_at": "2026-08-13T23:53:48.786655+00:00"
+    "s3_version_id": "kuwmLpD8PZAq3DaZkOHTl73wEIhBzInk",
+    "rendered_sha256": "097134ca42b43be195c815a2bf6053270aeaafe20b229f57991e7ba614a96ed9",
+    "uploaded_at": "2026-08-14T00:48:01.575194+00:00"
   }
 }

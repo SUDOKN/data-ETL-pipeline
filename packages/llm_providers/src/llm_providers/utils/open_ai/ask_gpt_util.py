@@ -25,7 +25,7 @@ async def ask_gpt(
     gpt_model: LLM_Model,
     model_params: LLMModelParams,
 ) -> Optional[str]:
-    response = await fetch_llm_chat_completion_result(
+    response, _timing = await fetch_llm_chat_completion_result(
         context=context,
         prompt=prompt,
         gpt_model=gpt_model,
@@ -45,7 +45,7 @@ async def fetch_gpt_batch_response(
     if not batch_id:
         raise ValueError("batch_id must be provided for fetch_gpt_batch_response.")
 
-    response = await fetch_llm_chat_completion_result(
+    response, timing = await fetch_llm_chat_completion_result(
         context=context,
         prompt=prompt,
         gpt_model=gpt_model,
@@ -56,6 +56,8 @@ async def fetch_gpt_batch_response(
         chat_completion_result=response,
         custom_id=custom_id,
         batch_id=batch_id,
+        client_latency_ms=timing.client_latency_ms,
+        openai_processing_ms=timing.openai_processing_ms,
     )
 
     return response_blob

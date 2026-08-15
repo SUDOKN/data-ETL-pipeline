@@ -345,5 +345,5 @@ as stable join key); the search-precision rework's junk taxonomy; the locked
 rule-catalog decisions (#27 ODM ⇒ both); `db_models/keyword_ground_truth.py`,
 `services/ground_truth/keyword_ground_truth_service.py`,
 `api/routes/ground_truth/keyword_ground_truth.py` (the superseded scaffold);
-`core/utils/phrase_trail_dump_util.py · build_keyword_phrase_rows` (candidate
+`core/utils/extraction_dump_util.py · build_keyword_phrase_rows` (candidate
 payload source); `core/utils/label_dedupe_util.py` (the shared normalizer).*

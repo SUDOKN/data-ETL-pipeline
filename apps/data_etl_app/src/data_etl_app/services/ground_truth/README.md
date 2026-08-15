@@ -1,30 +1,30 @@
 # Ground truth rebuild — master plan & journal
 
 **Branch `new-ground-truth` · this file is the single source of truth for progress.**
-The three design docs in this folder are the specs; this README is the plan, the fork
+The design docs in this folder are the specs; this README is the plan, the fork
 ledger, and the append-only journal. A fresh session resumes by reading: (1) the STATE
 block, (2) the fork ledger, (3) the step it says is next.
 
 | Spec | Instrument | Fields |
 |---|---|---|
-| [BINARY_GT_ANNOTATION_DESIGN.md](BINARY_GT_ANNOTATION_DESIGN.md) | Binary classification | `is_manufacturer`, `is_product_manufacturer`, `is_contract_manufacturer` |
-| [KEYWORD_GROUND_TRUTH_DESIGN.md](KEYWORD_GROUND_TRUTH_DESIGN.md) | Keyword entity inventory | `products`, `contract_products`, `equipments` |
-| [CONCEPT_GROUND_TRUTH_DESIGN.md](CONCEPT_GROUND_TRUTH_DESIGN.md) | Concept assertions | `industries`, `conformity_attestations`, `material_caps`, `process_caps` |
+| [LLM_PHRASE_GT_MODEL_DESIGN.txt](LLM_PHRASE_GT_MODEL_DESIGN.txt) | **ACTIVE — phrase-stage audit trail (run-scoped, user-authored)** | all 7 phrase fields: `products`, `contract_products`, `equipments`, `industries`, `conformity_attestations`, `material_caps`, `process_caps` |
+| [BINARY_GT_ANNOTATION_DESIGN.md](BINARY_GT_ANNOTATION_DESIGN.md) | Binary classification — **PARKED 2026-08-14** | `is_manufacturer`, `is_product_manufacturer`, `is_contract_manufacturer` |
+| [KEYWORD_GROUND_TRUTH_DESIGN.md](KEYWORD_GROUND_TRUTH_DESIGN.md) | Keyword entity inventory — Layer B superseded by the phrase instrument; Layer A (durable inventory) deferred | `products`, `contract_products`, `equipments` |
+| [CONCEPT_GROUND_TRUTH_DESIGN.md](CONCEPT_GROUND_TRUTH_DESIGN.md) | Concept assertions — audit half superseded by the phrase instrument | `industries`, `conformity_attestations`, `material_caps`, `process_caps` |
 
 ---
 
 ## STATE
 
-- **Phase:** Tier 1 kernel · not started
-- **Step in flight:** K0 — base-model design review
-- **Last completed:** K0 draft written (2026-08-13)
-- **Next action:** user reviews
-  [KERNEL_MODELS_DESIGN.md](KERNEL_MODELS_DESIGN.md) and answers its §6 — identity
-  Option A (provenance as metadata), Option B (provenance in the key), or the middle
-  option. **K1 does not start until §6 is answered**, because the answer changes what
-  the models are.
-- **Blockers:** K1 blocked on §6. X2 (legacy disposition) must resolve before B2.
-- **Kernel freeze:** not yet (K8)
+- **Phase:** P — LLM phrase-GT instrument (models → services; routes excluded from this plan)
+- **Step in flight:** P1.1 — audit primitives (core)
+- **Last completed:** P0′ plan pivot + all design forks resolved (2026-08-14)
+- **Next action:** build P1.1, pause for the user's audit. The user audits every substep
+  against their design and coding style — substeps stay one-file-plus-test sized.
+- **Blockers:** none for P1. X2 (legacy disposition) still gates any retirement of the
+  old GT collections/services.
+- **Kernel:** dissolved as a separate phase — see "2026-08-14 pivot" below for what was
+  absorbed and what is parked.
 
 *Update this block at every substep completion. Journal rows are append-only, at the
 bottom of this file.*
@@ -47,315 +47,173 @@ bottom of this file.*
 
 ## The architecture this plan commits to
 
-Decided 2026-08-13. **Binary is a different kind of instrument from keyword and
-concept, and the plan does not pretend otherwise.** Sharing is allowed only where the
-semantics are obvious in one sentence.
+**2026-08-14 pivot.** The user authored
+[LLM_PHRASE_GT_MODEL_DESIGN.txt](LLM_PHRASE_GT_MODEL_DESIGN.txt) — a self-contained,
+run-scoped audit document over every phrase stage (relationship, screening, oov
+grounding, in-vocab grounding) — and it jumped the queue ahead of the binary branch.
+The 2026-08-13 kernel plan (K1–K8) dissolved into it:
 
-```
-Tier 1 — KERNEL (all three instruments)          ← this plan builds it, steps K1–K8
-  packages/core/src/core/…  pure, tiny, field-type agnostic
-  spans · span validator · snapshot witness · provenance capture · span math
+- **Absorbed into P-steps:** snapshot witness (K3 → identifiers), provenance capture +
+  completeness tripwire (K4 → explicit run identity, P1.4), authorship fields
+  (K5 → inline `author_email`/`at`/`source` on audit entries — no separate
+  `Authorship` model).
+- **Parked, deliberately:** evidence spans, span validation, span math (K1/K2/K6) —
+  the design anchors nothing by offset; missed phrases are validated by
+  substring-containment in chunk text, the old service's convention. `Split` (X4) is
+  not in the v1 document. Roles (K5.1/K5.3, X6) wait for the routes phase. Legacy
+  archive tooling (K7) waits for X2.
+- **Parked branches:** binary (BIN-4/BIN-5 open, unscheduled). The keyword/concept
+  *audit* halves are superseded by this instrument; the keyword Layer A durable
+  inventory is deferred with eyes open (see I1 verdict — no cross-run accumulation in
+  v1, the annotator re-judges new runs).
 
-        ├── BINARY branch (own chat/phase)        ← first consumer, proves the kernel
-        │
-        └── Tier 2 — PHRASE LAYER (keyword + concept only)
-              built inside the KEYWORD branch, lifted to shared code only when
-              CONCEPT actually reuses it — never speculatively
-                    ├── KEYWORD branch
-                    └── CONCEPT branch
-```
+**What survives from the 2026-08-13 simplicity review:** sharing only where semantics
+fit one sentence; field-type-agnostic core models (`packages/core` cannot import
+`data_etl_app` — verified, and the field enums live app-side); no document base
+classes. Placement follows X5: reusable embedded models in `packages/core`, the
+Beanie Document and field-enum binding in `apps/data_etl_app`.
 
-**Deliberately NOT shared** (recorded so it is not "fixed" later by mistake):
+### The design's settled semantics (do not re-litigate; ask before deviating)
 
-- **Answer vocabularies.** Binary answers `yes | no | insufficient_evidence` about a
-  proposition; keyword and concept answer `confirmed | rejected | uncertain` about a
-  candidate. Same arity, different meaning. Each instrument declares its own 3-line
-  enum. Forcing one enum would buy nothing and cost clarity.
-- **Phrase anchoring.** Only keyword and concept are phrase-anchored. It is Tier 2,
-  and Tier 2 is not built until a second consumer exists.
-- **Document base classes.** No abstract `GroundTruthDocument`. The three instruments'
-  Beanie Documents are independent; they share *field types*, not inheritance.
+Decisions from the 2026-08-13/14 review sessions, recorded with their reasons:
 
-**Hard constraint discovered 2026-08-13:** `packages/core` never imports
-`data_etl_app` (verified: zero matches), and the field-type enums
-(`ConceptTypeEnum`, `KeywordTypeEnum`, `BinaryClassificationTypeEnum`,
-`GroundTruthSource`) live app-side in `models/types_and_enums.py`. Therefore **every
-kernel primitive is field-type agnostic** — it never names a field enum. Instruments
-bind the concrete enums in their own app-side Documents. This is a constraint the
-architecture already enforces, and it happens to keep the kernel honest.
-
-## What the kernel actually shares
-
-Narrowed from the ten candidate elements after the 2026-08-13 simplicity review.
-Each row must pass: *can its semantics be stated in one sentence?*
-
-| # | Shared element | One-sentence semantics | Step |
-|---|---|---|---|
-| S1 | `EvidenceSpan` / `ReviewedSpan` | A character range in the scraped text, plus the text that was there. | K1 |
-| S2 | Span validator | Given the text and a span, prove the quote is really there. | K2 |
-| S3 | Snapshot witness | Pin the exact text version, and be able to prove later it hasn't changed. | K3 |
-| S4 | `RunProvenance` | Everything needed to reproduce the run that suggested this. | K4 |
-| S5 | Authorship + append-only entry | Who decided, when, and what they did — never overwritten. | K5 |
-| S6 | Span math | Which spans fall inside which ranges. | K6 |
-| S7 | `Split` (dev\|test) | Which subjects headline numbers may come from. | K1 |
-
-Everything else in the three specs — task leases, adjudication, bands, trays,
-sampling strata, brute sweep, scoring — is instrument-specific and lives in a branch.
+1. **Self-contained document.** The doc embeds a full copy of the run's stage outputs
+   plus the whole extraction-metadata block. Reason: `Manufacturer` keeps one result
+   slot per field, overwritten each run — this document is the only surviving record
+   of the run it audits. Self-containment includes pinning the text: witness
+   (`scraped_text_file_version_id`, sha256, char_len) lives in identifiers.
+2. **Run-config-keyed identity (I1 → resolved).** Any version change = a different
+   ground truth. Identity is **explicit version fields** in the unique index — the
+   user chose explicit fields over a fingerprint *"because I want to know what was
+   the change, not just if there was a change."* A field-set tripwire test (K4.2
+   pattern) fails when the metadata models gain a field, forcing a conscious decision
+   about whether it joins the identity.
+3. **No cross-run accumulation in v1 — accepted cost.** A new run means the annotator
+   re-judges from scratch; it is on the annotator to check what carried over. The
+   fold is per-document. Revisit only if annotation hours demand it.
+4. **Catalog-driven template inflation.** The annotation template inflates from the
+   pinned catalog and is hydrated with the LLM's report — never built from the report
+   alone. Unreported guards materialize as `reported: false` with the implied
+   outcome, so silence is auditable. Future reportable children flow through
+   automatically (the wire schema is generated from the same catalog).
+5. **Nested storage, whole-document writes.** The tree shape mirrors the catalog and
+   is written whole on submission — no incremental deep updates. Flattening for
+   analytics is compute (model methods), not storage.
+6. **Stored `passed` is a cache, never editable.** A validator asserts stored
+   `passed == fold(rules through catalog combinators)`. Flipping a condition to
+   failed forces fail; the reverse does not force pass — only the fold decides.
+7. **Audit entries:** `agree | agree-but | disagree`. `agree-but` = correct but
+   incomplete (recall flag) and **requires `corrected_text`** (the addendum);
+   `disagree` = incorrect and requires the correction. Entries carry
+   `author_email`, `at` (timestamp), `source`; array order is submission order and
+   both are kept.
+8. **Same-author resubmission pops their previous entry** (stack-top, the old
+   service's convention). Recorded cost: the pre-judge flip history is lost; the
+   one-line fix (a `superseded` list) exists if flip-rate is ever wanted.
+9. **Judge responses are immutable siblings.** A more-capable-LLM judge's response is
+   generated once, stored next to the human audit slot, never regenerated. Judge
+   entries carry their own provenance (model, judge prompt version); human
+   acceptance is recorded as `proposed_by: judge` + `endorsed_by: human` — never
+   copied into a human-authored entry, so endorsement stays distinguishable from
+   independent agreement.
+10. **Fold: latest wins** per node across authors; untouched nodes (empty audits) are
+    *unreviewed*, not agreement — the fold only consumes reviewed nodes.
+11. **`missed_phrases` lives in the document** beside `extracted_phrases` — the
+    search-recall surface. Human-asserted phrases carry human derivations only
+    (no `llm_result`), validated by substring presence in the chunk text.
+12. **Document granularity mirrors storage exactly** (the user's "it's exactly
+    what's stored"): one document per (subject, field_type, run-config);
+    inside, a chunk-key map (`"start:end"`, same keys as
+    `chunked_extraction_stats`) → per-chunk `extracted_phrases` (phrase-major, with
+    `search_round`) and `missed_phrases`.
+13. **Build order is the user's:** models first, then services/utilities, routes
+    excluded from this plan. Tests ride along every substep.
 
 ---
 
-# Tier 1 — the kernel · steps K1–K8
+# Phase P — the phrase-GT instrument
 
-Target: `packages/core/src/core/` for pure code, tests in `packages/core/tests/`.
-Two substeps (K5.1, K5.3) are app-side and say so.
+Core files under `packages/core/src/core/models/ground_truth/` and
+`packages/core/src/core/services/ground_truth/`; app files under
+`apps/data_etl_app/src/data_etl_app/db_models/` and `services/ground_truth/`.
+(`core/models/ground_truth/` exists and is empty — a leftover `__pycache__` only.)
 
 ---
 
-### K1 · Vocabulary — the words all three instruments share
-
-**Semantics:** plain data, no behavior. New file
-`packages/core/src/core/models/ground_truth/primitives.py`.
+### P1 · Models — the document, bottom-up
 
 | Sub | Do | Done when |
 |---|---|---|
-| K1.1 | `EvidenceSpan {start, end, quote}` and `ReviewedSpan {start, end}` as pydantic models. Half-open ranges (`[start, end)`) — stated in the docstring, since every later comparison depends on it. Validator: `end > start`, `start >= 0`, non-empty quote. | Models import cleanly; field-type agnostic (no app imports) |
-| K1.2 | `Split` enum (`dev` \| `test`) with a docstring recording *why*: anchor-mfg and steelcraft are dev by construction, headline numbers come from test only. | Enum exists |
-| K1.3 | Unit tests: valid construction, each rejection case, half-open boundary behavior. | `pytest packages/core` green |
+| P1.1 | **Core** `models/ground_truth/audits.py`: `AuditVerdict` (`agree`/`agree_but`/`disagree`), `TextFieldAudit {type, corrected_text, author_email, at, source}` with the requiredness validator (`corrected_text` required for `agree_but` and `disagree`), plus the judge sibling model `JudgeAudit` (content + judge model + judge prompt version + `at`; written once) and the `proposed_by`/`endorsed_by` fields that keep endorsement distinguishable. | Models + validators import cleanly; tests for every requiredness branch |
+| P1.2 | **Core** `models/ground_truth/rule_tree.py`: recursive `AuditedRule {rule_id, kind, outcome, explanation, reported, audits, judge_audit?, sub_rules}` and `AuditedSection {section_id, combinator, applied_rules}`. `reported=False` marks catalog-synthesized nodes (unreported guards, notes). Combinator values come from the catalog's own vocabulary — this file declares no combinator enum. | Recursion round-trips through pydantic serialization; tests |
+| P1.3 | **Core** `models/ground_truth/stage_blocks.py`: `RelationshipGT`, `ScreeningLLMCopy {passed, identified_entity, no_candidate_explanation, sections}`, `HumanScreeningDerivation {identified_entity, audits, sections}`, `ScreeningGT`, `OovGroundingGT`, `InVocabGroundingGT` (level map mirroring `IterativeGroundingResult`: `{lvl → [{parent_group_id, group_id, stop_reason?, applied_rules, audits}]}`), `ExtractedPhraseGT {search_round, stages…}`, `MissedPhraseEntry` (human derivations only). Structural `passed` validator (catalog-free part). | Models exist; tests incl. a concept-shaped and a keyword-shaped instance |
+| P1.4 | **Core** `models/ground_truth/run_identity.py`: `ExplicitRunIdentity` — the enumerated per-node version fields (`prompt_version_id`, `catalog_version`, `llm_model`, model-params hash, node caps) for every node of `LLMPhraseExtractionMetadata` + `KeywordExtractionMetadata` + `ConceptExtractionMetadata`, plus base `chunk_strat` and `ontology_version_id`; `from_metadata()` constructor. **Tripwire test**: a recorded snapshot of the metadata models' field sets; the test fails when a field appears that identity has not consciously included or excluded (follow `tests/test_services/test_prompt_provenance.py` conventions). | Model + constructor + tripwire green |
+| P1.5 | **App** `db_models/llm_phrase_ground_truth.py`: `LLMPhraseGroundTruth(Document)` — subject, field_type (app enum), `scraped_text_file_version_id`, witness (sha256, char_len), `run_identity`, the full embedded metadata copy, `chunks: {chunk_key → {extracted_phrases, missed_phrases}}`, `created_at`; unique index over (subject, field_type, text version, run_identity dotted fields). `db_seed_indices` re-point; wire-schema regen stays the user's workflow. | Document + index defined; round-trip test; no existing test breaks |
 
-**PAUSE — REVIEW K1.** *Question for the user:* are these the right primitive shapes,
-and is `quote` on the span (denormalized, a second witness) worth its storage cost
-versus deriving it from the text every time? (Recommendation: keep it — it is the
-witness that catches a snapshot swap, and all three specs assume it.)
+**PAUSE — REVIEW P1.** *Question for the user:* does the `ExplicitRunIdentity` field
+list match your bar for "worth storing in identifiers" — specifically, are the
+node batching caps (`max_phrases_per_request`, `max_pairs_per_request`, recursive
+round caps) in or out of the unique index?
 
 ---
 
-### K2 · The span validator — one pure function
-
-**Semantics:** given text and a span, is the quote really there? New file
-`packages/core/src/core/services/ground_truth/span_validation.py`.
-
-**Context that changed on 2026-08-13:** this is *new* code, not a shared util. The
-model-side structured-evidence check this was supposed to share
-([applied_rule.py:14-23](packages/core/src/core/models/extraction_schemas/applied_rule.py#L14-L23))
-was removed on 2026-08-11 because a model asked for a span the source does not contain
-has no compliant move. That reasoning does not transfer to humans: a human quoting by
-text selection cannot fabricate a span. The human-side rule stands on its own.
+### P2 · Services and utilities
 
 | Sub | Do | Done when |
 |---|---|---|
-| K2.1 | `validate_span(text, span) -> None` — raises when `text[start:end] != quote`. Typed exceptions, not bare `ValueError`. | Function + error classes exist |
-| K2.2 | `locate_quote(text, quote) -> int` — for spans submitted without an offset. Exactly one occurrence → its offset; zero → `QuoteNotFound`; more than one → `AmbiguousQuote` (never guess). | Function exists |
-| K2.3 | Unit tests, explicitly including: non-ASCII text (see the unicode-escape corruption history), a quote occurring twice, quotes at index 0 and at EOF, empty text, quote longer than text. | `pytest packages/core` green |
+| P2.1 | **Core** `services/ground_truth/catalog_template_inflation.py`: catalog → inflated section/rule skeleton; hydrate from stored stats (chunk → round → phrase); synthesize unreported guards (`reported=False`, implied outcome); include note children as context nodes. Share the traversal with `catalog_wire_schema` where it does not contort either. | Inflation of a real catalog + real stats round-trips; unreported-guard test |
+| P2.2 | **App** `services/ground_truth/llm_phrase_gt_template_service.py`: assemble a full GT document template from a `Manufacturer`'s stored results — copies, witness computation, `ExplicitRunIdentity.from_metadata`, empty audit slots. | Template builds for one keyword and one concept field from a live-shaped fixture |
+| P2.3 | **Core** `services/ground_truth/audit_submission_validation.py`: the contract — requiredness rules; human derivations checked against the pinned catalog (outcomes in `outcome_vocab` for the rule's kind, `all`-sections complete on fresh derivations, rule ids exist at that `catalog_version`); entity-change ⇒ fresh sections; missed-phrase substring check; same-author pop; append ordering. | The test file reads as the contract; every rejection branch covered |
+| P2.4 | **Core** `services/ground_truth/gt_fold.py`: latest-wins effective view; effective `passed` via the combinator fold; per-document computed-truth summary and per-rule agreement rollups (the drift diagnosis this instrument exists for). | Fold tests: both toggle directions, multi-author latest-wins, unreviewed-node exclusion |
+| P2.5 | **App, deferrable** `services/ground_truth/judge_service.py`: generate the judge response once per slot, immutable write, full judge provenance. Build only when the user says the judge experiment starts. | Marked deferred unless activated |
 
-**PAUSE — REVIEW K2.** *Question:* on `AmbiguousQuote`, should the API return the
-candidate offsets so a client can disambiguate, or just reject? (Recommendation:
-return them — it costs one list and turns a dead end into a UI affordance later.)
-
----
-
-### K3 · Snapshot and witness
-
-**Semantics:** pin the exact text, and be able to prove it later. New file
-`packages/core/src/core/services/ground_truth/text_snapshot.py`.
-
-**Good news from recon:** versioned download already exists —
-`download_scraped_text_from_s3_by_subject_unique_id(subject_unique_id, version_id)` in
-[scraped_text_file_util.py:161](packages/infra/src/infra/utils/aws/s3/scraped_text_file_util.py#L161),
-alongside `get_latest_version_id_by_subject_unique_id`. This step is a thin wrapper
-plus hashing, not new S3 work.
-
-| Sub | Do | Done when |
-|---|---|---|
-| K3.1 | `TextSnapshotWitness {subject_unique_id, scraped_text_file_version_id, sha256, char_len}` + `compute_witness(subject, version_id, text)` — pure. | Model + function exist |
-| K3.2 | `verify_witness(text, witness) -> None` — raises `SnapshotMismatch` on sha or length disagreement. Pure. | Function exists |
-| K3.3 | `load_pinned_snapshot(subject, version_id, witness=None)` — async; downloads by pinned version, verifies when a witness is supplied. | Function exists |
-| K3.4 | Tests: pure ones by default (hash stability, mismatch detection, unicode length semantics — chars not bytes); the S3 round-trip marked `integration`. | `pytest packages/core` green; integration test passes when run explicitly |
-
-**PAUSE — REVIEW K3.** *Question:* `char_len` — characters or bytes? (Recommendation:
-characters, because every offset in every spec is a Python string index. Worth stating
-once, here, because getting it wrong silently corrupts every span.)
+**PAUSE — REVIEW P2.** *Question:* the fold's per-rule agreement rollups — which
+slices do you want first (per rule id across subjects, per field, per catalog
+version), so the rollup shape serves the first real analysis instead of a guess?
 
 ---
 
-### K4 · Provenance capture — the comprehensiveness guarantee
+### P3 · Routes — explicitly OUT of this plan
 
-**Semantics:** everything needed to reproduce the run that suggested this. New file
-`packages/core/src/core/models/ground_truth/provenance.py`.
+Recorded so it is not forgotten: template GET, submission POST, computed-truth GET;
+blinding/role gating (X6) re-enters here. Planned in its own session when P1–P2 are
+audited and stable.
 
-**This is the step that delivers the user's stated goal** ("provenance as comprehensive
-as possible, to ensure reproducibility"). Recon found the pipeline already carries it:
-[`LLMPhraseExtractionMetadata`](packages/core/src/core/models/extraction_results/llm_phrase_extraction_results.py#L124)
-holds per-node `prompt_version_id` (S3 version), `catalog_version`, `llm_model`,
-`model_params`, plus `chunk_strat` and `ontology_version_id` on the base. So
-`RunProvenance` **captures existing models rather than re-listing fields** — re-listing
-is how a provenance block silently goes stale.
-
-| Sub | Do | Done when |
-|---|---|---|
-| K4.1 | `RunProvenance` composing the existing extraction metadata model(s) plus the run reference and the pinned `scraped_text_file_version_id`. Generic over the metadata type so single-stage (binary) and multi-stage (keyword/concept) both fit without a union of hand-written fields. | Model exists; round-trips a real metadata instance |
-| K4.2 | **Completeness tripwire test** — fails if a field is added to a source metadata model and is not reachable through `RunProvenance`. Follow the existing convention in `apps/data_etl_app/tests/test_services/test_prompt_provenance.py`. | Test exists and fails when a field is hidden |
-| K4.3 | Tests: construction from each metadata shape; serialization round-trip. | `pytest` green |
-
-**PAUSE — REVIEW K4.** *Question:* this is where the I1 fork gets its teeth. With
-provenance this complete and mechanically enforced, does capturing it as **metadata**
-satisfy the reproducibility goal — or do you still want provenance in the identity
-key? (Analysis in the ledger under I1. Recommendation: metadata; the kernel is
-unblocked either way, and the decision is only load-bearing at keyword kickoff.)
-
----
-
-### K5 · Authorship, roles, append-only
-
-**Semantics:** who decided, when, and what they did — never overwritten.
-
-| Sub | Do | Done when |
-|---|---|---|
-| K5.1 | **App-side:** extend `UserRole` in [db_models/user.py](apps/data_etl_app/src/data_etl_app/db_models/user.py) with `ANNOTATOR` and `ADJUDICATOR`. Existing registration/auth unchanged. | Enum extended; no existing test breaks |
-| K5.2 | **Core:** `DecisionLogEntry {author_email, at, op, payload}` — plain data, append-only by convention (nothing mutates it). Docstring records that corrections supersede rather than edit. | Model exists |
-| K5.3 | **App-side:** a role-gate dependency (`require_role(...)`) in `dependencies/`, reusing the existing user-auth dependency. | Dependency exists with tests |
-| K5.4 | Tests for both. | `pytest` green |
-
-**PAUSE — REVIEW K5.** *Question:* should `ADJUDICATOR` imply `ANNOTATOR`, or be a
-disjoint role? (Recommendation: imply — with one human today, requiring two role
-grants is friction with no benefit; the distinction that matters is recorded per
-*annotation*, not per person.)
-
----
-
-### K6 · Span math for scoring
-
-**Semantics:** which spans fall inside which ranges. New file
-`packages/core/src/core/services/ground_truth/span_math.py`.
-
-This is the small pure kernel behind three separate promises in the specs: score only
-inside what a human read, derive per-chunk truth for any chunking, and price the
-`max_chunks` truncation.
-
-| Sub | Do | Done when |
-|---|---|---|
-| K6.1 | `intersect(a, b)`, `contains(outer, inner)`, `overlaps(a, b)` over half-open ranges; `total_covered(spans)` with overlap merging. | Functions exist |
-| K6.2 | `is_beyond_window(span, window)` — the evidence-beyond-window measurement both the binary and concept specs promise. | Function exists |
-| K6.3 | Tests: adjacency vs overlap (the classic half-open off-by-one), empty intersections, unsorted and overlapping input to `total_covered`. | `pytest packages/core` green |
-
-**PAUSE — REVIEW K6.** *Question:* does `chunk_bounds` parse cleanly into a range here?
-It is a string key in the pipeline (`chunk_map` keys); if its format is not a plain
-`"start:end"`, K6 needs a parser and that is worth seeing before it is written.
-
----
-
-### K7 · Legacy disposition tooling — build now, run when X2 resolves
-
-**Semantics:** be able to archive the old collections before anything is dropped.
-
-| Sub | Do | Done when |
-|---|---|---|
-| K7.1 | Script under `apps/data_etl_app/src/data_etl_app/scripts/` that JSON-dumps `binary_ground_truths`, `keyword_ground_truths`, `concept_ground_truths` to `batch_data/gt_archive/<date>/`. Read-only; no deletes anywhere in it. | Script exists, dry-run prints counts |
-| K7.2 | The keyword-F2 query: count docs with non-empty `corrections` in each collection — the evidence that decides whether any real human labor exists to preserve. | Query runs; counts recorded in the journal |
-| K7.3 | Run K7.2 against the dev DB and record the numbers in the journal. **Do not delete anything.** | Journal row with counts |
-
-**PAUSE — REVIEW K7.** *Question:* with the counts in hand, X2 becomes decidable —
-archive-and-wipe, or is there labor worth migrating? This is the gate for B2.
-
----
-
-### K8 · Kernel freeze gate
-
-| Sub | Do | Done when |
-|---|---|---|
-| K8.1 | Full suite green from repo root; confirm no `data_etl_app` import leaked into `packages/core`. | `pytest` green; grep clean |
-| K8.2 | Write the kernel's own short README (what each primitive is for, one line each). | File exists |
-| K8.3 | User review of the whole kernel surface. | Sign-off |
-| K8.4 | Journal row **"KERNEL v1 FROZEN"**; update the `gt-master-plan` memory. After this, kernel API changes need a journal-logged decision. | Journal + memory updated |
-
-**PAUSE — REVIEW K8. This is the branching point.** After K8 the plan forks; the next
-chat can be the binary branch, and keyword/concept can proceed independently later.
-
----
-
-# Beyond the branch point — sketches only
-
-Deliberately not expanded to substeps: doing so now would be guessing, and each
-branch's kickoff re-reads its spec against a kernel that actually exists.
-
-**Binary branch (B).** B1 fork closeout (BIN-4 guideline wording, BIN-5 bundling) ·
-B2 three collections + indexes + schema regen (**needs X2**) · B3 guideline files ·
-B4 annotator plane with blinding enforced by response models · B5 adjudicator + admin
-planes · B6 consumer plane and metrics · B7 CLI annotation harness · B8 caller
-migration and legacy retirement · B9 pilot batch.
-
-**Tier 2 phrase layer + keyword branch (K).** K0 kickoff confirms I1 and closes
-KW-F1/KW-F3; the phrase-anchoring primitive is built here as *keyword code*, and only
-lifted into the kernel if the concept branch genuinely reuses it.
-
-**Concept branch (C).** Kickoff closes CON-2, CON-5, CON-6; heaviest instrument
-(ontology trays, brute sweep, depth semantics, ancestor-credit scoring).
-
-**Cross-instrument closeout.** Test-split onboarding, second-annotator tooling, and a
-UI decision informed by real annotation-hours data from the CLI-harness era.
+**Untouched until X2 resolves:** the old binary/keyword/concept GT services, routes,
+and collections — including the stale legacy-convention
+[concept_ground_truth_new.py](../../db_models/concept_ground_truth_new.py) — keep
+running; callers unaffected.
 
 ---
 
 ## Fork ledger
 
-**RESOLVED** = verdict recorded · **OPEN** = decide at the step named · **INTERPRETED**
-= working interpretation, confirm at kickoff.
+**RESOLVED** = verdict recorded · **OPEN** = decide at the step named · **PARKED** =
+deliberately unscheduled.
 
 | Id | Question | Scope | Status | Verdict |
 |---|---|---|---|---|
-| X1 | Multi-annotator machinery | all | **RESOLVED** 08-12 | Support N + append-only + provisional/adjudicated from day one; run with 1; agreement tooling later |
-| X3a | Binary annotation surface | binary | **RESOLVED** 08-12 | Full scraped text; the model's window may be smaller; offsets let eval down-scope |
-| X5 | Kernel placement | all | **RESOLVED** 08-13 | Pure primitives in `packages/core`; Beanie Documents and routes stay in `apps/data_etl_app` |
-| X6 | Annotator/adjudicator identity | all | **RESOLVED** 08-13 | Extend `UserRole` with `ANNOTATOR`, `ADJUDICATOR` |
-| X7 | How much to share | all | **RESOLVED** 08-13 | Binary is its own kind; kernel stays tiny and one-sentence-explainable; answer vocabularies, phrase anchoring, and document base classes deliberately NOT shared |
-| X2 | Legacy collections: migrate vs archive+wipe | all | **OPEN** | Rec: archive-dump then wipe. Decidable after K7.3 produces counts. Blocks B2 |
-| I1 | Does "phrase-level with full provenance" put provenance in the identity key? | kw + concept | **OPEN** — analysis below | Rec: comprehensive provenance as *metadata*; identity stays snapshot-keyed. Decide at K0; does not block the kernel |
-| X4 | dev/test split on all three instruments | all | OPEN | Rec: yes everywhere. `Split` ships in K1 regardless; adoption decided per branch |
-| BIN-4 | Guidelines: human-language vs catalog rules | binary | OPEN | Rec: human-language, catalog wording withheld |
-| BIN-5 | Bundle all three questions per sitting | binary | OPEN | Rec: bundle by default |
-| KW-F1 | Blind-highlight pass | keyword | OPEN | Rec: calibration-only during pilot |
-| KW-F3 | Products family only vs both | keyword | OPEN | Rec: both |
-| CON-2 | Explicit negatives with catalog-rule reasons | concept | OPEN | Rec: yes, rule id optional |
-| CON-5 | How "uncertain" scores | concept | OPEN | Rec: excluded from numerator and denominator, reported as abstention |
-| CON-6 | Keyword fields onto the assertion model later | concept | OPEN | Rec: defer, block nothing |
-
-### I1 — the analysis (raised 2026-08-12, sharpened 2026-08-13)
-
-The user's goal: *provenance as comprehensive as possible, for reproducibility* — with
-the intuition that if any of it changes, that is logically a different ground truth.
-
-**The two concerns are separable, and only one of them is free.**
-
-*Comprehensiveness* costs nothing and is delivered by K4: every judgment record embeds
-the full `RunProvenance`, with a tripwire test that fails when a new metadata field
-escapes capture. Nothing is lost, and any past judgment can be replayed exactly.
-
-*Identity-keying* is the expensive half. Ask which provenance fields actually change
-**what is true about the text**:
-
-| Provenance field | Does a change alter the truth? |
-|---|---|
-| `scraped_text_file_version_id` | **Yes** — different text, different truth. Already in the key. |
-| `ontology_version_id` | Partly, for concept only: it changes the available *vocabulary*, not the facts. Concept spec §8 handles it with a revalidation sweep that turns confirmed-OOV into in-vocab. |
-| `prompt_version_id`, `catalog_version`, `llm_model`, `model_params`, `chunk_strat` | **No** — these change what the *model said*, not what is true. |
-
-So exactly one truth-bearing field exists, and it is already in the key. Putting the
-rest in the key means a prompt edit invalidates a human's judgment about whether
-"we operate 14 progressive stamping presses" proves manufacturing — which it plainly
-does not. The keyword spec measured the cadence: **twelve prompt edits in the week it
-was written**. Under identity-keying, nothing ever accumulates.
-
-The real intuition behind the fork is still valid and is handled separately: the
-*candidate set* a human judged **is** run-dependent, and that is exactly what a
-per-run overlay records (keyword Layer B, concept `candidate_ref`) — full provenance,
-run-scoped, without fragmenting the durable truth. And where a *policy* change really
-should invalidate a label, `policy_flags` + re-adjudication handles it by re-deciding
-a slice rather than re-collecting a corpus.
-
-**Recommendation: option A** — phrase-anchored judgment records carrying comprehensive
-provenance, snapshot-keyed durable truth. Option C (phrase records primary, snapshot
-rollup folded) is nearly the same design, since truth is folded from the append-only
-records either way; if the fold is what appeals, C and A converge. Option B is the one
-that defeats the purpose.
+| X1 | Multi-annotator machinery | all | **RESOLVED** 08-12 | Support N; entries append in submission order; effective view = latest wins (see PH-4) |
+| X3a | Binary annotation surface | binary | **RESOLVED** 08-12 | Full scraped text (unchanged; binary parked) |
+| X5 | Placement | all | **RESOLVED** 08-13 | Reusable models in `packages/core`; Beanie Documents app-side — applied to P1 |
+| X6 | Annotator/adjudicator roles | all | **RESOLVED** 08-13, **parked to P3** | Extend `UserRole`; only matters at the route plane |
+| X7 | How much to share | all | **RESOLVED** 08-13 | One-sentence-explainable shared pieces only; no base Documents |
+| I1 | Provenance in the identity key? | phrase fields | **RESOLVED** 08-14 | **Yes — run-config-keyed audit documents** (user's verdict): explicit version fields in the unique index; truth computed per-doc by the fold; cross-run accumulation deliberately deferred (annotator re-judges; accepted cost) |
+| PH-1 | Template built from report vs catalog | phrase | **RESOLVED** 08-14 | Catalog-driven inflation, hydrated with the report; unreported guards materialize `reported=false` |
+| PH-2 | Judge response handling | phrase | **RESOLVED** 08-14 | Immutable sibling, generated once; judge provenance + `proposed_by`/`endorsed_by`; never adopted as human-authored |
+| PH-3 | `agree-but` payload | phrase | **RESOLVED** 08-14 | Requires `corrected_text` (the addendum) |
+| PH-4 | Fold semantics | phrase | **RESOLVED** 08-14 | Latest wins per node; empty audits = unreviewed, excluded |
+| PH-5 | Search-recall surface | phrase | **RESOLVED** 08-14 | `missed_phrases` in-document, per chunk, substring-validated |
+| PH-6 | Identity mechanism | phrase | **RESOLVED** 08-14 | Explicit version fields (user: "I want to know what was the change") + field-set tripwire |
+| PH-7 | Same-author resubmission | phrase | **RESOLVED** 08-14 | Pop retained (old-service convention); flip-history loss recorded as accepted; `superseded` list is the one-line fix if ever wanted |
+| PH-8 | Cross-run reuse of judgments | phrase | **RESOLVED** 08-14 | None in v1 — re-judge from scratch; on the annotator to check carry-over |
+| X2 | Legacy collections: migrate vs archive+wipe | all | **OPEN** | Rec: archive-dump then wipe; needs the K7-style counts before anything retires |
+| X4 | dev/test split | all | **OPEN** | Not in the v1 phrase document; decide at consumer/scoring time |
+| BIN-4 / BIN-5 | Binary guideline wording / bundling | binary | **PARKED** | Branch parked 08-14 |
+| KW-F1 | Blind-highlight pass | keyword | **PARKED** | Prefill-from-LLM is intentional (template UX); anchor bias accepted; calibration idea kept on record |
+| KW-F3 | Products family only vs both | keyword | **SUPERSEDED** | The phrase instrument covers all phrase fields structurally |
+| CON-2 | Explicit negatives with rule reasons | concept | **ABSORBED** | Rule-level audits are exactly this |
+| CON-5 / CON-6 | Uncertain scoring / keyword fields on assertions | concept | **PARKED** | Scoring-time decisions |
 
 ---
 
@@ -365,4 +223,5 @@ that defeats the purpose.
 |---|---|
 | 2026-08-12 | **P0 — chartered.** README repurposed from a stale duplicate of the binary design into master plan + journal. Locked: API-first (UI deferred, CLI harness stand-in), binary-first order, README-as-journal with memory mirror. X1 and X3a resolved; I1 recorded. |
 | 2026-08-13 | **K0 — base models drafted for review** ([KERNEL_MODELS_DESIGN.md](KERNEL_MODELS_DESIGN.md)), at the user's request to settle the provenance question on models rather than prose. Contains: a concrete definition of "identity keying" (the unique index, using the existing `binary_gt_unique_idx` as the worked example), a direct answer to "you can't tell whether a prompt edit was unrelated" (nothing ever classifies an edit — reuse joins on phrase+text, and the unmatched remainder IS the work), the `EvidenceSpan` / `ReviewedSpan` / `Split` / `TextSnapshotWitness` / `RunProvenance[T]` / `Authorship` models, and §6's A-vs-B decision. New recon fact: **this system has no run identity at all** — no `run_id` or `batch_id`, and `Manufacturer` keeps one result slot per field, overwritten each run — so a pv-keyed truth would key to something not retained, while the metadata block is the only run identity the codebase has. K1 blocked until §6 is answered. |
-| 2026-08-13 | **Plan expanded to substep granularity + simplicity review.** User push-back: binary is a different kind of instrument from keyword/concept; the common base must stay small and one-sentence-explainable. Kernel narrowed from 10 shared elements to 7; answer vocabularies, phrase anchoring, and document base classes explicitly de-scoped (X7). Phrase anchoring demoted to a Tier 2 layer built inside the keyword branch. X5 (placement: `packages/core`, Documents in app) and X6 (extend `UserRole`) resolved. Recon findings folded in: versioned S3 download already exists; `LLMPhraseExtractionMetadata` already carries per-node prompt/catalog versions so `RunProvenance` captures rather than re-lists; `packages/core` cannot import the app, so kernel primitives are field-type agnostic; the model-side structured-evidence check was removed 2026-08-11, so K2 is new code and the specs' "same standard as the model" claim is stale. I1 analysis written. Next: K1.1. |
+| 2026-08-13 | **Plan expanded to substep granularity + simplicity review.** User push-back: binary is a different kind of instrument from keyword/concept; the common base must stay small and one-sentence-explainable. Kernel narrowed from 10 shared elements to 7; answer vocabularies, phrase anchoring, and document base classes explicitly de-scoped (X7). Phrase anchoring demoted to a Tier 2 layer built inside the keyword branch. X5 (placement) and X6 (extend `UserRole`) resolved. Recon findings folded in: versioned S3 download already exists; `LLMPhraseExtractionMetadata` already carries per-node prompt/catalog versions so provenance captures rather than re-lists; `packages/core` cannot import the app, so kernel primitives are field-type agnostic; the model-side structured-evidence check was removed 2026-08-11. I1 analysis written. Next: K1.1. |
+| 2026-08-14 | **P0′ — pivot to the user-authored phrase-GT instrument; every design fork resolved.** [LLM_PHRASE_GT_MODEL_DESIGN.txt](LLM_PHRASE_GT_MODEL_DESIGN.txt) reviewed over two sessions; review verdicts that shaped it: the wire emits FLAT `AppliedRule` rows and every catalog child rule is a never-reported `note` (the tree lives in the catalog — hence PH-1 catalog inflation, which also future-proofs reportable children since the wire schema generates from the same catalog); stored stats are chunk-keyed (`"0:1000"` in `chunked_extraction_stats`) then round→phrase-major — the document mirrors that exactly (settled semantics #12). Resolutions this session: I1 → run-config-keyed (§6 answered as B for this instrument, with the fold as the computed-truth half); PH-1…PH-8; identity by EXPLICIT version fields + tripwire (user wants the *what* of a change visible, not just its existence); placement per X5. Kernel dissolved: K3/K4/K5-shapes absorbed into P1, spans (K1/K2/K6) parked — nothing in the design anchors by offset; binary branch parked. Old GT trio + stale `concept_ground_truth_new.py` untouched pending X2. Build order is the user's: P1 models → P2 services; routes excluded (P3 stub). The user audits every substep. Next: P1.1. |

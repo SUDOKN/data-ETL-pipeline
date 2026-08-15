@@ -1,10 +1,11 @@
 """The dump a stage-gated run writes when it stops short of reconcile.
 
-The full phrase-trail dump is built by the reconcile node, which a stopped run
+The full extraction dump is built by the reconcile node, which a stopped run
 never reaches — so without this, switching a stage off would buy you a cheaper
 run and nothing to read from it. This walks the stages that DID publish a
-completed request map and emits the same per-chunk, per-phrase row shape, minus
-the verdict fields only a finished chain can justify.
+completed request map and emits the same per-chunk shape: per-phrase rows for
+the multi-stage pipelines (minus the verdict fields only a finished chain can
+justify), the parsed result for a single-stage field.
 
 Every stage that can precede a stop point shares one ``get_result`` signature,
 which is what makes the walk generic. Iterative grounding is the single
@@ -32,11 +33,14 @@ from core.models.pipeline_nodes.base.pipeline_stage import PipelineStage
 from core.services.pipeline_nodes.multi_stage.llm_phrase_recursive_search_node_service import (
     build_llm_phrase_search_results,
 )
-from core.utils.phrase_trail_dump_util import (
+from core.utils.extraction_dump_util import (
     build_partial_phrase_rows,
+    build_run_provenance,
+    jsonable_result,
     merge_stage_repairs,
-    write_phrase_trails_dump,
+    write_extraction_dump,
 )
+from scraper.models.s3.scraped_text_file import ScrapedTextFile
 
 logger = logging.getLogger(__name__)
 
@@ -52,6 +56,9 @@ class _HasChunkedRequestMap(Protocol):
     @property
     def chunked_request_map(self) -> dict: ...
 
+    @property
+    def metadata(self) -> object: ...
+
 
 async def write_partial_run_dump(
     *,
@@ -60,6 +67,7 @@ async def write_partial_run_dump(
     stopped_at: PipelineStage,
     disabled_stages: set[PipelineStage],
     extraction_requests: _HasChunkedRequestMap,
+    scraped_text_file: ScrapedTextFile,
     pipeline_context: PipelineContext,
     timestamp: datetime,
 ) -> None:
@@ -75,9 +83,49 @@ async def write_partial_run_dump(
             for stage, node_class in pipeline_context.stages_completed
         }
         stages_run = [stage.value for stage, _node_class in pipeline_context.stages_completed]
+        # One flat lookup across every completed stage, for pricing the dump:
+        # custom_ids are globally unique, so merging cannot collide.
+        completed_requests = {
+            custom_id: request_doc
+            for _node_class, request_map in completed_by_stage.values()
+            for custom_id, request_doc in request_map.items()
+        }
 
-        chunked_rows: dict[str, list[dict[str, object]]] = {}
+        chunked_contents: dict[str, dict[str, object]] = {}
         for chunk_bounds, bundle in extraction_requests.chunked_request_map.items():
+            # A single-stage field has no phrase stages at all — its whole
+            # pipeline is one request per chunk, so the chunk's content is the
+            # parsed result rather than rows.
+            if PipelineStage.single_stage_extraction in completed_by_stage:
+                node_class, request_map = completed_by_stage[
+                    PipelineStage.single_stage_extraction
+                ]
+                try:
+                    result = await node_class.get_result(
+                        subject_unique_id=subject_unique_id,
+                        field_type=field_type,
+                        chunk_bounds=chunk_bounds,
+                        extraction_bundle=bundle,
+                        completed_request_map=request_map,
+                        timestamp=timestamp,
+                    )
+                    chunked_contents[chunk_bounds] = {
+                        "result": jsonable_result(result)
+                    }
+                except Exception as parse_error:
+                    # The dump must still say the request ran; a null result
+                    # with a note beats losing the whole file.
+                    logger.error(
+                        f"[{subject_unique_id}] partial dump could not parse the "
+                        f"single-stage result for '{field_type.name}' chunk "
+                        f"{chunk_bounds}: {parse_error}",
+                        exc_info=True,
+                    )
+                    chunked_contents[chunk_bounds] = {
+                        "result": None,
+                        "note": "result_parse_failed",
+                    }
+                continue
             search_rounds: dict[int, LLMSearchResults] = {}
             if PipelineStage.phrase_search in completed_by_stage:
                 _search_node, search_map = completed_by_stage[
@@ -147,41 +195,42 @@ async def write_partial_run_dump(
                     repairs=grounding_repairs,
                 )
 
-            chunked_rows[chunk_bounds] = build_partial_phrase_rows(
-                search_rounds=search_rounds,
-                relationship_flat=relationship_flat,
-                screening_flat=screening_flat,
-                grounding_flat=grounding_flat,
-                grounding_stage=grounding_stage.value if grounding_stage else None,
-                repairs_flat=merge_stage_repairs(
-                    {
-                        "screening": screening_repairs,
-                        **(
-                            {grounding_stage.value: grounding_repairs}
-                            if grounding_stage
-                            else {}
-                        ),
-                    }
-                ),
-            )
+            chunked_contents[chunk_bounds] = {
+                "rows": build_partial_phrase_rows(
+                    search_rounds=search_rounds,
+                    relationship_flat=relationship_flat,
+                    screening_flat=screening_flat,
+                    grounding_flat=grounding_flat,
+                    grounding_stage=grounding_stage.value if grounding_stage else None,
+                    repairs_flat=merge_stage_repairs(
+                        {
+                            "screening": screening_repairs,
+                            **(
+                                {grounding_stage.value: grounding_repairs}
+                                if grounding_stage
+                                else {}
+                            ),
+                        }
+                    ),
+                    subject_name=pipeline_context.subject_name,
+                )
+            }
 
-        write_phrase_trails_dump(
+        write_extraction_dump(
             subject_unique_id=subject_unique_id,
             field_type=field_type,
             timestamp=timestamp,
-            chunked_phrase_trails=chunked_rows,
-            run_summary={
-                "partial": True,
-                "stopped_at": stopped_at.value,
-                "stages_run": stages_run,
-                "stages_disabled": sorted(stage.value for stage in disabled_stages),
-                "note": (
-                    "Stage-gated run: it stopped at the first disabled stage, so no "
-                    "final result was written to the subject. A stage absent from a "
-                    "row's keys did not run; an explicit null means it ran and had "
-                    "nothing for that phrase."
-                ),
-            },
+            chunked_contents=chunked_contents,
+            chunked_request_map=extraction_requests.chunked_request_map,
+            completed_requests=completed_requests,
+            run_provenance=build_run_provenance(
+                metadata=extraction_requests.metadata,
+                scraped_text_file=scraped_text_file,
+                partial=True,
+                stopped_at=stopped_at.value,
+                stages_run=stages_run,
+                stages_disabled=sorted(stage.value for stage in disabled_stages),
+            ),
             name_suffix="__partial",
         )
     except Exception as error:  # diagnostics must not sink the run

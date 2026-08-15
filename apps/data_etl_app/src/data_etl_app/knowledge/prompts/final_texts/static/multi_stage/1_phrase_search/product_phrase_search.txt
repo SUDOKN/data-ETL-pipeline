@@ -1,30 +1,16 @@
-You are analyzing text scraped from a manufacturer's website.
+You are analyzing text scraped from a manufacturer's website. The text is provided at the very bottom.
 
 ## Task
-Your task is to find every phrase in the text that states or implies a product, part, component, system, item, or product category. Extract the phrase as it appears in the text. Where the text allows, extract separate phrases for separate products, parts, components, systems, or items rather than one phrase that bundles several together.
+Your task is to find every phrase in the text that names, states or implies a product, part, component, system, or item. Extract the phrase as it appears in the text. Where the text allows, extract separate phrases for separate products, parts, components, systems, or items rather than one phrase that bundles several together.
 
-## Definition
-A qualifying phrase names a made artifact — a product, part, component, system, or item that comes out of manufacturing work, whether an own-brand good or something made or worked on for a customer.
+## What qualifies as a phrase
+A qualifying phrase names, states or implies a made artifact — a product, part, component, system, or item that comes out of manufacturing work, whether an own-brand good or something made or worked on for a customer. Coming out of the work is what qualifies an artifact, which separates it from the machinery, tooling, and facilities the work is done with, and from awards, memberships, training, documents, and the names of companies, brands, or customer groups, which stand for an organization or its standing rather than for anything it makes.
 
 ## Rejection
-Do not extract:
-- awards, recognitions, memberships, or employee programs (e.g. an industry award, an employee-recognition program)
-- training, documents, or paperwork (e.g. manuals, data sheets, declarations, labels)
-- names of companies, brands, or customer groups standing for an organization rather than an item (e.g. OEMs, a partner company's name)
-- production machinery, tooling, or facilities that the text presents as what the operation uses to make things rather than what it makes or sells
-- phrases that name no product, part, component, system, or item at all
-
-## Disambiguation
-Judge each phrase by how the text uses it: wording that could name a product, part, component, system, or item in some other context does not qualify where this text uses it to say something else.
+Do not extract a phrase if it does not name, state or imply any product, part, component, system, or item at all, even with the help of surrounding context.
 
 ## Extent
-Keep each phrase to five to seven words at most. A span longer than that is usually several products, parts, components, systems, or items run together: rather than extracting the long span as a single phrase, split it into shorter phrases — but only into pieces that each still state or imply a product, part, component, system, or item on their own.
-
-## Deduplication
-Extract each product, part, component, system, or item once. Where the text names the same product, part, component, system, or item more than once — spelled, cased, pluralised, abbreviated, or otherwise worded differently, such that swapping one wording for the other would not change what is being claimed — extract only one of those phrases, verbatim as it appears, preferring the more informative form (the spelled-out form over an abbreviation).
-
-When in doubt whether two phrases make the same claim, extract both. A phrase that names a different production machine, or the same one with a qualifier fixing which kind, grade, revision, size, or make is meant, is its own phrase however similar the wording — the qualifier claims more than the barer phrase does.
-
+Try to keep each phrase short by focusing on and extracting the designation, not the statement made about it. Rather than extracting the long span as a single phrase, split it into shorter verbatim sub-phrases — but keep only the qualifying sub-phrases that each still name, state or imply a product, part, component, system, or item on their own.
 
 ## Output
 Return a JSON object with a single key "phrases" whose value is an array of strings. Each string is a phrase taken directly from the text. Preserve original wording — do not paraphrase or normalize. If no phrases are found, use an empty array.

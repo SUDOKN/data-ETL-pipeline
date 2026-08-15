@@ -26,6 +26,11 @@ from core.models.pipeline_nodes.base.base_reconcile_node import (
     ReconcileNode,
 )
 from core.models.field_types import ExtractionFieldType
+from core.utils.extraction_dump_util import (
+    build_run_provenance,
+    jsonable_result,
+    write_extraction_dump,
+)
 from scraper.models.s3.scraped_text_file import ScrapedTextFile
 
 # if TYPE_CHECKING:
@@ -54,6 +59,7 @@ class BusinessDescReconcileNode(ReconcileNode[ExtractionFieldType]):
         if await self.stop_if_stage_disabled(
             subject=subject,
             deferred_subject=deferred_subject,
+            scraped_text_file=scraped_text_file,
             timestamp=timestamp,
             pipeline_context=pipeline_context,
         ):
@@ -86,6 +92,25 @@ class BusinessDescReconcileNode(ReconcileNode[ExtractionFieldType]):
         chunk_stats: BusinessDescriptionExtractionStatsMap = {
             first_chunk_bounds: BusinessDescriptionExtractionStats(result=result)
         }
+
+        # Only the first chunk is dumped, because only the first chunk is
+        # reconciled — this node reads exactly one.
+        write_extraction_dump(
+            subject_unique_id=deferred_subject.subject_unique_id,
+            field_type=self.field_type,
+            timestamp=timestamp,
+            chunked_contents={
+                first_chunk_bounds: {"result": jsonable_result(result)}
+            },
+            chunked_request_map=extraction_requests.chunked_request_map,
+            completed_requests=completed_extraction_requests,
+            run_provenance=build_run_provenance(
+                metadata=extraction_requests.metadata,
+                scraped_text_file=scraped_text_file,
+                partial=False,
+            ),
+        )
+
         final_result = BusinessDescriptionExtractionResult(
             metadata=extraction_requests.metadata,
             result=result,

@@ -743,7 +743,9 @@ class ExtractionPipelineFactory:
                 phrase_relationship_screening_prompt=prompt_service.conformity_attestation_phrase_relationship_screening_prompt,
                 phrase_initial_grounding_prompt=prompt_service.conformity_attestation_phrase_initial_grounding_prompt,
                 phrase_recursive_grounding_prompt=prompt_service.conformity_attestation_phrase_recursive_grounding_prompt,
-                known_concepts=ontology.get_concepts_flat(ConceptTypeEnum.conformity_attestations),
+                known_concepts=ontology.get_concepts_flat(
+                    ConceptTypeEnum.conformity_attestations
+                ),
                 llm_model=llm_model,
                 model_params=model_params,
                 created_at=created_at,

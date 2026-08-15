@@ -1,5 +1,7 @@
 import logging
-from datetime import datetime
+from datetime import datetime, timezone
+from typing import Optional
+
 from openai.types.chat import ChatCompletion
 
 from llm_providers.models.open_ai.gpt_batch_response_blob import (
@@ -63,7 +65,11 @@ def parse_individual_batch_req_response_raw(
         chat_completion_response = ChatCompletionResponse(
             id=body_data["id"],
             # object=body_data["object"],
-            created=datetime.fromtimestamp(body_data["created"]),
+            # tz=utc is load-bearing: bare fromtimestamp() converts to the
+            # machine's LOCAL time, which skewed every stored completion
+            # timestamp by the UTC offset and would corrupt any duration
+            # computed against the (UTC) request created_at.
+            created=datetime.fromtimestamp(body_data["created"], tz=timezone.utc),
             model=body_data["model"],
             choices=choices,
             usage=usage,
@@ -90,6 +96,8 @@ def build_response_from_chat_completion(
     chat_completion_result: ChatCompletion,
     custom_id: str,
     batch_id: str,
+    client_latency_ms: Optional[int] = None,
+    openai_processing_ms: Optional[int] = None,
 ) -> GPTBatchResponse:
     logger.info(f"received response for custom_id={custom_id}, batch_id={batch_id}")
     logger.info(f"response: {chat_completion_result}")
@@ -99,4 +107,6 @@ def build_response_from_chat_completion(
             **chat_completion_result.model_dump()
         ),
         error=None,
+        client_latency_ms=client_latency_ms,
+        openai_processing_ms=openai_processing_ms,
     )

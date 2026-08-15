@@ -42,7 +42,6 @@ if TYPE_CHECKING:
 from llm_providers.utils.chunk_util import (
     get_chunks_respecting_line_boundaries,
 )
-from pure_utils.dict_diff import find_diffs
 
 logger = logging.getLogger(__name__)
 
@@ -126,14 +125,11 @@ class KeywordExtractionPrefillNode(PrefillNode[ExtractionFieldType]):
             deferred_keyword_extraction: DeferredKeywordExtractionRequests = getattr(
                 deferred_subject, self.field_type.name
             )
-            existing = deferred_keyword_extraction.metadata.model_dump()
-            latest = latest_keyword_extraction_metadata.model_dump()
-            diffs = find_diffs(existing, latest, exclude={"created_at"})
-            if diffs:
-                raise ValueError(
-                    f"Cannot proceed {__class__.__name__} for subject:{subject.subject_unique_id} as "
-                    f"Metadata mismatch for {subject.subject_unique_id}.{self.field_type.name} — differing fields: {diffs}"
-                )
+            self.raise_if_metadata_is_stale(
+                subject_unique_id=subject.subject_unique_id,
+                stored_metadata_dump=deferred_keyword_extraction.metadata.model_dump(),
+                latest_metadata_dump=latest_keyword_extraction_metadata.model_dump(),
+            )
 
             logger.info(
                 f"Chunking already done, resuming extraction for subject:{subject.subject_unique_id}"

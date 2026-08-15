@@ -44,7 +44,6 @@ from core.services.brute_search_service import brute_search
 from llm_providers.utils.chunk_util import (
     get_chunks_respecting_line_boundaries,
 )
-from pure_utils.dict_diff import find_diffs
 
 logger = logging.getLogger(__name__)
 
@@ -146,29 +145,15 @@ class ConceptExtractionPrefillNode(PrefillNode[ConceptFieldType]):
             deferred_concept_extraction: DeferredConceptExtractionRequests = getattr(
                 deferred_subject, self.field_type.name
             )
-            existing = deferred_concept_extraction.metadata.model_dump()
-            latest = latest_concept_extraction_metadata.model_dump()
-            diffs = find_diffs(existing, latest, exclude={"created_at"})
-
             # Metadata is written once, when the field is first deferred, and never
-            # rewritten. A resumed subject therefore reuses cached requests built
-            # from the OLD prompt while reporting whatever is configured now — so a
-            # changed catalog would silently mix two rule sets in one extraction.
-            # Prompt identity is not part of the request custom_id, so this check is
-            # the only thing that catches it.
-            catalog_diffs = {
-                field: diff
-                for field, diff in diffs.items()
-                if "catalog_version" in field
-            }
-            if (
-                deferred_concept_extraction.metadata.chunk_strat != self.chunk_strategy
-                or catalog_diffs
-            ):
-                raise ValueError(
-                    f"Cannot proceed {__class__.__name__} for subject:{subject.subject_unique_id} as "
-                    f"Metadata mismatch for {subject.subject_unique_id}.{self.field_type.name} — differing fields: {diffs}"
-                )
+            # rewritten, so a resumed subject reuses requests built under it. This
+            # check is what keeps that honest: any drift stops the run rather than
+            # letting today's prompt be filed under yesterday's version id.
+            self.raise_if_metadata_is_stale(
+                subject_unique_id=subject.subject_unique_id,
+                stored_metadata_dump=deferred_concept_extraction.metadata.model_dump(),
+                latest_metadata_dump=latest_concept_extraction_metadata.model_dump(),
+            )
 
             logger.info(
                 f"Chunking already done, resuming extraction for subject:{subject.subject_unique_id}"

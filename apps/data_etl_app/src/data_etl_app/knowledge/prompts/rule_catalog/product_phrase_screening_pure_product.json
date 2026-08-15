@@ -1,5 +1,5 @@
 {
-  "catalog_version": "product_phrase_screening_pure_product.2026.08.3",
+  "catalog_version": "product_phrase_screening_pure_product.2026.08.4",
   "prompt_name": "product_phrase_screening_pure_product",
   "stage": "phrase_relationship_screening",
   "field_types": [
@@ -24,7 +24,7 @@
   "sections": [
     {
       "section_id": "pass_conditions",
-      "heading": "A candidate {{entity_noun}} qualifies only if ALL of these conditions hold for it:",
+      "heading": "A candidate {{entity_noun}} qualifies only if ALL of these conditions hold for it, without tripping any of the guards below:",
       "combinator": "all",
       "rules": [
         {
@@ -110,8 +110,8 @@
     }
   ],
   "published": {
-    "s3_version_id": "c2kRlo2ncoRi8nk.esEENJBJDDIa2IOy",
-    "rendered_sha256": "39f11b6551ffc70d6dfbe3bef8b7a021c759e4e96da3289921561fbd0f0eb4d6",
-    "uploaded_at": "2026-08-12T07:50:48.382035+00:00"
+    "s3_version_id": "BpKAG7SHJY.gy8te8U9HxLgTe5aD5x42",
+    "rendered_sha256": "a5909c085073f1a207920bbb0205f0910981454faff2e422de2b290dc8a5cd19",
+    "uploaded_at": "2026-08-14T00:48:01.575194+00:00"
   }
 }

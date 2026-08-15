@@ -1,5 +1,5 @@
 {
-  "catalog_version": "product_phrase_screening_contract.2026.08.3",
+  "catalog_version": "product_phrase_screening_contract.2026.08.4",
   "prompt_name": "product_phrase_screening_contract",
   "stage": "phrase_relationship_screening",
   "field_types": [
@@ -24,7 +24,7 @@
   "sections": [
     {
       "section_id": "pass_conditions",
-      "heading": "A candidate {{entity_noun}} qualifies only if ALL of these conditions hold for it:",
+      "heading": "A candidate {{entity_noun}} qualifies only if ALL of these conditions hold for it, without tripping any of the guards below:",
       "combinator": "all",
       "rules": [
         {
@@ -117,8 +117,8 @@
     }
   ],
   "published": {
-    "s3_version_id": "QEAq2TQQfpHE5fLeQ7zzUYgz9XTm0e6b",
-    "rendered_sha256": "ee99193e15d5a248c7fa14757123172d81d496917bdcd2275729e36bed517b30",
-    "uploaded_at": "2026-08-12T07:50:48.382035+00:00"
+    "s3_version_id": "MX_1jcUcp4qNP7YUEufrSiI3yk5suh31",
+    "rendered_sha256": "486b52365b4cbb22e26fe624d327914e246bc8b78fda0cbb6996a01bcc77e918",
+    "uploaded_at": "2026-08-14T00:48:01.575194+00:00"
   }
 }

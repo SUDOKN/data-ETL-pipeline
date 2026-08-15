@@ -1,5 +1,5 @@
 {
-  "catalog_version": "industry_phrase_relationship_screening.2026.08.5",
+  "catalog_version": "industry_phrase_relationship_screening.2026.08.7",
   "prompt_name": "industry_phrase_relationship_screening",
   "stage": "phrase_relationship_screening",
   "field_types": [
@@ -24,7 +24,7 @@
   "sections": [
     {
       "section_id": "pass_conditions",
-      "heading": "A candidate {{entity_noun}} qualifies only if ALL of these conditions hold for it:",
+      "heading": "A candidate {{entity_noun}} qualifies only if ALL of these conditions hold for it, without tripping any of the guards below:",
       "combinator": "all",
       "rules": [
         {
@@ -54,7 +54,7 @@
               "kind": "note",
               "reportable": false,
               "report_when": "never",
-              "text": "Summaries refer to companies by their standing rather than by name. A brand, trade name, former name, division, plant, or business unit of the manufacturer IS the manufacturer itself. A statement about the manufacturer's parent company or a sister brand counts as one about the manufacturer itself, and does not fail this condition merely for being attributed to them — unless the summary shows the activity belongs to that company alone and not to the manufacturer."
+              "text": "Summaries refer to the manufacturer in question only as \"the manufacturer\", never by name; other companies may appear by name or by their standing. A brand, trade name, former name, division, plant, or business unit of the manufacturer IS the manufacturer itself. A statement about the manufacturer's parent company or a sister brand counts as one about the manufacturer itself, and does not fail this condition merely for being attributed to them — unless the summary shows the activity belongs to that company alone and not to the manufacturer."
             },
             {
               "id": "SCR-3b",
@@ -83,8 +83,8 @@
     }
   ],
   "published": {
-    "s3_version_id": "7eXcYF6wT25t60mMqxpu3KF52PhD2kYv",
-    "rendered_sha256": "9c9639e9490c9ccd1ea3a58b4166776a654704d352e7c93adc3b03dbaaf3ef49",
-    "uploaded_at": "2026-08-13T07:15:05.011333+00:00"
+    "s3_version_id": "FHbDn9ysoSxy.p4zb7sSZIiGIYtA4iz9",
+    "rendered_sha256": "33c18784251d562d6e549f55658c422dacda252cf6081928c8e6efe6d744d787",
+    "uploaded_at": "2026-08-14T02:49:45.827123+00:00"
   }
 }

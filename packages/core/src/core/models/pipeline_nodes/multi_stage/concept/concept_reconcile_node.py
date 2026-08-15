@@ -64,10 +64,11 @@ from core.utils.label_dedupe_util import dedupe_case_insensitive
 from core.utils.rdf_to_graph_util import (
     get_match_label_to_concept_map,
 )
-from core.utils.phrase_trail_dump_util import (
+from core.utils.extraction_dump_util import (
     build_concept_phrase_rows,
+    build_run_provenance,
     merge_stage_repairs,
-    write_phrase_trails_dump,
+    write_extraction_dump,
 )
 
 logger = logging.getLogger(__name__)
@@ -95,6 +96,7 @@ class ConceptReconcileNode(ReconcileNode[ConceptFieldType]):
         if await self.stop_if_stage_disabled(
             subject=subject,
             deferred_subject=deferred_subject,
+            scraped_text_file=scraped_text_file,
             timestamp=timestamp,
             pipeline_context=pipeline_context,
         ):
@@ -128,7 +130,7 @@ class ConceptReconcileNode(ReconcileNode[ConceptFieldType]):
         all_recognized_tagged_concepts: set[Concept] = set()
         all_unrecognized_tagged_concepts: set[str] = set()
         chunk_stats: ConceptExtractionStatsMap = {}
-        chunked_phrase_trails_dump: dict[str, list[dict[str, object]]] = {}
+        chunked_dump_contents: dict[str, dict[str, object]] = {}
         for (
             chunk_bounds,
             bundle,
@@ -239,20 +241,23 @@ class ConceptReconcileNode(ReconcileNode[ConceptFieldType]):
             # grounding-only phrases), joined against the flat pre-partition
             # maps — the trail alone cannot carry screened-out, sentinel, or
             # out-of-vocab verdicts.
-            chunked_phrase_trails_dump[chunk_bounds] = build_concept_phrase_rows(
-                screening_flat=llm_phrase_screening_flat,
-                relationship_flat=llm_phrase_relationship_flat,
-                initial_grounding_flat=llm_phrase_initial_grounding_flat,
-                phrase_trails=phrase_trails,
-                search_rounds=llm_search_results,
-                match_label_to_concept_map=self.match_label_to_concept_map,
-                repairs_flat=merge_stage_repairs(
-                    {
-                        "screening": screening_repairs,
-                        "initial_grounding": initial_grounding_repairs,
-                    }
-                ),
-            )
+            chunked_dump_contents[chunk_bounds] = {
+                "rows": build_concept_phrase_rows(
+                    screening_flat=llm_phrase_screening_flat,
+                    relationship_flat=llm_phrase_relationship_flat,
+                    initial_grounding_flat=llm_phrase_initial_grounding_flat,
+                    phrase_trails=phrase_trails,
+                    search_rounds=llm_search_results,
+                    match_label_to_concept_map=self.match_label_to_concept_map,
+                    repairs_flat=merge_stage_repairs(
+                        {
+                            "screening": screening_repairs,
+                            "initial_grounding": initial_grounding_repairs,
+                        }
+                    ),
+                    subject_name=pipeline_context.subject_name,
+                )
+            }
             for phrase_trail in phrase_trails:
                 recognized_deepest_concepts, oov = get_deepest_concepts_and_oov(
                     phrase_trail=phrase_trail,
@@ -279,11 +284,25 @@ class ConceptReconcileNode(ReconcileNode[ConceptFieldType]):
             all_recognized_tagged_concepts.update(recognized_tagged_concepts)
             all_unrecognized_tagged_concepts.update(unrecognized_tagged_concepts)
 
-        write_phrase_trails_dump(
+        write_extraction_dump(
             subject_unique_id=subject.subject_unique_id,
             field_type=self.field_type,
             timestamp=timestamp,
-            chunked_phrase_trails=chunked_phrase_trails_dump,
+            chunked_contents=chunked_dump_contents,
+            chunked_request_map=extraction_requests.chunked_request_map,
+            completed_requests={
+                **completed_phrase_search_req_map,
+                **completed_recursive_search_req_map,
+                **completed_phrase_relationship_req_map,
+                **completed_relationship_screening_req_map,
+                **completed_initial_grounding_req_map,
+                **completed_recursive_grounding_req_map,
+            },
+            run_provenance=build_run_provenance(
+                metadata=extraction_requests.metadata,
+                scraped_text_file=scraped_text_file,
+                partial=False,
+            ),
         )
 
         final_extraction_result = ConceptExtractionResults(

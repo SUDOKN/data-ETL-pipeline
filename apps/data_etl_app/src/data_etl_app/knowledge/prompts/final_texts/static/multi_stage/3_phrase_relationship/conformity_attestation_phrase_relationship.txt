@@ -3,23 +3,29 @@ You are given the text scraped from a manufacturer's website and the name of the
 ### Your job:
 For each phrase, work in two steps.
 
-**First, collect the contexts.** Find every place the phrase is mentioned in the scraped text and collect the surrounding context of each one. Quote the words of the text verbatim for what each mention says, rather than paraphrasing them unless they mention company names in which case you must filter them out according to the mentioned rules below. Keep the contexts distinct: where several mentions say the same thing about the phrase, cover it once and note that it recurs; where mentions differ, carry each of them. The contexts may not be coherent or aligned with each other — preserve them as they stand, including anything that places a mention in the past and anything that conflicts with another mention, rather than resolving the difference yourself. Collect them in enough detail to verify the phrase later on without needing the original text.
+**First, collect the contexts.** Find every place the phrase is mentioned in the scraped text and collect the surrounding context of each one. Quote the words of the text verbatim for what each mention says, rather than paraphrasing them unless they mention company names in which case you must filter them out according to the mentioned rules below. Quote enough of the sentence to keep every qualifier the text attaches to the phrase, and everything the sentence binds the phrase to, in the same clause. The record of every mention should focus on, but not limited to, - how the mention sits in the provided text, as best the text shows: a heading, a navigation or menu item, an entry in a list, a prose sentence, a quotation or testimonial from someone, a news or blog item, a job posting, footer, boilerplate, or something else.
+- Whose words they are, as the text attributes them: the website's own copy, a named or unnamed customer, a publication, another party.
+- Where the text places a mention anywhere other than the present — a completed or past project, a plan or aspiration, a denial — carry that placement in the text's own words. Present-tense activity needs no note.
+
+These areas are the focus, not the limit: whatever else the text itself offers about the phrase belongs in the record too, even when it fits none of them.
+
+Keep the contexts distinct: where several mentions say the same thing about the phrase, cover it once and note that it recurs; where mentions differ, carry each of them. The contexts may not be coherent or aligned with each other — preserve them as they stand. Collect them in enough detail to verify the phrase later on without needing the original text.
 
 **Then, describe the relationship.** From the contexts you collected and the overall text, describe the relationship between the manufacturer in question and the phrase — what it does with or in relation to it. If the text has no direct mentions or states no clear relationship, say so explicitly rather than inferring one.
 
 ### Some rules on reporting:
-- Report on each phrase the way a neutral journalist would: say what the text says, attribute every statement to whoever the text attributes it to, and draw no conclusion the text does not state. What you write is read later on its own, without the text beside it.
+- Report on each phrase the way a neutral journalist would: say what the text says, attribute every statement to whoever the text attributes it to, and draw no conclusion the text does not state.
 - Do not emit the name of the manufacturer in your output anywhere, not even inside your quotations. Anonymize it by using general third person references like "the manufacturer" as substitute.
   
 The manufacturer's name must be omitted everywhere. Before you return your answer, read back every description you wrote and check that no mention of the manufacturer's name survived anywhere in it.
 
 ### Output:
-Return a JSON object with a single key "relationships" whose value is an array of objects, each with keys "phrase" and "description". Include every phrase you were given, exactly once, copied verbatim. Each "description" holds the contexts you collected first, then the relationship you drew from them.
+Return a JSON object with a single key "relationships" whose value is an array of objects, each with keys "phrase" and "description". Include every phrase you were given, exactly once, copied verbatim. Each "description" is one string holding the mention records first, then the relationship, laid out like this — one "Mention:" per distinct mention, then a final "Relationship:":
 
 ```json
 {
   "relationships": [
-    {"phrase": "<a phrase copied verbatim from the given phrases>", "description": "<the collected contexts, quoting the text verbatim with manufacturer's name anonymized; then the relationship between the manufacturer in question and the phrase, or that the text has no direct mentions or/and states no clear relationship>"}
+    {"phrase": "<a phrase copied verbatim from the given phrases>", "description": "<the collected mentions, quoting the text verbatim with manufacturer's name anonymized; then the relationship between the manufacturer in question and the phrase, or that the text has no direct mentions or/and states no clear relationship>"}
   ]
 }
 ```

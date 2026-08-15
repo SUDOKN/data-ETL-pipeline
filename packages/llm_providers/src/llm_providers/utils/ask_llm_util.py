@@ -3,6 +3,7 @@ import logging
 import time
 import uuid
 import litellm
+from dataclasses import dataclass
 from typing import Optional
 from openai import AsyncOpenAI
 from openai.types.chat import ChatCompletion
@@ -32,13 +33,40 @@ def _get_client() -> AsyncOpenAI:
     return _client
 
 
+@dataclass
+class LLMCallTiming:
+    """What a synchronous call can measure that a batch never can.
+
+    ``client_latency_ms`` is our wall clock around the API call (network
+    included). ``openai_processing_ms`` is the provider's own server-side
+    number, read off the response headers — None when the LiteLLM proxy does
+    not forward it.
+    """
+
+    client_latency_ms: int
+    openai_processing_ms: Optional[int]
+
+
+def _processing_ms_from_headers(headers) -> Optional[int]:
+    # Direct OpenAI name first; LiteLLM forwards provider headers under an
+    # llm_provider- prefix (version/config dependent, hence both spellings).
+    for name in ("openai-processing-ms", "llm_provider-openai-processing-ms"):
+        value = headers.get(name)
+        if value is not None:
+            try:
+                return int(float(value))
+            except (TypeError, ValueError):
+                return None
+    return None
+
+
 async def ask_gpt(
     context: str,
     prompt: str,
     gpt_model: LLM_Model,
     model_params: LLMModelParams,
 ) -> Optional[str]:
-    response = await fetch_llm_chat_completion_result(
+    response, _timing = await fetch_llm_chat_completion_result(
         context=context,
         prompt=prompt,
         gpt_model=gpt_model,
@@ -52,7 +80,7 @@ async def fetch_llm_chat_completion_result(
     prompt: str,
     gpt_model: LLM_Model,
     model_params: LLMModelParams,
-) -> ChatCompletion:
+) -> tuple[ChatCompletion, LLMCallTiming]:
     """
     Drop-in replacement for open_ai_key_app.utils.ask_gpt_util.ask_gpt_async.
 
@@ -102,7 +130,10 @@ async def fetch_llm_chat_completion_result(
     if response_format is not None:
         optional_kwargs["response_format"] = response_format
 
-    response = await client.chat.completions.create(
+    # with_raw_response, not create(): the parsed object is identical, but only
+    # the raw response exposes the headers carrying the provider's own
+    # processing time — the one latency number a client clock cannot give.
+    raw_response = await client.chat.completions.with_raw_response.create(
         model=gpt_model.name,
         messages=[
             {"role": "system", "content": prompt},
@@ -116,9 +147,14 @@ async def fetch_llm_chat_completion_result(
         seed=model_params.seed,
         **optional_kwargs,
     )
+    response = raw_response.parse()
 
     api_call_duration = time.time() - api_call_start
     total_duration = time.time() - start_time
+    timing = LLMCallTiming(
+        client_latency_ms=int(api_call_duration * 1000),
+        openai_processing_ms=_processing_ms_from_headers(raw_response.headers),
+    )
 
     logger.info(
         f"[Request {request_id}] Success! API call took {api_call_duration:.2f}s, "
@@ -126,4 +162,4 @@ async def fetch_llm_chat_completion_result(
         f"Received {len(response.choices)} choices."
     )
 
-    return response
+    return response, timing

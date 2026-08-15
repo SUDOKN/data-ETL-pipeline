@@ -18,7 +18,7 @@ from core.models.extraction_schemas.iterative_tagging import (
 )
 from core.models.extraction_schemas.screening import ScreeningVerdict
 from core.models.skos_concept import Concept
-from core.utils.phrase_trail_dump_util import (
+from core.utils.extraction_dump_util import (
     build_concept_phrase_rows,
     build_keyword_phrase_rows,
     merge_stage_repairs,
@@ -338,3 +338,30 @@ def test_repairs_default_to_absent_so_existing_callers_are_unchanged():
     )
 
     assert "phrase_as_answered" not in row
+
+
+def test_own_name_hits_recorded_only_on_violation():
+    """The record-only lint: a leaked subject name is counted on the row, and a
+    clean row (or a builder never given the name) grows no field at all."""
+    leaked = "complex welded assemblies"
+    clean = "powder coating services"
+    rows = _rows(
+        screening_flat={leaked: _verdict(False), clean: _verdict(False)},
+        relationship_flat={
+            leaked: 'Mention: "Steelcraft welds assemblies." Relationship: welds them.',
+            clean: "Mention: recurring list entry. Relationship: offered service.",
+        },
+        subject_name="Steelcraft, Inc.",
+    )
+
+    assert rows[leaked]["relationship_own_name_hits"] == 1
+    assert "relationship_own_name_hits" not in rows[clean]
+
+
+def test_own_name_lint_defaults_off_so_existing_callers_are_unchanged():
+    phrase = "complex welded assemblies"
+    rows = _rows(
+        screening_flat={phrase: _verdict(False)},
+        relationship_flat={phrase: "Steelcraft everywhere, unlinted."},
+    )
+    assert "relationship_own_name_hits" not in rows[phrase]

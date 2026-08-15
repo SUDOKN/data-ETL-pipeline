@@ -88,6 +88,19 @@ class SingleStageExtractionPrefillNode(PrefillNode[SingleStageFieldTypeVar]):
             )
             setattr(deferred_subject, self.field_type.name, deferred_basic_extraction)
             await deferred_subject.save()
+        else:
+            deferred_basic_extraction: DeferredSingleStageExtractionRequests = getattr(
+                deferred_subject, self.field_type.name
+            )
+            # Single-stage fields carry a prompt pin like every other stage, and
+            # went unchecked until 2026-08-13 — so a resumed business_desc or
+            # is_manufacturer replayed under an edited prompt with no signal at
+            # all, not even the partial one the multi-stage guard gave.
+            self.raise_if_metadata_is_stale(
+                subject_unique_id=subject.subject_unique_id,
+                stored_metadata_dump=deferred_basic_extraction.metadata.model_dump(),
+                latest_metadata_dump=self.extraction_metadata.model_dump(),
+            )
 
         await self.next_node.execute(
             subject=subject,

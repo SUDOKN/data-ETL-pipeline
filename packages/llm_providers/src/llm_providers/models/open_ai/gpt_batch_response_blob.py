@@ -102,6 +102,12 @@ class GPTBatchResponse(BaseModel):
     request_custom_id: str  # e.g. "request-2" expected to match the GPTBatchRequest's request.custom_id
     chat_completion_result: ChatCompletionResponse
     error: dict | None = None
+    # Measured only on eager (synchronous) dispatch — the Batch API reports no
+    # per-request latency, so batch responses keep these None. client_latency_ms
+    # is our wall clock around the API call; openai_processing_ms is the
+    # provider's own header when the proxy forwards it.
+    client_latency_ms: int | None = None
+    openai_processing_ms: int | None = None
 
     @property
     def result(self) -> str | None:

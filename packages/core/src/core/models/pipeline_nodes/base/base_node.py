@@ -64,6 +64,7 @@ class BaseNode(ABC, Generic[LLMExtractedFieldTypeVar, ResultT]):
         self,
         subject: AbstractExtractionSubject,
         deferred_subject: AbstractDeferredExtractionSubject,
+        scraped_text_file: ScrapedTextFile,
         timestamp: datetime,
         pipeline_context: PipelineContext,
     ) -> bool:
@@ -105,6 +106,10 @@ class BaseNode(ABC, Generic[LLMExtractedFieldTypeVar, ResultT]):
                     self.field_type
                 ),
                 extraction_requests=extraction_requests,
+                # Threaded down purely for the dump header: a partial dump has to
+                # name the text it read, same as a full one, or the two cannot be
+                # compared.
+                scraped_text_file=scraped_text_file,
                 pipeline_context=pipeline_context,
                 timestamp=timestamp,
             )

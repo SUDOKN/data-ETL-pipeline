@@ -14,6 +14,7 @@ would otherwise rot.
 from __future__ import annotations
 
 import ast
+from datetime import datetime
 from enum import Enum
 from pathlib import Path
 
@@ -26,7 +27,7 @@ from core.models.pipeline_nodes.base.pipeline_stage import (
     PipelineStage,
     StageToggles,
 )
-from core.utils.phrase_trail_dump_util import build_partial_phrase_rows
+from core.utils.extraction_dump_util import build_partial_phrase_rows
 
 
 class _Field(str, Enum):
@@ -58,6 +59,14 @@ class _Subject:
 
 class _DeferredSubject:
     """No deferred field for any name, so the gate skips the partial dump."""
+
+
+class _ScrapedText:
+    """Only what the dump header reads off the scraped file."""
+
+    s3_version_id = "text-version-1"
+    num_tokens = 23757
+    last_modified_on = datetime(2026, 8, 13, 19, 0, 0)
 
 
 # --- StageToggles ---------------------------------------------------------
@@ -177,6 +186,7 @@ async def test_gate_lets_an_enabled_stage_through():
     stopped = await node.stop_if_stage_disabled(
         subject=_Subject(),
         deferred_subject=_DeferredSubject(),
+        scraped_text_file=_ScrapedText(),
         timestamp=None,
         pipeline_context=PipelineContext(),
     )
@@ -194,6 +204,7 @@ async def test_gate_stops_a_disabled_stage():
     stopped = await node.stop_if_stage_disabled(
         subject=_Subject(),
         deferred_subject=_DeferredSubject(),
+        scraped_text_file=_ScrapedText(),
         timestamp=None,
         pipeline_context=context,
     )
@@ -214,12 +225,14 @@ async def test_gate_is_per_field():
     assert await gated.stop_if_stage_disabled(
         subject=_Subject(),
         deferred_subject=_DeferredSubject(),
+        scraped_text_file=_ScrapedText(),
         timestamp=None,
         pipeline_context=context,
     )
     assert not await ungated.stop_if_stage_disabled(
         subject=_Subject(),
         deferred_subject=_DeferredSubject(),
+        scraped_text_file=_ScrapedText(),
         timestamp=None,
         pipeline_context=context,
     )
@@ -309,10 +322,21 @@ def test_partial_rows_name_the_grounding_stage_that_ran():
 
 class _Bundle:
     llm_phrase_recursive_search_req_ids: list[str] = []
+    llm_phrase_relationship_req_ids: list[str] = [
+        "example.com>industries>llm_phrase_relationship>group>0>chunk>0-100>"
+        "gpt-4o-mini|temperature=0.0|pv=PROMPT-VERSION-1|gs=50"
+    ]
+
+
+class _Metadata:
+    @staticmethod
+    def model_dump(mode: str = "python") -> dict[str, object]:
+        return {"llm_phrase_relationship": {"prompt_version_id": "PROMPT-VERSION-1"}}
 
 
 class _ExtractionRequests:
     chunked_request_map = {"0-100": _Bundle()}
+    metadata = _Metadata()
 
 
 @pytest.mark.asyncio
@@ -328,7 +352,7 @@ async def test_partial_dump_header_says_what_ran_and_what_was_switched_off(
         written.update(kwargs)
 
     monkeypatch.setattr(
-        "core.services.pipeline_nodes.partial_run_dump.write_phrase_trails_dump",
+        "core.services.pipeline_nodes.partial_run_dump.write_extraction_dump",
         _capture,
     )
 
@@ -343,23 +367,131 @@ async def test_partial_dump_header_says_what_ran_and_what_was_switched_off(
         stopped_at=PipelineStage.screening,
         disabled_stages={PipelineStage.screening, PipelineStage.reconcile},
         extraction_requests=_ExtractionRequests(),
+        scraped_text_file=_ScrapedText(),
         pipeline_context=context,
         timestamp=None,
     )
 
-    run = written["run_summary"]
+    run = written["run_provenance"]
     assert run["partial"] is True
     assert run["stopped_at"] == "screening"
     assert run["stages_run"] == ["relationship"]
     assert run["stages_disabled"] == ["reconcile", "screening"]
     assert written["name_suffix"] == "__partial"
     assert written["field_type"] is _Field.industries
+    # A partial dump carries the same provenance a full one does — which text was
+    # read, and the metadata every request custom_id was built from.
+    assert run["scraped_text"]["s3_version_id"] == "text-version-1"
+    assert (
+        run["extraction_metadata"]["llm_phrase_relationship"]["prompt_version_id"]
+        == "PROMPT-VERSION-1"
+    )
     # The stage that ran is parsed into rows; search never ran, so there is no
     # provenance to report and the key stays absent.
-    row = written["chunked_phrase_trails"]["0-100"][0]
+    row = written["chunked_contents"]["0-100"]["rows"][0]
     assert row["phrase"] == "CNC lathes"
     assert row["relationship"] == "operates them in-house"
     assert "screening" not in row
+    # The dump prices its requests off the completed maps, merged across stages.
+    assert "req-1" in written["completed_requests"]
+
+
+class _SingleStageNode(BaseNode):
+    stage = PipelineStage.single_stage_extraction
+
+    async def execute(self, **_kwargs) -> None: ...
+
+    @staticmethod
+    async def get_result(**_kwargs) -> dict[str, object]:
+        return {"answer": True, "confidence": 4}
+
+
+class _BrokenSingleStageNode(BaseNode):
+    stage = PipelineStage.single_stage_extraction
+
+    async def execute(self, **_kwargs) -> None: ...
+
+    @staticmethod
+    async def get_result(**_kwargs) -> dict[str, object]:
+        raise ValueError("response is not the schema it promised")
+
+
+@pytest.mark.asyncio
+async def test_partial_dump_for_a_single_stage_field_carries_the_result(
+    monkeypatch,
+):
+    """Single-stage fields have no phrase stages, so their chunk content is the
+    parsed result. Until 2026-08-14 these dumps were header-only shells with
+    empty requests and empty rows."""
+    written: dict[str, object] = {}
+
+    def _capture(**kwargs):
+        written.update(kwargs)
+
+    monkeypatch.setattr(
+        "core.services.pipeline_nodes.partial_run_dump.write_extraction_dump",
+        _capture,
+    )
+
+    from core.services.pipeline_nodes.partial_run_dump import write_partial_run_dump
+
+    context = PipelineContext()
+    context[_SingleStageNode] = {"req-single-1": object()}
+
+    await write_partial_run_dump(
+        subject_unique_id="example.com",
+        field_type=_Field.business_desc,
+        stopped_at=PipelineStage.reconcile,
+        disabled_stages={PipelineStage.reconcile},
+        extraction_requests=_ExtractionRequests(),
+        scraped_text_file=_ScrapedText(),
+        pipeline_context=context,
+        timestamp=None,
+    )
+
+    assert written["chunked_contents"]["0-100"] == {
+        "result": {"answer": True, "confidence": 4}
+    }
+    assert written["run_provenance"]["stages_run"] == ["single_stage_extraction"]
+    assert "req-single-1" in written["completed_requests"]
+
+
+@pytest.mark.asyncio
+async def test_partial_dump_survives_a_single_stage_result_that_wont_parse(
+    monkeypatch,
+):
+    """A chunk whose response won't parse still appears — a null result with a
+    note beats silently losing the whole file."""
+    written: dict[str, object] = {}
+
+    def _capture(**kwargs):
+        written.update(kwargs)
+
+    monkeypatch.setattr(
+        "core.services.pipeline_nodes.partial_run_dump.write_extraction_dump",
+        _capture,
+    )
+
+    from core.services.pipeline_nodes.partial_run_dump import write_partial_run_dump
+
+    context = PipelineContext()
+    context[_BrokenSingleStageNode] = {"req-single-1": object()}
+
+    await write_partial_run_dump(
+        subject_unique_id="example.com",
+        field_type=_Field.business_desc,
+        stopped_at=PipelineStage.reconcile,
+        disabled_stages={PipelineStage.reconcile},
+        extraction_requests=_ExtractionRequests(),
+        scraped_text_file=_ScrapedText(),
+        pipeline_context=context,
+        timestamp=None,
+    )
+
+    assert written["chunked_contents"]["0-100"] == {
+        "result": None,
+        "note": "result_parse_failed",
+    }
 
 
 @pytest.mark.asyncio
@@ -371,7 +503,7 @@ async def test_partial_dump_never_raises(monkeypatch):
         raise RuntimeError("disk gone")
 
     monkeypatch.setattr(
-        "core.services.pipeline_nodes.partial_run_dump.write_phrase_trails_dump",
+        "core.services.pipeline_nodes.partial_run_dump.write_extraction_dump",
         _explode,
     )
 
@@ -383,6 +515,7 @@ async def test_partial_dump_never_raises(monkeypatch):
         stopped_at=PipelineStage.screening,
         disabled_stages={PipelineStage.screening},
         extraction_requests=_ExtractionRequests(),
+        scraped_text_file=_ScrapedText(),
         pipeline_context=PipelineContext(),
         timestamp=None,
     )

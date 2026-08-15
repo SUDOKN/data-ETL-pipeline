@@ -305,6 +305,7 @@ class BaseLLMExtractionNode(BaseNode[LLMExtractedFieldTypeVar, ResultT]):
         if await self.stop_if_stage_disabled(
             subject=subject,
             deferred_subject=deferred_subject,
+            scraped_text_file=scraped_text_file,
             timestamp=timestamp,
             pipeline_context=pipeline_context,
         ):
