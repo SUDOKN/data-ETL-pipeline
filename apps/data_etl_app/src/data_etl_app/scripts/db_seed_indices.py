@@ -21,6 +21,10 @@ import os
 from pure_utils.env_util import load_env
 
 from data_etl_app.db_models import DOCUMENT_MODELS
+from data_etl_app.db_models.llm_phrase_ground_truth import (
+    LLM_PHRASE_GT_UNIQUE_INDEX_KEYS,
+    LLM_PHRASE_GT_UNIQUE_INDEX_NAME,
+)
 from data_etl_app.dependencies.env import MIGRATION_ENV
 
 load_env(MIGRATION_ENV)
@@ -177,6 +181,24 @@ class DatabaseIndexSeeder:
                     ("chunk_bounds", 1),
                 ],
                 "options": {"name": "keyword_gt_unique_idx", "unique": True},
+            }
+        ]
+
+        for index in indexes:
+            self._create_index_if_missing(collection, index["keys"], index["options"])
+
+    def create_llm_phrase_ground_truth_indexes(self):
+        """Create indexes for llm_phrase_ground_truths collection. The keys are
+        declared next to the Document so the two cannot drift."""
+        collection = self.db.llm_phrase_ground_truths
+
+        indexes = [
+            {
+                "keys": LLM_PHRASE_GT_UNIQUE_INDEX_KEYS,
+                "options": {
+                    "name": LLM_PHRASE_GT_UNIQUE_INDEX_NAME,
+                    "unique": True,
+                },
             }
         ]
 
@@ -381,6 +403,7 @@ class DatabaseIndexSeeder:
             self.create_binary_ground_truth_indexes()
             self.create_concept_ground_truth_indexes()
             self.create_keyword_ground_truth_indexes()
+            self.create_llm_phrase_ground_truth_indexes()
             self.create_gpt_batch_request_indexes()
             self.create_deferred_manufacturer_indexes()
             self.create_gpt_batch_indexes()

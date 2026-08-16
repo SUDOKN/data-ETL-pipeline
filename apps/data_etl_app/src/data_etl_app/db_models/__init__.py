@@ -13,6 +13,7 @@ from data_etl_app.db_models.binary_ground_truth import BinaryGroundTruth
 from data_etl_app.db_models.concept_ground_truth import ConceptGroundTruth
 from data_etl_app.db_models.deferred_manufacturer import DeferredManufacturer
 from data_etl_app.db_models.keyword_ground_truth import KeywordGroundTruth
+from data_etl_app.db_models.llm_phrase_ground_truth import LLMPhraseGroundTruth
 from data_etl_app.db_models.manufacturer import Manufacturer
 from data_etl_app.db_models.manufacturer_user_form import ManufacturerUserForm
 from data_etl_app.db_models.mep_request import MEPRequest
@@ -24,6 +25,7 @@ APP_DOCUMENT_MODELS: list[type[Document]] = [
     ConceptGroundTruth,
     DeferredManufacturer,
     KeywordGroundTruth,
+    LLMPhraseGroundTruth,
     Manufacturer,
     ManufacturerUserForm,
     MEPRequest,
