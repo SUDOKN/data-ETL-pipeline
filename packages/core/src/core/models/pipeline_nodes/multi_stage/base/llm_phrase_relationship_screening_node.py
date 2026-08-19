@@ -49,7 +49,10 @@ from core.services.pipeline_nodes.multi_stage.llm_relationship_screening_node_se
     get_phrase_relationship_screening_result,
 )
 from typing import ClassVar
-from core.models.pipeline_nodes.base.pipeline_stage import PipelineStage
+from core.models.pipeline_nodes.base.pipeline_stage import (
+    STAGE_REQUEST_ID_TOKEN,
+    PipelineStage,
+)
 
 logger = logging.getLogger(__name__)
 
@@ -165,7 +168,9 @@ class LLMPhraseRelationshipScreeningNode(
         metadata: LLMPhraseExtractionMetadata,
     ) -> BatchRequestIDType:
         return (
-            f"{subject_unique_id}>{field_type.name}>llm_phrase_relationship_screening>group>{group_index}>chunk>{chunk_bounds}>"
+            f"{subject_unique_id}>{field_type.name}"
+            f">{STAGE_REQUEST_ID_TOKEN[PipelineStage.screening]}"
+            f">group>{group_index}>chunk>{chunk_bounds}>"
             f"{metadata.llm_phrase_relationship_screening.to_custom_id_segment()}"
         )
 

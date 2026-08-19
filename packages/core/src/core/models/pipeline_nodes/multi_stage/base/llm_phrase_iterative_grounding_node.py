@@ -76,7 +76,10 @@ from core.utils.rdf_to_graph_util import (
     get_match_label_to_concept_map,
 )
 from typing import ClassVar
-from core.models.pipeline_nodes.base.pipeline_stage import PipelineStage
+from core.models.pipeline_nodes.base.pipeline_stage import (
+    STAGE_REQUEST_ID_TOKEN,
+    PipelineStage,
+)
 
 logger = logging.getLogger(__name__)
 
@@ -179,7 +182,8 @@ class LLMPhraseIterativeGroundingNode(
         # marks a direct-tagged node. Placed after the tag so anything reading
         # the tag positionally (right after l[N]>) keeps working.
         return (
-            f"{subject_unique_id}>{field_type.name}>llm_phrase_recursive_grounding>chunk>"
+            f"{subject_unique_id}>{field_type.name}"
+            f">{STAGE_REQUEST_ID_TOKEN[PipelineStage.iterative_grounding]}>chunk>"
             f"{chunk_bounds}>l[{level}]>{tag}>p[{parent_tag or 'ROOT'}]>"
             f"{node_metadata.to_custom_id_segment()}"
         )

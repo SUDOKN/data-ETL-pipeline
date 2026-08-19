@@ -1,5 +1,5 @@
 {
-  "catalog_version": "industry_phrase_initial_grounding.2026.08.8",
+  "catalog_version": "industry_phrase_initial_grounding.2026.08.10",
   "prompt_name": "industry_phrase_initial_grounding",
   "stage": "phrase_initial_grounding",
   "field_types": [
@@ -11,6 +11,7 @@
     "third_person": "serves, supplies, or operates in",
     "gerund": "serving, supplying, or operating in"
   },
+  "option_evidence": "what the option names",
   "outcome_vocab": {
     "condition": [
       "satisfied",
@@ -53,7 +54,7 @@
               "kind": "note",
               "reportable": false,
               "report_when": "never",
-              "text": "Choose by comparing underlying meanings and definitions with the identified {{entity_noun}}, never by lexical or name similarity, and without forced or contrived links that rely on assumptions beyond the phrase and its relationship summary. In particular, do not choose an option whose name resembles the identified {{entity_noun}} when the option's definition excludes this case."
+              "text": "Choose by comparing the identified {{entity_noun}} against {{option_evidence}}, never by lexical or name similarity, and without forced or contrived links that rely on assumptions beyond the phrase and its relationship summary. In particular, do not choose an option whose name resembles the identified {{entity_noun}} when {{option_evidence}} does not cover this case."
             }
           ],
           "combinator": "note"
@@ -63,7 +64,17 @@
           "kind": "preference",
           "reportable": true,
           "report_when": "when_chosen",
-          "text": "When no option exactly matches, an option whose meaning generalizes the identified {{entity_noun}} is chosen."
+          "text": "When no option exactly matches, an option whose meaning generalizes the identified {{entity_noun}} is chosen.",
+          "combinator": "note",
+          "children": [
+            {
+              "id": "IGR-M2a",
+              "kind": "note",
+              "reportable": false,
+              "report_when": "never",
+              "text": "Every entry in the outline is one you may choose, including an entry that has entries indented beneath it. Where the phrase names something the outline covers only at a broader entry, that broader entry is the match."
+            }
+          ]
         },
         {
           "id": "IGR-M3",
@@ -93,9 +104,9 @@
     }
   ],
   "published": {
-    "s3_version_id": "XXr9nHbeZn_JxbMOe1VdDlAkzP_UPQ4c",
-    "rendered_sha256": "46b27cbf71c0d2c8895b6554e5c0dfa7fb2688347a3addc02dc88611df6ea6e3",
-    "uploaded_at": "2026-08-19T00:30:36.395136+00:00"
+    "s3_version_id": "Jb_GK1EQ.JZ.7qm9pmdmJjx5ZZ4DBbSa",
+    "rendered_sha256": "9adcb84e12cebdfe074c850f5e708114ef7ec197448ab1c1308ceeb3dc26c528",
+    "uploaded_at": "2026-08-19T01:03:59.550282+00:00"
   },
   "sentinel_tag": "None of the above"
 }

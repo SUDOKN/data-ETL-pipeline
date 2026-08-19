@@ -41,6 +41,7 @@ from core.models.deferred_extraction.deferred_concept_extraction import (
     TaggingResult,
 )
 from core.models.skos_concept import Concept
+from core.utils.rdf_to_graph_util import render_concept_outline
 from core.models.field_types import (
     ConceptFieldType,
 )
@@ -600,14 +601,11 @@ def create_deferred_phrase_initial_grounding_gpt_request(
     logger.info(
         f"create_deferred_phrase_initial_grounding_gpt_request: Generating GPTBatchRequest for {llm_phrase_initial_grounding_request_id}"
     )
-    all_concept_labels = [
-        label for concept in all_concepts for label in concept.matchLabels
-    ]
-
     context = (
         # f"Manufacturer name: {subject_name}\n\n "
         f"{render_phrase_blocks(verified_out_of_vocab_phrases_w_summary)}\n\n"
-        f"options of {field_type.name} to choose from:\n{all_concept_labels}"
+        f"options of {field_type.name} to choose from:\n"
+        f"{render_concept_outline(all_concepts)}"
     )
 
     gpt_batch_request = create_base_gpt_batch_request(

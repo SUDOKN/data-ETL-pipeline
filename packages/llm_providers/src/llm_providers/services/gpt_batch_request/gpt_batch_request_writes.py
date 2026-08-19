@@ -1,4 +1,5 @@
 import logging
+import re
 from datetime import datetime
 from typing import Any, Optional
 from pymongo.errors import BulkWriteError
@@ -590,33 +591,107 @@ async def bulk_delete_gpt_batch_requests_by_custom_ids(
     return result.deleted_count
 
 
+# Field names are literals rather than ``GPTBatchRequest.<field>`` expression
+# fields so the filter builder below stays a pure function: Beanie only attaches
+# those attributes to the class once ``init_beanie`` has run against a live
+# database, and the scoping rules are worth testing without one.
+_SUBJECT_FIELD = "subject_unique_id"
+_CUSTOM_ID_FIELD = "request.custom_id"
+
+
+def _custom_id_prefix_range(prefix: str) -> dict[str, str]:
+    """Range bounds selecting every custom ID starting with *prefix*.
+
+    ``\uffff`` sorts above every character a custom ID can carry, so the
+    half-open range covers the prefix and nothing past it, on the index.
+    """
+    return {"$gte": prefix, "$lt": prefix + "\uffff"}
+
+
+def build_scoped_delete_filter(
+    subject_unique_id: str,
+    field_name: Optional[str],
+    stage_request_id_tokens: Optional[list[str]] = None,
+) -> tuple[dict[str, Any], bool]:
+    """The delete filter for a (subject, field, stages) scope, and whether the
+    custom_id index bounds it.
+
+    Custom IDs are laid out ``{subject}>{field}>{stage_token}>...``, which is
+    what makes each narrowing expressible on the indexed custom_id:
+
+    - field only: one prefix range, ``{subject}>{field}>``.
+    - field and stages: one prefix range per stage, ``{subject}>{field}>{token}>``.
+    - stages only: a rooted regex, because the stage segment sits behind a field
+      segment this call does not know. Rooted on the subject's literal prefix so
+      the index still bounds the scan.
+    - neither: the subject alone, which the custom_id index cannot bound — hence
+      the returned flag, so the caller does not hint an index into a full walk.
+
+    Every token is matched with its trailing ``>``. Without it,
+    ``llm_phrase_relationship`` would also select
+    ``llm_phrase_relationship_screening``, quietly deleting a stage the caller
+    did not name.
+    """
+    query_filter: dict[str, Any] = {_SUBJECT_FIELD: subject_unique_id}
+
+    if field_name and stage_request_id_tokens:
+        query_filter["$or"] = [
+            {
+                _CUSTOM_ID_FIELD: _custom_id_prefix_range(
+                    f"{subject_unique_id}>{field_name}>{token}>"
+                )
+            }
+            for token in stage_request_id_tokens
+        ]
+    elif field_name:
+        query_filter[_CUSTOM_ID_FIELD] = _custom_id_prefix_range(
+            f"{subject_unique_id}>{field_name}>"
+        )
+    elif stage_request_id_tokens:
+        alternation = "|".join(re.escape(token) for token in stage_request_id_tokens)
+        query_filter[_CUSTOM_ID_FIELD] = {
+            "$regex": f"^{re.escape(subject_unique_id)}>[^>]+>(?:{alternation})>"
+        }
+    else:
+        return query_filter, False
+
+    return query_filter, True
+
+
 async def bulk_delete_gpt_batch_requests_by_subject_id_and_field(
     subject_unique_id: str,
     field_name: Optional[str],
+    stage_request_id_tokens: Optional[list[str]] = None,
 ) -> int:
     """
-    Bulk delete GPT batch requests associated with a subject_unique_id and field type.
+    Bulk delete GPT batch requests for a subject, narrowed to a field and/or to
+    the pipeline stages that issued them — see ``build_scoped_delete_filter``
+    for how a scope becomes a filter.
+
+    This layer stays free of pipeline vocabulary on purpose (`llm_providers`
+    does not import `core`): the caller resolves stages to custom-ID tokens, via
+    ``core.models.pipeline_nodes.base.pipeline_stage.request_id_tokens_from``.
 
     Args:
         subject_unique_id: Subject unique id for which to delete batch requests
-        field_name: Field name to narrow deletion scope
+        field_name: Field name to narrow deletion scope, or None for every field
+        stage_request_id_tokens: Custom-ID stage tokens to narrow deletion
+            scope, or None for every stage
 
     Returns:
         Number of deleted documents
     """
-    query_filter: dict[str, Any] = {
-        GPTBatchRequest.subject_unique_id: subject_unique_id
-    }
-    if field_name:
-        prefix = f"{subject_unique_id}>{field_name}>"
-        query_filter[GPTBatchRequest.request.custom_id] = {
-            "$gte": prefix,
-            "$lt": prefix + "\uffff",
-        }
+    query_filter, index_bounds_the_scan = build_scoped_delete_filter(
+        subject_unique_id=subject_unique_id,
+        field_name=field_name,
+        stage_request_id_tokens=stage_request_id_tokens,
+    )
 
     result = await GPTBatchRequest.get_pymongo_collection().delete_many(
         query_filter,
-        hint=[(GPTBatchRequest.request.custom_id, 1)] if field_name else None,
+        hint=(
+            [(GPTBatchRequest.request.custom_id, 1)] if index_bounds_the_scan else None
+        ),
     )
 
     logger.debug(

@@ -50,7 +50,10 @@ from core.services.pipeline_nodes.multi_stage.llm_phrase_recursive_search_node_s
     get_all_recursive_round_results,
 )
 from typing import ClassVar
-from core.models.pipeline_nodes.base.pipeline_stage import PipelineStage
+from core.models.pipeline_nodes.base.pipeline_stage import (
+    STAGE_REQUEST_ID_TOKEN,
+    PipelineStage,
+)
 
 logger = logging.getLogger(__name__)
 
@@ -110,7 +113,9 @@ class LLMPhraseRecursiveSearchNode(
     ) -> BatchRequestIDType:
         recursive_meta = metadata.llm_phrase_recursive_search
         return (
-            f"{subject_unique_id}>{field_type.name}>llm_recursive_search>round>{round_index}>chunk>{chunk_bounds}>sub>{sub_bounds}>"
+            f"{subject_unique_id}>{field_type.name}"
+            f">{STAGE_REQUEST_ID_TOKEN[PipelineStage.recursive_search]}"
+            f">round>{round_index}>chunk>{chunk_bounds}>sub>{sub_bounds}>"
             f"{recursive_meta.to_custom_id_segment()}"
         )
 

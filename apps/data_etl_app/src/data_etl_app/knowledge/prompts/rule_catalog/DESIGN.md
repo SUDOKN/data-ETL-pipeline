@@ -195,6 +195,33 @@ Initial grounding (IGR): attribution(all): IGR-Q1 (identified entity is one mfg 
   LIST does not cover material/testing standards. So M4's kind test was also decoupled from the
   option list: it now asks whether the thing is of the kind `entity_noun` names, and says outright
   that an unlisted one is still of the kind and belongs to M3.
+  OPTIONS ARE AN INDENTED OUTLINE (2026-08-18), `render_concept_outline` in rdf_to_graph_util.
+  Was a flat list of every matchLabel, which carried no structure to disambiguate a label's sense.
+  The obvious repair — an ancestor path per option — is measurably WORSE: on material_caps "Metal"
+  occurs 72 times across 158 paths, 71 as a prefix and once as a choice, and past that repetition
+  the string reads as a delimiter rather than content, so the bare "Metal" line parses as a section
+  header. That blinds exactly one rule: M1 matches leaves and is unaffected, M2 exists to select an
+  ancestor. An outline writes each label ONCE and is cheaper than either — process_caps 14.8 KB vs
+  8.2 KB bare and 32.5 KB paths — so all 521 concepts at all 7 levels fit and the payload no longer
+  argues for exposing only the top N levels. altLabels ride inline as "(also: …)" instead of being
+  options of their own: they must stay visible (a phrase carrying only the synonym otherwise has no
+  target — this is how "UAS" resolved on 20260818) but as separate entries they were duplicate
+  options for one concept. Siblings sort by name because `known_concepts` is a SET and an unsorted
+  render would reorder the prompt run to run. M2 gained note IGR-M2a stating that an entry with
+  entries beneath it is still selectable.
+  INTRA-ONTOLOGY LABEL COLLISIONS ARE ~ZERO (material_caps 0/173, industries 0/174, process_caps
+  2/671, both modeling artifacts). So the ambiguity worth paying for is label-vs-ORDINARY-ENGLISH
+  ("Lead" the metal vs the verb), which structure cannot fix and only a gloss or definition can.
+  That is why the outline ships without definitions and why the term stayed "meaning" — see
+  `option_evidence` below.
+
+OPTION_EVIDENCE (2026-08-18): catalog header naming what the matching rules compare against, since
+the two option-list stages get different payloads. Initial grounding receives labels only →
+"what the option names"; recursive receives each child with its SKOS definition attached
+(ConceptJSONEncoder) → "the definition given with the option". M1a in both stages renders it.
+Naming a definition the request never carried is worse than naming nothing: the model confabulates
+one, and confabulates whichever definition justifies the match it already favoured. When initial
+grounding gains definitions, flipping this one field is the whole change.
 Freehand grounding (FGR) — uniform across all 3 catalogs as of 2026-08-10, CATEGORY-ONLY as of
   2026-08-10: entity_noun is "equipment category" / "product category" and the wire field is
   `category`, so the output IS the family and never the individual thing.

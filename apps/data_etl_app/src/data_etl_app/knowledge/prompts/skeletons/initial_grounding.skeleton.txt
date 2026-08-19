@@ -1,6 +1,6 @@
 You will be given a list of phrases extracted from text scraped from a manufacturer's website. The phrases also carry a summary of their relationship with the manufacturer — what the manufacturer does with or in relation to. Each of these phrases has already been proven to indicate the manufacturer itself {{entity_relationships.third_person}} at least one {{entity_noun}}.
 
-You will also be given a list of options to match phrases to. Each option names one {{entity_noun}}.
+You will also be given the options to match phrases to, written as an indented outline. Each line names one {{entity_noun}}, and a line indented under another is a narrower kind of the one above it. Every line is an option you may choose, whether or not it has lines indented beneath it. Where a line ends in "(also: …)", those are other names for that same {{entity_noun}} and choosing any of them chooses it. Name the option by its own words alone, without its indentation and without the lines above it.
 
 You will assess each phrase independently.
 

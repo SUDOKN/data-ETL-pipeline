@@ -32,6 +32,8 @@ from data_etl_app.services.prompt_assembly_service import (
     SKELETON_BY_STAGE,
     PromptAssemblyError,
     _dumps_example,
+    _resolve_entity_placeholders,
+    _resolve_runtime_tokens,
     _sentinel_branch_id,
     load_all_catalogs,
     prompt_s3_key,
@@ -280,7 +282,14 @@ def test_publish_metadata_does_not_change_what_renders():
 
 def test_reportable_rules_are_listed_and_notes_are_not():
     """Notes render as bare sub-bullets. Giving them an id would invite the model
-    to report one, which parse-time validation rejects."""
+    to report one, which parse-time validation rejects.
+
+    A note's text is compared RESOLVED. Comparing the raw catalog string passed only
+    while no note happened to contain a placeholder, so the assertion silently
+    weakened to "notes without placeholders survive rendering" — and the first note
+    to take one ({{option_evidence}} on RGR-M1a) failed a test that was meant to be
+    about ids.
+    """
     catalog = CATALOGS["industry_phrase_recursive_grounding"]
     text = render_prompt(catalog)
 
@@ -289,7 +298,10 @@ def test_reportable_rules_are_listed_and_notes_are_not():
             assert f"[{rule.id}]" in text, f"{rule.id} missing from rendered prompt"
         else:
             assert f"[{rule.id}]" not in text, f"note {rule.id} rendered with an id"
-            assert rule.text in text, f"note {rule.id} text missing entirely"
+            resolved = _resolve_runtime_tokens(
+                _resolve_entity_placeholders(rule.text, catalog), catalog
+            )
+            assert resolved in text, f"note {rule.id} text missing entirely"
 
 
 def test_report_block_separates_always_from_chosen_and_violated():

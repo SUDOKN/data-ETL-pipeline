@@ -49,7 +49,10 @@ from core.utils.rdf_to_graph_util import (
     get_match_label_to_concept_map,
 )
 from typing import ClassVar
-from core.models.pipeline_nodes.base.pipeline_stage import PipelineStage
+from core.models.pipeline_nodes.base.pipeline_stage import (
+    STAGE_REQUEST_ID_TOKEN,
+    PipelineStage,
+)
 
 logger = logging.getLogger(__name__)
 
@@ -183,7 +186,9 @@ class LLMPhraseInitialGroundingNode(
         metadata: ConceptExtractionMetadata,
     ) -> BatchRequestIDType:
         return (
-            f"{subject_unique_id}>{field_type.name}>llm_phrase_initial_grounding>group>{group_index}>chunk>{chunk_bounds}>"
+            f"{subject_unique_id}>{field_type.name}"
+            f">{STAGE_REQUEST_ID_TOKEN[PipelineStage.initial_grounding]}"
+            f">group>{group_index}>chunk>{chunk_bounds}>"
             f"{metadata.llm_phrase_initial_grounding.to_custom_id_segment()}"
         )
 

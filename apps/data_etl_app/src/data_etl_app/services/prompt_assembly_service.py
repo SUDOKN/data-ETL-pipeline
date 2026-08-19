@@ -345,6 +345,7 @@ def _resolve_entity_placeholders(text: str, catalog: RuleCatalog) -> str:
         .replace("{{entity_relationships.base}}", relationships.base)
         .replace("{{entity_relationships.third_person}}", relationships.third_person)
         .replace("{{entity_relationships.gerund}}", relationships.gerund)
+        .replace("{{option_evidence}}", catalog.option_evidence)
     )
 
 

@@ -1,5 +1,5 @@
 {
-  "catalog_version": "conformity_attestation_phrase_initial_grounding.2026.08.7",
+  "catalog_version": "conformity_attestation_phrase_initial_grounding.2026.08.9",
   "prompt_name": "conformity_attestation_phrase_initial_grounding",
   "stage": "phrase_initial_grounding",
   "field_types": [
@@ -11,6 +11,7 @@
     "third_person": "holds or conforms to",
     "gerund": "holding or conforming to"
   },
+  "option_evidence": "what the option names",
   "outcome_vocab": {
     "condition": [
       "satisfied",
@@ -53,7 +54,7 @@
               "kind": "note",
               "reportable": false,
               "report_when": "never",
-              "text": "Choose by comparing underlying meanings and definitions with the identified {{entity_noun}}, never by lexical or name similarity, and without forced or contrived links that rely on assumptions beyond the phrase and its relationship summary. In particular, do not choose an option whose name resembles the identified {{entity_noun}} when the option's definition excludes this case. Never map a claim of meeting customer or industry specifications, or of operating quality systems, onto a specific named standard the phrase and its relationship summary do not themselves name."
+              "text": "Choose by comparing the identified {{entity_noun}} against {{option_evidence}}, never by lexical or name similarity, and without forced or contrived links that rely on assumptions beyond the phrase and its relationship summary. In particular, do not choose an option whose name resembles the identified {{entity_noun}} when {{option_evidence}} does not cover this case."
             }
           ],
           "combinator": "note"
@@ -63,7 +64,17 @@
           "kind": "preference",
           "reportable": true,
           "report_when": "when_chosen",
-          "text": "When no option exactly matches, an option whose meaning generalizes the identified {{entity_noun}} is chosen."
+          "text": "When no option exactly matches, an option whose meaning generalizes the identified {{entity_noun}} is chosen.",
+          "combinator": "note",
+          "children": [
+            {
+              "id": "IGR-M2a",
+              "kind": "note",
+              "reportable": false,
+              "report_when": "never",
+              "text": "Every entry in the outline is one you may choose, including an entry that has entries indented beneath it. Where the phrase names something the outline covers only at a broader entry, that broader entry is the match."
+            }
+          ]
         },
         {
           "id": "IGR-M3",
@@ -94,8 +105,8 @@
   ],
   "sentinel_tag": "None of the above",
   "published": {
-    "s3_version_id": "5Zns8gX2OBTkicWQGMi1M.EXaHGa92Cc",
-    "rendered_sha256": "3c091136cbf801b60cb880589eb87ef681aa50fb2a56d3f2135fba42072b2365",
-    "uploaded_at": "2026-08-19T00:30:36.395136+00:00"
+    "s3_version_id": "tKHgbOp6E1W3JvWP6EMpYh8XJirDk2xc",
+    "rendered_sha256": "4ca5f95adbaa9641a6b9a44388f82f2eb29c1e44fc091cc692e8a8f7e63682c2",
+    "uploaded_at": "2026-08-19T01:03:59.550282+00:00"
   }
 }

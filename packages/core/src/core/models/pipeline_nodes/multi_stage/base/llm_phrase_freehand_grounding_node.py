@@ -45,7 +45,10 @@ from core.services.pipeline_nodes.multi_stage.llm_freehand_grounding_service imp
 from llm_providers.field_types import BatchRequestIDType
 from scraper.models.s3.scraped_text_file import ScrapedTextFile
 from typing import ClassVar
-from core.models.pipeline_nodes.base.pipeline_stage import PipelineStage
+from core.models.pipeline_nodes.base.pipeline_stage import (
+    STAGE_REQUEST_ID_TOKEN,
+    PipelineStage,
+)
 
 logger = logging.getLogger(__name__)
 
@@ -157,7 +160,9 @@ class LLMPhraseFreehandGroundingNode(
         metadata: KeywordExtractionMetadata,
     ) -> BatchRequestIDType:
         return (
-            f"{subject_unique_id}>{field_type.name}>llm_phrase_freehand_grounding>group>{group_index}>chunk>{chunk_bounds}>"
+            f"{subject_unique_id}>{field_type.name}"
+            f">{STAGE_REQUEST_ID_TOKEN[PipelineStage.freehand_grounding]}"
+            f">group>{group_index}>chunk>{chunk_bounds}>"
             f"{metadata.llm_phrase_freehand_grounding.to_custom_id_segment()}"
         )
 

@@ -1,5 +1,5 @@
 {
-  "catalog_version": "process_cap_phrase_recursive_grounding.2026.08.4",
+  "catalog_version": "process_cap_phrase_recursive_grounding.2026.08.5",
   "prompt_name": "process_cap_phrase_recursive_grounding",
   "stage": "phrase_recursive_grounding",
   "field_types": [
@@ -66,7 +66,7 @@
               "kind": "note",
               "reportable": false,
               "report_when": "never",
-              "text": "Choose by comparing underlying meanings and definitions with the identified type, never by lexical or name similarity, and without forced or contrived links that rely on assumptions beyond the phrase and its relationship summary. In particular, do not choose an option whose name resembles the identified type when the option's definition excludes this case."
+              "text": "Choose by comparing the identified type against {{option_evidence}}, never by lexical or name similarity, and without forced or contrived links that rely on assumptions beyond the phrase and its relationship summary. In particular, do not choose an option whose name resembles the identified type when {{option_evidence}} does not cover this case."
             }
           ],
           "combinator": "note"
@@ -120,9 +120,10 @@
     }
   ],
   "published": {
-    "s3_version_id": "EflIUzNbSuQByPWST7bWJizDW5qSvJ3L",
-    "rendered_sha256": "e43e20c2c2992d2e6d03809a402e4afad7af7517d021288ad64a0093ee436a8c",
-    "uploaded_at": "2026-08-19T00:30:36.395136+00:00"
+    "s3_version_id": "Pf5LjePhV5w8aHbKssG2mFhYbTZlNiv5",
+    "rendered_sha256": "646a2fdb22afe768d9d548824392b3aa4f8889b767f1c922e8f3f327da357a63",
+    "uploaded_at": "2026-08-19T01:03:59.550282+00:00"
   },
-  "sentinel_tag": "None of the above"
+  "sentinel_tag": "None of the above",
+  "option_evidence": "the definition given with the option"
 }

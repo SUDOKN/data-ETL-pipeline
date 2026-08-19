@@ -148,6 +148,18 @@ class RuleCatalog(BaseModel):
     # request does not carry would teach the model to invent one.
     evidence_source: str = "the phrase and its relationship summary"
 
+    # What the matching rules compare an identified entity AGAINST — the option
+    # side of the comparison. It exists because the two option-list stages are not
+    # handed the same payload: initial grounding receives an outline of labels and
+    # nothing else, while recursive grounding receives each child concept with its
+    # SKOS definition attached (ConceptJSONEncoder). Naming a definition the request
+    # never carried is worse than naming nothing: asked to consult a definition it
+    # does not have, the model confabulates one, and it will confabulate whichever
+    # definition justifies the match it already favoured. Wording that follows the
+    # payload keeps the rule honest, and flipping this one line is what a stage
+    # needs when its payload gains definitions.
+    option_evidence: str = "what the option names"
+
     # The reserved label this prompt's escape-hatch branch tells the model to
     # return, for the catalogs that have one — recursive grounding and freehand.
     # Initial grounding has no escape hatch and leaves this unset.
@@ -230,6 +242,29 @@ class RuleCatalog(BaseModel):
                 f"spelled verbatim in exactly one preference rule — the branch that "
                 f"instructs the model to return it — so the prompt and the parser "
                 f"agree on it; found it in {branches or 'no preference rules'}"
+            )
+        return self
+
+    @model_validator(mode="after")
+    def check_option_evidence_is_declared_where_it_is_used(self) -> "RuleCatalog":
+        """A catalog whose rule text spells {{option_evidence}} must state its value.
+
+        Unlike evidence_source — consumed by the assembler when it builds the report
+        block, and never visible in a rule — this token appears in the rules
+        themselves. Leaving it on the model default renders correctly and still fails
+        the reader: opening the catalog shows a placeholder with no answer anywhere in
+        the file, which is exactly how the initial grounding catalogs looked on
+        2026-08-18. The default stays as a floor for catalogs that never mention it.
+        """
+        token = "{{option_evidence}}"
+        users = [rule.id for rule in self.walk_rules() if token in rule.text]
+        if users and "option_evidence" not in self.model_fields_set:
+            raise ValueError(
+                f"{self.prompt_name}: {users} spell {token}, so this catalog must "
+                f"declare `option_evidence` rather than inherit the default "
+                f"({self.option_evidence!r}). What the matching rules compare "
+                f"against is a property of the payload this stage is sent, and a "
+                f"reader of the catalog has to be able to see which one it gets."
             )
         return self
 

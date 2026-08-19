@@ -43,7 +43,10 @@ from core.services.pipeline_nodes.multi_stage.llm_phrase_relationship_node_servi
     get_relationship_candidates,
 )
 from typing import ClassVar
-from core.models.pipeline_nodes.base.pipeline_stage import PipelineStage
+from core.models.pipeline_nodes.base.pipeline_stage import (
+    STAGE_REQUEST_ID_TOKEN,
+    PipelineStage,
+)
 
 logger = logging.getLogger(__name__)
 
@@ -171,7 +174,9 @@ class LLMPhraseRelationshipNode(
         metadata: LLMPhraseExtractionMetadata,
     ) -> BatchRequestIDType:
         return (
-            f"{subject_unique_id}>{field_type.name}>llm_phrase_relationship>group>{group_index}>chunk>{chunk_bounds}>"
+            f"{subject_unique_id}>{field_type.name}"
+            f">{STAGE_REQUEST_ID_TOKEN[PipelineStage.relationship]}"
+            f">group>{group_index}>chunk>{chunk_bounds}>"
             f"{metadata.llm_phrase_relationship.to_custom_id_segment()}"
         )
 

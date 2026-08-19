@@ -3,8 +3,10 @@ from core.models.pipeline_nodes.base.base_node import (
     PipelineContext,
 )
 from core.models.pipeline_nodes.base.pipeline_stage import (
+    STAGE_REQUEST_ID_TOKEN,
     PipelineStage,
     StageToggles,
+    request_id_tokens_from,
 )
 from core.models.pipeline_nodes.base.base_prefill_node import (
     PrefillNode,
@@ -102,6 +104,8 @@ __all__ = [
     "PipelineContext",
     "PipelineStage",
     "StageToggles",
+    "STAGE_REQUEST_ID_TOKEN",
+    "request_id_tokens_from",
     "PrefillNode",
     "ReconcileNode",
     "BaseLLMExtractionNode",

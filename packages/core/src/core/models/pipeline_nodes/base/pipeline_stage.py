@@ -67,6 +67,61 @@ _STAGE_RANK: dict[PipelineStage, int] = {
     PipelineStage.reconcile: 7,
 }
 
+# The third `>`-delimited segment of a batch request's custom ID, per stage.
+# Nodes interpolate these into their `get_request_custom_id`, so this map is the
+# definition of the token rather than a copy of it, and anything scoping a query
+# to a stage matches on it — see `request_id_tokens_from`. Prefill and reconcile
+# issue no LLM requests, so they have no token.
+STAGE_REQUEST_ID_TOKEN: dict[PipelineStage, str] = {
+    PipelineStage.single_stage_extraction: "llm_request",
+    PipelineStage.phrase_search: "llm_search",
+    PipelineStage.recursive_search: "llm_recursive_search",
+    PipelineStage.relationship: "llm_phrase_relationship",
+    PipelineStage.screening: "llm_phrase_relationship_screening",
+    PipelineStage.initial_grounding: "llm_phrase_initial_grounding",
+    PipelineStage.freehand_grounding: "llm_phrase_freehand_grounding",
+    PipelineStage.iterative_grounding: "llm_phrase_recursive_grounding",
+}
+
+
+def request_id_tokens_from(
+    stage: PipelineStage,
+    *,
+    and_downstream: bool = False,
+) -> list[str]:
+    """Custom-ID tokens naming *stage*, plus every later stage when *and_downstream*.
+
+    Ranked exactly like ``stop_after``, so the grounding tier comes as a pair:
+    asking for ``initial_grounding`` and downstream also names
+    ``freehand_grounding``. The two are alternatives, never both in one field's
+    chain, so the extra token simply matches nothing for a field that does not
+    use it.
+
+    Raises when the request would name no stage that issues requests at all
+    (``reconcile``, ``prefill``), rather than silently resolving to "nothing".
+    """
+    if not and_downstream:
+        token = STAGE_REQUEST_ID_TOKEN.get(stage)
+        if token is None:
+            raise ValueError(
+                f"{stage} issues no LLM batch requests, so no request can be scoped to it."
+            )
+        return [token]
+
+    cutoff = _STAGE_RANK[stage]
+    tokens = [
+        token
+        for other, token in STAGE_REQUEST_ID_TOKEN.items()
+        if _STAGE_RANK[other] >= cutoff
+    ]
+    if not tokens:
+        raise ValueError(
+            f"No stage at or after {stage} issues LLM batch requests, so no request "
+            f"can be scoped to it."
+        )
+    return tokens
+
+
 # Prefill builds the chunked request map every later stage indexes into, so
 # there is nothing coherent to run if it is skipped. Not toggleable.
 _ALWAYS_ON: frozenset[PipelineStage] = frozenset({PipelineStage.prefill})

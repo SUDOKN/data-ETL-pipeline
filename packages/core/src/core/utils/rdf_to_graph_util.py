@@ -164,6 +164,71 @@ def tree_list_to_flat(tree_knowns: list[ConceptNode]) -> set[Concept]:
     return set(flat_knowns)
 
 
+def render_concept_outline(concepts: Iterable[Concept], indent: str = "  ") -> str:
+    """The option list as an indented outline, one line per concept.
+
+    Replaces a flat list of every matchLabel. That list had no structure at all, so
+    nothing told the model which sense of a label was meant; the obvious repair —
+    giving each option its full ancestor path — makes the shallow labels far WORSE
+    rather than better. Measured on material_caps, "Metal" occurs 72 times across 158
+    paths: 71 times as a prefix and once as a choice. Past that much repetition the
+    string stops reading as content and starts reading as a delimiter, so the one
+    bare "Metal" line parses as a section header and the model goes blind to it.
+    That lands on exactly one rule — M1 matches leaves and is unaffected, while M2
+    (generalize) exists to select an ancestor, which is precisely the set of labels
+    the repetition destroyed.
+
+    An outline carries the same ancestry with each label written ONCE, and costs less
+    than either alternative: for process_caps, 11.5 KB against 8.2 KB for the bare
+    labels and 32.5 KB for full paths. All 521 concepts at all 7 levels fit, so the
+    payload no longer argues for exposing only the top few levels.
+
+    altLabels ride inline on their concept's line rather than becoming lines of their
+    own. They have to stay visible — a phrase carrying only the synonym otherwise has
+    no target to match, which is how "UAS" resolved on the 20260818 run — but as
+    separate entries they were duplicate options for one concept.
+
+    Order is by name at every level: `known_concepts` is a set, and an unsorted render
+    would hash-order the prompt differently run to run, changing the request payload
+    without changing its meaning.
+    """
+    by_name: dict[str, Concept] = {c.name: c for c in concepts}
+    children: dict[str, list[Concept]] = {}
+    roots: list[Concept] = []
+
+    for concept in by_name.values():
+        parent = concept.ancestors[-1] if concept.ancestors else None
+        # A concept whose parent is absent from this set is rendered as a root: the
+        # caller asked for the subtree it passed, and silently dropping a concept
+        # would remove an option the model is still allowed to choose.
+        if parent is None or parent not in by_name:
+            roots.append(concept)
+        else:
+            children.setdefault(parent, []).append(concept)
+
+    def _line(concept: Concept, depth: int) -> str:
+        text = f"{indent * depth}{concept.name}"
+        if concept.altLabels:
+            text += f" (also: {', '.join(sorted(concept.altLabels))})"
+        return text
+
+    lines: list[str] = []
+    seen: set[str] = set()
+
+    def _walk(concept: Concept, depth: int) -> None:
+        if concept.name in seen:  # cycle guard; a malformed tree must not hang a run
+            return
+        seen.add(concept.name)
+        lines.append(_line(concept, depth))
+        for child in sorted(children.get(concept.name, []), key=lambda c: c.name):
+            _walk(child, depth + 1)
+
+    for root in sorted(roots, key=lambda c: c.name):
+        _walk(root, 0)
+
+    return "\n".join(lines)
+
+
 def get_match_label_to_concept_map(
     concepts: Iterable[Concept],
 ) -> CaseInsensitiveDict[Concept]:

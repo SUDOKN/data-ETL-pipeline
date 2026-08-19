@@ -48,7 +48,10 @@ from core.services.pipeline_nodes.single_stage.llm_basic_field_extraction_servic
     create_missing_basic_extraction_requests,
 )
 from typing import ClassVar
-from core.models.pipeline_nodes.base.pipeline_stage import PipelineStage
+from core.models.pipeline_nodes.base.pipeline_stage import (
+    STAGE_REQUEST_ID_TOKEN,
+    PipelineStage,
+)
 
 logger = logging.getLogger(__name__)
 
@@ -130,7 +133,9 @@ class SingleStageExtractionNode(BaseLLMExtractionNode[ExtractionFieldType, Resul
         metadata: LLMSingleStageExtractionMetadata,
     ) -> BatchRequestIDType:
         return (
-            f"{subject_unique_id}>{field_type.name}>llm_request>chunk>{chunk_bounds}>"
+            f"{subject_unique_id}>{field_type.name}"
+            f">{STAGE_REQUEST_ID_TOKEN[PipelineStage.single_stage_extraction]}"
+            f">chunk>{chunk_bounds}>"
             f"{metadata.single_stage.to_custom_id_segment()}"
         )
 
