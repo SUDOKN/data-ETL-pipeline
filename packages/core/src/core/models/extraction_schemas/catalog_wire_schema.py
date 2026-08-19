@@ -47,6 +47,7 @@ from typing import Any, Literal, Optional, Union, cast
 from pydantic import BaseModel, ConfigDict, Field, create_model
 
 from core.models.extraction_schemas.applied_rule import AppliedRule
+from core.models.extraction_schemas.grounding import is_sentinel_grounding_label
 from core.models.extraction_schemas.response_format_util import (
     build_gpt_response_format,
 )
@@ -107,6 +108,38 @@ class WireEntry(BaseModel):
     """
 
     model_config = ConfigDict(extra="forbid", populate_by_name=True)
+
+
+class SentinelWireEntry(WireEntry):
+    """The escape-hatch arm of a grounding stage: the unit that says nothing was
+    identified. It carries NO rule slots.
+
+    A catalog's sentinel branch (RGR-M4, FGR-M2) is reached exactly when there is
+    no identified type for the conditions to be about, so the prompt asks for
+    every condition as ``not_triggered`` — four reports whose content is fixed by
+    the branch itself. Nothing reads them: ``is_sentinel_grounding_label`` skips
+    the unit in ``get_deepest_concepts_and_oov``, in initial grounding, in the
+    reconcile nodes and in the trail dumps, all downstream of the parse that
+    validates it.
+
+    On 2026-08-18 that ceremony cost a manufacturer. One sentinel unit out of 44
+    in the run answered RGR-Q1 with RGR-Q3's subject and RGR-Q2 with RGR-Q1's —
+    "Q2 satisfied behind Q1 failed" — and the condition-chain check aborted the
+    subject over a self-contradiction in a report that is discarded three lines
+    later. The other 42 reported the canonical ``not_triggered`` the prompt asks
+    for, so this is a rare slip rather than a misread instruction, and a third
+    restatement of an instruction the prompt already gives twice would not have
+    caught it.
+
+    So the sentinel becomes a BRANCH rather than a unit with fixed content, which
+    is decision #21's shape — the same move ``build_screening_response_model``
+    made for ``no_candidate``, and for the same reason: a branch cannot be
+    half-taken. There is no slot left to contradict. It keeps its
+    ``explanation``, which is the only part of the old four reports a reader ever
+    wanted.
+    """
+
+    explanation: str
 
 
 class ScreeningWireResponse(BaseModel):
@@ -262,6 +295,32 @@ def build_entry_model(
     return create_model(name, __base__=base, **fields)
 
 
+def _is_sentinel_unit(entry: BaseModel) -> bool:
+    """Whether ``entry`` is the escape hatch, however it arrived.
+
+    The generated arm is the shape the prompt now asks for, and it carries no rule
+    slots at all. The label check behind it closes what the schema cannot: the
+    rule-bearing arm types its unit key as a plain ``str``, and strict-mode JSON
+    Schema has no way to say "any string except this one" — an enum of the real
+    options would, but those are per-request (see the option-axis note in
+    ``echo_surfaces``). So a unit labelled with the sentinel AND carrying a full
+    ladder still satisfies the rule-bearing arm.
+
+    Its rules are dropped rather than validated, which is the same judgement the
+    six downstream readers already make by skipping the unit outright: nothing
+    reads a sentinel's rules, so a contradiction among them is not a finding and
+    must not cost the subject. What the model was asked for is the arm; this is
+    only what happens when it answers in the older shape anyway.
+    """
+    if isinstance(entry, SentinelWireEntry):
+        return True
+    for unit_key in ("option", "category"):
+        label = getattr(entry, unit_key, None)
+        if isinstance(label, str) and is_sentinel_grounding_label(label):
+            return True
+    return False
+
+
 def flatten_rule_slots(catalog: RuleCatalog, entry: BaseModel) -> list[AppliedRule]:
     """The rule slots on ``entry``, as the stored ``list[AppliedRule]``.
 
@@ -270,6 +329,9 @@ def flatten_rule_slots(catalog: RuleCatalog, entry: BaseModel) -> list[AppliedRu
     rendered output example uses, so stored records read in the order the prompt
     stated the rules.
     """
+    if _is_sentinel_unit(entry):
+        return []
+
     applied: list[AppliedRule] = []
     chosen_emitted = False
     guards_emitted = False
@@ -363,6 +425,36 @@ def build_screening_response_model(catalog: RuleCatalog) -> type[ScreeningWireRe
     )
 
 
+def _sentinel_arm(
+    catalog: RuleCatalog, *, name: str, unit_key: str
+) -> Optional[type[SentinelWireEntry]]:
+    """``catalog``'s escape-hatch arm, or None where it declares no sentinel.
+
+    The unit key is pinned to the sentinel label itself, which is what keeps the
+    two arms disjoint without a tag field: ``extra="forbid"`` on both means a
+    sentinel unit cannot satisfy the rule-bearing arm (its required rule slots are
+    absent) and a rule-bearing unit cannot satisfy this one (its rule slots are
+    extra), whatever label it carries.
+    """
+    if catalog.sentinel_tag is None:
+        return None
+    return create_model(
+        name,
+        __base__=SentinelWireEntry,
+        **{unit_key: (Literal[catalog.sentinel_tag], ...)},  # type: ignore[call-overload]
+    )
+
+
+def _units_field(
+    unit: type[WireEntry], sentinel: Optional[type[SentinelWireEntry]]
+) -> Any:
+    """The per-phrase list of units, widened to the escape-hatch arm where the
+    catalog has one. Sentinel first: it is the narrower of the two."""
+    if sentinel is None:
+        return list[unit]  # type: ignore[valid-type]
+    return list[Union[sentinel, unit]]  # type: ignore[valid-type]
+
+
 def build_category_grounding_response_model(
     catalog: RuleCatalog,
 ) -> type[GroundingWireResponse]:
@@ -373,11 +465,14 @@ def build_category_grounding_response_model(
         name=f"{prefix}Category",
         own_fields={"category": (str, ...)},
     )
+    sentinel = _sentinel_arm(
+        catalog, name=f"{prefix}SentinelCategory", unit_key="category"
+    )
     entry = create_model(
         f"{prefix}Entry",
         __base__=WireEntry,
         phrase=(str, ...),
-        categories=(list[category], ...),  # type: ignore[valid-type]
+        categories=(_units_field(category, sentinel), ...),
     )
     return create_model(
         f"{prefix}Response",
@@ -396,11 +491,14 @@ def build_option_grounding_response_model(
         name=f"{prefix}Option",
         own_fields={"option": (str, ...)},
     )
+    sentinel = _sentinel_arm(
+        catalog, name=f"{prefix}SentinelOption", unit_key="option"
+    )
     entry = create_model(
         f"{prefix}Entry",
         __base__=WireEntry,
         phrase=(str, ...),
-        options=(list[option], ...),  # type: ignore[valid-type]
+        options=(_units_field(option, sentinel), ...),
     )
     return create_model(
         f"{prefix}Response",

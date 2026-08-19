@@ -1,5 +1,5 @@
 {
-  "catalog_version": "product_phrase_screening_contract.2026.08.4",
+  "catalog_version": "product_phrase_screening_contract.2026.08.5",
   "prompt_name": "product_phrase_screening_contract",
   "stage": "phrase_relationship_screening",
   "field_types": [
@@ -49,18 +49,19 @@
           "kind": "condition",
           "reportable": true,
           "report_when": "always",
-          "text": "The phrase and its relationship summary show real, concrete involvement with the identified {{entity_noun}}: some party is shown to {{entity_relationships.base}} that {{entity_noun}}, not merely to name, list, or mention it in passing.",
+          "text": "The phrase and its relationship summary say something substantive about the identified {{entity_noun}} — describing an activity, arrangement, or dealing that involves it — rather than only naming it, listing it, or mentioning it in passing. Which party is involved is not this condition's subject; [SCR-3] and [SCR-4] decide that.",
+          "children": []
+        },
+        {
+          "id": "SCR-3",
+          "kind": "condition",
+          "reportable": true,
+          "report_when": "always",
+          "text": "The identified {{entity_noun}} is worked on to another party's order: items in it belong to, are specified by, or are branded for a customer, client, OEM, or brand owner — produced, machined, assembled, formulated, finished, packaged, or otherwise made to their specification, design, drawing, formula, or brand.",
           "combinator": "note",
           "children": [
             {
-              "id": "SCR-2a",
-              "kind": "note",
-              "reportable": false,
-              "report_when": "never",
-              "text": "The work must be placed on the other party's side of the arrangement: items in the {{entity_noun}} belong to, are specified by, or are branded for a customer, client, OEM, or brand owner — produced, machined, assembled, formulated, finished, packaged, or otherwise made to their specification, design, drawing, formula, or brand."
-            },
-            {
-              "id": "SCR-2b",
+              "id": "SCR-3a",
               "kind": "note",
               "reportable": false,
               "report_when": "never",
@@ -69,7 +70,7 @@
           ]
         },
         {
-          "id": "SCR-3",
+          "id": "SCR-4",
           "kind": "condition",
           "reportable": true,
           "report_when": "always",
@@ -77,21 +78,21 @@
           "combinator": "note",
           "children": [
             {
-              "id": "SCR-3a",
+              "id": "SCR-4a",
               "kind": "note",
               "reportable": false,
               "report_when": "never",
               "text": "A verb that leaves the commercial arrangement unstated does not by itself show whether the manufacturer is the party that {{entity_relationships.third_person}} it. Where the wording says only that the manufacturer deals in the thing, without fixing in what capacity, the arrangement has not been established."
             },
             {
-              "id": "SCR-3b",
+              "id": "SCR-4b",
               "kind": "note",
               "reportable": false,
               "report_when": "never",
               "text": "The manufacturer must be the shop doing the work, not the party sending it out. A phrase showing that someone else performs the contract work on items in the {{entity_noun}} fails this condition."
             },
             {
-              "id": "SCR-3c",
+              "id": "SCR-4c",
               "kind": "note",
               "reportable": false,
               "report_when": "never",
@@ -117,8 +118,8 @@
     }
   ],
   "published": {
-    "s3_version_id": "MX_1jcUcp4qNP7YUEufrSiI3yk5suh31",
-    "rendered_sha256": "486b52365b4cbb22e26fe624d327914e246bc8b78fda0cbb6996a01bcc77e918",
-    "uploaded_at": "2026-08-14T00:48:01.575194+00:00"
+    "s3_version_id": "C2NmMv2PSdjVHdgx8j8zsuKw06nIZtzy",
+    "rendered_sha256": "44c53303a9593bb091bc4dee0993aee11fbfcce6b0a66d298244ab74b41dd680",
+    "uploaded_at": "2026-08-19T00:30:36.395136+00:00"
   }
 }

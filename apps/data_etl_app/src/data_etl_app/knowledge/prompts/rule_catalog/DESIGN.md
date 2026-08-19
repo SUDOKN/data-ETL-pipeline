@@ -34,6 +34,9 @@ Note: process uses {{types_of_process_cap}} (not types_of_parent_process_cap) in
 Dir: apps/data_etl_app/src/data_etl_app/knowledge/rule_catalog/
 {screening,initial_grounding,recursive_grounding}.{industries,conformity_attestations,materials,processes}.json
 Per-stage rule counts (uniform across concepts): screening=5 leaves, initial=7, recursive=10.
+STALE as of 2026-08-18: initial and recursive each lost their `match_qualification` condition to a
+note under M1, and product_phrase_screening_contract gained a fourth condition. Counts are no
+longer uniform across concepts; read the catalogs.
 
 ## CATALOG SCHEMA (the stable, generic envelope)
 Top-level fields: catalog_version, stage, field_type, entity_noun, entity_relationships
@@ -77,14 +80,71 @@ serves", so the tense question is genuinely open. The old SCR-G1 ("the text stat
 serve") did not: it was a strict subset of SCR-2 failing and could never flip a verdict, so it
 was dropped from all 7 screening catalogs.
 
+## PRECEDENCE: WHY OVERLAP IS NEVER SYMMETRIC (2026-08-18)
+Every combinator resolves FIRST-MATCH-WINS, so two rules that can both answer a case do not
+split it — the earlier one takes it and the later one is starved. Overlap is therefore always a
+precedence bug, and the cost is always paid by the LATER rule. The three shapes:
+- `all` MASKS. `_check_condition_chain` reads document order, and a valid report is
+  `satisfied* failed? not_triggered*`. The first condition that can absorb a case absorbs it,
+  the chain terminates, and every rule behind it is recorded `not_triggered` — its notes never
+  execute.
+- `ordered` STARVES. Only the chosen branch is reported, so a branch that is never REACHED is
+  indistinguishable from one that never APPLIES.
+- `any` is CHEAP BUT BLIND. Guards are a disjunction: two firing on one candidate costs nothing
+  and gives an annotator two reasons. But a guard reports only on violation, so its silence is
+  unobservable.
+
+COROLLARY — NOTES INHERIT THEIR PARENT'S PRECEDENCE. A carve-out written as a note under rule N
+is unreachable for any case rule N-1 already resolved. Placement is therefore not a topical
+decision: a carve-out belongs on the EARLIEST rule that can plausibly resolve the case, not the
+rule it is most obviously about. This is what the 2026-08-18 audit found: SCR-3b says in as many
+words that supplying a sector's members counts as serving the sector, and had never once been
+read, because SCR-2 was phrased as an existential over SCR-3's predicate and settled those cases
+first. Measured on run 20260818T204045: 20/20 industries screen-outs failed at SCR-2 and SCR-3
+was reached zero times; contract_products and conformity_attestations likewise 0. Only
+pure_product, whose SCR-2a establishes a NON-attribution axis for SCR-2, exercised both (59
+SCR-3 first-failures). Fix: strip the actor from every `-2` rule so it tests substance only, and
+name the rule that does decide attribution.
+
+NON-OVERLAP IS NOT ONE REQUIREMENT. It is too strict for `guards` — redundancy there is free and
+improves the record, which is why SCR-G3 (a machine it sells) is kept even though it entails
+SCR-3 failing. What guards need is COVERAGE: every rejection reason has at least one home. It is
+too weak for `pass_conditions`, where the property required is directional — NO EARLIER CONDITION
+MAY BE ANSWERABLE FROM A LATER CONDITION'S EVIDENCE. SCR-2 and SCR-3 were arguably non-overlapping
+as concerns and still failed that.
+
+DEPENDENT vs INDEPENDENT IS NOT DECLARED ANYWHERE. `pass_conditions` is meant as a topological
+chain (each condition's subject is what the previous established) and `attribution` as an
+independent conjunction, but both are `all` and both run through `_check_condition_chain`, which
+reads document order as a dependency chain unconditionally. Nothing in the schema distinguishes
+them and nothing stops the wrong kind being written into either. If the distinction is to be
+enforced it wants to be a field on the section.
+
 ## RULES PER STAGE
 Screening (SCR): section pass_conditions(all): THREE flat conditions, each positively phrased,
-  split along the error modes actually seen in the data (restructured 2026-08-10):
+  split along the error modes actually seen in the data (restructured 2026-08-10; SCR-2 reworded
+  2026-08-18):
     SCR-1 the entity is identifiable at all;
-    SCR-2 the relationship is REAL — some party is shown to <base> it, not merely name or list it
-      (catches nav menus, keyword stuffing, "industries we're familiar with");
+    SCR-2 the phrase says something SUBSTANTIVE about it — an activity, arrangement, or dealing
+      that involves it, not merely naming or listing it (catches nav menus, keyword stuffing,
+      "industries we're familiar with"). It names NO party and uses NO `entity_relationships`
+      token: phrased as "some party is shown to <base> it" the rule was an existential over
+      SCR-3's own predicate, so the model settled attribution here and SCR-3 was never reached.
+      It now closes by naming the rule that does decide attribution;
     SCR-3 the relationship is the MANUFACTURER'S — not a customer, supplier, or distributor it
       merely relates to (catches the dominant error mode; was the nested exception).
+  product_phrase_screening_contract has FOUR conditions as of 2026-08-18: its "whose order is it"
+  test was a note inside SCR-2 (SCR-2a) even though the same distinction is first-class in
+  is_contract_manufacturer as CON-3/CON-4. It is now SCR-3 (worked on to another party's order)
+  with the old attribution condition renumbered to SCR-4, so the phrase catalog and the binary
+  catalog decompose the arrangement the same way.
+  !! ID STABILITY BROKEN HERE. `RuleNode.id` is stable by contract and stored applied_rule records
+  and GT annotations key on it, but contract's SCR-3 now means "to another party's order" where it
+  previously meant "the manufacturer itself performs it". Any join over contract_products
+  applied_rules MUST be qualified by catalog_version across this boundary
+  (product_phrase_screening_contract.2026.08.4 and earlier = old meaning). This is the only id
+  whose meaning changed in the 2026-08-18 pass; every other fix reworded a rule in place or moved
+  non-reportable notes, neither of which has a stored footprint.
   section guards(any): SCR-G2 (aspirational/planned/discontinued). Guards reportable ONLY
   on_violation, which is why SCR-3 is a condition and not a guard: as a guard it would be silent
   on every passing phrase, and exhaustive deliberation on wrong-party attribution is the whole
@@ -117,9 +177,24 @@ Screening (SCR): section pass_conditions(all): THREE flat conditions, each posit
   positive. Its negative case is already SCR-G1. Equipment also gained SCR-G4 (aspirational /
   on-order / discontinued), which every other screening catalog had and it did not.
 Initial grounding (IGR): attribution(all): IGR-Q1 (identified entity is one mfg itself does,
-  gerund), IGR-Q2 (match by meaning not lexical) with non-reportable note child IGR-Q2a
-  (definition-conflict — folded-in, was a guard, demoted). matching(ordered): IGR-M1 exact,
-  IGR-M2 generalize, IGR-M3 self-name with non-reportable note child IGR-M3a (anti-restatement).
+  gerund). matching(ordered): IGR-M1 exact — carrying note child IGR-M1a, which merges "match by
+  meaning not lexical" with the old definition-conflict note into one bullet — IGR-M2 generalize,
+  IGR-M3 self-name with note child IGR-M3a (anti-restatement), IGR-M4 sentinel LAST.
+  Q2 DEMOTED 2026-08-18: IGR-Q2 was the only rule in `match_qualification`, and M1/M2 already state
+  their criterion in terms of meaning, so it was a manner constraint on the matching section rather
+  than an independent condition. It never once failed (135 industries + 21 conformity decisions on
+  run 20260818T204045, moving in perfect lockstep with IGR-Q1). It is now non-reportable guidance
+  under IGR-M1 and the `match_qualification` section is gone. This is the only fix in that pass
+  that changes the WIRE SCHEMA — one fewer required slot per option — and the easiest to revert.
+  M3 BEFORE M4 (2026-08-18): the sentinel used to be evaluated before the propose-an-option branch,
+  so anything unmatched was swept into "None of the above" before it could be proposed. Measured:
+  IGR-M3 chosen 0/135, RGR-M3 0/53, and all 44 out-of-vocab records in the run were the sentinel —
+  zero discoveries. The starvation was latent in industries (all 13 IGR-M4 cases really were
+  non-industries: CNC machining, prototyping, R&D center) but live in conformity, where ASTM B221,
+  ISO 10993-5, EN 10204 3.1 and ISO 7599 AA10 are nameable standards discarded because the OPTION
+  LIST does not cover material/testing standards. So M4's kind test was also decoupled from the
+  option list: it now asks whether the thing is of the kind `entity_noun` names, and says outright
+  that an unlisted one is still of the kind and belongs to M3.
 Freehand grounding (FGR) — uniform across all 3 catalogs as of 2026-08-10, CATEGORY-ONLY as of
   2026-08-10: entity_noun is "equipment category" / "product category" and the wire field is
   `category`, so the output IS the family and never the individual thing.
@@ -162,9 +237,14 @@ Freehand grounding (FGR) — uniform across all 3 catalogs as of 2026-08-10, CAT
   gained the ladder and escape hatch equipment already had; before that the "exactly one chosen
   preference" check did not run for them at all.
 Recursive grounding (RGR): attribution(all): RGR-Q1 (type mfg itself does, not merely relates),
-  RGR-Q2 (each type qualifies on own merits; parent evidence != child), RGR-Q3 (match by meaning)
-  + note child RGR-Q3a (definition-conflict). matching(ordered): RGR-M1/M2/M3(+note RGR-M3a)/M4
-  ("None of the above" terminal). quality(all): RGR-QC1 granularity check.
+  RGR-Q2 (each type qualifies on own merits; parent evidence != child). matching(ordered):
+  RGR-M1 (+note RGR-M1a, the demoted RGR-Q3 merged with its definition-conflict child) /M2/M3
+  (+note RGR-M3a)/M4 ("None of the above" terminal). quality(all): RGR-QC1 granularity check.
+  RGR-M4 is UNCHANGED by the 2026-08-18 pass: recursive M4 is the descent-stop ("nothing more
+  specific than the parent"), a different test from initial M4's kind membership, and it was
+  already ordered last. RGR-Q1/Q2 are logically distinct but never once disagreed in the run
+  (36 satisfied / 17 not_triggered on both; the single conformity rejection failed both) — left
+  alone, but watch them.
 
 ## SECTIONS SPLIT BY WHAT THEY JUDGE (2026-08-10)
 Every grounding stage's qualification section split in two, on the line between a judgment about
@@ -172,10 +252,12 @@ the WORLD and a judgment about the OUTPUT:
 - `attribution` — is the entity identified from the phrase the MANUFACTURER'S? IGR-Q1 / RGR-Q1+Q2 /
   FGR-Q1. (RGR-Q2 belongs here as attribution scoped to the child: do not attribute the parent's
   evidence to it.)
-- `match_qualification` (`category_qualification` in freehand) — is what is being recorded for it
-  well-formed? IGR-Q2 / RGR-Q3 / FGR-Q2+Q3. The two names differ because the OBJECT differs: a
-  category the stage invented vs. a mapping onto a supplied option. The shared suffix carries the
-  shared role.
+- `category_qualification` (freehand only since 2026-08-18) — is what is being recorded for it
+  well-formed? FGR-Q2+Q3. Its option-list twin `match_qualification` (IGR-Q2 / RGR-Q3) is GONE:
+  those stages choose from a supplied list, so "is the record well-formed" collapsed into how M1–M3
+  are applied, and the rule became a note under M1. Freehand keeps the section because it INVENTS
+  its label, so well-formedness is a real and separate judgment there — which is why the two
+  sections had different names in the first place.
 - selection — `matching` where the stage picks from a supplied list (IGR/RGR), `naming` in freehand
   where it does not. Freehand's skeleton says "there is no list of options to choose from", so
   calling its section `matching` was the last place it spoke option-list vocabulary it has no list
@@ -185,10 +267,12 @@ the WORLD and a judgment about the OUTPUT:
 Interleaved under one heading, a rule id did not say which kind of failure it stood for, and the
 chain check treated them as one dependency run even though the match criterion does not depend on
 the entity qualifying. Split, the chain resets between sections, which is correct.
-Screening keeps ONE `pass_conditions` section on purpose: SCR-1/2/3 are a genuine chain (each one's
-subject is what the previous established) and `_check_condition_chain` reads document order WITHIN
-a section as that chain. Splitting SCR-3 out as `attribution` would silently stop the chain from
-being checked across the break.
+Screening keeps ONE `pass_conditions` section on purpose: its conditions are a genuine chain (each
+one's subject is what the previous established) and `_check_condition_chain` reads document order
+WITHIN a section as that chain. Splitting the attribution condition out into its own section would
+silently stop the chain from being checked across the break. The 2026-08-18 rewording is what makes
+the chain honest: SCR-2 previously duplicated SCR-3's predicate, so the "chain" had two links
+testing the same thing and the second was unreachable.
 
 SCREENING AS GATE, GROUNDING AS ENUMERATOR (settled 2026-08-10). Screening answers "is there
 anything here?" and carries ONE identified_entity; grounding answers "what exactly, and how does it

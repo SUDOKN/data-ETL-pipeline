@@ -1,5 +1,5 @@
 {
-  "catalog_version": "conformity_attestation_phrase_relationship_screening.2026.08.2",
+  "catalog_version": "conformity_attestation_phrase_relationship_screening.2026.08.3",
   "prompt_name": "conformity_attestation_phrase_relationship_screening",
   "stage": "phrase_relationship_screening",
   "field_types": [
@@ -49,7 +49,7 @@
           "kind": "condition",
           "reportable": true,
           "report_when": "always",
-          "text": "The phrase and its relationship summary show real, concrete involvement with the identified {{entity_noun}}: some party is shown to {{entity_relationships.base}} that {{entity_noun}}, not merely to name, list, or mention it in passing.",
+          "text": "The phrase and its relationship summary say something substantive about the identified {{entity_noun}} — describing an activity, arrangement, or dealing that involves it — rather than only naming it, listing it, or mentioning it in passing. Which party is involved is not this condition's subject; [SCR-3] decides that.",
           "combinator": "note",
           "children": [
             {
@@ -57,7 +57,7 @@
               "kind": "note",
               "reportable": false,
               "report_when": "never",
-              "text": "A {{entity_noun}} the manufacturer itself displays, lists, or publishes as its own — a certificate bearing its name, a certificate number, an issuing body, a document it offers for viewing or download — is concrete evidence of {{entity_relationships.gerund}} it. Publishing one's own certificate is how holding it is shown, not a mere mention in passing."
+              "text": "A {{entity_noun}} displayed, listed, or published as the holder's own — a certificate bearing a name, a certificate number, an issuing body, a document offered for viewing or download — is concrete evidence of {{entity_relationships.gerund}} it, not a mere mention in passing."
             }
           ]
         },
@@ -86,8 +86,8 @@
     }
   ],
   "published": {
-    "s3_version_id": "qbX3vp8M8nL0rPMZf_jdAeHl7jpRlGno",
-    "rendered_sha256": "9855b4f56b0c3a11c43e8dc5aca3536df160baf1fca8715359912f976fe0309a",
-    "uploaded_at": "2026-08-14T00:48:01.575194+00:00"
+    "s3_version_id": "oFV_hRa0tff008UTUWsXJ3CMLkCjVyXs",
+    "rendered_sha256": "6f8ce0f70c4203a21a4cdbb965f340da9ff3db8faee6b2f88134211619af93c1",
+    "uploaded_at": "2026-08-19T00:30:36.395136+00:00"
   }
 }

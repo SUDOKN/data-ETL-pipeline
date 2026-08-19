@@ -1,5 +1,5 @@
 {
-  "catalog_version": "is_product_manufacturer.2026.08.1",
+  "catalog_version": "is_product_manufacturer.2026.08.4",
   "prompt_name": "is_product_manufacturer",
   "stage": "binary_classification",
   "field_types": [
@@ -33,14 +33,14 @@
           "kind": "condition",
           "reportable": true,
           "report_when": "always",
-          "text": "At least one {{entity_noun}} can be identified from the text — a tangible good, or line of goods, that the text presents as something the business {{entity_relationships.third_person}}, rather than a service, a capability, or a kind of work performed on other parties' goods."
+          "text": "At least one {{entity_noun}} can be identified from the text — a tangible good, or line of goods, rather than a service, a capability, or a kind of work performed on other parties' goods."
         },
         {
           "id": "PRD-2",
           "kind": "condition",
           "reportable": true,
           "report_when": "always",
-          "text": "The text shows real, concrete engagement with the identified {{entity_noun}}: the business is shown to {{entity_relationships.base}} it, not merely to name it, list it as a category it works in, or cite it as an example of what its field produces."
+          "text": "The text says something substantive about the identified {{entity_noun}} — describing an activity, arrangement, or dealing that involves it — rather than only naming it, listing it as a topic, or mentioning it in passing. Which party is involved is not this condition's subject; [PRD-3] and [PRD-4] decide that."
         },
         {
           "id": "PRD-3",
@@ -92,8 +92,8 @@
     }
   ],
   "published": {
-    "s3_version_id": "odm6Oyr.zouXLJI.Pb4HgfgR6U0qEQUv",
-    "rendered_sha256": "8409d2bcadec1e174b078dd80aace452194df33e9cf3fad632d7008df3e4fceb",
-    "uploaded_at": "2026-08-12T07:50:48.382035+00:00"
+    "s3_version_id": "kX5VLyXWj5.ljMEJevsUEvUgZAdP6csc",
+    "rendered_sha256": "572a0df0108deb70b57c36d6465533224297485afcaf1bd393c2e4eebf9d9894",
+    "uploaded_at": "2026-08-19T00:30:36.395136+00:00"
   }
 }

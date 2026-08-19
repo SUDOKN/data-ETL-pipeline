@@ -1,5 +1,5 @@
 {
-  "catalog_version": "equipment_phrase_relationship_screening.2026.08.5",
+  "catalog_version": "equipment_phrase_relationship_screening.2026.08.6",
   "prompt_name": "equipment_phrase_relationship_screening",
   "stage": "phrase_relationship_screening",
   "field_types": [
@@ -56,7 +56,7 @@
           "kind": "condition",
           "reportable": true,
           "report_when": "always",
-          "text": "The phrase and its relationship summary show real, concrete involvement with the identified {{entity_noun}}: some party is shown to {{entity_relationships.base}} that {{entity_noun}}, not merely to name, list, or mention it in passing."
+          "text": "The phrase and its relationship summary say something substantive about the identified {{entity_noun}} — describing an activity, arrangement, or dealing that involves it — rather than only naming it, listing it, or mentioning it in passing. Which party is involved is not this condition's subject; [SCR-3] decides that."
         },
         {
           "id": "SCR-3",
@@ -124,8 +124,8 @@
     }
   ],
   "published": {
-    "s3_version_id": "maEXrxfimE4OkLibv1yJkqqDARi.QPVB",
-    "rendered_sha256": "b5400d189f509f14864b2839643d79173294d141e50b90f0a21bb748b81ee599",
-    "uploaded_at": "2026-08-14T00:48:01.575194+00:00"
+    "s3_version_id": "W0HO8vJLcYhg_y95Y1fE6bDCPVf2eIla",
+    "rendered_sha256": "438595a4d8d9173215e81796edf6a312225c1c51c0a2c666249122c772906c0a",
+    "uploaded_at": "2026-08-19T00:30:36.395136+00:00"
   }
 }

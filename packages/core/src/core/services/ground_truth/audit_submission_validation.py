@@ -24,7 +24,7 @@ than stacked opinions.
 from __future__ import annotations
 
 import re
-from typing import Iterator, Optional
+from typing import Callable, Iterator, Optional
 
 from core.models.extraction_schemas.grounding import is_sentinel_grounding_label
 from core.models.ground_truth.audits import AuditVerdict, TextFieldAudit
@@ -32,7 +32,10 @@ from core.models.ground_truth.rule_tree import AuditedRule, AuditedSection
 from core.models.ground_truth.stage_blocks import (
     ChunkGT,
     GroundingDerivation,
+    HumanDescentPath,
     HumanScreeningDerivation,
+    InVocabGroundingGT,
+    InVocabNodeGT,
     MissedPhraseEntry,
     ScreeningGT,
 )
@@ -176,8 +179,10 @@ def append_text_audit(audits: list[TextFieldAudit], entry: TextFieldAudit) -> No
 
 
 def _append_popping_same_author(
-    items: list, item, item_author: str, author_of
+    items: list, item, item_author: object, author_of
 ) -> None:
+    """PH-7 stack-top pop. ``item_author`` is whatever ``author_of`` yields —
+    a plain email for audits/derivations, the divergence key for paths."""
     if items and author_of(items[-1]) == item_author:
         items.pop()
     items.append(item)
@@ -384,3 +389,178 @@ def submit_missed_phrase(
         )
     ]
     chunk.missed_phrases.append(entry)
+
+
+# --- in-vocab descent (P3 verdict 6) -----------------------------------------
+
+# (concept_name) -> its children's names, or None when the name is not a
+# concept in the pinned ontology. The app layer builds this from the ontology
+# version the run pinned; core stays sync and pure.
+OntologyChildren = Callable[[str], Optional[list[str]]]
+
+
+def _catalog_for_section(
+    section: AuditedSection, catalogs: list[RuleCatalog], what: str
+) -> RuleCatalog:
+    """The one catalog that knows every rule id in this section.
+
+    Mixed descent nodes concatenate sections from both grounding catalogs
+    (P2.1); rule ids are disjoint between them, so each section routes
+    unambiguously.
+    """
+    rule_ids = [rule.rule_id for rule in _walk_rules([section])]
+    for catalog in catalogs:
+        known = catalog.rules_by_id()
+        if all(rule_id in known for rule_id in rule_ids):
+            return catalog
+    raise AuditSubmissionError(
+        f"{what}: section {section.section_id!r} carries rule ids no single "
+        f"pinned catalog knows in full ({rule_ids}) — cannot route validation"
+    )
+
+
+def submit_in_vocab_node_audit(
+    node: InVocabNodeGT,
+    derivation: GroundingDerivation,
+    *,
+    author_email: str,
+    catalogs: list[RuleCatalog],
+) -> None:
+    """Keep-path audit of one stored descent node (verdict 6c).
+
+    Descent nodes accept rule-outcome audits only: the tag must be kept — a
+    different link is a divergence path, a different initial concept is a
+    reset on the initial map. Mixed IGR+RGR nodes validate per section, each
+    routed to the catalog that knows its rule ids.
+    """
+    what = f"in-vocab node audit for {node.group_id!r}"
+    _check_single_author(
+        _inner_audits(derivation.audits, derivation.sections), author_email, what
+    )
+    if derivation.tag != node.group_id:
+        raise AuditSubmissionError(
+            f"{what}: descent nodes accept keep-path audits only — a "
+            f"different link is a divergence path anchored at the parent you "
+            f"still agree with, and a different initial concept is a reset "
+            f"on the initial map"
+        )
+    if any(a.type is AuditVerdict.DISAGREE for a in derivation.audits):
+        raise AuditSubmissionError(
+            f"{what}: a disagree audit on a kept tag is incoherent — "
+            f"disagreeing with the link itself is a divergence path"
+        )
+    _check_shape(derivation.sections, node.sections, what)
+    for section in derivation.sections:
+        catalog = _catalog_for_section(section, catalogs, what)
+        _check_rules_against_catalog([section], catalog, what)
+    _check_copy_diffs_are_audited(derivation.sections, node.sections, what)
+    _append_popping_same_author(
+        node.audits,
+        derivation,
+        author_email,
+        lambda d: _derivation_author(d.audits, d.sections),
+    )
+
+
+def submit_descent_divergence(
+    in_vocab_gt: InVocabGroundingGT,
+    path: HumanDescentPath,
+    *,
+    author_email: str,
+    recursive_catalog: RuleCatalog,
+    ontology_children: OntologyChildren,
+) -> None:
+    """A divergence path (verdict 6b): anchored at the last agreed stored
+    node, replacing one named child's subtree (or continuing past a stored
+    stop when the anchor has no children), hops derived fresh under the
+    recursive catalog and chained as REAL edges of the pinned ontology.
+    """
+    what = f"divergence path at {path.anchor_group_id!r}"
+    if path.author_email != author_email:
+        raise AuditSubmissionError(
+            f"{what}: path authored by {path.author_email!r} in a submission "
+            f"by {author_email!r}"
+        )
+    inner: list[TextFieldAudit] = []
+    for hop in path.hops:
+        inner += _inner_audits(hop.audits, hop.sections)
+    strangers = sorted(
+        {a.author_email for a in inner if a.author_email != author_email}
+    )
+    if strangers:
+        raise AuditSubmissionError(
+            f"{what}: entries authored by {strangers} inside a path by "
+            f"{author_email}"
+        )
+
+    anchor_exists = any(
+        node.parent_group_id == path.anchor_parent_group_id
+        and node.group_id == path.anchor_group_id
+        for node in in_vocab_gt.levels.get(path.anchor_level, [])
+    )
+    if not anchor_exists:
+        raise AuditSubmissionError(
+            f"{what}: no stored node at level {path.anchor_level} with parent "
+            f"{path.anchor_parent_group_id!r} and group "
+            f"{path.anchor_group_id!r} — the anchor is the last stored node "
+            f"you still agree with"
+        )
+    child_level = path.anchor_level + 1
+    stored_children = [
+        node.group_id
+        for node in in_vocab_gt.levels.get(child_level, [])
+        if node.parent_group_id == path.anchor_group_id
+    ]
+    if path.replaces_group_id is None:
+        if stored_children:
+            raise AuditSubmissionError(
+                f"{what}: the anchor has stored children {stored_children} — "
+                f"name the one this path replaces; adding a sibling branch "
+                f"beside kept ones is not recordable"
+            )
+    elif path.replaces_group_id not in stored_children:
+        raise AuditSubmissionError(
+            f"{what}: replaces_group_id {path.replaces_group_id!r} is not a "
+            f"stored child of the anchor at level {child_level} — stored "
+            f"children: {stored_children or 'none'}"
+        )
+
+    skeleton = inflate_applied_rules(
+        recursive_catalog, [], synthesize_all_on_empty=True
+    )
+    previous = path.anchor_group_id
+    for hop in path.hops:
+        hop_what = f"{what}, hop {hop.tag!r}"
+        if is_sentinel_grounding_label(hop.tag):
+            raise AuditSubmissionError(
+                f"{hop_what}: the sentinel is the stop signal, not a hop — "
+                f"end the path with stopped=true instead"
+            )
+        children = ontology_children(previous)
+        if children is None:
+            raise AuditSubmissionError(
+                f"{hop_what}: {previous!r} is not a concept in the pinned "
+                f"ontology"
+            )
+        if hop.tag not in children:
+            raise AuditSubmissionError(
+                f"{hop_what}: not a child of {previous!r} in the pinned "
+                f"ontology — its children: {sorted(children) or 'none'}"
+            )
+        _check_shape(hop.sections, skeleton, hop_what)
+        _check_rules_against_catalog(hop.sections, recursive_catalog, hop_what)
+        _check_fresh_complete(hop.sections, recursive_catalog, hop_what)
+        previous = hop.tag
+
+    def _divergence_key(p: HumanDescentPath):
+        return (
+            p.author_email,
+            p.anchor_level,
+            p.anchor_parent_group_id,
+            p.anchor_group_id,
+            p.replaces_group_id,
+        )
+
+    _append_popping_same_author(
+        in_vocab_gt.human_paths, path, _divergence_key(path), _divergence_key
+    )

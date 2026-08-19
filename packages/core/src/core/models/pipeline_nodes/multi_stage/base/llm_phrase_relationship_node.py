@@ -244,5 +244,4 @@ class LLMPhraseRelationshipNode(
         return await dispatch_gpt_batch_request(
             gpt_batch_request=gpt_batch_request,
             gpt_model=metadata.llm_phrase_relationship.llm_model,
-            model_params=metadata.llm_phrase_relationship.model_params,
         )

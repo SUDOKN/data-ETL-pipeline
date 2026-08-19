@@ -41,7 +41,7 @@ from llm_providers.services.gpt_batch_request.gpt_batch_request_service import (
     dispatch_gpt_batch_request,
 )
 from core.services.pipeline_nodes.multi_stage.llm_phrase_search_node_service import (
-    parse_batch_request_result as parse_phrase_search_batch_req_result,
+    parse_search_sub_request_result,
 )
 from core.services.pipeline_nodes.multi_stage.llm_phrase_recursive_search_node_service import (
     create_missing_phrase_recursive_search_requests,
@@ -104,12 +104,13 @@ class LLMPhraseRecursiveSearchNode(
         subject_unique_id: str,
         field_type: ExtractionFieldType,
         chunk_bounds: str,
+        sub_bounds: str,
         round_index: int,
         metadata: LLMPhraseExtractionMetadata,
     ) -> BatchRequestIDType:
         recursive_meta = metadata.llm_phrase_recursive_search
         return (
-            f"{subject_unique_id}>{field_type.name}>llm_recursive_search>round>{round_index}>chunk>{chunk_bounds}>"
+            f"{subject_unique_id}>{field_type.name}>llm_recursive_search>round>{round_index}>chunk>{chunk_bounds}>sub>{sub_bounds}>"
             f"{recursive_meta.to_custom_id_segment()}"
         )
 
@@ -132,22 +133,26 @@ class LLMPhraseRecursiveSearchNode(
             logger.info(f"Recursive phrase extraction will be skipped as max_rounds=0.")
             return
 
-        # Seed round 1 (index 0) for every chunk on the first entry.
+        # Seed round 1 (index 0) for every sub-window of every chunk on the first entry.
         any_rounds_embedded = any(
             bundle.llm_phrase_recursive_search_req_ids
             for bundle in chunked_request_map.values()
         )
         if not any_rounds_embedded:
             for chunk_bounds, bundle in chunked_request_map.items():
-                bundle.llm_phrase_recursive_search_req_ids.append(
-                    self.get_request_custom_id(
-                        subject_unique_id=subject_unique_id,
-                        field_type=self.field_type,
-                        chunk_bounds=chunk_bounds,
-                        round_index=0,
-                        metadata=metadata,
-                    )
-                )
+                bundle.llm_phrase_recursive_search_req_ids = {
+                    sub_bounds: [
+                        self.get_request_custom_id(
+                            subject_unique_id=subject_unique_id,
+                            field_type=self.field_type,
+                            chunk_bounds=chunk_bounds,
+                            sub_bounds=sub_bounds,
+                            round_index=0,
+                            metadata=metadata,
+                        )
+                    ]
+                    for sub_bounds in bundle.search_sub_bounds
+                }
             return
 
         # Only advance to the next round once every embedded round has completed.
@@ -166,59 +171,82 @@ class LLMPhraseRecursiveSearchNode(
         first_search_map = self.get_upstream_first_search_map(pipeline_context)
 
         for chunk_bounds, bundle in chunked_request_map.items():
-            rounds = bundle.llm_phrase_recursive_search_req_ids
-            if len(rounds) >= recursive_meta.max_rounds:
-                continue  # hard cap reached for this chunk
+            for sub_bounds, first_search_req_id in zip(
+                bundle.search_sub_bounds, bundle.llm_phrase_search_req_ids
+            ):
+                rounds = bundle.llm_phrase_recursive_search_req_ids.setdefault(
+                    sub_bounds, []
+                )
+                if not rounds:
+                    # Seeding is all-or-nothing across bundles, so an empty list
+                    # here is a partial state (interrupted seed). Heal it.
+                    rounds.append(
+                        self.get_request_custom_id(
+                            subject_unique_id=subject_unique_id,
+                            field_type=self.field_type,
+                            chunk_bounds=chunk_bounds,
+                            sub_bounds=sub_bounds,
+                            round_index=0,
+                            metadata=metadata,
+                        )
+                    )
+                    continue
+                if len(rounds) >= recursive_meta.max_rounds:
+                    continue  # hard cap reached for this sub-window
 
-            first_search_results = await parse_phrase_search_batch_req_result(
-                subject_unique_id=subject_unique_id,
-                field_type=self.field_type,
-                chunk_bounds=chunk_bounds,
-                extraction_bundle=bundle,
-                all_phrase_search_req_responses_map=first_search_map,
-                deferred_at=timestamp,
-            )
+                # Each sub-window recurses independently: its exclusions are its
+                # own first search plus its own prior rounds, never a sibling's.
+                first_search_results = await parse_search_sub_request_result(
+                    subject_unique_id=subject_unique_id,
+                    field_type=self.field_type,
+                    llm_phrase_search_request_id=first_search_req_id,
+                    all_phrase_search_req_responses_map=first_search_map,
+                    deferred_at=timestamp,
+                )
 
-            accumulated_before_latest: set[str] = set(first_search_results)
-            for prior_round_req_id in rounds[:-1]:
-                accumulated_before_latest |= await parse_recursive_search_round_result(
+                accumulated_before_latest: set[str] = set(first_search_results)
+                for prior_round_req_id in rounds[:-1]:
+                    accumulated_before_latest |= (
+                        await parse_recursive_search_round_result(
+                            subject_unique_id=subject_unique_id,
+                            field_type=self.field_type,
+                            chunk_bounds=chunk_bounds,
+                            round_req_id=prior_round_req_id,
+                            completed_request_map=completed_recursive_map,
+                            timestamp=timestamp,
+                        )
+                    )
+
+                latest_round_results = await parse_recursive_search_round_result(
                     subject_unique_id=subject_unique_id,
                     field_type=self.field_type,
                     chunk_bounds=chunk_bounds,
-                    round_req_id=prior_round_req_id,
+                    round_req_id=rounds[-1],
                     completed_request_map=completed_recursive_map,
                     timestamp=timestamp,
                 )
+                new_phrases = get_new_phrases_for_latest_round(
+                    accumulated_before_latest=accumulated_before_latest,
+                    latest_round_results=latest_round_results,
+                )
 
-            latest_round_results = await parse_recursive_search_round_result(
-                subject_unique_id=subject_unique_id,
-                field_type=self.field_type,
-                chunk_bounds=chunk_bounds,
-                round_req_id=rounds[-1],
-                completed_request_map=completed_recursive_map,
-                timestamp=timestamp,
-            )
-            new_phrases = get_new_phrases_for_latest_round(
-                accumulated_before_latest=accumulated_before_latest,
-                latest_round_results=latest_round_results,
-            )
-
-            if new_phrases:
-                # Latest round surfaced new phrases -> embed one more round.
-                bundle.llm_phrase_recursive_search_req_ids.append(
-                    self.get_request_custom_id(
-                        subject_unique_id=subject_unique_id,
-                        field_type=self.field_type,
-                        chunk_bounds=chunk_bounds,
-                        round_index=len(rounds),
-                        metadata=metadata,
+                if new_phrases:
+                    # Latest round surfaced new phrases -> embed one more round.
+                    rounds.append(
+                        self.get_request_custom_id(
+                            subject_unique_id=subject_unique_id,
+                            field_type=self.field_type,
+                            chunk_bounds=chunk_bounds,
+                            sub_bounds=sub_bounds,
+                            round_index=len(rounds),
+                            metadata=metadata,
+                        )
                     )
-                )
-            else:
-                logger.info(
-                    f"[{subject_unique_id}] Recursive search converged for chunk {chunk_bounds} "
-                    f"({self.field_type.name}) after {len(rounds)} round(s)."
-                )
+                else:
+                    logger.info(
+                        f"[{subject_unique_id}] Recursive search converged for chunk {chunk_bounds} "
+                        f"sub-window {sub_bounds} ({self.field_type.name}) after {len(rounds)} round(s)."
+                    )
 
     def get_embedded_request_ids(
         self,
@@ -227,7 +255,8 @@ class LLMPhraseRecursiveSearchNode(
     ) -> set[BatchRequestIDType]:
         recursive_search_req_ids: set[BatchRequestIDType] = set()
         for _chunk_bounds, bundle in chunked_request_map.items():
-            recursive_search_req_ids.update(bundle.llm_phrase_recursive_search_req_ids)
+            for round_req_ids in bundle.llm_phrase_recursive_search_req_ids.values():
+                recursive_search_req_ids.update(round_req_ids)
         return recursive_search_req_ids
 
     async def create_batch_requests(
@@ -295,5 +324,4 @@ class LLMPhraseRecursiveSearchNode(
         return await dispatch_gpt_batch_request(
             gpt_batch_request=gpt_batch_request,
             gpt_model=recursive_meta.llm_model,
-            model_params=recursive_meta.model_params,
         )

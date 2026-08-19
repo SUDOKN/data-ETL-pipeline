@@ -99,6 +99,14 @@ class ExtractionPipelineFactory:
     # max_rounds=0 makes the recursive-search node a no-op pass-through.
     DEFAULT_KEYWORD_RECURSIVE_SEARCH_MAX_ROUNDS = 0
     DEFAULT_RELATIONSHIP_MAX_PHRASES_PER_REQUEST = 50
+    # Both search stages answer with a short JSON array of phrases: across the
+    # 2026-08-16 alecmfg run the largest first-search response was 657 output
+    # tokens (mean 229) and the largest recursive round 2,734 (mean 107), while
+    # the caller's cap was 20,000. That headroom is what a repetition loop fills
+    # — one recursive round spent all 20,000 tokens repeating a single phrase
+    # 2,453 times and truncated mid-string — so the search stages carry their
+    # own cap instead of inheriting the pipeline's.
+    SEARCH_MAX_COMPLETION_TOKENS = 4000
     DEFAULT_SCREENING_MAX_PAIRS_PER_REQUEST = 15
     DEFAULT_INITIAL_GROUNDING_MAX_PAIRS_PER_REQUEST = 15
     DEFAULT_FREEHAND_GROUNDING_MAX_PAIRS_PER_REQUEST = 25
@@ -120,6 +128,23 @@ class ExtractionPipelineFactory:
         )
 
     @staticmethod
+    def _search_metadata(
+        prompt: Prompt,
+        llm_model: LLM_Model,
+        model_params: GPTModelParams,
+        created_at: datetime,
+    ) -> ExtractionNodeMetadata:
+        """``_metadata`` under the search stages' own output cap."""
+        return ExtractionPipelineFactory._metadata(
+            prompt,
+            llm_model,
+            model_params.with_max_completion_tokens(
+                ExtractionPipelineFactory.SEARCH_MAX_COMPLETION_TOKENS
+            ),
+            created_at,
+        )
+
+    @staticmethod
     def _recursive_search_metadata(
         prompt: Prompt,
         llm_model: LLM_Model,
@@ -129,7 +154,9 @@ class ExtractionPipelineFactory:
     ) -> RecursiveSearchNodeMetadata:
         return RecursiveSearchNodeMetadata(
             llm_model=llm_model,
-            model_params=model_params,
+            model_params=model_params.with_max_completion_tokens(
+                ExtractionPipelineFactory.SEARCH_MAX_COMPLETION_TOKENS
+            ),
             prompt_name=prompt.name,
             prompt_version_id=prompt.s3_version_id,
             catalog_version=prompt.catalog_version,
@@ -251,7 +278,7 @@ class ExtractionPipelineFactory:
             field_type=concept_type,
             chunk_strategy=chunk_strategy,
             ontology=ontology,
-            llm_phrase_search_metadata=ExtractionPipelineFactory._metadata(
+            llm_phrase_search_metadata=ExtractionPipelineFactory._search_metadata(
                 search_prompt, llm_model, model_params, created_at
             ),
             llm_phrase_recursive_search_metadata=ExtractionPipelineFactory._recursive_search_metadata(
@@ -348,7 +375,7 @@ class ExtractionPipelineFactory:
             field_type=keyword_type,
             chunk_strategy=chunk_strategy,
             ontology_version_id=ontology_version_id,
-            llm_phrase_search_metadata=ExtractionPipelineFactory._metadata(
+            llm_phrase_search_metadata=ExtractionPipelineFactory._search_metadata(
                 search_prompt, llm_model, model_params, created_at
             ),
             llm_phrase_recursive_search_metadata=ExtractionPipelineFactory._recursive_search_metadata(
@@ -432,7 +459,7 @@ class ExtractionPipelineFactory:
             field_type=keyword_type,
             chunk_strategy=chunk_strategy,
             ontology_version_id=ontology_version_id,
-            llm_phrase_search_metadata=ExtractionPipelineFactory._metadata(
+            llm_phrase_search_metadata=ExtractionPipelineFactory._search_metadata(
                 search_prompt, llm_model, model_params, created_at
             ),
             llm_phrase_recursive_search_metadata=ExtractionPipelineFactory._recursive_search_metadata(
@@ -598,7 +625,7 @@ class ExtractionPipelineFactory:
             field_type=keyword_type,
             chunk_strategy=chunk_strategy,
             ontology_version_id=ontology_version_id,
-            llm_phrase_search_metadata=ExtractionPipelineFactory._metadata(
+            llm_phrase_search_metadata=ExtractionPipelineFactory._search_metadata(
                 search_prompt, llm_model, model_params, created_at
             ),
             llm_phrase_recursive_search_metadata=ExtractionPipelineFactory._recursive_search_metadata(
@@ -661,15 +688,30 @@ class ExtractionPipelineFactory:
         llm_model: LLM_Model,
         model_params: GPTModelParams,
         created_at: datetime,
+        chunk_strategy_overrides: (
+            dict[ExtractionFieldType, ChunkingStrategy] | None
+        ) = None,
     ) -> dict[ExtractionFieldType, PrefillNode]:
         """
         Returns a dict mapping field names to their phase pipelines.
         Each pipeline is the head of a chain of phases.
+
+        ``chunk_strategy_overrides`` replaces the module-level default chunking
+        strategy per field — an experimentation knob (chunk size / search_divisor
+        sweeps from the notebook) that leaves the defaults in source untouched.
+        Fields not in the mapping keep their defaults.
         """
         # Rule catalogs live in this app but are read by the parse functions in
         # `core`, which cannot import from here. Registering at pipeline
         # construction covers every path that goes on to parse a response.
         set_rule_catalog_lookup(build_rule_catalog_lookup())
+
+        overrides = chunk_strategy_overrides or {}
+
+        def chunk_strat_for(
+            field_type: ExtractionFieldType, default: ChunkingStrategy
+        ) -> ChunkingStrategy:
+            return overrides.get(field_type, default)
 
         return {
             # Single-stage extractions
@@ -697,7 +739,9 @@ class ExtractionPipelineFactory:
                 model_params=model_params,
             ),
             KeywordTypeEnum.products: ExtractionPipelineFactory.create_pure_product_extraction_pipeline(
-                chunk_strategy=PRODUCT_CHUNKING_STRAT,
+                chunk_strategy=chunk_strat_for(
+                    KeywordTypeEnum.products, PRODUCT_CHUNKING_STRAT
+                ),
                 search_prompt=prompt_service.product_phrase_search_prompt,
                 recursive_search_prompt=prompt_service.product_phrase_recursive_search_prompt,
                 phrase_relationship_prompt=prompt_service.product_phrase_relationship_prompt,
@@ -709,7 +753,9 @@ class ExtractionPipelineFactory:
                 created_at=created_at,
             ),
             KeywordTypeEnum.contract_products: ExtractionPipelineFactory.create_contract_product_extraction_pipeline(
-                chunk_strategy=PRODUCT_CHUNKING_STRAT,
+                chunk_strategy=chunk_strat_for(
+                    KeywordTypeEnum.contract_products, PRODUCT_CHUNKING_STRAT
+                ),
                 ontology_version_id=ontology.s3_version_id,
                 search_prompt=prompt_service.product_phrase_search_prompt,
                 recursive_search_prompt=prompt_service.product_phrase_recursive_search_prompt,
@@ -721,7 +767,9 @@ class ExtractionPipelineFactory:
                 created_at=created_at,
             ),
             KeywordTypeEnum.equipments: ExtractionPipelineFactory.create_equipment_extraction_pipeline(
-                chunk_strategy=EQUIPMENT_CHUNKING_STRAT,
+                chunk_strategy=chunk_strat_for(
+                    KeywordTypeEnum.equipments, EQUIPMENT_CHUNKING_STRAT
+                ),
                 ontology_version_id=ontology.s3_version_id,
                 search_prompt=prompt_service.equipment_phrase_search_prompt,
                 recursive_search_prompt=prompt_service.equipment_phrase_recursive_search_prompt,
@@ -735,7 +783,10 @@ class ExtractionPipelineFactory:
             # Three-stage extractions (search -> phrase_relationship -> mapping)
             ConceptTypeEnum.conformity_attestations: ExtractionPipelineFactory.create_concept_extraction_pipeline(
                 concept_type=ConceptTypeEnum.conformity_attestations,
-                chunk_strategy=CONFORMITY_ATTESTATION_CHUNKING_STRAT,
+                chunk_strategy=chunk_strat_for(
+                    ConceptTypeEnum.conformity_attestations,
+                    CONFORMITY_ATTESTATION_CHUNKING_STRAT,
+                ),
                 ontology=ontology,
                 search_prompt=prompt_service.conformity_attestation_phrase_search_prompt,
                 recursive_search_prompt=prompt_service.conformity_attestation_phrase_recursive_search_prompt,
@@ -752,7 +803,9 @@ class ExtractionPipelineFactory:
             ),
             ConceptTypeEnum.industries: ExtractionPipelineFactory.create_concept_extraction_pipeline(
                 concept_type=ConceptTypeEnum.industries,
-                chunk_strategy=INDUSTRY_CHUNKING_STRAT,
+                chunk_strategy=chunk_strat_for(
+                    ConceptTypeEnum.industries, INDUSTRY_CHUNKING_STRAT
+                ),
                 ontology=ontology,
                 search_prompt=prompt_service.industry_phrase_search_prompt,
                 recursive_search_prompt=prompt_service.industry_phrase_recursive_search_prompt,
@@ -767,7 +820,9 @@ class ExtractionPipelineFactory:
             ),
             ConceptTypeEnum.process_caps: ExtractionPipelineFactory.create_concept_extraction_pipeline(
                 concept_type=ConceptTypeEnum.process_caps,
-                chunk_strategy=PROCESS_CAP_CHUNKING_STRAT,
+                chunk_strategy=chunk_strat_for(
+                    ConceptTypeEnum.process_caps, PROCESS_CAP_CHUNKING_STRAT
+                ),
                 ontology=ontology,
                 search_prompt=prompt_service.process_cap_phrase_search_prompt,
                 recursive_search_prompt=prompt_service.process_cap_phrase_recursive_search_prompt,
@@ -782,7 +837,9 @@ class ExtractionPipelineFactory:
             ),
             ConceptTypeEnum.material_caps: ExtractionPipelineFactory.create_concept_extraction_pipeline(
                 concept_type=ConceptTypeEnum.material_caps,
-                chunk_strategy=MATERIAL_CAP_CHUNKING_STRAT,
+                chunk_strategy=chunk_strat_for(
+                    ConceptTypeEnum.material_caps, MATERIAL_CAP_CHUNKING_STRAT
+                ),
                 ontology=ontology,
                 search_prompt=prompt_service.material_cap_phrase_search_prompt,
                 recursive_search_prompt=prompt_service.material_cap_phrase_recursive_search_prompt,

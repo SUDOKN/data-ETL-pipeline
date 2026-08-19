@@ -1,5 +1,5 @@
 {
-  "catalog_version": "process_cap_phrase_initial_grounding.2026.08.4",
+  "catalog_version": "process_cap_phrase_initial_grounding.2026.08.10",
   "prompt_name": "process_cap_phrase_initial_grounding",
   "stage": "phrase_initial_grounding",
   "field_types": [
@@ -37,30 +37,6 @@
       ]
     },
     {
-      "section_id": "match_qualification",
-      "heading": "The option you match it to must qualify:",
-      "combinator": "all",
-      "rules": [
-        {
-          "id": "IGR-Q2",
-          "kind": "condition",
-          "reportable": true,
-          "report_when": "always",
-          "text": "The option is chosen by comparing underlying meanings and definitions with the identified {{entity_noun}}, not by lexical or name similarity, and without forced or contrived links that rely on assumptions beyond the phrase and its relationship summary.",
-          "combinator": "note",
-          "children": [
-            {
-              "id": "IGR-Q2a",
-              "kind": "note",
-              "reportable": false,
-              "report_when": "never",
-              "text": "In particular, do not choose an option whose name resembles the identified {{entity_noun}} when the option's definition excludes this case."
-            }
-          ]
-        }
-      ]
-    },
-    {
       "section_id": "matching",
       "heading": "Match each {{entity_noun}} you identified by the first of these rules that applies, in order:",
       "combinator": "ordered",
@@ -70,7 +46,17 @@
           "kind": "preference",
           "reportable": true,
           "report_when": "when_chosen",
-          "text": "An option whose meaning exactly matches the identified {{entity_noun}} is chosen."
+          "text": "An option whose meaning exactly matches the identified {{entity_noun}} is chosen.",
+          "children": [
+            {
+              "id": "IGR-M1a",
+              "kind": "note",
+              "reportable": false,
+              "report_when": "never",
+              "text": "Choose by comparing underlying meanings and definitions with the identified {{entity_noun}}, never by lexical or name similarity, and without forced or contrived links that rely on assumptions beyond the phrase and its relationship summary. In particular, do not choose an option whose name resembles the identified {{entity_noun}} when the option's definition excludes this case."
+            }
+          ],
+          "combinator": "note"
         },
         {
           "id": "IGR-M2",
@@ -80,18 +66,11 @@
           "text": "When no option exactly matches, an option whose meaning generalizes the identified {{entity_noun}} is chosen."
         },
         {
-          "id": "IGR-M4",
-          "kind": "preference",
-          "reportable": true,
-          "report_when": "when_chosen",
-          "text": "When what you identified is not a {{entity_noun}} of the kind the provided options name, \"None of the above\" is chosen. The options define that kind between them: judge membership against what they collectively name, not against the wording of the phrase."
-        },
-        {
           "id": "IGR-M3",
           "kind": "preference",
           "reportable": true,
           "report_when": "when_chosen",
-          "text": "When no option exactly matches or generalizes it, but it is a {{entity_noun}} of that kind, the identified {{entity_noun}} is proposed as an option of its own.",
+          "text": "When no option exactly matches or generalizes it, but it is of the kind {{entity_noun}} names, the identified {{entity_noun}} is proposed as an option of its own.",
           "combinator": "note",
           "children": [
             {
@@ -102,14 +81,21 @@
               "text": "Unless the proposed option restates the meaning of an existing option under different words; in that case that existing option is chosen instead."
             }
           ]
+        },
+        {
+          "id": "IGR-M4",
+          "kind": "preference",
+          "reportable": true,
+          "report_when": "when_chosen",
+          "text": "When what you identified is not of the kind {{entity_noun}} names — a process, a capability, a facility, an activity, or anything else outside that meaning — \"None of the above\" is chosen. Judge that against what {{entity_noun}} means, not against the wording of the phrase and not against whether the provided options happen to cover it: something the options do not list can still be of that kind, and [IGR-M3] is where it belongs."
         }
       ]
     }
   ],
   "published": {
-    "s3_version_id": "WUCB_TEAPHlAQ266FYrSW2WDXVqf4GMI",
-    "rendered_sha256": "8b0fd7a02d8abe63ee5bf31e3c223d2753769dc7a617c41873208c56f7e3ae85",
-    "uploaded_at": "2026-08-12T07:50:48.382035+00:00"
+    "s3_version_id": "Fm2uNUDLwySid7DRGP6d41RyuO44IedU",
+    "rendered_sha256": "4850c904540f6b5eab54372bff13b0c1698bde722a09535937d80b2d2d13e012",
+    "uploaded_at": "2026-08-19T00:30:36.395136+00:00"
   },
   "sentinel_tag": "None of the above"
 }

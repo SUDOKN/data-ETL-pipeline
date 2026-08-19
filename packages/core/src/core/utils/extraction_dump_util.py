@@ -538,6 +538,7 @@ def _safe_path_segment(value: str) -> str:
 
 # The descent tree, which is neither a single id nor a flat list.
 _TAGGING_TREE_FIELD = "llm_phrase_recursive_tagging_reqs"
+_RECURSIVE_SEARCH_FIELD = "llm_phrase_recursive_search_req_ids"
 # The single-stage bundle's one request field. It predates the ``_req_id``
 # naming convention the suffix sweep below reads, and renaming it would break
 # loading every persisted deferred document, so it is special-cased instead.
@@ -649,6 +650,18 @@ def build_chunk_requests(
                         )
                     ]
                     for level, nodes in sorted(tagging_tree.items())
+                }
+            continue
+        if field_name == _RECURSIVE_SEARCH_FIELD:
+            # sub-window bounds -> that sub-window's rounds, in round order
+            recursive_rounds = getattr(bundle, field_name, None)
+            if recursive_rounds:
+                requests["llm_phrase_recursive_search"] = {
+                    sub_bounds: [
+                        _request_entry(request_id, completed_requests)
+                        for request_id in round_req_ids
+                    ]
+                    for sub_bounds, round_req_ids in sorted(recursive_rounds.items())
                 }
             continue
         if field_name == _SINGLE_STAGE_REQUEST_FIELD:

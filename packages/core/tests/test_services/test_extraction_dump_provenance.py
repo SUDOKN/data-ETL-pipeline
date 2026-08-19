@@ -109,8 +109,10 @@ class _RequestDoc:
 
 class _ConceptBundle:
     brute = {"steel"}
-    llm_phrase_search_req_id = "req>search>chunk>0-100"
-    llm_phrase_recursive_search_req_ids = ["req>recursive>0"]
+    search_sub_bounds = ["0-100"]
+    llm_phrase_search_req_ids = ["req>search>chunk>0-100"]
+    # sub-window bounds -> that sub-window's rounds
+    llm_phrase_recursive_search_req_ids = {"0-100": ["req>recursive>0"]}
     llm_phrase_relationship_req_ids = ["req>rel>0", "req>rel>1"]
     llm_phrase_relationship_screening_req_ids: list[str] = []
     llm_phrase_initial_grounding_req_ids = ["req>ig>0"]
@@ -217,8 +219,12 @@ def test_the_descent_tree_is_reported_by_level():
 
 
 def test_non_request_bundle_fields_are_not_mistaken_for_requests():
-    """``brute`` is a set of matched labels, not batch requests."""
-    assert "brute" not in build_chunk_requests(_ConceptBundle(), _COMPLETED)
+    """``brute`` is a set of matched labels and ``search_sub_bounds`` is chunk
+    geometry — neither is batch requests."""
+    requests = build_chunk_requests(_ConceptBundle(), _COMPLETED)
+    assert "brute" not in requests
+    assert "search_sub_bounds" not in requests
+    assert not any("sub_bounds" in stage for stage in requests)
 
 
 def test_the_single_stage_request_field_is_recognized():
@@ -261,7 +267,7 @@ def test_latency_fields_appear_only_on_eagerly_dispatched_requests():
     eager_entry = requests["llm_phrase_search"][0]
     assert eager_entry["client_latency_ms"] == 11840
     assert eager_entry["openai_processing_ms"] == 11212
-    batch_entry = requests["llm_phrase_recursive_search"][0]
+    batch_entry = requests["llm_phrase_recursive_search"]["0-100"][0]
     assert "client_latency_ms" not in batch_entry
     assert "openai_processing_ms" not in batch_entry
 

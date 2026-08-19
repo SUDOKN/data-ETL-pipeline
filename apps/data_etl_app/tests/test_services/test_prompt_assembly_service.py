@@ -15,6 +15,7 @@ from core.models.extraction_schemas.catalog_wire_schema import (
 from core.models.extraction_schemas.response_format_util import (
     assert_strict_schema_supported,
 )
+from core.models.extraction_schemas.grounding import is_sentinel_grounding_label
 from core.models.rule_catalog import RuleCatalog
 from core.services.applied_rule_validation import (
     passed_implied_by,
@@ -57,7 +58,10 @@ def _example_units(catalog: RuleCatalog, example: dict) -> Iterator[tuple[str, d
 
     Rule slots are hoisted onto the unit now (see ``catalog_wire_schema``), so a
     unit IS the thing that carries them rather than holding an ``applied_rules``
-    list. Screening's no-candidate entries carry none at all, by design.
+    list. Screening's no-candidate entries carry none at all, by design, and so do
+    grounding's escape-hatch units — both are branches of their stage's schema
+    rather than units with fixed content. ``test_grounding_escape_hatch_carries_no_rules``
+    is what holds the latter to that.
     """
     if catalog.stage == "binary_classification":  # one object, one unit
         yield "response", example
@@ -71,6 +75,8 @@ def _example_units(catalog: RuleCatalog, example: dict) -> Iterator[tuple[str, d
                 continue
             for unit in entry.get("options", entry.get("categories", [])):
                 label = unit.get("option", unit.get("category"))
+                if is_sentinel_grounding_label(str(label)):
+                    continue
                 yield f"{entry['phrase']} / {label}", unit
 
 
@@ -291,7 +297,12 @@ def test_report_block_separates_always_from_chosen_and_violated():
     text = render_prompt(catalog)
 
     always = sorted(catalog.always_reported_rule_ids())
-    assert set(always) == {"RGR-Q1", "RGR-Q2", "RGR-Q3", "RGR-QC1"}
+    # RGR-Q3 (match by meaning, not lexical similarity) was demoted to a note on
+    # RGR-M1 on 2026-08-18: it never once failed across the 156 grounding decisions
+    # in the 20260818T204045 run, and M1/M2 already state their criterion in terms
+    # of meaning, so it constrained HOW the ladder is applied rather than testing
+    # anything the ladder did not.
+    assert set(always) == {"RGR-Q1", "RGR-Q2", "RGR-QC1"}
     for rule_id in always:
         assert re.search(rf"whichever outcome it reached:[^\n]*{rule_id}", text)
 
@@ -419,6 +430,42 @@ def test_output_example_reports_every_always_reported_rule(prompt_name):
     for where, unit in _example_units(catalog, _rendered_example(catalog)):
         reported = {rule["rule_id"] for rule in _rules_of(catalog, unit)}
         assert required <= reported, f"{where} omits {sorted(required - reported)}"
+
+
+@pytest.mark.parametrize(
+    "prompt_name",
+    sorted(
+        name for name, catalog in CATALOGS.items() if catalog.sentinel_tag is not None
+    ),
+)
+def test_grounding_escape_hatch_carries_no_rules(prompt_name):
+    """The escape hatch shows the label and an explanation, and nothing else.
+
+    It used to show the full ladder with every condition ``not_triggered`` — four
+    reports whose content the branch already fixed, and which nothing downstream
+    reads. On 2026-08-18 one such unit reported 'Q2 satisfied' behind 'Q1 failed'
+    and the chain check aborted the manufacturer over a contradiction inside a
+    record that is discarded moments later. The slots are gone from the schema, so
+    the example must not go on showing them: the example is what the model copies.
+    """
+    catalog = CATALOGS[prompt_name]
+    unit_key = "category" if catalog.stage == "phrase_freehand_grounding" else "option"
+
+    hatches = [
+        unit
+        for entry in _rendered_example(catalog)["groundings"]
+        for unit in entry.get("options", entry.get("categories", []))
+        if is_sentinel_grounding_label(str(unit.get(unit_key, "")))
+    ]
+    assert len(hatches) == 1, "the example shows the escape hatch exactly once"
+
+    hatch = hatches[0]
+    assert set(hatch) == {unit_key, "explanation"}, (
+        f"escape hatch carries {sorted(set(hatch) - {unit_key, 'explanation'})} "
+        f"beyond its label and explanation"
+    )
+    assert hatch[unit_key] == catalog.sentinel_tag
+    assert hatch["explanation"].startswith("<") and hatch["explanation"].endswith(">")
 
 
 @pytest.mark.parametrize(

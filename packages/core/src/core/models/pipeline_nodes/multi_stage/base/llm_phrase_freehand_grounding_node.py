@@ -234,5 +234,4 @@ class LLMPhraseFreehandGroundingNode(
         return await dispatch_gpt_batch_request(
             gpt_batch_request=gpt_batch_request,
             gpt_model=metadata.llm_phrase_freehand_grounding.llm_model,
-            model_params=metadata.llm_phrase_freehand_grounding.model_params,
         )

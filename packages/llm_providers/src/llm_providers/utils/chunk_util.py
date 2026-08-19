@@ -238,7 +238,7 @@ def get_chunks_respecting_line_boundaries_sync(
 
 async def get_chunks_respecting_line_boundaries(
     text: str,
-    max_chunks: int,
+    max_chunks: int | None,
     llm_model: LLM_Model,
     soft_limit_tokens: int = 5000,
     overlap_ratio: float = 0.25,

@@ -156,10 +156,10 @@ def parse_llm_phrase_relationship_screening_result(
 def get_verified_live_screening_results(
     live_screening_results: LiveScreeningResults,
 ) -> LiveScreeningResults:
-    """Filter live (structured, boolean-verdict) screening results down to only the
-    phrases that passed. Distinct from ground_truth_helper_util.get_verified_phrase_relationship_results,
-    which operates on legacy human-corrected ground-truth data using the Yes—/No—
-    string convention — do not merge these two paths."""
+    """Filter live (structured, boolean-verdict) screening results down to only
+    the phrases that passed. (A legacy ground_truth_helper_util variant using a
+    Yes—/No— string convention existed until the old keyword/concept GT layer
+    was retired at X2, 2026-08-17.)"""
     return {
         phrase: verdict
         for phrase, verdict in live_screening_results.items()

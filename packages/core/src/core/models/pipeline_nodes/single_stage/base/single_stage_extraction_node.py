@@ -188,5 +188,4 @@ class SingleStageExtractionNode(BaseLLMExtractionNode[ExtractionFieldType, Resul
         return await dispatch_gpt_batch_request(
             gpt_batch_request=gpt_batch_request,
             gpt_model=metadata.single_stage.llm_model,
-            model_params=metadata.single_stage.model_params,
         )

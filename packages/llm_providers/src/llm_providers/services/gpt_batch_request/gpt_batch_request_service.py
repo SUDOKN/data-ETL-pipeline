@@ -91,8 +91,25 @@ def get_dummy_gpt_batch_response(
 async def dispatch_gpt_batch_request(
     gpt_batch_request: GPTBatchRequest,
     gpt_model: LLM_Model,
-    model_params: GPTModelParams,
 ) -> GPTBatchResponse:
+    """Send a request eagerly, from the body that the batch path would have sent.
+
+    The params come off ``request.body`` and NOT from an argument. They used to
+    come from an argument, and on 2026-08-18 that cost a whole subject: nodes set
+    their catalog-generated strict ``response_format`` on the body via
+    ``with_response_format`` while every caller passed its own
+    ``metadata.<stage>.model_params``, whose ``response_format`` was the
+    pipeline-wide ``{"type": "json_object"}``. The strict schema was written to
+    Mongo and never sent, so a freehand-grounding response answered a `condition`
+    rule in a `quality` rule's vocabulary — a value strict decoding cannot emit —
+    and failed parse after the tokens were spent.
+
+    The body is the serialized request: it is what the JSONL batch path uploads,
+    so sourcing from it is also what makes an eager run and a batch run send the
+    same bytes. ``gpt_model`` stays an argument because the LLM_Model object
+    carries the context window that the name alone does not; it is checked
+    against the body rather than trusted.
+    """
     if (
         gpt_batch_request.is_batch_request_pending()
         and gpt_batch_request.batch_id != "Eager"
@@ -101,14 +118,23 @@ async def dispatch_gpt_batch_request(
             f"Cannot dispatch a pending GPT batch request with id {gpt_batch_request.request.custom_id} if batch_id is not 'Eager'."
         )
 
+    body = gpt_batch_request.request.body
+    if body.model != gpt_model.name:
+        raise ValueError(
+            f"Cannot dispatch GPT batch request {gpt_batch_request.request.custom_id}: "
+            f"it was built for model {body.model!r} but dispatch was handed "
+            f"{gpt_model.name!r}. The stored body is what gets sent, so the two "
+            f"must name the same model."
+        )
+
     # This is a placeholder for any additional logic needed to dispatch the request,
     # such as adding it to a queue or marking it as dispatched in the database.
     logger.info(
         f"Dispatching GPT batch request with id {gpt_batch_request.request.custom_id}"
     )
     prompt, context = (
-        gpt_batch_request.request.body.system_message(),
-        gpt_batch_request.request.body.user_message(),
+        body.system_message(),
+        body.user_message(),
     )
     gpt_response_blob = await fetch_gpt_batch_response(
         context=context,
@@ -116,7 +142,9 @@ async def dispatch_gpt_batch_request(
         custom_id=gpt_batch_request.request.custom_id,
         batch_id=gpt_batch_request.batch_id,
         gpt_model=gpt_model,
-        model_params=model_params,
+        # GPTRequestBody IS a GPTModelParams (plus `model` and `messages`), so the
+        # stored body serves directly as the params of the call it describes.
+        model_params=body,
     )
     logger.info(
         f"Received GPT batch response for request id {gpt_batch_request.request.custom_id}"

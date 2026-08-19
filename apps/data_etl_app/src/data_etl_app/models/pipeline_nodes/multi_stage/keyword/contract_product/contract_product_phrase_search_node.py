@@ -55,6 +55,7 @@ class ContractProductPhraseSearchNode(KeywordPhraseSearchNode):
         subject_unique_id: str,
         field_type: ExtractionFieldType,
         chunk_bounds: str,
+        sub_bounds: str,
         metadata: LLMPhraseExtractionMetadata,
     ) -> BatchRequestIDType:
         # Deliberately ignore the passed field_type and use the shared "products"
@@ -63,5 +64,6 @@ class ContractProductPhraseSearchNode(KeywordPhraseSearchNode):
             subject_unique_id=subject_unique_id,
             field_type=KeywordTypeEnum.products,
             chunk_bounds=chunk_bounds,
+            sub_bounds=sub_bounds,
             metadata=metadata,
         )

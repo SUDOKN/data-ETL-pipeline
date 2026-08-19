@@ -1,5 +1,5 @@
 {
-  "catalog_version": "material_cap_phrase_recursive_grounding.2026.08.5",
+  "catalog_version": "material_cap_phrase_recursive_grounding.2026.08.7",
   "prompt_name": "material_cap_phrase_recursive_grounding",
   "stage": "phrase_recursive_grounding",
   "field_types": [
@@ -50,30 +50,6 @@
       ]
     },
     {
-      "section_id": "match_qualification",
-      "heading": "The option you match it to must qualify:",
-      "combinator": "all",
-      "rules": [
-        {
-          "id": "RGR-Q3",
-          "kind": "condition",
-          "reportable": true,
-          "report_when": "always",
-          "text": "The option is chosen by comparing underlying meanings and definitions with the identified type, not by lexical or name similarity, and without forced or contrived links that rely on assumptions beyond the phrase and its relationship summary.",
-          "combinator": "note",
-          "children": [
-            {
-              "id": "RGR-Q3a",
-              "kind": "note",
-              "reportable": false,
-              "report_when": "never",
-              "text": "In particular, do not choose an option whose name resembles the identified type when the option's definition excludes this case."
-            }
-          ]
-        }
-      ]
-    },
-    {
       "section_id": "matching",
       "heading": "Match each specific type you identified by the first of these rules that applies, in order:",
       "combinator": "ordered",
@@ -83,7 +59,17 @@
           "kind": "preference",
           "reportable": true,
           "report_when": "when_chosen",
-          "text": "An option whose meaning exactly matches the identified type is chosen."
+          "text": "An option whose meaning exactly matches the identified type is chosen.",
+          "children": [
+            {
+              "id": "RGR-M1a",
+              "kind": "note",
+              "reportable": false,
+              "report_when": "never",
+              "text": "Choose by comparing underlying meanings and definitions with the identified type, never by lexical or name similarity, and without forced or contrived links that rely on assumptions beyond the phrase and its relationship summary. In particular, do not choose an option whose name resembles the identified type when the option's definition excludes this case."
+            }
+          ],
+          "combinator": "note"
         },
         {
           "id": "RGR-M2",
@@ -134,9 +120,9 @@
     }
   ],
   "published": {
-    "s3_version_id": "0N4HjQycnavSxAS8kR1wNV2l7N_FryFM",
-    "rendered_sha256": "894d578860a5786e07edfe8e0a1c1f31a51793d8e07f3c70bd6442c2dfe1ee0d",
-    "uploaded_at": "2026-08-12T07:50:48.382035+00:00"
+    "s3_version_id": "ceeKFjxK.NkTP4CdCiSR19F_NMSeWJwh",
+    "rendered_sha256": "564c37f6b5a2e6079d03cf981a78d7ccef959283c2908d1df1416677cacd16da",
+    "uploaded_at": "2026-08-19T00:30:36.395136+00:00"
   },
   "sentinel_tag": "None of the above"
 }

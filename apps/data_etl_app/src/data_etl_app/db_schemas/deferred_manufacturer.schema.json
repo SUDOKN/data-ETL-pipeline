@@ -67,6 +67,9 @@
                   },
                   "max_tokens_per_chunk": {
                     "bsonType": "int"
+                  },
+                  "search_divisor": {
+                    "bsonType": "int"
                   }
                 }
               },
@@ -303,6 +306,9 @@
                     "bsonType": "int"
                   },
                   "max_tokens_per_chunk": {
+                    "bsonType": "int"
+                  },
+                  "search_divisor": {
                     "bsonType": "int"
                   }
                 }
@@ -541,6 +547,9 @@
                   },
                   "max_tokens_per_chunk": {
                     "bsonType": "int"
+                  },
+                  "search_divisor": {
+                    "bsonType": "int"
                   }
                 }
               },
@@ -778,6 +787,9 @@
                   },
                   "max_tokens_per_chunk": {
                     "bsonType": "int"
+                  },
+                  "search_divisor": {
+                    "bsonType": "int"
                   }
                 }
               },
@@ -1014,6 +1026,9 @@
                     "bsonType": "int"
                   },
                   "max_tokens_per_chunk": {
+                    "bsonType": "int"
+                  },
+                  "search_divisor": {
                     "bsonType": "int"
                   }
                 }
@@ -1256,6 +1271,9 @@
                   },
                   "max_tokens_per_chunk": {
                     "bsonType": "int"
+                  },
+                  "search_divisor": {
+                    "bsonType": "int"
                   }
                 }
               },
@@ -2141,16 +2159,25 @@
               "bsonType": "object",
               "additionalProperties": false,
               "properties": {
-                "llm_phrase_search_req_id": {
-                  "bsonType": [
-                    "string",
-                    "null"
-                  ]
-                },
-                "llm_phrase_recursive_search_req_ids": {
+                "search_sub_bounds": {
                   "bsonType": "array",
                   "items": {
                     "bsonType": "string"
+                  }
+                },
+                "llm_phrase_search_req_ids": {
+                  "bsonType": "array",
+                  "items": {
+                    "bsonType": "string"
+                  }
+                },
+                "llm_phrase_recursive_search_req_ids": {
+                  "bsonType": "object",
+                  "additionalProperties": {
+                    "bsonType": "array",
+                    "items": {
+                      "bsonType": "string"
+                    }
                   }
                 },
                 "llm_phrase_relationship_req_ids": {
@@ -2221,6 +2248,9 @@
                   },
                   "max_tokens_per_chunk": {
                     "bsonType": "int"
+                  },
+                  "search_divisor": {
+                    "bsonType": "int"
                   }
                 }
               },
@@ -3106,16 +3136,25 @@
               "bsonType": "object",
               "additionalProperties": false,
               "properties": {
-                "llm_phrase_search_req_id": {
-                  "bsonType": [
-                    "string",
-                    "null"
-                  ]
-                },
-                "llm_phrase_recursive_search_req_ids": {
+                "search_sub_bounds": {
                   "bsonType": "array",
                   "items": {
                     "bsonType": "string"
+                  }
+                },
+                "llm_phrase_search_req_ids": {
+                  "bsonType": "array",
+                  "items": {
+                    "bsonType": "string"
+                  }
+                },
+                "llm_phrase_recursive_search_req_ids": {
+                  "bsonType": "object",
+                  "additionalProperties": {
+                    "bsonType": "array",
+                    "items": {
+                      "bsonType": "string"
+                    }
                   }
                 },
                 "llm_phrase_relationship_req_ids": {
@@ -3186,6 +3225,9 @@
                   },
                   "max_tokens_per_chunk": {
                     "bsonType": "int"
+                  },
+                  "search_divisor": {
+                    "bsonType": "int"
                   }
                 }
               },
@@ -4071,16 +4113,25 @@
               "bsonType": "object",
               "additionalProperties": false,
               "properties": {
-                "llm_phrase_search_req_id": {
-                  "bsonType": [
-                    "string",
-                    "null"
-                  ]
-                },
-                "llm_phrase_recursive_search_req_ids": {
+                "search_sub_bounds": {
                   "bsonType": "array",
                   "items": {
                     "bsonType": "string"
+                  }
+                },
+                "llm_phrase_search_req_ids": {
+                  "bsonType": "array",
+                  "items": {
+                    "bsonType": "string"
+                  }
+                },
+                "llm_phrase_recursive_search_req_ids": {
+                  "bsonType": "object",
+                  "additionalProperties": {
+                    "bsonType": "array",
+                    "items": {
+                      "bsonType": "string"
+                    }
                   }
                 },
                 "llm_phrase_relationship_req_ids": {
@@ -4151,6 +4202,9 @@
                     "bsonType": "int"
                   },
                   "max_tokens_per_chunk": {
+                    "bsonType": "int"
+                  },
+                  "search_divisor": {
                     "bsonType": "int"
                   }
                 }
@@ -5211,16 +5265,25 @@
               ],
               "additionalProperties": false,
               "properties": {
-                "llm_phrase_search_req_id": {
-                  "bsonType": [
-                    "string",
-                    "null"
-                  ]
-                },
-                "llm_phrase_recursive_search_req_ids": {
+                "search_sub_bounds": {
                   "bsonType": "array",
                   "items": {
                     "bsonType": "string"
+                  }
+                },
+                "llm_phrase_search_req_ids": {
+                  "bsonType": "array",
+                  "items": {
+                    "bsonType": "string"
+                  }
+                },
+                "llm_phrase_recursive_search_req_ids": {
+                  "bsonType": "object",
+                  "additionalProperties": {
+                    "bsonType": "array",
+                    "items": {
+                      "bsonType": "string"
+                    }
                   }
                 },
                 "llm_phrase_relationship_req_ids": {
@@ -5352,6 +5415,9 @@
                   },
                   "max_tokens_per_chunk": {
                     "bsonType": "int"
+                  },
+                  "search_divisor": {
+                    "bsonType": "int"
                   }
                 }
               },
@@ -6411,16 +6477,25 @@
               ],
               "additionalProperties": false,
               "properties": {
-                "llm_phrase_search_req_id": {
-                  "bsonType": [
-                    "string",
-                    "null"
-                  ]
-                },
-                "llm_phrase_recursive_search_req_ids": {
+                "search_sub_bounds": {
                   "bsonType": "array",
                   "items": {
                     "bsonType": "string"
+                  }
+                },
+                "llm_phrase_search_req_ids": {
+                  "bsonType": "array",
+                  "items": {
+                    "bsonType": "string"
+                  }
+                },
+                "llm_phrase_recursive_search_req_ids": {
+                  "bsonType": "object",
+                  "additionalProperties": {
+                    "bsonType": "array",
+                    "items": {
+                      "bsonType": "string"
+                    }
                   }
                 },
                 "llm_phrase_relationship_req_ids": {
@@ -6552,6 +6627,9 @@
                   },
                   "max_tokens_per_chunk": {
                     "bsonType": "int"
+                  },
+                  "search_divisor": {
+                    "bsonType": "int"
                   }
                 }
               },
@@ -7611,16 +7689,25 @@
               ],
               "additionalProperties": false,
               "properties": {
-                "llm_phrase_search_req_id": {
-                  "bsonType": [
-                    "string",
-                    "null"
-                  ]
-                },
-                "llm_phrase_recursive_search_req_ids": {
+                "search_sub_bounds": {
                   "bsonType": "array",
                   "items": {
                     "bsonType": "string"
+                  }
+                },
+                "llm_phrase_search_req_ids": {
+                  "bsonType": "array",
+                  "items": {
+                    "bsonType": "string"
+                  }
+                },
+                "llm_phrase_recursive_search_req_ids": {
+                  "bsonType": "object",
+                  "additionalProperties": {
+                    "bsonType": "array",
+                    "items": {
+                      "bsonType": "string"
+                    }
                   }
                 },
                 "llm_phrase_relationship_req_ids": {
@@ -7752,6 +7839,9 @@
                   },
                   "max_tokens_per_chunk": {
                     "bsonType": "int"
+                  },
+                  "search_divisor": {
+                    "bsonType": "int"
                   }
                 }
               },
@@ -8811,16 +8901,25 @@
               ],
               "additionalProperties": false,
               "properties": {
-                "llm_phrase_search_req_id": {
-                  "bsonType": [
-                    "string",
-                    "null"
-                  ]
-                },
-                "llm_phrase_recursive_search_req_ids": {
+                "search_sub_bounds": {
                   "bsonType": "array",
                   "items": {
                     "bsonType": "string"
+                  }
+                },
+                "llm_phrase_search_req_ids": {
+                  "bsonType": "array",
+                  "items": {
+                    "bsonType": "string"
+                  }
+                },
+                "llm_phrase_recursive_search_req_ids": {
+                  "bsonType": "object",
+                  "additionalProperties": {
+                    "bsonType": "array",
+                    "items": {
+                      "bsonType": "string"
+                    }
                   }
                 },
                 "llm_phrase_relationship_req_ids": {

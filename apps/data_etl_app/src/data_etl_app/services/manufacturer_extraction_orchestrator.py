@@ -35,6 +35,8 @@ from data_etl_app.services.gpt_batch_request_service import (
     bulk_delete_gpt_batch_requests_by_mfg_etld1_and_field,
 )
 from core.models.pipeline_nodes import PipelineContext, StageToggles
+from core.models.chunking_strat import ChunkingStrategy
+from core.models.field_types import ExtractionFieldType
 from core.models.ontology import Ontology
 from data_etl_app.services.prompt_service import PromptService
 from data_etl_app.services.extraction_pipeline_factory import (
@@ -71,6 +73,9 @@ class ManufacturerExtractionOrchestrator:
         model_params: GPTModelParams,
         metadata_init_at: datetime,
         stage_toggles: StageToggles | None = None,
+        chunk_strategy_overrides: (
+            dict[ExtractionFieldType, ChunkingStrategy] | None
+        ) = None,
     ):
         # Which (field, stage) pairs this orchestrator is allowed to run. None
         # means the whole chain, which is what every production path passes;
@@ -107,6 +112,7 @@ class ManufacturerExtractionOrchestrator:
             llm_model=llm_model,
             model_params=model_params,
             created_at=metadata_init_at,
+            chunk_strategy_overrides=chunk_strategy_overrides,
         )
         self.ontology = ontology
         self.prompt_service = prompt_service

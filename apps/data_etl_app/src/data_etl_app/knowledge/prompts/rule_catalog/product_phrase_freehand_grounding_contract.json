@@ -1,5 +1,5 @@
 {
-  "catalog_version": "product_phrase_freehand_grounding_contract.2026.08.3",
+  "catalog_version": "product_phrase_freehand_grounding_contract.2026.08.5",
   "prompt_name": "product_phrase_freehand_grounding_contract",
   "stage": "phrase_freehand_grounding",
   "field_types": [
@@ -47,7 +47,7 @@
               "kind": "note",
               "reportable": false,
               "report_when": "never",
-              "text": "An item named only as the destination or end use of the work is not a {{entity_noun}} the manufacturer {{entity_relationships.third_person}}. Where a phrase names something the manufacturer's output goes into, is fitted to, or serves, the category is that output itself, never the larger thing it becomes part of."
+              "text": "An item named only as the destination or end use of the work is not a {{entity_noun}} the manufacturer {{entity_relationships.third_person}}."
             }
           ]
         }
@@ -72,6 +72,13 @@
               "reportable": false,
               "report_when": "never",
               "text": "A phrase that identifies one particular item — by its maker, its designation, its catalogue reference, or any other mark that singles that one out from others like it — names an item rather than a category. Report the kind that item belongs to, and carry none of what singled it out into the category name."
+            },
+            {
+              "id": "FGR-Q2b",
+              "kind": "note",
+              "reportable": false,
+              "report_when": "never",
+              "text": "Where a phrase names something the manufacturer's output goes into, is fitted to, or serves, the category is that output itself, never the larger thing it becomes part of."
             }
           ]
         },
@@ -107,9 +114,9 @@
     }
   ],
   "published": {
-    "s3_version_id": "PPocO.J.FOOXcxl6d_CH6aIGY_GRker0",
-    "rendered_sha256": "624904fcfac47b90cc236615f0e803e08af3c2c8c73acecbfab8416b69911032",
-    "uploaded_at": "2026-08-12T07:50:48.382035+00:00"
+    "s3_version_id": "NP3bugjqJqqzqJvKTbA.LkgyJM6uPolO",
+    "rendered_sha256": "34be00b99e999aaeb01588ddbf8382847ff671eb68fa5e711a9143aaafae6c37",
+    "uploaded_at": "2026-08-19T00:30:36.395136+00:00"
   },
   "sentinel_tag": "Cannot categorize"
 }

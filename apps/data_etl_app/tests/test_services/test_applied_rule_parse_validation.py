@@ -381,7 +381,6 @@ def _qualified_option(name="Aerospace"):
     return {
         "option": name,
         "IGR-Q1": _report("satisfied"),
-        "IGR-Q2": _report("satisfied"),
         "chosen": _fired("IGR-M1"),
     }
 

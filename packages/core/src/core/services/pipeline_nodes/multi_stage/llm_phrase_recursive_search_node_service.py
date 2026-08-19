@@ -31,15 +31,17 @@ from core.services.brute_search_service import (
     filter_non_overlapping_brute_results,
 )
 from llm_providers.services.gpt_batch_request.gpt_batch_request_writes import (
-    record_response_parse_error,
+    record_response_parse_error_capped,
 )
 from llm_providers.services.gpt_batch_request.gpt_batch_request_service import (
     create_base_gpt_batch_request,
 )
 from core.services.pipeline_nodes.multi_stage.llm_phrase_search_node_service import (
     LLM_SEARCH_RESPONSE_SCHEMA,
+    parse_error_record,
     parse_llm_search_response,
     parse_batch_request_result as parse_phrase_search_batch_req_result,
+    parse_search_sub_request_result,
 )
 
 logger = logging.getLogger(__name__)
@@ -63,13 +65,14 @@ async def parse_recursive_search_round_result(
         return set()
     try:
         phrase_relationship_results = parse_llm_search_response(
-            round_req.response.result
+            round_req.response.result,
+            where=f" for {round_req_id}",
         )
         return phrase_relationship_results
     except Exception as e:
-        await record_response_parse_error(
+        await record_response_parse_error_capped(
             gpt_batch_request=round_req,
-            error_message=str(e),
+            error_message=parse_error_record(e),
             timestamp=timestamp,
             traceback_str=traceback.format_exc(),
         )
@@ -87,17 +90,18 @@ async def get_all_recursive_round_results(
     completed_request_map: dict[BatchRequestIDType, GPTBatchRequest],
     timestamp: datetime,
 ) -> LLMSearchResults:
-    """Union of phrases across every recursive round embedded for the chunk."""
+    """Union of phrases across every recursive round of every sub-window of the chunk."""
     all_results: set[str] = set()
-    for round_req_id in extraction_bundle.llm_phrase_recursive_search_req_ids:
-        all_results |= await parse_recursive_search_round_result(
-            subject_unique_id=subject_unique_id,
-            field_type=field_type,
-            chunk_bounds=chunk_bounds,
-            round_req_id=round_req_id,
-            completed_request_map=completed_request_map,
-            timestamp=timestamp,
-        )
+    for round_req_ids in extraction_bundle.llm_phrase_recursive_search_req_ids.values():
+        for round_req_id in round_req_ids:
+            all_results |= await parse_recursive_search_round_result(
+                subject_unique_id=subject_unique_id,
+                field_type=field_type,
+                chunk_bounds=chunk_bounds,
+                round_req_id=round_req_id,
+                completed_request_map=completed_request_map,
+                timestamp=timestamp,
+            )
     return all_results
 
 
@@ -131,23 +135,36 @@ async def build_llm_phrase_search_results(
         deferred_at=timestamp,
     )
 
+    # Sub-windows converge independently, so their round lists are ragged; a
+    # stats round N is the union of every sub-window's Nth recursive round,
+    # sub-windows that converged earlier simply stop contributing.
+    num_recursive_rounds = max(
+        (
+            len(round_req_ids)
+            for round_req_ids in extraction_bundle.llm_phrase_recursive_search_req_ids.values()
+        ),
+        default=0,
+    )
     rounds: dict[int, LLMSearchResults] = {1: first_search_results}
-    for round_index, round_req_id in enumerate(
-        extraction_bundle.llm_phrase_recursive_search_req_ids, start=2
-    ):
-        rounds[round_index] = await parse_recursive_search_round_result(
-            subject_unique_id=subject_unique_id,
-            field_type=field_type,
-            chunk_bounds=chunk_bounds,
-            round_req_id=round_req_id,
-            completed_request_map=completed_recursive_search_req_map,
-            timestamp=timestamp,
-        )
+    for round_offset in range(num_recursive_rounds):
+        round_results: set[str] = set()
+        for (
+            round_req_ids
+        ) in extraction_bundle.llm_phrase_recursive_search_req_ids.values():
+            if round_offset >= len(round_req_ids):
+                continue
+            round_results |= await parse_recursive_search_round_result(
+                subject_unique_id=subject_unique_id,
+                field_type=field_type,
+                chunk_bounds=chunk_bounds,
+                round_req_id=round_req_ids[round_offset],
+                completed_request_map=completed_recursive_search_req_map,
+                timestamp=timestamp,
+            )
+        rounds[round_offset + 2] = round_results
 
     all_llm_phrases: set[str] = set(first_search_results)
-    for round_index in range(
-        2, 2 + len(extraction_bundle.llm_phrase_recursive_search_req_ids)
-    ):
+    for round_index in range(2, 2 + num_recursive_rounds):
         all_llm_phrases |= rounds[round_index]
 
     rounds[0] = filter_non_overlapping_brute_results(
@@ -198,8 +215,10 @@ async def create_missing_phrase_recursive_search_requests(
     """Create GPT batch requests for the missing recursive search rounds.
 
     For each missing round the exclusion set shown to the LLM is the compounding
-    union of the first search results and every prior recursive round for that chunk
-    (LLM phrases only; brute-force results are intentionally excluded).
+    union of the first search results and every prior recursive round for that
+    SUB-WINDOW (LLM phrases only; brute-force results are intentionally
+    excluded). Sub-windows recurse independently: a sibling's finds are never
+    excluded, and each round's context is the sub-window's text, not the chunk's.
     """
     logger.info(
         f"create_missing_phrase_recursive_search_requests: Generating GPTBatchRequests for {subject_unique_id}:{field_type.name}"
@@ -207,37 +226,57 @@ async def create_missing_phrase_recursive_search_requests(
 
     batch_requests: list[GPTBatchRequest] = []
 
-    chunk_round_items: list[tuple[str, LLMPhraseExtractionRequestBundle, int]] = []
+    chunk_round_items: list[
+        tuple[str, LLMPhraseExtractionRequestBundle, str, BatchRequestIDType, int]
+    ] = []
     for chunk_bounds, extraction_bundle in chunked_request_map.items():
-        for round_index, round_req_id in enumerate(
-            extraction_bundle.llm_phrase_recursive_search_req_ids
+        for sub_bounds, first_search_req_id in zip(
+            extraction_bundle.search_sub_bounds,
+            extraction_bundle.llm_phrase_search_req_ids,
         ):
-            if round_req_id in missing_recursive_search_req_ids:
-                chunk_round_items.append((chunk_bounds, extraction_bundle, round_index))
+            for round_index, round_req_id in enumerate(
+                extraction_bundle.llm_phrase_recursive_search_req_ids.get(
+                    sub_bounds, []
+                )
+            ):
+                if round_req_id in missing_recursive_search_req_ids:
+                    chunk_round_items.append(
+                        (
+                            chunk_bounds,
+                            extraction_bundle,
+                            sub_bounds,
+                            first_search_req_id,
+                            round_index,
+                        )
+                    )
 
     for i in range(0, len(chunk_round_items), BATCH_SIZE):
         batch = chunk_round_items[i : i + BATCH_SIZE]
 
-        for chunk_bounds, extraction_bundle, round_index in batch:
-            round_req_id = extraction_bundle.llm_phrase_recursive_search_req_ids[
-                round_index
+        for (
+            chunk_bounds,
+            extraction_bundle,
+            sub_bounds,
+            first_search_req_id,
+            round_index,
+        ) in batch:
+            sub_rounds = extraction_bundle.llm_phrase_recursive_search_req_ids[
+                sub_bounds
             ]
+            round_req_id = sub_rounds[round_index]
 
-            # First search results for this chunk (LLM only).
-            first_search_results = await parse_phrase_search_batch_req_result(
+            # First search results for this sub-window (LLM only).
+            first_search_results = await parse_search_sub_request_result(
                 subject_unique_id=subject_unique_id,
                 field_type=field_type,
-                chunk_bounds=chunk_bounds,
-                extraction_bundle=extraction_bundle,
+                llm_phrase_search_request_id=first_search_req_id,
                 all_phrase_search_req_responses_map=first_search_gpt_request_map,
                 deferred_at=timestamp,
             )
 
-            # Compounding union of every prior recursive round for this chunk.
+            # Compounding union of every prior recursive round for this sub-window.
             already_extracted: set[str] = set(first_search_results)
-            for (
-                prior_round_req_id
-            ) in extraction_bundle.llm_phrase_recursive_search_req_ids[:round_index]:
+            for prior_round_req_id in sub_rounds[:round_index]:
                 already_extracted |= await parse_recursive_search_round_result(
                     subject_unique_id=subject_unique_id,
                     field_type=field_type,
@@ -247,9 +286,7 @@ async def create_missing_phrase_recursive_search_requests(
                     timestamp=timestamp,
                 )
 
-            start, end = int(chunk_bounds.split(":")[0]), int(
-                chunk_bounds.split(":")[1]
-            )
+            start, end = int(sub_bounds.split(":")[0]), int(sub_bounds.split(":")[1])
             context = _build_recursive_search_context(
                 chunk_text=subject_text[start:end],
                 already_extracted_phrases=already_extracted,

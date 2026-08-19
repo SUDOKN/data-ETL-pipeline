@@ -23,7 +23,7 @@ that provably disagrees with the S3 object it claims to pin.
 from __future__ import annotations
 
 import hashlib
-from typing import Callable, Optional
+from typing import Callable, NamedTuple, Optional
 
 from core.models.extraction_results.concept_extraction_results import (
     ConceptExtractionStats,
@@ -79,6 +79,68 @@ def _check_catalog_pin(
         )
 
 
+class PinnedCatalogs(NamedTuple):
+    """The deployed catalogs a document's run pinned, one slot per stage.
+
+    ``oov`` is the per-phrase tag-map catalog: freehand for keyword fields,
+    initial grounding for concept fields (where it aliases ``initial``);
+    ``initial``/``recursive`` are None for keyword fields.
+    """
+
+    screening: RuleCatalog
+    oov: RuleCatalog
+    initial: Optional[RuleCatalog]
+    recursive: Optional[RuleCatalog]
+
+
+def resolve_pinned_catalogs(
+    metadata,
+    field_type: KeywordTypeEnum | ConceptTypeEnum,
+    lookup: CatalogLookup,
+) -> PinnedCatalogs:
+    """Deployed catalogs for every stage of this field, each hard pin-checked
+    against the metadata's stored ``catalog_version`` (template assembly and
+    batch submission share this — both are meaningless against catalogs the
+    run did not use)."""
+    screening_catalog = _required_catalog(
+        lookup, STAGE_RELATIONSHIP_SCREENING, field_type.value
+    )
+    _check_catalog_pin(
+        metadata.llm_phrase_relationship_screening,
+        screening_catalog,
+        "llm_phrase_relationship_screening",
+    )
+    if isinstance(field_type, KeywordTypeEnum):
+        oov_catalog = _required_catalog(
+            lookup, STAGE_FREEHAND_GROUNDING, field_type.value
+        )
+        _check_catalog_pin(
+            metadata.llm_phrase_freehand_grounding,
+            oov_catalog,
+            "llm_phrase_freehand_grounding",
+        )
+        return PinnedCatalogs(screening_catalog, oov_catalog, None, None)
+    initial_catalog = _required_catalog(
+        lookup, STAGE_INITIAL_GROUNDING, field_type.value
+    )
+    recursive_catalog = _required_catalog(
+        lookup, STAGE_RECURSIVE_GROUNDING, field_type.value
+    )
+    _check_catalog_pin(
+        metadata.llm_phrase_initial_grounding,
+        initial_catalog,
+        "llm_phrase_initial_grounding",
+    )
+    _check_catalog_pin(
+        metadata.llm_phrase_recursive_grounding,
+        recursive_catalog,
+        "llm_phrase_recursive_grounding",
+    )
+    return PinnedCatalogs(
+        screening_catalog, initial_catalog, initial_catalog, recursive_catalog
+    )
+
+
 def build_llm_phrase_gt_template(
     manufacturer: Manufacturer,
     field_type: KeywordTypeEnum | ConceptTypeEnum,
@@ -95,48 +157,17 @@ def build_llm_phrase_gt_template(
     lookup = catalog_lookup if catalog_lookup is not None else build_rule_catalog_lookup()
     metadata = results.metadata.model_copy(deep=True)
 
-    screening_catalog = _required_catalog(
-        lookup, STAGE_RELATIONSHIP_SCREENING, field_type.value
-    )
-    _check_catalog_pin(
-        metadata.llm_phrase_relationship_screening,
-        screening_catalog,
-        "llm_phrase_relationship_screening",
-    )
-
-    recursive_catalog: Optional[RuleCatalog] = None
-    initial_catalog: Optional[RuleCatalog] = None
+    catalogs = resolve_pinned_catalogs(metadata, field_type, lookup)
+    screening_catalog = catalogs.screening
+    oov_catalog = catalogs.oov
+    initial_catalog = catalogs.initial
+    recursive_catalog = catalogs.recursive
     if isinstance(field_type, KeywordTypeEnum):
-        oov_catalog = _required_catalog(
-            lookup, STAGE_FREEHAND_GROUNDING, field_type.value
-        )
-        _check_catalog_pin(
-            metadata.llm_phrase_freehand_grounding,
-            oov_catalog,
-            "llm_phrase_freehand_grounding",
-        )
         # The two results containers name their chunk map differently.
         stats_map: dict[str, KeywordExtractionStats | ConceptExtractionStats] = (
             results.chunk_stats
         )
     else:
-        oov_catalog = _required_catalog(
-            lookup, STAGE_INITIAL_GROUNDING, field_type.value
-        )
-        initial_catalog = oov_catalog
-        recursive_catalog = _required_catalog(
-            lookup, STAGE_RECURSIVE_GROUNDING, field_type.value
-        )
-        _check_catalog_pin(
-            metadata.llm_phrase_initial_grounding,
-            oov_catalog,
-            "llm_phrase_initial_grounding",
-        )
-        _check_catalog_pin(
-            metadata.llm_phrase_recursive_grounding,
-            recursive_catalog,
-            "llm_phrase_recursive_grounding",
-        )
         stats_map = results.chunked_extraction_stats
 
     chunks = {

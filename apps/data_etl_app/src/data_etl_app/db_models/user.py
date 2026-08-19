@@ -12,6 +12,7 @@ class UserRole(str, Enum):
     EMPLOYEE = "employee"
     MEP = "mep"
     ADMIN = "admin"
+    ANNOTATOR = "annotator"  # ground-truth annotation surfaces (X6)
 
 
 class User(Document):

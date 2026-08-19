@@ -148,45 +148,6 @@ class DatabaseIndexSeeder:
         for index in indexes:
             self._create_index_if_missing(collection, index["keys"], index["options"])
 
-    def create_concept_ground_truth_indexes(self):
-        """Create indexes for concept_ground_truths collection."""
-        collection = self.db.concept_ground_truths
-
-        indexes = [
-            {
-                "keys": [
-                    ("mfg_etld1", 1),
-                    ("concept_type", 1),
-                    ("scraped_text_file_version_id", 1),
-                    ("chunk_bounds", 1),
-                ],
-                "options": {"name": "concept_gt_unique_idx", "unique": True},
-            }
-        ]
-
-        for index in indexes:
-            self._create_index_if_missing(collection, index["keys"], index["options"])
-
-    def create_keyword_ground_truth_indexes(self):
-        """Create indexes for keyword_ground_truths collection."""
-        collection = self.db.keyword_ground_truths
-
-        indexes = [
-            {
-                "keys": [
-                    ("mfg_etld1", 1),
-                    ("scraped_text_file_version_id", 1),
-                    ("metadata.search_prompt_version_id", 1),
-                    ("keyword_type", 1),
-                    ("chunk_bounds", 1),
-                ],
-                "options": {"name": "keyword_gt_unique_idx", "unique": True},
-            }
-        ]
-
-        for index in indexes:
-            self._create_index_if_missing(collection, index["keys"], index["options"])
-
     def create_llm_phrase_ground_truth_indexes(self):
         """Create indexes for llm_phrase_ground_truths collection. The keys are
         declared next to the Document so the two cannot drift."""
@@ -401,8 +362,6 @@ class DatabaseIndexSeeder:
             self.create_user_indexes()
             self.create_manufacturer_user_form_indexes()
             self.create_binary_ground_truth_indexes()
-            self.create_concept_ground_truth_indexes()
-            self.create_keyword_ground_truth_indexes()
             self.create_llm_phrase_ground_truth_indexes()
             self.create_gpt_batch_request_indexes()
             self.create_deferred_manufacturer_indexes()

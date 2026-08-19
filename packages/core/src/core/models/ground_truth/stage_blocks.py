@@ -245,14 +245,71 @@ class InVocabNodeGT(BaseModel):
     audits: list[GroundingDerivation] = []
 
 
+class HumanDescentPath(BaseModel):
+    """One annotator's divergence from the stored descent (P3 verdict 6b).
+
+    Anchored at the last stored node the annotator still agrees with;
+    ``replaces_group_id`` names the disputed child whose subtree this path
+    supersedes — sibling branches stand. It is None only for a
+    continuation-from-stop: the stored descent ended at the anchor and the
+    annotator descends further (validated at submission — an anchor with
+    stored children requires naming the replaced one; adding a sibling
+    branch beside kept ones is not recordable in v1). Hops are human
+    derivations with
+    fresh recursive-grounding sections, chained parent→child down the pinned
+    ontology (validated at submission, where the ontology is at hand), and
+    every hop must hold on the happy path — a hop that fails its own rules
+    asserts nothing (the PH-10 doctrine). ``stopped`` is the explicit
+    terminal: the API accepts the sentinel label as the stop signal, the
+    model stores the flag — no magic tag in storage.
+
+    Path-level provenance mirrors ``MissedPhraseEntry``: one author per path,
+    ``at`` with no default on purpose.
+    """
+
+    model_config = ConfigDict(extra="forbid")
+
+    author_email: str
+    at: datetime
+    source: str
+    anchor_level: int
+    anchor_parent_group_id: Optional[str]
+    anchor_group_id: str
+    replaces_group_id: Optional[str]
+    hops: list[GroundingDerivation]
+    stopped: bool
+
+    @model_validator(mode="after")
+    def check_path_shape(self) -> "HumanDescentPath":
+        if not self.hops:
+            raise ValueError("a divergence path with no hops asserts nothing")
+        if self.stopped is not True:
+            raise ValueError(
+                "a divergence path must end with an explicit stop — an "
+                "open-ended descent claim is not recordable"
+            )
+        for hop in self.hops:
+            if problem := _happy_path_problem(hop.sections):
+                raise ValueError(
+                    f"a divergence hop must ground to satisfaction — "
+                    f"hop {hop.tag!r}: {problem}"
+                )
+        return self
+
+
 class InVocabGroundingGT(BaseModel):
     """A phrase's recursive descent, level by level — the per-phrase mirror of
     ``IterativeGroundingResult``. Lists, not sets: submission order is kept and
-    the wire is JSON."""
+    the wire is JSON.
+
+    ``human_paths`` holds annotators' divergences (P3 verdict 6b) beside the
+    stored tree — the stored nodes stay immutable LLM copies, corrections to
+    the trajectory live here."""
 
     model_config = ConfigDict(extra="forbid")
 
     levels: dict[int, list[InVocabNodeGT]]
+    human_paths: list[HumanDescentPath] = []
 
 
 class ExtractedPhraseGT(BaseModel):

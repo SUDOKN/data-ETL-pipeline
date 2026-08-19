@@ -34,7 +34,9 @@ from core.models.ground_truth.stage_blocks import (
     ChunkGT,
     ExtractedPhraseGT,
     GroundingDerivation,
+    HumanDescentPath,
     InVocabGroundingGT,
+    InVocabNodeGT,
     MissedPhraseEntry,
     ScreeningGT,
     TagGroundingGT,
@@ -158,10 +160,81 @@ class InVocabNodeTruth(BaseModel):
     replaced_from: Optional[str] = None
 
 
-def effective_in_vocab(gt: InVocabGroundingGT) -> dict[int, list[InVocabNodeTruth]]:
+_NodeId = tuple[int, Optional[str], str]  # (level, parent_group_id, group_id)
+
+
+def _excluded_node_ids(
+    levels: dict[int, list[InVocabNodeGT]],
+    *,
+    initial_roots: set[str],
+    path_roots: list[_NodeId],
+) -> set[_NodeId]:
+    """Stored subtrees superseded by a reset or a divergence path.
+
+    Chains follow the storage's own name-pair identity
+    (parent_group_id == the parent's group_id).
+    """
+    frontier: list[_NodeId] = list(path_roots)
+    for node in levels.get(1, []):
+        if node.parent_group_id is None and node.group_id in initial_roots:
+            frontier.append((1, node.parent_group_id, node.group_id))
+    excluded = set(frontier)
+    while frontier:
+        next_frontier: list[_NodeId] = []
+        for level, _parent, group in frontier:
+            for node in levels.get(level + 1, []):
+                if node.parent_group_id == group:
+                    node_id = (level + 1, node.parent_group_id, node.group_id)
+                    if node_id not in excluded:
+                        excluded.add(node_id)
+                        next_frontier.append(node_id)
+        frontier = next_frontier
+    return excluded
+
+
+def effective_in_vocab(
+    gt: InVocabGroundingGT,
+    exclude_initial_roots: set[str] = frozenset(),  # type: ignore[assignment]
+) -> dict[int, list[InVocabNodeTruth]]:
+    """The descent's effective truth: stored nodes minus superseded subtrees,
+    plus divergence-path nodes (verdict 6).
+
+    ``exclude_initial_roots`` carries the reset precedence: initial tags the
+    effective tag view REPLACED — their whole stored subtree is overridden
+    wholesale. Divergence paths override the replaced child's subtree (latest
+    path per divergence key wins across authors, settled #10) and contribute
+    their hop nodes, ``replaced_from`` on the first hop.
+    """
+    latest_paths: dict[tuple, HumanDescentPath] = {}
+    for path in gt.human_paths:
+        key = (
+            path.anchor_level,
+            path.anchor_parent_group_id,
+            path.anchor_group_id,
+            path.replaces_group_id,
+        )
+        latest_paths[key] = path
+    path_roots: list[_NodeId] = [
+        (anchor_level + 1, anchor_group, replaces)
+        for (
+            anchor_level,
+            _anchor_parent,
+            anchor_group,
+            replaces,
+        ) in latest_paths
+        if replaces is not None
+    ]
+    excluded = _excluded_node_ids(
+        gt.levels,
+        initial_roots=set(exclude_initial_roots),
+        path_roots=path_roots,
+    )
+
     levels: dict[int, list[InVocabNodeTruth]] = {}
     for lvl, nodes in gt.levels.items():
         for node in nodes:
+            if (lvl, node.parent_group_id, node.group_id) in excluded:
+                continue
             group_id, truth = _effective_link(
                 node.group_id, node.sections, node.audits
             )
@@ -175,6 +248,22 @@ def effective_in_vocab(gt: InVocabGroundingGT) -> dict[int, list[InVocabNodeTrut
                     replaced_from=truth.replaced_from,
                 )
             )
+    for (anchor_level, _anchor_parent, anchor_group, replaces), path in (
+        latest_paths.items()
+    ):
+        previous = anchor_group
+        for index, hop in enumerate(path.hops):
+            levels.setdefault(anchor_level + 1 + index, []).append(
+                InVocabNodeTruth(
+                    parent_group_id=previous,
+                    group_id=hop.tag,
+                    stop_reason=None,
+                    held=effective_passed(hop.sections),
+                    reviewed=True,
+                    replaced_from=replaces if index == 0 else None,
+                )
+            )
+            previous = hop.tag
     return levels
 
 
@@ -210,6 +299,19 @@ class ChunkTruth(BaseModel):
 
 
 def compute_phrase_truth(phrase_gt: ExtractedPhraseGT) -> PhraseTruth:
+    tags = (
+        effective_tag_groundings(phrase_gt.oov_grounding.tags)
+        if phrase_gt.oov_grounding is not None
+        else {}
+    )
+    # Reset precedence (verdict 6a): a REPLACED initial tag supersedes the
+    # whole stored descent under it — the phrase links directly to the new
+    # tag; no per-node disagrees required.
+    replaced_roots = {
+        truth.replaced_from
+        for truth in tags.values()
+        if truth.replaced_from is not None
+    }
     return PhraseTruth(
         relationship=effective_text(
             phrase_gt.llm_relationship.llm_result, phrase_gt.llm_relationship.audits
@@ -219,13 +321,12 @@ def compute_phrase_truth(phrase_gt: ExtractedPhraseGT) -> PhraseTruth:
             if phrase_gt.llm_screening is not None
             else None
         ),
-        tags=(
-            effective_tag_groundings(phrase_gt.oov_grounding.tags)
-            if phrase_gt.oov_grounding is not None
-            else {}
-        ),
+        tags=tags,
         in_vocab=(
-            effective_in_vocab(phrase_gt.in_vocab_grounding)
+            effective_in_vocab(
+                phrase_gt.in_vocab_grounding,
+                exclude_initial_roots=replaced_roots,
+            )
             if phrase_gt.in_vocab_grounding is not None
             else {}
         ),

@@ -163,8 +163,9 @@ def _completed_request(custom_id: str, phrase: str, category: str):
 
 def _bundle(group_req_ids: list[str]) -> KeywordExtractionRequestBundle:
     return KeywordExtractionRequestBundle(
-        llm_phrase_search_req_id=None,
-        llm_phrase_recursive_search_req_ids=[],
+        search_sub_bounds=[CHUNK_BOUNDS],
+        llm_phrase_search_req_ids=[],
+        llm_phrase_recursive_search_req_ids={},
         llm_phrase_relationship_req_ids=[],
         llm_phrase_relationship_screening_req_ids=[],
         llm_phrase_freehand_grounding_req_ids=group_req_ids,

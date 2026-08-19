@@ -88,15 +88,24 @@ class LLMPhraseSearchNode(
             chunk_bounds,
             extraction_request_bundle,
         ) in chunked_request_map.items():
-            if not extraction_request_bundle.llm_phrase_search_req_id:
-                extraction_request_bundle.llm_phrase_search_req_id = (
+            if not extraction_request_bundle.search_sub_bounds:
+                raise ValueError(
+                    f"Cannot embed req ids for llm phrase search node, as search_sub_bounds "
+                    f"is empty for subject:{subject_unique_id}>{chunk_bounds}, field:{self.field_type.name}. "
+                    f"Sub-window geometry is written at prefill; an empty list means the "
+                    f"deferred field predates search_divisor and must be re-deferred."
+                )
+            if not extraction_request_bundle.llm_phrase_search_req_ids:
+                extraction_request_bundle.llm_phrase_search_req_ids = [
                     self.get_request_custom_id(
                         subject_unique_id=subject_unique_id,
                         field_type=self.field_type,
                         chunk_bounds=chunk_bounds,
+                        sub_bounds=sub_bounds,
                         metadata=metadata,
                     )
-                )
+                    for sub_bounds in extraction_request_bundle.search_sub_bounds
+                ]
 
     def get_embedded_request_ids(
         self,
@@ -108,13 +117,13 @@ class LLMPhraseSearchNode(
             chunk_bounds,
             extraction_bundle,
         ) in chunked_request_map.items():
-            if not extraction_bundle.llm_phrase_search_req_id:
+            if not extraction_bundle.llm_phrase_search_req_ids:
                 raise ValueError(
                     f"Cannot get embedded request ids for subject_unique_id:{subject_unique_id}>{chunk_bounds} as "
-                    f"llm_phrase_search_request is absent in the extraction_bundle."
+                    f"llm_phrase_search_req_ids is empty in the extraction_bundle."
                 )
 
-            llm_search_req_ids.add(extraction_bundle.llm_phrase_search_req_id)
+            llm_search_req_ids.update(extraction_bundle.llm_phrase_search_req_ids)
         return llm_search_req_ids
 
     @staticmethod
@@ -122,10 +131,11 @@ class LLMPhraseSearchNode(
         subject_unique_id: str,
         field_type: ExtractionFieldType,
         chunk_bounds: str,
+        sub_bounds: str,
         metadata: LLMPhraseExtractionMetadata,
     ) -> BatchRequestIDType:
         return (
-            f"{subject_unique_id}>{field_type.name}>llm_search>chunk>{chunk_bounds}>"
+            f"{subject_unique_id}>{field_type.name}>llm_search>chunk>{chunk_bounds}>sub>{sub_bounds}>"
             f"{metadata.llm_phrase_search.to_custom_id_segment()}"
         )
 
@@ -185,5 +195,4 @@ class LLMPhraseSearchNode(
         return await dispatch_gpt_batch_request(
             gpt_batch_request=gpt_batch_request,
             gpt_model=metadata.llm_phrase_search.llm_model,
-            model_params=metadata.llm_phrase_search.model_params,
         )

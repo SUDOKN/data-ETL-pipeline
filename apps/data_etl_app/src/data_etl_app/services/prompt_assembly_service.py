@@ -31,6 +31,7 @@ from core.models.extraction_schemas.catalog_wire_schema import (
     JUDGED,
     NO_CANDIDATE,
 )
+from core.models.extraction_schemas.grounding import is_sentinel_grounding_label
 from core.models.rule_catalog import (
     NOTE_KIND,
     ONLY_REACHABLE_OUTCOME_BY_REPORT_WHEN,
@@ -472,10 +473,27 @@ def _render_report_block(catalog: RuleCatalog) -> str:
             f"outcome it reached: {', '.join(grouped['always'])}."
         )
     if grouped.get("when_chosen"):
-        lines.append(
-            f'- "{CHOSEN_SLOT}" holds the single branch you took, named by its rule '
-            f"id: {', '.join(grouped['when_chosen'])}."
-        )
+        # The sentinel branch is left out of this list on purpose: taking it is
+        # spelled by returning the escape-hatch unit, which has no `chosen` slot to
+        # name it in. See SentinelWireEntry.
+        sentinel_branch = _sentinel_branch_id(catalog)
+        branches = [
+            rule_id
+            for rule_id in grouped["when_chosen"]
+            if rule_id != sentinel_branch
+        ]
+        if branches:
+            lines.append(
+                f'- "{CHOSEN_SLOT}" holds the single branch you took, named by its '
+                f"rule id: {', '.join(branches)}."
+            )
+        if sentinel_branch is not None and catalog.sentinel_tag is not None:
+            lines.append(
+                f'- {sentinel_branch} is taken by returning "{catalog.sentinel_tag}" '
+                f"with only your explanation beside it. That entry reports no rules "
+                f"at all — there was nothing for them to be about — so none of the "
+                f"fields above appear on it."
+            )
     if grouped.get("on_violation"):
         lines.append(
             f'- "{GUARDS_SLOT}" lists any of these you found violated, and is empty '
@@ -596,9 +614,16 @@ def _condition_outcomes(catalog: RuleCatalog, mode: str) -> dict[str, str]:
 
     # Conditions are a chain in document order, so the shape a rejection takes is
     # satisfied* failed? not_triggered* — the shape _check_condition_chain enforces.
-    # The SECOND condition is the one shown failing: the first failing would mean
-    # nothing was identified at all, which is the null-entity scenario instead.
-    fails_at = 1 if len(conditions) > 1 else 0
+    # The LAST condition is the one shown failing (2026-08-18). It used to be the
+    # second, on the reasoning that the first failing means nothing was identified
+    # at all — true, but that only rules out position 0, and picking position 1
+    # taught the shape it demonstrated. Measured on the 20260818T204045 run: every
+    # one of the 20 industries rejections failed at SCR-2 and reported SCR-3
+    # not_triggered, the exact shape of this example, including 13 where SCR-3's
+    # own note says the candidate should have passed. Failing at the last condition
+    # demonstrates the chain being walked to the end instead, which is the
+    # behaviour the report block asks for in prose and did not previously show.
+    fails_at = len(conditions) - 1
     outcomes = {}
     for position, rule in enumerate(conditions):
         if position < fails_at:
@@ -799,15 +824,21 @@ def _grounding_example(
     sentinel_tag = catalog.sentinel_tag
     sentinel_branch = _sentinel_branch_id(catalog)
     if sentinel_tag is not None and sentinel_branch is not None:
+        # Two fields and no rule slots: the escape hatch is its own arm of the
+        # schema, so there is nothing on it to fill in. `_example_rule_slots` is
+        # deliberately not called here — every other scenario in this example
+        # carries a full ladder, and the contrast is the instruction.
         entries.append(
             {
                 "phrase": "<another phrase, from which none could be identified>",
                 units_key: [
-                    unit(
-                        sentinel_tag,
-                        mode=_NOTHING_IDENTIFIED,
-                        branch=sentinel_branch,
-                    )
+                    {
+                        unit_key: sentinel_tag,
+                        "explanation": (
+                            "<why nothing here could be identified, citing "
+                            f"{catalog.evidence_source}>"
+                        ),
+                    }
                 ],
             }
         )
@@ -896,6 +927,15 @@ def _prints_on_one_line(node: Any) -> bool:
         return True  # a fired guard or chosen branch: two short fields
     if len(node) == 2 and "outcome" in node and "explanation" in node:
         return True  # an always-reported rule's slot, under its id
+    # A grounding stage's escape-hatch unit: the label and an explanation, and no
+    # rule slots to spread over lines. Inlined for the same reason as the
+    # no-candidate entry below — and because the contrast with the full ladders
+    # around it is easiest to read when it is one line against their fifteen.
+    if len(node) == 2 and "explanation" in node and (
+        is_sentinel_grounding_label(str(node.get("option", "")))
+        or is_sentinel_grounding_label(str(node.get("category", "")))
+    ):
+        return True
     # An entry that identified no candidate: three short fields, which indent=2
     # otherwise spends five lines on. The commonest entry in a screening response
     # by some margin — 45% of them in the run this shape was designed against.

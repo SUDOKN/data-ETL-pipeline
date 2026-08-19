@@ -149,6 +149,19 @@ class GPTModelParams(
         callers still control temperature/max_completion_tokens/seed/etc."""
         return self.model_copy(update={"response_format": response_format})
 
+    def with_max_completion_tokens(
+        self, max_completion_tokens: int
+    ) -> "GPTModelParams":
+        """Stage-owned length override, for stages whose answer has a known size.
+
+        A caller sets one cap for a whole pipeline, sized for its longest stage;
+        the cap is also the only brake on a model that falls into a repetition
+        loop, so a stage that answers in a few hundred tokens should not inherit
+        a bound meant for one that answers in thousands."""
+        return self.model_copy(
+            update={"max_completion_tokens": max_completion_tokens}
+        )
+
     def to_custom_id_segment(self, model_name: str) -> str:
         defaults = GPTModelParams.with_defaults()
         non_default = [

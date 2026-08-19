@@ -1,5 +1,5 @@
 {
-  "catalog_version": "equipment_phrase_freehand_grounding.2026.08.4",
+  "catalog_version": "equipment_phrase_freehand_grounding.2026.08.6",
   "prompt_name": "equipment_phrase_freehand_grounding",
   "stage": "phrase_freehand_grounding",
   "field_types": [
@@ -99,7 +99,7 @@
           "kind": "condition",
           "reportable": true,
           "report_when": "always",
-          "text": "It is named at the deepest level the phrase and its relationship summary fix, and no deeper. Naming descends in steps: first the operation the machine performs on the work, then the configuration that tells machines performing that same operation apart — how they are oriented, driven, controlled, or arranged. Take every step the words supply, and stop at the first step they do not.",
+          "text": "It is named at the depth the phrase and its relationship summary fix, and at no other depth. Naming descends in steps: first the operation the machine performs on the work, then the configuration that tells machines performing that same operation apart — how they are oriented, driven, controlled, or arranged. Take every step the words supply, and stop at the first step they do not. What this rule judges is whether you stopped in the right place: it fails when the name carries a step the words never supplied, and it fails just as much when the words supplied a step the name left off. Which step you stopped at is not this rule's subject — FGR-QC1 is where that is reported.",
           "combinator": "note",
           "children": [
             {
@@ -151,15 +151,15 @@
           "kind": "quality",
           "reportable": true,
           "report_when": "always",
-          "text": "Report the level you named it at: \"member_level\" when the category names a distinct kind of machine — one that could be told apart on the floor from others performing the same operation — and \"family_level\" when the words fixed the operation and went no further. Naming at family level is not an error when the words stop there; reporting it is how that shows up as a property of the text rather than of your naming."
+          "text": "Report which step of FGR-Q4's descent the name you gave reaches: \"member_level\" when it carries the configuration as well as the operation — a machine that could be told apart on the floor from others performing the same operation — and \"family_level\" when the words fixed the operation and went no further. This is a reading of how far the text went, not a verdict on your naming: stopping at family level is correct wherever the words stop there, and FGR-Q4 is the only rule that judges whether you stopped in the right place."
         }
       ]
     }
   ],
   "published": {
-    "s3_version_id": "ceeSJhDGR.94pFc5HbCvVB0oSOjWZxOq",
-    "rendered_sha256": "5381f9ea2f94c38a516f68f020c666b5685a3e1d757b1bb1c3acac67cc423897",
-    "uploaded_at": "2026-08-12T07:50:48.382035+00:00"
+    "s3_version_id": "zSfkyf9btSWxsiuBFCuc.NEtmOgo8bmN",
+    "rendered_sha256": "535f8eb766312e1a77b390aac7e78127dd439e24f1beddb2e7b39b67f9d04050",
+    "uploaded_at": "2026-08-18T21:06:51.104440+00:00"
   },
   "sentinel_tag": "Cannot categorize"
 }

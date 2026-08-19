@@ -32,7 +32,7 @@ from core.models.pipeline_nodes.base.base_prefill_node import (
 )
 from core.models.field_types import ConceptFieldType
 from core.models.pipeline_nodes.base.base_node import PipelineContext
-from core.models.chunking_strat import ChunkingStrategy
+from core.models.chunking_strat import ChunkingStrategy, derive_search_sub_bounds
 
 if TYPE_CHECKING:
     from scraper.models.s3.scraped_text_file import (
@@ -126,11 +126,17 @@ class ConceptExtractionPrefillNode(PrefillNode[ConceptFieldType]):
                 metadata=latest_concept_extraction_metadata,
                 chunked_request_map={
                     chunk_bounds: ConceptExtractionRequestBundle(
+                        search_sub_bounds=await derive_search_sub_bounds(
+                            chunk_bounds=chunk_bounds,
+                            chunk_text=chunk_text,
+                            chunk_strategy=self.chunk_strategy,
+                            llm_model=self.llm_phrase_search_metadata.llm_model,
+                        ),
                         brute={
                             label for label in brute_search(chunk_text, known_concepts)
                         },
-                        llm_phrase_search_req_id=None,
-                        llm_phrase_recursive_search_req_ids=[],
+                        llm_phrase_search_req_ids=[],
+                        llm_phrase_recursive_search_req_ids={},
                         llm_phrase_relationship_req_ids=[],
                         llm_phrase_relationship_screening_req_ids=[],
                         llm_phrase_initial_grounding_req_ids=[],
