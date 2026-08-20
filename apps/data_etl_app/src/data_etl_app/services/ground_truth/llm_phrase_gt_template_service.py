@@ -42,7 +42,10 @@ from core.models.rule_catalog import (
     STAGE_RELATIONSHIP_SCREENING,
     RuleCatalog,
 )
-from core.services.ground_truth.catalog_template_inflation import inflate_chunk
+from core.services.ground_truth.catalog_template_inflation import (
+    InflationError,
+    inflate_chunk,
+)
 from data_etl_app.db_models.llm_phrase_ground_truth import LLMPhraseGroundTruth
 from data_etl_app.db_models.manufacturer import Manufacturer
 from data_etl_app.models.types_and_enums import ConceptTypeEnum, KeywordTypeEnum
@@ -170,16 +173,25 @@ def build_llm_phrase_gt_template(
     else:
         stats_map = results.chunked_extraction_stats
 
-    chunks = {
-        chunk_key: inflate_chunk(
-            stats,
-            screening_catalog=screening_catalog,
-            oov_catalog=oov_catalog,
-            recursive_catalog=recursive_catalog,
-            initial_catalog=initial_catalog,
-        )
-        for chunk_key, stats in stats_map.items()
-    }
+    try:
+        chunks = {
+            chunk_key: inflate_chunk(
+                stats,
+                screening_catalog=screening_catalog,
+                oov_catalog=oov_catalog,
+                recursive_catalog=recursive_catalog,
+                initial_catalog=initial_catalog,
+            )
+            for chunk_key, stats in stats_map.items()
+        }
+    except InflationError as error:
+        # Stored stats the deployed catalogs cannot inflate are the same class
+        # of state conflict as a version pin drift — never a plain ValueError
+        # for the app-wide handler to flatten into a generic 400.
+        raise TemplateAssemblyError(
+            f"cannot inflate stored {field_type.value!r} stats for "
+            f"{manufacturer.etld1}: {error}"
+        ) from error
 
     identity = ExplicitRunIdentity.from_metadata(metadata)
     return LLMPhraseGroundTruth(

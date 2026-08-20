@@ -98,7 +98,8 @@ class ExtractionPipelineFactory:
     # Keyword (open-vocabulary) pipelines skip recursive search by default;
     # max_rounds=0 makes the recursive-search node a no-op pass-through.
     DEFAULT_KEYWORD_RECURSIVE_SEARCH_MAX_ROUNDS = 0
-    DEFAULT_RELATIONSHIP_MAX_PHRASES_PER_REQUEST = 50
+
+    SEARCH_MAX_COMPLETION_TOKENS = 4000
     # Both search stages answer with a short JSON array of phrases: across the
     # 2026-08-16 alecmfg run the largest first-search response was 657 output
     # tokens (mean 229) and the largest recursive round 2,734 (mean 107), while
@@ -106,10 +107,14 @@ class ExtractionPipelineFactory:
     # — one recursive round spent all 20,000 tokens repeating a single phrase
     # 2,453 times and truncated mid-string — so the search stages carry their
     # own cap instead of inheriting the pipeline's.
-    SEARCH_MAX_COMPLETION_TOKENS = 4000
-    DEFAULT_SCREENING_MAX_PAIRS_PER_REQUEST = 15
-    DEFAULT_INITIAL_GROUNDING_MAX_PAIRS_PER_REQUEST = 15
-    DEFAULT_FREEHAND_GROUNDING_MAX_PAIRS_PER_REQUEST = 25
+
+    # RELATIONSHIP
+    DEFAULT_RELATIONSHIP_MAX_PHRASES_PER_REQUEST = 40
+    DEFAULT_SCREENING_MAX_PAIRS_PER_REQUEST = 25
+
+    # GROUNDING
+    DEFAULT_INITIAL_GROUNDING_MAX_PAIRS_PER_REQUEST = 40
+    DEFAULT_FREEHAND_GROUNDING_MAX_PAIRS_PER_REQUEST = 20
 
     @staticmethod
     def _metadata(

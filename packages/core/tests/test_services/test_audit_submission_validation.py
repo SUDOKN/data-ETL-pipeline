@@ -12,7 +12,11 @@ import pytest
 
 from core.models.extraction_schemas.applied_rule import AppliedRule
 from core.models.extraction_schemas.screening import ScreeningVerdict
-from core.models.ground_truth.audits import AuditVerdict, TextFieldAudit
+from core.models.ground_truth.audits import (
+    AuditVerdict,
+    EntityFieldAudit,
+    TextFieldAudit,
+)
 from core.models.ground_truth.stage_blocks import (
     ChunkGT,
     ExtractedPhraseGT,
@@ -130,6 +134,16 @@ def _audit(author=ALICE, type=AuditVerdict.AGREE, corrected_text=None):
     )
 
 
+def _entity_audit(author=ALICE, type=AuditVerdict.AGREE, note=None):
+    return EntityFieldAudit(
+        type=type,
+        note=note,
+        author_email=author,
+        at=datetime(2026, 8, 15, tzinfo=timezone.utc),
+        source="api",
+    )
+
+
 def _screening_gt() -> ScreeningGT:
     verdict = ScreeningVerdict(
         passed=True,
@@ -186,7 +200,7 @@ def test_agreeing_derivation_mirroring_the_copy_appends():
     gt = _screening_gt()
     derivation = HumanScreeningDerivation(
         identified_entity="cnc mill",
-        audits=[_audit(ALICE)],
+        audits=[_entity_audit(ALICE)],
         sections=_copy_of_llm(gt),
     )
     submit_screening_derivation(
@@ -208,7 +222,7 @@ def test_foreign_authored_entry_inside_a_submission_is_rejected():
     gt = _screening_gt()
     derivation = HumanScreeningDerivation(
         identified_entity="cnc mill",
-        audits=[_audit(BOB)],
+        audits=[_entity_audit(BOB)],
         sections=_copy_of_llm(gt),
     )
     with pytest.raises(AuditSubmissionError, match="one submission, one author"):
@@ -221,7 +235,7 @@ def test_changed_outcome_without_an_audit_is_a_silent_edit():
     gt = _screening_gt()
     sections = _fill(_copy_of_llm(gt), {"SCR-1": "failed"})
     derivation = HumanScreeningDerivation(
-        identified_entity="cnc mill", audits=[_audit(ALICE)], sections=sections
+        identified_entity="cnc mill", audits=[_entity_audit(ALICE)], sections=sections
     )
     with pytest.raises(AuditSubmissionError, match="no silent edits"):
         submit_screening_derivation(
@@ -236,7 +250,7 @@ def test_changed_outcome_with_an_audit_is_recorded():
         _audit(ALICE, AuditVerdict.DISAGREE, "the mill is the customer's")
     )
     derivation = HumanScreeningDerivation(
-        identified_entity="cnc mill", audits=[_audit(ALICE)], sections=sections
+        identified_entity="cnc mill", audits=[_entity_audit(ALICE)], sections=sections
     )
     submit_screening_derivation(gt, derivation, author_email=ALICE, catalog=_CATALOG)
     assert gt.audits[-1].sections[0].applied_rules[0].outcome == "failed"
@@ -246,7 +260,9 @@ def test_disagree_audit_on_unchanged_entity_is_incoherent():
     gt = _screening_gt()
     derivation = HumanScreeningDerivation(
         identified_entity="cnc mill",
-        audits=[_audit(ALICE, AuditVerdict.DISAGREE, "something else")],
+        audits=[
+            _entity_audit(ALICE, AuditVerdict.DISAGREE, note="it is something else")
+        ],
         sections=_copy_of_llm(gt),
     )
     with pytest.raises(AuditSubmissionError, match="incoherent"):
@@ -258,7 +274,7 @@ def test_disagree_audit_on_unchanged_entity_is_incoherent():
 # --- screening: replacing the entity ----------------------------------------
 
 
-def test_entity_replacement_requires_latest_disagree_with_the_replacement():
+def test_entity_replacement_requires_latest_disagree():
     gt = _screening_gt()
     base: dict[str, Any] = dict(
         identified_entity="vertical mill", sections=_fresh_sections()
@@ -267,22 +283,21 @@ def test_entity_replacement_requires_latest_disagree_with_the_replacement():
     with pytest.raises(AuditSubmissionError, match="requires a latest audit"):
         submit_screening_derivation(
             gt,
-            HumanScreeningDerivation(**base, audits=[_audit(ALICE)]),
-            author_email=ALICE,
-            catalog=_CATALOG,
-        )
-    with pytest.raises(AuditSubmissionError, match="must equal the replacement"):
-        submit_screening_derivation(
-            gt,
-            HumanScreeningDerivation(
-                **base, audits=[_audit(ALICE, AuditVerdict.DISAGREE, "other text")]
-            ),
+            HumanScreeningDerivation(**base, audits=[_entity_audit(ALICE)]),
             author_email=ALICE,
             catalog=_CATALOG,
         )
 
+    # The replacement value lives on the derivation itself — the disagree
+    # audit carries only the rationale note (there is no corrected_text
+    # duplicate left to mismatch).
     good = HumanScreeningDerivation(
-        **base, audits=[_audit(ALICE, AuditVerdict.DISAGREE, "vertical mill")]
+        **base,
+        audits=[
+            _entity_audit(
+                ALICE, AuditVerdict.DISAGREE, note="the text says vertical mill"
+            )
+        ],
     )
     submit_screening_derivation(gt, good, author_email=ALICE, catalog=_CATALOG)
     assert gt.audits[-1].identified_entity == "vertical mill"
@@ -292,7 +307,11 @@ def test_fresh_derivation_must_evaluate_every_all_section_rule():
     gt = _screening_gt()
     derivation = HumanScreeningDerivation(
         identified_entity="vertical mill",
-        audits=[_audit(ALICE, AuditVerdict.DISAGREE, "vertical mill")],
+        audits=[
+            _entity_audit(
+                ALICE, AuditVerdict.DISAGREE, note="the text says vertical mill"
+            )
+        ],
         sections=_fresh_sections({"SCR-M1": "chosen"}),  # SCR-1 left unevaluated
     )
     with pytest.raises(AuditSubmissionError, match="left 'SCR-1' unevaluated"):
@@ -308,7 +327,11 @@ def test_fresh_ordered_ladder_chooses_exactly_one(chosen):
     gt = _screening_gt()
     derivation = HumanScreeningDerivation(
         identified_entity="vertical mill",
-        audits=[_audit(ALICE, AuditVerdict.DISAGREE, "vertical mill")],
+        audits=[
+            _entity_audit(
+                ALICE, AuditVerdict.DISAGREE, note="the text says vertical mill"
+            )
+        ],
         sections=_fresh_sections({"SCR-1": "satisfied", **chosen}),
     )
     with pytest.raises(AuditSubmissionError, match="exactly one branch"):
@@ -321,7 +344,7 @@ def test_no_candidate_cannot_be_asserted_against_an_entity():
     gt = _screening_gt()
     derivation = HumanScreeningDerivation(
         identified_entity=None,
-        audits=[_audit(ALICE)],
+        audits=[_entity_audit(ALICE)],
         sections=_copy_of_llm(gt),
     )
     with pytest.raises(AuditSubmissionError, match="the fold decides passed"):
@@ -342,7 +365,7 @@ def test_agreeing_with_a_no_candidate_copy_is_legal():
     )
     derivation = HumanScreeningDerivation(
         identified_entity=None,
-        audits=[_audit(ALICE)],
+        audits=[_entity_audit(ALICE)],
         sections=copy.deepcopy(gt.llm_result.sections),
     )
     submit_screening_derivation(gt, derivation, author_email=ALICE, catalog=_CATALOG)
@@ -356,7 +379,7 @@ def test_shape_drift_is_rejected():
     gt = _screening_gt()
     sections = _copy_of_llm(gt)[:2]  # matching section dropped
     derivation = HumanScreeningDerivation(
-        identified_entity="cnc mill", audits=[_audit(ALICE)], sections=sections
+        identified_entity="cnc mill", audits=[_entity_audit(ALICE)], sections=sections
     )
     with pytest.raises(AuditSubmissionError, match="does not mirror"):
         submit_screening_derivation(
@@ -372,7 +395,7 @@ def test_forged_kind_and_foreign_vocab_are_rejected():
         submit_screening_derivation(
             gt,
             HumanScreeningDerivation(
-                identified_entity="cnc mill", audits=[_audit(ALICE)], sections=forged
+                identified_entity="cnc mill", audits=[_entity_audit(ALICE)], sections=forged
             ),
             author_email=ALICE,
             catalog=_CATALOG,
@@ -384,7 +407,7 @@ def test_forged_kind_and_foreign_vocab_are_rejected():
             gt,
             HumanScreeningDerivation(
                 identified_entity="cnc mill",
-                audits=[_audit(ALICE)],
+                audits=[_entity_audit(ALICE)],
                 sections=off_vocab,
             ),
             author_email=ALICE,
@@ -394,7 +417,7 @@ def test_forged_kind_and_foreign_vocab_are_rejected():
 
 def test_same_author_derivation_resubmission_pops():
     gt = _screening_gt()
-    for entity_audit in [_audit(ALICE), _audit(BOB), _audit(ALICE)]:
+    for entity_audit in [_entity_audit(ALICE), _entity_audit(BOB), _entity_audit(ALICE)]:
         submit_screening_derivation(
             gt,
             HumanScreeningDerivation(
@@ -415,7 +438,7 @@ def test_human_asserted_tag_derives_fresh():
     audits_list = []
     incomplete = GroundingDerivation(
         tag="Vertical Mill",
-        audits=[_audit(ALICE)],
+        audits=[_entity_audit(ALICE)],
         sections=_fresh_sections({"SCR-M1": "chosen"}),
     )
     with pytest.raises(AuditSubmissionError, match="unevaluated"):
@@ -429,7 +452,7 @@ def test_human_asserted_tag_derives_fresh():
         )
 
     complete = GroundingDerivation(
-        tag="Vertical Mill", audits=[_audit(ALICE)], sections=_fresh_sections()
+        tag="Vertical Mill", audits=[_entity_audit(ALICE)], sections=_fresh_sections()
     )
     submit_grounding_derivation(
         audits_list,
@@ -446,7 +469,7 @@ def test_tag_replacement_requires_disagree_coherence():
     gt = _screening_gt()
     llm_sections = gt.llm_result.sections
     replacement = GroundingDerivation(
-        tag="Horizontal Mill", audits=[_audit(ALICE)], sections=_fresh_sections()
+        tag="Horizontal Mill", audits=[_entity_audit(ALICE)], sections=_fresh_sections()
     )
     with pytest.raises(AuditSubmissionError, match="requires a latest audit"):
         submit_grounding_derivation(
@@ -465,7 +488,7 @@ def test_sentinel_tags_never_reach_ground_truth():
             [],
             GroundingDerivation(
                 tag="None of the above",
-                audits=[_audit(ALICE)],
+                audits=[_entity_audit(ALICE)],
                 sections=_fresh_sections(),
             ),
             author_email=ALICE,
@@ -483,7 +506,7 @@ def test_unchanged_tag_silent_edit_is_rejected():
         submit_grounding_derivation(
             [],
             GroundingDerivation(
-                tag="Vertical Mill", audits=[_audit(ALICE)], sections=edited
+                tag="Vertical Mill", audits=[_entity_audit(ALICE)], sections=edited
             ),
             author_email=ALICE,
             llm_tag="Vertical Mill",
@@ -572,6 +595,6 @@ def test_same_author_same_phrase_replaces_other_authors_append():
 
 def test_foreign_audit_inside_a_missed_assertion_is_rejected():
     entry = _missed()
-    entry.groundings[0].audits.append(_audit(BOB))
+    entry.groundings[0].audits.append(_entity_audit(BOB))
     with pytest.raises(AuditSubmissionError, match="authored by"):
         _submit_missed(_chunk(), entry)

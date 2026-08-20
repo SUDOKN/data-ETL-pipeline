@@ -6,7 +6,7 @@ from typing import Iterator, Optional
 from pydantic import BaseModel, ConfigDict, model_validator
 
 from core.models.extraction_schemas.grounding import StopReason
-from core.models.ground_truth.audits import TextFieldAudit
+from core.models.ground_truth.audits import EntityFieldAudit, TextFieldAudit
 from core.models.rule_catalog import ONLY_REACHABLE_OUTCOME_BY_REPORT_WHEN
 from core.models.ground_truth.rule_tree import AuditedRule, AuditedSection
 
@@ -154,16 +154,18 @@ class HumanScreeningDerivation(BaseModel):
     """One annotator's full screening derivation for one phrase.
 
     ``identified_entity`` is the LLM's entity when the annotator kept it, or
-    their replacement; ``audits`` are the text-field audits on that entity.
-    ``sections`` start as a copy of the LLM's when the entity is kept and fresh
-    from the catalog when it changed — that rule needs the original to check,
-    so it is the submission service's contract (P2.3), not this model's.
+    their replacement — the derivation itself carries the asserted value, so
+    ``audits`` are ``EntityFieldAudit`` entries (keep/replace verdicts with
+    the rationale note, no corrected_text duplicate). ``sections`` start as a
+    copy of the LLM's when the entity is kept and fresh from the catalog when
+    it changed — that rule needs the original to check, so it is the
+    submission service's contract (P2.3), not this model's.
     """
 
     model_config = ConfigDict(extra="forbid")
 
     identified_entity: Optional[str]
-    audits: list[TextFieldAudit] = []
+    audits: list[EntityFieldAudit] = []
     sections: list[AuditedSection]
 
 
@@ -183,12 +185,14 @@ class GroundingDerivation(BaseModel):
     The tag plays the role ``identified_entity`` plays in screening (the
     design's own likening): keep it and audit it, or replace it and re-derive
     the sections fresh from the catalog — enforced at submission (P2.3).
+    ``audits`` are ``EntityFieldAudit`` entries: the asserted tag lives on the
+    derivation itself, the audit carries the verdict and the rationale note.
     """
 
     model_config = ConfigDict(extra="forbid")
 
     tag: str
-    audits: list[TextFieldAudit] = []
+    audits: list[EntityFieldAudit] = []
     sections: list[AuditedSection]
 
 
@@ -218,11 +222,22 @@ class TagGroundingGT(BaseModel):
 class OovGroundingGT(BaseModel):
     """Freehand grounding (keywords) or initial grounding (concepts) for one
     phrase: the stored side is ``{phrase → {tag → rules}}``, so per phrase this
-    is the tag map. A phrase can legitimately ground to several tags."""
+    is the tag map. A phrase can legitimately ground to several tags.
+
+    ``llm_declined=True`` records the stage's escape hatch: the model examined
+    the phrase and answered with the sentinel label ("None of the above" /
+    "Cannot categorize") instead of grounding it. The sentinel never becomes a
+    tag entry — reserved non-labels never reach ground truth — but the
+    declination is part of the run's record, and this document is its surviving
+    copy. Corrections are unchanged: a human-asserted tag entry stands beside
+    the flag, and absence of the flag means the stage simply never produced a
+    grounding answer for the phrase.
+    """
 
     model_config = ConfigDict(extra="forbid")
 
     tags: dict[str, TagGroundingGT]
+    llm_declined: bool = False
 
 
 class InVocabNodeGT(BaseModel):

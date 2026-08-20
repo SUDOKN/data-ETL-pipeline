@@ -17,7 +17,11 @@ from fastapi import HTTPException
 from pydantic import ValidationError
 
 import data_etl_app.api.routes.ground_truth.llm_phrase_ground_truth as route_mod
-from core.models.ground_truth.audits import AuditVerdict, TextFieldAudit
+from core.models.ground_truth.audits import (
+    AuditVerdict,
+    EntityFieldAudit,
+    TextFieldAudit,
+)
 from core.models.ground_truth.stage_blocks import (
     GroundingDerivation,
     HumanScreeningDerivation,
@@ -50,6 +54,16 @@ def _annotator(email: str = ALICE) -> User:
         companyURL=None,
         salt="salt",
         hashedPassword="hashed",
+    )
+
+
+def _entity_audit(author=ALICE, type=AuditVerdict.AGREE, note=None):
+    return EntityFieldAudit(
+        type=type,
+        note=note,
+        author_email=author,
+        at=datetime(2026, 8, 16, tzinfo=timezone.utc),
+        source="api",
     )
 
 
@@ -201,7 +215,7 @@ async def test_failing_item_maps_to_400_and_persists_nothing(
         phrase="cnc mill",
         derivation=HumanScreeningDerivation(
             identified_entity=llm.llm_result.identified_entity,
-            audits=[_audit()],
+            audits=[_entity_audit()],
             sections=silent_edit,
         ),
     )
@@ -275,13 +289,13 @@ async def test_missed_phrase_batch_fetches_s3_once(
             relationship_text="machines they run in-house",
             screening=HumanScreeningDerivation(
                 identified_entity="CNC mills",
-                audits=[_audit()],
+                audits=[_entity_audit()],
                 sections=gt_fresh_happy(screening),
             ),
             groundings=[
                 GroundingDerivation(
                     tag="CNC Milling Machine",
-                    audits=[_audit()],
+                    audits=[_entity_audit()],
                     sections=gt_fresh_happy(freehand),
                 )
             ],
@@ -320,7 +334,13 @@ async def test_concept_oov_item_builds_ontology_and_echoes_classification(
         tag="Aerospace",
         derivation=GroundingDerivation(
             tag="orbital logistics",
-            audits=[_audit(ALICE, AuditVerdict.DISAGREE, "orbital logistics")],
+            audits=[
+                _entity_audit(
+                    ALICE,
+                    AuditVerdict.DISAGREE,
+                    note="the page's own wording is orbital logistics",
+                )
+            ],
             sections=gt_fresh_happy(initial),
         ),
     )

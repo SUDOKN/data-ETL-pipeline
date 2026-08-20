@@ -71,12 +71,15 @@ def effective_passed(sections: list[AuditedSection]) -> bool:
 
 class EffectiveText(BaseModel):
     """A text field after its audits: ``agree`` keeps it, ``agree_but`` keeps
-    it and carries the addendum, ``disagree`` replaces it."""
+    it and carries the addendum, ``disagree`` replaces it. ``note`` is the
+    latest audit's free-form rationale (never set on a plain agree — the
+    model forbids it)."""
 
     text: str
     addendum: Optional[str] = None
     reviewed: bool
     verdict: Optional[AuditVerdict] = None
+    note: Optional[str] = None
 
 
 def effective_text(llm_text: str, audits: list[TextFieldAudit]) -> EffectiveText:
@@ -86,12 +89,15 @@ def effective_text(llm_text: str, audits: list[TextFieldAudit]) -> EffectiveText
     if latest.type is AuditVerdict.DISAGREE:
         corrected = latest.corrected_text
         assert corrected is not None  # TextFieldAudit requires it for disagree
-        return EffectiveText(text=corrected, reviewed=True, verdict=latest.type)
+        return EffectiveText(
+            text=corrected, reviewed=True, verdict=latest.type, note=latest.note
+        )
     return EffectiveText(
         text=llm_text,
         addendum=latest.corrected_text,
         reviewed=True,
         verdict=latest.type,
+        note=latest.note,
     )
 
 
@@ -268,9 +274,17 @@ def effective_in_vocab(
 
 
 class PhraseTruth(BaseModel):
+    """``llm_declined`` distinguishes a grounding stage that answered the
+    sentinel (an explicit "none of the offered labels apply") from one that
+    never produced an answer for the phrase — with empty ``tags`` the two are
+    otherwise indistinguishable here, and only the trail could tell them
+    apart. A human-asserted tag on a declined phrase keeps the flag: the
+    contradiction is part of the record."""
+
     relationship: EffectiveText
     screening: Optional[ScreeningTruth] = None
     tags: dict[str, TagTruth] = {}
+    llm_declined: bool = False
     in_vocab: dict[int, list[InVocabNodeTruth]] = {}
 
 
@@ -322,6 +336,10 @@ def compute_phrase_truth(phrase_gt: ExtractedPhraseGT) -> PhraseTruth:
             else None
         ),
         tags=tags,
+        llm_declined=(
+            phrase_gt.oov_grounding is not None
+            and phrase_gt.oov_grounding.llm_declined
+        ),
         in_vocab=(
             effective_in_vocab(
                 phrase_gt.in_vocab_grounding,

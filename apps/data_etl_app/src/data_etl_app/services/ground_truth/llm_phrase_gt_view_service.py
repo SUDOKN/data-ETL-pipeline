@@ -58,6 +58,7 @@ class PhraseBrowseRow(BaseModel):
     llm_relationship_text: str
     effective_relationship_text: str
     relationship_addendum: Optional[str]
+    relationship_note: Optional[str]
     relationship_reviewed: bool
     # Any audit anywhere in this phrase's slice — relationship, screening,
     # or either grounding. What next_unreviewed skips past.
@@ -100,6 +101,7 @@ def _browse_row(phrase: str, phrase_gt: ExtractedPhraseGT) -> PhraseBrowseRow:
         llm_relationship_text=phrase_gt.llm_relationship.llm_result,
         effective_relationship_text=relationship.text,
         relationship_addendum=relationship.addendum,
+        relationship_note=relationship.note,
         relationship_reviewed=relationship.reviewed,
         reviewed=phrase_has_any_audits(phrase_gt),
     )

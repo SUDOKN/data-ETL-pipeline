@@ -34,10 +34,15 @@ from data_etl_app.services.ground_truth.llm_phrase_gt_view_service import (
 )
 
 
-def _audit(verdict: AuditVerdict, corrected: str | None = None) -> TextFieldAudit:
+def _audit(
+    verdict: AuditVerdict,
+    corrected: str | None = None,
+    note: str | None = None,
+) -> TextFieldAudit:
     return TextFieldAudit(
         type=verdict,
         corrected_text=corrected,
+        note=note,
         author_email="ada@example.com",
         at=datetime(2026, 8, 16),
         source="api_survey",
@@ -70,6 +75,7 @@ def test_browse_view_piggybacks_the_relationship_only(
     assert row.llm_relationship_text == "a machine they run"
     assert row.effective_relationship_text == "a machine they run"
     assert row.relationship_addendum is None
+    assert row.relationship_note is None
     assert row.relationship_reviewed is False
     assert row.reviewed is False
     assert view.chunks["0:1000"].missed_phrases == []
@@ -87,7 +93,11 @@ def test_relationship_audit_shows_through_and_flips_the_flags(
     )
     phrase_gt = doc.chunks["0:1000"].extracted_phrases["cnc mill"]
     phrase_gt.llm_relationship.audits.append(
-        _audit(AuditVerdict.AGREE_BUT, "and they mention five-axis work")
+        _audit(
+            AuditVerdict.AGREE_BUT,
+            "and they mention five-axis work",
+            note="the spec sheet on the page is explicit about it",
+        )
     )
 
     (row,) = build_template_browse_view(doc, created=False).chunks[
@@ -95,6 +105,7 @@ def test_relationship_audit_shows_through_and_flips_the_flags(
     ].extracted_phrases
     assert row.effective_relationship_text == "a machine they run"
     assert row.relationship_addendum == "and they mention five-axis work"
+    assert row.relationship_note == "the spec sheet on the page is explicit about it"
     assert row.relationship_reviewed is True
     assert row.reviewed is True
 

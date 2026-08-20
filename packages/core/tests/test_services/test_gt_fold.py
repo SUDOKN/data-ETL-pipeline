@@ -6,7 +6,11 @@ from datetime import datetime, timezone
 
 from core.models.extraction_schemas.applied_rule import AppliedRule
 from core.models.extraction_schemas.screening import ScreeningVerdict
-from core.models.ground_truth.audits import AuditVerdict, TextFieldAudit
+from core.models.ground_truth.audits import (
+    AuditVerdict,
+    EntityFieldAudit,
+    TextFieldAudit,
+)
 from core.models.ground_truth.rule_tree import AuditedRule, AuditedSection
 from core.models.rule_catalog import RuleKind
 from core.models.ground_truth.stage_blocks import (
@@ -22,6 +26,7 @@ from core.models.ground_truth.stage_blocks import (
 )
 from core.services.ground_truth.gt_fold import (
     compute_document_truth,
+    compute_phrase_truth,
     effective_passed,
     effective_screening,
     effective_tag_groundings,
@@ -53,10 +58,28 @@ def _sections(*rules):
     ]
 
 
-def _audit(author="alice@example.com", type=AuditVerdict.AGREE, corrected_text=None):
+def _audit(
+    author="alice@example.com",
+    type=AuditVerdict.AGREE,
+    corrected_text=None,
+    note=None,
+):
     return TextFieldAudit(
         type=type,
         corrected_text=corrected_text,
+        note=note,
+        author_email=author,
+        at=datetime(2026, 8, 15, tzinfo=timezone.utc),
+        source="api",
+    )
+
+
+def _entity_audit(author="alice@example.com", type=AuditVerdict.AGREE, note=None):
+    if type is AuditVerdict.DISAGREE and note is None:
+        note = "the derivation carries the replacement"
+    return EntityFieldAudit(
+        type=type,
+        note=note,
         author_email=author,
         at=datetime(2026, 8, 15, tzinfo=timezone.utc),
         source="api",
@@ -204,6 +227,32 @@ def test_effective_text_disagree_replaces_agree_but_appends():
 def test_unreviewed_text_is_marked_not_agreed():
     view = effective_text("a mill", [])
     assert not view.reviewed and view.verdict is None and view.text == "a mill"
+    assert view.note is None
+
+
+def test_effective_text_carries_the_latest_audits_note():
+    replaced = effective_text(
+        "a mill",
+        [
+            _audit(
+                type=AuditVerdict.DISAGREE,
+                corrected_text="a lathe",
+                note="the text describes turning, not milling",
+            )
+        ],
+    )
+    assert replaced.text == "a lathe"
+    assert replaced.note == "the text describes turning, not milling"
+
+    amended = effective_text(
+        "a mill",
+        [
+            _audit(type=AuditVerdict.AGREE_BUT, corrected_text="5-axis", note="why"),
+            _audit("bob@example.com", AuditVerdict.AGREE),
+        ],
+    )
+    # Latest wins applies to the note too: bob's agree carries none.
+    assert amended.note is None and amended.verdict is AuditVerdict.AGREE
 
 
 # --- effective screening: multi-author latest wins ----------------------------
@@ -226,7 +275,7 @@ def _screening_gt_with_derivations(*outcomes: str) -> ScreeningGT:
         gt.audits.append(
             HumanScreeningDerivation(
                 identified_entity="mill",
-                audits=[_audit(f"author{i}@example.com")],
+                audits=[_entity_audit(f"author{i}@example.com")],
                 sections=sections,
             )
         )
@@ -259,7 +308,7 @@ def test_replaced_tag_appears_under_its_replacement():
             audits=[
                 GroundingDerivation(
                     tag="Milling Machine",
-                    audits=[_audit(type=AuditVerdict.DISAGREE, corrected_text="Milling Machine")],
+                    audits=[_entity_audit(type=AuditVerdict.DISAGREE)],
                     sections=_sections(_rule("FGR-1")),
                 )
             ],
@@ -312,6 +361,51 @@ def test_document_truth_reads_as_the_effective_record():
     assert phrase.screening is not None
     assert phrase.screening.passed is False and phrase.screening.reviewed
     assert not phrase.tags["Vertical Mill"].reviewed
+    assert phrase.llm_declined is False
+
+
+def test_declined_grounding_is_distinguishable_from_no_grounding_at_all():
+    """Both fold to empty ``tags`` — only ``llm_declined`` tells an explicit
+    sentinel answer apart from a stage that never answered the phrase."""
+    declined = ExtractedPhraseGT(
+        search_round=1,
+        llm_relationship=RelationshipGT(llm_result="a registration they hold"),
+        oov_grounding=OovGroundingGT(tags={}, llm_declined=True),
+    )
+    unreached = ExtractedPhraseGT(
+        search_round=1,
+        llm_relationship=RelationshipGT(llm_result="a registration they hold"),
+    )
+    declined_truth = compute_phrase_truth(declined)
+    assert declined_truth.llm_declined is True and declined_truth.tags == {}
+    assert compute_phrase_truth(unreached).llm_declined is False
+
+
+def test_human_tag_on_a_declined_phrase_keeps_the_declination_visible():
+    """The contradiction is part of the record: the flag survives beside the
+    human-asserted link instead of being erased by it."""
+    phrase_gt = ExtractedPhraseGT(
+        search_round=1,
+        llm_relationship=RelationshipGT(llm_result="a registration they hold"),
+        oov_grounding=OovGroundingGT(
+            tags={
+                "Registration": TagGroundingGT(
+                    llm_result=None,
+                    audits=[
+                        GroundingDerivation(
+                            tag="Registration",
+                            audits=[_entity_audit()],
+                            sections=_sections(_rule("FGR-1")),
+                        )
+                    ],
+                )
+            },
+            llm_declined=True,
+        ),
+    )
+    truth = compute_phrase_truth(phrase_gt)
+    assert truth.llm_declined is True
+    assert truth.tags["Registration"].reviewed and truth.tags["Registration"].held
 
 
 # --- the rollup ------------------------------------------------------------------

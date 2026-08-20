@@ -64,8 +64,17 @@ note otherwise). ✋ *needs a second author* = use the admin user as annotator B
   deployed catalogs in `knowledge/prompts/rule_catalog/`. If you've edited catalogs
   since that run, the first template GET will 409 (that's case B14 firing early) —
   the remedy is a fresh extraction run from the notebook, then restart here.
-- [ ] **S6** Import `{{base}}/openapi.json` into Postman (auto-builds the requests);
-  `{{base}}/docs` is the live reference.
+- [ ] **S6** Import `LLM_Phrase_GT_API.postman_collection.json` (this folder) — one
+  request per case ID below, expected statuses as Postman tests, doc ids / digests /
+  first phrases auto-captured into collection variables by B6/B10. Groups F–J carry
+  `<<PASTE:…>>` placeholders for the section trees (recipes R2/R3) and H/I need
+  integer/null coordinates edited by hand — it is a stepwise companion, not a blind
+  Collection-Runner sweep. `{{base}}/docs` stays the live reference.
+- [ ] **S7** Subject for this run: **alecmfg.com**, dump run `20260819T012442` — all 7
+  phrase fields completed; pinned catalog versions verified equal to the deployed
+  catalogs (checked 2026-08-18, all 17 node pins) → no 409 drift expected; B14 = SKIP
+  unless catalogs change mid-test. Collection defaults: `kw_field=equipments`,
+  `con_field=conformity_attestations` (smallest docs → fastest sittings).
 
 ---
 
@@ -84,19 +93,36 @@ note otherwise). ✋ *needs a second author* = use the admin user as annotator B
 
 ## Payload recipes (used from group E on)
 
-**R1 — audit entry** (`TextFieldAudit`). `at` is required, no default; `source` is a
-free string today (see WATCH-1) — use `"postman"`:
+**R1 — audit entries: TWO kinds** *(split 2026-08-19)*. `at` is required, no
+default; `source` is a free string today (see WATCH-1) — use `"postman"`.
+
+**R1a — `TextFieldAudit`** — PROSE surfaces only: the relationship text audit
+(`audit:` on a relationship item) and rule-level audits inside sections.
+`corrected_text` = the addendum (`agree_but`) or the replacement prose
+(`disagree`); optional `note` for extra rationale (forbidden on `agree`):
 
 ```json
 {"type": "agree",     "author_email": "{{annotator}}", "at": "2026-08-18T12:00:00Z", "source": "postman"}
-{"type": "agree_but", "corrected_text": "…the addendum…",   "author_email": "{{annotator}}", "at": "…", "source": "postman"}
-{"type": "disagree",  "corrected_text": "…the replacement…","author_email": "{{annotator}}", "at": "…", "source": "postman"}
+{"type": "agree_but", "corrected_text": "…the addendum…",   "note": "…optional context…", "author_email": "{{annotator}}", "at": "…", "source": "postman"}
+{"type": "disagree",  "corrected_text": "…the replacement…","note": "…optional rationale…", "author_email": "{{annotator}}", "at": "…", "source": "postman"}
+```
+
+**R1b — `EntityFieldAudit`** — IDENTIFIER surfaces: the `audits` list inside a
+screening derivation, a grounding derivation (oov/initial tags), an in-vocab
+node keep, and divergence hops. **No `corrected_text`** — the asserted value
+IS the derivation's `identified_entity`/`tag`. Verdicts `agree | disagree`
+only; `note` REQUIRED on `disagree` (the only prose slot), forbidden on
+`agree`:
+
+```json
+{"type": "agree",    "author_email": "{{annotator}}", "at": "…", "source": "postman"}
+{"type": "disagree", "note": "…why the LLM's identifier is wrong and yours right…", "author_email": "{{annotator}}", "at": "…", "source": "postman"}
 ```
 
 **R2 — keep-path mirror.** To audit while keeping the LLM's entity/tag/link: GET the
 phrase detail, copy the relevant `sections` tree **verbatim** (same section ids,
 combinators, rule ids, nesting, order — the shape check compares exact signatures),
-then add R1 entries to the `audits` of the rules you judged. Any change to a rule's
+then add R1a entries to the `audits` of the rules you judged. Any change to a rule's
 `outcome`/`explanation` without an audit entry on that rule is a 400 ("no silent
 edits").
 
@@ -149,7 +175,7 @@ On the template GET unless noted.
 - [ ] **B7** Same GET again → `created=false`, **same** `document_id` and `identity_digest` (get-or-create idempotence).
 - [ ] **B8** URL-variant equivalence: repeat with `www.` prefix, bare domain, trailing slash, an inner path — all → same `document_id`, `created=false` (normalization + etld1 keying).
 - [ ] **B9** `&full=true` → the whole saved document: `id`, `created`, embedded `metadata`, `run_identity`, full `chunks` trees. Spot-check: screening sections contain `reported=false` synthesized rules (auditable silence), stored `passed` present per phrase.
-- [ ] **B10** Happy path `{{con_field}}` → **200**, save `{{doc_con}}`. With `full=true`: phrases carry `oov_grounding.tags` (the initial-map entries) and `in_vocab_grounding.levels` (the descent, `parent_group_id=null` at the roots, `stop_reason` on terminals).
+- [ ] **B10** Happy path `{{con_field}}` → **200**, save `{{doc_con}}`. With `full=true`: phrases carry `oov_grounding.tags` (the initial-map entries) and `in_vocab_grounding.levels` (the descent, `parent_group_id=null` at the roots, `stop_reason` on terminals). *(Regression case: the first live run 2026-08-18 hit the sentinel-inflation gap — "tag 'None of the above' has no rules" as a generic 400 — fixed via `OovGroundingGT.llm_declined`; see the results journal.)*
 - [ ] **B11** Mongo: `llm_phrase_ground_truths` holds exactly the 2 docs (B7/B8 made no duplicates).
 - [ ] **B12** Truth GET baseline for both docs → **200**: everything unreviewed, rule-agreement rollup empty (unreviewed nodes are excluded, not counted as agreement).
 - [ ] **B13** List GET baseline → both rows, newest first, per-doc counts: `unreviewed` == total phrases, missed 0.
@@ -170,6 +196,7 @@ On the template GET unless noted.
 - [ ] **C9** A phrase containing `&`, `+`, `™`, or non-ASCII → **200** once percent-encoded (Postman gotcha: raw `+` in a query decodes as a space).
 - [ ] **C10** Concept doc detail (`{{doc_con}}`): `in_vocab_grounding.levels` nodes carry `(parent_group_id, group_id, stop_reason, sections)`; initial-map tags in `oov_grounding.tags` with IGR sections.
 - [ ] **C11** Keyword doc detail: freehand tags in `oov_grounding`, **no** `in_vocab_grounding`.
+- [ ] **C10b** A sentinel-declined phrase (e.g. `D-U-N-S® Number` in conformity_attestations chunk `0:98612`): detail trail shows `oov_grounding.llm_declined=true` with `tags` empty (or the sentinel absent from `tags` when real tags exist beside it), AND the folded `effective.llm_declined=true` — so declined-vs-never-answered stays distinguishable in the truth plane too (truth GET carries the same flag per phrase). The sentinel itself never appears as a tag entry. Mid-descent declinations appear as stored terminal nodes (`stop_reason: "sentinel"`, empty sections) — unchanged.
 
 ## D. Submissions POST — request-shape rejections (no writes yet)
 
@@ -185,10 +212,12 @@ All against `{{doc_kw}}` with `{{annotator}}`.
 - [ ] **D8** Well-formed unknown id → **404** "fetch the template first".
 - [ ] **D9** Valid item, `chunk_key` not in doc → **400** structured `{"item_index": 0, "surface": "relationship_audit", "reason": …available keys…}`.
 - [ ] **D10** Valid item, phrase not extracted → **400** structured, reason points at missed-phrase.
+- [ ] **D11** *(added 2026-08-19)* `agree` WITH a `note` → **422** ("note is forbidden on an 'agree'").
+- [ ] **D12** *(added 2026-08-19)* `disagree` with `note: "  "` (blank) → **422**.
 
 ## E. Surface 1 — `relationship_audit` (simplest write)
 
-Item: `{"surface": "relationship_audit", "chunk_key": "…", "phrase": "…", "audit": R1}`
+Item: `{"surface": "relationship_audit", "chunk_key": "…", "phrase": "…", "audit": R1a}`
 
 - [ ] **E1** `agree` on phrase₁ → **200**: `applied_items[0]` echoes address+index, `unreviewed_remaining` dropped by 1, `updated_at`, `truth` block present.
 - [ ] **E2** Browse verify: phrase₁ `relationship_reviewed=true`, `reviewed=true`, effective text unchanged. NOTE the cursor consequence: `next_unreviewed` now **skips phrase₁ entirely** even though its screening/grounding are untouched — reviewed = any-audit-anywhere-in-slice, by design (verdict 5b). Observe, don't fail.
@@ -201,6 +230,7 @@ Item: `{"surface": "relationship_audit", "chunk_key": "…", "phrase": "…", "a
 - [ ] **E9** Two valid items on different phrases in one batch → both applied, `unreviewed_remaining` −2.
 - [ ] **E10** Same node twice in ONE batch (same author) → **200**, trail holds only the second (in-batch pop). Semantics observation.
 - [ ] **E11** `return_full: true` → full document embedded in the response.
+- [ ] **E12** *(added 2026-08-19)* `disagree` WITH a `note` → **200**; browse row carries `relationship_note`, and the detail trail's audit entry shows the note verbatim. On entity/tag disagrees (groups F/G) the note lives on the audit inside the derivation — visible in the detail trail.
 
 ## F. Surface 2 — `screening_derivation`
 
@@ -210,8 +240,9 @@ Item: `{"surface": "screening_derivation", "chunk_key", "phrase", "derivation": 
 - [ ] **F2** Derivation with **no** audit anywhere → **400** "asserts nothing".
 - [ ] **F3** Mirrored sections with one outcome flipped, **no** audit on that rule → **400** "no silent edits".
 - [ ] **F4** Flip one condition to a failing outcome WITH a `disagree` rule audit → **200**. Then truth GET: effective `passed` flipped to false for that phrase; rollup gains a `disagree` and an `overridden` for that rule id.
-- [ ] **F5** Replace-entity: latest entity audit `disagree` with `corrected_text` == the new entity, sections **fresh** (R3) → **200**.
-- [ ] **F6** Replace-entity rejections, one at a time → **400** each: (a) a rule deleted from the tree (shape mismatch); (b) a non-note rule left without outcome; (c) an outcome not in that kind's vocabulary; (d) a made-up `rule_id`; (e) no `disagree` entity audit; (f) `corrected_text` ≠ `identified_entity`; (g) ⚠ if the screening catalog has an `ordered` section: zero or two `chosen`.
+- [ ] **F5** Replace-entity: `identified_entity` = your replacement, latest entity audit `disagree` with its `note` (R1b — no corrected_text exists on entity audits), sections **fresh** (R3) → **200**.
+- [ ] **F6** Replace-entity rejections, one at a time → **400** each: (a) a rule deleted from the tree (shape mismatch); (b) a non-note rule left without outcome; (c) an outcome not in that kind's vocabulary; (d) a made-up `rule_id`; (e) no `disagree` entity audit; ~~(f) `corrected_text` ≠ `identified_entity`~~ *(2026-08-19: impossible by construction — the field no longer exists on entity audits)*; (g) ⚠ if the screening catalog has an `ordered` section: zero or two `chosen`.
+- [ ] **F10** *(added 2026-08-19)* Entity-audit shape 422s: (a) entity audit WITH `corrected_text` → **422** (unknown field); (b) `agree_but` entity audit → **422** ("kept or replaced"); (c) `disagree` entity audit without `note` → **422** ("requires a non-blank note").
 - [ ] **F7** `identified_entity: null` against an entity-bearing LLM copy → **400** "express rejection through rule outcomes; the fold decides passed".
 - [ ] **F8** `disagree` entity audit while KEEPING the entity → **400** "incoherent".
 - [ ] **F9** ⚠ Screening item on a phrase whose run never screened it (`llm_screening` null — exists only in stage-cut-off runs) → **400** "no LLM verdict to audit".
@@ -222,7 +253,7 @@ Item: `{"surface": "oov_grounding_derivation", "chunk_key", "phrase", "tag": <ad
 
 On `{{doc_kw}}`:
 - [ ] **G1** Keep-tag: `tag` == stored, derivation.tag same, mirror + agree → **200**.
-- [ ] **G2** Replace-tag: `tag` == stored entry, derivation.tag = new label, `disagree` audit whose `corrected_text` == new label, fresh sections → **200**. `applied_items` has **no** `tag_classification` (keyword docs never classify).
+- [ ] **G2** Replace-tag: `tag` == stored entry, derivation.tag = new label, `disagree` audit with `note` (R1b), fresh sections → **200**. `applied_items` has **no** `tag_classification` (keyword docs never classify).
 - [ ] **G3** Human-asserted NEW tag: `tag` == derivation.tag, not in the stored map, ≥1 `agree` audit, fresh sections → **200**; full doc shows the entry with `llm_result: null`.
 - [ ] **G4** `tag` ≠ derivation.tag and `tag` not stored → **400** "addressed by the derivation's own tag".
 - [ ] **G5** derivation.tag = `"None of the above"` (also try `"Cannot categorize"`) → **400** "reserved non-labels never reach ground truth".
@@ -313,7 +344,7 @@ The entry is a full positive claim (PH-10): screening fresh + happy (R3), every 
 Covered by unit tests, not exercised live, with reasons:
 
 - **M1** Witness mismatch → 409 on detail/missed-phrase (needs tampering with the pinned S3 object; the deletability guard now protects it — don't).
-- **M2** 500 paths (missing `full_text`/`ontology_children`) — unreachable through the route wiring by construction.
+- **M2** Missing-dep paths (`full_text`/`ontology_children` ValueErrors) — unreachable through the route wiring by construction. **Corrected 2026-08-18:** if ever reached they would NOT be 500s — the app-wide `ValueError` handler in `main.py` flattens any uncaught ValueError into a generic 400 `{"error": "Validation Error"}` (that's how the B10 InflationError surfaced). See WATCH-5.
 - **M3** 16 MB document cap under accreting audits — recorded watch-item.
 - **M4** Divergence hop from a non-concept `previous` — unreachable live (anchors are stored concepts).
 - **M5** B14 catalog-drift 409 if S5 found no drift (then it stayed untested this run).
@@ -324,6 +355,7 @@ Covered by unit tests, not exercised live, with reasons:
 - **WATCH-2** `at` is client-supplied and stored as sent; the model docstring's intent ("the submission time the service witnessed") is not enforced at the route. Decide whether the route should stamp it.
 - **WATCH-3** G9: a typo'd concept reset persists as a fake OOV assertion; `tag_classification` in the response is the only tripwire (verdict 6d, echo-surfaces lesson). Confirm the echo is prominent enough in practice.
 - **WATCH-4** E2: one audit on any surface marks the whole phrase reviewed for the cursor — fine for the sitting-per-phrase workflow, but means "reviewed" ≠ "fully reviewed". Confirm this reads right while actually annotating.
+- **WATCH-5** The app-wide `@app.exception_handler(ValueError)` (main.py) converts every uncaught ValueError into 400 `{"error": "Validation Error"}` — it masked the B10 InflationError and would mask genuine route bugs as client errors. The GT plane now wraps its own errors into the 409 taxonomy, but the global handler's blast radius (all routes) is a standing decision: narrow it, or keep documenting around it.
 
 ---
 
@@ -331,4 +363,4 @@ Covered by unit tests, not exercised live, with reasons:
 
 | Date | Cases run | Verdicts / findings |
 |---|---|---|
-| | | |
+| 2026-08-18 | S, A, B1–B9 (implied), **B10 FAIL→FIXED** | **B10 FINDING:** template GET for `conformity_attestations` → 400 `{"error": "Validation Error", "detail": "…tag 'None of the above' has no rules…"}`. Root cause: initial grounding's escape hatch is stored faithfully as a sentinel key with zero rules in `llm_phrase_initial_grounding` stats (13–119 per concept field in run 20260819T012442); `inflate_tag_groundings` predates any sentinel fixture and read it as corruption. Two-part fix: (1) `OovGroundingGT.llm_declined` (option 3 — the declination is part of the surviving record) + `split_sentinel_tag_rules` at inflation; (2) `InflationError` wrapped into `TemplateAssemblyError` → route 409 (was escaping to the app-wide ValueError handler → generic 400, see WATCH-5/M2). B10 re-run passed. Follow-up same day: `PhraseTruth.llm_declined` passthrough — the folded `effective`/truth plane previously collapsed "LLM declined" and "stage never answered" into identical empty `tags`; a human tag asserted against a declination now keeps the flag (the contradiction is part of the record). Suite 1119 green, pyright 0. |

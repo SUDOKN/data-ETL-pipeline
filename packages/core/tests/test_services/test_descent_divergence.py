@@ -12,7 +12,11 @@ from typing import Optional
 import pytest
 
 from core.models.extraction_schemas.applied_rule import AppliedRule
-from core.models.ground_truth.audits import AuditVerdict, TextFieldAudit
+from core.models.ground_truth.audits import (
+    AuditVerdict,
+    EntityFieldAudit,
+    TextFieldAudit,
+)
 from core.models.ground_truth.stage_blocks import (
     ExtractedPhraseGT,
     GroundingDerivation,
@@ -143,6 +147,16 @@ def _audit(author=ALICE, type=AuditVerdict.AGREE, corrected_text=None):
     )
 
 
+def _entity_audit(author=ALICE, type=AuditVerdict.AGREE, note=None):
+    return EntityFieldAudit(
+        type=type,
+        note=note,
+        author_email=author,
+        at=datetime(2026, 8, 16, tzinfo=timezone.utc),
+        source="api",
+    )
+
+
 def _fill(sections, outcomes: dict[str, str]):
     for section in sections:
         for rule in section.applied_rules:
@@ -263,7 +277,7 @@ def test_old_documents_load_without_human_paths():
 def _keep_derivation(node: InVocabNodeGT, author=ALICE) -> GroundingDerivation:
     sections = [s.model_copy(deep=True) for s in node.sections]
     return GroundingDerivation(
-        tag=node.group_id, audits=[_audit(author)], sections=sections
+        tag=node.group_id, audits=[_entity_audit(author)], sections=sections
     )
 
 
@@ -314,7 +328,11 @@ def test_tag_change_on_a_descent_node_is_redirected_to_paths():
 def test_disagree_on_a_kept_tag_is_incoherent():
     node = _mixed_node()
     derivation = _keep_derivation(node)
-    derivation.audits.append(_audit(ALICE, AuditVerdict.DISAGREE, "Aerospace"))
+    derivation.audits.append(
+        _entity_audit(
+            ALICE, AuditVerdict.DISAGREE, note="the link should be Aerospace"
+        )
+    )
 
     with pytest.raises(AuditSubmissionError, match="incoherent"):
         submit_in_vocab_node_audit(
@@ -382,7 +400,7 @@ def test_path_author_must_match_submitter():
 def test_stranger_audit_inside_a_hop_is_rejected():
     gt = _tree()
     hop = _hop("Defense")
-    hop.audits.append(_audit(BOB))
+    hop.audits.append(_entity_audit(BOB))
     with pytest.raises(AuditSubmissionError, match="bob@example.com"):
         submit_descent_divergence(
             gt,
@@ -562,7 +580,11 @@ def test_divergence_fold_swaps_the_replaced_subtree_only():
 def test_reset_fold_overrides_the_whole_descent_wholesale():
     replacement = GroundingDerivation(
         tag="Healthcare",
-        audits=[_audit(ALICE, AuditVerdict.DISAGREE, "Healthcare")],
+        audits=[
+            _entity_audit(
+                ALICE, AuditVerdict.DISAGREE, note="the page serves hospitals"
+            )
+        ],
         sections=_fresh(IGR, "IGR"),
     )
     phrase = ExtractedPhraseGT(

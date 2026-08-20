@@ -33,6 +33,7 @@ from core.services.ground_truth.catalog_template_inflation import (
     inflate_in_vocab_grounding,
     inflate_screening_llm_copy,
     inflate_tag_groundings,
+    split_sentinel_tag_rules,
 )
 
 _CATALOG_DIR = (
@@ -246,6 +247,30 @@ def test_tag_with_no_rules_is_corruption():
         inflate_tag_groundings(_CATALOG, {"Milling": []})
 
 
+def test_sentinel_keys_split_out_as_declination_not_corruption():
+    """The escape hatch is stored exactly like a tag — a sentinel key with no
+    rules — but it is a declination record, not a grounding link."""
+    real, declined = split_sentinel_tag_rules(
+        {"None of the above": [], "Milling": [_row("SCR-1")]}
+    )
+    assert declined is True
+    assert list(real) == ["Milling"]
+
+
+def test_sentinel_recognition_is_case_insensitive():
+    real, declined = split_sentinel_tag_rules({"NONE OF THE ABOVE": []})
+    assert declined is True and real == {}
+
+
+def test_sentinel_with_rules_still_declines_and_warns(caplog):
+    with caplog.at_level("WARNING"):
+        real, declined = split_sentinel_tag_rules(
+            {"Cannot categorize": [_row("SCR-1")]}
+        )
+    assert declined is True and real == {}
+    assert any("declination" in record.message for record in caplog.records)
+
+
 _RGR = _synthetic_catalog(
     "synthetic_recursive", "phrase_recursive_grounding", "RGR"
 )
@@ -366,6 +391,43 @@ def test_phrase_without_a_screening_verdict_gets_none_not_a_fake():
     )
     phrase = chunk.extracted_phrases["cnc mill"]
     assert phrase.llm_screening is None and phrase.oov_grounding is None
+
+
+def test_declined_grounding_inflates_a_flagged_empty_block():
+    """The live shape that broke the first P3-gate template build: the model
+    answered the sentinel, stored as a tag key with zero rules."""
+    stats = _keyword_stats(
+        llm_phrase_freehand_grounding={
+            0: {},
+            1: {"cnc mill": {"None of the above": []}},
+        },
+    )
+    chunk = inflate_chunk(
+        stats, screening_catalog=_CATALOG, oov_catalog=_CATALOG
+    )
+    block = chunk.extracted_phrases["cnc mill"].oov_grounding
+    assert block is not None
+    assert block.tags == {} and block.llm_declined is True
+
+
+def test_sentinel_beside_a_real_tag_keeps_the_tag_and_declines():
+    stats = _keyword_stats(
+        llm_phrase_freehand_grounding={
+            0: {},
+            1: {
+                "cnc mill": {
+                    "CNC Milling Machine": [_row("SCR-1")],
+                    "None of the above": [],
+                }
+            },
+        },
+    )
+    chunk = inflate_chunk(
+        stats, screening_catalog=_CATALOG, oov_catalog=_CATALOG
+    )
+    block = chunk.extracted_phrases["cnc mill"].oov_grounding
+    assert block is not None and block.llm_declined is True
+    assert list(block.tags) == ["CNC Milling Machine"]
 
 
 def test_orphan_grounding_phrase_is_warned_and_skipped(caplog):

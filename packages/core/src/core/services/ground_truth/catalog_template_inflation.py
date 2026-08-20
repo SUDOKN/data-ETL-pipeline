@@ -33,6 +33,7 @@ from core.models.extraction_schemas.applied_rule import AppliedRule
 from core.models.extraction_schemas.grounding import (
     PhraseToTagAndRulesMap,
     TagToAppliedRulesMap,
+    is_sentinel_grounding_label,
 )
 from core.models.extraction_schemas.iterative_tagging import (
     IterativeGroundingResult,
@@ -187,6 +188,36 @@ def inflate_screening_llm_copy(
             catalog, verdict.applied_rules, synthesize_all_on_empty=True
         ),
     )
+
+
+def split_sentinel_tag_rules(
+    tag_rules: TagToAppliedRulesMap,
+) -> tuple[TagToAppliedRulesMap, bool]:
+    """The stored tag map with sentinel keys split out as a declination flag.
+
+    "None of the above" / "Cannot categorize" is the grounding stage's escape
+    hatch: the model examined the phrase and declined every label. The stats
+    record that answer faithfully as a sentinel key with no rules — a process
+    record, not a grounding link — so it must not inflate into a
+    ``TagGroundingGT`` (the submission plane rejects sentinel tags outright).
+    It becomes ``OovGroundingGT.llm_declined`` instead. A sentinel that
+    unexpectedly arrives with rules is still a declination; the rows are
+    dropped with a warning, since there is no catalog tree a non-label could
+    hydrate.
+    """
+    real: TagToAppliedRulesMap = {}
+    declined = False
+    for tag, rows in tag_rules.items():
+        if is_sentinel_grounding_label(tag):
+            declined = True
+            if rows:
+                logger.warning(
+                    f"sentinel {tag!r} arrived with {len(rows)} applied rules "
+                    f"— recorded as a declination, rules dropped"
+                )
+            continue
+        real[tag] = rows
+    return real, declined
 
 
 def inflate_tag_groundings(
@@ -351,7 +382,14 @@ def inflate_chunk(
     extracted: dict[str, ExtractedPhraseGT] = {}
     for phrase, search_round in phrase_rounds.items():
         verdict = screenings.get(phrase)
-        tag_map = oov_by_phrase.get(phrase)
+        raw_tag_map = oov_by_phrase.get(phrase)
+        oov_grounding: Optional[OovGroundingGT] = None
+        if raw_tag_map:
+            real_tags, llm_declined = split_sentinel_tag_rules(raw_tag_map)
+            oov_grounding = OovGroundingGT(
+                tags=inflate_tag_groundings(oov_catalog, real_tags),
+                llm_declined=llm_declined,
+            )
         extracted[phrase] = ExtractedPhraseGT(
             search_round=search_round,
             llm_relationship=RelationshipGT(
@@ -367,11 +405,7 @@ def inflate_chunk(
                 if verdict is not None
                 else None
             ),
-            oov_grounding=(
-                OovGroundingGT(tags=inflate_tag_groundings(oov_catalog, tag_map))
-                if tag_map
-                else None
-            ),
+            oov_grounding=oov_grounding,
             in_vocab_grounding=in_vocab_by_phrase.get(phrase),
         )
 

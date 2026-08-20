@@ -27,7 +27,11 @@ import re
 from typing import Callable, Iterator, Optional
 
 from core.models.extraction_schemas.grounding import is_sentinel_grounding_label
-from core.models.ground_truth.audits import AuditVerdict, TextFieldAudit
+from core.models.ground_truth.audits import (
+    AuditVerdict,
+    EntityFieldAudit,
+    TextFieldAudit,
+)
 from core.models.ground_truth.rule_tree import AuditedRule, AuditedSection
 from core.models.ground_truth.stage_blocks import (
     ChunkGT,
@@ -145,13 +149,15 @@ def _check_fresh_complete(
 
 
 def _inner_audits(
-    audits: list[TextFieldAudit], sections: list[AuditedSection]
-) -> list[TextFieldAudit]:
+    audits: list[EntityFieldAudit], sections: list[AuditedSection]
+) -> list[TextFieldAudit | EntityFieldAudit]:
+    """Every audit entry a derivation carries: the identifier audits plus the
+    rule-level text audits inside its sections."""
     return [*audits, *(a for rule in _walk_rules(sections) for a in rule.audits)]
 
 
 def _check_single_author(
-    entries: list[TextFieldAudit], author_email: str, what: str
+    entries: list[TextFieldAudit | EntityFieldAudit], author_email: str, what: str
 ) -> None:
     if not entries:
         raise AuditSubmissionError(
@@ -188,7 +194,7 @@ def _append_popping_same_author(
     items.append(item)
 
 
-def _derivation_author(audits: list[TextFieldAudit], sections) -> str:
+def _derivation_author(audits: list[EntityFieldAudit], sections) -> str:
     return _inner_audits(audits, sections)[0].author_email
 
 
@@ -196,18 +202,18 @@ def _derivation_author(audits: list[TextFieldAudit], sections) -> str:
 
 
 def _check_replacement_coherence(
-    audits: list[TextFieldAudit], replacement: str, what: str
+    audits: list[EntityFieldAudit], what: str
 ) -> None:
+    """Replacing an identifier requires a latest ``disagree`` audit.
+
+    The replacement value itself lives on the derivation
+    (``identified_entity`` / ``tag``) — there is no duplicate to keep equal;
+    the model already guarantees the disagree carries its rationale note.
+    """
     if not audits or audits[-1].type is not AuditVerdict.DISAGREE:
         raise AuditSubmissionError(
-            f"{what}: replacing the LLM's text requires a latest audit of type "
-            f"'disagree' carrying the replacement"
-        )
-    if audits[-1].corrected_text != replacement:
-        raise AuditSubmissionError(
-            f"{what}: the disagree audit's corrected_text "
-            f"{audits[-1].corrected_text!r} must equal the replacement "
-            f"{replacement!r}"
+            f"{what}: replacing the LLM's identifier requires a latest audit "
+            f"of type 'disagree' (its note carries why)"
         )
 
 
@@ -247,7 +253,7 @@ def submit_screening_derivation(
                 f"identified entity — express rejection through rule outcomes; "
                 f"the fold decides passed"
             )
-        _check_replacement_coherence(derivation.audits, replacement, what)
+        _check_replacement_coherence(derivation.audits, what)
         skeleton = inflate_applied_rules(catalog, [], synthesize_all_on_empty=True)
         _check_shape(derivation.sections, skeleton, what)
         _check_fresh_complete(derivation.sections, catalog, what)
@@ -295,7 +301,7 @@ def submit_grounding_derivation(
 
     if llm_sections is None or derivation.tag != llm_tag:
         if llm_sections is not None:
-            _check_replacement_coherence(derivation.audits, derivation.tag, what)
+            _check_replacement_coherence(derivation.audits, what)
         skeleton = inflate_applied_rules(catalog, [], synthesize_all_on_empty=True)
         _check_shape(derivation.sections, skeleton, what)
         _check_fresh_complete(derivation.sections, catalog, what)
@@ -481,7 +487,7 @@ def submit_descent_divergence(
             f"{what}: path authored by {path.author_email!r} in a submission "
             f"by {author_email!r}"
         )
-    inner: list[TextFieldAudit] = []
+    inner: list[TextFieldAudit | EntityFieldAudit] = []
     for hop in path.hops:
         inner += _inner_audits(hop.audits, hop.sections)
     strangers = sorted(

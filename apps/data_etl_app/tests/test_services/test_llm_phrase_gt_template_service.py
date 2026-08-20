@@ -97,3 +97,39 @@ def test_catalog_version_drift_hard_fails_with_both_versions_named(
         build_llm_phrase_gt_template(
             mfg, KeywordTypeEnum.equipments, gt_scraped_text, catalog_lookup=gt_catalog_lookup
         )
+
+
+def test_concept_sentinel_declination_becomes_a_flag_not_an_error(
+    make_gt_manufacturer, make_concept_gt_results, gt_catalog_lookup, gt_scraped_text
+):
+    """The first P3-gate live failure (plan case B10): initial grounding
+    answered "None of the above", stored as a sentinel key with zero rules.
+    The template must record the declination, not refuse to build."""
+    results = make_concept_gt_results()
+    stats = results.chunked_extraction_stats["0:1000"]
+    stats.llm_phrase_initial_grounding[1]["aerospace parts"][
+        "None of the above"
+    ] = []
+    mfg = make_gt_manufacturer(industries=results)
+    doc = build_llm_phrase_gt_template(
+        mfg, ConceptTypeEnum.industries, gt_scraped_text, catalog_lookup=gt_catalog_lookup
+    )
+    block = doc.chunks["0:1000"].extracted_phrases["aerospace parts"].oov_grounding
+    assert block is not None and block.llm_declined is True
+    assert list(block.tags) == ["Aerospace"]
+
+
+def test_uninflatable_stored_stats_surface_as_template_assembly_error(
+    make_gt_manufacturer, make_concept_gt_results, gt_catalog_lookup, gt_scraped_text
+):
+    """InflationError must not escape as a bare ValueError — the app-wide
+    ValueError handler would flatten it into a generic 400; wrapped as
+    TemplateAssemblyError, the route's 409 mapping catches it."""
+    results = make_concept_gt_results()
+    stats = results.chunked_extraction_stats["0:1000"]
+    stats.llm_phrase_initial_grounding[1]["aerospace parts"]["Broken Tag"] = []
+    mfg = make_gt_manufacturer(industries=results)
+    with pytest.raises(TemplateAssemblyError, match="cannot inflate"):
+        build_llm_phrase_gt_template(
+            mfg, ConceptTypeEnum.industries, gt_scraped_text, catalog_lookup=gt_catalog_lookup
+        )

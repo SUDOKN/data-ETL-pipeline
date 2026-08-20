@@ -3350,6 +3350,12 @@
                                 "null"
                               ]
                             },
+                            "note": {
+                              "bsonType": [
+                                "string",
+                                "null"
+                              ]
+                            },
                             "author_email": {
                               "bsonType": "string"
                             },
@@ -3486,6 +3492,12 @@
                                                 "null"
                                               ]
                                             },
+                                            "note": {
+                                              "bsonType": [
+                                                "string",
+                                                "null"
+                                              ]
+                                            },
                                             "author_email": {
                                               "bsonType": "string"
                                             },
@@ -3547,7 +3559,7 @@
                                     ],
                                     "bsonType": "string"
                                   },
-                                  "corrected_text": {
+                                  "note": {
                                     "bsonType": [
                                       "string",
                                       "null"
@@ -3649,6 +3661,12 @@
                                                 "bsonType": "string"
                                               },
                                               "corrected_text": {
+                                                "bsonType": [
+                                                  "string",
+                                                  "null"
+                                                ]
+                                              },
+                                              "note": {
                                                 "bsonType": [
                                                   "string",
                                                   "null"
@@ -3791,6 +3809,12 @@
                                                   "null"
                                                 ]
                                               },
+                                              "note": {
+                                                "bsonType": [
+                                                  "string",
+                                                  "null"
+                                                ]
+                                              },
                                               "author_email": {
                                                 "bsonType": "string"
                                               },
@@ -3848,7 +3872,7 @@
                                           ],
                                           "bsonType": "string"
                                         },
-                                        "corrected_text": {
+                                        "note": {
                                           "bsonType": [
                                             "string",
                                             "null"
@@ -3955,6 +3979,12 @@
                                                         "null"
                                                       ]
                                                     },
+                                                    "note": {
+                                                      "bsonType": [
+                                                        "string",
+                                                        "null"
+                                                      ]
+                                                    },
                                                     "author_email": {
                                                       "bsonType": "string"
                                                     },
@@ -3984,6 +4014,9 @@
                             }
                           }
                         }
+                      },
+                      "llm_declined": {
+                        "bsonType": "bool"
                       }
                     }
                   },
@@ -4118,6 +4151,12 @@
                                                     "null"
                                                   ]
                                                 },
+                                                "note": {
+                                                  "bsonType": [
+                                                    "string",
+                                                    "null"
+                                                  ]
+                                                },
                                                 "author_email": {
                                                   "bsonType": "string"
                                                 },
@@ -4175,7 +4214,7 @@
                                             ],
                                             "bsonType": "string"
                                           },
-                                          "corrected_text": {
+                                          "note": {
                                             "bsonType": [
                                               "string",
                                               "null"
@@ -4277,6 +4316,12 @@
                                                         "bsonType": "string"
                                                       },
                                                       "corrected_text": {
+                                                        "bsonType": [
+                                                          "string",
+                                                          "null"
+                                                        ]
+                                                      },
+                                                      "note": {
                                                         "bsonType": [
                                                           "string",
                                                           "null"
@@ -4388,7 +4433,7 @@
                                           ],
                                           "bsonType": "string"
                                         },
-                                        "corrected_text": {
+                                        "note": {
                                           "bsonType": [
                                             "string",
                                             "null"
@@ -4495,6 +4540,12 @@
                                                         "null"
                                                       ]
                                                     },
+                                                    "note": {
+                                                      "bsonType": [
+                                                        "string",
+                                                        "null"
+                                                      ]
+                                                    },
                                                     "author_email": {
                                                       "bsonType": "string"
                                                     },
@@ -4595,7 +4646,7 @@
                               ],
                               "bsonType": "string"
                             },
-                            "corrected_text": {
+                            "note": {
                               "bsonType": [
                                 "string",
                                 "null"
@@ -4702,6 +4753,12 @@
                                             "null"
                                           ]
                                         },
+                                        "note": {
+                                          "bsonType": [
+                                            "string",
+                                            "null"
+                                          ]
+                                        },
                                         "author_email": {
                                           "bsonType": "string"
                                         },
@@ -4761,7 +4818,7 @@
                                 ],
                                 "bsonType": "string"
                               },
-                              "corrected_text": {
+                              "note": {
                                 "bsonType": [
                                   "string",
                                   "null"
@@ -4863,6 +4920,12 @@
                                             "bsonType": "string"
                                           },
                                           "corrected_text": {
+                                            "bsonType": [
+                                              "string",
+                                              "null"
+                                            ]
+                                          },
+                                          "note": {
                                             "bsonType": [
                                               "string",
                                               "null"

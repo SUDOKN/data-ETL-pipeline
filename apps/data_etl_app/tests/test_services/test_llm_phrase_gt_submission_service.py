@@ -12,7 +12,11 @@ from typing import Optional
 
 import pytest
 
-from core.models.ground_truth.audits import AuditVerdict, TextFieldAudit
+from core.models.ground_truth.audits import (
+    AuditVerdict,
+    EntityFieldAudit,
+    TextFieldAudit,
+)
 from core.models.ground_truth.stage_blocks import (
     GroundingDerivation,
     HumanDescentPath,
@@ -46,6 +50,16 @@ def _audit(author=ALICE, type=AuditVerdict.AGREE, corrected_text=None):
     return TextFieldAudit(
         type=type,
         corrected_text=corrected_text,
+        author_email=author,
+        at=datetime(2026, 8, 16, tzinfo=timezone.utc),
+        source="api",
+    )
+
+
+def _entity_audit(author=ALICE, type=AuditVerdict.AGREE, note=None):
+    return EntityFieldAudit(
+        type=type,
+        note=note,
         author_email=author,
         at=datetime(2026, 8, 16, tzinfo=timezone.utc),
         source="api",
@@ -133,7 +147,7 @@ def test_screening_keep_derivation_lands(keyword_doc, gt_catalog_lookup):
         phrase="cnc mill",
         derivation=HumanScreeningDerivation(
             identified_entity=llm.llm_result.identified_entity,
-            audits=[_audit()],
+            audits=[_entity_audit()],
             sections=copy.deepcopy(llm.llm_result.sections),
         ),
     )
@@ -156,7 +170,7 @@ def test_screening_on_an_unscreened_phrase_is_rejected(
         chunk_key=key,
         phrase="cnc mill",
         derivation=HumanScreeningDerivation(
-            identified_entity="cnc mill", audits=[_audit()], sections=[]
+            identified_entity="cnc mill", audits=[_entity_audit()], sections=[]
         ),
     )
 
@@ -179,7 +193,7 @@ def test_oov_keep_entry_audit_lands(keyword_doc, gt_catalog_lookup):
         tag="CNC Milling Machine",
         derivation=GroundingDerivation(
             tag="CNC Milling Machine",
-            audits=[_audit()],
+            audits=[_entity_audit()],
             sections=copy.deepcopy(llm_sections),
         ),
     )
@@ -205,7 +219,7 @@ def test_human_asserted_tag_creates_its_entry(
         tag="Vertical Machining Center",
         derivation=GroundingDerivation(
             tag="Vertical Machining Center",
-            audits=[_audit()],
+            audits=[_entity_audit()],
             sections=gt_fresh_happy(freehand),
         ),
     )
@@ -231,7 +245,7 @@ def test_new_tag_must_be_addressed_by_its_own_name(keyword_doc, gt_catalog_looku
         tag="Some Other Address",
         derivation=GroundingDerivation(
             tag="Vertical Machining Center",
-            audits=[_audit()],
+            audits=[_entity_audit()],
             sections=gt_fresh_happy(freehand),
         ),
     )
@@ -253,7 +267,7 @@ def test_grounding_block_is_created_on_demand(keyword_doc, gt_catalog_lookup, gt
         tag="Vertical Machining Center",
         derivation=GroundingDerivation(
             tag="Vertical Machining Center",
-            audits=[_audit()],
+            audits=[_entity_audit()],
             sections=gt_fresh_happy(freehand),
         ),
     )
@@ -285,7 +299,7 @@ def test_in_vocab_keep_audit_lands(concept_doc, gt_catalog_lookup):
         group_id="Aerospace",
         derivation=GroundingDerivation(
             tag="Aerospace",
-            audits=[_audit()],
+            audits=[_entity_audit()],
             sections=copy.deepcopy(node.sections),
         ),
     )
@@ -306,7 +320,7 @@ def test_missing_descent_node_is_named(concept_doc, gt_catalog_lookup):
         parent_group_id="Aerospace",
         group_id="Satellites",
         derivation=GroundingDerivation(
-            tag="Satellites", audits=[_audit()], sections=[]
+            tag="Satellites", audits=[_entity_audit()], sections=[]
         ),
     )
 
@@ -402,13 +416,13 @@ def _missed_entry(gt_catalog_lookup, gt_fresh_happy, author=ALICE) -> MissedPhra
         relationship_text="machines they run in-house",
         screening=HumanScreeningDerivation(
             identified_entity="CNC mills",
-            audits=[_audit(author)],
+            audits=[_entity_audit(author)],
             sections=gt_fresh_happy(screening),
         ),
         groundings=[
             GroundingDerivation(
                 tag="CNC Milling Machine",
-                audits=[_audit(author)],
+                audits=[_entity_audit(author)],
                 sections=gt_fresh_happy(freehand),
             )
         ],
@@ -487,7 +501,7 @@ def test_atomicity_a_failing_item_leaves_nothing_behind(
         phrase="cnc mill",
         derivation=HumanScreeningDerivation(
             identified_entity=llm.llm_result.identified_entity,
-            audits=[_audit()],
+            audits=[_entity_audit()],
             sections=silent_edit,
         ),
     )

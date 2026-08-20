@@ -12,7 +12,11 @@ from typing import Any
 import pytest
 from pydantic import ValidationError
 
-from core.models.ground_truth.audits import AuditVerdict, TextFieldAudit
+from core.models.ground_truth.audits import (
+    AuditVerdict,
+    EntityFieldAudit,
+    TextFieldAudit,
+)
 from core.models.ground_truth.rule_tree import AuditedRule, AuditedSection
 from core.models.ground_truth.stage_blocks import (
     ExtractedPhraseGT,
@@ -29,6 +33,13 @@ from core.models.ground_truth.stage_blocks import (
 )
 
 _AUDIT = TextFieldAudit(
+    type=AuditVerdict.AGREE,
+    author_email="annotator@example.com",
+    at=datetime(2026, 8, 15, tzinfo=timezone.utc),
+    source="api",
+)
+
+_ENTITY_AUDIT = EntityFieldAudit(
     type=AuditVerdict.AGREE,
     author_email="annotator@example.com",
     at=datetime(2026, 8, 15, tzinfo=timezone.utc),
@@ -184,7 +195,7 @@ def _keyword_phrase() -> ExtractedPhraseGT:
             audits=[
                 HumanScreeningDerivation(
                     identified_entity="5-axis CNC mill",
-                    audits=[_AUDIT],
+                    audits=[_ENTITY_AUDIT],
                     sections=_sections(_condition("SCR-1")),
                 )
             ],
@@ -225,7 +236,7 @@ def _concept_phrase() -> ExtractedPhraseGT:
                         audits=[
                             GroundingDerivation(
                                 tag="Aircraft Engines",
-                                audits=[_AUDIT],
+                                audits=[_ENTITY_AUDIT],
                                 sections=_sections(_condition("RGR-1")),
                             )
                         ],
@@ -385,3 +396,12 @@ def test_missed_phrase_at_has_no_default():
                 sections=_sections(_condition("SCR-1")),
             ),
         )
+
+
+def test_oov_grounding_declination_defaults_false_so_old_documents_load():
+    """``llm_declined`` records the grounding stage's sentinel answer; the
+    pre-flag document shape must keep loading unchanged."""
+    block = OovGroundingGT(tags={})
+    assert block.llm_declined is False
+    flagged = OovGroundingGT(tags={}, llm_declined=True)
+    assert OovGroundingGT.model_validate(flagged.model_dump()).llm_declined is True
