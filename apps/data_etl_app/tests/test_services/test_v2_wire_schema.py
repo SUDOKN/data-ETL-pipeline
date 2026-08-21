@@ -1,0 +1,216 @@
+"""Phase 0.4 of pipeline v2 (PIPELINE_V2_PLAN.md): the record-keyed wire schemas,
+built from the DRAFT catalogs in rule_catalog_v2/ and held to the same two
+invariants the v1 catalogs are held to — strict mode accepts the schema, and the
+worked example the prompt shows decodes under the schema the model is sent."""
+
+import copy
+import json
+from typing import Any
+
+import pytest
+from pydantic import ValidationError
+
+from core.models.extraction_schemas.catalog_wire_schema import (
+    flatten_rule_slots,
+    response_format_for_v2,
+    response_model_for_v2,
+    screening_response_model_v2,
+)
+from core.models.extraction_schemas.response_format_util import (
+    assert_strict_schema_supported,
+)
+from core.models.rule_catalog import RuleCatalog
+
+from data_etl_app.services.prompt_assembly_service import (
+    CATALOG_DIR,
+    EXAMPLE_BUILDER_BY_STAGE_V2,
+    load_catalog,
+)
+
+V2_CATALOG_DIR = CATALOG_DIR.parent / "rule_catalog_v2"
+V2_CATALOGS = {
+    path.stem: load_catalog(path) for path in sorted(V2_CATALOG_DIR.glob("*.json"))
+}
+
+
+def _example(catalog: RuleCatalog) -> dict:
+    """The v2 worked example, raw from its builder. Entity tokens inside the
+    placeholder strings stay unresolved — every such string starts with ``<`` or
+    ``{{``, and the fill below replaces or passes them without reading them."""
+    return EXAMPLE_BUILDER_BY_STAGE_V2[catalog.stage](catalog)
+
+
+def _fill_placeholders(node: Any, schema: dict[str, Any], root: dict[str, Any]) -> Any:
+    """The example with every ``<...>`` slot replaced by a value legal at that
+    position, read off the schema itself.
+
+    A twin of the helper in test_prompt_assembly_service — sibling test imports
+    are blocked by importlib mode, and the two files merge at the per-stage
+    cutover, which is when this copy dies.
+    """
+    while "$ref" in schema:
+        target = root
+        for part in schema["$ref"].lstrip("#/").split("/"):
+            target = target[part]
+        schema = target
+
+    if "anyOf" in schema:
+        for branch in schema["anyOf"]:
+            filled = _fill_placeholders(node, branch, root)
+            if filled is not None:
+                return filled
+        return None
+
+    if isinstance(node, dict):
+        properties = schema.get("properties", {})
+        if set(node) != set(properties):
+            return None  # not this branch — or an example/schema key drift
+        return {
+            key: _fill_placeholders(value, properties[key], root)
+            for key, value in node.items()
+        }
+    if isinstance(node, list):
+        return [_fill_placeholders(item, schema["items"], root) for item in node]
+    if isinstance(node, str):
+        if "enum" in schema:
+            return node if node in schema["enum"] else schema["enum"][0]
+        if not node.startswith("<"):
+            return node
+        return {"integer": 0, "number": 0, "boolean": False}.get(
+            schema.get("type", ""), "x"
+        )
+    return node
+
+
+def _filled_example(catalog: RuleCatalog) -> dict:
+    schema = response_format_for_v2(catalog)["json_schema"]["schema"]
+    filled = _fill_placeholders(_example(catalog), schema, schema)
+    assert filled is not None, (
+        f"{catalog.prompt_name}: v2 example matches no branch of the v2 schema"
+    )
+    return filled
+
+
+def test_the_draft_directory_holds_all_twentyone_catalogs():
+    """Sanity for the parametrization below: a draft failing to load would
+    otherwise silently shrink the coverage of every test in this file."""
+    assert len(V2_CATALOGS) == 21
+
+
+@pytest.mark.parametrize("prompt_name", sorted(V2_CATALOGS))
+def test_the_v2_schema_is_one_strict_mode_accepts(prompt_name):
+    assert_strict_schema_supported(
+        response_format_for_v2(V2_CATALOGS[prompt_name]), where=prompt_name
+    )
+
+
+@pytest.mark.parametrize("prompt_name", sorted(V2_CATALOGS))
+def test_the_v2_example_decodes_under_the_v2_schema(prompt_name):
+    """The 2026-08-11 invariant, carried into v2: the prompt's worked example and
+    the decoder must agree on the shape — including the required-nullable
+    ``explanation`` a populated grounding entry must show as null."""
+    catalog = V2_CATALOGS[prompt_name]
+    response_model_for_v2(catalog).model_validate(_filled_example(catalog))
+
+
+def _industry_screening() -> RuleCatalog:
+    return V2_CATALOGS["industry_phrase_relationship_screening"]
+
+
+def _industry_grounding() -> RuleCatalog:
+    return V2_CATALOGS["industry_phrase_initial_grounding"]
+
+
+def test_screening_rejects_missing_record_id_extra_keys_and_missing_slots():
+    catalog = _industry_screening()
+    model = response_model_for_v2(catalog)
+    good = _filled_example(catalog)
+
+    no_record_id = copy.deepcopy(good)
+    del no_record_id["screenings"][0]["record_id"]
+    with pytest.raises(ValidationError):
+        model.model_validate(no_record_id)
+
+    extra_key = copy.deepcopy(good)
+    extra_key["screenings"][0]["candidates"][0]["note"] = "x"
+    with pytest.raises(ValidationError):
+        model.model_validate(extra_key)
+
+    missing_slot = copy.deepcopy(good)
+    del missing_slot["screenings"][0]["candidates"][0]["SCR-1"]
+    with pytest.raises(ValidationError):
+        model.model_validate(missing_slot)
+
+
+def test_grounding_explanation_key_cannot_be_omitted():
+    """The structural declination rests on the key always arriving: an entry
+    without it would make 'yielded nothing' silent again."""
+    catalog = _industry_grounding()
+    model = response_model_for_v2(catalog)
+    good = _filled_example(catalog)
+
+    dropped = copy.deepcopy(good)
+    del dropped["groundings"][0]["explanation"]
+    with pytest.raises(ValidationError):
+        model.model_validate(dropped)
+
+
+def test_grounding_empty_entry_carries_its_explanation():
+    """The none-branch of every grounding example is empty units + a non-null
+    explanation — the shape the skeletons instruct."""
+    for name, catalog in V2_CATALOGS.items():
+        if catalog.stage not in (
+            "phrase_initial_grounding",
+            "phrase_recursive_grounding",
+            "phrase_oov_grounding",
+            "phrase_freehand_grounding",
+        ):
+            continue
+        entries = _example(catalog)["groundings"]
+        empties = [
+            entry
+            for entry in entries
+            if not (entry.get("options") or entry.get("candidates"))
+        ]
+        assert len(empties) == 1, name
+        assert empties[0]["explanation"], name
+        populated = [entry for entry in entries if entry not in empties]
+        assert all(entry["explanation"] is None for entry in populated), name
+
+
+def test_flatten_rule_slots_reads_a_v2_candidate_unit():
+    """Storage stays list[AppliedRule]: a decoded v2 screening candidate flattens
+    to its catalog's rules in document order, guards included."""
+    catalog = _industry_screening()
+    parsed = screening_response_model_v2(catalog).model_validate(
+        _filled_example(catalog)
+    )
+    guard_entry = parsed.screenings[-1]
+    unit = guard_entry.candidates[0]
+    applied = flatten_rule_slots(catalog, unit)
+    assert [rule.rule_id for rule in applied] == ["SCR-1", "SCR-2", "SCR-G1"]
+    assert applied[-1].outcome == "violated"
+
+
+def test_flatten_rule_slots_reads_a_v2_option_unit_with_its_chosen_branch():
+    catalog = _industry_grounding()
+    model = response_model_for_v2(catalog)
+    parsed = model.model_validate(_filled_example(catalog))
+    unit = parsed.groundings[0].options[0]  # type: ignore[attr-defined]
+    applied = flatten_rule_slots(catalog, unit)
+    assert [rule.rule_id for rule in applied] == ["IGR-E1", "IGR-M1"]
+    assert applied[-1].outcome == "chosen"
+
+
+def test_v1_and_v2_dispatchers_never_share_a_model():
+    """Separate caches: a v2 catalog fed to the v1 entry point must not leak a
+    v1 shape back through the v2 one, or vice versa."""
+    catalog = _industry_grounding()
+    v2_model = response_model_for_v2(catalog)
+    assert "record_id" in json.dumps(v2_model.model_json_schema())
+    # The same catalog through the v1 dispatcher builds the phrase-keyed shape.
+    from core.models.extraction_schemas.catalog_wire_schema import response_model_for
+
+    v1_model = response_model_for(catalog)
+    assert v1_model is not v2_model
+    assert "record_id" not in json.dumps(v1_model.model_json_schema())

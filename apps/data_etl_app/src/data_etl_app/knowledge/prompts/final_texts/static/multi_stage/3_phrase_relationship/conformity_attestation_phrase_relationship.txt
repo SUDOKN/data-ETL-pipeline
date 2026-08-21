@@ -1,31 +1,47 @@
-You are given the text scraped from a manufacturer's website and the name of the manufacturer in question. Then a list of phrases extracted from that text, fenced between `<<<PHRASES` and `PHRASES>>>`. All of these are provided at the very bottom.
+You are given the name of a manufacturer, text scraped from its website, and a list of phrases fenced between <<<PHRASES and PHRASES>>>. All of these are provided at the very bottom. The text holds the site's pages one after another, each preceded by that page's URL. The part of a URL after the domain is that page's path, and the wording in a path often works like a heading for its page.
 
 ### Your job:
-For each phrase, work in two steps.
+Produce one record per given phrase. Work each phrase on its own: never compare phrases with each other, and never skip an occurrence because it also sits inside a longer phrase from the list. For each phrase, work in two steps.
 
-**First, collect the contexts.** Find every place the phrase is mentioned in the scraped text and collect the surrounding context of each one. Quote the words of the text verbatim for what each mention says, rather than paraphrasing them unless they mention company names in which case you must filter them out according to the mentioned rules below. Quote enough of the sentence to keep every qualifier the text attaches to the phrase, and everything the sentence binds the phrase to, in the same clause. The record of every mention should focus on, but not limited to, - how the mention sits in the provided text, as best the text shows: a heading, a navigation or menu item, an entry in a list, a prose sentence, a quotation or testimonial from someone, a news or blog item, a job posting, footer, boilerplate, or something else.
-- Whose words they are, as the text attributes them: the website's own copy, a named or unnamed customer, a publication, another party.
-- Where the text places a mention anywhere other than the present — a completed or past project, a plan or aspiration, a denial — carry that placement in the text's own words. Present-tense activity needs no note.
+First, collect the mentions.
 
-These areas are the focus, not the limit: whatever else the text itself offers about the phrase belongs in the record too, even when it fits none of them.
+Find every occurrence of the phrase in the text. A span of text is an occurrence when its words match the phrase's words in the same order and differ only by casing, spacing or hyphenation, punctuation, '&' versus 'and', spelling, or inflection — and the span's first and last words are whole words in the text, not parts of longer words. Exception: when every letter of the phrase is a capital, the letters of an occurrence must match its case exactly. Record occurrences even where the phrase is used in a sense other than the expected one — the quotation will carry the sense.
 
-Keep the contexts distinct: where several mentions say the same thing about the phrase, cover it once and note that it recurs; where mentions differ, carry each of them. The contexts may not be coherent or aligned with each other — preserve them as they stand. Collect them in enough detail to verify the phrase later on without needing the original text.
+Record each mention as an object with three keys:
 
-**Then, describe the relationship.** From the contexts you collected and the overall text, describe the relationship between the manufacturer in question and the phrase — what it does with or in relation to it. If the text has no direct mentions or states no clear relationship, say so explicitly rather than inferring one.
+"form": the occurrence's wording exactly as the text has it.
+"page": the path of the page it sits on — the part of the page's URL after the domain (use '/' for the homepage). Never include the domain. If the given text does not show which page an occurrence sits on — the text may begin mid-page, before any URL line — use 'unknown' rather than guessing. An occurrence inside the path itself is a mention too; its account should say it appears in the page's address.
+"account": what this mention says, quoting the words of the text verbatim. Quote enough of the sentence to keep every qualifier the text attaches to the phrase, and everything the sentence binds the phrase to, in the same clause. The account should focus on, but is not limited to:
+how the mention sits in the text, as best the text shows: a heading, a navigation or menu item, an entry in a list, a prose sentence, a quotation or testimonial from someone, a news or blog item, a job posting, footer, boilerplate, or something else.
+whose words they are, as the text attributes them: the website's own copy, a named or unnamed customer, a publication, another party.
+where the text places a mention anywhere other than the present — a completed or past project, a plan or aspiration, a denial — carry that placement in the text's own words. Present-tense activity needs no note.
+These areas are the focus, not the limit: whatever else the text itself offers about the phrase belongs in the account too, even when it fits none of them.
 
-### Some rules on reporting:
-- Report on each phrase the way a neutral journalist would: say what the text says, attribute every statement to whoever the text attributes it to, and draw no conclusion the text does not state.
-- Do not emit the name of the manufacturer in your output anywhere, not even inside your quotations. Anonymize it by using general third person references like "the manufacturer" as substitute.
+Keep the mentions distinct: where several occurrences say the same thing about the phrase, cover it once and note that it recurs; where they differ, carry each of them. The mentions may not be coherent or aligned with each other — preserve them as they stand. Collect them in enough detail that the phrase can be verified later without the original text.
+
+Spend a record's room top-down: prose statements first, then headings, then list entries, then navigation, footer, and boilerplate. Once a record holds about eight distinct mentions, stop adding new ones; close with one final mention whose "account" notes in general terms where else the phrase recurs — no counts needed — with the recurring wording as its "form" and one of the pages it recurs on as its "page".
+
+Then, write the synthesis.
+
+From the mentions you recorded — and from nothing else — state what the manufacturer does with or in relation to the phrase. Assert nothing the recorded mentions do not jointly support. If, anywhere in the text, you find something that belongs in the synthesis, record it as a mention first; the synthesis may not rest on anything outside the record's "mentions" array. If the text holds no occurrence of the phrase, leave "mentions" empty and let the synthesis state that the phrase was not found in the text.
+
+### Rules on reporting:
+Report the way a court reporter would: record what the text says, attribute every statement to whoever the text attributes it to, and add nothing of your own.
+Do not emit the manufacturer's name anywhere in your output. Where it would appear inside a quotation, put '[the manufacturer]' in its place — the brackets stay visible, so the edit shows. Treat obvious derivatives of the name the same way: the name without legal endings, its initials, its web domain. Other companies' names are quoted as written and attributed as the text attributes them.
   
-The manufacturer's name must be omitted everywhere. Before you return your answer, read back every description you wrote and check that no mention of the manufacturer's name survived anywhere in it.
+Before you return your answer, read back every string you wrote and check that no mention of the manufacturer's name survived anywhere in it.
 
 ### Output:
-Return a JSON object with a single key "relationships" whose value is an array of objects, each with keys "phrase" and "description". Include every phrase you were given, exactly once, copied verbatim. Each "description" is one string holding the mention records first, then the relationship, laid out like this — one "Mention:" per distinct mention, then a final "Relationship:":
+Return a JSON object with a single key "records" whose value is an array of objects — one per given phrase, each phrase included exactly once, copied verbatim, in any order:
 
 ```json
-{
-  "relationships": [
-    {"phrase": "<a phrase copied verbatim from the given phrases>", "description": "<the collected mentions, quoting the text verbatim with manufacturer's name anonymized; then the relationship between the manufacturer in question and the phrase, or that the text has no direct mentions or/and states no clear relationship>"}
-  ]
-}
+{"records": [
+  {"phrase": "<a phrase copied verbatim from the given phrases>",
+   "mentions": [
+     {"form": "<the occurrence's wording as the text has it>",
+      "page": "<path after the domain>",
+      "account": "<what this mention says, quoting the text verbatim with the manufacturer's name replaced by '[the manufacturer]'>"}
+   ],
+   "synthesis": "<what the manufacturer does with or in relation to the phrase, resting only on the mentions above; or that the phrase was not found in the text>"}
+]}
 ```

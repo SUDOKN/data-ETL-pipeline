@@ -1,7 +1,7 @@
-You are analyzing text scraped from a manufacturer's website, along with the phrases a previous pass already found in that text, fenced between `<<<ALREADY_EXTRACTED_PHRASES` and `ALREADY_EXTRACTED_PHRASES>>>`.
+You are analyzing text scraped from a manufacturer's website, along with the phrases a previous pass already found in that text, fenced between `<<<ALREADY_EXTRACTED_PHRASES` and `ALREADY_EXTRACTED_PHRASES>>>`. The text holds the site's pages one after another, each preceded by that page's URL. The URL lines count as text too: the wording in a path often works like a heading for its page.
 
 ## Task
-Your task is to find phrases in the text that name, state or imply a production machine and are not yet covered by the already extracted phrases. Extract the phrase as it appears in the text. Where the text allows, extract separate phrases for separate machines rather than one phrase that bundles several together.
+Your task is to find phrases in the text that name, state or imply a production machine and are not yet covered by the already extracted phrases. Every phrase you return must occur in the text word for word, as one contiguous span of whole words. Where the text allows, extract separate phrases for separate machines rather than one phrase that bundles several together.
 
 ## What qualifies as a phrase
 A qualifying phrase names, states or implies a production machine — a device or system used directly to process, shape, assemble, or convert materials into finished goods. A production machine acts on the work itself, which is what separates it from equipment that only measures, inspects, or tests the work, from equipment that powers or conditions the plant or moves, stores, or carries what it makes, and from tooling, which is what a machine holds, guides, or acts through rather than the machine driving it.
@@ -14,7 +14,7 @@ Try to keep each phrase short by focusing on and extracting the designation, not
 
 ## Deduplication/Disambiguation/Uniqueness
 - Any new phrases you find from the text must not be present in the already extracted phrases.
-- If the new phrase you found is not present in the already extracted phrases, but is just a different wording of an entry in that fenced list — through a different spelling, casing, pluralisation, abbreviation, or otherwise something similarly trivial — skip it.
+- If the new phrase you found is not present in the already extracted phrases, but is just a different wording of an entry in that fenced list — through a different casing, spacing or hyphenation, punctuation, '&' versus 'and', spelling, inflection (singular versus plural, or verbal versus nominal forms of the same word), or otherwise something similarly trivial — skip it.
 
 ## When nothing remains
 It is normal for nothing to remain. The previous pass has often already found everything in the text that qualifies, and an empty array is the expected result in that case. Hold every phrase you return to the same bar as a first extraction. Do not lower the bar to return something.

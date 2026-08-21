@@ -43,3 +43,21 @@ class ScreeningVerdict(BaseModel):
 
 
 LiveScreeningResults = dict[str, ScreeningVerdict]  # phrase -> verdict
+
+
+# --- v2 (pipeline v2): per-candidate screening ------------------------------
+#
+# Candidates are SUPPLIED by grounding, so there is no identified_entity and no
+# no-candidate branch: every candidate a record carries gets judged, and a
+# record with no candidates is never sent. ``passed`` stays a validated cache
+# of ``passed_implied_by`` for the same reason as v1 — every downstream reader
+# wants the answer rather than the derivation.
+
+
+class CandidateScreeningVerdict(BaseModel):
+    passed: bool
+    applied_rules: list[AppliedRule]
+
+
+# record_id -> {candidate -> verdict}: one judgment per supplied candidate.
+RecordScreeningResults = dict[str, dict[str, CandidateScreeningVerdict]]

@@ -13,6 +13,10 @@ STAGE_RELATIONSHIP_SCREENING = "phrase_relationship_screening"
 STAGE_INITIAL_GROUNDING = "phrase_initial_grounding"
 STAGE_RECURSIVE_GROUNDING = "phrase_recursive_grounding"
 STAGE_FREEHAND_GROUNDING = "phrase_freehand_grounding"
+# Pipeline v2's out-of-vocabulary discovery pass: after in-vocab grounding, it
+# identifies what the vocabulary misses. Concept fields only — keywords have no
+# vocabulary, so their single grounding pass is freehand.
+STAGE_OOV_GROUNDING = "phrase_oov_grounding"
 # Whole-text yes/no questions (is_manufacturer etc.). Structurally these are
 # screening applied to the site instead of to a phrase — one candidate entity
 # judged through a chained conjunction — so they share the screening kinds

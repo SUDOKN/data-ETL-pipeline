@@ -56,6 +56,7 @@ from core.models.rule_catalog import (
     STAGE_BINARY_CLASSIFICATION,
     STAGE_FREEHAND_GROUNDING,
     STAGE_INITIAL_GROUNDING,
+    STAGE_OOV_GROUNDING,
     STAGE_RECURSIVE_GROUNDING,
     STAGE_RELATIONSHIP_SCREENING,
     RuleCatalog,
@@ -80,6 +81,10 @@ RESERVED_WIRE_FIELD_NAMES = frozenset(
         "confidence",
         "guards",
         "chosen",
+        # v2 (record-keyed) wire names.
+        "record_id",
+        "candidate",
+        "candidates",
     }
 )
 
@@ -515,11 +520,14 @@ def build_binary_classification_response_model(
     Its two stage-fixed fields live on ``BinaryWireReport``; only the rule slots
     are added here.
     """
-    return build_entry_model(
-        catalog,
-        name=f"{_model_prefix(catalog)}Report",
-        own_fields={},
-        base=BinaryWireReport,
+    return cast(
+        type[BinaryWireReport],
+        build_entry_model(
+            catalog,
+            name=f"{_model_prefix(catalog)}Report",
+            own_fields={},
+            base=BinaryWireReport,
+        ),
     )
 
 
@@ -586,3 +594,135 @@ def binary_classification_response_model(
     catalog: RuleCatalog,
 ) -> type[BinaryWireReport]:
     return cast(type[BinaryWireReport], response_model_for(catalog))
+
+
+# ---------------------------------------------------------------------------
+# v2 (pipeline v2, PIPELINE_V2_PLAN.md): record-keyed response models
+# ---------------------------------------------------------------------------
+#
+# v2 stages key every entry by the masked record_id instead of the phrase, and
+# the declination is structural: an empty unit list plus a required-nullable
+# entry-level ``explanation`` replaces the sentinel arm. Screening becomes
+# per-candidate — candidates are SUPPLIED by grounding, so the no_candidate
+# branch and ``identified_entity`` have no v2 counterpart. The v1 builders
+# above serve the v1 catalogs until the per-stage cutover retires them; the
+# two dispatchers keep separate caches so neither can ever hand back the
+# other's shape for a same-named catalog.
+
+
+def build_screening_response_model_v2(
+    catalog: RuleCatalog,
+) -> type[ScreeningWireResponse]:
+    """v2 screening: one entry per record, one judged unit per supplied candidate.
+
+    No union: a record with no candidates is never sent, and every sent
+    candidate is judged — the hold enforces both axes at parse time, since
+    strict mode cannot pin a response to the request's own record and candidate
+    sets.
+    """
+    prefix = _model_prefix(catalog)
+    candidate = build_entry_model(
+        catalog,
+        name=f"{prefix}JudgedCandidateV2",
+        own_fields={"candidate": (str, ...)},
+    )
+    entry = create_model(
+        f"{prefix}RecordEntryV2",
+        __base__=WireEntry,
+        record_id=(str, ...),
+        candidates=(list[candidate], ...),  # type: ignore[valid-type]
+    )
+    return create_model(
+        f"{prefix}ResponseV2",
+        __base__=ScreeningWireResponse,
+        screenings=(list[entry], ...),  # type: ignore[valid-type]
+    )
+
+
+def build_record_grounding_response_model(
+    catalog: RuleCatalog, *, unit_key: str, units_key: str
+) -> type[GroundingWireResponse]:
+    """v2 grounding (in-vocab, recursive, OOV, freehand): record-keyed entries.
+
+    ``explanation`` is required-nullable at the entry level and is meaningful
+    exactly when the unit list is empty — the structural declination that
+    replaced the sentinel. Strict mode cannot express that correlation, so the
+    parse side enforces it; the schema's contribution is that the key cannot be
+    omitted, which is what lets the empty case never be silent.
+    """
+    prefix = _model_prefix(catalog)
+    unit = build_entry_model(
+        catalog,
+        name=f"{prefix}{unit_key.capitalize()}UnitV2",
+        own_fields={unit_key: (str, ...)},
+    )
+    entry = create_model(
+        f"{prefix}RecordEntryV2",
+        __base__=WireEntry,
+        record_id=(str, ...),
+        **{units_key: (list[unit], ...)},  # type: ignore[arg-type]
+        explanation=(Optional[str], ...),
+    )
+    return create_model(
+        f"{prefix}ResponseV2",
+        __base__=GroundingWireResponse,
+        groundings=(list[entry], ...),  # type: ignore[valid-type]
+    )
+
+
+def _build_option_grounding_v2(catalog: RuleCatalog) -> type[GroundingWireResponse]:
+    return build_record_grounding_response_model(
+        catalog, unit_key="option", units_key="options"
+    )
+
+
+def _build_candidate_grounding_v2(catalog: RuleCatalog) -> type[GroundingWireResponse]:
+    return build_record_grounding_response_model(
+        catalog, unit_key="candidate", units_key="candidates"
+    )
+
+
+_RESPONSE_MODEL_BUILDER_BY_STAGE_V2 = {
+    STAGE_RELATIONSHIP_SCREENING: build_screening_response_model_v2,
+    STAGE_INITIAL_GROUNDING: _build_option_grounding_v2,
+    STAGE_RECURSIVE_GROUNDING: _build_option_grounding_v2,
+    STAGE_OOV_GROUNDING: _build_candidate_grounding_v2,
+    STAGE_FREEHAND_GROUNDING: _build_candidate_grounding_v2,
+}
+
+_RESPONSE_MODEL_CACHE_V2: dict[tuple[str, str], type[BaseModel]] = {}
+
+
+def response_model_for_v2(catalog: RuleCatalog) -> type[BaseModel]:
+    """The v2 wire model for ``catalog``'s stage, built once per catalog version."""
+    key = (catalog.prompt_name, catalog.catalog_version)
+    cached = _RESPONSE_MODEL_CACHE_V2.get(key)
+    if cached is not None:
+        return cached
+
+    builder = _RESPONSE_MODEL_BUILDER_BY_STAGE_V2.get(catalog.stage)
+    if builder is None:
+        raise ValueError(
+            f"{catalog.prompt_name}: stage {catalog.stage!r} has no v2 wire schema "
+            f"builder. Known stages: {sorted(_RESPONSE_MODEL_BUILDER_BY_STAGE_V2)}"
+        )
+
+    model = builder(catalog)
+    _RESPONSE_MODEL_CACHE_V2[key] = model
+    return model
+
+
+def response_format_for_v2(catalog: RuleCatalog) -> dict:
+    """``catalog``'s v2 wire model as an OpenAI strict ``response_format`` dict."""
+    return build_gpt_response_format(
+        response_model_for_v2(catalog),
+        name=f"{catalog.prompt_name}_result",
+    )
+
+
+def screening_response_model_v2(catalog: RuleCatalog) -> type[ScreeningWireResponse]:
+    return cast(type[ScreeningWireResponse], response_model_for_v2(catalog))
+
+
+def grounding_response_model_v2(catalog: RuleCatalog) -> type[GroundingWireResponse]:
+    return cast(type[GroundingWireResponse], response_model_for_v2(catalog))

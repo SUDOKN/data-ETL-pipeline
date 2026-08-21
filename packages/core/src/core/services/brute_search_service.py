@@ -9,6 +9,7 @@ logger = logging.getLogger(__name__)
 def word_regex(keyword: str):
     # (?<!\w) asserts that the preceding character (if any) is not a word character.
     # (?=\W|$) asserts that the following character is either a non-word character or the end of the string.
+    # TODO: check if this regex correctly handles all word boundaries
     return r"(?<!\w)" + re.escape(keyword) + r"(?=\W|$)"
 
 

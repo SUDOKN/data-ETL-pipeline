@@ -909,6 +909,157 @@ EXAMPLE_BUILDER_BY_STAGE = {
 }
 
 
+# --- v2 output examples (pipeline v2, PIPELINE_V2_PLAN.md) -------------------
+#
+# UNWIRED: ``EXAMPLE_BUILDER_BY_STAGE`` above still serves the v1 render path;
+# the per-stage cutover re-points it to these. They live here rather than in the
+# render harness so the example/schema agreement tests exercise the same
+# builders the cutover will ship.
+#
+# Entries are record-keyed, and populated grounding entries carry an explicit
+# ``"explanation": null`` — the v2 wire schema declares the field
+# required-nullable (strict mode forbids omission), so an example omitting it
+# would teach a shape the decoder cannot emit.
+
+
+def _screening_example_v2(catalog: RuleCatalog) -> dict[str, Any]:
+    """One entry per record, one judged unit per supplied candidate. Scenarios:
+    qualified / a two-candidate record where one failed / ruled out by a guard —
+    the same shapes as v1 minus the no-candidate branch, which has no v2
+    counterpart (a record with no candidates is never sent)."""
+
+    def candidate(label: str, *, mode: str, guard: Optional[str] = None) -> dict[str, Any]:
+        return {
+            "candidate": label,
+            **_example_rule_slots(catalog, mode=mode, guard=guard),
+        }
+
+    entries: list[dict[str, Any]] = [
+        {
+            "record_id": "<a record id copied exactly as given>",
+            "candidates": [candidate("<the candidate that qualified>", mode=_HELD)],
+        },
+        {
+            "record_id": "<another record's id>",
+            "candidates": [
+                candidate("<a candidate that qualified>", mode=_HELD),
+                candidate(
+                    "<a second candidate of the same record, which did not qualify>",
+                    mode=_DID_NOT_HOLD,
+                ),
+            ],
+        },
+    ]
+    guard = _guard_placeholder(catalog)
+    if guard is not None:
+        entries.append(
+            {
+                "record_id": "<another record's id>",
+                "candidates": [
+                    candidate(
+                        "<a candidate every condition held for, but which a guard ruled out>",
+                        mode=_HELD,
+                        guard=guard,
+                    )
+                ],
+            }
+        )
+    return {"screenings": entries}
+
+
+def _record_grounding_example_v2(
+    catalog: RuleCatalog,
+    *,
+    units_key: str,
+    unit_key: str,
+    first_label: str,
+    second_label: str,
+    none_why: str,
+) -> dict[str, Any]:
+    """Single / several / none, record-keyed. The none entry is the structural
+    declination: empty units and a non-null explanation."""
+    ladder = _ladder_placeholder(catalog)
+
+    def unit(label: str) -> dict[str, Any]:
+        return {
+            unit_key: label,
+            **_example_rule_slots(catalog, mode=_HELD, branch=ladder),
+        }
+
+    return {
+        "groundings": [
+            {
+                "record_id": "<a record id copied exactly as given>",
+                units_key: [unit(first_label)],
+                "explanation": None,
+            },
+            {
+                "record_id": "<another record's id — one from which you identified more than one>",
+                units_key: [unit(first_label), unit(second_label)],
+                "explanation": None,
+            },
+            {
+                "record_id": "<another record's id — one that yields none>",
+                units_key: [],
+                "explanation": none_why,
+            },
+        ]
+    }
+
+
+def _option_grounding_example_v2(catalog: RuleCatalog) -> dict[str, Any]:
+    return _record_grounding_example_v2(
+        catalog,
+        units_key="options",
+        unit_key="option",
+        first_label="<an option, copied verbatim from the outline>",
+        second_label="<a second option for the same record, copied verbatim likewise>",
+        none_why=f"<why the record yields no candidate, citing {catalog.evidence_source}>",
+    )
+
+
+def _recursive_grounding_example_v2(catalog: RuleCatalog) -> dict[str, Any]:
+    return _record_grounding_example_v2(
+        catalog,
+        units_key="options",
+        unit_key="option",
+        first_label='<an option, copied verbatim from its "name" field, or a sibling type you proposed>',
+        second_label="<a second option for the same record, copied verbatim likewise>",
+        none_why="<why nothing more specific than {{parent_entity}} could be identified>",
+    )
+
+
+def _oov_grounding_example_v2(catalog: RuleCatalog) -> dict[str, Any]:
+    return _record_grounding_example_v2(
+        catalog,
+        units_key="candidates",
+        unit_key="candidate",
+        first_label="<the {{entity_noun}} you named, which the options do not cover>",
+        second_label="<a second, distinct {{entity_noun}} named from the same record>",
+        none_why=f"<why nothing remains for the record, citing {catalog.evidence_source}>",
+    )
+
+
+def _freehand_grounding_example_v2(catalog: RuleCatalog) -> dict[str, Any]:
+    return _record_grounding_example_v2(
+        catalog,
+        units_key="candidates",
+        unit_key="candidate",
+        first_label="<the {{entity_noun}} you named>",
+        second_label="<a second, distinct {{entity_noun}} named from the same record>",
+        none_why=f"<why the record yields no {{{{entity_noun}}}}, citing {catalog.evidence_source}>",
+    )
+
+
+EXAMPLE_BUILDER_BY_STAGE_V2 = {
+    "phrase_relationship_screening": _screening_example_v2,
+    "phrase_initial_grounding": _option_grounding_example_v2,
+    "phrase_recursive_grounding": _recursive_grounding_example_v2,
+    "phrase_oov_grounding": _oov_grounding_example_v2,
+    "phrase_freehand_grounding": _freehand_grounding_example_v2,
+}
+
+
 # Which nodes print on one line. The model copies the example's FORMATTING as well
 # as its shape — an example with one-line rule objects came back with one-line rule
 # objects — so this is not cosmetics, it sets the shape of every completion the

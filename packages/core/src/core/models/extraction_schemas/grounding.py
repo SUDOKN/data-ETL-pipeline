@@ -1,8 +1,8 @@
 from __future__ import annotations
 
-from typing import Literal
+from typing import Literal, Optional
 
-from pydantic import BaseModel, ConfigDict
+from pydantic import BaseModel, ConfigDict, model_validator
 
 from core.models.extraction_schemas.applied_rule import AppliedRule
 
@@ -49,6 +49,48 @@ TagToAppliedRulesMap = dict[str, list[AppliedRule]]
 PhraseToTagAndRulesMap = dict[
     str, TagToAppliedRulesMap  # { phrase -> {tag: [applied_rule, ...]}, ...}
 ]  # The tags phrases can be linked to, with the rules that justified each link.
+
+# v2 (pipeline v2): the same shape keyed by the masked record_id instead of the
+# phrase. Structurally identical; a separate name because which identity the
+# outer key carries is not recoverable from the type, and v2 stage results are
+# joined through the id→phrase map the masked relationship stats persist.
+RecordToTagAndRulesMap = dict[
+    str, TagToAppliedRulesMap  # { record_id -> {tag: [applied_rule, ...]}, ...}
+]
+
+
+class RecordGroundingEntry(BaseModel):
+    """One record's stored grounding result in v2: its tags, or its declination.
+
+    The wire's structural declination (empty units + required-nullable
+    explanation) survives INTO storage — v1's ``no_candidate_explanation``
+    exists because ~45% of rejections carried no recorded reason, and a stored
+    shape that dropped the explanation would reopen that hole one stage over.
+    The validator pins the correlation, so a stored entry can never read as
+    silently declined or as explained-away tags.
+    """
+
+    tags: TagToAppliedRulesMap
+    # Non-null exactly when ``tags`` is empty: why the record yields nothing.
+    explanation: Optional[str] = None
+
+    @model_validator(mode="after")
+    def check_declination_correlation(self) -> "RecordGroundingEntry":
+        if not self.tags and not (self.explanation and self.explanation.strip()):
+            raise ValueError(
+                "a record with no tags must carry its declination explanation"
+            )
+        if self.tags and self.explanation is not None:
+            raise ValueError(
+                "a record with tags carries no explanation slot; the rules on "
+                "each tag are the record's reasoning"
+            )
+        return self
+
+
+# record_id -> its grounding entry: the v2 stored shape for in-vocab, OOV and
+# freehand grounding alike.
+RecordGroundingResults = dict[str, RecordGroundingEntry]
 
 # Stage 5 — the same links, regrouped tag-major so a descent can be planned per
 # tag. Structurally identical to the two above; kept as separate names because

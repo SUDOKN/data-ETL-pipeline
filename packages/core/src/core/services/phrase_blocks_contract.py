@@ -327,3 +327,154 @@ def hold_response_to_sent_phrases(
         logger.warning(message)
 
     return reconciliation.result
+
+
+# ---------------------------------------------------------------------------
+# v2 (pipeline v2, PIPELINE_V2_PLAN.md): record blocks
+# ---------------------------------------------------------------------------
+#
+# Downstream of the relationship stage, v2 requests carry RECORDS instead of
+# phrase→summary pairs: the id list as a bare array, then the id → record map.
+# Two blocks for the same reason as the phrase pair above — naming the keys
+# alone first fixes the referent — and rendered from one argument so the two
+# can never drift; the reader raises when they do anyway, because a drifted
+# pair means the request was not built by ``render_record_blocks``.
+#
+# Holding is EXACT — no reconciler, no normalization. Record ids are
+# machine-minted ASCII, so a response key that is not exactly a sent id is
+# corruption, not echo drift; matching it "helpfully" onto a near id would be
+# the silent-neighbour failure the content-derived id exists to rule out.
+#
+# The records payload is MULTI-LINE (one record per top-level entry, via the
+# same separators the summaries block uses) and read back by a lazy fenced
+# match rather than a one-line anchor. That is safe against forgery for the
+# same reason the payload cannot break the fence: every newline inside a
+# record's own text is JSON-escaped, so the physical lines between the fences
+# are exactly the ones json.dumps wrote, and none of them can begin with a
+# fence token.
+
+RECORD_IDS_OPEN = "<<<RECORD_IDS"
+RECORD_IDS_CLOSE = "RECORD_IDS>>>"
+RECORDS_OPEN = "<<<RECORDS"
+RECORDS_CLOSE = "RECORDS>>>"
+
+_RECORD_IDS_RE = re.compile(
+    rf"^[ \t]*{re.escape(RECORD_IDS_OPEN)}\n(\[[^\n]*\])\n[ \t]*{re.escape(RECORD_IDS_CLOSE)}$",
+    re.MULTILINE,
+)
+# Lazy across lines: the payload spans one line per top-level record. `<<<RECORDS`
+# is not a prefix of `<<<RECORD_IDS` (nor the reverse: the 10th character differs,
+# `_` vs newline), so neither reader can take the other's fence.
+_RECORDS_RE = re.compile(
+    rf"^[ \t]*{re.escape(RECORDS_OPEN)}\n(.*?)\n[ \t]*{re.escape(RECORDS_CLOSE)}$",
+    re.MULTILINE | re.DOTALL,
+)
+
+
+def render_record_ids_block(record_ids: Iterable[str]) -> str:
+    """The block naming which records the model is being asked about."""
+    payload = json.dumps(list(record_ids), ensure_ascii=False)
+    return f"{RECORD_IDS_OPEN}\n{payload}\n{RECORD_IDS_CLOSE}"
+
+
+def render_records_block(records: dict) -> str:
+    """The id → record map as a fenced JSON block, one top-level entry per line.
+
+    ``ensure_ascii=False`` for the record CONTENT — mention forms and accounts
+    carry the site's own text, and showing the model escapes of it is the
+    corruption chain the phrases block already closed.
+    """
+    payload = json.dumps(records, separators=_SUMMARY_SEPARATORS, ensure_ascii=False)
+    return f"{RECORDS_OPEN}\n{payload}\n{RECORDS_CLOSE}"
+
+
+def render_record_blocks(records: dict) -> str:
+    """Both blocks, ids first, from the one map they both describe."""
+    return f"{render_record_ids_block(records)}\n\n{render_records_block(records)}"
+
+
+def _one_fenced_payload(
+    pattern: re.Pattern[str], user_message: str, what: str
+) -> Optional[str]:
+    payloads = pattern.findall(user_message)
+    if not payloads:
+        return None
+    if len(payloads) > 1:
+        raise ValueError(
+            f"user message carries {len(payloads)} {what} blocks; "
+            "exactly one is written per request"
+        )
+    return payloads[0]
+
+
+def sent_record_ids_from_user_message(user_message: str) -> Optional[list[str]]:
+    """The record ids this request asked about, or None when it carried no block."""
+    payload = _one_fenced_payload(_RECORD_IDS_RE, user_message, "record-ids")
+    return None if payload is None else json.loads(payload)
+
+
+def sent_records_from_user_message(user_message: str) -> Optional[dict]:
+    """The full id → record payload this request carried, or None without one.
+
+    This is what candidate-axis holds read: what a screening request asked
+    about each record (its candidates) is part of the request document itself.
+    """
+    payload = _one_fenced_payload(_RECORDS_RE, user_message, "records")
+    return None if payload is None else json.loads(payload)
+
+
+class MissingResponseRecords(ValueError):
+    """A response left sent records unanswered (or answered under ids that were
+    never sent) and the stage treats that as a failed response."""
+
+
+def hold_response_to_sent_record_ids(
+    *,
+    user_message: str,
+    response_by_record_id: dict[str, V],
+    where: str,
+    on_missing: Literal["raise", "drop"],
+) -> dict[str, V]:
+    """Validate a parsed record-keyed response against its own request, exactly.
+
+    Returns the response in sent order. An unknown response id RAISES regardless
+    of ``on_missing`` — for phrases an extra key is echo drift and gets dropped,
+    but an id nobody sent is a fabricated answer and dropping it would hide the
+    fabrication. Missing ids raise or thin per the caller's policy, mirroring
+    the phrase hold. Also raises when the request's own two blocks disagree,
+    which means the request was not built by ``render_record_blocks``.
+    """
+    sent_ids = sent_record_ids_from_user_message(user_message)
+    if sent_ids is None:
+        return response_by_record_id
+
+    sent_records = sent_records_from_user_message(user_message)
+    if sent_records is not None and set(sent_records) != set(sent_ids):
+        raise ValueError(
+            f"{where}: the request's record-ids block and records block disagree "
+            f"({sorted(set(sent_ids) ^ set(sent_records))}); requests are built "
+            f"from one map, so this request is malformed"
+        )
+
+    unknown = [rid for rid in response_by_record_id if rid not in set(sent_ids)]
+    if unknown:
+        raise MissingResponseRecords(
+            f"{where}: response carries record id(s) that were never sent: "
+            f"{unknown}"
+        )
+
+    missing = [rid for rid in sent_ids if rid not in response_by_record_id]
+    if missing:
+        message = (
+            f"{where}: response answered {len(response_by_record_id)} of "
+            f"{len(sent_ids)} sent records; nothing came back for {missing}"
+        )
+        if on_missing == "raise":
+            raise MissingResponseRecords(message)
+        logger.warning(message)
+
+    return {
+        rid: response_by_record_id[rid]
+        for rid in sent_ids
+        if rid in response_by_record_id
+    }

@@ -44,6 +44,14 @@ class PipelineStage(StrEnum):
     relationship = "relationship"
     screening = "screening"
     initial_grounding = "initial_grounding"
+    # v2's out-of-vocabulary discovery pass (concept fields, after in-vocab
+    # grounding). No v1 chain contains it; the member exists so v2 nodes and
+    # toggles can name it. Its STAGE_REQUEST_ID_TOKEN entry arrives WITH the v2
+    # node in phase 2 — the tripwire holds every token to a real builder that
+    # interpolates it, and there is none yet. NOTE: the ranks below still
+    # encode the v1 order (screening before grounding); the v2 reorder lands
+    # with the phase-2 orchestration cutover.
+    oov_grounding = "oov_grounding"
     freehand_grounding = "freehand_grounding"
     iterative_grounding = "iterative_grounding"
     single_stage_extraction = "single_stage_extraction"
@@ -62,6 +70,7 @@ _STAGE_RANK: dict[PipelineStage, int] = {
     PipelineStage.relationship: 3,
     PipelineStage.screening: 4,
     PipelineStage.initial_grounding: 5,
+    PipelineStage.oov_grounding: 5,
     PipelineStage.freehand_grounding: 5,
     PipelineStage.iterative_grounding: 6,
     PipelineStage.reconcile: 7,
