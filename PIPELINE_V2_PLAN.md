@@ -120,13 +120,28 @@ entities forward").
   shape the descent machinery consumes, record ids where phrases were),
   `candidates_that_passed` (one qualifying record suffices, as v1). 8 tests;
   suite 1241; pyright 0.
-- **Next action:** user reviews; then 2.9 THE FLIP — node classes re-point to
-  v2 services, bundles/embedding (incl. F12 upstream-content digest), the
-  descent loop + reconcile nodes on the derivations, v2 orchestration order
-  (search → relationship → in-vocab → OOV → screening → recursive), v1 paths
-  deleted, v1 tests migrated, the `_v2` catalogs/skeletons/builders promoted
-  to canonical, `oov_grounding` request-id token + node. Biggest remaining
-  chunk; then Phase 3 observability and the Phase 4 measurement gate.
+- **2.9 SLICES A+B DONE (2026-08-20).** A — v1 GT instrument RETIRED (user
+  fork decision, mirrors X2): routes unwired from main, 25 files deleted
+  (stage_blocks, run_identity, inflation, submission validation, gt_fold, the
+  4 app GT services, db model, route, 15 test files incl. the 4 route tests),
+  seeder + deletability guard + conftest fixtures unwired; KEPT `audits.py` +
+  `rule_tree.py` + their tests as the Phase-5 rebuild's primitives; binary GT
+  untouched. 224 tests retired with the code. B — catalogs/skeletons PROMOTED
+  to canonical (21 v2 + 3 binary; 18 v1 phrase catalogs deleted incl. the two
+  split product freehand ones), `EXAMPLE_BUILDER_BY_STAGE` +
+  `_RESPONSE_MODEL_BUILDER_BY_STAGE` re-pointed at v2 builders (v1 builder
+  FUNCTIONS remain until slice C deletes the v1 node services), OOV stage in
+  skeleton + S3-dir maps, not_triggered gloss reworded (watch item closed).
+  Tests migrated: prompt-assembly suite to v2 shapes; parse-validation slimmed
+  to catalog resolution (incl. merged-product-catalog + oov coverage);
+  response-phrase-validation REWRITTEN against the v2 group-parse glue — the
+  capped-recording/retry-cap/fabricated-id/candidate-axis coverage the sibling
+  services lacked; v1-bound freehand batching test deleted. Real assembler
+  renders all 24 prompts. Suite 987; pyright 0.
+- **Next action:** user reviews A+B; then 2.9 slice C — bundles/embedding
+  (F12 digest), OOV node + request-id token, node re-pointing, descent loop +
+  reconcile on the derivations, orchestration reorder, Manufacturer→V2 typing,
+  v1 service/type deletion + dispatcher collapse, minimal dump adaptation.
 - **Blockers:** none.
 
 *Update this block at every substep completion. Journal rows are append-only, at the
@@ -269,6 +284,7 @@ special-casing (v2 GT), `no_candidate` branch, `identified_entity`.
 | 2026-08-20 | Plan approved in chat after full design review; fork ledger F1–F14 locked; this file created. Phase 0.1 started. |
 | 2026-08-20 | 0.1 built: industry statics copy-edited (dedup typo/dashes, mention key `record`→`account` per F14, page-unknown fallback, JSON example comma, placeholders stripped per F13 — context-append order already matches); propagated to all six files per stage, relationship md5-verified identical. Recursive-Task harmonization question left for the user. |
 | 2026-08-20 | 0.1 user-approved; recursive-Task verbatim-span sentence propagated to all six recursive files. 0.2 built: wire `PhraseMentionEntry`/`PhraseRecordEntry`/`PhraseRecordsResponse` (extra=forbid, field order = generation order, empty mentions = the not-found branch) + stored `PhraseMention`/`PhraseRelationshipRecord`/`MaskedPhraseRelationshipRecord`, aliases `LLMPhraseRelationshipRecords` (phrase→record) and `MaskedLLMPhraseRelationshipResults` (record_id→{phrase, record}). Wire schema asserted strict-mode-supported (depth 3). 8 tests; suite 1146; pyright 0. |
+| 2026-08-20 | Flip slices A+B landed suite-green (987; the drop from 1241 is the retired v1 GT suite). GT retirement kept the stage-agnostic primitives exactly as the fork decision specified; the deletability guard notes where the v2 GT text-pin check returns. Catalog promotion surfaced only mechanical test drift; the one behavioral surprise was none. response_phrase_validation's rewrite upgraded it from v1 parse paths to the v2 glue (fabricated-id and unjudged-candidate recording now pinned end-to-end through production creators). v1 wire-builder functions + node services still present but undispatched — slice C deletes them. |
 | 2026-08-20 | 2.6 + 2.7/2.8 cores built. Screening v2 parses to per-candidate verdicts with derived `passed`; the candidate axis is held to the request document itself (sent_records payload), so "asked about" and "validated against" cannot diverge; candidate echo is exact-match (supplied strings; drift = corruption; repair would be silent misattribution). Derivations are pure functions over stored v2 shapes — descent seed reuses v1's TaggingResult tag-major shape so the descent machinery ports rather than rewrites; OOV-restating-vocab mints fold into the canonical label BEFORE screening so one concept gets one verdict. Remaining for 2.9: request-loop/embedding wiring, descent loop, reconcile nodes, orchestration order, v1 deletion + test migration, catalog/skeleton/builder promotion. 8 tests; suite 1241; pyright 0. |
 | 2026-08-20 | 2.3–2.5 built as ONE shared grounding service (drift-proofing the three stages' contracts). RecordGroundingEntry {tags, explanation} replaces the sketch's bare map so declination reasons survive storage; validator pins tags-empty ⇔ explanation-present. In-vocab membership closes the fake-OOV hole at the decoder's altitude; two-pass parse (validate whole response, then construct) so a defective record can't trip the storage validator before the real error reports. Per-stage wiring (catalogs, allowed_labels, OOV's serial dependency, outline rendering, bundle req-id fields) deferred to the flip. 9 tests; suite 1233; pyright 0. |
 | 2026-08-20 | 2.1+2.2 built under the siblings-then-flip strategy. Record blocks: ids fence one-line, records fence multi-line with a DOTALL-lazy reader — safe because record newlines are JSON-escaped so payload physical lines are exactly what json.dumps wrote; two-blocks-disagree raises as malformed-request. Exact hold: unsent response id raises under BOTH policies (fabrication, not echo drift); missing ids raise/thin per caller. Relationship v2: phrase fence and hold unchanged (identity is set here), mask applied after merge, `records_with_mentions` shapes downstream input while stats keep the not-found records (F9). 17 tests; suite 1224; pyright 0. |

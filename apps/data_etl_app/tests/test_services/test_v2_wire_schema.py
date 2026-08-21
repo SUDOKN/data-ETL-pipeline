@@ -4,7 +4,6 @@ invariants the v1 catalogs are held to — strict mode accepts the schema, and t
 worked example the prompt shows decodes under the schema the model is sent."""
 
 import copy
-import json
 from typing import Any
 
 import pytest
@@ -23,13 +22,16 @@ from core.models.rule_catalog import RuleCatalog
 
 from data_etl_app.services.prompt_assembly_service import (
     CATALOG_DIR,
-    EXAMPLE_BUILDER_BY_STAGE_V2,
+    EXAMPLE_BUILDER_BY_STAGE,
     load_catalog,
 )
 
-V2_CATALOG_DIR = CATALOG_DIR.parent / "rule_catalog_v2"
+# The record-keyed stages: every deployed catalog except binary classification.
 V2_CATALOGS = {
-    path.stem: load_catalog(path) for path in sorted(V2_CATALOG_DIR.glob("*.json"))
+    path.stem: catalog
+    for path in sorted(CATALOG_DIR.glob("*.json"))
+    for catalog in [load_catalog(path)]
+    if catalog.stage != "binary_classification"
 }
 
 
@@ -37,7 +39,7 @@ def _example(catalog: RuleCatalog) -> dict:
     """The v2 worked example, raw from its builder. Entity tokens inside the
     placeholder strings stay unresolved — every such string starts with ``<`` or
     ``{{``, and the fill below replaces or passes them without reading them."""
-    return EXAMPLE_BUILDER_BY_STAGE_V2[catalog.stage](catalog)
+    return EXAMPLE_BUILDER_BY_STAGE[catalog.stage](catalog)
 
 
 def _fill_placeholders(node: Any, schema: dict[str, Any], root: dict[str, Any]) -> Any:
@@ -91,8 +93,8 @@ def _filled_example(catalog: RuleCatalog) -> dict:
     return filled
 
 
-def test_the_draft_directory_holds_all_twentyone_catalogs():
-    """Sanity for the parametrization below: a draft failing to load would
+def test_all_twentyone_phrase_catalogs_are_deployed():
+    """Sanity for the parametrization below: a catalog failing to load would
     otherwise silently shrink the coverage of every test in this file."""
     assert len(V2_CATALOGS) == 21
 
@@ -200,17 +202,3 @@ def test_flatten_rule_slots_reads_a_v2_option_unit_with_its_chosen_branch():
     applied = flatten_rule_slots(catalog, unit)
     assert [rule.rule_id for rule in applied] == ["IGR-E1", "IGR-M1"]
     assert applied[-1].outcome == "chosen"
-
-
-def test_v1_and_v2_dispatchers_never_share_a_model():
-    """Separate caches: a v2 catalog fed to the v1 entry point must not leak a
-    v1 shape back through the v2 one, or vice versa."""
-    catalog = _industry_grounding()
-    v2_model = response_model_for_v2(catalog)
-    assert "record_id" in json.dumps(v2_model.model_json_schema())
-    # The same catalog through the v1 dispatcher builds the phrase-keyed shape.
-    from core.models.extraction_schemas.catalog_wire_schema import response_model_for
-
-    v1_model = response_model_for(catalog)
-    assert v1_model is not v2_model
-    assert "record_id" not in json.dumps(v1_model.model_json_schema())

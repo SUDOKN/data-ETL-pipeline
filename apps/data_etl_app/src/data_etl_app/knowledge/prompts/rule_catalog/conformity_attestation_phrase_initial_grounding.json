@@ -1,5 +1,5 @@
 {
-  "catalog_version": "conformity_attestation_phrase_initial_grounding.2026.08.9",
+  "catalog_version": "conformity_attestation_phrase_initial_grounding.2026.08.10",
   "prompt_name": "conformity_attestation_phrase_initial_grounding",
   "stage": "phrase_initial_grounding",
   "field_types": [
@@ -11,6 +11,7 @@
     "third_person": "holds or conforms to",
     "gerund": "holding or conforming to"
   },
+  "evidence_source": "the record's mentions and synthesis",
   "option_evidence": "what the option names",
   "outcome_vocab": {
     "condition": [
@@ -24,16 +25,33 @@
   },
   "sections": [
     {
-      "section_id": "attribution",
+      "section_id": "evidence",
       "heading": "For each distinct {{entity_noun}} you identify, this must hold:",
       "combinator": "all",
       "rules": [
         {
-          "id": "IGR-Q1",
+          "id": "IGR-E1",
           "kind": "condition",
           "reportable": true,
           "report_when": "always",
-          "text": "The {{entity_noun}} you identified is one the phrase and its relationship summary support the manufacturer itself {{entity_relationships.gerund}}."
+          "text": "The record's mentions evidence the {{entity_noun}} you identified — it is named, described, or clearly implied by what the mentions say, not merely suggested by a resemblance between words.",
+          "combinator": "note",
+          "children": [
+            {
+              "id": "IGR-E1a",
+              "kind": "note",
+              "reportable": false,
+              "report_when": "never",
+              "text": "Whose {{entity_noun}} it is has no bearing here. A candidate evidenced by a customer's, supplier's, or any other third party's dealings is still identified and recorded."
+            },
+            {
+              "id": "IGR-E1b",
+              "kind": "note",
+              "reportable": false,
+              "report_when": "never",
+              "text": "The {{entity_noun}} must be identifiable by its own name, number, or issuing body from the record. Meeting a customer's or an industry's specifications, or operating quality assurance systems, is not itself a nameable {{entity_noun}} — never substitute a named standard the record does not name. A statement of commitment, values, or goals, or general praise of quality, reliability, or standing, names nothing that could specifically be held, met, or followed, and identifies no {{entity_noun}}."
+            }
+          ]
         }
       ]
     },
@@ -48,16 +66,16 @@
           "reportable": true,
           "report_when": "when_chosen",
           "text": "An option whose meaning exactly matches the identified {{entity_noun}} is chosen.",
+          "combinator": "note",
           "children": [
             {
               "id": "IGR-M1a",
               "kind": "note",
               "reportable": false,
               "report_when": "never",
-              "text": "Choose by comparing the identified {{entity_noun}} against {{option_evidence}}, never by lexical or name similarity, and without forced or contrived links that rely on assumptions beyond the phrase and its relationship summary. In particular, do not choose an option whose name resembles the identified {{entity_noun}} when {{option_evidence}} does not cover this case."
+              "text": "Choose by comparing the identified {{entity_noun}} against {{option_evidence}}, never by lexical or name similarity, and without forced or contrived links that rely on assumptions beyond the record. In particular, do not choose an option whose name resembles the identified {{entity_noun}} when {{option_evidence}} does not cover this case."
             }
-          ],
-          "combinator": "note"
+          ]
         },
         {
           "id": "IGR-M2",
@@ -72,41 +90,12 @@
               "kind": "note",
               "reportable": false,
               "report_when": "never",
-              "text": "Every entry in the outline is one you may choose, including an entry that has entries indented beneath it. Where the phrase names something the outline covers only at a broader entry, that broader entry is the match."
+              "text": "Every entry in the outline is one you may choose, including an entry that has entries indented beneath it. Where the record evidences something the outline covers only at a broader entry, that broader entry is the match."
             }
           ]
-        },
-        {
-          "id": "IGR-M3",
-          "kind": "preference",
-          "reportable": true,
-          "report_when": "when_chosen",
-          "text": "When no option exactly matches or generalizes it, but it is of the kind {{entity_noun}} names, the identified {{entity_noun}} is proposed as an option of its own.",
-          "combinator": "note",
-          "children": [
-            {
-              "id": "IGR-M3a",
-              "kind": "note",
-              "reportable": false,
-              "report_when": "never",
-              "text": "Unless the proposed option restates the meaning of an existing option under different words; in that case that existing option is chosen instead."
-            }
-          ]
-        },
-        {
-          "id": "IGR-M4",
-          "kind": "preference",
-          "reportable": true,
-          "report_when": "when_chosen",
-          "text": "When what you identified is not of the kind {{entity_noun}} names — a process, a capability, a facility, an activity, or anything else outside that meaning — \"None of the above\" is chosen. Judge that against what {{entity_noun}} means, not against the wording of the phrase and not against whether the provided options happen to cover it: something the options do not list can still be of that kind, and [IGR-M3] is where it belongs."
         }
       ]
     }
   ],
-  "sentinel_tag": "None of the above",
-  "published": {
-    "s3_version_id": "tKHgbOp6E1W3JvWP6EMpYh8XJirDk2xc",
-    "rendered_sha256": "4ca5f95adbaa9641a6b9a44388f82f2eb29c1e44fc091cc692e8a8f7e63682c2",
-    "uploaded_at": "2026-08-19T01:03:59.550282+00:00"
-  }
+  "published": {}
 }

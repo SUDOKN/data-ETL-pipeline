@@ -28,10 +28,7 @@ from typing import Any, Callable, NamedTuple, Optional
 from core.models.extraction_schemas.catalog_wire_schema import (
     CHOSEN_SLOT,
     GUARDS_SLOT,
-    JUDGED,
-    NO_CANDIDATE,
 )
-from core.models.extraction_schemas.grounding import is_sentinel_grounding_label
 from core.models.rule_catalog import (
     NOTE_KIND,
     ONLY_REACHABLE_OUTCOME_BY_REPORT_WHEN,
@@ -50,6 +47,7 @@ SKELETON_DIR = _PROMPTS_DIR / "skeletons"
 SKELETON_BY_STAGE = {
     "phrase_relationship_screening": "screening.skeleton.txt",
     "phrase_initial_grounding": "initial_grounding.skeleton.txt",
+    "phrase_oov_grounding": "oov_grounding.skeleton.txt",
     "phrase_recursive_grounding": "recursive_grounding.skeleton.txt",
     "phrase_freehand_grounding": "freehand_grounding.skeleton.txt",
     "binary_classification": "binary_classification.skeleton.txt",
@@ -68,6 +66,7 @@ STAGE_DIR_BY_STAGE = {
     "phrase_relationship_screening": "multi_stage/4_phrase_relationship_screening",
     "phrase_freehand_grounding": "multi_stage/5_freehand_grounding",
     "phrase_initial_grounding": "multi_stage/5_initial_grounding",
+    "phrase_oov_grounding": "multi_stage/5_oov_grounding",
     "phrase_recursive_grounding": "multi_stage/6_recursive_grounding",
     "binary_classification": "single_stage",
 }
@@ -221,9 +220,10 @@ _OUTPUT_EXAMPLE = "{{output_example}}"
 OUTCOME_GLOSS_BY_KIND: dict[str, str] = {
     "condition": (
         'Only "satisfied" counts as the condition holding. Write "not_triggered" '
-        "when there was nothing to evaluate it against — for example when no "
-        "{{entity_noun}} was identified for it to refer to — and \"failed\" when you "
-        "evaluated it and it did not hold. Neither of those counts as holding."
+        "when there was nothing left to evaluate it against — for example when an "
+        "earlier condition had already failed and left nothing for this one to "
+        'judge — and "failed" when you evaluated it and it did not hold. Neither '
+        "of those counts as holding."
     ),
 }
 
@@ -730,146 +730,6 @@ def _example_rule_slots(
     return slots
 
 
-def _screening_example(catalog: RuleCatalog) -> dict[str, Any]:
-    """One entry per way the verdict can come out, since screening does not report
-    a verdict and `passed_implied_by` reads it off these rules.
-
-    The guard entry is the only one where every condition is "satisfied" and the
-    phrase is still rejected — the guard alone does it. Nothing else in the example
-    shows that, which is why it is here despite being shape-identical to the rest.
-
-    Guards belong to this stage only. Grounding drops an option that fails rather
-    than reporting it, so a rejected unit there has no entry to appear in.
-    """
-    entries = [
-        {
-            "outcome": JUDGED,
-            "phrase": "<phrase copied verbatim from the input, whose candidate qualified>",
-            "identified_entity": "<the {{entity_noun}} you judged>",
-            **_example_rule_slots(catalog, mode=_HELD),
-        },
-        {
-            "outcome": JUDGED,
-            "phrase": "<another phrase, whose candidate did not qualify>",
-            "identified_entity": "<the {{entity_noun}} you got furthest with>",
-            **_example_rule_slots(catalog, mode=_DID_NOT_HOLD),
-        },
-    ]
-
-    guard = _guard_placeholder(catalog)
-    if guard is not None:
-        entries.append(
-            {
-                "outcome": JUDGED,
-                "phrase": "<another phrase, whose candidate every condition held for, but which a guard ruled out>",
-                "identified_entity": "<the {{entity_noun}} the guard ruled out>",
-                **_example_rule_slots(catalog, mode=_HELD, guard=guard),
-            }
-        )
-
-    # The other branch of the union, and the only entry with no rule slots at all:
-    # nothing was identified, so no condition had a candidate to be about. Its
-    # explanation is the whole of its record, which is why it has one.
-    entries.append(
-        {
-            "outcome": NO_CANDIDATE,
-            "phrase": "<another phrase, which offered no candidate at all>",
-            "explanation": "<why no {{entity_noun}} could be identified from it>",
-        }
-    )
-    return {"screenings": entries}
-
-
-def _grounding_example(
-    catalog: RuleCatalog,
-    *,
-    unit_key: str,
-    units_key: str,
-    first_label: str,
-    second_label: str,
-) -> dict[str, Any]:
-    """Single / several / escape hatch, for whichever of those a stage has.
-
-    ``unit_key`` is the singular wire field — ``option`` where the stage chooses
-    from a supplied list, ``category`` where it names one itself — and ``units_key``
-    the array that holds them. Both are spelled out rather than pluralised here,
-    because the wire field is ``categories`` and no rule turns one into the other.
-    """
-    ladder = _ladder_placeholder(catalog)
-
-    def unit(label: str, *, mode: str, branch: Optional[str]) -> dict[str, Any]:
-        return {
-            unit_key: label,
-            **_example_rule_slots(catalog, mode=mode, branch=branch),
-        }
-
-    entries: list[dict[str, Any]] = [
-        {
-            "phrase": "<phrase copied verbatim from the input>",
-            units_key: [unit(first_label, mode=_HELD, branch=ladder)],
-        },
-        {
-            "phrase": "<another phrase, from which you identified more than one>",
-            units_key: [
-                unit(first_label, mode=_HELD, branch=ladder),
-                unit(second_label, mode=_HELD, branch=ladder),
-            ],
-        },
-    ]
-
-    # Both or neither: RuleCatalog requires exactly one preference rule to spell the
-    # sentinel verbatim whenever `sentinel_tag` is set, so `_sentinel_branch_id`
-    # finds a branch exactly when there is a tag to put in it. Narrowing on the tag
-    # as well as the branch is what makes that readable to a type checker — and the
-    # label is the half that would otherwise reach `unit` as Optional.
-    sentinel_tag = catalog.sentinel_tag
-    sentinel_branch = _sentinel_branch_id(catalog)
-    if sentinel_tag is not None and sentinel_branch is not None:
-        # Two fields and no rule slots: the escape hatch is its own arm of the
-        # schema, so there is nothing on it to fill in. `_example_rule_slots` is
-        # deliberately not called here — every other scenario in this example
-        # carries a full ladder, and the contrast is the instruction.
-        entries.append(
-            {
-                "phrase": "<another phrase, from which none could be identified>",
-                units_key: [
-                    {
-                        unit_key: sentinel_tag,
-                        "explanation": (
-                            "<why nothing here could be identified, citing "
-                            f"{catalog.evidence_source}>"
-                        ),
-                    }
-                ],
-            }
-        )
-
-    return {"groundings": entries}
-
-
-def _option_grounding_example(catalog: RuleCatalog) -> dict[str, Any]:
-    return _grounding_example(
-        catalog,
-        unit_key="option",
-        units_key="options",
-        first_label='<an option, copied verbatim from its "name" field>',
-        second_label=(
-            "<a second option for the same phrase — copied verbatim likewise, or "
-            "one you proposed when none of the provided ones fit>"
-        ),
-    )
-
-
-def _category_grounding_example(catalog: RuleCatalog) -> dict[str, Any]:
-    return _grounding_example(
-        catalog,
-        unit_key="category",
-        units_key="categories",
-        first_label="<the {{entity_noun}} you named>",
-        second_label="<a second, distinct {{entity_noun}} named from the same phrase>",
-    )
-
-
 def _binary_classification_example(catalog: RuleCatalog) -> dict[str, Any]:
     """One response object, not an array: the stage judges the whole text once.
 
@@ -900,21 +760,7 @@ def _binary_classification_example(catalog: RuleCatalog) -> dict[str, Any]:
     }
 
 
-EXAMPLE_BUILDER_BY_STAGE = {
-    "phrase_relationship_screening": _screening_example,
-    "phrase_initial_grounding": _option_grounding_example,
-    "phrase_recursive_grounding": _option_grounding_example,
-    "phrase_freehand_grounding": _category_grounding_example,
-    "binary_classification": _binary_classification_example,
-}
-
-
 # --- v2 output examples (pipeline v2, PIPELINE_V2_PLAN.md) -------------------
-#
-# UNWIRED: ``EXAMPLE_BUILDER_BY_STAGE`` above still serves the v1 render path;
-# the per-stage cutover re-points it to these. They live here rather than in the
-# render harness so the example/schema agreement tests exercise the same
-# builders the cutover will ship.
 #
 # Entries are record-keyed, and populated grounding entries carry an explicit
 # ``"explanation": null`` — the v2 wire schema declares the field
@@ -1051,12 +897,13 @@ def _freehand_grounding_example_v2(catalog: RuleCatalog) -> dict[str, Any]:
     )
 
 
-EXAMPLE_BUILDER_BY_STAGE_V2 = {
+EXAMPLE_BUILDER_BY_STAGE = {
     "phrase_relationship_screening": _screening_example_v2,
     "phrase_initial_grounding": _option_grounding_example_v2,
-    "phrase_recursive_grounding": _recursive_grounding_example_v2,
     "phrase_oov_grounding": _oov_grounding_example_v2,
+    "phrase_recursive_grounding": _recursive_grounding_example_v2,
     "phrase_freehand_grounding": _freehand_grounding_example_v2,
+    "binary_classification": _binary_classification_example,
 }
 
 
@@ -1079,19 +926,7 @@ def _prints_on_one_line(node: Any) -> bool:
         return True  # a fired guard or chosen branch: two short fields
     if len(node) == 2 and "outcome" in node and "explanation" in node:
         return True  # an always-reported rule's slot, under its id
-    # A grounding stage's escape-hatch unit: the label and an explanation, and no
-    # rule slots to spread over lines. Inlined for the same reason as the
-    # no-candidate entry below — and because the contrast with the full ladders
-    # around it is easiest to read when it is one line against their fifteen.
-    if len(node) == 2 and "explanation" in node and (
-        is_sentinel_grounding_label(str(node.get("option", "")))
-        or is_sentinel_grounding_label(str(node.get("category", "")))
-    ):
-        return True
-    # An entry that identified no candidate: three short fields, which indent=2
-    # otherwise spends five lines on. The commonest entry in a screening response
-    # by some margin — 45% of them in the run this shape was designed against.
-    return node.get("outcome") == NO_CANDIDATE
+    return False
 
 
 def _dumps_example(node: Any, _level: int = 0) -> str:

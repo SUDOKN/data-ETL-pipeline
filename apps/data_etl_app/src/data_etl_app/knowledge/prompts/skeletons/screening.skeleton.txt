@@ -1,15 +1,13 @@
-You will be given a list of phrases extracted from text scraped from a manufacturer's website. The phrases also carry a summary of their relationship with the manufacturer — what the manufacturer does with or in relation to. A phrase and its summary may point to one {{entity_noun}}, several, or none at all.
+You will be given a list of records, each carrying a masked id. Each record holds the evidence a previous pass collected about one recurring subject in text scraped from a manufacturer's website: "mentions" — what the text says about it and where, quoting the text verbatim — and a "synthesis" of what the manufacturer does with or in relation to it. Each record also lists one or more candidates identified from that evidence, each naming one {{entity_noun}}.
 
-You will assess each phrase independently.
+You will assess each candidate independently, judging it only against its own record's mentions and synthesis.
 
 ### Your job:
-For each phrase, determine whether the phrase in combination with its relationship summary proves that there is at least one {{entity_noun}} that the manufacturer itself {{entity_relationships.third_person}}. Your proof must be drawn solely from the phrase and its relationship summary.
+For each record, determine for each of its candidates whether the record proves that the manufacturer itself {{entity_relationships.third_person}} that candidate {{entity_noun}}. Your proof must be drawn solely from the record's mentions and synthesis.
 
-The relationship summary can narrow or exclude what the phrase alone suggests. A phrase may name one {{entity_noun}} while the phrase and summary together show the manufacturer is NOT the one that {{entity_relationships.third_person}} it.
+The synthesis can narrow or exclude what a mention alone suggests. A record may evidence a candidate while its mentions and synthesis together show the manufacturer is NOT the one that {{entity_relationships.third_person}} it.
 
-A phrase may offer several candidates. Judge them one at a time. One qualifying candidate is enough: the phrase passes as soon as any candidate holds under every condition without tripping a guard, and a candidate that fails only rules itself out.
-
-Name the one you judged: the candidate that qualified, or — when none qualified — the one you got furthest with. The rules you report must be the rules as they applied to that same candidate.
+Candidates are judged one at a time, each on its own. A candidate that fails rules out only itself, and one candidate's outcome never colors another's.
 
 You do not report a verdict. The rules you report ARE the verdict, so work the rules and let the outcome follow rather than deciding first and fitting rules to it.
 
@@ -18,13 +16,9 @@ You do not report a verdict. The rules you report ARE the verdict, so work the r
 
 {{report_block}}
 
-Each phrase takes one of two forms, and you choose which. Where you identified a candidate, "outcome" is "judged": name it and work every condition above against it. Where the phrase offered no candidate at all, "outcome" is "no_candidate": there is nothing for the conditions to be about, so give only a short "explanation" of why none could be identified. A judged phrase passes exactly when every condition is "satisfied" and no guard is reported.
-
 ### Output:
-Return a JSON object with a single key "screenings" whose value is an array of objects, one per phrase. The example below shows the shapes an entry can take — a phrase whose candidate qualified, one whose candidate failed a condition, one whose candidate met every condition but was ruled out by a guard, and one that offered no candidate at all. Everything in angle brackets is yours to fill in.
+Return a JSON object with a single key "screenings" whose value is an array of objects, one per record, each carrying the record's id and one entry per candidate. Copy every record id and every candidate exactly as given: each record must appear exactly once, and each of its candidates exactly once under it. The example below shows the shapes an entry can take — a candidate that qualified, a record with two candidates where one did not qualify, and a candidate that met every condition but was ruled out by a guard. Everything in angle brackets is yours to fill in.
 
 ```json
 {{output_example}}
 ```
-
-Each phrase must appear exactly once.

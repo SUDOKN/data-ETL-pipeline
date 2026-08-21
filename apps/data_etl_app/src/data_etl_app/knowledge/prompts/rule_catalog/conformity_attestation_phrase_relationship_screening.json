@@ -1,5 +1,5 @@
 {
-  "catalog_version": "conformity_attestation_phrase_relationship_screening.2026.08.3",
+  "catalog_version": "conformity_attestation_phrase_relationship_screening.2026.08.4",
   "prompt_name": "conformity_attestation_phrase_relationship_screening",
   "stage": "phrase_relationship_screening",
   "field_types": [
@@ -11,6 +11,7 @@
     "third_person": "holds or conforms to",
     "gerund": "holding or conforming to"
   },
+  "evidence_source": "the record's mentions and synthesis",
   "outcome_vocab": {
     "condition": [
       "satisfied",
@@ -32,28 +33,11 @@
           "kind": "condition",
           "reportable": true,
           "report_when": "always",
-          "text": "At least one {{entity_noun}} can be identified from the phrase and its relationship summary.",
+          "text": "The record says something substantive about the candidate {{entity_noun}} — describing an activity, arrangement, or dealing that involves it — rather than only naming it, listing it, or mentioning it in passing. Which party is involved is not this condition's subject; [SCR-2] decides that.",
           "combinator": "note",
           "children": [
             {
               "id": "SCR-1a",
-              "kind": "note",
-              "reportable": false,
-              "report_when": "never",
-              "text": "The {{entity_noun}} must be identifiable by its own name, number, or issuing body from the phrase and its relationship summary. Meeting a customer's or an industry's specifications, or operating quality assurance systems, is not itself a nameable {{entity_noun}} — never substitute a named standard the phrase and summary do not name. A statement of commitment, values, or goals, or general praise of quality, reliability, or standing, names nothing that could specifically be held, met, or followed, and identifies no {{entity_noun}}."
-            }
-          ]
-        },
-        {
-          "id": "SCR-2",
-          "kind": "condition",
-          "reportable": true,
-          "report_when": "always",
-          "text": "The phrase and its relationship summary say something substantive about the identified {{entity_noun}} — describing an activity, arrangement, or dealing that involves it — rather than only naming it, listing it, or mentioning it in passing. Which party is involved is not this condition's subject; [SCR-3] decides that.",
-          "combinator": "note",
-          "children": [
-            {
-              "id": "SCR-2a",
               "kind": "note",
               "reportable": false,
               "report_when": "never",
@@ -62,32 +46,38 @@
           ]
         },
         {
-          "id": "SCR-3",
+          "id": "SCR-2",
           "kind": "condition",
           "reportable": true,
           "report_when": "always",
-          "text": "It is the manufacturer itself that {{entity_relationships.third_person}} the identified {{entity_noun}} — not a customer, supplier, distributor, or other third party that the manufacturer merely relates to."
+          "text": "It is the manufacturer itself that {{entity_relationships.third_person}} the candidate {{entity_noun}} — not a customer, supplier, distributor, or other third party that the manufacturer merely relates to.",
+          "combinator": "note",
+          "children": [
+            {
+              "id": "SCR-2a",
+              "kind": "note",
+              "reportable": false,
+              "report_when": "never",
+              "text": "Records refer to the manufacturer in question only as \"the manufacturer\" or \"[the manufacturer]\", never by name; other companies may appear by name or by their standing. A brand, trade name, former name, division, plant, or business unit of the manufacturer IS the manufacturer itself. A statement about the manufacturer's parent company or a sister brand counts as one about the manufacturer itself, and does not fail this condition merely for being attributed to them — unless the record shows the activity belongs to that company alone and not to the manufacturer."
+            }
+          ]
         }
       ]
     },
     {
       "section_id": "guards",
-      "heading": "A candidate {{entity_noun}} is ruled out if ANY of these guards is violated by it. Ruling out one candidate does not reject the phrase — another candidate may still qualify:",
+      "heading": "A candidate {{entity_noun}} is ruled out if ANY of these guards is violated by it. Ruling out one candidate has no bearing on the record's other candidates:",
       "combinator": "any",
       "rules": [
         {
-          "id": "SCR-G2",
+          "id": "SCR-G1",
           "kind": "guard",
           "reportable": true,
           "report_when": "on_violation",
-          "text": "The manufacturer's involvement in the identified {{entity_noun}} is only aspirational, hoped-for, planned, in-progress, or discontinued, rather than current and actual."
+          "text": "The manufacturer's involvement in the candidate {{entity_noun}} is only aspirational, hoped-for, planned, in-progress, or discontinued, rather than current and actual."
         }
       ]
     }
   ],
-  "published": {
-    "s3_version_id": "oFV_hRa0tff008UTUWsXJ3CMLkCjVyXs",
-    "rendered_sha256": "6f8ce0f70c4203a21a4cdbb965f340da9ff3db8faee6b2f88134211619af93c1",
-    "uploaded_at": "2026-08-19T00:30:36.395136+00:00"
-  }
+  "published": {}
 }

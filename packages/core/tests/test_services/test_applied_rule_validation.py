@@ -191,7 +191,11 @@ def test_a_lone_violation_keeps_its_bare_message():
 
 
 def _wire_model():
-    return response_model_for(CATALOG)
+    from core.models.extraction_schemas.catalog_wire_schema import (
+        grounding_response_model_v2,
+    )
+
+    return grounding_response_model_v2(CATALOG)
 
 
 def _judged(**overrides):
@@ -203,7 +207,11 @@ def _judged(**overrides):
         "guards": [],
     }
     option.update(overrides)
-    return {"groundings": [{"phrase": "p", "options": [option]}]}
+    return {
+        "groundings": [
+            {"record_id": "raaaaaa1", "options": [option], "explanation": None}
+        ]
+    }
 
 
 def test_the_new_wire_shape_round_trips_to_the_stored_one():

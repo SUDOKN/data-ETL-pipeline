@@ -1,5 +1,5 @@
 {
-  "catalog_version": "equipment_phrase_freehand_grounding.2026.08.6",
+  "catalog_version": "equipment_phrase_freehand_grounding.2026.08.7",
   "prompt_name": "equipment_phrase_freehand_grounding",
   "stage": "phrase_freehand_grounding",
   "field_types": [
@@ -11,41 +11,34 @@
     "third_person": "operates, owns, uses, or otherwise has access to",
     "gerund": "operating, owning, using, or otherwise having access to"
   },
+  "evidence_source": "the record's mentions and synthesis",
   "outcome_vocab": {
     "condition": [
       "satisfied",
       "failed",
       "not_triggered"
-    ],
-    "preference": [
-      "chosen"
-    ],
-    "quality": [
-      "member_level",
-      "family_level",
-      "not_triggered"
     ]
   },
   "sections": [
     {
-      "section_id": "attribution",
-      "heading": "For each distinct {{entity_noun}} you identify, this must hold:",
+      "section_id": "evidence",
+      "heading": "Each {{entity_noun}} you identify qualifies only if ALL of these conditions hold for it:",
       "combinator": "all",
       "rules": [
         {
-          "id": "FGR-Q1",
+          "id": "FGR-E1",
           "kind": "condition",
           "reportable": true,
           "report_when": "always",
-          "text": "The phrase and its relationship summary support the manufacturer itself {{entity_relationships.gerund}} at least one instance of the {{entity_noun}}, not merely relating to it.",
+          "text": "The record's mentions evidence the {{entity_noun}} you identified — it is named, described, or clearly implied by what the mentions say, not merely suggested by a resemblance between words.",
           "combinator": "note",
           "children": [
             {
-              "id": "FGR-Q1a",
+              "id": "FGR-E1a",
               "kind": "note",
               "reportable": false,
               "report_when": "never",
-              "text": "A machine named only as something the manufacturer's output goes into or supports, or that a customer or other party operates, is not a {{entity_noun}} the manufacturer {{entity_relationships.third_person}}."
+              "text": "Whose {{entity_noun}} it is has no bearing here. A candidate evidenced by a customer's, supplier's, or any other third party's dealings is still identified and recorded."
             }
           ]
         }
@@ -53,15 +46,39 @@
     },
     {
       "section_id": "category_qualification",
-      "heading": "The {{entity_noun}} you name must qualify in ALL of these ways:",
+      "heading": "And every {{entity_noun}} you name must satisfy ALL of these:",
       "combinator": "all",
       "rules": [
+        {
+          "id": "FGR-Q1",
+          "kind": "condition",
+          "reportable": true,
+          "report_when": "always",
+          "text": "It names a production machine: a device, tool, or system that acts on the work itself, used directly to process, shape, assemble, or convert raw materials into finished goods for commercial use. Equipment that keeps the operation running without acting on the work — powering or conditioning the plant, moving or storing what it makes, or serving the business rather than the making — does not qualify, however necessary it is.",
+          "combinator": "note",
+          "children": [
+            {
+              "id": "FGR-Q1a",
+              "kind": "note",
+              "reportable": false,
+              "report_when": "never",
+              "text": "Equipment that only measures, inspects, or tests does not act on the work either. It establishes what the work already is and leaves it as it was, and does not qualify on the same ground."
+            },
+            {
+              "id": "FGR-Q1b",
+              "kind": "note",
+              "reportable": false,
+              "report_when": "never",
+              "text": "Tooling is not a machine. What is mounted in, held by, or driven by a machine — what it cuts, forms, or positions the work with — performs no operation of its own; the machine driving it is what qualifies."
+            }
+          ]
+        },
         {
           "id": "FGR-Q2",
           "kind": "condition",
           "reportable": true,
           "report_when": "always",
-          "text": "It is a determinate category: neither an individual unit — one specimen, identified as itself rather than as a kind — nor a term so general it fixes nothing. A phrase naming a specific unit is reported as the category that unit belongs to.",
+          "text": "It is a determinate category: neither an individual unit — one specimen, identified as itself rather than as a kind — nor a term so general it fixes nothing. A record naming a specific unit is reported as the category that unit belongs to.",
           "combinator": "note",
           "children": [
             {
@@ -69,7 +86,7 @@
               "kind": "note",
               "reportable": false,
               "report_when": "never",
-              "text": "A phrase that identifies one particular specimen — by its maker, its designation, or any other mark that singles that one out from others like it — names a unit rather than a category. Report the kind that specimen belongs to, and carry none of what singled it out into the category name."
+              "text": "A record that identifies one particular specimen — by its maker, its designation, or any other mark that singles that one out from others like it — names a unit rather than a category. Report the kind that specimen belongs to, and carry none of what singled it out into the category name."
             },
             {
               "id": "FGR-Q2b",
@@ -83,7 +100,7 @@
               "kind": "note",
               "reportable": false,
               "report_when": "never",
-              "text": "A trade, a service, or a line of business is not a machine. Where a phrase names what the manufacturer does, or what it sells itself as, a category follows only if the phrase or its summary names the machines it does that work with. A name for the work with a word for machines attached to it is not a category the words support."
+              "text": "A trade, a service, or a line of business is not a machine. Where a record names what the manufacturer does, or what it sells itself as, a category follows only if the record names the machines it does that work with. A name for the work with a word for machines attached to it is not a category the words support."
             }
           ]
         },
@@ -92,14 +109,14 @@
           "kind": "condition",
           "reportable": true,
           "report_when": "always",
-          "text": "It is distinct from every other {{entity_noun}} named for the same phrase. Two names for the same {{entity_noun}} in different words are one, not two."
+          "text": "It is distinct from every other {{entity_noun}} named for the same record. Two names for the same {{entity_noun}} in different words are one, not two."
         },
         {
           "id": "FGR-Q4",
           "kind": "condition",
           "reportable": true,
           "report_when": "always",
-          "text": "It is named at the depth the phrase and its relationship summary fix, and at no other depth. Naming descends in steps: first the operation the machine performs on the work, then the configuration that tells machines performing that same operation apart — how they are oriented, driven, controlled, or arranged. Take every step the words supply, and stop at the first step they do not. What this rule judges is whether you stopped in the right place: it fails when the name carries a step the words never supplied, and it fails just as much when the words supplied a step the name left off. Which step you stopped at is not this rule's subject — FGR-QC1 is where that is reported.",
+          "text": "It is named at the depth the record fixes, and at no other depth. Naming descends in steps: first the operation the machine performs on the work, then the configuration that tells machines performing that same operation apart — how they are oriented, driven, controlled, or arranged. Take every step the words supply, and stop at the first step they do not. It fails when the name carries a step the words never supplied, and it fails just as much when the words supplied a step the name left off.",
           "combinator": "note",
           "children": [
             {
@@ -107,7 +124,7 @@
               "kind": "note",
               "reportable": false,
               "report_when": "never",
-              "text": "Where the phrase or its summary names both a kind and a narrower kind within it, the narrower one is the category. The broader name is already implied by it, so returning that as well adds nothing."
+              "text": "Where the record names both a kind and a narrower kind within it, the narrower one is the category. The broader name is already implied by it, so returning that as well adds nothing."
             },
             {
               "id": "FGR-Q4b",
@@ -119,47 +136,7 @@
           ]
         }
       ]
-    },
-    {
-      "section_id": "naming",
-      "heading": "Name each {{entity_noun}} by the first of these rules that applies, in order:",
-      "combinator": "ordered",
-      "rules": [
-        {
-          "id": "FGR-M1",
-          "kind": "preference",
-          "reportable": true,
-          "report_when": "when_chosen",
-          "text": "A {{entity_noun}} can be determined from the phrase and its relationship summary, and it is named directly."
-        },
-        {
-          "id": "FGR-M2",
-          "kind": "preference",
-          "reportable": true,
-          "report_when": "when_chosen",
-          "text": "No {{entity_noun}} can be determined from the phrase and its relationship summary, and \"Cannot categorize\" is named as the only entry for the phrase."
-        }
-      ]
-    },
-    {
-      "section_id": "quality",
-      "heading": "For each {{entity_noun}} you named, record how specific the name is:",
-      "combinator": "all",
-      "rules": [
-        {
-          "id": "FGR-QC1",
-          "kind": "quality",
-          "reportable": true,
-          "report_when": "always",
-          "text": "Report which step of FGR-Q4's descent the name you gave reaches: \"member_level\" when it carries the configuration as well as the operation — a machine that could be told apart on the floor from others performing the same operation — and \"family_level\" when the words fixed the operation and went no further. This is a reading of how far the text went, not a verdict on your naming: stopping at family level is correct wherever the words stop there, and FGR-Q4 is the only rule that judges whether you stopped in the right place."
-        }
-      ]
     }
   ],
-  "published": {
-    "s3_version_id": "zSfkyf9btSWxsiuBFCuc.NEtmOgo8bmN",
-    "rendered_sha256": "535f8eb766312e1a77b390aac7e78127dd439e24f1beddb2e7b39b67f9d04050",
-    "uploaded_at": "2026-08-18T21:06:51.104440+00:00"
-  },
-  "sentinel_tag": "Cannot categorize"
+  "published": {}
 }

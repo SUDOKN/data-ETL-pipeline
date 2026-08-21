@@ -1,5 +1,5 @@
 {
-  "catalog_version": "equipment_phrase_relationship_screening.2026.08.6",
+  "catalog_version": "equipment_phrase_relationship_screening.2026.08.7",
   "prompt_name": "equipment_phrase_relationship_screening",
   "stage": "phrase_relationship_screening",
   "field_types": [
@@ -11,6 +11,7 @@
     "third_person": "operates or uses",
     "gerund": "operating or using"
   },
+  "evidence_source": "the record's mentions and synthesis",
   "outcome_vocab": {
     "condition": [
       "satisfied",
@@ -32,46 +33,29 @@
           "kind": "condition",
           "reportable": true,
           "report_when": "always",
-          "text": "At least one {{entity_noun}} can be named from the phrase and its relationship summary — a particular kind of machine, not an umbrella that covers many kinds.",
-          "combinator": "note",
-          "children": [
-            {
-              "id": "SCR-1a",
-              "kind": "note",
-              "reportable": false,
-              "report_when": "never",
-              "text": "A term that names no operation performed on the work covers every machine that performs any of them, and so fixes no kind. Qualifying such a term — by what it is for, how new it is, how much of it there is, or where it sits — leaves it fixing no kind still. A phrase that supplies nothing beyond such a term does not satisfy this condition."
-            },
-            {
-              "id": "SCR-1b",
-              "kind": "note",
-              "reportable": false,
-              "report_when": "never",
-              "text": "Where a phrase identifies one particular machine — by its maker, its model, or any other mark that singles that one out — name the kind that machine belongs to, and carry none of what singled it out into the name. Name it no more capably than the words do: a capability the words do not state is not part of the kind."
-            }
-          ]
+          "text": "The record says something substantive about the candidate {{entity_noun}} — describing an activity, arrangement, or dealing that involves it — rather than only naming it, listing it, or mentioning it in passing. Which party is involved is not this condition's subject; [SCR-2] decides that."
         },
         {
           "id": "SCR-2",
           "kind": "condition",
           "reportable": true,
           "report_when": "always",
-          "text": "The phrase and its relationship summary say something substantive about the identified {{entity_noun}} — describing an activity, arrangement, or dealing that involves it — rather than only naming it, listing it, or mentioning it in passing. Which party is involved is not this condition's subject; [SCR-3] decides that."
-        },
-        {
-          "id": "SCR-3",
-          "kind": "condition",
-          "reportable": true,
-          "report_when": "always",
-          "text": "It is the manufacturer itself that {{entity_relationships.third_person}} the identified {{entity_noun}} — not a customer, supplier, distributor, or other third party that the manufacturer merely relates to.",
+          "text": "It is the manufacturer itself that {{entity_relationships.third_person}} the candidate {{entity_noun}} — not a customer, supplier, distributor, or other third party that the manufacturer merely relates to.",
           "combinator": "note",
           "children": [
             {
-              "id": "SCR-3a",
+              "id": "SCR-2a",
               "kind": "note",
               "reportable": false,
               "report_when": "never",
-              "text": "How the manufacturer comes to have the {{entity_noun}} does not matter: direct ownership, leasing, partnership, and access through a parent or sister company all count as the manufacturer itself. The phrase and summary do not have to state who owns it."
+              "text": "Records refer to the manufacturer in question only as \"the manufacturer\" or \"[the manufacturer]\", never by name; other companies may appear by name or by their standing. A brand, trade name, former name, division, plant, or business unit of the manufacturer IS the manufacturer itself. A statement about the manufacturer's parent company or a sister brand counts as one about the manufacturer itself, and does not fail this condition merely for being attributed to them — unless the record shows the activity belongs to that company alone and not to the manufacturer."
+            },
+            {
+              "id": "SCR-2b",
+              "kind": "note",
+              "reportable": false,
+              "report_when": "never",
+              "text": "How the manufacturer comes to have the {{entity_noun}} does not matter: direct ownership, leasing, partnership, and access through a parent or sister company all count as the manufacturer itself. The record does not have to state who owns it."
             }
           ]
         }
@@ -79,53 +63,25 @@
     },
     {
       "section_id": "guards",
-      "heading": "A candidate {{entity_noun}} is ruled out if ANY of these guards is violated by it. Ruling out one candidate does not reject the phrase — another candidate may still qualify:",
+      "heading": "A candidate {{entity_noun}} is ruled out if ANY of these guards is violated by it. Ruling out one candidate has no bearing on the record's other candidates:",
       "combinator": "any",
       "rules": [
+        {
+          "id": "SCR-G1",
+          "kind": "guard",
+          "reportable": true,
+          "report_when": "on_violation",
+          "text": "The candidate {{entity_noun}} is something the manufacturer sells rather than something it {{entity_relationships.third_person}} — a machine on its product line, not one on its floor."
+        },
         {
           "id": "SCR-G2",
           "kind": "guard",
           "reportable": true,
           "report_when": "on_violation",
-          "text": "What the identified {{entity_noun}} names is not in fact a production machine: a device, tool, or system that acts on the work itself, used directly to process, shape, assemble, or convert raw materials into finished goods for commercial use. Equipment that keeps the operation running without acting on the work — powering or conditioning the plant, moving or storing what it makes, or serving the business rather than the making — is ruled out however necessary it is.",
-          "combinator": "note",
-          "children": [
-            {
-              "id": "SCR-G2a",
-              "kind": "note",
-              "reportable": false,
-              "report_when": "never",
-              "text": "Equipment that only measures, inspects, or tests does not act on the work either. It establishes what the work already is and leaves it as it was, and is ruled out on the same ground."
-            },
-            {
-              "id": "SCR-G2b",
-              "kind": "note",
-              "reportable": false,
-              "report_when": "never",
-              "text": "Tooling is not a machine. What is mounted in, held by, or driven by a machine — what it cuts, forms, or positions the work with — performs no operation of its own; the machine driving it is what qualifies."
-            }
-          ]
-        },
-        {
-          "id": "SCR-G3",
-          "kind": "guard",
-          "reportable": true,
-          "report_when": "on_violation",
-          "text": "The identified {{entity_noun}} is something the manufacturer sells rather than something it {{entity_relationships.third_person}} — a machine on its product line, not one on its floor."
-        },
-        {
-          "id": "SCR-G4",
-          "kind": "guard",
-          "reportable": true,
-          "report_when": "on_violation",
-          "text": "The manufacturer's use of the identified {{entity_noun}} is only aspirational, hoped-for, planned, on order, or discontinued, rather than current and actual."
+          "text": "The manufacturer's use of the candidate {{entity_noun}} is only aspirational, hoped-for, planned, on order, or discontinued, rather than current and actual."
         }
       ]
     }
   ],
-  "published": {
-    "s3_version_id": "W0HO8vJLcYhg_y95Y1fE6bDCPVf2eIla",
-    "rendered_sha256": "438595a4d8d9173215e81796edf6a312225c1c51c0a2c666249122c772906c0a",
-    "uploaded_at": "2026-08-19T00:30:36.395136+00:00"
-  }
+  "published": {}
 }

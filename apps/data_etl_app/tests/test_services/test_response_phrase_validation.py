@@ -1,16 +1,17 @@
-"""End-to-end: the sent-phrases contract holding real group-parse paths.
+"""End-to-end: the record contract holding real v2 group-parse paths.
 
-The regression this pins (2026-08-12, anchor-mfg.com contract_products): a
-freehand grounding request carried ~60 screened phrases; the response answered
-five, closed its array, and validated cleanly against the strict schema — the
-whole chunk's results silently thinned to what one truncated response felt
-like saying. Sent-vs-received validation turns that response into a recorded
-parse error (clearing batch_id and response, so the next pass re-dispatches),
-and RESPONSE_PARSE_ERROR_CAP stops a response that fails every retry from
-cycling forever.
+The regression lineage this pins (2026-08-12, anchor-mfg.com contract_products):
+a grounding request carried ~60 phrases; the response answered five, closed its
+array, and validated cleanly against the strict schema — the whole chunk's
+results silently thinned to what one truncated response felt like saying.
+Sent-vs-received validation turns that response into a recorded parse error
+(clearing batch_id and response, so the next pass re-dispatches), and
+RESPONSE_PARSE_ERROR_CAP stops a response that fails every retry from cycling
+forever. v2 carries the same contract on the record axis, plus screening's
+candidate axis.
 
-These tests build requests with the same creator the pipeline uses, so the
-context line validated against is the one production writes.
+These tests build requests with the same creators the pipeline uses, so the
+context validated against is the one production writes.
 """
 
 from datetime import datetime, timezone
@@ -21,18 +22,25 @@ import json
 import pytest
 from beanie.odm.settings.document import DocumentSettings
 
-from core.services.pipeline_nodes.multi_stage.llm_freehand_grounding_service import (
-    parse_phrase_freehand_grounding_group_result,
+from core.models.extraction_schemas.relationship import (
+    MaskedPhraseRelationshipRecord,
+    PhraseMention,
+    PhraseRelationshipRecord,
 )
-from core.services.pipeline_nodes.multi_stage.llm_relationship_screening_node_service import (
-    create_deferred_phrase_relationship_screening_gpt_request,
-    parse_phrase_relationship_screening_group_result,
-)
-from core.services.rule_catalog_registry import set_rule_catalog_lookup
 from core.services.phrase_blocks_contract import (
-    MissingResponsePhrases,
-    render_phrase_blocks,
+    MissingResponseRecords,
     sent_phrases_from_user_message,
+    sent_record_ids_from_user_message,
+)
+from core.services.pipeline_nodes.multi_stage.llm_grounding_node_service_v2 import (
+    build_record_payloads,
+    create_deferred_record_grounding_gpt_request,
+    parse_record_grounding_group_result,
+)
+from core.services.pipeline_nodes.multi_stage.llm_screening_node_service_v2 import (
+    build_screening_payloads,
+    create_deferred_record_screening_gpt_request,
+    parse_record_screening_group_result,
 )
 from llm_providers.models.file_objects.prompt import Prompt
 from llm_providers.db_models.gpt_batch_request import GPTBatchRequest
@@ -42,7 +50,6 @@ from llm_providers.models.open_ai.gpt_batch_response_blob import (
 )
 from llm_providers.models.open_ai.gpt_model_params import GPTModelParams
 from llm_providers.services.gpt_batch_request.gpt_batch_request_service import (
-    create_base_gpt_batch_request,
     get_dummy_gpt_batch_response,
 )
 from llm_providers.services.gpt_batch_request.gpt_batch_request_writes import (
@@ -50,24 +57,49 @@ from llm_providers.services.gpt_batch_request.gpt_batch_request_writes import (
     RepeatedParseFailure,
 )
 
-from data_etl_app.models.types_and_enums import KeywordTypeEnum
 from data_etl_app.services.prompt_assembly_service import build_rule_catalog_lookup
 
 TIMESTAMP = datetime(2026, 8, 12, tzinfo=timezone.utc)
 REQ_ID = "anchor-mfg.com>equipments>llm_phrase_freehand_grounding>chunk>0:100>test"
 
-SENT_PHRASES = [
-    "manual MIG welding machine",
-    "stamping press",
-    "material shear",
-]
+_LOOKUP = build_rule_catalog_lookup()
 
 
-@pytest.fixture(autouse=True)
-def _registered_catalogs():
-    set_rule_catalog_lookup(build_rule_catalog_lookup())
-    yield
-    set_rule_catalog_lookup(None)
+def _required_catalog(stage: str, field: str):
+    catalog = _LOOKUP(stage, field)
+    assert catalog is not None, f"no deployed catalog for ({stage}, {field})"
+    return catalog
+
+
+FREEHAND_CATALOG = _required_catalog("phrase_freehand_grounding", "equipments")
+SCREENING_CATALOG = _required_catalog("phrase_relationship_screening", "equipments")
+
+_PARAMS = GPTModelParams(
+    max_completion_tokens=1000,
+    response_format={"type": "json_object"},
+    temperature=0.0,
+    top_p=1.0,
+    presence_penalty=0.0,
+    frequency_penalty=0.0,
+)
+_PROMPT = Prompt(text="do it", s3_version_id="v1", name="p", num_tokens=2)
+
+
+def _masked(phrases: list[str]):
+    return {
+        f"r{index}aaaaaa": MaskedPhraseRelationshipRecord(
+            phrase=phrase,
+            record=PhraseRelationshipRecord(
+                mentions=[PhraseMention(form=phrase, page="/", account="a")],
+                synthesis=f"Anchor does {phrase}.",
+            ),
+        )
+        for index, phrase in enumerate(phrases)
+    }
+
+
+MASKED = _masked(["manual MIG welding machine", "stamping press", "material shear"])
+RECORD_IDS = list(MASKED)
 
 
 @pytest.fixture(autouse=True)
@@ -79,61 +111,63 @@ def _no_db(monkeypatch):
     monkeypatch.setattr(GPTBatchRequest, "save", AsyncMock())
 
 
-def _category(name):
-    report = {"outcome": "satisfied", "explanation": "the phrase names it"}
-    return {
-        "category": name,
-        "FGR-Q1": report,
-        "FGR-Q2": report,
-        "FGR-Q3": report,
-        "FGR-Q4": report,
-        "FGR-QC1": {"outcome": "member_level", "explanation": "the phrase names it"},
-        "chosen": {"rule_id": "FGR-M1", "explanation": "the phrase names it"},
-    }
-
-
-def _grounding_entry(phrase):
-    return {"phrase": phrase, "categories": [_category(f"category of {phrase}")]}
-
-
-def _request_with_response(sent_phrases, groundings) -> GPTBatchRequest:
-    """A freehand-grounding request built like production builds it, answered
-    with the given groundings."""
-    req = create_base_gpt_batch_request(
-        deferred_at=TIMESTAMP,
-        subject_unique_id="anchor-mfg.com",
-        custom_id=REQ_ID,
-        context=render_phrase_blocks(
-            {phrase: f"Anchor does {phrase}." for phrase in sent_phrases}
-        ),
-        prompt_text="the freehand grounding prompt",
-        gpt_model=NO_MODEL,
-        model_params=GPTModelParams(
-            max_completion_tokens=1000,
-            response_format={"type": "json_object"},
-            temperature=0.0,
-            top_p=1.0,
-            presence_penalty=0.0,
-            frequency_penalty=0.0,
-        ),
-        batch_id="Eager",
-    )
+def _answered(req: GPTBatchRequest, content: dict) -> GPTBatchRequest:
     req.response = get_dummy_gpt_batch_response(
         deferred_at=TIMESTAMP,
         request_custom_id=REQ_ID,
         dummy_chat_completion_id="test_completion",
         chat_completion_choice_message=ChatCompletionChoiceMessage(
-            role="assistant", content=json.dumps({"groundings": groundings})
+            role="assistant", content=json.dumps(content)
         ),
     )
     return req
 
 
-async def _parse(req):
-    return await parse_phrase_freehand_grounding_group_result(
+# --- grounding: the record axis held through the real group parse ------------
+
+
+def _grounding_unit(label: str) -> dict:
+    report = {"outcome": "satisfied", "explanation": "the record names it"}
+    return {
+        "candidate": label,
+        **{
+            rule.id: dict(report)
+            for rule in FREEHAND_CATALOG.walk_rules()
+            if rule.report_when == "always"
+        },
+    }
+
+
+def _grounding_entry(record_id: str) -> dict:
+    return {
+        "record_id": record_id,
+        "candidates": [_grounding_unit("Welding Machine")],
+        "explanation": None,
+    }
+
+
+def _grounding_request(entries: list[dict]) -> GPTBatchRequest:
+    req = create_deferred_record_grounding_gpt_request(
+        deferred_at=TIMESTAMP,
         subject_unique_id="anchor-mfg.com",
-        field_type=KeywordTypeEnum.equipments,
-        chunk_bounds="0:100",
+        request_id=REQ_ID,
+        prompt=_PROMPT,
+        catalog=FREEHAND_CATALOG,
+        record_payloads=build_record_payloads(MASKED),
+        options_section=None,
+        gpt_model=NO_MODEL,
+        eager=True,
+        model_params=_PARAMS,
+    )
+    return _answered(req, {"groundings": entries})
+
+
+async def _parse_grounding(req: GPTBatchRequest):
+    return await parse_record_grounding_group_result(
+        stage_label="freehand grounding",
+        subject_unique_id="anchor-mfg.com",
+        field_name="equipments",
+        catalog=FREEHAND_CATALOG,
         group_req_id=REQ_ID,
         completed_request_map={REQ_ID: req},
         timestamp=TIMESTAMP,
@@ -141,20 +175,12 @@ async def _parse(req):
 
 
 @pytest.mark.asyncio
-async def test_full_coverage_parses_and_is_keyed_by_the_sent_phrases():
-    req = _request_with_response(
-        SENT_PHRASES,
-        # One echoed exactly, one with casing drift, one truncated — all repair.
-        [
-            _grounding_entry("manual MIG welding machine"),
-            _grounding_entry("Stamping Press"),
-            _grounding_entry("material shear"),
-        ],
-    )
+async def test_full_coverage_parses_and_is_keyed_by_the_sent_records():
+    req = _grounding_request([_grounding_entry(rid) for rid in RECORD_IDS])
 
-    result = await _parse(req)
+    result = await _parse_grounding(req)
 
-    assert set(result) == set(SENT_PHRASES)
+    assert list(result) == RECORD_IDS
     assert req.response_parse_errors == []
 
 
@@ -162,12 +188,10 @@ async def test_full_coverage_parses_and_is_keyed_by_the_sent_phrases():
 async def test_under_answering_response_is_recorded_and_raises():
     """The anchor-mfg shape: the model answers the first entry and closes the
     array. The response must fail, be recorded, and be cleared for re-dispatch."""
-    req = _request_with_response(
-        SENT_PHRASES, [_grounding_entry("manual MIG welding machine")]
-    )
+    req = _grounding_request([_grounding_entry(RECORD_IDS[0])])
 
-    with pytest.raises(MissingResponsePhrases, match="answered 1 of 3"):
-        await _parse(req)
+    with pytest.raises(MissingResponseRecords, match="answered 1 of 3"):
+        await _parse_grounding(req)
 
     assert len(req.response_parse_errors) == 1
     assert req.batch_id is None
@@ -175,211 +199,185 @@ async def test_under_answering_response_is_recorded_and_raises():
 
 
 @pytest.mark.asyncio
+async def test_a_fabricated_record_id_is_recorded_and_raises():
+    """An id nobody sent is a fabricated answer, not echo drift — it fails the
+    response under every policy rather than being dropped."""
+    entries = [_grounding_entry(rid) for rid in RECORD_IDS]
+    entries.append(_grounding_entry("rZZZZZZZ"))
+    req = _grounding_request(entries)
+
+    with pytest.raises(MissingResponseRecords, match="never sent"):
+        await _parse_grounding(req)
+
+    assert len(req.response_parse_errors) == 1
+
+
+@pytest.mark.asyncio
 async def test_out_of_retries_raises_repeated_parse_failure_without_recording():
     """At the cap the failure surfaces as the run's error instead of clearing
     the response again: the request stays inspectable and cannot cycle."""
-    req = _request_with_response(
-        SENT_PHRASES, [_grounding_entry("manual MIG welding machine")]
-    )
+    req = _grounding_request([_grounding_entry(RECORD_IDS[0])])
     req.response_parse_errors = [
         {"error_message": f"strike {i}"} for i in range(RESPONSE_PARSE_ERROR_CAP)
     ]
 
     with pytest.raises(RepeatedParseFailure):
-        await _parse(req)
+        await _parse_grounding(req)
 
     assert len(req.response_parse_errors) == RESPONSE_PARSE_ERROR_CAP
     assert req.batch_id == "Eager"
     assert req.response is not None
 
 
-# --- screening: the stage that rendered the line and never read it back ---------
+# --- screening: both axes held through the real group parse ------------------
+
+CANDIDATES = {rid: ["Welding Machine"] for rid in RECORD_IDS}
 
 
-def _screening_request(sent_phrases) -> GPTBatchRequest:
-    """Built with the PRODUCTION creator, not a restatement of its f-string.
+def _screening_unit(candidate: str) -> dict:
+    report = {"outcome": "satisfied", "explanation": "the record shows it"}
+    slots: dict = {"candidate": candidate}
+    for rule in SCREENING_CATALOG.walk_rules():
+        if rule.report_when == "always":
+            slots[rule.id] = dict(report)
+    slots["guards"] = []
+    return slots
 
-    That distinction is the point of this section: screening shipped its context
-    as `...\n\n ` + the marker, and the one space put the line off column 0 so
-    `sent_phrases_from_user_message` returned None. A test that rebuilt the
-    context by hand would have rendered the marker at column 0 and passed while
-    production silently validated nothing.
-    """
-    return create_deferred_phrase_relationship_screening_gpt_request(
+
+def _screening_entry(record_id: str, candidates: list[str]) -> dict:
+    return {
+        "record_id": record_id,
+        "candidates": [_screening_unit(c) for c in candidates],
+    }
+
+
+def _screening_request(entries: list[dict]) -> GPTBatchRequest:
+    req = create_deferred_record_screening_gpt_request(
         deferred_at=TIMESTAMP,
         subject_unique_id="anchor-mfg.com",
-        llm_phrase_relationship_screening_request_id=REQ_ID,
-        subject_name="Anchor Mfg",
-        subject_text="some scraped text",
-        field_type=KeywordTypeEnum.equipments,
-        phrase_relationship_results={p: f"summary of {p}" for p in sent_phrases},
-        phrase_relationship_screening_prompt=Prompt(text="screen them", s3_version_id="v1", name="screening", num_tokens=3),
+        request_id=REQ_ID,
+        prompt=_PROMPT,
+        catalog=SCREENING_CATALOG,
+        screening_payloads=build_screening_payloads(MASKED, CANDIDATES),
         gpt_model=NO_MODEL,
         eager=True,
-        model_params=GPTModelParams(
-            max_completion_tokens=1000,
-            response_format={"type": "json_object"},
-            temperature=0.0,
-            top_p=1.0,
-            presence_penalty=0.0,
-            frequency_penalty=0.0,
-        ),
+        model_params=_PARAMS,
     )
+    return _answered(req, {"screenings": entries})
 
 
-def _answer(request: GPTBatchRequest, phrases) -> GPTBatchRequest:
-    request.response = get_dummy_gpt_batch_response(
-        deferred_at=TIMESTAMP,
-        request_custom_id=REQ_ID,
-        dummy_chat_completion_id="test_completion",
-        chat_completion_choice_message=ChatCompletionChoiceMessage(
-            role="assistant",
-            content=json.dumps(
-                {
-                    "screenings": [
-                        {
-                            "outcome": "no_candidate",
-                            "phrase": phrase,
-                            "explanation": "nothing identifiable",
-                        }
-                        for phrase in phrases
-                    ]
-                }
-            ),
-        ),
-    )
-    return request
-
-
-async def _parse_screening(request):
-    return await parse_phrase_relationship_screening_group_result(
+async def _parse_screening(req: GPTBatchRequest):
+    return await parse_record_screening_group_result(
         subject_unique_id="anchor-mfg.com",
-        field_type=KeywordTypeEnum.equipments,
-        chunk_bounds="0:100",
+        field_name="equipments",
+        catalog=SCREENING_CATALOG,
         group_req_id=REQ_ID,
-        completed_request_map={REQ_ID: request},
+        completed_request_map={REQ_ID: req},
         timestamp=TIMESTAMP,
     )
 
 
-def test_the_screening_context_reads_its_own_sent_phrases_line_back():
-    request = _screening_request(SENT_PHRASES)
-
+def test_the_screening_context_reads_its_own_record_ids_back():
+    req = _screening_request([])
     assert (
-        sent_phrases_from_user_message(request.request.body.user_message())
-        == SENT_PHRASES
+        sent_record_ids_from_user_message(req.request.body.user_message())
+        == RECORD_IDS
     )
+
+
+@pytest.mark.asyncio
+async def test_a_screening_response_covering_both_axes_passes():
+    req = _screening_request(
+        [_screening_entry(rid, CANDIDATES[rid]) for rid in RECORD_IDS]
+    )
+
+    result = await _parse_screening(req)
+
+    assert list(result) == RECORD_IDS
+    assert req.response_parse_errors == []
 
 
 @pytest.mark.asyncio
 async def test_an_under_answering_screening_response_is_a_recorded_parse_error():
-    """Previously this response parsed cleanly and the missing phrases surfaced
-    two nodes later, in freehand grounding's embed, as a phrase-set mismatch —
-    an abort with nothing recorded, so a re-run read the same stored response
-    and died identically. Now it is a normal parse failure: recorded, cleared,
-    re-dispatched on the next pass."""
-    request = _answer(_screening_request(SENT_PHRASES), SENT_PHRASES[:1])
+    req = _screening_request([_screening_entry(RECORD_IDS[0], CANDIDATES[RECORD_IDS[0]])])
 
-    with pytest.raises(MissingResponsePhrases, match="answered 1 of 3"):
-        await _parse_screening(request)
+    with pytest.raises(MissingResponseRecords, match="answered 1 of 3"):
+        await _parse_screening(req)
 
-    assert len(request.response_parse_errors) == 1
-    assert request.response is None  # cleared, so the next pass re-dispatches
-    assert request.batch_id is None
+    assert len(req.response_parse_errors) == 1
+    assert req.response is None  # cleared, so the next pass re-dispatches
+    assert req.batch_id is None
 
 
 @pytest.mark.asyncio
-async def test_a_screening_response_answering_every_phrase_still_passes():
-    request = _answer(_screening_request(SENT_PHRASES), SENT_PHRASES)
+async def test_an_unjudged_candidate_is_a_recorded_parse_error():
+    """The candidate axis: every record's verdicts must cover exactly what its
+    request listed, read off the request document itself."""
+    entries = [_screening_entry(rid, CANDIDATES[rid]) for rid in RECORD_IDS]
+    entries[1]["candidates"] = []
+    req = _screening_request(entries)
 
-    result = await _parse_screening(request)
+    with pytest.raises(ValueError, match="no verdict came back"):
+        await _parse_screening(req)
 
-    assert list(result) == SENT_PHRASES
-    assert request.response_parse_errors == []
+    assert len(req.response_parse_errors) == 1
 
 
 @pytest.mark.asyncio
 async def test_screening_stops_re_dispatching_at_the_cap():
-    request = _answer(_screening_request(SENT_PHRASES), SENT_PHRASES[:1])
-    request.response_parse_errors = [{"prior": "failure"}] * RESPONSE_PARSE_ERROR_CAP
+    req = _screening_request([_screening_entry(RECORD_IDS[0], CANDIDATES[RECORD_IDS[0]])])
+    req.response_parse_errors = [{"prior": "failure"}] * RESPONSE_PARSE_ERROR_CAP
 
     with pytest.raises(RepeatedParseFailure):
-        await _parse_screening(request)
+        await _parse_screening(req)
 
 
-def test_every_production_context_that_renders_the_block_can_read_it_back():
+# --- every production context reads its own blocks back ----------------------
+
+
+def test_every_production_context_that_renders_blocks_can_read_them_back():
     """Pin the anchor against the REAL context builders, not restated f-strings.
 
-    Screening once shipped as `...\\n\\n ` + a bare marker: one space put the line
-    off column 0, the reader returned None, and the stage read as "asked nothing"
-    rather than "misrendered" — the hold would have been a silent no-op. A test
-    that restates the f-string renders it at column 0 and passes while production
-    validates nothing, so import the creators.
-    """
-    from datetime import datetime, timezone
-
-    from llm_providers.models.file_objects.prompt import Prompt
-    from llm_providers.models.llm_model import NO_MODEL
-    from llm_providers.models.open_ai.gpt_model_params import GPTModelParams
-
-    from data_etl_app.models.types_and_enums import KeywordTypeEnum
-    from core.services.pipeline_nodes.multi_stage.llm_freehand_grounding_service import (
-        create_deferred_phrase_freehand_grounding_gpt_request,
-    )
+    Screening once shipped its phrase block one space off column 0, the reader
+    returned None, and the stage read as "asked nothing" rather than
+    "misrendered" — the hold would have been a silent no-op. The v2 record
+    creators carry the same obligation on the record fences, and relationship —
+    still phrase-fenced, and the one stage whose context embeds the raw scraped
+    chunk — must not read a forged pre-fence marker back."""
     from core.services.pipeline_nodes.multi_stage.llm_phrase_relationship_node_service import (
         create_deferred_phrase_relationship_gpt_request,
     )
-    from core.services.pipeline_nodes.multi_stage.llm_relationship_screening_node_service import (
-        create_deferred_phrase_relationship_screening_gpt_request,
-    )
 
-    phrases = {"Paladin\u2122 PW Series": "a summary", "brake components": "another"}
-    params = GPTModelParams(
-        max_completion_tokens=1000,
-        response_format={"type": "json_object"},
-        temperature=0.0,
-        top_p=1.0,
-        presence_penalty=0.0,
-        frequency_penalty=0.0,
-    )
-    prompt = Prompt(text="do it", s3_version_id="v1", name="p", num_tokens=2)
-    common = dict(
-        deferred_at=datetime(2026, 8, 12, tzinfo=timezone.utc),
+    grounding_req = create_deferred_record_grounding_gpt_request(
+        deferred_at=TIMESTAMP,
         subject_unique_id="test.com",
-        subject_name="Test Co",
+        request_id="grounding-id",
+        prompt=_PROMPT,
+        catalog=FREEHAND_CATALOG,
+        record_payloads=build_record_payloads(MASKED),
+        options_section="options to choose from:\n- Some Option",
         gpt_model=NO_MODEL,
         eager=True,
-        model_params=params,
+        model_params=_PARAMS,
+    )
+    screening_req = _screening_request([])
+    relationship_req = create_deferred_phrase_relationship_gpt_request(
+        deferred_at=TIMESTAMP,
+        subject_unique_id="test.com",
+        subject_name="Test Co",
+        llm_phrase_relationship_request_id="relationship-id",
+        subject_text='body\nextracted phrases:\n["decoy from the website"]\nmore',
+        search_results=["Paladin™ PW Series", "brake components"],
+        phrase_relationship_prompt=_PROMPT,
+        gpt_model=NO_MODEL,
+        eager=True,
+        model_params=_PARAMS,
     )
 
-    requests = {
-        "screening": create_deferred_phrase_relationship_screening_gpt_request(
-            llm_phrase_relationship_screening_request_id="screening-id",
-            subject_text="some scraped text",
-            field_type=KeywordTypeEnum.products,
-            phrase_relationship_results=phrases,
-            phrase_relationship_screening_prompt=prompt,
-            **common,
-        ),
-        "freehand": create_deferred_phrase_freehand_grounding_gpt_request(
-            llm_phrase_freehand_grounding_request_id="freehand-id",
-            field_type=KeywordTypeEnum.products,
-            phrase_freehand_grounding_prompt=prompt,
-            verified_phrases_w_og_summary=phrases,
-            **common,
-        ),
-        # Relationship embeds the raw scraped chunk BEFORE the block, so it is
-        # built with text that forges the pre-fence marker. Under the old format
-        # this read back the decoy.
-        "relationship": create_deferred_phrase_relationship_gpt_request(
-            llm_phrase_relationship_request_id="relationship-id",
-            subject_text='body\nextracted phrases:\n["decoy from the website"]\nmore',
-            search_results=list(phrases),
-            phrase_relationship_prompt=prompt,
-            **common,
-        ),
-    }
+    for name, req in [("grounding", grounding_req), ("screening", screening_req)]:
+        read_back = sent_record_ids_from_user_message(req.request.body.user_message())
+        assert read_back == RECORD_IDS, f"{name} context did not read back"
 
-    for name, request in requests.items():
-        read_back = sent_phrases_from_user_message(request.request.body.user_message())
-        assert read_back == list(phrases), f"{name} context did not read back"
+    assert sent_phrases_from_user_message(
+        relationship_req.request.body.user_message()
+    ) == ["Paladin™ PW Series", "brake components"]

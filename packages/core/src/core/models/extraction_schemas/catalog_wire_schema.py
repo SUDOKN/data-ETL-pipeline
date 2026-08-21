@@ -531,11 +531,17 @@ def build_binary_classification_response_model(
     )
 
 
+# The phrase stages point at the v2 (record-keyed) builders since the flip; the
+# v1 builders above them survive only until the v1 node services are deleted in
+# the same phase, and nothing dispatches to them any more.
 _RESPONSE_MODEL_BUILDER_BY_STAGE = {
-    STAGE_RELATIONSHIP_SCREENING: build_screening_response_model,
-    STAGE_INITIAL_GROUNDING: build_option_grounding_response_model,
-    STAGE_RECURSIVE_GROUNDING: build_option_grounding_response_model,
-    STAGE_FREEHAND_GROUNDING: build_category_grounding_response_model,
+    STAGE_RELATIONSHIP_SCREENING: lambda catalog: build_screening_response_model_v2(
+        catalog
+    ),
+    STAGE_INITIAL_GROUNDING: lambda catalog: _build_option_grounding_v2(catalog),
+    STAGE_RECURSIVE_GROUNDING: lambda catalog: _build_option_grounding_v2(catalog),
+    STAGE_OOV_GROUNDING: lambda catalog: _build_candidate_grounding_v2(catalog),
+    STAGE_FREEHAND_GROUNDING: lambda catalog: _build_candidate_grounding_v2(catalog),
     STAGE_BINARY_CLASSIFICATION: build_binary_classification_response_model,
 }
 

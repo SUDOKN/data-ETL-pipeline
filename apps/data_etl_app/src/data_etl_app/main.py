@@ -122,9 +122,6 @@ from data_etl_app.api.routes.manufacturer_user_form import (
 from data_etl_app.api.routes.ground_truth.binary_ground_truth import (
     router as binary_ground_truth_router,
 )
-from data_etl_app.api.routes.ground_truth.llm_phrase_ground_truth import (
-    router as llm_phrase_ground_truth_router,
-)
 
 app.include_router(ontology_router)
 app.include_router(prompt_router)
@@ -132,7 +129,6 @@ app.include_router(out_of_vocab_labels_router)
 app.include_router(manufacturer_user_form_router)
 app.include_router(rdf_validation_router)
 app.include_router(binary_ground_truth_router)
-app.include_router(llm_phrase_ground_truth_router)
 
 """
 USAGE: 

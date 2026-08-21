@@ -1,0 +1,71 @@
+{
+  "catalog_version": "material_cap_phrase_oov_grounding.2026.08.1",
+  "prompt_name": "material_cap_phrase_oov_grounding",
+  "stage": "phrase_oov_grounding",
+  "field_types": [
+    "material_caps"
+  ],
+  "entity_noun": "material",
+  "entity_relationships": {
+    "base": "process",
+    "third_person": "processes",
+    "gerund": "processing"
+  },
+  "evidence_source": "the record's mentions and synthesis",
+  "option_evidence": "what the option names",
+  "outcome_vocab": {
+    "condition": [
+      "satisfied",
+      "failed",
+      "not_triggered"
+    ]
+  },
+  "sections": [
+    {
+      "section_id": "qualification",
+      "heading": "Each {{entity_noun}} you identify qualifies only if ALL of these conditions hold for it:",
+      "combinator": "all",
+      "rules": [
+        {
+          "id": "OGR-E1",
+          "kind": "condition",
+          "reportable": true,
+          "report_when": "always",
+          "text": "The record's mentions evidence the {{entity_noun}} you identified — it is named, described, or clearly implied by what the mentions say, not merely suggested by a resemblance between words.",
+          "combinator": "note",
+          "children": [
+            {
+              "id": "OGR-E1a",
+              "kind": "note",
+              "reportable": false,
+              "report_when": "never",
+              "text": "Whose {{entity_noun}} it is has no bearing here. A candidate evidenced by a customer's, supplier's, or any other third party's dealings is still identified and recorded."
+            },
+            {
+              "id": "OGR-E1b",
+              "kind": "note",
+              "reportable": false,
+              "report_when": "never",
+              "text": "A {{entity_noun}} must actually be determinable: mentions that speak of {{entity_noun}}s only in general terms, with nothing that fixes which one, identify none. Where the record names a specific form or designation of a {{entity_noun}}, identify the {{entity_noun}} it is a form of. An object, part, or assembly made of a {{entity_noun}} is not itself the {{entity_noun}} — identify the {{entity_noun}} only where the record names which one it is made of."
+            }
+          ]
+        },
+        {
+          "id": "OGR-K1",
+          "kind": "condition",
+          "reportable": true,
+          "report_when": "always",
+          "text": "The {{entity_noun}} you identified is of the kind {{entity_noun}} names, judged against what {{entity_noun}} means. A process or treatment, an object or part made of one, a capability, or anything else outside that meaning does not qualify, however clearly the record evidences it."
+        },
+        {
+          "id": "OGR-N1",
+          "kind": "condition",
+          "reportable": true,
+          "report_when": "always",
+          "text": "Neither the provided options nor the record's already-identified results cover the {{entity_noun}} you identified: no option matches it exactly or under different words, judged against {{option_evidence}}, and it does not restate an already-identified result."
+        }
+      ]
+    }
+  ],
+  "published": {}
+}

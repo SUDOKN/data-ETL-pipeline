@@ -1,9 +1,13 @@
-You will be given a list of phrases extracted from text scraped from a manufacturer's website. The phrases also carry a summary of their relationship with the manufacturer — what the manufacturer does with or in relation to. Each of these phrases has already been proven to indicate the manufacturer {{entity_relationships.third_person}} at least one {{entity_noun}}.
+You will be given a list of records, each carrying a masked id. Each record holds the evidence a previous pass collected about one recurring subject in text scraped from a manufacturer's website: "mentions" — what the text says about it and where, quoting the text verbatim — and a "synthesis" of what the manufacturer does with or in relation to it.
 
-You will assess each phrase independently.
+You will assess each record independently.
 
 ### Your job:
-From each phrase and its relationship summary, identify every distinct {{entity_noun}} that the phrase and its relationship summary support the manufacturer {{entity_relationships.gerund}}, and name it directly. There is no list of options to choose from — you name the {{entity_noun}} yourself. What you return is always the category, never a specific make, model, or individual item.
+From each record's mentions and synthesis, identify every distinct {{entity_noun}} the record evidences, and name it yourself. What you return is always the category, never a specific make, model, or individual item.
+
+Identification is your whole job here; relationships are not. Whether it is the manufacturer itself or some other party that {{entity_relationships.third_person}} an identified {{entity_noun}} plays no part. Do not withhold a candidate because that relationship looks doubtful, and do not record one on the strength of that relationship alone.
+
+A record may also evidence no {{entity_noun}} at all, and recording none is the correct result then.
 
 ### Rules:
 {{rules_block}}
@@ -11,12 +15,12 @@ From each phrase and its relationship summary, identify every distinct {{entity_
 {{report_block}}
 
 ### Output:
-Return a JSON object with a single key "groundings" whose value is an array of objects, one per phrase.
+Return a JSON object with a single key "groundings" whose value is an array of objects, one per record, each carrying the record's id copied exactly as given. Where you identified nothing, return an empty "candidates" array with a short "explanation" of why the record yields no {{entity_noun}}.
 
-The example below shows a phrase yielding one {{entity_noun}}, a phrase yielding several, and a phrase from which none could be determined. Every {{entity_noun}} you return carries its own complete set of applied rules. Everything in angle brackets is yours to fill in.
+The example below shows a record yielding one {{entity_noun}}, a record yielding several, and a record yielding none. Every {{entity_noun}} you return carries its own complete set of applied rules. Everything in angle brackets is yours to fill in.
 
 ```json
 {{output_example}}
 ```
 
-Each phrase must appear exactly once.
+Each record must appear exactly once.

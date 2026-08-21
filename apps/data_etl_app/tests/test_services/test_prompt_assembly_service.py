@@ -8,14 +8,12 @@ from core.models.extraction_schemas.applied_rule import AppliedRule
 from core.models.extraction_schemas.catalog_wire_schema import (
     CHOSEN_SLOT,
     GUARDS_SLOT,
-    NO_CANDIDATE,
     response_format_for,
     response_model_for,
 )
 from core.models.extraction_schemas.response_format_util import (
     assert_strict_schema_supported,
 )
-from core.models.extraction_schemas.grounding import is_sentinel_grounding_label
 from core.models.rule_catalog import RuleCatalog
 from core.services.applied_rule_validation import (
     passed_implied_by,
@@ -55,31 +53,22 @@ def _rendered_example(catalog: RuleCatalog) -> dict:
 
 def _example_units(catalog: RuleCatalog, example: dict) -> Iterator[tuple[str, dict]]:
     """``(where, unit)`` for every unit in the example that carries rule slots —
-    the whole response in binary classification, the entry itself in screening,
-    each option or category in grounding.
-
-    Rule slots are hoisted onto the unit now (see ``catalog_wire_schema``), so a
-    unit IS the thing that carries them rather than holding an ``applied_rules``
-    list. Screening's no-candidate entries carry none at all, by design, and so do
-    grounding's escape-hatch units — both are branches of their stage's schema
-    rather than units with fixed content. ``test_grounding_escape_hatch_carries_no_rules``
-    is what holds the latter to that.
+    the whole response in binary classification, each judged candidate in
+    screening, each option or minted candidate in grounding. Declination
+    entries (empty unit lists) carry no rules by design and yield nothing.
     """
     if catalog.stage == "binary_classification":  # one object, one unit
         yield "response", example
         return
-    for entries in example.values():
-        for entry in entries:
-            if catalog.stage == "phrase_relationship_screening":
-                if entry.get("outcome") == NO_CANDIDATE:
-                    continue
-                yield entry["phrase"], entry
-                continue
-            for unit in entry.get("options", entry.get("categories", [])):
-                label = unit.get("option", unit.get("category"))
-                if is_sentinel_grounding_label(str(label)):
-                    continue
-                yield f"{entry['phrase']} / {label}", unit
+    if catalog.stage == "phrase_relationship_screening":
+        for entry in example["screenings"]:
+            for unit in entry["candidates"]:
+                yield f"{entry['record_id']} / {unit['candidate']}", unit
+        return
+    for entry in example["groundings"]:
+        for unit in entry.get("options", entry.get("candidates", [])):
+            label = unit.get("option", unit.get("candidate"))
+            yield f"{entry['record_id']} / {label}", unit
 
 
 def _rules_of(catalog: RuleCatalog, unit: dict) -> list[dict]:
@@ -165,7 +154,7 @@ def _fill_placeholders(node, schema: dict, root: dict):
         # standing in for an int — the convention, not a defect. Strict decoding
         # emits the real type regardless.
         return {"integer": 0, "number": 0, "boolean": False}.get(
-            schema.get("type"), "x"
+            schema.get("type", ""), "x"
         )
     return node
 
@@ -309,12 +298,7 @@ def test_report_block_separates_always_from_chosen_and_violated():
     text = render_prompt(catalog)
 
     always = sorted(catalog.always_reported_rule_ids())
-    # RGR-Q3 (match by meaning, not lexical similarity) was demoted to a note on
-    # RGR-M1 on 2026-08-18: it never once failed across the 156 grounding decisions
-    # in the 20260818T204045 run, and M1/M2 already state their criterion in terms
-    # of meaning, so it constrained HOW the ladder is applied rather than testing
-    # anything the ladder did not.
-    assert set(always) == {"RGR-Q1", "RGR-Q2", "RGR-QC1"}
+    assert set(always) == {"RGR-E1"}
     for rule_id in always:
         assert re.search(rf"whichever outcome it reached:[^\n]*{rule_id}", text)
 
@@ -347,16 +331,11 @@ def test_the_example_inlines_rule_objects_and_empty_entries(prompt_name):
         stripped = line.strip()
         # A rule's slot, under the field named for its id; or a fired guard / the
         # chosen branch, which name the id inside because the model picks it.
-        if '"explanation":' in stripped:
+        if '"outcome":' in stripped or '"rule_id":' in stripped:
             assert stripped.endswith(("},", "}")), (
                 f"rule object was split across lines: {stripped[:60]}..."
             )
             inlined += 1
-        if f'"{NO_CANDIDATE}"' in stripped:
-            assert stripped.startswith("{"), (
-                f"no-candidate entry was split across lines: {stripped[:60]}..."
-            )
-
     assert inlined, "no rule objects to check"
 
 
@@ -447,42 +426,6 @@ def test_output_example_reports_every_always_reported_rule(prompt_name):
 @pytest.mark.parametrize(
     "prompt_name",
     sorted(
-        name for name, catalog in CATALOGS.items() if catalog.sentinel_tag is not None
-    ),
-)
-def test_grounding_escape_hatch_carries_no_rules(prompt_name):
-    """The escape hatch shows the label and an explanation, and nothing else.
-
-    It used to show the full ladder with every condition ``not_triggered`` — four
-    reports whose content the branch already fixed, and which nothing downstream
-    reads. On 2026-08-18 one such unit reported 'Q2 satisfied' behind 'Q1 failed'
-    and the chain check aborted the manufacturer over a contradiction inside a
-    record that is discarded moments later. The slots are gone from the schema, so
-    the example must not go on showing them: the example is what the model copies.
-    """
-    catalog = CATALOGS[prompt_name]
-    unit_key = "category" if catalog.stage == "phrase_freehand_grounding" else "option"
-
-    hatches = [
-        unit
-        for entry in _rendered_example(catalog)["groundings"]
-        for unit in entry.get("options", entry.get("categories", []))
-        if is_sentinel_grounding_label(str(unit.get(unit_key, "")))
-    ]
-    assert len(hatches) == 1, "the example shows the escape hatch exactly once"
-
-    hatch = hatches[0]
-    assert set(hatch) == {unit_key, "explanation"}, (
-        f"escape hatch carries {sorted(set(hatch) - {unit_key, 'explanation'})} "
-        f"beyond its label and explanation"
-    )
-    assert hatch[unit_key] == catalog.sentinel_tag
-    assert hatch["explanation"].startswith("<") and hatch["explanation"].endswith(">")
-
-
-@pytest.mark.parametrize(
-    "prompt_name",
-    sorted(
         name
         for name, catalog in CATALOGS.items()
         if catalog.stage == "phrase_relationship_screening"
@@ -490,22 +433,20 @@ def test_grounding_escape_hatch_carries_no_rules(prompt_name):
 )
 def test_screening_example_covers_every_verdict_path(prompt_name):
     """`passed` is derived from the reported rules rather than reported, so the
-    example has to show each way that derivation can come out: qualified, a
-    condition that did not hold, a guard, and no candidate at all."""
+    example has to show each way that derivation can come out: a candidate that
+    qualified, one that failed a condition, and one a guard ruled out."""
     catalog = CATALOGS[prompt_name]
     entries = _rendered_example(catalog)["screenings"]
-    assert len(entries) == 4
+    assert len(entries) == 3
 
     verdicts = [
-        passed_implied_by(catalog, _applied_rules_of(catalog, entry))
+        passed_implied_by(catalog, _applied_rules_of(catalog, unit))
         for entry in entries
+        for unit in entry["candidates"]
     ]
-    assert verdicts == [True, False, False, False]
-    # The other branch of the union: no candidate, so no rule slots at all, and an
-    # explanation carrying the whole of its record.
-    assert entries[-1]["outcome"] == NO_CANDIDATE
-    assert "identified_entity" not in entries[-1]
-    assert entries[-1]["explanation"]
+    assert verdicts == [True, True, False, False]
+    # The two-candidate record: one outcome never colors the other.
+    assert len(entries[1]["candidates"]) == 2
 
 
 @pytest.mark.parametrize(
@@ -517,12 +458,12 @@ def test_screening_example_covers_every_verdict_path(prompt_name):
     ),
 )
 def test_screening_example_shows_a_guard_overriding_satisfied_conditions(prompt_name):
-    """The point of the guard entry: every condition holds and the phrase is still
-    rejected. If its conditions ever stop being all-satisfied it stops showing the
-    one thing no other entry does."""
+    """The point of the guard entry: every condition holds and the candidate is
+    still rejected. If its conditions ever stop being all-satisfied it stops
+    showing the one thing no other unit does."""
     catalog = CATALOGS[prompt_name]
-    guard_entry = _rendered_example(catalog)["screenings"][2]
-    rules = _applied_rules_of(catalog, guard_entry)
+    guard_unit = _rendered_example(catalog)["screenings"][-1]["candidates"][0]
+    rules = _applied_rules_of(catalog, guard_unit)
 
     conditions = {rule.id for rule in catalog.walk_rules() if rule.kind == "condition"}
     guards = {rule.id for rule in catalog.walk_rules() if rule.kind == "guard"}
@@ -532,26 +473,6 @@ def test_screening_example_shows_a_guard_overriding_satisfied_conditions(prompt_
     )
     assert [rule.outcome for rule in rules if rule.rule_id in guards] == ["violated"]
     assert not passed_implied_by(catalog, rules)
-
-
-@pytest.mark.parametrize(
-    "prompt_name",
-    sorted(name for name, catalog in CATALOGS.items() if catalog.sentinel_tag),
-)
-def test_output_example_shows_the_sentinel_spelled_as_the_parser_expects(prompt_name):
-    """The sentinel reaching the results as if it were a discovered label is the bug
-    this spelling guards against; showing it in the example is where the model copies
-    it from."""
-    catalog = CATALOGS[prompt_name]
-    entries = _rendered_example(catalog)["groundings"]
-
-    labels = [
-        label
-        for entry in entries
-        for unit in entry.get("options", entry.get("categories", []))
-        for label in [unit.get("option", unit.get("category"))]
-    ]
-    assert catalog.sentinel_tag in labels
 
 
 def test_catalog_covering_two_field_types_cannot_use_the_parent_token():

@@ -1,0 +1,95 @@
+{
+  "catalog_version": "product_phrase_freehand_grounding.2026.08.1",
+  "prompt_name": "product_phrase_freehand_grounding",
+  "stage": "phrase_freehand_grounding",
+  "field_types": [
+    "products",
+    "contract_products"
+  ],
+  "entity_noun": "product category",
+  "entity_relationships": {
+    "base": "make or work on",
+    "third_person": "makes or works on",
+    "gerund": "making or working on"
+  },
+  "evidence_source": "the record's mentions and synthesis",
+  "outcome_vocab": {
+    "condition": [
+      "satisfied",
+      "failed",
+      "not_triggered"
+    ]
+  },
+  "sections": [
+    {
+      "section_id": "evidence",
+      "heading": "Each {{entity_noun}} you identify qualifies only if ALL of these conditions hold for it:",
+      "combinator": "all",
+      "rules": [
+        {
+          "id": "FGR-E1",
+          "kind": "condition",
+          "reportable": true,
+          "report_when": "always",
+          "text": "The record's mentions evidence the {{entity_noun}} you identified — it is named, described, or clearly implied by what the mentions say, not merely suggested by a resemblance between words.",
+          "combinator": "note",
+          "children": [
+            {
+              "id": "FGR-E1a",
+              "kind": "note",
+              "reportable": false,
+              "report_when": "never",
+              "text": "Whose {{entity_noun}} it is has no bearing here. A candidate evidenced by a customer's, supplier's, or any other third party's dealings is still identified and recorded."
+            },
+            {
+              "id": "FGR-E1b",
+              "kind": "note",
+              "reportable": false,
+              "report_when": "never",
+              "text": "The {{entity_noun}} must be stated, not inferred: it may not be derived from industry context, markets served, certifications, standards, equipment, facilities, materials, or process names. A named process or capability with no stated output identifies no {{entity_noun}}."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "section_id": "category_qualification",
+      "heading": "And every {{entity_noun}} you name must satisfy ALL of these:",
+      "combinator": "all",
+      "rules": [
+        {
+          "id": "FGR-Q1",
+          "kind": "condition",
+          "reportable": true,
+          "report_when": "always",
+          "text": "It is a determinate category: neither an individual item — one specimen, identified as itself rather than as a kind — nor a term so general it fixes nothing. A record naming a specific item is reported as the category that item belongs to.",
+          "combinator": "note",
+          "children": [
+            {
+              "id": "FGR-Q1a",
+              "kind": "note",
+              "reportable": false,
+              "report_when": "never",
+              "text": "A record that identifies one particular item — by its maker, its designation, its catalogue reference, or any other mark that singles that one out from others like it — names an item rather than a category. Report the kind that item belongs to, and carry none of what singled it out into the category name."
+            },
+            {
+              "id": "FGR-Q1b",
+              "kind": "note",
+              "reportable": false,
+              "report_when": "never",
+              "text": "Where a record names something the manufacturer's output goes into, is fitted to, or serves, the category is that output itself, never the larger thing it becomes part of."
+            }
+          ]
+        },
+        {
+          "id": "FGR-Q2",
+          "kind": "condition",
+          "reportable": true,
+          "report_when": "always",
+          "text": "It is distinct from every other {{entity_noun}} named for the same record. Two names for the same {{entity_noun}} in different words are one, not two."
+        }
+      ]
+    }
+  ],
+  "published": {}
+}
