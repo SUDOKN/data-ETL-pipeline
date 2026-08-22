@@ -29,17 +29,16 @@ answerable to a mechanical floor.**
 
 ## STATE
 
-- **Phase:** 3 — node services + DAG. **3.1 DONE 2026-08-21** (uncommitted
-  at the time of writing; hash recorded at the next commit). **Next substep:
-  3.2** (synthesis node). **Phase 2 REVIEW gate PASSED 2026-08-21** (user:
+- **Phase:** 3 — node services + DAG. **3.1 DONE 2026-08-21 — commit
+  `617af74`.** **Next substep: 3.2** (synthesis node). **Phase 2 REVIEW gate PASSED 2026-08-21** (user:
   "You can start with the next step" — the fold rule set as built, incl. the
   three refinements, approved). **RESUME HERE:** the 3.1 bullet below, then
   3.2. Commits on `new-ground-truth-v2`: `ca9a82e` = Phase 1 + 2.1;
   `e729a81` = 2.2 + walkthrough + evidence; `c1209a1` = STATE pointers;
   `0f308c9` = 2.3 + the Phase 1.2–1.4 static amendments (the 12 modified
-  statics were v3 work, not v2-flip — corrected). Only the `ontology`
-  submodule's dirty content is not v3.
-- **3.1 DONE 2026-08-21 — the mention node + fold are IN THE CHAIN;
+  statics were v3 work, not v2-flip — corrected); `617af74` = 3.1. Only the
+  `ontology` submodule's dirty content is not v3.
+- **3.1 DONE 2026-08-21 (`617af74`) — the mention node + fold are IN THE CHAIN;
   relationship is OUT (user decision: replace now; full runs wait for
   3.2/3.3).** Core suite 472, app suite 406 (878 green); pyright delta = only
   the pre-existing families (node-hierarchy "overrides incompatibly",
