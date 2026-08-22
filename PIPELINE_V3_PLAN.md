@@ -29,33 +29,86 @@ answerable to a mechanical floor.**
 
 ## STATE
 
-- **Phase:** 2 — pure core, ALL THREE SUBSTEPS BUILT (2.3 landed 2026-08-21
-  on the user's go-ahead). **Next: the Phase 2 REVIEW gate** (below), then
-  Phase 3.1 (mention node). **RESUME HERE:** the 2.3 module is
-  `core/utils/aggregation_fold.py` — its docstring is the design A–E as built;
-  [PIPELINE_V3_WALKTHROUGH_2_2.md](PIPELINE_V3_WALKTHROUGH_2_2.md) §6 walks the
-  same scenario, which is now the module's golden test. Commits on
-  `new-ground-truth-v2`: `ca9a82e` = Phase 1 + 2.1; `e729a81` = 2.2 +
-  walkthrough + evidence; `c1209a1` = STATE pointers; 2.3 committed
-  2026-08-21 on top (hash recorded at the next commit). **Correction
-  (2026-08-21):** the 12 modified statics under `3_phrase_mention_collection/`
-  and `4_phrase_synthesis/` were NOT v2-flip work — they are the Phase
-  1.2–1.4 amendments (array-shaped mention output per the strict-mode note in
-  D6; the amended synthesis lens per D15) that never got committed after
-  `ca9a82e`; they ride with the 2.3 commit. Only the `ontology` submodule's
-  dirty content is not v3.
-- **Phase 2 REVIEW gate — prepared 2026-08-21, awaiting the user.** What to
-  read: (1) the property tests of all three substeps
-  (`tests/test_utils/test_form_normalizer.py`, `test_floor_scan.py`,
-  `test_aggregation_fold.py`: order-independence, normalization edges,
-  short-form bridge, anchoring/containment/hold invariants, idempotence);
-  (2) the dry grouping run over the appendix corpus —
-  `pipeline_v3_evidence/2026-08-21_normalize_dry_run_output.txt` (appendix E:
-  4,157 real pairs, 162→189→191→198 groups, zero wrong merges at
-  L0/L1/fallback). **Question for the user:** does the fold's rule set (2.3
-  bullet below — plan A–E plus three build-time refinements) match what you
-  approved, and is the Phase 2 evidence enough to start building the nodes
-  (3.1)?
+- **Phase:** 3 — node services + DAG. **3.1 DONE 2026-08-21** (uncommitted
+  at the time of writing; hash recorded at the next commit). **Next substep:
+  3.2** (synthesis node). **Phase 2 REVIEW gate PASSED 2026-08-21** (user:
+  "You can start with the next step" — the fold rule set as built, incl. the
+  three refinements, approved). **RESUME HERE:** the 3.1 bullet below, then
+  3.2. Commits on `new-ground-truth-v2`: `ca9a82e` = Phase 1 + 2.1;
+  `e729a81` = 2.2 + walkthrough + evidence; `c1209a1` = STATE pointers;
+  `0f308c9` = 2.3 + the Phase 1.2–1.4 static amendments (the 12 modified
+  statics were v3 work, not v2-flip — corrected). Only the `ontology`
+  submodule's dirty content is not v3.
+- **3.1 DONE 2026-08-21 — the mention node + fold are IN THE CHAIN;
+  relationship is OUT (user decision: replace now; full runs wait for
+  3.2/3.3).** Core suite 472, app suite 406 (878 green); pyright delta = only
+  the pre-existing families (node-hierarchy "overrides incompatibly",
+  prefill `next_node`, `object`-typed dump util); ruff clean on new modules.
+  **Decisions taken with the user (2026-08-21):** (a) **fold scope = per
+  CHUNK** over the chunk's `search_divisor` sub-windows — the 20k macro chunk
+  relationship used to see; one `FoldResult` per chunk, one synthesis per
+  group per chunk; content-derived `group_id` keeps the same group joinable
+  across chunks (as `record_id` did) and reconcile merges. (b) **brute
+  survivors enter the mention stage as the exact casings found in each
+  sub-window** (case-insensitive whole-word scan; `brute_by_sub_bounds` on
+  the concept bundle, computed at prefill where the text is). (c) **fold
+  identity in metadata**: `AggregationFoldMetadata{normalizer_version,
+  verb_fold}` + `BatchedMentionCollectionNodeMetadata{max_forms_per_request}`,
+  both Optional on `LLMPhraseExtractionMetadataV2` (stored v2 docs still
+  load; staleness check turns None→set into the standard re-defer). Editing
+  fold RULES without a version bump changes no metadata and no request id —
+  the cheap loop; a bump hard-fails resume, and the null-and-re-run remedy
+  still replays every LLM stage. (d) **24 statics PUBLISHED + pinned**
+  (`assemble_prompts.py publish`, 2026-08-21): 6 reworked search, 6 reworked
+  recursive, 6 mention, 6 synthesis (the latter are pinned but not yet
+  registered in PromptService — 3.2). `check` is clean. The live search
+  stage now speaks v3 (surface forms, casings).
+  **Built:** `PipelineStage.mention_collection` (token
+  `llm_phrase_mention_collection`, rank 3; relationship → 4, grounding 5,
+  oov 6, screening 7, descent 8, reconcile 9 — `relationship` stays an enum
+  member so stored ids can be scoped/deleted until 3.3);
+  `core/services/pipeline_nodes/multi_stage/llm_phrase_mention_collection_node_service.py`
+  (window-local forms = that sub-window's first search ∪ its recursive rounds
+  ∪ its brute casings, exact-string dedup, sorted; `split_into_form_groups`;
+  context = window text + `<<<PHRASES` fence; strict schema; dummy for an
+  empty window; parse + EXACT warn-only hold per group; `get_chunk_fold` reads
+  each window's sent forms back off its requests' own fences, locates windows
+  by `search_sub_bounds`, inherits `preceding_page_of(text, start)`, and calls
+  `fold_document`); `LLMPhraseMentionCollectionNode` (+ `Concept…`,
+  `Keyword…` in core; `ContractProduct…` (shares the `products` identity like
+  search), `PureProduct…`, `Equipment…` in the app) — custom id
+  `…>llm_phrase_mention_collection>chunk>{c}>sub>{s}>group>{i}>{model|params|pv}|gs=N|ud=digest(group forms)`;
+  bundle field `llm_phrase_mention_req_ids: {sub_bounds: [group ids]}`;
+  `get_result(..., subject_text, verb_fold) -> FoldResult`; `validate_own_responses`
+  opt-in. **Partial dump:** each chunk gains a `fold` block
+  (`core/utils/fold_dump_util.py`: summary, groups with member forms inline +
+  mentions in locked order, per-window hold — obligations, unaccounted,
+  unlocated, unanchored, rekeyed, `discovered_casings` = tier-2 casings no sent
+  form covered, short forms) and the request witness lists mention groups per
+  sub-window. `PipelineContext[...]` now raises a NAMED error when a node's
+  map is absent (a v2 tail node reading relationship under the v3 chain lands
+  there; the message says to run with `stop_after(mention_collection)`).
+  Factory: `DEFAULT_MENTION_COLLECTION_MAX_FORMS_PER_REQUEST = 30`,
+  `VERB_FOLD_FIELDS = {material_caps, process_caps}`, mention node after
+  recursive search in all 7 phrase pipelines; the v2 relationship metadata is
+  still built (required field) until 3.3. **2.1 finding (hypothesis, at
+  3.1):** `normalize` is idempotent only for forms without a code-token-guarded
+  token (`AAAaS` → `aaaas` → `aaaa`: the guard reads casing the key no longer
+  has); keys are computed once per form, so this is a documented property
+  boundary, not a defect — docstring + property test narrowed, no normalizer
+  change, golden digest untouched.
+  **HOW TO SEE THE FOLD (notebook `mfg_extraction_test.ipynb`):** build the
+  orchestrator with `stage_toggles=StageToggles().stop_after(PipelineStage.mention_collection)`
+  (the old `stop_after(PipelineStage.relationship)` also stops before the v2
+  tail, but name the real stage). `prepare_manufacturer` as today for a fresh
+  run; dumps land in `packages/logs/extraction_dumps/<ts>/<subject>__<field>__partial.json`,
+  per chunk under `"fold"`. **To iterate on the fold without re-spending:**
+  keep the stored batch requests (skip the scoped delete, or scope it to
+  `PipelineStage.mention_collection, and_downstream=True` to redo mentions
+  only) — custom ids are unchanged, so search + mention replay from Mongo and
+  the partial dump recomputes the fold with the CURRENT rules. A run WITHOUT
+  toggles reaches the v2 grounding tail and stops with the named context
+  error (expected until 3.3).
 - **2.3 DONE 2026-08-21 (user approved the proposed plan A–E; built as
   proposed plus three refinements found while building):**
   `core/utils/aggregation_fold.py` + 25 tests
@@ -345,7 +398,7 @@ D-ids are v3's own numbering; no continuity with the v2 plan's F-ids.
 | D17 | No text preprocessing | No ASCII fold / character substitution (skipped as not straightforward; the curated-fold idea is shelved unless evidence demands). `ensure_ascii=False` STAYS — reverting was proposed and withdrawn against the measured evidence (escapes caused 17/17 echo corruption; real characters fixed it; on ASCII-clean text the flag is a no-op anyway). Normalize-at-comparison wherever a comparison crosses surfaces. |
 | D18 | GT v3 | Mention-level GT is near-mechanical (verbatim fidelity + location), anchored `(record_id, window, mention_index)` — survives any grouping change. **Location note (2026-08-21, follows the D6 amendment):** the auditable location is the fold's code-derived page; the freehand location string is unaudited color. **Synthesis note (2026-08-21, follows the D15 amendment):** the synthesis audit is faithfulness-to-entries only — no disposition audit, no split-flag tally; wrong-merge visibility is the Phase 4.1 dump's member-forms column. The missed-MENTION surface becomes a missed-FORM surface per 5k window (tractable for an annotator; tier-2 scan feeds it). Synthesis audits key on `group_id` (run-scoped addressing accepted; cross-run joins via member-form overlap). Synthesis is auditable AGAINST ITS BUNDLE without opening source text. Annotator budget concentrates on synthesis. Audit primitives (TextFieldAudit/EntityFieldAudit, rule_tree, fold, inflation pattern) carry over. |
 | D19 | Same-occurrence dedup | Cross-casing duplicates are impossible by construction (exact-case matching, D5). Containment overlaps resolved by longest-match in code (D8). Residual rule for two forms of one group reporting the same spot: keyed on (group, page, snippet overlap) at aggregation — exact rule OPEN, decide in Phase 2. **SETTLED 2.3 (2026-08-21, user-approved, built):** after re-attribution the unit is the OCCURRENCE — dedup key (group, occurrence span in the window); the longer snippet is kept; among equal snippets the collector's own filing wins, then lexical order (never answer order). `core/utils/aggregation_fold.py`; PIPELINE_V3_WALKTHROUGH_2_2.md §6 C. |
-| D20 | Measurement gates | ~~v2's Phase 4 numbers are v3's precondition AND baseline~~ **AMENDED 2026-08-21 (user decision):** the v2 gate is ABANDONED — both subjects crashed inside v2's relationship/grounding at production settings (appendix D), and repairing a stage v3 deletes just to measure it isn't worth it. v3 proceeds at full scope; the Phase 5 gate compares v3 against the v1 hand-audit baselines only (56% boundary precision, 45% context coverage — appendix C). There is no v2 comparison arm. |
+| D20 | Measurement gates | v3 proceeds at full scope; the Phase 5 gate compares v3 against the v1 hand-audit baselines only (56% boundary precision, 45% context coverage — appendix C). There is no v2 comparison arm: the v2 gate was abandoned 2026-08-21 after both subjects crashed inside the stages v3 replaced (appendix D, condensed). |
 
 **Open items (small, decide in-phase):** ~~D19's exact residual rule~~ (settled 2.3); ~~snippet extent
 defaults~~ (settled in 1.2: sentence, or whole line for non-sentence text); the
@@ -359,10 +412,9 @@ after the fold — search false positive, or swallowed by containment — keeps 
 bundle with status `no_mentions`, is skipped by `synthesis_records()`, and stays
 dump-visible).
 
-**Standing watch items inherited from v2:** M2 match rules still owed; descent-
-attribution leak channel (measure at gates); search-divisor recall/quality A/Bs
-still unrun; **grounding under-answer policy (USER-OWNED, from the gate crash —
-appendix D):** a grounding response can validly answer a fraction of its sent
+**Standing watch items:** M2 match rules still owed; descent-attribution leak
+channel (measure at gates); search-divisor recall/quality A/Bs still unrun;
+**grounding under-answer policy (USER-OWNED, appendix D):** a grounding response can validly answer a fraction of its sent
 records and today that aborts the whole subject via `MissingResponseRecords`;
 decide retry/split/schema policy before v3's grounding re-key (Phase 3.3).
 
@@ -371,24 +423,18 @@ decide retry/split/schema policy before v3's grounding re-key (Phase 3.3).
 ## Phases
 
 ### Phase 0 — Predecessors (CLOSED 2026-08-21)
-- **0.1** V2 flip review sign-off. **DONE 2026-08-21** (chat; three deviations approved).
-- **0.2** v2 Phase 4 measurement gate: **ABANDONED 2026-08-21 (user decision).**
-  The gate run (alecmfg + steelcraft at factory defaults,
-  `max_phrases_per_request=30`) crashed on BOTH subjects inside stages v3
-  replaces — no coverage numbers exist and none will be produced. Crash detail in
-  appendix D.
-- **0.3 Evaluation protocol:** moot for v2, but RETAINED for v3's Phase 5 gate —
-  dumps land in `packages/logs/extraction_dumps/<run_id>/` and are readable
-  directly; baselines are appendix C; scoring methodology is the hand-audit
-  write-up at
+- **0.1** v2 flip review signed off; **0.2** the v2 measurement gate abandoned
+  by user decision (both subjects crashed inside stages v3 replaced — appendix
+  D, condensed; D20). **Gate resolved by decision, not numbers.**
+- **0.3 Evaluation protocol — RETAINED for v3's Phase 5 gate:** dumps land in
+  `packages/logs/extraction_dumps/<run_id>/` and are readable directly;
+  baselines are appendix C; scoring methodology is the hand-audit write-up at
   `apps/data_etl_app/src/data_etl_app/services/ground_truth/MATERIAL_CAPS_STAGE_AUDIT_20260816.md`
   (boundary judgment, distinct-context clustering for coverage, per-stage
-  attribution). **The USER must supply the arm mapping** — per run id: subject,
+  attribution). **The USER supplies the arm mapping** per run id — subject,
   batching knobs, OOV on/off, model/temp/seed if non-default (usual: gpt-4.1,
   temp 0, seed 12345) — plus any notebook-side errors/aborts; dumps do not
   reliably self-describe these knobs.
-- **REVIEW gate:** resolved by decision, not numbers — v3 proceeds at full scope
-  against the v1 baselines (D20 amended).
 
 ### Phase 1 — Contracts on paper
 - **1.1** Search statics reworked: flat form emission, fullest-span, all casings,
@@ -489,43 +535,22 @@ highest input cost · relationship windows complementary not redundant (21.9%
 quote overlap, union 1.39× best window) · 5k-window simulation: −27% input tokens,
 output ~2.2× if coverage reached all contexts.
 
-### D. v2 Phase-4 gate crash (run 20260822T012722, 2026-08-21) — why the gate was abandoned
-Sweep of alecmfg + steelcraft at factory defaults (gpt-4.1, temp 0, seed 12345;
-relationship AND grounding group size 30 —
-`ExtractionPipelineFactory.DEFAULT_*_PER_REQUEST`). Both subjects FAILED; no
-coverage numbers exist.
-- **steelcraft — repetition loop → truncated JSON.** Relationship request
-  `group>5>chunk>0:97071` (candidates incl. `borrowed lights`, `configured
-  Doors`, `doors and frames`): the model locked into emitting one identical
-  mention block ({form, page, account} — same page, same boilerplate account
-  sentence) over and over until it spent exactly 20,000 completion tokens
-  (`finish_reason='length'`); JSON cut mid-string at line 842 → pydantic
-  `json_invalid` → ValueError at `parse_llm_phrase_relationship_records`. Same
-  failure family as the 2026-08-16 search repetition loops; the relationship
-  stage has no truncation salvage, and salvage is structurally blocked by the
-  all-records-must-return contract. Root read: ~21k-token prompt (97KB macro
-  window), output demand proportional to every mention of 30 phrases — v2 is
-  unbounded on the output side; v3's 5k-window mention collector bounds it
-  (D1/D5), and D7's floor scan catches degeneration mechanically.
-- **alecmfg — grounding under-answer.** Freehand grounding `group>1>chunk>0:98612`
-  answered ONLY the first record (`r59v4t75`) of 30 sent — clean JSON,
-  `finish_reason='stop'`, 244 completion tokens; `hold_response_to_sent_record_ids`
-  raised `MissingResponseRecords` and killed the subject. Under-generation, NOT
-  truncation. **This failure mode SURVIVES the pivot** (v3 grounding is similar):
-  the wire schema doesn't force one entry per sent record. Policy owed —
-  USER-OWNED, see standing watch items.
-- **Sub-URL hypothesis (user, thinking aloud):** that demanding page paths causes
-  the loops. The crash evidence points elsewhere — the loop's repeated unit was
-  dominated by the long verbatim `account` text and repeated the SAME page. Note
-  v3's D6 mention output keeps `page`, so if the hypothesis were right v3 would
-  inherit the problem; testable as a cheap Phase 5 A/B.
-- **Replay hazard:** both bad responses are RECORDED in the batch-request store —
-  resuming these runs replays the stored responses and fails identically; delete
-  the stored requests first if these subjects are rerun on v2.
-- Artifacts: full log (transient, overwritten per run) at
-  `apps/data_etl_app/src/data_etl_app/scripts/latest_extraction_error.txt`; dump
-  dir `packages/logs/extraction_dumps/20260822T012722/` holds only steelcraft's
-  five single-stage fields (both runs died mid-products, before trail dumps).
+### D. v2 Phase-4 gate crash (run 20260822T012722, 2026-08-21) — condensed
+Why there is no v2 comparison arm (D20). Both gate subjects failed at factory
+defaults (gpt-4.1, temp 0, seed 12345, group size 30), inside stages v3 replaced:
+- **steelcraft — relationship repetition loop:** one identical mention block
+  repeated to the 20k completion cap, JSON truncated mid-string. v2's output
+  demand was proportional to every mention of 30 phrases over a ~21k-token
+  window — unbounded; v3 bounds it (5k windows, D1/D5) and D7's floor scan
+  catches degeneration mechanically. Cheap Phase 5 A/B if loops resurface in
+  the collector: mention output with/without the page/location field.
+- **alecmfg — grounding UNDER-ANSWER:** a clean, short response answering 1 of
+  30 sent records (`finish_reason='stop'`) → `MissingResponseRecords` killed
+  the subject. **Survives the pivot** (the wire schema doesn't force one entry
+  per sent record); policy is USER-OWNED — see standing watch items.
+- Stored bad responses replay identically; the notebook's scoped delete is the
+  remedy. Log: `apps/data_etl_app/src/data_etl_app/scripts/latest_extraction_error.txt`;
+  dump dir `packages/logs/extraction_dumps/20260822T012722/` (single-stage fields only).
 
 ### E. Normalizer dry run (2026-08-21, substep 2.1) — lemmatizer selection
 Every distinct phrase in all 12 dump runs, bucketed within field: **4,157
@@ -584,3 +609,4 @@ listing `pipeline_v3_evidence/2026-08-21_normalize_dry_run_output.txt`.
 | 2026-08-21 | **2.2 built:** `core/utils/floor_scan.py` + 27 tests; core suite 430 green; pyright clean. Word-boundary matcher for technical terms (edge guards only where the form's edge is a word char — 6061-T6, CNC/Manual, C++, the Lead/Leader case), length-preserving page-header masking as the scan domain (URL + `#` separator lines, per the URL cut), `page_spans`/`page_at` for code-derived page attribution, two tiers (exact = hold, case-insensitive = discovery), short-form threshold settled at 3 (stay case-sensitive, flagged). Hypothesis properties: whole-word exact hits, tier2 ⊇ tier1, sorted/non-overlapping, inserted-form-always-found, mask length + page tiling. Next: 2.3 fold. |
 | 2026-08-21 | **Resume aids saved (user request):** `PIPELINE_V3_WALKTHROUGH_2_2.md` (2.2 mechanics + the 2.3 design with real outputs) and `pipeline_v3_evidence/` (normalize_dry_run.py + 2026-08-21 output = appendix E tool; fold_prototype.py = the 2.3 seed). 2.3 design recorded in STATE as PROPOSED (A–E: locate, re-attribute with longest-match, D19 dedup keyed on occurrence span with longer snippet kept, bundles in locked order with empty bundles kept, tier-1 obligations under the same containment rule) — awaiting the user's go-ahead. Committed 2.2 + these files on top of ca9a82e. |
 | 2026-08-21 | **2.3 built (user go-ahead on the proposed A–E):** `core/utils/aggregation_fold.py` + 25 tests; core suite 455 green; pyright + ruff clean. The walkthrough §6 scenario reproduces exactly and is the golden test. Three refinements found while building, all recorded in STATE for the gate review: attribution reads the tier-1 scan (owners inside the located snippet) instead of re-matching inside the snippet string; containment applied window-wide across snippets; D19 tie prefers the collector's own filing. D19 SETTLED; empty-bundle fate SETTLED (kept, `no_mentions`, skipped by synthesis, dump-visible). Next: Phase 2 REVIEW gate (question in STATE), then 3.1. |
+| 2026-08-21 | **Phase 2 gate PASSED; 3.1 built (user: replace relationship now; per-chunk fold scope; brute casings as forms; fold identity in metadata; I publish).** Mention node + per-chunk fold in all 7 phrase chains, relationship out (v2 tail unreachable behind a named context error until 3.3); `PipelineStage.mention_collection`; `BatchedMentionCollectionNodeMetadata` + `AggregationFoldMetadata` (Optional on the v2 metadata model); `llm_phrase_mention_req_ids` per sub-window; `brute_by_sub_bounds` at prefill; service (window-local forms, groups, fenced context, exact warn-only hold, `get_chunk_fold`); partial dump `fold` block + request witness; factory/PromptService wiring. 24 statics published + pinned (search/recursive reworked, mention, synthesis); `check` clean. Core 472 / app 406 green; pyright delta = pre-existing families only; ruff clean. 2.1 finding: `normalize` idempotent only for un-guarded forms (documented boundary; no code change). v2 doc noise trimmed in this plan. Next: 3.2 synthesis node. |

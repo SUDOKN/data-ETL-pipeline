@@ -110,6 +110,14 @@ class TaggingResultsGroupedByConcept(
 
 class ConceptExtractionRequestBundle(LLMPhraseExtractionRequestBundle):
     brute: set[str]
+    # v3: per sub-window (keyed by its search_sub_bounds entry), the exact
+    # casings of brute-search labels found in THAT window by the case-insensitive
+    # whole-word scan — the forms through which brute survivors enter the
+    # mention stage (user decision 2026-08-21: brute keeps its recall, the
+    # exact-string contract holds, and the fold groups the casings by key).
+    # Written at prefill, where the text is; the mention node reads it when it
+    # embeds ids without the text in hand.
+    brute_by_sub_bounds: dict[str, list[str]] = Field(default_factory=dict)
     # Ordered list of initial-grounding groups (group 1 == index 0). Each group
     # covers at most `max_pairs_per_request` evidence-bearing records for this
     # chunk (v2: the in-vocab pass runs on records, before screening); results

@@ -37,6 +37,14 @@ from core.models.pipeline_nodes.base.base_prefill_node import (
 from core.models.field_types import ConceptFieldType
 from core.models.pipeline_nodes.base.base_node import PipelineContext
 from core.models.chunking_strat import ChunkingStrategy, derive_search_sub_bounds
+from core.models.extraction_results.llm_phrase_extraction_results import (
+    AggregationFoldMetadata,
+    BatchedMentionCollectionNodeMetadata,
+)
+from core.services.pipeline_nodes.multi_stage.llm_phrase_mention_collection_node_service import (
+    brute_casings_in_window,
+    window_text_of,
+)
 
 if TYPE_CHECKING:
     from scraper.models.s3.scraped_text_file import (
@@ -69,6 +77,13 @@ class ConceptExtractionPrefillNode(PrefillNode[ConceptFieldType]):
         llm_phrase_recursive_grounding_metadata: ExtractionNodeMetadata,
         # None = the OOV discovery pass is off for this run (run config carried
         # as metadata identity, never a StageToggle).
+        # v3 (PIPELINE_V3_PLAN.md Phase 3.1): the mention collector + the
+        # aggregation fold's identity. Optional only so older construction
+        # sites still compile; the factory always passes both.
+        llm_phrase_mention_collection_metadata: Optional[
+            BatchedMentionCollectionNodeMetadata
+        ] = None,
+        aggregation_fold_metadata: Optional[AggregationFoldMetadata] = None,
         llm_phrase_oov_grounding_metadata: Optional[
             BatchedInitialGroundingNodeMetadata
         ] = None,
@@ -89,6 +104,8 @@ class ConceptExtractionPrefillNode(PrefillNode[ConceptFieldType]):
             llm_phrase_initial_grounding_metadata
         )
         self.llm_phrase_oov_grounding_metadata = llm_phrase_oov_grounding_metadata
+        self.llm_phrase_mention_collection_metadata = llm_phrase_mention_collection_metadata
+        self.aggregation_fold_metadata = aggregation_fold_metadata
         self.llm_phrase_recursive_grounding_metadata = (
             llm_phrase_recursive_grounding_metadata
         )
@@ -121,6 +138,8 @@ class ConceptExtractionPrefillNode(PrefillNode[ConceptFieldType]):
             llm_phrase_initial_grounding=self.llm_phrase_initial_grounding_metadata,
             llm_phrase_oov_grounding=self.llm_phrase_oov_grounding_metadata,
             llm_phrase_recursive_grounding=self.llm_phrase_recursive_grounding_metadata,
+            llm_phrase_mention_collection=self.llm_phrase_mention_collection_metadata,
+            aggregation_fold=self.aggregation_fold_metadata,
         )
 
         if not bool(getattr(deferred_subject, self.field_type.name)):
@@ -133,29 +152,41 @@ class ConceptExtractionPrefillNode(PrefillNode[ConceptFieldType]):
             )
             known_concepts = self.ontology.get_concepts_flat(self.field_type)
 
+            chunked_request_map: dict[str, ConceptExtractionRequestBundle] = {}
+            for chunk_bounds, chunk_text in chunk_map.items():
+                search_sub_bounds = await derive_search_sub_bounds(
+                    chunk_bounds=chunk_bounds,
+                    chunk_text=chunk_text,
+                    chunk_strategy=self.chunk_strategy,
+                    llm_model=self.llm_phrase_search_metadata.llm_model,
+                )
+                brute = {label for label in brute_search(chunk_text, known_concepts)}
+                chunked_request_map[chunk_bounds] = ConceptExtractionRequestBundle(
+                    search_sub_bounds=search_sub_bounds,
+                    brute=brute,
+                    # v3: the casings of the brute labels as each sub-window
+                    # actually spells them — the brute survivors' way into the
+                    # mention stage (exact-string contract). Text is in hand only
+                    # here, so it is written now and read at embed time.
+                    brute_by_sub_bounds={
+                        sub_bounds: brute_casings_in_window(
+                            window_text_of(scraped_text_file.text, sub_bounds), brute
+                        )
+                        for sub_bounds in search_sub_bounds
+                    },
+                    llm_phrase_search_req_ids=[],
+                    llm_phrase_recursive_search_req_ids={},
+                    llm_phrase_mention_req_ids={},
+                    llm_phrase_relationship_req_ids=[],
+                    llm_phrase_relationship_screening_req_ids=[],
+                    llm_phrase_initial_grounding_req_ids=[],
+                    llm_phrase_oov_grounding_req_ids=[],
+                    llm_phrase_recursive_tagging_reqs=None,
+                )
+
             deferred_concept_extraction = DeferredConceptExtractionRequests(
                 metadata=latest_concept_extraction_metadata,
-                chunked_request_map={
-                    chunk_bounds: ConceptExtractionRequestBundle(
-                        search_sub_bounds=await derive_search_sub_bounds(
-                            chunk_bounds=chunk_bounds,
-                            chunk_text=chunk_text,
-                            chunk_strategy=self.chunk_strategy,
-                            llm_model=self.llm_phrase_search_metadata.llm_model,
-                        ),
-                        brute={
-                            label for label in brute_search(chunk_text, known_concepts)
-                        },
-                        llm_phrase_search_req_ids=[],
-                        llm_phrase_recursive_search_req_ids={},
-                        llm_phrase_relationship_req_ids=[],
-                        llm_phrase_relationship_screening_req_ids=[],
-                        llm_phrase_initial_grounding_req_ids=[],
-                        llm_phrase_oov_grounding_req_ids=[],
-                        llm_phrase_recursive_tagging_reqs=None,
-                    )
-                    for chunk_bounds, chunk_text in chunk_map.items()
-                },
+                chunked_request_map=chunked_request_map,
             )
             setattr(deferred_subject, self.field_type.name, deferred_concept_extraction)
             await deferred_subject.save()

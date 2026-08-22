@@ -1,10 +1,16 @@
 {
   "prompts": {
+    "conformity_attestation_phrase_mention_collection": {
+      "s3_key": "multi_stage/3_phrase_mention_collection/conformity_attestation_phrase_mention_collection.txt",
+      "s3_version_id": "qeW92s0c7cYqZFeEqFDMr_QK.CpqcGtI",
+      "rendered_sha256": "cfe1d3b5593e92abda9a4a08484220b8b2f2e55101a32856654474ea4c66c1f5",
+      "uploaded_at": "2026-08-22T06:03:36.245063+00:00"
+    },
     "conformity_attestation_phrase_recursive_search": {
       "s3_key": "multi_stage/2_phrase_recursive_search/conformity_attestation_phrase_recursive_search.txt",
-      "s3_version_id": "i5aNCES6SMMJYEaXtEXS6yQQeUVWYSaC",
-      "rendered_sha256": "6b68443845ed070cad6f9eacb58f2a4d3ab014d83c7ffcb513435a5d740636b9",
-      "uploaded_at": "2026-08-21T17:03:21.277356+00:00"
+      "s3_version_id": "bl9f9xoE2C43J6PbbJJQ8fz3NpLFQ8vQ",
+      "rendered_sha256": "7816de465d5af8a5fdfd2edb077a08e5d3ce7fbb3593cf767077437f5a492711",
+      "uploaded_at": "2026-08-22T06:03:36.245063+00:00"
     },
     "conformity_attestation_phrase_relationship": {
       "s3_key": "multi_stage/3_phrase_relationship/conformity_attestation_phrase_relationship.txt",
@@ -14,15 +20,27 @@
     },
     "conformity_attestation_phrase_search": {
       "s3_key": "multi_stage/1_phrase_search/conformity_attestation_phrase_search.txt",
-      "s3_version_id": "76tpDC5YEbEwo.K14RAUVJKtSN659LGh",
-      "rendered_sha256": "85a0d41457683f55b2d398fef0aad822b32c861cd9db273985713c61d31e2cb2",
-      "uploaded_at": "2026-08-21T17:03:21.277356+00:00"
+      "s3_version_id": "l4LqyuquntfxpKxRjuTdZ4nD3P8EeKsT",
+      "rendered_sha256": "f4f73b32efab9973b6084da353c489f4ca1a8af74d919f0d4060408504bad1f5",
+      "uploaded_at": "2026-08-22T06:03:36.245063+00:00"
+    },
+    "conformity_attestation_phrase_synthesis": {
+      "s3_key": "multi_stage/4_phrase_synthesis/conformity_attestation_phrase_synthesis.txt",
+      "s3_version_id": "BG16YJwF17sENkWhW2Yr7ZOISrlk.p.v",
+      "rendered_sha256": "a1aa870dcddf428d465e6dbbec04be166993f64e7e510000135f6b96cb276fbe",
+      "uploaded_at": "2026-08-22T06:03:36.245063+00:00"
+    },
+    "equipment_phrase_mention_collection": {
+      "s3_key": "multi_stage/3_phrase_mention_collection/equipment_phrase_mention_collection.txt",
+      "s3_version_id": "KTqqzpGkgo5X5iIVrVMtaL15eLwJMVeJ",
+      "rendered_sha256": "cfe1d3b5593e92abda9a4a08484220b8b2f2e55101a32856654474ea4c66c1f5",
+      "uploaded_at": "2026-08-22T06:03:36.245063+00:00"
     },
     "equipment_phrase_recursive_search": {
       "s3_key": "multi_stage/2_phrase_recursive_search/equipment_phrase_recursive_search.txt",
-      "s3_version_id": "s7kvczaeJ83piw4UI1K9MwYwQbjZUhSc",
-      "rendered_sha256": "709629a5c1609b056ff472df05a305a5f940c90ed43652049ec353df133c52a7",
-      "uploaded_at": "2026-08-21T17:03:21.277356+00:00"
+      "s3_version_id": "7YINNXdN5hJROfF9cun82RkGgAnS_16j",
+      "rendered_sha256": "7816de465d5af8a5fdfd2edb077a08e5d3ce7fbb3593cf767077437f5a492711",
+      "uploaded_at": "2026-08-22T06:03:36.245063+00:00"
     },
     "equipment_phrase_relationship": {
       "s3_key": "multi_stage/3_phrase_relationship/equipment_phrase_relationship.txt",
@@ -32,9 +50,15 @@
     },
     "equipment_phrase_search": {
       "s3_key": "multi_stage/1_phrase_search/equipment_phrase_search.txt",
-      "s3_version_id": "V.EizNMqUR9SxdK4NoTxKvE8OW2sTJO6",
-      "rendered_sha256": "0617f685d7d3a213d71a91818cefc67ce753e2cf3a5640c45e38303924dbb1be",
-      "uploaded_at": "2026-08-21T17:03:21.277356+00:00"
+      "s3_version_id": "iSpeSt_ptPPMvr3NHHSQhINVt.WBnpS1",
+      "rendered_sha256": "9ebd4278274604dca539aace2baac0b9ae7165fb3c3a72cbb6741659a90cc3ec",
+      "uploaded_at": "2026-08-22T06:03:36.245063+00:00"
+    },
+    "equipment_phrase_synthesis": {
+      "s3_key": "multi_stage/4_phrase_synthesis/equipment_phrase_synthesis.txt",
+      "s3_version_id": "HMZRWNHlF6iQqbX9nTNFY0ddwijj2f7L",
+      "rendered_sha256": "a1aa870dcddf428d465e6dbbec04be166993f64e7e510000135f6b96cb276fbe",
+      "uploaded_at": "2026-08-22T06:03:36.245063+00:00"
     },
     "extract_any_address": {
       "s3_key": "single_stage/extract_any_address.txt",
@@ -48,11 +72,17 @@
       "rendered_sha256": "4c46b723109bc601433510df0ca6a66e46151efb6b69725e538d850eac88a4a2",
       "uploaded_at": "2026-08-12T04:33:58.773590+00:00"
     },
+    "industry_phrase_mention_collection": {
+      "s3_key": "multi_stage/3_phrase_mention_collection/industry_phrase_mention_collection.txt",
+      "s3_version_id": "29Fn_kuhScwB71u2AwyUavZjxs4ahq9R",
+      "rendered_sha256": "cfe1d3b5593e92abda9a4a08484220b8b2f2e55101a32856654474ea4c66c1f5",
+      "uploaded_at": "2026-08-22T06:03:36.245063+00:00"
+    },
     "industry_phrase_recursive_search": {
       "s3_key": "multi_stage/2_phrase_recursive_search/industry_phrase_recursive_search.txt",
-      "s3_version_id": "LlGu2hU8YUp2M4eu19GDoQtEwucVDwED",
-      "rendered_sha256": "555dd42db27b567e95c8d80e5dbc24b0317ec55b00d214e2f6c90e2c85f603b9",
-      "uploaded_at": "2026-08-21T17:03:21.277356+00:00"
+      "s3_version_id": "FrJ9kT_TLldTnQxnMmWmAgxUtUKZXND.",
+      "rendered_sha256": "7816de465d5af8a5fdfd2edb077a08e5d3ce7fbb3593cf767077437f5a492711",
+      "uploaded_at": "2026-08-22T06:03:36.245063+00:00"
     },
     "industry_phrase_relationship": {
       "s3_key": "multi_stage/3_phrase_relationship/industry_phrase_relationship.txt",
@@ -62,15 +92,27 @@
     },
     "industry_phrase_search": {
       "s3_key": "multi_stage/1_phrase_search/industry_phrase_search.txt",
-      "s3_version_id": "SHqLaBFHnWV5HAkA.PxBkelD44eRL5z4",
-      "rendered_sha256": "8b7de77b0a9092d0dca4f1b04d8c9872234cde5b8f7c6fa1e2d7647e4ace6857",
-      "uploaded_at": "2026-08-21T17:03:21.277356+00:00"
+      "s3_version_id": "hKd2TXUibg2opOz7QIp5exUbZlFQkptX",
+      "rendered_sha256": "e08317497d124fcfda78ea7795f9e301f83c43188444ce1dad2de3a5aeb9a15d",
+      "uploaded_at": "2026-08-22T06:03:36.245063+00:00"
+    },
+    "industry_phrase_synthesis": {
+      "s3_key": "multi_stage/4_phrase_synthesis/industry_phrase_synthesis.txt",
+      "s3_version_id": "P1NBqUe0Tc5edLtDHPEBd8vYcDraBy8g",
+      "rendered_sha256": "a1aa870dcddf428d465e6dbbec04be166993f64e7e510000135f6b96cb276fbe",
+      "uploaded_at": "2026-08-22T06:03:36.245063+00:00"
+    },
+    "material_cap_phrase_mention_collection": {
+      "s3_key": "multi_stage/3_phrase_mention_collection/material_cap_phrase_mention_collection.txt",
+      "s3_version_id": "N58OA.eXA9pI3mxEhgZh1L8Lag4GOUe5",
+      "rendered_sha256": "cfe1d3b5593e92abda9a4a08484220b8b2f2e55101a32856654474ea4c66c1f5",
+      "uploaded_at": "2026-08-22T06:03:36.245063+00:00"
     },
     "material_cap_phrase_recursive_search": {
       "s3_key": "multi_stage/2_phrase_recursive_search/material_cap_phrase_recursive_search.txt",
-      "s3_version_id": "I0SEU.ViG8WzSz3U9Dq_B6VRalgXrnIW",
-      "rendered_sha256": "6c42f5953896ef1027435736fdde024f6f34becf9a84fab63950bea7ac6c31fb",
-      "uploaded_at": "2026-08-21T17:03:21.277356+00:00"
+      "s3_version_id": "UmPF1bnAuY86NAae7qt1nOuKssIdIxUG",
+      "rendered_sha256": "7816de465d5af8a5fdfd2edb077a08e5d3ce7fbb3593cf767077437f5a492711",
+      "uploaded_at": "2026-08-22T06:03:36.245063+00:00"
     },
     "material_cap_phrase_relationship": {
       "s3_key": "multi_stage/3_phrase_relationship/material_cap_phrase_relationship.txt",
@@ -80,15 +122,27 @@
     },
     "material_cap_phrase_search": {
       "s3_key": "multi_stage/1_phrase_search/material_cap_phrase_search.txt",
-      "s3_version_id": "epWrzwLTPNTEiL7C58nh2a8QsAQaqUp8",
-      "rendered_sha256": "7381cc904760650c298a859139b308a67e841bb01cd48c5bbfdc3217f8120dd9",
-      "uploaded_at": "2026-08-21T17:03:21.277356+00:00"
+      "s3_version_id": "_Ca7Ct8FvxpOuIiznovFZOdNGwf6XRDb",
+      "rendered_sha256": "382bda65fb049045f646edb47fa86f31d5e585357f8a2d0a8ed028243d576068",
+      "uploaded_at": "2026-08-22T06:03:36.245063+00:00"
+    },
+    "material_cap_phrase_synthesis": {
+      "s3_key": "multi_stage/4_phrase_synthesis/material_cap_phrase_synthesis.txt",
+      "s3_version_id": "FbU3CX.WZMalsRZUv.Vs2D7GsVHjG70s",
+      "rendered_sha256": "a1aa870dcddf428d465e6dbbec04be166993f64e7e510000135f6b96cb276fbe",
+      "uploaded_at": "2026-08-22T06:03:36.245063+00:00"
+    },
+    "process_cap_phrase_mention_collection": {
+      "s3_key": "multi_stage/3_phrase_mention_collection/process_cap_phrase_mention_collection.txt",
+      "s3_version_id": "ny96BGNfAKU5b4g4zZ.qnTyFL0l6GQuN",
+      "rendered_sha256": "cfe1d3b5593e92abda9a4a08484220b8b2f2e55101a32856654474ea4c66c1f5",
+      "uploaded_at": "2026-08-22T06:03:36.245063+00:00"
     },
     "process_cap_phrase_recursive_search": {
       "s3_key": "multi_stage/2_phrase_recursive_search/process_cap_phrase_recursive_search.txt",
-      "s3_version_id": "w6jMUG8XDWop4Bn7PRlGpeeQp_.xQS4C",
-      "rendered_sha256": "c5844b4e8ba770f47f44348065f5bcdcb2bd2bf479f4e3f34eb3ae4cc836ea8b",
-      "uploaded_at": "2026-08-21T17:03:21.277356+00:00"
+      "s3_version_id": "f9MS.jXuK9KPLghy6qjIV7M01ijhyAXW",
+      "rendered_sha256": "7816de465d5af8a5fdfd2edb077a08e5d3ce7fbb3593cf767077437f5a492711",
+      "uploaded_at": "2026-08-22T06:03:36.245063+00:00"
     },
     "process_cap_phrase_relationship": {
       "s3_key": "multi_stage/3_phrase_relationship/process_cap_phrase_relationship.txt",
@@ -98,15 +152,27 @@
     },
     "process_cap_phrase_search": {
       "s3_key": "multi_stage/1_phrase_search/process_cap_phrase_search.txt",
-      "s3_version_id": "fSQBoZxTWIJMrljP1GjkYofM6Kp_vUGm",
-      "rendered_sha256": "9ac142765ffd26e7ceb49a749ec71675e81248c60162073b31f72c6226971afd",
-      "uploaded_at": "2026-08-21T17:03:21.277356+00:00"
+      "s3_version_id": "tob3F6.Mkj0SitwKBwQklqonhSkRZDXb",
+      "rendered_sha256": "3729944ca143774564c93569ef38024ad580d2a5a20f6757903048e9a3c3043f",
+      "uploaded_at": "2026-08-22T06:03:36.245063+00:00"
+    },
+    "process_cap_phrase_synthesis": {
+      "s3_key": "multi_stage/4_phrase_synthesis/process_cap_phrase_synthesis.txt",
+      "s3_version_id": "Bh8xqRrWFIGENyD94Ue2BxlXnNvvRede",
+      "rendered_sha256": "a1aa870dcddf428d465e6dbbec04be166993f64e7e510000135f6b96cb276fbe",
+      "uploaded_at": "2026-08-22T06:03:36.245063+00:00"
+    },
+    "product_phrase_mention_collection": {
+      "s3_key": "multi_stage/3_phrase_mention_collection/product_phrase_mention_collection.txt",
+      "s3_version_id": "4sB_q8uojnhtHvlIwhY8.X.I_8gz_hxr",
+      "rendered_sha256": "cfe1d3b5593e92abda9a4a08484220b8b2f2e55101a32856654474ea4c66c1f5",
+      "uploaded_at": "2026-08-22T06:03:36.245063+00:00"
     },
     "product_phrase_recursive_search": {
       "s3_key": "multi_stage/2_phrase_recursive_search/product_phrase_recursive_search.txt",
-      "s3_version_id": "LCGtqEsAkoxANxFN0GqisMWFBPOjKSF7",
-      "rendered_sha256": "7dd21850985427d02adb6c30ee9f8e9206812a47fe05c807cec36f4924e0153c",
-      "uploaded_at": "2026-08-21T17:03:21.277356+00:00"
+      "s3_version_id": "LVMxK5r6kODTbmpvGyDG0yTy2URKjVS1",
+      "rendered_sha256": "7816de465d5af8a5fdfd2edb077a08e5d3ce7fbb3593cf767077437f5a492711",
+      "uploaded_at": "2026-08-22T06:03:36.245063+00:00"
     },
     "product_phrase_relationship": {
       "s3_key": "multi_stage/3_phrase_relationship/product_phrase_relationship.txt",
@@ -116,9 +182,15 @@
     },
     "product_phrase_search": {
       "s3_key": "multi_stage/1_phrase_search/product_phrase_search.txt",
-      "s3_version_id": "ApwHIgf_UQMtEi56gE3EHFaJUQXkBklP",
-      "rendered_sha256": "09aed15955c3acef9e0562e265b9168b108d39d701c47705ec397295acc11f1f",
-      "uploaded_at": "2026-08-21T17:03:21.277356+00:00"
+      "s3_version_id": "gZLnf01zbZM2TQLtnWerMrwShRuHhzl5",
+      "rendered_sha256": "fc0ad45154c4e4409aaadc2266b45d7f0d077f44ada0863dc7335422f9c48910",
+      "uploaded_at": "2026-08-22T06:03:36.245063+00:00"
+    },
+    "product_phrase_synthesis": {
+      "s3_key": "multi_stage/4_phrase_synthesis/product_phrase_synthesis.txt",
+      "s3_version_id": "BrWtWQBqjDqz1RkwiEY5F0Hsoe8InNHO",
+      "rendered_sha256": "a1aa870dcddf428d465e6dbbec04be166993f64e7e510000135f6b96cb276fbe",
+      "uploaded_at": "2026-08-22T06:03:36.245063+00:00"
     }
   }
 }

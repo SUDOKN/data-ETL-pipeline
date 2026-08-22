@@ -177,8 +177,13 @@ def _normalize_token(token: str, *, verb_fold: bool) -> str:
 def normalize(form: str, *, verb_fold: bool = False) -> str:
     """The normalization key of *form*: L0 + L1 always, L2 when *verb_fold*.
 
-    Pure and deterministic; ``normalize(normalize(x)) == normalize(x)``. The
-    empty string is the key of a form with no tokens.
+    Pure and deterministic. ``normalize(normalize(x)) == normalize(x)`` for
+    every form without a code-token-guarded token; a guarded token is returned
+    casefolded and unlemmatized (its casing is its identity), and that
+    casefolded spelling, fed back in, no longer carries the casing the guard
+    read — so the key is a fixed point only for un-guarded forms. Keys are
+    computed once per form, never re-normalized. The empty string is the key
+    of a form with no tokens.
     """
     return " ".join(_normalize_token(token, verb_fold=verb_fold) for token in l0_tokens(form))
 

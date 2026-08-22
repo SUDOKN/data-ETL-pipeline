@@ -35,7 +35,9 @@ from core.models.extraction_results.keyword_extraction_results import (
     BatchedFreehandGroundingNodeMetadata,
 )
 from core.models.extraction_results.llm_phrase_extraction_results import (
+    AggregationFoldMetadata,
     BaseExtractionMetadata,
+    BatchedMentionCollectionNodeMetadata,
     BatchedRelationshipNodeMetadata,
     BatchedScreeningNodeMetadata,
     ExtractionNodeMetadata,
@@ -131,8 +133,17 @@ KeywordExtractionStatsMapV2 = dict[str, KeywordExtractionStatsV2]
 class LLMPhraseExtractionMetadataV2(BaseExtractionMetadata):
     llm_phrase_search: ExtractionNodeMetadata
     llm_phrase_recursive_search: RecursiveSearchNodeMetadata
+    # v2 relationship — out of every chain since v3 3.1 (2026-08-21); still
+    # required here because it is part of every stored run identity, until 3.3
+    # retires the stage. No v3 node reads it.
     llm_phrase_relationship: BatchedRelationshipNodeMetadata
     llm_phrase_relationship_screening: BatchedScreeningNodeMetadata
+    # v3 (PIPELINE_V3_PLAN.md Phase 3.1): the mention collector and the
+    # aggregation fold's identity. Optional so every stored v2 document still
+    # loads; a v3 chain always sets both, and the prefill staleness check turns
+    # None-vs-set into the standard re-defer.
+    llm_phrase_mention_collection: Optional[BatchedMentionCollectionNodeMetadata] = None
+    aggregation_fold: Optional[AggregationFoldMetadata] = None
 
 
 class ConceptExtractionMetadataV2(LLMPhraseExtractionMetadataV2):

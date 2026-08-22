@@ -23,8 +23,8 @@ from data_etl_app.models.types_and_enums import (
 from llm_providers.field_types import BatchRequestIDType
 
 if TYPE_CHECKING:
-    from data_etl_app.models.pipeline_nodes.multi_stage.keyword.contract_product.contract_product_relationship_node import (
-        ContractProductRelationshipNode,
+    from data_etl_app.models.pipeline_nodes.multi_stage.keyword.contract_product.contract_product_mention_collection_node import (
+        ContractProductMentionCollectionNode,
     )
 
 logger = logging.getLogger(__name__)
@@ -41,7 +41,7 @@ class ContractProductRecursiveSearchNode(KeywordRecursiveSearchNode):
     def __init__(
         self,
         field_type: KeywordTypeEnum,
-        next_node: ContractProductRelationshipNode,
+        next_node: ContractProductMentionCollectionNode,
         second_search_prompt: Prompt,
     ):
         super().__init__(

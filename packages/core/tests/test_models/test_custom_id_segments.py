@@ -10,6 +10,7 @@ from core.models.extraction_results.keyword_extraction_results import (
     BatchedFreehandGroundingNodeMetadata,
 )
 from core.models.extraction_results.llm_phrase_extraction_results import (
+    BatchedMentionCollectionNodeMetadata,
     BatchedRelationshipNodeMetadata,
     BatchedScreeningNodeMetadata,
     ExtractionNodeMetadata,
@@ -39,6 +40,9 @@ def test_every_batched_stage_carries_its_group_size():
     )
 
     assert relationship.to_custom_id_segment().endswith("|gs=50")
+    # v3: forms per sub-window request
+    mention = BatchedMentionCollectionNodeMetadata(**_COMMON, max_forms_per_request=30)
+    assert mention.to_custom_id_segment().endswith("|gs=30")
     assert screening.to_custom_id_segment().endswith("|gs=15")
     assert grounding.to_custom_id_segment().endswith("|gs=15")
     assert freehand.to_custom_id_segment().endswith("|gs=50")

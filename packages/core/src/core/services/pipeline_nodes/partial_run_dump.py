@@ -43,6 +43,10 @@ from core.utils.extraction_dump_util import (
     jsonable_result,
     write_extraction_dump,
 )
+from core.services.pipeline_nodes.multi_stage.llm_phrase_mention_collection_node_service import (
+    fold_verb_fold_of,
+)
+from core.utils.fold_dump_util import build_fold_dump
 from scraper.models.s3.scraped_text_file import ScrapedTextFile
 
 logger = logging.getLogger(__name__)
@@ -198,7 +202,7 @@ async def write_partial_run_dump(
                     timestamp=timestamp,
                 )
 
-            chunked_contents[chunk_bounds] = {
+            contents: dict[str, object] = {
                 "rows": build_partial_record_rows(
                     search_rounds=search_rounds,
                     masked_flat=masked_flat,
@@ -208,6 +212,36 @@ async def write_partial_run_dump(
                     subject_name=pipeline_context.subject_name,
                 )
             }
+            # v3: the mention stage's aggregation fold — groups with member
+            # forms inline, mentions in locked order, and the per-window hold.
+            # Computed here from the completed map and the text (the fold is
+            # code, not a request), so every re-run of a stopped chain shows the
+            # CURRENT fold rules over the stored answers.
+            if PipelineStage.mention_collection in completed_by_stage:
+                node_class, request_map = completed_by_stage[PipelineStage.mention_collection]
+                try:
+                    fold_result = await node_class.get_result(
+                        subject_unique_id=subject_unique_id,
+                        field_type=field_type,
+                        chunk_bounds=chunk_bounds,
+                        extraction_bundle=bundle,
+                        completed_request_map=request_map,
+                        timestamp=timestamp,
+                        subject_text=scraped_text_file.text,
+                        verb_fold=fold_verb_fold_of(extraction_requests.metadata),
+                    )
+                    contents["fold"] = build_fold_dump(
+                        fold_result, subject_name=pipeline_context.subject_name
+                    )
+                except Exception as fold_error:
+                    logger.error(
+                        f"[{subject_unique_id}] partial dump could not fold chunk "
+                        f"{chunk_bounds} of '{field_type.name}': {fold_error}",
+                        exc_info=True,
+                    )
+                    contents["fold"] = None
+                    contents["note"] = "fold_failed"
+            chunked_contents[chunk_bounds] = contents
 
         write_extraction_dump(
             subject_unique_id=subject_unique_id,

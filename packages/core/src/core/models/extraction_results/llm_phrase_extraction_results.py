@@ -71,6 +71,35 @@ class BatchedRelationshipNodeMetadata(ExtractionNodeMetadata):
         return f"{super().to_custom_id_segment()}|gs={self.max_phrases_per_request}"
 
 
+class BatchedMentionCollectionNodeMetadata(ExtractionNodeMetadata):
+    # v3 mention collection (PIPELINE_V3_PLAN.md D4–D7). The unit is FORMS: a
+    # search sub-window's sent forms are split into
+    # ceil(num_forms / max_forms_per_request) groups, each asked against the same
+    # window text, and the aggregation fold merges the groups back. The cap is
+    # the satisficing A/B variable of Phase 5 and, like every batched cap, part
+    # of request identity.
+    max_forms_per_request: int
+
+    def to_custom_id_segment(self) -> str:
+        return f"{super().to_custom_id_segment()}|gs={self.max_forms_per_request}"
+
+
+class AggregationFoldMetadata(BaseModel):
+    """Run identity of the pure-code aggregation fold (v3 substep 2.3,
+    ``core.utils.aggregation_fold``). The fold issues no request, so it has no
+    model or prompt; what it carries is exactly what changes its output: the
+    normalizer version (D10 — the grouping rule set plus the pinned lemmatizer
+    dictionary) and the per-field verb-fold dial (L2, process/material only).
+    Recorded so a dump names the grouping that produced it, and so a resumed
+    subject cannot silently regroup under a bumped normalizer
+    (``PrefillNode.raise_if_metadata_is_stale``). Editing fold RULES without
+    bumping the version leaves this unchanged on purpose: that is the cheap
+    iteration loop the design promises."""
+
+    normalizer_version: str
+    verb_fold: bool
+
+
 class BatchedScreeningNodeMetadata(ExtractionNodeMetadata):
     # Hard cap on the number of phrase-relationship pairs sent to the LLM in a
     # single screening request. The full set of pairs for a chunk is split into

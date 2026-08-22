@@ -149,7 +149,17 @@ class PipelineContext:
     def __getitem__(
         self, key: type[BaseNode]
     ) -> dict[BatchRequestIDType, GPTBatchRequest]:
-        return self._results[key]
+        try:
+            return self._results[key]
+        except KeyError:
+            completed = [node_class.__name__ for _stage, node_class in self._stages_completed]
+            raise KeyError(
+                f"{key.__name__}: no completed request map on the pipeline context — "
+                f"that node did not run in this chain (completed so far: {completed}). "
+                f"Under the v3 chain the v2 relationship node is gone, so a downstream "
+                f"v2 node reading it lands here until the re-key of PIPELINE_V3_PLAN.md "
+                f"Phase 3.3; run with StageToggles().stop_after(PipelineStage.mention_collection)."
+            ) from None
 
     def __setitem__(
         self,

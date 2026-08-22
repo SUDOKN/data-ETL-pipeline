@@ -203,6 +203,32 @@ def test_context_records_completed_stages_in_order_without_duplicates():
     assert context.node_class_for(PipelineStage.iterative_grounding) is None
 
 
+def test_context_names_the_missing_node_instead_of_a_bare_keyerror():
+    context = PipelineContext()
+    context[_NodeA] = {"a": "req"}
+    with pytest.raises(KeyError, match="_NodeB: no completed request map .* did not run in this chain"):
+        context[_NodeB]
+
+
+def test_stop_after_mention_collection_disables_the_whole_v2_tail():
+    """v3: the chain is search → recursive → mention; everything after is the
+    v2 tail that the Phase 3.3 re-key replaces, and `stop_after(mention)` must
+    leave none of it running."""
+    toggles = StageToggles().stop_after(PipelineStage.mention_collection)
+    assert toggles.is_enabled(_Field.industries, PipelineStage.mention_collection)
+    assert toggles.is_enabled(_Field.industries, PipelineStage.recursive_search)
+    for later in (
+        PipelineStage.relationship,
+        PipelineStage.initial_grounding,
+        PipelineStage.freehand_grounding,
+        PipelineStage.oov_grounding,
+        PipelineStage.screening,
+        PipelineStage.iterative_grounding,
+        PipelineStage.reconcile,
+    ):
+        assert not toggles.is_enabled(_Field.industries, later), later
+
+
 # --- the gate -------------------------------------------------------------
 
 

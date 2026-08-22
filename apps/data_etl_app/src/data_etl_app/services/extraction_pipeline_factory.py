@@ -3,6 +3,8 @@ from typing import Optional
 
 from llm_providers.models.llm_model import LLM_Model
 from core.models.extraction_results.llm_phrase_extraction_results import (
+    AggregationFoldMetadata,
+    BatchedMentionCollectionNodeMetadata,
     ExtractionNodeMetadata,
     RecursiveSearchNodeMetadata,
     BatchedRelationshipNodeMetadata,
@@ -39,18 +41,21 @@ from data_etl_app.models.pipeline_nodes import (
     ContractProductPhraseSearchNode,
     ContractProductRecursiveSearchNode,
     ContractProductRelationshipNode,
+    ContractProductMentionCollectionNode,
     ContractProductRelationshipScreeningNode,
     ContractProductFreehandGroundingNode,
     ContractProductReconcileNode,
     PureProductPhraseSearchNode,
     PureProductRecursiveSearchNode,
     PureProductRelationshipNode,
+    PureProductMentionCollectionNode,
     PureProductRelationshipScreeningNode,
     PureProductFreehandGroundingNode,
     PureProductReconcileNode,
     EquipmentPhraseSearchNode,
     EquipmentRecursiveSearchNode,
     EquipmentRelationshipNode,
+    EquipmentMentionCollectionNode,
     EquipmentRelationshipScreeningNode,
     EquipmentFreehandGroundingNode,
     EquipmentReconcileNode,
@@ -61,6 +66,7 @@ from core.models.pipeline_nodes import (
     BinaryClassificationPrefillNode,
     BinaryReconcileNode,
     ConceptRelationshipNode,
+    ConceptMentionCollectionNode,
     ConceptRelationshipScreeningNode,
     ConceptInitialGroundingNode,
     ConceptOovGroundingNode,
@@ -72,6 +78,7 @@ from core.models.pipeline_nodes import (
     KeywordExtractionPrefillNode,
 )
 from core.models.skos_concept import Concept
+from core.utils.form_normalizer import NORMALIZER_VERSION
 from core.models.field_types import ExtractionFieldType
 from data_etl_app.models.types_and_enums import (
     BinaryClassificationTypeEnum,
@@ -110,8 +117,19 @@ class ExtractionPipelineFactory:
     # 2,453 times and truncated mid-string — so the search stages carry their
     # own cap instead of inheriting the pipeline's.
 
-    # RELATIONSHIP
+    # RELATIONSHIP (v2 — out of every chain since v3 3.1; metadata still built
+    # until 3.3 retires the stage)
     DEFAULT_RELATIONSHIP_MAX_PHRASES_PER_REQUEST = 30
+    # MENTION COLLECTION (v3, PIPELINE_V3_PLAN.md D4–D7): the unit is FORMS per
+    # 5k search sub-window. The cap is Phase 5's satisficing A/B variable.
+    DEFAULT_MENTION_COLLECTION_MAX_FORMS_PER_REQUEST = 30
+    # AGGREGATION FOLD (v3 D10): the L2 verb/participle fold is a per-field
+    # dial — on for the two fields whose phrases are process-flavoured
+    # (`CNC milled`/`CNC milling`, `Polished`/`Polishing`), off everywhere else,
+    # where a verb fold only uglifies noun modifiers.
+    VERB_FOLD_FIELDS: frozenset = frozenset(
+        {ConceptTypeEnum.material_caps, ConceptTypeEnum.process_caps}
+    )
     DEFAULT_SCREENING_MAX_PAIRS_PER_REQUEST = 25
 
     # GROUNDING (v2: the unit is RECORDS per request)
@@ -188,6 +206,33 @@ class ExtractionPipelineFactory:
             catalog_version=prompt.catalog_version,
             created_at=created_at,
             max_phrases_per_request=max_phrases_per_request,
+        )
+
+    @staticmethod
+    def _batched_mention_collection_metadata(
+        prompt: Prompt,
+        llm_model: LLM_Model,
+        model_params: GPTModelParams,
+        created_at: datetime,
+        max_forms_per_request: int,
+    ) -> BatchedMentionCollectionNodeMetadata:
+        return BatchedMentionCollectionNodeMetadata(
+            llm_model=llm_model,
+            model_params=model_params,
+            prompt_name=prompt.name,
+            prompt_version_id=prompt.s3_version_id,
+            catalog_version=prompt.catalog_version,
+            created_at=created_at,
+            max_forms_per_request=max_forms_per_request,
+        )
+
+    @staticmethod
+    def _aggregation_fold_metadata(field_type: ExtractionFieldType) -> AggregationFoldMetadata:
+        """The fold's run identity: the normalizer version the code ships, and
+        this field's verb-fold dial."""
+        return AggregationFoldMetadata(
+            normalizer_version=NORMALIZER_VERSION,
+            verb_fold=field_type in ExtractionPipelineFactory.VERB_FOLD_FIELDS,
         )
 
     @staticmethod
@@ -270,6 +315,7 @@ class ExtractionPipelineFactory:
         search_prompt: Prompt,
         recursive_search_prompt: Prompt,
         phrase_relationship_prompt: Prompt,
+        phrase_mention_collection_prompt: Prompt,
         phrase_relationship_screening_prompt: Prompt,
         phrase_initial_grounding_prompt: Prompt,
         phrase_recursive_grounding_prompt: Prompt,
@@ -282,6 +328,7 @@ class ExtractionPipelineFactory:
         phrase_oov_grounding_prompt: Optional[Prompt] = None,
         max_recursive_search_rounds: int = DEFAULT_RECURSIVE_SEARCH_MAX_ROUNDS,
         max_relationship_phrases_per_request: int = DEFAULT_RELATIONSHIP_MAX_PHRASES_PER_REQUEST,
+        max_mention_collection_forms_per_request: int = DEFAULT_MENTION_COLLECTION_MAX_FORMS_PER_REQUEST,
         max_screening_pairs_per_request: int = DEFAULT_SCREENING_MAX_PAIRS_PER_REQUEST,
         max_initial_grounding_pairs_per_request: int = DEFAULT_INITIAL_GROUNDING_MAX_PAIRS_PER_REQUEST,
         max_oov_grounding_pairs_per_request: int = DEFAULT_OOV_GROUNDING_MAX_PAIRS_PER_REQUEST,
@@ -338,15 +385,28 @@ class ExtractionPipelineFactory:
             # v2 chain: grounding ENUMERATES first (in-vocab, then the optional
             # OOV discovery pass), consolidated screening vets every candidate,
             # and recursive descent deepens the survivors.
+            llm_phrase_mention_collection_metadata=ExtractionPipelineFactory._batched_mention_collection_metadata(
+                phrase_mention_collection_prompt,
+                llm_model,
+                model_params,
+                created_at,
+                max_mention_collection_forms_per_request,
+            ),
+            aggregation_fold_metadata=ExtractionPipelineFactory._aggregation_fold_metadata(concept_type),
             next_node=ConceptPhraseSearchNode(
                 concept_type=concept_type,
                 search_prompt=search_prompt,
                 next_node=ConceptRecursiveSearchNode(
                     concept_type=concept_type,
                     second_search_prompt=recursive_search_prompt,
-                    next_node=ConceptRelationshipNode(
+                    # v3 (3.1): mention collection replaced relationship; the
+                    # aggregation fold runs at its parse. The v2 grounding →
+                    # screening → descent tail below is UNREACHABLE until the
+                    # Phase 3.3 re-key — run with
+                    # StageToggles().stop_after(PipelineStage.mention_collection).
+                    next_node=ConceptMentionCollectionNode(
                         concept_type=concept_type,
-                        phrase_relationship_prompt=phrase_relationship_prompt,
+                        phrase_mention_collection_prompt=phrase_mention_collection_prompt,
                         next_node=ConceptInitialGroundingNode(
                             concept_type=concept_type,
                             phrase_initial_grounding_prompt=phrase_initial_grounding_prompt,
@@ -383,6 +443,7 @@ class ExtractionPipelineFactory:
         search_prompt: Prompt,
         recursive_search_prompt: Prompt,
         phrase_relationship_prompt: Prompt,
+        phrase_mention_collection_prompt: Prompt,
         phrase_relationship_screening_prompt: Prompt,
         phrase_freehand_grounding_prompt: Prompt,
         llm_model: LLM_Model,
@@ -390,6 +451,7 @@ class ExtractionPipelineFactory:
         created_at: datetime,
         max_recursive_search_rounds: int = DEFAULT_KEYWORD_RECURSIVE_SEARCH_MAX_ROUNDS,
         max_relationship_phrases_per_request: int = DEFAULT_RELATIONSHIP_MAX_PHRASES_PER_REQUEST,
+        max_mention_collection_forms_per_request: int = DEFAULT_MENTION_COLLECTION_MAX_FORMS_PER_REQUEST,
         max_screening_pairs_per_request: int = DEFAULT_SCREENING_MAX_PAIRS_PER_REQUEST,
         max_freehand_grounding_pairs_per_request: int = DEFAULT_FREEHAND_GROUNDING_MAX_PAIRS_PER_REQUEST,
     ) -> KeywordExtractionPrefillNode:
@@ -438,15 +500,25 @@ class ExtractionPipelineFactory:
                 created_at,
                 max_freehand_grounding_pairs_per_request,
             ),
+            llm_phrase_mention_collection_metadata=ExtractionPipelineFactory._batched_mention_collection_metadata(
+                phrase_mention_collection_prompt,
+                llm_model,
+                model_params,
+                created_at,
+                max_mention_collection_forms_per_request,
+            ),
+            aggregation_fold_metadata=ExtractionPipelineFactory._aggregation_fold_metadata(keyword_type),
             next_node=ContractProductPhraseSearchNode(
                 field_type=keyword_type,
                 search_prompt=search_prompt,
                 next_node=ContractProductRecursiveSearchNode(
                     field_type=keyword_type,
                     second_search_prompt=recursive_search_prompt,
-                    next_node=ContractProductRelationshipNode(
+                    # v3 (3.1): mention collection replaced relationship; the tail
+                    # below is unreachable until the Phase 3.3 re-key.
+                    next_node=ContractProductMentionCollectionNode(
                         field_type=keyword_type,
-                        phrase_relationship_prompt=phrase_relationship_prompt,
+                        phrase_mention_collection_prompt=phrase_mention_collection_prompt,
                         next_node=ContractProductFreehandGroundingNode(
                             field_type=keyword_type,
                             phrase_freehand_grounding_prompt=phrase_freehand_grounding_prompt,
@@ -470,6 +542,7 @@ class ExtractionPipelineFactory:
         search_prompt: Prompt,
         recursive_search_prompt: Prompt,
         phrase_relationship_prompt: Prompt,
+        phrase_mention_collection_prompt: Prompt,
         phrase_relationship_screening_prompt: Prompt,
         phrase_freehand_grounding_prompt: Prompt,
         llm_model: LLM_Model,
@@ -477,6 +550,7 @@ class ExtractionPipelineFactory:
         created_at: datetime,
         max_recursive_search_rounds: int = DEFAULT_KEYWORD_RECURSIVE_SEARCH_MAX_ROUNDS,
         max_relationship_phrases_per_request: int = DEFAULT_RELATIONSHIP_MAX_PHRASES_PER_REQUEST,
+        max_mention_collection_forms_per_request: int = DEFAULT_MENTION_COLLECTION_MAX_FORMS_PER_REQUEST,
         max_screening_pairs_per_request: int = DEFAULT_SCREENING_MAX_PAIRS_PER_REQUEST,
         max_freehand_grounding_pairs_per_request: int = DEFAULT_FREEHAND_GROUNDING_MAX_PAIRS_PER_REQUEST,
     ) -> KeywordExtractionPrefillNode:
@@ -522,15 +596,25 @@ class ExtractionPipelineFactory:
                 created_at,
                 max_freehand_grounding_pairs_per_request,
             ),
+            llm_phrase_mention_collection_metadata=ExtractionPipelineFactory._batched_mention_collection_metadata(
+                phrase_mention_collection_prompt,
+                llm_model,
+                model_params,
+                created_at,
+                max_mention_collection_forms_per_request,
+            ),
+            aggregation_fold_metadata=ExtractionPipelineFactory._aggregation_fold_metadata(keyword_type),
             next_node=EquipmentPhraseSearchNode(
                 field_type=keyword_type,
                 search_prompt=search_prompt,
                 next_node=EquipmentRecursiveSearchNode(
                     field_type=keyword_type,
                     second_search_prompt=recursive_search_prompt,
-                    next_node=EquipmentRelationshipNode(
+                    # v3 (3.1): mention collection replaced relationship; the tail
+                    # below is unreachable until the Phase 3.3 re-key.
+                    next_node=EquipmentMentionCollectionNode(
                         field_type=keyword_type,
-                        phrase_relationship_prompt=phrase_relationship_prompt,
+                        phrase_mention_collection_prompt=phrase_mention_collection_prompt,
                         next_node=EquipmentFreehandGroundingNode(
                             field_type=keyword_type,
                             phrase_freehand_grounding_prompt=phrase_freehand_grounding_prompt,
@@ -641,6 +725,7 @@ class ExtractionPipelineFactory:
         search_prompt: Prompt,
         recursive_search_prompt: Prompt,
         phrase_relationship_prompt: Prompt,
+        phrase_mention_collection_prompt: Prompt,
         phrase_relationship_screening_prompt: Prompt,
         phrase_freehand_grounding_prompt: Prompt,
         llm_model: LLM_Model,
@@ -648,6 +733,7 @@ class ExtractionPipelineFactory:
         created_at: datetime,
         max_recursive_search_rounds: int = DEFAULT_KEYWORD_RECURSIVE_SEARCH_MAX_ROUNDS,
         max_relationship_phrases_per_request: int = DEFAULT_RELATIONSHIP_MAX_PHRASES_PER_REQUEST,
+        max_mention_collection_forms_per_request: int = DEFAULT_MENTION_COLLECTION_MAX_FORMS_PER_REQUEST,
         max_screening_pairs_per_request: int = DEFAULT_SCREENING_MAX_PAIRS_PER_REQUEST,
         max_freehand_grounding_pairs_per_request: int = DEFAULT_FREEHAND_GROUNDING_MAX_PAIRS_PER_REQUEST,
     ) -> KeywordExtractionPrefillNode:
@@ -688,15 +774,25 @@ class ExtractionPipelineFactory:
                 created_at,
                 max_freehand_grounding_pairs_per_request,
             ),
+            llm_phrase_mention_collection_metadata=ExtractionPipelineFactory._batched_mention_collection_metadata(
+                phrase_mention_collection_prompt,
+                llm_model,
+                model_params,
+                created_at,
+                max_mention_collection_forms_per_request,
+            ),
+            aggregation_fold_metadata=ExtractionPipelineFactory._aggregation_fold_metadata(keyword_type),
             next_node=PureProductPhraseSearchNode(
                 field_type=keyword_type,
                 search_prompt=search_prompt,
                 next_node=PureProductRecursiveSearchNode(
                     field_type=keyword_type,
                     second_search_prompt=recursive_search_prompt,
-                    next_node=PureProductRelationshipNode(
+                    # v3 (3.1): mention collection replaced relationship; the tail
+                    # below is unreachable until the Phase 3.3 re-key.
+                    next_node=PureProductMentionCollectionNode(
                         field_type=keyword_type,
-                        phrase_relationship_prompt=phrase_relationship_prompt,
+                        phrase_mention_collection_prompt=phrase_mention_collection_prompt,
                         next_node=PureProductFreehandGroundingNode(
                             field_type=keyword_type,
                             phrase_freehand_grounding_prompt=phrase_freehand_grounding_prompt,
@@ -782,6 +878,7 @@ class ExtractionPipelineFactory:
                 search_prompt=prompt_service.product_phrase_search_prompt,
                 recursive_search_prompt=prompt_service.product_phrase_recursive_search_prompt,
                 phrase_relationship_prompt=prompt_service.product_phrase_relationship_prompt,
+                phrase_mention_collection_prompt=prompt_service.product_phrase_mention_collection_prompt,
                 phrase_relationship_screening_prompt=prompt_service.product_phrase_screening_pure_product_prompt,
                 phrase_freehand_grounding_prompt=prompt_service.product_phrase_freehand_grounding_prompt,
                 ontology_version_id=ontology.s3_version_id,
@@ -797,6 +894,7 @@ class ExtractionPipelineFactory:
                 search_prompt=prompt_service.product_phrase_search_prompt,
                 recursive_search_prompt=prompt_service.product_phrase_recursive_search_prompt,
                 phrase_relationship_prompt=prompt_service.product_phrase_relationship_prompt,
+                phrase_mention_collection_prompt=prompt_service.product_phrase_mention_collection_prompt,
                 phrase_relationship_screening_prompt=prompt_service.product_phrase_screening_contract_prompt,
                 phrase_freehand_grounding_prompt=prompt_service.product_phrase_freehand_grounding_prompt,
                 llm_model=llm_model,
@@ -811,6 +909,7 @@ class ExtractionPipelineFactory:
                 search_prompt=prompt_service.equipment_phrase_search_prompt,
                 recursive_search_prompt=prompt_service.equipment_phrase_recursive_search_prompt,
                 phrase_relationship_prompt=prompt_service.equipment_phrase_relationship_prompt,
+                phrase_mention_collection_prompt=prompt_service.equipment_phrase_mention_collection_prompt,
                 phrase_relationship_screening_prompt=prompt_service.equipment_phrase_relationship_screening_prompt,
                 phrase_freehand_grounding_prompt=prompt_service.equipment_phrase_freehand_grounding_prompt,
                 llm_model=llm_model,
@@ -828,6 +927,7 @@ class ExtractionPipelineFactory:
                 search_prompt=prompt_service.conformity_attestation_phrase_search_prompt,
                 recursive_search_prompt=prompt_service.conformity_attestation_phrase_recursive_search_prompt,
                 phrase_relationship_prompt=prompt_service.conformity_attestation_phrase_relationship_prompt,
+                phrase_mention_collection_prompt=prompt_service.conformity_attestation_phrase_mention_collection_prompt,
                 phrase_relationship_screening_prompt=prompt_service.conformity_attestation_phrase_relationship_screening_prompt,
                 phrase_initial_grounding_prompt=prompt_service.conformity_attestation_phrase_initial_grounding_prompt,
                 phrase_oov_grounding_prompt=(
@@ -852,6 +952,7 @@ class ExtractionPipelineFactory:
                 search_prompt=prompt_service.industry_phrase_search_prompt,
                 recursive_search_prompt=prompt_service.industry_phrase_recursive_search_prompt,
                 phrase_relationship_prompt=prompt_service.industry_phrase_relationship_prompt,
+                phrase_mention_collection_prompt=prompt_service.industry_phrase_mention_collection_prompt,
                 phrase_relationship_screening_prompt=prompt_service.industry_phrase_relationship_screening_prompt,
                 phrase_initial_grounding_prompt=prompt_service.industry_phrase_initial_grounding_prompt,
                 phrase_oov_grounding_prompt=(
@@ -874,6 +975,7 @@ class ExtractionPipelineFactory:
                 search_prompt=prompt_service.process_cap_phrase_search_prompt,
                 recursive_search_prompt=prompt_service.process_cap_phrase_recursive_search_prompt,
                 phrase_relationship_prompt=prompt_service.process_cap_phrase_relationship_prompt,
+                phrase_mention_collection_prompt=prompt_service.process_cap_phrase_mention_collection_prompt,
                 phrase_relationship_screening_prompt=prompt_service.process_cap_phrase_relationship_screening_prompt,
                 phrase_initial_grounding_prompt=prompt_service.process_cap_phrase_initial_grounding_prompt,
                 phrase_oov_grounding_prompt=(
@@ -896,6 +998,7 @@ class ExtractionPipelineFactory:
                 search_prompt=prompt_service.material_cap_phrase_search_prompt,
                 recursive_search_prompt=prompt_service.material_cap_phrase_recursive_search_prompt,
                 phrase_relationship_prompt=prompt_service.material_cap_phrase_relationship_prompt,
+                phrase_mention_collection_prompt=prompt_service.material_cap_phrase_mention_collection_prompt,
                 phrase_relationship_screening_prompt=prompt_service.material_cap_phrase_relationship_screening_prompt,
                 phrase_initial_grounding_prompt=prompt_service.material_cap_phrase_initial_grounding_prompt,
                 phrase_oov_grounding_prompt=(

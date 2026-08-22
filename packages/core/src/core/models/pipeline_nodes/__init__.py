@@ -102,6 +102,18 @@ from core.models.pipeline_nodes.multi_stage.keyword.keyword_recursive_search_nod
     KeywordRecursiveSearchNode,
 )
 
+# v3 (PIPELINE_V3_PLAN.md Phase 3.1): mention collection, the stage that
+# replaced relationship.
+from core.models.pipeline_nodes.multi_stage.base.llm_phrase_mention_collection_node import (
+    LLMPhraseMentionCollectionNode,
+)
+from core.models.pipeline_nodes.multi_stage.concept.concept_mention_collection_node import (
+    ConceptMentionCollectionNode,
+)
+from core.models.pipeline_nodes.multi_stage.keyword.keyword_mention_collection_node import (
+    KeywordMentionCollectionNode,
+)
+
 __all__ = [
     "BaseNode",
     "PipelineContext",
@@ -117,6 +129,9 @@ __all__ = [
     "LLMPhraseRelationshipNode",
     "LLMPhraseRelationshipScreeningNode",
     "LLMPhraseRecursiveSearchNode",
+    "LLMPhraseMentionCollectionNode",
+    "ConceptMentionCollectionNode",
+    "KeywordMentionCollectionNode",
     # single-stage
     "SingleStageExtractionNode",
     "SingleStageExtractionPrefillNode",

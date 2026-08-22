@@ -205,6 +205,10 @@ class WindowFold:
     unanchored: list[SnippetReport] = field(default_factory=list)
     rekeyed: list[RekeyReport] = field(default_factory=list)
     candidates: int = 0
+    # D7 tier 2, the discovery surface: per sent form, the distinct casings of
+    # it that occur in the window but were never sent as forms (short forms
+    # stay exact in tier 2, so they never discover anything).
+    discovered_casings: dict[str, list[str]] = field(default_factory=dict)
 
     @property
     def unaccounted_count(self) -> int:
@@ -378,6 +382,11 @@ def fold_window(
                         by_occurrence[key] = candidate
 
     fold.mentions = sorted(by_occurrence.values())
+    sent_set = set(sent_forms)
+    for form, hits in scan.tier2.items():
+        casings = sorted({window.text[o.start:o.end] for o in hits} - sent_set)
+        if casings:
+            fold.discovered_casings[form] = casings
     covered = {(m.form, m.start, m.end) for m in fold.mentions}
     for form, occs in obligations.items():
         fold.unaccounted[form] = [o for o in occs if (form, o.start, o.end) not in covered]

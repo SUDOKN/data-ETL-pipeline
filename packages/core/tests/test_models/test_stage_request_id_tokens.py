@@ -45,6 +45,23 @@ def test_downstream_widens_to_every_later_stage():
     }
 
 
+def test_mention_collection_is_its_own_scope_and_sits_above_the_v2_tail():
+    """v3: the mention stage has its own token, and "mention collection and
+    downstream" names the whole v2 tail too (relationship, grounding, screening,
+    descent) — rewinding a field to before its mentions wipes everything built
+    on them — while leaving both search passes alone."""
+    assert request_id_tokens_from(PipelineStage.mention_collection) == [
+        "llm_phrase_mention_collection"
+    ]
+    tokens = set(request_id_tokens_from(PipelineStage.mention_collection, and_downstream=True))
+    assert {"llm_phrase_mention_collection", "llm_phrase_relationship", "llm_phrase_initial_grounding"} <= tokens
+    assert "llm_search" not in tokens and "llm_recursive_search" not in tokens
+    # and from relationship downstream, mention collection is upstream
+    assert "llm_phrase_mention_collection" not in request_id_tokens_from(
+        PipelineStage.relationship, and_downstream=True
+    )
+
+
 def test_downstream_leaves_upstream_stages_alone():
     """The point of the flag: what survives is exactly the stage's upstream."""
     tokens = request_id_tokens_from(PipelineStage.screening, and_downstream=True)

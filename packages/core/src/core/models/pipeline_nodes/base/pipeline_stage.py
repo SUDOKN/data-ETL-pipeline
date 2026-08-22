@@ -41,6 +41,15 @@ class PipelineStage(StrEnum):
     prefill = "prefill"
     phrase_search = "phrase_search"
     recursive_search = "recursive_search"
+    # v3 (PIPELINE_V3_PLAN.md D1, D4–D7): the LLM mention collector that
+    # replaced relationship — per search sub-window, flat forms in, verbatim
+    # {location, snippet} mentions out, held to the mechanical floor scan. The
+    # aggregation fold that follows it is pure code with no requests, so it is
+    # not a stage: it runs at this stage's parse time.
+    mention_collection = "mention_collection"
+    # v2 relationship — OUT of every chain since v3 3.1 (2026-08-21). The
+    # member stays so stored request ids can still be scoped and deleted by
+    # stage (`request_id_tokens_from`); retired for good at v3 3.3.
     relationship = "relationship"
     initial_grounding = "initial_grounding"
     # The out-of-vocabulary discovery pass (concept fields, serial after
@@ -66,13 +75,14 @@ _STAGE_RANK: dict[PipelineStage, int] = {
     PipelineStage.single_stage_extraction: 1,
     PipelineStage.phrase_search: 1,
     PipelineStage.recursive_search: 2,
-    PipelineStage.relationship: 3,
-    PipelineStage.initial_grounding: 4,
-    PipelineStage.freehand_grounding: 4,
-    PipelineStage.oov_grounding: 5,
-    PipelineStage.screening: 6,
-    PipelineStage.iterative_grounding: 7,
-    PipelineStage.reconcile: 8,
+    PipelineStage.mention_collection: 3,
+    PipelineStage.relationship: 4,
+    PipelineStage.initial_grounding: 5,
+    PipelineStage.freehand_grounding: 5,
+    PipelineStage.oov_grounding: 6,
+    PipelineStage.screening: 7,
+    PipelineStage.iterative_grounding: 8,
+    PipelineStage.reconcile: 9,
 }
 
 # The third `>`-delimited segment of a batch request's custom ID, per stage.
@@ -84,6 +94,7 @@ STAGE_REQUEST_ID_TOKEN: dict[PipelineStage, str] = {
     PipelineStage.single_stage_extraction: "llm_request",
     PipelineStage.phrase_search: "llm_search",
     PipelineStage.recursive_search: "llm_recursive_search",
+    PipelineStage.mention_collection: "llm_phrase_mention_collection",
     PipelineStage.relationship: "llm_phrase_relationship",
     PipelineStage.screening: "llm_phrase_relationship_screening",
     PipelineStage.initial_grounding: "llm_phrase_initial_grounding",

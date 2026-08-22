@@ -11,8 +11,8 @@ from core.models.field_types import (
 )
 
 if TYPE_CHECKING:
-    from core.models.pipeline_nodes.multi_stage.keyword.keyword_relationship_node import (
-        KeywordRelationshipNode,
+    from core.models.pipeline_nodes.multi_stage.keyword.keyword_mention_collection_node import (
+        KeywordMentionCollectionNode,
     )
 
 logger = logging.getLogger(__name__)
@@ -31,7 +31,7 @@ class KeywordRecursiveSearchNode(LLMPhraseRecursiveSearchNode[ExtractionFieldTyp
     def __init__(
         self,
         field_type: ExtractionFieldType,
-        next_node: KeywordRelationshipNode,
+        next_node: KeywordMentionCollectionNode,
         second_search_prompt: Prompt,
     ):
         super().__init__(

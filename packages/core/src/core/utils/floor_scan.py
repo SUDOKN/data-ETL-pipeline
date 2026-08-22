@@ -100,6 +100,17 @@ def page_spans(text: str, *, preceding_page: Optional[str] = None) -> list[PageS
     return spans
 
 
+def preceding_page_of(text: str, offset: int) -> Optional[str]:
+    """The url of the last URL line that starts before *offset* in *text*, or
+    None — the page a sub-window cut at *offset* inherits (pass it as
+    ``preceding_page``). Sub-window bounds respect line boundaries, so *offset*
+    is a line start and never splits a URL line."""
+    last: Optional[str] = None
+    for match in _URL_LINE_RE.finditer(text, 0, offset):
+        last = match.group().strip()
+    return last
+
+
 def page_at(spans: list[PageSpan], offset: int) -> Optional[str]:
     """The url of the page holding *offset*, or None when unknown."""
     for span in spans:

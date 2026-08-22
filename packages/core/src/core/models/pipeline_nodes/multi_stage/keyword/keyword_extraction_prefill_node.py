@@ -2,13 +2,15 @@ from __future__ import annotations
 
 import logging
 from datetime import datetime
-from typing import TYPE_CHECKING
+from typing import TYPE_CHECKING, Optional
 
 from core.models.extraction_subject import (
     AbstractExtractionSubject,
     AbstractDeferredExtractionSubject,
 )
 from core.models.extraction_results.llm_phrase_extraction_results import (
+    AggregationFoldMetadata,
+    BatchedMentionCollectionNodeMetadata,
     ExtractionNodeMetadata,
     RecursiveSearchNodeMetadata,
     BatchedRelationshipNodeMetadata,
@@ -62,6 +64,13 @@ class KeywordExtractionPrefillNode(PrefillNode[ExtractionFieldType]):
         llm_phrase_relationship_metadata: BatchedRelationshipNodeMetadata,
         llm_phrase_relationship_screening_metadata: BatchedScreeningNodeMetadata,
         llm_phrase_freehand_grounding_metadata: BatchedFreehandGroundingNodeMetadata,
+        # v3 (PIPELINE_V3_PLAN.md Phase 3.1): the mention collector + the
+        # aggregation fold's identity. Optional only so older construction
+        # sites still compile; the factory always passes both.
+        llm_phrase_mention_collection_metadata: Optional[
+            BatchedMentionCollectionNodeMetadata
+        ] = None,
+        aggregation_fold_metadata: Optional[AggregationFoldMetadata] = None,
     ):
         super().__init__(
             field_type=field_type,
@@ -69,6 +78,8 @@ class KeywordExtractionPrefillNode(PrefillNode[ExtractionFieldType]):
             next_node=next_node,
         )
         self.ontology_version_id = ontology_version_id
+        self.llm_phrase_mention_collection_metadata = llm_phrase_mention_collection_metadata
+        self.aggregation_fold_metadata = aggregation_fold_metadata
         self.llm_phrase_search_metadata = llm_phrase_search_metadata
         self.llm_phrase_recursive_search_metadata = llm_phrase_recursive_search_metadata
         self.llm_phrase_relationship_metadata = llm_phrase_relationship_metadata
@@ -97,6 +108,8 @@ class KeywordExtractionPrefillNode(PrefillNode[ExtractionFieldType]):
             llm_phrase_relationship=self.llm_phrase_relationship_metadata,
             llm_phrase_relationship_screening=self.llm_phrase_relationship_screening_metadata,
             llm_phrase_freehand_grounding=self.llm_phrase_freehand_grounding_metadata,
+            llm_phrase_mention_collection=self.llm_phrase_mention_collection_metadata,
+            aggregation_fold=self.aggregation_fold_metadata,
         )
 
         if not bool(getattr(deferred_subject, self.field_type.name)):
@@ -120,6 +133,7 @@ class KeywordExtractionPrefillNode(PrefillNode[ExtractionFieldType]):
                         ),
                         llm_phrase_search_req_ids=[],
                         llm_phrase_recursive_search_req_ids={},
+                        llm_phrase_mention_req_ids={},
                         llm_phrase_relationship_req_ids=[],
                         llm_phrase_relationship_screening_req_ids=[],
                         llm_phrase_freehand_grounding_req_ids=[],

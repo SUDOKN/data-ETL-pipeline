@@ -10,7 +10,7 @@ from core.models.chunking_strat import EQUIPMENT_CHUNKING_STRAT
 from data_etl_app.models.pipeline_nodes import (
     EquipmentPhraseSearchNode,
     EquipmentRecursiveSearchNode,
-    EquipmentRelationshipNode,
+    EquipmentMentionCollectionNode,
     EquipmentRelationshipScreeningNode,
     EquipmentFreehandGroundingNode,
     EquipmentReconcileNode,
@@ -39,6 +39,7 @@ def test_create_equipment_extraction_pipeline_builds_expected_node_chain():
         search_prompt=_make_prompt("equipment_phrase_search"),
         recursive_search_prompt=_make_prompt("equipment_phrase_recursive_search"),
         phrase_relationship_prompt=_make_prompt("equipment_phrase_relationship"),
+        phrase_mention_collection_prompt=_make_prompt("equipment_phrase_mention_collection"),
         phrase_relationship_screening_prompt=_make_prompt(
             "equipment_phrase_relationship_screening"
         ),
@@ -58,12 +59,19 @@ def test_create_equipment_extraction_pipeline_builds_expected_node_chain():
     recursive_search_node = search_node.next_node
     assert isinstance(recursive_search_node, EquipmentRecursiveSearchNode)
 
-    relationship_node = recursive_search_node.next_node
-    assert isinstance(relationship_node, EquipmentRelationshipNode)
+    # v3 (3.1): mention collection replaced relationship.
+    mention_node = recursive_search_node.next_node
+    assert isinstance(mention_node, EquipmentMentionCollectionNode)
+    assert prefill.llm_phrase_mention_collection_metadata is not None
+    assert prefill.llm_phrase_mention_collection_metadata.max_forms_per_request == (
+        ExtractionPipelineFactory.DEFAULT_MENTION_COLLECTION_MAX_FORMS_PER_REQUEST
+    )
+    assert prefill.aggregation_fold_metadata is not None
+    assert prefill.aggregation_fold_metadata.verb_fold is False  # keyword field: L2 off
 
-    # v2 order: the freehand pass ENUMERATES candidates first, screening vets
-    # every one of them.
-    freehand_grounding_node = relationship_node.next_node
+    # v2 tail (unreachable until the Phase 3.3 re-key): the freehand pass
+    # ENUMERATES candidates first, screening vets every one of them.
+    freehand_grounding_node = mention_node.next_node
     assert isinstance(freehand_grounding_node, EquipmentFreehandGroundingNode)
 
     screening_node = freehand_grounding_node.next_node
