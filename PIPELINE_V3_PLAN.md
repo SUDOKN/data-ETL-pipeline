@@ -96,6 +96,39 @@ answerable to a mechanical floor.**
   has); keys are computed once per form, so this is a documented property
   boundary, not a defect — docstring + property test narrowed, no normalizer
   change, golden digest untouched.
+  **3.1 FOLLOW-UP (2026-08-21) — first v3 run analyzed (run 20260822T061410,
+  alecmfg + steelcraft, all 7 phrase fields, stop_after(mention_collection), no
+  errors).** What went right: every stage held (878 tests' worth of contract
+  in production: exact hold, fold per chunk, code-derived pages, witness +
+  fold blocks in every dump); the tier-1 floor scan caught the one real
+  collector failure — steelcraft process_caps window 102672:126084 answered 2
+  of 30 forms (clean JSON, `finish_reason=stop`: the UNDER-ANSWER family,
+  now observed in the mention stage too) → 35 unaccounted obligations flagged,
+  nothing raised; the fold repaired 448 casing mis-filings in one field alone
+  and merged case/inflection variants (`STEEL/Steel/steel`, `prototype(s)/
+  prototyping`, `Paladin™ PW Series …` ×3) with no wrong merge seen. What went
+  wrong: (1) LONG FORMS — "fullest span" (D2) produced claims, not
+  designations (mean 3.4–5.4 words, p90 up to 10, max 147 with 9 forms
+  crossing line breaks, all from recursive round 2 under the "fuller span"
+  clause); 65% of ≥6-word process forms are empty bundles, and long forms
+  swallow their sub-forms' obligations (the dominant rekey category) → **D2
+  Extent reverted to the pre-v3 shortness rule + line-break ban in all 12
+  statics, published + pinned 2026-08-21** (new pv ids → next run is a new
+  identity; old requests stay in Mongo). (2) Satisficing measured: unaccounted
+  obligations 4–35% per field (material_caps worst: `Steel` 58 missed of 100+
+  hits; menu/footer repeats), almost all on forms that DID get some mentions.
+  (3) Recursive search still loops: 16 repetition/truncation events (alecmfg
+  industries/process_caps, steelcraft industries/conformity), salvaged by the
+  2026-08-16 fix — D3's repurpose verdict gets its Phase 5 data. (4)
+  `unanchored` is mostly the model treating `Steelcraft` as containing `Steel`
+  (207 in one field — the boundary guard rejecting it is correct) and
+  fragment snippets of swallowed sub-forms. Unexpected: `rekeyed` casing
+  variants dominate steelcraft material_caps (448) — harmless by design;
+  per-window discovery surfaced 12–94 uncovered casings per field. Cost: the
+  mention stage is ~40–180k input / 8–65k output tokens per field-subject,
+  ~6 min wall per subject-field with search. **Watch item added:** mention-
+  stage under-answer policy (warn-only hold + floor-scan flag today; retry/
+  split is the same USER-OWNED family as grounding's).
   **HOW TO SEE THE FOLD (notebook `mfg_extraction_test.ipynb`):** build the
   orchestrator with `stage_toggles=StageToggles().stop_after(PipelineStage.mention_collection)`
   (the old `stop_after(PipelineStage.relationship)` also stops before the v2
@@ -379,7 +412,7 @@ D-ids are v3's own numbering; no continuity with the v2 plan's F-ids.
 | # | Fork | Decision |
 |---|------|----------|
 | D1 | Stage split | Relationship splits into mention collection (LLM, per 5k window) + synthesis (LLM, per group, deposition-only). Motivated by measured satisficing: 45% context coverage, ~1.7 mentions flat vs 34 contexts for `Aluminum`. |
-| D2 | Search output | FLAT array of verbatim surface forms — every variant incl. casings, fullest-span preference, field-relevance only, NO entity binding, NO dedup by search. Window-local: each window's search covers its own text; payloads are never unioned across windows. **Domain note (2026-08-21, user decision):** URL lines are page separators, not harvest material — "URL lines count as text" dropped from search AND recursive statics. Slug-only forms were architecturally dead in v3 anyway: exact-case matching gives them no body anchor, so they either duplicate a body form's group or ride to an empty bundle. |
+| D2 | Search output | FLAT array of verbatim surface forms — every variant incl. casings, ~~fullest-span preference~~ **SHORT designations (Extent amended 2026-08-21, user decision, measured on run 20260822T061410 — see the 3.1 follow-up in STATE): the pre-v3 shortness rule is back in all 12 search/recursive statics — the designation not the statement, long spans split into qualifying verbatim sub-phrases, never across a line break, modifiers kept only when part of the name; recursive form-completion no longer asks for FULLER spans. Measured: forms ≥6 words were 15% of first-search output and 33% of recursive rounds (52% in process_caps; max 147 words; 9 forms crossed line breaks); 65% of ≥6-word process forms ended as empty bundles; "swallowed by a longer form" was the dominant rekey category in 11/12 field-subjects. Containment still resolves genuine polysemes whenever both spans are emitted; the long tail was claims, not designations.** Field-relevance only, NO entity binding, NO dedup by search. Window-local: each window's search covers its own text; payloads are never unioned across windows. **Domain note (2026-08-21, user decision):** URL lines are page separators, not harvest material — "URL lines count as text" dropped from search AND recursive statics. Slug-only forms were architecturally dead in v3 anyway: exact-case matching gives them no body anchor, so they either duplicate a body form's group or ride to an empty bundle. |
 | D3 | Recursive search | Repurpose candidate: form completion ("here are the found forms, find variants we missed") replacing v1's find-more-entities round (measured 0/12 in-boundary at highest cost). Per-field toggle; final call at the Phase 5 measurement gate. |
 | D4 | Mention collector is LLM | Kept LLM (not code) because mention-EXTENT rules will evolve and prompts are cheaper to evolve than tokenizers. The anaphora argument is measured-weak (see appendix: 0.8% of records lack a string-anchorable mention) — flexibility, not anaphora, is the justification. Contract: sense-agnostic occurrence reporting, stated EXPLICITLY in the prompt ("report occurrences; do not judge whether it's really the material"), exact string + casing matching. |
 | D5 | Mention payload | ~~Flat `{record_id, form}` pairs~~ **AMENDED 2026-08-21 (user decision): bare form strings on the wire — no ids sent (see D6)**; window-local, NO payload dedup / variant logic — the LLM is deliberately dumb about variants (all casings ride as separate items; exact-case matching makes each occurrence match exactly one). Batching splits freely along forms (no judgment spans two forms). |
@@ -413,7 +446,7 @@ dump-visible).
 
 **Standing watch items:** M2 match rules still owed; descent-attribution leak
 channel (measure at gates); search-divisor recall/quality A/Bs still unrun;
-**grounding under-answer policy (USER-OWNED, appendix D):** a grounding response can validly answer a fraction of its sent
+**under-answer policy (USER-OWNED, appendix D; now also OBSERVED in the mention stage — run 20260822T061410, 2 of 30 forms answered, caught by the floor scan, warn-only):** a grounding response can validly answer a fraction of its sent
 records and today that aborts the whole subject via `MissingResponseRecords`;
 decide retry/split/schema policy before v3's grounding re-key (Phase 3.3).
 
@@ -609,3 +642,4 @@ listing `pipeline_v3_evidence/2026-08-21_normalize_dry_run_output.txt`.
 | 2026-08-21 | **Resume aids saved (user request):** `PIPELINE_V3_WALKTHROUGH_2_2.md` (2.2 mechanics + the 2.3 design with real outputs) and `pipeline_v3_evidence/` (normalize_dry_run.py + 2026-08-21 output = appendix E tool; fold_prototype.py = the 2.3 seed). 2.3 design recorded in STATE as PROPOSED (A–E: locate, re-attribute with longest-match, D19 dedup keyed on occurrence span with longer snippet kept, bundles in locked order with empty bundles kept, tier-1 obligations under the same containment rule) — awaiting the user's go-ahead. Committed 2.2 + these files on top of ca9a82e. |
 | 2026-08-21 | **2.3 built (user go-ahead on the proposed A–E):** `core/utils/aggregation_fold.py` + 25 tests; core suite 455 green; pyright + ruff clean. The walkthrough §6 scenario reproduces exactly and is the golden test. Three refinements found while building, all recorded in STATE for the gate review: attribution reads the tier-1 scan (owners inside the located snippet) instead of re-matching inside the snippet string; containment applied window-wide across snippets; D19 tie prefers the collector's own filing. D19 SETTLED; empty-bundle fate SETTLED (kept, `no_mentions`, skipped by synthesis, dump-visible). Next: Phase 2 REVIEW gate (question in STATE), then 3.1. |
 | 2026-08-21 | **Phase 2 gate PASSED; 3.1 built (user: replace relationship now; per-chunk fold scope; brute casings as forms; fold identity in metadata; I publish).** Mention node + per-chunk fold in all 7 phrase chains, relationship out (v2 tail unreachable behind a named context error until 3.3); `PipelineStage.mention_collection`; `BatchedMentionCollectionNodeMetadata` + `AggregationFoldMetadata` (Optional on the v2 metadata model); `llm_phrase_mention_req_ids` per sub-window; `brute_by_sub_bounds` at prefill; service (window-local forms, groups, fenced context, exact warn-only hold, `get_chunk_fold`); partial dump `fold` block + request witness; factory/PromptService wiring. 24 statics published + pinned (search/recursive reworked, mention, synthesis); `check` clean. Core 472 / app 406 green; pyright delta = pre-existing families only; ruff clean. 2.1 finding: `normalize` idempotent only for un-guarded forms (documented boundary; no code change). v2 doc noise trimmed in this plan. Next: 3.2 synthesis node. |
+| 2026-08-21 | **First v3 run analyzed (20260822T061410) + D2 Extent reverted.** Both subjects, 7 phrase fields, `stop_after(mention_collection)`, zero errors; fold blocks + witness in every dump. Findings in STATE (3.1 follow-up): long forms from "fullest span" (15% / 33% ≥6 words first/recursive; max 147 words; 9 across line breaks; 65% of ≥6-word process forms empty; swallowed sub-forms dominate rekeys) → shortness Extent restored + line-break ban in all 12 search/recursive statics, recursive no longer asks for fuller spans; published + pinned. Satisficing 4–35% unaccounted; one mention-stage under-answer (2/30) caught by the floor scan; 16 recursive loops salvaged. Next: user re-runs; 3.2 synthesis node. |
