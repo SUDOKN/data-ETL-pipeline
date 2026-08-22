@@ -33,8 +33,9 @@ answerable to a mechanical floor.**
   HERE:** read [PIPELINE_V3_WALKTHROUGH_2_2.md](PIPELINE_V3_WALKTHROUGH_2_2.md)
   (2.2 mechanics + the 2.3 design with real outputs) and run
   `pipeline_v3_evidence/fold_prototype.py` — the seed of
-  `core/utils/aggregation_fold.py`. Commit `ca9a82e` = Phase 1 + 2.1; the next
-  commit = 2.2 + walkthrough + evidence.
+  `core/utils/aggregation_fold.py`. Commits on `new-ground-truth-v2`: `ca9a82e` = Phase 1 + 2.1;
+  `e729a81` = 2.2 + walkthrough + evidence. The 13 other uncommitted entries in
+  the tree are the user's pre-existing v2-flip work, not v3.
 - **2.3 PLAN (proposed 2026-08-21, prototype shown to the user; build on their
   go-ahead):** module `core/utils/aggregation_fold.py`, pure, over the 2.1 keys
   and the 2.2 matcher. (A) locate each collector snippet in the window (exact
