@@ -103,7 +103,13 @@ from core.services.rule_catalog_registry import set_rule_catalog_lookup
 class ExtractionPipelineFactory:
     """Creates extraction phase pipelines for each field"""
 
-    DEFAULT_RECURSIVE_SEARCH_MAX_ROUNDS = 1
+    # 0 since 2026-08-22 (user decision, v3 D3 verdict): the recursive round
+    # measured on run 20260822T061410 returned 65% verbatim phrases (22% occur
+    # nowhere in the window), ran on empty lists and dumped page menus, and in
+    # its intended form-completion role carried ~10% of the occurrences the
+    # first search already carried. max_rounds=0 makes the node a no-op
+    # pass-through (the keyword pipelines already ran that way).
+    DEFAULT_RECURSIVE_SEARCH_MAX_ROUNDS = 0
     # Keyword (open-vocabulary) pipelines skip recursive search by default;
     # max_rounds=0 makes the recursive-search node a no-op pass-through.
     DEFAULT_KEYWORD_RECURSIVE_SEARCH_MAX_ROUNDS = 0

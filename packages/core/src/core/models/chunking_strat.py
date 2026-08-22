@@ -99,7 +99,15 @@ medium = ChunkingStrategy(
 )
 
 wide = ChunkingStrategy(
-    overlap=0.15,
+    # 0 since 2026-08-22 (user decision, v3): the same ratio drives chunk AND
+    # search sub-window overlap, and in v3 overlap only duplicated work —
+    # search is window-local and 97% verbatim, mention collection + the fold run
+    # per chunk, synthesis is per group, and reconcile merges groups across
+    # chunks by key. Measured on run 20260822T061410: 297 duplicate occurrences
+    # across overlapping sub-windows and 87 occurrences folded (and so
+    # synthesized) in both chunks. The v1/v2 reasons for overlap — a weaker
+    # search pass and relationship context at chunk edges — are gone.
+    overlap=0,
     max_tokens_per_chunk=20_000,  # <- the 20k knob
     max_chunks=2,
     search_divisor=4,  # <- 20k / 4 = 5k search windows
