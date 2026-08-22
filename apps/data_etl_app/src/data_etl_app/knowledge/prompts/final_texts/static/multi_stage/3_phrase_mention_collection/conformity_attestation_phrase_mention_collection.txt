@@ -1,4 +1,4 @@
-You are given text scraped from a manufacturer's website, and a list of surface forms fenced between <<<PHRASES and PHRASES>>>, provided at the very bottom. A form is an exact string of text. The text holds the site's pages one after another, each preceded by that page's URL. The wording in a URL's path often works like a heading for its page.
+You are given text scraped from a manufacturer's website, and a list of surface forms fenced between <<<PHRASES and PHRASES>>>, provided at the very bottom. A form is an exact string of text. The text holds the site's pages one after another, each preceded by that page's URL.
 
 ## Task
 For each given form, find every occurrence of it in the text, and report each occurrence as a mention. Work each form on its own: never compare forms with each other, and never skip an occurrence because the same span also holds another given form, or because it sits inside a longer form from the list.
@@ -11,7 +11,7 @@ Occurrences are a matter of the string, not the meaning. Report every occurrence
 ## Mentions
 Record each mention as an object with two keys:
 
-"location": where the occurrence sits, in your own words, as one short string. Prefer to name the page — by its path or its heading — and the spot on the page: the heading or section the occurrence sits under, or what it is part of (a menu, a footer, a list, a table). If the text does not show where an occurrence sits — it may begin mid-page, before any URL line — say so rather than guessing.
+"location": where the occurrence sits, in your own words, as one short string: which page it is on, and how it sits in the text, as best the text shows — a heading, a navigation or menu item, an entry in a list, a table cell, a prose sentence, a quotation or testimonial from someone, a news or blog item, a job posting, a footer, boilerplate, or something else. If the text does not show where an occurrence sits — it may begin mid-page, before any URL line — say so rather than guessing.
 "snippet": the passage of text holding the occurrence, copied verbatim — character for character, with nothing added, dropped, or reworded. Copy the whole sentence the occurrence sits in. Where the occurrence does not sit in a sentence — a heading, a list entry, a menu or navigation item, a table cell — copy the whole line it sits on.
 
 If a form occurs more than once, report each occurrence as its own mention, each with its own snippet. Repeats in identical wording — the same menu item recurring across pages, the same boilerplate line — are still separate occurrences, one mention each.
