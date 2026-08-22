@@ -29,9 +29,56 @@ answerable to a mechanical floor.**
 
 ## STATE
 
-- **Phase:** 2 — pure core. **Next substep: 2.2** (word-boundary matcher: the
-  floor-scan engine per D7 — technical-term tokenization, short-form policy,
-  scan domain = window text minus URL lines).
+- **Phase:** 2 — pure core. **Next substep: 2.3** (aggregation fold). **RESUME
+  HERE:** read [PIPELINE_V3_WALKTHROUGH_2_2.md](PIPELINE_V3_WALKTHROUGH_2_2.md)
+  (2.2 mechanics + the 2.3 design with real outputs) and run
+  `pipeline_v3_evidence/fold_prototype.py` — the seed of
+  `core/utils/aggregation_fold.py`. Commit `ca9a82e` = Phase 1 + 2.1; the next
+  commit = 2.2 + walkthrough + evidence.
+- **2.3 PLAN (proposed 2026-08-21, prototype shown to the user; build on their
+  go-ahead):** module `core/utils/aggregation_fold.py`, pure, over the 2.1 keys
+  and the 2.2 matcher. (A) locate each collector snippet in the window (exact
+  substring; a snippet that occurs more than once yields one candidate per
+  position). (B) RE-ATTRIBUTE from the snippet: every sent form that occurs
+  exactly in it; longest-match containment owns a spot (D8) — the LLM's form is
+  advisory, a casing mis-attribution is repaired without any reconciler, and a
+  sentence holding several forms is a mention of EACH group. (C) **D19 residual
+  rule = dedup keyed (group, occurrence span); the longer snippet is kept** —
+  collapses different-extent snippets of one spot, keeps two genuine
+  occurrences in one sentence as two mentions. (D) group by `normalize()` key
+  (dict, global scope; verb_fold per field from the app-side mapping), bundles in
+  LOCKED order (window position == page order then position → synthesis input
+  and `|ud=` digest independent of LLM answer order/batching), code-derived page
+  via `page_spans`/`page_at` (+ inherited `preceding_page` per sub-window),
+  `group_id` as the synthesis `record_id`; **empty bundles KEPT, marked
+  `no_mentions`, skipped by synthesis, dump-visible**. (E) **tier-1 hold
+  obligations must apply the SAME containment rule to the scan's hits** (a `Lead`
+  hit inside a `Sample Lead Time` hit is not Lead's obligation) — else fuller-span
+  forms raise phantom discrepancies for their sub-forms; unmatched obligations =
+  the window's discrepancy record. Tests: property (order-independence of input
+  mentions, idempotence of dedup, every kept mention's snippet ⊂ window, every
+  attributed form occurs exactly in its snippet, containment rule) + the
+  prototype scenario as a golden case.
+- **2.2 DONE 2026-08-21:** `core/utils/floor_scan.py` + 27 tests
+  (`tests/test_utils/test_floor_scan.py`), core suite 430 green, pyright clean.
+  The word-boundary matcher for technical terms: `find_form_occurrences` guards
+  an edge with `(?<!\w)` / `(?!\w)` ONLY when that edge of the form is a word
+  char — `6061-T6` matches in "6061-T6 aluminum" not "16061-T6", `CNC` in
+  "CNC/Manual", `C++` needs no right guard, `Lead` hits "Lead Time"/"Lead-free"
+  never "Leader"/"leading" (the measured substring bug); Unicode-aware `\w`.
+  Scan domain: `mask_page_headers` blanks URL lines and the scraper's `#`
+  separator lines with spaces, LENGTH-PRESERVING (every offset stays an offset
+  into the window); `page_spans` tiles the window into pages (a page starts at
+  its URL line; text before the first URL is `None` unless the caller passes the
+  inherited `preceding_page`), `page_at`/`FloorScan.page_of` attribute offsets.
+  Two tiers: `floor_scan(window, forms)` → tier1 exact-case hits per form (the
+  hold), tier2 case-insensitive (discovery), tier2 ⊇ tier1; **short-form policy
+  settled: `SHORT_FORM_MAX_LENGTH = 3`** — `Al`/`SS`/`CNC` stay case-sensitive in
+  tier 2 and are listed in `FloorScan.short_forms`. Same engine serves D8's
+  re-attribution in 2.3 (which sent forms occur exactly in a snippet). Hypothesis
+  properties: every hit is a whole-word exact substring; tier2 ⊇ tier1 and
+  casefold-equal; hits sorted, non-overlapping; a form surrounded by spaces is
+  always found; masking is length-preserving and pages tile the window.
 - **Phase 1 REVIEW gate PASSED 2026-08-21** (user: "yes, everything sounds
   good") — 24 statics + wire contracts signed off. **Publish DEFERRED to Phase
   3.1 by decision:** publishing the reworked search/recursive statics now would
@@ -253,12 +300,13 @@ D-ids are v3's own numbering; no continuity with the v2 plan's F-ids.
 | D16 | Downstream re-key | Grounding → OOV → screening → descent → reconcile consume per-group records keyed `group_id`. Upstream-content digests (`|ud=`) extend through the new chain: mention requests digest forms, synthesis digests bundles, grounding digests group records. **Naming note (2026-08-21):** the synthesis wire label `record_id` carries the group_id VALUE; code, dumps and GT keep the name `group_id` — the per-form `record_id = hash(form)` is a different key and must not be conflated. |
 | D17 | No text preprocessing | No ASCII fold / character substitution (skipped as not straightforward; the curated-fold idea is shelved unless evidence demands). `ensure_ascii=False` STAYS — reverting was proposed and withdrawn against the measured evidence (escapes caused 17/17 echo corruption; real characters fixed it; on ASCII-clean text the flag is a no-op anyway). Normalize-at-comparison wherever a comparison crosses surfaces. |
 | D18 | GT v3 | Mention-level GT is near-mechanical (verbatim fidelity + location), anchored `(record_id, window, mention_index)` — survives any grouping change. **Location note (2026-08-21, follows the D6 amendment):** the auditable location is the fold's code-derived page; the freehand location string is unaudited color. **Synthesis note (2026-08-21, follows the D15 amendment):** the synthesis audit is faithfulness-to-entries only — no disposition audit, no split-flag tally; wrong-merge visibility is the Phase 4.1 dump's member-forms column. The missed-MENTION surface becomes a missed-FORM surface per 5k window (tractable for an annotator; tier-2 scan feeds it). Synthesis audits key on `group_id` (run-scoped addressing accepted; cross-run joins via member-form overlap). Synthesis is auditable AGAINST ITS BUNDLE without opening source text. Annotator budget concentrates on synthesis. Audit primitives (TextFieldAudit/EntityFieldAudit, rule_tree, fold, inflation pattern) carry over. |
-| D19 | Same-occurrence dedup | Cross-casing duplicates are impossible by construction (exact-case matching, D5). Containment overlaps resolved by longest-match in code (D8). Residual rule for two forms of one group reporting the same spot: keyed on (group, page, snippet overlap) at aggregation — exact rule OPEN, decide in Phase 2. |
+| D19 | Same-occurrence dedup | Cross-casing duplicates are impossible by construction (exact-case matching, D5). Containment overlaps resolved by longest-match in code (D8). Residual rule for two forms of one group reporting the same spot: keyed on (group, page, snippet overlap) at aggregation — exact rule OPEN, decide in Phase 2. **PROPOSED 2.3 (2026-08-21, prototype shown to the user, not yet confirmed):** after re-attribution the unit is the OCCURRENCE — dedup key (group, occurrence span in the window); the longer snippet is kept. See PIPELINE_V3_WALKTHROUGH_2_2.md §6 C. |
 | D20 | Measurement gates | ~~v2's Phase 4 numbers are v3's precondition AND baseline~~ **AMENDED 2026-08-21 (user decision):** the v2 gate is ABANDONED — both subjects crashed inside v2's relationship/grounding at production settings (appendix D), and repairing a stage v3 deletes just to measure it isn't worth it. v3 proceeds at full scope; the Phase 5 gate compares v3 against the v1 hand-audit baselines only (56% boundary precision, 45% context coverage — appendix C). There is no v2 comparison arm. |
 
 **Open items (small, decide in-phase):** D19's exact residual rule; ~~snippet extent
 defaults~~ (settled in 1.2: sentence, or whole line for non-sentence text); the
-soft-cutoff value for mentions-per-request; short-form length threshold;
+soft-cutoff value for mentions-per-request; ~~short-form length threshold~~
+(settled 2.2: ≤3 chars stay case-sensitive in tier 2, flagged);
 ~~lemmatizer selection + version pinning mechanics~~ (settled 2.1: lemminflect
 0.2.3 dictionary-only, exact pin + import assertion + golden-digest tripwire);
 group-aware dump row format;
@@ -439,7 +487,9 @@ Every distinct phrase in all 12 dump runs, bucketed within field: **4,157
 (field, phrase) pairs, 7 fields, 1,888 distinct alphabetic tokens.** Three
 candidates measured first per token, then per phrase (multi-member groups each
 layer creates, listed in full so a wrong merge is visible — the appendix-B
-method; per-layer listing was in the session scratchpad `normalize_dry_run.txt`).
+method). **Saved in-repo:** the tool `pipeline_v3_evidence/normalize_dry_run.py`
+(runs the PRODUCTION normalizer over the dump corpus) and the full per-layer
+listing `pipeline_v3_evidence/2026-08-21_normalize_dry_run_output.txt`.
 - **simplemma 2.0.0 — REJECTED:** restores case (`texas`→`Texas`) and folds
   inconsistently (`bearing`→`bear` but `bearings`→`bearing`, so singular and
   plural land in different keys); no POS dial, so the verb fold cannot be
@@ -486,3 +536,5 @@ method; per-layer listing was in the session scratchpad `normalize_dry_run.txt`)
 | 2026-08-21 | **1.4 built:** wire contracts for mention collection + synthesis — new `extraction_schemas/mention_collection.py` and `synthesis.py` (strict response_formats, parsers, dummies); `phrase_blocks_contract.py` v3 section (EXACT `hold_response_to_sent_forms`, `render_synthesis_record_blocks` = RECORD_IDS + ARRAY records, record-id hold generalized to array payloads). Wire-driven prompt amendment: mention Output → array `{"forms": [{form, mentions}]}` because strict mode forbids objects keyed by arbitrary strings; six statics re-propagated. Two new test files; the drift test caught a real bug in the consistency-error message (fixed). Full suites green (core 323, app 402), pyright clean. Not done by design: PromptService registration (post-publish), PipelineStage members (Phase 3), catalogs (field-agnostic statics take the static path). **Phase 1 substeps complete — next: the Phase 1 REVIEW gate.** |
 | 2026-08-21 | **Phase 1 REVIEW gate PASSED** (user sign-off on 24 statics + wire contracts). Publish DEFERRED to Phase 3.1 by decision: publishing the reworked search/recursive statics now would flip the live search stage under v2's downstream; nothing in Phase 2 needs S3; drift is runtime-safe. |
 | 2026-08-21 | **2.1 built:** `core/utils/form_normalizer.py` + 80 tests; core suite 403 green; pyright clean. Lemmatizer decided by measurement on 4,157 real (field, phrase) pairs (appendix E): lemminflect 0.2.3 DICTIONARY-only (simplemma and lemminflect's OOV rules rejected), exact pin + import assertion, one guarded OOV-plural fallback, code-token guard with acronym-plural exemption, L2 verb fold as a bool dial applied after L1 (field mapping app-side at Phase 3), `group_id` = g+7 base36, NORMALIZER_VERSION "1" with golden-digest tripwire, hypothesis properties (caught two Unicode edges in the TEST alphabet, not the code). Groups 162→189→191→198, zero wrong merges at L0/L1/fallback, one debatable at L2. `hypothesis` added as core dev dep. Next: 2.2. |
+| 2026-08-21 | **2.2 built:** `core/utils/floor_scan.py` + 27 tests; core suite 430 green; pyright clean. Word-boundary matcher for technical terms (edge guards only where the form's edge is a word char — 6061-T6, CNC/Manual, C++, the Lead/Leader case), length-preserving page-header masking as the scan domain (URL + `#` separator lines, per the URL cut), `page_spans`/`page_at` for code-derived page attribution, two tiers (exact = hold, case-insensitive = discovery), short-form threshold settled at 3 (stay case-sensitive, flagged). Hypothesis properties: whole-word exact hits, tier2 ⊇ tier1, sorted/non-overlapping, inserted-form-always-found, mask length + page tiling. Next: 2.3 fold. |
+| 2026-08-21 | **Resume aids saved (user request):** `PIPELINE_V3_WALKTHROUGH_2_2.md` (2.2 mechanics + the 2.3 design with real outputs) and `pipeline_v3_evidence/` (normalize_dry_run.py + 2026-08-21 output = appendix E tool; fold_prototype.py = the 2.3 seed). 2.3 design recorded in STATE as PROPOSED (A–E: locate, re-attribute with longest-match, D19 dedup keyed on occurrence span with longer snippet kept, bundles in locked order with empty bundles kept, tier-1 obligations under the same containment rule) — awaiting the user's go-ahead. Committed 2.2 + these files on top of ca9a82e. |
