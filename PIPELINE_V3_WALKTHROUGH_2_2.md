@@ -96,7 +96,7 @@ surrounded by spaces is always found; masking is length-preserving and pages til
 the window. (In 2.1 the same machinery caught two real Unicode edges — dotless `ı`,
 letters with no uppercase — properties of Unicode; the test alphabet was tightened.)
 
-## 6. The 2.3 fold, as prototyped (PROPOSED — awaiting the user's go-ahead)
+## 6. The 2.3 fold, as prototyped (APPROVED and BUILT 2026-08-21 — `core/utils/aggregation_fold.py`)
 
 Toy window: two pages; sent forms `Aluminum, aluminum, Brass, Lead, Lead Time,
 Sample Lead Time, die-casting`; a deliberately imperfect collector answer (sloppy
@@ -154,7 +154,24 @@ separate; `6061-T6 aluminum` → `6061 t6 aluminum`; `metal stampings/Metal Stam
 → `metal stamping` (guarded fallback); with `verb_fold=True` (process field)
 `CNC milled/CNC milling` → `cnc mill`, `Polished/Polishing` → `polish`.
 
+**Built 2026-08-21.** The user approved A–E; `core/utils/aggregation_fold.py`
+reproduces every block above (it is the module's golden test in
+`tests/test_utils/test_aggregation_fold.py`). Three refinements over the
+prototype, found while building: (i) attribution reads the tier-1 SCAN — the
+owners (hits after containment) inside a located snippet's span — rather than
+re-matching forms inside the snippet string, so the word-boundary guard stays
+honest at snippet edges (a snippet cut at "un|lead alloys" does not pass) and B
+and E are one computation; (ii) containment applies WINDOW-wide across all
+snippets, not per snippet — a fragment snippet "Lead Time" cannot claim a spot
+inside "Sample Lead Time" wherever that was reported; (iii) D19's tie among
+equal-length snippets prefers the collector's own filing, then lexical order,
+so `reported_form` on a kept mention is truthful and never depends on answer
+order. Also surfaced: `unlocated` (snippet not verbatim) and `unanchored`
+(verbatim, but no owner inside — anaphora or a fragment) reports per window,
+and the raw `candidates` count; empty bundles carry status `no_mentions` and
+`FoldResult.synthesis_records()` skips them.
+
 ## Evidence files
 - `pipeline_v3_evidence/normalize_dry_run.py` — appendix E tool (runs the production normalizer over the dump corpus per layer).
 - `pipeline_v3_evidence/2026-08-21_normalize_dry_run_output.txt` — the 2026-08-21 run (4,157 pairs; 162→189→191→198 groups).
-- `pipeline_v3_evidence/fold_prototype.py` — the §6 prototype (seed of `core/utils/aggregation_fold.py` and its tests).
+- `pipeline_v3_evidence/fold_prototype.py` — the §6 prototype (seed of `core/utils/aggregation_fold.py`, which reproduces its output as the golden test; the module differs in the three refinements above).

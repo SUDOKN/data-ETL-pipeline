@@ -1,7 +1,7 @@
 You are given the name of a manufacturer and a list of records holding entries collected from text scraped from its website. You do not see the website itself: each entry was written down by a reader who did, and the entries are all you have. The records are provided at the very bottom: first the record ids, fenced between <<<RECORD_IDS and RECORD_IDS>>>, then the records themselves, fenced between <<<RECORDS and RECORDS>>>. Each record holds its record_id and its entries; each entry holds a snippet — a passage copied verbatim from the site — and the location the reader found it at in the original text.
 
 ## Task
-Work each record on its own and write one synthesis for it: a single, well-put-together statement that faithfully brings together what the record's entries say — what they show the manufacturer does, makes, offers, works with, or is said to — with the locations woven in where they tell the reader something (a menu item, a heading, a case study, a customer's words). The entries of one record were collected together because they share a subject; write the synthesis around what they share.
+Work each record on its own and write one synthesis for it: a single, well-put-together statement that faithfully weaves together what the record's entries say about the manufacturer — whatever they show it does, has, or is, and whatever is said of it — with the locations woven in where they tell the reader something (a menu item, a heading, a case study, a customer's words).
 
 ## Rules on reporting
 Report the way a court reporter would: record what the entries say and add nothing of your own. Assert nothing the entries do not jointly support, and attribute every statement to whoever the entries attribute it to: the site's own copy, a named or unnamed customer, a publication, another party. Where an entry places something outside the present — a completed project, a plan, a denial — carry that placement in the entry's own words.
@@ -15,7 +15,7 @@ Return a JSON object with a single key "syntheses" whose value is an array with 
 ```json
 {"syntheses": [
   {"record_id": "<a given record_id>",
-   "synthesis": "<what the entries show the manufacturer does, makes, offers, works with, or is said to, brought together faithfully with their locations, in the entries' own attributions>"},
+   "synthesis": "<what the entries say about the manufacturer — whatever they show it does, has, or is, and whatever is said of it — woven together faithfully with their locations, in the entries' own attributions>"},
   {"record_id": "<another given record_id>",
    "synthesis": "<...>"}
 ]}

@@ -17,19 +17,21 @@ Record each mention as an object with two keys:
 If a form occurs more than once, report each occurrence as its own mention, each with its own snippet. Repeats in identical wording — the same menu item recurring across pages, the same boilerplate line — are still separate occurrences, one mention each.
 
 ## Output
-Return a JSON object with a single key "mentions" whose value is an object with one key per given form — every given form exactly once, copied character for character as it was given, and no other keys. Each form's value is an array of that form's mentions, in the order the occurrences appear in the text. A form that does not occur in the text gets an empty array.
+Return a JSON object with a single key "forms" whose value is an array with one object per given form — every given form exactly once, and no others. Each object holds the form, copied character for character as it was given, and its mentions: an array of that form's mentions in the order the occurrences appear in the text. A form that does not occur in the text gets an empty mentions array.
 
 ```json
-{"mentions": {
-  "<a given form>": [
-    {"location": "<where this occurrence sits, in your own words>",
-     "snippet": "<the passage holding the occurrence, copied verbatim>"},
-    {"location": "<where the next occurrence sits>",
-     "snippet": "<the passage holding it, copied verbatim>"}
-  ],
-  "<another given form>": [
-    {"location": "<where it sits>",
-     "snippet": "<the passage holding it, copied verbatim>"}
-  ]
-}}
+{"forms": [
+  {"form": "<a given form>",
+   "mentions": [
+     {"location": "<where this occurrence sits, in your own words>",
+      "snippet": "<the passage holding the occurrence, copied verbatim>"},
+     {"location": "<where the next occurrence sits>",
+      "snippet": "<the passage holding it, copied verbatim>"}
+   ]},
+  {"form": "<another given form>",
+   "mentions": [
+     {"location": "<where it sits>",
+      "snippet": "<the passage holding it, copied verbatim>"}
+   ]}
+]}
 ```

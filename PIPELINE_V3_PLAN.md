@@ -29,37 +29,80 @@ answerable to a mechanical floor.**
 
 ## STATE
 
-- **Phase:** 2 — pure core. **Next substep: 2.3** (aggregation fold). **RESUME
-  HERE:** read [PIPELINE_V3_WALKTHROUGH_2_2.md](PIPELINE_V3_WALKTHROUGH_2_2.md)
-  (2.2 mechanics + the 2.3 design with real outputs) and run
-  `pipeline_v3_evidence/fold_prototype.py` — the seed of
-  `core/utils/aggregation_fold.py`. Commits on `new-ground-truth-v2`: `ca9a82e` = Phase 1 + 2.1;
-  `e729a81` = 2.2 + walkthrough + evidence. The 13 other uncommitted entries in
-  the tree are the user's pre-existing v2-flip work, not v3.
-- **2.3 PLAN (proposed 2026-08-21, prototype shown to the user; build on their
-  go-ahead):** module `core/utils/aggregation_fold.py`, pure, over the 2.1 keys
-  and the 2.2 matcher. (A) locate each collector snippet in the window (exact
-  substring; a snippet that occurs more than once yields one candidate per
-  position). (B) RE-ATTRIBUTE from the snippet: every sent form that occurs
-  exactly in it; longest-match containment owns a spot (D8) — the LLM's form is
-  advisory, a casing mis-attribution is repaired without any reconciler, and a
-  sentence holding several forms is a mention of EACH group. (C) **D19 residual
-  rule = dedup keyed (group, occurrence span); the longer snippet is kept** —
-  collapses different-extent snippets of one spot, keeps two genuine
-  occurrences in one sentence as two mentions. (D) group by `normalize()` key
-  (dict, global scope; verb_fold per field from the app-side mapping), bundles in
-  LOCKED order (window position == page order then position → synthesis input
-  and `|ud=` digest independent of LLM answer order/batching), code-derived page
-  via `page_spans`/`page_at` (+ inherited `preceding_page` per sub-window),
-  `group_id` as the synthesis `record_id`; **empty bundles KEPT, marked
-  `no_mentions`, skipped by synthesis, dump-visible**. (E) **tier-1 hold
-  obligations must apply the SAME containment rule to the scan's hits** (a `Lead`
-  hit inside a `Sample Lead Time` hit is not Lead's obligation) — else fuller-span
-  forms raise phantom discrepancies for their sub-forms; unmatched obligations =
-  the window's discrepancy record. Tests: property (order-independence of input
-  mentions, idempotence of dedup, every kept mention's snippet ⊂ window, every
-  attributed form occurs exactly in its snippet, containment rule) + the
-  prototype scenario as a golden case.
+- **Phase:** 2 — pure core, ALL THREE SUBSTEPS BUILT (2.3 landed 2026-08-21
+  on the user's go-ahead). **Next: the Phase 2 REVIEW gate** (below), then
+  Phase 3.1 (mention node). **RESUME HERE:** the 2.3 module is
+  `core/utils/aggregation_fold.py` — its docstring is the design A–E as built;
+  [PIPELINE_V3_WALKTHROUGH_2_2.md](PIPELINE_V3_WALKTHROUGH_2_2.md) §6 walks the
+  same scenario, which is now the module's golden test. Commits on
+  `new-ground-truth-v2`: `ca9a82e` = Phase 1 + 2.1; `e729a81` = 2.2 +
+  walkthrough + evidence; `c1209a1` = STATE pointers; 2.3 committed
+  2026-08-21 on top (hash recorded at the next commit). **Correction
+  (2026-08-21):** the 12 modified statics under `3_phrase_mention_collection/`
+  and `4_phrase_synthesis/` were NOT v2-flip work — they are the Phase
+  1.2–1.4 amendments (array-shaped mention output per the strict-mode note in
+  D6; the amended synthesis lens per D15) that never got committed after
+  `ca9a82e`; they ride with the 2.3 commit. Only the `ontology` submodule's
+  dirty content is not v3.
+- **Phase 2 REVIEW gate — prepared 2026-08-21, awaiting the user.** What to
+  read: (1) the property tests of all three substeps
+  (`tests/test_utils/test_form_normalizer.py`, `test_floor_scan.py`,
+  `test_aggregation_fold.py`: order-independence, normalization edges,
+  short-form bridge, anchoring/containment/hold invariants, idempotence);
+  (2) the dry grouping run over the appendix corpus —
+  `pipeline_v3_evidence/2026-08-21_normalize_dry_run_output.txt` (appendix E:
+  4,157 real pairs, 162→189→191→198 groups, zero wrong merges at
+  L0/L1/fallback). **Question for the user:** does the fold's rule set (2.3
+  bullet below — plan A–E plus three build-time refinements) match what you
+  approved, and is the Phase 2 evidence enough to start building the nodes
+  (3.1)?
+- **2.3 DONE 2026-08-21 (user approved the proposed plan A–E; built as
+  proposed plus three refinements found while building):**
+  `core/utils/aggregation_fold.py` + 25 tests
+  (`tests/test_utils/test_aggregation_fold.py`); core suite 455 green; pyright
+  and ruff clean. As built — (A) locate each collector snippet by exact
+  substring, one candidate per position; a non-verbatim snippet is reported
+  `unlocated` and anchors nothing. (B) RE-ATTRIBUTE: the OWNERS of a window are
+  its tier-1 floor-scan hits after longest-match containment (D8); a located
+  snippet is a mention of every owner inside its span, whatever form the
+  collector filed it under (casing repaired without a reconciler; a sentence
+  holding several forms is a mention of each). (C) **D19 SETTLED:** dedup key
+  (group key, occurrence span); the longer snippet is kept. (D) bundles by
+  `normalize()` key over the union of every window's sent forms (global scope,
+  `verb_fold` dial), `group_id = hash(key)` as the synthesis `record_id`,
+  per-mention `record_id = record_id_for_phrase(form)`, mentions in LOCKED
+  order (window index, offset), bundles in first-mention order with empties
+  last by key, page CODE-DERIVED from the occurrence offset (inherited
+  `preceding_page` honoured), advisory location carried as colour;
+  **empty-bundle fate SETTLED: kept, status `no_mentions`, skipped by
+  `FoldResult.synthesis_records()`, dump-visible.** (E) tier-1 obligations =
+  the owners of B (the same containment rule, so fuller-span forms raise no
+  phantom discrepancies for sub-forms); uncovered obligations = the window's
+  `unaccounted` record. **Refinements vs the prototype (flagged for the gate
+  review):** (i) attribution reads the SCAN — a snippet's mentions are the
+  owners inside its span — instead of re-matching forms inside the snippet
+  string: the word-boundary guard stays honest at snippet edges (a snippet cut
+  at "un|lead alloys" no longer passes), and B and E become one computation;
+  (ii) containment is applied at WINDOW level across all snippets, not per
+  snippet — a fragment snippet "Lead Time" cannot claim a spot inside a "Sample
+  Lead Time" the window holds; (iii) among equal-length snippets of one spot
+  the collector's OWN filing is preferred, then lexical order (never answer
+  order) — `reported_form` reads truthfully. Surfaces for Phase 3/4:
+  `fold_window` → `WindowFold` (kept mentions, `scan`, per-form
+  `obligations`/`unaccounted` + `has_discrepancy`, `unlocated` / `unanchored`
+  (verbatim but anchors no owner — anaphora, fragments) / `rekeyed` reports,
+  raw `candidates` count); `fold_document` → `FoldResult` (`bundles` of
+  `MentionBundle{group_id, key, sorted forms, mentions, status}`,
+  `synthesis_records()` → `SynthesisRecordInput`s that render through
+  `render_synthesis_record_blocks`, `windows`, `verb_fold`,
+  `normalizer_version`). Sent forms are window-local; blank forms ignored.
+  Golden test = walkthrough §6 (14 candidates → 7 mentions, obligations
+  Lead=1 / Lead Time=0, zero unaccounted). Properties: order-independence
+  (sent order, answer keys, mention lists, ± verb_fold), idempotence on its own
+  output, anchoring (snippet ⊂ window, form at its span, span ⊂ snippet, page
+  == `page_at`, record_id), no kept span strictly inside any tier-1 hit,
+  obligations = tier-1 minus contained, unaccounted == uncovered, bundles
+  partition the sent forms by key, unique ids, synthesis count == non-empty.
 - **2.2 DONE 2026-08-21:** `core/utils/floor_scan.py` + 27 tests
   (`tests/test_utils/test_floor_scan.py`), core suite 430 green, pyright clean.
   The word-boundary matcher for technical terms: `find_form_occurrences` guards
@@ -301,19 +344,20 @@ D-ids are v3's own numbering; no continuity with the v2 plan's F-ids.
 | D16 | Downstream re-key | Grounding → OOV → screening → descent → reconcile consume per-group records keyed `group_id`. Upstream-content digests (`|ud=`) extend through the new chain: mention requests digest forms, synthesis digests bundles, grounding digests group records. **Naming note (2026-08-21):** the synthesis wire label `record_id` carries the group_id VALUE; code, dumps and GT keep the name `group_id` — the per-form `record_id = hash(form)` is a different key and must not be conflated. |
 | D17 | No text preprocessing | No ASCII fold / character substitution (skipped as not straightforward; the curated-fold idea is shelved unless evidence demands). `ensure_ascii=False` STAYS — reverting was proposed and withdrawn against the measured evidence (escapes caused 17/17 echo corruption; real characters fixed it; on ASCII-clean text the flag is a no-op anyway). Normalize-at-comparison wherever a comparison crosses surfaces. |
 | D18 | GT v3 | Mention-level GT is near-mechanical (verbatim fidelity + location), anchored `(record_id, window, mention_index)` — survives any grouping change. **Location note (2026-08-21, follows the D6 amendment):** the auditable location is the fold's code-derived page; the freehand location string is unaudited color. **Synthesis note (2026-08-21, follows the D15 amendment):** the synthesis audit is faithfulness-to-entries only — no disposition audit, no split-flag tally; wrong-merge visibility is the Phase 4.1 dump's member-forms column. The missed-MENTION surface becomes a missed-FORM surface per 5k window (tractable for an annotator; tier-2 scan feeds it). Synthesis audits key on `group_id` (run-scoped addressing accepted; cross-run joins via member-form overlap). Synthesis is auditable AGAINST ITS BUNDLE without opening source text. Annotator budget concentrates on synthesis. Audit primitives (TextFieldAudit/EntityFieldAudit, rule_tree, fold, inflation pattern) carry over. |
-| D19 | Same-occurrence dedup | Cross-casing duplicates are impossible by construction (exact-case matching, D5). Containment overlaps resolved by longest-match in code (D8). Residual rule for two forms of one group reporting the same spot: keyed on (group, page, snippet overlap) at aggregation — exact rule OPEN, decide in Phase 2. **PROPOSED 2.3 (2026-08-21, prototype shown to the user, not yet confirmed):** after re-attribution the unit is the OCCURRENCE — dedup key (group, occurrence span in the window); the longer snippet is kept. See PIPELINE_V3_WALKTHROUGH_2_2.md §6 C. |
+| D19 | Same-occurrence dedup | Cross-casing duplicates are impossible by construction (exact-case matching, D5). Containment overlaps resolved by longest-match in code (D8). Residual rule for two forms of one group reporting the same spot: keyed on (group, page, snippet overlap) at aggregation — exact rule OPEN, decide in Phase 2. **SETTLED 2.3 (2026-08-21, user-approved, built):** after re-attribution the unit is the OCCURRENCE — dedup key (group, occurrence span in the window); the longer snippet is kept; among equal snippets the collector's own filing wins, then lexical order (never answer order). `core/utils/aggregation_fold.py`; PIPELINE_V3_WALKTHROUGH_2_2.md §6 C. |
 | D20 | Measurement gates | ~~v2's Phase 4 numbers are v3's precondition AND baseline~~ **AMENDED 2026-08-21 (user decision):** the v2 gate is ABANDONED — both subjects crashed inside v2's relationship/grounding at production settings (appendix D), and repairing a stage v3 deletes just to measure it isn't worth it. v3 proceeds at full scope; the Phase 5 gate compares v3 against the v1 hand-audit baselines only (56% boundary precision, 45% context coverage — appendix C). There is no v2 comparison arm. |
 
-**Open items (small, decide in-phase):** D19's exact residual rule; ~~snippet extent
+**Open items (small, decide in-phase):** ~~D19's exact residual rule~~ (settled 2.3); ~~snippet extent
 defaults~~ (settled in 1.2: sentence, or whole line for non-sentence text); the
 soft-cutoff value for mentions-per-request; ~~short-form length threshold~~
 (settled 2.2: ≤3 chars stay case-sensitive in tier 2, flagged);
 ~~lemmatizer selection + version pinning mechanics~~ (settled 2.1: lemminflect
 0.2.3 dictionary-only, exact pin + import assertion + golden-digest tripwire);
 group-aware dump row format;
-**empty-bundle fate (Phase 2.3):** a form with zero mentions after collection
-(search false positives, since the URL channel is closed) — skip synthesis, stay
-dump-visible; exact rule at 2.3.
+~~**empty-bundle fate (Phase 2.3)**~~ (settled 2.3: a form with zero mentions
+after the fold — search false positive, or swallowed by containment — keeps its
+bundle with status `no_mentions`, is skipped by `synthesis_records()`, and stays
+dump-visible).
 
 **Standing watch items inherited from v2:** M2 match rules still owed; descent-
 attribution leak channel (measure at gates); search-divisor recall/quality A/Bs
@@ -539,3 +583,4 @@ listing `pipeline_v3_evidence/2026-08-21_normalize_dry_run_output.txt`.
 | 2026-08-21 | **2.1 built:** `core/utils/form_normalizer.py` + 80 tests; core suite 403 green; pyright clean. Lemmatizer decided by measurement on 4,157 real (field, phrase) pairs (appendix E): lemminflect 0.2.3 DICTIONARY-only (simplemma and lemminflect's OOV rules rejected), exact pin + import assertion, one guarded OOV-plural fallback, code-token guard with acronym-plural exemption, L2 verb fold as a bool dial applied after L1 (field mapping app-side at Phase 3), `group_id` = g+7 base36, NORMALIZER_VERSION "1" with golden-digest tripwire, hypothesis properties (caught two Unicode edges in the TEST alphabet, not the code). Groups 162→189→191→198, zero wrong merges at L0/L1/fallback, one debatable at L2. `hypothesis` added as core dev dep. Next: 2.2. |
 | 2026-08-21 | **2.2 built:** `core/utils/floor_scan.py` + 27 tests; core suite 430 green; pyright clean. Word-boundary matcher for technical terms (edge guards only where the form's edge is a word char — 6061-T6, CNC/Manual, C++, the Lead/Leader case), length-preserving page-header masking as the scan domain (URL + `#` separator lines, per the URL cut), `page_spans`/`page_at` for code-derived page attribution, two tiers (exact = hold, case-insensitive = discovery), short-form threshold settled at 3 (stay case-sensitive, flagged). Hypothesis properties: whole-word exact hits, tier2 ⊇ tier1, sorted/non-overlapping, inserted-form-always-found, mask length + page tiling. Next: 2.3 fold. |
 | 2026-08-21 | **Resume aids saved (user request):** `PIPELINE_V3_WALKTHROUGH_2_2.md` (2.2 mechanics + the 2.3 design with real outputs) and `pipeline_v3_evidence/` (normalize_dry_run.py + 2026-08-21 output = appendix E tool; fold_prototype.py = the 2.3 seed). 2.3 design recorded in STATE as PROPOSED (A–E: locate, re-attribute with longest-match, D19 dedup keyed on occurrence span with longer snippet kept, bundles in locked order with empty bundles kept, tier-1 obligations under the same containment rule) — awaiting the user's go-ahead. Committed 2.2 + these files on top of ca9a82e. |
+| 2026-08-21 | **2.3 built (user go-ahead on the proposed A–E):** `core/utils/aggregation_fold.py` + 25 tests; core suite 455 green; pyright + ruff clean. The walkthrough §6 scenario reproduces exactly and is the golden test. Three refinements found while building, all recorded in STATE for the gate review: attribution reads the tier-1 scan (owners inside the located snippet) instead of re-matching inside the snippet string; containment applied window-wide across snippets; D19 tie prefers the collector's own filing. D19 SETTLED; empty-bundle fate SETTLED (kept, `no_mentions`, skipped by synthesis, dump-visible). Next: Phase 2 REVIEW gate (question in STATE), then 3.1. |

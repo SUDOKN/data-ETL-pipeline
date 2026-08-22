@@ -3,6 +3,13 @@ built on the shipped 2.2 matcher, shown to the user 2026-08-21 (see
 PIPELINE_V3_WALKTHROUGH_2_2.md §6). NOT production code — the seed for
 core/utils/aggregation_fold.py and its tests.
 
+SUPERSEDED 2026-08-21: the module is built and reproduces this output (golden
+test in tests/test_utils/test_aggregation_fold.py); kept as the walkthrough's
+illustration. Where the module differs: it attributes from the tier-1 SCAN (the
+owners inside a located snippet) instead of re-matching forms inside the
+snippet string, applies longest-match containment window-wide rather than per
+snippet, and breaks D19 ties toward the collector's own filing.
+
 Run from packages/core with the repo venv:
     cd packages/core && ../../.venv/bin/python ../../pipeline_v3_evidence/fold_prototype.py
 
