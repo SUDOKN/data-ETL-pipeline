@@ -19,9 +19,9 @@ from requests.structures import CaseInsensitiveDict
 from core.models.deferred_extraction.deferred_concept_extraction import TaggingResult
 from core.models.extraction_schemas.applied_rule import AppliedRule
 from core.models.skos_concept import Concept
-from core.services.pipeline_nodes.multi_stage.llm_initial_grounding_service import (
+from core.services.pipeline_nodes.multi_stage.llm_recursive_grounding_service import (
     get_descend_worthy_tcs_from_tagged_results,
-    get_oov_tags_from_trs,
+    get_tcs_and_oov_trs_from_trs,
 )
 
 
@@ -64,7 +64,7 @@ def test_exact_label_phrase_is_descend_worthy():
     ]
 
     descend_worthy = get_descend_worthy_tcs_from_tagged_results(
-        initially_tagged_trs=trs,
+        seed_trs=trs,
         match_label_to_concept_map=_match_label_map(automotive),
     )
 
@@ -86,7 +86,7 @@ def test_alt_label_phrase_is_descend_worthy_too():
     ]
 
     descend_worthy = get_descend_worthy_tcs_from_tagged_results(
-        initially_tagged_trs=trs,
+        seed_trs=trs,
         match_label_to_concept_map=_match_label_map(tool_and_die),
     )
 
@@ -108,7 +108,7 @@ def test_casing_variants_all_descend_alike():
         ]
 
         descend_worthy = get_descend_worthy_tcs_from_tagged_results(
-            initially_tagged_trs=trs,
+            seed_trs=trs,
             match_label_to_concept_map=_match_label_map(household),
         )
 
@@ -132,7 +132,7 @@ def test_phrase_maps_pass_through_unpruned():
     ]
 
     descend_worthy = get_descend_worthy_tcs_from_tagged_results(
-        initially_tagged_trs=trs,
+        seed_trs=trs,
         match_label_to_concept_map=_match_label_map(household),
     )
 
@@ -158,38 +158,14 @@ def test_out_of_vocab_tag_is_reported_as_oov_not_descend_worthy():
 
     assert (
         get_descend_worthy_tcs_from_tagged_results(
-            initially_tagged_trs=trs,
+            seed_trs=trs,
             match_label_to_concept_map=_match_label_map(),
         )
         == []
     )
-    assert get_oov_tags_from_trs(
-        initially_tagged_trs=trs,
+    oov_trs, tcs = get_tcs_and_oov_trs_from_trs(
+        trs=trs,
         match_label_to_concept_map=_match_label_map(),
-    ) == {"Flexible Manufacturing"}
-
-
-def test_sentinel_tag_is_neither_descend_worthy_nor_oov():
-    """The sentinel records that the model declined to match; it must not leak
-    into descent or the persisted out-of-vocab labels."""
-    trs = [
-        TaggingResult(
-            group_id="None of the above",
-            phrase_rules_map={"unmatched phrase": _rules("sentinel verdict")},
-        )
-    ]
-
-    assert (
-        get_descend_worthy_tcs_from_tagged_results(
-            initially_tagged_trs=trs,
-            match_label_to_concept_map=_match_label_map(),
-        )
-        == []
     )
-    assert (
-        get_oov_tags_from_trs(
-            initially_tagged_trs=trs,
-            match_label_to_concept_map=_match_label_map(),
-        )
-        == set()
-    )
+    assert [tr.group_id for tr in oov_trs] == ["Flexible Manufacturing"]
+    assert tcs == []

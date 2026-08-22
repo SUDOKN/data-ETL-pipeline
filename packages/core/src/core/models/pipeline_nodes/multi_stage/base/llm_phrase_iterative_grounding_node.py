@@ -1,7 +1,7 @@
 from __future__ import annotations
 import logging
 from datetime import datetime
-from typing import Optional
+from typing import Any, Optional
 
 from requests.structures import CaseInsensitiveDict
 
@@ -13,21 +13,25 @@ from llm_providers.models.open_ai.gpt_batch_response_blob import (
 )
 from core.models.extraction_schemas.grounding import (
     StopReason,
-    is_sentinel_grounding_label,
 )
 from core.models.extraction_schemas.iterative_tagging import (
     IterativeGroundingResult,
 )
+from core.models.extraction_schemas.relationship import (
+    MaskedLLMPhraseRelationshipResults,
+)
 from llm_providers.models.file_objects.prompt import Prompt
-from llm_providers.models.llm_model import LLM_Model
 from core.models.extraction_results.llm_phrase_extraction_results import (
     ExtractionNodeMetadata,
+)
+from core.models.extraction_results.llm_phrase_extraction_results_v2 import (
+    ConceptExtractionMetadataV2,
 )
 from core.models.deferred_extraction.deferred_concept_extraction import (
     ConceptExtractionRequestBundle,
     ConceptExtractionRequestMap,
-    ConceptExtractionMetadata,
     IterativeTaggingRequest,
+    TaggingResult,
 )
 from core.models.skos_concept import Concept
 from core.models.field_types import (
@@ -45,10 +49,10 @@ from core.models.pipeline_nodes.base.base_llm_extraction_node import (
 from core.models.pipeline_nodes.base.base_llm_recursive_extraction_node import (
     BaseLLMRecursiveExtractionNode,
 )
-from llm_providers.field_types import BatchRequestIDType
-from llm_providers.models.open_ai.gpt_model_params import (
-    GPTModelParams,
+from core.models.pipeline_nodes.multi_stage.base.llm_phrase_relationship_node import (
+    LLMPhraseRelationshipNode,
 )
+from llm_providers.field_types import BatchRequestIDType
 from scraper.models.s3.scraped_text_file import ScrapedTextFile
 
 from llm_providers.services.gpt_batch_request.gpt_batch_request_service import (
@@ -60,12 +64,13 @@ from llm_providers.services.gpt_batch_request.gpt_batch_request_writes import (
 from llm_providers.services.gpt_batch_request.gpt_batch_request_queries import (
     find_completed_gpt_batch_requests_by_custom_ids,
 )
-from core.services.pipeline_nodes.multi_stage.llm_initial_grounding_service import (
-    get_descend_worthy_tcs_from_tagged_results,
-    get_tagged_results_from_initial_grounding,
-)
 from core.services.pipeline_nodes.multi_stage.llm_recursive_grounding_service import (
     create_missing_phrase_recursive_grounding_requests,
+    descent_evidence_record_ids,
+    descent_record_payloads,
+    get_descend_worthy_tcs_from_tagged_results,
+    get_descent_seed_tagging_results,
+    get_itp_from_itr,
     get_itr_descendable_concept,
     parse_recursive_grounding_batch_request_result,
     get_all_recursive_grounding_results,
@@ -75,6 +80,7 @@ from core.services.pipeline_nodes.multi_stage.llm_recursive_grounding_service im
 from core.utils.rdf_to_graph_util import (
     get_match_label_to_concept_map,
 )
+from core.utils.request_custom_id_util import upstream_digest_segment
 from typing import ClassVar
 from core.models.pipeline_nodes.base.pipeline_stage import (
     STAGE_REQUEST_ID_TOKEN,
@@ -96,9 +102,8 @@ def _merge_itrs_into_level(
     response — two descents of one concept, where downstream asserts one per
     level. Ordinary in-vocab nodes therefore merge by concept name, first-in
     wins: an earlier pass's node may already carry a dispatched request, so the
-    existing node must survive. Stopped (sentinel / false-child) and
-    out-of-vocab nodes keep per-parent identity — each parent's verdict is its
-    own record.
+    existing node must survive. Stopped (false-child) and out-of-vocab nodes
+    keep per-parent identity — each parent's verdict is its own record.
 
     Returns the candidates actually added, so the walk waits only on requests
     that can still be created.
@@ -151,12 +156,20 @@ class LLMPhraseIterativeGroundingNode(
         self.known_concepts = known_concepts
         self.match_label_to_concept_map = get_match_label_to_concept_map(known_concepts)
 
-    def get_upstream_initial_grounding_map(
+    def get_upstream_in_vocab_grounding_map(
         self, pipeline_context: PipelineContext
     ) -> dict[BatchRequestIDType, GPTBatchRequest]:
-        """Return the completed initial-grounding request map from pipeline context."""
+        """Return the completed in-vocab grounding request map from pipeline context."""
         raise NotImplementedError(
-            f"{self.__class__.__name__} must implement get_upstream_initial_grounding_map"
+            f"{self.__class__.__name__} must implement get_upstream_in_vocab_grounding_map"
+        )
+
+    def get_upstream_screening_map(
+        self, pipeline_context: PipelineContext
+    ) -> dict[BatchRequestIDType, GPTBatchRequest]:
+        """Return the completed screening request map from pipeline context."""
+        raise NotImplementedError(
+            f"{self.__class__.__name__} must implement get_upstream_screening_map"
         )
 
     def get_upstream_phrase_relationship_map(
@@ -176,16 +189,62 @@ class LLMPhraseIterativeGroundingNode(
         tag: str,
         parent_tag: Optional[str],
         node_metadata: ExtractionNodeMetadata,
+        group_payload: dict[str, dict[str, Any]],
     ) -> BatchRequestIDType:
         # p[...] carries the parent because node identity is (parent, name): two
         # same-named nodes under different parents must not share an ID. ROOT
         # marks a direct-tagged node. Placed after the tag so anything reading
-        # the tag positionally (right after l[N]>) keeps working.
+        # the tag positionally (right after l[N]>) keeps working. `|ud=` (fork
+        # F12): the records this node would descend over are part of request
+        # identity, so a re-run whose upstream changed re-asks the descent.
         return (
             f"{subject_unique_id}>{field_type.name}"
             f">{STAGE_REQUEST_ID_TOKEN[PipelineStage.iterative_grounding]}>chunk>"
             f"{chunk_bounds}>l[{level}]>{tag}>p[{parent_tag or 'ROOT'}]>"
             f"{node_metadata.to_custom_id_segment()}"
+            f"{upstream_digest_segment(group_payload)}"
+        )
+
+    async def _mint_descend_req_id(
+        self,
+        subject_unique_id: str,
+        chunk_bounds: str,
+        bundle: ConceptExtractionRequestBundle,
+        itr: IterativeTaggingRequest,
+        seed_trs: list[TaggingResult],
+        masked_relationship_results: MaskedLLMPhraseRelationshipResults,
+        completed_recursive_grounding_req_map: dict[
+            BatchRequestIDType, GPTBatchRequest
+        ],
+        metadata: ConceptExtractionMetadataV2,
+        timestamp: datetime,
+    ) -> BatchRequestIDType:
+        """The node's request id, digest included — derived from the same
+        evidence walk request creation uses, so the id embedded and the payload
+        sent can never disagree."""
+        itp = await get_itp_from_itr(
+            subject_unique_id=subject_unique_id,
+            field_type=self.field_type,
+            chunk_bounds=chunk_bounds,
+            bundle=bundle,
+            it_req=itr,
+            seed_trs=seed_trs,
+            completed_recursive_grounding_req_map=completed_recursive_grounding_req_map,
+            match_label_to_concept_map=self.match_label_to_concept_map,
+            timestamp=timestamp,
+        )
+        payload = descent_record_payloads(
+            descent_evidence_record_ids(itp), masked_relationship_results
+        )
+        return self.get_request_custom_id(
+            subject_unique_id=subject_unique_id,
+            field_type=self.field_type,
+            chunk_bounds=chunk_bounds,
+            level=itr.level,
+            tag=itr.name,
+            parent_tag=itr.parent_name,
+            node_metadata=metadata.llm_phrase_recursive_grounding,
+            group_payload=payload,
         )
 
     def get_embedded_request_ids(
@@ -211,7 +270,7 @@ class LLMPhraseIterativeGroundingNode(
                         # stopped) ever get a request created; declaring any
                         # other ID here would make it expected-but-never-created
                         # and stall the completeness checks forever.
-                        # Non-descendable nodes (out-of-vocab, sentinel,
+                        # Non-descendable nodes (out-of-vocab proposals,
                         # false-child, leaf) still live in the tree for the
                         # phrase trail — they just carry no request.
                         if get_itr_descendable_concept(
@@ -226,7 +285,7 @@ class LLMPhraseIterativeGroundingNode(
         self,
         subject_unique_id: str,
         pipeline_context: PipelineContext,
-        metadata: ConceptExtractionMetadata,
+        metadata: ConceptExtractionMetadataV2,
         chunked_request_map: ConceptExtractionRequestMap,
         timestamp: datetime,
     ):
@@ -237,14 +296,18 @@ class LLMPhraseIterativeGroundingNode(
             )
 
         # BASIC INITIALIZATION
-        completed_initial_grounding_req_map = self.get_upstream_initial_grounding_map(
+        completed_in_vocab_grounding_req_map = self.get_upstream_in_vocab_grounding_map(
             pipeline_context
         )
-        if not completed_initial_grounding_req_map:
+        if not completed_in_vocab_grounding_req_map:
             raise ValueError(
                 f"Cannot embed req ids for llm recursive grounding node, "
-                f"as recursive grounding req map is empty for subject:{subject_unique_id}, field:{self.field_type.name}."
+                f"as the in-vocab grounding req map is empty for subject:{subject_unique_id}, field:{self.field_type.name}."
             )
+        completed_screening_req_map = self.get_upstream_screening_map(pipeline_context)
+        upstream_relationship_map = self.get_upstream_phrase_relationship_map(
+            pipeline_context
+        )
 
         max_concept_level = max(c.level for c in self.known_concepts)
         for (
@@ -309,17 +372,26 @@ class LLMPhraseIterativeGroundingNode(
             chunk_bounds,
             bundle,
         ) in chunked_request_map.items():
-            directly_tagged_descend_worthy_tcs = get_descend_worthy_tcs_from_tagged_results(  # tagged concept result will always be in vocab
-                initially_tagged_trs=(
-                    await get_tagged_results_from_initial_grounding(
-                        subject_unique_id=subject_unique_id,
-                        field_type=self.field_type,
-                        chunk_bounds=chunk_bounds,
-                        extraction_bundle=bundle,
-                        completed_request_map=completed_initial_grounding_req_map,
-                        timestamp=timestamp,
-                    )
-                ),
+            seed_trs = await get_descent_seed_tagging_results(
+                subject_unique_id=subject_unique_id,
+                field_type=self.field_type,
+                chunk_bounds=chunk_bounds,
+                extraction_bundle=bundle,
+                completed_in_vocab_grounding_req_map=completed_in_vocab_grounding_req_map,
+                completed_screening_req_map=completed_screening_req_map,
+                match_label_to_concept_map=self.match_label_to_concept_map,
+                timestamp=timestamp,
+            )
+            masked_relationship_results = await LLMPhraseRelationshipNode.get_result(
+                subject_unique_id=subject_unique_id,
+                field_type=self.field_type,
+                chunk_bounds=chunk_bounds,
+                extraction_bundle=bundle,
+                completed_request_map=upstream_relationship_map,
+                timestamp=timestamp,
+            )
+            directly_tagged_descend_worthy_tcs = get_descend_worthy_tcs_from_tagged_results(
+                seed_trs=seed_trs,
                 match_label_to_concept_map=self.match_label_to_concept_map,
             )
 
@@ -327,9 +399,6 @@ class LLMPhraseIterativeGroundingNode(
                 f"Found directly_tagged_descend_worthy_tcs for {subject_unique_id}:{self.field_type.name} in chunk {chunk_bounds}: {[f"l[{dtc.concept.level}]:{dtc.concept.name}" for dtc in directly_tagged_descend_worthy_tcs]}"
             )
 
-            # now we only want to use and iterate directly_tagged_descend_worthy_tcs once, so better to iterate each level to check
-            # if all reqs
-            # curr_level = 1
             candidate_itrs: list[IterativeTaggingRequest] = []
             dtcs_at_next_level = [
                 dtc
@@ -339,18 +408,21 @@ class LLMPhraseIterativeGroundingNode(
             for dtc in dtcs_at_next_level:
                 itr = IterativeTaggingRequest(
                     parent_descend_req_id=None,
-                    descend_req_id=self.get_request_custom_id(
-                        subject_unique_id=subject_unique_id,
-                        field_type=self.field_type,
-                        chunk_bounds=chunk_bounds,
-                        level=1,
-                        tag=dtc.concept.name,
-                        parent_tag=None,
-                        node_metadata=metadata.llm_phrase_recursive_grounding,
-                    ),
+                    descend_req_id="",  # minted below, once the evidence is known
                     name=dtc.concept.name,
                     level=1,
                     parent_name=None,
+                )
+                itr.descend_req_id = await self._mint_descend_req_id(
+                    subject_unique_id=subject_unique_id,
+                    chunk_bounds=chunk_bounds,
+                    bundle=bundle,
+                    itr=itr,
+                    seed_trs=seed_trs,
+                    masked_relationship_results=masked_relationship_results,
+                    completed_recursive_grounding_req_map=completed_recursive_grounding_req_map,
+                    metadata=metadata,
+                    timestamp=timestamp,
                 )
                 candidate_itrs.append(itr)
 
@@ -370,7 +442,7 @@ class LLMPhraseIterativeGroundingNode(
                     next_level_itr.descend_req_id
                     for next_level_itr in new_itrs
                     # Same gate as get_embedded_request_ids: waiting on a
-                    # non-descendable node (out-of-vocab, sentinel, false-child,
+                    # non-descendable node (out-of-vocab proposal, false-child,
                     # leaf) would block the walk on a request that will never be
                     # created.
                     if get_itr_descendable_concept(
@@ -413,9 +485,9 @@ class LLMPhraseIterativeGroundingNode(
                                 f"First level is allowed to only have in-vocab concepts, {parent_itr.name} not recognized."
                             )
                         # else this req was never descended in the first place:
-                        # out-of-vocab/sentinel names have no concept, and a
-                        # leaf concept gets no descent request — either way
-                        # there is no result to parse for children.
+                        # out-of-vocab proposals have no concept, a false child
+                        # is stopped, and a leaf concept gets no descent request
+                        # — either way there is no result to parse for children.
                         logger.info(
                             f"Skipping non-descendable parent_itr:{parent_itr.name}"
                         )
@@ -465,32 +537,28 @@ class LLMPhraseIterativeGroundingNode(
                                 logger.info(
                                     f"Found a descend worthy child:{child_tr.group_id}."
                                 )
-                        elif is_sentinel_grounding_label(child_tr.group_id):
-                            # The parent's response declined — the descent
-                            # stopped here by the model's own verdict. Marked
-                            # explicitly rather than relying on the label
-                            # missing from the vocabulary.
-                            stop_reason = "sentinel"
+                        # No sentinel arm any more: a record from which nothing
+                        # more specific qualifies answers an empty options
+                        # array, so it produces no child at all — the
+                        # empty-options stop.
                         itr = IterativeTaggingRequest(
                             parent_descend_req_id=parent_itr.descend_req_id,
-                            descend_req_id=self.get_request_custom_id(
-                                subject_unique_id=subject_unique_id,
-                                field_type=self.field_type,
-                                chunk_bounds=chunk_bounds,
-                                level=(
-                                    next_level
-                                    # will automatically be
-                                    # = parent_concept.level + 1 OR
-                                    # = child_concept.level; when child_concept available
-                                ),
-                                tag=child_tr.group_id,
-                                parent_tag=parent_itr.name,
-                                node_metadata=metadata.llm_phrase_recursive_grounding,
-                            ),
+                            descend_req_id="",  # minted below
                             name=child_tr.group_id,
                             level=next_level,
                             parent_name=parent_itr.name,
                             stop_reason=stop_reason,
+                        )
+                        itr.descend_req_id = await self._mint_descend_req_id(
+                            subject_unique_id=subject_unique_id,
+                            chunk_bounds=chunk_bounds,
+                            bundle=bundle,
+                            itr=itr,
+                            seed_trs=seed_trs,
+                            masked_relationship_results=masked_relationship_results,
+                            completed_recursive_grounding_req_map=completed_recursive_grounding_req_map,
+                            metadata=metadata,
+                            timestamp=timestamp,
                         )
                         candidate_itrs.append(itr)
                         logger.info(
@@ -506,18 +574,21 @@ class LLMPhraseIterativeGroundingNode(
                 for dtc in dtcs_at_next_level:
                     itr = IterativeTaggingRequest(
                         parent_descend_req_id=None,
-                        descend_req_id=self.get_request_custom_id(
-                            subject_unique_id=subject_unique_id,
-                            field_type=self.field_type,
-                            chunk_bounds=chunk_bounds,
-                            level=dtc.concept.level,
-                            tag=dtc.concept.name,
-                            parent_tag=None,
-                            node_metadata=metadata.llm_phrase_recursive_grounding,
-                        ),
+                        descend_req_id="",  # minted below
                         name=dtc.concept.name,
                         level=dtc.concept.level,
                         parent_name=None,
+                    )
+                    itr.descend_req_id = await self._mint_descend_req_id(
+                        subject_unique_id=subject_unique_id,
+                        chunk_bounds=chunk_bounds,
+                        bundle=bundle,
+                        itr=itr,
+                        seed_trs=seed_trs,
+                        masked_relationship_results=masked_relationship_results,
+                        completed_recursive_grounding_req_map=completed_recursive_grounding_req_map,
+                        metadata=metadata,
+                        timestamp=timestamp,
                     )
                     # Appended after the response-derived children so that when
                     # both name one concept, the parented node claims it and the
@@ -539,7 +610,7 @@ class LLMPhraseIterativeGroundingNode(
         subject_unique_id: str,
         scraped_text_file: ScrapedTextFile,
         missing_request_ids: set[BatchRequestIDType],
-        metadata: ConceptExtractionMetadata,
+        metadata: ConceptExtractionMetadataV2,
         chunked_request_map: ConceptExtractionRequestMap,
         pipeline_context: PipelineContext,
         timestamp: datetime,
@@ -552,16 +623,13 @@ class LLMPhraseIterativeGroundingNode(
                 f"phrase_relationship_node.create_batch_requests was called for {self.field_type.name} in {self.__class__.__name__} but pipeline_context.subject_name is not set. Ensure business_desc is extracted before phrase_relationship."
             )
 
-        completed_initial_grounding_req_map = self.get_upstream_initial_grounding_map(
-            pipeline_context
-        )
         completed_recursive_grounding_req_map = await self.get_completed_request_map(
             subject_unique_id=subject_unique_id,
             chunked_request_map=chunked_request_map,
             all_requests_must_be_complete=False,  # because we are creating missing requests, some may be incomplete
         )
 
-        # create_missing_phrase_relationship_requests only creates batch requests fresh or only missing ones,
+        # create_missing_phrase_recursive_grounding_requests only creates batch requests fresh or only missing ones,
         # for e.g., new subject or some batch requests failed earlier and were deleted to allow re-processing
         batch_requests = await create_missing_phrase_recursive_grounding_requests(
             # used for logging and debugging
@@ -575,7 +643,12 @@ class LLMPhraseIterativeGroundingNode(
             llm_phrase_relationship_gpt_request_map=self.get_upstream_phrase_relationship_map(
                 pipeline_context
             ),
-            completed_initial_grounding_req_map=completed_initial_grounding_req_map,
+            completed_in_vocab_grounding_req_map=self.get_upstream_in_vocab_grounding_map(
+                pipeline_context
+            ),
+            completed_screening_req_map=self.get_upstream_screening_map(
+                pipeline_context
+            ),
             completed_recursive_grounding_req_map=completed_recursive_grounding_req_map,
             match_label_to_concept_map=self.match_label_to_concept_map,
             # req metadata
@@ -593,7 +666,8 @@ class LLMPhraseIterativeGroundingNode(
         field_type: ConceptFieldType,
         chunk_bounds: str,
         extraction_bundle: ConceptExtractionRequestBundle,
-        completed_initial_grounding_req_map: dict[BatchRequestIDType, GPTBatchRequest],
+        completed_in_vocab_grounding_req_map: dict[BatchRequestIDType, GPTBatchRequest],
+        completed_screening_req_map: dict[BatchRequestIDType, GPTBatchRequest],
         completed_recursive_grounding_req_map: dict[
             BatchRequestIDType, GPTBatchRequest
         ],
@@ -605,7 +679,8 @@ class LLMPhraseIterativeGroundingNode(
             field_type=field_type,
             chunk_bounds=chunk_bounds,
             extraction_bundle=extraction_bundle,
-            completed_initial_grounding_req_map=completed_initial_grounding_req_map,
+            completed_in_vocab_grounding_req_map=completed_in_vocab_grounding_req_map,
+            completed_screening_req_map=completed_screening_req_map,
             completed_recursive_grounding_req_map=completed_recursive_grounding_req_map,
             match_label_to_concept_map=match_label_to_concept_map,
             timestamp=timestamp,
@@ -614,7 +689,7 @@ class LLMPhraseIterativeGroundingNode(
     async def dispatch_batch_request(
         self,
         gpt_batch_request: GPTBatchRequest,
-        metadata: ConceptExtractionMetadata,
+        metadata: ConceptExtractionMetadataV2,
     ) -> GPTBatchResponse:
         return await dispatch_gpt_batch_request(
             gpt_batch_request=gpt_batch_request,

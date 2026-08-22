@@ -14,11 +14,9 @@ from infra.models.queue_items.to_scrape_item import Batch
 from core.models.extraction_subject import (
     AbstractExtractionSubject,
 )
-from core.models.extraction_results.concept_extraction_results import (
-    ConceptExtractionResults,
-)
-from core.models.extraction_results.keyword_extraction_results import (
-    KeywordExtractionResults,
+from core.models.extraction_results.llm_phrase_extraction_results_v2 import (
+    ConceptExtractionResultsV2,
+    KeywordExtractionResultsV2,
 )
 from core.models.extraction_results.binary_classification_result import (
     BinaryClassificationResult,
@@ -62,14 +60,14 @@ class Manufacturer(Document, AbstractExtractionSubject):
     addresses: Optional[AddressExtractionResult]
     business_desc: Optional[BusinessDescriptionExtractionResult]
 
-    products: Optional[KeywordExtractionResults]
-    contract_products: Optional[KeywordExtractionResults]
-    equipments: Optional[KeywordExtractionResults]
+    products: Optional[KeywordExtractionResultsV2]
+    contract_products: Optional[KeywordExtractionResultsV2]
+    equipments: Optional[KeywordExtractionResultsV2]
 
-    conformity_attestations: Optional[ConceptExtractionResults]
-    industries: Optional[ConceptExtractionResults]
-    process_caps: Optional[ConceptExtractionResults]
-    material_caps: Optional[ConceptExtractionResults]
+    conformity_attestations: Optional[ConceptExtractionResultsV2]
+    industries: Optional[ConceptExtractionResultsV2]
+    process_caps: Optional[ConceptExtractionResultsV2]
+    material_caps: Optional[ConceptExtractionResultsV2]
 
     @property
     def subject_unique_id(self) -> str:

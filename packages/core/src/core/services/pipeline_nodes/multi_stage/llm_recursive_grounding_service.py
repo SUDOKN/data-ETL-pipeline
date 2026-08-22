@@ -1,3 +1,25 @@
+"""Pipeline v2's recursive descent: passed in-vocab concepts, deepened level by
+level over the records that evidence them.
+
+The descent runs POST-SCREENING (fork F10): its seed is every in-vocab
+candidate that passed screening, grouped tag-major by
+``pipeline_v2_derivations.descent_seed_tagging_results`` — the same
+``TaggingResult`` shape the v1 machinery consumed, with record ids where
+phrases used to be. Descent requests carry record payloads (mentions +
+synthesis from the masked relationship results) plus the parent's children as
+options; responses are record-keyed and parsed by the shared grounding parse
+with MINTED labels allowed, because RGR-M3 lets the model propose a sibling
+type of its own. Survivors are not re-screened.
+
+The sentinel is gone: a record from which nothing more specific qualifies
+answers an empty ``options`` array with an explanation (the structural
+declination), so a parent whose records all decline simply produces no
+children — the empty-options stop. ``false_child`` remains: a response can
+still name a real concept that is not a child of the parent it was asked
+under, and that event is recorded on the node rather than asserted as a
+finding.
+"""
+
 from __future__ import annotations
 
 import asyncio
@@ -5,18 +27,15 @@ import json
 import logging
 import traceback
 from datetime import datetime
-from typing import Optional
+from typing import Any, Optional
 
 from requests.structures import CaseInsensitiveDict
-
-from pydantic import ValidationError
 
 from llm_providers.db_models.gpt_batch_request import (
     GPTBatchRequest,
 )
 from core.models.extraction_schemas.grounding import (
-    PhraseToTagAndRulesMap,
-    TagToAppliedRulesMap,
+    RecordGroundingResults,
     is_sentinel_grounding_label,
 )
 from core.models.extraction_schemas.iterative_tagging import (
@@ -25,31 +44,24 @@ from core.models.extraction_schemas.iterative_tagging import (
     IterativelyTaggedPhrase,
     PhraseTrail,
 )
-from core.models.rule_catalog import STAGE_RECURSIVE_GROUNDING
-from core.services.applied_rule_validation import (
-    check_applied_rules,
-    raise_for_violations,
-)
-from core.services.rule_catalog_registry import get_rule_catalog
 from core.models.extraction_schemas.relationship import (
-    LLMPhraseRelationshipResults,
+    MaskedLLMPhraseRelationshipResults,
+)
+from core.models.rule_catalog import (
+    STAGE_INITIAL_GROUNDING,
+    STAGE_RECURSIVE_GROUNDING,
+    RuleCatalog,
 )
 from core.models.extraction_schemas.catalog_wire_schema import (
-    flatten_rule_slots,
-    grounding_response_model,
     response_format_for,
 )
 from llm_providers.models.llm_model import (
     LLM_Model,
-    NO_MODEL,
 )
 from llm_providers.models.file_objects.prompt import Prompt
 from core.services.phrase_blocks_contract import (
-    hold_response_to_sent_phrases,
-    render_phrase_blocks,
-)
-from llm_providers.models.open_ai.gpt_batch_response_blob import (
-    ChatCompletionChoiceMessage,
+    hold_response_to_sent_record_ids,
+    render_record_blocks,
 )
 from core.models.deferred_extraction.deferred_concept_extraction import (
     ConceptExtractionRequestBundle,
@@ -72,80 +84,140 @@ from llm_providers.services.gpt_batch_request.gpt_batch_request_writes import (
 )
 from llm_providers.services.gpt_batch_request.gpt_batch_request_service import (
     create_base_gpt_batch_request,
-    get_dummy_gpt_batch_response,
+)
+from core.services.pipeline_nodes.multi_stage.llm_grounding_node_service import (
+    get_record_grounding_result,
+    parse_record_grounding_result,
 )
 from core.services.pipeline_nodes.multi_stage.llm_phrase_relationship_node_service import (
-    get_phrase_relationship_result,
+    get_masked_phrase_relationship_result,
 )
-from core.services.pipeline_nodes.multi_stage.llm_initial_grounding_service import (
-    get_tagged_results_from_initial_grounding,
+from core.services.pipeline_nodes.multi_stage.llm_relationship_screening_node_service import (
+    get_record_screening_result,
+    screening_catalog_for,
 )
+from core.services.pipeline_nodes.multi_stage.pipeline_v2_derivations import (
+    descent_seed_tagging_results,
+)
+from core.services.rule_catalog_registry import get_rule_catalog
 
 logger = logging.getLogger(__name__)
 
 
-def get_recursive_grounding_response_schema(field_type: ConceptFieldType) -> dict:
-    """This stage's strict ``response_format``, for one field type. Per catalog
-    rather than a module constant — see ``catalog_wire_schema``."""
-    return response_format_for(
-        get_rule_catalog(STAGE_RECURSIVE_GROUNDING, field_type.name)
-    )
+def recursive_catalog_for(field_name: str) -> RuleCatalog:
+    return get_rule_catalog(STAGE_RECURSIVE_GROUNDING, field_name)
 
 
-def parse_llm_phrase_recursive_grounding_result(
+def in_vocab_catalog_for(field_name: str) -> RuleCatalog:
+    return get_rule_catalog(STAGE_INITIAL_GROUNDING, field_name)
+
+
+async def get_descent_seed_tagging_results(
     subject_unique_id: str,
     field_type: ConceptFieldType,
-    gpt_req: GPTBatchRequest,
-) -> PhraseToTagAndRulesMap:
-    if not gpt_req.response:
-        raise ValueError(
-            f"phrase_recursive_grounding_node.parse_batch_request_result: GPTBatchRequest for phrase_recursive_grounding request ID {gpt_req.request.custom_id} has no response_blob in {subject_unique_id}:{field_type.name}"
-        )
-    elif not gpt_req.response.result:
-        raise ValueError(
-            f"phrase_recursive_grounding_node.parse_batch_request_result: GPTBatchRequest for phrase_recursive_grounding request ID {gpt_req.request.custom_id} has no result in {subject_unique_id}:{field_type.name}"
-        )
+    chunk_bounds: str,
+    extraction_bundle: ConceptExtractionRequestBundle,
+    completed_in_vocab_grounding_req_map: dict[BatchRequestIDType, GPTBatchRequest],
+    completed_screening_req_map: dict[BatchRequestIDType, GPTBatchRequest],
+    match_label_to_concept_map: CaseInsensitiveDict[Concept],
+    timestamp: datetime,
+) -> list[TaggingResult]:
+    """The chunk's descent seed: every PASSED in-vocab candidate, tag-major.
 
-    catalog = get_rule_catalog(STAGE_RECURSIVE_GROUNDING, field_type.name)
-
-    try:
-        parsed = grounding_response_model(catalog).model_validate_json(
-            gpt_req.response.result
-        )
-    except ValidationError as e:
-        raise ValueError(
-            f"parse_llm_phrase_recursive_grounding_result: Invalid response from GPT:{gpt_req.response.result}"
-        ) from e
-
-    raw_llm_recursive_grounding_result: PhraseToTagAndRulesMap = {}
-    violations: list[str] = []
-    for entry in parsed.groundings:
-        if entry.phrase in raw_llm_recursive_grounding_result:
-            raise ValueError(
-                f"parse_llm_phrase_recursive_grounding_result: Duplicate phrase {entry.phrase!r} in groundings response"
-            )
-        rules_by_option: TagToAppliedRulesMap = {}
-        for option in entry.options:
-            applied_rules = flatten_rule_slots(catalog, option)
-            # Collected across every option of every phrase, then raised once at
-            # the end: a response is measured whole or its defect rate is a
-            # function of where the scan stopped.
-            report = check_applied_rules(
-                catalog=catalog,
-                applied_rules=applied_rules,
-                where=f"phrase {entry.phrase!r} option {option.option!r}",
-            )
-            violations.extend(report.problems)
-            rules_by_option[option.option] = applied_rules
-        raw_llm_recursive_grounding_result[entry.phrase] = rules_by_option
-
-    raise_for_violations(violations)
-
-    logger.debug(
-        f"raw_llm_recursive_grounding_result:{raw_llm_recursive_grounding_result}"
+    Both the embed walk (which counts and names descent nodes) and request
+    creation derive the seed through here, so the two can never disagree about
+    which concepts a chunk descends.
+    """
+    in_vocab_results = await get_record_grounding_result(
+        stage_label="in-vocab grounding",
+        subject_unique_id=subject_unique_id,
+        field_name=field_type.name,
+        chunk_bounds=chunk_bounds,
+        catalog=in_vocab_catalog_for(field_type.name),
+        group_req_ids=extraction_bundle.llm_phrase_initial_grounding_req_ids,
+        completed_request_map=completed_in_vocab_grounding_req_map,
+        timestamp=timestamp,
+        allowed_labels=list(match_label_to_concept_map.keys()),
     )
+    screening_results = await get_record_screening_result(
+        subject_unique_id=subject_unique_id,
+        field_name=field_type.name,
+        chunk_bounds=chunk_bounds,
+        catalog=screening_catalog_for(field_type.name),
+        group_req_ids=extraction_bundle.llm_phrase_relationship_screening_req_ids,
+        completed_request_map=completed_screening_req_map,
+        timestamp=timestamp,
+    )
+    return descent_seed_tagging_results(in_vocab_results, screening_results)
 
-    return raw_llm_recursive_grounding_result
+
+def get_tagging_results_from_record_groundings(
+    groundings: RecordGroundingResults,
+) -> list[TaggingResult]:
+    """A record-keyed grounding result regrouped tag-major — the shape the
+    descent walk consumes. Declined records (empty tags) contribute nothing:
+    that is the empty-options stop."""
+    tag_to_tr_map: dict[str, TaggingResult] = {}
+    for record_id, entry in groundings.items():
+        for tag, applied_rules in entry.tags.items():
+            tr = tag_to_tr_map.setdefault(
+                tag, TaggingResult(group_id=tag, phrase_rules_map={})
+            )
+            tr.phrase_rules_map[record_id] = applied_rules
+    return list(tag_to_tr_map.values())
+
+
+def get_tcs_and_oov_trs_from_trs(
+    trs: list[TaggingResult],
+    match_label_to_concept_map: CaseInsensitiveDict[Concept],  # DO NOT MUTATE
+) -> tuple[list[TaggingResult], list[TaggingResultsGroupedByConcept]]:
+    """Split tag-major results into recognized concepts (altLabels folded onto
+    their concept) and out-of-vocab proposals."""
+    oov_trs: list[TaggingResult] = []
+    concept_to_tc_map: dict[Concept, TaggingResultsGroupedByConcept] = {}
+
+    for tr in trs:
+        concept_obj = match_label_to_concept_map.get(
+            tr.group_id
+        )  # NOTE: multiple group tags may point to same concept_obj because they can be name/altLabels
+
+        if not concept_obj:
+            oov_trs.append(tr)
+            continue
+
+        tc = concept_to_tc_map.setdefault(
+            concept_obj,
+            TaggingResultsGroupedByConcept(
+                concept=concept_obj,
+                og_tag_w_phrase_rules_map={},
+            ),
+        )
+        if tr.group_id in tc.og_tag_w_phrase_rules_map:
+            raise ValueError(
+                f"tr.group_id:{tr.group_id} was already present in "
+                f"tc.og_tag_w_phrase_rules_map[tr.group_id]:{tc.og_tag_w_phrase_rules_map[tr.group_id]}"
+            )
+        tc.og_tag_w_phrase_rules_map[tr.group_id] = tr.phrase_rules_map
+
+    return (oov_trs, list(concept_to_tc_map.values()))
+
+
+def get_descend_worthy_tcs_from_tagged_results(
+    seed_trs: list[TaggingResult],
+    match_label_to_concept_map: CaseInsensitiveDict[Concept],
+) -> list[TaggingResultsGroupedByConcept]:
+    """Every recognized seeded concept, grouped: they all descend.
+
+    The seed is the passed in-vocab candidates, whose labels the in-vocab parse
+    already held to the vocabulary, so the out-of-vocab half of the split is
+    empty by construction here. Leaf concepts still never descend, but that is
+    the descent gate's business (``get_descendable_concept``), not a label
+    comparison's.
+    """
+    _, tcs = get_tcs_and_oov_trs_from_trs(
+        trs=seed_trs, match_label_to_concept_map=match_label_to_concept_map
+    )
+    return tcs
 
 
 async def parse_recursive_grounding_batch_request_result(
@@ -154,8 +226,6 @@ async def parse_recursive_grounding_batch_request_result(
     chunk_bounds: str,
     descend_req_id: BatchRequestIDType,
     completed_request_map: dict[BatchRequestIDType, GPTBatchRequest],
-    # expected_tagged_concept_level: int,
-    # match_label_to_concept_map: CaseInsensitiveDict[Concept],
     deferred_at: datetime,
 ) -> list[TaggingResult]:
     if not descend_req_id:
@@ -167,12 +237,19 @@ async def parse_recursive_grounding_batch_request_result(
         raise ValueError(
             f"phrase_recursive_grounding_node.parse_batch_request_result: Missing GPTBatchRequest for phrase_recursive_grounding request ID {descend_req_id} in {subject_unique_id}:{field_type.name}"
         )
+    if not gpt_req.response or not gpt_req.response.result:
+        raise ValueError(
+            f"phrase_recursive_grounding_node.parse_batch_request_result: GPTBatchRequest for phrase_recursive_grounding request ID {descend_req_id} has no response in {subject_unique_id}:{field_type.name}"
+        )
 
     try:
-        recursive_grounding_result = parse_llm_phrase_recursive_grounding_result(
-            subject_unique_id=subject_unique_id,
-            field_type=field_type,
-            gpt_req=gpt_req,
+        # Minted labels allowed on purpose: RGR-M3 lets the model propose a
+        # sibling type of its own, so this stage has no vocabulary hold. What
+        # the walk does with an unrecognized or non-child label is its own
+        # classification (OOV proposal / false child), not a parse defect.
+        recursive_grounding_result = parse_record_grounding_result(
+            gpt_req.response.result,
+            catalog=recursive_catalog_for(field_type.name),
         )
     except Exception as e:
         await record_response_parse_error(
@@ -189,19 +266,16 @@ async def parse_recursive_grounding_batch_request_result(
     # Warn-and-drop, never raise: the embed path deletes incomplete descent
     # requests, wiping the error history a retry cap would count against, so a
     # raise here could re-dispatch forever. A thinned descent costs depth on
-    # the dropped phrases, not their existence — their node keeps the parent's
+    # the dropped records, not their existence — their node keeps the parent's
     # groundings.
-    recursive_grounding_result = hold_response_to_sent_phrases(
+    recursive_grounding_result = hold_response_to_sent_record_ids(
         user_message=gpt_req.request.body.user_message(),
-        response_by_phrase=recursive_grounding_result,
+        response_by_record_id=recursive_grounding_result,
         where=f"{subject_unique_id}:{field_type.name} recursive grounding {descend_req_id}",
         on_missing="drop",
     )
 
-    return get_tagging_results_from_recursive_grounding_results(
-        # expected_tagged_concept_level=expected_tagged_concept_level,
-        grounding_result=recursive_grounding_result,
-    )
+    return get_tagging_results_from_record_groundings(recursive_grounding_result)
 
 
 async def get_all_recursive_grounding_results(
@@ -209,8 +283,11 @@ async def get_all_recursive_grounding_results(
     field_type: ConceptFieldType,
     chunk_bounds: str,
     extraction_bundle: ConceptExtractionRequestBundle,
-    completed_initial_grounding_req_map: dict[BatchRequestIDType, GPTBatchRequest],
-    completed_recursive_grounding_req_map: dict[BatchRequestIDType, GPTBatchRequest],
+    completed_in_vocab_grounding_req_map: dict[BatchRequestIDType, GPTBatchRequest],
+    completed_screening_req_map: dict[BatchRequestIDType, GPTBatchRequest],
+    completed_recursive_grounding_req_map: dict[
+        BatchRequestIDType, GPTBatchRequest
+    ],
     match_label_to_concept_map: CaseInsensitiveDict[Concept],
     timestamp: datetime,
 ) -> IterativeGroundingResult:
@@ -219,22 +296,24 @@ async def get_all_recursive_grounding_results(
     Iterate each level in llm_phrase_recursive_tagging_reqs:
         Iterate each itr in the level:
             Create a RecursivelyTaggedPhrase from each itr
-            using initially tagged dtcs from current level
+            using the seed tagging results for direct evidence
             Add to retval
     """
     retval: IterativeGroundingResult = {}
 
-    all_initially_tagged_dtrs = await get_tagged_results_from_initial_grounding(
+    seed_trs = await get_descent_seed_tagging_results(
         subject_unique_id=subject_unique_id,
         field_type=field_type,
         chunk_bounds=chunk_bounds,
         extraction_bundle=extraction_bundle,
-        completed_request_map=completed_initial_grounding_req_map,
+        completed_in_vocab_grounding_req_map=completed_in_vocab_grounding_req_map,
+        completed_screening_req_map=completed_screening_req_map,
+        match_label_to_concept_map=match_label_to_concept_map,
         timestamp=timestamp,
     )
-    if not extraction_bundle.llm_phrase_recursive_tagging_reqs:
+    if extraction_bundle.llm_phrase_recursive_tagging_reqs is None:
         raise ValueError(
-            f"Cannot get recursive grounding results as llm_phrase_recursive_tagging_reqs is empty."
+            f"Cannot get recursive grounding results as llm_phrase_recursive_tagging_reqs is None."
         )
 
     for level, itr_list in extraction_bundle.llm_phrase_recursive_tagging_reqs.items():
@@ -246,7 +325,7 @@ async def get_all_recursive_grounding_results(
                 chunk_bounds=chunk_bounds,
                 bundle=extraction_bundle,
                 it_req=rt_req,
-                initially_tagged_trs=all_initially_tagged_dtrs,
+                seed_trs=seed_trs,
                 completed_recursive_grounding_req_map=completed_recursive_grounding_req_map,
                 match_label_to_concept_map=match_label_to_concept_map,
                 timestamp=timestamp,
@@ -265,13 +344,12 @@ def get_descendable_concept(
 
     A label is descendable only when it resolves to a known concept that has
     children — a descent prompt offers the children as options, so a leaf
-    concept renders an empty option list and the model can only answer the
-    sentinel (measured 2026-08-12: 30 of 55 descent calls in one run were
-    leaves). Every place that expects, awaits, creates, or parses a descent
-    request must consult this same gate, or an ID becomes expected-but-never-
-    created and the level walk deadlocks waiting for it. Node CREATION is not
-    gated here: a leaf still gets its tagging-request node so its phrases and
-    rules reach the phrase trail.
+    concept renders an empty option list and the model could only decline
+    every record. Every place that expects, awaits, creates, or parses a
+    descent request must consult this same gate, or an ID becomes
+    expected-but-never-created and the level walk deadlocks waiting for it.
+    Node CREATION is not gated here: a leaf still gets its tagging-request node
+    so its records and rules reach the phrase trail.
 
     Returns the concept rather than a bool so callers don't look it up twice.
     """
@@ -286,9 +364,9 @@ def get_itr_descendable_concept(
     match_label_to_concept_map: CaseInsensitiveDict[Concept],  # DO NOT MUTATE
 ) -> Optional[Concept]:
     """The label gate plus the node's own history: a node whose creation already
-    recorded why descent must stop (sentinel answer, false child) is never
-    descended even when its name resolves to a descendable concept — a false
-    child IS a real concept with children, just not under this parent."""
+    recorded why descent must stop (false child) is never descended even when
+    its name resolves to a descendable concept — a false child IS a real
+    concept with children, just not under this parent."""
     if itr.stop_reason is not None:
         return None
     return get_descendable_concept(itr.name, match_label_to_concept_map)
@@ -311,14 +389,16 @@ def is_rtp_descend_worthy(
 
 def get_phrase_trails(
     lvl_by_lvl_iterative_grounding_results: IterativeGroundingResult,
-    # match_label_to_concept_map: CaseInsensitiveDict[Concept],  # DO NOT MUTATE
 ) -> list[PhraseTrail]:
+    """One trail per RECORD (the maps' keys are record ids in v2; the field
+    names still say phrase because the model shapes carried over — the
+    id→phrase join lives in the masked relationship stats)."""
     retval_dict: dict[str, PhraseTrail] = {}
-    # phrase -> PhraseTrail
+    # record_id -> PhraseTrail
 
     for lvl, itp_groups in lvl_by_lvl_iterative_grounding_results.items():
         for itp_group in itp_groups:
-            # break ITP Group into individual phrases and their tags
+            # break ITP Group into individual records and their tags
             for (
                 d_phrase,
                 og_tag_rules_map,
@@ -389,13 +469,12 @@ def get_deepest_concepts_and_oov(
                 itp.group_id
             ):
                 # Records that the descent stopped here, not a label that was
-                # found. Skipping also leaves the parent tag in place, which is
-                # exactly what "nothing more specific qualifies" should mean.
-                # stop_reason covers the false child too: the model named a
-                # concept that is not a child of the parent it was asked under,
-                # so the parent stands and the named concept is not asserted.
-                # (The label check remains for trails built before stop_reason
-                # existed.)
+                # found. A false child leaves the parent tag in place — the
+                # model named a concept that is not a child of the parent it
+                # was asked under, so the parent stands. The label check is
+                # the none-of-the-above tripwire: the descent trail is the one
+                # result path screening never vets, so a v1-habit sentinel
+                # echo must not persist as a discovered label here.
                 continue
 
             concept = match_label_to_concept_map.get(itp.group_id)
@@ -405,7 +484,7 @@ def get_deepest_concepts_and_oov(
                     parent_concept = match_label_to_concept_map.get(itp.parent_group_id)
                     if parent_concept:
                         # NOTE: this only discards immediate parent, anything higher up stays
-                        # which can happen when a phrase was tagged to grand dad, never descended
+                        # which can happen when a record was tagged to grand dad, never descended
                         # but also directly tagged to grand child
                         # both of which will be captured in the trail
                         concepts.discard(parent_concept)
@@ -423,15 +502,14 @@ async def get_itp_from_itr(
     chunk_bounds: str,
     bundle: ConceptExtractionRequestBundle,
     it_req: IterativeTaggingRequest,
-    # completed_initial_grounding_req_map: dict[BatchRequestIDType, GPTBatchRequest],
-    initially_tagged_trs: list[TaggingResult],
+    seed_trs: list[TaggingResult],
     completed_recursive_grounding_req_map: dict[BatchRequestIDType, GPTBatchRequest],
     match_label_to_concept_map: CaseInsensitiveDict[Concept],  # DO NOT MUTATE
     timestamp: datetime,
 ) -> IterativelyTaggedPhraseGroup:
-    if not bundle.llm_phrase_recursive_tagging_reqs:
+    if bundle.llm_phrase_recursive_tagging_reqs is None:
         raise ValueError(
-            f"Cannot create batch requests for recursive grounding as llm_phrase_recursive_grounding_root_req_nodes is empty."
+            f"Cannot build node evidence for recursive grounding as llm_phrase_recursive_tagging_reqs is None."
         )
 
     logger.info(
@@ -447,31 +525,27 @@ async def get_itp_from_itr(
     )
 
     # A stopped node carries only what its own parent's response said about it
-    # (the iterative map below). Initial-grounding tags matched here by NAME
-    # would be a different event wearing the same label: the initial sentinel
-    # verdict has no tree position and used to fan out into every same-named
-    # sentinel node at every level, re-emitting one decision as many; a false
-    # child's direct evidence belongs to the concept's real node, not to the
-    # record of the misparenting.
+    # (the iterative map below). Seed tags matched here by NAME would be a
+    # different event wearing the same label: a false child's direct evidence
+    # belongs to the concept's real node, not to the record of the
+    # misparenting.
     if it_req.stop_reason is None:
-        # directly_tagged_phrases: PhraseToTagAndRulesMap = {}
-        for initial_tr in initially_tagged_trs:
-            if (initial_tr.group_id == it_req.name) or (
-                (concept := match_label_to_concept_map.get(initial_tr.group_id))
+        for seed_tr in seed_trs:
+            if (seed_tr.group_id == it_req.name) or (
+                (concept := match_label_to_concept_map.get(seed_tr.group_id))
                 and concept.name == it_req.name
             ):
                 logger.info(
-                    f"initially tagged tr.group_tag:{initial_tr.group_id} matches rt_req.name:{it_req.name}, copying over phrase rules map."
+                    f"seed tr.group_tag:{seed_tr.group_id} matches rt_req.name:{it_req.name}, copying over record rules map."
                 )
                 for (
-                    phrase,
+                    record_id,
                     applied_rules,
-                ) in initial_tr.phrase_rules_map.items():
-                    itp.direct_phrases_to_og_tag_w_rules[phrase] = {
-                        initial_tr.group_id: applied_rules
+                ) in seed_tr.phrase_rules_map.items():
+                    itp.direct_phrases_to_og_tag_w_rules[record_id] = {
+                        seed_tr.group_id: applied_rules
                     }
 
-    # iteratively_tagged: PhraseToTagAndRulesMap = {}
     logger.info(
         f"Searching for parent_itr for it_req: l{it_req.level}>{it_req.name} in chunk {chunk_bounds} for {subject_unique_id}:{field_type.name}"
     )
@@ -511,27 +585,43 @@ async def get_itp_from_itr(
                 and concept.name == it_req.name
             ):
                 logger.info(
-                    f"child_tr.group_tag:{child_tr.group_id} matches rt_req.name:{it_req.name}, copying over phrase rules map."
+                    f"child_tr.group_tag:{child_tr.group_id} matches rt_req.name:{it_req.name}, copying over record rules map."
                 )
-                for phrase, applied_rules in child_tr.phrase_rules_map.items():
-                    itp.iterative_phrases_to_og_tag_w_rules[phrase] = {
+                for record_id, applied_rules in child_tr.phrase_rules_map.items():
+                    itp.iterative_phrases_to_og_tag_w_rules[record_id] = {
                         child_tr.group_id: applied_rules
                     }
 
     return itp
 
 
-def get_tagging_results_from_recursive_grounding_results(
-    grounding_result: PhraseToTagAndRulesMap,
-) -> list[TaggingResult]:
-    tag_to_tr_map: dict[str, TaggingResult] = {}
-    for phrase, tag_rules_map in grounding_result.items():
-        for tag, applied_rules in tag_rules_map.items():
-            tr = tag_to_tr_map.setdefault(
-                tag, TaggingResult(group_id=tag, phrase_rules_map={})
-            )
-            tr.phrase_rules_map[phrase] = applied_rules
-    return list(tag_to_tr_map.values())
+def descent_evidence_record_ids(
+    itp_group: IterativelyTaggedPhraseGroup,
+) -> set[str]:
+    """The records that evidence a descent node — what its request will carry."""
+    return set(itp_group.direct_phrases_to_og_tag_w_rules) | set(
+        itp_group.iterative_phrases_to_og_tag_w_rules
+    )
+
+
+def descent_record_payloads(
+    record_ids: set[str],
+    masked: MaskedLLMPhraseRelationshipResults,
+) -> dict[str, dict[str, Any]]:
+    """The id → record payload a descent request renders. Sorted for render
+    stability; a record id with no masked relationship entry is a pipeline bug
+    — every id in the descent tree came out of a stage that derived it from
+    the relationship results."""
+    missing = record_ids - set(masked)
+    if missing:
+        raise ValueError(
+            f"descent_record_payloads: no relationship record for id(s) "
+            f"{sorted(missing)}"
+        )
+    return {
+        record_id: masked[record_id].record.model_dump()
+        for record_id in sorted(record_ids)
+    }
 
 
 async def create_missing_phrase_recursive_grounding_requests(
@@ -545,7 +635,8 @@ async def create_missing_phrase_recursive_grounding_requests(
         BatchRequestIDType
     ],  # spread across all chunks, can be partially covering a level in req tree
     llm_phrase_relationship_gpt_request_map: dict[BatchRequestIDType, GPTBatchRequest],
-    completed_initial_grounding_req_map: dict[BatchRequestIDType, GPTBatchRequest],
+    completed_in_vocab_grounding_req_map: dict[BatchRequestIDType, GPTBatchRequest],
+    completed_screening_req_map: dict[BatchRequestIDType, GPTBatchRequest],
     completed_recursive_grounding_req_map: dict[BatchRequestIDType, GPTBatchRequest],
     match_label_to_concept_map: CaseInsensitiveDict[Concept],  # DO NOT MUTATE
     phrase_recursive_grounding_prompt: Prompt,
@@ -567,7 +658,7 @@ async def create_missing_phrase_recursive_grounding_requests(
     batch_requests: list[GPTBatchRequest] = []
 
     chunk_items: list[
-        tuple[str, LLMPhraseRelationshipResults, IterativeTaggingRequest]
+        tuple[str, dict[str, dict[str, Any]], IterativeTaggingRequest]
     ] = []
     for chunk_bounds, bundle in chunked_request_map.items():
         logger.info(
@@ -575,9 +666,9 @@ async def create_missing_phrase_recursive_grounding_requests(
         )
         if not bundle.llm_phrase_recursive_tagging_reqs:
             raise ValueError(
-                f"Cannot create batch requests for recursive grounding as llm_phrase_recursive_grounding_root_req_nodes is empty."
+                f"Cannot create batch requests for recursive grounding as llm_phrase_recursive_tagging_reqs is empty."
             )
-        llm_phrase_relationship_results = await get_phrase_relationship_result(
+        masked_relationship_results = await get_masked_phrase_relationship_result(
             subject_unique_id=subject_unique_id,
             field_type=field_type,
             chunk_bounds=chunk_bounds,
@@ -590,12 +681,14 @@ async def create_missing_phrase_recursive_grounding_requests(
             bundle.llm_phrase_recursive_tagging_reqs.keys(),
         )
         logger.info(f"Found pending level:{pending_level}")
-        initially_tagged_trs = await get_tagged_results_from_initial_grounding(
+        seed_trs = await get_descent_seed_tagging_results(
             subject_unique_id=subject_unique_id,
             field_type=field_type,
             chunk_bounds=chunk_bounds,
             extraction_bundle=bundle,
-            completed_request_map=completed_initial_grounding_req_map,
+            completed_in_vocab_grounding_req_map=completed_in_vocab_grounding_req_map,
+            completed_screening_req_map=completed_screening_req_map,
+            match_label_to_concept_map=match_label_to_concept_map,
             timestamp=timestamp,
         )
 
@@ -603,9 +696,10 @@ async def create_missing_phrase_recursive_grounding_requests(
             (req, concept)
             for req in bundle.llm_phrase_recursive_tagging_reqs[pending_level]
             # Same gate as get_embedded_request_ids: a non-descendable node
-            # (out-of-vocab, sentinel/false-child, or leaf) never gets a request
-            # created, so it is never among the missing IDs — including it here
-            # would trip the not-passed-as-missing check below.
+            # (out-of-vocab proposal, false-child, or leaf) never gets a
+            # request created, so it is never among the missing IDs —
+            # including it here would trip the not-passed-as-missing check
+            # below.
             if (
                 concept := get_itr_descendable_concept(req, match_label_to_concept_map)
             )
@@ -647,7 +741,7 @@ async def create_missing_phrase_recursive_grounding_requests(
                 chunk_bounds=chunk_bounds,
                 bundle=bundle,
                 it_req=pending_tagging_req,
-                initially_tagged_trs=initially_tagged_trs,
+                seed_trs=seed_trs,
                 completed_recursive_grounding_req_map=completed_recursive_grounding_req_map,
                 match_label_to_concept_map=match_label_to_concept_map,
                 timestamp=timestamp,
@@ -658,21 +752,16 @@ async def create_missing_phrase_recursive_grounding_requests(
             ):
                 continue
 
-            phrases_referenced_in_node = set(
-                itp.direct_phrases_to_og_tag_w_rules.keys()
-            ) | set(itp.iterative_phrases_to_og_tag_w_rules.keys())
-            phrases_referenced_in_node_w_summary = {
-                phrase: summary
-                for phrase, summary in llm_phrase_relationship_results.items()
-                if phrase in phrases_referenced_in_node
-            }
+            record_payloads = descent_record_payloads(
+                descent_evidence_record_ids(itp), masked_relationship_results
+            )
             logger.info(
-                f"phrases_referenced_in_node_w_summary:{phrases_referenced_in_node_w_summary}"
+                f"descent record payloads for {pending_tagging_req.name}: {sorted(record_payloads)}"
             )
             chunk_items.append(
                 (
                     chunk_bounds,
-                    phrases_referenced_in_node_w_summary,
+                    record_payloads,
                     pending_tagging_req,
                 )
             )
@@ -682,7 +771,7 @@ async def create_missing_phrase_recursive_grounding_requests(
         batch = chunk_items[i : i + BATCH_SIZE]
 
         # Process current batch
-        for chunk_bounds, phrases_w_summary, pending_itr in batch:
+        for chunk_bounds, record_payloads, pending_itr in batch:
             tagged_concept_obj = match_label_to_concept_map.get(pending_itr.name)
             if not tagged_concept_obj:
                 raise ValueError(
@@ -696,7 +785,6 @@ async def create_missing_phrase_recursive_grounding_requests(
                 subject_unique_id=subject_unique_id,
                 field_type=field_type,
                 # context variables
-                subject_name=subject_name,
                 phrase_recursive_grounding_prompt=phrase_recursive_grounding_prompt,
                 llm_phrase_recursive_grounding_request_id=pending_itr.descend_req_id,
                 parent_concept=tagged_concept_obj,
@@ -704,15 +792,13 @@ async def create_missing_phrase_recursive_grounding_requests(
                     match_label_to_concept_map[child_name]
                     for child_name in tagged_concept_obj.children
                 },
-                verified_phrases_w_og_summary=phrases_w_summary,
+                record_payloads=record_payloads,
                 # model info
                 eager=eager,
                 gpt_model=llm_model,
                 model_params=model_params,
             )
-            new_batch_request = llm_phrase_grounding_batch_request
-
-            batch_requests.append(new_batch_request)
+            batch_requests.append(llm_phrase_grounding_batch_request)
 
         # Yield control to event loop after each batch
         await asyncio.sleep(0)
@@ -726,46 +812,6 @@ async def create_missing_phrase_recursive_grounding_requests(
     return batch_requests
 
 
-# TODO: needs fixing if used, not used right now
-def _create_dummy_completed_phrase_recursive_grounding_batch_request(
-    deferred_at: datetime,
-    subject_unique_id: str,
-    llm_phrase_recursive_grounding_request_id: BatchRequestIDType,
-    model_params: GPTModelParams,
-    eager: bool,
-) -> GPTBatchRequest:
-    if llm_phrase_recursive_grounding_request_id is None:
-        raise ValueError(
-            "_create_dummy_completed_phrase_recursive_grounding_batch_request: llm_phrase_recursive_grounding_request_id is None"
-        )
-
-    base_gpt_batch_request = create_base_gpt_batch_request(
-        deferred_at=deferred_at,
-        subject_unique_id=subject_unique_id,
-        custom_id=llm_phrase_recursive_grounding_request_id,
-        # Still carries a block, empty — an absent one has to stay an error.
-        context=(
-            "No phrase recursive grounding needed - nothing was tagged in initial "
-            f"grounding.\n{render_phrase_blocks({})}"
-        ),
-        prompt_text="No phrase recursive grounding needed - nothing was tagged in initial grounding.",
-        gpt_model=NO_MODEL,
-        model_params=model_params,
-        batch_id="Eager" if eager else "dummy_phrase_relationship_batch_id",
-    )
-
-    base_gpt_batch_request.response = get_dummy_gpt_batch_response(
-        deferred_at=deferred_at,
-        request_custom_id=llm_phrase_recursive_grounding_request_id,
-        dummy_chat_completion_id="dummy_completion_id",
-        chat_completion_choice_message=ChatCompletionChoiceMessage(
-            role="assistant", content='{"groundings": []}'
-        ),
-    )
-
-    return base_gpt_batch_request
-
-
 def create_deferred_phrase_recursive_grounding_gpt_request(
     deferred_at: datetime,
     subject_unique_id: str,
@@ -773,10 +819,9 @@ def create_deferred_phrase_recursive_grounding_gpt_request(
     llm_phrase_recursive_grounding_request_id: str,
     phrase_recursive_grounding_prompt: Prompt,
     # context
-    subject_name: str,
     parent_concept: Concept,
     child_concepts: set[Concept],
-    verified_phrases_w_og_summary: LLMPhraseRelationshipResults,
+    record_payloads: dict[str, dict[str, Any]],
     # model info
     gpt_model: LLM_Model,
     eager: bool,
@@ -789,6 +834,9 @@ def create_deferred_phrase_recursive_grounding_gpt_request(
         field_type.recursive_grounding_placeholders
     )
 
+    # The parent and its child options ride in the PROMPT (per-request
+    # placeholder replacement, as in v1); the context carries the record
+    # blocks alone.
     refactored_text = phrase_recursive_grounding_prompt.text.replace(
         parent_placeholder_stem, parent_concept.name
     ).replace(
@@ -798,8 +846,7 @@ def create_deferred_phrase_recursive_grounding_gpt_request(
             cls=ConceptJSONEncoder,
         ),
     )
-    # f"Manufacturer name: {subject_name}\n\n "
-    context = render_phrase_blocks(verified_phrases_w_og_summary)
+    context = render_record_blocks(record_payloads)
 
     gpt_batch_request = create_base_gpt_batch_request(
         deferred_at=deferred_at,
@@ -809,7 +856,7 @@ def create_deferred_phrase_recursive_grounding_gpt_request(
         prompt_text=refactored_text,
         gpt_model=gpt_model,
         model_params=model_params.with_response_format(
-            get_recursive_grounding_response_schema(field_type)
+            response_format_for(recursive_catalog_for(field_type.name))
         ),
         batch_id="Eager" if eager else None,
     )

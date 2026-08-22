@@ -11,43 +11,45 @@ from core.models.extraction_subject import (
 from core.models.deferred_extraction.deferred_keyword_extraction import (
     DeferredKeywordExtractionRequests,
 )
-from core.models.extraction_results.keyword_extraction_results import (
-    KeywordExtractionStats,
-    KeywordExtractionResults,
-    KeywordExtractionStatsMap,
+from core.models.extraction_results.concept_extraction_results import (
+    ConceptsFound,
 )
-from core.models.extraction_results.llm_phrase_extraction_results import (
-    partition_by_search_round,
-)
-from core.models.extraction_schemas.grounding import (
-    is_sentinel_grounding_label,
+from core.models.extraction_results.llm_phrase_extraction_results_v2 import (
+    KeywordExtractionResultsV2,
+    KeywordExtractionStatsMapV2,
+    KeywordExtractionStatsV2,
+    partition_records_by_search_round,
 )
 from core.models.field_types import ExtractionFieldType
+from core.models.rule_catalog import STAGE_FREEHAND_GROUNDING
 from core.models.pipeline_nodes.base.base_node import PipelineContext
 from core.models.pipeline_nodes.base.base_reconcile_node import (
     ReconcileNode,
 )
 from scraper.models.s3.scraped_text_file import ScrapedTextFile
 
-# if TYPE_CHECKING:
-
 from core.services.pipeline_nodes.multi_stage.llm_phrase_recursive_search_node_service import (
     build_llm_phrase_search_results,
 )
 from core.services.pipeline_nodes.multi_stage.llm_phrase_relationship_node_service import (
-    get_phrase_relationship_result as get_phrase_relationship_result,
+    get_masked_phrase_relationship_result,
+)
+from core.services.pipeline_nodes.multi_stage.llm_grounding_node_service import (
+    get_record_grounding_result,
 )
 from core.services.pipeline_nodes.multi_stage.llm_relationship_screening_node_service import (
-    get_phrase_relationship_screening_result as parse_relationship_screening_batch_req_result,
+    get_record_screening_result,
+    screening_catalog_for,
 )
-from core.services.pipeline_nodes.multi_stage.llm_freehand_grounding_service import (
-    get_freehand_grounding_result as parse_freehand_grounding_batch_req_result,
+from core.services.pipeline_nodes.multi_stage.pipeline_v2_derivations import (
+    candidates_that_passed,
 )
+from core.services.rule_catalog_registry import get_rule_catalog
 from core.utils.label_dedupe_util import dedupe_equivalent_keywords
+from core.utils.record_id_util import phrases_by_record_id
 from core.utils.extraction_dump_util import (
-    build_keyword_phrase_rows,
+    build_keyword_record_rows,
     build_run_provenance,
-    merge_stage_repairs,
     write_extraction_dump,
 )
 
@@ -55,7 +57,7 @@ logger = logging.getLogger(__name__)
 
 
 class KeywordReconcileNode(ReconcileNode[ExtractionFieldType]):
-    """Base class: phase 6, aggregate & write final results.
+    """Base class: final phase, aggregate & write final results.
 
     This is a BASE class: the 5 ``get_upstream_*_map`` getters are left
     unimplemented here. Concrete leaves such as ``PureProductReconcileNode`` /
@@ -128,14 +130,20 @@ class KeywordReconcileNode(ReconcileNode[ExtractionFieldType]):
         completed_phrase_relationship_requests = self.get_upstream_relationship_map(
             pipeline_context
         )
-        completed_relationship_screening_requests = self.get_upstream_screening_map(
-            pipeline_context
-        )
         completed_freehand_grounding_requests = (
             self.get_upstream_freehand_grounding_map(pipeline_context)
         )
+        completed_relationship_screening_requests = self.get_upstream_screening_map(
+            pipeline_context
+        )
+
+        freehand_catalog = get_rule_catalog(
+            STAGE_FREEHAND_GROUNDING, self.field_type.name
+        )
+        screening_catalog = screening_catalog_for(self.field_type.name)
+
         all_keywords: set[str] = set()
-        chunk_stats: KeywordExtractionStatsMap = {}
+        chunk_stats: KeywordExtractionStatsMapV2 = {}
         chunked_dump_contents: dict[str, dict[str, object]] = {}
         for (
             chunk_bounds,
@@ -151,88 +159,72 @@ class KeywordReconcileNode(ReconcileNode[ExtractionFieldType]):
                 timestamp=timestamp,
             )
 
-            llm_phrase_relationship_flat = await get_phrase_relationship_result(
+            # The relationship stage is the one place the model still echoes
+            # phrases back, so it keeps a repairs sink; every record-keyed
+            # stage downstream holds exactly and has none.
+            relationship_repairs: dict[str, str] = {}
+            masked_flat = await get_masked_phrase_relationship_result(
                 subject_unique_id=deferred_subject.subject_unique_id,
                 field_type=self.field_type,
                 chunk_bounds=chunk_bounds,
                 extraction_bundle=bundle,
                 completed_request_map=completed_phrase_relationship_requests,
                 timestamp=timestamp,
+                repairs=relationship_repairs,
+            )
+            phrase_by_record_id = phrases_by_record_id(masked_flat)
+
+            freehand_flat = await get_record_grounding_result(
+                stage_label="freehand grounding",
+                subject_unique_id=deferred_subject.subject_unique_id,
+                field_name=self.field_type.name,
+                chunk_bounds=chunk_bounds,
+                catalog=freehand_catalog,
+                group_req_ids=bundle.llm_phrase_freehand_grounding_req_ids,
+                completed_request_map=completed_freehand_grounding_requests,
+                timestamp=timestamp,
             )
 
-            # Collected per chunk so the dump can say which phrases the model
-            # answered under a different string. One sink PER STAGE: the same
-            # phrase can be mis-echoed at more than one, and a shared dict would
-            # keep only whichever was parsed last. Relationship is the only stage
-            # still unheld, so a repair there stays invisible here.
-            screening_repairs: dict[str, str] = {}
-            freehand_grounding_repairs: dict[str, str] = {}
-            llm_phrase_screening_flat = (
-                await parse_relationship_screening_batch_req_result(
-                    subject_unique_id=deferred_subject.subject_unique_id,
-                    field_type=self.field_type,
-                    chunk_bounds=chunk_bounds,
-                    extraction_bundle=bundle,
-                    completed_request_map=completed_relationship_screening_requests,
-                    timestamp=timestamp,
-                    repairs=screening_repairs,
-                )
+            screening_flat = await get_record_screening_result(
+                subject_unique_id=deferred_subject.subject_unique_id,
+                field_name=self.field_type.name,
+                chunk_bounds=chunk_bounds,
+                catalog=screening_catalog,
+                group_req_ids=bundle.llm_phrase_relationship_screening_req_ids,
+                completed_request_map=completed_relationship_screening_requests,
+                timestamp=timestamp,
             )
 
-            llm_phrase_freehand_grounding_flat = (
-                await parse_freehand_grounding_batch_req_result(
-                    subject_unique_id=deferred_subject.subject_unique_id,
-                    field_type=self.field_type,
-                    chunk_bounds=chunk_bounds,
-                    extraction_bundle=bundle,
-                    completed_request_map=completed_freehand_grounding_requests,
-                    timestamp=timestamp,
-                    repairs=freehand_grounding_repairs,
-                )
-            )
+            # Fork F10: a keyword IS a minted candidate that passed screening
+            # on at least one record. Uniform ConceptsFound with in_vocab empty
+            # by construction — keyword fields have no vocabulary.
+            grounded_keywords = candidates_that_passed(freehand_flat, screening_flat)
 
-            # Partition flat dicts into per-round dicts by earliest search round.
-            llm_phrase_relationship_results = partition_by_search_round(
-                llm_phrase_relationship_flat, llm_search_results
-            )
-            llm_phrase_screening_results = partition_by_search_round(
-                llm_phrase_screening_flat, llm_search_results
-            )
-            llm_phrase_freehand_grounding_results = partition_by_search_round(
-                llm_phrase_freehand_grounding_flat, llm_search_results
-            )
-
-            grounded_keywords = {
-                grounded_label
-                for phrase_groundings in llm_phrase_freehand_grounding_flat.values()
-                for grounded_label in phrase_groundings.keys()
-                if not is_sentinel_grounding_label(grounded_label)
-            }
-            # Rows are driven by the SCREENED phrase set (plus any drifted
-            # grounding-only phrases) — a grounding-driven dump made
-            # screening.passed a constant and hid the screened-out majority.
             chunked_dump_contents[chunk_bounds] = {
-                "rows": build_keyword_phrase_rows(
-                    screening_flat=llm_phrase_screening_flat,
-                    relationship_flat=llm_phrase_relationship_flat,
-                    freehand_grounding_flat=llm_phrase_freehand_grounding_flat,
+                "rows": build_keyword_record_rows(
+                    masked_flat=masked_flat,
+                    freehand_flat=freehand_flat,
+                    screening_flat=screening_flat,
                     search_rounds=llm_search_results,
-                    repairs_flat=merge_stage_repairs(
-                        {
-                            "screening": screening_repairs,
-                            "freehand_grounding": freehand_grounding_repairs,
-                        }
-                    ),
+                    relationship_repairs=relationship_repairs,
                     subject_name=pipeline_context.subject_name,
                 )
             }
 
-            chunk_stats[chunk_bounds] = KeywordExtractionStats(
-                results=grounded_keywords,
+            chunk_stats[chunk_bounds] = KeywordExtractionStatsV2(
+                results=ConceptsFound(
+                    in_vocab=set(), out_of_vocab=grounded_keywords
+                ),
                 llm_phrase_search=llm_search_results,
-                llm_phrase_relationship=llm_phrase_relationship_results,
-                llm_phrase_screening=llm_phrase_screening_results,
-                llm_phrase_freehand_grounding=llm_phrase_freehand_grounding_results,
+                llm_phrase_relationship=partition_records_by_search_round(
+                    masked_flat, phrase_by_record_id, llm_search_results
+                ),
+                llm_phrase_screening=partition_records_by_search_round(
+                    screening_flat, phrase_by_record_id, llm_search_results
+                ),
+                llm_phrase_freehand_grounding=partition_records_by_search_round(
+                    freehand_flat, phrase_by_record_id, llm_search_results
+                ),
             )
             all_keywords.update(grounded_keywords)
 
@@ -246,8 +238,8 @@ class KeywordReconcileNode(ReconcileNode[ExtractionFieldType]):
                 **completed_search_requests,
                 **completed_recursive_search_requests,
                 **completed_phrase_relationship_requests,
-                **completed_relationship_screening_requests,
                 **completed_freehand_grounding_requests,
+                **completed_relationship_screening_requests,
             },
             run_provenance=build_run_provenance(
                 metadata=extraction_requests.metadata,
@@ -256,13 +248,16 @@ class KeywordReconcileNode(ReconcileNode[ExtractionFieldType]):
             ),
         )
 
-        final_extraction_result = KeywordExtractionResults(
+        final_extraction_result = KeywordExtractionResultsV2(
             metadata=extraction_requests.metadata,
-            # Freehand grounding names categories independently per chunk and
-            # round, so the union carries case and singular/plural variants of
-            # one category; per-chunk stats keep them raw.
-            results=dedupe_equivalent_keywords(all_keywords),
-            chunk_stats=chunk_stats,
+            # Freehand grounding mints candidates independently per chunk, so
+            # the union carries case and singular/plural variants of one label;
+            # per-chunk stats keep them raw.
+            results=ConceptsFound(
+                in_vocab=set(),
+                out_of_vocab=dedupe_equivalent_keywords(all_keywords),
+            ),
+            chunked_extraction_stats=chunk_stats,
         )
 
         setattr(subject, self.field_type.name, final_extraction_result)
@@ -276,8 +271,8 @@ class KeywordReconcileNode(ReconcileNode[ExtractionFieldType]):
                     *completed_search_requests.keys(),
                     *completed_recursive_search_requests.keys(),
                     *completed_phrase_relationship_requests.keys(),
-                    *completed_relationship_screening_requests.keys(),
                     *completed_freehand_grounding_requests.keys(),
+                    *completed_relationship_screening_requests.keys(),
                 ]
             ),
         )

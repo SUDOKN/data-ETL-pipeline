@@ -61,12 +61,14 @@ def test_create_equipment_extraction_pipeline_builds_expected_node_chain():
     relationship_node = recursive_search_node.next_node
     assert isinstance(relationship_node, EquipmentRelationshipNode)
 
-    screening_node = relationship_node.next_node
-    assert isinstance(screening_node, EquipmentRelationshipScreeningNode)
-
-    freehand_grounding_node = screening_node.next_node
+    # v2 order: the freehand pass ENUMERATES candidates first, screening vets
+    # every one of them.
+    freehand_grounding_node = relationship_node.next_node
     assert isinstance(freehand_grounding_node, EquipmentFreehandGroundingNode)
 
-    reconcile_node = freehand_grounding_node.next_node
+    screening_node = freehand_grounding_node.next_node
+    assert isinstance(screening_node, EquipmentRelationshipScreeningNode)
+
+    reconcile_node = screening_node.next_node
     assert isinstance(reconcile_node, EquipmentReconcileNode)
     assert reconcile_node.field_type == KeywordTypeEnum.equipments

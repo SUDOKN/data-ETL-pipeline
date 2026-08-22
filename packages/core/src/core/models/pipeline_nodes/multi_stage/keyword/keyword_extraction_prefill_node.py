@@ -16,7 +16,9 @@ from core.models.extraction_results.llm_phrase_extraction_results import (
 )
 from core.models.extraction_results.keyword_extraction_results import (
     BatchedFreehandGroundingNodeMetadata,
-    KeywordExtractionMetadata,
+)
+from core.models.extraction_results.llm_phrase_extraction_results_v2 import (
+    KeywordExtractionMetadataV2,
 )
 from core.models.deferred_extraction.deferred_keyword_extraction import (
     DeferredKeywordExtractionRequests,
@@ -86,7 +88,7 @@ class KeywordExtractionPrefillNode(PrefillNode[ExtractionFieldType]):
         pipeline_context: PipelineContext,
         eager: bool,
     ):
-        latest_keyword_extraction_metadata = KeywordExtractionMetadata(
+        latest_keyword_extraction_metadata = KeywordExtractionMetadataV2(
             created_at=timestamp,
             chunk_strat=self.chunk_strategy,
             ontology_version_id=self.ontology_version_id,

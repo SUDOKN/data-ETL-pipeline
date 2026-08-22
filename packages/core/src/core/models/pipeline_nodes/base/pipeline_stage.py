@@ -42,38 +42,37 @@ class PipelineStage(StrEnum):
     phrase_search = "phrase_search"
     recursive_search = "recursive_search"
     relationship = "relationship"
-    screening = "screening"
     initial_grounding = "initial_grounding"
-    # v2's out-of-vocabulary discovery pass (concept fields, after in-vocab
-    # grounding). No v1 chain contains it; the member exists so v2 nodes and
-    # toggles can name it. Its STAGE_REQUEST_ID_TOKEN entry arrives WITH the v2
-    # node in phase 2 — the tripwire holds every token to a real builder that
-    # interpolates it, and there is none yet. NOTE: the ranks below still
-    # encode the v1 order (screening before grounding); the v2 reorder lands
-    # with the phase-2 orchestration cutover.
+    # The out-of-vocabulary discovery pass (concept fields, serial after
+    # in-vocab grounding). Present in every v2 concept chain as a node; whether
+    # it issues requests is run config (the metadata's oov node is Optional),
+    # never a StageToggle — those are hard-stop by locked decision.
     oov_grounding = "oov_grounding"
     freehand_grounding = "freehand_grounding"
+    screening = "screening"
     iterative_grounding = "iterative_grounding"
     single_stage_extraction = "single_stage_extraction"
     reconcile = "reconcile"
 
 
 # Rank used only by ``stop_after``; the chain itself is what actually orders
-# execution. Concept grounding (initial -> iterative) and keyword grounding
-# (freehand) are alternatives, never both in one chain, so they share the
-# grounding tier: ``stop_after(screening)`` stops before either.
+# execution. v2 order: grounding ENUMERATES candidates first, consolidated
+# screening then vets every candidate, and recursive descent runs
+# post-screening. Concept grounding (initial -> oov) and keyword grounding
+# (freehand) are alternatives, never both in one chain, so initial and freehand
+# share the enumeration tier: ``stop_after(relationship)`` stops before either.
 _STAGE_RANK: dict[PipelineStage, int] = {
     PipelineStage.prefill: 0,
     PipelineStage.single_stage_extraction: 1,
     PipelineStage.phrase_search: 1,
     PipelineStage.recursive_search: 2,
     PipelineStage.relationship: 3,
-    PipelineStage.screening: 4,
-    PipelineStage.initial_grounding: 5,
+    PipelineStage.initial_grounding: 4,
+    PipelineStage.freehand_grounding: 4,
     PipelineStage.oov_grounding: 5,
-    PipelineStage.freehand_grounding: 5,
-    PipelineStage.iterative_grounding: 6,
-    PipelineStage.reconcile: 7,
+    PipelineStage.screening: 6,
+    PipelineStage.iterative_grounding: 7,
+    PipelineStage.reconcile: 8,
 }
 
 # The third `>`-delimited segment of a batch request's custom ID, per stage.
@@ -88,6 +87,7 @@ STAGE_REQUEST_ID_TOKEN: dict[PipelineStage, str] = {
     PipelineStage.relationship: "llm_phrase_relationship",
     PipelineStage.screening: "llm_phrase_relationship_screening",
     PipelineStage.initial_grounding: "llm_phrase_initial_grounding",
+    PipelineStage.oov_grounding: "llm_phrase_oov_grounding",
     PipelineStage.freehand_grounding: "llm_phrase_freehand_grounding",
     PipelineStage.iterative_grounding: "llm_phrase_recursive_grounding",
 }

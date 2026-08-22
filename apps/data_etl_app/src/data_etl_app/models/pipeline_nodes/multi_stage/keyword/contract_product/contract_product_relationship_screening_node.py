@@ -7,24 +7,23 @@ from llm_providers.db_models.gpt_batch_request import (
 )
 from llm_providers.models.file_objects.prompt import Prompt
 from core.models.pipeline_nodes import PipelineContext
-from core.models.pipeline_nodes.multi_stage.base.llm_phrase_relationship_screening_node import (
-    LLMPhraseRelationshipScreeningNode,
+from core.models.pipeline_nodes.multi_stage.keyword.keyword_relationship_screening_node import (
+    KeywordRelationshipScreeningNode,
 )
 from data_etl_app.models.types_and_enums import KeywordTypeEnum
 from llm_providers.field_types import BatchRequestIDType
 
 if TYPE_CHECKING:
-    from data_etl_app.models.pipeline_nodes.multi_stage.keyword.contract_product.contract_product_freehand_grounding_node import (
-        ContractProductFreehandGroundingNode,
+    from data_etl_app.models.pipeline_nodes.multi_stage.keyword.contract_product.contract_product_reconcile_node import (
+        ContractProductReconcileNode,
     )
 
 logger = logging.getLogger(__name__)
 
 
-class ContractProductRelationshipScreeningNode(
-    LLMPhraseRelationshipScreeningNode[KeywordTypeEnum]
-):
-    """Phase 4 for the contract-manufacturing product branch.
+class ContractProductRelationshipScreeningNode(KeywordRelationshipScreeningNode):
+    """Screening for the contract-manufacturing product branch (v2: downstream
+    of the shared freehand grounding pass).
 
     Unlike the search/recursive-search/relationship phases, this phase is NOT
     shared with the pure-product branch: it uses the real
@@ -36,7 +35,7 @@ class ContractProductRelationshipScreeningNode(
     def __init__(
         self,
         field_type: KeywordTypeEnum,
-        next_node: ContractProductFreehandGroundingNode,
+        next_node: ContractProductReconcileNode,
         phrase_relationship_screening_prompt: Prompt,
     ):
         super().__init__(
@@ -53,3 +52,12 @@ class ContractProductRelationshipScreeningNode(
         )
 
         return pipeline_context[ContractProductRelationshipNode]
+
+    def get_upstream_freehand_grounding_map(
+        self, pipeline_context: PipelineContext
+    ) -> dict[BatchRequestIDType, GPTBatchRequest]:
+        from data_etl_app.models.pipeline_nodes.multi_stage.keyword.contract_product.contract_product_freehand_grounding_node import (
+            ContractProductFreehandGroundingNode,
+        )
+
+        return pipeline_context[ContractProductFreehandGroundingNode]

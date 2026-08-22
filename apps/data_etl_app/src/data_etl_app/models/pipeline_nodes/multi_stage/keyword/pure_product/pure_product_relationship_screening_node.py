@@ -14,15 +14,16 @@ from data_etl_app.models.types_and_enums import KeywordTypeEnum
 from llm_providers.field_types import BatchRequestIDType
 
 if TYPE_CHECKING:
-    from data_etl_app.models.pipeline_nodes.multi_stage.keyword.pure_product.pure_product_freehand_grounding_node import (
-        PureProductFreehandGroundingNode,
+    from data_etl_app.models.pipeline_nodes.multi_stage.keyword.pure_product.pure_product_reconcile_node import (
+        PureProductReconcileNode,
     )
 
 logger = logging.getLogger(__name__)
 
 
 class PureProductRelationshipScreeningNode(KeywordRelationshipScreeningNode):
-    """Phase 4 for the pure-product branch.
+    """Screening for the pure-product branch, downstream of freehand grounding
+    in v2 — it judges the freehand pass's minted candidates.
 
     Uses the pure-product screening prompt (``product_phrase_screening_pure_product``).
     """
@@ -30,7 +31,7 @@ class PureProductRelationshipScreeningNode(KeywordRelationshipScreeningNode):
     def __init__(
         self,
         field_type: KeywordTypeEnum,
-        next_node: PureProductFreehandGroundingNode,
+        next_node: PureProductReconcileNode,
         phrase_relationship_screening_prompt: Prompt,
     ):
         super().__init__(
@@ -47,3 +48,12 @@ class PureProductRelationshipScreeningNode(KeywordRelationshipScreeningNode):
         )
 
         return pipeline_context[PureProductRelationshipNode]
+
+    def get_upstream_freehand_grounding_map(
+        self, pipeline_context: PipelineContext
+    ) -> dict[BatchRequestIDType, GPTBatchRequest]:
+        from data_etl_app.models.pipeline_nodes.multi_stage.keyword.pure_product.pure_product_freehand_grounding_node import (
+            PureProductFreehandGroundingNode,
+        )
+
+        return pipeline_context[PureProductFreehandGroundingNode]

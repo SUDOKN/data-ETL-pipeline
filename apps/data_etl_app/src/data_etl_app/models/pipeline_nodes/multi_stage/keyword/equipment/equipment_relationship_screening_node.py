@@ -14,28 +14,26 @@ from data_etl_app.models.types_and_enums import KeywordTypeEnum
 from llm_providers.field_types import BatchRequestIDType
 
 if TYPE_CHECKING:
-    from data_etl_app.models.pipeline_nodes.multi_stage.keyword.equipment.equipment_freehand_grounding_node import (
-        EquipmentFreehandGroundingNode,
+    from data_etl_app.models.pipeline_nodes.multi_stage.keyword.equipment.equipment_reconcile_node import (
+        EquipmentReconcileNode,
     )
 
 logger = logging.getLogger(__name__)
 
 
 class EquipmentRelationshipScreeningNode(KeywordRelationshipScreeningNode):
-    """Phase 4: screen/normalize equipment relationships.
+    """Equipment screening (v2: downstream of freehand grounding).
 
-    Uses the equipment screening prompt (``equipment_phrase_relationship_screening``),
-    which names the equipment CATEGORY a phrase supports — never a brand, model, or
-    individual unit — and rejects any phrase for which no category can be determined.
-    The reject is derived from the reported rules rather than declared (see
-    ``passed_implied_by``). Every input phrase is always present in the output (see
-    ``LiveScreeningResults``).
+    Uses the equipment screening prompt (``equipment_phrase_relationship_screening``)
+    to judge every minted candidate against its record's own deposition. The
+    verdict is derived from the reported rules rather than declared (see
+    ``passed_implied_by``).
     """
 
     def __init__(
         self,
         field_type: KeywordTypeEnum,
-        next_node: EquipmentFreehandGroundingNode,
+        next_node: EquipmentReconcileNode,
         phrase_relationship_screening_prompt: Prompt,
     ):
         super().__init__(
@@ -52,3 +50,12 @@ class EquipmentRelationshipScreeningNode(KeywordRelationshipScreeningNode):
         )
 
         return pipeline_context[EquipmentRelationshipNode]
+
+    def get_upstream_freehand_grounding_map(
+        self, pipeline_context: PipelineContext
+    ) -> dict[BatchRequestIDType, GPTBatchRequest]:
+        from data_etl_app.models.pipeline_nodes.multi_stage.keyword.equipment.equipment_freehand_grounding_node import (
+            EquipmentFreehandGroundingNode,
+        )
+
+        return pipeline_context[EquipmentFreehandGroundingNode]

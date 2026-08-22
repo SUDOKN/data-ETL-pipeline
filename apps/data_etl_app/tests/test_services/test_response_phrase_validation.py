@@ -32,12 +32,12 @@ from core.services.phrase_blocks_contract import (
     sent_phrases_from_user_message,
     sent_record_ids_from_user_message,
 )
-from core.services.pipeline_nodes.multi_stage.llm_grounding_node_service_v2 import (
+from core.services.pipeline_nodes.multi_stage.llm_grounding_node_service import (
     build_record_payloads,
     create_deferred_record_grounding_gpt_request,
     parse_record_grounding_group_result,
 )
-from core.services.pipeline_nodes.multi_stage.llm_screening_node_service_v2 import (
+from core.services.pipeline_nodes.multi_stage.llm_relationship_screening_node_service import (
     build_screening_payloads,
     create_deferred_record_screening_gpt_request,
     parse_record_screening_group_result,

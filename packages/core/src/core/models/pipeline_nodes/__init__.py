@@ -60,6 +60,9 @@ from core.models.pipeline_nodes.multi_stage.concept.concept_relationship_screeni
 from core.models.pipeline_nodes.multi_stage.concept.concept_initial_grounding_node import (
     ConceptInitialGroundingNode,
 )
+from core.models.pipeline_nodes.multi_stage.concept.concept_oov_grounding_node import (
+    ConceptOovGroundingNode,
+)
 from core.models.pipeline_nodes.multi_stage.concept.concept_iterative_grounding_node import (
     ConceptIterativeGroundingNode,
 )
@@ -125,6 +128,7 @@ __all__ = [
     "ConceptRelationshipNode",
     "ConceptRelationshipScreeningNode",
     "ConceptInitialGroundingNode",
+    "ConceptOovGroundingNode",
     "ConceptIterativeGroundingNode",
     "ConceptExtractionPrefillNode",
     "ConceptReconcileNode",

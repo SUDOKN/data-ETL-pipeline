@@ -32,7 +32,6 @@ from data_etl_app.services.prompt_assembly_service import (
     _dumps_example,
     _resolve_entity_placeholders,
     _resolve_runtime_tokens,
-    _sentinel_branch_id,
     load_all_catalogs,
     prompt_s3_key,
     render_prompt,
@@ -390,24 +389,20 @@ def test_every_example_rule_asks_for_a_real_explanation(prompt_name):
 @pytest.mark.parametrize("prompt_name", sorted(CATALOGS))
 def test_output_example_leaves_the_matching_ladder_open(prompt_name):
     """Naming a branch teaches the model to echo that branch back. The ladder is a
-    decision it has to make, so the example lists the alternatives instead — except
-    for the escape hatch, whose scenario IS that branch."""
+    decision it has to make, so the example lists the alternatives instead."""
     catalog = CATALOGS[prompt_name]
     example = render_prompt(catalog).split("```json")[1]
-    sentinel_branch = _sentinel_branch_id(catalog)
 
     named = [
         rule.id
         for rule in catalog.walk_rules()
-        if rule.report_when == "when_chosen"
-        and rule.id != sentinel_branch
-        and f'"{rule.id}"' in example
+        if rule.report_when == "when_chosen" and f'"{rule.id}"' in example
     ]
     branches = [
         rule.id for rule in catalog.walk_rules() if rule.report_when == "when_chosen"
     ]
-    # One branch left after the sentinel is not a choice, so naming it is honest.
-    if len(set(branches) - {sentinel_branch}) > 1:
+    # One branch is not a choice, so naming it is honest.
+    if len(branches) > 1:
         assert not named, f"example names ladder branches {named}"
 
 

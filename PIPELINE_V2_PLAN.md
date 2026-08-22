@@ -138,11 +138,95 @@ entities forward").
   capped-recording/retry-cap/fabricated-id/candidate-axis coverage the sibling
   services lacked; v1-bound freehand batching test deleted. Real assembler
   renders all 24 prompts. Suite 987; pyright 0.
-- **Next action:** user reviews A+B; then 2.9 slice C — bundles/embedding
-  (F12 digest), OOV node + request-id token, node re-pointing, descent loop +
-  reconcile on the derivations, orchestration reorder, Manufacturer→V2 typing,
-  v1 service/type deletion + dispatcher collapse, minimal dump adaptation.
-- **Blockers:** none.
+- **A+B COMMITTED (0ec8c8c). C FOUNDATIONS LANDED (2026-08-20):** OOV bundle
+  field (`llm_phrase_oov_grounding_req_ids`, additive default), F12 digest
+  util (`upstream_content_digest`/`upstream_digest_segment` in
+  request_custom_id_util — canonical JSON, 12 hex chars, `|ud=` segment) + 3
+  tests. Suite 990; pyright delta 0 (two pre-existing covariant-override
+  errors on DeferredConceptExtractionRequests noted, untouched).
+- **SLICE C CASCADE DONE (2026-08-21) — PHASE 2 COMPLETE, suite 984 green,
+  pyright delta net-negative on every touched file (166 vs 201 baseline over
+  the comparable set; remaining errors are the codebase's pre-existing
+  duck-typing/override styles).** All 11 steps landed as one coordinated
+  change:
+  the deferred models carry V2 metadata; prefill constructs it (concept
+  prefill takes an Optional oov metadata node); the relationship node parses
+  to the masked record map with the v2 schema + records dummy; in-vocab
+  grounding runs straight off the relationship map; the NEW OOV node
+  (`llm_phrase_oov_grounding_node.py` + `ConceptOovGroundingNode`) is serial
+  after in-vocab with vocab outline + per-record `already_identified`, and an
+  OFF pass (metadata node None) embeds zero requests and publishes an empty
+  map; screening vets `candidates_for_screening` (in-vocab ∪ OOV for
+  concepts, freehand mints for keywords) with both axes held; the descent
+  seeds from `descent_seed_tagging_results`, sends record payloads with the
+  children riding in the prompt placeholders, and stops on empty options
+  (sentinel stop_reason retired; false_child kept); reconcile assembles
+  ConceptsFound per F10 (OOV mints matching a vocab label re-route in-vocab;
+  keywords = passed freehand candidates, `dedupe_equivalent_keywords` at the
+  union); dumps emit one row per RECORD (statuses no_mentions/no_candidates/
+  screened_out/grounded/screening_dropped; the oov key is OMITTED when the
+  pass never ran); factory chains search → recursive search → relationship →
+  in-vocab/freehand → oov → screening → descent → reconcile, `_STAGE_RANK`
+  reordered, Manufacturer fields typed `*ResultsV2`.
+- **F12 landed pipeline-wide:** every downstream `get_request_custom_id`
+  (relationship, in-vocab, oov, screening, freehand, descent) appends
+  `|ud=<digest of the group's own upstream-derived payload>`; descent ids
+  derive theirs through the same `get_itp_from_itr` evidence walk request
+  creation uses, so id and payload cannot disagree.
+- **Deletions:** v1 node services (initial/freehand grounding, v1
+  relationship/screening parse paths), v1 wire builders + SentinelWireEntry +
+  `NO_CANDIDATE`/`JUDGED`, the `_v2` wire dispatchers (canonical
+  `response_model_for` now dispatches the record-keyed builders), v1
+  stats/metadata/results classes (ConceptExtractionStats/Results,
+  KeywordExtractionStats/Results, LLMPhraseExtractionStats/Metadata,
+  ScreeningVerdict/LiveScreeningResults, v1 relationship wire shapes,
+  `partition_by_search_round`, `merge_stage_repairs`), `RuleCatalog.
+  sentinel_tag` + validator + the assembly sentinel branch. The `_v2` service
+  files collapsed into canonical names (`llm_grounding_node_service.py`,
+  `llm_relationship_screening_node_service.py`,
+  `llm_phrase_relationship_node_service.py`).
+- **Sentinel tripwire KEPT (deliberate deviation, narrow):** the sentinel
+  CONTRACT is dead, but `is_sentinel_grounding_label` + the two label
+  constants survive as the none-of-the-above guard in
+  `get_deepest_concepts_and_oov` — the descent trail is the one result path
+  screening never vets, and a v1-habit echo must not persist as a discovered
+  OOV label (the bug that bit twice).
+- **PromptService/pins CLEARED (verified 2026-08-21):** the 4
+  `{field}_phrase_oov_grounding` prompts and the MERGED
+  `product_phrase_freehand_grounding` all carry S3 version ids in their
+  catalogs' `published` blocks, and `assemble_prompts.py check` passes clean
+  (all prompts match their catalogs and their published versions). The
+  publish evidently ran after this note was written; no blocker remains.
+- **Cosmetic debt (deliberate):** the V2-suffixed model/stats names stay;
+  folding them into unsuffixed canonical names is a later slice.
+- **Pyright delta re-verified against a HEAD worktree (2026-08-21):** touched
+  files 172 → 177 baseline (net −5, now measured not asserted). Three GENUINE
+  new errors found and fixed: the keyword relationship nodes' `next_node`
+  annotations still said `*RelationshipScreeningNode` (v1 chain) while the
+  factory now passes `*FreehandGroundingNode` — all three re-annotated;
+  factory + nodes pyright 0. Remaining new-in-file errors are new instances
+  of the codebase's standing override style (covariant `execute`/
+  `create_batch_requests`-family overrides: +1 freehand, +1 initial, 7 on the
+  new OOV node, +1 each concept/keyword screening `get_chunk_candidates_by_
+  record`) — same kind their siblings already carry; tightening base
+  signatures is a separate design call. Suite 984 green.
+- **Flip review SIGNED OFF in chat 2026-08-21** — all three deviations approved
+  (RecordGroundingEntry storage shape, sentinel label guard at
+  get_deepest_concepts_and_oov, V2-name debt). Digest remains at
+  [PIPELINE_V2_FLIP_REVIEW.md](PIPELINE_V2_FLIP_REVIEW.md).
+- **Next action: NONE — PLAN CLOSED 2026-08-21.** The Phase 4 measurement gate
+  was **ABANDONED** (user decision in chat): the gate run (20260822T012722,
+  alecmfg + steelcraft at factory defaults) crashed on BOTH subjects inside the
+  stages v3 replaces — steelcraft hit a 20k-token gpt-4.1 repetition loop in the
+  relationship stage (truncated JSON → parse ValueError); alecmfg's freehand
+  grounding answered 1 of 30 sent records (MissingResponseRecords). Rather than
+  repair stages scheduled for deletion, all further work proceeds under
+  [PIPELINE_V3_PLAN.md](PIPELINE_V3_PLAN.md) — crash evidence in its appendix D,
+  pivot decision in its STATE + journal. No v2 coverage numbers exist; v3's
+  Phase 5 gate compares against the v1 baselines instead. This plan's Phase 5
+  (GT rebuild) was already deferred into v3's Phase 6. The v2 flip itself STAYS
+  (signed off; it is the codebase v3 builds on).
+- **Blockers:** n/a (closed).
 
 *Update this block at every substep completion. Journal rows are append-only, at the
 bottom of this file.*
@@ -259,10 +343,14 @@ cutover.
 
 ## Phase 4 — Measurement gate (before GT)
 
-Run v2 on alecmfg + steelcraft via the user's notebook; compare against v1 baselines
-(material_caps audit: 56% boundary precision, 45% context coverage, per-stage
-verdicts). Test relationship `max_phrases_per_request` 20–30; OOV on vs off. If v2
-loses to v1, iterate here — GT waits.
+**ABANDONED 2026-08-21** — the gate run crashed on both subjects (see STATE);
+superseded by the v3 pivot ([PIPELINE_V3_PLAN.md](PIPELINE_V3_PLAN.md)
+appendix D).
+
+~~Run v2 on alecmfg + steelcraft via the user's notebook; compare against v1
+baselines (material_caps audit: 56% boundary precision, 45% context coverage,
+per-stage verdicts). Test relationship `max_phrases_per_request` 20–30; OOV on vs
+off. If v2 loses to v1, iterate here — GT waits.~~
 
 ## Phase 5 — GT rebuild
 
@@ -293,3 +381,7 @@ special-casing (v2 GT), `no_candidate` branch, `identified_entity`.
 | 2026-08-20 | Fan-out built: 17 draft catalogs + freehand v2 skeleton, 21 previews rendered, suite 1146 green untouched. SCR-1a relocation map: material determinability / process operation-on-work / conformity name-number-body notes moved into IGR+OOV as E1b evidence notes; conformity's displayed-cert note stays in screening as SCR-1a; product "stated, not inferred" became merged-freehand E1b. Equipment: v1 kind guard G2(+notes) became grounding condition FGR-Q1(+notes); screening keeps sells-not-uses (G1) + aspirational (G2); access-mode note rides SCR-2b. Product freehand MERGED into `product_phrase_freehand_grounding` (field_types [products, contract_products], neutral rels "makes or works on") — resurrects the pre-split shared prompt; pure-vs-contract lives only in screening. Keyword grounding = conditions only (naming ladder M1/M2 + sentinel deleted); FGR-QC1 depth report removed (F17 extended), Q4's QC1 cross-reference sentence dropped. v1 industry-flavored 2b note NOT propagated (supplying-into-it logic is industry-only); anonymization note propagated to all 7 screening catalogs. |
 | 2026-08-20 | User review of the industry pattern → three notes, locked as F15–F17: downstream-stage info scrubbed from all four skeletons + both grounding E1a notes (user's own preview edit was canonical — sources now reproduce it byte-for-byte); screening renumbered SCR-1/SCR-2(+2a/2b)/SCR-G1 with the cross-reference updated; RGR quality section + vocab deleted, RGR-Q2 renamed RGR-E1. Previews re-rendered; suite 1146 green. |
 | 2026-08-20 | 0.2 user-approved. 0.3 industry pattern built as inert drafts after the coupling discovery (see STATE): screening v2 (SCR-1 + no_candidate gone, per-candidate judgment, SCR-2/SCR-3/SCR-G2 kept with record wording), IGR v2 (attribution → IGR-E1 evidence condition + E1a release note, ladder cut to M1/M2, sentinel gone, unmatched-candidates-unrecorded moved to skeleton prose), NEW OOV catalog (OGR-E1/K1/N1 conditions, "candidate" wire unit, stage `phrase_oov_grounding`), RGR v2 (RGR-Q1 attribution dropped — watch item; Q2/M1–M3/QC1 kept, M4 sentinel gone). 4 skeletons rewritten around records/mentions/synthesis with the relationship-release paragraph; previews rendered via scratch harness. Suite 1146 green untouched. |
+| 2026-08-21 | Pyright delta re-measured against a clean HEAD worktree (extraPaths config so baseline sources resolve to themselves, not the editable-install paths): 177 baseline → 172 working tree on the touched set. The aggregate hid three real regressions — `next_node` on ContractProduct/Equipment/PureProduct relationship nodes still annotated the v1 successor (screening) while the factory wires the v2 one (freehand grounding); fixed at the source, factory + all three nodes now pyright 0 (this also cleared contract_product_relationship_node's standing error). The other new errors are fresh instances of the codebase's established covariant-override style on the new/edited node files; left as-is deliberately — the fix would be base-class signature redesign, not annotation repair. Suite 984 green. |
+| 2026-08-21 | Slice C cascade landed suite-green (984; from 990 pre-flip — the retired v1 sentinel/validation tests net against the new v2 rows/status coverage). The flip inverted the chains everywhere at once: grounding enumerates off the relationship records, the OOV pass rides serially with pass-1 results in each record's payload, consolidated screening judges every candidate on both held axes, and the descent walks passed in-vocab survivors over record payloads with minted sibling proposals still allowed (RGR-M3) — so descent parses hold ids exactly but not labels. F12's `|ud=` digest went into every downstream custom_id including descents, where the id is minted through the same evidence walk creation uses. One deviation flagged: the sentinel LABEL guard stays at `get_deepest_concepts_and_oov` (descent trail bypasses screening; the none-of-the-above leak is a twice-measured bug), while every other piece of sentinel machinery — wire arms, catalog field, assembly branch, stop_reason production — is deleted. Dumps are record rows now, with never-asked (key omitted) vs asked-found-nothing (declined + explanation) preserved for the OOV pass. Owed: publish/pin the 4 oov prompts + merged product freehand; V2-name fold-back stays cosmetic debt. |
+| 2026-08-21 | Flip review signed off in chat (all three deviations approved). Phase 4 gate started — user driving runs via the notebook. Pipeline v3 designed across the same day's sessions; PIPELINE_V3_PLAN.md created with fork ledger D1–D20 and the anaphora + normalization measurements as its evidence appendix. Phase 5 GT rebuild deferred into v3 Phase 6. |
+| 2026-08-21 | **PLAN CLOSED.** Phase 4 gate ABANDONED after the run (20260822T012722) crashed on both subjects: steelcraft — relationship repetition loop burned the full 20k completion cap (identical {form, page, account} mention block repeated; finish_reason='length'; JSON truncated mid-string; ValueError at parse_llm_phrase_relationship_records); alecmfg — freehand grounding returned valid JSON answering 1/30 sent records (finish_reason='stop', 244 tokens) → MissingResponseRecords. User decision: pivot to v3 now instead of repairing stages v3 deletes; no v2 coverage numbers will exist, v1 hand-audit baselines become v3's comparison arm. Grounding under-answer policy carried into v3 (user-owned). Full evidence + replay-hazard note: v3 plan appendix D. |

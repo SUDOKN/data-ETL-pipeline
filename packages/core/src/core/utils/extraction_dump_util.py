@@ -1,47 +1,48 @@
 """The extraction dumps: one diagnostic file per (subject, field) per run.
 
-Every field writes one — multi-stage fields as per-phrase rows, single-stage
+Every field writes one — multi-stage fields as per-RECORD rows, single-stage
 fields (binary classification, addresses, business description) as the parsed
 result per chunk — with a shared provenance header and per-request token usage.
 Multi-stage row anatomy is documented below; the rest of this docstring is
 about those rows.
 
-One row per phrase the pipeline SCREENED (plus any phrase a grounding response
-introduced that screening never saw — kept visible rather than dropped, since
-that drift is itself a defect worth reading). The old dump emitted a row per
-GROUNDED phrase, which made ``screening.passed`` a constant ``true`` and hid
-exactly the phrases a reviewer most needs: the screened-out majority, the
-out-of-vocab proposals, and the initial sentinel verdicts.
+One row per RECORD the relationship stage deposed, the empty-mentions ones
+included: they are the honest not-found branch and their absence downstream
+must read as "never asked", not as silence. Each row joins every later stage
+through the record_id, with the phrase alongside for the reader.
 
 Row anatomy:
 
-- ``status`` — the branch the phrase actually took. Deliberately redundant with
-  the other fields (a second witness): ``_status_from_fields`` re-derives it
-  from the row alone and a disagreement is logged as an error, so a future bug
-  that makes the fields lie gets caught by the dump instead of shipping in it.
-    * ``screened_out``   — failed relationship screening; no grounding fields.
-    * ``grounded``       — at least one real tag survived: an iterative-tagging
-                           node or an out-of-vocab proposal.
-    * ``no_match``       — grounding saw it and every verdict was a stop
-                           (sentinel / false child).
-    * ``grounding_dropped`` — passed screening but no grounding response carries
-                           it. Defensive: response-vs-input validation should
-                           make this unreachable; until then it must not
-                           masquerade as ``no_match``.
-- ``search_round`` / ``provenance`` — where the phrase came from. Round 0 is
-  reserved for brute-search survivors, so an unmatched phrase is
+- ``status`` — the branch the record actually took. Deliberately redundant with
+  the other fields (a second witness): ``_record_status_from_fields`` re-derives
+  it from the row alone and a disagreement is logged as an error, so a future
+  bug that makes the fields lie gets caught by the dump instead of shipping.
+    * ``no_mentions``    — the honest not-found branch; the record skipped
+                           grounding AND screening code-side (fork F9).
+    * ``no_candidates``  — every grounding pass declined the record: asked,
+                           found nothing, said why.
+    * ``screened_out``   — grounding enumerated candidates and screening
+                           rejected every one.
+    * ``grounded``       — at least one candidate passed screening.
+    * ``screening_dropped`` — candidates exist but no screening verdict does.
+                           Defensive: the two-axis hold should make this
+                           unreachable; until then it must not masquerade as
+                           ``screened_out``.
+- ``search_round`` / ``provenance`` — where the record's phrase came from.
+  Round 0 is reserved for brute-search survivors, so an unmatched phrase is
   ``search_round: null, provenance: "unmatched"`` rather than a fake round 0.
-- ``lvl_by_lvl_itps`` — option-B shape: every tag sits at an explicit level.
-  Tags with no tree position (initial-grounding sentinels and out-of-vocab
-  proposals) sit at level 0 with ``parent_group_id: null``; iterative-tagging
-  nodes keep their real position. Each node carries:
+- ``in_vocab_grounding`` / ``oov_grounding`` / ``freehand_grounding`` — the
+  enumeration passes: ``{"tags": {...}}`` or ``{"declined": <explanation>}``.
+  A pass that never ran has its key OMITTED (the OOV pass is run config), so
+  "never asked" and "asked, found nothing" stay distinguishable.
+- ``lvl_by_lvl_itps`` — the descent trail (concepts only): every tag sits at an
+  explicit level. Each node carries:
     * ``origin`` — which stage produced its rules (``initial_grounding`` /
       ``recursive_grounding`` / ``both``), derived from which rule maps are
       non-empty.
-    * ``source`` — how the node entered the dump (``iterative_tagging`` or one
-      of the synthesized kinds). ``origin`` says who spoke; ``source`` says why
-      the row exists — a synthesized node and a trail node can be
-      field-identical without it.
+    * ``source`` — how the node entered the dump (``iterative_tagging`` today;
+      the slot survives so synthesized rows stay distinguishable if one ever
+      returns).
     * ``in_vocab`` — whether ``group_id`` resolves in the ontology.
 """
 
@@ -51,25 +52,26 @@ import json
 import logging
 from datetime import datetime, timezone
 from pathlib import Path
-from typing import Iterator, Mapping, Optional
+from typing import Any, Iterator, Mapping, Optional
 
 from requests.structures import CaseInsensitiveDict
 
 from llm_providers.models.llm_model import NO_MODEL
 
 from core.models.extraction_schemas.grounding import (
-    PhraseToTagAndRulesMap,
-    TagToAppliedRulesMap,
-    is_sentinel_grounding_label,
+    RecordGroundingEntry,
+    RecordGroundingResults,
 )
 from core.models.extraction_schemas.iterative_tagging import (
     PhraseTrail,
 )
 from core.models.extraction_schemas.relationship import (
-    LLMPhraseRelationshipResults,
+    MaskedLLMPhraseRelationshipResults,
+    MaskedPhraseRelationshipRecord,
 )
 from core.models.extraction_schemas.screening import (
-    LiveScreeningResults,
+    CandidateScreeningVerdict,
+    RecordScreeningResults,
 )
 from core.models.extraction_schemas.search import LLMSearchResults
 from core.models.field_types import ExtractionFieldType
@@ -79,14 +81,6 @@ from core.utils.subject_name_lint import count_own_name_hits
 logger = logging.getLogger(__name__)
 
 _SOURCE_TRAIL = "iterative_tagging"
-# Defensive: an in-vocab direct tag whose concept has no real trail node to
-# carry it. Every recognized tag descends now (the exact-label settle policy
-# is gone), so this fires only for a concept the level walk stopped elsewhere
-# (false child / sentinel kills its direct copies) or failed to seed — the tag
-# still has to reach the dump either way.
-_SOURCE_UNWALKED = "initial_grounding_unwalked"
-_SOURCE_SENTINEL = "initial_grounding_sentinel"
-_SOURCE_OOV = "initial_grounding_oov"
 
 
 def _provenance(
@@ -101,9 +95,7 @@ def _provenance(
     return None, "unmatched"
 
 
-def _origin(
-    direct: TagToAppliedRulesMap, iterative: TagToAppliedRulesMap
-) -> str:
+def _origin(direct: dict, iterative: dict) -> str:
     if direct and iterative:
         return "both"
     if iterative:
@@ -124,158 +116,174 @@ def _sorted_levels(
     }
 
 
-def _node_is_real(node: dict[str, object]) -> bool:
-    """A node asserting a label that reaches results — not a stop record."""
-    return node["stop_reason"] is None and not is_sentinel_grounding_label(
-        str(node["group_id"])
-    )
+def _grounding_dump(entry: Optional[RecordGroundingEntry]) -> Optional[dict[str, Any]]:
+    """One pass's verdict for a record: tags, a declination, or None when the
+    pass never saw the record (a no-mentions record is never sent)."""
+    if entry is None:
+        return None
+    if entry.tags:
+        return {
+            "tags": {
+                tag: [rule.model_dump(mode="json") for rule in applied_rules]
+                for tag, applied_rules in entry.tags.items()
+            }
+        }
+    return {"declined": entry.explanation}
 
 
-def _status_from_fields(
-    screening_dump: Optional[dict[str, object]],
-    levels: dict[int, list[dict[str, object]]],
+def _screening_dump(
+    verdicts: Optional[dict[str, CandidateScreeningVerdict]],
+) -> Optional[dict[str, Any]]:
+    if verdicts is None:
+        return None
+    return {
+        candidate: verdict.model_dump(mode="json")
+        for candidate, verdict in verdicts.items()
+    }
+
+
+def _record_candidates(*groundings: Optional[RecordGroundingEntry]) -> set[str]:
+    candidates: set[str] = set()
+    for entry in groundings:
+        if entry is not None:
+            candidates.update(entry.tags)
+    return candidates
+
+
+def _record_status(
+    record: MaskedPhraseRelationshipRecord,
+    candidates: set[str],
+    verdicts: Optional[dict[str, CandidateScreeningVerdict]],
 ) -> str:
+    if not record.record.mentions:
+        return "no_mentions"
+    if not candidates:
+        return "no_candidates"
+    if verdicts is None:
+        return "screening_dropped"
+    if any(verdict.passed for verdict in verdicts.values()):
+        return "grounded"
+    return "screened_out"
+
+
+def _record_status_from_fields(row: dict[str, Any]) -> str:
     """The second witness: re-derive ``status`` from the row's own fields."""
-    if screening_dump is not None and not screening_dump.get("passed"):
-        return "screened_out"
-    all_nodes = [node for nodes in levels.values() for node in nodes]
-    if not all_nodes:
-        return "grounding_dropped"
-    real_nodes = [node for node in all_nodes if _node_is_real(node)]
-    if not real_nodes:
-        return "no_match"
-    return "grounded"
+    record = row.get("record")
+    if isinstance(record, dict) and not record.get("mentions"):
+        return "no_mentions"
+    tags: set[str] = set()
+    for key in ("in_vocab_grounding", "oov_grounding", "freehand_grounding"):
+        pass_dump = row.get(key)
+        if isinstance(pass_dump, dict):
+            tags.update(pass_dump.get("tags", {}))
+    if not tags:
+        return "no_candidates"
+    screening = row.get("screening")
+    if not isinstance(screening, dict):
+        return "screening_dropped"
+    if any(
+        isinstance(verdict, dict) and verdict.get("passed")
+        for verdict in screening.values()
+    ):
+        return "grounded"
+    return "screened_out"
 
 
-def merge_stage_repairs(
-    repairs_by_stage: dict[str, dict[str, str]],
-) -> dict[str, dict[str, str]]:
-    """Invert ``{stage: {phrase: answered}}`` into ``{phrase: {stage: answered}}``.
-
-    Per stage, not one flat map: more than one stage holds its response now, so
-    the same phrase can be mis-echoed twice — screening under one drifted string
-    and grounding under another. A flat map keeps whichever stage happened to be
-    parsed last and loses the other without saying so, which is the exact class
-    of silent loss this field exists to end. Stage keys are the row's own field
-    names so a reader can line them up.
-    """
-    merged: dict[str, dict[str, str]] = {}
-    for stage, repairs in repairs_by_stage.items():
-        for phrase, answered in repairs.items():
-            merged.setdefault(phrase, {})[stage] = answered
-    return merged
+def _record_own_name_hits(record: MaskedPhraseRelationshipRecord) -> str:
+    """Every model-authored text on the record, joined for the own-name lint."""
+    parts = [record.record.synthesis]
+    for mention in record.record.mentions:
+        parts.append(mention.account)
+    return "\n".join(part for part in parts if part)
 
 
-def _finish_row(
+def _base_record_row(
     *,
-    phrase: str,
-    status: str,
-    screening_dump: Optional[dict[str, object]],
-    relationship: Optional[str],
-    levels: dict[int, list[dict[str, object]]],
+    record_id: str,
+    entry: MaskedPhraseRelationshipRecord,
     search_rounds: dict[int, LLMSearchResults],
-    repairs_flat: dict[str, dict[str, str]],
-    subject_name: Optional[str] = None,
-) -> dict[str, object]:
-    rederived = _status_from_fields(screening_dump, levels)
-    if rederived != status:
-        logger.error(
-            f"extraction dump row inconsistency for {phrase!r}: writer chose status "
-            f"{status!r} but the row's fields read as {rederived!r}"
-        )
-    for nodes in levels.values():
-        for node in nodes:
-            # Rules from a descent imply a parent that descended: a rootless
-            # node claiming recursive origin means the join above mislabeled it.
-            if node["origin"] != "initial_grounding" and node["parent_group_id"] is None:
-                logger.error(
-                    f"extraction dump row inconsistency for {phrase!r}: node "
-                    f"{node['group_id']!r} claims origin {node['origin']!r} "
-                    f"with no parent"
-                )
-    search_round, provenance = _provenance(phrase, search_rounds)
+    relationship_repairs: dict[str, str],
+    subject_name: Optional[str],
+) -> dict[str, Any]:
+    search_round, provenance = _provenance(entry.phrase, search_rounds)
     row: dict[str, object] = {
-        "phrase": phrase,
-        "status": status,
+        "record_id": record_id,
+        "phrase": entry.phrase,
         "search_round": search_round,
         "provenance": provenance,
-        "relationship": relationship,
-        "screening": screening_dump,
+        "record": entry.record.model_dump(mode="json"),
     }
     # Present ONLY when the model answered under a different string and the
-    # reconciler rewrote it back. Every other field on this row is keyed by the
-    # sent phrase, which is what makes the stages joinable; without this the
-    # substitution leaves no trace outside a log line and the trail reads as if
-    # the model echoed cleanly. Absent means "answered verbatim" — do not emit
-    # null, or every clean row grows a field to say nothing happened.
-    if phrase in repairs_flat:
-        row["phrase_as_answered"] = repairs_flat[phrase]
+    # reconciler rewrote it back. Relationship is the one stage left where a
+    # repair is possible — every record-keyed stage downstream holds exactly.
+    # Absent means "answered verbatim" — do not emit null, or every clean row
+    # grows a field to say nothing happened.
+    if entry.phrase in relationship_repairs:
+        row["phrase_as_answered"] = relationship_repairs[entry.phrase]
     # Record-only lint of the relationship prompt's own-name ban. Present only
     # on violation, like the repair field: a clean row must not grow a field to
     # say nothing happened.
-    if subject_name and relationship:
-        own_name_hits = count_own_name_hits(relationship, subject_name)
-        if own_name_hits:
-            row["relationship_own_name_hits"] = own_name_hits
-    if screening_dump is None:
-        # A grounding response introduced this phrase; screening never saw it.
-        # Visible on purpose — response-vs-input validation is the real fix.
-        row["note"] = "phrase_not_in_screening"
-        logger.warning(
-            f"phrase {phrase!r} appears in grounding output but was never screened"
+    if subject_name:
+        own_name_hits = count_own_name_hits(
+            _record_own_name_hits(entry), subject_name
         )
-    if levels:
-        row["lvl_by_lvl_itps"] = _sorted_levels(levels)
+        if own_name_hits:
+            row["record_own_name_hits"] = own_name_hits
     return row
 
 
-def build_concept_phrase_rows(
+def _check_row_status(row: dict[str, Any], status: str) -> None:
+    rederived = _record_status_from_fields(row)
+    if rederived != status:
+        logger.error(
+            f"extraction dump row inconsistency for record {row.get('record_id')!r}: "
+            f"writer chose status {status!r} but the row's fields read as "
+            f"{rederived!r}"
+        )
+
+
+def build_concept_record_rows(
     *,
-    screening_flat: LiveScreeningResults,
-    relationship_flat: LLMPhraseRelationshipResults,
-    initial_grounding_flat: PhraseToTagAndRulesMap,
+    masked_flat: MaskedLLMPhraseRelationshipResults,
+    in_vocab_flat: RecordGroundingResults,
+    oov_flat: Optional[RecordGroundingResults],
+    screening_flat: RecordScreeningResults,
     phrase_trails: list[PhraseTrail],
     search_rounds: dict[int, LLMSearchResults],
     match_label_to_concept_map: CaseInsensitiveDict[Concept],
-    repairs_flat: Optional[dict[str, dict[str, str]]] = None,
+    relationship_repairs: Optional[dict[str, str]] = None,
     subject_name: Optional[str] = None,
-) -> list[dict[str, object]]:
-    trails_by_phrase = {trail.phrase: trail for trail in phrase_trails}
-    phrases = sorted(
-        set(screening_flat)
-        | set(initial_grounding_flat)
-        | set(trails_by_phrase)
-    )
+) -> list[dict[str, Any]]:
+    """Concept-path rows: one per relationship record, the two grounding
+    passes, the per-candidate screening verdicts, and the descent trail.
 
-    rows: list[dict[str, object]] = []
-    for phrase in phrases:
-        verdict = screening_flat.get(phrase)
-        screening_dump = verdict.model_dump() if verdict is not None else None
-        relationship = relationship_flat.get(phrase)
+    ``oov_flat`` is None when the OOV pass never ran this run — its key is then
+    omitted from every row, so "never asked" cannot read as "found nothing".
+    """
+    trails_by_record = {trail.phrase: trail for trail in phrase_trails}
+    relationship_repairs = relationship_repairs or {}
 
-        if verdict is not None and not verdict.passed:
-            if phrase in initial_grounding_flat or phrase in trails_by_phrase:
-                logger.error(
-                    f"screened-out phrase {phrase!r} still reached grounding — "
-                    f"the screening filter upstream is leaking"
-                )
-            rows.append(
-                _finish_row(
-                    phrase=phrase,
-                    status="screened_out",
-                    screening_dump=screening_dump,
-                    relationship=relationship,
-                    levels={},
-                    search_rounds=search_rounds,
-                    repairs_flat=repairs_flat or {},
-                    subject_name=subject_name,
-                )
-            )
-            continue
+    rows: list[dict[str, Any]] = []
+    for record_id in sorted(masked_flat):
+        entry = masked_flat[record_id]
+        row = _base_record_row(
+            record_id=record_id,
+            entry=entry,
+            search_rounds=search_rounds,
+            relationship_repairs=relationship_repairs,
+            subject_name=subject_name,
+        )
+        in_vocab_entry = in_vocab_flat.get(record_id)
+        row["in_vocab_grounding"] = _grounding_dump(in_vocab_entry)
+        oov_entry: Optional[RecordGroundingEntry] = None
+        if oov_flat is not None:
+            oov_entry = oov_flat.get(record_id)
+            row["oov_grounding"] = _grounding_dump(oov_entry)
+        verdicts = screening_flat.get(record_id)
+        row["screening"] = _screening_dump(verdicts)
 
-        levels: dict[int, list[dict[str, object]]] = {}
-
-        trail = trails_by_phrase.get(phrase)
+        trail = trails_by_record.get(record_id)
+        levels: dict[int, list[dict[str, Any]]] = {}
         if trail is not None:
             for lvl, itps in trail.lvl_by_lvl_itps.items():
                 for itp in itps:
@@ -284,246 +292,114 @@ def build_concept_phrase_rows(
                         itp.direct_og_tag_w_rules, itp.iterative_og_tag_w_rules
                     )
                     node["source"] = _SOURCE_TRAIL
-                    node["in_vocab"] = (
-                        itp.group_id in match_label_to_concept_map
-                    )
+                    node["in_vocab"] = itp.group_id in match_label_to_concept_map
                     levels.setdefault(lvl, []).append(node)
+        if levels:
+            row["lvl_by_lvl_itps"] = _sorted_levels(levels)
 
-        # Initial-grounding tags the trail cannot carry, each at its level:
-        # positionless tags (sentinels and out-of-vocab proposals) at level 0.
-        trail_real_group_ids = {
-            str(node["group_id"])
-            for nodes in levels.values()
-            for node in nodes
-            if node["stop_reason"] is None
-        }
-        for tag, applied_rules in initial_grounding_flat.get(phrase, {}).items():
-            concept = match_label_to_concept_map.get(tag)
-            if concept is not None:
-                if concept.name in trail_real_group_ids:
-                    # The concept entered iterative tagging; the trail node
-                    # above already carries this tag via the direct copy.
-                    continue
-                logger.warning(
-                    f"phrase {phrase!r}: in-vocab tag {tag!r} has no real "
-                    f"trail node for concept {concept.name!r} — every "
-                    f"recognized tag should enter iterative tagging now"
-                )
-                levels.setdefault(concept.level, []).append(
-                    {
-                        "parent_group_id": None,
-                        "group_id": concept.name,
-                        "stop_reason": None,
-                        "direct_og_tag_w_rules": {
-                            tag: [rule.model_dump(mode="json") for rule in applied_rules]
-                        },
-                        "iterative_og_tag_w_rules": {},
-                        "origin": "initial_grounding",
-                        "source": _SOURCE_UNWALKED,
-                        "in_vocab": True,
-                    }
-                )
-                continue
-            source = (
-                _SOURCE_SENTINEL
-                if is_sentinel_grounding_label(tag)
-                else _SOURCE_OOV
-            )
-            levels.setdefault(0, []).append(
-                {
-                    "parent_group_id": None,
-                    "group_id": tag,
-                    "stop_reason": None,
-                    "direct_og_tag_w_rules": {
-                        tag: [rule.model_dump(mode="json") for rule in applied_rules]
-                    },
-                    "iterative_og_tag_w_rules": {},
-                    "origin": "initial_grounding",
-                    "source": source,
-                    "in_vocab": False,
-                }
-            )
-
-        all_nodes = [node for nodes in levels.values() for node in nodes]
-        real_nodes = [node for node in all_nodes if _node_is_real(node)]
-        if not all_nodes:
-            status = "grounding_dropped"
-            logger.warning(
-                f"phrase {phrase!r} passed screening but no grounding response "
-                f"carries it"
-            )
-        elif not real_nodes:
-            status = "no_match"
-        else:
-            status = "grounded"
-
-        rows.append(
-            _finish_row(
-                phrase=phrase,
-                status=status,
-                screening_dump=screening_dump,
-                relationship=relationship,
-                levels=levels,
-                search_rounds=search_rounds,
-                repairs_flat=repairs_flat or {},
-                subject_name=subject_name,
-            )
+        status = _record_status(
+            entry, _record_candidates(in_vocab_entry, oov_entry), verdicts
         )
-
-    return rows
-
-
-def build_keyword_phrase_rows(
-    *,
-    screening_flat: LiveScreeningResults,
-    relationship_flat: LLMPhraseRelationshipResults,
-    freehand_grounding_flat: PhraseToTagAndRulesMap,
-    search_rounds: dict[int, LLMSearchResults],
-    repairs_flat: Optional[dict[str, dict[str, str]]] = None,
-    subject_name: Optional[str] = None,
-) -> list[dict[str, object]]:
-    """Keyword-path rows. No ontology, so no levels: the grounded categories sit
-    in ``freehand_grounding`` and status distinguishes real categories from the
-    sentinel escape hatch."""
-    phrases = sorted(set(screening_flat) | set(freehand_grounding_flat))
-
-    rows: list[dict[str, object]] = []
-    for phrase in phrases:
-        verdict = screening_flat.get(phrase)
-        screening_dump = verdict.model_dump() if verdict is not None else None
-        relationship = relationship_flat.get(phrase)
-
-        if verdict is not None and not verdict.passed:
-            if phrase in freehand_grounding_flat:
-                logger.error(
-                    f"screened-out phrase {phrase!r} still reached freehand "
-                    f"grounding — the screening filter upstream is leaking"
-                )
-            row = _finish_row(
-                phrase=phrase,
-                status="screened_out",
-                screening_dump=screening_dump,
-                relationship=relationship,
-                levels={},
-                search_rounds=search_rounds,
-                repairs_flat=repairs_flat or {},
-                subject_name=subject_name,
-            )
-            rows.append(row)
-            continue
-
-        groundings = freehand_grounding_flat.get(phrase, {})
-        real_tags = {
-            tag for tag in groundings if not is_sentinel_grounding_label(tag)
-        }
-        if not groundings:
-            status = "grounding_dropped"
-            logger.warning(
-                f"phrase {phrase!r} passed screening but no freehand grounding "
-                f"response carries it"
-            )
-        elif not real_tags:
-            status = "no_match"
-        else:
-            status = "grounded"
-
-        search_round, provenance = _provenance(phrase, search_rounds)
-        row = {
-            "phrase": phrase,
-            "status": status,
-            "search_round": search_round,
-            "provenance": provenance,
-            "relationship": relationship,
-            "screening": screening_dump,
-            "freehand_grounding": {
-                tag: [rule.model_dump(mode="json") for rule in applied_rules]
-                for tag, applied_rules in groundings.items()
-            },
-        }
-        # This branch builds its row inline rather than through _finish_row, so
-        # the repair field has to be repeated here. Same rule: present only when
-        # the model answered under a different string.
-        if repairs_flat and phrase in repairs_flat:
-            row["phrase_as_answered"] = repairs_flat[phrase]
-        if subject_name and relationship:
-            own_name_hits = count_own_name_hits(relationship, subject_name)
-            if own_name_hits:
-                row["relationship_own_name_hits"] = own_name_hits
-        if screening_dump is None:
-            row["note"] = "phrase_not_in_screening"
-            logger.warning(
-                f"phrase {phrase!r} appears in freehand grounding output but was "
-                f"never screened"
-            )
+        row["status"] = status
+        _check_row_status(row, status)
         rows.append(row)
 
     return rows
 
 
-def build_partial_phrase_rows(
+def build_keyword_record_rows(
+    *,
+    masked_flat: MaskedLLMPhraseRelationshipResults,
+    freehand_flat: RecordGroundingResults,
+    screening_flat: RecordScreeningResults,
+    search_rounds: dict[int, LLMSearchResults],
+    relationship_repairs: Optional[dict[str, str]] = None,
+    subject_name: Optional[str] = None,
+) -> list[dict[str, Any]]:
+    """Keyword-path rows. No ontology and no descent, so no levels: the minted
+    candidates sit in ``freehand_grounding`` and screening judges each one."""
+    relationship_repairs = relationship_repairs or {}
+
+    rows: list[dict[str, Any]] = []
+    for record_id in sorted(masked_flat):
+        entry = masked_flat[record_id]
+        row = _base_record_row(
+            record_id=record_id,
+            entry=entry,
+            search_rounds=search_rounds,
+            relationship_repairs=relationship_repairs,
+            subject_name=subject_name,
+        )
+        freehand_entry = freehand_flat.get(record_id)
+        row["freehand_grounding"] = _grounding_dump(freehand_entry)
+        verdicts = screening_flat.get(record_id)
+        row["screening"] = _screening_dump(verdicts)
+
+        status = _record_status(entry, _record_candidates(freehand_entry), verdicts)
+        row["status"] = status
+        _check_row_status(row, status)
+        rows.append(row)
+
+    return rows
+
+
+def build_partial_record_rows(
     *,
     search_rounds: dict[int, LLMSearchResults],
-    relationship_flat: Optional[LLMPhraseRelationshipResults],
-    screening_flat: Optional[LiveScreeningResults],
-    grounding_flat: Optional[PhraseToTagAndRulesMap],
-    grounding_stage: Optional[str] = None,
-    repairs_flat: Optional[dict[str, dict[str, str]]] = None,
+    masked_flat: Optional[MaskedLLMPhraseRelationshipResults],
+    grounding_by_stage: dict[str, Optional[RecordGroundingResults]],
+    screening_flat: Optional[RecordScreeningResults],
+    relationship_repairs: Optional[dict[str, str]] = None,
     subject_name: Optional[str] = None,
-) -> list[dict[str, object]]:
+) -> list[dict[str, Any]]:
     """Rows for a run that stopped before reconcile.
 
     Separate from the two full builders rather than a flag on them, because
-    ``status`` cannot be derived here: ``grounded`` / ``no_match`` /
-    ``screened_out`` are statements about a chain that finished, and a stopped
-    run has no business claiming any of them. Rows carry the stage fields and
-    let the reader draw the conclusion.
+    ``status`` cannot be derived here: its values are statements about a chain
+    that finished, and a stopped run has no business claiming any of them.
+    Rows carry the stage fields and let the reader draw the conclusion.
 
-    A stage that ran but had nothing for a phrase emits an explicit ``null``; a
-    stage that never ran has its key OMITTED. The distinction is the whole point
-    of a partial dump — "screening rejected it" and "screening never happened"
-    must not read the same.
+    A stage that ran but had nothing for a record emits an explicit ``null``; a
+    stage that never ran has its key OMITTED. The distinction is the whole
+    point of a partial dump — "grounding declined it" and "grounding never
+    happened" must not read the same.
 
-    Driven by the union of every stage that ran, search rounds included, so a
-    run stopped after search still dumps its phrases instead of an empty file.
+    A run stopped before relationship has no records at all, so it falls back
+    to one row per searched phrase instead of an empty file.
     """
-    phrases: set[str] = set()
-    for round_phrases in search_rounds.values():
-        phrases |= set(round_phrases)
-    for stage_flat in (relationship_flat, screening_flat, grounding_flat):
-        if stage_flat is not None:
-            phrases |= set(stage_flat)
-
-    repairs_flat = repairs_flat or {}
-    rows: list[dict[str, object]] = []
-    for phrase in sorted(phrases):
-        search_round, provenance = _provenance(phrase, search_rounds)
-        row: dict[str, object] = {
-            "phrase": phrase,
-            "search_round": search_round,
-            "provenance": provenance,
-        }
-        if relationship_flat is not None:
-            relationship = relationship_flat.get(phrase)
-            row["relationship"] = relationship
-            if subject_name and relationship:
-                own_name_hits = count_own_name_hits(relationship, subject_name)
-                if own_name_hits:
-                    row["relationship_own_name_hits"] = own_name_hits
-        if screening_flat is not None:
-            verdict = screening_flat.get(phrase)
-            row["screening"] = verdict.model_dump() if verdict is not None else None
-        if grounding_flat is not None:
-            groundings = grounding_flat.get(phrase)
-            row[grounding_stage or "grounding"] = (
+    relationship_repairs = relationship_repairs or {}
+    if masked_flat is None:
+        phrases: set[str] = set()
+        for round_phrases in search_rounds.values():
+            phrases |= set(round_phrases)
+        rows: list[dict[str, Any]] = []
+        for phrase in sorted(phrases):
+            search_round, provenance = _provenance(phrase, search_rounds)
+            rows.append(
                 {
-                    tag: [rule.model_dump(mode="json") for rule in applied_rules]
-                    for tag, applied_rules in groundings.items()
+                    "phrase": phrase,
+                    "search_round": search_round,
+                    "provenance": provenance,
                 }
-                if groundings is not None
-                else None
             )
-        if phrase in repairs_flat:
-            row["phrase_as_answered"] = repairs_flat[phrase]
+        return rows
+
+    rows = []
+    for record_id in sorted(masked_flat):
+        entry = masked_flat[record_id]
+        row = _base_record_row(
+            record_id=record_id,
+            entry=entry,
+            search_rounds=search_rounds,
+            relationship_repairs=relationship_repairs,
+            subject_name=subject_name,
+        )
+        for stage_key, grounding_flat in grounding_by_stage.items():
+            if grounding_flat is None:
+                continue
+            row[stage_key] = _grounding_dump(grounding_flat.get(record_id))
+        if screening_flat is not None:
+            row["screening"] = _screening_dump(screening_flat.get(record_id))
         rows.append(row)
 
     return rows

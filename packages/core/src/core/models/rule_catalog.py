@@ -5,7 +5,6 @@ from typing import Iterator, Literal, Optional
 
 from pydantic import BaseModel, ConfigDict, model_validator
 
-from core.models.extraction_schemas.grounding import SENTINEL_GROUNDING_LABELS
 
 # Pipeline stages that report applied rules. A catalog's ``stage`` is one of
 # these, and ``(stage, field_type)`` identifies exactly one prompt.
@@ -164,17 +163,6 @@ class RuleCatalog(BaseModel):
     # needs when its payload gains definitions.
     option_evidence: str = "what the option names"
 
-    # The reserved label this prompt's escape-hatch branch tells the model to
-    # return, for the catalogs that have one — recursive grounding and freehand.
-    # Initial grounding has no escape hatch and leaves this unset.
-    #
-    # It exists so the literal in the rule text can be checked against the constant
-    # the parser matches on. Those are two copies of one string in two files, and a
-    # prompt that says "None of these" while the code looks for "None of the above"
-    # fails silently: the sentinel stops being recognised and flows into the results
-    # as if it were a discovered label.
-    sentinel_tag: Optional[str] = None
-
     @model_validator(mode="after")
     def check_ids_and_vocab(self) -> "RuleCatalog":
         seen: set[str] = set()
@@ -214,40 +202,6 @@ class RuleCatalog(BaseModel):
                 )
         return self
 
-    @model_validator(mode="after")
-    def check_sentinel_tag_is_spelled_in_a_rule(self) -> "RuleCatalog":
-        if self.sentinel_tag is None:
-            return self
-
-        if self.sentinel_tag not in SENTINEL_GROUNDING_LABELS:
-            raise ValueError(
-                f"{self.prompt_name}: sentinel_tag {self.sentinel_tag!r} is not a "
-                f"reserved grounding label. The parser only recognises "
-                f"{sorted(SENTINEL_GROUNDING_LABELS)}, so anything else would reach "
-                f"the results as a discovered label."
-            )
-
-        # Exactly one PREFERENCE rule must spell it, because that is the branch that
-        # tells the model to return it and there is only ever one escape hatch. Other
-        # kinds may mention it freely — a formatting rule exempting the sentinel from
-        # its own layout requirement is the case that proved this.
-        #
-        # Verbatim and case-sensitive: is_sentinel_grounding_label casefolds, but the
-        # prompt should still show the model the exact spelling rather than lean on
-        # that.
-        branches = [
-            rule.id
-            for rule in self.walk_rules()
-            if rule.kind == "preference" and self.sentinel_tag in rule.text
-        ]
-        if len(branches) != 1:
-            raise ValueError(
-                f"{self.prompt_name}: sentinel_tag {self.sentinel_tag!r} must be "
-                f"spelled verbatim in exactly one preference rule — the branch that "
-                f"instructs the model to return it — so the prompt and the parser "
-                f"agree on it; found it in {branches or 'no preference rules'}"
-            )
-        return self
 
     @model_validator(mode="after")
     def check_option_evidence_is_declared_where_it_is_used(self) -> "RuleCatalog":

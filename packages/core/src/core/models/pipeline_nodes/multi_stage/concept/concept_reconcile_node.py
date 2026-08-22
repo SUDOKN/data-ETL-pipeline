@@ -10,18 +10,23 @@ from core.models.extraction_subject import (
 )
 from core.models.extraction_results.concept_extraction_results import (
     ConceptsFound,
-    ConceptExtractionStatsMap,
-    ConceptExtractionStats,
-    ConceptExtractionResults,
 )
-from core.models.extraction_results.llm_phrase_extraction_results import (
-    partition_by_search_round,
+from core.models.extraction_results.llm_phrase_extraction_results_v2 import (
+    ConceptExtractionResultsV2,
+    ConceptExtractionStatsMapV2,
+    ConceptExtractionStatsV2,
+    InitialGroundingStats,
+    partition_records_by_search_round,
 )
 from core.models.deferred_extraction.deferred_concept_extraction import (
     DeferredConceptExtractionRequests,
-    IterativeTaggingRequest,
 )
+from core.models.extraction_schemas.grounding import RecordGroundingResults
 from core.models.field_types import ConceptFieldType
+from core.models.rule_catalog import (
+    STAGE_INITIAL_GROUNDING,
+    STAGE_OOV_GROUNDING,
+)
 from core.models.skos_concept import Concept
 from core.models.pipeline_nodes.base.base_node import PipelineContext
 from core.models.pipeline_nodes.base.base_reconcile_node import (
@@ -42,6 +47,9 @@ from core.models.pipeline_nodes.multi_stage.concept.concept_relationship_screeni
 from core.models.pipeline_nodes.multi_stage.concept.concept_initial_grounding_node import (
     ConceptInitialGroundingNode,
 )
+from core.models.pipeline_nodes.multi_stage.concept.concept_oov_grounding_node import (
+    ConceptOovGroundingNode,
+)
 from core.models.pipeline_nodes.multi_stage.concept.concept_iterative_grounding_node import (
     ConceptIterativeGroundingNode,
 )
@@ -50,24 +58,26 @@ from scraper.models.s3.scraped_text_file import ScrapedTextFile
 from core.services.pipeline_nodes.multi_stage.llm_phrase_recursive_search_node_service import (
     build_llm_phrase_search_results,
 )
-from core.services.pipeline_nodes.multi_stage.llm_initial_grounding_service import (
-    get_oov_tags_from_trs,
-    get_tagged_results_from_initial_grounding,
+from core.services.pipeline_nodes.multi_stage.llm_grounding_node_service import (
+    get_record_grounding_result,
 )
 from core.services.pipeline_nodes.multi_stage.llm_recursive_grounding_service import (
     get_phrase_trails,
     get_deepest_concepts_and_oov,
 )
-
+from core.services.pipeline_nodes.multi_stage.pipeline_v2_derivations import (
+    candidates_that_passed,
+)
+from core.services.rule_catalog_registry import get_rule_catalog
 
 from core.utils.label_dedupe_util import dedupe_case_insensitive
 from core.utils.rdf_to_graph_util import (
     get_match_label_to_concept_map,
 )
+from core.utils.record_id_util import phrases_by_record_id
 from core.utils.extraction_dump_util import (
-    build_concept_phrase_rows,
+    build_concept_record_rows,
     build_run_provenance,
-    merge_stage_repairs,
     write_extraction_dump,
 )
 
@@ -117,79 +127,37 @@ class ConceptReconcileNode(ReconcileNode[ConceptFieldType]):
         completed_phrase_relationship_req_map = pipeline_context[
             ConceptRelationshipNode
         ]
-        completed_relationship_screening_req_map = pipeline_context[
-            ConceptRelationshipScreeningNode
-        ]
-        completed_initial_grounding_req_map = pipeline_context[
+        completed_in_vocab_grounding_req_map = pipeline_context[
             ConceptInitialGroundingNode
+        ]
+        completed_oov_grounding_req_map = pipeline_context[ConceptOovGroundingNode]
+        completed_screening_req_map = pipeline_context[
+            ConceptRelationshipScreeningNode
         ]
         completed_recursive_grounding_req_map = pipeline_context[
             ConceptIterativeGroundingNode
         ]
 
-        all_recognized_tagged_concepts: set[Concept] = set()
-        all_unrecognized_tagged_concepts: set[str] = set()
-        chunk_stats: ConceptExtractionStatsMap = {}
+        vocab_labels = list(self.match_label_to_concept_map.keys())
+        in_vocab_catalog = get_rule_catalog(
+            STAGE_INITIAL_GROUNDING, self.field_type.name
+        )
+        oov_catalog = get_rule_catalog(STAGE_OOV_GROUNDING, self.field_type.name)
+
+        all_in_vocab_results: set[str] = set()
+        all_out_of_vocab_results: set[str] = set()
+        chunk_stats: ConceptExtractionStatsMapV2 = {}
         chunked_dump_contents: dict[str, dict[str, object]] = {}
         for (
             chunk_bounds,
             bundle,
         ) in extraction_requests.chunked_request_map.items():
-            iteratively_tagged_concept_nodes = bundle.llm_phrase_recursive_tagging_reqs
-            if iteratively_tagged_concept_nodes is None:
+            if bundle.llm_phrase_recursive_tagging_reqs is None:
                 raise ValueError(
                     f"Cannot proceed to reconcile {self.field_type.name} for {subject.subject_unique_id}:{chunk_bounds} "
-                    f"as bundle.llm_phrase_recursive_grounding_root_req_nodes is None implying "
+                    f"as bundle.llm_phrase_recursive_tagging_reqs is None implying "
                     f"recursive grounding hasn't been executed yet."
                 )
-
-            unrecognized_tagged_concepts: set[str] = set()
-            recognized_tagged_concepts: set[Concept] = set()
-
-            initially_tagged_trs = await get_tagged_results_from_initial_grounding(
-                subject_unique_id=subject.subject_unique_id,
-                field_type=self.field_type,
-                chunk_bounds=chunk_bounds,
-                extraction_bundle=bundle,
-                completed_request_map=completed_initial_grounding_req_map,
-                timestamp=timestamp,
-            )
-            # Out-of-vocab tags never enter iterative tagging, so the trail
-            # below cannot carry them; they are collected here. Every
-            # recognized tag descends now, so the trail carries all of those.
-            unrecognized_tagged_concepts.update(
-                get_oov_tags_from_trs(
-                    initially_tagged_trs=initially_tagged_trs,
-                    match_label_to_concept_map=self.match_label_to_concept_map,
-                )
-            )
-
-            llm_phrase_relationship_flat = await ConceptRelationshipNode.get_result(
-                subject_unique_id=subject.subject_unique_id,
-                field_type=self.field_type,
-                chunk_bounds=chunk_bounds,
-                extraction_bundle=bundle,
-                timestamp=timestamp,
-                completed_request_map=completed_phrase_relationship_req_map,
-            )
-            # Collected per chunk so the dump can say which phrases the model
-            # answered under a different string. One sink PER STAGE: the same
-            # phrase can be mis-echoed at more than one, and a shared dict would
-            # keep only whichever was parsed last. Relationship is the only stage
-            # still unheld, so a repair there stays invisible here.
-            screening_repairs: dict[str, str] = {}
-            initial_grounding_repairs: dict[str, str] = {}
-            llm_phrase_screening_flat = (
-                await ConceptRelationshipScreeningNode.get_result(
-                    subject_unique_id=subject.subject_unique_id,
-                    field_type=self.field_type,
-                    chunk_bounds=chunk_bounds,
-                    extraction_bundle=bundle,
-                    completed_request_map=completed_relationship_screening_req_map,
-                    timestamp=timestamp,
-                    repairs=screening_repairs,
-                )
-            )
 
             llm_search_results = await build_llm_phrase_search_results(
                 subject_unique_id=subject.subject_unique_id,
@@ -201,27 +169,58 @@ class ConceptReconcileNode(ReconcileNode[ConceptFieldType]):
                 timestamp=timestamp,
                 brute_search_results=bundle.brute,
             )
-            llm_phrase_initial_grounding_flat = (
-                await ConceptInitialGroundingNode.get_result(
+
+            # The relationship stage is the one place the model still echoes
+            # phrases back, so it keeps a repairs sink; every record-keyed
+            # stage downstream holds exactly and has none.
+            relationship_repairs: dict[str, str] = {}
+            masked_flat = await ConceptRelationshipNode.get_result(
+                subject_unique_id=subject.subject_unique_id,
+                field_type=self.field_type,
+                chunk_bounds=chunk_bounds,
+                extraction_bundle=bundle,
+                completed_request_map=completed_phrase_relationship_req_map,
+                timestamp=timestamp,
+                repairs=relationship_repairs,
+            )
+            phrase_by_record_id = phrases_by_record_id(masked_flat)
+
+            in_vocab_flat = await get_record_grounding_result(
+                stage_label="in-vocab grounding",
+                subject_unique_id=subject.subject_unique_id,
+                field_name=self.field_type.name,
+                chunk_bounds=chunk_bounds,
+                catalog=in_vocab_catalog,
+                group_req_ids=bundle.llm_phrase_initial_grounding_req_ids,
+                completed_request_map=completed_in_vocab_grounding_req_map,
+                timestamp=timestamp,
+                allowed_labels=vocab_labels,
+            )
+            # An OFF OOV pass embedded no ids; None here keeps "never asked"
+            # distinguishable from "asked, found nothing" in stats and dump.
+            oov_ran = bool(bundle.llm_phrase_oov_grounding_req_ids)
+            oov_flat: RecordGroundingResults = (
+                await get_record_grounding_result(
+                    stage_label="oov grounding",
                     subject_unique_id=subject.subject_unique_id,
-                    field_type=self.field_type,
+                    field_name=self.field_type.name,
                     chunk_bounds=chunk_bounds,
-                    extraction_bundle=bundle,
-                    completed_request_map=completed_initial_grounding_req_map,
+                    catalog=oov_catalog,
+                    group_req_ids=bundle.llm_phrase_oov_grounding_req_ids,
+                    completed_request_map=completed_oov_grounding_req_map,
                     timestamp=timestamp,
-                    repairs=initial_grounding_repairs,
                 )
+                if oov_ran
+                else {}
             )
 
-            # Partition flat dicts into per-round dicts by earliest search round.
-            llm_phrase_relationship_results = partition_by_search_round(
-                llm_phrase_relationship_flat, llm_search_results
-            )
-            llm_phrase_screening_results = partition_by_search_round(
-                llm_phrase_screening_flat, llm_search_results
-            )
-            llm_phrase_initial_grounding_results = partition_by_search_round(
-                llm_phrase_initial_grounding_flat, llm_search_results
+            screening_flat = await ConceptRelationshipScreeningNode.get_result(
+                subject_unique_id=subject.subject_unique_id,
+                field_type=self.field_type,
+                chunk_bounds=chunk_bounds,
+                extraction_bundle=bundle,
+                completed_request_map=completed_screening_req_map,
+                timestamp=timestamp,
             )
 
             lvl_by_lvl_iterative_grounding_results = await ConceptIterativeGroundingNode.get_result(
@@ -229,7 +228,8 @@ class ConceptReconcileNode(ReconcileNode[ConceptFieldType]):
                 field_type=self.field_type,
                 chunk_bounds=chunk_bounds,
                 extraction_bundle=bundle,
-                completed_initial_grounding_req_map=completed_initial_grounding_req_map,
+                completed_in_vocab_grounding_req_map=completed_in_vocab_grounding_req_map,
+                completed_screening_req_map=completed_screening_req_map,
                 completed_recursive_grounding_req_map=completed_recursive_grounding_req_map,
                 match_label_to_concept_map=self.match_label_to_concept_map,
                 timestamp=timestamp,
@@ -237,52 +237,69 @@ class ConceptReconcileNode(ReconcileNode[ConceptFieldType]):
             phrase_trails = get_phrase_trails(
                 lvl_by_lvl_iterative_grounding_results=lvl_by_lvl_iterative_grounding_results
             )
-            # Rows are driven by the SCREENED phrase set (plus any drifted
-            # grounding-only phrases), joined against the flat pre-partition
-            # maps — the trail alone cannot carry screened-out, sentinel, or
-            # out-of-vocab verdicts.
-            chunked_dump_contents[chunk_bounds] = {
-                "rows": build_concept_phrase_rows(
-                    screening_flat=llm_phrase_screening_flat,
-                    relationship_flat=llm_phrase_relationship_flat,
-                    initial_grounding_flat=llm_phrase_initial_grounding_flat,
-                    phrase_trails=phrase_trails,
-                    search_rounds=llm_search_results,
-                    match_label_to_concept_map=self.match_label_to_concept_map,
-                    repairs_flat=merge_stage_repairs(
-                        {
-                            "screening": screening_repairs,
-                            "initial_grounding": initial_grounding_repairs,
-                        }
-                    ),
-                    subject_name=pipeline_context.subject_name,
-                )
-            }
+
+            # Results per fork F10. in_vocab = passed screening then deepened by
+            # the descent (the trails' deepest concepts); out_of_vocab = passed
+            # OOV candidates, plus the descent's own sibling proposals. An OOV
+            # candidate that restates a vocabulary label re-routes in-vocab via
+            # the existing label map — never raised, never persisted as a fake
+            # ontology gap.
+            recognized_tagged_concepts: set[Concept] = set()
+            unrecognized_tagged_concepts: set[str] = set()
             for phrase_trail in phrase_trails:
-                recognized_deepest_concepts, oov = get_deepest_concepts_and_oov(
+                recognized_deepest_concepts, descent_oov = get_deepest_concepts_and_oov(
                     phrase_trail=phrase_trail,
                     match_label_to_concept_map=self.match_label_to_concept_map,
                 )
-                unrecognized_tagged_concepts.update(oov)
                 recognized_tagged_concepts.update(recognized_deepest_concepts)
+                unrecognized_tagged_concepts.update(descent_oov)
+            for passed_candidate in candidates_that_passed(oov_flat, screening_flat):
+                concept = self.match_label_to_concept_map.get(passed_candidate)
+                if concept is not None:
+                    recognized_tagged_concepts.add(concept)
+                else:
+                    unrecognized_tagged_concepts.add(passed_candidate)
 
-            # prune recognized_tagged_concepts to only contain only deepest nodes (may or may not be a leaf)
+            chunked_dump_contents[chunk_bounds] = {
+                "rows": build_concept_record_rows(
+                    masked_flat=masked_flat,
+                    in_vocab_flat=in_vocab_flat,
+                    oov_flat=oov_flat if oov_ran else None,
+                    screening_flat=screening_flat,
+                    phrase_trails=phrase_trails,
+                    search_rounds=llm_search_results,
+                    match_label_to_concept_map=self.match_label_to_concept_map,
+                    relationship_repairs=relationship_repairs,
+                    subject_name=pipeline_context.subject_name,
+                )
+            }
 
-            chunk_stats[chunk_bounds] = ConceptExtractionStats(
+            chunk_stats[chunk_bounds] = ConceptExtractionStatsV2(
                 results=ConceptsFound(
                     in_vocab={c.name for c in recognized_tagged_concepts},
                     out_of_vocab={uc for uc in unrecognized_tagged_concepts},
                 ),
                 brute_search=bundle.brute,
                 llm_phrase_search=llm_search_results,
-                llm_phrase_relationship=llm_phrase_relationship_results,
-                llm_phrase_screening=llm_phrase_screening_results,
-                llm_phrase_initial_grounding=llm_phrase_initial_grounding_results,
+                llm_phrase_relationship=partition_records_by_search_round(
+                    masked_flat, phrase_by_record_id, llm_search_results
+                ),
+                llm_phrase_screening=partition_records_by_search_round(
+                    screening_flat, phrase_by_record_id, llm_search_results
+                ),
+                llm_phrase_initial_grounding=InitialGroundingStats(
+                    in_vocab=partition_records_by_search_round(
+                        in_vocab_flat, phrase_by_record_id, llm_search_results
+                    ),
+                    out_of_vocab=partition_records_by_search_round(
+                        oov_flat, phrase_by_record_id, llm_search_results
+                    ),
+                ),
                 llm_phrase_recursive_grounding=lvl_by_lvl_iterative_grounding_results,
             )
 
-            all_recognized_tagged_concepts.update(recognized_tagged_concepts)
-            all_unrecognized_tagged_concepts.update(unrecognized_tagged_concepts)
+            all_in_vocab_results.update(c.name for c in recognized_tagged_concepts)
+            all_out_of_vocab_results.update(unrecognized_tagged_concepts)
 
         write_extraction_dump(
             subject_unique_id=subject.subject_unique_id,
@@ -294,8 +311,9 @@ class ConceptReconcileNode(ReconcileNode[ConceptFieldType]):
                 **completed_phrase_search_req_map,
                 **completed_recursive_search_req_map,
                 **completed_phrase_relationship_req_map,
-                **completed_relationship_screening_req_map,
-                **completed_initial_grounding_req_map,
+                **completed_in_vocab_grounding_req_map,
+                **completed_oov_grounding_req_map,
+                **completed_screening_req_map,
                 **completed_recursive_grounding_req_map,
             },
             run_provenance=build_run_provenance(
@@ -305,13 +323,13 @@ class ConceptReconcileNode(ReconcileNode[ConceptFieldType]):
             ),
         )
 
-        final_extraction_result = ConceptExtractionResults(
+        final_extraction_result = ConceptExtractionResultsV2(
             metadata=extraction_requests.metadata,
             results=ConceptsFound(
-                in_vocab={c.name for c in all_recognized_tagged_concepts},
+                in_vocab=all_in_vocab_results,
                 # Chunks propose out-of-vocab labels independently, so the union
                 # carries case variants of one label; per-chunk stats keep them raw.
-                out_of_vocab=dedupe_case_insensitive(all_unrecognized_tagged_concepts),
+                out_of_vocab=dedupe_case_insensitive(all_out_of_vocab_results),
             ),
             chunked_extraction_stats=chunk_stats,
         )
@@ -327,8 +345,9 @@ class ConceptReconcileNode(ReconcileNode[ConceptFieldType]):
                     *completed_phrase_search_req_map.keys(),
                     *completed_recursive_search_req_map.keys(),
                     *completed_phrase_relationship_req_map.keys(),
-                    *completed_relationship_screening_req_map.keys(),
-                    *completed_initial_grounding_req_map.keys(),
+                    *completed_in_vocab_grounding_req_map.keys(),
+                    *completed_oov_grounding_req_map.keys(),
+                    *completed_screening_req_map.keys(),
                     *completed_recursive_grounding_req_map.keys(),
                 ]
             ),

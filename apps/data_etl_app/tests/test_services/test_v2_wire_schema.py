@@ -11,9 +11,9 @@ from pydantic import ValidationError
 
 from core.models.extraction_schemas.catalog_wire_schema import (
     flatten_rule_slots,
-    response_format_for_v2,
-    response_model_for_v2,
-    screening_response_model_v2,
+    response_format_for,
+    response_model_for,
+    screening_response_model,
 )
 from core.models.extraction_schemas.response_format_util import (
     assert_strict_schema_supported,
@@ -85,7 +85,7 @@ def _fill_placeholders(node: Any, schema: dict[str, Any], root: dict[str, Any]) 
 
 
 def _filled_example(catalog: RuleCatalog) -> dict:
-    schema = response_format_for_v2(catalog)["json_schema"]["schema"]
+    schema = response_format_for(catalog)["json_schema"]["schema"]
     filled = _fill_placeholders(_example(catalog), schema, schema)
     assert filled is not None, (
         f"{catalog.prompt_name}: v2 example matches no branch of the v2 schema"
@@ -102,7 +102,7 @@ def test_all_twentyone_phrase_catalogs_are_deployed():
 @pytest.mark.parametrize("prompt_name", sorted(V2_CATALOGS))
 def test_the_v2_schema_is_one_strict_mode_accepts(prompt_name):
     assert_strict_schema_supported(
-        response_format_for_v2(V2_CATALOGS[prompt_name]), where=prompt_name
+        response_format_for(V2_CATALOGS[prompt_name]), where=prompt_name
     )
 
 
@@ -112,7 +112,7 @@ def test_the_v2_example_decodes_under_the_v2_schema(prompt_name):
     the decoder must agree on the shape — including the required-nullable
     ``explanation`` a populated grounding entry must show as null."""
     catalog = V2_CATALOGS[prompt_name]
-    response_model_for_v2(catalog).model_validate(_filled_example(catalog))
+    response_model_for(catalog).model_validate(_filled_example(catalog))
 
 
 def _industry_screening() -> RuleCatalog:
@@ -125,7 +125,7 @@ def _industry_grounding() -> RuleCatalog:
 
 def test_screening_rejects_missing_record_id_extra_keys_and_missing_slots():
     catalog = _industry_screening()
-    model = response_model_for_v2(catalog)
+    model = response_model_for(catalog)
     good = _filled_example(catalog)
 
     no_record_id = copy.deepcopy(good)
@@ -148,7 +148,7 @@ def test_grounding_explanation_key_cannot_be_omitted():
     """The structural declination rests on the key always arriving: an entry
     without it would make 'yielded nothing' silent again."""
     catalog = _industry_grounding()
-    model = response_model_for_v2(catalog)
+    model = response_model_for(catalog)
     good = _filled_example(catalog)
 
     dropped = copy.deepcopy(good)
@@ -184,7 +184,7 @@ def test_flatten_rule_slots_reads_a_v2_candidate_unit():
     """Storage stays list[AppliedRule]: a decoded v2 screening candidate flattens
     to its catalog's rules in document order, guards included."""
     catalog = _industry_screening()
-    parsed = screening_response_model_v2(catalog).model_validate(
+    parsed = screening_response_model(catalog).model_validate(
         _filled_example(catalog)
     )
     guard_entry = parsed.screenings[-1]
@@ -196,7 +196,7 @@ def test_flatten_rule_slots_reads_a_v2_candidate_unit():
 
 def test_flatten_rule_slots_reads_a_v2_option_unit_with_its_chosen_branch():
     catalog = _industry_grounding()
-    model = response_model_for_v2(catalog)
+    model = response_model_for(catalog)
     parsed = model.model_validate(_filled_example(catalog))
     unit = parsed.groundings[0].options[0]  # type: ignore[attr-defined]
     applied = flatten_rule_slots(catalog, unit)

@@ -192,10 +192,10 @@ def test_a_lone_violation_keeps_its_bare_message():
 
 def _wire_model():
     from core.models.extraction_schemas.catalog_wire_schema import (
-        grounding_response_model_v2,
+        grounding_response_model,
     )
 
-    return grounding_response_model_v2(CATALOG)
+    return grounding_response_model(CATALOG)
 
 
 def _judged(**overrides):
@@ -502,66 +502,3 @@ def test_no_rules_at_all_is_a_reject_not_a_vacuous_pass():
     no rules is the null-entity shortcut in the screening parser, which is a phrase
     that offered no candidate at all."""
     assert not _implies([])
-
-
-# --- the sentinel literal is one string in two files ----------------------------
-
-
-def _catalog_with_sentinel(sentinel, branch_text):
-    return RuleCatalog.model_validate(
-        {
-            "catalog_version": "test.1",
-            "prompt_name": "test_catalog",
-            "stage": "phrase_recursive_grounding",
-            "field_types": ["industries"],
-            "entity_noun": "industry",
-            "entity_relationships": {
-                "base": "serve",
-                "third_person": "serves",
-                "gerund": "serving",
-            },
-            "outcome_vocab": {"preference": ["chosen"]},
-            "sections": [
-                {
-                    "section_id": "matching",
-                    "heading": "h",
-                    "combinator": "ordered",
-                    "rules": [
-                        {
-                            "id": "M1",
-                            "kind": "preference",
-                            "reportable": True,
-                            "report_when": "when_chosen",
-                            "text": "an option is chosen",
-                        },
-                        {
-                            "id": "M2",
-                            "kind": "preference",
-                            "reportable": True,
-                            "report_when": "when_chosen",
-                            "text": branch_text,
-                        },
-                    ],
-                }
-            ],
-            "published": {},
-            "sentinel_tag": sentinel,
-        }
-    )
-
-
-def test_sentinel_must_be_a_reserved_label():
-    with pytest.raises(ValueError, match="not a reserved grounding label"):
-        _catalog_with_sentinel("None of these", 'return "None of these"')
-
-
-def test_sentinel_must_be_spelled_verbatim_in_its_branch():
-    """The failure this exists for: the prompt tells the model to say one thing and
-    the parser looks for another, so the sentinel stops being recognised and flows
-    into the results as a discovered label."""
-    with pytest.raises(ValueError, match="exactly one preference rule"):
-        _catalog_with_sentinel("None of the above", 'return "None of these" instead')
-
-    assert _catalog_with_sentinel(
-        "None of the above", 'nothing is recorded except "None of the above"'
-    )

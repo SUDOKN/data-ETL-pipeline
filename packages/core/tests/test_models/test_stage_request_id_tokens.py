@@ -39,6 +39,7 @@ def test_downstream_widens_to_every_later_stage():
         "llm_phrase_relationship",
         "llm_phrase_relationship_screening",
         "llm_phrase_initial_grounding",
+        "llm_phrase_oov_grounding",
         "llm_phrase_freehand_grounding",
         "llm_phrase_recursive_grounding",
     }

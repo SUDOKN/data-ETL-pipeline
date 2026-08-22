@@ -36,6 +36,12 @@ dependencies = [
   "tiktoken>=0.5.0",   # Add the version you need
 
   "psutil>=5.9.0",
+
+  # Pipeline v3 normalizer (core/utils/form_normalizer.py): dictionary-backed
+  # lemmatization of surface forms. PINNED EXACTLY — its dictionary defines the
+  # group keys, so a silent upgrade would regroup every run; bumping this pin
+  # means bumping NORMALIZER_VERSION and re-recording the golden digest.
+  "lemminflect==0.2.3",
 ]
 
 [project.optional-dependencies]
@@ -44,6 +50,7 @@ dev = [
   "pytest-asyncio>=1.0.0",
   "pytest-cov>=3.0.0",
   "ruff>=0.8.0",
+  "hypothesis>=6.100", # property tests for the v3 pure core (normalizer, matcher, fold)
 ]
 
 [tool.setuptools.packages.find]

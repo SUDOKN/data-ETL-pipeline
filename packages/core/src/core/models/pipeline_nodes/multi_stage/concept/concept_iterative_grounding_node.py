@@ -40,7 +40,7 @@ class ConceptIterativeGroundingNode(LLMPhraseIterativeGroundingNode):
             known_concepts=known_concepts,
         )
 
-    def get_upstream_initial_grounding_map(
+    def get_upstream_in_vocab_grounding_map(
         self, pipeline_context: PipelineContext
     ) -> dict[BatchRequestIDType, GPTBatchRequest]:
         from core.models.pipeline_nodes.multi_stage.concept.concept_initial_grounding_node import (
@@ -48,6 +48,15 @@ class ConceptIterativeGroundingNode(LLMPhraseIterativeGroundingNode):
         )
 
         return pipeline_context[ConceptInitialGroundingNode]
+
+    def get_upstream_screening_map(
+        self, pipeline_context: PipelineContext
+    ) -> dict[BatchRequestIDType, GPTBatchRequest]:
+        from core.models.pipeline_nodes.multi_stage.concept.concept_relationship_screening_node import (
+            ConceptRelationshipScreeningNode,
+        )
+
+        return pipeline_context[ConceptRelationshipScreeningNode]
 
     def get_upstream_phrase_relationship_map(
         self, pipeline_context: PipelineContext

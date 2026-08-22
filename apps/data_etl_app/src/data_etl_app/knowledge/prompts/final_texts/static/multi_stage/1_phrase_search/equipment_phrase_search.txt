@@ -1,7 +1,7 @@
-You are analyzing text scraped from a manufacturer's website. The text is provided at the very bottom. It holds the site's pages one after another, each preceded by that page's URL. The URL lines count as text too: the wording in a path often works like a heading for its page.
+You are analyzing text scraped from a manufacturer's website. The text is provided at the very bottom. It holds the site's pages one after another, each preceded by that page's URL.
 
 ## Task
-Your task is to find every phrase in the text that names, states or implies a production machine. Every phrase you return must occur in the text word for word, as one contiguous span of whole words. Where the text allows, extract separate phrases for separate machines rather than one phrase that bundles several together.
+Your task is to find every phrase in the text that names, states or implies a production machine. Every phrase you return is a surface form: an exact string that occurs in the text word for word, as one contiguous span of whole words, copied with its casing, spacing, and punctuation exactly as printed. Where the text allows, extract separate phrases for separate machines rather than one phrase that bundles several together.
 
 ## What qualifies as a phrase
 A qualifying phrase names, states or implies a production machine — a device or system used directly to process, shape, assemble, or convert materials into finished goods. A production machine acts on the work itself, which is what separates it from equipment that only measures, inspects, or tests the work, from equipment that powers or conditions the plant or moves, stores, or carries what it makes, and from tooling, which is what a machine holds, guides, or acts through rather than the machine driving it.
@@ -10,13 +10,13 @@ A qualifying phrase names, states or implies a production machine — a device o
 Do not extract a phrase if it does not name, state or imply any production machine at all, even with the help of surrounding context.
 
 ## Extent
-Try to keep each phrase short by focusing on and extracting the designation, not the statement made about it. Rather than extracting the long span as a single phrase, split it into shorter verbatim sub-phrases — but keep only the qualifying sub-phrases that each still name, state or imply a production machine on their own.
+Extract the designation, not the statement made about it: a phrase covers the words that name the production machine, never the claim the sentence makes around it. Within the designation, prefer the fullest span — when the text attaches modifiers or qualifiers that are part of how it names the production machine, keep them and return the whole designation as one phrase, rather than a shorter fragment from inside it.
 
-## Deduplication/Disambiguation/Uniqueness
-Phrases that are merely different wordings of each other — through a different casing, spacing or hyphenation, punctuation, '&' versus 'and', spelling, inflection (singular versus plural, or verbal versus nominal forms of the same word), or otherwise something similarly trivial — are not considered distinct enough to be recorded separately.
+## Variants
+Every distinct wording is its own phrase. Two spans that differ in any way — casing, spacing or hyphenation, punctuation, '&' versus 'and', spelling, inflection (singular versus plural, or verbal versus nominal forms of the same word) — are different surface forms, and each one belongs in your output as its own entry, even when they plainly refer to the same thing. Do not fold variants together or pick one representative. A form that occurs more than once in identical wording is returned once; any difference at all, however trivial, makes a separate phrase.
 
 ## Output
-Return a JSON object with a single key "phrases" whose value is an array of strings — one per distinct phrase, each copied verbatim from the text. Preserve original wording — do not paraphrase or normalize. If no phrases are found, use an empty array.
+Return a JSON object with a single key "phrases" whose value is an array of strings — one per distinct surface form, each copied character for character from the text. Preserve original wording, casing, and punctuation — do not paraphrase or normalize. If no phrases are found, use an empty array.
 
 ```json
 {"phrases": ["phrase one", "phrase two", ...]}

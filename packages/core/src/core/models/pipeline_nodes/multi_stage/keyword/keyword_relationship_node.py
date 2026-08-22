@@ -9,8 +9,8 @@ from core.models.pipeline_nodes.multi_stage.base.llm_phrase_relationship_node im
 )
 
 if TYPE_CHECKING:
-    from core.models.pipeline_nodes.multi_stage.keyword.keyword_relationship_screening_node import (
-        KeywordRelationshipScreeningNode,
+    from core.models.pipeline_nodes.multi_stage.keyword.keyword_freehand_grounding_node import (
+        KeywordFreehandGroundingNode,
     )
 
 logger = logging.getLogger(__name__)
@@ -30,7 +30,7 @@ class KeywordRelationshipNode(LLMPhraseRelationshipNode[ExtractionFieldType]):
         self,
         field_type: ExtractionFieldType,
         phrase_relationship_prompt: Prompt,
-        next_node: KeywordRelationshipScreeningNode,
+        next_node: KeywordFreehandGroundingNode,
     ):
         super().__init__(
             field_type=field_type,

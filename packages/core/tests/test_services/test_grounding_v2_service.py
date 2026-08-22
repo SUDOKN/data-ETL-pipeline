@@ -13,7 +13,7 @@ from core.models.rule_catalog import (
 )
 from core.services.applied_rule_validation import AppliedRuleValidationError
 from core.services.phrase_blocks_contract import render_record_blocks
-from core.services.pipeline_nodes.multi_stage.llm_grounding_node_service_v2 import (
+from core.services.pipeline_nodes.multi_stage.llm_grounding_node_service import (
     DUMMY_GROUNDINGS_RESPONSE_CONTENT,
     build_record_payloads,
     parse_record_grounding_result,

@@ -7,35 +7,34 @@ from llm_providers.db_models.gpt_batch_request import (
 )
 from llm_providers.models.file_objects.prompt import Prompt
 from core.models.pipeline_nodes import PipelineContext
-from core.models.pipeline_nodes.multi_stage.base.llm_phrase_freehand_grounding_node import (
-    LLMPhraseFreehandGroundingNode,
+from core.models.pipeline_nodes.multi_stage.keyword.keyword_freehand_grounding_node import (
+    KeywordFreehandGroundingNode,
 )
 from data_etl_app.models.types_and_enums import KeywordTypeEnum
 from llm_providers.field_types import BatchRequestIDType
 
 if TYPE_CHECKING:
-    from data_etl_app.models.pipeline_nodes.multi_stage.keyword.contract_product.contract_product_reconcile_node import (
-        ContractProductReconcileNode,
+    from data_etl_app.models.pipeline_nodes.multi_stage.keyword.contract_product.contract_product_relationship_screening_node import (
+        ContractProductRelationshipScreeningNode,
     )
 
 logger = logging.getLogger(__name__)
 
 
-class ContractProductFreehandGroundingNode(
-    LLMPhraseFreehandGroundingNode[KeywordTypeEnum]
-):
-    """Phase 5 for the contract-manufacturing product branch.
+class ContractProductFreehandGroundingNode(KeywordFreehandGroundingNode):
+    """The contract-manufacturing product branch's enumeration pass (v2: ahead
+    of screening).
 
-    Reuses the SAME freehand grounding prompt as the pure-product branch
+    Reuses the SAME merged freehand grounding prompt as the pure-product branch
     (``product_phrase_freehand_grounding``), but runs as its own request/custom_id
-    (own ``field_type=KeywordTypeEnum.contract_products`` identity) since its input
-    (the contract-screened phrases) differs from the pure branch's.
+    (own ``field_type=KeywordTypeEnum.contract_products`` identity) — the
+    pure-vs-contract distinction lives only in screening now.
     """
 
     def __init__(
         self,
         field_type: KeywordTypeEnum,
-        next_node: ContractProductReconcileNode,
+        next_node: ContractProductRelationshipScreeningNode,
         phrase_freehand_grounding_prompt: Prompt,
     ):
         super().__init__(
@@ -52,12 +51,3 @@ class ContractProductFreehandGroundingNode(
         )
 
         return pipeline_context[ContractProductRelationshipNode]
-
-    def get_upstream_phrase_screening_map(
-        self, pipeline_context: PipelineContext
-    ) -> dict[BatchRequestIDType, GPTBatchRequest]:
-        from data_etl_app.models.pipeline_nodes.multi_stage.keyword.contract_product.contract_product_relationship_screening_node import (
-            ContractProductRelationshipScreeningNode,
-        )
-
-        return pipeline_context[ContractProductRelationshipScreeningNode]

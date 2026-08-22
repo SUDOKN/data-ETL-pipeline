@@ -1,8 +1,8 @@
 from __future__ import annotations
 import logging
 from datetime import datetime
-from math import ceil
 from abc import abstractmethod
+from typing import Optional
 
 from llm_providers.db_models.gpt_batch_request import (
     GPTBatchRequest,
@@ -11,13 +11,14 @@ from llm_providers.models.open_ai.gpt_batch_response_blob import (
     GPTBatchResponse,
 )
 from core.models.deferred_extraction.deferred_phrase_extraction_requests import (
-    DeferredLLMPhraseExtractionRequests,
     LLMPhraseExtractionRequestBundle,
     LLMPhraseExtractionRequestMap,
-    LLMPhraseExtractionMetadata,
+)
+from core.models.extraction_results.llm_phrase_extraction_results_v2 import (
+    LLMPhraseExtractionMetadataV2,
 )
 from core.models.extraction_schemas.relationship import (
-    LLMPhraseRelationshipResults,
+    MaskedLLMPhraseRelationshipResults,
 )
 from llm_providers.models.file_objects.prompt import Prompt
 from core.models.field_types import ExtractionFieldType
@@ -38,10 +39,12 @@ from llm_providers.services.gpt_batch_request.gpt_batch_request_service import (
     dispatch_gpt_batch_request,
 )
 from core.services.pipeline_nodes.multi_stage.llm_phrase_relationship_node_service import (
+    _split_into_phrase_groups,
     create_missing_phrase_relationship_requests,
-    get_phrase_relationship_result,
+    get_masked_phrase_relationship_result,
     get_relationship_candidates,
 )
+from core.utils.request_custom_id_util import upstream_digest_segment
 from typing import ClassVar
 from core.models.pipeline_nodes.base.pipeline_stage import (
     STAGE_REQUEST_ID_TOKEN,
@@ -52,7 +55,9 @@ logger = logging.getLogger(__name__)
 
 
 class LLMPhraseRelationshipNode(
-    BaseLLMExtractionNode[LLMExtractedFieldTypeVar, LLMPhraseRelationshipResults]
+    BaseLLMExtractionNode[
+        LLMExtractedFieldTypeVar, MaskedLLMPhraseRelationshipResults
+    ]
 ):
 
     stage: ClassVar[PipelineStage] = PipelineStage.relationship
@@ -91,7 +96,7 @@ class LLMPhraseRelationshipNode(
         self,
         subject_unique_id: str,
         pipeline_context: PipelineContext,
-        metadata: LLMPhraseExtractionMetadata,
+        metadata: LLMPhraseExtractionMetadataV2,
         chunked_request_map: LLMPhraseExtractionRequestMap,
         timestamp: datetime,
     ):
@@ -131,7 +136,9 @@ class LLMPhraseRelationshipNode(
                 llm_phrase_recursive_search_gpt_request_map=upstream_recursive_search_map,
                 timestamp=timestamp,
             )
-            num_groups = max(1, ceil(len(candidates) / max_phrases_per_request))
+            phrase_groups = _split_into_phrase_groups(
+                candidates, max_phrases_per_request
+            )
             extraction_request_bundle.llm_phrase_relationship_req_ids = [
                 self.get_request_custom_id(
                     subject_unique_id=subject_unique_id,
@@ -139,8 +146,9 @@ class LLMPhraseRelationshipNode(
                     chunk_bounds=chunk_bounds,
                     group_index=group_index,
                     metadata=metadata,
+                    group_phrases=phrase_group,
                 )
-                for group_index in range(num_groups)
+                for group_index, phrase_group in enumerate(phrase_groups)
             ]
 
     def get_embedded_request_ids(
@@ -171,13 +179,18 @@ class LLMPhraseRelationshipNode(
         field_type: ExtractionFieldType,
         chunk_bounds: str,
         group_index: int,
-        metadata: LLMPhraseExtractionMetadata,
+        metadata: LLMPhraseExtractionMetadataV2,
+        group_phrases: list[str],
     ) -> BatchRequestIDType:
+        # `|ud=` (fork F12) makes the group's own candidate phrases part of
+        # request identity: change what search would feed this group and the id
+        # changes, so a stale response is simply never found.
         return (
             f"{subject_unique_id}>{field_type.name}"
             f">{STAGE_REQUEST_ID_TOKEN[PipelineStage.relationship]}"
             f">group>{group_index}>chunk>{chunk_bounds}>"
             f"{metadata.llm_phrase_relationship.to_custom_id_segment()}"
+            f"{upstream_digest_segment(group_phrases)}"
         )
 
     async def create_batch_requests(
@@ -185,7 +198,7 @@ class LLMPhraseRelationshipNode(
         subject_unique_id: str,
         scraped_text_file: ScrapedTextFile,
         missing_request_ids: set[BatchRequestIDType],
-        metadata: LLMPhraseExtractionMetadata,
+        metadata: LLMPhraseExtractionMetadataV2,
         chunked_request_map: LLMPhraseExtractionRequestMap,
         pipeline_context: PipelineContext,
         timestamp: datetime,
@@ -231,20 +244,22 @@ class LLMPhraseRelationshipNode(
         extraction_bundle: LLMPhraseExtractionRequestBundle,
         completed_request_map: dict[BatchRequestIDType, GPTBatchRequest],
         timestamp: datetime,  # for recording errors
-    ) -> LLMPhraseRelationshipResults:
-        return await get_phrase_relationship_result(
+        repairs: Optional[dict[str, str]] = None,
+    ) -> MaskedLLMPhraseRelationshipResults:
+        return await get_masked_phrase_relationship_result(
             subject_unique_id=subject_unique_id,
             field_type=field_type,
             chunk_bounds=chunk_bounds,
             extraction_bundle=extraction_bundle,
             completed_request_map=completed_request_map,
             timestamp=timestamp,
+            repairs=repairs,
         )
 
     async def dispatch_batch_request(
         self,
         gpt_batch_request: GPTBatchRequest,
-        metadata: LLMPhraseExtractionMetadata,
+        metadata: LLMPhraseExtractionMetadataV2,
     ) -> GPTBatchResponse:
         return await dispatch_gpt_batch_request(
             gpt_batch_request=gpt_batch_request,

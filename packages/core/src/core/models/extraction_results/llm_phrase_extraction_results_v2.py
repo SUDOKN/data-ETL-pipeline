@@ -1,10 +1,10 @@
 """Pipeline v2's stored stats and metadata shapes (PIPELINE_V2_PLAN.md).
 
-Standalone rather than inheriting the v1 classes: the shared stage fields
-changed type (relationship is masked and record-keyed, screening is
-per-candidate), so there is no common base left to share. The v1 modules stay
-untouched until the phase-2 cutover retires them; these fold back into the
-canonical files then.
+These are THE canonical shapes since the phase-2.9 flip: the v1 stats/metadata
+classes are deleted, and only the per-stage node-metadata classes (which never
+changed shape) still live in the older modules. Folding these definitions back
+into those files under unsuffixed names is deferred cosmetic work — the V2
+suffix is load-bearing nowhere.
 
 Two deliberate departures from v1:
 
@@ -16,13 +16,14 @@ Two deliberate departures from v1:
   ``chunk_stats``) bought nothing and cost every consumer a branch.
 
 The upstream-content digest (fork F12) is NOT here: it rides request-id
-CONSTRUCTION, which knows the upstream results, not node metadata, which is
-fixed before they exist. It lands with the phase-2.9 embedding rework.
+CONSTRUCTION (the ``|ud=`` segment every downstream ``get_request_custom_id``
+appends), which knows the upstream results — node metadata is fixed before
+they exist.
 """
 
 from __future__ import annotations
 
-from typing import Optional
+from typing import Optional, TypeVar
 
 from pydantic import BaseModel
 
@@ -49,6 +50,38 @@ from core.models.extraction_schemas.relationship import (
 )
 from core.models.extraction_schemas.screening import RecordScreeningResults
 from core.models.extraction_schemas.search import LLMSearchResults
+
+
+_T = TypeVar("_T")
+
+
+def partition_records_by_search_round(
+    flat_results: dict[str, _T],
+    phrase_by_record_id: dict[str, str],
+    search_rounds: dict[int, "LLMSearchResults"],
+) -> dict[int, dict[str, _T]]:
+    """Assign each RECORD-keyed result to its phrase's earliest search round.
+
+    The v2 twin of ``partition_by_search_round``: stage results are keyed by
+    record_id while search rounds speak phrases, so the split reads each
+    record's phrase through the masked relationship join
+    (``phrase_by_record_id``). A record whose phrase is absent from every round
+    falls back to round 0, the same defensive default as v1; round 0 stays
+    present even when empty so consumers can index it unconditionally.
+    """
+    phrase_to_round: dict[str, int] = {}
+    for round_idx in sorted(search_rounds.keys()):
+        for phrase in search_rounds[round_idx]:
+            if phrase not in phrase_to_round:
+                phrase_to_round[phrase] = round_idx
+
+    rounds: dict[int, dict[str, _T]] = {}
+    for record_id, value in flat_results.items():
+        phrase = phrase_by_record_id.get(record_id)
+        round_idx = phrase_to_round.get(phrase, 0) if phrase is not None else 0
+        rounds.setdefault(round_idx, {})[record_id] = value
+    rounds.setdefault(0, {})
+    return rounds
 
 
 class InitialGroundingStats(BaseModel):

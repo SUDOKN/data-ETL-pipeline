@@ -8,8 +8,8 @@ from core.models.extraction_schemas.grounding import (
     StopReason,
     TagToPhraseAndRulesMap,
 )
-from core.models.extraction_results.concept_extraction_results import (
-    ConceptExtractionMetadata,
+from core.models.extraction_results.llm_phrase_extraction_results_v2 import (
+    ConceptExtractionMetadataV2,
 )
 from core.models.deferred_extraction.deferred_phrase_extraction_requests import (
     DeferredLLMPhraseExtractionRequests,
@@ -111,9 +111,16 @@ class TaggingResultsGroupedByConcept(
 class ConceptExtractionRequestBundle(LLMPhraseExtractionRequestBundle):
     brute: set[str]
     # Ordered list of initial-grounding groups (group 1 == index 0). Each group
-    # covers at most `max_pairs_per_request` screened out-of-vocab phrases for
-    # this chunk; results are merged back together.
+    # covers at most `max_pairs_per_request` evidence-bearing records for this
+    # chunk (v2: the in-vocab pass runs on records, before screening); results
+    # are merged back together.
     llm_phrase_initial_grounding_req_ids: list[BatchRequestIDType] = Field(
+        default_factory=list
+    )
+    # v2's OOV discovery pass, serial after in-vocab. Empty when the pass is
+    # toggled off for the run (metadata's oov node is None) — same list shape
+    # so embed/get machinery treats an off pass as zero groups.
+    llm_phrase_oov_grounding_req_ids: list[BatchRequestIDType] = Field(
         default_factory=list
     )
     llm_phrase_recursive_tagging_reqs: Optional[dict[int, set[IterativeTaggingRequest]]]
@@ -123,5 +130,5 @@ ConceptExtractionRequestMap = dict[str, ConceptExtractionRequestBundle]
 
 
 class DeferredConceptExtractionRequests(DeferredLLMPhraseExtractionRequests):
-    metadata: ConceptExtractionMetadata
+    metadata: ConceptExtractionMetadataV2
     chunked_request_map: ConceptExtractionRequestMap

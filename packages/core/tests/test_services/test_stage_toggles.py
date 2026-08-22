@@ -21,13 +21,18 @@ from pathlib import Path
 import pytest
 
 from core.models.extraction_schemas.applied_rule import AppliedRule
-from core.models.extraction_schemas.screening import ScreeningVerdict
+from core.models.extraction_schemas.relationship import (
+    MaskedPhraseRelationshipRecord,
+    PhraseMention,
+    PhraseRelationshipRecord,
+)
+from core.models.extraction_schemas.screening import CandidateScreeningVerdict
 from core.models.pipeline_nodes.base.base_node import BaseNode, PipelineContext
 from core.models.pipeline_nodes.base.pipeline_stage import (
     PipelineStage,
     StageToggles,
 )
-from core.utils.extraction_dump_util import build_partial_phrase_rows
+from core.utils.extraction_dump_util import build_partial_record_rows
 
 
 class _Field(str, Enum):
@@ -37,14 +42,24 @@ class _Field(str, Enum):
     business_desc = "business_desc"
 
 
+def _masked(phrase: str, record_id: str) -> MaskedPhraseRelationshipRecord:
+    return MaskedPhraseRelationshipRecord(
+        phrase=phrase,
+        record=PhraseRelationshipRecord(
+            mentions=[PhraseMention(form=phrase, page="/", account="operates them")],
+            synthesis="operates them in-house",
+        ),
+    )
+
+
 class _NodeA(BaseNode):
     stage = PipelineStage.relationship
 
     async def execute(self, **_kwargs) -> None: ...
 
     @staticmethod
-    async def get_result(**_kwargs) -> dict[str, str]:
-        return {"CNC lathes": "operates them in-house"}
+    async def get_result(**_kwargs) -> dict[str, MaskedPhraseRelationshipRecord]:
+        return {"raaaaaa1": _masked("CNC lathes", "raaaaaa1")}
 
 
 class _NodeB(BaseNode):
@@ -104,9 +119,10 @@ def test_stop_after_disables_every_later_stage_including_reconcile():
     assert toggles.is_enabled(_Field.industries, PipelineStage.relationship)
 
     for later in (
-        PipelineStage.screening,
         PipelineStage.initial_grounding,
         PipelineStage.freehand_grounding,
+        PipelineStage.oov_grounding,
+        PipelineStage.screening,
         PipelineStage.iterative_grounding,
         # Reconcile too: a partial run must not write a half-computed result
         # that the orchestrator would then read as "this field is done".
@@ -115,13 +131,23 @@ def test_stop_after_disables_every_later_stage_including_reconcile():
         assert not toggles.is_enabled(_Field.industries, later)
 
 
-def test_stop_after_screening_stops_both_grounding_flavours():
-    """Concept grounding and keyword grounding share a tier, so one cutoff
-    covers both pipeline shapes."""
-    toggles = StageToggles().stop_after(PipelineStage.screening)
-    assert toggles.is_enabled(_Field.industries, PipelineStage.screening)
+def test_stop_after_relationship_stops_both_grounding_flavours():
+    """Concept grounding (in-vocab) and keyword grounding (freehand) share the
+    enumeration tier, so one cutoff covers both pipeline shapes."""
+    toggles = StageToggles().stop_after(PipelineStage.relationship)
+    assert toggles.is_enabled(_Field.industries, PipelineStage.relationship)
     assert not toggles.is_enabled(_Field.industries, PipelineStage.initial_grounding)
     assert not toggles.is_enabled(_Field.products, PipelineStage.freehand_grounding)
+
+
+def test_stop_after_initial_grounding_keeps_the_pass_but_stops_oov_and_screening():
+    """v2 order: grounding enumerates first, the OOV pass is serial after
+    in-vocab, and consolidated screening runs after both."""
+    toggles = StageToggles().stop_after(PipelineStage.initial_grounding)
+    assert toggles.is_enabled(_Field.industries, PipelineStage.initial_grounding)
+    assert not toggles.is_enabled(_Field.industries, PipelineStage.oov_grounding)
+    assert not toggles.is_enabled(_Field.industries, PipelineStage.screening)
+    assert not toggles.is_enabled(_Field.industries, PipelineStage.iterative_grounding)
 
 
 def test_prefill_cannot_be_disabled():
@@ -241,10 +267,12 @@ async def test_gate_is_per_field():
 # --- partial dump rows ----------------------------------------------------
 
 
-def _verdict(passed: bool) -> ScreeningVerdict:
-    return ScreeningVerdict(
+from core.models.extraction_schemas.grounding import RecordGroundingEntry
+
+
+def _verdict(passed: bool) -> CandidateScreeningVerdict:
+    return CandidateScreeningVerdict(
         passed=passed,
-        identified_entity="CNC lathes" if passed else None,
         applied_rules=[
             AppliedRule(rule_id="R1", outcome="yes", explanation="stated on the page")
         ],
@@ -252,69 +280,87 @@ def _verdict(passed: bool) -> ScreeningVerdict:
 
 
 def test_partial_rows_omit_stages_that_did_not_run():
-    """The distinction the whole dump exists for: "screening rejected it" and
-    "screening never happened" must not read the same."""
-    rows = build_partial_phrase_rows(
+    """The distinction the whole dump exists for: "grounding declined it" and
+    "grounding never happened" must not read the same."""
+    rows = build_partial_record_rows(
         search_rounds={0: set(), 1: {"CNC lathes", "waterjet"}},
-        relationship_flat={"CNC lathes": "operates them in-house"},
+        masked_flat={
+            "raaaaaa1": _masked("CNC lathes", "raaaaaa1"),
+            "raaaaaa2": _masked("waterjet", "raaaaaa2"),
+        },
+        grounding_by_stage={},
         screening_flat=None,
-        grounding_flat=None,
     )
     by_phrase = {row["phrase"]: row for row in rows}
 
     assert set(by_phrase) == {"CNC lathes", "waterjet"}
     assert "screening" not in by_phrase["CNC lathes"]
-    assert "grounding" not in by_phrase["CNC lathes"]
-    # Relationship RAN and had nothing for waterjet — that is an explicit null,
-    # not an absent key.
-    assert by_phrase["waterjet"]["relationship"] is None
-    assert by_phrase["CNC lathes"]["relationship"] == "operates them in-house"
+    assert "in_vocab_grounding" not in by_phrase["CNC lathes"]
+    assert by_phrase["CNC lathes"]["record"]["synthesis"] == "operates them in-house"
+    assert by_phrase["CNC lathes"]["record_id"] == "raaaaaa1"
 
 
 def test_partial_rows_carry_search_provenance_and_screening_verdicts():
-    rows = build_partial_phrase_rows(
+    rows = build_partial_record_rows(
         search_rounds={0: {"brute phrase"}, 1: {"CNC lathes"}, 2: {"waterjet"}},
-        relationship_flat={},
-        screening_flat={"CNC lathes": _verdict(True), "waterjet": _verdict(False)},
-        grounding_flat=None,
+        masked_flat={
+            "raaaaaa0": _masked("brute phrase", "raaaaaa0"),
+            "raaaaaa1": _masked("CNC lathes", "raaaaaa1"),
+            "raaaaaa2": _masked("waterjet", "raaaaaa2"),
+        },
+        grounding_by_stage={},
+        screening_flat={
+            "raaaaaa1": {"Machining": _verdict(True)},
+            "raaaaaa2": {"Machining": _verdict(False)},
+        },
     )
     by_phrase = {row["phrase"]: row for row in rows}
 
     assert by_phrase["brute phrase"]["provenance"] == "brute"
     assert by_phrase["CNC lathes"]["provenance"] == "llm_round_1"
     assert by_phrase["waterjet"]["search_round"] == 2
-    assert by_phrase["CNC lathes"]["screening"]["passed"] is True
-    assert by_phrase["waterjet"]["screening"]["passed"] is False
+    assert by_phrase["CNC lathes"]["screening"]["Machining"]["passed"] is True
+    assert by_phrase["waterjet"]["screening"]["Machining"]["passed"] is False
+    # Screening RAN and had nothing for the brute record — explicit null, not
+    # an absent key.
+    assert by_phrase["brute phrase"]["screening"] is None
 
 
 def test_partial_rows_survive_a_run_stopped_right_after_search():
-    """A search-only run still has phrases to show; driving rows off the later
-    stages alone would dump an empty file."""
-    rows = build_partial_phrase_rows(
+    """A search-only run has no records yet; it still dumps its phrases rather
+    than an empty file."""
+    rows = build_partial_record_rows(
         search_rounds={1: {"CNC lathes"}},
-        relationship_flat=None,
+        masked_flat=None,
+        grounding_by_stage={},
         screening_flat=None,
-        grounding_flat=None,
     )
     assert [row["phrase"] for row in rows] == ["CNC lathes"]
     assert set(rows[0]) == {"phrase", "search_round", "provenance"}
 
 
 def test_partial_rows_name_the_grounding_stage_that_ran():
-    rows = build_partial_phrase_rows(
+    rows = build_partial_record_rows(
         search_rounds={1: {"CNC lathes"}},
-        relationship_flat=None,
-        screening_flat=None,
-        grounding_flat={
-            "CNC lathes": {
-                "Machining": [
-                    AppliedRule(rule_id="G1", outcome="yes", explanation="stated")
-                ]
+        masked_flat={"raaaaaa1": _masked("CNC lathes", "raaaaaa1")},
+        grounding_by_stage={
+            "freehand_grounding": {
+                "raaaaaa1": RecordGroundingEntry(
+                    tags={
+                        "Machining": [
+                            AppliedRule(
+                                rule_id="G1", outcome="yes", explanation="stated"
+                            )
+                        ]
+                    }
+                )
             }
         },
-        grounding_stage=PipelineStage.freehand_grounding.value,
+        screening_flat=None,
     )
-    assert rows[0]["freehand_grounding"]["Machining"][0]["rule_id"] == "G1"
+    assert (
+        rows[0]["freehand_grounding"]["tags"]["Machining"][0]["rule_id"] == "G1"
+    )
 
 
 # --- the partial dump writer ----------------------------------------------
@@ -387,10 +433,10 @@ async def test_partial_dump_header_says_what_ran_and_what_was_switched_off(
         == "PROMPT-VERSION-1"
     )
     # The stage that ran is parsed into rows; search never ran, so there is no
-    # provenance to report and the key stays absent.
+    # provenance to report.
     row = written["chunked_contents"]["0-100"]["rows"][0]
     assert row["phrase"] == "CNC lathes"
-    assert row["relationship"] == "operates them in-house"
+    assert row["record"]["synthesis"] == "operates them in-house"
     assert "screening" not in row
     # The dump prices its requests off the completed maps, merged across stages.
     assert "req-1" in written["completed_requests"]

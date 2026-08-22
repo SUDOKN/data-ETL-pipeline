@@ -118,8 +118,10 @@ async def validate_and_create_from_manufacturer(
         primary_naics=manufacturer.primary_naics,
         secondary_naics=manufacturer.secondary_naics,
         addresses=[addr for addr in manufacturer.addresses.result],
-        products=manufacturer.products.results,
-        equipment=manufacturer.equipments.results,
+        # v2: keyword results are a uniform ConceptsFound with in_vocab empty
+        # by construction — the minted labels live in out_of_vocab.
+        products=manufacturer.products.results.out_of_vocab,
+        equipment=manufacturer.equipments.results.out_of_vocab,
         conformity_attestations=manufacturer.conformity_attestations.results,
         industries=manufacturer.industries.results,
         process_caps=manufacturer.process_caps.results,

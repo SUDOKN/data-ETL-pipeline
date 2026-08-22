@@ -19,6 +19,7 @@ reconcile's classification job, not a parse defect.
 
 from __future__ import annotations
 
+import asyncio
 import logging
 import traceback
 from datetime import datetime
@@ -28,8 +29,8 @@ from pydantic import BaseModel, ValidationError
 
 from core.models.extraction_schemas.catalog_wire_schema import (
     flatten_rule_slots,
-    grounding_response_model_v2,
-    response_format_for_v2,
+    grounding_response_model,
+    response_format_for,
 )
 from core.models.extraction_schemas.grounding import (
     RecordGroundingEntry,
@@ -99,7 +100,7 @@ def parse_record_grounding_result(
         )
 
     try:
-        parsed = grounding_response_model_v2(catalog).model_validate_json(gpt_response)
+        parsed = grounding_response_model(catalog).model_validate_json(gpt_response)
     except ValidationError as e:
         raise ValueError(
             f"parse_record_grounding_result: Invalid response from GPT:{gpt_response}"
@@ -272,6 +273,37 @@ async def get_record_grounding_result(
     return merged
 
 
+def split_record_ids_into_groups(
+    record_ids: list[str], group_size: int
+) -> list[list[str]]:
+    """Split an ORDERED record-id list into ordered groups of at most
+    *group_size* ids. Always returns at least one (possibly empty) group so the
+    single-dummy-request-per-chunk fallback keeps working when a chunk has no
+    records at all. Callers sort before splitting: group membership is part of
+    request identity, so it must not depend on dict iteration order."""
+    if not record_ids:
+        return [[]]
+    return [
+        record_ids[i : i + group_size]
+        for i in range(0, len(record_ids), group_size)
+    ]
+
+
+def grouped_record_payloads(
+    payloads: dict[str, dict[str, Any]], group_size: int
+) -> list[dict[str, dict[str, Any]]]:
+    """The chunk's payload map as ordered per-request groups (ids sorted).
+
+    Both the id-embedding side (group count + the ``|ud=`` digest of each
+    group's own payload) and the request-creation side derive their groups
+    through here, so the two can never disagree about what a group contains.
+    """
+    groups = split_record_ids_into_groups(sorted(payloads), group_size)
+    return [
+        {record_id: payloads[record_id] for record_id in group} for group in groups
+    ]
+
+
 def build_record_payloads(
     masked: MaskedLLMPhraseRelationshipResults,
     *,
@@ -322,9 +354,115 @@ def create_deferred_record_grounding_gpt_request(
         context=context,
         prompt_text=prompt.text,
         gpt_model=gpt_model,
-        model_params=model_params.with_response_format(response_format_for_v2(catalog)),
+        model_params=model_params.with_response_format(response_format_for(catalog)),
         batch_id="Eager" if eager else None,
     )
+
+
+async def create_missing_record_grounding_requests(
+    *,
+    stage_label: str,
+    subject_unique_id: str,
+    field_name: str,
+    chunk_payload_maps: dict[str, dict[str, dict[str, Any]]],
+    group_req_ids_by_chunk: dict[str, list[BatchRequestIDType]],
+    missing_req_ids: set[BatchRequestIDType],
+    prompt: Prompt,
+    catalog: RuleCatalog,
+    options_section_by_chunk: dict[str, Optional[str]],
+    max_records_per_request: int,
+    deferred_at: datetime,
+    llm_model: LLM_Model,
+    model_params: GPTModelParams,
+    eager: bool,
+    dummy_note: str,
+    BATCH_SIZE: int = 100,
+) -> list[GPTBatchRequest]:
+    """The shared create loop for the record-grounding stages (in-vocab, OOV,
+    freehand). ``chunk_payload_maps`` holds each chunk's FULL id → payload map
+    (the caller derives it from upstream stored shapes); the split into groups
+    happens here, through the same helper the id-embedding side used, so the
+    embedded group count and digests always describe the groups actually sent.
+
+    ``options_section_by_chunk`` is the pre-rendered outline block per chunk
+    (None = freehand, which is sent no options). Per chunk rather than one
+    value, because the OOV pass may one day scope its outline; today every
+    chunk shares one rendered section.
+    """
+    batch_requests: list[GPTBatchRequest] = []
+    chunk_items = [
+        (chunk_bounds, payloads)
+        for chunk_bounds, payloads in chunk_payload_maps.items()
+        if set(group_req_ids_by_chunk[chunk_bounds]) & missing_req_ids
+    ]
+
+    for i in range(0, len(chunk_items), BATCH_SIZE):
+        batch = chunk_items[i : i + BATCH_SIZE]
+
+        for chunk_bounds, payloads in batch:
+            payload_groups = grouped_record_payloads(
+                payloads, max_records_per_request
+            )
+            group_req_ids = group_req_ids_by_chunk[chunk_bounds]
+            if len(group_req_ids) != len(payload_groups):
+                raise ValueError(
+                    f"{stage_label}: embedded group count ({len(group_req_ids)}) "
+                    f"does not match computed group count ({len(payload_groups)}) "
+                    f"for chunk bounds {chunk_bounds} in "
+                    f"{subject_unique_id}:{field_name}. Group counts are computed "
+                    f"once, upfront, from the same upstream records, so this "
+                    f"should not happen."
+                )
+
+            for group_index, group_req_id in enumerate(group_req_ids):
+                if group_req_id not in missing_req_ids:
+                    continue
+
+                payload_group = payload_groups[group_index]
+                if not payload_group:
+                    if len(payload_groups) != 1:
+                        raise ValueError(
+                            f"{stage_label}: unexpected empty record group at "
+                            f"index {group_index} of {len(payload_groups)} groups "
+                            f"for chunk bounds {chunk_bounds} in "
+                            f"{subject_unique_id}:{field_name}. Only a single "
+                            f"group should ever be empty (the zero-records case)."
+                        )
+                    logger.info(
+                        f"{stage_label}: no records to ground for "
+                        f"{subject_unique_id}:{field_name} chunk {chunk_bounds}, "
+                        f"creating dummy request"
+                    )
+                    batch_requests.append(
+                        create_dummy_completed_record_grounding_batch_request(
+                            deferred_at=deferred_at,
+                            subject_unique_id=subject_unique_id,
+                            request_id=group_req_id,
+                            model_params=model_params,
+                            eager=eager,
+                            note=dummy_note,
+                        )
+                    )
+                    continue
+
+                batch_requests.append(
+                    create_deferred_record_grounding_gpt_request(
+                        deferred_at=deferred_at,
+                        subject_unique_id=subject_unique_id,
+                        request_id=group_req_id,
+                        prompt=prompt,
+                        catalog=catalog,
+                        record_payloads=payload_group,
+                        options_section=options_section_by_chunk[chunk_bounds],
+                        gpt_model=llm_model,
+                        eager=eager,
+                        model_params=model_params,
+                    )
+                )
+
+        await asyncio.sleep(0)
+
+    return batch_requests
 
 
 def create_dummy_completed_record_grounding_batch_request(

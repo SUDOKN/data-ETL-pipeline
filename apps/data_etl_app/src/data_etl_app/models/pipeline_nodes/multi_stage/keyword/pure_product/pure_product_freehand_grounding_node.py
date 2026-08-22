@@ -14,20 +14,20 @@ from data_etl_app.models.types_and_enums import KeywordTypeEnum
 from llm_providers.field_types import BatchRequestIDType
 
 if TYPE_CHECKING:
-    from data_etl_app.models.pipeline_nodes.multi_stage.keyword.pure_product.pure_product_reconcile_node import (
-        PureProductReconcileNode,
+    from data_etl_app.models.pipeline_nodes.multi_stage.keyword.pure_product.pure_product_relationship_screening_node import (
+        PureProductRelationshipScreeningNode,
     )
 
 logger = logging.getLogger(__name__)
 
 
 class PureProductFreehandGroundingNode(KeywordFreehandGroundingNode):
-    """Phase 5 for the pure-product branch."""
+    """The pure-product branch's enumeration pass (v2: ahead of screening)."""
 
     def __init__(
         self,
         field_type: KeywordTypeEnum,
-        next_node: PureProductReconcileNode,
+        next_node: PureProductRelationshipScreeningNode,
         phrase_freehand_grounding_prompt: Prompt,
     ):
         super().__init__(
@@ -44,12 +44,3 @@ class PureProductFreehandGroundingNode(KeywordFreehandGroundingNode):
         )
 
         return pipeline_context[PureProductRelationshipNode]
-
-    def get_upstream_phrase_screening_map(
-        self, pipeline_context: PipelineContext
-    ) -> dict[BatchRequestIDType, GPTBatchRequest]:
-        from data_etl_app.models.pipeline_nodes.multi_stage.keyword.pure_product.pure_product_relationship_screening_node import (
-            PureProductRelationshipScreeningNode,
-        )
-
-        return pipeline_context[PureProductRelationshipScreeningNode]

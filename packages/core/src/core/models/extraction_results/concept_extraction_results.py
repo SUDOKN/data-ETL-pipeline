@@ -3,14 +3,6 @@ from pydantic import BaseModel
 
 from core.models.extraction_results.llm_phrase_extraction_results import (
     ExtractionNodeMetadata,
-    LLMPhraseExtractionStats,
-    LLMPhraseExtractionMetadata,
-)
-from core.models.extraction_schemas.grounding import (
-    PhraseToTagAndRulesMap,
-)
-from core.models.extraction_schemas.iterative_tagging import (
-    IterativeGroundingResult,
 )
 
 
@@ -19,38 +11,12 @@ class ConceptsFound(BaseModel):
     out_of_vocab: set[str]
 
 
-class ConceptExtractionStats(LLMPhraseExtractionStats):
-    results: ConceptsFound
-    brute_search: set[str]  # regex search
-    # round → {phrase: {tag: [applied_rule, ...]}} — each phrase assigned to its earliest search round
-    llm_phrase_initial_grounding: dict[int, PhraseToTagAndRulesMap]
-    llm_phrase_recursive_grounding: (
-        IterativeGroundingResult  # level by level organized nodes
-    )
-
-
-ConceptExtractionStatsMap = dict[
-    str, ConceptExtractionStats
-]  # "0:1000" -> {results, brute, identified, phrase_relationship, mapping, unmapped_llm}
-
-
 class BatchedInitialGroundingNodeMetadata(ExtractionNodeMetadata):
-    # Hard cap on phrase pairs per initial-grounding request. The screened
-    # out-of-vocab phrases for a chunk are split into
-    # ceil(num_pairs / max_pairs_per_request) groups, each grounded independently
-    # and merged back into one flat result.
+    # Hard cap on evidence-bearing RECORDS per grounding request (v2: the
+    # in-vocab and OOV passes run on records, before screening). The chunk's
+    # records are split into ceil(num_records / max_pairs_per_request) groups,
+    # each grounded independently and merged back into one flat result.
     max_pairs_per_request: int
 
     def to_custom_id_segment(self) -> str:
         return f"{super().to_custom_id_segment()}|gs={self.max_pairs_per_request}"
-
-
-class ConceptExtractionMetadata(LLMPhraseExtractionMetadata):
-    llm_phrase_initial_grounding: BatchedInitialGroundingNodeMetadata
-    llm_phrase_recursive_grounding: ExtractionNodeMetadata
-
-
-class ConceptExtractionResults(BaseModel):
-    metadata: ConceptExtractionMetadata
-    results: ConceptsFound
-    chunked_extraction_stats: ConceptExtractionStatsMap

@@ -1,8 +1,7 @@
 from __future__ import annotations
 import logging
 from datetime import datetime
-from math import ceil
-from typing import TYPE_CHECKING, Optional
+from typing import TYPE_CHECKING, Any, ClassVar
 
 from llm_providers.db_models.gpt_batch_request import (
     GPTBatchRequest,
@@ -11,13 +10,14 @@ from llm_providers.models.open_ai.gpt_batch_response_blob import (
     GPTBatchResponse,
 )
 from core.models.deferred_extraction.deferred_phrase_extraction_requests import (
-    DeferredLLMPhraseExtractionRequests,
     LLMPhraseExtractionRequestBundle,
     LLMPhraseExtractionRequestMap,
-    LLMPhraseExtractionMetadata,
+)
+from core.models.extraction_results.llm_phrase_extraction_results_v2 import (
+    LLMPhraseExtractionMetadataV2,
 )
 from core.models.extraction_schemas.screening import (
-    LiveScreeningResults,
+    RecordScreeningResults,
 )
 from llm_providers.models.file_objects.prompt import Prompt
 from core.models.field_types import ExtractionFieldType
@@ -44,11 +44,16 @@ if TYPE_CHECKING:
 from llm_providers.services.gpt_batch_request.gpt_batch_request_service import (
     dispatch_gpt_batch_request,
 )
-from core.services.pipeline_nodes.multi_stage.llm_relationship_screening_node_service import (
-    create_missing_phrase_relationship_screening_requests,
-    get_phrase_relationship_screening_result,
+from core.services.pipeline_nodes.multi_stage.llm_grounding_node_service import (
+    grouped_record_payloads,
 )
-from typing import ClassVar
+from core.services.pipeline_nodes.multi_stage.llm_relationship_screening_node_service import (
+    build_screening_payloads,
+    create_missing_record_screening_requests,
+    get_record_screening_result,
+    screening_catalog_for,
+)
+from core.utils.request_custom_id_util import upstream_digest_segment
 from core.models.pipeline_nodes.base.pipeline_stage import (
     STAGE_REQUEST_ID_TOKEN,
     PipelineStage,
@@ -58,8 +63,13 @@ logger = logging.getLogger(__name__)
 
 
 class LLMPhraseRelationshipScreeningNode(
-    BaseLLMExtractionNode[LLMExtractedFieldTypeVar, LiveScreeningResults]
+    BaseLLMExtractionNode[LLMExtractedFieldTypeVar, RecordScreeningResults]
 ):
+    """v2's consolidated screening: it vets EVERY candidate the grounding
+    pass(es) enumerated, per record, against the record's own deposition —
+    records and candidates, never chunk text (fork F8). What the candidates
+    are (in-vocab ∪ OOV for concepts, freehand mints for keywords) is the
+    subclasses' business, via ``get_chunk_candidates_by_record``."""
 
     stage: ClassVar[PipelineStage] = PipelineStage.screening
 
@@ -83,11 +93,52 @@ class LLMPhraseRelationshipScreeningNode(
             f"{self.__class__.__name__} must implement get_upstream_phrase_relationship_map"
         )
 
+    async def get_chunk_candidates_by_record(
+        self,
+        subject_unique_id: str,
+        chunk_bounds: str,
+        extraction_bundle: LLMPhraseExtractionRequestBundle,
+        pipeline_context: PipelineContext,
+        timestamp: datetime,
+    ) -> dict[str, list[str]]:
+        """Each record's candidate list for this chunk, derived from the
+        grounding stage(s) upstream of screening in this pipeline family."""
+        raise NotImplementedError(
+            f"{self.__class__.__name__} must implement get_chunk_candidates_by_record"
+        )
+
+    async def _chunk_screening_payloads(
+        self,
+        subject_unique_id: str,
+        chunk_bounds: str,
+        extraction_bundle: LLMPhraseExtractionRequestBundle,
+        pipeline_context: PipelineContext,
+        timestamp: datetime,
+    ) -> dict[str, dict[str, Any]]:
+        masked = await LLMPhraseRelationshipNode.get_result(
+            subject_unique_id=subject_unique_id,
+            field_type=self.field_type,
+            chunk_bounds=chunk_bounds,
+            extraction_bundle=extraction_bundle,
+            completed_request_map=self.get_upstream_phrase_relationship_map(
+                pipeline_context
+            ),
+            timestamp=timestamp,
+        )
+        candidates_by_record = await self.get_chunk_candidates_by_record(
+            subject_unique_id=subject_unique_id,
+            chunk_bounds=chunk_bounds,
+            extraction_bundle=extraction_bundle,
+            pipeline_context=pipeline_context,
+            timestamp=timestamp,
+        )
+        return build_screening_payloads(masked, candidates_by_record)
+
     async def embed_request_ids(  # prefill folded into this function
         self,
         subject_unique_id: str,
         pipeline_context: PipelineContext,
-        metadata: LLMPhraseExtractionMetadata,
+        metadata: LLMPhraseExtractionMetadataV2,
         chunked_request_map: LLMPhraseExtractionRequestMap,
         timestamp: datetime,
     ):
@@ -97,15 +148,11 @@ class LLMPhraseRelationshipScreeningNode(
                 f"as chunked_request_map found empty for subject:{subject_unique_id}, field:{self.field_type.name}."
             )
 
-        # Unlike recursive search, the full set of upstream relationship pairs for
-        # a chunk is already complete by the time screening embeds ids (the
-        # relationship phase has already fully executed), so the group count can
-        # be computed once, upfront — no iterative/eager convergence loop needed.
+        # Every grounding pass upstream has fully executed by the time screening
+        # embeds ids, so each record's candidate set is final and the group
+        # count can be computed once, upfront.
         max_pairs_per_request = (
             metadata.llm_phrase_relationship_screening.max_pairs_per_request
-        )
-        upstream_phrase_relationship_map = self.get_upstream_phrase_relationship_map(
-            pipeline_context
         )
 
         for (
@@ -115,16 +162,12 @@ class LLMPhraseRelationshipScreeningNode(
             if extraction_request_bundle.llm_phrase_relationship_screening_req_ids:
                 continue  # already embedded; group count is stable once computed
 
-            llm_phrase_relationships = await LLMPhraseRelationshipNode.get_result(
+            payloads = await self._chunk_screening_payloads(
                 subject_unique_id=subject_unique_id,
-                field_type=self.field_type,
                 chunk_bounds=chunk_bounds,
                 extraction_bundle=extraction_request_bundle,
-                completed_request_map=upstream_phrase_relationship_map,
+                pipeline_context=pipeline_context,
                 timestamp=timestamp,
-            )
-            num_groups = max(
-                1, ceil(len(llm_phrase_relationships) / max_pairs_per_request)
             )
             extraction_request_bundle.llm_phrase_relationship_screening_req_ids = [
                 self.get_request_custom_id(
@@ -133,8 +176,11 @@ class LLMPhraseRelationshipScreeningNode(
                     chunk_bounds=chunk_bounds,
                     group_index=group_index,
                     metadata=metadata,
+                    group_payload=payload_group,
                 )
-                for group_index in range(num_groups)
+                for group_index, payload_group in enumerate(
+                    grouped_record_payloads(payloads, max_pairs_per_request)
+                )
             ]
 
     def get_embedded_request_ids(
@@ -165,13 +211,18 @@ class LLMPhraseRelationshipScreeningNode(
         field_type: ExtractionFieldType,
         chunk_bounds: str,
         group_index: int,
-        metadata: LLMPhraseExtractionMetadata,
+        metadata: LLMPhraseExtractionMetadataV2,
+        group_payload: dict[str, dict[str, Any]],
     ) -> BatchRequestIDType:
+        # `|ud=` (fork F12): the payload carries the records AND their candidate
+        # lists, so a grounding change re-asks the screening question instead of
+        # replaying a verdict on candidates that no longer exist.
         return (
             f"{subject_unique_id}>{field_type.name}"
             f">{STAGE_REQUEST_ID_TOKEN[PipelineStage.screening]}"
             f">group>{group_index}>chunk>{chunk_bounds}>"
             f"{metadata.llm_phrase_relationship_screening.to_custom_id_segment()}"
+            f"{upstream_digest_segment(group_payload)}"
         )
 
     async def create_batch_requests(
@@ -179,40 +230,45 @@ class LLMPhraseRelationshipScreeningNode(
         subject_unique_id: str,
         scraped_text_file: ScrapedTextFile,
         missing_request_ids: set[BatchRequestIDType],
-        metadata: LLMPhraseExtractionMetadata,
+        metadata: LLMPhraseExtractionMetadataV2,
         chunked_request_map: LLMPhraseExtractionRequestMap,
         pipeline_context: PipelineContext,
         timestamp: datetime,
         eager: bool,
     ) -> list[GPTBatchRequest]:
-        """Create batch requests for the phrase_relationship phase."""
-        subject_name = pipeline_context.subject_name
-        if not subject_name:
-            raise ValueError(
-                f"llm_phrase_relationship_screening_node.create_batch_requests was called for {self.field_type.name} in {self.__class__.__name__} but pipeline_context.subject_name is not set. Ensure business_desc is extracted before phrase_relationship."
+        chunk_payload_maps: dict[str, dict[str, dict[str, Any]]] = {}
+        group_req_ids_by_chunk: dict[str, list[BatchRequestIDType]] = {}
+        for chunk_bounds, extraction_bundle in chunked_request_map.items():
+            group_req_ids_by_chunk[chunk_bounds] = (
+                extraction_bundle.llm_phrase_relationship_screening_req_ids
+            )
+            if not (
+                set(extraction_bundle.llm_phrase_relationship_screening_req_ids)
+                & missing_request_ids
+            ):
+                continue
+            chunk_payload_maps[chunk_bounds] = await self._chunk_screening_payloads(
+                subject_unique_id=subject_unique_id,
+                chunk_bounds=chunk_bounds,
+                extraction_bundle=extraction_bundle,
+                pipeline_context=pipeline_context,
+                timestamp=timestamp,
             )
 
-        # create_missing_phrase_relationship_requests only creates batch requests fresh or only missing ones,
-        # for e.g., new subject or some batch requests failed earlier and were deleted to allow re-processing
-        batch_requests = await create_missing_phrase_relationship_screening_requests(
-            deferred_at=timestamp,
+        return await create_missing_record_screening_requests(
             subject_unique_id=subject_unique_id,
-            subject_name=subject_name,
-            field_type=self.field_type,
-            missing_phrase_relationship_screening_req_ids=missing_request_ids,
-            chunked_request_map=chunked_request_map,
-            subject_text=scraped_text_file.text,
-            phrase_relationship_screening_prompt=self.phrase_relationship_screening_prompt,
-            llm_phrase_relationship_gpt_request_map=self.get_upstream_phrase_relationship_map(
-                pipeline_context
-            ),
+            field_name=self.field_type.name,
+            chunk_payload_maps=chunk_payload_maps,
+            group_req_ids_by_chunk=group_req_ids_by_chunk,
+            missing_req_ids=missing_request_ids,
+            prompt=self.phrase_relationship_screening_prompt,
+            catalog=screening_catalog_for(self.field_type.name),
+            max_records_per_request=metadata.llm_phrase_relationship_screening.max_pairs_per_request,
+            deferred_at=timestamp,
             llm_model=metadata.llm_phrase_relationship_screening.llm_model,
             model_params=metadata.llm_phrase_relationship_screening.model_params,
-            max_pairs_per_request=metadata.llm_phrase_relationship_screening.max_pairs_per_request,
             eager=eager,
         )
-
-        return batch_requests
 
     @staticmethod
     async def get_result(
@@ -222,16 +278,15 @@ class LLMPhraseRelationshipScreeningNode(
         extraction_bundle: LLMPhraseExtractionRequestBundle,
         completed_request_map: dict[BatchRequestIDType, GPTBatchRequest],
         timestamp: datetime,  # for recording errors
-        repairs: Optional[dict[str, str]] = None,
-    ) -> LiveScreeningResults:
-        return await get_phrase_relationship_screening_result(
+    ) -> RecordScreeningResults:
+        return await get_record_screening_result(
             subject_unique_id=subject_unique_id,
-            field_type=field_type,
+            field_name=field_type.name,
             chunk_bounds=chunk_bounds,
-            extraction_bundle=extraction_bundle,
+            catalog=screening_catalog_for(field_type.name),
+            group_req_ids=extraction_bundle.llm_phrase_relationship_screening_req_ids,
             completed_request_map=completed_request_map,
             timestamp=timestamp,
-            repairs=repairs,
         )
 
     async def validate_own_responses(
@@ -243,10 +298,10 @@ class LLMPhraseRelationshipScreeningNode(
     ) -> None:
         """Parse every screening response here, where the requests were made.
 
-        ``get_result`` is a pure parse over a map already in memory, so the
-        downstream node parsing it again costs nothing but CPU on a JSON blob —
-        cheap against being told which of this node's requests to re-run by the
-        node that made them, one phase before a consumer trips over it.
+        ``get_result`` is a pure parse over a map already in memory — cheap
+        against being told which of this node's requests to re-run by the node
+        that made them, one phase before a consumer trips over it. Both axes
+        (record ids AND candidate sets) are held inside the group parse.
         """
         for chunk_bounds, extraction_bundle in chunked_request_map.items():
             await self.get_result(
@@ -261,7 +316,7 @@ class LLMPhraseRelationshipScreeningNode(
     async def dispatch_batch_request(
         self,
         gpt_batch_request: GPTBatchRequest,
-        metadata: LLMPhraseExtractionMetadata,
+        metadata: LLMPhraseExtractionMetadataV2,
     ) -> GPTBatchResponse:
         return await dispatch_gpt_batch_request(
             gpt_batch_request=gpt_batch_request,

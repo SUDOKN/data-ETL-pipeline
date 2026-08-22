@@ -16,7 +16,7 @@ from core.models.extraction_schemas.relationship import (
 from core.models.extraction_schemas.screening import CandidateScreeningVerdict
 from core.models.rule_catalog import STAGE_RELATIONSHIP_SCREENING, RuleCatalog
 from core.services.phrase_blocks_contract import render_record_blocks
-from core.services.pipeline_nodes.multi_stage.llm_screening_node_service_v2 import (
+from core.services.pipeline_nodes.multi_stage.llm_relationship_screening_node_service import (
     DUMMY_SCREENINGS_RESPONSE_CONTENT,
     build_screening_payloads,
     hold_candidates_to_sent_records,

@@ -16,7 +16,9 @@ from llm_providers.models.open_ai.gpt_model_params import GPTModelParams
 from core.models.chunking_strat import CONFORMITY_ATTESTATION_CHUNKING_STRAT
 from core.models.extraction_results.concept_extraction_results import (
     BatchedInitialGroundingNodeMetadata,
-    ConceptExtractionMetadata,
+)
+from core.models.extraction_results.llm_phrase_extraction_results_v2 import (
+    ConceptExtractionMetadataV2,
 )
 from core.models.extraction_results.llm_phrase_extraction_results import (
     BatchedRelationshipNodeMetadata,
@@ -68,7 +70,7 @@ def _metadata(
         catalog_version=catalog_version,
         created_at=metadata_init_at,
     )
-    return ConceptExtractionMetadata(
+    return ConceptExtractionMetadataV2(
         created_at=metadata_init_at,
         chunk_strat=CONFORMITY_ATTESTATION_CHUNKING_STRAT,
         ontology_version_id=ontology_version_id,

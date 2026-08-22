@@ -11,8 +11,10 @@ from llm_providers.models.open_ai.gpt_batch_response_blob import (
 )
 from llm_providers.models.file_objects.prompt import Prompt
 from core.models.extraction_schemas.search import LLMSearchResults
+from core.models.extraction_results.llm_phrase_extraction_results_v2 import (
+    LLMPhraseExtractionMetadataV2,
+)
 from core.models.deferred_extraction.deferred_phrase_extraction_requests import (
-    LLMPhraseExtractionMetadata,
     LLMPhraseExtractionRequestMap,
     LLMPhraseExtractionRequestBundle,
 )
@@ -77,7 +79,7 @@ class LLMPhraseSearchNode(
         self,
         subject_unique_id: str,
         pipeline_context: PipelineContext,
-        metadata: LLMPhraseExtractionMetadata,
+        metadata: LLMPhraseExtractionMetadataV2,
         chunked_request_map: LLMPhraseExtractionRequestMap,
         timestamp: datetime,
     ):
@@ -135,7 +137,7 @@ class LLMPhraseSearchNode(
         field_type: ExtractionFieldType,
         chunk_bounds: str,
         sub_bounds: str,
-        metadata: LLMPhraseExtractionMetadata,
+        metadata: LLMPhraseExtractionMetadataV2,
     ) -> BatchRequestIDType:
         return (
             f"{subject_unique_id}>{field_type.name}"
@@ -149,7 +151,7 @@ class LLMPhraseSearchNode(
         subject_unique_id: str,
         scraped_text_file: ScrapedTextFile,
         missing_request_ids: set[BatchRequestIDType],
-        metadata: LLMPhraseExtractionMetadata,
+        metadata: LLMPhraseExtractionMetadataV2,
         chunked_request_map: LLMPhraseExtractionRequestMap,
         pipeline_context: PipelineContext,
         timestamp: datetime,
@@ -195,7 +197,7 @@ class LLMPhraseSearchNode(
     async def dispatch_batch_request(
         self,
         gpt_batch_request: GPTBatchRequest,
-        metadata: LLMPhraseExtractionMetadata,
+        metadata: LLMPhraseExtractionMetadataV2,
     ) -> GPTBatchResponse:
         return await dispatch_gpt_batch_request(
             gpt_batch_request=gpt_batch_request,

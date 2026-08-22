@@ -3,16 +3,20 @@
 The full extraction dump is built by the reconcile node, which a stopped run
 never reaches — so without this, switching a stage off would buy you a cheaper
 run and nothing to read from it. This walks the stages that DID publish a
-completed request map and emits the same per-chunk shape: per-phrase rows for
+completed request map and emits the same per-chunk shape: per-record rows for
 the multi-stage pipelines (minus the verdict fields only a finished chain can
 justify), the parsed result for a single-stage field.
 
 Every stage that can precede a stop point shares one ``get_result`` signature,
 which is what makes the walk generic. Iterative grounding is the single
-exception (it takes two request maps and the ontology's label map), and it is
-also the only stage that cannot sit before a stop point in practice — stopping
-after it means everything but reconcile ran. It is reported in the header as
-having run, without its detail in the rows.
+exception (it takes three request maps and the ontology's label map), and it
+is also the only stage that cannot sit before a stop point in practice —
+stopping after it means everything but reconcile ran. It is reported in the
+header as having run, without its detail in the rows.
+
+The grounding stages here parse WITHOUT the vocabulary hold (the walk has node
+classes, not instances, and no ontology in hand), so an in-vocab label appears
+exactly as the model wrote it — for a diagnostic that is a feature, not a gap.
 """
 
 from __future__ import annotations
@@ -21,11 +25,11 @@ import logging
 from datetime import datetime
 from typing import Optional, Protocol
 
-from core.models.extraction_schemas.grounding import PhraseToTagAndRulesMap
+from core.models.extraction_schemas.grounding import RecordGroundingResults
 from core.models.extraction_schemas.relationship import (
-    LLMPhraseRelationshipResults,
+    MaskedLLMPhraseRelationshipResults,
 )
-from core.models.extraction_schemas.screening import LiveScreeningResults
+from core.models.extraction_schemas.screening import RecordScreeningResults
 from core.models.extraction_schemas.search import LLMSearchResults
 from core.models.field_types import ExtractionFieldType
 from core.models.pipeline_nodes.base.base_node import PipelineContext
@@ -34,20 +38,23 @@ from core.services.pipeline_nodes.multi_stage.llm_phrase_recursive_search_node_s
     build_llm_phrase_search_results,
 )
 from core.utils.extraction_dump_util import (
-    build_partial_phrase_rows,
+    build_partial_record_rows,
     build_run_provenance,
     jsonable_result,
-    merge_stage_repairs,
     write_extraction_dump,
 )
 from scraper.models.s3.scraped_text_file import ScrapedTextFile
 
 logger = logging.getLogger(__name__)
 
-_GROUNDING_STAGES = (
-    PipelineStage.initial_grounding,
-    PipelineStage.freehand_grounding,
-)
+# Stage value -> the row key its results are dumped under. Both concept
+# grounding passes and the keyword one can precede a stop point, and more than
+# one can have run — each present stage gets its own key on the row.
+_GROUNDING_STAGE_ROW_KEYS = {
+    PipelineStage.initial_grounding: "in_vocab_grounding",
+    PipelineStage.oov_grounding: "oov_grounding",
+    PipelineStage.freehand_grounding: "freehand_grounding",
+}
 
 
 class _HasChunkedRequestMap(Protocol):
@@ -147,10 +154,30 @@ async def write_partial_run_dump(
                     brute_search_results=getattr(bundle, "brute", None),
                 )
 
-            relationship_flat: Optional[LLMPhraseRelationshipResults] = None
+            # One sink for the relationship stage's phrase repairs — the one
+            # stage left where the model echoes a phrase back; every
+            # record-keyed stage downstream holds exactly, so it has none.
+            relationship_repairs: dict[str, str] = {}
+
+            masked_flat: Optional[MaskedLLMPhraseRelationshipResults] = None
             if PipelineStage.relationship in completed_by_stage:
                 node_class, request_map = completed_by_stage[PipelineStage.relationship]
-                relationship_flat = await node_class.get_result(
+                masked_flat = await node_class.get_result(
+                    subject_unique_id=subject_unique_id,
+                    field_type=field_type,
+                    chunk_bounds=chunk_bounds,
+                    extraction_bundle=bundle,
+                    completed_request_map=request_map,
+                    timestamp=timestamp,
+                    repairs=relationship_repairs,
+                )
+
+            grounding_by_stage: dict[str, Optional[RecordGroundingResults]] = {}
+            for stage, row_key in _GROUNDING_STAGE_ROW_KEYS.items():
+                if stage not in completed_by_stage:
+                    continue
+                node_class, request_map = completed_by_stage[stage]
+                grounding_by_stage[row_key] = await node_class.get_result(
                     subject_unique_id=subject_unique_id,
                     field_type=field_type,
                     chunk_bounds=chunk_bounds,
@@ -159,13 +186,7 @@ async def write_partial_run_dump(
                     timestamp=timestamp,
                 )
 
-            # One repairs sink per stage, for the same reason the reconcile
-            # nodes keep them apart: the same phrase can be mis-echoed at more
-            # than one stage, and a shared dict keeps only the last one parsed.
-            screening_repairs: dict[str, str] = {}
-            grounding_repairs: dict[str, str] = {}
-
-            screening_flat: Optional[LiveScreeningResults] = None
+            screening_flat: Optional[RecordScreeningResults] = None
             if PipelineStage.screening in completed_by_stage:
                 node_class, request_map = completed_by_stage[PipelineStage.screening]
                 screening_flat = await node_class.get_result(
@@ -175,43 +196,15 @@ async def write_partial_run_dump(
                     extraction_bundle=bundle,
                     completed_request_map=request_map,
                     timestamp=timestamp,
-                    repairs=screening_repairs,
-                )
-
-            grounding_flat: Optional[PhraseToTagAndRulesMap] = None
-            grounding_stage: Optional[PipelineStage] = next(
-                (stage for stage in _GROUNDING_STAGES if stage in completed_by_stage),
-                None,
-            )
-            if grounding_stage is not None:
-                node_class, request_map = completed_by_stage[grounding_stage]
-                grounding_flat = await node_class.get_result(
-                    subject_unique_id=subject_unique_id,
-                    field_type=field_type,
-                    chunk_bounds=chunk_bounds,
-                    extraction_bundle=bundle,
-                    completed_request_map=request_map,
-                    timestamp=timestamp,
-                    repairs=grounding_repairs,
                 )
 
             chunked_contents[chunk_bounds] = {
-                "rows": build_partial_phrase_rows(
+                "rows": build_partial_record_rows(
                     search_rounds=search_rounds,
-                    relationship_flat=relationship_flat,
+                    masked_flat=masked_flat,
+                    grounding_by_stage=grounding_by_stage,
                     screening_flat=screening_flat,
-                    grounding_flat=grounding_flat,
-                    grounding_stage=grounding_stage.value if grounding_stage else None,
-                    repairs_flat=merge_stage_repairs(
-                        {
-                            "screening": screening_repairs,
-                            **(
-                                {grounding_stage.value: grounding_repairs}
-                                if grounding_stage
-                                else {}
-                            ),
-                        }
-                    ),
+                    relationship_repairs=relationship_repairs,
                     subject_name=pipeline_context.subject_name,
                 )
             }

@@ -1783,7 +1783,7 @@
         "required": [
           "metadata",
           "results",
-          "chunk_stats"
+          "chunked_extraction_stats"
         ],
         "additionalProperties": false,
         "properties": {
@@ -2704,13 +2704,30 @@
             }
           },
           "results": {
-            "bsonType": "array",
-            "items": {
-              "bsonType": "string"
-            },
-            "uniqueItems": true
+            "bsonType": "object",
+            "required": [
+              "in_vocab",
+              "out_of_vocab"
+            ],
+            "additionalProperties": false,
+            "properties": {
+              "in_vocab": {
+                "bsonType": "array",
+                "items": {
+                  "bsonType": "string"
+                },
+                "uniqueItems": true
+              },
+              "out_of_vocab": {
+                "bsonType": "array",
+                "items": {
+                  "bsonType": "string"
+                },
+                "uniqueItems": true
+              }
+            }
           },
-          "chunk_stats": {
+          "chunked_extraction_stats": {
             "bsonType": "object",
             "additionalProperties": {
               "bsonType": "object",
@@ -2738,7 +2755,53 @@
                   "additionalProperties": {
                     "bsonType": "object",
                     "additionalProperties": {
-                      "bsonType": "string"
+                      "bsonType": "object",
+                      "required": [
+                        "phrase",
+                        "record"
+                      ],
+                      "additionalProperties": false,
+                      "properties": {
+                        "phrase": {
+                          "bsonType": "string"
+                        },
+                        "record": {
+                          "bsonType": "object",
+                          "required": [
+                            "mentions",
+                            "synthesis"
+                          ],
+                          "additionalProperties": false,
+                          "properties": {
+                            "mentions": {
+                              "bsonType": "array",
+                              "items": {
+                                "bsonType": "object",
+                                "required": [
+                                  "form",
+                                  "page",
+                                  "account"
+                                ],
+                                "additionalProperties": false,
+                                "properties": {
+                                  "form": {
+                                    "bsonType": "string"
+                                  },
+                                  "page": {
+                                    "bsonType": "string"
+                                  },
+                                  "account": {
+                                    "bsonType": "string"
+                                  }
+                                }
+                              }
+                            },
+                            "synthesis": {
+                              "bsonType": "string"
+                            }
+                          }
+                        }
+                      }
                     }
                   }
                 },
@@ -2748,60 +2811,68 @@
                     "bsonType": "object",
                     "additionalProperties": {
                       "bsonType": "object",
-                      "required": [
-                        "passed",
-                        "applied_rules"
-                      ],
-                      "additionalProperties": false,
-                      "properties": {
-                        "passed": {
-                          "bsonType": "bool"
-                        },
-                        "identified_entity": {
-                          "bsonType": [
-                            "string",
-                            "null"
-                          ]
-                        },
-                        "applied_rules": {
-                          "bsonType": "array",
-                          "items": {
-                            "bsonType": "object",
-                            "required": [
-                              "rule_id",
-                              "outcome",
-                              "explanation"
-                            ],
-                            "additionalProperties": false,
-                            "properties": {
-                              "rule_id": {
-                                "bsonType": "string"
-                              },
-                              "outcome": {
-                                "bsonType": "string"
-                              },
-                              "explanation": {
-                                "bsonType": "string"
+                      "additionalProperties": {
+                        "bsonType": "object",
+                        "required": [
+                          "passed",
+                          "applied_rules"
+                        ],
+                        "additionalProperties": false,
+                        "properties": {
+                          "passed": {
+                            "bsonType": "bool"
+                          },
+                          "applied_rules": {
+                            "bsonType": "array",
+                            "items": {
+                              "bsonType": "object",
+                              "required": [
+                                "rule_id",
+                                "outcome",
+                                "explanation"
+                              ],
+                              "additionalProperties": false,
+                              "properties": {
+                                "rule_id": {
+                                  "bsonType": "string"
+                                },
+                                "outcome": {
+                                  "bsonType": "string"
+                                },
+                                "explanation": {
+                                  "bsonType": "string"
+                                }
                               }
                             }
                           }
-                        },
-                        "no_candidate_explanation": {
-                          "bsonType": [
-                            "string",
-                            "null"
-                          ]
                         }
                       }
                     }
                   }
                 },
                 "results": {
-                  "bsonType": "array",
-                  "items": {
-                    "bsonType": "string"
-                  },
-                  "uniqueItems": true
+                  "bsonType": "object",
+                  "required": [
+                    "in_vocab",
+                    "out_of_vocab"
+                  ],
+                  "additionalProperties": false,
+                  "properties": {
+                    "in_vocab": {
+                      "bsonType": "array",
+                      "items": {
+                        "bsonType": "string"
+                      },
+                      "uniqueItems": true
+                    },
+                    "out_of_vocab": {
+                      "bsonType": "array",
+                      "items": {
+                        "bsonType": "string"
+                      },
+                      "uniqueItems": true
+                    }
+                  }
                 },
                 "llm_phrase_freehand_grounding": {
                   "bsonType": "object",
@@ -2809,27 +2880,42 @@
                     "bsonType": "object",
                     "additionalProperties": {
                       "bsonType": "object",
-                      "additionalProperties": {
-                        "bsonType": "array",
-                        "items": {
+                      "required": [
+                        "tags"
+                      ],
+                      "additionalProperties": false,
+                      "properties": {
+                        "tags": {
                           "bsonType": "object",
-                          "required": [
-                            "rule_id",
-                            "outcome",
-                            "explanation"
-                          ],
-                          "additionalProperties": false,
-                          "properties": {
-                            "rule_id": {
-                              "bsonType": "string"
-                            },
-                            "outcome": {
-                              "bsonType": "string"
-                            },
-                            "explanation": {
-                              "bsonType": "string"
+                          "additionalProperties": {
+                            "bsonType": "array",
+                            "items": {
+                              "bsonType": "object",
+                              "required": [
+                                "rule_id",
+                                "outcome",
+                                "explanation"
+                              ],
+                              "additionalProperties": false,
+                              "properties": {
+                                "rule_id": {
+                                  "bsonType": "string"
+                                },
+                                "outcome": {
+                                  "bsonType": "string"
+                                },
+                                "explanation": {
+                                  "bsonType": "string"
+                                }
+                              }
                             }
                           }
+                        },
+                        "explanation": {
+                          "bsonType": [
+                            "string",
+                            "null"
+                          ]
                         }
                       }
                     }
@@ -2848,7 +2934,7 @@
         "required": [
           "metadata",
           "results",
-          "chunk_stats"
+          "chunked_extraction_stats"
         ],
         "additionalProperties": false,
         "properties": {
@@ -3769,13 +3855,30 @@
             }
           },
           "results": {
-            "bsonType": "array",
-            "items": {
-              "bsonType": "string"
-            },
-            "uniqueItems": true
+            "bsonType": "object",
+            "required": [
+              "in_vocab",
+              "out_of_vocab"
+            ],
+            "additionalProperties": false,
+            "properties": {
+              "in_vocab": {
+                "bsonType": "array",
+                "items": {
+                  "bsonType": "string"
+                },
+                "uniqueItems": true
+              },
+              "out_of_vocab": {
+                "bsonType": "array",
+                "items": {
+                  "bsonType": "string"
+                },
+                "uniqueItems": true
+              }
+            }
           },
-          "chunk_stats": {
+          "chunked_extraction_stats": {
             "bsonType": "object",
             "additionalProperties": {
               "bsonType": "object",
@@ -3803,7 +3906,53 @@
                   "additionalProperties": {
                     "bsonType": "object",
                     "additionalProperties": {
-                      "bsonType": "string"
+                      "bsonType": "object",
+                      "required": [
+                        "phrase",
+                        "record"
+                      ],
+                      "additionalProperties": false,
+                      "properties": {
+                        "phrase": {
+                          "bsonType": "string"
+                        },
+                        "record": {
+                          "bsonType": "object",
+                          "required": [
+                            "mentions",
+                            "synthesis"
+                          ],
+                          "additionalProperties": false,
+                          "properties": {
+                            "mentions": {
+                              "bsonType": "array",
+                              "items": {
+                                "bsonType": "object",
+                                "required": [
+                                  "form",
+                                  "page",
+                                  "account"
+                                ],
+                                "additionalProperties": false,
+                                "properties": {
+                                  "form": {
+                                    "bsonType": "string"
+                                  },
+                                  "page": {
+                                    "bsonType": "string"
+                                  },
+                                  "account": {
+                                    "bsonType": "string"
+                                  }
+                                }
+                              }
+                            },
+                            "synthesis": {
+                              "bsonType": "string"
+                            }
+                          }
+                        }
+                      }
                     }
                   }
                 },
@@ -3813,60 +3962,68 @@
                     "bsonType": "object",
                     "additionalProperties": {
                       "bsonType": "object",
-                      "required": [
-                        "passed",
-                        "applied_rules"
-                      ],
-                      "additionalProperties": false,
-                      "properties": {
-                        "passed": {
-                          "bsonType": "bool"
-                        },
-                        "identified_entity": {
-                          "bsonType": [
-                            "string",
-                            "null"
-                          ]
-                        },
-                        "applied_rules": {
-                          "bsonType": "array",
-                          "items": {
-                            "bsonType": "object",
-                            "required": [
-                              "rule_id",
-                              "outcome",
-                              "explanation"
-                            ],
-                            "additionalProperties": false,
-                            "properties": {
-                              "rule_id": {
-                                "bsonType": "string"
-                              },
-                              "outcome": {
-                                "bsonType": "string"
-                              },
-                              "explanation": {
-                                "bsonType": "string"
+                      "additionalProperties": {
+                        "bsonType": "object",
+                        "required": [
+                          "passed",
+                          "applied_rules"
+                        ],
+                        "additionalProperties": false,
+                        "properties": {
+                          "passed": {
+                            "bsonType": "bool"
+                          },
+                          "applied_rules": {
+                            "bsonType": "array",
+                            "items": {
+                              "bsonType": "object",
+                              "required": [
+                                "rule_id",
+                                "outcome",
+                                "explanation"
+                              ],
+                              "additionalProperties": false,
+                              "properties": {
+                                "rule_id": {
+                                  "bsonType": "string"
+                                },
+                                "outcome": {
+                                  "bsonType": "string"
+                                },
+                                "explanation": {
+                                  "bsonType": "string"
+                                }
                               }
                             }
                           }
-                        },
-                        "no_candidate_explanation": {
-                          "bsonType": [
-                            "string",
-                            "null"
-                          ]
                         }
                       }
                     }
                   }
                 },
                 "results": {
-                  "bsonType": "array",
-                  "items": {
-                    "bsonType": "string"
-                  },
-                  "uniqueItems": true
+                  "bsonType": "object",
+                  "required": [
+                    "in_vocab",
+                    "out_of_vocab"
+                  ],
+                  "additionalProperties": false,
+                  "properties": {
+                    "in_vocab": {
+                      "bsonType": "array",
+                      "items": {
+                        "bsonType": "string"
+                      },
+                      "uniqueItems": true
+                    },
+                    "out_of_vocab": {
+                      "bsonType": "array",
+                      "items": {
+                        "bsonType": "string"
+                      },
+                      "uniqueItems": true
+                    }
+                  }
                 },
                 "llm_phrase_freehand_grounding": {
                   "bsonType": "object",
@@ -3874,27 +4031,42 @@
                     "bsonType": "object",
                     "additionalProperties": {
                       "bsonType": "object",
-                      "additionalProperties": {
-                        "bsonType": "array",
-                        "items": {
+                      "required": [
+                        "tags"
+                      ],
+                      "additionalProperties": false,
+                      "properties": {
+                        "tags": {
                           "bsonType": "object",
-                          "required": [
-                            "rule_id",
-                            "outcome",
-                            "explanation"
-                          ],
-                          "additionalProperties": false,
-                          "properties": {
-                            "rule_id": {
-                              "bsonType": "string"
-                            },
-                            "outcome": {
-                              "bsonType": "string"
-                            },
-                            "explanation": {
-                              "bsonType": "string"
+                          "additionalProperties": {
+                            "bsonType": "array",
+                            "items": {
+                              "bsonType": "object",
+                              "required": [
+                                "rule_id",
+                                "outcome",
+                                "explanation"
+                              ],
+                              "additionalProperties": false,
+                              "properties": {
+                                "rule_id": {
+                                  "bsonType": "string"
+                                },
+                                "outcome": {
+                                  "bsonType": "string"
+                                },
+                                "explanation": {
+                                  "bsonType": "string"
+                                }
+                              }
                             }
                           }
+                        },
+                        "explanation": {
+                          "bsonType": [
+                            "string",
+                            "null"
+                          ]
                         }
                       }
                     }
@@ -3913,7 +4085,7 @@
         "required": [
           "metadata",
           "results",
-          "chunk_stats"
+          "chunked_extraction_stats"
         ],
         "additionalProperties": false,
         "properties": {
@@ -4834,13 +5006,30 @@
             }
           },
           "results": {
-            "bsonType": "array",
-            "items": {
-              "bsonType": "string"
-            },
-            "uniqueItems": true
+            "bsonType": "object",
+            "required": [
+              "in_vocab",
+              "out_of_vocab"
+            ],
+            "additionalProperties": false,
+            "properties": {
+              "in_vocab": {
+                "bsonType": "array",
+                "items": {
+                  "bsonType": "string"
+                },
+                "uniqueItems": true
+              },
+              "out_of_vocab": {
+                "bsonType": "array",
+                "items": {
+                  "bsonType": "string"
+                },
+                "uniqueItems": true
+              }
+            }
           },
-          "chunk_stats": {
+          "chunked_extraction_stats": {
             "bsonType": "object",
             "additionalProperties": {
               "bsonType": "object",
@@ -4868,7 +5057,53 @@
                   "additionalProperties": {
                     "bsonType": "object",
                     "additionalProperties": {
-                      "bsonType": "string"
+                      "bsonType": "object",
+                      "required": [
+                        "phrase",
+                        "record"
+                      ],
+                      "additionalProperties": false,
+                      "properties": {
+                        "phrase": {
+                          "bsonType": "string"
+                        },
+                        "record": {
+                          "bsonType": "object",
+                          "required": [
+                            "mentions",
+                            "synthesis"
+                          ],
+                          "additionalProperties": false,
+                          "properties": {
+                            "mentions": {
+                              "bsonType": "array",
+                              "items": {
+                                "bsonType": "object",
+                                "required": [
+                                  "form",
+                                  "page",
+                                  "account"
+                                ],
+                                "additionalProperties": false,
+                                "properties": {
+                                  "form": {
+                                    "bsonType": "string"
+                                  },
+                                  "page": {
+                                    "bsonType": "string"
+                                  },
+                                  "account": {
+                                    "bsonType": "string"
+                                  }
+                                }
+                              }
+                            },
+                            "synthesis": {
+                              "bsonType": "string"
+                            }
+                          }
+                        }
+                      }
                     }
                   }
                 },
@@ -4878,60 +5113,68 @@
                     "bsonType": "object",
                     "additionalProperties": {
                       "bsonType": "object",
-                      "required": [
-                        "passed",
-                        "applied_rules"
-                      ],
-                      "additionalProperties": false,
-                      "properties": {
-                        "passed": {
-                          "bsonType": "bool"
-                        },
-                        "identified_entity": {
-                          "bsonType": [
-                            "string",
-                            "null"
-                          ]
-                        },
-                        "applied_rules": {
-                          "bsonType": "array",
-                          "items": {
-                            "bsonType": "object",
-                            "required": [
-                              "rule_id",
-                              "outcome",
-                              "explanation"
-                            ],
-                            "additionalProperties": false,
-                            "properties": {
-                              "rule_id": {
-                                "bsonType": "string"
-                              },
-                              "outcome": {
-                                "bsonType": "string"
-                              },
-                              "explanation": {
-                                "bsonType": "string"
+                      "additionalProperties": {
+                        "bsonType": "object",
+                        "required": [
+                          "passed",
+                          "applied_rules"
+                        ],
+                        "additionalProperties": false,
+                        "properties": {
+                          "passed": {
+                            "bsonType": "bool"
+                          },
+                          "applied_rules": {
+                            "bsonType": "array",
+                            "items": {
+                              "bsonType": "object",
+                              "required": [
+                                "rule_id",
+                                "outcome",
+                                "explanation"
+                              ],
+                              "additionalProperties": false,
+                              "properties": {
+                                "rule_id": {
+                                  "bsonType": "string"
+                                },
+                                "outcome": {
+                                  "bsonType": "string"
+                                },
+                                "explanation": {
+                                  "bsonType": "string"
+                                }
                               }
                             }
                           }
-                        },
-                        "no_candidate_explanation": {
-                          "bsonType": [
-                            "string",
-                            "null"
-                          ]
                         }
                       }
                     }
                   }
                 },
                 "results": {
-                  "bsonType": "array",
-                  "items": {
-                    "bsonType": "string"
-                  },
-                  "uniqueItems": true
+                  "bsonType": "object",
+                  "required": [
+                    "in_vocab",
+                    "out_of_vocab"
+                  ],
+                  "additionalProperties": false,
+                  "properties": {
+                    "in_vocab": {
+                      "bsonType": "array",
+                      "items": {
+                        "bsonType": "string"
+                      },
+                      "uniqueItems": true
+                    },
+                    "out_of_vocab": {
+                      "bsonType": "array",
+                      "items": {
+                        "bsonType": "string"
+                      },
+                      "uniqueItems": true
+                    }
+                  }
                 },
                 "llm_phrase_freehand_grounding": {
                   "bsonType": "object",
@@ -4939,27 +5182,42 @@
                     "bsonType": "object",
                     "additionalProperties": {
                       "bsonType": "object",
-                      "additionalProperties": {
-                        "bsonType": "array",
-                        "items": {
+                      "required": [
+                        "tags"
+                      ],
+                      "additionalProperties": false,
+                      "properties": {
+                        "tags": {
                           "bsonType": "object",
-                          "required": [
-                            "rule_id",
-                            "outcome",
-                            "explanation"
-                          ],
-                          "additionalProperties": false,
-                          "properties": {
-                            "rule_id": {
-                              "bsonType": "string"
-                            },
-                            "outcome": {
-                              "bsonType": "string"
-                            },
-                            "explanation": {
-                              "bsonType": "string"
+                          "additionalProperties": {
+                            "bsonType": "array",
+                            "items": {
+                              "bsonType": "object",
+                              "required": [
+                                "rule_id",
+                                "outcome",
+                                "explanation"
+                              ],
+                              "additionalProperties": false,
+                              "properties": {
+                                "rule_id": {
+                                  "bsonType": "string"
+                                },
+                                "outcome": {
+                                  "bsonType": "string"
+                                },
+                                "explanation": {
+                                  "bsonType": "string"
+                                }
+                              }
                             }
                           }
+                        },
+                        "explanation": {
+                          "bsonType": [
+                            "string",
+                            "null"
+                          ]
                         }
                       }
                     }
@@ -5897,6 +6155,184 @@
                   }
                 }
               },
+              "llm_phrase_oov_grounding": {
+                "bsonType": [
+                  "object",
+                  "null"
+                ],
+                "required": [
+                  "llm_model",
+                  "model_params",
+                  "prompt_name",
+                  "prompt_version_id",
+                  "created_at",
+                  "max_pairs_per_request"
+                ],
+                "additionalProperties": false,
+                "properties": {
+                  "llm_model": {
+                    "bsonType": "object",
+                    "required": [
+                      "name",
+                      "max_context_tokens"
+                    ],
+                    "additionalProperties": false,
+                    "properties": {
+                      "name": {
+                        "bsonType": "string"
+                      },
+                      "max_context_tokens": {
+                        "bsonType": "int"
+                      }
+                    }
+                  },
+                  "model_params": {
+                    "bsonType": "object",
+                    "required": [
+                      "max_completion_tokens",
+                      "response_format",
+                      "temperature",
+                      "top_p",
+                      "presence_penalty",
+                      "frequency_penalty"
+                    ],
+                    "additionalProperties": false,
+                    "properties": {
+                      "reasoning_effort": {
+                        "enum": [
+                          "low",
+                          "medium",
+                          "high",
+                          null
+                        ],
+                        "bsonType": [
+                          "string",
+                          "null"
+                        ]
+                      },
+                      "logit_bias": {
+                        "bsonType": [
+                          "object",
+                          "null"
+                        ],
+                        "additionalProperties": {
+                          "bsonType": "int"
+                        }
+                      },
+                      "user": {
+                        "bsonType": [
+                          "string",
+                          "null"
+                        ]
+                      },
+                      "tools": {
+                        "bsonType": [
+                          "array",
+                          "null"
+                        ],
+                        "items": {
+                          "bsonType": "object"
+                        }
+                      },
+                      "tool_choice": {
+                        "anyOf": [
+                          {
+                            "bsonType": "string"
+                          },
+                          {
+                            "bsonType": "object"
+                          },
+                          {
+                            "bsonType": "null"
+                          }
+                        ]
+                      },
+                      "parallel_tool_calls": {
+                        "bsonType": [
+                          "bool",
+                          "null"
+                        ]
+                      },
+                      "logprobs": {
+                        "bsonType": [
+                          "bool",
+                          "null"
+                        ]
+                      },
+                      "top_logprobs": {
+                        "bsonType": [
+                          "int",
+                          "null"
+                        ]
+                      },
+                      "max_completion_tokens": {
+                        "bsonType": "int"
+                      },
+                      "stop": {
+                        "anyOf": [
+                          {
+                            "bsonType": "string"
+                          },
+                          {
+                            "bsonType": "array",
+                            "items": {
+                              "bsonType": "string"
+                            }
+                          },
+                          {
+                            "bsonType": "null"
+                          }
+                        ]
+                      },
+                      "n": {
+                        "bsonType": [
+                          "int",
+                          "null"
+                        ]
+                      },
+                      "response_format": {
+                        "bsonType": "object"
+                      },
+                      "temperature": {
+                        "bsonType": "double"
+                      },
+                      "top_p": {
+                        "bsonType": "double"
+                      },
+                      "presence_penalty": {
+                        "bsonType": "double"
+                      },
+                      "frequency_penalty": {
+                        "bsonType": "double"
+                      },
+                      "seed": {
+                        "bsonType": [
+                          "int",
+                          "null"
+                        ]
+                      }
+                    }
+                  },
+                  "prompt_name": {
+                    "bsonType": "string"
+                  },
+                  "prompt_version_id": {
+                    "bsonType": "string"
+                  },
+                  "catalog_version": {
+                    "bsonType": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "created_at": {
+                    "bsonType": "date"
+                  },
+                  "max_pairs_per_request": {
+                    "bsonType": "int"
+                  }
+                }
+              },
               "llm_phrase_recursive_grounding": {
                 "bsonType": "object",
                 "required": [
@@ -6124,7 +6560,53 @@
                   "additionalProperties": {
                     "bsonType": "object",
                     "additionalProperties": {
-                      "bsonType": "string"
+                      "bsonType": "object",
+                      "required": [
+                        "phrase",
+                        "record"
+                      ],
+                      "additionalProperties": false,
+                      "properties": {
+                        "phrase": {
+                          "bsonType": "string"
+                        },
+                        "record": {
+                          "bsonType": "object",
+                          "required": [
+                            "mentions",
+                            "synthesis"
+                          ],
+                          "additionalProperties": false,
+                          "properties": {
+                            "mentions": {
+                              "bsonType": "array",
+                              "items": {
+                                "bsonType": "object",
+                                "required": [
+                                  "form",
+                                  "page",
+                                  "account"
+                                ],
+                                "additionalProperties": false,
+                                "properties": {
+                                  "form": {
+                                    "bsonType": "string"
+                                  },
+                                  "page": {
+                                    "bsonType": "string"
+                                  },
+                                  "account": {
+                                    "bsonType": "string"
+                                  }
+                                }
+                              }
+                            },
+                            "synthesis": {
+                              "bsonType": "string"
+                            }
+                          }
+                        }
+                      }
                     }
                   }
                 },
@@ -6134,49 +6616,40 @@
                     "bsonType": "object",
                     "additionalProperties": {
                       "bsonType": "object",
-                      "required": [
-                        "passed",
-                        "applied_rules"
-                      ],
-                      "additionalProperties": false,
-                      "properties": {
-                        "passed": {
-                          "bsonType": "bool"
-                        },
-                        "identified_entity": {
-                          "bsonType": [
-                            "string",
-                            "null"
-                          ]
-                        },
-                        "applied_rules": {
-                          "bsonType": "array",
-                          "items": {
-                            "bsonType": "object",
-                            "required": [
-                              "rule_id",
-                              "outcome",
-                              "explanation"
-                            ],
-                            "additionalProperties": false,
-                            "properties": {
-                              "rule_id": {
-                                "bsonType": "string"
-                              },
-                              "outcome": {
-                                "bsonType": "string"
-                              },
-                              "explanation": {
-                                "bsonType": "string"
+                      "additionalProperties": {
+                        "bsonType": "object",
+                        "required": [
+                          "passed",
+                          "applied_rules"
+                        ],
+                        "additionalProperties": false,
+                        "properties": {
+                          "passed": {
+                            "bsonType": "bool"
+                          },
+                          "applied_rules": {
+                            "bsonType": "array",
+                            "items": {
+                              "bsonType": "object",
+                              "required": [
+                                "rule_id",
+                                "outcome",
+                                "explanation"
+                              ],
+                              "additionalProperties": false,
+                              "properties": {
+                                "rule_id": {
+                                  "bsonType": "string"
+                                },
+                                "outcome": {
+                                  "bsonType": "string"
+                                },
+                                "explanation": {
+                                  "bsonType": "string"
+                                }
                               }
                             }
                           }
-                        },
-                        "no_candidate_explanation": {
-                          "bsonType": [
-                            "string",
-                            "null"
-                          ]
                         }
                       }
                     }
@@ -6215,29 +6688,101 @@
                 },
                 "llm_phrase_initial_grounding": {
                   "bsonType": "object",
-                  "additionalProperties": {
-                    "bsonType": "object",
-                    "additionalProperties": {
+                  "required": [
+                    "in_vocab",
+                    "out_of_vocab"
+                  ],
+                  "additionalProperties": false,
+                  "properties": {
+                    "in_vocab": {
                       "bsonType": "object",
                       "additionalProperties": {
-                        "bsonType": "array",
-                        "items": {
+                        "bsonType": "object",
+                        "additionalProperties": {
                           "bsonType": "object",
                           "required": [
-                            "rule_id",
-                            "outcome",
-                            "explanation"
+                            "tags"
                           ],
                           "additionalProperties": false,
                           "properties": {
-                            "rule_id": {
-                              "bsonType": "string"
-                            },
-                            "outcome": {
-                              "bsonType": "string"
+                            "tags": {
+                              "bsonType": "object",
+                              "additionalProperties": {
+                                "bsonType": "array",
+                                "items": {
+                                  "bsonType": "object",
+                                  "required": [
+                                    "rule_id",
+                                    "outcome",
+                                    "explanation"
+                                  ],
+                                  "additionalProperties": false,
+                                  "properties": {
+                                    "rule_id": {
+                                      "bsonType": "string"
+                                    },
+                                    "outcome": {
+                                      "bsonType": "string"
+                                    },
+                                    "explanation": {
+                                      "bsonType": "string"
+                                    }
+                                  }
+                                }
+                              }
                             },
                             "explanation": {
-                              "bsonType": "string"
+                              "bsonType": [
+                                "string",
+                                "null"
+                              ]
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "out_of_vocab": {
+                      "bsonType": "object",
+                      "additionalProperties": {
+                        "bsonType": "object",
+                        "additionalProperties": {
+                          "bsonType": "object",
+                          "required": [
+                            "tags"
+                          ],
+                          "additionalProperties": false,
+                          "properties": {
+                            "tags": {
+                              "bsonType": "object",
+                              "additionalProperties": {
+                                "bsonType": "array",
+                                "items": {
+                                  "bsonType": "object",
+                                  "required": [
+                                    "rule_id",
+                                    "outcome",
+                                    "explanation"
+                                  ],
+                                  "additionalProperties": false,
+                                  "properties": {
+                                    "rule_id": {
+                                      "bsonType": "string"
+                                    },
+                                    "outcome": {
+                                      "bsonType": "string"
+                                    },
+                                    "explanation": {
+                                      "bsonType": "string"
+                                    }
+                                  }
+                                }
+                              }
+                            },
+                            "explanation": {
+                              "bsonType": [
+                                "string",
+                                "null"
+                              ]
                             }
                           }
                         }
@@ -7273,6 +7818,184 @@
                   }
                 }
               },
+              "llm_phrase_oov_grounding": {
+                "bsonType": [
+                  "object",
+                  "null"
+                ],
+                "required": [
+                  "llm_model",
+                  "model_params",
+                  "prompt_name",
+                  "prompt_version_id",
+                  "created_at",
+                  "max_pairs_per_request"
+                ],
+                "additionalProperties": false,
+                "properties": {
+                  "llm_model": {
+                    "bsonType": "object",
+                    "required": [
+                      "name",
+                      "max_context_tokens"
+                    ],
+                    "additionalProperties": false,
+                    "properties": {
+                      "name": {
+                        "bsonType": "string"
+                      },
+                      "max_context_tokens": {
+                        "bsonType": "int"
+                      }
+                    }
+                  },
+                  "model_params": {
+                    "bsonType": "object",
+                    "required": [
+                      "max_completion_tokens",
+                      "response_format",
+                      "temperature",
+                      "top_p",
+                      "presence_penalty",
+                      "frequency_penalty"
+                    ],
+                    "additionalProperties": false,
+                    "properties": {
+                      "reasoning_effort": {
+                        "enum": [
+                          "low",
+                          "medium",
+                          "high",
+                          null
+                        ],
+                        "bsonType": [
+                          "string",
+                          "null"
+                        ]
+                      },
+                      "logit_bias": {
+                        "bsonType": [
+                          "object",
+                          "null"
+                        ],
+                        "additionalProperties": {
+                          "bsonType": "int"
+                        }
+                      },
+                      "user": {
+                        "bsonType": [
+                          "string",
+                          "null"
+                        ]
+                      },
+                      "tools": {
+                        "bsonType": [
+                          "array",
+                          "null"
+                        ],
+                        "items": {
+                          "bsonType": "object"
+                        }
+                      },
+                      "tool_choice": {
+                        "anyOf": [
+                          {
+                            "bsonType": "string"
+                          },
+                          {
+                            "bsonType": "object"
+                          },
+                          {
+                            "bsonType": "null"
+                          }
+                        ]
+                      },
+                      "parallel_tool_calls": {
+                        "bsonType": [
+                          "bool",
+                          "null"
+                        ]
+                      },
+                      "logprobs": {
+                        "bsonType": [
+                          "bool",
+                          "null"
+                        ]
+                      },
+                      "top_logprobs": {
+                        "bsonType": [
+                          "int",
+                          "null"
+                        ]
+                      },
+                      "max_completion_tokens": {
+                        "bsonType": "int"
+                      },
+                      "stop": {
+                        "anyOf": [
+                          {
+                            "bsonType": "string"
+                          },
+                          {
+                            "bsonType": "array",
+                            "items": {
+                              "bsonType": "string"
+                            }
+                          },
+                          {
+                            "bsonType": "null"
+                          }
+                        ]
+                      },
+                      "n": {
+                        "bsonType": [
+                          "int",
+                          "null"
+                        ]
+                      },
+                      "response_format": {
+                        "bsonType": "object"
+                      },
+                      "temperature": {
+                        "bsonType": "double"
+                      },
+                      "top_p": {
+                        "bsonType": "double"
+                      },
+                      "presence_penalty": {
+                        "bsonType": "double"
+                      },
+                      "frequency_penalty": {
+                        "bsonType": "double"
+                      },
+                      "seed": {
+                        "bsonType": [
+                          "int",
+                          "null"
+                        ]
+                      }
+                    }
+                  },
+                  "prompt_name": {
+                    "bsonType": "string"
+                  },
+                  "prompt_version_id": {
+                    "bsonType": "string"
+                  },
+                  "catalog_version": {
+                    "bsonType": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "created_at": {
+                    "bsonType": "date"
+                  },
+                  "max_pairs_per_request": {
+                    "bsonType": "int"
+                  }
+                }
+              },
               "llm_phrase_recursive_grounding": {
                 "bsonType": "object",
                 "required": [
@@ -7500,7 +8223,53 @@
                   "additionalProperties": {
                     "bsonType": "object",
                     "additionalProperties": {
-                      "bsonType": "string"
+                      "bsonType": "object",
+                      "required": [
+                        "phrase",
+                        "record"
+                      ],
+                      "additionalProperties": false,
+                      "properties": {
+                        "phrase": {
+                          "bsonType": "string"
+                        },
+                        "record": {
+                          "bsonType": "object",
+                          "required": [
+                            "mentions",
+                            "synthesis"
+                          ],
+                          "additionalProperties": false,
+                          "properties": {
+                            "mentions": {
+                              "bsonType": "array",
+                              "items": {
+                                "bsonType": "object",
+                                "required": [
+                                  "form",
+                                  "page",
+                                  "account"
+                                ],
+                                "additionalProperties": false,
+                                "properties": {
+                                  "form": {
+                                    "bsonType": "string"
+                                  },
+                                  "page": {
+                                    "bsonType": "string"
+                                  },
+                                  "account": {
+                                    "bsonType": "string"
+                                  }
+                                }
+                              }
+                            },
+                            "synthesis": {
+                              "bsonType": "string"
+                            }
+                          }
+                        }
+                      }
                     }
                   }
                 },
@@ -7510,49 +8279,40 @@
                     "bsonType": "object",
                     "additionalProperties": {
                       "bsonType": "object",
-                      "required": [
-                        "passed",
-                        "applied_rules"
-                      ],
-                      "additionalProperties": false,
-                      "properties": {
-                        "passed": {
-                          "bsonType": "bool"
-                        },
-                        "identified_entity": {
-                          "bsonType": [
-                            "string",
-                            "null"
-                          ]
-                        },
-                        "applied_rules": {
-                          "bsonType": "array",
-                          "items": {
-                            "bsonType": "object",
-                            "required": [
-                              "rule_id",
-                              "outcome",
-                              "explanation"
-                            ],
-                            "additionalProperties": false,
-                            "properties": {
-                              "rule_id": {
-                                "bsonType": "string"
-                              },
-                              "outcome": {
-                                "bsonType": "string"
-                              },
-                              "explanation": {
-                                "bsonType": "string"
+                      "additionalProperties": {
+                        "bsonType": "object",
+                        "required": [
+                          "passed",
+                          "applied_rules"
+                        ],
+                        "additionalProperties": false,
+                        "properties": {
+                          "passed": {
+                            "bsonType": "bool"
+                          },
+                          "applied_rules": {
+                            "bsonType": "array",
+                            "items": {
+                              "bsonType": "object",
+                              "required": [
+                                "rule_id",
+                                "outcome",
+                                "explanation"
+                              ],
+                              "additionalProperties": false,
+                              "properties": {
+                                "rule_id": {
+                                  "bsonType": "string"
+                                },
+                                "outcome": {
+                                  "bsonType": "string"
+                                },
+                                "explanation": {
+                                  "bsonType": "string"
+                                }
                               }
                             }
                           }
-                        },
-                        "no_candidate_explanation": {
-                          "bsonType": [
-                            "string",
-                            "null"
-                          ]
                         }
                       }
                     }
@@ -7591,29 +8351,101 @@
                 },
                 "llm_phrase_initial_grounding": {
                   "bsonType": "object",
-                  "additionalProperties": {
-                    "bsonType": "object",
-                    "additionalProperties": {
+                  "required": [
+                    "in_vocab",
+                    "out_of_vocab"
+                  ],
+                  "additionalProperties": false,
+                  "properties": {
+                    "in_vocab": {
                       "bsonType": "object",
                       "additionalProperties": {
-                        "bsonType": "array",
-                        "items": {
+                        "bsonType": "object",
+                        "additionalProperties": {
                           "bsonType": "object",
                           "required": [
-                            "rule_id",
-                            "outcome",
-                            "explanation"
+                            "tags"
                           ],
                           "additionalProperties": false,
                           "properties": {
-                            "rule_id": {
-                              "bsonType": "string"
-                            },
-                            "outcome": {
-                              "bsonType": "string"
+                            "tags": {
+                              "bsonType": "object",
+                              "additionalProperties": {
+                                "bsonType": "array",
+                                "items": {
+                                  "bsonType": "object",
+                                  "required": [
+                                    "rule_id",
+                                    "outcome",
+                                    "explanation"
+                                  ],
+                                  "additionalProperties": false,
+                                  "properties": {
+                                    "rule_id": {
+                                      "bsonType": "string"
+                                    },
+                                    "outcome": {
+                                      "bsonType": "string"
+                                    },
+                                    "explanation": {
+                                      "bsonType": "string"
+                                    }
+                                  }
+                                }
+                              }
                             },
                             "explanation": {
-                              "bsonType": "string"
+                              "bsonType": [
+                                "string",
+                                "null"
+                              ]
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "out_of_vocab": {
+                      "bsonType": "object",
+                      "additionalProperties": {
+                        "bsonType": "object",
+                        "additionalProperties": {
+                          "bsonType": "object",
+                          "required": [
+                            "tags"
+                          ],
+                          "additionalProperties": false,
+                          "properties": {
+                            "tags": {
+                              "bsonType": "object",
+                              "additionalProperties": {
+                                "bsonType": "array",
+                                "items": {
+                                  "bsonType": "object",
+                                  "required": [
+                                    "rule_id",
+                                    "outcome",
+                                    "explanation"
+                                  ],
+                                  "additionalProperties": false,
+                                  "properties": {
+                                    "rule_id": {
+                                      "bsonType": "string"
+                                    },
+                                    "outcome": {
+                                      "bsonType": "string"
+                                    },
+                                    "explanation": {
+                                      "bsonType": "string"
+                                    }
+                                  }
+                                }
+                              }
+                            },
+                            "explanation": {
+                              "bsonType": [
+                                "string",
+                                "null"
+                              ]
                             }
                           }
                         }
@@ -8649,6 +9481,184 @@
                   }
                 }
               },
+              "llm_phrase_oov_grounding": {
+                "bsonType": [
+                  "object",
+                  "null"
+                ],
+                "required": [
+                  "llm_model",
+                  "model_params",
+                  "prompt_name",
+                  "prompt_version_id",
+                  "created_at",
+                  "max_pairs_per_request"
+                ],
+                "additionalProperties": false,
+                "properties": {
+                  "llm_model": {
+                    "bsonType": "object",
+                    "required": [
+                      "name",
+                      "max_context_tokens"
+                    ],
+                    "additionalProperties": false,
+                    "properties": {
+                      "name": {
+                        "bsonType": "string"
+                      },
+                      "max_context_tokens": {
+                        "bsonType": "int"
+                      }
+                    }
+                  },
+                  "model_params": {
+                    "bsonType": "object",
+                    "required": [
+                      "max_completion_tokens",
+                      "response_format",
+                      "temperature",
+                      "top_p",
+                      "presence_penalty",
+                      "frequency_penalty"
+                    ],
+                    "additionalProperties": false,
+                    "properties": {
+                      "reasoning_effort": {
+                        "enum": [
+                          "low",
+                          "medium",
+                          "high",
+                          null
+                        ],
+                        "bsonType": [
+                          "string",
+                          "null"
+                        ]
+                      },
+                      "logit_bias": {
+                        "bsonType": [
+                          "object",
+                          "null"
+                        ],
+                        "additionalProperties": {
+                          "bsonType": "int"
+                        }
+                      },
+                      "user": {
+                        "bsonType": [
+                          "string",
+                          "null"
+                        ]
+                      },
+                      "tools": {
+                        "bsonType": [
+                          "array",
+                          "null"
+                        ],
+                        "items": {
+                          "bsonType": "object"
+                        }
+                      },
+                      "tool_choice": {
+                        "anyOf": [
+                          {
+                            "bsonType": "string"
+                          },
+                          {
+                            "bsonType": "object"
+                          },
+                          {
+                            "bsonType": "null"
+                          }
+                        ]
+                      },
+                      "parallel_tool_calls": {
+                        "bsonType": [
+                          "bool",
+                          "null"
+                        ]
+                      },
+                      "logprobs": {
+                        "bsonType": [
+                          "bool",
+                          "null"
+                        ]
+                      },
+                      "top_logprobs": {
+                        "bsonType": [
+                          "int",
+                          "null"
+                        ]
+                      },
+                      "max_completion_tokens": {
+                        "bsonType": "int"
+                      },
+                      "stop": {
+                        "anyOf": [
+                          {
+                            "bsonType": "string"
+                          },
+                          {
+                            "bsonType": "array",
+                            "items": {
+                              "bsonType": "string"
+                            }
+                          },
+                          {
+                            "bsonType": "null"
+                          }
+                        ]
+                      },
+                      "n": {
+                        "bsonType": [
+                          "int",
+                          "null"
+                        ]
+                      },
+                      "response_format": {
+                        "bsonType": "object"
+                      },
+                      "temperature": {
+                        "bsonType": "double"
+                      },
+                      "top_p": {
+                        "bsonType": "double"
+                      },
+                      "presence_penalty": {
+                        "bsonType": "double"
+                      },
+                      "frequency_penalty": {
+                        "bsonType": "double"
+                      },
+                      "seed": {
+                        "bsonType": [
+                          "int",
+                          "null"
+                        ]
+                      }
+                    }
+                  },
+                  "prompt_name": {
+                    "bsonType": "string"
+                  },
+                  "prompt_version_id": {
+                    "bsonType": "string"
+                  },
+                  "catalog_version": {
+                    "bsonType": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "created_at": {
+                    "bsonType": "date"
+                  },
+                  "max_pairs_per_request": {
+                    "bsonType": "int"
+                  }
+                }
+              },
               "llm_phrase_recursive_grounding": {
                 "bsonType": "object",
                 "required": [
@@ -8876,7 +9886,53 @@
                   "additionalProperties": {
                     "bsonType": "object",
                     "additionalProperties": {
-                      "bsonType": "string"
+                      "bsonType": "object",
+                      "required": [
+                        "phrase",
+                        "record"
+                      ],
+                      "additionalProperties": false,
+                      "properties": {
+                        "phrase": {
+                          "bsonType": "string"
+                        },
+                        "record": {
+                          "bsonType": "object",
+                          "required": [
+                            "mentions",
+                            "synthesis"
+                          ],
+                          "additionalProperties": false,
+                          "properties": {
+                            "mentions": {
+                              "bsonType": "array",
+                              "items": {
+                                "bsonType": "object",
+                                "required": [
+                                  "form",
+                                  "page",
+                                  "account"
+                                ],
+                                "additionalProperties": false,
+                                "properties": {
+                                  "form": {
+                                    "bsonType": "string"
+                                  },
+                                  "page": {
+                                    "bsonType": "string"
+                                  },
+                                  "account": {
+                                    "bsonType": "string"
+                                  }
+                                }
+                              }
+                            },
+                            "synthesis": {
+                              "bsonType": "string"
+                            }
+                          }
+                        }
+                      }
                     }
                   }
                 },
@@ -8886,49 +9942,40 @@
                     "bsonType": "object",
                     "additionalProperties": {
                       "bsonType": "object",
-                      "required": [
-                        "passed",
-                        "applied_rules"
-                      ],
-                      "additionalProperties": false,
-                      "properties": {
-                        "passed": {
-                          "bsonType": "bool"
-                        },
-                        "identified_entity": {
-                          "bsonType": [
-                            "string",
-                            "null"
-                          ]
-                        },
-                        "applied_rules": {
-                          "bsonType": "array",
-                          "items": {
-                            "bsonType": "object",
-                            "required": [
-                              "rule_id",
-                              "outcome",
-                              "explanation"
-                            ],
-                            "additionalProperties": false,
-                            "properties": {
-                              "rule_id": {
-                                "bsonType": "string"
-                              },
-                              "outcome": {
-                                "bsonType": "string"
-                              },
-                              "explanation": {
-                                "bsonType": "string"
+                      "additionalProperties": {
+                        "bsonType": "object",
+                        "required": [
+                          "passed",
+                          "applied_rules"
+                        ],
+                        "additionalProperties": false,
+                        "properties": {
+                          "passed": {
+                            "bsonType": "bool"
+                          },
+                          "applied_rules": {
+                            "bsonType": "array",
+                            "items": {
+                              "bsonType": "object",
+                              "required": [
+                                "rule_id",
+                                "outcome",
+                                "explanation"
+                              ],
+                              "additionalProperties": false,
+                              "properties": {
+                                "rule_id": {
+                                  "bsonType": "string"
+                                },
+                                "outcome": {
+                                  "bsonType": "string"
+                                },
+                                "explanation": {
+                                  "bsonType": "string"
+                                }
                               }
                             }
                           }
-                        },
-                        "no_candidate_explanation": {
-                          "bsonType": [
-                            "string",
-                            "null"
-                          ]
                         }
                       }
                     }
@@ -8967,29 +10014,101 @@
                 },
                 "llm_phrase_initial_grounding": {
                   "bsonType": "object",
-                  "additionalProperties": {
-                    "bsonType": "object",
-                    "additionalProperties": {
+                  "required": [
+                    "in_vocab",
+                    "out_of_vocab"
+                  ],
+                  "additionalProperties": false,
+                  "properties": {
+                    "in_vocab": {
                       "bsonType": "object",
                       "additionalProperties": {
-                        "bsonType": "array",
-                        "items": {
+                        "bsonType": "object",
+                        "additionalProperties": {
                           "bsonType": "object",
                           "required": [
-                            "rule_id",
-                            "outcome",
-                            "explanation"
+                            "tags"
                           ],
                           "additionalProperties": false,
                           "properties": {
-                            "rule_id": {
-                              "bsonType": "string"
-                            },
-                            "outcome": {
-                              "bsonType": "string"
+                            "tags": {
+                              "bsonType": "object",
+                              "additionalProperties": {
+                                "bsonType": "array",
+                                "items": {
+                                  "bsonType": "object",
+                                  "required": [
+                                    "rule_id",
+                                    "outcome",
+                                    "explanation"
+                                  ],
+                                  "additionalProperties": false,
+                                  "properties": {
+                                    "rule_id": {
+                                      "bsonType": "string"
+                                    },
+                                    "outcome": {
+                                      "bsonType": "string"
+                                    },
+                                    "explanation": {
+                                      "bsonType": "string"
+                                    }
+                                  }
+                                }
+                              }
                             },
                             "explanation": {
-                              "bsonType": "string"
+                              "bsonType": [
+                                "string",
+                                "null"
+                              ]
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "out_of_vocab": {
+                      "bsonType": "object",
+                      "additionalProperties": {
+                        "bsonType": "object",
+                        "additionalProperties": {
+                          "bsonType": "object",
+                          "required": [
+                            "tags"
+                          ],
+                          "additionalProperties": false,
+                          "properties": {
+                            "tags": {
+                              "bsonType": "object",
+                              "additionalProperties": {
+                                "bsonType": "array",
+                                "items": {
+                                  "bsonType": "object",
+                                  "required": [
+                                    "rule_id",
+                                    "outcome",
+                                    "explanation"
+                                  ],
+                                  "additionalProperties": false,
+                                  "properties": {
+                                    "rule_id": {
+                                      "bsonType": "string"
+                                    },
+                                    "outcome": {
+                                      "bsonType": "string"
+                                    },
+                                    "explanation": {
+                                      "bsonType": "string"
+                                    }
+                                  }
+                                }
+                              }
+                            },
+                            "explanation": {
+                              "bsonType": [
+                                "string",
+                                "null"
+                              ]
                             }
                           }
                         }
@@ -10025,6 +11144,184 @@
                   }
                 }
               },
+              "llm_phrase_oov_grounding": {
+                "bsonType": [
+                  "object",
+                  "null"
+                ],
+                "required": [
+                  "llm_model",
+                  "model_params",
+                  "prompt_name",
+                  "prompt_version_id",
+                  "created_at",
+                  "max_pairs_per_request"
+                ],
+                "additionalProperties": false,
+                "properties": {
+                  "llm_model": {
+                    "bsonType": "object",
+                    "required": [
+                      "name",
+                      "max_context_tokens"
+                    ],
+                    "additionalProperties": false,
+                    "properties": {
+                      "name": {
+                        "bsonType": "string"
+                      },
+                      "max_context_tokens": {
+                        "bsonType": "int"
+                      }
+                    }
+                  },
+                  "model_params": {
+                    "bsonType": "object",
+                    "required": [
+                      "max_completion_tokens",
+                      "response_format",
+                      "temperature",
+                      "top_p",
+                      "presence_penalty",
+                      "frequency_penalty"
+                    ],
+                    "additionalProperties": false,
+                    "properties": {
+                      "reasoning_effort": {
+                        "enum": [
+                          "low",
+                          "medium",
+                          "high",
+                          null
+                        ],
+                        "bsonType": [
+                          "string",
+                          "null"
+                        ]
+                      },
+                      "logit_bias": {
+                        "bsonType": [
+                          "object",
+                          "null"
+                        ],
+                        "additionalProperties": {
+                          "bsonType": "int"
+                        }
+                      },
+                      "user": {
+                        "bsonType": [
+                          "string",
+                          "null"
+                        ]
+                      },
+                      "tools": {
+                        "bsonType": [
+                          "array",
+                          "null"
+                        ],
+                        "items": {
+                          "bsonType": "object"
+                        }
+                      },
+                      "tool_choice": {
+                        "anyOf": [
+                          {
+                            "bsonType": "string"
+                          },
+                          {
+                            "bsonType": "object"
+                          },
+                          {
+                            "bsonType": "null"
+                          }
+                        ]
+                      },
+                      "parallel_tool_calls": {
+                        "bsonType": [
+                          "bool",
+                          "null"
+                        ]
+                      },
+                      "logprobs": {
+                        "bsonType": [
+                          "bool",
+                          "null"
+                        ]
+                      },
+                      "top_logprobs": {
+                        "bsonType": [
+                          "int",
+                          "null"
+                        ]
+                      },
+                      "max_completion_tokens": {
+                        "bsonType": "int"
+                      },
+                      "stop": {
+                        "anyOf": [
+                          {
+                            "bsonType": "string"
+                          },
+                          {
+                            "bsonType": "array",
+                            "items": {
+                              "bsonType": "string"
+                            }
+                          },
+                          {
+                            "bsonType": "null"
+                          }
+                        ]
+                      },
+                      "n": {
+                        "bsonType": [
+                          "int",
+                          "null"
+                        ]
+                      },
+                      "response_format": {
+                        "bsonType": "object"
+                      },
+                      "temperature": {
+                        "bsonType": "double"
+                      },
+                      "top_p": {
+                        "bsonType": "double"
+                      },
+                      "presence_penalty": {
+                        "bsonType": "double"
+                      },
+                      "frequency_penalty": {
+                        "bsonType": "double"
+                      },
+                      "seed": {
+                        "bsonType": [
+                          "int",
+                          "null"
+                        ]
+                      }
+                    }
+                  },
+                  "prompt_name": {
+                    "bsonType": "string"
+                  },
+                  "prompt_version_id": {
+                    "bsonType": "string"
+                  },
+                  "catalog_version": {
+                    "bsonType": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "created_at": {
+                    "bsonType": "date"
+                  },
+                  "max_pairs_per_request": {
+                    "bsonType": "int"
+                  }
+                }
+              },
               "llm_phrase_recursive_grounding": {
                 "bsonType": "object",
                 "required": [
@@ -10252,7 +11549,53 @@
                   "additionalProperties": {
                     "bsonType": "object",
                     "additionalProperties": {
-                      "bsonType": "string"
+                      "bsonType": "object",
+                      "required": [
+                        "phrase",
+                        "record"
+                      ],
+                      "additionalProperties": false,
+                      "properties": {
+                        "phrase": {
+                          "bsonType": "string"
+                        },
+                        "record": {
+                          "bsonType": "object",
+                          "required": [
+                            "mentions",
+                            "synthesis"
+                          ],
+                          "additionalProperties": false,
+                          "properties": {
+                            "mentions": {
+                              "bsonType": "array",
+                              "items": {
+                                "bsonType": "object",
+                                "required": [
+                                  "form",
+                                  "page",
+                                  "account"
+                                ],
+                                "additionalProperties": false,
+                                "properties": {
+                                  "form": {
+                                    "bsonType": "string"
+                                  },
+                                  "page": {
+                                    "bsonType": "string"
+                                  },
+                                  "account": {
+                                    "bsonType": "string"
+                                  }
+                                }
+                              }
+                            },
+                            "synthesis": {
+                              "bsonType": "string"
+                            }
+                          }
+                        }
+                      }
                     }
                   }
                 },
@@ -10262,49 +11605,40 @@
                     "bsonType": "object",
                     "additionalProperties": {
                       "bsonType": "object",
-                      "required": [
-                        "passed",
-                        "applied_rules"
-                      ],
-                      "additionalProperties": false,
-                      "properties": {
-                        "passed": {
-                          "bsonType": "bool"
-                        },
-                        "identified_entity": {
-                          "bsonType": [
-                            "string",
-                            "null"
-                          ]
-                        },
-                        "applied_rules": {
-                          "bsonType": "array",
-                          "items": {
-                            "bsonType": "object",
-                            "required": [
-                              "rule_id",
-                              "outcome",
-                              "explanation"
-                            ],
-                            "additionalProperties": false,
-                            "properties": {
-                              "rule_id": {
-                                "bsonType": "string"
-                              },
-                              "outcome": {
-                                "bsonType": "string"
-                              },
-                              "explanation": {
-                                "bsonType": "string"
+                      "additionalProperties": {
+                        "bsonType": "object",
+                        "required": [
+                          "passed",
+                          "applied_rules"
+                        ],
+                        "additionalProperties": false,
+                        "properties": {
+                          "passed": {
+                            "bsonType": "bool"
+                          },
+                          "applied_rules": {
+                            "bsonType": "array",
+                            "items": {
+                              "bsonType": "object",
+                              "required": [
+                                "rule_id",
+                                "outcome",
+                                "explanation"
+                              ],
+                              "additionalProperties": false,
+                              "properties": {
+                                "rule_id": {
+                                  "bsonType": "string"
+                                },
+                                "outcome": {
+                                  "bsonType": "string"
+                                },
+                                "explanation": {
+                                  "bsonType": "string"
+                                }
                               }
                             }
                           }
-                        },
-                        "no_candidate_explanation": {
-                          "bsonType": [
-                            "string",
-                            "null"
-                          ]
                         }
                       }
                     }
@@ -10343,29 +11677,101 @@
                 },
                 "llm_phrase_initial_grounding": {
                   "bsonType": "object",
-                  "additionalProperties": {
-                    "bsonType": "object",
-                    "additionalProperties": {
+                  "required": [
+                    "in_vocab",
+                    "out_of_vocab"
+                  ],
+                  "additionalProperties": false,
+                  "properties": {
+                    "in_vocab": {
                       "bsonType": "object",
                       "additionalProperties": {
-                        "bsonType": "array",
-                        "items": {
+                        "bsonType": "object",
+                        "additionalProperties": {
                           "bsonType": "object",
                           "required": [
-                            "rule_id",
-                            "outcome",
-                            "explanation"
+                            "tags"
                           ],
                           "additionalProperties": false,
                           "properties": {
-                            "rule_id": {
-                              "bsonType": "string"
-                            },
-                            "outcome": {
-                              "bsonType": "string"
+                            "tags": {
+                              "bsonType": "object",
+                              "additionalProperties": {
+                                "bsonType": "array",
+                                "items": {
+                                  "bsonType": "object",
+                                  "required": [
+                                    "rule_id",
+                                    "outcome",
+                                    "explanation"
+                                  ],
+                                  "additionalProperties": false,
+                                  "properties": {
+                                    "rule_id": {
+                                      "bsonType": "string"
+                                    },
+                                    "outcome": {
+                                      "bsonType": "string"
+                                    },
+                                    "explanation": {
+                                      "bsonType": "string"
+                                    }
+                                  }
+                                }
+                              }
                             },
                             "explanation": {
-                              "bsonType": "string"
+                              "bsonType": [
+                                "string",
+                                "null"
+                              ]
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "out_of_vocab": {
+                      "bsonType": "object",
+                      "additionalProperties": {
+                        "bsonType": "object",
+                        "additionalProperties": {
+                          "bsonType": "object",
+                          "required": [
+                            "tags"
+                          ],
+                          "additionalProperties": false,
+                          "properties": {
+                            "tags": {
+                              "bsonType": "object",
+                              "additionalProperties": {
+                                "bsonType": "array",
+                                "items": {
+                                  "bsonType": "object",
+                                  "required": [
+                                    "rule_id",
+                                    "outcome",
+                                    "explanation"
+                                  ],
+                                  "additionalProperties": false,
+                                  "properties": {
+                                    "rule_id": {
+                                      "bsonType": "string"
+                                    },
+                                    "outcome": {
+                                      "bsonType": "string"
+                                    },
+                                    "explanation": {
+                                      "bsonType": "string"
+                                    }
+                                  }
+                                }
+                              }
+                            },
+                            "explanation": {
+                              "bsonType": [
+                                "string",
+                                "null"
+                              ]
                             }
                           }
                         }

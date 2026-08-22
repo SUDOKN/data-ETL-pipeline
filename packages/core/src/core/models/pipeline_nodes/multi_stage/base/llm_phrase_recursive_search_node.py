@@ -12,9 +12,11 @@ from llm_providers.models.open_ai.gpt_batch_response_blob import (
 )
 from llm_providers.models.file_objects.prompt import Prompt
 from core.models.extraction_schemas.search import LLMSearchResults
+from core.models.extraction_results.llm_phrase_extraction_results_v2 import (
+    LLMPhraseExtractionMetadataV2,
+)
 from core.models.deferred_extraction.deferred_phrase_extraction_requests import (
     DeferredLLMPhraseExtractionRequests,
-    LLMPhraseExtractionMetadata,
     LLMPhraseExtractionRequestBundle,
     LLMPhraseExtractionRequestMap,
 )
@@ -109,7 +111,7 @@ class LLMPhraseRecursiveSearchNode(
         chunk_bounds: str,
         sub_bounds: str,
         round_index: int,
-        metadata: LLMPhraseExtractionMetadata,
+        metadata: LLMPhraseExtractionMetadataV2,
     ) -> BatchRequestIDType:
         recursive_meta = metadata.llm_phrase_recursive_search
         return (
@@ -123,7 +125,7 @@ class LLMPhraseRecursiveSearchNode(
         self,
         subject_unique_id: str,
         pipeline_context: PipelineContext,
-        metadata: LLMPhraseExtractionMetadata,
+        metadata: LLMPhraseExtractionMetadataV2,
         chunked_request_map: LLMPhraseExtractionRequestMap,
         timestamp: datetime,
     ):
@@ -269,7 +271,7 @@ class LLMPhraseRecursiveSearchNode(
         subject_unique_id: str,
         scraped_text_file: ScrapedTextFile,
         missing_request_ids: set[BatchRequestIDType],
-        metadata: LLMPhraseExtractionMetadata,
+        metadata: LLMPhraseExtractionMetadataV2,
         chunked_request_map: LLMPhraseExtractionRequestMap,
         pipeline_context: PipelineContext,
         timestamp: datetime,
@@ -323,7 +325,7 @@ class LLMPhraseRecursiveSearchNode(
     async def dispatch_batch_request(
         self,
         gpt_batch_request: GPTBatchRequest,
-        metadata: LLMPhraseExtractionMetadata,
+        metadata: LLMPhraseExtractionMetadataV2,
     ) -> GPTBatchResponse:
         recursive_meta = metadata.llm_phrase_recursive_search
         return await dispatch_gpt_batch_request(

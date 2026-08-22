@@ -2,28 +2,15 @@ from __future__ import annotations
 
 from pydantic import BaseModel, ConfigDict
 
-# Stage 2, v1 — one prose description per phrase. Retired when the v2 node
-# service lands (pipeline v2, PIPELINE_V2_PLAN.md phase 2.1); kept so v1 stays
-# runnable until then.
+# v1's phrase -> prose-description map. The v1 wire shapes are gone; the alias
+# survives because the phrase-blocks contract still types its summaries block
+# with it.
 LLMPhraseRelationshipResults = dict[
     str, str
 ]  # Describe relationship between phrases extracted and the extraction subject.
 
 
-class PhraseRelationshipEntry(BaseModel):
-    model_config = ConfigDict(extra="forbid")
-
-    phrase: str
-    description: str
-
-
-class PhraseRelationshipResponse(BaseModel):
-    model_config = ConfigDict(extra="forbid")
-
-    relationships: list[PhraseRelationshipEntry]
-
-
-# --- Stage 2, v2: one RECORD per phrase -------------------------------------
+# --- Stage 2: one RECORD per phrase ------------------------------------------
 #
 # The relationship stage is an evidence deposition: per phrase, every distinct
 # mention of it in the text, then a synthesis that may rest on nothing outside

@@ -1,4 +1,5 @@
 from datetime import datetime
+from typing import Optional
 
 from llm_providers.models.llm_model import LLM_Model
 from core.models.extraction_results.llm_phrase_extraction_results import (
@@ -62,6 +63,7 @@ from core.models.pipeline_nodes import (
     ConceptRelationshipNode,
     ConceptRelationshipScreeningNode,
     ConceptInitialGroundingNode,
+    ConceptOovGroundingNode,
     ConceptIterativeGroundingNode,
     ConceptExtractionPrefillNode,
     ConceptReconcileNode,
@@ -109,12 +111,13 @@ class ExtractionPipelineFactory:
     # own cap instead of inheriting the pipeline's.
 
     # RELATIONSHIP
-    DEFAULT_RELATIONSHIP_MAX_PHRASES_PER_REQUEST = 40
+    DEFAULT_RELATIONSHIP_MAX_PHRASES_PER_REQUEST = 30
     DEFAULT_SCREENING_MAX_PAIRS_PER_REQUEST = 25
 
-    # GROUNDING
-    DEFAULT_INITIAL_GROUNDING_MAX_PAIRS_PER_REQUEST = 40
-    DEFAULT_FREEHAND_GROUNDING_MAX_PAIRS_PER_REQUEST = 20
+    # GROUNDING (v2: the unit is RECORDS per request)
+    DEFAULT_INITIAL_GROUNDING_MAX_PAIRS_PER_REQUEST = 30
+    DEFAULT_OOV_GROUNDING_MAX_PAIRS_PER_REQUEST = 30
+    DEFAULT_FREEHAND_GROUNDING_MAX_PAIRS_PER_REQUEST = 30
 
     @staticmethod
     def _metadata(
@@ -274,10 +277,14 @@ class ExtractionPipelineFactory:
         llm_model: LLM_Model,
         model_params: GPTModelParams,
         created_at: datetime,
+        # None = the OOV discovery pass is off for this run (run config carried
+        # as metadata identity, fork F6).
+        phrase_oov_grounding_prompt: Optional[Prompt] = None,
         max_recursive_search_rounds: int = DEFAULT_RECURSIVE_SEARCH_MAX_ROUNDS,
         max_relationship_phrases_per_request: int = DEFAULT_RELATIONSHIP_MAX_PHRASES_PER_REQUEST,
         max_screening_pairs_per_request: int = DEFAULT_SCREENING_MAX_PAIRS_PER_REQUEST,
         max_initial_grounding_pairs_per_request: int = DEFAULT_INITIAL_GROUNDING_MAX_PAIRS_PER_REQUEST,
+        max_oov_grounding_pairs_per_request: int = DEFAULT_OOV_GROUNDING_MAX_PAIRS_PER_REQUEST,
     ) -> ConceptExtractionPrefillNode:
         return ConceptExtractionPrefillNode(
             field_type=concept_type,
@@ -314,9 +321,23 @@ class ExtractionPipelineFactory:
                 created_at,
                 max_initial_grounding_pairs_per_request,
             ),
+            llm_phrase_oov_grounding_metadata=(
+                ExtractionPipelineFactory._batched_initial_grounding_metadata(
+                    phrase_oov_grounding_prompt,
+                    llm_model,
+                    model_params,
+                    created_at,
+                    max_oov_grounding_pairs_per_request,
+                )
+                if phrase_oov_grounding_prompt is not None
+                else None
+            ),
             llm_phrase_recursive_grounding_metadata=ExtractionPipelineFactory._metadata(
                 phrase_recursive_grounding_prompt, llm_model, model_params, created_at
             ),
+            # v2 chain: grounding ENUMERATES first (in-vocab, then the optional
+            # OOV discovery pass), consolidated screening vets every candidate,
+            # and recursive descent deepens the survivors.
             next_node=ConceptPhraseSearchNode(
                 concept_type=concept_type,
                 search_prompt=search_prompt,
@@ -326,20 +347,26 @@ class ExtractionPipelineFactory:
                     next_node=ConceptRelationshipNode(
                         concept_type=concept_type,
                         phrase_relationship_prompt=phrase_relationship_prompt,
-                        next_node=ConceptRelationshipScreeningNode(
+                        next_node=ConceptInitialGroundingNode(
                             concept_type=concept_type,
-                            phrase_relationship_screening_prompt=phrase_relationship_screening_prompt,
-                            next_node=ConceptInitialGroundingNode(
+                            phrase_initial_grounding_prompt=phrase_initial_grounding_prompt,
+                            known_concepts=known_concepts,
+                            next_node=ConceptOovGroundingNode(
                                 concept_type=concept_type,
-                                phrase_initial_grounding_prompt=phrase_initial_grounding_prompt,
+                                phrase_oov_grounding_prompt=phrase_oov_grounding_prompt,
                                 known_concepts=known_concepts,
-                                next_node=ConceptIterativeGroundingNode(
+                                next_node=ConceptRelationshipScreeningNode(
                                     concept_type=concept_type,
-                                    phrase_recursive_grounding_prompt=phrase_recursive_grounding_prompt,
+                                    phrase_relationship_screening_prompt=phrase_relationship_screening_prompt,
                                     known_concepts=known_concepts,
-                                    next_node=ConceptReconcileNode(
+                                    next_node=ConceptIterativeGroundingNode(
                                         concept_type=concept_type,
+                                        phrase_recursive_grounding_prompt=phrase_recursive_grounding_prompt,
                                         known_concepts=known_concepts,
+                                        next_node=ConceptReconcileNode(
+                                            concept_type=concept_type,
+                                            known_concepts=known_concepts,
+                                        ),
                                     ),
                                 ),
                             ),
@@ -420,12 +447,12 @@ class ExtractionPipelineFactory:
                     next_node=ContractProductRelationshipNode(
                         field_type=keyword_type,
                         phrase_relationship_prompt=phrase_relationship_prompt,
-                        next_node=ContractProductRelationshipScreeningNode(
+                        next_node=ContractProductFreehandGroundingNode(
                             field_type=keyword_type,
-                            phrase_relationship_screening_prompt=phrase_relationship_screening_prompt,
-                            next_node=ContractProductFreehandGroundingNode(
+                            phrase_freehand_grounding_prompt=phrase_freehand_grounding_prompt,
+                            next_node=ContractProductRelationshipScreeningNode(
                                 field_type=keyword_type,
-                                phrase_freehand_grounding_prompt=phrase_freehand_grounding_prompt,
+                                phrase_relationship_screening_prompt=phrase_relationship_screening_prompt,
                                 next_node=ContractProductReconcileNode(
                                     field_type=keyword_type,
                                 ),
@@ -504,12 +531,12 @@ class ExtractionPipelineFactory:
                     next_node=EquipmentRelationshipNode(
                         field_type=keyword_type,
                         phrase_relationship_prompt=phrase_relationship_prompt,
-                        next_node=EquipmentRelationshipScreeningNode(
+                        next_node=EquipmentFreehandGroundingNode(
                             field_type=keyword_type,
-                            phrase_relationship_screening_prompt=phrase_relationship_screening_prompt,
-                            next_node=EquipmentFreehandGroundingNode(
+                            phrase_freehand_grounding_prompt=phrase_freehand_grounding_prompt,
+                            next_node=EquipmentRelationshipScreeningNode(
                                 field_type=keyword_type,
-                                phrase_freehand_grounding_prompt=phrase_freehand_grounding_prompt,
+                                phrase_relationship_screening_prompt=phrase_relationship_screening_prompt,
                                 next_node=EquipmentReconcileNode(
                                     field_type=keyword_type,
                                 ),
@@ -670,12 +697,12 @@ class ExtractionPipelineFactory:
                     next_node=PureProductRelationshipNode(
                         field_type=keyword_type,
                         phrase_relationship_prompt=phrase_relationship_prompt,
-                        next_node=PureProductRelationshipScreeningNode(
+                        next_node=PureProductFreehandGroundingNode(
                             field_type=keyword_type,
-                            phrase_relationship_screening_prompt=phrase_relationship_screening_prompt,
-                            next_node=PureProductFreehandGroundingNode(
+                            phrase_freehand_grounding_prompt=phrase_freehand_grounding_prompt,
+                            next_node=PureProductRelationshipScreeningNode(
                                 field_type=keyword_type,
-                                phrase_freehand_grounding_prompt=phrase_freehand_grounding_prompt,
+                                phrase_relationship_screening_prompt=phrase_relationship_screening_prompt,
                                 next_node=PureProductReconcileNode(
                                     field_type=keyword_type,
                                 ),
@@ -696,6 +723,7 @@ class ExtractionPipelineFactory:
         chunk_strategy_overrides: (
             dict[ExtractionFieldType, ChunkingStrategy] | None
         ) = None,
+        oov_grounding_enabled: bool = True,
     ) -> dict[ExtractionFieldType, PrefillNode]:
         """
         Returns a dict mapping field names to their phase pipelines.
@@ -705,6 +733,10 @@ class ExtractionPipelineFactory:
         strategy per field — an experimentation knob (chunk size / search_divisor
         sweeps from the notebook) that leaves the defaults in source untouched.
         Fields not in the mapping keep their defaults.
+
+        ``oov_grounding_enabled`` is the OOV discovery pass's RUN CONFIG (fork
+        F6): off means the concept metadata carries no oov node — a distinct
+        run identity — and the pass embeds zero requests. Never a StageToggle.
         """
         # Rule catalogs live in this app but are read by the parse functions in
         # `core`, which cannot import from here. Registering at pipeline
@@ -751,7 +783,7 @@ class ExtractionPipelineFactory:
                 recursive_search_prompt=prompt_service.product_phrase_recursive_search_prompt,
                 phrase_relationship_prompt=prompt_service.product_phrase_relationship_prompt,
                 phrase_relationship_screening_prompt=prompt_service.product_phrase_screening_pure_product_prompt,
-                phrase_freehand_grounding_prompt=prompt_service.product_phrase_freehand_grounding_pure_product_prompt,
+                phrase_freehand_grounding_prompt=prompt_service.product_phrase_freehand_grounding_prompt,
                 ontology_version_id=ontology.s3_version_id,
                 llm_model=llm_model,
                 model_params=model_params,
@@ -766,7 +798,7 @@ class ExtractionPipelineFactory:
                 recursive_search_prompt=prompt_service.product_phrase_recursive_search_prompt,
                 phrase_relationship_prompt=prompt_service.product_phrase_relationship_prompt,
                 phrase_relationship_screening_prompt=prompt_service.product_phrase_screening_contract_prompt,
-                phrase_freehand_grounding_prompt=prompt_service.product_phrase_freehand_grounding_contract_prompt,
+                phrase_freehand_grounding_prompt=prompt_service.product_phrase_freehand_grounding_prompt,
                 llm_model=llm_model,
                 model_params=model_params,
                 created_at=created_at,
@@ -798,6 +830,11 @@ class ExtractionPipelineFactory:
                 phrase_relationship_prompt=prompt_service.conformity_attestation_phrase_relationship_prompt,
                 phrase_relationship_screening_prompt=prompt_service.conformity_attestation_phrase_relationship_screening_prompt,
                 phrase_initial_grounding_prompt=prompt_service.conformity_attestation_phrase_initial_grounding_prompt,
+                phrase_oov_grounding_prompt=(
+                    prompt_service.conformity_attestation_phrase_oov_grounding_prompt
+                    if oov_grounding_enabled
+                    else None
+                ),
                 phrase_recursive_grounding_prompt=prompt_service.conformity_attestation_phrase_recursive_grounding_prompt,
                 known_concepts=ontology.get_concepts_flat(
                     ConceptTypeEnum.conformity_attestations
@@ -817,6 +854,11 @@ class ExtractionPipelineFactory:
                 phrase_relationship_prompt=prompt_service.industry_phrase_relationship_prompt,
                 phrase_relationship_screening_prompt=prompt_service.industry_phrase_relationship_screening_prompt,
                 phrase_initial_grounding_prompt=prompt_service.industry_phrase_initial_grounding_prompt,
+                phrase_oov_grounding_prompt=(
+                    prompt_service.industry_phrase_oov_grounding_prompt
+                    if oov_grounding_enabled
+                    else None
+                ),
                 phrase_recursive_grounding_prompt=prompt_service.industry_phrase_recursive_grounding_prompt,
                 known_concepts=ontology.get_concepts_flat(ConceptTypeEnum.industries),
                 llm_model=llm_model,
@@ -834,6 +876,11 @@ class ExtractionPipelineFactory:
                 phrase_relationship_prompt=prompt_service.process_cap_phrase_relationship_prompt,
                 phrase_relationship_screening_prompt=prompt_service.process_cap_phrase_relationship_screening_prompt,
                 phrase_initial_grounding_prompt=prompt_service.process_cap_phrase_initial_grounding_prompt,
+                phrase_oov_grounding_prompt=(
+                    prompt_service.process_cap_phrase_oov_grounding_prompt
+                    if oov_grounding_enabled
+                    else None
+                ),
                 phrase_recursive_grounding_prompt=prompt_service.process_cap_phrase_recursive_grounding_prompt,
                 known_concepts=ontology.get_concepts_flat(ConceptTypeEnum.process_caps),
                 llm_model=llm_model,
@@ -851,6 +898,11 @@ class ExtractionPipelineFactory:
                 phrase_relationship_prompt=prompt_service.material_cap_phrase_relationship_prompt,
                 phrase_relationship_screening_prompt=prompt_service.material_cap_phrase_relationship_screening_prompt,
                 phrase_initial_grounding_prompt=prompt_service.material_cap_phrase_initial_grounding_prompt,
+                phrase_oov_grounding_prompt=(
+                    prompt_service.material_cap_phrase_oov_grounding_prompt
+                    if oov_grounding_enabled
+                    else None
+                ),
                 phrase_recursive_grounding_prompt=prompt_service.material_cap_phrase_recursive_grounding_prompt,
                 known_concepts=ontology.get_concepts_flat(
                     ConceptTypeEnum.material_caps

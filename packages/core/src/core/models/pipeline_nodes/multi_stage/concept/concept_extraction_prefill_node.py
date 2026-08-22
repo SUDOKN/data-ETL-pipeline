@@ -5,9 +5,13 @@ from datetime import datetime
 from typing import TYPE_CHECKING
 
 
+from typing import Optional
+
 from core.models.extraction_results.concept_extraction_results import (
-    ConceptExtractionMetadata,
     BatchedInitialGroundingNodeMetadata,
+)
+from core.models.extraction_results.llm_phrase_extraction_results_v2 import (
+    ConceptExtractionMetadataV2,
 )
 from core.models.extraction_results.llm_phrase_extraction_results import (
     ExtractionNodeMetadata,
@@ -63,6 +67,11 @@ class ConceptExtractionPrefillNode(PrefillNode[ConceptFieldType]):
         llm_phrase_relationship_screening_metadata: BatchedScreeningNodeMetadata,
         llm_phrase_initial_grounding_metadata: BatchedInitialGroundingNodeMetadata,
         llm_phrase_recursive_grounding_metadata: ExtractionNodeMetadata,
+        # None = the OOV discovery pass is off for this run (run config carried
+        # as metadata identity, never a StageToggle).
+        llm_phrase_oov_grounding_metadata: Optional[
+            BatchedInitialGroundingNodeMetadata
+        ] = None,
     ):
         super().__init__(
             field_type=field_type,
@@ -79,6 +88,7 @@ class ConceptExtractionPrefillNode(PrefillNode[ConceptFieldType]):
         self.llm_phrase_initial_grounding_metadata = (
             llm_phrase_initial_grounding_metadata
         )
+        self.llm_phrase_oov_grounding_metadata = llm_phrase_oov_grounding_metadata
         self.llm_phrase_recursive_grounding_metadata = (
             llm_phrase_recursive_grounding_metadata
         )
@@ -100,7 +110,7 @@ class ConceptExtractionPrefillNode(PrefillNode[ConceptFieldType]):
             yes? chunk up text, set metadata and populate an empty chunked_request_map
             no?  do nothing
         """
-        latest_concept_extraction_metadata = ConceptExtractionMetadata(
+        latest_concept_extraction_metadata = ConceptExtractionMetadataV2(
             created_at=timestamp,
             chunk_strat=self.chunk_strategy,
             ontology_version_id=self.ontology.s3_version_id,
@@ -109,6 +119,7 @@ class ConceptExtractionPrefillNode(PrefillNode[ConceptFieldType]):
             llm_phrase_relationship=self.llm_phrase_relationship_metadata,
             llm_phrase_relationship_screening=self.llm_phrase_relationship_screening_metadata,
             llm_phrase_initial_grounding=self.llm_phrase_initial_grounding_metadata,
+            llm_phrase_oov_grounding=self.llm_phrase_oov_grounding_metadata,
             llm_phrase_recursive_grounding=self.llm_phrase_recursive_grounding_metadata,
         )
 
@@ -140,6 +151,7 @@ class ConceptExtractionPrefillNode(PrefillNode[ConceptFieldType]):
                         llm_phrase_relationship_req_ids=[],
                         llm_phrase_relationship_screening_req_ids=[],
                         llm_phrase_initial_grounding_req_ids=[],
+                        llm_phrase_oov_grounding_req_ids=[],
                         llm_phrase_recursive_tagging_reqs=None,
                     )
                     for chunk_bounds, chunk_text in chunk_map.items()

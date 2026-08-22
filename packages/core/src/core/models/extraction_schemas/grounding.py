@@ -6,13 +6,13 @@ from pydantic import BaseModel, ConfigDict, model_validator
 
 from core.models.extraction_schemas.applied_rule import AppliedRule
 
-# Reserved labels a grounding stage may return in place of a real one. Initial and
-# recursive grounding return NONE_OF_THE_ABOVE_TAG when nothing qualifies — those
-# stages choose from a list of options, and "None of the above" reads as one of
-# them. Freehand grounding has no options to choose from, so its job is to
-# categorize and its escape hatch is CANNOT_CATEGORIZE_TAG. Both record that the
-# model declined, so they are deliberations rather than discovered labels and must
-# never reach the results.
+# v1's reserved escape-hatch labels. The sentinel CONTRACT is retired in v2 —
+# no prompt offers these, no wire arm accepts them, no catalog declares them —
+# but the strings survive as a tripwire: a model can still echo one as a minted
+# candidate or descent option out of habit, and the one result path screening
+# never vets (the descent trail) filters them so a declination can never
+# persist as a discovered out-of-vocabulary label (the none-of-the-above bug,
+# measured twice before the guard existed).
 NONE_OF_THE_ABOVE_TAG = "None of the above"
 CANNOT_CATEGORIZE_TAG = "Cannot categorize"
 
@@ -24,21 +24,22 @@ _SENTINEL_GROUNDING_LABELS_FOLDED = frozenset(
 
 
 def is_sentinel_grounding_label(label: str) -> bool:
-    """Whether ``label`` is a reserved non-label — a freehand ``category`` or an
-    initial/recursive ``option``, which is why the name says neither. Compared case-
-    and surrounding-whitespace-insensitively because the model's casing drifts
-    between calls, and label lookups elsewhere (``match_label_to_concept_map``) are
-    already case-insensitive."""
+    """Whether ``label`` is one of v1's reserved non-labels. Compared case- and
+    surrounding-whitespace-insensitively because a model's casing drifts
+    between calls, and label lookups elsewhere (``match_label_to_concept_map``)
+    are already case-insensitive."""
     return label.strip().casefold() in _SENTINEL_GROUNDING_LABELS_FOLDED
 
 
-# Why a descent node exists but must never be descended. "sentinel": the parent's
-# response answered a reserved non-label — the descent stopped there by the
-# model's own verdict. "false_child": the response named a real concept that is
-# not a child of the parent it was asked under — recorded as the event it is
-# rather than asserted as a finding. Carried as data on the node (previously a
-# "-FALSE_CHILD" suffix mangled into the node name, which made the name
-# unmatchable and silently erased the record).
+# Why a descent node exists but must never be descended. "false_child": the
+# response named a real concept that is not a child of the parent it was asked
+# under — recorded as the event it is rather than asserted as a finding.
+# Carried as data on the node (previously a "-FALSE_CHILD" suffix mangled into
+# the node name, which made the name unmatchable and silently erased the
+# record). "sentinel" is HISTORICAL: v1's reserved "None of the above" answer;
+# v2 retired the sentinel (an empty options array with an explanation is the
+# declination), so no new node carries it — the member survives only so v1
+# deferred documents still load.
 StopReason = Literal["sentinel", "false_child"]
 
 

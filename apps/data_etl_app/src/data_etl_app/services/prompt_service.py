@@ -50,16 +50,21 @@ STAGED_PROMPT_FILE_PATHS = {
     "product_phrase_screening_contract": "multi_stage/4_phrase_relationship_screening/product_phrase_screening_contract.txt",
     "equipment_phrase_relationship_screening": "multi_stage/4_phrase_relationship_screening/equipment_phrase_relationship_screening.txt",
     # freehand grounding
-    # Split per manufacturing arrangement: the shared prompt asserted a
-    # pure-product relationship that was false for contract work.
-    "product_phrase_freehand_grounding_pure_product": "multi_stage/5_freehand_grounding/product_phrase_freehand_grounding_pure_product.txt",
-    "product_phrase_freehand_grounding_contract": "multi_stage/5_freehand_grounding/product_phrase_freehand_grounding_contract.txt",
+    # ONE product prompt for both product fields again (v2): grounding lost its
+    # attribution clauses, which were the only pure-vs-contract difference —
+    # the split lives in screening alone now.
+    "product_phrase_freehand_grounding": "multi_stage/5_freehand_grounding/product_phrase_freehand_grounding.txt",
     "equipment_phrase_freehand_grounding": "multi_stage/5_freehand_grounding/equipment_phrase_freehand_grounding.txt",
     # initial grounding
     "conformity_attestation_phrase_initial_grounding": "multi_stage/5_initial_grounding/conformity_attestation_phrase_initial_grounding.txt",
     "industry_phrase_initial_grounding": "multi_stage/5_initial_grounding/industry_phrase_initial_grounding.txt",
     "material_cap_phrase_initial_grounding": "multi_stage/5_initial_grounding/material_cap_phrase_initial_grounding.txt",
     "process_cap_phrase_initial_grounding": "multi_stage/5_initial_grounding/process_cap_phrase_initial_grounding.txt",
+    # oov grounding (v2's discovery pass, serial after in-vocab grounding)
+    "conformity_attestation_phrase_oov_grounding": "multi_stage/5_oov_grounding/conformity_attestation_phrase_oov_grounding.txt",
+    "industry_phrase_oov_grounding": "multi_stage/5_oov_grounding/industry_phrase_oov_grounding.txt",
+    "material_cap_phrase_oov_grounding": "multi_stage/5_oov_grounding/material_cap_phrase_oov_grounding.txt",
+    "process_cap_phrase_oov_grounding": "multi_stage/5_oov_grounding/process_cap_phrase_oov_grounding.txt",
     # recursive grounding
     "conformity_attestation_phrase_recursive_grounding": "multi_stage/6_recursive_grounding/conformity_attestation_phrase_recursive_grounding.txt",
     "industry_phrase_recursive_grounding": "multi_stage/6_recursive_grounding/industry_phrase_recursive_grounding.txt",
@@ -350,12 +355,8 @@ class PromptService:
         return self._get_prompt("product_phrase_screening_contract")
 
     @property
-    def product_phrase_freehand_grounding_pure_product_prompt(self) -> Prompt:
-        return self._get_prompt("product_phrase_freehand_grounding_pure_product")
-
-    @property
-    def product_phrase_freehand_grounding_contract_prompt(self) -> Prompt:
-        return self._get_prompt("product_phrase_freehand_grounding_contract")
+    def product_phrase_freehand_grounding_prompt(self) -> Prompt:
+        return self._get_prompt("product_phrase_freehand_grounding")
 
     @property
     def equipment_phrase_search_prompt(self) -> Prompt:
@@ -456,6 +457,22 @@ class PromptService:
     @property
     def process_cap_phrase_initial_grounding_prompt(self) -> Prompt:
         return self._get_prompt("process_cap_phrase_initial_grounding")
+
+    @property
+    def conformity_attestation_phrase_oov_grounding_prompt(self) -> Prompt:
+        return self._get_prompt("conformity_attestation_phrase_oov_grounding")
+
+    @property
+    def industry_phrase_oov_grounding_prompt(self) -> Prompt:
+        return self._get_prompt("industry_phrase_oov_grounding")
+
+    @property
+    def material_cap_phrase_oov_grounding_prompt(self) -> Prompt:
+        return self._get_prompt("material_cap_phrase_oov_grounding")
+
+    @property
+    def process_cap_phrase_oov_grounding_prompt(self) -> Prompt:
+        return self._get_prompt("process_cap_phrase_oov_grounding")
 
     @property
     def conformity_attestation_phrase_recursive_grounding_prompt(self) -> Prompt:

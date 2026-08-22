@@ -10,9 +10,9 @@ from core.services.phrase_blocks_contract import (
     hold_response_to_sent_phrases,
     render_phrases_block,
 )
-from core.services.pipeline_nodes.multi_stage.llm_phrase_relationship_node_service_v2 import (
+from core.services.pipeline_nodes.multi_stage.llm_phrase_relationship_node_service import (
     DUMMY_RECORDS_RESPONSE_CONTENT,
-    LLM_PHRASE_RELATIONSHIP_RESPONSE_SCHEMA_V2,
+    LLM_PHRASE_RELATIONSHIP_RESPONSE_SCHEMA,
     parse_llm_phrase_relationship_records,
     records_with_mentions,
 )
@@ -66,7 +66,7 @@ def test_the_dummy_content_parses_to_an_empty_map():
 
 def test_the_v2_response_schema_is_strict_mode_supported():
     assert_strict_schema_supported(
-        LLM_PHRASE_RELATIONSHIP_RESPONSE_SCHEMA_V2, where="relationship v2"
+        LLM_PHRASE_RELATIONSHIP_RESPONSE_SCHEMA, where="relationship v2"
     )
 
 

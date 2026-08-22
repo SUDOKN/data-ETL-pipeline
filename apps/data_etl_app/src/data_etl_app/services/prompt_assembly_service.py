@@ -474,27 +474,10 @@ def _render_report_block(catalog: RuleCatalog) -> str:
             f"outcome it reached: {', '.join(grouped['always'])}."
         )
     if grouped.get("when_chosen"):
-        # The sentinel branch is left out of this list on purpose: taking it is
-        # spelled by returning the escape-hatch unit, which has no `chosen` slot to
-        # name it in. See SentinelWireEntry.
-        sentinel_branch = _sentinel_branch_id(catalog)
-        branches = [
-            rule_id
-            for rule_id in grouped["when_chosen"]
-            if rule_id != sentinel_branch
-        ]
-        if branches:
-            lines.append(
-                f'- "{CHOSEN_SLOT}" holds the single branch you took, named by its '
-                f"rule id: {', '.join(branches)}."
-            )
-        if sentinel_branch is not None and catalog.sentinel_tag is not None:
-            lines.append(
-                f'- {sentinel_branch} is taken by returning "{catalog.sentinel_tag}" '
-                f"with only your explanation beside it. That entry reports no rules "
-                f"at all — there was nothing for them to be about — so none of the "
-                f"fields above appear on it."
-            )
+        lines.append(
+            f'- "{CHOSEN_SLOT}" holds the single branch you took, named by its '
+            f"rule id: {', '.join(grouped['when_chosen'])}."
+        )
     if grouped.get("on_violation"):
         lines.append(
             f'- "{GUARDS_SLOT}" lists any of these you found violated, and is empty '
@@ -530,8 +513,7 @@ def _render_report_block(catalog: RuleCatalog) -> str:
 # outcome a guard or a preference can carry — and a placeholder everywhere the
 # model still has to decide. Naming a branch of the matching ladder would teach it
 # to echo that branch back, so the ladder stays a placeholder listing its
-# alternatives; the sentinel branch is the exception, because the scenario that
-# shows it IS that branch.
+# alternatives.
 #
 # An entry earns its place only by producing a different `applied_rules` shape.
 # That is what keeps this from growing into a worked corpus: a guard adds a rule
@@ -636,30 +618,12 @@ def _condition_outcomes(catalog: RuleCatalog, mode: str) -> dict[str, str]:
     return outcomes
 
 
-def _sentinel_branch_id(catalog: RuleCatalog) -> Optional[str]:
-    """The preference rule that tells the model to return the sentinel label.
-    ``RuleCatalog`` already guarantees exactly one when ``sentinel_tag`` is set."""
-    if catalog.sentinel_tag is None:
-        return None
-    return next(
-        (
-            rule.id
-            for rule in catalog.walk_rules()
-            if rule.kind == "preference" and catalog.sentinel_tag in rule.text
-        ),
-        None,
-    )
-
-
 def _ladder_placeholder(catalog: RuleCatalog) -> Optional[str]:
-    """The rule_id slot for the branch taken, with the escape hatch left out — the
-    scenarios that reach here identified something, so the sentinel branch is not
-    among the alternatives."""
-    sentinel = _sentinel_branch_id(catalog)
+    """The rule_id slot for the branch taken."""
     branches = [
         rule.id
         for rule in catalog.walk_rules()
-        if rule.report_when == "when_chosen" and rule.id != sentinel
+        if rule.report_when == "when_chosen"
     ]
     if not branches:
         return None

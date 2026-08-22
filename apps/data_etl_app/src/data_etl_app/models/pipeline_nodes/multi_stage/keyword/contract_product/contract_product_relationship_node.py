@@ -5,8 +5,8 @@ from typing import TYPE_CHECKING
 from llm_providers.db_models.gpt_batch_request import (
     GPTBatchRequest,
 )
-from core.models.deferred_extraction.deferred_phrase_extraction_requests import (
-    LLMPhraseExtractionMetadata,
+from core.models.extraction_results.llm_phrase_extraction_results_v2 import (
+    LLMPhraseExtractionMetadataV2,
 )
 from llm_providers.models.file_objects.prompt import Prompt
 from core.models.pipeline_nodes import PipelineContext
@@ -26,8 +26,8 @@ from data_etl_app.models.types_and_enums import (
 from llm_providers.field_types import BatchRequestIDType
 
 if TYPE_CHECKING:
-    from data_etl_app.models.pipeline_nodes.multi_stage.keyword.contract_product.contract_product_relationship_screening_node import (
-        ContractProductRelationshipScreeningNode,
+    from data_etl_app.models.pipeline_nodes.multi_stage.keyword.contract_product.contract_product_freehand_grounding_node import (
+        ContractProductFreehandGroundingNode,
     )
 
 logger = logging.getLogger(__name__)
@@ -45,7 +45,7 @@ class ContractProductRelationshipNode(KeywordRelationshipNode):
         self,
         field_type: KeywordTypeEnum,
         phrase_relationship_prompt: Prompt,
-        next_node: ContractProductRelationshipScreeningNode,
+        next_node: ContractProductFreehandGroundingNode,
     ):
         super().__init__(
             field_type=field_type,
@@ -69,7 +69,8 @@ class ContractProductRelationshipNode(KeywordRelationshipNode):
         field_type: ExtractionFieldType,
         chunk_bounds: str,
         group_index: int,
-        metadata: LLMPhraseExtractionMetadata,
+        metadata: LLMPhraseExtractionMetadataV2,
+        group_phrases: list[str],
     ) -> BatchRequestIDType:
         return KeywordRelationshipNode.get_request_custom_id(
             subject_unique_id=subject_unique_id,
@@ -77,4 +78,5 @@ class ContractProductRelationshipNode(KeywordRelationshipNode):
             chunk_bounds=chunk_bounds,
             group_index=group_index,
             metadata=metadata,
+            group_phrases=group_phrases,
         )

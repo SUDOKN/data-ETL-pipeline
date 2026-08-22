@@ -413,14 +413,25 @@ def sent_record_ids_from_user_message(user_message: str) -> Optional[list[str]]:
     return None if payload is None else json.loads(payload)
 
 
-def sent_records_from_user_message(user_message: str) -> Optional[dict]:
-    """The full id → record payload this request carried, or None without one.
+def sent_records_from_user_message(user_message: str) -> Optional[dict | list]:
+    """The full records payload this request carried, or None without one: the
+    id → record MAP v2 stages render, or the ARRAY of ``{record_id, ...}``
+    entries the v3 synthesis stage renders (``render_synthesis_record_blocks``).
 
     This is what candidate-axis holds read: what a screening request asked
     about each record (its candidates) is part of the request document itself.
     """
     payload = _one_fenced_payload(_RECORDS_RE, user_message, "records")
     return None if payload is None else json.loads(payload)
+
+
+def _record_ids_of(sent_records: dict | list) -> set[str]:
+    """The ids a records block names, whichever shape it has: the keys of a v2
+    map, or each entry's ``record_id`` in a v3 array. A malformed array entry
+    (no ``record_id``) raises, because we wrote it."""
+    if isinstance(sent_records, dict):
+        return set(sent_records)
+    return {entry["record_id"] for entry in sent_records}
 
 
 class MissingResponseRecords(ValueError):
@@ -449,10 +460,10 @@ def hold_response_to_sent_record_ids(
         return response_by_record_id
 
     sent_records = sent_records_from_user_message(user_message)
-    if sent_records is not None and set(sent_records) != set(sent_ids):
+    if sent_records is not None and _record_ids_of(sent_records) != set(sent_ids):
         raise ValueError(
             f"{where}: the request's record-ids block and records block disagree "
-            f"({sorted(set(sent_ids) ^ set(sent_records))}); requests are built "
+            f"({sorted(set(sent_ids) ^ _record_ids_of(sent_records))}); requests are built "
             f"from one map, so this request is malformed"
         )
 
@@ -478,3 +489,83 @@ def hold_response_to_sent_record_ids(
         for rid in sent_ids
         if rid in response_by_record_id
     }
+
+
+# ---------------------------------------------------------------------------
+# v3 (pipeline v3, PIPELINE_V3_PLAN.md): forms hold and synthesis record blocks
+# ---------------------------------------------------------------------------
+#
+# Mention collection (D4–D7) sends bare forms on the phrases block above and is
+# answered per form. It is held EXACTLY, not reconciled: the reconciler casefolds
+# and repairs by containment, and v3 deliberately sends case variants as distinct
+# forms (D5) — `Aluminum` and `aluminum` in one request — so the reconciler
+# would fuse them onto whichever it claimed first and report the other as
+# missing. Unknown keys drop and warn (D6 as amended: drop-and-flag); missing
+# forms warn, never raise — the mechanical floor scan (D7) is what makes the hole
+# visible, and a raising hold would replay a deterministic temp-0 mis-echo to
+# death.
+#
+# Synthesis (D15) is answered per record and holds with the record-id hold
+# above; its records block is an ARRAY of {record_id, entries} rather than the v2
+# map — user decision — so `_record_ids_of` reads ids off either shape.
+
+
+def hold_response_to_sent_forms(
+    *,
+    user_message: str,
+    response_by_form: dict[str, V],
+    where: str,
+) -> dict[str, V]:
+    """Hold a form-keyed mention-collection response to its request, exactly.
+
+    Returns the answered forms in SENT order. A response key that is not
+    exactly a sent form is dropped (warned); a sent form with no answer is left
+    absent (warned) — absent, not empty, so downstream can still tell
+    never-answered from answered-nothing. Returns the response unchanged when
+    the request carried no phrases block (foreign or malformed request; the
+    v2 holds make the same choice).
+    """
+    sent_forms = sent_phrases_from_user_message(user_message)
+    if sent_forms is None:
+        return response_by_form
+
+    sent_set = set(sent_forms)
+    unknown = [form for form in response_by_form if form not in sent_set]
+    if unknown:
+        logger.warning(
+            f"{where}: dropping {len(unknown)} response form(s) that match no "
+            f"sent form exactly: {unknown}"
+        )
+    missing = [form for form in sent_forms if form not in response_by_form]
+    if missing:
+        logger.warning(
+            f"{where}: response answered {len(response_by_form) - len(unknown)} of "
+            f"{len(sent_forms)} sent forms; nothing came back for {missing}"
+        )
+    return {form: response_by_form[form] for form in sent_forms if form in response_by_form}
+
+
+def render_records_array_block(records: list[dict]) -> str:
+    """The records payload as a fenced JSON ARRAY, one top-level entry per line.
+
+    Same separators and ``ensure_ascii=False`` as the map renderer, for the same
+    reasons: one record per physical line keeps a long payload readable, and the
+    model is shown the site's text as written, never an escape of it.
+    """
+    payload = json.dumps(records, separators=_SUMMARY_SEPARATORS, ensure_ascii=False)
+    return f"{RECORDS_OPEN}\n{payload}\n{RECORDS_CLOSE}"
+
+
+def render_synthesis_record_blocks(records: list[dict]) -> str:
+    """Both synthesis blocks, ids first, from the one list they both describe.
+
+    ``records`` is a list of ``{"record_id": ..., "entries": [...]}`` dicts (the
+    ``model_dump()`` of ``SynthesisRecordInput``); the ids block is derived from
+    the same list so the two blocks cannot drift. Raises on a duplicate id —
+    two records under one id would fuse at the hold.
+    """
+    ids = [record["record_id"] for record in records]
+    if len(set(ids)) != len(ids):
+        dupes = sorted({rid for rid in ids if ids.count(rid) > 1})
+        raise ValueError(f"duplicate record_id(s) in synthesis request: {dupes}")
+    return f"{render_record_ids_block(ids)}\n\n{render_records_array_block(records)}"

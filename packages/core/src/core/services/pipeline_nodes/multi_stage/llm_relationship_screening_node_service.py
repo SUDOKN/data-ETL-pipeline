@@ -1,215 +1,215 @@
+"""Pipeline v2's consolidated screening: every candidate judged, both axes held.
+
+Candidates are SUPPLIED — grounding enumerated them — so this stage never
+identifies anything: it judges the manufacturer's relationship with each
+candidate against the record's mentions and synthesis, one verdict per
+candidate. The v1 gate's no-candidate branch and ``identified_entity`` have no
+counterpart here.
+
+TWO AXES, BOTH EXACT. The id axis is held by the shared record hold; the
+candidate axis is held against the request's OWN records payload — what this
+request asked about each record is part of the request document, so the set
+validated against is the set sent, by construction. Exact on both: ids and
+candidates are supplied strings, so a response key that differs is corruption,
+and matching it "helpfully" onto a neighbour is the silent misattribution the
+whole record design exists to rule out.
+"""
+
 from __future__ import annotations
 
 import asyncio
 import logging
 import traceback
 from datetime import datetime
-from typing import Optional
+from typing import Any, Optional
 
 from pydantic import ValidationError
 
-from core.models.extraction_schemas.relationship import (
-    LLMPhraseRelationshipResults,
-)
 from core.models.extraction_schemas.catalog_wire_schema import (
-    NO_CANDIDATE,
     flatten_rule_slots,
     response_format_for,
     screening_response_model,
 )
-from core.models.rule_catalog import STAGE_RELATIONSHIP_SCREENING
+from core.models.extraction_schemas.relationship import (
+    MaskedLLMPhraseRelationshipResults,
+)
+from core.models.extraction_schemas.screening import (
+    CandidateScreeningVerdict,
+    RecordScreeningResults,
+)
+from core.models.rule_catalog import STAGE_RELATIONSHIP_SCREENING, RuleCatalog
 from core.services.applied_rule_validation import (
-    passed_implied_by,
     check_applied_rules,
+    passed_implied_by,
     raise_for_violations,
 )
+from core.services.phrase_blocks_contract import (
+    hold_response_to_sent_record_ids,
+    render_record_blocks,
+    sent_records_from_user_message,
+)
+from core.services.pipeline_nodes.multi_stage.llm_grounding_node_service import (
+    grouped_record_payloads,
+)
 from core.services.rule_catalog_registry import get_rule_catalog
-from core.models.extraction_schemas.screening import (
-    LiveScreeningResults,
-    ScreeningVerdict,
-)
+from llm_providers.db_models.gpt_batch_request import GPTBatchRequest
+from llm_providers.field_types import BatchRequestIDType
 from llm_providers.models.file_objects.prompt import Prompt
-from llm_providers.models.llm_model import (
-    LLM_Model,
-    NO_MODEL,
-)
+from llm_providers.models.llm_model import LLM_Model, NO_MODEL
 from llm_providers.models.open_ai.gpt_batch_response_blob import (
     ChatCompletionChoiceMessage,
 )
-from llm_providers.db_models.gpt_batch_request import (
-    GPTBatchRequest,
-)
-from core.models.deferred_extraction.deferred_phrase_extraction_requests import (
-    LLMPhraseExtractionRequestMap,
-    LLMPhraseExtractionRequestBundle,
-)
-from core.services.pipeline_nodes.multi_stage.llm_phrase_relationship_node_service import (
-    get_phrase_relationship_result,
-)
-from core.models.field_types import ExtractionFieldType
-from llm_providers.models.open_ai.gpt_model_params import (
-    GPTModelParams,
-)
-from core.services.phrase_blocks_contract import (
-    hold_response_to_sent_phrases,
-    render_phrase_blocks,
-)
-from llm_providers.field_types import BatchRequestIDType
-
-from llm_providers.services.gpt_batch_request.gpt_batch_request_writes import (
-    record_response_parse_error_capped,
-)
+from llm_providers.models.open_ai.gpt_model_params import GPTModelParams
 from llm_providers.services.gpt_batch_request.gpt_batch_request_service import (
     create_base_gpt_batch_request,
     get_dummy_gpt_batch_response,
 )
+from llm_providers.services.gpt_batch_request.gpt_batch_request_writes import (
+    record_response_parse_error_capped,
+)
 
 logger = logging.getLogger(__name__)
 
-
-def get_screening_response_schema(field_type: ExtractionFieldType) -> dict:
-    """This stage's strict ``response_format``, for one field type.
-
-    Per catalog rather than a module constant, because the schema now names the
-    catalog's own rule ids as required properties — which is what stops a response
-    omitting one. See ``catalog_wire_schema``.
-    """
-    return response_format_for(
-        get_rule_catalog(STAGE_RELATIONSHIP_SCREENING, field_type.name)
-    )
+# What a dummy (no candidates anywhere) screening request answers with.
+DUMMY_SCREENINGS_RESPONSE_CONTENT = '{"screenings": []}'
 
 
-def parse_llm_phrase_relationship_screening_result(
+def screening_catalog_for(field_name: str) -> RuleCatalog:
+    """This stage's catalog for one field — the schema, the parse validation
+    and the request's response_format all resolve through it."""
+    return get_rule_catalog(STAGE_RELATIONSHIP_SCREENING, field_name)
+
+
+def parse_record_screening_result(
     gpt_response: Optional[str],
-    field_type: ExtractionFieldType,
-) -> LiveScreeningResults:
+    *,
+    catalog: RuleCatalog,
+) -> RecordScreeningResults:
+    """One response's screenings as the stored record → candidate → verdict map.
+
+    ``passed`` is derived by ``passed_implied_by``, never reported — the rules
+    ARE the decision procedure, exactly as in v1. Violations are collected
+    across the whole response and raised once; a candidate whose report failed
+    its catalog contributes no verdict, and the raise discards the response.
+    """
     if not gpt_response:
         logger.error(f"Invalid gpt_response:{gpt_response}")
         raise ValueError(
-            "parse_llm_phrase_relationship_screening_result: Empty or invalid response from GPT"
+            "parse_record_screening_result: Empty or invalid response from GPT"
         )
-
-    catalog = get_rule_catalog(STAGE_RELATIONSHIP_SCREENING, field_type.name)
 
     try:
         parsed = screening_response_model(catalog).model_validate_json(gpt_response)
     except ValidationError as e:
         raise ValueError(
-            f"parse_llm_phrase_relationship_screening_result: Invalid response from GPT:{gpt_response}"
+            f"parse_record_screening_result: Invalid response from GPT:{gpt_response}"
         ) from e
 
-    raw_gpt_phrase_relationship_screening_result: LiveScreeningResults = {}
+    results: RecordScreeningResults = {}
     violations: list[str] = []
     for entry in parsed.screenings:
-        if entry.phrase in raw_gpt_phrase_relationship_screening_result:
+        if entry.record_id in results:
             raise ValueError(
-                f"parse_llm_phrase_relationship_screening_result: Duplicate phrase {entry.phrase!r} in screenings response"
+                f"parse_record_screening_result: Duplicate record id "
+                f"{entry.record_id!r} in screenings response"
             )
-
-        # The no-candidate branch (locked #21): nothing was identified, so the
-        # conditions had no candidate to be about and there are no rules to report.
-        # It is a branch of the wire union rather than an empty rule list, so a
-        # response cannot half-take it the way one did on 2026-08-11 — reporting a
-        # null entity AND a single failed condition, which matched neither shape.
-        if entry.outcome == NO_CANDIDATE:
-            raw_gpt_phrase_relationship_screening_result[entry.phrase] = (
-                ScreeningVerdict(
-                    passed=False,
-                    identified_entity=None,
-                    applied_rules=[],
-                    no_candidate_explanation=entry.explanation,
+        verdicts: dict[str, CandidateScreeningVerdict] = {}
+        for unit in entry.candidates:
+            if unit.candidate in verdicts:
+                raise ValueError(
+                    f"parse_record_screening_result: record {entry.record_id!r} "
+                    f"judges candidate {unit.candidate!r} twice"
                 )
+            applied = flatten_rule_slots(catalog, unit)
+            report = check_applied_rules(
+                catalog=catalog,
+                applied_rules=applied,
+                where=f"record {entry.record_id} candidate {unit.candidate!r}",
             )
-            continue
-
-        applied_rules = flatten_rule_slots(catalog, entry)
-        report = check_applied_rules(
-            catalog=catalog,
-            applied_rules=applied_rules,
-            where=f"phrase {entry.phrase!r}",
-        )
-        if report.problems:
-            violations.extend(report.problems)
-            # Keep walking so the error names every phrase that needs fixing — the
-            # request is lost either way — but derive nothing from a report that
-            # failed its own catalog.
-            continue
-
-        # Derived, never reported: the rules ARE the decision procedure.
-        # ``identified_entity`` needs no pass/null cross-check any more — it is
-        # non-null by construction on this branch.
-        raw_gpt_phrase_relationship_screening_result[entry.phrase] = ScreeningVerdict(
-            passed=passed_implied_by(catalog, applied_rules),
-            identified_entity=entry.identified_entity,
-            applied_rules=applied_rules,
-        )
+            if report.problems:
+                violations.extend(report.problems)
+                continue
+            verdicts[unit.candidate] = CandidateScreeningVerdict(
+                passed=passed_implied_by(catalog, applied),
+                applied_rules=applied,
+            )
+        results[entry.record_id] = verdicts
 
     raise_for_violations(violations)
-
-    logger.debug(
-        f"raw_gpt_phrase_relationship_screening_result:{raw_gpt_phrase_relationship_screening_result}"
-    )
-
-    return raw_gpt_phrase_relationship_screening_result
+    return results
 
 
-def get_verified_live_screening_results(
-    live_screening_results: LiveScreeningResults,
-) -> LiveScreeningResults:
-    """Filter live (structured, boolean-verdict) screening results down to only
-    the phrases that passed. (A legacy ground_truth_helper_util variant using a
-    Yes—/No— string convention existed until the old keyword/concept GT layer
-    was retired at X2, 2026-08-17.)"""
-    return {
-        phrase: verdict
-        for phrase, verdict in live_screening_results.items()
-        if verdict.passed
-    }
+def hold_candidates_to_sent_records(
+    *,
+    user_message: str,
+    held_results: RecordScreeningResults,
+    where: str,
+) -> None:
+    """The candidate axis: every record's verdicts must cover exactly the
+    candidates its request listed. Raises on either direction — an unjudged
+    candidate is an unanswered question, and a verdict on a candidate nobody
+    listed is a fabricated one."""
+    sent_records = sent_records_from_user_message(user_message)
+    if sent_records is None:
+        return
+
+    problems: list[str] = []
+    for record_id, verdicts in held_results.items():
+        sent_candidates = set(sent_records.get(record_id, {}).get("candidates", []))
+        judged = set(verdicts)
+        missing = sent_candidates - judged
+        unsent = judged - sent_candidates
+        if missing:
+            problems.append(
+                f"record {record_id}: no verdict came back for {sorted(missing)}"
+            )
+        if unsent:
+            problems.append(
+                f"record {record_id}: verdicts on candidate(s) never sent: "
+                f"{sorted(unsent)}"
+            )
+    if problems:
+        raise ValueError(f"{where}: " + "; ".join(problems))
 
 
-async def parse_phrase_relationship_screening_group_result(
+async def parse_record_screening_group_result(
+    *,
     subject_unique_id: str,
-    field_type: ExtractionFieldType,
-    chunk_bounds: str,
+    field_name: str,
+    catalog: RuleCatalog,
     group_req_id: BatchRequestIDType,
     completed_request_map: dict[BatchRequestIDType, GPTBatchRequest],
     timestamp: datetime,
-    repairs: Optional[dict[str, str]] = None,
-) -> LiveScreeningResults:
-    """Parse the screening verdicts returned by a single screening group request."""
+) -> RecordScreeningResults:
+    """Parse one screening group request and hold it on both axes."""
     req_obj = completed_request_map.get(group_req_id)
     if not req_obj:
         raise ValueError(
-            f"llm_phrase_relationship_screening_node.parse_batch_request_result: Missing GPTBatchRequest for phrase_relationship_screening request ID {group_req_id} in {subject_unique_id}:{field_type.name}"
+            f"record_screening: Missing GPTBatchRequest for request ID "
+            f"{group_req_id} in {subject_unique_id}:{field_name}"
         )
     elif not req_obj.response:
         raise ValueError(
-            f"llm_phrase_relationship_screening_node.parse_batch_request_result: GPTBatchRequest for phrase_relationship_screening request ID {group_req_id} has no response_blob in {subject_unique_id}:{field_type.name}"
+            f"record_screening: GPTBatchRequest for request ID {group_req_id} "
+            f"has no response_blob in {subject_unique_id}:{field_name}"
         )
 
+    where = f"{subject_unique_id}:{field_name} record screening {group_req_id}"
     try:
-        parsed_map = parse_llm_phrase_relationship_screening_result(
-            gpt_response=req_obj.response.result,
-            field_type=field_type,
+        parsed = parse_record_screening_result(
+            req_obj.response.result, catalog=catalog
         )
-        # Screening was the one phrase stage that RENDERED the sent-phrases line
-        # and never read it back, so a response that answered under a different
-        # string passed schema validation and surfaced two nodes later as a
-        # phrase-set mismatch in freehand grounding's embed — an abort with no
-        # error recorded and therefore no re-dispatch, permanently stuck
-        # (steelcraft.com, 2026-08-12). `raise` rather than `drop` because
-        # screening is a TOTAL function: measured over that run, all 26 groups
-        # returned a verdict for every phrase sent. It filters downstream in
-        # get_verified_live_screening_results, never by omitting an entry. Safe
-        # to re-dispatch: embed_request_ids skips chunks whose ids exist, so it
-        # never wipes the error history the cap counts.
-        return hold_response_to_sent_phrases(
-            user_message=req_obj.request.body.user_message(),
-            response_by_phrase=parsed_map,
-            where=f"{subject_unique_id}:{field_type.name} relationship screening {group_req_id}",
+        user_message = req_obj.request.body.user_message()
+        held = hold_response_to_sent_record_ids(
+            user_message=user_message,
+            response_by_record_id=parsed,
+            where=where,
             on_missing="raise",
-            repairs=repairs,
         )
+        hold_candidates_to_sent_records(
+            user_message=user_message, held_results=held, where=where
+        )
+        return held
     except Exception as e:
         await record_response_parse_error_capped(
             gpt_batch_request=req_obj,
@@ -218,256 +218,216 @@ async def parse_phrase_relationship_screening_group_result(
             traceback_str=traceback.format_exc(),
         )
         logger.error(
-            f"llm_phrase_relationship_screening_node.parse_batch_request_result: Error parsing phrase_relationship results for subject {subject_unique_id} from GPT response: {e}"
+            f"record_screening: Error parsing screening results for subject "
+            f"{subject_unique_id} from GPT response: {e}"
         )
         raise
 
 
-async def get_phrase_relationship_screening_result(
+async def get_record_screening_result(
+    *,
     subject_unique_id: str,
-    field_type: ExtractionFieldType,
+    field_name: str,
     chunk_bounds: str,
-    extraction_bundle: LLMPhraseExtractionRequestBundle,
+    catalog: RuleCatalog,
+    group_req_ids: list[BatchRequestIDType],
     completed_request_map: dict[BatchRequestIDType, GPTBatchRequest],
     timestamp: datetime,
-    repairs: Optional[dict[str, str]] = None,
-) -> LiveScreeningResults:
-    """Merge screening verdicts across every group embedded for the chunk.
-
-    ``repairs`` is forwarded to the per-group hold; see
-    ``hold_response_to_sent_phrases``.
-    """
-    group_req_ids = extraction_bundle.llm_phrase_relationship_screening_req_ids
+) -> RecordScreeningResults:
+    """Merge screening verdicts across every group embedded for the chunk."""
     if not group_req_ids:
         raise ValueError(
-            f"llm_phrase_relationship_screening_node.parse_batch_request_result: phrase_relationship_screening_req_ids is empty for chunk bounds {chunk_bounds} in {subject_unique_id}:{field_type.name}"
+            f"record_screening: request id list is empty for chunk bounds "
+            f"{chunk_bounds} in {subject_unique_id}:{field_name}"
         )
 
-    merged_results: LiveScreeningResults = {}
+    merged: RecordScreeningResults = {}
     for group_req_id in group_req_ids:
-        merged_results.update(
-            await parse_phrase_relationship_screening_group_result(
+        merged.update(
+            await parse_record_screening_group_result(
                 subject_unique_id=subject_unique_id,
-                field_type=field_type,
-                chunk_bounds=chunk_bounds,
+                field_name=field_name,
+                catalog=catalog,
                 group_req_id=group_req_id,
                 completed_request_map=completed_request_map,
                 timestamp=timestamp,
-                repairs=repairs,
             )
         )
-    return merged_results
+    return merged
 
 
-def _split_into_pair_groups(
-    results: LLMPhraseRelationshipResults, group_size: int
-) -> list[LLMPhraseRelationshipResults]:
-    """Split an ordered phrase->relationship dict into ordered groups of at most
-    *group_size* pairs. Always returns at least one (possibly empty) group so the
-    existing single-dummy-request-per-chunk fallback keeps working when a chunk
-    has no relationship pairs at all."""
-    items = list(results.items())
-    if not items:
-        return [{}]
-    return [dict(items[i : i + group_size]) for i in range(0, len(items), group_size)]
+def build_screening_payloads(
+    masked: MaskedLLMPhraseRelationshipResults,
+    candidates_by_record: dict[str, list[str]],
+) -> dict[str, dict[str, Any]]:
+    """The id → record payload a screening request renders: the evidence plus
+    the candidates to judge. Only records WITH candidates are sent — a record
+    grounding yielded nothing for has nothing to screen — and a candidate list
+    for a record the relationship stage never produced is a pipeline bug."""
+    payloads: dict[str, dict[str, Any]] = {}
+    for record_id, candidates in candidates_by_record.items():
+        entry = masked.get(record_id)
+        if entry is None:
+            raise ValueError(
+                f"build_screening_payloads: candidates supplied for unknown "
+                f"record id {record_id!r}"
+            )
+        if not candidates:
+            continue
+        payload: dict[str, Any] = entry.record.model_dump()
+        payload["candidates"] = sorted(candidates)
+        payloads[record_id] = payload
+    return payloads
 
 
-async def create_missing_phrase_relationship_screening_requests(
+async def create_missing_record_screening_requests(
+    *,
     subject_unique_id: str,
-    subject_name: str,
-    field_type: ExtractionFieldType,  # used for logging and debugging
-    chunked_request_map: LLMPhraseExtractionRequestMap,
-    missing_phrase_relationship_screening_req_ids: set[BatchRequestIDType],
-    subject_text: str,
-    phrase_relationship_screening_prompt: Prompt,
-    llm_phrase_relationship_gpt_request_map: dict[BatchRequestIDType, GPTBatchRequest],
+    field_name: str,
+    chunk_payload_maps: dict[str, dict[str, dict[str, Any]]],
+    group_req_ids_by_chunk: dict[str, list[BatchRequestIDType]],
+    missing_req_ids: set[BatchRequestIDType],
+    prompt: Prompt,
+    catalog: RuleCatalog,
+    max_records_per_request: int,
     deferred_at: datetime,
     llm_model: LLM_Model,
-    eager: bool,
     model_params: GPTModelParams,
-    max_pairs_per_request: int,
-    BATCH_SIZE=100,
+    eager: bool,
+    BATCH_SIZE: int = 100,
 ) -> list[GPTBatchRequest]:
-    logger.info(
-        f"create_missing_phrase_relationship_screening_requests: Generating GPTBatchRequests for {subject_unique_id}:{field_type}"
-    )
-
+    """The screening create loop, mirroring the grounding one: the caller
+    derives each chunk's full payload map (records + their candidate lists) and
+    the split into groups happens here, through the same helper the
+    id-embedding side used."""
     batch_requests: list[GPTBatchRequest] = []
     chunk_items = [
-        (chunk_bounds, bundle)
-        for chunk_bounds, bundle in chunked_request_map.items()
-        if set(bundle.llm_phrase_relationship_screening_req_ids)
-        & missing_phrase_relationship_screening_req_ids
+        (chunk_bounds, payloads)
+        for chunk_bounds, payloads in chunk_payload_maps.items()
+        if set(group_req_ids_by_chunk[chunk_bounds]) & missing_req_ids
     ]
-    # Create lookup map: custom_id -> GPTBatchRequest
-    if not llm_phrase_relationship_gpt_request_map:
-        raise ValueError(
-            f"create_missing_phrase_relationship_screening_requests: No completed GPTBatchRequests found for {subject_unique_id}:{field_type} in upstream_completed_batch_req_map"
-        )
 
-    # Process chunks in batches to yield control periodically
     for i in range(0, len(chunk_items), BATCH_SIZE):
         batch = chunk_items[i : i + BATCH_SIZE]
 
-        # Process current batch
-        for chunk_bounds, extraction_bundle in batch:
-            llm_phrase_relationships = await get_phrase_relationship_result(
-                subject_unique_id=subject_unique_id,
-                field_type=field_type,
-                chunk_bounds=chunk_bounds,
-                extraction_bundle=extraction_bundle,
-                completed_request_map=llm_phrase_relationship_gpt_request_map,
-                timestamp=deferred_at,
+        for chunk_bounds, payloads in batch:
+            payload_groups = grouped_record_payloads(
+                payloads, max_records_per_request
             )
-            pair_groups = _split_into_pair_groups(
-                llm_phrase_relationships, max_pairs_per_request
-            )
-            group_req_ids = extraction_bundle.llm_phrase_relationship_screening_req_ids
-            if len(group_req_ids) != len(pair_groups):
+            group_req_ids = group_req_ids_by_chunk[chunk_bounds]
+            if len(group_req_ids) != len(payload_groups):
                 raise ValueError(
-                    f"create_missing_phrase_relationship_screening_requests: embedded group count "
-                    f"({len(group_req_ids)}) does not match computed group count ({len(pair_groups)}) "
-                    f"for chunk bounds {chunk_bounds} in {subject_unique_id}:{field_type}. Group counts are "
-                    f"computed once, upfront, from the same relationship results, so this should not happen."
+                    f"record_screening: embedded group count "
+                    f"({len(group_req_ids)}) does not match computed group count "
+                    f"({len(payload_groups)}) for chunk bounds {chunk_bounds} in "
+                    f"{subject_unique_id}:{field_name}. Group counts are computed "
+                    f"once, upfront, from the same candidate sets, so this should "
+                    f"not happen."
                 )
 
-            start, end = int(chunk_bounds.split(":")[0]), int(
-                chunk_bounds.split(":")[1]
-            )
-
             for group_index, group_req_id in enumerate(group_req_ids):
-                if group_req_id not in missing_phrase_relationship_screening_req_ids:
+                if group_req_id not in missing_req_ids:
                     continue
 
-                pair_group = pair_groups[group_index]
-                if not pair_group:
-                    # _split_into_pair_groups only ever produces an empty group as the
-                    # sole element of a single-group list (zero relationship pairs total)
-                    if len(pair_groups) != 1:
+                payload_group = payload_groups[group_index]
+                if not payload_group:
+                    if len(payload_groups) != 1:
                         raise ValueError(
-                            f"create_missing_phrase_relationship_screening_requests: unexpected empty "
-                            f"pair group at index {group_index} of {len(pair_groups)} groups for chunk "
-                            f"bounds {chunk_bounds} in {subject_unique_id}:{field_type}. Only a single group should "
-                            f"ever be empty (the zero-relationship-pairs case)."
+                            f"record_screening: unexpected empty record group at "
+                            f"index {group_index} of {len(payload_groups)} groups "
+                            f"for chunk bounds {chunk_bounds} in "
+                            f"{subject_unique_id}:{field_name}. Only a single "
+                            f"group should ever be empty (the zero-candidates "
+                            f"case)."
                         )
-                    # add a dummy response blob with empty dict
                     logger.info(
-                        f"No phrases found in text, for {subject_unique_id}:{field_type}, creating dummy phrase_relationship_screening request"
+                        f"record_screening: no record carried any candidate for "
+                        f"{subject_unique_id}:{field_name} chunk {chunk_bounds}, "
+                        f"creating dummy request"
                     )
-                    new_batch_request = _create_dummy_completed_phrase_relationships_screening_batch_request(
+                    batch_requests.append(
+                        create_dummy_completed_record_screening_batch_request(
+                            deferred_at=deferred_at,
+                            subject_unique_id=subject_unique_id,
+                            request_id=group_req_id,
+                            model_params=model_params,
+                            eager=eager,
+                        )
+                    )
+                    continue
+
+                batch_requests.append(
+                    create_deferred_record_screening_gpt_request(
                         deferred_at=deferred_at,
                         subject_unique_id=subject_unique_id,
-                        llm_phrase_relationship_screening_request_id=group_req_id,
-                        model_params=model_params,
-                        eager=eager,
-                    )
-                else:
-                    logger.info(
-                        f"Passing on candidates {pair_group} to phrase_relationship_screening phase for "
-                        f"{subject_unique_id}:{field_type} chunk {chunk_bounds} group {group_index}"
-                    )
-                    new_batch_request = create_deferred_phrase_relationship_screening_gpt_request(
-                        deferred_at=deferred_at,
-                        subject_unique_id=subject_unique_id,
-                        llm_phrase_relationship_screening_request_id=group_req_id,
-                        subject_name=subject_name,
-                        subject_text=subject_text[start:end],
-                        field_type=field_type,
-                        phrase_relationship_results=pair_group,
-                        phrase_relationship_screening_prompt=phrase_relationship_screening_prompt,
-                        eager=eager,
+                        request_id=group_req_id,
+                        prompt=prompt,
+                        catalog=catalog,
+                        screening_payloads=payload_group,
                         gpt_model=llm_model,
+                        eager=eager,
                         model_params=model_params,
                     )
+                )
 
-                batch_requests.append(new_batch_request)
-
-        # Yield control to event loop after each batch
         await asyncio.sleep(0)
-
-        if (i + BATCH_SIZE) % 500 == 0:
-            logger.info(
-                f"Created {min(i + BATCH_SIZE, len(chunk_items))}/{len(chunk_items)} "
-                f"gpt request for {subject_unique_id}:{field_type}"
-            )
 
     return batch_requests
 
 
-def _create_dummy_completed_phrase_relationships_screening_batch_request(
+def create_deferred_record_screening_gpt_request(
+    *,
     deferred_at: datetime,
     subject_unique_id: str,
-    llm_phrase_relationship_screening_request_id: BatchRequestIDType,
-    model_params: GPTModelParams,
-    eager: bool,
-) -> GPTBatchRequest:
-    if llm_phrase_relationship_screening_request_id is None:
-        raise ValueError(
-            "_create_dummy_completed_phrase_relationships_screening_batch_request: llm_phrase_relationship_screening_request_id is None"
-        )
-
-    base_gpt_batch_request = create_base_gpt_batch_request(
-        deferred_at=deferred_at,
-        subject_unique_id=subject_unique_id,
-        custom_id=llm_phrase_relationship_screening_request_id,
-        # Still carries a block, empty — an absent one has to stay an error.
-        context=(
-            "No phrase relationship screening needed - no phrases found in text.\n"
-            f"{render_phrase_blocks({})}"
-        ),
-        prompt_text="No phrase relationship screening needed - no phrases found in text by brute force or by LLM.",
-        gpt_model=NO_MODEL,
-        model_params=model_params,
-        batch_id="Eager" if eager else "dummy_phrase_relationship_batch_id",
-    )
-
-    base_gpt_batch_request.response = get_dummy_gpt_batch_response(
-        deferred_at=deferred_at,
-        request_custom_id=llm_phrase_relationship_screening_request_id,
-        dummy_chat_completion_id="dummy_completion_id",
-        chat_completion_choice_message=ChatCompletionChoiceMessage(
-            role="assistant", content='{"screenings": []}'
-        ),
-    )
-
-    return base_gpt_batch_request
-
-
-def create_deferred_phrase_relationship_screening_gpt_request(
-    deferred_at: datetime,
-    subject_unique_id: str,
-    llm_phrase_relationship_screening_request_id: str,
-    subject_name: str,
-    subject_text: str,
-    field_type: ExtractionFieldType,
-    phrase_relationship_results: LLMPhraseRelationshipResults,
-    phrase_relationship_screening_prompt: Prompt,
+    request_id: str,
+    prompt: Prompt,
+    catalog: RuleCatalog,
+    screening_payloads: dict[str, dict[str, Any]],
     gpt_model: LLM_Model,
     eager: bool,
     model_params: GPTModelParams,
 ) -> GPTBatchRequest:
-    logger.info(
-        f"create_deferred_phrase_relationship_screening_gpt_request: Generating GPTBatchRequest for {llm_phrase_relationship_screening_request_id}"
-    )
-    context = (
-        # Keep the blocks at column 0. `_PHRASES_RE` tolerates leading spaces on
-        # the fence lines now, but only because this stage once ended its prefix
-        # with `\n\n ` and that single space hid the block from the reader for the
-        # stage's whole life -- rendered every request, read back never.
-        # f"Manufacturer name: {subject_name}\n\n"
-        f"{render_phrase_blocks(phrase_relationship_results)}"
-    )
-
-    gpt_batch_request = create_base_gpt_batch_request(
+    """One screening group request: deposition-only, records and candidates,
+    never chunk text (fork F8)."""
+    return create_base_gpt_batch_request(
         deferred_at=deferred_at,
         subject_unique_id=subject_unique_id,
-        custom_id=llm_phrase_relationship_screening_request_id,
-        context=context,
-        prompt_text=phrase_relationship_screening_prompt.text,
+        custom_id=request_id,
+        context=render_record_blocks(screening_payloads),
+        prompt_text=prompt.text,
         gpt_model=gpt_model,
-        model_params=model_params.with_response_format(
-            get_screening_response_schema(field_type)
-        ),
+        model_params=model_params.with_response_format(response_format_for(catalog)),
         batch_id="Eager" if eager else None,
     )
-    return gpt_batch_request
+
+
+def create_dummy_completed_record_screening_batch_request(
+    *,
+    deferred_at: datetime,
+    subject_unique_id: str,
+    request_id: BatchRequestIDType,
+    model_params: GPTModelParams,
+    eager: bool,
+) -> GPTBatchRequest:
+    note = (
+        "No record screening needed - no record carried any candidate to judge."
+    )
+    base = create_base_gpt_batch_request(
+        deferred_at=deferred_at,
+        subject_unique_id=subject_unique_id,
+        custom_id=request_id,
+        context=f"{note}\n{render_record_blocks({})}",
+        prompt_text=note,
+        gpt_model=NO_MODEL,
+        model_params=model_params,
+        batch_id="Eager" if eager else "dummy_record_screening_batch_id",
+    )
+    base.response = get_dummy_gpt_batch_response(
+        deferred_at=deferred_at,
+        request_custom_id=request_id,
+        dummy_chat_completion_id="dummy_completion_id",
+        chat_completion_choice_message=ChatCompletionChoiceMessage(
+            role="assistant", content=DUMMY_SCREENINGS_RESPONSE_CONTENT
+        ),
+    )
+    return base
