@@ -114,6 +114,17 @@ from core.models.pipeline_nodes.multi_stage.keyword.keyword_mention_collection_n
     KeywordMentionCollectionNode,
 )
 
+# v3 (PIPELINE_V3_PLAN.md Phase 3.2): synthesis, one description per group.
+from core.models.pipeline_nodes.multi_stage.base.llm_phrase_synthesis_node import (
+    LLMPhraseSynthesisNode,
+)
+from core.models.pipeline_nodes.multi_stage.concept.concept_synthesis_node import (
+    ConceptSynthesisNode,
+)
+from core.models.pipeline_nodes.multi_stage.keyword.keyword_synthesis_node import (
+    KeywordSynthesisNode,
+)
+
 __all__ = [
     "BaseNode",
     "PipelineContext",
@@ -132,6 +143,9 @@ __all__ = [
     "LLMPhraseMentionCollectionNode",
     "ConceptMentionCollectionNode",
     "KeywordMentionCollectionNode",
+    "LLMPhraseSynthesisNode",
+    "ConceptSynthesisNode",
+    "KeywordSynthesisNode",
     # single-stage
     "SingleStageExtractionNode",
     "SingleStageExtractionPrefillNode",

@@ -279,19 +279,36 @@ _any_form = st.text(max_size=60)
 
 
 @settings(max_examples=300, deadline=None)
-@given(_any_form, st.booleans())
-def test_normalize_is_idempotent(form, verb_fold):
-    """For forms without a code-token-guarded token. A guarded token (digits,
-    internal capital, capitalized-OOV) is returned casefolded and UNLEMMATIZED —
-    its casing IS its identity (D10: AccuGrips) — and the casefolded key no
-    longer carries the casing the guard read, so a second pass may lemmatize it
-    (`AAAaS` → `aaaas` → `aaaa`; found by hypothesis 2026-08-21 at 3.1). The key
-    is computed once per form, so this is a property boundary, not a defect."""
+@given(_any_form)
+def test_normalize_is_idempotent(form):
+    """At L0+L1, for forms without a code-token-guarded token. A guarded token
+    (digits, internal capital, capitalized-OOV) is returned casefolded and
+    UNLEMMATIZED — its casing IS its identity (D10: AccuGrips) — and the
+    casefolded key no longer carries the casing the guard read, so a second pass
+    may lemmatize it (`AAAaS` → `aaaas` → `aaaa`; found by hypothesis 2026-08-21
+    at 3.1). The L2 verb fold is SINGLE-PASS by design and not a fixed point
+    either — ``test_verb_fold_is_single_pass_not_a_fixed_point`` pins the
+    example — so the property is asserted at ``verb_fold=False`` (user decision
+    2026-08-22, option c: a key is computed once per form, never re-normalized)."""
     from core.utils.form_normalizer import is_code_token, l0_tokens
 
     assume(not any(is_code_token(token) for token in l0_tokens(form)))
-    once = normalize(form, verb_fold=verb_fold)
-    assert normalize(once, verb_fold=verb_fold) == once
+    once = normalize(form, verb_fold=False)
+    assert normalize(once, verb_fold=False) == once
+
+
+def test_verb_fold_is_single_pass_not_a_fixed_point():
+    """The documented boundary (hypothesis, 2026-08-22): a verb lemma can itself
+    be an inflection of another verb — ``ground`` is the lemma of *to ground*
+    AND the participle of *to grind* — so ``Grounded`` keys as ``ground`` and a
+    second pass would key that as ``grind``. Keys are computed once per form,
+    so ``Grounded`` and ``Ground Steel`` simply do not merge (an under-merge,
+    the accepted steady state). Pinned so a fixed-point rewrite (option a,
+    which would need a NORMALIZER_VERSION bump) is a visible decision."""
+    assert normalize("Grounded", verb_fold=True) == "ground"
+    assert normalize("ground", verb_fold=True) == "grind"
+    assert normalize("Ground Steel", verb_fold=True) == "grind steel"
+    assert normalize("Grounded", verb_fold=False) == "grounded"
 
 
 @settings(max_examples=300, deadline=None)

@@ -38,6 +38,7 @@ from core.models.extraction_results.llm_phrase_extraction_results import (
     AggregationFoldMetadata,
     BaseExtractionMetadata,
     BatchedMentionCollectionNodeMetadata,
+    BatchedSynthesisNodeMetadata,
     BatchedRelationshipNodeMetadata,
     BatchedScreeningNodeMetadata,
     ExtractionNodeMetadata,
@@ -144,6 +145,9 @@ class LLMPhraseExtractionMetadataV2(BaseExtractionMetadata):
     # None-vs-set into the standard re-defer.
     llm_phrase_mention_collection: Optional[BatchedMentionCollectionNodeMetadata] = None
     aggregation_fold: Optional[AggregationFoldMetadata] = None
+    # v3 Phase 3.2: the synthesis stage's identity (cap + location arm). Same
+    # Optional-for-loading, always-set-by-the-factory contract as the two above.
+    llm_phrase_synthesis: Optional[BatchedSynthesisNodeMetadata] = None
 
 
 class ConceptExtractionMetadataV2(LLMPhraseExtractionMetadataV2):

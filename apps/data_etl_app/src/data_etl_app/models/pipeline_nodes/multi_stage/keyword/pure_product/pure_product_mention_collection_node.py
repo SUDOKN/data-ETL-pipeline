@@ -20,8 +20,8 @@ from data_etl_app.models.types_and_enums import KeywordTypeEnum
 from llm_providers.field_types import BatchRequestIDType
 
 if TYPE_CHECKING:
-    from data_etl_app.models.pipeline_nodes.multi_stage.keyword.pure_product.pure_product_freehand_grounding_node import (
-        PureProductFreehandGroundingNode,
+    from data_etl_app.models.pipeline_nodes.multi_stage.keyword.pure_product.pure_product_synthesis_node import (
+        PureProductSynthesisNode,
     )
 
 logger = logging.getLogger(__name__)
@@ -34,7 +34,7 @@ class PureProductMentionCollectionNode(KeywordMentionCollectionNode):
         self,
         field_type: KeywordTypeEnum,
         phrase_mention_collection_prompt: Prompt,
-        next_node: PureProductFreehandGroundingNode,
+        next_node: PureProductSynthesisNode,
     ):
         super().__init__(
             field_type=field_type,

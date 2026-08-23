@@ -72,6 +72,16 @@ def is_page_header_line(line: str) -> bool:
     return bool(_SEPARATOR_LINE_RE.fullmatch(line.rstrip("\r\n")))
 
 
+def is_page_barrier_line(line: str) -> bool:
+    """Whether *line* (a raw line, line ending included) is a page BOUNDARY
+    line — the scraper's separator or a URL-only page header. Neither is text:
+    the scan masks both (``mask_page_headers``), and the snippet clip with a
+    radius > 0 (``aggregation_fold``, user knob 2026-08-22) never extends a
+    snippet across one, so context never leaks in from a neighbouring page."""
+    stripped = line.rstrip("\r\n")
+    return bool(_SEPARATOR_LINE_RE.fullmatch(stripped) or _URL_LINE_RE.fullmatch(stripped))
+
+
 # --- scan domain + pages -------------------------------------------------------
 
 

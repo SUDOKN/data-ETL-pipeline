@@ -79,9 +79,38 @@ class BatchedMentionCollectionNodeMetadata(ExtractionNodeMetadata):
     # each asked against the same window text; the aggregation fold merges the
     # groups back. Like every batched cap, part of request identity.
     max_mentions_per_request: int
+    # The collector's snippet clip dial (user knob, 2026-08-22): 0 = the
+    # sentence-within-line clip every run so far used; r > 0 = the occurrence's
+    # sentence unit(s) plus r units of context each side, within its page
+    # (``core.utils.aggregation_fold``, B). The snippet hash IS the mention id
+    # the Location wire and the fold are keyed by, so this is request identity:
+    # the segment carries ``|rad=r`` whenever r > 0 — and NOT at 0, so the
+    # default leaves every stored id exactly as it was (the knob was added after
+    # five runs; the metadata drift check still sees the field either way).
+    snippet_radius: int = 0
 
     def to_custom_id_segment(self) -> str:
-        return f"{super().to_custom_id_segment()}|gs={self.max_mentions_per_request}"
+        radius = f"|rad={self.snippet_radius}" if self.snippet_radius else ""
+        return f"{super().to_custom_id_segment()}|gs={self.max_mentions_per_request}{radius}"
+
+
+class BatchedSynthesisNodeMetadata(ExtractionNodeMetadata):
+    # v3 synthesis (PIPELINE_V3_PLAN.md D15 as amended 2026-08-22, D16; Phase
+    # 3.2). The unit is ENTRIES (a record's distinct snippets): a chunk's
+    # records are packed in bundle order into requests of at most
+    # `max_entries_per_request` entries — SOFT cutoff: a record is never split,
+    # and a record larger than the cap travels alone. Part of request identity.
+    max_entries_per_request: int
+    # The A/B arm (user decision 2026-08-22): True = entries carry
+    # {location, snippet}; False = {snippet} alone. Different wire content, so
+    # part of request identity (`|loc=1` / `|loc=0`) — the two arms coexist.
+    include_location: bool
+
+    def to_custom_id_segment(self) -> str:
+        return (
+            f"{super().to_custom_id_segment()}|gs={self.max_entries_per_request}"
+            f"|loc={1 if self.include_location else 0}"
+        )
 
 
 class AggregationFoldMetadata(BaseModel):

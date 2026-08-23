@@ -47,6 +47,10 @@ class PipelineStage(StrEnum):
     # aggregation fold that follows it is pure code with no requests, so it is
     # not a stage: it runs at this stage's parse time.
     mention_collection = "mention_collection"
+    # v3 (PIPELINE_V3_PLAN.md D15/D16, Phase 3.2): synthesis — one description
+    # per group (record), written from the fold's entries; per chunk, after
+    # the mention stage.
+    synthesis = "synthesis"
     # v2 relationship — OUT of every chain since v3 3.1 (2026-08-21). The
     # member stays so stored request ids can still be scoped and deleted by
     # stage (`request_id_tokens_from`); retired for good at v3 3.3.
@@ -76,13 +80,14 @@ _STAGE_RANK: dict[PipelineStage, int] = {
     PipelineStage.phrase_search: 1,
     PipelineStage.recursive_search: 2,
     PipelineStage.mention_collection: 3,
-    PipelineStage.relationship: 4,
-    PipelineStage.initial_grounding: 5,
-    PipelineStage.freehand_grounding: 5,
-    PipelineStage.oov_grounding: 6,
-    PipelineStage.screening: 7,
-    PipelineStage.iterative_grounding: 8,
-    PipelineStage.reconcile: 9,
+    PipelineStage.synthesis: 4,
+    PipelineStage.relationship: 5,
+    PipelineStage.initial_grounding: 6,
+    PipelineStage.freehand_grounding: 6,
+    PipelineStage.oov_grounding: 7,
+    PipelineStage.screening: 8,
+    PipelineStage.iterative_grounding: 9,
+    PipelineStage.reconcile: 10,
 }
 
 # The third `>`-delimited segment of a batch request's custom ID, per stage.
@@ -95,6 +100,7 @@ STAGE_REQUEST_ID_TOKEN: dict[PipelineStage, str] = {
     PipelineStage.phrase_search: "llm_search",
     PipelineStage.recursive_search: "llm_recursive_search",
     PipelineStage.mention_collection: "llm_phrase_mention_collection",
+    PipelineStage.synthesis: "llm_phrase_synthesis",
     PipelineStage.relationship: "llm_phrase_relationship",
     PipelineStage.screening: "llm_phrase_relationship_screening",
     PipelineStage.initial_grounding: "llm_phrase_initial_grounding",

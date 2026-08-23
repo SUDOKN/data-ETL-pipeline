@@ -1,12 +1,15 @@
 """Wire contract of the v3 synthesis stage (PIPELINE_V3_PLAN.md D15, D16).
 
-Synthesis is deposition-only and BLIND: it never sees source text, forms, or
-groups. A request carries records — one per group the aggregation fold built —
-as an opaque ``record_id`` plus ``entries``, each entry a ``{location, snippet}``
-pair passed through unchanged from mention collection. The model writes one
-faithful aggregation per record; there are no dispositions and no split flag
-(D15 as amended 2026-08-21 — discounting is adding judgment; the sense burden
-moved to screening, D14).
+Synthesis is deposition-only: it never sees source text. A request carries
+records — one per group the aggregation fold built — as an opaque ``record_id``
+plus the group's ``focal_form`` and its ``entries``, each entry a
+``{location, snippet}`` pair passed through unchanged from mention collection
+(or ``{snippet}`` alone on the no-location A/B arm). The model describes the
+focal entity using the entries as evidence (D15 as amended 2026-08-22: the
+focal form is the one thing the model is told about the group — the most
+frequent member form, chosen in code — and entries not about it are not
+evidence); there are no dispositions and no split flag (D15 as amended
+2026-08-21 — the sense burden moved to screening, D14).
 
 NAMING
 ------
@@ -57,18 +60,29 @@ logger = logging.getLogger(__name__)
 class SynthesisEntry(BaseModel):
     """One entry of a record on the request wire: a mention's location and
     verbatim snippet, passed through from mention collection unchanged (same
-    field names on purpose — one name per concept across stages)."""
+    field names on purpose — one name per concept across stages). ``location``
+    is None on the no-location A/B arm (user decision 2026-08-22) and is then
+    LEFT OFF the wire — render entries with ``model_dump(exclude_none=True)``
+    (``wire_dict`` below) so the model sees ``{snippet}`` and not a null."""
 
-    location: str
+    location: Optional[str] = None
     snippet: str
 
 
 class SynthesisRecordInput(BaseModel):
-    """One record on the request wire: the opaque id the model echoes back, and
-    the entries it synthesizes from. ``record_id`` carries the group_id value."""
+    """One record on the request wire: the opaque id the model echoes back, the
+    focal form the record is about, and the entries it synthesizes from.
+    ``record_id`` carries the group_id value."""
 
     record_id: str
+    focal_form: str
     entries: list[SynthesisEntry]
+
+    def wire_dict(self) -> dict:
+        """The record as the request renders it: ``record_id``, ``focal_form``,
+        ``entries`` — a missing location is absent, never ``null``. Also what
+        the request's ``|ud=`` digest reads."""
+        return self.model_dump(exclude_none=True)
 
 
 # --- response wire ----------------------------------------------------------

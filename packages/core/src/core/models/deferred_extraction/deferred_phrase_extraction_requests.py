@@ -1,3 +1,5 @@
+from typing import Optional
+
 from pydantic import BaseModel, Field
 
 from core.models.extraction_results.llm_phrase_extraction_results_v2 import (
@@ -52,6 +54,24 @@ class LLMPhraseExtractionRequestBundle(BaseModel):
     llm_phrase_mention_retry_req_ids: dict[str, list[BatchRequestIDType]] = Field(
         default_factory=dict
     )
+    # v3 synthesis (PIPELINE_V3_PLAN.md D15 as amended 2026-08-22, D16; Phase
+    # 3.2). Per CHUNK (this bundle): the ordered list of synthesis request
+    # groups (group 1 == index 0). The chunk's fold records — one per non-empty
+    # group, focal form + entries — are packed in bundle order into requests of
+    # at most `max_entries_per_request` entries, a record never split; a chunk
+    # with no records gets one dummy request. Records are recomputed from the
+    # text + the stored mention state (the fold is deterministic), so nothing
+    # but the ids is stored.
+    llm_phrase_synthesis_req_ids: list[BatchRequestIDType] = Field(default_factory=list)
+    # Under-answer policy (user decision 2026-08-22, same family as the Location
+    # stage's): once the chunk's group requests are complete it is ASSESSED —
+    # the record ids no answer synthesized are stored here (an empty list =
+    # assessed, none missing; None = not yet assessed) and, when any are
+    # missing, ONE retry pass re-asks for just those records (packed the same
+    # way into the ids below). The result reads group answers first, then the
+    # retry's; what is still missing after that is reported, never retried twice.
+    llm_phrase_synthesis_retry_record_ids: Optional[list[str]] = None
+    llm_phrase_synthesis_retry_req_ids: list[BatchRequestIDType] = Field(default_factory=list)
     # v2 relationship (out of every chain since v3 3.1; retired at 3.3).
     # Ordered list of relationship groups (group 1 == index 0). Each group covers
     # at most `max_phrases_per_request` of the chunk's candidate phrases; every

@@ -58,6 +58,7 @@ def test_concept_chain_runs_mention_collection_after_recursive_search():
         recursive_search_prompt=_prompt("r"),
         phrase_relationship_prompt=_prompt("rel"),
         phrase_mention_collection_prompt=_prompt("m"),
+        phrase_synthesis_prompt=_prompt("syn"),
         phrase_relationship_screening_prompt=_prompt("scr"),
         phrase_initial_grounding_prompt=_prompt("g"),
         phrase_recursive_grounding_prompt=_prompt("rg"),

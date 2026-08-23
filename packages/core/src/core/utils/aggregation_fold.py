@@ -26,7 +26,16 @@ A. COLLECT. The owners of a window's text are the tier-2 floor-scan hits of
 B. CLIP. The snippet is the sentence holding the occurrence within its line,
    or the whole line where the line has no sentence punctuation (menus,
    headings, list entries). Measured 2026-08-22 on run 20260822T195947: median
-   112 chars, max 623, against the collector's 138 / 1,973.
+   112 chars, max 623, against the collector's 138 / 1,973. SNIPPET RADIUS
+   (user knob, 2026-08-22): ``snippet_radius = r > 0`` widens the clip to the
+   whole sentence unit(s) holding the occurrence plus ``r`` sentence units on
+   each side, where a unit is a sentence within a line (the whole line when it
+   has no sentence break), line breaks count as unit breaks, blank lines are
+   skipped, and a page boundary line (separator / URL header,
+   ``floor_scan.is_page_barrier_line``) is a hard stop that is never crossed
+   or included. ``r = 0`` is byte-identical to the clip above (the golden
+   behaviour every stored mention id rests on). The snippet hash is the
+   mention id, so the radius is part of the mention stage's request identity.
 
 C. WIRE. The window's DISTINCT snippets, in first-occurrence order, are the
    Location request's items ``{mention_id, mention}`` — 2,880 items for 4,907
@@ -54,14 +63,20 @@ E. GROUP + BUNDLE. Forms bucket by ``normalize()`` (D9/D10: a dict, global
 F. SYNTHESIS ENTRIES. A bundle's entries are its DISTINCT snippets in locked
    order, each with the location of its first occurrence (user decision
    2026-08-22: a repeated line reaches synthesis once; the per-occurrence
-   mentions stay on the bundle for the dump and ground truth).
+   mentions stay on the bundle for the dump and ground truth). The synthesis
+   A/B (user decision 2026-08-22) has an arm WITHOUT locations:
+   ``include_location=False`` builds entries of the snippet alone. Each record
+   also carries the bundle's FOCAL FORM (D15 as amended 2026-08-22): the most
+   frequent member form by mention count, ties broken by earliest first mention
+   in locked order — code-chosen, deterministic, what synthesis is told the
+   record is about.
 """
 
 from __future__ import annotations
 
 import bisect
 import re
-from collections import defaultdict
+from collections import Counter, defaultdict
 from dataclasses import dataclass, field
 from typing import Mapping, Optional, Sequence
 
@@ -72,6 +87,7 @@ from core.utils.floor_scan import (
     Occurrence,
     excluded_page_spans,
     floor_scan,
+    is_page_barrier_line,
     page_at,
 )
 from core.utils.form_normalizer import NORMALIZER_VERSION, assign_group_ids, normalize
@@ -210,24 +226,45 @@ def _owning_hits(text: str, scan: FloorScan, sent_forms: Sequence[str]) -> list[
 _SENTENCE_BREAK = re.compile(r"(?<=[.!?])\s+")
 
 
+@dataclass(frozen=True)
+class _Unit:
+    """One sentence unit of a window (step B): absolute ``[start, end)``, and
+    the index of the page block it sits in (barrier lines split blocks)."""
+
+    start: int
+    end: int
+    block: int
+
+
 class _Lines:
     """Line geometry of a window, for clipping."""
 
     def __init__(self, text: str):
+        self.text = text
         self.lines = text.split("\n")
         self.starts = [0]
         for line in self.lines:
             self.starts.append(self.starts[-1] + len(line) + 1)
+        self._units: Optional[list[_Unit]] = None
+        self._unit_starts: Optional[list[int]] = None
 
-    def clip(self, start: int, end: int) -> tuple[str, int]:
+    @staticmethod
+    def _cuts(line: str) -> list[int]:
+        return [0] + [m.end() for m in _SENTENCE_BREAK.finditer(line)] + [len(line)]
+
+    def clip(self, start: int, end: int, *, radius: int = 0) -> tuple[str, int]:
         """The sentence holding ``[start, end)`` within its line — the whole
         line where the line has no sentence break — stripped, with its absolute
-        offset. Never cuts inside the occurrence."""
+        offset. Never cuts inside the occurrence. With ``radius > 0``, the
+        whole unit(s) holding the occurrence plus ``radius`` units each side,
+        within the occurrence's page block (see the module docstring, B)."""
+        if radius > 0:
+            return self._clip_with_radius(start, end, radius)
         li = bisect.bisect_right(self.starts, start) - 1
         line_start = self.starts[li]
         line = self.lines[li]
         rel_start, rel_end = start - line_start, min(end, line_start + len(line)) - line_start
-        cuts = [0] + [m.end() for m in _SENTENCE_BREAK.finditer(line)] + [len(line)]
+        cuts = self._cuts(line)
         sb = max(c for c in cuts if c <= rel_start)
         se = min([c for c in cuts if c > rel_start] or [len(line)])
         se = max(se, rel_end)
@@ -236,19 +273,71 @@ class _Lines:
         lead = len(piece) - len(piece.lstrip())
         return stripped, line_start + sb + lead
 
+    def units(self) -> list[_Unit]:
+        """Every sentence unit of the window in text order. Barrier lines are
+        not units and advance the block index; blank lines are neither."""
+        if self._units is None:
+            units: list[_Unit] = []
+            block = 0
+            for li, line in enumerate(self.lines):
+                if is_page_barrier_line(line):
+                    block += 1
+                    continue
+                if not line.strip():
+                    continue
+                line_start = self.starts[li]
+                cuts = self._cuts(line)
+                for a, b in zip(cuts, cuts[1:], strict=False):
+                    if line[a:b].strip():
+                        units.append(_Unit(line_start + a, line_start + b, block))
+            self._units = units
+            self._unit_starts = [u.start for u in units]
+        return self._units
+
+    def _unit_index_at(self, offset: int) -> int:
+        units = self.units()
+        assert self._unit_starts is not None
+        i = bisect.bisect_right(self._unit_starts, offset) - 1
+        if i < 0 or not (units[i].start <= offset < units[i].end):
+            raise ValueError(
+                f"offset {offset} is not inside any sentence unit (a barrier or blank "
+                f"line); occurrences never are — the scan masks those lines."
+            )
+        return i
+
+    def _clip_with_radius(self, start: int, end: int, radius: int) -> tuple[str, int]:
+        units = self.units()
+        i = self._unit_index_at(start)
+        j = self._unit_index_at(end - 1) if end > start else i
+        block = units[i].block
+        lo, hi = i, j
+        while lo > 0 and i - lo < radius and units[lo - 1].block == block:
+            lo -= 1
+        while hi + 1 < len(units) and hi - j < radius and units[hi + 1].block == block:
+            hi += 1
+        piece = self.text[units[lo].start : units[hi].end]
+        stripped = piece.strip()
+        lead = len(piece) - len(piece.lstrip())
+        return stripped, units[lo].start + lead
+
 
 def collect_window(
     text: str,
     sent_forms: Sequence[str],
     *,
     preceding_page: Optional[str] = None,
+    snippet_radius: int = 0,
 ) -> WindowCollection:
     """Steps A–C over one window. Pure; independent of the order of
     ``sent_forms``. Blank forms are ignored (they can anchor nothing).
+    ``snippet_radius`` is the clip's context dial (module docstring, B; 0 =
+    the sentence-within-line clip).
 
     Raises ``MentionIdCollisionError`` should two distinct snippets of the
     window hash to one mention id.
     """
+    if snippet_radius < 0:
+        raise ValueError(f"snippet_radius must be >= 0, got {snippet_radius}")
     forms = sorted({f for f in sent_forms if f.strip()})
     scan = floor_scan(text, forms, preceding_page=preceding_page)
     lines = _Lines(text)
@@ -257,7 +346,7 @@ def collect_window(
     snippet_of_id: dict[str, str] = {}
     items: list[MentionWireItem] = []
     for h in _owning_hits(text, scan, forms):
-        snippet, snippet_start = lines.clip(h.start, h.end)
+        snippet, snippet_start = lines.clip(h.start, h.end, radius=snippet_radius)
         mention_id = mention_id_for_snippet(snippet)
         known = snippet_of_id.get(mention_id)
         if known is None:
@@ -341,8 +430,12 @@ class FoldedMention:
     def is_discovered_casing(self) -> bool:
         return self.form != self.sent_form
 
-    def synthesis_entry(self) -> SynthesisEntry:
-        return SynthesisEntry(location=self.location, snippet=self.snippet)
+    def synthesis_entry(self, *, include_location: bool = True) -> SynthesisEntry:
+        """The entry this mention contributes (step F). ``include_location=False``
+        is the no-location A/B arm: the snippet alone."""
+        return SynthesisEntry(
+            location=self.location if include_location else None, snippet=self.snippet
+        )
 
 
 @dataclass(frozen=True)
@@ -363,20 +456,48 @@ class MentionBundle:
     def status(self) -> str:
         return BUNDLE_STATUS_NO_MENTIONS if self.is_empty else BUNDLE_STATUS_OK
 
-    def synthesis_entries(self) -> list[SynthesisEntry]:
+    @property
+    def focal_form(self) -> Optional[str]:
+        """The form synthesis is told the record is about (D15 as amended
+        2026-08-22): the most frequent member form by mention count — the
+        text at the span, so a discovered casing counts as its own form — ties
+        broken by the earliest first mention in locked order (then lexically,
+        which cannot happen: two forms cannot share a first mention). None for
+        an empty bundle."""
+        if not self.mentions:
+            return None
+        counts = Counter(m.form for m in self.mentions)
+        first_index: dict[str, int] = {}
+        for index, m in enumerate(self.mentions):
+            first_index.setdefault(m.form, index)
+        return min(counts, key=lambda f: (-counts[f], first_index[f], f))
+
+    def synthesis_entries(self, *, include_location: bool = True) -> list[SynthesisEntry]:
         """Step F: distinct snippets in locked order, each under the location
-        of its first occurrence."""
+        of its first occurrence (or no location at all on the A/B arm)."""
         entries: list[SynthesisEntry] = []
         seen: set[str] = set()
         for m in self.mentions:
             if m.snippet in seen:
                 continue
             seen.add(m.snippet)
-            entries.append(m.synthesis_entry())
+            entries.append(m.synthesis_entry(include_location=include_location))
         return entries
 
-    def synthesis_record(self) -> SynthesisRecordInput:
-        return SynthesisRecordInput(record_id=self.group_id, entries=self.synthesis_entries())
+    def synthesis_record(self, *, include_location: bool = True) -> SynthesisRecordInput:
+        """The record this bundle sends to synthesis. Raises for an empty
+        bundle — it has no focal form and nothing to synthesize; callers go
+        through ``FoldResult.synthesis_records``, which skips empties."""
+        focal = self.focal_form
+        if focal is None:
+            raise ValueError(
+                f"bundle {self.group_id!r} ({self.key!r}) has no mentions and no synthesis record"
+            )
+        return SynthesisRecordInput(
+            record_id=self.group_id,
+            focal_form=focal,
+            entries=self.synthesis_entries(include_location=include_location),
+        )
 
 
 # --- output: per-window report ---------------------------------------------------
@@ -419,6 +540,7 @@ class FoldResult:
     windows: list[WindowFold]
     verb_fold: bool
     normalizer_version: str = NORMALIZER_VERSION
+    snippet_radius: int = 0
 
     def bundle(self, group_id: str) -> Optional[MentionBundle]:
         for b in self.bundles:
@@ -430,21 +552,30 @@ class FoldResult:
     def empty_bundles(self) -> list[MentionBundle]:
         return [b for b in self.bundles if b.is_empty]
 
-    def synthesis_records(self) -> list[SynthesisRecordInput]:
+    def synthesis_records(self, *, include_location: bool = True) -> list[SynthesisRecordInput]:
         """The synthesis request side: one record per NON-EMPTY bundle, in
-        bundle order. Empty bundles are skipped (nothing to synthesize) but
-        remain in ``bundles`` for the dump."""
-        return [b.synthesis_record() for b in self.bundles if not b.is_empty]
+        bundle order, each naming its focal form. Empty bundles are skipped
+        (nothing to synthesize) but remain in ``bundles`` for the dump."""
+        return [
+            b.synthesis_record(include_location=include_location)
+            for b in self.bundles
+            if not b.is_empty
+        ]
 
 
 # --- the per-window fold -----------------------------------------------------------
 
 
-def fold_window(window: WindowInput, *, window_index: int = 0) -> WindowFold:
+def fold_window(
+    window: WindowInput, *, window_index: int = 0, snippet_radius: int = 0
+) -> WindowFold:
     """Steps A–D over one window. Pure; independent of the order of
     ``sent_forms`` and of the keys of ``locations_by_mention_id``."""
     collection = collect_window(
-        window.text, window.sent_forms, preceding_page=window.preceding_page
+        window.text,
+        window.sent_forms,
+        preceding_page=window.preceding_page,
+        snippet_radius=snippet_radius,
     )
     mentions: list[FoldedMention] = []
     for m in collection.mentions:
@@ -485,14 +616,19 @@ def fold_document(
     windows: Sequence[WindowInput],
     *,
     verb_fold: bool = False,
+    snippet_radius: int = 0,
 ) -> FoldResult:
     """Steps A–D over every window, then E over the union of sent and
-    collected forms.
+    collected forms. ``snippet_radius`` is the clip dial (B), uniform over the
+    document — it is run identity, not a per-window fact.
 
     Raises ``GroupIdCollisionError`` (from ``assign_group_ids``) should two
     distinct keys ever hash to one id.
     """
-    folds = [fold_window(w, window_index=i) for i, w in enumerate(windows)]
+    folds = [
+        fold_window(w, window_index=i, snippet_radius=snippet_radius)
+        for i, w in enumerate(windows)
+    ]
 
     key_of: dict[str, str] = {}
     for fold in folds:
@@ -523,4 +659,6 @@ def fold_document(
         key=lambda b: (b.mentions[0].window_index, b.mentions[0].start, b.mentions[0].end, b.key),
     )
     empty = sorted((b for b in bundles if b.is_empty), key=lambda b: b.key)
-    return FoldResult(bundles=filled + empty, windows=folds, verb_fold=verb_fold)
+    return FoldResult(
+        bundles=filled + empty, windows=folds, verb_fold=verb_fold, snippet_radius=snippet_radius
+    )

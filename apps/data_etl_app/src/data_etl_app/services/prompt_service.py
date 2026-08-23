@@ -58,6 +58,15 @@ STAGED_PROMPT_FILE_PATHS = {
     "process_cap_phrase_mention_collection": "multi_stage/3_phrase_mention_collection/process_cap_phrase_mention_collection.txt",
     "product_phrase_mention_collection": "multi_stage/3_phrase_mention_collection/product_phrase_mention_collection.txt",
     "equipment_phrase_mention_collection": "multi_stage/3_phrase_mention_collection/equipment_phrase_mention_collection.txt",
+    # v3 synthesis (PIPELINE_V3_PLAN.md D15/D16, Phase 3.2) — one description
+    # per group from the fold's entries. Six byte-identical, field-agnostic
+    # statics; one per field for the same per-field pin bookkeeping.
+    "conformity_attestation_phrase_synthesis": "multi_stage/4_phrase_synthesis/conformity_attestation_phrase_synthesis.txt",
+    "industry_phrase_synthesis": "multi_stage/4_phrase_synthesis/industry_phrase_synthesis.txt",
+    "material_cap_phrase_synthesis": "multi_stage/4_phrase_synthesis/material_cap_phrase_synthesis.txt",
+    "process_cap_phrase_synthesis": "multi_stage/4_phrase_synthesis/process_cap_phrase_synthesis.txt",
+    "product_phrase_synthesis": "multi_stage/4_phrase_synthesis/product_phrase_synthesis.txt",
+    "equipment_phrase_synthesis": "multi_stage/4_phrase_synthesis/equipment_phrase_synthesis.txt",
     # freehand grounding
     # ONE product prompt for both product fields again (v2): grounding lost its
     # attribution clauses, which were the only pure-vs-contract difference —
@@ -380,6 +389,31 @@ class PromptService:
     @property
     def equipment_phrase_mention_collection_prompt(self) -> Prompt:
         return self._get_prompt("equipment_phrase_mention_collection")
+
+    # v3 synthesis (Phase 3.2)
+    @property
+    def conformity_attestation_phrase_synthesis_prompt(self) -> Prompt:
+        return self._get_prompt("conformity_attestation_phrase_synthesis")
+
+    @property
+    def industry_phrase_synthesis_prompt(self) -> Prompt:
+        return self._get_prompt("industry_phrase_synthesis")
+
+    @property
+    def material_cap_phrase_synthesis_prompt(self) -> Prompt:
+        return self._get_prompt("material_cap_phrase_synthesis")
+
+    @property
+    def process_cap_phrase_synthesis_prompt(self) -> Prompt:
+        return self._get_prompt("process_cap_phrase_synthesis")
+
+    @property
+    def product_phrase_synthesis_prompt(self) -> Prompt:
+        return self._get_prompt("product_phrase_synthesis")
+
+    @property
+    def equipment_phrase_synthesis_prompt(self) -> Prompt:
+        return self._get_prompt("equipment_phrase_synthesis")
 
     @property
     def product_phrase_screening_pure_product_prompt(self) -> Prompt:

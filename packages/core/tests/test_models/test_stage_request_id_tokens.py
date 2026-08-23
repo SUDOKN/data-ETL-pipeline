@@ -164,3 +164,16 @@ def test_the_tripwire_actually_inspects_something():
     builders = _custom_id_builders()
 
     assert len(builders) == len(STAGE_REQUEST_ID_TOKEN)
+
+
+def test_synthesis_is_its_own_scope_between_mention_collection_and_the_v2_tail():
+    """v3 3.2: synthesis has its own token; "synthesis and downstream" names the
+    v2 tail but not mention collection; "mention collection and downstream"
+    names synthesis."""
+    assert request_id_tokens_from(PipelineStage.synthesis) == ["llm_phrase_synthesis"]
+    downstream = set(request_id_tokens_from(PipelineStage.synthesis, and_downstream=True))
+    assert {"llm_phrase_synthesis", "llm_phrase_relationship", "llm_phrase_initial_grounding"} <= downstream
+    assert "llm_phrase_mention_collection" not in downstream
+    assert "llm_phrase_synthesis" in request_id_tokens_from(
+        PipelineStage.mention_collection, and_downstream=True
+    )

@@ -11,8 +11,8 @@ from core.models.pipeline_nodes.multi_stage.base.llm_phrase_mention_collection_n
 )
 
 if TYPE_CHECKING:
-    from core.models.pipeline_nodes.multi_stage.keyword.keyword_freehand_grounding_node import (
-        KeywordFreehandGroundingNode,
+    from core.models.pipeline_nodes.multi_stage.keyword.keyword_synthesis_node import (
+        KeywordSynthesisNode,
     )
 
 logger = logging.getLogger(__name__)
@@ -28,7 +28,7 @@ class KeywordMentionCollectionNode(LLMPhraseMentionCollectionNode[ExtractionFiel
         self,
         field_type: ExtractionFieldType,
         phrase_mention_collection_prompt: Prompt,
-        next_node: KeywordFreehandGroundingNode,
+        next_node: KeywordSynthesisNode,
     ):
         super().__init__(
             field_type=field_type,

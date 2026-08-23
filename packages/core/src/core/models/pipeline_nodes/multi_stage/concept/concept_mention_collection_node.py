@@ -20,8 +20,8 @@ from core.models.pipeline_nodes.multi_stage.concept.concept_recursive_search_nod
 )
 
 if TYPE_CHECKING:
-    from core.models.pipeline_nodes.multi_stage.concept.concept_initial_grounding_node import (
-        ConceptInitialGroundingNode,
+    from core.models.pipeline_nodes.multi_stage.concept.concept_synthesis_node import (
+        ConceptSynthesisNode,
     )
 
 logger = logging.getLogger(__name__)
@@ -35,7 +35,7 @@ class ConceptMentionCollectionNode(LLMPhraseMentionCollectionNode[ConceptFieldTy
         self,
         concept_type: ConceptFieldType,
         phrase_mention_collection_prompt: Prompt,
-        next_node: ConceptInitialGroundingNode,
+        next_node: ConceptSynthesisNode,
     ):
         super().__init__(
             field_type=concept_type,

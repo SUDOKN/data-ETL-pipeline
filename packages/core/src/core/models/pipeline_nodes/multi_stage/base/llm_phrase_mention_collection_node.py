@@ -160,7 +160,9 @@ class LLMPhraseMentionCollectionNode(
             for sub_bounds in pending:
                 forms = forms_occurring_in_window(subject_text, sub_bounds, chunk_forms)
                 bundle.llm_phrase_mention_sent_forms[sub_bounds] = forms
-                collection = collect_sub_window(subject_text, sub_bounds, forms)
+                collection = collect_sub_window(
+                    subject_text, sub_bounds, forms, snippet_radius=mention_metadata.snippet_radius
+                )
                 groups = split_into_item_groups(
                     collection.items, mention_metadata.max_mentions_per_request
                 )
@@ -222,6 +224,7 @@ class LLMPhraseMentionCollectionNode(
                 stored_window_forms(
                     subject_unique_id, self.field_type, chunk_bounds, sub_bounds, bundle
                 ),
+                snippet_radius=mention_metadata.snippet_radius,
             )
             retry_groups = split_into_item_groups(
                 retry_items_of_window(
@@ -322,6 +325,7 @@ class LLMPhraseMentionCollectionNode(
             model_params=mention_metadata.model_params,
             max_mentions_per_request=mention_metadata.max_mentions_per_request,
             eager=eager,
+            snippet_radius=mention_metadata.snippet_radius,
         )
 
     @staticmethod
@@ -335,9 +339,11 @@ class LLMPhraseMentionCollectionNode(
         *,
         subject_text: str,
         verb_fold: bool,
+        snippet_radius: int = 0,
     ) -> FoldResult:
         """The chunk's aggregation fold (needs the text: mentions are collected
-        from it, and windows are located in it)."""
+        from it, and windows are located in it; ``snippet_radius`` = the
+        stage's own, off its metadata)."""
         return await get_chunk_fold(
             subject_unique_id=subject_unique_id,
             field_type=field_type,
@@ -347,6 +353,7 @@ class LLMPhraseMentionCollectionNode(
             timestamp=timestamp,
             subject_text=subject_text,
             verb_fold=verb_fold,
+            snippet_radius=snippet_radius,
         )
 
     async def validate_own_responses(

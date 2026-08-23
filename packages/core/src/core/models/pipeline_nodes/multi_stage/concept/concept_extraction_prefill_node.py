@@ -44,6 +44,7 @@ from core.models.chunking_strat import (
 from core.models.extraction_results.llm_phrase_extraction_results import (
     AggregationFoldMetadata,
     BatchedMentionCollectionNodeMetadata,
+    BatchedSynthesisNodeMetadata,
 )
 from core.services.pipeline_nodes.multi_stage.llm_phrase_mention_collection_node_service import (
     brute_casings_in_window,
@@ -91,6 +92,8 @@ class ConceptExtractionPrefillNode(PrefillNode[ConceptFieldType]):
         llm_phrase_oov_grounding_metadata: Optional[
             BatchedInitialGroundingNodeMetadata
         ] = None,
+        # v3 (Phase 3.2): the synthesis stage's identity, same contract.
+        llm_phrase_synthesis_metadata: Optional[BatchedSynthesisNodeMetadata] = None,
     ):
         super().__init__(
             field_type=field_type,
@@ -110,6 +113,7 @@ class ConceptExtractionPrefillNode(PrefillNode[ConceptFieldType]):
         self.llm_phrase_oov_grounding_metadata = llm_phrase_oov_grounding_metadata
         self.llm_phrase_mention_collection_metadata = llm_phrase_mention_collection_metadata
         self.aggregation_fold_metadata = aggregation_fold_metadata
+        self.llm_phrase_synthesis_metadata = llm_phrase_synthesis_metadata
         self.llm_phrase_recursive_grounding_metadata = (
             llm_phrase_recursive_grounding_metadata
         )
@@ -147,6 +151,7 @@ class ConceptExtractionPrefillNode(PrefillNode[ConceptFieldType]):
             llm_phrase_recursive_grounding=self.llm_phrase_recursive_grounding_metadata,
             llm_phrase_mention_collection=self.llm_phrase_mention_collection_metadata,
             aggregation_fold=self.aggregation_fold_metadata,
+            llm_phrase_synthesis=self.llm_phrase_synthesis_metadata,
         )
 
         if not bool(getattr(deferred_subject, self.field_type.name)):

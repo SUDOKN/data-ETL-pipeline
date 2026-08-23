@@ -26,8 +26,8 @@ from core.models.extraction_results.llm_phrase_extraction_results_v2 import (
 from core.models.field_types import ExtractionFieldType
 
 if TYPE_CHECKING:
-    from data_etl_app.models.pipeline_nodes.multi_stage.keyword.contract_product.contract_product_freehand_grounding_node import (
-        ContractProductFreehandGroundingNode,
+    from data_etl_app.models.pipeline_nodes.multi_stage.keyword.contract_product.contract_product_synthesis_node import (
+        ContractProductSynthesisNode,
     )
 
 logger = logging.getLogger(__name__)
@@ -42,7 +42,7 @@ class ContractProductMentionCollectionNode(KeywordMentionCollectionNode):
         self,
         field_type: KeywordTypeEnum,
         phrase_mention_collection_prompt: Prompt,
-        next_node: ContractProductFreehandGroundingNode,
+        next_node: ContractProductSynthesisNode,
     ):
         super().__init__(
             field_type=field_type,

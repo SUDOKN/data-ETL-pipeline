@@ -296,14 +296,17 @@ def stored_window_forms(
 # --- collection + groups ---------------------------------------------------------------------
 
 
-def collect_sub_window(subject_text: str, sub_bounds: str, forms: list[str]) -> WindowCollection:
-    """The mechanical collection of ONE sub-window: pure in (text, forms), so
-    the node's id-minting pass, request creation and the fold all compute the
-    same items."""
+def collect_sub_window(
+    subject_text: str, sub_bounds: str, forms: list[str], *, snippet_radius: int = 0
+) -> WindowCollection:
+    """The mechanical collection of ONE sub-window: pure in (text, forms,
+    radius), so the node's id-minting pass, request creation and the fold all
+    compute the same items."""
     return collect_window(
         window_text_of(subject_text, sub_bounds),
         forms,
         preceding_page=window_preceding_page(subject_text, sub_bounds),
+        snippet_radius=snippet_radius,
     )
 
 
@@ -423,6 +426,7 @@ async def create_missing_mention_collection_requests(
     model_params: GPTModelParams,
     max_mentions_per_request: int,
     eager: bool,
+    snippet_radius: int = 0,
     BATCH_SIZE: int = 100,
 ) -> list[GPTBatchRequest]:
     """Fresh or only-missing requests, for every (chunk, sub-window, group) whose
@@ -446,7 +450,9 @@ async def create_missing_mention_collection_requests(
             forms = stored_window_forms(
                 subject_unique_id, field_type, chunk_bounds, sub_bounds, bundle
             )
-            collection = collect_sub_window(subject_text, sub_bounds, forms)
+            collection = collect_sub_window(
+                subject_text, sub_bounds, forms, snippet_radius=snippet_radius
+            )
             groups = split_into_item_groups(collection.items, max_mentions_per_request)
             group_req_ids = bundle.llm_phrase_mention_req_ids.get(sub_bounds, [])
             if len(group_req_ids) != len(groups):
@@ -700,11 +706,14 @@ async def get_chunk_fold(
     *,
     subject_text: str,
     verb_fold: bool,
+    snippet_radius: int = 0,
 ) -> FoldResult:
     """The chunk's aggregation fold: every sub-window re-collected from the text
     and its stored forms, located from its held answers, bundled over the union
     of the chunk's forms. Windows are folded in ``search_sub_bounds`` order
-    (document order); each inherits the page the text before it was on."""
+    (document order); each inherits the page the text before it was on.
+    ``snippet_radius`` must be the mention stage's (the ids the answers are
+    keyed by were minted under it)."""
     if not extraction_bundle.search_sub_bounds:
         raise ValueError(
             f"mention_collection: chunk {chunk_bounds} has no search_sub_bounds in "
@@ -734,7 +743,7 @@ async def get_chunk_fold(
                 unknown_answer_ids=answer.unknown_answer_ids,
             )
         )
-    return fold_document(windows, verb_fold=verb_fold)
+    return fold_document(windows, verb_fold=verb_fold, snippet_radius=snippet_radius)
 
 
 def fold_verb_fold_of(metadata: object) -> bool:
@@ -742,3 +751,11 @@ def fold_verb_fold_of(metadata: object) -> bool:
     dump walks node CLASSES and generic metadata). False when absent."""
     fold_metadata: Optional[object] = getattr(metadata, "aggregation_fold", None)
     return bool(getattr(fold_metadata, "verb_fold", False))
+
+
+def fold_snippet_radius_of(metadata: object) -> int:
+    """The collector's snippet radius off a metadata object (any shape), read
+    from the mention stage's metadata where it is request identity. 0 when
+    absent — the clip every run before the knob used."""
+    mention_metadata: Optional[object] = getattr(metadata, "llm_phrase_mention_collection", None)
+    return int(getattr(mention_metadata, "snippet_radius", 0) or 0)

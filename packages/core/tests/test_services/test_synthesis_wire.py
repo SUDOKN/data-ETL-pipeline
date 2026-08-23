@@ -27,6 +27,7 @@ from core.services.phrase_blocks_contract import (
 NASTY = [
     SynthesisRecordInput(
         record_id="g4k9x2m",
+        focal_form="Paladin™",
         entries=[
             SynthesisEntry(
                 location='/products page, under "Paladin™" heading\nline two\r\nline three',
@@ -34,9 +35,9 @@ NASTY = [
             )
         ],
     ),
-    SynthesisRecordInput(record_id="g0aaaaa", entries=[]),
+    SynthesisRecordInput(record_id="g0aaaaa", focal_form="aaaa", entries=[]),
 ]
-NASTY_DICTS = [r.model_dump() for r in NASTY]
+NASTY_DICTS = [r.wire_dict() for r in NASTY]
 
 
 def _message(records: list[dict]) -> str:
@@ -139,3 +140,23 @@ def test_hold_detects_a_drifted_array_request():
             user_message=f"{ids_block}\n\n{records_block}",
             response_by_record_id={"g1": "x"}, where="t", on_missing="drop",
         )
+
+
+def test_no_location_arm_leaves_location_off_the_wire_entirely():
+    """The A/B arm (user decision 2026-08-22): an entry without a location is
+    rendered as ``{snippet}`` — no ``location`` key, no null — and the focal
+    form rides on every record."""
+    record = SynthesisRecordInput(
+        record_id="g4k9x2m",
+        focal_form="Paladin",
+        entries=[SynthesisEntry(snippet="Paladin PW Series doors.")],
+    )
+    wire = record.wire_dict()
+    assert wire == {
+        "record_id": "g4k9x2m",
+        "focal_form": "Paladin",
+        "entries": [{"snippet": "Paladin PW Series doors."}],
+    }
+    message = _message([wire])
+    assert '"location"' not in message and "null" not in message
+    assert sent_records_from_user_message(message) == [wire]

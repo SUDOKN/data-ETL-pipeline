@@ -332,3 +332,117 @@ def test_fold_invariants(text, forms, verb_fold):
     assert [r.record_id for r in result.synthesis_records()] == [b.group_id for b in filled]
     (w,) = result.windows
     assert w.described == [] and w.not_described == [i.mention_id for i in w.items]
+
+
+# ---------------------------------------------------------------------------
+# Snippet radius (user knob, 2026-08-22) and the focal form / location arm
+# (D15 as amended 2026-08-22)
+# ---------------------------------------------------------------------------
+
+
+def _snippets(text, forms, radius):
+    return [m.snippet for m in collect_window(text, forms, snippet_radius=radius).mentions]
+
+
+def test_radius_zero_is_the_legacy_clip_byte_for_byte():
+    c0 = collect_window(WINDOW, SENT)
+    c1 = collect_window(WINDOW, SENT, snippet_radius=0)
+    assert [(m.start, m.snippet, m.snippet_start, m.mention_id) for m in c0.mentions] == [
+        (m.start, m.snippet, m.snippet_start, m.mention_id) for m in c1.mentions
+    ]
+    assert [i.mention_id for i in c0.items] == [i.mention_id for i in c1.items]
+
+
+def test_radius_widens_by_sentence_units_within_the_line():
+    text = "A one. B two Aluminum here. C three. D four.\n"
+    assert _snippets(text, ["Aluminum"], 0) == ["B two Aluminum here."]
+    assert _snippets(text, ["Aluminum"], 1) == ["A one. B two Aluminum here. C three."]
+    assert _snippets(text, ["Aluminum"], 2) == ["A one. B two Aluminum here. C three. D four."]
+    assert _snippets(text, ["Aluminum"], 9) == ["A one. B two Aluminum here. C three. D four."]
+
+
+def test_radius_crosses_line_breaks_as_unit_breaks_and_skips_blank_lines():
+    text = "Line one.\nAluminum line.\nLine three.\n"
+    assert _snippets(text, ["Aluminum"], 1) == ["Line one.\nAluminum line.\nLine three."]
+    spaced = "First.\n\nAluminum.\n\nLast.\n"
+    assert _snippets(spaced, ["Aluminum"], 1) == ["First.\n\nAluminum.\n\nLast."]
+    # a multi-line snippet still sits where it says it does, and hashes as itself
+    c = collect_window(spaced, ["Aluminum"], snippet_radius=1)
+    (m,) = c.mentions
+    assert spaced[m.snippet_start : m.snippet_start + len(m.snippet)] == m.snippet
+    assert m.mention_id == mention_id_for_snippet(m.snippet)
+
+
+def test_radius_never_crosses_or_includes_a_page_boundary_line():
+    text = (
+        f"{SEP}\nhttps://acme.example/a\nIntro.\nAluminum here.\n"
+        f"{SEP}\nhttps://acme.example/b\nOther page.\nMore.\n"
+    )
+    assert _snippets(text, ["Aluminum"], 5) == ["Intro.\nAluminum here."]
+    # a hit at the top of a page looks down only as far as the next boundary
+    assert _snippets(text, ["Other"], 5) == ["Other page.\nMore."]
+
+
+def test_radius_completes_an_occurrence_that_spans_a_sentence_break():
+    text = "Made by Acme Inc. Steel and more. tail"
+    assert _snippets(text, ["Inc. Steel"], 0) == ["Made by Acme Inc. Steel"]  # legacy
+    assert _snippets(text, ["Inc. Steel"], 1) == ["Made by Acme Inc. Steel and more. tail"]
+
+
+def test_negative_radius_is_refused_and_radius_is_recorded_on_the_fold():
+    with pytest.raises(ValueError, match="snippet_radius"):
+        collect_window("Aluminum.", ["Aluminum"], snippet_radius=-1)
+    result = fold_document([WindowInput(WINDOW, SENT, {})], snippet_radius=1)
+    assert result.snippet_radius == 1
+    assert fold_document([WindowInput(WINDOW, SENT, {})]).snippet_radius == 0
+
+
+@settings(max_examples=150, deadline=None)
+@given(_text, _forms, st.integers(min_value=1, max_value=3))
+def test_radius_invariants(text, forms, radius):
+    wide = collect_window(text, forms, snippet_radius=radius)
+    tight = collect_window(text, forms)
+    # same occurrences in the same order; every snippet holds its occurrence and
+    # contains the radius-0 snippet; id = hash(snippet)
+    assert [(m.start, m.end, m.form) for m in wide.mentions] == [
+        (m.start, m.end, m.form) for m in tight.mentions
+    ]
+    for w, t in zip(wide.mentions, tight.mentions, strict=True):
+        assert text[w.snippet_start : w.snippet_start + len(w.snippet)] == w.snippet
+        assert w.snippet_start <= w.start and w.end <= w.snippet_start + len(w.snippet)
+        assert t.snippet in w.snippet
+        assert w.mention_id == mention_id_for_snippet(w.snippet)
+
+
+def test_focal_form_is_the_most_frequent_member_form_ties_to_the_earliest():
+    result = _golden()
+    by_key = {b.key: b for b in result.bundles}
+    assert by_key["aluminum"].forms == ("Aluminum", "aluminum")
+    assert by_key["aluminum"].focal_form == "Aluminum"  # 2 mentions vs 1
+    assert by_key["brass"].focal_form == "Brass"
+    # a tie goes to the form whose first mention comes first in locked order
+    tie = fold_document([WindowInput("We use steel. Steel is strong.", ["steel"], {})])
+    (b,) = [b for b in tie.bundles if not b.is_empty]
+    assert b.forms == ("Steel", "steel") and b.focal_form == "steel"
+    # an empty bundle has no focal form and no record
+    empty = by_key[normalize("die-casting")]
+    assert empty.focal_form is None
+    with pytest.raises(ValueError, match="no mentions"):
+        empty.synthesis_record()
+
+
+def test_synthesis_records_carry_the_focal_form_and_honour_the_location_arm():
+    result = _golden({mention_id_for_snippet(INTRO): "the intro line"})
+    with_loc = result.synthesis_records()
+    without = result.synthesis_records(include_location=False)
+    assert [r.record_id for r in with_loc] == [r.record_id for r in without]
+    assert all(r.focal_form for r in with_loc)
+    first = with_loc[0]
+    assert first.focal_form == "Aluminum"
+    assert first.entries[0].location == "the intro line"
+    assert all(e.location is None for r in without for e in r.entries)
+    assert "location" not in without[0].wire_dict()["entries"][0]
+    assert with_loc[0].wire_dict()["entries"][0]["location"] == "the intro line"
+    # the wire dicts render (the synthesis request's two blocks) on both arms
+    assert render_synthesis_record_blocks([r.wire_dict() for r in with_loc])
+    assert render_synthesis_record_blocks([r.wire_dict() for r in without])
