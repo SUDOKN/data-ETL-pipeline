@@ -1,39 +1,34 @@
-"""Wire contract of the v3 mention-collection stage (PIPELINE_V3_PLAN.md D4–D7).
+"""Wire contract of the v3 mention-collection stage — the LOCATION wire
+(PIPELINE_V3_PLAN.md D4–D7, as amended 2026-08-22).
 
-The collector is handed a window of scraped text and the surface forms search
-found in that same window (a bare ``<<<PHRASES`` block — no ids: the form is
-the natural working object, and an id→form map is indirection with nothing to
-buy at a stage that makes no verdict; D5/D6 as amended 2026-08-21). For each
-form it reports every char-for-char, whole-word occurrence as a mention:
-``{location, snippet}`` — a freehand location in the reader's words and the
-verbatim passage. Sense-agnostic by contract: the snippet carries the sense,
-the synthesis stage downstream weighs it.
+Mentions are collected by CODE (``core.utils.aggregation_fold.collect_window``):
+every whole-word occurrence of every sent form in the window, casing-expanded,
+clipped to the sentence or line that holds it. The one thing the LLM is asked
+for is LOCATION — where each collected passage sits in the window, in its own
+words — because that is the one thing that needs the container to be seen. (The
+LLM collector that preceded this was measured to be a lossy Ctrl+F: the fold
+already discarded any mention whose snippet did not hold the form verbatim, so
+its accepted output was a subset of the scan, minus 17–19% it satisficed away.)
 
-WHY AN ARRAY AND NOT AN OBJECT KEYED BY FORM
---------------------------------------------
-The prompt's natural output is ``{"<form>": [mentions]}``, but the response
-format is OpenAI strict mode (``response_format_util``): every object must
-carry ``additionalProperties: false``, so an object whose keys are the sent
-forms is not expressible. The wire therefore carries an array of
-``{form, mentions}`` entries — the same echo of the form, as a field instead of
-a key — exactly how v2's record-keyed stages carry ``record_id``. The parse
-rebuilds the keyed map and raises on a duplicate form, which an object would
-have swallowed silently (last key wins).
+REQUEST. The window text, then two fenced blocks at the very bottom: the
+mention ids as a bare array between ``<<<MENTION_IDS`` and ``MENTION_IDS>>>``,
+then the mentions themselves between ``<<<MENTIONS`` and ``MENTIONS>>>`` as an
+ARRAY of ``{mention_id, mention}`` — one entry per DISTINCT snippet of the
+window (a line repeated fifty times is one entry). No forms ride the wire
+(user decision): the role of a passage does not depend on which word in it we
+care about. ``mention_id`` is content-derived (``mention_id_for_snippet``),
+random-looking on purpose, like ``record_id``.
 
-WHAT HOLDS THE RESPONSE
------------------------
-``hold_response_to_sent_forms`` in ``phrase_blocks_contract`` — EXACT, no
-reconciler. The v1 phrase reconciler casefolds and repairs by containment,
-and v3 deliberately sends case variants as distinct forms (``Aluminum`` and
-``aluminum`` ride separately, D5), so that reconciler would fuse them. A
-response key that is not exactly a sent form is dropped and warned; the
-mechanical floor scan (D7) is what turns the resulting hole into a visible
-discrepancy. Nothing raises: at temperature 0 a deterministic mis-echo would
-replay to death under a raising hold.
+RESPONSE. ``{"mentions": [{mention_id, location}]}`` — an array because the
+response format is OpenAI strict mode (no object keyed by ids), and because an
+array lets the parse SEE a duplicate id where an object would swallow it.
 
-Stored identity is the form string itself; ``record_id_for_phrase(form)`` is
-minted code-side at the aggregation fold as mention provenance (D11) and never
-rides this wire.
+WHAT HOLDS THE RESPONSE. ``hold_response_to_sent_mention_ids`` in
+``phrase_blocks_contract`` — exact on ids, WARN-ONLY both ways: an id never
+sent is dropped, a sent id with no answer is left absent and the fold gives
+that mention a default location. Nothing raises: the LLM can no longer lose a
+mention, only fail to colour it, and a raising hold would replay a
+temperature-0 mis-echo to death.
 """
 
 from __future__ import annotations
@@ -50,96 +45,79 @@ from core.models.extraction_schemas.response_format_util import (
 logger = logging.getLogger(__name__)
 
 
-# --- wire -------------------------------------------------------------------
+# --- request side -------------------------------------------------------------
 
 
-class MentionEntry(BaseModel):
-    """Wire shape of one occurrence of a form in the window."""
+class MentionWireItem(BaseModel):
+    """One entry of the request's ``<<<MENTIONS`` block: the id the model
+    echoes back, and the verbatim passage it describes the location of."""
+
+    mention_id: str
+    mention: str
+
+
+# --- response wire -----------------------------------------------------------
+
+
+class MentionLocationEntry(BaseModel):
+    """Wire shape of one answer: the id echoed exactly as given, then where that
+    passage sits, in the reader's own words (its own wording and extent — no
+    fixed form; user decision 2026-08-22)."""
 
     model_config = ConfigDict(extra="forbid")
 
-    # Where the occurrence sits, in the reader's own words (page by path or
-    # heading + the governing heading/section, by stated preference). Advisory
-    # colour only: the authoritative page is derived in code from the snippet's
-    # position in the window text (D6 as amended).
+    mention_id: str
     location: str
-    # The passage holding the occurrence, copied character for character: the
-    # whole sentence, or the whole line for non-sentence text. Verbatim is the
-    # contract — the fold re-attributes every mention from this string (D8) and
-    # the mention-level GT check is "snippet occurs in the window" (D18).
-    snippet: str
 
 
-class FormMentionsEntry(BaseModel):
-    """Wire shape of one form's answer: the form echoed exactly as it was given,
-    then its mentions in text order. Empty ``mentions`` is a legal answer (the
-    form was sent but does not occur); the floor scan decides whether that is
-    honest."""
-
+class MentionLocationsResponse(BaseModel):
     model_config = ConfigDict(extra="forbid")
 
-    form: str
-    mentions: list[MentionEntry]
-
-
-class FormMentionsResponse(BaseModel):
-    model_config = ConfigDict(extra="forbid")
-
-    forms: list[FormMentionsEntry]
+    mentions: list[MentionLocationEntry]
 
 
 MENTION_COLLECTION_RESPONSE_SCHEMA = build_gpt_response_format(
-    FormMentionsResponse, name="phrase_mention_collection"
+    MentionLocationsResponse, name="phrase_mention_location"
 )
 
-# What a dummy (no forms in this window) mention-collection request answers with.
-DUMMY_MENTION_COLLECTION_RESPONSE_CONTENT = '{"forms": []}'
+# What a dummy (no mentions in this window) request answers with.
+DUMMY_MENTION_COLLECTION_RESPONSE_CONTENT = '{"mentions": []}'
 
 
 # --- stored -----------------------------------------------------------------
 
-
-class Mention(BaseModel):
-    """Stored form of one occurrence."""
-
-    location: str
-    snippet: str
+# mention_id → location: the stage's parse-time result per request, merged per
+# window; the aggregation fold attaches each to every occurrence of the snippet.
+LocationsByMentionId = dict[str, str]
 
 
-# form → its mentions in this window, in response order. The stage's parse-time
-# result; the aggregation fold (Phase 2.3) re-keys from here.
-MentionsByForm = dict[str, list[Mention]]
-
-
-def parse_mention_collection_response(gpt_response: Optional[str]) -> MentionsByForm:
-    """The wire's form entries as the form → mentions map.
+def parse_mention_location_response(gpt_response: Optional[str]) -> LocationsByMentionId:
+    """The wire's entries as the mention_id → location map.
 
     Raises ``ValueError`` on an empty response, a response the strict schema
-    would not have produced, or a form answered twice — a duplicate is a
+    would not have produced, or an id answered twice — a duplicate is a
     contract breach the array shape lets us see, and the map must not pick one
     silently.
     """
     if not gpt_response:
         logger.error(f"Invalid gpt_response:{gpt_response}")
         raise ValueError(
-            "parse_mention_collection_response: Empty or invalid response from GPT"
+            "parse_mention_location_response: Empty or invalid response from GPT"
         )
 
     try:
-        parsed = FormMentionsResponse.model_validate_json(gpt_response)
+        parsed = MentionLocationsResponse.model_validate_json(gpt_response)
     except ValidationError as e:
         raise ValueError(
-            f"parse_mention_collection_response: Invalid response from GPT:{gpt_response}"
+            f"parse_mention_location_response: Invalid response from GPT:{gpt_response}"
         ) from e
 
-    by_form: MentionsByForm = {}
-    for entry in parsed.forms:
-        if entry.form in by_form:
+    by_id: LocationsByMentionId = {}
+    for entry in parsed.mentions:
+        if entry.mention_id in by_id:
             raise ValueError(
-                f"parse_mention_collection_response: Duplicate form "
-                f"{entry.form!r} in mention-collection response"
+                f"parse_mention_location_response: Duplicate mention_id "
+                f"{entry.mention_id!r} in mention-location response"
             )
-        by_form[entry.form] = [
-            Mention(location=m.location, snippet=m.snippet) for m in entry.mentions
-        ]
-    return by_form
+        by_id[entry.mention_id] = entry.location
+    return by_id

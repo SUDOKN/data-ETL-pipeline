@@ -428,3 +428,102 @@ def test_get_roughly_even_chunks_specific_division_scenarios(monkeypatch):
             f"For total_tokens={case['total_tokens']}, target={case['target_tokens']}: "
             f"expected chunk size {case['expected_chunk_size']}, got {captured_params['soft_limit_tokens']}"
         )
+
+
+# --- break_before: preferred chunk starts (page headers) -------------------
+# Every line counts 1 token under the autouse fake counter. "#" lines play the
+# scraper's page-header line.
+
+
+def _is_header(line: str) -> bool:
+    return line.strip() == "#"
+
+
+def _assert_tiles(chunks: dict[str, str], text: str) -> None:
+    """Chunks are contiguous, in order, cover the text, and each key's text
+    is exactly subject_text[start:end]."""
+    cursor = 0
+    for key, chunk in chunks.items():
+        start, end = (int(x) for x in key.split(":"))
+        assert start == cursor
+        assert text[start:end] == chunk
+        cursor = end
+    assert cursor == len(text)
+
+
+def test_break_before_closes_chunk_before_last_header():
+    # Pages of 3 lines (header + 2 body lines). Limit 7 holds 2 full pages + 1
+    # line of the third; the preferred break moves that line back so every
+    # chunk starts at a header.
+    text = "\n".join(["#", "a1", "a2", "#", "b1", "b2", "#", "c1", "c2", "#", "d1", "d2"])
+    chunks = chunk_util.get_chunks_respecting_line_boundaries_sync(
+        text, TEST_LLM_MODEL, soft_limit_tokens=7, overlap_ratio=0,
+        break_before=_is_header,
+    )
+    _assert_tiles(chunks, text)
+    assert [c.splitlines()[0] for c in chunks.values()] == ["#", "#"]
+    assert list(chunks.values())[0].splitlines() == ["#", "a1", "a2", "#", "b1", "b2"]
+    assert list(chunks.values())[1].splitlines() == ["#", "c1", "c2", "#", "d1", "d2"]
+
+
+def test_break_before_oversize_page_falls_back_to_line_split():
+    # A single 8-line page under limit 5: no header past line 0 → the page
+    # splits at the overflowing line; the continuation starts mid-page; the
+    # next real page still opens its own chunk.
+    text = "\n".join(["#"] + [f"p{i}" for i in range(7)] + ["#", "q1", "q2"])
+    chunks = chunk_util.get_chunks_respecting_line_boundaries_sync(
+        text, TEST_LLM_MODEL, soft_limit_tokens=5, overlap_ratio=0,
+        break_before=_is_header,
+    )
+    _assert_tiles(chunks, text)
+    parts = [c.splitlines() for c in chunks.values()]
+    assert parts[0] == ["#", "p0", "p1", "p2", "p3"]
+    assert parts[1] == ["p4", "p5", "p6"]  # mid-page continuation
+    assert parts[2] == ["#", "q1", "q2"]
+
+
+def test_break_before_never_yields_empty_chunk_when_header_is_first_line():
+    # Chunk = header + body that overflows: the header at index 0 is not a
+    # break candidate, so the chunk keeps it and splits at the overflowing line.
+    text = "\n".join(["#", "x1", "x2", "x3", "x4"])
+    chunks = chunk_util.get_chunks_respecting_line_boundaries_sync(
+        text, TEST_LLM_MODEL, soft_limit_tokens=3, overlap_ratio=0,
+        break_before=_is_header,
+    )
+    _assert_tiles(chunks, text)
+    assert all(chunks.values())
+    assert list(chunks.values())[0].splitlines() == ["#", "x1", "x2"]
+
+
+def test_break_before_none_is_unchanged_behavior():
+    text = "\n".join(["#", "a1", "a2", "#", "b1", "b2", "#", "c1", "c2"])
+    plain = chunk_util.get_chunks_respecting_line_boundaries_sync(
+        text, TEST_LLM_MODEL, soft_limit_tokens=4, overlap_ratio=0
+    )
+    explicit_none = chunk_util.get_chunks_respecting_line_boundaries_sync(
+        text, TEST_LLM_MODEL, soft_limit_tokens=4, overlap_ratio=0, break_before=None
+    )
+    assert plain == explicit_none
+    # and without the predicate chunk 2 does start mid-page
+    assert list(plain.values())[1].splitlines()[0] != "#"
+
+
+def test_break_before_respects_max_chunks():
+    text = "\n".join(["#", "a1", "a2", "#", "b1", "b2", "#", "c1", "c2", "#", "d1", "d2"])
+    chunks = chunk_util.get_chunks_respecting_line_boundaries_sync(
+        text, TEST_LLM_MODEL, soft_limit_tokens=4, overlap_ratio=0,
+        max_chunks=2, break_before=_is_header,
+    )
+    assert len(chunks) == 2
+    assert [c.splitlines() for c in chunks.values()] == [["#", "a1", "a2"], ["#", "b1", "b2"]]
+
+
+@pytest.mark.asyncio
+async def test_break_before_threads_through_async_wrapper():
+    text = "\n".join(["#", "a1", "a2", "#", "b1", "b2", "#", "c1", "c2"])
+    chunks = await get_chunks_respecting_line_boundaries(
+        text, max_chunks=None, llm_model=TEST_LLM_MODEL, soft_limit_tokens=4,
+        overlap_ratio=0, break_before=_is_header,
+    )
+    _assert_tiles(chunks, text)
+    assert [c.splitlines()[0] for c in chunks.values()] == ["#", "#", "#"]

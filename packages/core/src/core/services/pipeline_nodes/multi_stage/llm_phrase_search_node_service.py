@@ -29,6 +29,7 @@ from core.models.field_types import (
     ExtractionFieldType,
 )
 from llm_providers.field_types import BatchRequestIDType
+from core.utils.floor_scan import wire_window_text
 from llm_providers.models.open_ai.gpt_model_params import (
     GPTModelParams,
 )
@@ -285,10 +286,12 @@ async def create_missing_phrase_search_requests(
             if search_req_id in missing_search_req_ids:
                 start = sub_bounds.split(":")[0]
                 end = sub_bounds.split(":")[1]
+                # Excluded (legal / privacy / cookie / terms) pages are omitted
+                # from what search reads — see ``floor_scan.wire_window_text``.
                 chunk_items.append(
                     (
                         search_req_id,
-                        subject_text[int(start) : int(end)],
+                        wire_window_text(subject_text, int(start), int(end)),
                     )
                 )
 

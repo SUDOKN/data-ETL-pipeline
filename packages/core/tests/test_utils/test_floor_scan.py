@@ -8,6 +8,15 @@ from hypothesis import given, settings
 from hypothesis import strategies as st
 
 from core.utils.floor_scan import (
+    CONTINUED_PAGE_MARKER,
+    EXCLUDED_PAGE_MARKER,
+    continued_page_header,
+    excluded_page_spans,
+    is_excluded_page,
+    mask_excluded_pages,
+    omit_excluded_pages,
+    scan_domain,
+    wire_window_text,
     SHORT_FORM_MAX_LENGTH,
     Occurrence,
     PageSpan,
@@ -109,21 +118,32 @@ def test_path_like_text_in_the_body_is_still_text():
 
 def test_page_spans_tile_the_window_and_attribute_offsets():
     spans = page_spans(WINDOW)
-    assert [s.url for s in spans] == [None, "https://acme.example/materials/lead", "https://acme.example/about"]
+    assert [s.url for s in spans] == ["https://acme.example/materials/lead", "https://acme.example/about"]
     assert spans[0].start == 0 and spans[-1].end == len(WINDOW)
     for a, b in zip(spans, spans[1:]):
         assert a.end == b.start
     assert page_at(spans, WINDOW.index("Sample Lead Time")) == "https://acme.example/materials/lead"
     assert page_at(spans, WINDOW.index("304SS")) == "https://acme.example/about"
-    assert page_at(spans, 0) is None  # the separator line precedes the first URL
+    # the separator line opens the page (N1)
+    assert page_at(spans, 0) == "https://acme.example/materials/lead"
 
 
 def test_mid_page_start_inherits_the_preceding_page_when_given():
     tail = "continued text here.\n" + SEP + "\nhttps://acme.example/next\n\nmore.\n"
-    # A page starts at its URL line; the separator line before it still belongs
-    # to the preceding span (it is masked out of the scan domain either way).
-    assert page_spans(tail)[0] == PageSpan(None, 0, tail.index("https://"))
+    # A page starts at its separator line when one directly precedes its URL
+    # line (2026-08-22, N1: page-aligned windows open on the separator), so the
+    # inherited head ends there.
+    assert page_spans(tail)[0] == PageSpan(None, 0, tail.index(SEP))
     assert page_spans(tail, preceding_page="https://acme.example/prev")[0].url == "https://acme.example/prev"
+    # a bare URL line (no separator) still opens a page at the URL line
+    bare = "head.\nhttps://acme.example/bare\n\nbody.\n"
+    assert page_spans(bare) == [
+        PageSpan(None, 0, 6),
+        PageSpan("https://acme.example/bare", 6, len(bare)),
+    ]
+    # a separator NOT directly followed by a URL line is body, not a header
+    loose = SEP + "\n\nhttps://acme.example/x\nbody\n"
+    assert page_spans(loose)[0] == PageSpan(None, 0, len(SEP) + 2)
 
 
 def test_window_without_any_url_is_one_page_of_unknown_or_inherited():
@@ -211,3 +231,175 @@ def test_mask_is_length_preserving_and_page_spans_tile(text):
     assert spans[0].start == 0 and spans[-1].end == len(text)
     for a, b in zip(spans, spans[1:]):
         assert a.end == b.start
+
+
+# ---------------------------------------------------------------------------
+# Excluded pages (2026-08-22, proposal P3): legal boilerplate is not harvest
+# material — masked from the scan, omitted from the wire, by one URL rule.
+# ---------------------------------------------------------------------------
+
+SEP = "#" * 50
+LEGAL = (
+    f"{SEP}\nhttps://acme.example/about\n\nWe machine Aluminum.\n"
+    f"{SEP}\nhttps://www.acme.example/en/privacy-policy.html\n\nWe process orders and cookies. Aluminum too.\n"
+    f"{SEP}\nhttps://acme.example/products\n\nAluminum parts.\n"
+)
+
+
+@pytest.mark.parametrize(
+    "url, excluded",
+    [
+        ("https://www.steelcraft.com/en/privacy-policy.html", True),
+        ("https://alecmfg.com/terms-and-conditions/", True),
+        ("https://alecmfg.com/cookie-policy-eu/", True),
+        ("https://alecmfg.com/wp-content/plugins/complianz-terms-conditions/download.php", True),
+        ("https://acme.example/legal-notice", True),
+        ("https://acme.example/impressum", True),
+        ("https://acme.example/quality-policy", False),  # 'policy' alone is not a legal page
+        ("https://termsmfg.com/products", False),  # the host is never matched
+        ("https://acme.example/", False),
+        (None, False),
+    ],
+)
+def test_excluded_page_rule_matches_the_path_only(url, excluded):
+    assert is_excluded_page(url) is excluded
+
+
+def test_excluded_pages_are_masked_from_the_scan_and_reported():
+    (span,) = excluded_page_spans(LEGAL)
+    assert span.url == "https://www.acme.example/en/privacy-policy.html"
+    assert LEGAL[span.start:span.end].startswith(
+        f"{SEP}\nhttps://www.acme.example/en/privacy-policy.html"
+    )
+    assert len(mask_excluded_pages(LEGAL)) == len(LEGAL) and len(scan_domain(LEGAL)) == len(LEGAL)
+    scan = floor_scan(LEGAL, ["Aluminum"])
+    assert [scan.page_of(o) for o in scan.tier1["Aluminum"]] == [
+        "https://acme.example/about", "https://acme.example/products",
+    ]
+
+
+def test_excluded_pages_are_omitted_from_the_wire_but_their_url_line_stays():
+    wire = omit_excluded_pages(LEGAL)
+    assert "cookies" not in wire and EXCLUDED_PAGE_MARKER in wire
+    privacy_header = f"{SEP}\nhttps://www.acme.example/en/privacy-policy.html\n"
+    assert privacy_header + EXCLUDED_PAGE_MARKER in wire
+    assert "We machine Aluminum." in wire and "Aluminum parts." in wire
+    assert omit_excluded_pages("no pages at all") == "no pages at all"
+    # a bare-URL excluded page keeps its URL line
+    bare = "https://acme.example/privacy\n\ncookies\nhttps://acme.example/ok\n\nbody\n"
+    assert omit_excluded_pages(bare) == (
+        f"https://acme.example/privacy\n{EXCLUDED_PAGE_MARKER}\nhttps://acme.example/ok\n\nbody\n"
+    )
+
+
+def test_window_head_inherited_from_an_excluded_page_is_excluded_too():
+    text = "tail of the policy with Aluminum\n" + f"{SEP}\nhttps://acme.example/x\n\nAluminum body\n"
+    scan = floor_scan(text, ["Aluminum"], preceding_page="https://acme.example/privacy")
+    assert len(scan.tier1["Aluminum"]) == 1
+    wire = omit_excluded_pages(text, preceding_page="https://acme.example/privacy")
+    assert wire.startswith(EXCLUDED_PAGE_MARKER) and "tail of the policy" not in wire
+    # wire_window_text derives the inherited page from the subject text itself
+    subject = f"{SEP}\nhttps://acme.example/privacy\n\nlegal\n" + text
+    start = subject.index("tail of the policy")
+    assert wire_window_text(subject, start, len(subject)) == wire
+
+
+# ---------------------------------------------------------------------------
+# 2026-08-22 (N1): page-aligned windows and the continued-page header
+# ---------------------------------------------------------------------------
+
+PRIVACY = f"{SEP}\nhttps://acme.example/privacy\n\nlegal\n"
+ABOUT = f"{SEP}\nhttps://acme.example/about\n\nfirst half.\nsecond half with Aluminum.\n"
+PAGE_X = f"{SEP}\nhttps://acme.example/x\n\nbody\n"
+
+
+def test_a_window_opening_on_a_separator_after_an_excluded_page_gets_no_spurious_marker():
+    # Before N1 the separator line belonged to the PRECEDING page, so a window
+    # that opened on one after an excluded page would have started with the
+    # excluded-page marker for that single line.
+    subject = PRIVACY + PAGE_X
+    start = subject.index(SEP, 1)
+    wire = wire_window_text(subject, start, len(subject))
+    assert wire == subject[start:]
+    assert EXCLUDED_PAGE_MARKER not in wire and CONTINUED_PAGE_MARKER not in wire
+
+
+def test_a_mid_page_window_is_announced_with_the_inherited_page_header():
+    subject = ABOUT + PAGE_X
+    start = subject.index("second half")
+    wire = wire_window_text(subject, start, len(subject))
+    assert wire == continued_page_header("https://acme.example/about") + subject[start:]
+    assert wire.startswith(
+        f"{SEP}\nhttps://acme.example/about\n{CONTINUED_PAGE_MARKER}\n\nsecond half"
+    )
+    # the scan and the fold never see it: the window text is untouched
+    scan = floor_scan(subject[start:], ["Aluminum"], preceding_page="https://acme.example/about")
+    assert scan.page_of(scan.tier1["Aluminum"][0]) == "https://acme.example/about"
+
+
+def test_no_header_is_injected_when_the_inherited_page_is_unknown_or_excluded_or_blank():
+    # unknown: the document has no header before the window
+    subject = "no header at all.\nmore text.\n"
+    assert wire_window_text(subject, subject.index("more"), len(subject)) == "more text.\n"
+    # excluded: omitted with its page (tested above), never announced
+    subject = f"{SEP}\nhttps://acme.example/privacy\n\nlegal one.\nlegal two.\n" + PAGE_X
+    wire = wire_window_text(subject, subject.index("legal two"), len(subject))
+    assert wire.startswith(EXCLUDED_PAGE_MARKER) and CONTINUED_PAGE_MARKER not in wire
+    # blank head: a window that opens on blank lines before a header
+    subject = f"{SEP}\nhttps://acme.example/about\n\nbody\n\n\n" + PAGE_X
+    start = subject.index("\n\n\n") + 1
+    assert CONTINUED_PAGE_MARKER not in wire_window_text(subject, start, len(subject))
+
+
+# --- excluded pages dropped BEFORE chunking (2026-08-23) -------------------------
+
+
+def test_drop_excluded_pages_removes_the_whole_page_header_included():
+    from core.utils.floor_scan import PAGE_EXCLUSION_VERSION, drop_excluded_pages
+
+    result = drop_excluded_pages(LEGAL)
+    assert result.version == PAGE_EXCLUSION_VERSION == "1"
+    assert result.text == (
+        f"{SEP}\nhttps://acme.example/about\n\nWe machine Aluminum.\n"
+        f"{SEP}\nhttps://acme.example/products\n\nAluminum parts.\n"
+    )
+    assert "privacy-policy" not in result.text and EXCLUDED_PAGE_MARKER not in result.text
+    (page,) = result.dropped
+    assert page.url == "https://www.acme.example/en/privacy-policy.html"
+    assert LEGAL[page.start : page.end].startswith(f"{SEP}\nhttps://www.acme.example/en/privacy-policy.html")
+    assert result.chars_before == len(LEGAL)
+    assert result.chars_removed == page.chars == page.end - page.start
+    assert result.chars_after == len(result.text) == len(LEGAL) - page.chars
+    # the trimmed text is stable under a second pass (no page is excluded twice)
+    assert drop_excluded_pages(result.text).text == result.text
+    assert drop_excluded_pages(result.text).dropped == ()
+
+
+def test_drop_excluded_pages_keeps_text_untouched_when_nothing_is_excluded():
+    from core.utils.floor_scan import drop_excluded_pages
+
+    clean = f"{SEP}\nhttps://acme.example/about\n\nbody\n"
+    result = drop_excluded_pages(clean)
+    assert result.text is clean and result.dropped == () and result.chars_removed == 0
+    # text before the first page header (unknown page) is never dropped
+    headless = "orphan head line\n" + clean
+    assert drop_excluded_pages(headless).text == headless
+
+
+def test_drop_excluded_pages_handles_first_last_and_bare_url_pages():
+    from core.utils.floor_scan import drop_excluded_pages
+
+    text = (
+        f"{SEP}\nhttps://acme.example/privacy\n\ncookies first\n"
+        "https://acme.example/ok\n\nbody\n"  # bare-URL page, kept
+        f"{SEP}\nhttps://acme.example/terms-of-use\n\nlegal last\n"
+    )
+    result = drop_excluded_pages(text)
+    assert result.text == "https://acme.example/ok\n\nbody\n"
+    assert [p.url for p in result.dropped] == [
+        "https://acme.example/privacy", "https://acme.example/terms-of-use",
+    ]
+    dump = result.to_dump()
+    assert dump["version"] == "1" and dump["chars_after"] == len(result.text)
+    assert [p["url"] for p in dump["pages"]] == [p.url for p in result.dropped]
+    assert dump["chars_before"] - dump["chars_removed"] == dump["chars_after"]

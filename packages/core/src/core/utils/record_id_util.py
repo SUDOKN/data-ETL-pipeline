@@ -34,6 +34,10 @@ from core.models.extraction_schemas.relationship import (
 
 RECORD_ID_PREFIX = "r"
 RECORD_ID_BODY_LENGTH = 7
+# v3 mention ids (the Location stage's wire key, PIPELINE_V3_PLAN.md 2026-08-22):
+# same construction over the verbatim snippet text, a different prefix so the
+# two id kinds can never be mistaken for one another in a dump or a request.
+MENTION_ID_PREFIX = "m"
 
 _BASE36 = "0123456789abcdefghijklmnopqrstuvwxyz"
 _ID_SPACE = 36**RECORD_ID_BODY_LENGTH
@@ -49,17 +53,33 @@ class RecordIdCollisionError(ValueError):
     """
 
 
-def record_id_for_phrase(phrase: str) -> str:
-    """The phrase's record id. Pure, exact-string identity: case variants are
-    distinct phrases and get distinct ids (per-chunk case-dedup upstream keeps
-    case-twins from ever sharing a request)."""
-    digest = hashlib.sha256(phrase.encode("utf-8")).digest()
+def _content_id(prefix: str, text: str) -> str:
+    digest = hashlib.sha256(text.encode("utf-8")).digest()
     n = int.from_bytes(digest, "big") % _ID_SPACE
     chars = []
     for _ in range(RECORD_ID_BODY_LENGTH):
         n, rem = divmod(n, 36)
         chars.append(_BASE36[rem])
-    return RECORD_ID_PREFIX + "".join(reversed(chars))
+    return prefix + "".join(reversed(chars))
+
+
+def record_id_for_phrase(phrase: str) -> str:
+    """The phrase's record id. Pure, exact-string identity: case variants are
+    distinct phrases and get distinct ids (per-chunk case-dedup upstream keeps
+    case-twins from ever sharing a request)."""
+    return _content_id(RECORD_ID_PREFIX, phrase)
+
+
+def mention_id_for_snippet(snippet: str) -> str:
+    """The id a verbatim snippet rides the Location wire under. Pure, exact-
+    string identity over the snippet text; the fold checks per window that two
+    distinct snippets never share one (``MentionIdCollisionError``)."""
+    return _content_id(MENTION_ID_PREFIX, snippet)
+
+
+class MentionIdCollisionError(ValueError):
+    """Two distinct snippets in one window hashed to the same mention id —
+    deterministic, so the remedy is ``RECORD_ID_BODY_LENGTH``, not a retry."""
 
 
 def assign_record_ids(phrases: Iterable[str]) -> dict[str, str]:

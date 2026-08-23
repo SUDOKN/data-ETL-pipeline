@@ -320,6 +320,7 @@ class ConceptReconcileNode(ReconcileNode[ConceptFieldType]):
                 metadata=extraction_requests.metadata,
                 scraped_text_file=scraped_text_file,
                 partial=False,
+                page_exclusion=pipeline_context.page_exclusion,
             ),
         )
 

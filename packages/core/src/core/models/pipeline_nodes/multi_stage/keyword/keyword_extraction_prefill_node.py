@@ -35,7 +35,11 @@ from core.models.pipeline_nodes.base.base_prefill_node import (
 from core.models.pipeline_nodes.base.base_node import ResultT
 from core.models.field_types import ExtractionFieldType
 from core.models.pipeline_nodes.base.base_node import PipelineContext
-from core.models.chunking_strat import ChunkingStrategy, derive_search_sub_bounds
+from core.models.chunking_strat import (
+    ChunkingStrategy,
+    chunk_break_predicate,
+    derive_search_sub_bounds,
+)
 
 if TYPE_CHECKING:
     from scraper.models.s3.scraped_text_file import (
@@ -99,6 +103,9 @@ class KeywordExtractionPrefillNode(PrefillNode[ExtractionFieldType]):
         pipeline_context: PipelineContext,
         eager: bool,
     ):
+        # The text this chain chunks and reads: excluded pages dropped first when
+        # the strategy says so (every run — bounds are offsets into this text).
+        scraped_text_file = self.apply_page_exclusion(scraped_text_file, pipeline_context)
         latest_keyword_extraction_metadata = KeywordExtractionMetadataV2(
             created_at=timestamp,
             chunk_strat=self.chunk_strategy,
@@ -119,6 +126,7 @@ class KeywordExtractionPrefillNode(PrefillNode[ExtractionFieldType]):
                 overlap_ratio=self.chunk_strategy.overlap,
                 max_chunks=self.chunk_strategy.max_chunks,
                 llm_model=self.llm_phrase_search_metadata.llm_model,
+                break_before=chunk_break_predicate(self.chunk_strategy),
             )
 
             deferred_keyword_extraction = DeferredKeywordExtractionRequests(

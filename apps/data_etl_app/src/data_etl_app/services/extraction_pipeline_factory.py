@@ -126,9 +126,12 @@ class ExtractionPipelineFactory:
     # RELATIONSHIP (v2 — out of every chain since v3 3.1; metadata still built
     # until 3.3 retires the stage)
     DEFAULT_RELATIONSHIP_MAX_PHRASES_PER_REQUEST = 30
-    # MENTION COLLECTION (v3, PIPELINE_V3_PLAN.md D4–D7): the unit is FORMS per
-    # 5k search sub-window. The cap is Phase 5's satisficing A/B variable.
-    DEFAULT_MENTION_COLLECTION_MAX_FORMS_PER_REQUEST = 30
+    # MENTION COLLECTION (v3, PIPELINE_V3_PLAN.md D4–D7, as amended 2026-08-22):
+    # the unit is MENTIONS — code collects a 5k sub-window's mentions, and the
+    # window's distinct snippets go to the LLM for location in groups of this
+    # size (measured 2026-08-22 on run 20260822T195947: median 23 distinct
+    # snippets per window, p90 81, max 125 → most windows fit one request).
+    DEFAULT_MENTION_COLLECTION_MAX_MENTIONS_PER_REQUEST = 50
     # AGGREGATION FOLD (v3 D10): the L2 verb/participle fold is a per-field
     # dial — on for the two fields whose phrases are process-flavoured
     # (`CNC milled`/`CNC milling`, `Polished`/`Polishing`), off everywhere else,
@@ -220,7 +223,7 @@ class ExtractionPipelineFactory:
         llm_model: LLM_Model,
         model_params: GPTModelParams,
         created_at: datetime,
-        max_forms_per_request: int,
+        max_mentions_per_request: int,
     ) -> BatchedMentionCollectionNodeMetadata:
         return BatchedMentionCollectionNodeMetadata(
             llm_model=llm_model,
@@ -229,7 +232,7 @@ class ExtractionPipelineFactory:
             prompt_version_id=prompt.s3_version_id,
             catalog_version=prompt.catalog_version,
             created_at=created_at,
-            max_forms_per_request=max_forms_per_request,
+            max_mentions_per_request=max_mentions_per_request,
         )
 
     @staticmethod
@@ -334,7 +337,7 @@ class ExtractionPipelineFactory:
         phrase_oov_grounding_prompt: Optional[Prompt] = None,
         max_recursive_search_rounds: int = DEFAULT_RECURSIVE_SEARCH_MAX_ROUNDS,
         max_relationship_phrases_per_request: int = DEFAULT_RELATIONSHIP_MAX_PHRASES_PER_REQUEST,
-        max_mention_collection_forms_per_request: int = DEFAULT_MENTION_COLLECTION_MAX_FORMS_PER_REQUEST,
+        max_mention_collection_mentions_per_request: int = DEFAULT_MENTION_COLLECTION_MAX_MENTIONS_PER_REQUEST,
         max_screening_pairs_per_request: int = DEFAULT_SCREENING_MAX_PAIRS_PER_REQUEST,
         max_initial_grounding_pairs_per_request: int = DEFAULT_INITIAL_GROUNDING_MAX_PAIRS_PER_REQUEST,
         max_oov_grounding_pairs_per_request: int = DEFAULT_OOV_GROUNDING_MAX_PAIRS_PER_REQUEST,
@@ -396,7 +399,7 @@ class ExtractionPipelineFactory:
                 llm_model,
                 model_params,
                 created_at,
-                max_mention_collection_forms_per_request,
+                max_mention_collection_mentions_per_request,
             ),
             aggregation_fold_metadata=ExtractionPipelineFactory._aggregation_fold_metadata(concept_type),
             next_node=ConceptPhraseSearchNode(
@@ -457,7 +460,7 @@ class ExtractionPipelineFactory:
         created_at: datetime,
         max_recursive_search_rounds: int = DEFAULT_KEYWORD_RECURSIVE_SEARCH_MAX_ROUNDS,
         max_relationship_phrases_per_request: int = DEFAULT_RELATIONSHIP_MAX_PHRASES_PER_REQUEST,
-        max_mention_collection_forms_per_request: int = DEFAULT_MENTION_COLLECTION_MAX_FORMS_PER_REQUEST,
+        max_mention_collection_mentions_per_request: int = DEFAULT_MENTION_COLLECTION_MAX_MENTIONS_PER_REQUEST,
         max_screening_pairs_per_request: int = DEFAULT_SCREENING_MAX_PAIRS_PER_REQUEST,
         max_freehand_grounding_pairs_per_request: int = DEFAULT_FREEHAND_GROUNDING_MAX_PAIRS_PER_REQUEST,
     ) -> KeywordExtractionPrefillNode:
@@ -511,7 +514,7 @@ class ExtractionPipelineFactory:
                 llm_model,
                 model_params,
                 created_at,
-                max_mention_collection_forms_per_request,
+                max_mention_collection_mentions_per_request,
             ),
             aggregation_fold_metadata=ExtractionPipelineFactory._aggregation_fold_metadata(keyword_type),
             next_node=ContractProductPhraseSearchNode(
@@ -556,7 +559,7 @@ class ExtractionPipelineFactory:
         created_at: datetime,
         max_recursive_search_rounds: int = DEFAULT_KEYWORD_RECURSIVE_SEARCH_MAX_ROUNDS,
         max_relationship_phrases_per_request: int = DEFAULT_RELATIONSHIP_MAX_PHRASES_PER_REQUEST,
-        max_mention_collection_forms_per_request: int = DEFAULT_MENTION_COLLECTION_MAX_FORMS_PER_REQUEST,
+        max_mention_collection_mentions_per_request: int = DEFAULT_MENTION_COLLECTION_MAX_MENTIONS_PER_REQUEST,
         max_screening_pairs_per_request: int = DEFAULT_SCREENING_MAX_PAIRS_PER_REQUEST,
         max_freehand_grounding_pairs_per_request: int = DEFAULT_FREEHAND_GROUNDING_MAX_PAIRS_PER_REQUEST,
     ) -> KeywordExtractionPrefillNode:
@@ -607,7 +610,7 @@ class ExtractionPipelineFactory:
                 llm_model,
                 model_params,
                 created_at,
-                max_mention_collection_forms_per_request,
+                max_mention_collection_mentions_per_request,
             ),
             aggregation_fold_metadata=ExtractionPipelineFactory._aggregation_fold_metadata(keyword_type),
             next_node=EquipmentPhraseSearchNode(
@@ -739,7 +742,7 @@ class ExtractionPipelineFactory:
         created_at: datetime,
         max_recursive_search_rounds: int = DEFAULT_KEYWORD_RECURSIVE_SEARCH_MAX_ROUNDS,
         max_relationship_phrases_per_request: int = DEFAULT_RELATIONSHIP_MAX_PHRASES_PER_REQUEST,
-        max_mention_collection_forms_per_request: int = DEFAULT_MENTION_COLLECTION_MAX_FORMS_PER_REQUEST,
+        max_mention_collection_mentions_per_request: int = DEFAULT_MENTION_COLLECTION_MAX_MENTIONS_PER_REQUEST,
         max_screening_pairs_per_request: int = DEFAULT_SCREENING_MAX_PAIRS_PER_REQUEST,
         max_freehand_grounding_pairs_per_request: int = DEFAULT_FREEHAND_GROUNDING_MAX_PAIRS_PER_REQUEST,
     ) -> KeywordExtractionPrefillNode:
@@ -785,7 +788,7 @@ class ExtractionPipelineFactory:
                 llm_model,
                 model_params,
                 created_at,
-                max_mention_collection_forms_per_request,
+                max_mention_collection_mentions_per_request,
             ),
             aggregation_fold_metadata=ExtractionPipelineFactory._aggregation_fold_metadata(keyword_type),
             next_node=PureProductPhraseSearchNode(

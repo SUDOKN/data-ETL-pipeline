@@ -2,6 +2,7 @@ import multiprocessing
 import logging
 import time
 import asyncio
+from collections.abc import Callable
 from concurrent.futures import ThreadPoolExecutor
 import litellm
 
@@ -141,6 +142,7 @@ def get_chunks_respecting_line_boundaries_sync(
     soft_limit_tokens: int = 5000,
     overlap_ratio: float = 0.25,
     max_chunks: int | None = None,
+    break_before: Callable[[str], bool] | None = None,
 ) -> dict[str, str]:
     """
     SYNC version for use in ProcessPoolExecutor.
@@ -154,6 +156,17 @@ def get_chunks_respecting_line_boundaries_sync(
         soft_limit_tokens (int): Target token count per chunk (may be exceeded for line boundaries).
         overlap_ratio (float): Fraction of tokens to overlap from the previous chunk.
         max_chunks (int | None): Maximum number of chunks to generate. If None, generates all chunks.
+        break_before (Callable[[str], bool] | None): Optional predicate over a
+            raw line (line ending included) marking PREFERRED chunk starts —
+            e.g. the header line that opens every page of a scraped site. When a
+            chunk would overflow, it is closed BEFORE the last such line it
+            holds (never its first line, so no chunk is empty) and the lines from
+            that header on carry over to open the next chunk. A chunk holding no
+            header past its first line splits at the overflowing line as usual,
+            so a single stretch longer than the limit still splits; only its
+            continuations start mid-stretch. With overlap_ratio > 0 the overlap
+            lines precede the carried header, so start alignment is an
+            overlap-0 guarantee.
 
     Returns:
         dict[str, str]: A mapping from "start:end" character offsets to chunk text.
@@ -182,6 +195,19 @@ def get_chunks_respecting_line_boundaries_sync(
     for line_text, line_tokens, line_start, line_end in line_info:
         # If adding this line would exceed token limit, finalize current chunk first.
         if current_chunk_tokens + line_tokens > soft_limit_tokens and current_chunk:
+            # Prefer closing before the last preferred-break line of this chunk
+            # (not its first line): those lines move to the next chunk.
+            carried: list[tuple[str, int, int, int]] = []
+            carried_tokens = 0
+            if break_before is not None:
+                for i in range(len(current_chunk) - 1, 0, -1):
+                    if break_before(current_chunk[i][0]):
+                        carried = current_chunk[i:]
+                        carried_tokens = sum(line[1] for line in carried)
+                        current_chunk = current_chunk[:i]
+                        current_chunk_tokens -= carried_tokens
+                        break
+
             # Compute how many tokens to carry as overlap
             target_overlap = int(current_chunk_tokens * overlap_ratio)
             overlap_lines: list[tuple[str, int, int, int]] = []
@@ -207,16 +233,21 @@ def get_chunks_respecting_line_boundaries_sync(
             if max_chunks is not None and len(chunks_with_bounds) >= max_chunks:
                 return chunks_with_bounds
 
-            # Build the next chunk, starting from the overlap (if any), plus this line
+            # Build the next chunk: the overlap (if any), then the lines carried
+            # over from the preferred break (if any), then this line
             if overlap_lines:
                 new_start = overlap_lines[0][2]
+            elif carried:
+                new_start = carried[0][2]
             else:
                 new_start = line_start
 
-            current_chunk = overlap_lines + [
-                (line_text, line_tokens, line_start, line_end)
-            ]
-            current_chunk_tokens = overlap_tokens + line_tokens
+            current_chunk = (
+                overlap_lines
+                + carried
+                + [(line_text, line_tokens, line_start, line_end)]
+            )
+            current_chunk_tokens = overlap_tokens + carried_tokens + line_tokens
             current_chunk_start = new_start
 
         else:
@@ -244,6 +275,7 @@ async def get_chunks_respecting_line_boundaries(
     overlap_ratio: float = 0.25,
     use_multiprocessing: bool = True,
     size_threshold_kb: int = 100,  # Only use thread pool for texts >100KB
+    break_before: Callable[[str], bool] | None = None,
 ) -> dict[str, str]:
     """
     ASYNC version that runs chunking in thread pool to avoid blocking event loop.
@@ -255,6 +287,7 @@ async def get_chunks_respecting_line_boundaries(
         use_multiprocessing: Whether to use thread pool for large texts
         size_threshold_kb: Minimum text size (in KB) to use thread pool
         max_chunks: Maximum number of chunks to generate. If None, generates all chunks.
+        break_before: Preferred chunk-start lines — see the sync version.
 
     Returns:
         dict[str, str]: A mapping from "start:end" character offsets to chunk text
@@ -292,6 +325,7 @@ async def get_chunks_respecting_line_boundaries(
             soft_limit_tokens=soft_limit_tokens,
             overlap_ratio=overlap_ratio,
             max_chunks=max_chunks,
+            break_before=break_before,
         )
     else:
         # Run in thread pool to avoid blocking event loop
@@ -311,6 +345,7 @@ async def get_chunks_respecting_line_boundaries(
             soft_limit_tokens,
             overlap_ratio,
             max_chunks,
+            break_before,
         )
 
     elapsed_ms = (time.perf_counter() - start_time) * 1000

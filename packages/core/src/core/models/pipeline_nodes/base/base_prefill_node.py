@@ -10,6 +10,7 @@ from core.models.extraction_subject import (
 )
 
 from core.models.chunking_strat import ChunkingStrategy
+from core.utils.floor_scan import drop_excluded_pages
 from core.models.pipeline_nodes.base.base_node import (
     BaseNode,
     PipelineContext,
@@ -103,6 +104,47 @@ class PrefillNode(BaseNode[LLMExtractedFieldTypeVar, None]):
     ) -> None:
         super().__init__(field_type=field_type, next_node=next_node)
         self.chunk_strategy = chunk_strategy
+
+    def apply_page_exclusion(
+        self,
+        scraped_text_file: ScrapedTextFile,
+        pipeline_context: PipelineContext,
+    ) -> ScrapedTextFile:
+        """The text this pipeline chunks and every later node reads.
+
+        Under ``ChunkingStrategy.drop_excluded_pages`` the excluded (legal) pages
+        are removed from the text BEFORE chunking (2026-08-23, user decision), so
+        they cost no budget and never form a window of their own; the trimmed
+        text is handed down the chain as a copy of the scraped-text object and
+        set on ``PipelineContext.subject_text``, and what was removed is recorded
+        on the context for the dump. Runs on EVERY execute — fresh and resumed
+        alike — because the stored chunk and window bounds are offsets into the
+        trimmed text, and trimming is deterministic under the pinned rule version
+        (``page_exclusion_version`` on the strategy, checked by the staleness
+        guard). The copy keeps the S3 object's own ``num_tokens``; the removed
+        volume is on the exclusion record.
+        """
+        if not self.chunk_strategy.drop_excluded_pages:
+            pipeline_context.subject_text = scraped_text_file.text
+            return scraped_text_file
+        exclusion = drop_excluded_pages(scraped_text_file.text)
+        if exclusion.version != self.chunk_strategy.page_exclusion_version:
+            raise ValueError(
+                f"Page exclusion rule version {exclusion.version!r} in code does not "
+                f"match the strategy's {self.chunk_strategy.page_exclusion_version!r} "
+                f"for '{self.field_type.name}'."
+            )
+        pipeline_context.page_exclusion = exclusion
+        if exclusion.dropped:
+            logger.info(
+                f"[{scraped_text_file.subject_unique_id}] '{self.field_type.name}': dropped "
+                f"{len(exclusion.dropped)} excluded page(s), {exclusion.chars_removed:,} of "
+                f"{exclusion.chars_before:,} chars, before chunking: "
+                f"{[p.url for p in exclusion.dropped]}"
+            )
+            scraped_text_file = scraped_text_file.model_copy(update={"text": exclusion.text})
+        pipeline_context.subject_text = scraped_text_file.text
+        return scraped_text_file
 
     @abstractmethod
     async def execute(

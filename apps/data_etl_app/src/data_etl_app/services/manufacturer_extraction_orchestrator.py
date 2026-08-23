@@ -282,6 +282,7 @@ class ManufacturerExtractionOrchestrator:
                     pipeline_context=PipelineContext(
                         subject_name=mfg.business_desc.result.name,
                         stage_toggles=self.stage_toggles,
+                        subject_text=scraped_text_file.text,
                     ),
                     eager=eager,
                 )

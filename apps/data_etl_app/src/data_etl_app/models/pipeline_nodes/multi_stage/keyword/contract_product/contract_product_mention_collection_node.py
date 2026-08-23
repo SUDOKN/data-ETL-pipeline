@@ -6,6 +6,8 @@ from llm_providers.db_models.gpt_batch_request import (
     GPTBatchRequest,
 )
 from llm_providers.models.file_objects.prompt import Prompt
+
+from core.models.extraction_schemas.mention_collection import MentionWireItem
 from core.models.pipeline_nodes import PipelineContext
 from data_etl_app.models.pipeline_nodes.multi_stage.keyword.contract_product.contract_product_phrase_search_node import (
     ContractProductPhraseSearchNode,
@@ -66,7 +68,8 @@ class ContractProductMentionCollectionNode(KeywordMentionCollectionNode):
         sub_bounds: str,
         group_index: int,
         metadata: LLMPhraseExtractionMetadataV2,
-        group_forms: list[str],
+        group_items: list[MentionWireItem],
+        retry_index: int | None = None,
     ) -> BatchRequestIDType:
         # Shared with the pure-product branch (same window, same forms, the same
         # field-agnostic static): computed as if field_type were `products`, so
@@ -79,5 +82,6 @@ class ContractProductMentionCollectionNode(KeywordMentionCollectionNode):
             sub_bounds=sub_bounds,
             group_index=group_index,
             metadata=metadata,
-            group_forms=group_forms,
+            group_items=group_items,
+            retry_index=retry_index,
         )

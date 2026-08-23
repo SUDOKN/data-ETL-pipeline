@@ -75,6 +75,18 @@
               },
               "search_divisor": {
                 "bsonType": "int"
+              },
+              "align_to_page_headers": {
+                "bsonType": "bool"
+              },
+              "drop_excluded_pages": {
+                "bsonType": "bool"
+              },
+              "page_exclusion_version": {
+                "bsonType": [
+                  "string",
+                  "null"
+                ]
               }
             }
           },

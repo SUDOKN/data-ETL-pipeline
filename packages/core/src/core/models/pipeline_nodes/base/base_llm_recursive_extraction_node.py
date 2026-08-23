@@ -121,8 +121,20 @@ class BaseLLMRecursiveExtractionNode(
                 subject_unique_id=subject.subject_unique_id,
             )
 
+            # Dispatch only what has no answer yet. A node may create requests
+            # that are answered at creation — the mention stage's single dummy
+            # for a window with nothing to locate (built for NO_MODEL, response
+            # pre-filled) — and those were sent too until 2026-08-23, when the
+            # model guard in dispatch_gpt_batch_request stopped a whole subject
+            # on one. The base node's eager path filters the same way, through
+            # find_incomplete_gpt_batch_requests_by_custom_ids.
+            requests_to_dispatch = [req for req in batch_requests if req.response is None]
+            pre_answered = len(batch_requests) - len(requests_to_dispatch)
             logger.info(
-                f"[{subject.subject_unique_id}] 🚀 Eager execution enabled. Dispatching {len(batch_requests)} batch requests for {self.__class__.__name__} ('{self.field_type.name}') immediately."
+                f"[{subject.subject_unique_id}] 🚀 Eager execution enabled. Dispatching "
+                f"{len(requests_to_dispatch)} batch requests for {self.__class__.__name__} "
+                f"('{self.field_type.name}') immediately ({pre_answered} created "
+                f"pre-answered, not dispatched)."
             )
 
             batch_response_blobs = await asyncio.gather(
@@ -131,16 +143,19 @@ class BaseLLMRecursiveExtractionNode(
                         gpt_batch_request=req,
                         metadata=metadata,
                     )
-                    for req in batch_requests
+                    for req in requests_to_dispatch
                 ]
             )
             modified_count, failed_updates = await bulk_record_gpt_batch_responses(
-                batch_requests=batch_requests,
+                batch_requests=requests_to_dispatch,
                 response_blobs=batch_response_blobs,
                 timestamp=timestamp,
             )
             logger.info(
-                f"[{subject.subject_unique_id}] ✅ Eagerly dispatched {len(batch_requests)} batch requests for {self.__class__.__name__} ('{self.field_type.name}') with {modified_count} successful response recordings and {failed_updates} failed updates."
+                f"[{subject.subject_unique_id}] ✅ Eagerly dispatched {len(requests_to_dispatch)} "
+                f"batch requests for {self.__class__.__name__} ('{self.field_type.name}') with "
+                f"{modified_count} successful response recordings and {failed_updates} "
+                f"failed updates."
             )
 
         extraction_requests = getattr(deferred_subject, self.field_type.name)

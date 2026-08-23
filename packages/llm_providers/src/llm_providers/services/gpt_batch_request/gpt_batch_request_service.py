@@ -28,6 +28,10 @@ from llm_providers.utils.open_ai.batch_gpt_util import (
 logger = logging.getLogger(__name__)
 
 
+# Prefix of the first user-message line, ahead of the per-request nonce.
+NONCE_LABEL = "request nonce (ignore): "
+
+
 def create_base_gpt_batch_request(
     deferred_at: datetime,
     subject_unique_id: str,
@@ -43,7 +47,12 @@ def create_base_gpt_batch_request(
     request_blob = get_gpt_request_blob(
         custom_id=custom_id,
         prompt_text=f"{prompt_text}",  # system role, helps to keep static for kv cache
-        context=f"{nonce}\n\n{context}",  # user role
+        # user role. The nonce stays the FIRST line (user decision 2026-08-22:
+        # it must miss the provider's prefix cache before the context is read),
+        # labelled so it can never be taken for content — unlabelled, a model
+        # once returned it as a mention id when a window opened mid-page and
+        # the hex sat directly above prose (run 20260822T223715, 1/106).
+        context=f"{NONCE_LABEL}{nonce}\n\n{context}",
         gpt_model=gpt_model,
         model_params=model_params,
     )

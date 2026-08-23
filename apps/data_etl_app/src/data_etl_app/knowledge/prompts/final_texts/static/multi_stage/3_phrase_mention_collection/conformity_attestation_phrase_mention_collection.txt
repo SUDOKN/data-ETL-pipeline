@@ -1,37 +1,24 @@
-You are given text scraped from a manufacturer's website, and a list of surface forms fenced between <<<PHRASES and PHRASES>>>, provided at the very bottom. A form is an exact string of text. The text holds the site's pages one after another, each preceded by that page's URL.
+You are given text scraped from a manufacturer's website, and a list of mentions provided at the very bottom: first the mention ids, fenced between <<<MENTION_IDS and MENTION_IDS>>>, then the mentions themselves, fenced between <<<MENTIONS and MENTIONS>>>. Each mention holds its mention_id and a passage copied verbatim from the text — a sentence, or a whole line where the passage is not a sentence. The text holds the site's pages one after another, each page beginning with its address on a line of its own.
 
 ## Task
-For each given form, find every occurrence of it in the text, and report each occurrence as a mention. Work each form on its own: never compare forms with each other, and never skip an occurrence because the same span also holds another given form, or because it sits inside a longer form from the list.
+For each mention, find the passage in the text and describe, in your own words, where it sits, with sufficient detail in order to make sense of the passage. It may be what the page is about, what section or heading the passage falls under, and what kind of text it is — a heading, a navigation or menu item, an entry in a list, a table cell, a sentence of prose, a quotation or testimonial from someone, a news or blog item, a case-study listing, a job posting, a footer, boilerplate that repeats across pages, or something else. Where the text shows who is speaking, say so: the site's own copy, a customer, a publication, another party. Where the text does not show where a passage sits — say what the text shows and no more, rather than guessing.
 
-## What counts as an occurrence
-A span of text is an occurrence of a form when it matches the form character for character — the same casing, spacing, hyphenation, and punctuation — and the span's first and last words are whole words in the text, not parts of longer words. Nothing looser counts: a span that differs from the form in casing or wording, however slightly, is not an occurrence of that form.
+Describe location only. Do not judge, summarize, or restate what the passage says.
 
-Occurrences are a matter of the string, not the meaning. Report every occurrence regardless of what the words mean there, or whether the form names what you might expect it to name — do not judge; the snippet will carry the sense.
+Name a page by what it is about, in your own words — never by copying its address, or any part of it, into a description.
 
-## Mentions
-Record each mention as an object with two keys:
+Each description must stand on its own. Never refer to another mention or to an earlier description — not "the previous mention", "the same table as above", "another item in this list" — name the place itself each time, even when that repeats what you wrote for a neighbour.
 
-"location": where the occurrence sits, in your own words, as one short string: which page it is on, and how it sits in the text, as best the text shows — a heading, a navigation or menu item, an entry in a list, a table cell, a prose sentence, a quotation or testimonial from someone, a news or blog item, a job posting, a footer, boilerplate, or something else. If the text does not show where an occurrence sits — it may begin mid-page, before any URL line — say so rather than guessing.
-"snippet": the passage of text holding the occurrence, copied verbatim — character for character, with nothing added, dropped, or reworded. Copy the whole sentence the occurrence sits in. Where the occurrence does not sit in a sentence — a heading, a list entry, a menu or navigation item, a table cell — copy the whole line it sits on.
-
-If a form occurs more than once, report each occurrence as its own mention, each with its own snippet. Repeats in identical wording — the same menu item recurring across pages, the same boilerplate line — are still separate occurrences, one mention each.
+A passage may occur at more than one place in the text — the same menu item on every page, the same boilerplate line. Describe it once, covering where it recurs.
 
 ## Output
-Return a JSON object with a single key "forms" whose value is an array with one object per given form — every given form exactly once, and no others. Each object holds the form, copied character for character as it was given, and its mentions: an array of that form's mentions in the order the occurrences appear in the text. A form that does not occur in the text gets an empty mentions array.
+Return a JSON object with a single key "mentions" whose value is an array with one object per given mention — every given mention_id exactly once, copied exactly as given, and no others — each holding the mention_id and its location.
 
 ```json
-{"forms": [
-  {"form": "<a given form>",
-   "mentions": [
-     {"location": "<where this occurrence sits, in your own words>",
-      "snippet": "<the passage holding the occurrence, copied verbatim>"},
-     {"location": "<where the next occurrence sits>",
-      "snippet": "<the passage holding it, copied verbatim>"}
-   ]},
-  {"form": "<another given form>",
-   "mentions": [
-     {"location": "<where it sits>",
-      "snippet": "<the passage holding it, copied verbatim>"}
-   ]}
+{"mentions": [
+  {"mention_id": "<a given mention_id>",
+   "location": "<where this passage sits, in your own words>"},
+  {"mention_id": "<another given mention_id>",
+   "location": "<where that passage sits>"}
 ]}
 ```

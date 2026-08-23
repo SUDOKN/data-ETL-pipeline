@@ -40,9 +40,9 @@ def test_every_batched_stage_carries_its_group_size():
     )
 
     assert relationship.to_custom_id_segment().endswith("|gs=50")
-    # v3: forms per sub-window request
-    mention = BatchedMentionCollectionNodeMetadata(**_COMMON, max_forms_per_request=30)
-    assert mention.to_custom_id_segment().endswith("|gs=30")
+    # v3: mentions (distinct snippets) per sub-window location request
+    mention = BatchedMentionCollectionNodeMetadata(**_COMMON, max_mentions_per_request=50)
+    assert mention.to_custom_id_segment().endswith("|gs=50")
     assert screening.to_custom_id_segment().endswith("|gs=15")
     assert grounding.to_custom_id_segment().endswith("|gs=15")
     assert freehand.to_custom_id_segment().endswith("|gs=50")

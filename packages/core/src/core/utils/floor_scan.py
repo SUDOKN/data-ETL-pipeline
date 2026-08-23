@@ -25,13 +25,26 @@ only when that edge IS a word character, so ``6061-T6`` matches in
 but never "Leader". ``\\w`` is Unicode-aware, so accented letters are word
 characters too.
 
-SCAN DOMAIN = WINDOW TEXT MINUS PAGE HEADERS (user decision 2026-08-21, D2/D7
-domain notes). The scraper renders every page as a ``#`` separator line, the
-bare URL on its own line, a blank line, then the content; neither search nor
-the collector treats those header lines as text, so the scan must not either or
-every path hit is a phantom discrepancy. Headers are blanked with spaces,
+SCAN DOMAIN = WINDOW TEXT MINUS PAGE HEADERS MINUS EXCLUDED PAGES (user
+decisions 2026-08-21 and 2026-08-22, D2/D7 domain notes). The scraper renders
+every page as a ``#`` separator line, the bare URL on its own line, a blank
+line, then the content; neither search nor the collector treats those header
+lines as text, so the scan must not either or every path hit is a phantom
+discrepancy. EXCLUDED PAGES (2026-08-22, proposal P3 accepted): pages whose URL
+path says they are legal boilerplate — privacy, cookie, terms, legal,
+disclaimer, gdpr, imprint — are not harvest material at all: on run
+20260822T195947 steelcraft's privacy policy alone (35k chars) put 103 forms
+into the fold that occur on no other page and cost ~80k prompt tokens. Those
+pages are masked here (so no mention is ever collected on them) and OMITTED
+from the text the search and location requests send (``omit_excluded_pages``),
+both from the one URL rule. Headers and excluded pages are blanked with spaces,
 LENGTH-PRESERVING, so every offset this module reports is an offset into the
 original window — page attribution and snippet positions depend on that.
+PAGE ALIGNMENT (2026-08-22, proposal N1 accepted): a page starts at its
+separator line (``is_page_header_line``), the chunkers close chunks and
+sub-windows before one (``ChunkingStrategy.align_to_page_headers``), so a
+window opens mid-page only when a single page outgrows the limit — and then
+``wire_window_text`` announces the inherited page (``continued_page_header``).
 
 Everything here is pure and deterministic; the Phase 3 node decides what a
 discrepancy does.
@@ -41,7 +54,7 @@ from __future__ import annotations
 
 import re
 from dataclasses import dataclass, field
-from typing import Iterable, Optional
+from typing import Any, Iterable, Optional
 
 SHORT_FORM_MAX_LENGTH = 3  # D7's own number; settled 2.2
 
@@ -49,6 +62,14 @@ SHORT_FORM_MAX_LENGTH = 3  # D7's own number; settled 2.2
 _URL_LINE_RE = re.compile(r"^[ \t]*https?://\S+[ \t]*$", re.MULTILINE)
 # The scraper's page separator: a line of (at least ten) '#'.
 _SEPARATOR_LINE_RE = re.compile(r"^[ \t]*#{10,}[ \t]*$", re.MULTILINE)
+
+
+def is_page_header_line(line: str) -> bool:
+    """Whether *line* (a raw line, line ending included) is the separator line
+    the scraper writes at the top of every page — the line a page-aligned
+    chunk starts on (``ChunkingStrategy.align_to_page_headers``; 2026-08-22,
+    proposal N1)."""
+    return bool(_SEPARATOR_LINE_RE.fullmatch(line.rstrip("\r\n")))
 
 
 # --- scan domain + pages -------------------------------------------------------
@@ -71,28 +92,237 @@ def mask_page_headers(text: str) -> str:
     return _blank(text, spans)
 
 
+# --- excluded pages ---------------------------------------------------------------
+
+# Matched against the URL's PATH (host excluded): a manufacturer's domain may
+# carry any word, its legal pages carry these.
+_EXCLUDED_PAGE_PATH_RE = re.compile(
+    r"privacy|cookie|terms|legal|disclaimer|gdpr|imprint|impressum", re.IGNORECASE
+)
+EXCLUDED_PAGE_MARKER = "[page content omitted]"
+# Identity of the exclusion RULE as a text-preparation step (2026-08-23): the phrase
+# pipelines drop excluded pages from the text BEFORE chunking (see
+# ``drop_excluded_pages``), so chunk and window bounds are offsets into the
+# trimmed text. Bump when ``_EXCLUDED_PAGE_PATH_RE`` or the drop semantics change:
+# the version is stored on ``ChunkingStrategy`` and a mismatch fails the resume.
+PAGE_EXCLUSION_VERSION = "1"
+
+
+def _url_path(url: str) -> str:
+    without_scheme = url.split("://", 1)[-1]
+    slash = without_scheme.find("/")
+    return "" if slash == -1 else without_scheme[slash:]
+
+
+def is_excluded_page(url: Optional[str]) -> bool:
+    """Whether the page at *url* is legal boilerplate the pipeline excludes
+    (see the module docstring). None — an unknown page — is never excluded."""
+    return bool(url) and bool(_EXCLUDED_PAGE_PATH_RE.search(_url_path(url or "")))
+
+
+def excluded_page_spans(
+    text: str, *, preceding_page: Optional[str] = None
+) -> list["PageSpan"]:
+    """The stretches of *text* that belong to excluded pages — including a
+    window head that inherits an excluded *preceding_page*."""
+    return [span for span in page_spans(text, preceding_page=preceding_page) if is_excluded_page(span.url)]
+
+
+def mask_excluded_pages(text: str, *, preceding_page: Optional[str] = None) -> str:
+    """*text* with every excluded page blanked to spaces, length-preserving
+    (newlines kept); the page's own URL line is blanked with it."""
+    return _blank(text, [(s.start, s.end) for s in excluded_page_spans(text, preceding_page=preceding_page)])
+
+
+@dataclass(frozen=True)
+class DroppedPage:
+    """One excluded page removed by ``drop_excluded_pages``; offsets are into
+    the ORIGINAL text, ``chars`` is its length including its header lines."""
+
+    url: str
+    start: int
+    end: int
+
+    @property
+    def chars(self) -> int:
+        return self.end - self.start
+
+
+@dataclass(frozen=True)
+class PageExclusion:
+    """The outcome of ``drop_excluded_pages`` over one subject's text: what the
+    phrase pipelines chunk (``text``) and what was taken out of it."""
+
+    version: str
+    text: str
+    dropped: tuple[DroppedPage, ...]
+    chars_before: int
+
+    @property
+    def chars_removed(self) -> int:
+        return sum(page.chars for page in self.dropped)
+
+    @property
+    def chars_after(self) -> int:
+        return len(self.text)
+
+    def to_dump(self) -> dict[str, Any]:
+        """The dump's ``run.scraped_text.excluded_pages`` block: the rule version
+        and every page removed, so a too-broad rule stays visible."""
+        return {
+            "version": self.version,
+            "chars_before": self.chars_before,
+            "chars_removed": self.chars_removed,
+            "chars_after": self.chars_after,
+            "pages": [
+                {"url": p.url, "start": p.start, "end": p.end, "chars": p.chars}
+                for p in self.dropped
+            ],
+        }
+
+
+def drop_excluded_pages(text: str) -> PageExclusion:
+    """*text* with every excluded page REMOVED outright — its separator line, its
+    URL line and its body, no marker left behind — for the phrase pipelines to
+    chunk (2026-08-23, user decision). Measured on run 20260823T034518: with the
+    pages merely blanked on the wire, steelcraft's privacy policy (6,585 tok,
+    oversize) and terms of use still consumed budget, and page alignment left a
+    third of chunk 1 idle because the privacy page would not fit after it — 47%
+    of the 40k-token budget produced nothing, real-content coverage 80% → 64%.
+    Removing the pages before chunking returns that budget to real pages.
+
+    Text before the first page header (unknown page) is kept. Pure and
+    deterministic: the same text and rule version always give the same result,
+    which is what lets a resumed run re-derive the trimmed text. Offsets in
+    ``dropped`` are into the original *text*; every offset downstream (chunk and
+    window bounds, spans, dump pages) is into the RETURNED text."""
+    kept: list[str] = []
+    dropped: list[DroppedPage] = []
+    for span in page_spans(text):
+        if is_excluded_page(span.url):
+            dropped.append(DroppedPage(url=span.url or "", start=span.start, end=span.end))
+        else:
+            kept.append(text[span.start : span.end])
+    return PageExclusion(
+        version=PAGE_EXCLUSION_VERSION,
+        text="".join(kept) if dropped else text,
+        dropped=tuple(dropped),
+        chars_before=len(text),
+    )
+
+
+def scan_domain(text: str, *, preceding_page: Optional[str] = None) -> str:
+    """What the scan sweeps: *text* minus page headers minus excluded pages.
+    Length-preserving. Both span sets are found on the ORIGINAL text (an
+    excluded page is recognised by its URL line, which the header mask blanks)."""
+    spans = [m.span() for m in _URL_LINE_RE.finditer(text)]
+    spans += [m.span() for m in _SEPARATOR_LINE_RE.finditer(text)]
+    spans += [(s.start, s.end) for s in excluded_page_spans(text, preceding_page=preceding_page)]
+    return _blank(text, spans)
+
+
+# The header ``wire_window_text`` prepends to a window that opens mid-page
+# (2026-08-22, proposal N1): the inherited page's URL under a separator line
+# shaped like the scraper's, so the model sees which page the head belongs to
+# instead of prose under the request nonce — and a line saying the page began
+# earlier, so it does not take the head for the page's start. Wire only: the
+# scan and the fold never see it.
+CONTINUED_PAGE_MARKER = "[this page began before the text shown; its opening is not included]"
+_WIRE_SEPARATOR_LINE = "#" * 50
+
+
+def continued_page_header(url: str) -> str:
+    return f"{_WIRE_SEPARATOR_LINE}\n{url}\n{CONTINUED_PAGE_MARKER}\n\n"
+
+
+def _inherited_head(text: str) -> str:
+    """The stretch of *text* before its first page header — the part a
+    mid-page window inherits from the preceding page ('' when the window opens
+    on a header or holds no header at all)."""
+    first = next(iter(_page_headers(text)), None)
+    return text[: first[0]] if first is not None else ""
+
+
+def wire_window_text(subject_text: str, start: int, end: int) -> str:
+    """The text of ``subject_text[start:end]`` as a request sends it: excluded
+    pages omitted, the page a mid-page window inherits taken into account —
+    omitted with its page when that page is excluded, otherwise announced by
+    ``continued_page_header`` so the model knows where the head belongs."""
+    text = subject_text[start:end]
+    preceding_page = preceding_page_of(subject_text, start)
+    wire = omit_excluded_pages(text, preceding_page=preceding_page)
+    head = _inherited_head(text)
+    if preceding_page and head.strip() and not is_excluded_page(preceding_page):
+        return continued_page_header(preceding_page) + wire
+    return wire
+
+
+def omit_excluded_pages(text: str, *, preceding_page: Optional[str] = None) -> str:
+    """*text* for the WIRE: every excluded page's body replaced by its URL line
+    (kept, so the model sees a page was there) and ``EXCLUDED_PAGE_MARKER``; a
+    window head inherited from an excluded page becomes the marker alone. NOT
+    length-preserving — offsets into the result are meaningless; the scan and
+    the fold work on the original text."""
+    spans = excluded_page_spans(text, preceding_page=preceding_page)
+    if not spans:
+        return text
+    out: list[str] = []
+    cursor = 0
+    for span in spans:
+        out.append(text[cursor:span.start])
+        body = text[span.start:span.end]
+        header = _PAGE_HEADER_RE.match(body)
+        if header:  # the page's own header lines stay: separator (if any) + URL
+            out.append(f"{header.group().strip()}\n{EXCLUDED_PAGE_MARKER}\n")
+        else:
+            out.append(f"{EXCLUDED_PAGE_MARKER}\n")
+        cursor = span.end
+    out.append(text[cursor:])
+    return "".join(out)
+
+
 @dataclass(frozen=True)
 class PageSpan:
     """The stretch of a window that belongs to one page. ``url`` is None for
-    text before the first URL line (a sub-window that starts mid-page) unless
-    the caller supplied the inherited page."""
+    text before the first page header (a sub-window that starts mid-page)
+    unless the caller supplied the inherited page."""
 
     url: Optional[str]
     start: int
     end: int
 
 
+# A page header as the scraper writes it: the separator line (optional — a
+# bare URL line still opens a page) directly followed by the URL line.
+_PAGE_HEADER_RE = re.compile(
+    r"(?:[ \t]*#{10,}[ \t]*\r?\n)?[ \t]*https?://\S+[ \t]*(?=\r?\n|$)"
+)
+
+
+def _page_headers(text: str) -> Iterable[tuple[int, str]]:
+    """``(start, url)`` of every page header of *text*, in order. A page starts
+    at its separator line when one directly precedes its URL line (so a
+    page-aligned window opens on the separator), else at the URL line."""
+    separator_ends = {m.end(): m.start() for m in _SEPARATOR_LINE_RE.finditer(text)}
+    for m in _URL_LINE_RE.finditer(text):
+        start = m.start()
+        for newline in ("\n", "\r\n"):
+            before = start - len(newline)
+            if before in separator_ends and text[before:start] == newline:
+                start = separator_ends[before]
+                break
+        yield start, m.group().strip()
+
+
 def page_spans(text: str, *, preceding_page: Optional[str] = None) -> list[PageSpan]:
     """Pages of *text*, in order, tiling ``[0, len(text))``. A page starts at
-    its URL line and runs to the next URL line (or the end)."""
-    urls = [(m.start(), m.group().strip()) for m in _URL_LINE_RE.finditer(text)]
+    its header (separator line + URL line, or the bare URL line) and runs to
+    the next header (or the end)."""
     spans: list[PageSpan] = []
     cursor = 0
     current = preceding_page
-    for start, url in urls:
-        if start > cursor or (start == 0 and not spans and current is not None):
-            spans.append(PageSpan(current, cursor, start))
-        elif start > 0 and not spans:
+    for start, url in _page_headers(text):
+        if start > cursor:
             spans.append(PageSpan(current, cursor, start))
         cursor, current = start, url
     if cursor < len(text) or not spans:
@@ -179,8 +409,10 @@ def floor_scan(
     *,
     preceding_page: Optional[str] = None,
 ) -> FloorScan:
-    """Scan *window_text* for every form, both tiers, over the masked domain."""
-    domain = mask_page_headers(window_text)
+    """Scan *window_text* for every form, both tiers, over the masked domain
+    (headers and excluded pages blanked; *preceding_page* decides whether the
+    window's head belongs to an excluded page)."""
+    domain = scan_domain(window_text, preceding_page=preceding_page)
     scan = FloorScan(pages=page_spans(window_text, preceding_page=preceding_page))
     for form in forms:
         if form in scan.tier1:

@@ -1,12 +1,13 @@
 """The aggregation fold as a dump reader meets it (PIPELINE_V3_PLAN.md Phase
-3.1; the group-aware dump proper is Phase 4.1).
+3.1, amended 2026-08-22; the group-aware dump proper is Phase 4.1).
 
 One block per chunk: a summary, the bundles (one entry per group — member forms
 visible inline, so a wrong merge is human-visible at a glance — with mentions
-in locked order), and the per-window hold: what the collector owed (tier-1
-obligations after containment), what it missed (``unaccounted``), what it
-reported that anchored nothing (``unlocated``/``unanchored``), what the fold
-re-keyed, and the tier-2 discovery surface (casings no sent form covered).
+in locked order, each saying where its location came from), and the per-window
+report: what code collected (occurrences, distinct snippets, forms with and
+without hits, casings the scan discovered, pages it excluded) and what the
+Location stage covered (``described`` / ``not_described`` ids, the ids a retry
+pass re-asked for, answer ids that were never sent).
 """
 
 from __future__ import annotations
@@ -14,12 +15,7 @@ from __future__ import annotations
 from typing import Any, Optional
 
 from core.utils.aggregation_fold import FoldResult, FoldedMention, MentionBundle, WindowFold
-from core.utils.floor_scan import Occurrence
 from core.utils.subject_name_lint import count_own_name_hits
-
-
-def _span(o: Occurrence) -> list[int]:
-    return [o.start, o.end]
 
 
 def _mention_row(m: FoldedMention) -> dict[str, Any]:
@@ -29,11 +25,13 @@ def _mention_row(m: FoldedMention) -> dict[str, Any]:
         "window": m.window_index,
         "span": [m.start, m.end],
         "page": m.page,
+        "mention_id": m.mention_id,
         "location": m.location,
+        "location_source": m.location_source,
         "snippet": m.snippet,
     }
-    if m.rekeyed:
-        row["reported_form"] = m.reported_form
+    if m.is_discovered_casing:
+        row["sent_form"] = m.sent_form
     return row
 
 
@@ -44,6 +42,7 @@ def _bundle_row(b: MentionBundle, subject_name: Optional[str]) -> dict[str, Any]
         "forms": list(b.forms),
         "status": b.status,
         "mention_count": len(b.mentions),
+        "distinct_snippets": len(b.synthesis_entries()),
         "mentions": [_mention_row(m) for m in b.mentions],
     }
     if subject_name:
@@ -54,41 +53,22 @@ def _bundle_row(b: MentionBundle, subject_name: Optional[str]) -> dict[str, Any]
 
 
 def _window_row(w: WindowFold) -> dict[str, Any]:
+    c = w.collection
     return {
         "window": w.window_index,
         "sub_bounds": w.window_id,
-        "sent_forms": len(w.obligations),
+        "sent_forms": len(c.sent_forms),
+        "forms_with_hits": len(c.forms_with_hits),
+        "zero_hit_forms": list(c.zero_hit_forms),
         "mentions": len(w.mentions),
-        "candidates": w.candidates,
-        "obligations": sum(len(v) for v in w.obligations.values()),
-        "unaccounted_count": w.unaccounted_count,
-        "unaccounted": {
-            form: [_span(o) for o in occs] for form, occs in w.unaccounted.items() if occs
-        },
-        "unlocated": [
-            {"reported_form": r.reported_form, "location": r.location, "snippet": r.snippet}
-            for r in w.unlocated
-        ],
-        "unanchored": [
-            {
-                "reported_form": r.reported_form,
-                "location": r.location,
-                "snippet": r.snippet,
-                "position": r.position,
-            }
-            for r in w.unanchored
-        ],
-        "rekeyed": [
-            {
-                "reported_form": r.reported_form,
-                "position": r.position,
-                "attributed_forms": list(r.attributed_forms),
-                "snippet": r.snippet,
-            }
-            for r in w.rekeyed
-        ],
-        "short_forms": list(w.scan.short_forms),
-        "discovered_casings": dict(w.discovered_casings),
+        "distinct_snippets": len(c.items),
+        "described": len(w.described),
+        "not_described": list(w.not_described),
+        "retried": list(w.retried),
+        "unknown_answer_ids": list(w.unknown_answer_ids),
+        "discovered_casings": dict(c.discovered_casings),
+        "short_forms": list(c.scan.short_forms),
+        "excluded_pages": list(c.excluded_pages),
     }
 
 
@@ -102,17 +82,19 @@ def build_fold_dump(result: FoldResult, *, subject_name: Optional[str] = None) -
             "empty_groups": len(result.empty_bundles),
             "mentions": sum(len(b.mentions) for b in result.bundles),
             "windows": len(windows),
-            "candidates": sum(w.candidates for w in windows),
-            "obligations": sum(
-                len(v) for w in windows for v in w.obligations.values()
-            ),
-            "unaccounted": sum(w.unaccounted_count for w in windows),
-            "windows_with_discrepancy": sum(1 for w in windows if w.has_discrepancy),
-            "unlocated": sum(len(w.unlocated) for w in windows),
-            "unanchored": sum(len(w.unanchored) for w in windows),
-            "rekeyed": sum(len(w.rekeyed) for w in windows),
+            "distinct_snippets": sum(len(w.collection.items) for w in windows),
+            "described": sum(len(w.described) for w in windows),
+            "not_described": sum(len(w.not_described) for w in windows),
+            "windows_with_undescribed": sum(1 for w in windows if w.has_undescribed),
+            "retried": sum(len(w.retried) for w in windows),
+            "windows_retried": sum(1 for w in windows if w.retried),
+            "unknown_answer_ids": sum(len(w.unknown_answer_ids) for w in windows),
+            "zero_hit_forms": sum(len(w.collection.zero_hit_forms) for w in windows),
             "discovered_casings": sum(
-                len(c) for w in windows for c in w.discovered_casings.values()
+                len(c) for w in windows for c in w.collection.discovered_casings.values()
+            ),
+            "windows_with_excluded_pages": sum(
+                1 for w in windows if w.collection.excluded_pages
             ),
         },
         "groups": [_bundle_row(b, subject_name) for b in result.bundles],

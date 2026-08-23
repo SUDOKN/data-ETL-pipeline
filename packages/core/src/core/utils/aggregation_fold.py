@@ -1,76 +1,93 @@
-"""The v3 aggregation fold (PIPELINE_V3_PLAN.md D8, D9, D11, D19): the pure code
-between mention collection and synthesis.
+"""The v3 aggregation fold (PIPELINE_V3_PLAN.md D7, D8, D9, D11, D19 — as amended
+2026-08-22): the pure code between search and synthesis, and the CODE HALF of
+mention collection.
 
-The LLM mention collector answers per window: for each sent form, a list of
-``{location, snippet}`` mentions. That answer is ADVISORY. Everything below
-treats the verbatim snippet as the only fact in it and re-derives the rest
-mechanically, so that model case-sloppiness, a sentence filed under one form
-when it holds several, and a sub-form claimed for a fuller span's spot are all
-repaired without a reconciler and without any further LLM call:
+Until 2026-08-22 an LLM collector reported each form's occurrences and this
+fold re-derived everything from its verbatim snippets. Measured on two runs,
+the collector's accepted output was a strict subset of the mechanical scan
+(the fold discarded any snippet that did not hold the form verbatim) minus the
+17–19% of occurrences it satisficed away — deterministically skipping repeated
+listing-title lines for common words. So code now collects, and the LLM's one
+remaining job is LOCATION (``core.models.extraction_schemas.mention_collection``).
+Everything below is pure and deterministic:
 
-A. LOCATE. Each snippet is found in the window by exact substring. A snippet
-   that occurs at several positions yields one candidate per position (the
-   collector's advisory location cannot pick one, and the tier-1 hold wants
-   every position accounted for). A snippet that does not occur verbatim is
-   reported as ``unlocated`` and anchors nothing — it is the mention-GT
-   failure of D18, made visible here.
+A. COLLECT. The owners of a window's text are the tier-2 floor-scan hits of
+   every sent form (``floor_scan``: whole-word, case-insensitive for forms
+   longer than ``SHORT_FORM_MAX_LENGTH``, over the window minus page headers
+   and excluded pages) after LONGEST-SPAN CONTAINMENT: a hit strictly inside a
+   longer hit of any form is not an owner — ``Lead`` and ``Lead Time`` inside
+   "Sample Lead Time" belong to ``Sample Lead Time`` (D8). One owner is one
+   mention; its ``form`` is the text at the span (a sent form, or a casing of
+   one the scan discovered — "casing rescue", the mechanical replacement for
+   what recursive search used to supply), ``sent_form`` the form whose scan
+   found it. Two sent casings of one string find the same spans and yield one
+   mention per span, not two.
 
-B. RE-ATTRIBUTE. The owners of a window's text are the tier-1 floor-scan hits
-   (``floor_scan``: exact-case, whole-word, over the window minus its page
-   headers) after LONGEST-MATCH CONTAINMENT: a hit strictly inside a longer hit
-   of any sent form is not an owner — ``Lead`` and ``Lead Time`` inside
-   "Sample Lead Time" belong to ``Sample Lead Time`` (D8). A located snippet is
-   a mention of EVERY owner inside its span, whatever form the collector filed
-   it under. Attributing from the scan rather than by re-matching forms inside
-   the snippet string keeps the word-boundary guard honest at the snippet's
-   edges (a snippet cut mid-token would otherwise pass the guard) and makes B
-   and E one computation.
+B. CLIP. The snippet is the sentence holding the occurrence within its line,
+   or the whole line where the line has no sentence punctuation (menus,
+   headings, list entries). Measured 2026-08-22 on run 20260822T195947: median
+   112 chars, max 623, against the collector's 138 / 1,973.
 
-C. DEDUP (D19's residual rule, settled here). The unit is the OCCURRENCE: key
-   ``(group key, occurrence span)``; when several snippets cover one spot the
-   LONGER snippet is kept (ties broken lexically so the result is independent
-   of the collector's answer order). Two genuine occurrences in one sentence
-   stay two mentions; two extents of one spot collapse to one.
+C. WIRE. The window's DISTINCT snippets, in first-occurrence order, are the
+   Location request's items ``{mention_id, mention}`` — 2,880 items for 4,907
+   occurrences on that run. ``mention_id = hash(snippet)``.
 
-D. GROUP + BUNDLE. Forms bucket by ``normalize()`` (D9/D10: a dict, global
-   scope — all windows of the document, the union of every window's sent
-   forms); ``group_id = hash(key)`` is the synthesis ``record_id`` (D11/D16);
-   per-form ``record_id = hash(form)`` rides on every mention as provenance
-   and the mention-GT anchor. Mentions inside a bundle are in LOCKED order —
-   window index, then offset (== page order then position) — so the synthesis
-   input and its ``|ud=`` digest do not depend on the collector's answer order
-   or batching; bundles themselves are ordered by their first mention (empty
+D. LOCATE. The Location stage's held answer is a ``mention_id → location`` map;
+   every occurrence of a snippet takes its location. A snippet the model did
+   not describe keeps the mention (it is a fact of the text) under
+   ``DEFAULT_LOCATION`` and is reported — the model can no longer lose a
+   mention, only fail to colour it.
+
+E. GROUP + BUNDLE. Forms bucket by ``normalize()`` (D9/D10: a dict, global
+   scope — the union of every window's sent forms AND the casings the scan
+   discovered, so a rescued casing sits in its family's group);
+   ``group_id = hash(key)`` is the synthesis ``record_id`` (D11/D16); per-form
+   ``record_id = hash(form)`` rides on every mention as provenance and the
+   mention-GT anchor. Mentions inside a bundle are in LOCKED order — window
+   index, then offset — so the synthesis input and its ``|ud=`` digest depend
+   on nothing but the text; bundles are ordered by their first mention (empty
    bundles last, by key). The page on a mention is CODE-DERIVED from the
-   occurrence offset (D6 as amended); the collector's location string rides
-   along as colour. EMPTY BUNDLES ARE KEPT (status ``no_mentions``): a form
-   with no mention after the fold — a search false positive, or one swallowed
-   by containment — is skipped by synthesis (``FoldResult.synthesis_records``)
-   but stays dump-visible.
+   occurrence offset (D6). EMPTY BUNDLES ARE KEPT (status ``no_mentions``): a
+   sent form with no occurrence in its window — a search false positive, or
+   one swallowed by containment — is skipped by synthesis but stays visible.
 
-E. HOLD. The tier-1 obligations of a window are the owners of B; every one
-   must lie inside some located snippet or it is ``unaccounted`` — the
-   window's discrepancy record (D7). Applying containment to the scan's hits
-   as well is what keeps a fuller-span form from raising phantom
-   discrepancies for its sub-forms.
-
-Everything here is pure and deterministic; what a discrepancy does, and how
-bundles are batched onto the synthesis wire, is the Phase 3 node's business.
+F. SYNTHESIS ENTRIES. A bundle's entries are its DISTINCT snippets in locked
+   order, each with the location of its first occurrence (user decision
+   2026-08-22: a repeated line reaches synthesis once; the per-occurrence
+   mentions stay on the bundle for the dump and ground truth).
 """
 
 from __future__ import annotations
 
+import bisect
+import re
 from collections import defaultdict
 from dataclasses import dataclass, field
 from typing import Mapping, Optional, Sequence
 
-from core.models.extraction_schemas.mention_collection import Mention
+from core.models.extraction_schemas.mention_collection import MentionWireItem
 from core.models.extraction_schemas.synthesis import SynthesisEntry, SynthesisRecordInput
-from core.utils.floor_scan import FloorScan, Occurrence, floor_scan, page_at
+from core.utils.floor_scan import (
+    FloorScan,
+    Occurrence,
+    excluded_page_spans,
+    floor_scan,
+    page_at,
+)
 from core.utils.form_normalizer import NORMALIZER_VERSION, assign_group_ids, normalize
-from core.utils.record_id_util import record_id_for_phrase
+from core.utils.record_id_util import (
+    MentionIdCollisionError,
+    mention_id_for_snippet,
+    record_id_for_phrase,
+)
 
 BUNDLE_STATUS_OK = "ok"
 BUNDLE_STATUS_NO_MENTIONS = "no_mentions"
+
+# What a mention carries when the Location stage did not describe its snippet.
+DEFAULT_LOCATION = "(location not described)"
+LOCATION_SOURCE_LLM = "llm"
+LOCATION_SOURCE_NONE = "none"
 
 
 # --- input ---------------------------------------------------------------------
@@ -78,22 +95,211 @@ BUNDLE_STATUS_NO_MENTIONS = "no_mentions"
 
 @dataclass
 class WindowInput:
-    """One window as the collector saw it, plus its held answer.
-
-    ``sent_forms`` are the forms the collector was asked about in THIS window
-    (window-local, D2/D5). ``mentions_by_form`` is the collector's answer after
-    ``hold_response_to_sent_forms`` — keyed by the form it filed each mention
-    under, which the fold treats as advisory. ``preceding_page`` is the page a
-    sub-window cut mid-page inherits (see ``floor_scan.page_spans``);
-    ``window_id`` is a free label for dumps — a window's POSITION in the
-    document is its index in the sequence given to ``fold_document``.
-    """
+    """One window: its text, the forms search found in it (window-local, D2/D5),
+    and the Location stage's held answer for it (``mention_id → location``,
+    merged across the window's request groups; empty when the stage has not
+    answered). ``preceding_page`` is the page a sub-window cut mid-page inherits
+    (see ``floor_scan.page_spans``); ``window_id`` is a free label for dumps — a
+    window's POSITION in the document is its index in the sequence given to
+    ``fold_document``."""
 
     text: str
     sent_forms: Sequence[str]
-    mentions_by_form: Mapping[str, Sequence[Mention]]
+    locations_by_mention_id: Mapping[str, str] = field(default_factory=dict)
     preceding_page: Optional[str] = None
     window_id: Optional[str] = None
+    # Location-stage diagnostics the fold only carries (dump-visible): the
+    # mention ids a retry pass re-asked for, and ids the model answered that were
+    # never sent (dropped by the hold).
+    retried_mention_ids: Sequence[str] = ()
+    unknown_answer_ids: Sequence[str] = ()
+
+
+# --- A–C: the collection ------------------------------------------------------
+
+
+@dataclass(frozen=True, order=True)
+class CollectedMention:
+    """One occurrence of one form, as code collected it (before location)."""
+
+    start: int
+    end: int
+    form: str  # the text at [start, end)
+    sent_form: str  # the sent form whose scan found it
+    page: Optional[str]
+    snippet: str
+    snippet_start: int
+    mention_id: str
+
+    @property
+    def occurrence(self) -> Occurrence:
+        return Occurrence(self.start, self.end)
+
+
+@dataclass
+class WindowCollection:
+    """What code collected in one window: the mentions in text order, the
+    distinct-snippet wire items in first-occurrence order, the scan they rest
+    on, and what the scan found beyond the sent forms."""
+
+    text: str
+    sent_forms: list[str]
+    scan: FloorScan
+    mentions: list[CollectedMention]
+    items: list[MentionWireItem]
+    # per sent form: the casings of it that occur in the window but were never
+    # sent (tier 2 beyond tier 1) — each is now a collected form in its own right
+    discovered_casings: dict[str, list[str]]
+    excluded_pages: list[str]
+
+    @property
+    def collected_forms(self) -> list[str]:
+        """Every distinct form that occurs: sent forms with hits plus the
+        discovered casings, in first-occurrence order."""
+        seen: dict[str, None] = {}
+        for m in self.mentions:
+            seen.setdefault(m.form, None)
+        return list(seen)
+
+    @property
+    def forms_with_hits(self) -> list[str]:
+        return [f for f in self.sent_forms if self.scan.tier2.get(f)]
+
+    @property
+    def zero_hit_forms(self) -> list[str]:
+        return [f for f in self.sent_forms if not self.scan.tier2.get(f)]
+
+
+@dataclass(frozen=True)
+class _Hit:
+    start: int
+    end: int
+    form: str  # text at the span
+    sent_form: str
+
+
+def _owning_hits(text: str, scan: FloorScan, sent_forms: Sequence[str]) -> list[_Hit]:
+    """Tier-2 hits of every sent form, one per distinct span (several sent forms
+    can find the same span — casings of one string), minus those strictly
+    contained in a longer hit (D8's longest-span containment), by position."""
+    by_span: dict[tuple[int, int], str] = {}
+    for sent_form in sent_forms:
+        for o in scan.tier2.get(sent_form, []):
+            span = (o.start, o.end)
+            # The sent form that matches the span's text exactly names the hit;
+            # otherwise the first (sent order) casing that found it.
+            if span not in by_span or text[o.start:o.end] == sent_form:
+                by_span[span] = sent_form
+    hits = sorted(
+        (_Hit(s, e, text[s:e], sf) for (s, e), sf in by_span.items()),
+        key=lambda h: (h.start, -(h.end - h.start), h.form),
+    )
+    owners: list[_Hit] = []
+    reach = -1  # furthest end among kept hits, all of which start at or before h
+    for h in hits:
+        # Kept hits start ≤ h.start (sorted); one reaching to or past h.end
+        # contains h. Equal spans collapsed above, so "reaches at least as far"
+        # is "strictly longer".
+        if h.end <= reach:
+            continue
+        owners.append(h)
+        reach = h.end
+    return owners
+
+
+_SENTENCE_BREAK = re.compile(r"(?<=[.!?])\s+")
+
+
+class _Lines:
+    """Line geometry of a window, for clipping."""
+
+    def __init__(self, text: str):
+        self.lines = text.split("\n")
+        self.starts = [0]
+        for line in self.lines:
+            self.starts.append(self.starts[-1] + len(line) + 1)
+
+    def clip(self, start: int, end: int) -> tuple[str, int]:
+        """The sentence holding ``[start, end)`` within its line — the whole
+        line where the line has no sentence break — stripped, with its absolute
+        offset. Never cuts inside the occurrence."""
+        li = bisect.bisect_right(self.starts, start) - 1
+        line_start = self.starts[li]
+        line = self.lines[li]
+        rel_start, rel_end = start - line_start, min(end, line_start + len(line)) - line_start
+        cuts = [0] + [m.end() for m in _SENTENCE_BREAK.finditer(line)] + [len(line)]
+        sb = max(c for c in cuts if c <= rel_start)
+        se = min([c for c in cuts if c > rel_start] or [len(line)])
+        se = max(se, rel_end)
+        piece = line[sb:se]
+        stripped = piece.strip()
+        lead = len(piece) - len(piece.lstrip())
+        return stripped, line_start + sb + lead
+
+
+def collect_window(
+    text: str,
+    sent_forms: Sequence[str],
+    *,
+    preceding_page: Optional[str] = None,
+) -> WindowCollection:
+    """Steps A–C over one window. Pure; independent of the order of
+    ``sent_forms``. Blank forms are ignored (they can anchor nothing).
+
+    Raises ``MentionIdCollisionError`` should two distinct snippets of the
+    window hash to one mention id.
+    """
+    forms = sorted({f for f in sent_forms if f.strip()})
+    scan = floor_scan(text, forms, preceding_page=preceding_page)
+    lines = _Lines(text)
+
+    mentions: list[CollectedMention] = []
+    snippet_of_id: dict[str, str] = {}
+    items: list[MentionWireItem] = []
+    for h in _owning_hits(text, scan, forms):
+        snippet, snippet_start = lines.clip(h.start, h.end)
+        mention_id = mention_id_for_snippet(snippet)
+        known = snippet_of_id.get(mention_id)
+        if known is None:
+            snippet_of_id[mention_id] = snippet
+            items.append(MentionWireItem(mention_id=mention_id, mention=snippet))
+        elif known != snippet:
+            raise MentionIdCollisionError(
+                f"mention id {mention_id!r} is shared by two distinct snippets: "
+                f"{known!r} and {snippet!r}. The id is deterministic, so this pair "
+                f"collides on every run; raise RECORD_ID_BODY_LENGTH."
+            )
+        mentions.append(
+            CollectedMention(
+                start=h.start,
+                end=h.end,
+                form=h.form,
+                sent_form=h.sent_form,
+                page=page_at(scan.pages, h.start),
+                snippet=snippet,
+                snippet_start=snippet_start,
+                mention_id=mention_id,
+            )
+        )
+
+    sent_set = set(forms)
+    discovered: dict[str, list[str]] = {}
+    for form, hits in scan.tier2.items():
+        casings = sorted({text[o.start:o.end] for o in hits} - sent_set)
+        if casings:
+            discovered[form] = casings
+
+    return WindowCollection(
+        text=text,
+        sent_forms=forms,
+        scan=scan,
+        mentions=mentions,
+        items=items,
+        discovered_casings=discovered,
+        excluded_pages=[
+            s.url for s in excluded_page_spans(text, preceding_page=preceding_page) if s.url
+        ],
+    )
 
 
 # --- output: mentions and bundles ---------------------------------------------
@@ -101,16 +307,17 @@ class WindowInput:
 
 @dataclass(frozen=True, order=True)
 class FoldedMention:
-    """One occurrence of one form, as the fold attributed it.
+    """One occurrence of one form, located.
 
     ``(window_index, start, end)`` is the occurrence's position in the
-    document (the LOCKED order); ``form`` is the sent form that occurs exactly
-    at ``[start, end)``; ``record_id = hash(form)`` is its provenance key
-    (D11); ``page`` is code-derived from ``start``; ``snippet`` is the
-    collector's verbatim passage holding the occurrence, located at
-    ``snippet_start``; ``location`` is the collector's advisory colour;
-    ``reported_form`` is the form the collector filed the snippet under (equal
-    to ``form`` unless the fold re-keyed it).
+    document (the LOCKED order); ``form`` is the text at ``[start, end)`` — a
+    sent form or a discovered casing of one; ``record_id = hash(form)`` is its
+    provenance key (D11); ``page`` is code-derived from ``start``; ``snippet``
+    is the clipped passage holding the occurrence, at ``snippet_start``;
+    ``mention_id = hash(snippet)`` is the Location wire key; ``location`` is
+    the Location stage's description (``location_source`` says whether the
+    model gave it or the fold defaulted it); ``sent_form`` is the sent form
+    whose scan found the occurrence.
     """
 
     window_index: int
@@ -121,16 +328,18 @@ class FoldedMention:
     page: Optional[str]
     snippet: str
     snippet_start: int
+    mention_id: str
     location: str
-    reported_form: str
+    location_source: str
+    sent_form: str
 
     @property
     def occurrence(self) -> Occurrence:
         return Occurrence(self.start, self.end)
 
     @property
-    def rekeyed(self) -> bool:
-        return self.reported_form != self.form
+    def is_discovered_casing(self) -> bool:
+        return self.form != self.sent_form
 
     def synthesis_entry(self) -> SynthesisEntry:
         return SynthesisEntry(location=self.location, snippet=self.snippet)
@@ -154,69 +363,51 @@ class MentionBundle:
     def status(self) -> str:
         return BUNDLE_STATUS_NO_MENTIONS if self.is_empty else BUNDLE_STATUS_OK
 
+    def synthesis_entries(self) -> list[SynthesisEntry]:
+        """Step F: distinct snippets in locked order, each under the location
+        of its first occurrence."""
+        entries: list[SynthesisEntry] = []
+        seen: set[str] = set()
+        for m in self.mentions:
+            if m.snippet in seen:
+                continue
+            seen.add(m.snippet)
+            entries.append(m.synthesis_entry())
+        return entries
+
     def synthesis_record(self) -> SynthesisRecordInput:
-        return SynthesisRecordInput(
-            record_id=self.group_id,
-            entries=[m.synthesis_entry() for m in self.mentions],
-        )
+        return SynthesisRecordInput(record_id=self.group_id, entries=self.synthesis_entries())
 
 
 # --- output: per-window report ---------------------------------------------------
 
 
-@dataclass(frozen=True)
-class SnippetReport:
-    """A collector mention the fold could not turn into an occurrence:
-    ``unlocated`` (the snippet is not a verbatim substring of the window) or
-    ``unanchored`` (located at ``position``, but no owning occurrence of any
-    sent form lies inside it — an anaphoric sentence, or a fragment)."""
-
-    reported_form: str
-    location: str
-    snippet: str
-    position: Optional[int] = None
-
-
-@dataclass(frozen=True)
-class RekeyReport:
-    """A located snippet whose filed form was not among the owners inside it —
-    the collector's attribution was repaired from the text."""
-
-    reported_form: str
-    snippet: str
-    position: int
-    attributed_forms: tuple[str, ...]
-
-
 @dataclass
 class WindowFold:
-    """What the fold made of one window: the kept mentions (locked order), the
-    scan it rests on, the tier-1 hold (``obligations`` per sent form after
-    containment; ``unaccounted`` = the discrepancy record), and what it set
-    aside. ``candidates`` counts (form, occurrence) rows before D19's dedup."""
+    """What the fold made of one window: the collection it rests on, the
+    located mentions (locked order), and the Location stage's coverage —
+    ``described`` ids answered, ``not_described`` ids the model left out."""
 
     window_index: int
     window_id: Optional[str]
+    collection: WindowCollection
     mentions: list[FoldedMention]
-    scan: FloorScan
-    obligations: dict[str, list[Occurrence]]
-    unaccounted: dict[str, list[Occurrence]]
-    unlocated: list[SnippetReport] = field(default_factory=list)
-    unanchored: list[SnippetReport] = field(default_factory=list)
-    rekeyed: list[RekeyReport] = field(default_factory=list)
-    candidates: int = 0
-    # D7 tier 2, the discovery surface: per sent form, the distinct casings of
-    # it that occur in the window but were never sent as forms (short forms
-    # stay exact in tier 2, so they never discover anything).
-    discovered_casings: dict[str, list[str]] = field(default_factory=dict)
+    described: list[str] = field(default_factory=list)
+    not_described: list[str] = field(default_factory=list)
+    retried: list[str] = field(default_factory=list)
+    unknown_answer_ids: list[str] = field(default_factory=list)
 
     @property
-    def unaccounted_count(self) -> int:
-        return sum(len(v) for v in self.unaccounted.values())
+    def sent_forms(self) -> list[str]:
+        return self.collection.sent_forms
 
     @property
-    def has_discrepancy(self) -> bool:
-        return self.unaccounted_count > 0
+    def items(self) -> list[MentionWireItem]:
+        return self.collection.items
+
+    @property
+    def has_undescribed(self) -> bool:
+        return bool(self.not_described)
 
 
 @dataclass
@@ -246,151 +437,45 @@ class FoldResult:
         return [b.synthesis_record() for b in self.bundles if not b.is_empty]
 
 
-# --- B: owners -------------------------------------------------------------------
-
-
-@dataclass(frozen=True)
-class _Hit:
-    start: int
-    end: int
-    form: str
-
-
-def _owning_hits(scan: FloorScan) -> list[_Hit]:
-    """Tier-1 hits of every sent form, minus those strictly contained in a
-    longer hit of any form (D8's longest-match containment), by position."""
-    hits = sorted(
-        (_Hit(o.start, o.end, form) for form, occs in scan.tier1.items() for o in occs),
-        key=lambda h: (h.start, -(h.end - h.start), h.form),
-    )
-    owners: list[_Hit] = []
-    reach = -1  # furthest end among kept hits, all of which start at or before h
-    for h in hits:
-        # Kept hits start ≤ h.start (sorted); one reaching to or past h.end
-        # contains h. Equal spans cannot occur across distinct forms (the same
-        # text is the same form) nor within one (per-form hits never overlap),
-        # so "reaches at least as far" is "strictly longer".
-        if h.end <= reach:
-            continue
-        owners.append(h)
-        reach = h.end
-    return owners
-
-
-def obligations_by_form(scan: FloorScan) -> dict[str, list[Occurrence]]:
-    """Tier-1 hold obligations per sent form (sent order): the scan's hits
-    after containment. Public because the hold is meaningful on its own."""
-    by_form: dict[str, list[Occurrence]] = {form: [] for form in scan.tier1}
-    for h in _owning_hits(scan):
-        by_form[h.form].append(Occurrence(h.start, h.end))
-    return by_form
-
-
-# --- A: locate --------------------------------------------------------------------
-
-
-def _positions(text: str, snippet: str) -> list[int]:
-    """Every start offset at which *snippet* occurs in *text* (the empty
-    snippet occurs nowhere)."""
-    if not snippet:
-        return []
-    out: list[int] = []
-    i = text.find(snippet)
-    while i != -1:
-        out.append(i)
-        i = text.find(snippet, i + 1)
-    return out
-
-
 # --- the per-window fold -----------------------------------------------------------
 
 
-def _candidate_rank(m: FoldedMention) -> tuple[int, str, int, str, str]:
-    """D19: the longer snippet wins. Among equal snippets the copy the collector
-    filed under this very form is preferred (so ``reported_form`` reads
-    truthfully), then a lexical order — never the collector's answer order."""
-    own_filing = 0 if m.reported_form == m.form else 1
-    return (-len(m.snippet), m.snippet, own_filing, m.location, m.reported_form)
-
-
-def fold_window(
-    window: WindowInput,
-    *,
-    window_index: int = 0,
-    verb_fold: bool = False,
-) -> WindowFold:
-    """Steps A–C and E over one window. Pure; independent of the order of
-    ``sent_forms``, of the keys of ``mentions_by_form`` and of the mentions
-    under each key. Blank forms are ignored (they can anchor nothing)."""
-    sent_forms = [f for f in window.sent_forms if f.strip()]
-    scan = floor_scan(window.text, sent_forms, preceding_page=window.preceding_page)
-    owners = _owning_hits(scan)
-    obligations = obligations_by_form(scan)
-
-    fold = WindowFold(
+def fold_window(window: WindowInput, *, window_index: int = 0) -> WindowFold:
+    """Steps A–D over one window. Pure; independent of the order of
+    ``sent_forms`` and of the keys of ``locations_by_mention_id``."""
+    collection = collect_window(
+        window.text, window.sent_forms, preceding_page=window.preceding_page
+    )
+    mentions: list[FoldedMention] = []
+    for m in collection.mentions:
+        location = window.locations_by_mention_id.get(m.mention_id)
+        mentions.append(
+            FoldedMention(
+                window_index=window_index,
+                start=m.start,
+                end=m.end,
+                form=m.form,
+                record_id=record_id_for_phrase(m.form),
+                page=m.page,
+                snippet=m.snippet,
+                snippet_start=m.snippet_start,
+                mention_id=m.mention_id,
+                location=DEFAULT_LOCATION if location is None else location,
+                location_source=LOCATION_SOURCE_NONE if location is None else LOCATION_SOURCE_LLM,
+                sent_form=m.sent_form,
+            )
+        )
+    sent_ids = [item.mention_id for item in collection.items]
+    return WindowFold(
         window_index=window_index,
         window_id=window.window_id,
-        mentions=[],
-        scan=scan,
-        obligations=obligations,
-        unaccounted={form: [] for form in obligations},
+        collection=collection,
+        mentions=sorted(mentions),
+        described=[i for i in sent_ids if i in window.locations_by_mention_id],
+        not_described=[i for i in sent_ids if i not in window.locations_by_mention_id],
+        retried=list(window.retried_mention_ids),
+        unknown_answer_ids=list(window.unknown_answer_ids),
     )
-
-    by_occurrence: dict[tuple[str, int, int], FoldedMention] = {}
-    for reported_form, mentions in window.mentions_by_form.items():
-        for mention in mentions:
-            positions = _positions(window.text, mention.snippet)
-            if not positions:
-                fold.unlocated.append(
-                    SnippetReport(reported_form, mention.location, mention.snippet)
-                )
-                continue
-            for pos in positions:
-                end = pos + len(mention.snippet)
-                inside = [h for h in owners if pos <= h.start and h.end <= end]
-                if not inside:
-                    fold.unanchored.append(
-                        SnippetReport(reported_form, mention.location, mention.snippet, pos)
-                    )
-                    continue
-                if reported_form not in {h.form for h in inside}:
-                    fold.rekeyed.append(
-                        RekeyReport(
-                            reported_form,
-                            mention.snippet,
-                            pos,
-                            tuple(sorted({h.form for h in inside})),
-                        )
-                    )
-                for h in inside:
-                    fold.candidates += 1
-                    candidate = FoldedMention(
-                        window_index=window_index,
-                        start=h.start,
-                        end=h.end,
-                        form=h.form,
-                        record_id=record_id_for_phrase(h.form),
-                        page=page_at(scan.pages, h.start),
-                        snippet=mention.snippet,
-                        snippet_start=pos,
-                        location=mention.location,
-                        reported_form=reported_form,
-                    )
-                    key = (normalize(h.form, verb_fold=verb_fold), h.start, h.end)
-                    incumbent = by_occurrence.get(key)
-                    if incumbent is None or _candidate_rank(candidate) < _candidate_rank(incumbent):
-                        by_occurrence[key] = candidate
-
-    fold.mentions = sorted(by_occurrence.values())
-    sent_set = set(sent_forms)
-    for form, hits in scan.tier2.items():
-        casings = sorted({window.text[o.start:o.end] for o in hits} - sent_set)
-        if casings:
-            fold.discovered_casings[form] = casings
-    covered = {(m.form, m.start, m.end) for m in fold.mentions}
-    for form, occs in obligations.items():
-        fold.unaccounted[form] = [o for o in occs if (form, o.start, o.end) not in covered]
-    return fold
 
 
 # --- the document fold ------------------------------------------------------------------
@@ -401,19 +486,18 @@ def fold_document(
     *,
     verb_fold: bool = False,
 ) -> FoldResult:
-    """Steps A–E over every window, then D over the union of sent forms.
+    """Steps A–D over every window, then E over the union of sent and
+    collected forms.
 
     Raises ``GroupIdCollisionError`` (from ``assign_group_ids``) should two
     distinct keys ever hash to one id.
     """
-    folds = [
-        fold_window(w, window_index=i, verb_fold=verb_fold) for i, w in enumerate(windows)
-    ]
+    folds = [fold_window(w, window_index=i) for i, w in enumerate(windows)]
 
     key_of: dict[str, str] = {}
-    for w in windows:
-        for form in w.sent_forms:
-            if form.strip() and form not in key_of:
+    for fold in folds:
+        for form in list(fold.collection.sent_forms) + fold.collection.collected_forms:
+            if form not in key_of:
                 key_of[form] = normalize(form, verb_fold=verb_fold)
     group_ids = assign_group_ids(key_of.values())
 

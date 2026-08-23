@@ -72,16 +72,16 @@ class BatchedRelationshipNodeMetadata(ExtractionNodeMetadata):
 
 
 class BatchedMentionCollectionNodeMetadata(ExtractionNodeMetadata):
-    # v3 mention collection (PIPELINE_V3_PLAN.md D4–D7). The unit is FORMS: a
-    # search sub-window's sent forms are split into
-    # ceil(num_forms / max_forms_per_request) groups, each asked against the same
-    # window text, and the aggregation fold merges the groups back. The cap is
-    # the satisficing A/B variable of Phase 5 and, like every batched cap, part
-    # of request identity.
-    max_forms_per_request: int
+    # v3 mention collection (PIPELINE_V3_PLAN.md D4–D7, as amended 2026-08-22).
+    # The unit is MENTIONS: code collects a search sub-window's mentions and the
+    # window's distinct snippets are split into
+    # ceil(num_snippets / max_mentions_per_request) location-request groups,
+    # each asked against the same window text; the aggregation fold merges the
+    # groups back. Like every batched cap, part of request identity.
+    max_mentions_per_request: int
 
     def to_custom_id_segment(self) -> str:
-        return f"{super().to_custom_id_segment()}|gs={self.max_forms_per_request}"
+        return f"{super().to_custom_id_segment()}|gs={self.max_mentions_per_request}"
 
 
 class AggregationFoldMetadata(BaseModel):

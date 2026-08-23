@@ -24,12 +24,32 @@ class LLMPhraseExtractionRequestBundle(BaseModel):
     llm_phrase_recursive_search_req_ids: dict[str, list[BatchRequestIDType]] = Field(
         default_factory=dict
     )
-    # v3 mention collection, per sub-window (keyed by its search_sub_bounds
-    # entry): the ordered list of form groups (group 1 == index 0). Each group
-    # covers at most `max_forms_per_request` of THAT sub-window's sent forms and
-    # is asked against that sub-window's text; the aggregation fold merges the
-    # groups of all the chunk's sub-windows into one FoldResult per chunk.
+    # v3 mention collection (PIPELINE_V3_PLAN.md D4–D7, as amended 2026-08-22).
+    # Per sub-window (keyed by its search_sub_bounds entry): the ordered list of
+    # mention-location request groups (group 1 == index 0). Mentions are
+    # collected in CODE from the window text and the window's sent forms; each
+    # group asks the LLM for the location of at most `max_mentions_per_request`
+    # of the window's distinct snippets, against the same window text; the fold
+    # merges the groups back. A window with no mentions gets one dummy request.
     llm_phrase_mention_req_ids: dict[str, list[BatchRequestIDType]] = Field(
+        default_factory=dict
+    )
+    # Per sub-window: the forms the mention stage was handed for it — the CHUNK's
+    # search ∪ brute casings, filtered to the forms that OCCUR in the sub-window
+    # (user decision 2026-08-22), sorted — written when the group ids are embedded.
+    # Stored so the fold can re-collect from the text + these forms alone — the
+    # request carries snippets, not forms (user decision), and the fold has no
+    # search map.
+    llm_phrase_mention_sent_forms: dict[str, list[str]] = Field(default_factory=dict)
+    # Location-stage under-answer policy (user decision 2026-08-22): once a
+    # sub-window's group requests are complete it is ASSESSED — the mention ids
+    # the model left undescribed are stored here (an empty list = assessed, none
+    # missing; a key absent = not yet assessed) and, when any are missing, ONE
+    # retry pass asks for those items again (split by `max_mentions_per_request`
+    # into the request ids below, parallel to the stored ids' grouping). The fold
+    # reads the retry answers after the groups'; nothing is retried twice.
+    llm_phrase_mention_retry_mention_ids: dict[str, list[str]] = Field(default_factory=dict)
+    llm_phrase_mention_retry_req_ids: dict[str, list[BatchRequestIDType]] = Field(
         default_factory=dict
     )
     # v2 relationship (out of every chain since v3 3.1; retired at 3.3).

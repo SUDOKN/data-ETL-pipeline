@@ -257,6 +257,7 @@ async def write_partial_run_dump(
                 stopped_at=stopped_at.value,
                 stages_run=stages_run,
                 stages_disabled=sorted(stage.value for stage in disabled_stages),
+                page_exclusion=pipeline_context.page_exclusion,
             ),
             name_suffix="__partial",
         )

@@ -1,7 +1,17 @@
-"""The v3 mention-collection node (PIPELINE_V3_PLAN.md Phase 3.1): the stage
-that replaced relationship. One request per (chunk, sub-window, form group);
-the aggregation fold is computed at ``get_result`` time, per chunk, from the
-completed map and the subject text. See the node service for the contracts.
+"""The v3 mention-collection node (PIPELINE_V3_PLAN.md Phase 3.1, amended
+2026-08-22): code collects each sub-window's mentions, one LLM request per
+(chunk, sub-window, mention group) asks for their LOCATION, and the aggregation
+fold is computed at ``get_result`` time, per chunk, from the completed map and
+the subject text. See the node service for the contracts.
+
+TWO PASSES (user decision 2026-08-22, the under-answer policy). The node is a
+recursive node so ``embed_request_ids`` runs until it adds nothing: pass 1
+embeds every sub-window's group requests (chunk-wide, occurrence-filtered
+forms); once those are complete, pass 2 ASSESSES each window — the ids its
+answers left undescribed are stored, and a window with any gets ONE retry
+request set for just those items; a third entry finds nothing to add. Eager runs
+loop in-process (``BaseLLMRecursiveExtractionNode.execute``); batch runs take
+one pass per invocation, like the recursive search.
 """
 
 from __future__ import annotations
@@ -27,9 +37,13 @@ from core.models.deferred_extraction.deferred_phrase_extraction_requests import 
 from core.models.extraction_results.llm_phrase_extraction_results_v2 import (
     LLMPhraseExtractionMetadataV2,
 )
+from core.models.extraction_schemas.mention_collection import MentionWireItem
 from core.models.field_types import ExtractionFieldType
 from core.models.pipeline_nodes.base.base_llm_extraction_node import (
     BaseLLMExtractionNode,
+)
+from core.models.pipeline_nodes.base.base_llm_recursive_extraction_node import (
+    BaseLLMRecursiveExtractionNode,
 )
 from core.models.pipeline_nodes.base.base_node import (
     LLMExtractedFieldTypeVar,
@@ -41,12 +55,17 @@ from core.models.pipeline_nodes.base.pipeline_stage import (
     PipelineStage,
 )
 from core.services.pipeline_nodes.multi_stage.llm_phrase_mention_collection_node_service import (
+    collect_sub_window,
     create_missing_mention_collection_requests,
+    forms_occurring_in_window,
     get_chunk_fold,
-    get_window_forms,
-    get_window_mentions,
+    get_chunk_forms,
+    get_window_locations,
+    group_digest_payload,
     require_mention_metadata,
-    split_into_form_groups,
+    retry_items_of_window,
+    split_into_item_groups,
+    stored_window_forms,
 )
 from core.utils.aggregation_fold import FoldResult
 from core.utils.request_custom_id_util import upstream_digest_segment
@@ -55,7 +74,7 @@ logger = logging.getLogger(__name__)
 
 
 class LLMPhraseMentionCollectionNode(
-    BaseLLMExtractionNode[LLMExtractedFieldTypeVar, FoldResult]
+    BaseLLMRecursiveExtractionNode[LLMExtractedFieldTypeVar, FoldResult]
 ):
     stage: ClassVar[PipelineStage] = PipelineStage.mention_collection
 
@@ -98,30 +117,53 @@ class LLMPhraseMentionCollectionNode(
         mention_metadata = require_mention_metadata(metadata)
         search_map = self.get_upstream_phrase_search_map(pipeline_context)
         recursive_map = self.get_upstream_recursive_search_map(pipeline_context)
+        # The mentions are collected HERE, from the text: a window's group count
+        # is the count of its distinct snippets over the group cap, and that is
+        # known only by scanning. The orchestrator puts the text on the context
+        # (``PipelineContext.subject_text``) for exactly this.
+        subject_text = pipeline_context.subject_text
+        if subject_text is None:
+            raise ValueError(
+                f"Cannot embed req ids for mention collection: PipelineContext.subject_text "
+                f"is None for subject:{subject_unique_id}, field:{self.field_type.name}. "
+                f"The orchestrator must set it (the node collects mentions from the text "
+                f"when it mints its request ids)."
+            )
 
-        # Both search passes are complete by now (a node only reaches its
-        # successor once its own requests are), so a window's form list is final
-        # and its group count can be computed once, upfront.
+        # PASS 1 — the group requests. Both search passes are complete by now (a
+        # node only reaches its successor once its own requests are), so the
+        # chunk's pooled form list is final and each window's collection + group
+        # count can be computed once, upfront.
+        embedded_groups = False
         for chunk_bounds, bundle in chunked_request_map.items():
             if not bundle.search_sub_bounds:
                 raise ValueError(
                     f"Cannot embed req ids for mention collection: search_sub_bounds is "
                     f"empty for {subject_unique_id}>{chunk_bounds}, field:{self.field_type.name}."
                 )
-            for sub_bounds in bundle.search_sub_bounds:
-                if sub_bounds in bundle.llm_phrase_mention_req_ids:
-                    continue  # already embedded; group count is stable once computed
-                forms = await get_window_forms(
-                    subject_unique_id=subject_unique_id,
-                    field_type=self.field_type,
-                    chunk_bounds=chunk_bounds,
-                    sub_bounds=sub_bounds,
-                    extraction_bundle=bundle,
-                    llm_phrase_search_gpt_request_map=search_map,
-                    llm_phrase_recursive_search_gpt_request_map=recursive_map,
-                    timestamp=timestamp,
+            pending = [
+                sub_bounds
+                for sub_bounds in bundle.search_sub_bounds
+                if sub_bounds not in bundle.llm_phrase_mention_req_ids
+            ]
+            if not pending:
+                continue  # already embedded; forms stored and group count stable
+            chunk_forms = await get_chunk_forms(
+                subject_unique_id=subject_unique_id,
+                field_type=self.field_type,
+                chunk_bounds=chunk_bounds,
+                extraction_bundle=bundle,
+                llm_phrase_search_gpt_request_map=search_map,
+                llm_phrase_recursive_search_gpt_request_map=recursive_map,
+                timestamp=timestamp,
+            )
+            for sub_bounds in pending:
+                forms = forms_occurring_in_window(subject_text, sub_bounds, chunk_forms)
+                bundle.llm_phrase_mention_sent_forms[sub_bounds] = forms
+                collection = collect_sub_window(subject_text, sub_bounds, forms)
+                groups = split_into_item_groups(
+                    collection.items, mention_metadata.max_mentions_per_request
                 )
-                groups = split_into_form_groups(forms, mention_metadata.max_forms_per_request)
                 bundle.llm_phrase_mention_req_ids[sub_bounds] = [
                     self.get_request_custom_id(
                         subject_unique_id=subject_unique_id,
@@ -130,10 +172,87 @@ class LLMPhraseMentionCollectionNode(
                         sub_bounds=sub_bounds,
                         group_index=group_index,
                         metadata=metadata,
-                        group_forms=group,
+                        group_items=group,
                     )
                     for group_index, group in enumerate(groups)
                 ]
+                embedded_groups = True
+        if embedded_groups:
+            return  # the groups must complete before any window can be assessed
+
+        # PASS 2 — assessment + the retry (see the module docstring). A window is
+        # assessed once, when every embedded request of the field is complete.
+        unassessed = [
+            (chunk_bounds, bundle, sub_bounds)
+            for chunk_bounds, bundle in chunked_request_map.items()
+            for sub_bounds in bundle.search_sub_bounds
+            if sub_bounds not in bundle.llm_phrase_mention_retry_mention_ids
+        ]
+        if not unassessed:
+            return
+        if not await self.are_all_requests_complete(
+            subject_unique_id=subject_unique_id, chunked_request_map=chunked_request_map
+        ):
+            logger.info(
+                f"[{subject_unique_id}] Waiting for the mention-location requests to "
+                f"complete before assessing windows for a retry ({self.field_type.name})."
+            )
+            return
+        completed_request_map = await self.get_completed_request_map(
+            subject_unique_id=subject_unique_id, chunked_request_map=chunked_request_map
+        )
+        for chunk_bounds, bundle, sub_bounds in unassessed:
+            answer = await get_window_locations(
+                subject_unique_id=subject_unique_id,
+                field_type=self.field_type,
+                chunk_bounds=chunk_bounds,
+                sub_bounds=sub_bounds,
+                extraction_bundle=bundle,
+                completed_request_map=completed_request_map,
+                timestamp=timestamp,
+                include_retry=False,
+            )
+            missing = answer.missing_ids
+            bundle.llm_phrase_mention_retry_mention_ids[sub_bounds] = missing
+            if not missing:
+                continue
+            collection = collect_sub_window(
+                subject_text,
+                sub_bounds,
+                stored_window_forms(
+                    subject_unique_id, self.field_type, chunk_bounds, sub_bounds, bundle
+                ),
+            )
+            retry_groups = split_into_item_groups(
+                retry_items_of_window(
+                    subject_unique_id, self.field_type, sub_bounds, collection, missing
+                ),
+                mention_metadata.max_mentions_per_request,
+            )
+            bundle.llm_phrase_mention_retry_req_ids[sub_bounds] = [
+                self.get_request_custom_id(
+                    subject_unique_id=subject_unique_id,
+                    field_type=self.field_type,
+                    chunk_bounds=chunk_bounds,
+                    sub_bounds=sub_bounds,
+                    group_index=group_index,
+                    metadata=metadata,
+                    group_items=group,
+                    retry_index=1,
+                )
+                for group_index, group in enumerate(retry_groups)
+            ]
+            unknown_note = (
+                f" ({len(answer.unknown_answer_ids)} answered id(s) never sent)"
+                if answer.unknown_answer_ids
+                else ""
+            )
+            logger.info(
+                f"[{subject_unique_id}] mention_collection: {len(missing)} of "
+                f"{len(answer.sent_ids)} mention(s) in sub-window {sub_bounds} of chunk "
+                f"{chunk_bounds} ({self.field_type.name}) came back undescribed{unknown_note}; "
+                f"embedding {len(retry_groups)} retry request(s)."
+            )
 
     def get_embedded_request_ids(
         self,
@@ -150,6 +269,8 @@ class LLMPhraseMentionCollectionNode(
                 )
             for group_req_ids in bundle.llm_phrase_mention_req_ids.values():
                 request_ids.update(group_req_ids)
+            for retry_req_ids in bundle.llm_phrase_mention_retry_req_ids.values():
+                request_ids.update(retry_req_ids)
         return request_ids
 
     @staticmethod
@@ -160,17 +281,21 @@ class LLMPhraseMentionCollectionNode(
         sub_bounds: str,
         group_index: int,
         metadata: LLMPhraseExtractionMetadataV2,
-        group_forms: list[str],
+        group_items: list[MentionWireItem],
+        retry_index: int | None = None,
     ) -> BatchRequestIDType:
-        # `|ud=` digests the group's own forms into its identity: change what
-        # search feeds this window and the id changes, so a stale response is
-        # never found (the same F12 discipline every downstream stage follows).
+        # `|ud=` digests the group's own items (ids + snippets) into its
+        # identity: change what the window's text or forms yield and the id
+        # changes, so a stale response is never found (the same F12 discipline
+        # every downstream stage follows). A retry request carries
+        # `>retry>{n}>` before its group index; a first-pass id is unchanged.
+        retry = f"retry>{retry_index}>" if retry_index is not None else ""
         return (
             f"{subject_unique_id}>{field_type.name}"
             f">{STAGE_REQUEST_ID_TOKEN[PipelineStage.mention_collection]}"
-            f">chunk>{chunk_bounds}>sub>{sub_bounds}>group>{group_index}>"
+            f">chunk>{chunk_bounds}>sub>{sub_bounds}>{retry}group>{group_index}>"
             f"{require_mention_metadata(metadata).to_custom_id_segment()}"
-            f"{upstream_digest_segment(group_forms)}"
+            f"{upstream_digest_segment(group_digest_payload(group_items))}"
         )
 
     async def create_batch_requests(
@@ -192,16 +317,10 @@ class LLMPhraseMentionCollectionNode(
             missing_request_ids=missing_request_ids,
             subject_text=scraped_text_file.text,
             phrase_mention_collection_prompt=self.phrase_mention_collection_prompt,
-            llm_phrase_search_gpt_request_map=self.get_upstream_phrase_search_map(
-                pipeline_context
-            ),
-            llm_phrase_recursive_search_gpt_request_map=self.get_upstream_recursive_search_map(
-                pipeline_context
-            ),
             timestamp=timestamp,
             llm_model=mention_metadata.llm_model,
             model_params=mention_metadata.model_params,
-            max_forms_per_request=mention_metadata.max_forms_per_request,
+            max_mentions_per_request=mention_metadata.max_mentions_per_request,
             eager=eager,
         )
 
@@ -217,8 +336,8 @@ class LLMPhraseMentionCollectionNode(
         subject_text: str,
         verb_fold: bool,
     ) -> FoldResult:
-        """The chunk's aggregation fold (needs the text: windows are located in
-        it, and the fold re-attributes from it)."""
+        """The chunk's aggregation fold (needs the text: mentions are collected
+        from it, and windows are located in it)."""
         return await get_chunk_fold(
             subject_unique_id=subject_unique_id,
             field_type=field_type,
@@ -241,7 +360,7 @@ class LLMPhraseMentionCollectionNode(
         against this node's request (pure JSON over an in-memory map: free)."""
         for chunk_bounds, bundle in chunked_request_map.items():
             for sub_bounds in bundle.llm_phrase_mention_req_ids:
-                await get_window_mentions(
+                await get_window_locations(
                     subject_unique_id=subject_unique_id,
                     field_type=self.field_type,
                     chunk_bounds=chunk_bounds,

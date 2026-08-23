@@ -23,6 +23,7 @@ from core.models.pipeline_nodes.base.pipeline_stage import (
 )
 from llm_providers.field_types import BatchRequestIDType
 from scraper.models.s3.scraped_text_file import ScrapedTextFile
+from core.utils.floor_scan import PageExclusion
 
 logger = logging.getLogger(__name__)
 
@@ -122,6 +123,9 @@ class PipelineContext:
     ``subject_name`` is pre-populated by the orchestrator before any concept/keyword
     pipeline executes so that phrase_relationship nodes can embed the subject name in
     their batch requests without needing it threaded through every method signature.
+    ``subject_text`` (the scraped text, 2026-08-22) is populated the same way, for the
+    v3 mention-collection node: it collects a window's mentions in code when it MINTS
+    its request ids, and ``embed_request_ids`` does not receive the text file.
 
     The internal ``_results`` dict preserves the existing keying convention of
     ``pipeline_context[NodeClass]`` used throughout the extraction nodes.
@@ -136,8 +140,14 @@ class PipelineContext:
         self,
         subject_name: Optional[str] = None,
         stage_toggles: Optional[StageToggles] = None,
+        subject_text: Optional[str] = None,
     ) -> None:
         self.subject_name: Optional[str] = subject_name
+        self.subject_text: Optional[str] = subject_text
+        # Set by a phrase prefill node that trims excluded pages before chunking
+        # (``ChunkingStrategy.drop_excluded_pages``): what was removed, for the
+        # dump's provenance. None = no trimming ran in this pipeline.
+        self.page_exclusion: Optional[PageExclusion] = None
         self.stage_toggles: StageToggles = stage_toggles or StageToggles()
         self._results: dict[
             type[BaseNode], dict[BatchRequestIDType, GPTBatchRequest]

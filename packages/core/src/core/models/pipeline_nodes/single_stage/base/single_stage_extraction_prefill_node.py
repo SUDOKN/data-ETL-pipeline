@@ -15,7 +15,7 @@ from llm_providers.models.file_objects.prompt import Prompt
 from core.models.extraction_results.single_stage_extraction_results import (
     LLMSingleStageExtractionMetadata,
 )
-from core.models.chunking_strat import ChunkingStrategy
+from core.models.chunking_strat import ChunkingStrategy, chunk_break_predicate
 from core.models.pipeline_nodes.base.base_node import (
     PipelineContext,
 )
@@ -75,6 +75,7 @@ class SingleStageExtractionPrefillNode(PrefillNode[SingleStageFieldTypeVar]):
                 overlap_ratio=self.chunk_strategy.overlap,
                 max_chunks=self.chunk_strategy.max_chunks,
                 llm_model=self.extraction_metadata.single_stage.llm_model,
+                break_before=chunk_break_predicate(self.chunk_strategy),
             )
 
             deferred_basic_extraction = DeferredSingleStageExtractionRequests(

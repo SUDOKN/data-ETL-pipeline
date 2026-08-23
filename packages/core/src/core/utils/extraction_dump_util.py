@@ -76,6 +76,7 @@ from core.models.extraction_schemas.screening import (
 from core.models.extraction_schemas.search import LLMSearchResults
 from core.models.field_types import ExtractionFieldType
 from core.models.skos_concept import Concept
+from core.utils.floor_scan import PageExclusion
 from core.utils.subject_name_lint import count_own_name_hits
 
 logger = logging.getLogger(__name__)
@@ -417,6 +418,9 @@ _TAGGING_TREE_FIELD = "llm_phrase_recursive_tagging_reqs"
 _RECURSIVE_SEARCH_FIELD = "llm_phrase_recursive_search_req_ids"
 # v3: per sub-window -> that sub-window's mention-collection group requests
 _MENTION_COLLECTION_FIELD = "llm_phrase_mention_req_ids"
+# v3: per sub-window -> that sub-window's mention-location RETRY requests (the
+# under-answer pass; absent when no window needed one)
+_MENTION_RETRY_FIELD = "llm_phrase_mention_retry_req_ids"
 # The single-stage bundle's one request field. It predates the ``_req_id``
 # naming convention the suffix sweep below reads, and renaming it would break
 # loading every persisted deferred document, so it is special-cased instead.
@@ -561,6 +565,17 @@ def build_chunk_requests(
                     for sub_bounds, group_req_ids in sorted(by_sub_window.items())
                 }
             continue
+        if field_name == _MENTION_RETRY_FIELD:
+            by_sub_window = getattr(bundle, field_name, None)
+            if by_sub_window:
+                requests["llm_phrase_mention_collection_retry"] = {
+                    sub_bounds: [
+                        _request_entry(request_id, completed_requests)
+                        for request_id in retry_req_ids
+                    ]
+                    for sub_bounds, retry_req_ids in sorted(by_sub_window.items())
+                }
+            continue
         if field_name.endswith("_req_id"):
             request_id = getattr(bundle, field_name, None)
             if request_id is not None:
@@ -683,8 +698,14 @@ def build_run_provenance(
     stopped_at: Optional[str] = None,
     stages_run: Optional[list[str]] = None,
     stages_disabled: Optional[list[str]] = None,
+    page_exclusion: Optional[PageExclusion] = None,
 ) -> dict[str, object]:
     """Everything that decided what this dump contains, for partial and full alike.
+
+    ``page_exclusion`` (2026-08-23) is what a phrase prefill node removed from the
+    text before chunking — rule version and every dropped page — so a too-broad
+    exclusion rule is visible in the dump; None means no trimming ran (the
+    single-stage pipelines read the full text).
 
     ``metadata`` is dumped whole rather than picked apart into the fields that
     seem to matter. Provenance that lists a chosen subset is provenance that goes
@@ -709,6 +730,8 @@ def build_run_provenance(
         "num_tokens": scraped_text_file.num_tokens,
         "last_modified_on": scraped_text_file.last_modified_on.isoformat(),
     }
+    if page_exclusion is not None:
+        provenance["scraped_text"]["excluded_pages"] = page_exclusion.to_dump()
     provenance["extraction_metadata"] = metadata.model_dump(mode="json")
     return provenance
 

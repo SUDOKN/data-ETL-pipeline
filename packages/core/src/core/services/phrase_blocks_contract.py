@@ -492,57 +492,133 @@ def hold_response_to_sent_record_ids(
 
 
 # ---------------------------------------------------------------------------
-# v3 (pipeline v3, PIPELINE_V3_PLAN.md): forms hold and synthesis record blocks
+# v3 (pipeline v3, PIPELINE_V3_PLAN.md): mention blocks and synthesis record blocks
 # ---------------------------------------------------------------------------
 #
-# Mention collection (D4–D7) sends bare forms on the phrases block above and is
-# answered per form. It is held EXACTLY, not reconciled: the reconciler casefolds
-# and repairs by containment, and v3 deliberately sends case variants as distinct
-# forms (D5) — `Aluminum` and `aluminum` in one request — so the reconciler
-# would fuse them onto whichever it claimed first and report the other as
-# missing. Unknown keys drop and warn (D6 as amended: drop-and-flag); missing
-# forms warn, never raise — the mechanical floor scan (D7) is what makes the hole
-# visible, and a raising hold would replay a deterministic temp-0 mis-echo to
-# death.
+# Mention collection (D4–D7, as amended 2026-08-22) collects mentions in CODE
+# and asks the LLM only for each one's location. Its request carries the
+# window's distinct snippets as two blocks — the mention ids as a bare array,
+# then the `{mention_id, mention}` array — and is answered per mention id. It is
+# held EXACTLY on ids and WARN-ONLY both ways: an id never sent is dropped (the
+# fold has nothing to attach it to), a sent id with no answer is left absent
+# and the fold defaults that mention's location. Nothing raises — the model can
+# no longer lose a mention, only fail to colour it, and a raising hold would
+# replay a temperature-0 mis-echo to death.
 #
 # Synthesis (D15) is answered per record and holds with the record-id hold
 # above; its records block is an ARRAY of {record_id, entries} rather than the v2
 # map — user decision — so `_record_ids_of` reads ids off either shape.
 
+MENTION_IDS_OPEN = "<<<MENTION_IDS"
+MENTION_IDS_CLOSE = "MENTION_IDS>>>"
+MENTIONS_OPEN = "<<<MENTIONS"
+MENTIONS_CLOSE = "MENTIONS>>>"
 
-def hold_response_to_sent_forms(
+# The mention blocks sit at the very BOTTOM of a message whose top is scraped
+# text, so a page that happened to contain a fence line must not be able to
+# hijack the reader: both readers take the LAST opening fence in the message
+# and require the closing fence at its very end. A snippet inside the payload
+# cannot contain a raw newline (json.dumps escapes it), so no opening fence can
+# sit inside the payload either.
+def _last_fenced_payload(user_message: str, open_token: str, close_token: str) -> Optional[str]:
+    message = user_message.rstrip()
+    if not message.endswith(close_token):
+        return None
+    body = message[: -len(close_token)].rstrip()
+    idx = body.rfind(open_token + "\n")
+    if idx == -1 or (idx > 0 and body[idx - 1] != "\n"):
+        return None
+    return body[idx + len(open_token) + 1 :]
+
+
+def render_mention_ids_block(mention_ids: Iterable[str]) -> str:
+    """The block naming which mentions the model is being asked about."""
+    payload = json.dumps(list(mention_ids), ensure_ascii=False)
+    return f"{MENTION_IDS_OPEN}\n{payload}\n{MENTION_IDS_CLOSE}"
+
+
+def render_mention_blocks(mentions: list[dict]) -> str:
+    """Both mention blocks, ids first, from the one list they both describe.
+
+    ``mentions`` is a list of ``{"mention_id": ..., "mention": ...}`` dicts (the
+    ``model_dump()`` of ``MentionWireItem``); the ids block is derived from the
+    same list so the two blocks cannot drift. One mention per physical line,
+    ``ensure_ascii=False`` so the model sees the site's text as written. Raises
+    on a duplicate id — two mentions under one id would fuse at the hold.
+    """
+    ids = [m["mention_id"] for m in mentions]
+    if len(set(ids)) != len(ids):
+        dupes = sorted({mid for mid in ids if ids.count(mid) > 1})
+        raise ValueError(f"duplicate mention_id(s) in mention-location request: {dupes}")
+    payload = json.dumps(mentions, separators=_SUMMARY_SEPARATORS, ensure_ascii=False)
+    return f"{render_mention_ids_block(ids)}\n\n{MENTIONS_OPEN}\n{payload}\n{MENTIONS_CLOSE}"
+
+
+def sent_mention_ids_from_user_message(user_message: str) -> Optional[list[str]]:
+    """The mention ids this request asked about, or None when it carried no
+    blocks. The ids block precedes the mentions block, so it is read off the
+    message with the mentions block removed."""
+    payload = _last_fenced_payload(user_message, MENTIONS_OPEN, MENTIONS_CLOSE)
+    if payload is None:
+        return None
+    head = user_message.rstrip()[: user_message.rstrip().rfind(MENTIONS_OPEN)]
+    ids_payload = _last_fenced_payload(head, MENTION_IDS_OPEN, MENTION_IDS_CLOSE)
+    if ids_payload is None:
+        raise ValueError(
+            "user message carries a mentions block but no mention-ids block before it; "
+            "requests are built by render_mention_blocks, so this request is malformed"
+        )
+    return json.loads(ids_payload)
+
+
+def sent_mentions_from_user_message(user_message: str) -> Optional[list[dict]]:
+    """The ``{mention_id, mention}`` entries this request carried, or None."""
+    payload = _last_fenced_payload(user_message, MENTIONS_OPEN, MENTIONS_CLOSE)
+    return None if payload is None else json.loads(payload)
+
+
+def hold_response_to_sent_mention_ids(
     *,
     user_message: str,
-    response_by_form: dict[str, V],
+    response_by_mention_id: dict[str, V],
     where: str,
 ) -> dict[str, V]:
-    """Hold a form-keyed mention-collection response to its request, exactly.
+    """Hold an id-keyed mention-location response to its request, exactly.
 
-    Returns the answered forms in SENT order. A response key that is not
-    exactly a sent form is dropped (warned); a sent form with no answer is left
-    absent (warned) — absent, not empty, so downstream can still tell
-    never-answered from answered-nothing. Returns the response unchanged when
-    the request carried no phrases block (foreign or malformed request; the
-    v2 holds make the same choice).
+    Returns the answered ids in SENT order. An id that was never sent is
+    dropped (warned); a sent id with no answer is left absent (warned) — the
+    fold gives that mention its default location. Raises only when the
+    request's own two blocks disagree, which means the request was not built by
+    ``render_mention_blocks``. Returns the response unchanged when the request
+    carried no mention-ids block (foreign or malformed request; the other holds
+    make the same choice).
     """
-    sent_forms = sent_phrases_from_user_message(user_message)
-    if sent_forms is None:
-        return response_by_form
+    sent_ids = sent_mention_ids_from_user_message(user_message)
+    if sent_ids is None:
+        return response_by_mention_id
 
-    sent_set = set(sent_forms)
-    unknown = [form for form in response_by_form if form not in sent_set]
+    sent_mentions = sent_mentions_from_user_message(user_message)
+    if sent_mentions is not None and {m["mention_id"] for m in sent_mentions} != set(sent_ids):
+        raise ValueError(
+            f"{where}: the request's mention-ids block and mentions block disagree "
+            f"({sorted(set(sent_ids) ^ {m['mention_id'] for m in sent_mentions})}); "
+            f"requests are built from one list, so this request is malformed"
+        )
+
+    sent_set = set(sent_ids)
+    unknown = [mid for mid in response_by_mention_id if mid not in sent_set]
     if unknown:
         logger.warning(
-            f"{where}: dropping {len(unknown)} response form(s) that match no "
-            f"sent form exactly: {unknown}"
+            f"{where}: dropping {len(unknown)} response mention id(s) that were never "
+            f"sent: {unknown}"
         )
-    missing = [form for form in sent_forms if form not in response_by_form]
+    missing = [mid for mid in sent_ids if mid not in response_by_mention_id]
     if missing:
         logger.warning(
-            f"{where}: response answered {len(response_by_form) - len(unknown)} of "
-            f"{len(sent_forms)} sent forms; nothing came back for {missing}"
+            f"{where}: response described {len(response_by_mention_id) - len(unknown)} of "
+            f"{len(sent_ids)} sent mentions; no location came back for {missing}"
         )
-    return {form: response_by_form[form] for form in sent_forms if form in response_by_form}
+    return {mid: response_by_mention_id[mid] for mid in sent_ids if mid in response_by_mention_id}
 
 
 def render_records_array_block(records: list[dict]) -> str:

@@ -10,6 +10,7 @@ from llm_providers.models.llm_model import GPT_4o_mini
 from llm_providers.models.open_ai.gpt_model_params import GPTModelParams
 
 from core.models.chunking_strat import MATERIAL_CAP_CHUNKING_STRAT
+from core.models.extraction_schemas.mention_collection import MentionWireItem
 from core.models.extraction_results.llm_phrase_extraction_results import (
     BatchedMentionCollectionNodeMetadata,
 )
@@ -87,7 +88,7 @@ def test_contract_products_share_the_pure_product_mention_identity():
                     prompt_name="product_phrase_mention_collection",
                     prompt_version_id="pv1",
                     created_at=datetime(2026, 8, 21),
-                    max_forms_per_request=30,
+                    max_mentions_per_request=50,
                 )
             },
         )(),
@@ -98,7 +99,10 @@ def test_contract_products_share_the_pure_product_mention_identity():
         sub_bounds="0:493",
         group_index=0,
         metadata=metadata,
-        group_forms=["Aluminum", "aluminum"],
+        group_items=[
+            MentionWireItem(mention_id="m1", mention="We stock Aluminum."),
+            MentionWireItem(mention_id="m2", mention="aluminum | brass"),
+        ],
     )
     contract = ContractProductMentionCollectionNode.get_request_custom_id(
         field_type=KeywordTypeEnum.contract_products, **kwargs
@@ -108,9 +112,19 @@ def test_contract_products_share_the_pure_product_mention_identity():
     )
     assert contract == pure
     assert ">products>llm_phrase_mention_collection>chunk>0:1000>sub>0:493>group>0>" in contract
-    assert "|gs=30|ud=" in contract
-    # a different form list is a different question
+    assert "|gs=50|ud=" in contract
+    # a different item list is a different question
     other = PureProductMentionCollectionNode.get_request_custom_id(
-        field_type=KeywordTypeEnum.products, **{**kwargs, "group_forms": ["Aluminum"]}
+        field_type=KeywordTypeEnum.products,
+        **{**kwargs, "group_items": [MentionWireItem(mention_id="m1", mention="We stock Aluminum.")]},
     )
     assert other != pure
+    # the retry pass carries `>retry>1>` before the group index and is shared the same way
+    retry_contract = ContractProductMentionCollectionNode.get_request_custom_id(
+        field_type=KeywordTypeEnum.contract_products, retry_index=1, **kwargs
+    )
+    retry_pure = PureProductMentionCollectionNode.get_request_custom_id(
+        field_type=KeywordTypeEnum.products, retry_index=1, **kwargs
+    )
+    assert retry_contract == retry_pure != pure
+    assert ">products>llm_phrase_mention_collection>chunk>0:1000>sub>0:493>retry>1>group>0>" in retry_contract

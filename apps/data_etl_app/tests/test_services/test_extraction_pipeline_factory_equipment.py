@@ -63,8 +63,8 @@ def test_create_equipment_extraction_pipeline_builds_expected_node_chain():
     mention_node = recursive_search_node.next_node
     assert isinstance(mention_node, EquipmentMentionCollectionNode)
     assert prefill.llm_phrase_mention_collection_metadata is not None
-    assert prefill.llm_phrase_mention_collection_metadata.max_forms_per_request == (
-        ExtractionPipelineFactory.DEFAULT_MENTION_COLLECTION_MAX_FORMS_PER_REQUEST
+    assert prefill.llm_phrase_mention_collection_metadata.max_mentions_per_request == (
+        ExtractionPipelineFactory.DEFAULT_MENTION_COLLECTION_MAX_MENTIONS_PER_REQUEST
     )
     assert prefill.aggregation_fold_metadata is not None
     assert prefill.aggregation_fold_metadata.verb_fold is False  # keyword field: L2 off
