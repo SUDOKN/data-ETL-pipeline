@@ -65,11 +65,12 @@ every `ud=` digest identical, only `pv=` differs. That A/B has been fully analys
 
 **Still unrun after all of the above:** the `loc=1` vs `loc=0` A/B. Both runs so far are the same arm.
 
-**Tree:** uncommitted on `new-ground-truth-v2` on top of `90139b1` — 39 tracked files changed, plus 4
-untracked paths (`packages/core/src/core/utils/focal_form_lint.py`,
-`packages/core/tests/test_utils/test_focal_form_lint.py`,
-`apps/data_etl_app/tests/test_services/test_assemble_prompts_check.py`,
-`pipeline_v3_evidence/2026-08-23_run_200044_synthesis/`). Suites core+app 968 / llm 52 green at this point.
+**Tree:** all of the above is COMMITTED as `4506de6` on `new-ground-truth-v2` (43 files; the `ontology`
+submodule is deliberately left dirty — it is the user's own). Suites at that commit: 1,020 passed,
+1 deselected (the known idempotence property). Per the evidence-folder convention, only `README.md` and
+the analysis script are tracked; `synthesis_ab_output.txt`, `thin_evidence_records.json` and
+`invented_dealings_176.json` are gitignored and live on disk only — regenerate them with
+`python3 pipeline_v3_evidence/2026-08-23_run_200044_synthesis/synthesis_ab.py` from the repo root.
 
 **Do not re-litigate:** publish is the user's action, not the agent's. The `[the manufacturer]` bracket
 convention is retired from synthesis only. `ruff format` is not enforced on `synthesis_dump_util.py` (it
