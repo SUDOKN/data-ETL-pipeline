@@ -4,9 +4,10 @@
 One block per chunk: the arm and counts, then one row per record — the group's
 key and member forms (so a wrong merge is visible next to what was written
 about it), the focal form the model was told, how many entries it saw, the
-synthesis it returned (or why none), and the own-name lint over that synthesis
-— plus the ids the model answered that were never sent and the ids a retry
-re-asked for.
+synthesis it returned (or why none), and the two lints over that synthesis — the
+own-name count, and whether an entity-shaped focal form went missing from the
+paragraph written for it (``focal_form_lint``) — plus the ids the model answered
+that were never sent and the ids a retry re-asked for.
 """
 
 from __future__ import annotations
@@ -16,6 +17,7 @@ from typing import Any, Optional
 from core.services.pipeline_nodes.multi_stage.llm_phrase_synthesis_node_service import (
     ChunkSynthesisResult,
 )
+from core.utils.focal_form_lint import focal_form_absent
 from core.utils.subject_name_lint import count_own_name_hits
 
 STATUS_SYNTHESIZED = "synthesized"
@@ -46,6 +48,10 @@ def build_synthesis_dump(
             hits = count_own_name_hits(synthesis, subject_name)
             if hits:
                 row["own_name_hits_in_synthesis"] = hits
+        if synthesis and focal_form_absent(
+            synthesis, record.focal_form, row["forms"]
+        ):
+            row["focal_form_absent"] = True
         rows.append(row)
     syntheses = [r["synthesis"] for r in rows if r["synthesis"]]
     return {
@@ -62,6 +68,9 @@ def build_synthesis_dump(
             "synthesis_chars": sum(len(s) for s in syntheses),
             "own_name_hits_in_syntheses": sum(
                 r.get("own_name_hits_in_synthesis", 0) for r in rows
+            ),
+            "focal_form_absent_records": sum(
+                1 for r in rows if r.get("focal_form_absent")
             ),
         },
         "records": rows,

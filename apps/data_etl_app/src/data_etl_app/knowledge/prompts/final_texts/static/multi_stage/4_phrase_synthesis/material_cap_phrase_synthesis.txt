@@ -1,13 +1,32 @@
-You are given the name of a manufacturer and a list of records holding entries collected from text scraped from its website. You do not see the website itself: each entry was written down by a reader who did, and the entries are all you have. The records are provided at the very bottom: first the record ids, fenced between <<<RECORD_IDS and RECORD_IDS>>>, then the records themselves, fenced between <<<RECORDS and RECORDS>>>. Each record holds its record_id, its focal_form — the name of the one entity the record is about, spelled as it appears on the site — and its entries; each entry holds a snippet — a passage copied verbatim from the site in which the focal form appears — and, where given, the location the reader found it at in the original text.
+You are given the name of a manufacturer and a list of records holding entries collected from text scraped from its website. The entries are all you have; you cannot see the site they were taken from. The records are provided at the very bottom: first the record ids, fenced between <<<RECORD_IDS and RECORD_IDS>>>, then the records themselves, fenced between <<<RECORDS and RECORDS>>>.
+
+Each record is about a single entity and holds:
+- its record_id;
+- its focal_form — one name for that entity, as the site spells it, given as the reference form;
+- its entries, each holding a snippet (a passage copied verbatim from the site in which the entity is named) and, where given, the location — the context the passage occurs in: what kind of text it is and what it belongs to. A location reading '(location not described)' is no location at all; treat that entry as having none.
+
+## Identifying the focal entity
+Every snippet names the entity somewhere in it. The site may write that name differently than the focal_form does — its capitalization, punctuation, or singular and plural may vary. Other wordings in the snippet, however close in meaning, are not the focal entity.
+
+Some entries may not bear on the focal entity: the same words used in an unrelated sense, or an entry that says nothing about it. Those are not evidence — leave them aside. Where you cannot tell, keep the entry.
 
 ## Task
-Each record names a focal entity (its focal_form) and holds the entries a reader collected for it. Work each record on its own and write one synthesis for it: a single, well-put-together statement that describes the focal entity using the record's entries as evidence — what the entries show the manufacturer does, has, or is with respect to that entity, and what is said of it — in the entries' own attributions, with the locations, where given, woven in where they tell the reader something (a menu item, a heading, a case study, a customer's words). Concentrate on the focal entity: an entry that uses the focal form in some other sense, or says nothing about the entity, is not evidence for the record — leave it aside rather than weaving it in.
+Work each record on its own and write one synthesis for it: a single, well-put-together statement that describes the focal entity using the record's entries as evidence — everything the entries show about it, in the entries' own attributions, with the locations, where given, woven in where they tell the reader something (a menu item, a heading, a case study, a customer's words). Outside quotations, refer to the entity by its focal_form, whatever form the entry used.
+
+Leave nothing out that the entries show about the focal entity: every distinct thing said of it belongs in the synthesis. Coverage of the entries is the goal, not length — nothing enters the synthesis that the entries do not show, and repeated entries are still covered once, as the reporting rules below say.
+
+## What the manufacturer does with the entity
+Every synthesis must also settle, from the entries alone, what the manufacturer does with or in relation to the focal entity — the dealing, activity, or arrangement the entries put between them — and must say plainly whose dealing it is: the manufacturer's own, or a customer's, a supplier's, or another party's that the entries merely place near it. Where the entries show the manufacturer's own dealing, say what it is in the entries' own terms. Where they show only another party's, say so and name that party as the entries name it. Where the entries show no dealing at all — the entity is only named, listed, or mentioned in passing — say that plainly, and do not supply one.
+
+## The manufacturer's own name
+The manufacturer's name is given above the records. Use it to tell what belongs to the manufacturer and what does not. Where the focal entity is the manufacturer itself — or one of its brands, product lines, divisions, plants, or former names — say so plainly. Write names as the entries write them; you need not avoid the manufacturer's name.
 
 ## Rules on reporting
-Report what the entries say about the focal entity and add nothing of your own. Assert nothing the entries do not support, and attribute every statement to whoever the entries attribute it to: the site's own copy, a named or unnamed customer, a publication, another party. Where an entry places something outside the present — a completed project, a plan, a denial — carry that placement in the entry's own words.
+Report what the entries say about the focal entity and add nothing of your own. Assert nothing the entries do not support, and attribute every statement to whoever the entries attribute it to: the site's own copy, a named or unnamed customer, a publication, another party. Where an entry places something outside the present — a completed project, a plan, a denial — carry that placement in the entry's own words. Where an entry — its snippet or its location — places the item with a party other than the manufacturer, such as a parent company, a publication, or a customer, name that party in your synthesis; do not drop it.
+
 Where entries repeat the same thing — the same menu item on every page, the same boilerplate line — say it once and note that it recurs.
-Do not emit the manufacturer's name anywhere in your output. Where it would appear inside a quotation, put '[the manufacturer]' in its place — the brackets stay visible, so the edit shows. Treat obvious derivatives of the name the same way: the name without legal endings, its initials, its web domain. Other companies' names are quoted as written and attributed as the entries attribute them.
-Before you return your answer, read back every string you wrote and check that no mention of the manufacturer's name survived anywhere in it.
+
+Other companies' names are quoted as written and attributed as the entries attribute them.
 
 ## Output
 Return a JSON object with a single key "syntheses" whose value is an array with one object per given record — every given record_id exactly once, copied exactly as given, and no others — each holding the record_id and its synthesis.
@@ -15,7 +34,7 @@ Return a JSON object with a single key "syntheses" whose value is an array with 
 ```json
 {"syntheses": [
   {"record_id": "<a given record_id>",
-   "synthesis": "<what the entries say about the focal entity — what they show the manufacturer does, has, or is with respect to it, and what is said of it — in the entries' own attributions, with their locations where given>"},
+   "synthesis": "<what the entries say about the focal entity — everything they show of it, and what the manufacturer does with or in relation to it and whose dealing it is — in the entries' own attributions, with their locations where given>"},
   {"record_id": "<another given record_id>",
    "synthesis": "<...>"}
 ]}

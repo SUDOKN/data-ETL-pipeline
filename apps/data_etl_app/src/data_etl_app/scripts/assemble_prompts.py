@@ -21,12 +21,15 @@ Usage:
 
     ... [--only PROMPT_NAME] [--dry-run] [--force]
 
-`check` catches the two ways on-disk truth stops being what runs: a hand-edited
-rendered prompt (re-render every catalog, diff against disk) and a static prompt
-edited but never published (hash it, compare against its recorded pin). The
-second is the one that bit us on 2026-08-11 — `publish` covered catalogs only, so
-edits to the relationship prompts never left the machine while the pipeline went
-on reading the superseded S3 copy as `latest`.
+`check` catches the ways on-disk truth stops being what runs: a hand-edited
+rendered prompt (re-render every catalog, diff against disk), and either kind of
+prompt edited but never published (hash it, compare against the digest recorded
+by its `published` block or its pin). The unpublished case is the one that bit us
+on 2026-08-11 — `publish` covered catalogs only, so edits to the relationship
+prompts never left the machine while the pipeline went on reading the superseded
+S3 copy as `latest`. It stayed half-closed until 2026-08-23: only static prompts
+were compared against their record, so a catalog prompt that had been re-rendered
+but never published passed `check` in silence.
 
 `publish` uploads the text and records the returned S3 version ID: into the
 catalog's `published` block for a catalog prompt, into
@@ -49,6 +52,7 @@ import sys
 from datetime import datetime, timezone
 from typing import AsyncContextManager
 
+from core.models.rule_catalog import PublishedRecord
 from pure_utils.env_util import load_env
 
 from data_etl_app.dependencies.env import PROMPT_SCRIPT_ENV
@@ -172,32 +176,64 @@ def _check_static(only: str | None) -> list[str]:
     return stale
 
 
+def _check_catalog_published(published: PublishedRecord, s3_key: str, text: str) -> bool:
+    """True when the catalog's rendered text is not what is published.
+
+    The mirror of `_check_static` for the prompts that have a catalog. Compared
+    against the CATALOG's render rather than the file on disk, so a hand-edited
+    rendered prompt can never make an unpublished catalog look published — the
+    two failures stay independent and are both reported.
+    """
+    digest = rendered_sha256(text)
+
+    if published.rendered_sha256 is None:
+        logger.error("UNPINNED   %s (never published; run `publish`)", s3_key)
+        return True
+
+    if published.rendered_sha256 != digest:
+        logger.error(
+            "UNPUBLISHED %s — its catalog renders to %s but the published version "
+            "%s is %s; run `publish`",
+            s3_key,
+            digest[:12],
+            published.s3_version_id,
+            published.rendered_sha256[:12],
+        )
+        return True
+
+    return False
+
+
 def cmd_check(args: argparse.Namespace) -> int:
     _reject_unknown_only(args.only)
     drifted: list[str] = _check_static(args.only)
+    catalogs = load_all_catalogs()
     for name, (s3_key, text) in _render_all(args.only).items():
+        stale = False
         target = ASSEMBLED_PROMPTS_DIR / s3_key
-        if not target.exists():
+        on_disk = target.read_text(encoding="utf-8") if target.exists() else None
+        if on_disk is None:
             logger.error("MISSING    %s (run `render`)", s3_key)
+            stale = True
+        elif on_disk != text:
+            stale = True
+            logger.error("DRIFTED    %s", s3_key)
+            diff = difflib.unified_diff(
+                on_disk.splitlines(),
+                text.splitlines(),
+                fromfile=f"{s3_key} (on disk)",
+                tofile=f"{s3_key} (from catalog)",
+                lineterm="",
+                n=1,
+            )
+            for line in list(diff)[:40]:
+                print(f"    {line}")
+
+        if _check_catalog_published(catalogs[name].published, s3_key, text):
+            stale = True
+
+        if stale:
             drifted.append(name)
-            continue
-
-        on_disk = target.read_text(encoding="utf-8")
-        if on_disk == text:
-            continue
-
-        drifted.append(name)
-        logger.error("DRIFTED    %s", s3_key)
-        diff = difflib.unified_diff(
-            on_disk.splitlines(),
-            text.splitlines(),
-            fromfile=f"{s3_key} (on disk)",
-            tofile=f"{s3_key} (from catalog)",
-            lineterm="",
-            n=1,
-        )
-        for line in list(diff)[:40]:
-            print(f"    {line}")
 
     if drifted:
         logger.error(
