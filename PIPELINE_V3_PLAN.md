@@ -29,165 +29,104 @@ answerable to a mechanical floor.**
 
 ## STATE
 
-### RESUME HERE (written 2026-08-24, later session — supersedes the block it replaces)
+### RESUME HERE (written 2026-08-24, tenth run — supersedes every earlier RESUME block)
 
-**ONE THING IS PENDING AND IT IS THE USER'S:** publish the six `3_phrase_mention_collection` (Location)
-statics again — the heading-verbatim fix — then re-run with
-`StageToggles().stop_after(PipelineStage.synthesis)`. Everything else below is finished and measured.
-`assemble_prompts.py check` currently fails on exactly those six by design — that is the proof nothing has
-shipped, not a problem to fix. The ids it cites (`bmWtl.XGQ…` for material_cap) are the ones run
-`20260824T012721` actually used, so the pin is honest.
+**NOTHING IS PENDING.** `assemble_prompts.py check` passes; the six Location statics are published
+(02:03:41Z) and measured. The next step is **3.3**.
 
-Read this block, then the top STATE bullet, then
-`pipeline_v3_evidence/2026-08-24_run_012721_location_rewrite/README.md` for any number.
+Read this block, then
+`pipeline_v3_evidence/2026-08-24_run_020729_heading_verbatim/README.md` for any number.
 
 ---
 
-**The ninth run, `20260824T012721`, was the Location rewrite — and it is 17 of 20 dumps.**
-`alecmfg/industries`, `steelcraft/products` and `steelcraft/contract_products` produced NOTHING: 773
-records, **36% of the record count**, gone with no exception, no log and no dump while the sweep reported
-success. Not the rewrite's fault — see the two defects below, both now FIXED.
+**Run `20260824T020729` = the heading-verbatim fix, and it landed.** 20 of 20 dumps, field set identical
+to the last complete run, so the three fields `012721` lost are back. A clean A/B despite the stored batch
+requests being deleted beforehand: the delete was scoped and left search alone (all 96 `llm_search` rows
+survive from `04:45`, and the run's search stage replays with `started_at = 2026-08-23T04:45:00`), so all
+37 shared mention `ud=` digests are IDENTICAL and only `pv=` differs.
 
-**The rewrite itself worked, measured on the 17 fields both runs share** (1,872 mentions paired by
-`mention_id`, identical spans and snippets; 1,246 synthesis records, identical focal forms):
+| metric | `012721` | `020729` |
+|---|---|---|
+| `LEED Credits` / `CalGreen` provenance | "a list of links or resources" | **"the 'More from Allegion' section"** — fixed |
+| records losing a party name | 7 | **0** |
+| party survival into synthesis | 9/18 = 50% | **12/20 = 60%** |
+| opener ban / "whose words" / URLs / cross-refs | 0% / 100% / 0 / 0 | **0% / 100% / 0 / 0** — all held |
+| location chars (paired) | 289,956 | 309,901 (**+6.9%**, the price of quoting headings) |
+| delivery | clean | **2,133/2,133, 0 retries, 0 unknown** |
+| cost | — | mention $2.81 + synthesis $2.44 = **$5.25** |
 
-| metric | baseline `010654` | `012721` | verdict |
-|---|---|---|---|
-| banned self-reference opener | 92.7% | **0.0%** | landed completely |
-| "whose words" carried | 12% | **100%** | landed — but 1,857 of 1,872 say "in the site's own copy" |
-| location chars (paired) | 384,517 | 289,956 (**−24.6%**) | short of the −35/−40% target |
-| location share of payload | 66.0% | 59.9% | |
-| URLs / cross-refs / empty | 0 / 1 / 0 | **0 / 0 / 0** | every surviving rule held |
-| focal-form lint flags | 0 | **0** | |
-| delivery | clean | **clean** (1,360/1,360, 0 retries, 0 unknown) | |
+**THE ONE OPEN DEFECT — and it is NOT the heading fix's doing.** The FE→DE entity swap recurred:
+`steelcraft/equipments`, focal form and sole snippet both `FE Series Double-Egress Frames`, synthesis says
+`DE Series`. The focal-form lint caught it (1 of 700; 0 of 385 last run), and a Series sweep counting
+focal form + forms + snippets + **locations** as evidence gives 0/65 vs **1 genuine of 182**.
 
-**The one regression, and it is fixed but unmeasured:** the rewrite paraphrased away a heading that names
-a third party. 7 records lost a party name; 5 are harmless (2 are Falcon page-enumeration, 3 are the
-location correctly no longer restating content, which the static forbids) but **2 are `LEED Credits` and
-`CalGreen Building Standards`** — the exact pair the previous session identified as the only genuine
-attribution defects and fixed in `002404`. `"a line under the 'More from Allegion' section"` became
-`"a line in a list of links or resources"`. Cause: the static said to name the heading *"in your own
-words"*, and paraphrasing a heading that IS the provenance destroys it.
+**This RETIRES the plan's "REPAIRED" verdict on the swap.** Across five observations of the same record:
+`195031` right, `200044` wrong, `002404` right, `012721` right, `020729` wrong — **two in five, stochastic
+and unfixed.** The `002404` reading was a single lucky sample. The FE and DE records are twins whose
+locations are byte-identical to each other in BOTH runs, so the location is not the variable; the model
+collapses them and emitted the *same synthesis string* for both. **Fix candidate (not built, not
+measured): the packer puts near-identical focal forms in the same request with nothing to tell them
+apart — either separate them, or give synthesis an explicit "these two records are different entities"
+discriminator. Decide before trusting any per-entity output downstream.**
 
 ---
-
-**BUILT THIS SESSION, all three at once on the user's go-ahead ("they can be independently tracked"):**
-
-1. **The heading-verbatim fix — the ONE pending prompt change.** All six Location statics, still
-   byte-identical. The *What it belongs to* bullet now reads: *"the section or heading it falls under,
-   quoted exactly as the text writes it, and what the page is about, in your own words. Never paraphrase
-   a heading: it can name a party or a source that nothing else on the page names."* Deliberately did NOT
-   touch the "whose words" bullet in the same change — two edits inside one prompt would muddy the read.
-2. **Defect B — the big one, and much bigger than "three fields were lost".**
-   `base_llm_recursive_extraction_node` dispatched only the requests it had just CREATED. But
-   `record_response_parse_error` nulls `response` and `batch_id` ON PURPOSE so the next pass re-asks,
-   capped at `RESPONSE_PARSE_ERROR_CAP = 3` with `RepeatedParseFailure` as the terminal guard — **so the
-   parse-error retry has never worked for any recursive stage** (search, recursive search, mention
-   collection, synthesis). `get_missing_req_ids` only asks whether a request DOCUMENT exists (its own
-   comment says `# maybe complete maybe not`), so an unanswered row is never "missing"; the loop broke,
-   `are_all_requests_complete` stayed False, and `execute` returned **with no `else` branch at all**.
-   Fixed: the loop now converges over requests that are UNANSWERED (via
-   `find_incomplete_gpt_batch_requests_by_custom_ids`, exactly as the non-recursive base always did),
-   a new `get_incomplete_req_ids` helper sits beside `are_all_requests_complete`, ending incomplete now
-   RAISES, and `MAX_UNPRODUCTIVE_PASSES = 3` bounds the new loop against a response that never records.
-3. **Defect A — deliberately NOT changed, and this is a decision, not an omission.** A duplicate
-   `record_id` raises in `parse_synthesis_response` (and `parse_mention_location_response`), and both
-   docstrings say why: the array shape was chosen so a duplicate is VISIBLE and "the map must not pick
-   one silently". With Defect B fixed that raise is no longer fatal — it now buys 3 re-dispatches, which
-   can genuinely differ (system_fingerprint drift), and only then surfaces as `RepeatedParseFailure`.
-   Fix B alone would have prevented the whole 36% loss. **Reversible call**: if a duplicate ever survives
-   3 retries, revisit dropping-and-reporting it the way unknown ids are handled.
-
-Suites **1,033 passed, 1 deselected** (the known `test_normalize_is_idempotent` property) — up from 1,029;
-`test_recursive_node_eager_dispatch.py` went 1 test → 5, pinning both directions (a pre-answered dummy is
-never sent; an unanswered stored row IS re-asked) plus the raise and the bound. pyright 0 errors on every
-edited file; ruff check clean and `ruff format` clean on all written lines (the 8 + 21 pre-existing E501s
-in the two base nodes are unchanged from HEAD — verified by linting the HEAD copies in place).
 
 **OWED, in order:**
 
-0. ~~**Re-run WITHOUT publishing first.**~~ **OVERTAKEN BY EVENTS — the user published at
-   2026-08-24T02:03:41Z, before this step was written. `check` passes; the new pins are `PiOGOu8sHSt3`
-   (material_cap) et al.** The window is closed and cannot be reopened: `pv=` in a request id IS the S3
-   version id, and re-uploading identical text mints a NEW version id, so the old ids are unrecoverable
-   through the tooling. What was lost, for the record, so nobody hunts for it later:
-   - the only live exercise of Fix B — the 10 synthesis rows stranded by the 429 and by Defect A will
-     never be looked up again. **Fix B's verification is now the 5 tests in
-     `test_recursive_node_eager_dispatch.py` and the next genuine mid-run failure. Nothing else.**
-   - the clean compact-sentence baseline for the three lost fields, which would have cost ~$0.21.
-
-   **STILL TRUE AND STILL IMPORTANT: never delete the stored batch requests wholesale.** Search ($0.97)
-   and the single-stage fields ($0.47) replay from Mongo every run because their `pv` has not changed;
-   that $1.44 is why a full run costs ~$5.30 and not ~$6.75. The 35 unanswered rows are now inert.
-
-1. **USER ACTION — publish the six Location statics + re-run** `stop_after(synthesis)`. This re-runs BOTH
-   stages again (mention `pv=` changed; synthesis `ud=` follows).
-
-   **The three lost fields WILL come back, and that is NOT evidence Fix B works.** A `pv` change mints
-   entirely new mention ids, which change the locations, which change every synthesis `ud=` — so the run
-   creates everything fresh and never consults the stale `01:23` rows, which are simply orphaned. (Run
-   `012721` reused rows only because it and `012354` were the SAME prompt state — a retry, not a new
-   configuration.) **Fix B has no live exercise available from this run**; its verification is the 5 tests
-   in `test_recursive_node_eager_dispatch.py` and the next genuine mid-run failure. Do not read the
-   fields' return as a green light for it.
-
-   **What to measure:**
-   - **Did `LEED Credits` / `CalGreen Building Standards` regain "More from Allegion"?** This is the
-     point of the change, and it is cleanly measurable — both live in `steelcraft/conformity_attestations`,
-     which ran fine in `012721`.
-   - party survival on the shared records: **50%** in `012721`, **60%** in `010654` — should recover.
-   - length must not blow back past `012721`'s median 152 / p90 202 (quoting a heading costs a few chars).
-   - the opener rate must stay at 0% and delivery must stay clean.
-   - **CAVEAT, now unavoidable (step 0 is closed):** the three recovered fields are NOT a clean A/B —
-     they have no `012721` baseline, so they jump from the pre-rewrite prompt straight to rewrite+heading,
-     two changes at once. Judge the heading fix on the 17 fields that DO have a baseline, and treat
-     `products` / `industries` as descriptive only. The compact-sentence verdict is already settled on
-     1,872 mentions across both subjects and five fields, so nothing load-bearing rests on them.
-2. **Then 3.3**, folding in — rather than doing early — the `subject_name` wiring into
+1. **3.3**, folding in — rather than doing early — the `subject_name` wiring into
    `create_record_screening_batch_request` (it currently gets `render_record_blocks(...)` alone) and the
    deletion of the now-false *"never by name"* sentence from all seven
    `4_phrase_relationship_screening/*.txt`. Screening is in `stages_disabled` today, so there is no risk
    window and no reason to touch those files twice.
+2. **The FE→DE twin-record fix**, above — it wants its own decision and its own run.
 
-**Still unrun after all of the above:** the `loc=1` vs `loc=0` A/B. Every run so far is the same arm.
+**Still unrun:** the `loc=1` vs `loc=0` A/B. Every run so far is the same arm.
 
-**New open item, deliberately not chased:** the "whose words" element is being satisfied formulaically —
-1,857 of 1,872 locations say "in the site's own copy". It carries almost no information when 99% of a
-manufacturer's site is its own copy. Worth revisiting only if the payload needs trimming again; changing
-it now would collide with the heading fix.
+**Open, deliberately not chased:**
+- The "whose words" element is formulaic — 2,791 of 2,805 locations say "in the site's own copy". It
+  carries almost nothing when 99% of a manufacturer's site is its own copy. Revisit only if the payload
+  needs trimming again.
+- 32 of the 77 document-listing records carry neither the scoped nor the unscoped phrasing; unmeasured,
+  never broken. Root cause is upstream — document titles are extracted as `products` at all (products
+  precision measured 37% on 2026-08-22).
 
-**Tree:** everything from this session is COMMITTED as `c8d04fb` on `new-ground-truth-v2` (11 files: the
-plan, the six Location statics, the two base nodes, the dispatch test, the evidence folder). The eighth-run
-work is `b957c9e`. The `ontology` submodule is deliberately left dirty — it is the user's own. Suites at
-`c8d04fb`: 1,033 passed, 1 deselected (the known `test_normalize_is_idempotent` property). Per the
-evidence-folder convention only `README.md` and the analysis script are tracked; regenerate
-`location_rewrite_ab_output.txt` by running the script from the repo root.
+**The recursive resume fix has NO live verification** — the publish minted new ids, so the 10 stranded
+rows were never consulted. Its evidence is the 5 tests in `test_recursive_node_eager_dispatch.py` and the
+next genuine mid-run failure. Do not claim otherwise.
+
+**Tree:** committed on `new-ground-truth-v2` — `c8d04fb` (ninth run + the resume fix + the heading change),
+`167537d`, `4c7a1fe`, `e32ef0a` (publish recorded). The `ontology` submodule is deliberately left dirty —
+it is the user's own. Suites: 1,033 passed, 1 deselected (the known `test_normalize_is_idempotent`
+property). Per the evidence-folder convention only `README.md` and the analysis script are tracked;
+regenerate the `.txt` by running the script from the repo root.
 
 **Do not re-litigate:**
 - **Publish is the user's action, never the agent's.**
 - **Never leave two prompt changes pending at once.** `publish` ships EVERY static whose text differs from
-  its pin (`_publish_static`, `assemble_prompts.py:277`), so two pending edits go out together and
-  confound the run. Exactly one is pending now: the heading fix.
-- **A missing dump is not always a crash.** `012721` looked like a stalled run and was in fact a finished
-  one that had silently dropped three fields. Check the dump COUNT against the previous run's, and check
-  Mongo `created_at` per field, before concluding anything about a run's health.
-- **A `pv` change orphans every stale row, so it also hides every resume bug.** Mention `pv` → new mention
-  ids → new locations → new synthesis `ud=` → new synthesis ids. A run that follows a prompt change
-  therefore creates everything fresh and can never exercise the resume path. Resume behaviour is only ever
-  observable across two runs at the SAME prompt state (like `012354` → `012721`). Do not claim a resume
-  fix is verified by a run that changed a prompt.
+  its pin (`_publish_static`, `assemble_prompts.py:277`).
+- **A missing dump is not always a crash.** `012721` looked like a stalled run and was a finished one that
+  had silently dropped three fields. Check the dump COUNT against the previous run's.
+- **A `pv` change orphans every stale row, so it also hides every resume bug.** Resume behaviour is only
+  observable across two runs at the SAME prompt state. Do not claim a resume fix is verified by a run that
+  changed a prompt.
+- **Deleting the stored batch requests is not free and not necessary.** Search and the single-stage fields
+  replay from Mongo every run (worth $1.44 on the two-subject run). The scoped delete this run did was
+  harmless only because it left search alone — verify that before trusting any post-delete A/B.
+- **When sweeping for "invented" entity names, count the LOCATION as evidence, not just the snippet** —
+  and beware a regex that captures the word before "Series" ("these Series", "frame Series"). Both
+  mistakes were made in this session and produced 19 false hits against 1 real one.
 - The `[the manufacturer]` bracket convention is retired from synthesis only.
 - `ruff format` is not enforced on `synthesis_dump_util.py` or on `focal_form_lint.py`'s pre-existing
-  signature line — both were already non-conformant at HEAD; that is not drift to fix.
-- **A jump in the "asserts a dealing" metric is not evidence the prompt invents facts.** That reading was
-  wrong once (the 1% → 45% jump, withdrawn) and wrong again for a different reason (the 45% → 64% shift on
-  `002404` is mostly REGISTER — the old prompt's "offered by the manufacturer" is a passive the measuring
-  regex misses). Measure the register before concluding anything from that metric.
+  signature line — both were already non-conformant at HEAD.
+- **A jump in the "asserts a dealing" metric is not evidence the prompt invents facts.** Measure the
+  register before concluding anything from that metric.
 - The dump's own `focal_form_absent_records` counter is **not comparable across runs** when the lint code
   changed between them. Recompute both sides with one version.
-- **The plan's recorded "whose words 34%" baseline is not reproducible** — the code that produced it was
-  not kept. One consistent regex over both runs gives 12% → 100%. Use that, and keep the script.
+- **The plan's recorded "whose words 34%" baseline is not reproducible** — one consistent regex over both
+  runs gives 12% → 100%.
 ---
+
+- **2026-08-24 (tenth run) — TENTH RUN ANALYZED (20260824T020729 vs 012721) = the heading-verbatim fix, AND IT LANDED. Evidence `pipeline_v3_evidence/2026-08-24_run_020729_heading_verbatim/README.md`. 20 of 20 dumps, field set identical to the last complete run — the three fields `012721` lost are back. CLEAN A/B DESPITE A DELETE: the stored batch requests were deleted beforehand, but the delete was scoped and left search untouched (all 96 `llm_search` rows survive from `04:45`; the run's search stage replays with `started_at = 2026-08-23T04:45:00`), so all 37 shared mention `ud=` are IDENTICAL and only `pv=` differs — verified, not assumed. THE TARGET RECORDS ARE FIXED: `LEED Credits` and `CalGreen Building Standards` read "the 'More from Allegion' section" again in both the location and the synthesis, where `012721` had flattened it to "a list of links or resources". Records losing a party name 7 → 0; party survival 50% → 60%. Everything the rewrite won held: opener 0.0% of 2,805, "whose words" 100%, 0 URLs, 0 cross-refs, 0 empties. Price: +6.9% location text on the paired mentions (median 152 → 154, p90 202 → 224) — the cost of quoting headings. Delivery clean (2,133/2,133, 0 retries, 0 unknown); $5.25 against a ~$5.30 estimate. THE ONE OPEN DEFECT, and NOT the fix's doing: the FE→DE entity swap RECURRED (lint 1 of 700, was 0 of 385; Series sweep counting locations as evidence gives 0/65 vs 1 genuine of 182). THIS RETIRES THE "REPAIRED" VERDICT — across five observations of the same record it is right/wrong/right/right/wrong, two in five, STOCHASTIC AND UNFIXED; `002404` was a lucky sample. The FE and DE records are twins whose locations are byte-identical to each other in BOTH runs, so the location is not the variable — the model collapses them and emitted the SAME synthesis string for both. Fix candidate (not built): separate near-identical focal forms across requests, or give synthesis a discriminator. TWO MEASUREMENT MISTAKES MADE AND CORRECTED IN THIS PASS, both mine: the Series sweep first ignored LOCATIONS as evidence (9 and 19 false hits) and the regex captured the word before "Series" ("these Series", "frame Series") — count locations, and anchor the pattern. Next: 3.3, then the twin-record fix.**
 
 - **2026-08-24 (this later session) — NINTH RUN ANALYZED (20260824T012721, the Location rewrite) + THREE THINGS BUILT. Evidence `pipeline_v3_evidence/2026-08-24_run_012721_location_rewrite/README.md` (+ `location_rewrite_ab.py`). THE RUN IS 17 OF 20 DUMPS: `alecmfg/industries`, `steelcraft/products` and `steelcraft/contract_products` vanished — 773 records, 36% — with no exception and no log while the sweep reported success. TWO CAUSES, both traced to the failed run 45 minutes earlier (`20260824T012354`: steelcraft died on `Duplicate record_id 'gn8gmdzc'`, alecmfg on a 429 no-credits part-way through industries). (A) a duplicate `record_id` raises in `parse_synthesis_response`, killing the field and its shared `contract_products` sibling; (B) THE REAL ONE — the recursive base dispatched only requests it had just CREATED, so a stored row with no response was never re-asked; since `record_response_parse_error` nulls `response`/`batch_id` ON PURPOSE to force a re-dispatch (capped at 3 by `RESPONSE_PARSE_ERROR_CAP`), **the parse-error retry had never worked for ANY recursive stage**, and the loop then broke, `are_all_requests_complete` stayed False, and `execute` returned with no `else` branch. THE REWRITE ITSELF WORKED on the 17 shared fields: opener 92.7% → 0.0%, "whose words" 12% → 100%, locations −24.6% (short of the −35/−40% target), 0 URLs / 0 cross-refs / 0 empties, focal-form lint 0 both sides, delivery clean. ONE REGRESSION: 7 records lost a party name, 5 harmlessly, but `LEED Credits` and `CalGreen Building Standards` lost "More from Allegion" — the exact pair fixed in `002404` — because the static said to name the heading "in your own words". BUILT, all three at once on the user's go-ahead: the heading-verbatim fix to the six statics (the one pending prompt change), Defect B fixed properly (converge over UNANSWERED requests via `find_incomplete_gpt_batch_requests_by_custom_ids`, new `get_incomplete_req_ids`, raise instead of silent return, `MAX_UNPRODUCTIVE_PASSES = 3`), and Defect A deliberately LEFT ALONE (both parsers document the raise on purpose; with B fixed it buys 3 re-dispatches before `RepeatedParseFailure`, and B alone would have prevented the whole loss). Suites 1,029 → 1,033 green, 1 deselected; the dispatch test went 1 → 5; pyright 0; ruff check + format clean on written lines. Next: user publishes + re-runs (expect the three fields to return unaided), then 3.3.**
 
