@@ -108,6 +108,8 @@ substrings, and possessives must not leave a bare `s`.
 
 **Still unrun after all of the above:** the `loc=1` vs `loc=0` A/B. Every run so far is the same arm.
 
+**Tree:** everything above is COMMITTED as `b957c9e` on `new-ground-truth-v2` (18 files). The `ontology` submodule is deliberately left dirty — it is the user's own. Suites at that commit: 1,029 passed, 1 deselected (the known `test_normalize_is_idempotent` property). Per the evidence-folder convention only `README.md` and the analysis script are tracked; the `.txt`/`.json` outputs are gitignored and live on disk only — regenerate them by running each folder's script from the repo root.
+
 **Open, deliberately not chased:** 32 of the 77 document-listing records (42%) carry neither the scoped nor
 the unscoped phrasing. They were never the broken cases, so nothing regressed, but the rule's reach there
 is unmeasured — look only if document titles survive screening in 3.3. The root cause is upstream anyway:
