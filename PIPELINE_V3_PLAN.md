@@ -142,8 +142,12 @@ in the two base nodes are unchanged from HEAD — verified by linting the HEAD c
 manufacturer's site is its own copy. Worth revisiting only if the payload needs trimming again; changing
 it now would collide with the heading fix.
 
-**Tree:** the eighth-run work is committed as `b957c9e`; everything from this session is UNCOMMITTED. The
-`ontology` submodule is deliberately left dirty — it is the user's own.
+**Tree:** everything from this session is COMMITTED as `c8d04fb` on `new-ground-truth-v2` (11 files: the
+plan, the six Location statics, the two base nodes, the dispatch test, the evidence folder). The eighth-run
+work is `b957c9e`. The `ontology` submodule is deliberately left dirty — it is the user's own. Suites at
+`c8d04fb`: 1,033 passed, 1 deselected (the known `test_normalize_is_idempotent` property). Per the
+evidence-folder convention only `README.md` and the analysis script are tracked; regenerate
+`location_rewrite_ab_output.txt` by running the script from the repo root.
 
 **Do not re-litigate:**
 - **Publish is the user's action, never the agent's.**
