@@ -176,23 +176,42 @@ class BaseLLMExtractionNode(BaseNode[LLMExtractedFieldTypeVar, ResultT]):
         # if non-empty, those are the missing request IDs that need batch requests to be created for them
         return req_ids_missing
 
+    async def get_incomplete_req_ids(
+        self,
+        subject_unique_id: str,
+        chunked_request_map: ExtractionRequestMap,
+    ) -> set[BatchRequestIDType]:
+        """The embedded request ids that have no response yet.
+
+        Distinct from ``get_missing_req_ids``, which asks only whether a request
+        DOCUMENT exists. A row can exist and still be unanswered — that is the
+        state ``record_response_parse_error`` writes on purpose so the next pass
+        re-asks — so the two sets are not interchangeable.
+        """
+        req_ids_to_lookup: set[BatchRequestIDType] = self.get_embedded_request_ids(
+            subject_unique_id=subject_unique_id,
+            chunked_request_map=chunked_request_map,
+        )
+        if not req_ids_to_lookup:
+            return set()
+        return req_ids_to_lookup - (
+            await find_completed_gpt_batch_request_ids_only(
+                subject_unique_id, list(req_ids_to_lookup)
+            )
+        )
+
     async def are_all_requests_complete(
         self,
         subject_unique_id: str,
         chunked_request_map: ExtractionRequestMap,
     ) -> bool:
         # Check if all search requests are complete
-        req_ids_to_lookup: set[BatchRequestIDType] = self.get_embedded_request_ids(
+        incomplete_gpt_req_ids = await self.get_incomplete_req_ids(
             subject_unique_id=subject_unique_id,
             chunked_request_map=chunked_request_map,
         )
         logger.info(
-            f"Checking if all requests are complete for the following request IDs: {req_ids_to_lookup}"
-        )
-        incomplete_gpt_req_ids = req_ids_to_lookup - (
-            await find_completed_gpt_batch_request_ids_only(
-                subject_unique_id, list(req_ids_to_lookup)
-            )
+            f"Checked whether all requests are complete; incomplete: {incomplete_gpt_req_ids}"
         )
         return not bool(incomplete_gpt_req_ids)
 
