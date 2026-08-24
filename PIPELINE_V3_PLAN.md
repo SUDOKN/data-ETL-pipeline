@@ -140,7 +140,8 @@ next genuine mid-run failure. Do not claim otherwise.
 
 **Tree:** committed on `new-ground-truth-v2` — `c8d04fb` (ninth run + the resume fix + the heading change),
 `167537d`, `4c7a1fe`, `e32ef0a` (publish recorded), `dad8891` (tenth run analysed), `0fb5573`
-(deep supplement + journal backfill). The `ontology` submodule is deliberately left dirty —
+(deep supplement + journal backfill), `4d247a5`, `52d7fac` (§10: the pre-emptive twin fix measured
+and killed). The `ontology` submodule is deliberately left dirty —
 it is the user's own. Suites: 1,033 passed, 1 deselected (the known `test_normalize_is_idempotent`
 property). Per the evidence-folder convention only `README.md` and the analysis script are tracked;
 regenerate the `.txt` by running the script from the repo root.
