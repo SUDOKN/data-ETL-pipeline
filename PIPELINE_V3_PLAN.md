@@ -106,25 +106,19 @@ in the two base nodes are unchanged from HEAD — verified by linting the HEAD c
 
 **OWED, in order:**
 
-0. **USER ACTION FIRST — re-run WITHOUT publishing (~$0.21). Do NOT delete the stored batch requests.**
-   At the current prompt state every id regenerates identically, so search replays free, mention replays
-   free (all 22 mention rows for both lost fields are ALREADY ANSWERED at the current `pv`), the answered
-   synthesis rows replay free, and only the **10 stranded synthesis rows get re-dispatched** — the 9
-   `alecmfg/industries` requests the 429 left unanswered and the 1 `steelcraft/products` request Defect A
-   left unanswered. This one cheap run buys BOTH things that a publish-first run cannot:
-   - **the only live verification of Fix B available**, against the exact rows that broke it;
-   - **the three lost fields recovered at the `012721` prompt state** — i.e. the clean compact-sentence
-     baseline that bundling the changes was going to cost us, which then makes the heading fix a clean
-     A/B on all 20 fields instead of 17.
+0. ~~**Re-run WITHOUT publishing first.**~~ **OVERTAKEN BY EVENTS — the user published at
+   2026-08-24T02:03:41Z, before this step was written. `check` passes; the new pins are `PiOGOu8sHSt3`
+   (material_cap) et al.** The window is closed and cannot be reopened: `pv=` in a request id IS the S3
+   version id, and re-uploading identical text mints a NEW version id, so the old ids are unrecoverable
+   through the tooling. What was lost, for the record, so nobody hunts for it later:
+   - the only live exercise of Fix B — the 10 synthesis rows stranded by the 429 and by Defect A will
+     never be looked up again. **Fix B's verification is now the 5 tests in
+     `test_recursive_node_eager_dispatch.py` and the next genuine mid-run failure. Nothing else.**
+   - the clean compact-sentence baseline for the three lost fields, which would have cost ~$0.21.
 
-   Sanity-check the first dump's mention `pv=` matches `012721`'s (`bmWtl.XGQP` for material_cap) to
-   confirm it really ran at the old prompt state — the pipeline loads prompts from S3, so unpublished
-   local edits do not affect it.
-
-   **NEVER delete the batch requests wholesale.** Search ($0.97) and the single-stage fields ($0.47)
-   replay from Mongo every run because their `pv` has not changed; that $1.44 is exactly why a full run
-   costs ~$5.30 and not ~$6.75. The 25 `steelcraft/products` rows from `2026-08-23 06:31` are from a
-   superseded prompt state and are inert either way.
+   **STILL TRUE AND STILL IMPORTANT: never delete the stored batch requests wholesale.** Search ($0.97)
+   and the single-stage fields ($0.47) replay from Mongo every run because their `pv` has not changed;
+   that $1.44 is why a full run costs ~$5.30 and not ~$6.75. The 35 unanswered rows are now inert.
 
 1. **USER ACTION — publish the six Location statics + re-run** `stop_after(synthesis)`. This re-runs BOTH
    stages again (mention `pv=` changed; synthesis `ud=` follows).
@@ -144,11 +138,11 @@ in the two base nodes are unchanged from HEAD — verified by linting the HEAD c
    - party survival on the shared records: **50%** in `012721`, **60%** in `010654` — should recover.
    - length must not blow back past `012721`'s median 152 / p90 202 (quoting a heading costs a few chars).
    - the opener rate must stay at 0% and delivery must stay clean.
-   - **CAVEAT — but step 0 removes it.** Without step 0 the three recovered fields are NOT a clean A/B:
+   - **CAVEAT, now unavoidable (step 0 is closed):** the three recovered fields are NOT a clean A/B —
      they have no `012721` baseline, so they jump from the pre-rewrite prompt straight to rewrite+heading,
-     two changes at once. Step 0 gives them that baseline for ~$0.21, so run it first. (The earlier
-     estimate that recovering them separately would cost ~$1.72 was wrong — it assumed both stages re-run,
-     but mention is already answered, so only the 10 stranded synthesis requests are re-paid.)
+     two changes at once. Judge the heading fix on the 17 fields that DO have a baseline, and treat
+     `products` / `industries` as descriptive only. The compact-sentence verdict is already settled on
+     1,872 mentions across both subjects and five fields, so nothing load-bearing rests on them.
 2. **Then 3.3**, folding in — rather than doing early — the `subject_name` wiring into
    `create_record_screening_batch_request` (it currently gets `render_record_blocks(...)` alone) and the
    deletion of the now-false *"never by name"* sentence from all seven
