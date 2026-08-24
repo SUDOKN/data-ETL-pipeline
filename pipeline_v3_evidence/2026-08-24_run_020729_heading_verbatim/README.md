@@ -124,7 +124,8 @@ Run from the repo root; pyright 0 errors, ruff clean.
    composite sentences naming both entities ("… include a Paladin Door & Frame with Schlage LM9300 Levers
    or Von Duprin WS-T Exit Devices …") reused verbatim across co-packed records — satisficing, and 13 of
    14 are invisible to the focal-form lint because the shared string contains both focal forms.
-   **Tripwire candidate: flag identical synthesis strings within one request.**
+   **Tripwire candidate: flag identical synthesis strings within one request** — see §10, which
+   sizes it and kills the pre-emptive alternative.
 5. **Twin census.** Reconstructing the packer (soft cap 50, verified against every chunk's
    `group_requests`), **130 confusable same-request focal-form pairs** — multi-token names differing in
    one confusable token, or edit distance ≤ 2 (`FE/DE Series`, `Type 304/316 Alloy`, `TAS 201/202/203`,
@@ -144,3 +145,50 @@ Run from the repo root; pyright 0 errors, ruff clean.
    17 transparent client-level OpenAI retries in the log (~8% of 221 fresh requests — normal).
 10. **Paired synthesis text +1.9%** (mean 381 → 389 ch on the 1,360 pairs) — the first pass's
     "371 → 363" compared different record sets. Thin single-entry records steady at 69% → 70%.
+
+## §10 — Sizing the collapse: no PRE-emptive filter is affordable
+
+Added after the first supplement pass, when the illustration work turned up the mechanism.
+
+**Every collapse has one signature.** Call two records in the same request **thin twins** when each has
+exactly ONE evidence entry and their location lists are byte-identical. Across the four runs, **49 of the
+50 collapses are thin twins** — but the signature fires 837–1,557 times per run:
+
+| run | thin twins | + confusable names | collapses | thin-twin recall | precision | confusable recall |
+|---|---|---|---|---|---|---|
+| `002404` | 840 | 75 | 12 | 92% | 1% | 0% |
+| `010654` | 840 | 75 | 23 | 100% | 3% | 0% |
+| `012721` | 837 | 3 | 1 | 100% | 0% | 0% |
+| `020729` | 1,557 | 74 | 14 | 100% | 1% | **7%** |
+
+**This kills the OWED item as written.** "Separate near-identical focal forms in the packer" cannot be
+built on any signature measured here: thin-twinness over-treats by ~100× (1,557 pairs to prevent 14), and
+narrowing it with a confusable-name test catches **1 of 14** — because **FE→DE is the atypical collapse**.
+The other 13 are pairs of *different* things named in one true sentence:
+
+```
+'Paladin Door & Frame'          →  "Steelcraft's site states that certified Tornado assemblies
+'Schlage LM9300 Levers'         →   include a Paladin Door & Frame with Schlage LM9300 Levers
+'Von Duprin WS-T Exit Devices'  →   or Von Duprin WS-T Exit Devices as latching hardware."
+'latching hardware'             →  (one sentence, four records)
+```
+
+**What is actually worth building, and what already exists:**
+
+1. **The exact post-hoc tripwire** — flag identical synthesis strings within one request. Costs nothing,
+   is exact by construction, measures a real quality axis (undifferentiated records). Dump counter, in
+   the posture of the existing lints — NOT a retry trigger.
+2. **The harmful subclass is already covered.** A record whose own name is absent from the shared sentence
+   is exactly what `focal_form_lint` tests, and it flagged FE→DE **both times it occurred**. There is no
+   detection gap to close — the earlier "13 of 14 invisible to the lint" reading was backwards: the lint
+   correctly ignores 13 accurate-but-duplicated records. What is missing is a *fix*, not a detector.
+3. **The mechanism is evidence thickness, not name similarity.** The same FE/DE pair appears in both
+   chunks of the document:
+
+   | chunk | evidence | lint | outcome |
+   |---|---|---|---|
+   | `0:91562` | 1 bare nav-menu entry each, identical locations | **flags FE** | **fused — FE described as DE** |
+   | `91562:158790` | FE 3 entries, DE 2 entries, real prose | clean | **both correct** |
+
+   Given anything to tell them apart, the model tells them apart. So the promising direction is
+   **thickening or disambiguating single-entry records**, not re-packing by name similarity.

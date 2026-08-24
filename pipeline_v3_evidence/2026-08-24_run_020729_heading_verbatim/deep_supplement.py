@@ -16,6 +16,13 @@ Corrections this pass makes to the first pass's record:
     steelcraft/conformity_attestations, all the Falcon page-enumeration class);
     survival still improved 47% -> 66%.
 
+Section 10 (added after the first supplement pass) sizes the collapse signature
+and kills the "separate near-identical focal forms in the packer" fix as stated:
+every candidate PRE-emptive filter is either ~1-3% precise or ~7% recalling.
+The exact POST-hoc tripwire (identical synthesis strings within one request) is
+the only cheap instrument, and the harmful subclass is already covered by the
+existing focal-form lint.
+
 Run from the repo root:
     python3 pipeline_v3_evidence/2026-08-24_run_020729_heading_verbatim/deep_supplement.py
 """
@@ -27,7 +34,11 @@ import json
 import os
 import re
 import statistics
+import sys
 from collections import Counter, defaultdict
+
+sys.path.insert(0, "packages/core/src")
+from core.utils.focal_form_lint import focal_form_absent  # noqa: E402
 
 DUMPS = "packages/logs/extraction_dumps"
 NEW = "20260824T020729"   # tenth run (heading verbatim)
@@ -314,3 +325,96 @@ print(f"paired={len(shared)}  {OLD}: mean={statistics.mean(lo):.0f} median={stat
 for run, table in ((OLD, R_OLD), (NEW, R_NEW)):
     thin = sum(1 for row, _ in table.values() if row["entries"] == 1)
     print(f"{run}: single-entry records {thin}/{len(table)} ({thin / len(table):.0%})")
+
+
+# -------------------------------------------------------------------------- 10
+section("10. Sizing the collapse — is any PRE-emptive filter affordable?")
+
+
+def edit_distance(x, y, cap=3):
+    if abs(len(x) - len(y)) > cap:
+        return cap + 1
+    prev = list(range(len(y) + 1))
+    for i, cx in enumerate(x, 1):
+        cur = [i]
+        for j, cy in enumerate(y, 1):
+            cur.append(min(prev[j] + 1, cur[-1] + 1, prev[j - 1] + (cx != cy)))
+        prev = cur
+    return prev[-1]
+
+
+def confusable_names(x, y):
+    lx, ly = x.lower(), y.lower()
+    if lx == ly:
+        return False
+    if edit_distance(lx, ly, 2) <= 2:
+        return True
+    tx, ty = lx.split(), ly.split()
+    if len(tx) == len(ty) >= 2:
+        diff = [(u, v) for u, v in zip(tx, ty) if u != v]
+        return len(diff) == 1 and edit_distance(diff[0][0], diff[0][1], 2) <= 2
+    return False
+
+
+print(f"{'run':>16}  {'thin-twin':>9} {'+confusable':>11} {'collapses':>9} "
+      f"{'thin-twin recall':>16} {'precision':>9} {'confusable recall':>17}")
+for run in RUNS:
+    table = R[run]
+    by_chunk = defaultdict(list)
+    for (s, f, bounds, g), (row, grp) in table.items():
+        by_chunk[(s, f, bounds)].append((row, grp))
+    thin_twin = confus = collapses = hit_thin = hit_confus = 0
+    missed = []
+    for _, recs in by_chunk.items():
+        groups = {id(row): grp for row, grp in recs}
+        for req in packed_requests([row for row, _ in recs]):
+            for i in range(len(req)):
+                for j in range(i + 1, len(req)):
+                    a, b = req[i], req[j]
+                    la = [m.get("location") for m in (groups[id(a)] or {}).get("mentions", [])]
+                    lb = [m.get("location") for m in (groups[id(b)] or {}).get("mentions", [])]
+                    # "thin twins": one evidence entry each, sitting in the same place
+                    sig = a["entries"] == 1 and b["entries"] == 1 and bool(la) and la == lb
+                    cf = confusable_names(a["focal_form"], b["focal_form"])
+                    collapsed = bool(a["synthesis"]) and a["synthesis"] == b["synthesis"]
+                    thin_twin += sig
+                    confus += sig and cf
+                    collapses += collapsed
+                    hit_thin += sig and collapsed
+                    hit_confus += sig and cf and collapsed
+                    if collapsed and not (sig and cf):
+                        missed.append((a["focal_form"], b["focal_form"]))
+    pr = f"{hit_thin / thin_twin:.0%}" if thin_twin else "n/a"
+    rc = f"{hit_thin / collapses:.0%}" if collapses else "n/a"
+    rc2 = f"{hit_confus / collapses:.0%}" if collapses else "n/a"
+    print(f"{run:>16}  {thin_twin:>9} {confus:>11} {collapses:>9} {rc:>16} {pr:>9} {rc2:>17}")
+
+print("""
+READ: 'thin twins' = two records in one request with ONE evidence entry each and
+byte-identical location lists. It is a NECESSARY condition — 49 of the 50 collapses
+across these four runs have it (~100% recall) — but it fires ~840-1,557 times a run,
+so its precision is 1-3%. Narrowing it by 'the two names are confusable' drops it to
+~75 pairs but catches only 1 of this run's 14 collapses: FE->DE is the ATYPICAL case.
+Most collapses are pairs of DIFFERENT things named in one true sentence (Paladin /
+Schlage / Von Duprin / latching hardware, standard-weight / heavyweight hinges).
+
+CONSEQUENCE: 'separate near-identical focal forms in the packer' is NOT viable as
+recorded — every measured pre-filter either over-treats by ~100x or misses 13 of 14.
+The exact post-hoc tripwire (identical synthesis strings within one request) is the
+affordable instrument. And the HARMFUL subclass — a record whose own name is absent
+from the shared sentence — is already caught by the existing focal-form lint, which
+flagged FE->DE both times it occurred. The other 13 are accurate but undifferentiated:
+a quality axis (satisficing), not a correctness defect.""")
+
+# ---- the per-chunk contrast that explains the mechanism
+section("10b. Same twins, two chunks: evidence thickness decides the outcome")
+for (s, f, bounds, g), (row, grp) in sorted(R[NEW].items()):
+    if f == "equipments" and "egress" in row["key"]:
+        flagged = focal_form_absent(
+            row["synthesis"] or "", row["focal_form"] or "", row.get("forms") or []
+        )
+        print(f"  chunk {bounds:>13}  {row['focal_form']!r:36} entries={row['entries']}  "
+              f"lint flags it: {str(flagged):5}  ->  {(row['synthesis'] or '')[:58]}...")
+print("""  Given ONE bare navigation-menu entry each and identical locations, the pair fuses
+  (FE described as DE). Given 2-3 entries of real prose in the other chunk, the SAME
+  pair comes out right. The variable is evidence thickness, not the names.""")
