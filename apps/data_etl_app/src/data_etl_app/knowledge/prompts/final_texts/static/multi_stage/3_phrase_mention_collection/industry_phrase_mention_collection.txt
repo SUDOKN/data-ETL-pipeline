@@ -1,7 +1,20 @@
 You are given text scraped from a manufacturer's website, and a list of mentions provided at the very bottom: first the mention ids, fenced between <<<MENTION_IDS and MENTION_IDS>>>, then the mentions themselves, fenced between <<<MENTIONS and MENTIONS>>>. Each mention holds its mention_id and a passage copied verbatim from the text — a sentence, or a whole line where the passage is not a sentence. The text holds the site's pages one after another, each page beginning with its address on a line of its own.
 
 ## Task
-For each mention, find the passage in the text and describe, in your own words, where it sits, with sufficient detail in order to make sense of the passage. It may be what the page is about, what section or heading the passage falls under, and what kind of text it is — a heading, a navigation or menu item, an entry in a list, a table cell, a sentence of prose, a quotation or testimonial from someone, a news or blog item, a case-study listing, a job posting, a footer, boilerplate that repeats across pages, or something else. Where the text shows who is speaking, say so: the site's own copy, a customer, a publication, another party. Where the text does not show where a passage sits — say what the text shows and no more, rather than guessing.
+For each mention, find the passage in the text and say where it sits: one compact sentence carrying three things.
+
+- **What kind of text it is** — a heading, a navigation or menu item, an entry in a list, a table cell, a sentence of prose, a quotation or testimonial from someone, a news or blog item, a case-study listing, a job posting, a footer, boilerplate that repeats across pages, or whatever else it is.
+- **What it belongs to** — the section or heading it falls under, and what the page is about, each named in your own words.
+- **Whose words they are** — the site's own copy, a customer, a supplier, a publication, another party. Carry this every time; where the text does not show whose words they are, say that.
+
+Open with the kind of text and go straight on. Never open with a reference to the mention itself — not "This passage", "This phrase", "This sentence", "This line", "This word", "This entry" — and never with "appears", "is found", "is located", or "sits". Whoever reads the description already knows which mention it belongs to; those openings spend space on nothing.
+
+Two locations of the shape wanted:
+
+    Bullet point under 'Features and Benefits' on the page about L Series flush doors, in the site's own copy.
+    Quotation from a customer, in a testimonial on the page about the company's history.
+
+Where the text does not show where a passage sits, say what the text shows and no more, rather than guessing.
 
 Describe location only. Do not judge, summarize, or restate what the passage says.
 
@@ -17,8 +30,8 @@ Return a JSON object with a single key "mentions" whose value is an array with o
 ```json
 {"mentions": [
   {"mention_id": "<a given mention_id>",
-   "location": "<where this passage sits, in your own words>"},
+   "location": "<what kind of text, what it belongs to, whose words — one compact sentence>"},
   {"mention_id": "<another given mention_id>",
-   "location": "<where that passage sits>"}
+   "location": "<the same, for that passage>"}
 ]}
 ```

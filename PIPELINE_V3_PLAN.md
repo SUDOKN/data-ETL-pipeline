@@ -29,56 +29,109 @@ answerable to a mechanical floor.**
 
 ## STATE
 
-### RESUME HERE (written 2026-08-23 evening, for picking this up in a fresh session)
+### RESUME HERE (written 2026-08-24, for picking this up in a fresh session)
 
-Read this block, then the top STATE bullet below, then
-`pipeline_v3_evidence/2026-08-23_run_200044_synthesis/README.md` if you need the numbers behind any claim.
+**ONE THING IS PENDING AND IT IS THE USER'S:** publish the six
+`3_phrase_mention_collection` (Location) statics, then re-run with
+`StageToggles().stop_after(PipelineStage.synthesis)`. Everything else below is finished and measured.
+`assemble_prompts.py check` currently fails on exactly those six by design — that is the proof nothing has
+shipped, not a problem to fix.
 
-**Where we are:** 3.2 (synthesis) is built and has been run twice. The second pair of runs
-(`20260823T195031` vs `20260823T200044`) was a clean prompt A/B — same mention state, same 95 request ids,
-every `ud=` digest identical, only `pv=` differs. That A/B has been fully analysed and audited against
-`knowledge/sample_scraped_texts/`. Two fixes off it are BUILT but **NOT PUBLISHED**.
-
-**Owed, in order — do not reorder, the sequencing is the point:**
-
-1. **User publishes the six synthesis statics** (`assemble_prompts.py publish`), then re-runs with
-   `StageToggles().stop_after(PipelineStage.synthesis)`. `check` currently fails on exactly those six by
-   design — that is the proof nothing shipped, not a problem to fix.
-   Cost ≈ $2.40: `ud=` is unchanged, so search and mention replay from Mongo and synthesis alone re-runs.
-2. **Read that run against 200044.** Four things to look at:
-   `own_name_hits_in_syntheses` on alecmfg going 0 → non-zero **is expected and correct now** (the counter
-   no longer measures violations); the two Allegion records (`LEED Credits`, `CalGreen Building Standards`
-   in `conformity_attestations`) — the direct test of the new party-preservation sentence;
-   `focal_form_absent_records` (baseline 2, one of which is the real FE→DE swap); and whether output
-   length falls now that the read-back check is gone (it was +28%, genuinely unknown either way).
-3. **Then, as its OWN run, the mention-stage location rewrite.** 27% of location text is a boilerplate
-   opener ("This passage appears as…"), locations are 63% of the synthesis payload → ≈17% off the whole
-   input for no information loss. Replace the opener with a named job: (a) what kind of text it is,
-   (b) what it belongs to — page and section in words, (c) **whose words they are**. Keep the arm ON; the
-   measurement says turning it off costs more than it saves. This changes `ud=` and re-runs BOTH stages,
-   which is why it must not be bundled with step 1 — bundled, neither change can be attributed.
-4. **Then 3.3**, and fold two things into it rather than doing them early: wiring `subject_name` into
-   `create_record_screening_batch_request` (it currently gets `render_record_blocks(...)` alone), and
-   deleting the now-false sentence from all seven `4_phrase_relationship_screening/*.txt`
-   (*"Records refer to the manufacturer in question only as 'the manufacturer'… never by name"*). Screening
-   is in `stages_disabled` today, so there is no risk window and no reason to touch those files twice.
-
-**Still unrun after all of the above:** the `loc=1` vs `loc=0` A/B. Both runs so far are the same arm.
-
-**Tree:** all of the above is COMMITTED as `4506de6` on `new-ground-truth-v2` (43 files; the `ontology`
-submodule is deliberately left dirty — it is the user's own). Suites at that commit: 1,020 passed,
-1 deselected (the known idempotence property). Per the evidence-folder convention, only `README.md` and
-the analysis script are tracked; `synthesis_ab_output.txt`, `thin_evidence_records.json` and
-`invented_dealings_176.json` are gitignored and live on disk only — regenerate them with
-`python3 pipeline_v3_evidence/2026-08-23_run_200044_synthesis/synthesis_ab.py` from the repo root.
-
-**Do not re-litigate:** publish is the user's action, not the agent's. The `[the manufacturer]` bracket
-convention is retired from synthesis only. `ruff format` is not enforced on `synthesis_dump_util.py` (it
-was already non-conformant at HEAD — that is not drift to fix). And the "the dealing rule invents facts"
-reading of the 1% → 45% jump was **wrong and has been withdrawn** — the audit found 2 real defects in 176.
+Read this block, then the top STATE bullet, then the two evidence READMEs named below for any number.
 
 ---
 
+**Where we are.** Three synthesis runs have been analysed as clean prompt A/Bs (same request ids, identical
+`ud=`, only `pv=` differing), and every fix that was owed at the start of 2026-08-24 has landed:
+
+| run | change | outcome |
+|---|---|---|
+| `20260824T002404` | own-name ban retired + party-preservation rule | FE→DE swap **repaired**, invented-`Series` **2 → 0**, both Allegion records name the right party and decline the credential; $2.42, output −2.6% |
+| `20260824T010654` | document-listing rule | unscoped *"provides this resource"* **23 → 0**, document-scoped claim **1 → 45** of 77; **0** attestations newly withheld; $2.43, length flat |
+
+Evidence: `pipeline_v3_evidence/2026-08-24_run_002404_published_synthesis/README.md` and
+`pipeline_v3_evidence/2026-08-24_run_010654_document_rule/README.md` (each has its own runnable script;
+only `README.md` and the `.py` are tracked — regenerate the `.txt`/`.json` from the repo root).
+
+**Questions now CLOSED — do not re-open:**
+- *Does output length fall once the read-back check is gone?* **No, −2.6%.** The +28% belongs elsewhere.
+- *Is `own_name_hits_in_syntheses` going non-zero a violation?* **No.** 100% of records name the
+  manufacturer, which is what retiring the ban asked for. The counter measures identification now — it
+  wants renaming or retiring, never "fixing".
+- *Was the document-listing rule an overreach on the other four fields?* **Measured: no.** 0 attestations
+  newly withheld; the one attestation record that withholds does so correctly in both runs (its evidence
+  is a list of external links, not a certificate). The rule stays on all six statics.
+- *`focal_form_absent_records` 2 → 13?* **All 13 were the lint's fault, now fixed** (see below).
+
+**The focal-form lint is fixed** (`core/utils/focal_form_lint.py`). It gained a second match path — a
+verbatim occurrence still satisfies it, and failing that every *distinctive* token (connectives dropped,
+plurals folded, possessive `'s` stripped, whole tokens only, order not required) must appear. Measured
+across every synthesis run on record it now flags **1 / 1 / 1 / 0** on `195031` / `200044` / `002404` /
+`010654`, and the 1 on `200044` IS the real FE→DE swap. 9 tests pin it, including the three ways the
+relaxation could go too far: short tokens must not be plural-folded, tokens must match whole and never as
+substrings, and possessives must not leave a bare `s`.
+
+---
+
+**OWED, in order — the sequencing is the point, do not reorder:**
+
+1. **USER ACTION — publish + run the Location rewrite. BUILT 2026-08-24, NOT PUBLISHED.**
+   All six `3_phrase_mention_collection` statics, still byte-identical (no test pins that, unlike the
+   synthesis six). The Task section now asks for *one compact sentence carrying three things* — (a) what
+   kind of text it is, (b) what it belongs to (section/heading + what the page is about, in words), (c)
+   **whose words they are**, carried every time — plus an explicit ban: *"Open with the kind of text and go
+   straight on. Never open with a reference to the mention itself — not 'This passage', 'This phrase',
+   'This sentence', 'This line', 'This word', 'This entry' — and never with 'appears', 'is found', 'is
+   located', or 'sits'."* Two worked examples were added and the Output JSON hint re-pointed to
+   `<what kind of text, what it belongs to, whose words — one compact sentence>`.
+
+   **This changes `ud=` and re-runs BOTH stages** (mention because its `pv=` changed; synthesis because the
+   records it digests carry the new locations). Search and the single-stage fields replay from Mongo.
+   **Cost ≈ $5.30** — mention ≈$2.87 (run `044500`'s $4.31 total less its measured search $0.97 and
+   single-stage $0.47) plus synthesis ≈$2.43.
+
+   **Baselines to measure it against, all from run `20260824T010654`:**
+   - opener rate: **94%** of locations open "This ⟨passage⟩ ⟨verb⟩" — the ban should take this toward 0;
+   - length: median **194** chars, p90 **272**, total **1,229,700** = **64.1%** of the (location+snippet)
+     payload synthesis reads — target 35–40% off;
+   - **"whose words" rate: 34%** — this is the half of the change that ADDS information, and the one most
+     likely to resist. **If it does not move, the read is that three elements is too much for one sentence
+     — drop the weakest element rather than adding more instruction.**
+   - synthesis input genuinely changed this time, so re-run the delivery / lint / attribution checks
+     rather than assuming they hold.
+
+2. **Then 3.3**, folding in — rather than doing early — the `subject_name` wiring into
+   `create_record_screening_batch_request` (it currently gets `render_record_blocks(...)` alone) and the
+   deletion of the now-false *"never by name"* sentence from all seven
+   `4_phrase_relationship_screening/*.txt`. Screening is in `stages_disabled` today, so there is no risk
+   window and no reason to touch those files twice.
+
+**Still unrun after all of the above:** the `loc=1` vs `loc=0` A/B. Every run so far is the same arm.
+
+**Open, deliberately not chased:** 32 of the 77 document-listing records (42%) carry neither the scoped nor
+the unscoped phrasing. They were never the broken cases, so nothing regressed, but the rule's reach there
+is unmeasured — look only if document titles survive screening in 3.3. The root cause is upstream anyway:
+document titles are extracted as `products` at all (products precision measured 37% on 2026-08-22).
+
+**Do not re-litigate:**
+- **Publish is the user's action, never the agent's.**
+- **Never leave two prompt changes pending at once.** `publish` ships EVERY static whose text differs from
+  its pin (`_publish_static`, `assemble_prompts.py:277`), so two pending edits go out together and
+  confound the run. Build one, publish, run, analyse, then build the next. This is why the Location
+  rewrite was held back until the document-listing run was done.
+- The `[the manufacturer]` bracket convention is retired from synthesis only.
+- `ruff format` is not enforced on `synthesis_dump_util.py` or on `focal_form_lint.py`'s pre-existing
+  signature line — both were already non-conformant at HEAD; that is not drift to fix.
+- **A jump in the "asserts a dealing" metric is not evidence the prompt invents facts.** That reading was
+  wrong once (the 1% → 45% jump, withdrawn) and wrong again for a different reason (the 45% → 64% shift on
+  `002404` is mostly REGISTER — the old prompt's "offered by the manufacturer" is a passive the measuring
+  regex misses). Measure the register before concluding anything from that metric.
+- The dump's own `focal_form_absent_records` counter is **not comparable across runs** when the lint code
+  changed between them. Recompute both sides with one version.
+---
+
+- **2026-08-24 (later, same session) — EIGHTH RUN ANALYZED (20260824T010654 vs 002404, the third clean prompt A/B) = the document-listing rule. Evidence `pipeline_v3_evidence/2026-08-24_run_010654_document_rule/README.md`. THE RULE LANDED: on the 77 records whose only evidence is a document title, the unscoped 'Steelcraft provides this resource' goes 23 → 0 and an explicitly document-scoped claim ('offers a document titled X') goes 1 → 45 (58%). THE RECORDED OVERREACH DID NOT MATERIALISE: 165 conformity-attestation records, 0 newly withheld; the single record that withholds does so in BOTH runs and correctly (its evidence is a line in a list of external links under 'Allegion & Industry Links', not a certificate) — so the rule STAYS on all six statics and that fork is closed. Delivery flat (2,133/2,133, 0 not-synthesized, 0 retries, 0 unknown ids), cost $2.42 → $2.43, mean length unchanged at 365 chars. ONE DEFECT FOUND AND FIXED IN THE SAME PASS, and it was MINE: the focal-form lint mishandled possessives — `Steelcraft's Express Stock program` normalizes to a bare `s` token no synthesis contains, flagging 3 rows; it only surfaced now because the prose moved off the possessive form that had been satisfying the verbatim fast path. Fixed by stripping `'s` before normalizing (+1 test); the lint now reads 1 / 1 / 1 / 0 across 195031 / 200044 / 002404 / 010654, with the 1 on 200044 still the real FE→DE swap. NOTE the dump's own `focal_form_absent_records` showed 13 → 3, but those two numbers came from DIFFERENT versions of the lint and are not comparable — recompute both sides with one version. Also corrected in this pass: the first measurement of the document rule asked 'did the set-aside floor come back' and reported 2 of 23, which was the WRONG QUESTION — the rule never asked for the floor phrasing, it asked for the claim to be scoped to the document, which is what the 23 → 0 / 1 → 45 numbers measure. THEN BUILT (not published): the mention-stage Location rewrite, compact-sentence form per the user's decision. Suites 1,029 green, pyright 0, ruff clean. Next: user publishes the six Location statics + re-runs (≈$5.30, BOTH stages), then 3.3.**
+- **2026-08-24 (this session) — SEVENTH RUN ANALYZED (20260824T002404 vs 200044, the second clean prompt A/B): the six synthesis statics as PUBLISHED. Evidence `pipeline_v3_evidence/2026-08-24_run_002404_published_synthesis/README.md`. Same 95 request ids, every `ud=` identical, six new `pv=` — so every difference is the prompt. BOTH FIXES LANDED: the FE→DE entity swap is REPAIRED (the record whose focal form and only snippet read `FE Series Double-Egress Frames` and came back describing `DE Series` now describes FE, in both the equipments and products branches) and the `<X> Series` invention sweep over 1,250 steelcraft records goes 2 → 0; both Allegion records (`LEED Credits`, `CalGreen Building Standards`) now name Steelcraft as publisher, surface the 'More from Allegion' provenance the old run dropped, and explicitly state that Steelcraft does not itself award or certify. Delivery unchanged (2,133/2,133, 0 retries, 0 unknown ids); cost identical at $2.42; output −2.6%; 'Alec Model' verified against the source text as the real company name (62 occurrences), not an invention. THREE ANSWERS: output length does NOT fall with the read-back check removed (−2.6%, so the +28% belongs elsewhere); `own_name_hits_in_syntheses` 0 → 3,896 with 100% of records naming the manufacturer is CORRECT, the counter now measures identification and wants renaming; `focal_form_absent_records` 2 → 13 with ALL 13 FALSE — the new prose re-inflects the form the old prompt quoted and the lint tests a contiguous substring (8 of 13 are `&`/`,` re-read as 'and'). TWO OWED ITEMS OFF THIS RUN: fix the lint (dump-only, cannot contaminate an A/B), and the OPEN FORK — the set-aside floor collapsed on document listings, 23 of 74 → 1 of 74, so `Falcon SZ Series` and `Steelcraft Portfolio` now carry an affirmative sentence in `products` where they carried 'no dealing shown'; literally true, not fabrication, consequence unproven while screening is disabled. The 45% → 64% dealing-assertion shift is MOSTLY REGISTER, not new claims — the old prompt's 'offered by the manufacturer' is a passive the measuring regex misses; 12 sampled records confirm it. Next: the lint fix, then the location prompt rewrite as a SEPARATE run, then 3.3.**
 - **2026-08-23 (evening, this session) — SIXTH RUN ANALYZED (20260823T200044 vs 195031, a clean prompt A/B) and the first two fixes off it BUILT: the own-name ban RETIRED from the six synthesis statics (the name now identifies rather than hides), the party-preservation rule added, and a focal-form lint added to the dump. Statics are EDITED + RENDERED + `check`-verified but DELIBERATELY NOT PUBLISHED (user's call — they publish when they are ready to run); `check` names exactly the six and the published ids it cites (`iq_Pmvdu…`, `r8RmjAd5…`) are the ones run 200044 used, so nothing has left the machine. Suites core+app 968 / llm 52 green; pyright 0 errors on all three edited/new files; ruff check clean (ruff *format* is not enforced on `synthesis_dump_util.py` — it was already non-conformant at HEAD, so its pre-existing lines were left alone). NOT in this step, on purpose: the mention-stage location rewrite (it changes `ud=` and re-runs BOTH stages, which would destroy attribution against 200044 — it wants its own run) and the seven screening statics (their false "never by name" sentence and the `subject_name` wiring into `create_record_screening_batch_request` ride with 3.3, which re-keys screening anyway). Next: user publishes + re-runs `stop_after(synthesis)` → A/B vs 200044 → then the location prompt as a SEPARATE run → then 3.3.**
 
 - **2026-08-22 (night, this session) — 3.2 BUILT: the synthesis node, the location A/B arm, the retry pass, the snippet-radius knob, and the idempotence test narrowed (option c) — all on the user's go-ahead (journal row '3.2 BUILT'). Suites core 546 / app 410 / llm_providers 52 green (the idempotence property is back in the suite at verb_fold=False + a pinned example); pyright delta = 8 errors, all in the two PRE-EXISTING families (the node-hierarchy 'overrides incompatibly' set, identical to the mention node's 7; one more `get_result` on `type[BaseNode]` in the partial dump, same as the five above it); ruff clean on every written line. Six synthesis statics REWRITTEN (focal-form Task; 'where given' wording serves both arms) → PUBLISHED + pinned, `check` clean. What the stage does: per chunk, the fold's non-empty bundles become records `{record_id: group_id, focal_form, entries}` (focal form = most frequent member form, ties → earliest; `include_location=False` strips the location from every entry), packed in bundle order under a SOFT cap `max_entries_per_request` = 50 (a record is never split; a monster record travels alone; a chunk with no records gets a pre-answered dummy), id `…>llm_phrase_synthesis>chunk>{b}>[retry>1>]group>{i}>{model|pv}|gs=50|loc=1|ud=digest(records as rendered)`; the hold is exact (unknown ids dropped + reported, never a crash); pass 2 assesses each chunk once and embeds ONE retry set for the records left unsynthesized; the partial dump gains a `synthesis` block (one row per record: key, forms, focal form, entries, status, retried, synthesis, own-name lint; summary with not_synthesized / unknown / retried / request counts). Chain now: search → recursive → mention → SYNTHESIS → (v2 tail, unreachable until 3.3) — run with `StageToggles().stop_after(PipelineStage.synthesis)`. Knobs reach `create_pipelines` as `synthesis_include_location`, `mention_collection_snippet_radius`, `max_synthesis_entries_per_request`. Radius semantics: r sentence units each side of the hit unit(s), line breaks = unit breaks, blank lines skipped, page boundary lines (separator / URL) never crossed or included, r = 0 byte-identical to the old clip (golden) and NOT in the id (`|rad=r` only when r > 0, so run 044500's mention ids still resolve). **Next: the user's re-run with `stop_after(synthesis)` (Mongo: search + Location replay, synthesis fresh), read the `synthesis` dump block, then the location A/B (`synthesis_include_location=False`, distinct ids, both arms coexist), then 3.3.**
