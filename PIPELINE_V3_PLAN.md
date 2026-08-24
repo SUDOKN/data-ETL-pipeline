@@ -29,100 +29,71 @@ answerable to a mechanical floor.**
 
 ## STATE
 
-### RESUME HERE (written 2026-08-24, tenth run; deep supplement + notes reconciliation same day — supersedes every earlier RESUME block)
+### RESUME HERE (written 2026-08-24, the 3.3 build session — supersedes every earlier RESUME block)
 
-**NOTHING IS PENDING.** `assemble_prompts.py check` passes; the six Location statics are published
-(02:03:41Z) and measured. The next step is **3.3**.
+**3.3 IS BUILT.** The downstream re-key (D16) landed in one session, with the two user decisions taken
+that day: the per-group record downstream stages see is **`{focal_form, synthesis}`** (no member forms, no
+entries — the synthesis IS the evidence digest; `group_id` stays the opaque key, so v2's key-masking
+discipline holds with no masking step), and the **under-answer policy is the synthesis stage's retry
+pass, PORTED** to all three grounding stages and screening (the standing USER-OWNED watch item, closed).
+The **FE→DE twin fork is DECIDED: accept + tripwire** — the swap stays a known ~2-in-5 stochastic defect
+confined to nav-menu-only records (1 wrong in 700, the focal-form lint already catches it, screening sits
+downstream), and the **identical-synthesis tripwire** is in the synthesis dump (`§10` option (a):
+`identical_synthesis_in_request` per row + a summary counter, request membership recomputed through
+`pack_records`; a dump counter in the posture of the lints, NEVER a retry trigger). Option (b), evidence
+thickness, is deferred to Phase 5 by the run-the-whole-pipeline-first decision.
 
-Read this block, then
-`pipeline_v3_evidence/2026-08-24_run_020729_heading_verbatim/README.md` for any number.
+**What the re-key is, in one paragraph.** Every tail stage stopped reading the retired relationship stage
+and now derives its records from ONE new seam: `get_chunk_group_records` (synthesis service) recomputes
+the chunk's fold from the stored mention answers, holds the syntheses, and reduces to `GroupRecords =
+{group_id: {focal_form, synthesis}}` — synthesized groups only (the v3 analog of `records_with_mentions`;
+`no_mentions` and `not_synthesized` groups stay dump-visible and go nowhere downstream). Consumers:
+freehand/initial/OOV grounding (`build_group_record_payloads`, OOV still rides `already_identified`),
+screening (`build_screening_payloads` re-typed), descent (`descent_record_payloads` over group records in
+both the node and `llm_recursive_grounding_service`), and both reconcile nodes (the synthesis result is
+the row spine). The `|ud=` digest chain extends through the tail for free — every downstream custom id
+already digests its payload, and the payload is now the group record. The four tail nodes became
+RECURSIVE nodes (the synthesis two-pass pattern): pass 1 embeds group requests; pass 2 assesses each
+chunk once all are complete, stores `*_retry_record_ids` on the bundle (None = unassessed, [] = assessed
+clean), and embeds ONE retry request set (`>retry>1>` in the custom id) for exactly the unanswered ids.
+Holds THIN on missing ids now (`on_missing="drop"`); an id nobody sent still raises (fabrication); a
+record answered in two requests raises; still-missing after the retry is a warning and an absent record —
+grounding reads it as nothing-found, screening as no-verdict (fails closed, `screening_dropped` in rows).
 
----
+**Also in this build:**
+- **Riders:** screening requests now carry `the name of the manufacturer in question: <name>` at the top
+  (same pattern as synthesis; `_subject_name_of` raises when unset), and the false *"never by name"*
+  sentence is REWRITTEN in all seven screening catalogs (now: the manufacturer is NAMED at the top;
+  records may use the name, "the manufacturer", or its brands). **All 7 statics re-rendered and
+  UNPUBLISHED — `check` fails on exactly those 7. Publish is the user's action, before the first
+  screening-enabled run; nothing else may go pending meanwhile.**
+- **Relationship retired:** the factory no longer builds its metadata (helper, prompt params and knob
+  deleted; `llm_phrase_relationship` is Optional-None on the metadata and prefill nodes — old stored runs
+  still load; the metadata change re-defers any stored deferred field, per the resume invariant). Node
+  classes and parse services stay, for stored v2 runs.
+- **Stats:** `LLMPhraseExtractionStatsV2` gains `llm_phrase_synthesis: dict[int, GroupRecords]` (the
+  id→focal-form join lives there now); `llm_phrase_relationship` is default-empty and only populated on
+  pre-3.3 results. Reconcile dumps write GROUP rows (`build_keyword_group_rows` /
+  `build_concept_group_rows` / `build_partial_group_rows`): group_id, focal form, member forms, key,
+  mention_count, provenance (earliest round of ANY member form), the record as sent, per-stage verdicts,
+  and a status with two new branches (`no_mentions` for empty bundles, `not_synthesized`), second-witness
+  checked. The partial dump uses the group spine whenever synthesis completed.
 
-**Run `20260824T020729` = the heading-verbatim fix, and it landed.** 20 of 20 dumps, field set identical
-to the last complete run, so the three fields `012721` lost are back. A clean A/B despite the stored batch
-requests being deleted beforehand: the delete was scoped and left search alone (all 96 `llm_search` rows
-survive from `04:45`, and the run's search stage replays with `started_at = 2026-08-23T04:45:00`), so the
-`ud=` is IDENTICAL on all **93** shared mention request ids and only `pv=` differs (the first write-up
-said 37; the supplement recounted).
+**Suites: 1,274 passed, 8 deselected** (core 568 + app 414 + the rest; new:
+`test_downstream_group_rekey.py` — derivation order/filter, tripwire same-request-only, row branches,
+partial-row null-vs-omitted — and the app-side retry-merge + two-requests-collision tests; the
+under-answer tests REWRITTEN to the thin-and-assess contract). Pyright delta over every touched file: 0
+(the override-variance errors on the node classes and the dump util's dynamic-typing errors all
+pre-exist at HEAD; verified against baselines). Ruff: 7 unused imports fixed; remaining E501/F541 match
+HEAD.
 
-| metric | `012721` | `020729` |
-|---|---|---|
-| `LEED Credits` / `CalGreen` provenance | "a list of links or resources" | **"the 'More from Allegion' section"** — fixed |
-| records losing a party name | 7 | **0** Allegion-class; 7 Falcon page-enum on the full pairing (supplement §8) |
-| party survival into synthesis | 9/18 = 50% (full pairing 16/34 = 47%) | **12/20 = 60%** (full pairing **19/29 = 66%**) |
-| opener ban / "whose words" / URLs / cross-refs | 0% / 100% / 0 / 0 | **0% / 100% / 0 / 0** — all held |
-| location chars (paired) | 289,956 | 309,901 (**+6.9%**, the price of quoting headings) |
-| delivery | clean | **2,133/2,133, 0 retries, 0 unknown** |
-| cost | — | mention $2.81 + synthesis $2.44 = **$5.25** |
-
-**THE ONE OPEN DEFECT — and it is NOT the heading fix's doing.** The FE→DE entity swap recurred:
-`steelcraft/equipments`, focal form and sole snippet both `FE Series Double-Egress Frames`, synthesis says
-`DE Series`. The focal-form lint caught it (1 of 700; 0 of 385 last run), and a Series sweep counting
-focal form + forms + snippets + **locations** as evidence gives 0/65 vs **1 genuine of 182**.
-
-**This RETIRES the plan's "REPAIRED" verdict on the swap.** Across five observations of the same record:
-`195031` right, `200044` wrong, `002404` right, `012721` right, `020729` wrong — **two in five, stochastic
-and unfixed.** The `002404` reading was a single lucky sample. The FE and DE records are twins whose
-locations are byte-identical to each other in BOTH runs, so the location is not the variable; the model
-collapses them and emitted the *same synthesis string* for both. **The fix candidate first recorded here
-— "separate near-identical focal forms in the packer" — was MEASURED AND KILLED the same day; see the
-re-scoping paragraph below.**
-
-**THE SAME-DAY DEEP SUPPLEMENT** (`deep_supplement.py` + output, in the evidence folder) **corrected two
-numbers and added three measurements.** Corrections: (1) the mention stage shares **93** request ids (not
-37), every one with an identical `ud=`; (2) the first pass paired records by (subject, field, group_id),
-which collides for **242 group_ids present in BOTH chunks of a field** and silently dropped 114 records —
-the **7 party-name losses hid there, all steelcraft/conformity_attestations, all the Falcon
-page-enumeration class** (the old location listed every product page carrying the bullet, "… and SZ Series
-Falcon Flush Doors"; the compact new style names fewer pages, so the sub-brand rode out of the list). The
-Allegion class the fix targeted stays fixed, and full-pairing survival still improved 47% → 66%.
-Measurements: (1) **identical-synthesis collapse census** over the four runs — 12 (`002404`) / 23
-(`010654`) / 1 (`012721`, the missing-products artifact) / 14 (`020729`) same-request pairs sharing one
-byte-identical synthesis string: a STANDING synthesis behavior, not the heading fix's; the FE→DE pair is
-the ONLY one whose shared string is wrong for a record — the rest are composite sentences naming both
-entities, reused verbatim across co-packed records, concentrated in `steelcraft/products`. (2) **Twin
-census**: 130 confusable same-request focal-form pairs (93 in `steelcraft/products`; the `System Set
-D1…S4` family alone contributes 66) — the population the FE→DE fix must protect; 1 invention among them
-this run — but the next paragraph retires that framing. (3) Own-name hits rose 2,154 → 2,477 (steelcraft) with identification steady at ~100% of
-records — verbatim headings inject the name; payload, not a defect. Also: document rule HELD under the new
-locations (scoped 19 → 20, unscoped 0 → 0), mention delivery clean (3,345/3,345 described, all zeros),
-client latency p50 8–10 s / p90 ~16 s, paired synthesis text +1.9%, 17 transparent client-level retries in
-the log (~8%, normal).
-
-**THE TWIN FIX, RE-SCOPED BY MEASUREMENT (supplement §10, added when the illustration pass turned up the
-mechanism).** Every collapse shares one signature — call two records in a request **thin twins** when each
-has exactly ONE evidence entry and their location lists are byte-identical: **49 of the 50 collapses across
-four runs are thin twins**. But the signature fires **837–1,557 times per run**, so precision is 1–3%, and
-narrowing it with a confusable-name test catches **1 of 14** — because **FE→DE is the ATYPICAL collapse**.
-The other 13 are pairs of *different* things named in one true sentence (`Paladin Door & Frame` /
-`Schlage LM9300 Levers` / `Von Duprin WS-T Exit Devices` / `latching hardware` — one sentence, four
-records). **So "separate near-identical focal forms in the packer" is NOT BUILDABLE on anything measured:
-every pre-filter either over-treats ~100× or misses 13 of 14.** What replaces it: (a) the **exact post-hoc
-tripwire** — flag identical synthesis strings within one request, a dump counter in the posture of the
-existing lints, never a retry trigger; (b) **nothing new for the harmful subclass — `focal_form_lint`
-already covers it**, having flagged FE→DE both times it occurred (the earlier "13 of 14 invisible to the
-lint" reading was BACKWARDS: the lint correctly ignores 13 accurate-but-undifferentiated records; what is
-missing is a FIX, not a detector); (c) the real lever is **evidence thickness, not name similarity** — the
-SAME FE/DE pair is fused in the chunk where each has one bare nav-menu entry and correct in the chunk where
-they have 3 and 2 entries of prose. Given anything to tell them apart, the model does.
-
----
-
-**OWED, in order:**
-
-1. **3.3**, folding in — rather than doing early — the `subject_name` wiring into
-   `create_record_screening_batch_request` (it currently gets `render_record_blocks(...)` alone) and the
-   deletion of the now-false *"never by name"* sentence from all seven
-   `4_phrase_relationship_screening/*.txt`. Screening is in `stages_disabled` today, so there is no risk
-   window and no reason to touch those files twice.
-2. **The FE→DE twin fork** — RE-SCOPED, see the paragraph above. Packer separation is dead on
-   measurement, so what is left is **a decision the user owns**: (a) add the identical-synthesis tripwire
-   as a dump counter (cheap, exact, measures undifferentiated records — a QUALITY axis, not a correctness
-   one); and/or (b) attack **evidence thickness** on single-entry records, the variable that actually
-   decides the outcome; and/or (c) accept the swap as a ~2-in-5 stochastic defect confined to
-   nav-menu-only records and let downstream screening carry it — not unreasonable at 1 wrong record in 700
-   entity-shaped ones, already detected by the existing lint.
+**NOTHING of 3.3 has run live.** The retry passes, the re-key, the tripwire and the group rows have unit
+tests only. The next step is the **Phase 3 review gate: the first END-TO-END run on a small subject** —
+user publishes the 7 screening statics, enables screening in the run config, and runs via the notebook
+(alecmfg is the natural subject). That run is also the first ever to exercise v3's grounding → screening
+→ reconcile tail, and the first comparable against the v1 baselines reserved for Phase 5. Then Phase 4
+(group-aware dumps are largely absorbed — 4.1's group rows exist; 4.2's subject-name lint already runs in
+the synthesis dump; judge what remains after reading a real dump).
 
 **Still unrun:** the `loc=1` vs `loc=0` A/B. Every run so far is the same arm.
 
@@ -133,53 +104,43 @@ they have 3 and 2 entries of prose. Given anything to tell them apart, the model
 - 32 of the 77 document-listing records carry neither the scoped nor the unscoped phrasing; unmeasured,
   never broken. Root cause is upstream — document titles are extracted as `products` at all (products
   precision measured 37% on 2026-08-22).
+- Phase 5 question, parked 2026-08-24: **70% of all records rest on a single evidence entry** — the same
+  population where the collapse lives. Not a defect; should shape the measurement gate's design.
 
 **The recursive resume fix has NO live verification** — the publish minted new ids, so the 10 stranded
 rows were never consulted. Its evidence is the 5 tests in `test_recursive_node_eager_dispatch.py` and the
-next genuine mid-run failure. Do not claim otherwise.
+next genuine mid-run failure. Do not claim otherwise. The same holds for the three grounding retry passes
+and the screening one: built to the synthesis template, tested at the parse layer, never fired live.
 
-**Tree:** committed on `new-ground-truth-v2` — `c8d04fb` (ninth run + the resume fix + the heading change),
-`167537d`, `4c7a1fe`, `e32ef0a` (publish recorded), `dad8891` (tenth run analysed), `0fb5573`
-(deep supplement + journal backfill), `4d247a5`, `52d7fac` (§10: the pre-emptive twin fix measured
-and killed). The `ontology` submodule is deliberately left dirty —
-it is the user's own. Suites: 1,033 passed, 1 deselected (the known `test_normalize_is_idempotent`
-property). Per the evidence-folder convention only `README.md` and the analysis script are tracked;
-regenerate the `.txt` by running the script from the repo root.
+**Tree:** committed on `new-ground-truth-v2` through `52d7fac` (§10) plus this session's 3.3 commit (see
+the journal's last row for the hash). The `ontology` submodule is deliberately left dirty — it is the
+user's own. Per the evidence-folder convention only `README.md` and the analysis script are tracked.
 
 **Do not re-litigate:**
 - **Publish is the user's action, never the agent's.**
 - **Never leave two prompt changes pending at once.** `publish` ships EVERY static whose text differs from
-  its pin (`_publish_static`, `assemble_prompts.py:277`).
+  its pin (`_publish_static`, `assemble_prompts.py:277`). The 7 screening statics are pending NOW.
 - **A missing dump is not always a crash.** `012721` looked like a stalled run and was a finished one that
   had silently dropped three fields. Check the dump COUNT against the previous run's.
 - **A `pv` change orphans every stale row, so it also hides every resume bug.** Resume behaviour is only
   observable across two runs at the SAME prompt state. Do not claim a resume fix is verified by a run that
   changed a prompt.
 - **Deleting the stored batch requests is not free and not necessary.** Search and the single-stage fields
-  replay from Mongo every run (worth $1.44 on the two-subject run). The scoped delete this run did was
-  harmless only because it left search alone — verify that before trusting any post-delete A/B.
-- **When sweeping for "invented" entity names, count the LOCATION as evidence, not just the snippet** —
-  and beware a regex that captures the word before "Series" ("these Series", "frame Series"). Both
-  mistakes were made in this session and produced 19 false hits against 1 real one.
+  replay from Mongo every run (worth $1.44 on the two-subject run).
+- **When sweeping for "invented" entity names, count the LOCATION as evidence, not just the snippet.**
 - **Pair dump records with the CHUNK BOUNDS in the key.** 242 group_ids appear in both chunks of a
   field; a (subject, field, group_id) key silently drops 114 records — it hid all 7 party losses.
 - **An identical synthesis string on two records of one request is a collapse** — 12–23 per full run.
-  Most pass the focal-form lint **correctly**: the shared sentence names both entities and is true of
-  both, so those records are accurate-but-undifferentiated (a quality axis), not wrong. Only the subclass
-  where a record's own name is absent is a defect, and the lint catches exactly that.
-- **Do not build a pre-emptive packer filter on twin-ness.** Measured: thin twins (one entry each +
-  identical locations) have ~100% recall but 1–3% precision (837–1,557 pairs/run); adding a
-  confusable-name test catches 1 of 14. The affordable instrument is post-hoc.
+  Most pass the focal-form lint **correctly**: accurate-but-undifferentiated (a quality axis), not wrong.
+  Only the subclass where a record's own name is absent is a defect, and the lint catches exactly that.
+- **Do not build a pre-emptive packer filter on twin-ness.** Measured: 1–3% precision, or 1-of-14 recall.
+  The affordable instrument is post-hoc — and it is now BUILT (the tripwire above).
 - The `[the manufacturer]` bracket convention is retired from synthesis only.
-- `ruff format` is not enforced on `synthesis_dump_util.py` or on `focal_form_lint.py`'s pre-existing
-  signature line — both were already non-conformant at HEAD.
-- **A jump in the "asserts a dealing" metric is not evidence the prompt invents facts.** Measure the
-  register before concluding anything from that metric.
-- The dump's own `focal_form_absent_records` counter is **not comparable across runs** when the lint code
-  changed between them. Recompute both sides with one version.
-- **The plan's recorded "whose words 34%" baseline is not reproducible** — one consistent regex over both
-  runs gives 12% → 100%.
+- **The under-answer policy is DECIDED (retry port, 2026-08-24).** Do not reopen it as a watch item.
+
 ---
+
+- **2026-08-24 (3.3 build session) — 3.3 BUILT end to end (details in the RESUME block above): the downstream re-key onto group records, the under-answer retry port (user decision), the twin-fork closure (accept + the identical-synthesis tripwire, user decision), the screening subject_name rider + the seven catalog rewrites (rendered, UNPUBLISHED), relationship metadata retired from the factory, group-keyed reconcile/partial dump rows, stats' `llm_phrase_synthesis` block. Suites 1,274 passed / 8 deselected; pyright delta 0.**
 
 - **2026-08-24 (later, notes-reconciliation session) — DEEP SUPPLEMENT ON THE TENTH RUN + THE PLAN'S RECORDS RECONCILED. Evidence: `deep_supplement.py` / `deep_supplement_output.txt` beside the tenth run's README (pyright 0, ruff clean). CORRECTIONS to the tenth-run record: 93 shared mention request ids, not 37; the (subject, field, group_id) pairing collides for 242 group_ids present in both chunks, dropping 114 records — on the full bounds-keyed pairing 7 records DID lose a party name (all steelcraft/conformity_attestations, all the Falcon page-enumeration class; survival still 47% → 66%; the Allegion class stays fixed). NEW MEASUREMENTS: identical-synthesis collapse census 12 / 23 / 1 / 14 across the last four runs — a standing synthesis behavior concentrated in steelcraft/products, NOT the heading fix (012721's 1 is its missing-products artifact); FE→DE is the only pair whose shared string is wrong for a record; twin census 130 confusable same-request focal-form pairs (93 in steelcraft/products) = the population the twin fix must protect; own-name hits 2,154 → 2,477 with identification steady (verbatim headings inject the name — payload, not defect); document rule held (scoped 19 → 20, unscoped 0 → 0); mention delivery clean 3,345/3,345; latency p50 8–10 s. BOOKKEEPING RECONCILED: the append-only journal had stopped at the sixth run — rows backfilled for the seventh through tenth runs and the builds between them (they lived only in these STATE bullets); `dad8891` added to the Tree line; the four unlisted dump folders accounted for (170602 = pre-v3 single-stage smoke; 063104/063147/063808 = deferred-run polls of the overnight 3.2 run later collected by 195031; 012354 = the failed run already in the ninth-run record). FIX CANDIDATE MEASURED AND KILLED (§10, added when the illustration pass turned up the mechanism): 'separate near-identical focal forms in the packer' is NOT buildable — every collapse is a 'thin twin' (one evidence entry each + byte-identical locations, 49 of 50 across four runs) but that signature fires 837–1,557 times a run (1–3% precision), and narrowing by confusable names catches 1 of 14 because FE→DE is the ATYPICAL collapse (the other 13 are different things named in one true sentence). What replaces it: the exact post-hoc identical-synthesis tripwire as a dump counter; NOTHING new for the harmful subclass (focal_form_lint already catches exactly it — the earlier '13 of 14 invisible to the lint' reading was BACKWARDS); the real lever is EVIDENCE THICKNESS — the same FE/DE pair fuses in the chunk where each has one bare nav-menu entry and is correct in the chunk where they have 3 and 2 prose entries. Next: 3.3, then the user's decision on the twin fork.**
 
@@ -652,9 +613,9 @@ dump-visible).
 
 **Standing watch items:** M2 match rules still owed; descent-attribution leak
 channel (measure at gates); search-divisor recall/quality A/Bs still unrun;
-**under-answer policy (USER-OWNED, appendix D; now also OBSERVED in the mention stage — run 20260822T061410, 2 of 30 forms answered, caught by the floor scan, warn-only):** a grounding response can validly answer a fraction of its sent
-records and today that aborts the whole subject via `MissingResponseRecords`;
-decide retry/split/schema policy before v3's grounding re-key (Phase 3.3).
+~~under-answer policy~~ **DECIDED 2026-08-24 (user, with 3.3): the synthesis
+stage's retry pass, ported to all three grounding stages and screening — holds
+thin, one assessment, one retry set, still-missing warns and stays absent.**
 
 ---
 
@@ -700,8 +661,10 @@ decide retry/split/schema policy before v3's grounding re-key (Phase 3.3).
 - **3.2** Synthesis node: soft-cutoff batching, groups whole, ~~dispositions parse~~ one synthesis per record with a FOCAL FORM (D15 as amended 2026-08-22), `location` as an A/B arm, snippet-radius knob on the collector. **DONE 2026-08-22 (journal row '3.2 BUILT'; retry pass included).**
 - **3.3** Downstream re-key onto group_id; digests through the new chain (D16);
   orchestration order search → recursive → mentions → [fold] → synthesis →
-  grounding → OOV → screening → descent → reconcile.
-- **REVIEW gate:** end-to-end dry run on a small subject.
+  grounding → OOV → screening → descent → reconcile. **DONE 2026-08-24 (journal
+  row '3.3 BUILT'; the under-answer retry port and the two riders included).**
+- **REVIEW gate:** end-to-end dry run on a small subject. **PENDING — needs the
+  user's publish of the 7 screening statics + screening enabled in run config.**
 
 ### Phase 4 — Observability
 - **4.1** Group-aware dumps: one row per group, member forms visible inline (a
@@ -871,3 +834,4 @@ listing `pipeline_v3_evidence/2026-08-21_normalize_dry_run_output.txt`.
 | 2026-08-24 | **NINTH RUN ANALYZED + THREE THINGS BUILT (backfilled row; STATE bullet has full detail).** `20260824T012721`, the Location rewrite: 17 OF 20 DUMPS — `alecmfg/industries`, `steelcraft/products`, `steelcraft/contract_products` vanished silently (773 records, 36%), traced to the failed run `20260824T012354` (duplicate `record_id` parse raise; 429 no-credits) + THE REAL DEFECT: the recursive base dispatched only requests it had just CREATED, so `record_response_parse_error`'s nulled rows were never re-asked — **the parse-error retry had never worked for ANY recursive stage** — and `execute` returned silently with the field incomplete. The rewrite itself worked on the 17 shared fields: opener 92.7% → 0.0%, 'whose words' 12% → 100%, locations −24.6%, 0 URLs/cross-refs/empties; ONE regression — 7 records lost a party name incl. the two Allegion records (heading paraphrase), which begat the heading-verbatim fix. BUILT: the heading-verbatim statics change, the resume fix (converge over UNANSWERED requests, `get_incomplete_req_ids`, raise on unproductive passes, `MAX_UNPRODUCTIVE_PASSES = 3`; tests 1 → 5), Defect A left alone on purpose. Suites 1,033 green. Commits `c8d04fb` (+ `167537d`); step 0 added `4c7a1fe`; the user's publish (six Location statics, 02:03:41Z) recorded and step 0 closed in `e32ef0a`. |
 | 2026-08-24 | **TENTH RUN ANALYZED (backfilled row; RESUME block + `pipeline_v3_evidence/2026-08-24_run_020729_heading_verbatim/README.md` are the record).** `20260824T020729` = the heading-verbatim fix, and it LANDED: both Allegion records read "the 'More from Allegion' section" again in location AND synthesis; everything the rewrite won held (opener 0%, whose-words 100%, 0 URLs); price +6.9% location text; delivery 2,133/2,133 clean, $5.25. A clean A/B despite a scoped pre-run delete (search replayed from `04:45`; 93 shared mention ids, `ud=` identical). THE FE→DE SWAP RECURRED — retires `002404`'s REPAIRED verdict: right/wrong/right/right/wrong across five observations, stochastic and unfixed; the twins' locations are byte-identical in both runs, and the model emitted the same synthesis string for both. Commit `dad8891`. |
 | 2026-08-24 | **DEEP SUPPLEMENT + JOURNAL BACKFILL (this row's commit).** Second pass over `020729` (`deep_supplement.py` + output beside the README; pyright 0, ruff clean): corrected 37 → **93** shared mention request ids and the pairing (242 group_ids straddle both chunks; (subject, field, group_id) keys dropped 114 records and hid **7 real party-name losses — all steelcraft/conformity_attestations, all the mild Falcon page-enumeration class**; full-pairing survival 47% → 66%, Allegion class still fixed). NEW: identical-synthesis collapse census 12 / 23 / 1 / 14 over the last four runs (standing behavior, concentrated in `steelcraft/products`; FE→DE the only wrong-for-one pair; a same-request identical-string tripwire is the affordable instrument); twin census **130** confusable same-request pairs (93 in `steelcraft/products`) — a framing RETIRED the same day by §10; own-name hits 2,154 → 2,477, identification steady; document rule held (19 → 20 scoped, 0 unscoped); mention delivery 3,345/3,345 clean; latency p50 8–10 s p90 ~16 s; paired synthesis +1.9%; thin single-entry records 69% → 70%. Journal rows for the seventh through tenth runs backfilled (the append-only journal had stopped at the sixth); `dad8891` recorded in the Tree line; the four unlisted dump folders accounted for (`170602` pre-v3 smoke; `063104`/`063147`/`063808` deferred-run polls collected by `195031`; `012354` the failed run). MEMORY.md and the v3 memory note reconciled (both still said 'one thing pending' / eight or ten runs with the stale party claim). §10 (added when the plain-language illustration pass turned up the mechanism) then MEASURED AND KILLED the pre-emptive twin fix: every collapse is a 'thin twin' (one entry each + byte-identical locations; 49 of 50) but that fires 837–1,557 times a run at 1–3% precision, and a confusable-name narrowing catches 1 of 14 — FE→DE is ATYPICAL. Replaces it: the exact post-hoc identical-synthesis tripwire; nothing new for the harmful subclass (`focal_form_lint` already catches exactly it — the '13 of 14 invisible' reading was backwards); and EVIDENCE THICKNESS as the real lever (the same FE/DE pair is fused on one nav-menu entry each and correct on 3 and 2 prose entries). Next: **3.3**, then the user's decision on the twin fork. |
+| 2026-08-24 | **3.3 BUILT (this row's commit) — the downstream re-key (D16), in one session, with three user decisions taken via chat questions: (1) downstream record payload = `{focal_form, synthesis}`; (2) under-answer policy = the synthesis retry pass PORTED to freehand/initial/OOV grounding + screening (the USER-OWNED watch item, closed — holds thin on missing, unknown ids still raise, one assessment pass writes `*_retry_record_ids` on the bundle, one retry request set `>retry>1>`, still-missing warns and stays absent); (3) twin fork = ACCEPT + TRIPWIRE (the FE→DE swap stays a known stochastic defect; `identical_synthesis_in_request` row marker + summary counter in the synthesis dump, request membership recomputed via `pack_records`, never a retry trigger; evidence thickness deferred to Phase 5).** New seam `get_chunk_group_records` → `GroupRecords` (synthesized groups only, bundle order); consumers re-pointed: `build_group_record_payloads` (grounding ×3, OOV keeps `already_identified`), `build_screening_payloads` (re-typed), `descent_record_payloads` (node + recursive service), both reconcile nodes (synthesis result = row spine; group rows with `no_mentions`/`not_synthesized` branches, second-witness checked; partial dump uses the group spine when synthesis completed). All four tail nodes converted to recursive nodes (two-pass embed). Riders: screening context carries the manufacturer's NAME (synthesis pattern); the seven screening catalogs' "never by name" sentence rewritten, statics RENDERED and left UNPUBLISHED (check fails on exactly those 7 — publish is the user's, before the first screening-enabled run). Relationship stage retired from the factory (metadata Optional-None; node classes + parse services kept for stored v2 runs). Stats gain `llm_phrase_synthesis`; `llm_phrase_relationship` default-empty. Suites 1,274 passed / 8 deselected (new `test_downstream_group_rekey.py` + app retry-merge/collision tests; under-answer tests rewritten to thin-and-assess); pyright delta 0 vs HEAD baselines; ruff −7 unused imports. NOTHING of 3.3 has run live — the review gate is the first end-to-end run. |

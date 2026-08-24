@@ -25,7 +25,7 @@ from __future__ import annotations
 
 from typing import Optional, TypeVar
 
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 
 from core.models.extraction_results.concept_extraction_results import (
     BatchedInitialGroundingNodeMetadata,
@@ -51,6 +51,7 @@ from core.models.extraction_schemas.iterative_tagging import (
 from core.models.extraction_schemas.relationship import (
     MaskedLLMPhraseRelationshipResults,
 )
+from core.models.extraction_schemas.synthesis import GroupRecords
 from core.models.extraction_schemas.screening import RecordScreeningResults
 from core.models.extraction_schemas.search import LLMSearchResults
 
@@ -104,9 +105,17 @@ class LLMPhraseExtractionStatsV2(BaseModel):
     # round -> phrases found independently that round (NOT cumulative); round 0
     # reserved for brute survivors, empty for keyword fields.
     llm_phrase_search: dict[int, LLMSearchResults]
-    # round → {record_id: {phrase, record}} — the masked relationship results;
-    # the id→phrase join every later stage reads through lives HERE.
-    llm_phrase_relationship: dict[int, MaskedLLMPhraseRelationshipResults]
+    # v2's relationship stage, RETIRED by v3 (3.3): populated only on results
+    # written before the re-key; new runs leave it empty. round →
+    # {record_id: {phrase, record}}.
+    llm_phrase_relationship: dict[int, MaskedLLMPhraseRelationshipResults] = Field(
+        default_factory=dict
+    )
+    # v3 (3.3, D16): round → {group_id: {focal_form, synthesis}} — the
+    # per-group records every downstream verdict keys against; the
+    # id→focal-form join every later stage reads through lives HERE. Empty on
+    # results written before the re-key.
+    llm_phrase_synthesis: dict[int, GroupRecords] = Field(default_factory=dict)
     # round → {record_id: {candidate: verdict}} — every candidate judged.
     llm_phrase_screening: dict[int, RecordScreeningResults]
 
@@ -134,10 +143,10 @@ KeywordExtractionStatsMapV2 = dict[str, KeywordExtractionStatsV2]
 class LLMPhraseExtractionMetadataV2(BaseExtractionMetadata):
     llm_phrase_search: ExtractionNodeMetadata
     llm_phrase_recursive_search: RecursiveSearchNodeMetadata
-    # v2 relationship — out of every chain since v3 3.1 (2026-08-21); still
-    # required here because it is part of every stored run identity, until 3.3
-    # retires the stage. No v3 node reads it.
-    llm_phrase_relationship: BatchedRelationshipNodeMetadata
+    # v2 relationship — RETIRED at v3 3.3 (out of every chain since 3.1).
+    # Optional so every stored pre-3.3 run identity still loads; new runs
+    # carry None and no node reads it.
+    llm_phrase_relationship: Optional[BatchedRelationshipNodeMetadata] = None
     llm_phrase_relationship_screening: BatchedScreeningNodeMetadata
     # v3 (PIPELINE_V3_PLAN.md Phase 3.1): the mention collector and the
     # aggregation fold's identity. Optional so every stored v2 document still

@@ -15,14 +15,11 @@ from core.services.applied_rule_validation import AppliedRuleValidationError
 from core.services.phrase_blocks_contract import render_record_blocks
 from core.services.pipeline_nodes.multi_stage.llm_grounding_node_service import (
     DUMMY_GROUNDINGS_RESPONSE_CONTENT,
-    build_record_payloads,
+    build_group_record_payloads,
     parse_record_grounding_result,
+    retry_record_payloads,
 )
-from core.models.extraction_schemas.relationship import (
-    MaskedPhraseRelationshipRecord,
-    PhraseMention,
-    PhraseRelationshipRecord,
-)
+from core.models.extraction_schemas.synthesis import GroupRecord
 
 
 def _catalog(stage: str, *, with_ladder: bool) -> RuleCatalog:
@@ -264,26 +261,35 @@ def test_the_dummy_content_parses_to_an_empty_map():
     )
 
 
-def test_record_payloads_carry_the_record_and_optionally_the_prior_results():
-    masked = {
-        "raaaaaa1": MaskedPhraseRelationshipRecord(
-            phrase="aerospace",
-            record=PhraseRelationshipRecord(
-                mentions=[PhraseMention(form="Aerospace", page="/", account="a")],
-                synthesis="s",
-            ),
-        )
+def test_group_record_payloads_carry_the_record_and_optionally_the_prior_results():
+    # v3 (3.3, D16): the downstream record is the group's focal form + its
+    # synthesis; the opaque group_id is the key and never rides inside.
+    groups = {
+        "g1": GroupRecord(focal_form="Aerospace", synthesis="s"),
     }
-    plain = build_record_payloads(masked)
-    assert set(plain["raaaaaa1"]) == {"mentions", "synthesis"}
-    assert "phrase" not in plain["raaaaaa1"]  # the mask: the key never rides along
+    plain = build_group_record_payloads(groups)
+    assert plain["g1"] == {"focal_form": "Aerospace", "synthesis": "s"}
 
-    with_prior = build_record_payloads(
-        masked, already_identified={"raaaaaa1": ["Machining", "Aerospace Industry"]}
+    with_prior = build_group_record_payloads(
+        groups, already_identified={"g1": ["Machining", "Aerospace Industry"]}
     )
-    assert with_prior["raaaaaa1"]["already_identified"] == [
+    assert with_prior["g1"]["already_identified"] == [
         "Aerospace Industry",
         "Machining",
     ]
     # Renders into the fenced blocks without complaint.
     assert "<<<RECORDS" in render_record_blocks(with_prior)
+
+
+def test_retry_record_payloads_restrict_to_the_stored_ids_and_raise_on_drift():
+    payloads = build_group_record_payloads(
+        {
+            "g1": GroupRecord(focal_form="Aerospace", synthesis="s"),
+            "g2": GroupRecord(focal_form="Machining", synthesis="t"),
+        }
+    )
+    assert set(retry_record_payloads("x", "sub", "f", "0:10", payloads, ["g2"])) == {
+        "g2"
+    }
+    with pytest.raises(ValueError, match="changed under the stored"):
+        retry_record_payloads("x", "sub", "f", "0:10", payloads, ["g3"])

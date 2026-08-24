@@ -19,6 +19,8 @@ reconcile's classification job, not a parse defect.
 
 from __future__ import annotations
 
+from dataclasses import dataclass, field as dataclass_field
+
 import asyncio
 import logging
 import traceback
@@ -37,9 +39,7 @@ from core.models.extraction_schemas.grounding import (
     RecordGroundingResults,
     TagToAppliedRulesMap,
 )
-from core.models.extraction_schemas.relationship import (
-    MaskedLLMPhraseRelationshipResults,
-)
+from core.models.extraction_schemas.synthesis import GroupRecords
 from core.models.rule_catalog import RuleCatalog
 from core.services.applied_rule_validation import (
     check_applied_rules,
@@ -48,6 +48,7 @@ from core.services.applied_rule_validation import (
 from core.services.phrase_blocks_contract import (
     hold_response_to_sent_record_ids,
     render_record_blocks,
+    sent_record_ids_from_user_message,
 )
 from llm_providers.db_models.gpt_batch_request import GPTBatchRequest
 from llm_providers.field_types import BatchRequestIDType
@@ -197,8 +198,15 @@ async def parse_record_grounding_group_result(
     completed_request_map: dict[BatchRequestIDType, GPTBatchRequest],
     timestamp: datetime,
     allowed_labels: Optional[Iterable[str]] = None,
-) -> RecordGroundingResults:
-    """Parse one grounding group request and hold it to its sent record ids."""
+) -> tuple[list[str], RecordGroundingResults]:
+    """Parse one grounding group request and hold it to its sent record ids,
+    as ``(sent record ids, held results)``.
+
+    The hold THINS on missing ids (3.3, the under-answer decision — user,
+    2026-08-24): a response that validly answers a fraction of its records no
+    longer fails; the ids left unanswered feed the node's retry assessment,
+    exactly as the synthesis stage's do. An id nobody sent still raises —
+    that is a fabricated verdict, not an under-answer."""
     req_obj = completed_request_map.get(group_req_id)
     if not req_obj:
         raise ValueError(
@@ -212,17 +220,19 @@ async def parse_record_grounding_group_result(
         )
 
     try:
+        user_message = req_obj.request.body.user_message()
         parsed = parse_record_grounding_result(
             req_obj.response.result,
             catalog=catalog,
             allowed_labels=allowed_labels,
         )
-        return hold_response_to_sent_record_ids(
-            user_message=req_obj.request.body.user_message(),
+        held = hold_response_to_sent_record_ids(
+            user_message=user_message,
             response_by_record_id=parsed,
             where=f"{subject_unique_id}:{field_name} {stage_label} {group_req_id}",
-            on_missing="raise",
+            on_missing="drop",
         )
+        return sent_record_ids_from_user_message(user_message) or [], held
     except Exception as e:
         await record_response_parse_error_capped(
             gpt_batch_request=req_obj,
@@ -237,6 +247,80 @@ async def parse_record_grounding_group_result(
         raise
 
 
+@dataclass(frozen=True)
+class ChunkGroundingAnswer:
+    """ONE chunk's grounding answer, merged across its group requests and
+    (when included) the retry: the ids the requests sent, the held entries,
+    and what is STILL missing — the retry assessment reads this with the
+    retry excluded, the result with it included."""
+
+    sent_ids: list[str]
+    results: RecordGroundingResults
+    retried_record_ids: list[str] = dataclass_field(default_factory=list)
+
+    @property
+    def missing_ids(self) -> list[str]:
+        return [rid for rid in self.sent_ids if rid not in self.results]
+
+
+async def get_chunk_record_grounding_answer(
+    *,
+    stage_label: str,
+    subject_unique_id: str,
+    field_name: str,
+    chunk_bounds: str,
+    catalog: RuleCatalog,
+    group_req_ids: list[BatchRequestIDType],
+    completed_request_map: dict[BatchRequestIDType, GPTBatchRequest],
+    timestamp: datetime,
+    allowed_labels: Optional[Iterable[str]] = None,
+    retry_req_ids: Optional[list[BatchRequestIDType]] = None,
+    retried_record_ids: Optional[list[str]] = None,
+) -> ChunkGroundingAnswer:
+    """Merge grounding entries across every request embedded for the chunk —
+    the group requests, then the retry's (pass ``retry_req_ids=None`` or empty
+    to read the first pass alone, as the retry assessment does). A record
+    answered in two requests raises: requests partition the chunk's records,
+    so a duplicate is a pipeline bug, not model noise."""
+    if not group_req_ids:
+        raise ValueError(
+            f"{stage_label}: request id list is empty for chunk bounds "
+            f"{chunk_bounds} in {subject_unique_id}:{field_name}"
+        )
+
+    sent_ids: list[str] = []
+    sent_seen: set[str] = set()
+    merged: RecordGroundingResults = {}
+    for group_req_id in [*group_req_ids, *(retry_req_ids or [])]:
+        req_sent_ids, held = await parse_record_grounding_group_result(
+            stage_label=stage_label,
+            subject_unique_id=subject_unique_id,
+            field_name=field_name,
+            catalog=catalog,
+            group_req_id=group_req_id,
+            completed_request_map=completed_request_map,
+            timestamp=timestamp,
+            allowed_labels=allowed_labels,
+        )
+        for rid in req_sent_ids:
+            # A retry re-sends first-pass ids; sent_ids stays the union.
+            if rid not in sent_seen:
+                sent_seen.add(rid)
+                sent_ids.append(rid)
+        for rid, entry in held.items():
+            if rid in merged:
+                raise ValueError(
+                    f"{stage_label}: record id {rid!r} answered in two requests "
+                    f"of chunk {chunk_bounds} in {subject_unique_id}:{field_name}"
+                )
+            merged[rid] = entry
+    return ChunkGroundingAnswer(
+        sent_ids=sent_ids,
+        results=merged,
+        retried_record_ids=list(retried_record_ids or []),
+    )
+
+
 async def get_record_grounding_result(
     *,
     stage_label: str,
@@ -248,29 +332,32 @@ async def get_record_grounding_result(
     completed_request_map: dict[BatchRequestIDType, GPTBatchRequest],
     timestamp: datetime,
     allowed_labels: Optional[Iterable[str]] = None,
+    retry_req_ids: Optional[list[BatchRequestIDType]] = None,
 ) -> RecordGroundingResults:
-    """Merge grounding entries across every group embedded for the chunk."""
-    if not group_req_ids:
-        raise ValueError(
-            f"{stage_label}: request id list is empty for chunk bounds "
-            f"{chunk_bounds} in {subject_unique_id}:{field_name}"
+    """The chunk's stored grounding map: groups, then the retry. A record
+    still unanswered after the retry is WARNED about and absent — downstream
+    derivations treat an absent record as "nothing found here", and the dump's
+    row for it shows the pass returning nothing (the under-answer decision:
+    the subject no longer aborts)."""
+    answer = await get_chunk_record_grounding_answer(
+        stage_label=stage_label,
+        subject_unique_id=subject_unique_id,
+        field_name=field_name,
+        chunk_bounds=chunk_bounds,
+        catalog=catalog,
+        group_req_ids=group_req_ids,
+        completed_request_map=completed_request_map,
+        timestamp=timestamp,
+        allowed_labels=allowed_labels,
+        retry_req_ids=retry_req_ids,
+    )
+    if answer.missing_ids:
+        logger.warning(
+            f"{stage_label}: {len(answer.missing_ids)} record(s) of chunk "
+            f"{chunk_bounds} in {subject_unique_id}:{field_name} still unanswered "
+            f"after the retry pass: {answer.missing_ids}"
         )
-
-    merged: RecordGroundingResults = {}
-    for group_req_id in group_req_ids:
-        merged.update(
-            await parse_record_grounding_group_result(
-                stage_label=stage_label,
-                subject_unique_id=subject_unique_id,
-                field_name=field_name,
-                catalog=catalog,
-                group_req_id=group_req_id,
-                completed_request_map=completed_request_map,
-                timestamp=timestamp,
-                allowed_labels=allowed_labels,
-            )
-        )
-    return merged
+    return answer.results
 
 
 def split_record_ids_into_groups(
@@ -304,27 +391,51 @@ def grouped_record_payloads(
     ]
 
 
-def build_record_payloads(
-    masked: MaskedLLMPhraseRelationshipResults,
+def build_group_record_payloads(
+    group_records: GroupRecords,
     *,
     already_identified: Optional[dict[str, list[str]]] = None,
 ) -> dict[str, dict[str, Any]]:
-    """The id → record payload a grounding request renders into its blocks.
-
-    The phrase itself is NOT in the payload — that is the mask (key-masking:
-    the mention forms inside carry the wording, which grounding needs). The OOV
-    pass adds each record's already-identified results, sorted for render
-    stability.
+    """The group_id → record payload a grounding request renders into its
+    blocks (3.3, D16): the group's focal form and its synthesis. The group_id
+    key is already opaque (``hash(normalized key)``, D11), so the v2
+    key-masking discipline holds with no masking step — the key never reads
+    like a candidate label, while the record's fields carry the wording
+    grounding needs. The OOV pass adds each record's already-identified
+    results, sorted for render stability.
     """
     payloads: dict[str, dict[str, Any]] = {}
-    for record_id, entry in masked.items():
-        payload: dict[str, Any] = entry.record.model_dump()
+    for group_id, record in group_records.items():
+        payload: dict[str, Any] = record.model_dump()
         if already_identified is not None:
             payload["already_identified"] = sorted(
-                already_identified.get(record_id, [])
+                already_identified.get(group_id, [])
             )
-        payloads[record_id] = payload
+        payloads[group_id] = payload
     return payloads
+
+
+def retry_record_payloads(
+    stage_label: str,
+    subject_unique_id: str,
+    field_name: str,
+    chunk_bounds: str,
+    payloads: dict[str, dict[str, Any]],
+    retry_record_ids: list[str],
+) -> dict[str, dict[str, Any]]:
+    """The chunk's payloads restricted to the stored retry ids, for the retry
+    request set. An id the payload map does not carry raises: the retry ids
+    were computed from these very payloads, so a mismatch means the upstream
+    state changed under the stored ids (re-defer)."""
+    unknown = [rid for rid in retry_record_ids if rid not in payloads]
+    if unknown:
+        raise ValueError(
+            f"{stage_label}: stored retry record id(s) {unknown} of chunk "
+            f"{chunk_bounds} in {subject_unique_id}:{field_name} are not among "
+            f"the chunk's records; the upstream state changed under the stored "
+            f"request ids (re-defer)."
+        )
+    return {rid: payloads[rid] for rid in retry_record_ids}
 
 
 def create_deferred_record_grounding_gpt_request(
@@ -366,6 +477,8 @@ async def create_missing_record_grounding_requests(
     field_name: str,
     chunk_payload_maps: dict[str, dict[str, dict[str, Any]]],
     group_req_ids_by_chunk: dict[str, list[BatchRequestIDType]],
+    retry_req_ids_by_chunk: dict[str, list[BatchRequestIDType]],
+    retry_record_ids_by_chunk: dict[str, list[str]],
     missing_req_ids: set[BatchRequestIDType],
     prompt: Prompt,
     catalog: RuleCatalog,
@@ -388,12 +501,17 @@ async def create_missing_record_grounding_requests(
     (None = freehand, which is sent no options). Per chunk rather than one
     value, because the OOV pass may one day scope its outline; today every
     chunk shares one rendered section.
+
+    ``retry_req_ids_by_chunk`` / ``retry_record_ids_by_chunk`` carry the
+    stage's under-answer retry (3.3 — the synthesis pattern): the stored
+    missing record ids, re-packed through the same grouping helper.
     """
     batch_requests: list[GPTBatchRequest] = []
     chunk_items = [
         (chunk_bounds, payloads)
         for chunk_bounds, payloads in chunk_payload_maps.items()
         if set(group_req_ids_by_chunk[chunk_bounds]) & missing_req_ids
+        or set(retry_req_ids_by_chunk.get(chunk_bounds, [])) & missing_req_ids
     ]
 
     for i in range(0, len(chunk_items), BATCH_SIZE):
@@ -413,6 +531,52 @@ async def create_missing_record_grounding_requests(
                     f"once, upfront, from the same upstream records, so this "
                     f"should not happen."
                 )
+
+            # The retry pass: the stored missing ids, packed like the first pass.
+            retry_req_ids = retry_req_ids_by_chunk.get(chunk_bounds, [])
+            if set(retry_req_ids) & missing_req_ids:
+                retry_payloads = retry_record_payloads(
+                    stage_label,
+                    subject_unique_id,
+                    field_name,
+                    chunk_bounds,
+                    payloads,
+                    retry_record_ids_by_chunk.get(chunk_bounds, []),
+                )
+                retry_payload_groups = grouped_record_payloads(
+                    retry_payloads, max_records_per_request
+                )
+                if not retry_payloads or len(retry_req_ids) != len(retry_payload_groups):
+                    raise ValueError(
+                        f"{stage_label}: embedded retry group count "
+                        f"({len(retry_req_ids)}) does not match the computed count "
+                        f"({len(retry_payload_groups)}, {len(retry_payloads)} record(s)) "
+                        f"for chunk bounds {chunk_bounds} in "
+                        f"{subject_unique_id}:{field_name}."
+                    )
+                for retry_group_index, retry_req_id in enumerate(retry_req_ids):
+                    if retry_req_id not in missing_req_ids:
+                        continue
+                    logger.info(
+                        f"{stage_label}: retrying "
+                        f"{len(retry_payload_groups[retry_group_index])} unanswered "
+                        f"record(s) for {subject_unique_id}:{field_name} chunk "
+                        f"{chunk_bounds} retry group {retry_group_index}"
+                    )
+                    batch_requests.append(
+                        create_deferred_record_grounding_gpt_request(
+                            deferred_at=deferred_at,
+                            subject_unique_id=subject_unique_id,
+                            request_id=retry_req_id,
+                            prompt=prompt,
+                            catalog=catalog,
+                            record_payloads=retry_payload_groups[retry_group_index],
+                            options_section=options_section_by_chunk[chunk_bounds],
+                            gpt_model=llm_model,
+                            eager=eager,
+                            model_params=model_params,
+                        )
+                    )
 
             for group_index, group_req_id in enumerate(group_req_ids):
                 if group_req_id not in missing_req_ids:

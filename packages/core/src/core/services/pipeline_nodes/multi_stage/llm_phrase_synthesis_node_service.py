@@ -80,6 +80,8 @@ from core.models.extraction_results.llm_phrase_extraction_results_v2 import (
 from core.models.extraction_schemas.synthesis import (
     DUMMY_SYNTHESIS_RESPONSE_CONTENT,
     SYNTHESIS_RESPONSE_SCHEMA,
+    GroupRecord,
+    GroupRecords,
     SynthesesByGroupId,
     SynthesisRecordInput,
     parse_synthesis_response,
@@ -90,6 +92,8 @@ from core.services.phrase_blocks_contract import (
     sent_record_ids_from_user_message,
 )
 from core.services.pipeline_nodes.multi_stage.llm_phrase_mention_collection_node_service import (
+    fold_snippet_radius_of,
+    fold_verb_fold_of,
     get_chunk_fold,
 )
 from core.utils.aggregation_fold import FoldResult
@@ -121,6 +125,15 @@ def synthesis_include_location_of(metadata: object) -> bool:
     synthesis_metadata: Optional[object] = getattr(metadata, "llm_phrase_synthesis", None)
     value = getattr(synthesis_metadata, "include_location", None)
     return True if value is None else bool(value)
+
+
+def synthesis_max_entries_of(metadata: object) -> Optional[int]:
+    """The synthesis stage's soft entry cap off any pipeline metadata (duck-
+    typed like ``synthesis_include_location_of``). None when the metadata
+    carries no synthesis node — callers then skip request-level accounting."""
+    synthesis_metadata: Optional[object] = getattr(metadata, "llm_phrase_synthesis", None)
+    value = getattr(synthesis_metadata, "max_entries_per_request", None)
+    return None if value is None else int(value)
 
 
 # --- records + packing ---------------------------------------------------------------------
@@ -652,3 +665,62 @@ async def get_chunk_synthesis_result(
         group_request_count=len(extraction_bundle.llm_phrase_synthesis_req_ids),
         retry_request_count=len(extraction_bundle.llm_phrase_synthesis_retry_req_ids),
     )
+
+# --- downstream records (D16) ----------------------------------------------------------------
+
+
+def downstream_group_records(result: ChunkSynthesisResult) -> GroupRecords:
+    """The chunk's per-group records for every stage downstream of synthesis
+    (D16): one ``GroupRecord`` per SYNTHESIZED group, keyed ``group_id``, in
+    the fold's bundle order (dicts preserve insertion order, and group
+    membership downstream is part of request identity, so the order must be
+    the fold's, not a hash's).
+
+    A group left unsynthesized after the retry pass has no synthesis to judge
+    and is ABSENT — the v3 analog of the v2 ``records_with_mentions`` filter
+    (a record with nothing to show downstream is skipped, never invented). It
+    stays visible in the synthesis dump as ``not_synthesized``.
+    """
+    records: GroupRecords = {}
+    for record in result.records:
+        synthesis = result.synthesis_of(record.record_id)
+        if synthesis is None:
+            continue
+        records[record.record_id] = GroupRecord(
+            focal_form=record.focal_form, synthesis=synthesis
+        )
+    return records
+
+
+async def get_chunk_group_records(
+    subject_unique_id: str,
+    field_type: ExtractionFieldType,
+    chunk_bounds: str,
+    extraction_bundle: LLMPhraseExtractionRequestBundle,
+    timestamp: datetime,
+    *,
+    synthesis_completed_request_map: dict[BatchRequestIDType, GPTBatchRequest],
+    mention_completed_request_map: dict[BatchRequestIDType, GPTBatchRequest],
+    subject_text: str,
+    metadata: object,
+) -> GroupRecords:
+    """ONE derivation for every downstream consumer (grounding, OOV,
+    screening, descent, reconcile): the chunk's synthesis result — the fold
+    recomputed from the stored mention answers, the held syntheses — reduced
+    to its per-group records. The fold knobs are read off *metadata* the same
+    way the synthesis node itself reads them, so a consumer can never disagree
+    with the stage it consumes about what a group contains."""
+    result = await get_chunk_synthesis_result(
+        subject_unique_id=subject_unique_id,
+        field_type=field_type,
+        chunk_bounds=chunk_bounds,
+        extraction_bundle=extraction_bundle,
+        completed_request_map=synthesis_completed_request_map,
+        timestamp=timestamp,
+        mention_completed_request_map=mention_completed_request_map,
+        subject_text=subject_text,
+        verb_fold=fold_verb_fold_of(metadata),
+        snippet_radius=fold_snippet_radius_of(metadata),
+        include_location=synthesis_include_location_of(metadata),
+    )
+    return downstream_group_records(result)

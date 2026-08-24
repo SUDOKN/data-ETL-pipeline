@@ -36,11 +36,20 @@ class PureProductFreehandGroundingNode(KeywordFreehandGroundingNode):
             next_node=next_node,
         )
 
-    def get_upstream_phrase_relationship_map(
+    def get_upstream_mention_collection_map(
         self, pipeline_context: PipelineContext
     ) -> dict[BatchRequestIDType, GPTBatchRequest]:
-        from data_etl_app.models.pipeline_nodes.multi_stage.keyword.pure_product.pure_product_relationship_node import (
-            PureProductRelationshipNode,
+        from data_etl_app.models.pipeline_nodes.multi_stage.keyword.pure_product.pure_product_mention_collection_node import (
+            PureProductMentionCollectionNode,
         )
 
-        return pipeline_context[PureProductRelationshipNode]
+        return pipeline_context[PureProductMentionCollectionNode]
+
+    def get_upstream_synthesis_map(
+        self, pipeline_context: PipelineContext
+    ) -> dict[BatchRequestIDType, GPTBatchRequest]:
+        from data_etl_app.models.pipeline_nodes.multi_stage.keyword.pure_product.pure_product_synthesis_node import (
+            PureProductSynthesisNode,
+        )
+
+        return pipeline_context[PureProductSynthesisNode]

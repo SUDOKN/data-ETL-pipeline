@@ -42,14 +42,23 @@ class EquipmentRelationshipScreeningNode(KeywordRelationshipScreeningNode):
             next_node=next_node,
         )
 
-    def get_upstream_phrase_relationship_map(
+    def get_upstream_mention_collection_map(
         self, pipeline_context: PipelineContext
     ) -> dict[BatchRequestIDType, GPTBatchRequest]:
-        from data_etl_app.models.pipeline_nodes.multi_stage.keyword.equipment.equipment_relationship_node import (
-            EquipmentRelationshipNode,
+        from data_etl_app.models.pipeline_nodes.multi_stage.keyword.equipment.equipment_mention_collection_node import (
+            EquipmentMentionCollectionNode,
         )
 
-        return pipeline_context[EquipmentRelationshipNode]
+        return pipeline_context[EquipmentMentionCollectionNode]
+
+    def get_upstream_synthesis_map(
+        self, pipeline_context: PipelineContext
+    ) -> dict[BatchRequestIDType, GPTBatchRequest]:
+        from data_etl_app.models.pipeline_nodes.multi_stage.keyword.equipment.equipment_synthesis_node import (
+            EquipmentSynthesisNode,
+        )
+
+        return pipeline_context[EquipmentSynthesisNode]
 
     def get_upstream_freehand_grounding_map(
         self, pipeline_context: PipelineContext

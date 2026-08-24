@@ -38,6 +38,7 @@ from core.services.pipeline_nodes.multi_stage.llm_phrase_recursive_search_node_s
     build_llm_phrase_search_results,
 )
 from core.utils.extraction_dump_util import (
+    build_partial_group_rows,
     build_partial_record_rows,
     build_run_provenance,
     jsonable_result,
@@ -49,6 +50,7 @@ from core.services.pipeline_nodes.multi_stage.llm_phrase_mention_collection_node
 )
 from core.services.pipeline_nodes.multi_stage.llm_phrase_synthesis_node_service import (
     synthesis_include_location_of,
+    synthesis_max_entries_of,
 )
 from core.utils.fold_dump_util import build_fold_dump
 from core.utils.synthesis_dump_util import build_synthesis_dump
@@ -207,14 +209,63 @@ async def write_partial_run_dump(
                     timestamp=timestamp,
                 )
 
+            # v3 (3.3): the synthesis result — recomputed fold + held
+            # syntheses — is the row spine once the stage has run; computed
+            # here so the rows and the synthesis block below share it.
+            synthesis_result = None
+            synthesis_failed = False
+            if (
+                PipelineStage.synthesis in completed_by_stage
+                and PipelineStage.mention_collection in completed_by_stage
+            ):
+                node_class, request_map = completed_by_stage[PipelineStage.synthesis]
+                _mention_node, mention_map = completed_by_stage[
+                    PipelineStage.mention_collection
+                ]
+                try:
+                    synthesis_result = await node_class.get_result(
+                        subject_unique_id=subject_unique_id,
+                        field_type=field_type,
+                        chunk_bounds=chunk_bounds,
+                        extraction_bundle=bundle,
+                        completed_request_map=request_map,
+                        timestamp=timestamp,
+                        mention_completed_request_map=mention_map,
+                        subject_text=scraped_text_file.text,
+                        verb_fold=fold_verb_fold_of(extraction_requests.metadata),
+                        snippet_radius=fold_snippet_radius_of(
+                            extraction_requests.metadata
+                        ),
+                        include_location=synthesis_include_location_of(
+                            extraction_requests.metadata
+                        ),
+                    )
+                except Exception as synthesis_error:
+                    synthesis_failed = True
+                    logger.error(
+                        f"[{subject_unique_id}] partial dump could not read the synthesis "
+                        f"of chunk {chunk_bounds} of '{field_type.name}': {synthesis_error}",
+                        exc_info=True,
+                    )
+
             contents: dict[str, object] = {
-                "rows": build_partial_record_rows(
-                    search_rounds=search_rounds,
-                    masked_flat=masked_flat,
-                    grounding_by_stage=grounding_by_stage,
-                    screening_flat=screening_flat,
-                    relationship_repairs=relationship_repairs,
-                    subject_name=pipeline_context.subject_name,
+                "rows": (
+                    build_partial_group_rows(
+                        search_rounds=search_rounds,
+                        synthesis_result=synthesis_result,
+                        grounding_by_stage=grounding_by_stage,
+                        screening_flat=screening_flat,
+                        subject_name=pipeline_context.subject_name,
+                    )
+                    if synthesis_result is not None
+                    else build_partial_record_rows(
+                        search_rounds=search_rounds,
+                        masked_flat=masked_flat,
+                        grounding_by_stage=grounding_by_stage,
+                        screening_flat=screening_flat,
+                        relationship_repairs=relationship_repairs,
+                        subject_name=pipeline_context.subject_name,
+                    )
                 )
             }
             # v3: the mention stage's aggregation fold — groups with member
@@ -249,41 +300,19 @@ async def write_partial_run_dump(
                     contents["note"] = "fold_failed"
             # v3 (3.2): the synthesis stage — one row per record (group key,
             # member forms, focal form, entries, the synthesis), the arm, and
-            # what the hold left unsynthesized. Recomputes the fold from the
-            # mention stage's completed map, like the block above.
-            if (
-                PipelineStage.synthesis in completed_by_stage
-                and PipelineStage.mention_collection in completed_by_stage
-            ):
-                node_class, request_map = completed_by_stage[PipelineStage.synthesis]
-                _mention_node, mention_map = completed_by_stage[PipelineStage.mention_collection]
-                try:
-                    synthesis_result = await node_class.get_result(
-                        subject_unique_id=subject_unique_id,
-                        field_type=field_type,
-                        chunk_bounds=chunk_bounds,
-                        extraction_bundle=bundle,
-                        completed_request_map=request_map,
-                        timestamp=timestamp,
-                        mention_completed_request_map=mention_map,
-                        subject_text=scraped_text_file.text,
-                        verb_fold=fold_verb_fold_of(extraction_requests.metadata),
-                        snippet_radius=fold_snippet_radius_of(extraction_requests.metadata),
-                        include_location=synthesis_include_location_of(
-                            extraction_requests.metadata
-                        ),
-                    )
-                    contents["synthesis"] = build_synthesis_dump(
-                        synthesis_result, subject_name=pipeline_context.subject_name
-                    )
-                except Exception as synthesis_error:
-                    logger.error(
-                        f"[{subject_unique_id}] partial dump could not read the synthesis "
-                        f"of chunk {chunk_bounds} of '{field_type.name}': {synthesis_error}",
-                        exc_info=True,
-                    )
-                    contents["synthesis"] = None
-                    contents["note"] = "synthesis_failed"
+            # what the hold left unsynthesized. The result was computed above,
+            # where the rows read it.
+            if synthesis_result is not None:
+                contents["synthesis"] = build_synthesis_dump(
+                    synthesis_result,
+                    subject_name=pipeline_context.subject_name,
+                    max_entries_per_request=synthesis_max_entries_of(
+                        extraction_requests.metadata
+                    ),
+                )
+            elif synthesis_failed:
+                contents["synthesis"] = None
+                contents["note"] = "synthesis_failed"
             chunked_contents[chunk_bounds] = contents
 
         write_extraction_dump(

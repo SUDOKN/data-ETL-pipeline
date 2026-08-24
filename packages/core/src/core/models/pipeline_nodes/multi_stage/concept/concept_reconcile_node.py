@@ -38,8 +38,11 @@ from core.models.pipeline_nodes.multi_stage.concept.concept_phrase_search_node i
 from core.models.pipeline_nodes.multi_stage.concept.concept_recursive_search_node import (
     ConceptRecursiveSearchNode,
 )
-from core.models.pipeline_nodes.multi_stage.concept.concept_relationship_node import (
-    ConceptRelationshipNode,
+from core.models.pipeline_nodes.multi_stage.concept.concept_mention_collection_node import (
+    ConceptMentionCollectionNode,
+)
+from core.models.pipeline_nodes.multi_stage.concept.concept_synthesis_node import (
+    ConceptSynthesisNode,
 )
 from core.models.pipeline_nodes.multi_stage.concept.concept_relationship_screening_node import (
     ConceptRelationshipScreeningNode,
@@ -61,6 +64,15 @@ from core.services.pipeline_nodes.multi_stage.llm_phrase_recursive_search_node_s
 from core.services.pipeline_nodes.multi_stage.llm_grounding_node_service import (
     get_record_grounding_result,
 )
+from core.services.pipeline_nodes.multi_stage.llm_phrase_mention_collection_node_service import (
+    fold_snippet_radius_of,
+    fold_verb_fold_of,
+)
+from core.services.pipeline_nodes.multi_stage.llm_phrase_synthesis_node_service import (
+    downstream_group_records,
+    get_chunk_synthesis_result,
+    synthesis_include_location_of,
+)
 from core.services.pipeline_nodes.multi_stage.llm_recursive_grounding_service import (
     get_phrase_trails,
     get_deepest_concepts_and_oov,
@@ -74,9 +86,8 @@ from core.utils.label_dedupe_util import dedupe_case_insensitive
 from core.utils.rdf_to_graph_util import (
     get_match_label_to_concept_map,
 )
-from core.utils.record_id_util import phrases_by_record_id
 from core.utils.extraction_dump_util import (
-    build_concept_record_rows,
+    build_concept_group_rows,
     build_run_provenance,
     write_extraction_dump,
 )
@@ -124,9 +135,10 @@ class ConceptReconcileNode(ReconcileNode[ConceptFieldType]):
         completed_recursive_search_req_map = pipeline_context[
             ConceptRecursiveSearchNode
         ]
-        completed_phrase_relationship_req_map = pipeline_context[
-            ConceptRelationshipNode
+        completed_mention_collection_req_map = pipeline_context[
+            ConceptMentionCollectionNode
         ]
+        completed_synthesis_req_map = pipeline_context[ConceptSynthesisNode]
         completed_in_vocab_grounding_req_map = pipeline_context[
             ConceptInitialGroundingNode
         ]
@@ -170,20 +182,30 @@ class ConceptReconcileNode(ReconcileNode[ConceptFieldType]):
                 brute_search_results=bundle.brute,
             )
 
-            # The relationship stage is the one place the model still echoes
-            # phrases back, so it keeps a repairs sink; every record-keyed
-            # stage downstream holds exactly and has none.
-            relationship_repairs: dict[str, str] = {}
-            masked_flat = await ConceptRelationshipNode.get_result(
+            # v3 (3.3, D16): the chunk's synthesis result — the fold recomputed
+            # from the stored mention answers, the held syntheses — is the spine
+            # every downstream verdict keys against. No repairs sink anywhere:
+            # every record-keyed stage holds exactly, and the relationship
+            # stage (the one place phrases echoed back) is retired.
+            metadata = extraction_requests.metadata
+            synthesis_result = await get_chunk_synthesis_result(
                 subject_unique_id=subject.subject_unique_id,
                 field_type=self.field_type,
                 chunk_bounds=chunk_bounds,
                 extraction_bundle=bundle,
-                completed_request_map=completed_phrase_relationship_req_map,
+                completed_request_map=completed_synthesis_req_map,
                 timestamp=timestamp,
-                repairs=relationship_repairs,
+                mention_completed_request_map=completed_mention_collection_req_map,
+                subject_text=scraped_text_file.text,
+                verb_fold=fold_verb_fold_of(metadata),
+                snippet_radius=fold_snippet_radius_of(metadata),
+                include_location=synthesis_include_location_of(metadata),
             )
-            phrase_by_record_id = phrases_by_record_id(masked_flat)
+            group_records = downstream_group_records(synthesis_result)
+            focal_by_group = {
+                group_id: record.focal_form
+                for group_id, record in group_records.items()
+            }
 
             in_vocab_flat = await get_record_grounding_result(
                 stage_label="in-vocab grounding",
@@ -192,6 +214,7 @@ class ConceptReconcileNode(ReconcileNode[ConceptFieldType]):
                 chunk_bounds=chunk_bounds,
                 catalog=in_vocab_catalog,
                 group_req_ids=bundle.llm_phrase_initial_grounding_req_ids,
+                retry_req_ids=bundle.llm_phrase_initial_grounding_retry_req_ids,
                 completed_request_map=completed_in_vocab_grounding_req_map,
                 timestamp=timestamp,
                 allowed_labels=vocab_labels,
@@ -207,6 +230,7 @@ class ConceptReconcileNode(ReconcileNode[ConceptFieldType]):
                     chunk_bounds=chunk_bounds,
                     catalog=oov_catalog,
                     group_req_ids=bundle.llm_phrase_oov_grounding_req_ids,
+                    retry_req_ids=bundle.llm_phrase_oov_grounding_retry_req_ids,
                     completed_request_map=completed_oov_grounding_req_map,
                     timestamp=timestamp,
                 )
@@ -261,15 +285,14 @@ class ConceptReconcileNode(ReconcileNode[ConceptFieldType]):
                     unrecognized_tagged_concepts.add(passed_candidate)
 
             chunked_dump_contents[chunk_bounds] = {
-                "rows": build_concept_record_rows(
-                    masked_flat=masked_flat,
+                "rows": build_concept_group_rows(
+                    synthesis_result=synthesis_result,
                     in_vocab_flat=in_vocab_flat,
                     oov_flat=oov_flat if oov_ran else None,
                     screening_flat=screening_flat,
                     phrase_trails=phrase_trails,
                     search_rounds=llm_search_results,
                     match_label_to_concept_map=self.match_label_to_concept_map,
-                    relationship_repairs=relationship_repairs,
                     subject_name=pipeline_context.subject_name,
                 )
             }
@@ -281,18 +304,18 @@ class ConceptReconcileNode(ReconcileNode[ConceptFieldType]):
                 ),
                 brute_search=bundle.brute,
                 llm_phrase_search=llm_search_results,
-                llm_phrase_relationship=partition_records_by_search_round(
-                    masked_flat, phrase_by_record_id, llm_search_results
+                llm_phrase_synthesis=partition_records_by_search_round(
+                    group_records, focal_by_group, llm_search_results
                 ),
                 llm_phrase_screening=partition_records_by_search_round(
-                    screening_flat, phrase_by_record_id, llm_search_results
+                    screening_flat, focal_by_group, llm_search_results
                 ),
                 llm_phrase_initial_grounding=InitialGroundingStats(
                     in_vocab=partition_records_by_search_round(
-                        in_vocab_flat, phrase_by_record_id, llm_search_results
+                        in_vocab_flat, focal_by_group, llm_search_results
                     ),
                     out_of_vocab=partition_records_by_search_round(
-                        oov_flat, phrase_by_record_id, llm_search_results
+                        oov_flat, focal_by_group, llm_search_results
                     ),
                 ),
                 llm_phrase_recursive_grounding=lvl_by_lvl_iterative_grounding_results,
@@ -310,7 +333,8 @@ class ConceptReconcileNode(ReconcileNode[ConceptFieldType]):
             completed_requests={
                 **completed_phrase_search_req_map,
                 **completed_recursive_search_req_map,
-                **completed_phrase_relationship_req_map,
+                **completed_mention_collection_req_map,
+                **completed_synthesis_req_map,
                 **completed_in_vocab_grounding_req_map,
                 **completed_oov_grounding_req_map,
                 **completed_screening_req_map,
@@ -345,7 +369,8 @@ class ConceptReconcileNode(ReconcileNode[ConceptFieldType]):
                 [
                     *completed_phrase_search_req_map.keys(),
                     *completed_recursive_search_req_map.keys(),
-                    *completed_phrase_relationship_req_map.keys(),
+                    *completed_mention_collection_req_map.keys(),
+                    *completed_synthesis_req_map.keys(),
                     *completed_in_vocab_grounding_req_map.keys(),
                     *completed_oov_grounding_req_map.keys(),
                     *completed_screening_req_map.keys(),

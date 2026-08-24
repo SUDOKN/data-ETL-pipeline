@@ -8,11 +8,7 @@ import pytest
 
 from core.models.extraction_schemas.applied_rule import AppliedRule
 from core.models.extraction_schemas.grounding import RecordGroundingEntry
-from core.models.extraction_schemas.relationship import (
-    MaskedPhraseRelationshipRecord,
-    PhraseMention,
-    PhraseRelationshipRecord,
-)
+from core.models.extraction_schemas.synthesis import GroupRecord
 from core.models.extraction_schemas.screening import CandidateScreeningVerdict
 from core.models.rule_catalog import STAGE_RELATIONSHIP_SCREENING, RuleCatalog
 from core.services.phrase_blocks_contract import render_record_blocks
@@ -204,31 +200,28 @@ def test_candidate_axis_holds_to_the_requests_own_payload():
         )
 
 
-def _masked(record_id_phrase: dict[str, str]):
+def _groups(group_id_focal: dict[str, str]):
+    # v3 (3.3, D16): screening's records are the synthesis stage's per-group
+    # records — focal form + synthesis, keyed by the opaque group_id.
     return {
-        rid: MaskedPhraseRelationshipRecord(
-            phrase=phrase,
-            record=PhraseRelationshipRecord(
-                mentions=[PhraseMention(form=phrase, page="/", account="a")],
-                synthesis="s",
-            ),
-        )
-        for rid, phrase in record_id_phrase.items()
+        gid: GroupRecord(focal_form=focal, synthesis="s")
+        for gid, focal in group_id_focal.items()
     }
 
 
 def test_screening_payloads_carry_evidence_plus_sorted_candidates():
-    masked = _masked({"raaaaaa1": "aerospace"})
+    groups = _groups({"g1": "aerospace"})
     payloads = build_screening_payloads(
-        masked, {"raaaaaa1": ["Machining", "Aerospace Industry"]}
+        groups, {"g1": ["Machining", "Aerospace Industry"]}
     )
-    assert payloads["raaaaaa1"]["candidates"] == ["Aerospace Industry", "Machining"]
-    assert "phrase" not in payloads["raaaaaa1"]
+    assert payloads["g1"]["candidates"] == ["Aerospace Industry", "Machining"]
+    assert payloads["g1"]["focal_form"] == "aerospace"
+    assert payloads["g1"]["synthesis"] == "s"
 
-    with pytest.raises(ValueError, match="unknown record id"):
-        build_screening_payloads(masked, {"rZZZZZZ9": ["X"]})
+    with pytest.raises(ValueError, match="unknown group id"):
+        build_screening_payloads(groups, {"gZ": ["X"]})
 
-    assert build_screening_payloads(masked, {"raaaaaa1": []}) == {}
+    assert build_screening_payloads(groups, {"g1": []}) == {}
 
 
 # --- derivations (2.7/2.8 halves) ------------------------------------------

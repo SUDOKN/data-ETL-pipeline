@@ -76,7 +76,6 @@ class ConceptExtractionPrefillNode(PrefillNode[ConceptFieldType]):
         ontology: Ontology,
         llm_phrase_search_metadata: ExtractionNodeMetadata,
         llm_phrase_recursive_search_metadata: RecursiveSearchNodeMetadata,
-        llm_phrase_relationship_metadata: BatchedRelationshipNodeMetadata,
         llm_phrase_relationship_screening_metadata: BatchedScreeningNodeMetadata,
         llm_phrase_initial_grounding_metadata: BatchedInitialGroundingNodeMetadata,
         llm_phrase_recursive_grounding_metadata: ExtractionNodeMetadata,
@@ -85,6 +84,11 @@ class ConceptExtractionPrefillNode(PrefillNode[ConceptFieldType]):
         # v3 (PIPELINE_V3_PLAN.md Phase 3.1): the mention collector + the
         # aggregation fold's identity. Optional only so older construction
         # sites still compile; the factory always passes both.
+        # v2 relationship — RETIRED at v3 3.3; Optional so older construction
+        # sites still compile, and the factory no longer passes it.
+        llm_phrase_relationship_metadata: Optional[
+            BatchedRelationshipNodeMetadata
+        ] = None,
         llm_phrase_mention_collection_metadata: Optional[
             BatchedMentionCollectionNodeMetadata
         ] = None,

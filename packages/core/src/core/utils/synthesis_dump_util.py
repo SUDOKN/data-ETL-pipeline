@@ -16,6 +16,7 @@ from typing import Any, Optional
 
 from core.services.pipeline_nodes.multi_stage.llm_phrase_synthesis_node_service import (
     ChunkSynthesisResult,
+    pack_records,
 )
 from core.utils.focal_form_lint import focal_form_absent
 from core.utils.subject_name_lint import count_own_name_hits
@@ -24,11 +25,48 @@ STATUS_SYNTHESIZED = "synthesized"
 STATUS_NOT_SYNTHESIZED = "not_synthesized"
 
 
+def _identical_synthesis_groups_by_request(
+    result: ChunkSynthesisResult, max_entries_per_request: int
+) -> dict[str, int]:
+    """The identical-synthesis tripwire (v3 plan §10, user decision
+    2026-08-24): group_id → 0-based request index, for every record whose
+    synthesis string is BYTE-IDENTICAL to another record's in the same
+    first-pass request. A dump counter in the posture of the lints — measured
+    at 12–23 same-request pairs per full run, almost all accurate composite
+    sentences reused across co-packed records — NEVER a retry trigger.
+    Request membership is recomputed through ``pack_records``, the same pure
+    packing the node minted its ids from."""
+    flagged: dict[str, int] = {}
+    for request_index, group in enumerate(
+        pack_records(result.records, max_entries_per_request)
+    ):
+        by_synthesis: dict[str, list[str]] = {}
+        for record in group:
+            synthesis = result.synthesis_of(record.record_id)
+            if synthesis is None:
+                continue
+            by_synthesis.setdefault(synthesis, []).append(record.record_id)
+        for record_ids in by_synthesis.values():
+            if len(record_ids) < 2:
+                continue
+            for record_id in record_ids:
+                flagged[record_id] = request_index
+    return flagged
+
+
 def build_synthesis_dump(
-    result: ChunkSynthesisResult, *, subject_name: Optional[str] = None
+    result: ChunkSynthesisResult,
+    *,
+    subject_name: Optional[str] = None,
+    max_entries_per_request: Optional[int] = None,
 ) -> dict[str, Any]:
     fold = result.fold
     bundle_of = {b.group_id: b for b in fold.bundles}
+    identical_by_group: dict[str, int] = (
+        _identical_synthesis_groups_by_request(result, max_entries_per_request)
+        if max_entries_per_request is not None
+        else {}
+    )
     rows: list[dict[str, Any]] = []
     for record in result.records:
         bundle = bundle_of.get(record.record_id)
@@ -52,6 +90,11 @@ def build_synthesis_dump(
             synthesis, record.focal_form, row["forms"]
         ):
             row["focal_form_absent"] = True
+        # Present only on violation, like every lint field.
+        if record.record_id in identical_by_group:
+            row["identical_synthesis_in_request"] = identical_by_group[
+                record.record_id
+            ]
         rows.append(row)
     syntheses = [r["synthesis"] for r in rows if r["synthesis"]]
     return {
@@ -71,6 +114,19 @@ def build_synthesis_dump(
             ),
             "focal_form_absent_records": sum(
                 1 for r in rows if r.get("focal_form_absent")
+            ),
+            # Records whose synthesis string is byte-identical to a co-packed
+            # record's (the §10 tripwire); absent when the cap was not known.
+            **(
+                {
+                    "identical_synthesis_records_in_request": sum(
+                        1
+                        for r in rows
+                        if "identical_synthesis_in_request" in r
+                    )
+                }
+                if max_entries_per_request is not None
+                else {}
             ),
         },
         "records": rows,

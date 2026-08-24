@@ -125,10 +125,24 @@ class ConceptExtractionRequestBundle(LLMPhraseExtractionRequestBundle):
     llm_phrase_initial_grounding_req_ids: list[BatchRequestIDType] = Field(
         default_factory=list
     )
+    # In-vocab grounding under-answer retry (3.3, the synthesis stage's policy
+    # ported by user decision 2026-08-24): None = not yet assessed; a list
+    # (possibly empty) = assessed, these record ids came back unanswered and
+    # the retry request set below re-asks exactly them, once.
+    llm_phrase_initial_grounding_retry_record_ids: Optional[list[str]] = None
+    llm_phrase_initial_grounding_retry_req_ids: list[BatchRequestIDType] = Field(
+        default_factory=list
+    )
     # v2's OOV discovery pass, serial after in-vocab. Empty when the pass is
     # toggled off for the run (metadata's oov node is None) — same list shape
     # so embed/get machinery treats an off pass as zero groups.
     llm_phrase_oov_grounding_req_ids: list[BatchRequestIDType] = Field(
+        default_factory=list
+    )
+    # OOV-grounding under-answer retry, as above. Stays None forever when the
+    # OOV pass is off for the run (the pass embeds nothing to assess).
+    llm_phrase_oov_grounding_retry_record_ids: Optional[list[str]] = None
+    llm_phrase_oov_grounding_retry_req_ids: list[BatchRequestIDType] = Field(
         default_factory=list
     )
     llm_phrase_recursive_tagging_reqs: Optional[dict[int, set[IterativeTaggingRequest]]]

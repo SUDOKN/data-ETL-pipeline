@@ -17,9 +17,7 @@ from core.models.extraction_schemas.grounding import (
 from core.models.extraction_schemas.iterative_tagging import (
     IterativeGroundingResult,
 )
-from core.models.extraction_schemas.relationship import (
-    MaskedLLMPhraseRelationshipResults,
-)
+from core.models.extraction_schemas.synthesis import GroupRecords
 from llm_providers.models.file_objects.prompt import Prompt
 from core.models.extraction_results.llm_phrase_extraction_results import (
     ExtractionNodeMetadata,
@@ -49,8 +47,8 @@ from core.models.pipeline_nodes.base.base_llm_extraction_node import (
 from core.models.pipeline_nodes.base.base_llm_recursive_extraction_node import (
     BaseLLMRecursiveExtractionNode,
 )
-from core.models.pipeline_nodes.multi_stage.base.llm_phrase_relationship_node import (
-    LLMPhraseRelationshipNode,
+from core.services.pipeline_nodes.multi_stage.llm_phrase_synthesis_node_service import (
+    get_chunk_group_records,
 )
 from llm_providers.field_types import BatchRequestIDType
 from scraper.models.s3.scraped_text_file import ScrapedTextFile
@@ -172,13 +170,37 @@ class LLMPhraseIterativeGroundingNode(
             f"{self.__class__.__name__} must implement get_upstream_screening_map"
         )
 
-    def get_upstream_phrase_relationship_map(
+    def get_upstream_mention_collection_map(
         self, pipeline_context: PipelineContext
     ) -> dict[BatchRequestIDType, GPTBatchRequest]:
-        """Return the completed phrase-relationship request map from pipeline context."""
+        """The completed mention-collection request map — what the fold behind
+        the synthesis result is recomputed from."""
         raise NotImplementedError(
-            f"{self.__class__.__name__} must implement get_upstream_phrase_relationship_map"
+            f"{self.__class__.__name__} must implement get_upstream_mention_collection_map"
         )
+
+    def get_upstream_synthesis_map(
+        self, pipeline_context: PipelineContext
+    ) -> dict[BatchRequestIDType, GPTBatchRequest]:
+        """The completed synthesis request map — the per-group records the
+        descent requests carry are derived from its held answers."""
+        raise NotImplementedError(
+            f"{self.__class__.__name__} must implement get_upstream_synthesis_map"
+        )
+
+    @staticmethod
+    def _subject_text_of(
+        pipeline_context: PipelineContext, subject_unique_id: str, field: str
+    ) -> str:
+        subject_text = pipeline_context.subject_text
+        if subject_text is None:
+            raise ValueError(
+                f"Cannot embed req ids for recursive grounding: "
+                f"PipelineContext.subject_text is None for subject:{subject_unique_id}, "
+                f"field:{field}. The orchestrator must set it (the node recomputes the "
+                f"synthesis stage's fold from the text when it derives its records)."
+            )
+        return subject_text
 
     @staticmethod
     def get_request_custom_id(
@@ -212,7 +234,7 @@ class LLMPhraseIterativeGroundingNode(
         bundle: ConceptExtractionRequestBundle,
         itr: IterativeTaggingRequest,
         seed_trs: list[TaggingResult],
-        masked_relationship_results: MaskedLLMPhraseRelationshipResults,
+        group_records: GroupRecords,
         completed_recursive_grounding_req_map: dict[
             BatchRequestIDType, GPTBatchRequest
         ],
@@ -234,7 +256,7 @@ class LLMPhraseIterativeGroundingNode(
             timestamp=timestamp,
         )
         payload = descent_record_payloads(
-            descent_evidence_record_ids(itp), masked_relationship_results
+            descent_evidence_record_ids(itp), group_records
         )
         return self.get_request_custom_id(
             subject_unique_id=subject_unique_id,
@@ -305,8 +327,10 @@ class LLMPhraseIterativeGroundingNode(
                 f"as the in-vocab grounding req map is empty for subject:{subject_unique_id}, field:{self.field_type.name}."
             )
         completed_screening_req_map = self.get_upstream_screening_map(pipeline_context)
-        upstream_relationship_map = self.get_upstream_phrase_relationship_map(
-            pipeline_context
+        mention_map = self.get_upstream_mention_collection_map(pipeline_context)
+        synthesis_map = self.get_upstream_synthesis_map(pipeline_context)
+        subject_text = self._subject_text_of(
+            pipeline_context, subject_unique_id, self.field_type.name
         )
 
         max_concept_level = max(c.level for c in self.known_concepts)
@@ -382,13 +406,16 @@ class LLMPhraseIterativeGroundingNode(
                 match_label_to_concept_map=self.match_label_to_concept_map,
                 timestamp=timestamp,
             )
-            masked_relationship_results = await LLMPhraseRelationshipNode.get_result(
-                subject_unique_id=subject_unique_id,
-                field_type=self.field_type,
-                chunk_bounds=chunk_bounds,
-                extraction_bundle=bundle,
-                completed_request_map=upstream_relationship_map,
-                timestamp=timestamp,
+            group_records = await get_chunk_group_records(
+                subject_unique_id,
+                self.field_type,
+                chunk_bounds,
+                bundle,
+                timestamp,
+                synthesis_completed_request_map=synthesis_map,
+                mention_completed_request_map=mention_map,
+                subject_text=subject_text,
+                metadata=metadata,
             )
             directly_tagged_descend_worthy_tcs = get_descend_worthy_tcs_from_tagged_results(
                 seed_trs=seed_trs,
@@ -419,7 +446,7 @@ class LLMPhraseIterativeGroundingNode(
                     bundle=bundle,
                     itr=itr,
                     seed_trs=seed_trs,
-                    masked_relationship_results=masked_relationship_results,
+                    group_records=group_records,
                     completed_recursive_grounding_req_map=completed_recursive_grounding_req_map,
                     metadata=metadata,
                     timestamp=timestamp,
@@ -555,7 +582,7 @@ class LLMPhraseIterativeGroundingNode(
                             bundle=bundle,
                             itr=itr,
                             seed_trs=seed_trs,
-                            masked_relationship_results=masked_relationship_results,
+                            group_records=group_records,
                             completed_recursive_grounding_req_map=completed_recursive_grounding_req_map,
                             metadata=metadata,
                             timestamp=timestamp,
@@ -585,7 +612,7 @@ class LLMPhraseIterativeGroundingNode(
                         bundle=bundle,
                         itr=itr,
                         seed_trs=seed_trs,
-                        masked_relationship_results=masked_relationship_results,
+                        group_records=group_records,
                         completed_recursive_grounding_req_map=completed_recursive_grounding_req_map,
                         metadata=metadata,
                         timestamp=timestamp,
@@ -640,9 +667,14 @@ class LLMPhraseIterativeGroundingNode(
             chunked_request_map=chunked_request_map,
             missing_phrase_recursive_grounding_req_ids=missing_request_ids,
             phrase_recursive_grounding_prompt=self.phrase_recursive_grounding_prompt,
-            llm_phrase_relationship_gpt_request_map=self.get_upstream_phrase_relationship_map(
+            mention_completed_request_map=self.get_upstream_mention_collection_map(
                 pipeline_context
             ),
+            synthesis_completed_request_map=self.get_upstream_synthesis_map(
+                pipeline_context
+            ),
+            subject_text=scraped_text_file.text,
+            metadata=metadata,
             completed_in_vocab_grounding_req_map=self.get_upstream_in_vocab_grounding_map(
                 pipeline_context
             ),

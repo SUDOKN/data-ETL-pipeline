@@ -82,6 +82,14 @@ class LLMPhraseExtractionRequestBundle(BaseModel):
     # Ordered list of screening groups (group 1 == index 0). Each group covers at
     # most `max_pairs_per_request` phrase-relationship pairs from the upstream
     # relationship results for this chunk; results are merged back together.
+    # Screening under-answer retry (3.3, the synthesis stage's policy ported by
+    # user decision 2026-08-24): None = not yet assessed; a list (possibly
+    # empty) = assessed, these record ids came back unanswered and the retry
+    # request set below re-asks exactly them, once.
+    llm_phrase_relationship_screening_retry_record_ids: Optional[list[str]] = None
+    llm_phrase_relationship_screening_retry_req_ids: list[BatchRequestIDType] = Field(
+        default_factory=list
+    )
     llm_phrase_relationship_screening_req_ids: list[BatchRequestIDType] = Field(
         default_factory=list
     )

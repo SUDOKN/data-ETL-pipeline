@@ -38,14 +38,23 @@ class ConceptOovGroundingNode(LLMPhraseOovGroundingNode):
             known_concepts=known_concepts,
         )
 
-    def get_upstream_phrase_relationship_map(
+    def get_upstream_mention_collection_map(
         self, pipeline_context: PipelineContext
     ) -> dict[BatchRequestIDType, GPTBatchRequest]:
-        from core.models.pipeline_nodes.multi_stage.concept.concept_relationship_node import (
-            ConceptRelationshipNode,
+        from core.models.pipeline_nodes.multi_stage.concept.concept_mention_collection_node import (
+            ConceptMentionCollectionNode,
         )
 
-        return pipeline_context[ConceptRelationshipNode]
+        return pipeline_context[ConceptMentionCollectionNode]
+
+    def get_upstream_synthesis_map(
+        self, pipeline_context: PipelineContext
+    ) -> dict[BatchRequestIDType, GPTBatchRequest]:
+        from core.models.pipeline_nodes.multi_stage.concept.concept_synthesis_node import (
+            ConceptSynthesisNode,
+        )
+
+        return pipeline_context[ConceptSynthesisNode]
 
     def get_upstream_in_vocab_grounding_map(
         self, pipeline_context: PipelineContext

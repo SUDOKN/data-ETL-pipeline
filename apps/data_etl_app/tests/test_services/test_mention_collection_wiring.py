@@ -56,7 +56,6 @@ def test_concept_chain_runs_mention_collection_after_recursive_search():
         ontology=cast(Any, type("O", (), {"s3_version_id": "ont-1"})()),
         search_prompt=_prompt("s"),
         recursive_search_prompt=_prompt("r"),
-        phrase_relationship_prompt=_prompt("rel"),
         phrase_mention_collection_prompt=_prompt("m"),
         phrase_synthesis_prompt=_prompt("syn"),
         phrase_relationship_screening_prompt=_prompt("scr"),

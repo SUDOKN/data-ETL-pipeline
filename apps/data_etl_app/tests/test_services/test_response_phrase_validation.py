@@ -22,20 +22,18 @@ import json
 import pytest
 from beanie.odm.settings.document import DocumentSettings
 
-from core.models.extraction_schemas.relationship import (
-    MaskedPhraseRelationshipRecord,
-    PhraseMention,
-    PhraseRelationshipRecord,
-)
+from core.models.extraction_schemas.synthesis import GroupRecord
 from core.services.phrase_blocks_contract import (
     MissingResponseRecords,
     sent_phrases_from_user_message,
     sent_record_ids_from_user_message,
 )
 from core.services.pipeline_nodes.multi_stage.llm_grounding_node_service import (
-    build_record_payloads,
+    build_group_record_payloads,
     create_deferred_record_grounding_gpt_request,
+    get_chunk_record_grounding_answer,
     parse_record_grounding_group_result,
+    retry_record_payloads,
 )
 from core.services.pipeline_nodes.multi_stage.llm_relationship_screening_node_service import (
     build_screening_payloads,
@@ -85,21 +83,19 @@ _PARAMS = GPTModelParams(
 _PROMPT = Prompt(text="do it", s3_version_id="v1", name="p", num_tokens=2)
 
 
-def _masked(phrases: list[str]):
+def _groups(focal_forms: list[str]):
+    # v3 (3.3, D16): the downstream stages' records are the synthesis stage's
+    # per-group records, keyed by the opaque group_id.
     return {
-        f"r{index}aaaaaa": MaskedPhraseRelationshipRecord(
-            phrase=phrase,
-            record=PhraseRelationshipRecord(
-                mentions=[PhraseMention(form=phrase, page="/", account="a")],
-                synthesis=f"Anchor does {phrase}.",
-            ),
+        f"g{index}aaaaaa": GroupRecord(
+            focal_form=focal_form, synthesis=f"Anchor does {focal_form}."
         )
-        for index, phrase in enumerate(phrases)
+        for index, focal_form in enumerate(focal_forms)
     }
 
 
-MASKED = _masked(["manual MIG welding machine", "stamping press", "material shear"])
-RECORD_IDS = list(MASKED)
+GROUPS = _groups(["manual MIG welding machine", "stamping press", "material shear"])
+RECORD_IDS = list(GROUPS)
 
 
 @pytest.fixture(autouse=True)
@@ -153,7 +149,7 @@ def _grounding_request(entries: list[dict]) -> GPTBatchRequest:
         request_id=REQ_ID,
         prompt=_PROMPT,
         catalog=FREEHAND_CATALOG,
-        record_payloads=build_record_payloads(MASKED),
+        record_payloads=build_group_record_payloads(GROUPS),
         options_section=None,
         gpt_model=NO_MODEL,
         eager=True,
@@ -178,24 +174,27 @@ async def _parse_grounding(req: GPTBatchRequest):
 async def test_full_coverage_parses_and_is_keyed_by_the_sent_records():
     req = _grounding_request([_grounding_entry(rid) for rid in RECORD_IDS])
 
-    result = await _parse_grounding(req)
+    sent_ids, held = await _parse_grounding(req)
 
-    assert list(result) == RECORD_IDS
+    assert sent_ids == RECORD_IDS
+    assert list(held) == RECORD_IDS
     assert req.response_parse_errors == []
 
 
 @pytest.mark.asyncio
-async def test_under_answering_response_is_recorded_and_raises():
+async def test_under_answering_response_thins_for_the_retry_assessment():
     """The anchor-mfg shape: the model answers the first entry and closes the
-    array. The response must fail, be recorded, and be cleared for re-dispatch."""
+    array. Since 3.3 (the under-answer decision — user, 2026-08-24) this is no
+    longer a failed response: the hold THINS, the unanswered ids stay visible
+    through the sent list, and the node's retry pass re-asks exactly them."""
     req = _grounding_request([_grounding_entry(RECORD_IDS[0])])
 
-    with pytest.raises(MissingResponseRecords, match="answered 1 of 3"):
-        await _parse_grounding(req)
+    sent_ids, held = await _parse_grounding(req)
 
-    assert len(req.response_parse_errors) == 1
-    assert req.batch_id is None
-    assert req.response is None
+    assert sent_ids == RECORD_IDS
+    assert list(held) == [RECORD_IDS[0]]
+    assert req.response_parse_errors == []  # not an error: assessed, then retried
+    assert req.response is not None
 
 
 @pytest.mark.asyncio
@@ -216,7 +215,9 @@ async def test_a_fabricated_record_id_is_recorded_and_raises():
 async def test_out_of_retries_raises_repeated_parse_failure_without_recording():
     """At the cap the failure surfaces as the run's error instead of clearing
     the response again: the request stays inspectable and cannot cycle."""
-    req = _grounding_request([_grounding_entry(RECORD_IDS[0])])
+    entries = [_grounding_entry(rid) for rid in RECORD_IDS]
+    entries.append(_grounding_entry("rZZZZZZZ"))  # the fabricated-id failure
+    req = _grounding_request(entries)
     req.response_parse_errors = [
         {"error_message": f"strike {i}"} for i in range(RESPONSE_PARSE_ERROR_CAP)
     ]
@@ -227,6 +228,100 @@ async def test_out_of_retries_raises_repeated_parse_failure_without_recording():
     assert len(req.response_parse_errors) == RESPONSE_PARSE_ERROR_CAP
     assert req.batch_id == "Eager"
     assert req.response is not None
+
+
+def _grounding_request_for(
+    request_id: str, payloads: dict, entries: list[dict]
+) -> GPTBatchRequest:
+    req = create_deferred_record_grounding_gpt_request(
+        deferred_at=TIMESTAMP,
+        subject_unique_id="anchor-mfg.com",
+        request_id=request_id,
+        prompt=_PROMPT,
+        catalog=FREEHAND_CATALOG,
+        record_payloads=payloads,
+        options_section=None,
+        gpt_model=NO_MODEL,
+        eager=True,
+        model_params=_PARAMS,
+    )
+    return _answered(req, {"groundings": entries})
+
+
+@pytest.mark.asyncio
+async def test_the_retry_request_completes_the_chunks_answer():
+    """3.3, the ported under-answer policy end to end at the parse layer: the
+    first pass answers one record, the retry request re-asks exactly the
+    missing two, and the merged chunk answer covers everything with the sent
+    list the union."""
+    payloads = build_group_record_payloads(GROUPS)
+    main = _grounding_request_for(
+        "req-main", payloads, [_grounding_entry(RECORD_IDS[0])]
+    )
+    retry = _grounding_request_for(
+        "req-retry",
+        retry_record_payloads(
+            "freehand grounding", "anchor-mfg.com", "equipments", "0:10",
+            payloads, RECORD_IDS[1:],
+        ),
+        [_grounding_entry(rid) for rid in RECORD_IDS[1:]],
+    )
+
+    answer = await get_chunk_record_grounding_answer(
+        stage_label="freehand grounding",
+        subject_unique_id="anchor-mfg.com",
+        field_name="equipments",
+        chunk_bounds="0:10",
+        catalog=FREEHAND_CATALOG,
+        group_req_ids=["req-main"],
+        retry_req_ids=["req-retry"],
+        completed_request_map={"req-main": main, "req-retry": retry},
+        timestamp=TIMESTAMP,
+    )
+    assert answer.sent_ids == RECORD_IDS
+    assert list(answer.results) == RECORD_IDS
+    assert answer.missing_ids == []
+
+    # excluding the retry is the assessment's view: two records still missing.
+    first_pass = await get_chunk_record_grounding_answer(
+        stage_label="freehand grounding",
+        subject_unique_id="anchor-mfg.com",
+        field_name="equipments",
+        chunk_bounds="0:10",
+        catalog=FREEHAND_CATALOG,
+        group_req_ids=["req-main"],
+        completed_request_map={"req-main": main},
+        timestamp=TIMESTAMP,
+    )
+    assert first_pass.missing_ids == RECORD_IDS[1:]
+
+
+@pytest.mark.asyncio
+async def test_a_record_answered_in_two_requests_raises():
+    payloads = build_group_record_payloads(GROUPS)
+    main = _grounding_request_for(
+        "req-main", payloads, [_grounding_entry(rid) for rid in RECORD_IDS]
+    )
+    # a retry that re-answers an already-answered record: a pipeline bug, not
+    # model noise — requests partition the chunk's records.
+    retry = _grounding_request_for(
+        "req-retry",
+        {RECORD_IDS[0]: payloads[RECORD_IDS[0]]},
+        [_grounding_entry(RECORD_IDS[0])],
+    )
+
+    with pytest.raises(ValueError, match="answered in two requests"):
+        await get_chunk_record_grounding_answer(
+            stage_label="freehand grounding",
+            subject_unique_id="anchor-mfg.com",
+            field_name="equipments",
+            chunk_bounds="0:10",
+            catalog=FREEHAND_CATALOG,
+            group_req_ids=["req-main"],
+            retry_req_ids=["req-retry"],
+            completed_request_map={"req-main": main, "req-retry": retry},
+            timestamp=TIMESTAMP,
+        )
 
 
 # --- screening: both axes held through the real group parse ------------------
@@ -258,7 +353,8 @@ def _screening_request(entries: list[dict]) -> GPTBatchRequest:
         request_id=REQ_ID,
         prompt=_PROMPT,
         catalog=SCREENING_CATALOG,
-        screening_payloads=build_screening_payloads(MASKED, CANDIDATES),
+        subject_name="Anchor Manufacturing",
+        screening_payloads=build_screening_payloads(GROUPS, CANDIDATES),
         gpt_model=NO_MODEL,
         eager=True,
         model_params=_PARAMS,
@@ -291,28 +387,32 @@ async def test_a_screening_response_covering_both_axes_passes():
         [_screening_entry(rid, CANDIDATES[rid]) for rid in RECORD_IDS]
     )
 
-    result = await _parse_screening(req)
+    sent_ids, held = await _parse_screening(req)
 
-    assert list(result) == RECORD_IDS
+    assert sent_ids == RECORD_IDS
+    assert list(held) == RECORD_IDS
     assert req.response_parse_errors == []
 
 
 @pytest.mark.asyncio
-async def test_an_under_answering_screening_response_is_a_recorded_parse_error():
+async def test_an_under_answering_screening_response_thins_for_the_retry():
+    """Since 3.3 (the under-answer decision) an id-axis under-answer is not a
+    failed response: the hold thins and the node's retry pass re-asks."""
     req = _screening_request([_screening_entry(RECORD_IDS[0], CANDIDATES[RECORD_IDS[0]])])
 
-    with pytest.raises(MissingResponseRecords, match="answered 1 of 3"):
-        await _parse_screening(req)
+    sent_ids, held = await _parse_screening(req)
 
-    assert len(req.response_parse_errors) == 1
-    assert req.response is None  # cleared, so the next pass re-dispatches
-    assert req.batch_id is None
+    assert sent_ids == RECORD_IDS
+    assert list(held) == [RECORD_IDS[0]]
+    assert req.response_parse_errors == []
+    assert req.response is not None
 
 
 @pytest.mark.asyncio
 async def test_an_unjudged_candidate_is_a_recorded_parse_error():
-    """The candidate axis: every record's verdicts must cover exactly what its
-    request listed, read off the request document itself."""
+    """The candidate axis stays EXACT over the records that did answer: every
+    answered record's verdicts must cover exactly what its request listed,
+    read off the request document itself."""
     entries = [_screening_entry(rid, CANDIDATES[rid]) for rid in RECORD_IDS]
     entries[1]["candidates"] = []
     req = _screening_request(entries)
@@ -325,7 +425,9 @@ async def test_an_unjudged_candidate_is_a_recorded_parse_error():
 
 @pytest.mark.asyncio
 async def test_screening_stops_re_dispatching_at_the_cap():
-    req = _screening_request([_screening_entry(RECORD_IDS[0], CANDIDATES[RECORD_IDS[0]])])
+    entries = [_screening_entry(rid, CANDIDATES[rid]) for rid in RECORD_IDS]
+    entries[1]["candidates"] = []  # the candidate-axis failure
+    req = _screening_request(entries)
     req.response_parse_errors = [{"prior": "failure"}] * RESPONSE_PARSE_ERROR_CAP
 
     with pytest.raises(RepeatedParseFailure):
@@ -354,7 +456,7 @@ def test_every_production_context_that_renders_blocks_can_read_them_back():
         request_id="grounding-id",
         prompt=_PROMPT,
         catalog=FREEHAND_CATALOG,
-        record_payloads=build_record_payloads(MASKED),
+        record_payloads=build_group_record_payloads(GROUPS),
         options_section="options to choose from:\n- Some Option",
         gpt_model=NO_MODEL,
         eager=True,

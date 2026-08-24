@@ -17,6 +17,8 @@ whole record design exists to rule out.
 
 from __future__ import annotations
 
+from dataclasses import dataclass, field as dataclass_field
+
 import asyncio
 import logging
 import traceback
@@ -30,9 +32,6 @@ from core.models.extraction_schemas.catalog_wire_schema import (
     response_format_for,
     screening_response_model,
 )
-from core.models.extraction_schemas.relationship import (
-    MaskedLLMPhraseRelationshipResults,
-)
 from core.models.extraction_schemas.screening import (
     CandidateScreeningVerdict,
     RecordScreeningResults,
@@ -43,9 +42,11 @@ from core.services.applied_rule_validation import (
     passed_implied_by,
     raise_for_violations,
 )
+from core.models.extraction_schemas.synthesis import GroupRecords
 from core.services.phrase_blocks_contract import (
     hold_response_to_sent_record_ids,
     render_record_blocks,
+    sent_record_ids_from_user_message,
     sent_records_from_user_message,
 )
 from core.services.pipeline_nodes.multi_stage.llm_grounding_node_service import (
@@ -180,8 +181,13 @@ async def parse_record_screening_group_result(
     group_req_id: BatchRequestIDType,
     completed_request_map: dict[BatchRequestIDType, GPTBatchRequest],
     timestamp: datetime,
-) -> RecordScreeningResults:
-    """Parse one screening group request and hold it on both axes."""
+) -> tuple[list[str], RecordScreeningResults]:
+    """Parse one screening group request and hold it on both axes, as
+    ``(sent record ids, held results)``. The id axis THINS on missing (3.3,
+    the under-answer decision — user, 2026-08-24): unanswered records feed the
+    node's retry assessment instead of failing the response. The candidate
+    axis stays exact over the records that DID answer, and an id nobody sent
+    still raises."""
     req_obj = completed_request_map.get(group_req_id)
     if not req_obj:
         raise ValueError(
@@ -204,12 +210,12 @@ async def parse_record_screening_group_result(
             user_message=user_message,
             response_by_record_id=parsed,
             where=where,
-            on_missing="raise",
+            on_missing="drop",
         )
         hold_candidates_to_sent_records(
             user_message=user_message, held_results=held, where=where
         )
-        return held
+        return sent_record_ids_from_user_message(user_message) or [], held
     except Exception as e:
         await record_response_parse_error_capped(
             gpt_batch_request=req_obj,
@@ -224,6 +230,73 @@ async def parse_record_screening_group_result(
         raise
 
 
+@dataclass(frozen=True)
+class ChunkScreeningAnswer:
+    """ONE chunk's screening answer, merged across its group requests and
+    (when included) the retry — the same shape the grounding stages use."""
+
+    sent_ids: list[str]
+    results: RecordScreeningResults
+    retried_record_ids: list[str] = dataclass_field(default_factory=list)
+
+    @property
+    def missing_ids(self) -> list[str]:
+        return [rid for rid in self.sent_ids if rid not in self.results]
+
+
+async def get_chunk_record_screening_answer(
+    *,
+    subject_unique_id: str,
+    field_name: str,
+    chunk_bounds: str,
+    catalog: RuleCatalog,
+    group_req_ids: list[BatchRequestIDType],
+    completed_request_map: dict[BatchRequestIDType, GPTBatchRequest],
+    timestamp: datetime,
+    retry_req_ids: Optional[list[BatchRequestIDType]] = None,
+    retried_record_ids: Optional[list[str]] = None,
+) -> ChunkScreeningAnswer:
+    """Merge screening verdicts across every request embedded for the chunk —
+    the groups, then the retry (``retry_req_ids=None``/empty reads the first
+    pass alone, as the retry assessment does). A record answered in two
+    requests raises."""
+    if not group_req_ids:
+        raise ValueError(
+            f"record_screening: request id list is empty for chunk bounds "
+            f"{chunk_bounds} in {subject_unique_id}:{field_name}"
+        )
+
+    sent_ids: list[str] = []
+    sent_seen: set[str] = set()
+    merged: RecordScreeningResults = {}
+    for group_req_id in [*group_req_ids, *(retry_req_ids or [])]:
+        req_sent_ids, held = await parse_record_screening_group_result(
+            subject_unique_id=subject_unique_id,
+            field_name=field_name,
+            catalog=catalog,
+            group_req_id=group_req_id,
+            completed_request_map=completed_request_map,
+            timestamp=timestamp,
+        )
+        for rid in req_sent_ids:
+            if rid not in sent_seen:
+                sent_seen.add(rid)
+                sent_ids.append(rid)
+        for rid, verdicts in held.items():
+            if rid in merged:
+                raise ValueError(
+                    f"record_screening: record id {rid!r} answered in two "
+                    f"requests of chunk {chunk_bounds} in "
+                    f"{subject_unique_id}:{field_name}"
+                )
+            merged[rid] = verdicts
+    return ChunkScreeningAnswer(
+        sent_ids=sent_ids,
+        results=merged,
+        retried_record_ids=list(retried_record_ids or []),
+    )
+
+
 async def get_record_screening_result(
     *,
     subject_unique_id: str,
@@ -233,50 +306,53 @@ async def get_record_screening_result(
     group_req_ids: list[BatchRequestIDType],
     completed_request_map: dict[BatchRequestIDType, GPTBatchRequest],
     timestamp: datetime,
+    retry_req_ids: Optional[list[BatchRequestIDType]] = None,
 ) -> RecordScreeningResults:
-    """Merge screening verdicts across every group embedded for the chunk."""
-    if not group_req_ids:
-        raise ValueError(
-            f"record_screening: request id list is empty for chunk bounds "
-            f"{chunk_bounds} in {subject_unique_id}:{field_name}"
+    """The chunk's stored screening map: groups, then the retry. A record
+    still unanswered after the retry is WARNED about and absent — its
+    candidates get no verdict, which downstream reads as not-passed (fails
+    closed) and the dump shows as ``screening_dropped``."""
+    answer = await get_chunk_record_screening_answer(
+        subject_unique_id=subject_unique_id,
+        field_name=field_name,
+        chunk_bounds=chunk_bounds,
+        catalog=catalog,
+        group_req_ids=group_req_ids,
+        completed_request_map=completed_request_map,
+        timestamp=timestamp,
+        retry_req_ids=retry_req_ids,
+    )
+    if answer.missing_ids:
+        logger.warning(
+            f"record_screening: {len(answer.missing_ids)} record(s) of chunk "
+            f"{chunk_bounds} in {subject_unique_id}:{field_name} still unanswered "
+            f"after the retry pass: {answer.missing_ids}"
         )
-
-    merged: RecordScreeningResults = {}
-    for group_req_id in group_req_ids:
-        merged.update(
-            await parse_record_screening_group_result(
-                subject_unique_id=subject_unique_id,
-                field_name=field_name,
-                catalog=catalog,
-                group_req_id=group_req_id,
-                completed_request_map=completed_request_map,
-                timestamp=timestamp,
-            )
-        )
-    return merged
+    return answer.results
 
 
 def build_screening_payloads(
-    masked: MaskedLLMPhraseRelationshipResults,
+    group_records: GroupRecords,
     candidates_by_record: dict[str, list[str]],
 ) -> dict[str, dict[str, Any]]:
-    """The id → record payload a screening request renders: the evidence plus
-    the candidates to judge. Only records WITH candidates are sent — a record
-    grounding yielded nothing for has nothing to screen — and a candidate list
-    for a record the relationship stage never produced is a pipeline bug."""
+    """The group_id → record payload a screening request renders (3.3, D16):
+    the group's focal form and synthesis, plus the candidates to judge. Only
+    records WITH candidates are sent — a record grounding yielded nothing for
+    has nothing to screen — and a candidate list for a group the synthesis
+    stage never produced is a pipeline bug."""
     payloads: dict[str, dict[str, Any]] = {}
-    for record_id, candidates in candidates_by_record.items():
-        entry = masked.get(record_id)
-        if entry is None:
+    for group_id, candidates in candidates_by_record.items():
+        record = group_records.get(group_id)
+        if record is None:
             raise ValueError(
                 f"build_screening_payloads: candidates supplied for unknown "
-                f"record id {record_id!r}"
+                f"group id {group_id!r}"
             )
         if not candidates:
             continue
-        payload: dict[str, Any] = entry.record.model_dump()
+        payload: dict[str, Any] = record.model_dump()
         payload["candidates"] = sorted(candidates)
-        payloads[record_id] = payload
+        payloads[group_id] = payload
     return payloads
 
 
@@ -286,9 +362,12 @@ async def create_missing_record_screening_requests(
     field_name: str,
     chunk_payload_maps: dict[str, dict[str, dict[str, Any]]],
     group_req_ids_by_chunk: dict[str, list[BatchRequestIDType]],
+    retry_req_ids_by_chunk: dict[str, list[BatchRequestIDType]],
+    retry_record_ids_by_chunk: dict[str, list[str]],
     missing_req_ids: set[BatchRequestIDType],
     prompt: Prompt,
     catalog: RuleCatalog,
+    subject_name: str,
     max_records_per_request: int,
     deferred_at: datetime,
     llm_model: LLM_Model,
@@ -299,12 +378,14 @@ async def create_missing_record_screening_requests(
     """The screening create loop, mirroring the grounding one: the caller
     derives each chunk's full payload map (records + their candidate lists) and
     the split into groups happens here, through the same helper the
-    id-embedding side used."""
+    id-embedding side used. The retry params carry the stage's under-answer
+    retry (3.3 — the synthesis pattern)."""
     batch_requests: list[GPTBatchRequest] = []
     chunk_items = [
         (chunk_bounds, payloads)
         for chunk_bounds, payloads in chunk_payload_maps.items()
         if set(group_req_ids_by_chunk[chunk_bounds]) & missing_req_ids
+        or set(retry_req_ids_by_chunk.get(chunk_bounds, [])) & missing_req_ids
     ]
 
     for i in range(0, len(chunk_items), BATCH_SIZE):
@@ -324,6 +405,54 @@ async def create_missing_record_screening_requests(
                     f"once, upfront, from the same candidate sets, so this should "
                     f"not happen."
                 )
+
+            # The retry pass: the stored missing ids, packed like the first pass.
+            retry_req_ids = retry_req_ids_by_chunk.get(chunk_bounds, [])
+            if set(retry_req_ids) & missing_req_ids:
+                retry_record_ids = retry_record_ids_by_chunk.get(chunk_bounds, [])
+                unknown = [rid for rid in retry_record_ids if rid not in payloads]
+                if unknown:
+                    raise ValueError(
+                        f"record_screening: stored retry record id(s) {unknown} of "
+                        f"chunk {chunk_bounds} in {subject_unique_id}:{field_name} "
+                        f"are not among the chunk's records; the upstream state "
+                        f"changed under the stored request ids (re-defer)."
+                    )
+                retry_payloads = {rid: payloads[rid] for rid in retry_record_ids}
+                retry_payload_groups = grouped_record_payloads(
+                    retry_payloads, max_records_per_request
+                )
+                if not retry_payloads or len(retry_req_ids) != len(retry_payload_groups):
+                    raise ValueError(
+                        f"record_screening: embedded retry group count "
+                        f"({len(retry_req_ids)}) does not match the computed count "
+                        f"({len(retry_payload_groups)}, {len(retry_payloads)} "
+                        f"record(s)) for chunk bounds {chunk_bounds} in "
+                        f"{subject_unique_id}:{field_name}."
+                    )
+                for retry_group_index, retry_req_id in enumerate(retry_req_ids):
+                    if retry_req_id not in missing_req_ids:
+                        continue
+                    logger.info(
+                        f"record_screening: retrying "
+                        f"{len(retry_payload_groups[retry_group_index])} unanswered "
+                        f"record(s) for {subject_unique_id}:{field_name} chunk "
+                        f"{chunk_bounds} retry group {retry_group_index}"
+                    )
+                    batch_requests.append(
+                        create_deferred_record_screening_gpt_request(
+                            deferred_at=deferred_at,
+                            subject_unique_id=subject_unique_id,
+                            request_id=retry_req_id,
+                            prompt=prompt,
+                            catalog=catalog,
+                            subject_name=subject_name,
+                            screening_payloads=retry_payload_groups[retry_group_index],
+                            gpt_model=llm_model,
+                            eager=eager,
+                            model_params=model_params,
+                        )
+                    )
 
             for group_index, group_req_id in enumerate(group_req_ids):
                 if group_req_id not in missing_req_ids:
@@ -363,6 +492,7 @@ async def create_missing_record_screening_requests(
                         request_id=group_req_id,
                         prompt=prompt,
                         catalog=catalog,
+                        subject_name=subject_name,
                         screening_payloads=payload_group,
                         gpt_model=llm_model,
                         eager=eager,
@@ -382,18 +512,25 @@ def create_deferred_record_screening_gpt_request(
     request_id: str,
     prompt: Prompt,
     catalog: RuleCatalog,
+    subject_name: str,
     screening_payloads: dict[str, dict[str, Any]],
     gpt_model: LLM_Model,
     eager: bool,
     model_params: GPTModelParams,
 ) -> GPTBatchRequest:
     """One screening group request: deposition-only, records and candidates,
-    never chunk text (fork F8)."""
+    never chunk text (fork F8). The manufacturer's NAME rides at the top
+    (3.3 rider, user decision: v3 syntheses name the subject — quoted headings
+    inject it — so the judge must know whose record it is reading; the v2-era
+    "never by name" sentence left the statics with the same edit)."""
     return create_base_gpt_batch_request(
         deferred_at=deferred_at,
         subject_unique_id=subject_unique_id,
         custom_id=request_id,
-        context=render_record_blocks(screening_payloads),
+        context=(
+            f"the name of the manufacturer in question: {subject_name}\n\n"
+            f"{render_record_blocks(screening_payloads)}"
+        ),
         prompt_text=prompt.text,
         gpt_model=gpt_model,
         model_params=model_params.with_response_format(response_format_for(catalog)),

@@ -31,8 +31,14 @@ from scraper.models.s3.scraped_text_file import ScrapedTextFile
 from core.services.pipeline_nodes.multi_stage.llm_phrase_recursive_search_node_service import (
     build_llm_phrase_search_results,
 )
-from core.services.pipeline_nodes.multi_stage.llm_phrase_relationship_node_service import (
-    get_masked_phrase_relationship_result,
+from core.services.pipeline_nodes.multi_stage.llm_phrase_mention_collection_node_service import (
+    fold_snippet_radius_of,
+    fold_verb_fold_of,
+)
+from core.services.pipeline_nodes.multi_stage.llm_phrase_synthesis_node_service import (
+    downstream_group_records,
+    get_chunk_synthesis_result,
+    synthesis_include_location_of,
 )
 from core.services.pipeline_nodes.multi_stage.llm_grounding_node_service import (
     get_record_grounding_result,
@@ -46,9 +52,8 @@ from core.services.pipeline_nodes.multi_stage.pipeline_v2_derivations import (
 )
 from core.services.rule_catalog_registry import get_rule_catalog
 from core.utils.label_dedupe_util import dedupe_equivalent_keywords
-from core.utils.record_id_util import phrases_by_record_id
 from core.utils.extraction_dump_util import (
-    build_keyword_record_rows,
+    build_keyword_group_rows,
     build_run_provenance,
     write_extraction_dump,
 )
@@ -80,9 +85,16 @@ class KeywordReconcileNode(ReconcileNode[ExtractionFieldType]):
             f"{self.__class__.__name__} must implement get_upstream_recursive_search_map"
         )
 
-    def get_upstream_relationship_map(self, pipeline_context: PipelineContext) -> dict:
+    def get_upstream_mention_collection_map(
+        self, pipeline_context: PipelineContext
+    ) -> dict:
         raise NotImplementedError(
-            f"{self.__class__.__name__} must implement get_upstream_relationship_map"
+            f"{self.__class__.__name__} must implement get_upstream_mention_collection_map"
+        )
+
+    def get_upstream_synthesis_map(self, pipeline_context: PipelineContext) -> dict:
+        raise NotImplementedError(
+            f"{self.__class__.__name__} must implement get_upstream_synthesis_map"
         )
 
     def get_upstream_screening_map(self, pipeline_context: PipelineContext) -> dict:
@@ -127,9 +139,10 @@ class KeywordReconcileNode(ReconcileNode[ExtractionFieldType]):
         completed_recursive_search_requests = self.get_upstream_recursive_search_map(
             pipeline_context
         )
-        completed_phrase_relationship_requests = self.get_upstream_relationship_map(
+        completed_mention_collection_requests = self.get_upstream_mention_collection_map(
             pipeline_context
         )
+        completed_synthesis_requests = self.get_upstream_synthesis_map(pipeline_context)
         completed_freehand_grounding_requests = (
             self.get_upstream_freehand_grounding_map(pipeline_context)
         )
@@ -159,20 +172,30 @@ class KeywordReconcileNode(ReconcileNode[ExtractionFieldType]):
                 timestamp=timestamp,
             )
 
-            # The relationship stage is the one place the model still echoes
-            # phrases back, so it keeps a repairs sink; every record-keyed
-            # stage downstream holds exactly and has none.
-            relationship_repairs: dict[str, str] = {}
-            masked_flat = await get_masked_phrase_relationship_result(
+            # v3 (3.3, D16): the chunk's synthesis result — the fold recomputed
+            # from the stored mention answers, the held syntheses — is the spine
+            # every downstream verdict keys against. No repairs sink anywhere:
+            # every record-keyed stage holds exactly, and the relationship
+            # stage (the one place phrases echoed back) is retired.
+            metadata = extraction_requests.metadata
+            synthesis_result = await get_chunk_synthesis_result(
                 subject_unique_id=deferred_subject.subject_unique_id,
                 field_type=self.field_type,
                 chunk_bounds=chunk_bounds,
                 extraction_bundle=bundle,
-                completed_request_map=completed_phrase_relationship_requests,
+                completed_request_map=completed_synthesis_requests,
                 timestamp=timestamp,
-                repairs=relationship_repairs,
+                mention_completed_request_map=completed_mention_collection_requests,
+                subject_text=scraped_text_file.text,
+                verb_fold=fold_verb_fold_of(metadata),
+                snippet_radius=fold_snippet_radius_of(metadata),
+                include_location=synthesis_include_location_of(metadata),
             )
-            phrase_by_record_id = phrases_by_record_id(masked_flat)
+            group_records = downstream_group_records(synthesis_result)
+            focal_by_group = {
+                group_id: record.focal_form
+                for group_id, record in group_records.items()
+            }
 
             freehand_flat = await get_record_grounding_result(
                 stage_label="freehand grounding",
@@ -181,6 +204,7 @@ class KeywordReconcileNode(ReconcileNode[ExtractionFieldType]):
                 chunk_bounds=chunk_bounds,
                 catalog=freehand_catalog,
                 group_req_ids=bundle.llm_phrase_freehand_grounding_req_ids,
+                retry_req_ids=bundle.llm_phrase_freehand_grounding_retry_req_ids,
                 completed_request_map=completed_freehand_grounding_requests,
                 timestamp=timestamp,
             )
@@ -191,6 +215,7 @@ class KeywordReconcileNode(ReconcileNode[ExtractionFieldType]):
                 chunk_bounds=chunk_bounds,
                 catalog=screening_catalog,
                 group_req_ids=bundle.llm_phrase_relationship_screening_req_ids,
+                retry_req_ids=bundle.llm_phrase_relationship_screening_retry_req_ids,
                 completed_request_map=completed_relationship_screening_requests,
                 timestamp=timestamp,
             )
@@ -201,12 +226,11 @@ class KeywordReconcileNode(ReconcileNode[ExtractionFieldType]):
             grounded_keywords = candidates_that_passed(freehand_flat, screening_flat)
 
             chunked_dump_contents[chunk_bounds] = {
-                "rows": build_keyword_record_rows(
-                    masked_flat=masked_flat,
+                "rows": build_keyword_group_rows(
+                    synthesis_result=synthesis_result,
                     freehand_flat=freehand_flat,
                     screening_flat=screening_flat,
                     search_rounds=llm_search_results,
-                    relationship_repairs=relationship_repairs,
                     subject_name=pipeline_context.subject_name,
                 )
             }
@@ -216,14 +240,14 @@ class KeywordReconcileNode(ReconcileNode[ExtractionFieldType]):
                     in_vocab=set(), out_of_vocab=grounded_keywords
                 ),
                 llm_phrase_search=llm_search_results,
-                llm_phrase_relationship=partition_records_by_search_round(
-                    masked_flat, phrase_by_record_id, llm_search_results
+                llm_phrase_synthesis=partition_records_by_search_round(
+                    group_records, focal_by_group, llm_search_results
                 ),
                 llm_phrase_screening=partition_records_by_search_round(
-                    screening_flat, phrase_by_record_id, llm_search_results
+                    screening_flat, focal_by_group, llm_search_results
                 ),
                 llm_phrase_freehand_grounding=partition_records_by_search_round(
-                    freehand_flat, phrase_by_record_id, llm_search_results
+                    freehand_flat, focal_by_group, llm_search_results
                 ),
             )
             all_keywords.update(grounded_keywords)
@@ -237,7 +261,8 @@ class KeywordReconcileNode(ReconcileNode[ExtractionFieldType]):
             completed_requests={
                 **completed_search_requests,
                 **completed_recursive_search_requests,
-                **completed_phrase_relationship_requests,
+                **completed_mention_collection_requests,
+                **completed_synthesis_requests,
                 **completed_freehand_grounding_requests,
                 **completed_relationship_screening_requests,
             },
@@ -271,7 +296,8 @@ class KeywordReconcileNode(ReconcileNode[ExtractionFieldType]):
                 [
                     *completed_search_requests.keys(),
                     *completed_recursive_search_requests.keys(),
-                    *completed_phrase_relationship_requests.keys(),
+                    *completed_mention_collection_requests.keys(),
+                    *completed_synthesis_requests.keys(),
                     *completed_freehand_grounding_requests.keys(),
                     *completed_relationship_screening_requests.keys(),
                 ]

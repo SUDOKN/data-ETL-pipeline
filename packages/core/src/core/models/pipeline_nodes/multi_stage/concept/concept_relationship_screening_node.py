@@ -59,14 +59,23 @@ class ConceptRelationshipScreeningNode(
         self.known_concepts = known_concepts
         self.match_label_to_concept_map = get_match_label_to_concept_map(known_concepts)
 
-    def get_upstream_phrase_relationship_map(
+    def get_upstream_mention_collection_map(
         self, pipeline_context: PipelineContext
     ) -> dict[BatchRequestIDType, GPTBatchRequest]:
-        from core.models.pipeline_nodes.multi_stage.concept.concept_relationship_node import (
-            ConceptRelationshipNode,
+        from core.models.pipeline_nodes.multi_stage.concept.concept_mention_collection_node import (
+            ConceptMentionCollectionNode,
         )
 
-        return pipeline_context[ConceptRelationshipNode]
+        return pipeline_context[ConceptMentionCollectionNode]
+
+    def get_upstream_synthesis_map(
+        self, pipeline_context: PipelineContext
+    ) -> dict[BatchRequestIDType, GPTBatchRequest]:
+        from core.models.pipeline_nodes.multi_stage.concept.concept_synthesis_node import (
+            ConceptSynthesisNode,
+        )
+
+        return pipeline_context[ConceptSynthesisNode]
 
     def get_upstream_in_vocab_grounding_map(
         self, pipeline_context: PipelineContext
@@ -101,6 +110,7 @@ class ConceptRelationshipScreeningNode(
             chunk_bounds=chunk_bounds,
             catalog=get_rule_catalog(STAGE_INITIAL_GROUNDING, self.field_type.name),
             group_req_ids=extraction_bundle.llm_phrase_initial_grounding_req_ids,
+            retry_req_ids=extraction_bundle.llm_phrase_initial_grounding_retry_req_ids,
             completed_request_map=self.get_upstream_in_vocab_grounding_map(
                 pipeline_context
             ),
@@ -117,6 +127,7 @@ class ConceptRelationshipScreeningNode(
                 chunk_bounds=chunk_bounds,
                 catalog=get_rule_catalog(STAGE_OOV_GROUNDING, self.field_type.name),
                 group_req_ids=extraction_bundle.llm_phrase_oov_grounding_req_ids,
+                retry_req_ids=extraction_bundle.llm_phrase_oov_grounding_retry_req_ids,
                 completed_request_map=self.get_upstream_oov_grounding_map(
                     pipeline_context
                 ),

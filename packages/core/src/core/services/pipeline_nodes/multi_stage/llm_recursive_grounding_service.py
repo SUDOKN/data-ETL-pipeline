@@ -44,8 +44,9 @@ from core.models.extraction_schemas.iterative_tagging import (
     IterativelyTaggedPhrase,
     PhraseTrail,
 )
-from core.models.extraction_schemas.relationship import (
-    MaskedLLMPhraseRelationshipResults,
+from core.models.extraction_schemas.synthesis import GroupRecords
+from core.models.extraction_results.llm_phrase_extraction_results_v2 import (
+    ConceptExtractionMetadataV2,
 )
 from core.models.rule_catalog import (
     STAGE_INITIAL_GROUNDING,
@@ -89,8 +90,8 @@ from core.services.pipeline_nodes.multi_stage.llm_grounding_node_service import 
     get_record_grounding_result,
     parse_record_grounding_result,
 )
-from core.services.pipeline_nodes.multi_stage.llm_phrase_relationship_node_service import (
-    get_masked_phrase_relationship_result,
+from core.services.pipeline_nodes.multi_stage.llm_phrase_synthesis_node_service import (
+    get_chunk_group_records,
 )
 from core.services.pipeline_nodes.multi_stage.llm_relationship_screening_node_service import (
     get_record_screening_result,
@@ -606,21 +607,21 @@ def descent_evidence_record_ids(
 
 def descent_record_payloads(
     record_ids: set[str],
-    masked: MaskedLLMPhraseRelationshipResults,
+    group_records: GroupRecords,
 ) -> dict[str, dict[str, Any]]:
-    """The id → record payload a descent request renders. Sorted for render
-    stability; a record id with no masked relationship entry is a pipeline bug
-    — every id in the descent tree came out of a stage that derived it from
-    the relationship results."""
-    missing = record_ids - set(masked)
+    """The group_id → record payload a descent request renders (3.3, D16: the
+    synthesis stage's per-group records). Sorted for render stability; an id
+    with no group record is a pipeline bug — every id in the descent tree came
+    out of a stage that derived it from these very records."""
+    missing = record_ids - set(group_records)
     if missing:
         raise ValueError(
-            f"descent_record_payloads: no relationship record for id(s) "
+            f"descent_record_payloads: no group record for id(s) "
             f"{sorted(missing)}"
         )
     return {
-        record_id: masked[record_id].record.model_dump()
-        for record_id in sorted(record_ids)
+        group_id: group_records[group_id].model_dump()
+        for group_id in sorted(record_ids)
     }
 
 
@@ -634,7 +635,10 @@ async def create_missing_phrase_recursive_grounding_requests(
     missing_phrase_recursive_grounding_req_ids: set[  # will all belong to the same level
         BatchRequestIDType
     ],  # spread across all chunks, can be partially covering a level in req tree
-    llm_phrase_relationship_gpt_request_map: dict[BatchRequestIDType, GPTBatchRequest],
+    mention_completed_request_map: dict[BatchRequestIDType, GPTBatchRequest],
+    synthesis_completed_request_map: dict[BatchRequestIDType, GPTBatchRequest],
+    subject_text: str,
+    metadata: ConceptExtractionMetadataV2,
     completed_in_vocab_grounding_req_map: dict[BatchRequestIDType, GPTBatchRequest],
     completed_screening_req_map: dict[BatchRequestIDType, GPTBatchRequest],
     completed_recursive_grounding_req_map: dict[BatchRequestIDType, GPTBatchRequest],
@@ -668,13 +672,16 @@ async def create_missing_phrase_recursive_grounding_requests(
             raise ValueError(
                 f"Cannot create batch requests for recursive grounding as llm_phrase_recursive_tagging_reqs is empty."
             )
-        masked_relationship_results = await get_masked_phrase_relationship_result(
-            subject_unique_id=subject_unique_id,
-            field_type=field_type,
-            chunk_bounds=chunk_bounds,
-            extraction_bundle=bundle,
-            completed_request_map=llm_phrase_relationship_gpt_request_map,
-            timestamp=timestamp,
+        group_records = await get_chunk_group_records(
+            subject_unique_id,
+            field_type,
+            chunk_bounds,
+            bundle,
+            timestamp,
+            synthesis_completed_request_map=synthesis_completed_request_map,
+            mention_completed_request_map=mention_completed_request_map,
+            subject_text=subject_text,
+            metadata=metadata,
         )
 
         pending_level = max(
@@ -753,7 +760,7 @@ async def create_missing_phrase_recursive_grounding_requests(
                 continue
 
             record_payloads = descent_record_payloads(
-                descent_evidence_record_ids(itp), masked_relationship_results
+                descent_evidence_record_ids(itp), group_records
             )
             logger.info(
                 f"descent record payloads for {pending_tagging_req.name}: {sorted(record_payloads)}"

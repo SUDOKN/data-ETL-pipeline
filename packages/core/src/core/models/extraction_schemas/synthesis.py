@@ -145,3 +145,24 @@ def parse_synthesis_response(gpt_response: Optional[str]) -> SynthesesByGroupId:
             )
         by_id[entry.record_id] = entry.synthesis
     return by_id
+
+
+# --- downstream (D16) -------------------------------------------------------
+
+
+class GroupRecord(BaseModel):
+    """One per-group record as every stage downstream of synthesis consumes it
+    (D16): the group's focal form and the synthesis written for it. The key it
+    travels under is the ``group_id`` — already opaque (``hash(normalized
+    key)``, D11), so the key-masking discipline the v2 ``record_id`` provided
+    comes for free: the model never sees a candidate-looking label as the
+    grouping key, while the record's own fields carry the wording grounding
+    needs (user decision 2026-08-24: focal form + synthesis, no member forms,
+    no entries — the synthesis IS the evidence digest)."""
+
+    focal_form: str
+    synthesis: str
+
+
+# group_id → the group's downstream record.
+GroupRecords = dict[str, GroupRecord]

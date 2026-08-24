@@ -96,7 +96,6 @@ def _equipment_metadata(max_recursive_rounds: int = 1) -> KeywordExtractionMetad
         ontology_version_id="test-ontology-version",
         search_prompt=_make_prompt("equipment_phrase_search"),
         recursive_search_prompt=_make_prompt("equipment_phrase_recursive_search"),
-        phrase_relationship_prompt=_make_prompt("equipment_phrase_relationship"),
         phrase_mention_collection_prompt=_make_prompt("equipment_phrase_mention_collection"),
         phrase_synthesis_prompt=_make_prompt("equipment_phrase_synthesis"),
         phrase_relationship_screening_prompt=_make_prompt(

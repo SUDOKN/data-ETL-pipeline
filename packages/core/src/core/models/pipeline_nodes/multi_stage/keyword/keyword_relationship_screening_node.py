@@ -39,8 +39,8 @@ class KeywordRelationshipScreeningNode(
     """Base class: the keyword families' screening, downstream of freehand
     grounding in v2 — its candidates are the freehand pass's minted labels.
 
-    This is a BASE class: ``get_upstream_phrase_relationship_map`` and
-    ``get_upstream_freehand_grounding_map`` are left unimplemented. Concrete
+    This is a BASE class: ``get_upstream_mention_collection_map``,
+    ``get_upstream_synthesis_map`` and ``get_upstream_freehand_grounding_map`` are left unimplemented. Concrete
     leaves such as ``PureProductRelationshipScreeningNode`` /
     ``ContractProductRelationshipScreeningNode`` must implement them.
     """
@@ -79,6 +79,7 @@ class KeywordRelationshipScreeningNode(
             chunk_bounds=chunk_bounds,
             catalog=get_rule_catalog(STAGE_FREEHAND_GROUNDING, self.field_type.name),
             group_req_ids=extraction_bundle.llm_phrase_freehand_grounding_req_ids,
+            retry_req_ids=extraction_bundle.llm_phrase_freehand_grounding_retry_req_ids,
             completed_request_map=self.get_upstream_freehand_grounding_map(
                 pipeline_context
             ),

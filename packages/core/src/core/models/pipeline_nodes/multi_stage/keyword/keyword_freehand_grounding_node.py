@@ -20,7 +20,7 @@ class KeywordFreehandGroundingNode(LLMPhraseFreehandGroundingNode[ExtractionFiel
     """Base class: the keyword families' enumeration pass — minted candidates
     off the relationship records, ahead of screening (v2 order).
 
-    This is a BASE class: ``get_upstream_phrase_relationship_map`` is left
+    This is a BASE class: ``get_upstream_mention_collection_map`` / ``get_upstream_synthesis_map`` is left
     unimplemented (inherited from :class:`LLMPhraseFreehandGroundingNode`).
     Concrete leaves such as ``PureProductFreehandGroundingNode`` /
     ``ContractProductFreehandGroundingNode`` must implement it.
