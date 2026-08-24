@@ -17,7 +17,8 @@ scoped and left search untouched:
 - all 96 `llm_search` and 6 single-stage request rows survive in Mongo from `2026-08-23 04:45`, answered;
 - the run's `llm_phrase_search` stage carries `started_at = 2026-08-23T04:45:00` against the mention and
   synthesis stages' `02:07:29` — it replayed, it did not re-run;
-- **all 37 shared mention `ud=` digests are identical** to `20260824T012721`, and all 20 shared synthesis
+- **all 93 shared mention request ids carry an identical `ud=`** against `20260824T012721`
+  (this line first said 37 — recounted by the supplement below), and all 20 shared synthesis
   `ud=` changed (the locations moved). Only `pv=` differs on the mention stage.
 
 So every difference below is the prompt. **20 of 20 dumps, field set identical to the last complete run.**
@@ -25,7 +26,8 @@ The three fields lost by `012721` are back.
 
 ## Verdict in one line
 **The fix landed on exactly what it targeted and cost almost nothing — the two regressed records have
-their provenance back, no party name is lost anywhere, and the price is +6.9% location text — but the
+their provenance back, no Allegion-class party loss remains (the supplement finds 7 mild Falcon
+page-enumeration losses on the full pairing), and the price is +6.9% location text — but the
 FE→DE entity swap recurred, which retires the previous session's "REPAIRED" verdict on it.**
 
 ## RIGHT
@@ -41,6 +43,9 @@ FE→DE entity swap recurred, which retires the previous session's "REPAIRED" ve
 2. **Party survival recovered and nothing was lost.** Of the 1,246 shared records, those whose location
    names a party went 18 → 20, and those carrying it into the synthesis went **9 → 12 (50% → 60%)**.
    **Records that lost a party name: 7 → 0.**
+   *Corrected by the deep supplement (§8 below): this pairing dropped 114 records; on the full pairing
+   7 records did lose a party name — all the mild Falcon page-enumeration class — and survival is
+   47% → 66%. The Allegion class stays fixed.*
 
 3. **Nothing the earlier rewrite won was given back.** The opener ban still reads **0.0%** of 2,805
    locations (no self-reference, no banned verb); "whose words" is still carried by **100%**; 0 URLs,
@@ -85,3 +90,57 @@ FE→DE entity swap recurred, which retires the previous session's "REPAIRED" ve
 - **`products` and `industries` are descriptive only.** They had no `012721` baseline, so for them this
   run spans two prompt changes at once. Every number above is computed on records present in both runs.
 - The `loc=1` vs `loc=0` A/B is still unrun. Every run so far is the same arm.
+
+---
+
+# Deep supplement (same day, second pass): `deep_supplement.py` / `deep_supplement_output.txt`
+
+An independent recount of the A/B's structural claims plus what the first pass did not measure.
+Run from the repo root; pyright 0 errors, ruff clean.
+
+## Corrections to the first pass
+
+1. **93, not 37.** The mention stage shares **93 request ids** between the runs (93 → 126), every one
+   with an identical `ud=` (92 distinct digests — the products/contract_products window pair shares one).
+   The "37" in the first write-up matches nothing in the dumps; the committed A/B script itself printed 93.
+2. **The pairing dropped 114 records.** `synth_rows` keyed records (subject, field, group_id) — but
+   **242 group_ids appear in BOTH chunks of a field**, so the dict silently kept only the last chunk's
+   record. Bounds-keyed pairing gives **1,360** shared records (= every record `012721` produced).
+3. **On the full pairing, 7 records DID lose a party name** — all `steelcraft/conformity_attestations`
+   chunk 0, all losing exactly `Falcon`, all the page-enumeration class: the old location listed every
+   product page carrying the bullet ("… for INPACT System Integrated Door Solution **and SZ Series Falcon
+   Flush Doors** …"); the compact new style names fewer pages ("on the page about INPACT Series hospital
+   doors"), so the sub-brand word rode out of the list. The claim's own provenance survives; what shrank
+   is the sibling-page enumeration. Party survival on the full pairing: **16/34 = 47% → 19/29 = 66%** —
+   the direction of the verdict stands, the absolute "nothing was lost" does not.
+
+## New measurements
+
+4. **Identical-synthesis collapse census** (two records of one request sharing a byte-identical synthesis
+   string): **12 (`002404`) / 23 (`010654`) / 1 (`012721`) / 14 (`020729`)**. A **standing** synthesis
+   behavior, not the heading fix's — `012721`'s 1 is only its missing `steelcraft/products` dump (the
+   field holding 10–16 of the pairs every full run). 8 of this run's 14 pairs were already identical in
+   `010654`. **The FE→DE pair is the only one whose shared string is WRONG for a record**; the rest are
+   composite sentences naming both entities ("… include a Paladin Door & Frame with Schlage LM9300 Levers
+   or Von Duprin WS-T Exit Devices …") reused verbatim across co-packed records — satisficing, and 13 of
+   14 are invisible to the focal-form lint because the shared string contains both focal forms.
+   **Tripwire candidate: flag identical synthesis strings within one request.**
+5. **Twin census.** Reconstructing the packer (soft cap 50, verified against every chunk's
+   `group_requests`), **130 confusable same-request focal-form pairs** — multi-token names differing in
+   one confusable token, or edit distance ≤ 2 (`FE/DE Series`, `Type 304/316 Alloy`, `TAS 201/202/203`,
+   `ICC 500-2014/-2020`, `2/5 Day Door Express`, the 12-member `System Set D1…S4` family = 66 pairs).
+   93 of the 130 sit in `steelcraft/products`. This is the population the twin fix must protect;
+   1 invention among them this run.
+6. **Own-name identification is steady and the heading fix inflates it.** Hits: alecmfg 1,635 → 1,618 →
+   **1,780**, steelcraft 2,255 → 2,154 → **2,477** across `002404` / `010654` / `020729`, with 99–100% of
+   records naming the manufacturer throughout — verbatim headings ('STEELCRAFT PRODUCTS') inject the name.
+   Payload, not a defect, post-ban.
+7. **The document-listing rule held under the new locations**: on the 28 paired records whose snippet
+   evidence is a document listing, scoped 19 → 20, unscoped 'provides this resource' **0 → 0**.
+8. **Mention-stage delivery clean** (the first pass only checked synthesis): 3,345/3,345 snippets
+   described, 0 not-described, 0 retried, 0 unknown ids, 0 zero-hit forms; 96 replayed `llm_search`
+   request rows confirmed in the dumps.
+9. **Latency**: client p50 7.9–10.0 s, p90 ~16 s, max 24.6 s; turnaround p50 189–203 s (batch queue).
+   17 transparent client-level OpenAI retries in the log (~8% of 221 fresh requests — normal).
+10. **Paired synthesis text +1.9%** (mean 381 → 389 ch on the 1,360 pairs) — the first pass's
+    "371 → 363" compared different record sets. Thin single-entry records steady at 69% → 70%.
