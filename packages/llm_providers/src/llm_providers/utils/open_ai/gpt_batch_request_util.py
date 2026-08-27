@@ -49,7 +49,7 @@ def parse_individual_batch_req_response_raw(
                     content=message_data["content"],
                 ),
                 # logprobs=choice_data.get("logprobs"),
-                # finish_reason=choice_data["finish_reason"],
+                finish_reason=choice_data.get("finish_reason"),
             )
             choices.append(choice)
 

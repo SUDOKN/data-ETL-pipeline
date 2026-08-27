@@ -46,3 +46,68 @@ def test_completion_created_is_parsed_as_utc():
     # them unset.
     assert blob.client_latency_ms is None
     assert blob.openai_processing_ms is None
+
+
+def test_finish_reason_is_persisted_from_the_batch_row():
+    """"stop" vs "length" is what tells a voluntarily short answer from a
+    truncated one; it was dropped at parse time until 2026-08-26 (flagged
+    unpersisted on runs 061410, 223715 and 034518)."""
+    raw = {
+        "custom_id": "req-2",
+        "response": {
+            "status_code": 200,
+            "request_id": "r-2",
+            "body": {
+                "id": "chatcmpl-2",
+                "created": 1755200000,
+                "model": "gpt-4.1",
+                "choices": [
+                    {
+                        "index": 0,
+                        "message": {"role": "assistant", "content": '{"phrases": []}'},
+                        "finish_reason": "length",
+                    }
+                ],
+                "usage": {
+                    "prompt_tokens": 5,
+                    "completion_tokens": 2,
+                    "total_tokens": 7,
+                },
+            },
+        },
+        "error": None,
+    }
+
+    blob = parse_individual_batch_req_response_raw(raw, batch_id="b-2")
+
+    assert blob.chat_completion_result.choices[0].finish_reason == "length"
+
+
+def test_a_row_without_finish_reason_still_parses():
+    """Documents stored before the field existed (and defensive against a
+    provider omitting it) must keep loading — the field is Optional."""
+    raw = {
+        "custom_id": "req-3",
+        "response": {
+            "status_code": 200,
+            "request_id": "r-3",
+            "body": {
+                "id": "chatcmpl-3",
+                "created": 1755200000,
+                "model": "gpt-4.1",
+                "choices": [
+                    {"index": 0, "message": {"role": "assistant", "content": "hi"}}
+                ],
+                "usage": {
+                    "prompt_tokens": 5,
+                    "completion_tokens": 2,
+                    "total_tokens": 7,
+                },
+            },
+        },
+        "error": None,
+    }
+
+    blob = parse_individual_batch_req_response_raw(raw, batch_id="b-3")
+
+    assert blob.chat_completion_result.choices[0].finish_reason is None

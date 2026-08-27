@@ -57,11 +57,33 @@ class _Usage:
         self.total_tokens = prompt_tokens + completion_tokens
 
 
+class _Message:
+    def __init__(self, content) -> None:
+        self.content = content
+
+
+class _Choice:
+    def __init__(self, content, finish_reason) -> None:
+        self.message = _Message(content)
+        self.finish_reason = finish_reason
+
+
 class _ChatCompletion:
-    def __init__(self, model: str, usage: _Usage, created: datetime) -> None:
+    def __init__(
+        self,
+        model: str,
+        usage: _Usage,
+        created: datetime,
+        content: str | None = None,
+        finish_reason: str | None = None,
+    ) -> None:
         self.model = model
         self.usage = usage
         self.created = created
+        # Only responses that carry content grow a choices list, mirroring the
+        # difference between a real stored response and a bare stub.
+        if content is not None or finish_reason is not None:
+            self.choices = [_Choice(content, finish_reason)]
 
 
 class _Response:
@@ -73,9 +95,15 @@ class _Response:
         created: datetime,
         client_latency_ms=None,
         openai_processing_ms=None,
+        content: str | None = None,
+        finish_reason: str | None = None,
     ) -> None:
         self.chat_completion_result = _ChatCompletion(
-            model, _Usage(prompt_tokens, completion_tokens), created
+            model,
+            _Usage(prompt_tokens, completion_tokens),
+            created,
+            content=content,
+            finish_reason=finish_reason,
         )
         self.client_latency_ms = client_latency_ms
         self.openai_processing_ms = openai_processing_ms
@@ -95,6 +123,8 @@ class _RequestDoc:
         completed_at: datetime | None = None,
         client_latency_ms=None,
         openai_processing_ms=None,
+        content: str | None = None,
+        finish_reason: str | None = None,
     ) -> None:
         self.created_at = created_at
         self.response = _Response(
@@ -104,6 +134,8 @@ class _RequestDoc:
             completed_at or _utc(23, 59, 59),
             client_latency_ms=client_latency_ms,
             openai_processing_ms=openai_processing_ms,
+            content=content,
+            finish_reason=finish_reason,
         )
 
 
@@ -191,6 +223,7 @@ def test_requests_are_reported_per_stage_with_usage_and_timing():
             "created_at": "2026-08-14T19:00:00+00:00",
             "completed_at": "2026-08-14T19:04:34+00:00",
             "turnaround_seconds": 274,
+            "sub_bounds": "0-100",
         }
     ]
     assert _ids(requests["llm_phrase_relationship"]) == ["req>rel>0", "req>rel>1"]
@@ -563,3 +596,104 @@ def test_a_chunk_with_no_bundle_still_writes_its_rows(monkeypatch):
     assert chunk["rows"] == [{"phrase": "orphan"}]
     assert "time_span" not in chunk
     assert "time_span" not in payload["run"]
+
+
+def test_search_entries_carry_their_sub_window_and_response_phrases():
+    """The search stage's dump entries are index-aligned with the bundle's
+    sub-window geometry and carry the phrase array the stored response
+    returned — without this, raw search output lived only in Mongo and every
+    search evaluation began with a database pull (2026-08-26)."""
+    completed = {
+        "req>search>chunk>0-100": _RequestDoc(
+            4210,
+            512,
+            created_at=datetime(2026, 8, 14, 19, 0, 0),
+            completed_at=_utc(19, 4, 34),
+            content='{"phrases": ["CNC machining", "steel doors"]}',
+            finish_reason="stop",
+        ),
+        "req>recursive>0": _RequestDoc(
+            900,
+            120,
+            created_at=datetime(2026, 8, 14, 19, 5, 0),
+            completed_at=_utc(19, 6, 0),
+            content='{"phrases": ["stainless steel"]}',
+            finish_reason="stop",
+        ),
+    }
+
+    requests = build_chunk_requests(_ConceptBundle(), completed)
+
+    search_entry = requests["llm_phrase_search"][0]
+    assert search_entry["sub_bounds"] == "0-100"
+    assert search_entry["phrases"] == ["CNC machining", "steel doors"]
+    assert search_entry["finish_reason"] == "stop"
+    round_entry = requests["llm_phrase_recursive_search"]["0-100"][0]
+    assert round_entry["phrases"] == ["stainless steel"]
+
+
+def test_a_non_wire_shape_response_gets_a_note_not_a_crash():
+    """The dump is a witness, not the parser of record: content that is not
+    the ``{"phrases": [...]}`` shape must be flagged, never raise."""
+    completed = {
+        "req>search>chunk>0-100": _RequestDoc(
+            4210,
+            512,
+            created_at=datetime(2026, 8, 14, 19, 0, 0),
+            completed_at=_utc(19, 4, 34),
+            content='{"phrases": ["ok", 7]}',
+        ),
+        "req>recursive>0": _RequestDoc(
+            900,
+            120,
+            created_at=datetime(2026, 8, 14, 19, 5, 0),
+            completed_at=_utc(19, 6, 0),
+            content="not json at all {",
+        ),
+    }
+
+    requests = build_chunk_requests(_ConceptBundle(), completed)
+
+    search_entry = requests["llm_phrase_search"][0]
+    assert "phrases" not in search_entry
+    assert search_entry["phrases_note"] == "response_not_the_search_wire_shape"
+    round_entry = requests["llm_phrase_recursive_search"]["0-100"][0]
+    assert "phrases" not in round_entry
+    assert round_entry["phrases_note"] == "response_not_the_search_wire_shape"
+
+
+def test_stub_and_synthetic_responses_grow_no_phrase_keys():
+    """A stored doc without content (unanswered, or a pre-change stub) and a
+    NO_MODEL dummy stay exactly as they were — no phrases, no note."""
+    completed = {
+        "req>search>chunk>0-100": _RequestDoc(1, 1, model="no_model"),
+        "req>recursive>0": _RequestDoc(
+            900, 120, created_at=datetime(2026, 8, 14, 19, 5, 0), completed_at=_utc(19, 6, 0)
+        ),
+    }
+
+    requests = build_chunk_requests(_ConceptBundle(), completed)
+
+    for entry in (
+        requests["llm_phrase_search"][0],
+        requests["llm_phrase_recursive_search"]["0-100"][0],
+    ):
+        assert "phrases" not in entry
+        assert "phrases_note" not in entry
+
+
+def test_finish_reason_reaches_every_stage_entry_that_has_one():
+    """Not search-specific: any stage's stored response now surfaces it."""
+    completed = {
+        "req>ig>0": _RequestDoc(
+            800,
+            90,
+            created_at=datetime(2026, 8, 14, 19, 9, 0),
+            completed_at=_utc(19, 10, 0),
+            finish_reason="length",
+        ),
+    }
+
+    requests = build_chunk_requests(_ConceptBundle(), completed)
+
+    assert requests["llm_phrase_initial_grounding"][0]["finish_reason"] == "length"

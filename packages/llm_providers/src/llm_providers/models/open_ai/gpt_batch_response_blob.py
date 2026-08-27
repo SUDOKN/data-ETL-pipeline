@@ -79,7 +79,12 @@ class ChatCompletionChoice(BaseModel):
     index: int  # e.g. 0
     message: ChatCompletionChoiceMessage
     # logprobs: dict | None  # e.g. null
-    # finish_reason: str  # e.g. "stop"
+    # Optional with a None default so stored documents from before 2026-08-26
+    # (when this was dropped at parse time) still load. "stop" vs "length" is
+    # what tells a voluntarily short answer from a truncated one — the search
+    # eval's degeneration metrics need it (flagged unpersisted three times:
+    # runs 061410, 223715, 034518).
+    finish_reason: str | None = None  # e.g. "stop", "length"
 
 
 class ChatCompletionUsage(BaseModel):

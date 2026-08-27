@@ -34,7 +34,9 @@ Row anatomy:
 - ``in_vocab_grounding`` / ``oov_grounding`` / ``freehand_grounding`` — the
   enumeration passes: ``{"tags": {...}}`` or ``{"declined": <explanation>}``.
   A pass that never ran has its key OMITTED (the OOV pass is run config), so
-  "never asked" and "asked, found nothing" stay distinguishable.
+  "never asked" and "asked, found nothing" stay distinguishable. Either shape
+  gains ``dropped_options`` when the in-vocab pass discarded a label outside
+  its vocabulary — the drop is a lint to read, never a tag and never a gap.
 - ``lvl_by_lvl_itps`` — the descent trail (concepts only): every tag sits at an
   explicit level. Each node carries:
     * ``origin`` — which stage produced its rules (``initial_grounding`` /
@@ -124,17 +126,27 @@ def _sorted_levels(
 
 def _grounding_dump(entry: Optional[RecordGroundingEntry]) -> Optional[dict[str, Any]]:
     """One pass's verdict for a record: tags, a declination, or None when the
-    pass never saw the record (a no-mentions record is never sent)."""
+    pass never saw the record (a no-mentions record is never sent).
+
+    ``dropped_options`` rides on either shape when the in-vocab pass discarded
+    a non-vocabulary label, so the drop is readable next to what survived it.
+    Omitted when empty — every OOV and freehand row would otherwise carry a
+    key that pass can never populate.
+    """
     if entry is None:
         return None
     if entry.tags:
-        return {
+        dump: dict[str, Any] = {
             "tags": {
                 tag: [rule.model_dump(mode="json") for rule in applied_rules]
                 for tag, applied_rules in entry.tags.items()
             }
         }
-    return {"declined": entry.explanation}
+    else:
+        dump = {"declined": entry.explanation}
+    if entry.dropped_options:
+        dump["dropped_options"] = list(entry.dropped_options)
+    return dump
 
 
 def _screening_dump(
@@ -691,6 +703,7 @@ def _safe_path_segment(value: str) -> str:
 
 # The descent tree, which is neither a single id nor a flat list.
 _TAGGING_TREE_FIELD = "llm_phrase_recursive_tagging_reqs"
+_SEARCH_FIELD = "llm_phrase_search_req_ids"
 _RECURSIVE_SEARCH_FIELD = "llm_phrase_recursive_search_req_ids"
 # v3: per sub-window -> that sub-window's mention-collection group requests
 _MENTION_COLLECTION_FIELD = "llm_phrase_mention_req_ids"
@@ -764,6 +777,11 @@ def _request_entry(
         return entry
     entry["input_tokens"] = chat_completion.usage.prompt_tokens
     entry["output_tokens"] = chat_completion.usage.completion_tokens
+    choices = getattr(chat_completion, "choices", None)
+    if choices:
+        finish_reason = getattr(choices[0], "finish_reason", None)
+        if finish_reason is not None:
+            entry["finish_reason"] = finish_reason
     completed_at = _to_utc(chat_completion.created)
     entry["completed_at"] = completed_at.isoformat()
     if created_at is not None:
@@ -776,6 +794,55 @@ def _request_entry(
     openai_processing_ms = getattr(response, "openai_processing_ms", None)
     if openai_processing_ms is not None:
         entry["openai_processing_ms"] = openai_processing_ms
+    return entry
+
+
+def _attach_response_phrases(
+    entry: dict[str, object],
+    custom_id: str,
+    completed_requests: Mapping[str, object],
+) -> None:
+    """The phrase array a search-stage response returned, parsed onto its dump
+    entry. Raw search responses used to live only in Mongo — the dump carried
+    usage but not what the stage actually found, so every search evaluation
+    began with a database pull (added 2026-08-26 for the search-stage eval
+    harness under apps/data_etl_app/tests/test_stages/search/). Tolerant on
+    purpose: a dummy, an unanswered request, or a stored doc without content
+    gets no key at all, and a response whose content is not the
+    ``{"phrases": [...]}`` wire shape gets ``phrases_note`` instead of a crash
+    — the dump is a witness; the node service owns strict parsing."""
+    request_doc = completed_requests.get(custom_id)
+    response = getattr(request_doc, "response", None)
+    if response is None:
+        return
+    chat_completion = response.chat_completion_result
+    if chat_completion.model == NO_MODEL.name:
+        return
+    choices = getattr(chat_completion, "choices", None)
+    if not choices:
+        return
+    content = getattr(getattr(choices[0], "message", None), "content", None)
+    if not isinstance(content, str):
+        return
+    try:
+        payload = json.loads(content)
+    except ValueError:
+        entry["phrases_note"] = "response_not_the_search_wire_shape"
+        return
+    phrases = payload.get("phrases") if isinstance(payload, dict) else None
+    if isinstance(phrases, list) and all(isinstance(p, str) for p in phrases):
+        entry["phrases"] = phrases
+    else:
+        entry["phrases_note"] = "response_not_the_search_wire_shape"
+
+
+def _search_round_entry(
+    custom_id: str, completed_requests: Mapping[str, object]
+) -> dict[str, object]:
+    """A recursive-search round's entry: the ordinary request entry plus the
+    phrases its response returned (same wire shape as first search)."""
+    entry = _request_entry(custom_id, completed_requests)
+    _attach_response_phrases(entry, custom_id, completed_requests)
     return entry
 
 
@@ -816,7 +883,7 @@ def build_chunk_requests(
             if recursive_rounds:
                 requests["llm_phrase_recursive_search"] = {
                     sub_bounds: [
-                        _request_entry(request_id, completed_requests)
+                        _search_round_entry(request_id, completed_requests)
                         for request_id in round_req_ids
                     ]
                     for sub_bounds, round_req_ids in sorted(recursive_rounds.items())
@@ -851,6 +918,21 @@ def build_chunk_requests(
                     ]
                     for sub_bounds, retry_req_ids in sorted(by_sub_window.items())
                 }
+            continue
+        if field_name == _SEARCH_FIELD:
+            # index-aligned with the bundle's search_sub_bounds; each entry
+            # names its sub-window and carries the phrases its response returned
+            request_ids = getattr(bundle, field_name, None)
+            if request_ids:
+                sub_bounds = getattr(bundle, "search_sub_bounds", None) or []
+                entries: list[dict[str, object]] = []
+                for index, request_id in enumerate(request_ids):
+                    entry = _request_entry(request_id, completed_requests)
+                    if index < len(sub_bounds):
+                        entry["sub_bounds"] = sub_bounds[index]
+                    _attach_response_phrases(entry, request_id, completed_requests)
+                    entries.append(entry)
+                requests["llm_phrase_search"] = entries
             continue
         if field_name.endswith("_req_id"):
             request_id = getattr(bundle, field_name, None)
