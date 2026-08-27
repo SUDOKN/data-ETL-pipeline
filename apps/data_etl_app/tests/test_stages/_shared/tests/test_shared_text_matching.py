@@ -83,3 +83,41 @@ def test_empty_and_degenerate_inputs_are_safe():
     assert flexible_pattern("   ", case_sensitive=True) is None
     assert not forms_overlap("", "anything")
     assert not occurs_in("", "anything")
+
+
+# --- Trap 3: typographic hyphens (added 2026-08-27) ---------------------------
+
+
+def test_non_breaking_hyphen_inside_a_word_still_matches():
+    """med-tekinc prints its ONLY capability as "heat‑treating" on two lines and
+    "heat-treating" on three others. Without this, a faithful ASCII echo scores
+    as a miss on exactly the lines that matter most."""
+    text = "we take on huge heat‑treating jobs for commercial clients"
+    assert occurs_in("heat-treating", text)
+    assert occurs_in("heat‑treating", text)
+
+
+def test_soft_hyphen_is_invisible_so_a_faithful_echo_omits_it():
+    """agstech prints "X­ray" and "high­resolution". The soft hyphen renders as
+    nothing, so no model will ever echo it back — the matcher has to drop it."""
+    text = "opportunities in optics for high­resolution X­ray applications"
+    assert occurs_in("X-ray", text)
+    assert occurs_in("high-resolution", text)
+    # Accepted residual: the fully de-hyphenated echo is still a miss. Rescuing
+    # it would cost the length-preservation guarantee for 3 corpus occurrences.
+    assert not occurs_in("highresolution", text)
+
+
+def test_en_and_em_dashes_are_NOT_folded_to_hyphens():
+    """Deliberate. 1,046 of 1,094 en dashes in the corpus are whitespace-adjacent
+    separators; folding them would manufacture false credit rather than rescue a
+    faithful match."""
+    assert not occurs_in("steel-and", "we work steel—and aluminum")
+    assert not occurs_in("2020-2024", "the 2020–2024 expansion")
+
+
+def test_hyphen_normalization_still_preserves_length():
+    """The offset contract holds: hyphens map one character to one character."""
+    text = "pre‑treatment for RO"
+    assert len(normalize_spaces(text)) == len(text)
+    assert normalize_spaces(text).index("treatment") == text.index("treatment")

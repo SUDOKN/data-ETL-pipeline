@@ -15,13 +15,26 @@ matcher return confident WRONG answers, silently, with no error to notice.
      newlines mid-phrase ("Full  glass architectural entrance doors"). Same
      consequence: a faithful echo reads as fabricated.
 
-  3. SHORT-FORM SUBSTRINGS. Plain containment credits "tight" for TIG,
+  3. TYPOGRAPHIC HYPHENS. The corpus prints a NON-BREAKING HYPHEN (U+2011)
+     inside ordinary hyphenated words ("heat\u2011treating", "e\u2011mail",
+     "pre\u2011treatment") and SOFT HYPHENS (U+00AD) inside words where they are
+     completely INVISIBLE ("X\u00adray", "high\u00adresolution"). A model echoing
+     either faithfully writes the ordinary form, which then fails to match.
+     Measured 2026-08-27 over all 20 corpus texts: 5 non-breaking hyphens in 3
+     subjects, 3 soft hyphens in 1. Small counts, but one of them sits on
+     med-tekinc's ONLY capability, so it is a whole subject's recall.
+     EN and EM DASHES are deliberately NOT normalized: 1,046 of 1,094 en dashes
+     are whitespace-adjacent separators, and folding them to "-" would credit
+     "steel-and" for "steel\u2014and". Leniency there would be false credit, not
+     a rescued match.
+
+  4. SHORT-FORM SUBSTRINGS. Plain containment credits "tight" for TIG,
      "absolute" for ABS, "recommendation" for CMM. This is the same defect
      that made the pipeline's brute search score `Lead` at 52 hits and 0 real
      ones — reproduced, independently, inside an evaluation harness.
 
-Traps 1 and 2 bias toward FALSE ALARMS (correct output judged fabricated or
-missing); trap 3 biases toward FALSE CREDIT (junk judged correct). A stage
+Traps 1-3 bias toward FALSE ALARMS (correct output judged fabricated or
+missing); trap 4 biases toward FALSE CREDIT (junk judged correct). A stage
 instrument that hits either direction reports numbers that look plausible and
 are wrong, which is worse than reporting nothing.
 
@@ -50,14 +63,29 @@ UNICODE_SPACES = (
     "\u2008\u2009\u200a\u202f\u205f\u3000"
 )  # written as escapes on purpose: literal invisibles are unreviewable
    # and an editor that "cleans whitespace" would silently delete them
+# Characters that ARE an ordinary hyphen, typographically. Deliberately excludes
+# EN DASH and EM DASH, which are separators in this corpus, not hyphens.
+HYPHENS = "\u2010\u2011\u2012"  # HYPHEN, NON-BREAKING HYPHEN, FIGURE DASH
+
+# SOFT HYPHEN marks a discretionary line break and renders as nothing, but in
+# this corpus it only ever sits where the word is genuinely hyphenated
+# ("X\u00adray", "high\u00adresolution"). Folding it to "-" keeps the translation
+# one-for-one, so offsets stay valid. RESIDUAL, accepted knowingly: a model that
+# echoes the rendered form with no hyphen at all ("Xray") still will not match.
+# Deleting the character instead would fix that case and break the opposite one,
+# and would cost the length-preservation guarantee the rest of the module rests on.
+HYPHENS = HYPHENS + "\u00ad"
+
 _SPACE_TRANSLATION = {ord(ch): " " for ch in UNICODE_SPACES}
+_SPACE_TRANSLATION.update({ord(ch): "-" for ch in HYPHENS})
 
 # Forms at or below this length match case-sensitively and on word boundaries.
 SHORT_FORM_MAX_LENGTH = 3
 
 
 def normalize_spaces(text: str) -> str:
-    """Unicode spaces -> ASCII space, one character for one character.
+    """Unicode spaces -> ASCII space, typographic hyphens -> ASCII hyphen; one
+    character for one character.
 
     Length-preserving, so it is safe to apply to text you will index into.
     """
