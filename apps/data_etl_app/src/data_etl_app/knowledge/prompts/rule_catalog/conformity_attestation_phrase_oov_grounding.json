@@ -1,5 +1,5 @@
 {
-  "catalog_version": "conformity_attestation_phrase_oov_grounding.2026.08.2",
+  "catalog_version": "conformity_attestation_phrase_oov_grounding.2026.08.3",
   "prompt_name": "conformity_attestation_phrase_oov_grounding",
   "stage": "phrase_oov_grounding",
   "field_types": [
@@ -11,7 +11,7 @@
     "third_person": "holds or conforms to",
     "gerund": "holding or conforming to"
   },
-  "evidence_source": "the record's mentions and synthesis",
+  "evidence_source": "the record's focal form and synthesis",
   "option_evidence": "what the option names",
   "outcome_vocab": {
     "condition": [
@@ -31,7 +31,7 @@
           "kind": "condition",
           "reportable": true,
           "report_when": "always",
-          "text": "The record's mentions evidence the {{entity_noun}} you identified — it is named, described, or clearly implied by what the mentions say, not merely suggested by a resemblance between words.",
+          "text": "The record evidences the {{entity_noun}} you identified — it is named, described, or clearly implied by the record's focal form and synthesis, not merely suggested by a resemblance between words.",
           "combinator": "note",
           "children": [
             {
@@ -68,8 +68,8 @@
     }
   ],
   "published": {
-    "s3_version_id": "D4lO.tV6m5nCSUWtKVaWrtMwk88zDNWI",
-    "rendered_sha256": "d72986c5614ea94a16f7052a172a68c2dd53461a1748d855e728aa8120f1a483",
-    "uploaded_at": "2026-08-23T19:49:26.182196+00:00"
+    "s3_version_id": "e9pzFc6LfOoccCZF2jmaS0yOAlpwjgvO",
+    "rendered_sha256": "e5cc6edbe8e58d5bacf8e1e3b29982e408a46b9e304d38cecfa101f63a88c5ca",
+    "uploaded_at": "2026-08-25T19:43:45.000015+00:00"
   }
 }

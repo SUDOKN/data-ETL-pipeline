@@ -707,13 +707,15 @@ async def get_chunk_fold(
     subject_text: str,
     verb_fold: bool,
     snippet_radius: int = 0,
+    collapse_compounds: bool = False,
 ) -> FoldResult:
     """The chunk's aggregation fold: every sub-window re-collected from the text
     and its stored forms, located from its held answers, bundled over the union
     of the chunk's forms. Windows are folded in ``search_sub_bounds`` order
     (document order); each inherits the page the text before it was on.
     ``snippet_radius`` must be the mention stage's (the ids the answers are
-    keyed by were minted under it)."""
+    keyed by were minted under it). ``collapse_compounds`` is D21's dial; the
+    chunk is the 20k macro chunk, which is the scope siblinghood is judged in."""
     if not extraction_bundle.search_sub_bounds:
         raise ValueError(
             f"mention_collection: chunk {chunk_bounds} has no search_sub_bounds in "
@@ -743,7 +745,12 @@ async def get_chunk_fold(
                 unknown_answer_ids=answer.unknown_answer_ids,
             )
         )
-    return fold_document(windows, verb_fold=verb_fold, snippet_radius=snippet_radius)
+    return fold_document(
+        windows,
+        verb_fold=verb_fold,
+        snippet_radius=snippet_radius,
+        collapse_compounds=collapse_compounds,
+    )
 
 
 def fold_verb_fold_of(metadata: object) -> bool:
@@ -751,6 +758,14 @@ def fold_verb_fold_of(metadata: object) -> bool:
     dump walks node CLASSES and generic metadata). False when absent."""
     fold_metadata: Optional[object] = getattr(metadata, "aggregation_fold", None)
     return bool(getattr(fold_metadata, "verb_fold", False))
+
+
+def fold_collapse_compounds_of(metadata: object) -> bool:
+    """The fold's compound-collapse dial (D21) off a metadata object (any
+    shape). False when absent — the fold every run before the dial used, so a
+    document persisted earlier replays with every compound still synthesized."""
+    fold_metadata: Optional[object] = getattr(metadata, "aggregation_fold", None)
+    return bool(getattr(fold_metadata, "collapse_compounds", False))
 
 
 def fold_snippet_radius_of(metadata: object) -> int:

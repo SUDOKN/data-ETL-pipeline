@@ -217,3 +217,96 @@ async def test_a_response_that_never_records_is_bounded(monkeypatch):
     with pytest.raises(ValueError, match="made no progress"):
         await _run(node)
     assert node.dispatched == ["real"] * MAX_UNPRODUCTIVE_PASSES
+
+
+# --- the parse-error retry budget (2026-08-25) -------------------------------
+#
+# Making the re-dispatch REACHABLE (above) did not make it REACHED: the parse
+# failure that arms it is raised from inside embed_request_ids, at the TOP of
+# the loop, so the exception escaped before the dispatch at the bottom could
+# spend one of the RESPONSE_PARSE_ERROR_CAP re-asks that
+# record_response_parse_error_capped's docstring promises. Run 20260824T190359
+# surfaced a grounding parse failure on attempt 1 of 4 and lost both subjects
+# — nine completed fields of steelcraft.com to a single record.
+
+
+def _raises_on_first_passes(node: _Node, error: Exception, times: int = 1) -> None:
+    """Make embed_request_ids fail its first ``times`` passes, as a recorded
+    parse error does: the row it nulled is already unanswered in the store."""
+    node.embed_calls = 0  # type: ignore[attr-defined]
+
+    async def embed(*args, **kwargs) -> None:
+        node.embed_calls += 1  # type: ignore[attr-defined]
+        if node.embed_calls <= times:  # type: ignore[attr-defined]
+            raise error
+
+    node.embed_request_ids = embed  # type: ignore[assignment,method-assign]
+
+
+@pytest.mark.asyncio
+async def test_a_held_parse_error_lets_the_request_be_re_dispatched(monkeypatch):
+    """The pass finishes, the nulled row is found unanswered, and it is re-asked
+    — which is the whole point of nulling it."""
+    store = _Store(prestored={"stored": False})
+    _install(monkeypatch, store)
+    node = _Node()
+    node.embedded_ids = {"stored"}
+    node.missing_on_first_pass = set()
+    _raises_on_first_passes(node, ValueError("option 'Testing' is not a vocabulary label"))
+
+    await _run(node)
+
+    assert node.dispatched == ["stored"]
+    assert node.embed_calls == 2  # type: ignore[attr-defined]
+
+
+@pytest.mark.asyncio
+async def test_an_error_that_leaves_nothing_to_re_ask_is_re_raised(monkeypatch):
+    """Holding is for errors the retry can act on. One that armed nothing is a
+    genuine bug — a re-defer, a malformed request — and must surface unchanged
+    rather than be spun on until the unproductive bound trips."""
+    store = _Store()
+    _install(monkeypatch, store)
+    node = _Node()
+    node.embedded_ids = set()
+    node.missing_on_first_pass = set()
+    _raises_on_first_passes(node, ValueError("the upstream state changed"))
+
+    with pytest.raises(ValueError, match="the upstream state changed"):
+        await _run(node)
+    assert node.dispatched == []
+
+
+@pytest.mark.asyncio
+async def test_repeated_parse_failure_is_never_held(monkeypatch):
+    """It is raised INSTEAD of recording, so it arms no re-dispatch and means
+    the budget is spent. Held, it would cycle a response that cannot parse."""
+    store = _Store(prestored={"stored": False})
+    _install(monkeypatch, store)
+    node = _Node()
+    node.embedded_ids = {"stored"}
+    node.missing_on_first_pass = set()
+    _raises_on_first_passes(
+        node, recursive_module.RepeatedParseFailure("out of re-dispatches")
+    )
+
+    with pytest.raises(recursive_module.RepeatedParseFailure):
+        await _run(node)
+    assert node.dispatched == []
+
+
+@pytest.mark.asyncio
+async def test_a_parse_error_that_repeats_is_bounded(monkeypatch):
+    """Two bounds stop a spin; this is the one that fires when the response
+    keeps failing to parse without the cap having been reached."""
+    store = _Store(prestored={"stored": False})
+    store.recording_works = False
+    _install(monkeypatch, store)
+    node = _Node()
+    node.embedded_ids = {"stored"}
+    node.missing_on_first_pass = set()
+    _raises_on_first_passes(node, ValueError("not a vocabulary label"), times=99)
+
+    with pytest.raises(ValueError, match="made no progress"):
+        await _run(node)
+    assert node.dispatched == ["stored"] * MAX_UNPRODUCTIVE_PASSES

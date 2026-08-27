@@ -1,5 +1,5 @@
 {
-  "catalog_version": "industry_phrase_oov_grounding.2026.08.2",
+  "catalog_version": "industry_phrase_oov_grounding.2026.08.3",
   "prompt_name": "industry_phrase_oov_grounding",
   "stage": "phrase_oov_grounding",
   "field_types": [
@@ -11,7 +11,7 @@
     "third_person": "serves, supplies, or operates in",
     "gerund": "serving, supplying, or operating in"
   },
-  "evidence_source": "the record's mentions and synthesis",
+  "evidence_source": "the record's focal form and synthesis",
   "option_evidence": "what the option names",
   "outcome_vocab": {
     "condition": [
@@ -31,7 +31,7 @@
           "kind": "condition",
           "reportable": true,
           "report_when": "always",
-          "text": "The record's mentions evidence the {{entity_noun}} you identified — it is named, described, or clearly implied by what the mentions say, not merely suggested by a resemblance between words.",
+          "text": "The record evidences the {{entity_noun}} you identified — it is named, described, or clearly implied by the record's focal form and synthesis, not merely suggested by a resemblance between words.",
           "combinator": "note",
           "children": [
             {
@@ -61,8 +61,8 @@
     }
   ],
   "published": {
-    "s3_version_id": "ClGE4FpE_wjM2tpBhhiFiDjNLrwDPkkR",
-    "rendered_sha256": "6f9f3f909bacf09c95d23b705ed958e700752b9f740d28870d19e7650d604a59",
-    "uploaded_at": "2026-08-23T19:49:26.182196+00:00"
+    "s3_version_id": "FZXsYHItoYCi2l_NWg11AX_4xwlh3gW6",
+    "rendered_sha256": "47da50694b567b2d7cf0f1e21be8a0e6634642c2f15b6830fcc5163a23d99e87",
+    "uploaded_at": "2026-08-25T19:43:45.000015+00:00"
   }
 }

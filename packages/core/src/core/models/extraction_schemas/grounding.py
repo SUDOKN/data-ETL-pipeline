@@ -2,7 +2,7 @@ from __future__ import annotations
 
 from typing import Literal, Optional
 
-from pydantic import BaseModel, ConfigDict, model_validator
+from pydantic import BaseModel, ConfigDict, Field, model_validator
 
 from core.models.extraction_schemas.applied_rule import AppliedRule
 
@@ -69,11 +69,22 @@ class RecordGroundingEntry(BaseModel):
     shape that dropped the explanation would reopen that hole one stage over.
     The validator pins the correlation, so a stored entry can never read as
     silently declined or as explained-away tags.
+
+    ``dropped_options`` carries the in-vocab pass's non-vocabulary labels
+    (2026-08-25): the pass drops them instead of failing the request, and
+    keeping the exact strings here is what stops the drop being silent. They
+    are NOT tags and never descend — a drifted or invented label persisted as
+    a discovery is the fake ontology gap this axis exists to prevent — but the
+    OOV pass sees the same record with the label absent from
+    ``already_identified``, so a genuine vocabulary gap is still recorded
+    where it belongs. Defaulted, so entries stored before the field existed
+    load unchanged.
     """
 
     tags: TagToAppliedRulesMap
     # Non-null exactly when ``tags`` is empty: why the record yields nothing.
     explanation: Optional[str] = None
+    dropped_options: list[str] = Field(default_factory=list)
 
     @model_validator(mode="after")
     def check_declination_correlation(self) -> "RecordGroundingEntry":

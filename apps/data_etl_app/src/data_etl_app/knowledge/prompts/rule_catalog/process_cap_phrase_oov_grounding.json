@@ -1,5 +1,5 @@
 {
-  "catalog_version": "process_cap_phrase_oov_grounding.2026.08.2",
+  "catalog_version": "process_cap_phrase_oov_grounding.2026.08.3",
   "prompt_name": "process_cap_phrase_oov_grounding",
   "stage": "phrase_oov_grounding",
   "field_types": [
@@ -11,7 +11,7 @@
     "third_person": "performs, offers, or specializes in",
     "gerund": "performing, offering, or specializing in"
   },
-  "evidence_source": "the record's mentions and synthesis",
+  "evidence_source": "the record's focal form and synthesis",
   "option_evidence": "what the option names",
   "outcome_vocab": {
     "condition": [
@@ -31,7 +31,7 @@
           "kind": "condition",
           "reportable": true,
           "report_when": "always",
-          "text": "The record's mentions evidence the {{entity_noun}} you identified — it is named, described, or clearly implied by what the mentions say, not merely suggested by a resemblance between words.",
+          "text": "The record evidences the {{entity_noun}} you identified — it is named, described, or clearly implied by the record's focal form and synthesis, not merely suggested by a resemblance between words.",
           "combinator": "note",
           "children": [
             {
@@ -68,8 +68,8 @@
     }
   ],
   "published": {
-    "s3_version_id": "E_BUAdDZpk.lz1QcPeesSvVcpvI6UoKl",
-    "rendered_sha256": "afcdcd5f96be8039dafb659fe16e65d260f22e95c04e833f9a9b26a8c08d678d",
-    "uploaded_at": "2026-08-23T19:49:26.182196+00:00"
+    "s3_version_id": "mckGrPWflTzJ8GXnACCKq9YgiETTwE8t",
+    "rendered_sha256": "bf508e154421ff4f69aeb053fe16a714ee949fe9cd6922a8a1d660f1d8dc34a7",
+    "uploaded_at": "2026-08-25T19:43:45.000015+00:00"
   }
 }

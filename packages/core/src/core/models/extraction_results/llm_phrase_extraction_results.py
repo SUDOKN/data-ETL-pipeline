@@ -127,6 +127,11 @@ class AggregationFoldMetadata(BaseModel):
 
     normalizer_version: str
     verb_fold: bool
+    # D21 (2026-08-27): whether a group that is nothing but a coordination of
+    # sibling groups is skipped by synthesis. Request identity, not a lint —
+    # it decides which records exist at all, and synthesis custom_ids digest
+    # the records. Defaulted so documents persisted before the dial loads.
+    collapse_compounds: bool = False
 
 
 class BatchedScreeningNodeMetadata(ExtractionNodeMetadata):

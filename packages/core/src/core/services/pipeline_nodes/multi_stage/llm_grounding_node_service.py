@@ -72,6 +72,11 @@ logger = logging.getLogger(__name__)
 DUMMY_GROUNDINGS_RESPONSE_CONTENT = '{"groundings": []}'
 
 
+def _quoted(labels: list[str]) -> str:
+    """``'a', 'b'`` — the labels as they were written, for a log or a reason."""
+    return ", ".join(repr(label) for label in labels)
+
+
 def _unit_label(unit: BaseModel) -> str:
     """The emitted label, whichever unit key this stage's wire uses."""
     for key in ("option", "candidate"):
@@ -91,6 +96,8 @@ def parse_record_grounding_result(
 
     ``allowed_labels`` is the in-vocab pass's vocabulary (every matchLabel);
     None means labels are minted (OOV, freehand) and pass through as written.
+    A label outside that vocabulary is DROPPED onto the entry's
+    ``dropped_options`` (2026-08-25), not raised — see the drop site below.
     Violations are collected across the whole response and raised once, so a
     response is measured whole rather than up to its first defect.
     """
@@ -113,7 +120,7 @@ def parse_record_grounding_result(
         else None
     )
 
-    staged: dict[str, tuple[TagToAppliedRulesMap, Optional[str]]] = {}
+    staged: dict[str, tuple[TagToAppliedRulesMap, Optional[str], list[str]]] = {}
     violations: list[str] = []
     for entry in parsed.groundings:
         if entry.record_id in staged:
@@ -127,6 +134,7 @@ def parse_record_grounding_result(
             units = getattr(entry, "candidates")
 
         tags: TagToAppliedRulesMap = {}
+        dropped: list[str] = []
         for unit in units:
             label = _unit_label(unit)
             if canonical_by_folded is not None:
@@ -135,11 +143,19 @@ def parse_record_grounding_result(
                     # The in-vocab contract: vocabulary or nothing. Anything
                     # else is a drifted or invented label — the exact string
                     # that used to be persisted as a fake ontology gap.
-                    violations.append(
-                        f"record {entry.record_id}: option {label!r} is not a "
-                        f"vocabulary label; this pass chooses from the "
-                        f"vocabulary or returns nothing"
-                    )
+                    #
+                    # DROPPED, not raised (2026-08-25). Raising here failed the
+                    # whole group request, and through the recursive loop the
+                    # whole subject: run 20260824T190359 lost nine completed
+                    # fields of steelcraft.com to one record answering
+                    # 'Testing', and alecmfg.com to four answering RoHS/REACH.
+                    # Neither is a vocabulary gap this pass can record — the
+                    # OOV pass runs on every record and sees this one with the
+                    # label absent from ``already_identified``, so the label
+                    # is recorded there if it is real. The detection survives
+                    # as ``dropped_options`` on the stored entry; what changes
+                    # is only what the detection costs.
+                    dropped.append(label)
                     continue
                 if canonical != label:
                     logger.warning(
@@ -162,29 +178,53 @@ def parse_record_grounding_result(
             tags[label] = applied
 
         explanation = entry.explanation
-        if units:
+        # Keyed on the tags KEPT, never on the units emitted. A record whose
+        # only option was dropped emitted a unit but holds no tag, and the
+        # stored entry's validator requires a declination explanation exactly
+        # then — reading `units` here would null the explanation and fail
+        # validation on the very records the drop above exists to rescue.
+        if tags:
             if explanation is not None:
-                # Volunteered beside real units: harmless, but there is no
+                # Volunteered beside real tags: harmless, but there is no
                 # stored slot for it — the rules on each tag are the reasoning.
                 logger.warning(
                     f"record {entry.record_id}: dropping explanation volunteered "
-                    f"beside {len(units)} unit(s)"
+                    f"beside {len(tags)} tag(s)"
                 )
             explanation = None
         elif not (explanation and explanation.strip()):
-            violations.append(
-                f"record {entry.record_id}: yielded nothing and carries no "
-                f"declination explanation — an empty record must say why"
-            )
-            continue
+            if dropped:
+                # Every option went out of vocabulary and the model offered no
+                # declination of its own. The record still yields nothing, and
+                # saying why is the invariant, so the drop itself is the reason.
+                explanation = (
+                    "No vocabulary option was chosen: this pass discarded "
+                    f"{_quoted(dropped)}, which {'are' if len(dropped) > 1 else 'is'} "
+                    "not in the vocabulary it must choose from."
+                )
+            else:
+                violations.append(
+                    f"record {entry.record_id}: yielded nothing and carries no "
+                    f"declination explanation — an empty record must say why"
+                )
+                continue
 
-        staged[entry.record_id] = (tags, explanation)
+        if dropped:
+            logger.warning(
+                f"record {entry.record_id}: dropped {len(dropped)} "
+                f"non-vocabulary option(s) {_quoted(dropped)}; "
+                f"{len(tags)} tag(s) kept"
+            )
+
+        staged[entry.record_id] = (tags, explanation, dropped)
 
     raise_for_violations(violations)
 
     return {
-        record_id: RecordGroundingEntry(tags=tags, explanation=explanation)
-        for record_id, (tags, explanation) in staged.items()
+        record_id: RecordGroundingEntry(
+            tags=tags, explanation=explanation, dropped_options=dropped
+        )
+        for record_id, (tags, explanation, dropped) in staged.items()
     }
 
 

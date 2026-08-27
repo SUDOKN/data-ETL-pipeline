@@ -145,12 +145,18 @@ class ExtractionPipelineFactory:
     VERB_FOLD_FIELDS: frozenset = frozenset(
         {ConceptTypeEnum.material_caps, ConceptTypeEnum.process_caps}
     )
+    # v3 D21 (2026-08-27, user decision on measurement): a group whose surface
+    # form is nothing but a coordination of sibling groups that already hold
+    # every one of its mentions is not synthesized, grounded or screened. Only
+    # sound now that mentions are decentralized (D8 reversed) — measured on run
+    # 194457, 16 of 3,309 groups collapse and none of them loses evidence.
+    DEFAULT_COLLAPSE_COMPOUNDS = True
     DEFAULT_SCREENING_MAX_PAIRS_PER_REQUEST = 25
 
     # GROUNDING (v2: the unit is RECORDS per request)
-    DEFAULT_INITIAL_GROUNDING_MAX_PAIRS_PER_REQUEST = 30
-    DEFAULT_OOV_GROUNDING_MAX_PAIRS_PER_REQUEST = 30
-    DEFAULT_FREEHAND_GROUNDING_MAX_PAIRS_PER_REQUEST = 30
+    DEFAULT_INITIAL_GROUNDING_MAX_PAIRS_PER_REQUEST = 25
+    DEFAULT_OOV_GROUNDING_MAX_PAIRS_PER_REQUEST = 25
+    DEFAULT_FREEHAND_GROUNDING_MAX_PAIRS_PER_REQUEST = 25
 
     @staticmethod
     def _metadata(
@@ -246,12 +252,15 @@ class ExtractionPipelineFactory:
         )
 
     @staticmethod
-    def _aggregation_fold_metadata(field_type: ExtractionFieldType) -> AggregationFoldMetadata:
-        """The fold's run identity: the normalizer version the code ships, and
-        this field's verb-fold dial."""
+    def _aggregation_fold_metadata(
+        field_type: ExtractionFieldType,
+    ) -> AggregationFoldMetadata:
+        """The fold's run identity: the normalizer version the code ships,
+        this field's verb-fold dial, and the compound-collapse dial (D21)."""
         return AggregationFoldMetadata(
             normalizer_version=NORMALIZER_VERSION,
             verb_fold=field_type in ExtractionPipelineFactory.VERB_FOLD_FIELDS,
+            collapse_compounds=ExtractionPipelineFactory.DEFAULT_COLLAPSE_COMPOUNDS,
         )
 
     @staticmethod
@@ -412,7 +421,9 @@ class ExtractionPipelineFactory:
                 max_mention_collection_mentions_per_request,
                 mention_collection_snippet_radius,
             ),
-            aggregation_fold_metadata=ExtractionPipelineFactory._aggregation_fold_metadata(concept_type),
+            aggregation_fold_metadata=ExtractionPipelineFactory._aggregation_fold_metadata(
+                concept_type
+            ),
             llm_phrase_synthesis_metadata=ExtractionPipelineFactory._batched_synthesis_metadata(
                 synthesis_prompt,
                 llm_model,
@@ -469,7 +480,9 @@ class ExtractionPipelineFactory:
         )
 
     @staticmethod
-    def _require_synthesis_prompt(prompt: Optional[Prompt], field_type: ExtractionFieldType) -> Prompt:
+    def _require_synthesis_prompt(
+        prompt: Optional[Prompt], field_type: ExtractionFieldType
+    ) -> Prompt:
         """The v3 chain always carries synthesis; None is a wiring error at the
         construction site, not a run state."""
         if prompt is None:
@@ -548,9 +561,13 @@ class ExtractionPipelineFactory:
                 max_mention_collection_mentions_per_request,
                 mention_collection_snippet_radius,
             ),
-            aggregation_fold_metadata=ExtractionPipelineFactory._aggregation_fold_metadata(keyword_type),
+            aggregation_fold_metadata=ExtractionPipelineFactory._aggregation_fold_metadata(
+                keyword_type
+            ),
             llm_phrase_synthesis_metadata=ExtractionPipelineFactory._batched_synthesis_metadata(
-                ExtractionPipelineFactory._require_synthesis_prompt(phrase_synthesis_prompt, keyword_type),
+                ExtractionPipelineFactory._require_synthesis_prompt(
+                    phrase_synthesis_prompt, keyword_type
+                ),
                 llm_model,
                 model_params,
                 created_at,
@@ -658,9 +675,13 @@ class ExtractionPipelineFactory:
                 max_mention_collection_mentions_per_request,
                 mention_collection_snippet_radius,
             ),
-            aggregation_fold_metadata=ExtractionPipelineFactory._aggregation_fold_metadata(keyword_type),
+            aggregation_fold_metadata=ExtractionPipelineFactory._aggregation_fold_metadata(
+                keyword_type
+            ),
             llm_phrase_synthesis_metadata=ExtractionPipelineFactory._batched_synthesis_metadata(
-                ExtractionPipelineFactory._require_synthesis_prompt(phrase_synthesis_prompt, keyword_type),
+                ExtractionPipelineFactory._require_synthesis_prompt(
+                    phrase_synthesis_prompt, keyword_type
+                ),
                 llm_model,
                 model_params,
                 created_at,
@@ -850,9 +871,13 @@ class ExtractionPipelineFactory:
                 max_mention_collection_mentions_per_request,
                 mention_collection_snippet_radius,
             ),
-            aggregation_fold_metadata=ExtractionPipelineFactory._aggregation_fold_metadata(keyword_type),
+            aggregation_fold_metadata=ExtractionPipelineFactory._aggregation_fold_metadata(
+                keyword_type
+            ),
             llm_phrase_synthesis_metadata=ExtractionPipelineFactory._batched_synthesis_metadata(
-                ExtractionPipelineFactory._require_synthesis_prompt(phrase_synthesis_prompt, keyword_type),
+                ExtractionPipelineFactory._require_synthesis_prompt(
+                    phrase_synthesis_prompt, keyword_type
+                ),
                 llm_model,
                 model_params,
                 created_at,

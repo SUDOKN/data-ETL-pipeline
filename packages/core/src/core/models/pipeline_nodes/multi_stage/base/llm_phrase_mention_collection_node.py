@@ -340,10 +340,11 @@ class LLMPhraseMentionCollectionNode(
         subject_text: str,
         verb_fold: bool,
         snippet_radius: int = 0,
+        collapse_compounds: bool = False,
     ) -> FoldResult:
         """The chunk's aggregation fold (needs the text: mentions are collected
         from it, and windows are located in it; ``snippet_radius`` = the
-        stage's own, off its metadata)."""
+        stage's own, off its metadata; ``collapse_compounds`` = D21's dial)."""
         return await get_chunk_fold(
             subject_unique_id=subject_unique_id,
             field_type=field_type,
@@ -354,6 +355,7 @@ class LLMPhraseMentionCollectionNode(
             subject_text=subject_text,
             verb_fold=verb_fold,
             snippet_radius=snippet_radius,
+            collapse_compounds=collapse_compounds,
         )
 
     async def validate_own_responses(

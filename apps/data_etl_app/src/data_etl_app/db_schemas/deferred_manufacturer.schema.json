@@ -1305,7 +1305,6 @@
               "ontology_version_id",
               "llm_phrase_search",
               "llm_phrase_recursive_search",
-              "llm_phrase_relationship",
               "llm_phrase_relationship_screening",
               "llm_phrase_freehand_grounding"
             ],
@@ -1699,7 +1698,10 @@
                 }
               },
               "llm_phrase_relationship": {
-                "bsonType": "object",
+                "bsonType": [
+                  "object",
+                  "null"
+                ],
                 "required": [
                   "llm_model",
                   "model_params",
@@ -2697,6 +2699,21 @@
                     "bsonType": "string"
                   }
                 },
+                "llm_phrase_relationship_screening_retry_record_ids": {
+                  "bsonType": [
+                    "array",
+                    "null"
+                  ],
+                  "items": {
+                    "bsonType": "string"
+                  }
+                },
+                "llm_phrase_relationship_screening_retry_req_ids": {
+                  "bsonType": "array",
+                  "items": {
+                    "bsonType": "string"
+                  }
+                },
                 "llm_phrase_relationship_screening_req_ids": {
                   "bsonType": "array",
                   "items": {
@@ -2704,6 +2721,21 @@
                   }
                 },
                 "llm_phrase_freehand_grounding_req_ids": {
+                  "bsonType": "array",
+                  "items": {
+                    "bsonType": "string"
+                  }
+                },
+                "llm_phrase_freehand_grounding_retry_record_ids": {
+                  "bsonType": [
+                    "array",
+                    "null"
+                  ],
+                  "items": {
+                    "bsonType": "string"
+                  }
+                },
+                "llm_phrase_freehand_grounding_retry_req_ids": {
                   "bsonType": "array",
                   "items": {
                     "bsonType": "string"
@@ -2733,7 +2765,6 @@
               "ontology_version_id",
               "llm_phrase_search",
               "llm_phrase_recursive_search",
-              "llm_phrase_relationship",
               "llm_phrase_relationship_screening",
               "llm_phrase_freehand_grounding"
             ],
@@ -3127,7 +3158,10 @@
                 }
               },
               "llm_phrase_relationship": {
-                "bsonType": "object",
+                "bsonType": [
+                  "object",
+                  "null"
+                ],
                 "required": [
                   "llm_model",
                   "model_params",
@@ -4125,6 +4159,21 @@
                     "bsonType": "string"
                   }
                 },
+                "llm_phrase_relationship_screening_retry_record_ids": {
+                  "bsonType": [
+                    "array",
+                    "null"
+                  ],
+                  "items": {
+                    "bsonType": "string"
+                  }
+                },
+                "llm_phrase_relationship_screening_retry_req_ids": {
+                  "bsonType": "array",
+                  "items": {
+                    "bsonType": "string"
+                  }
+                },
                 "llm_phrase_relationship_screening_req_ids": {
                   "bsonType": "array",
                   "items": {
@@ -4132,6 +4181,21 @@
                   }
                 },
                 "llm_phrase_freehand_grounding_req_ids": {
+                  "bsonType": "array",
+                  "items": {
+                    "bsonType": "string"
+                  }
+                },
+                "llm_phrase_freehand_grounding_retry_record_ids": {
+                  "bsonType": [
+                    "array",
+                    "null"
+                  ],
+                  "items": {
+                    "bsonType": "string"
+                  }
+                },
+                "llm_phrase_freehand_grounding_retry_req_ids": {
                   "bsonType": "array",
                   "items": {
                     "bsonType": "string"
@@ -4161,7 +4225,6 @@
               "ontology_version_id",
               "llm_phrase_search",
               "llm_phrase_recursive_search",
-              "llm_phrase_relationship",
               "llm_phrase_relationship_screening",
               "llm_phrase_freehand_grounding"
             ],
@@ -4555,7 +4618,10 @@
                 }
               },
               "llm_phrase_relationship": {
-                "bsonType": "object",
+                "bsonType": [
+                  "object",
+                  "null"
+                ],
                 "required": [
                   "llm_model",
                   "model_params",
@@ -5553,6 +5619,21 @@
                     "bsonType": "string"
                   }
                 },
+                "llm_phrase_relationship_screening_retry_record_ids": {
+                  "bsonType": [
+                    "array",
+                    "null"
+                  ],
+                  "items": {
+                    "bsonType": "string"
+                  }
+                },
+                "llm_phrase_relationship_screening_retry_req_ids": {
+                  "bsonType": "array",
+                  "items": {
+                    "bsonType": "string"
+                  }
+                },
                 "llm_phrase_relationship_screening_req_ids": {
                   "bsonType": "array",
                   "items": {
@@ -5560,6 +5641,21 @@
                   }
                 },
                 "llm_phrase_freehand_grounding_req_ids": {
+                  "bsonType": "array",
+                  "items": {
+                    "bsonType": "string"
+                  }
+                },
+                "llm_phrase_freehand_grounding_retry_record_ids": {
+                  "bsonType": [
+                    "array",
+                    "null"
+                  ],
+                  "items": {
+                    "bsonType": "string"
+                  }
+                },
+                "llm_phrase_freehand_grounding_retry_req_ids": {
                   "bsonType": "array",
                   "items": {
                     "bsonType": "string"
@@ -5589,7 +5685,6 @@
               "ontology_version_id",
               "llm_phrase_search",
               "llm_phrase_recursive_search",
-              "llm_phrase_relationship",
               "llm_phrase_relationship_screening",
               "llm_phrase_initial_grounding",
               "llm_phrase_recursive_grounding"
@@ -5984,7 +6079,10 @@
                 }
               },
               "llm_phrase_relationship": {
-                "bsonType": "object",
+                "bsonType": [
+                  "object",
+                  "null"
+                ],
                 "required": [
                   "llm_model",
                   "model_params",
@@ -7334,6 +7432,21 @@
                     "bsonType": "string"
                   }
                 },
+                "llm_phrase_relationship_screening_retry_record_ids": {
+                  "bsonType": [
+                    "array",
+                    "null"
+                  ],
+                  "items": {
+                    "bsonType": "string"
+                  }
+                },
+                "llm_phrase_relationship_screening_retry_req_ids": {
+                  "bsonType": "array",
+                  "items": {
+                    "bsonType": "string"
+                  }
+                },
                 "llm_phrase_relationship_screening_req_ids": {
                   "bsonType": "array",
                   "items": {
@@ -7362,7 +7475,37 @@
                     "bsonType": "string"
                   }
                 },
+                "llm_phrase_initial_grounding_retry_record_ids": {
+                  "bsonType": [
+                    "array",
+                    "null"
+                  ],
+                  "items": {
+                    "bsonType": "string"
+                  }
+                },
+                "llm_phrase_initial_grounding_retry_req_ids": {
+                  "bsonType": "array",
+                  "items": {
+                    "bsonType": "string"
+                  }
+                },
                 "llm_phrase_oov_grounding_req_ids": {
+                  "bsonType": "array",
+                  "items": {
+                    "bsonType": "string"
+                  }
+                },
+                "llm_phrase_oov_grounding_retry_record_ids": {
+                  "bsonType": [
+                    "array",
+                    "null"
+                  ],
+                  "items": {
+                    "bsonType": "string"
+                  }
+                },
+                "llm_phrase_oov_grounding_retry_req_ids": {
                   "bsonType": "array",
                   "items": {
                     "bsonType": "string"
@@ -7445,7 +7588,6 @@
               "ontology_version_id",
               "llm_phrase_search",
               "llm_phrase_recursive_search",
-              "llm_phrase_relationship",
               "llm_phrase_relationship_screening",
               "llm_phrase_initial_grounding",
               "llm_phrase_recursive_grounding"
@@ -7840,7 +7982,10 @@
                 }
               },
               "llm_phrase_relationship": {
-                "bsonType": "object",
+                "bsonType": [
+                  "object",
+                  "null"
+                ],
                 "required": [
                   "llm_model",
                   "model_params",
@@ -9190,6 +9335,21 @@
                     "bsonType": "string"
                   }
                 },
+                "llm_phrase_relationship_screening_retry_record_ids": {
+                  "bsonType": [
+                    "array",
+                    "null"
+                  ],
+                  "items": {
+                    "bsonType": "string"
+                  }
+                },
+                "llm_phrase_relationship_screening_retry_req_ids": {
+                  "bsonType": "array",
+                  "items": {
+                    "bsonType": "string"
+                  }
+                },
                 "llm_phrase_relationship_screening_req_ids": {
                   "bsonType": "array",
                   "items": {
@@ -9218,7 +9378,37 @@
                     "bsonType": "string"
                   }
                 },
+                "llm_phrase_initial_grounding_retry_record_ids": {
+                  "bsonType": [
+                    "array",
+                    "null"
+                  ],
+                  "items": {
+                    "bsonType": "string"
+                  }
+                },
+                "llm_phrase_initial_grounding_retry_req_ids": {
+                  "bsonType": "array",
+                  "items": {
+                    "bsonType": "string"
+                  }
+                },
                 "llm_phrase_oov_grounding_req_ids": {
+                  "bsonType": "array",
+                  "items": {
+                    "bsonType": "string"
+                  }
+                },
+                "llm_phrase_oov_grounding_retry_record_ids": {
+                  "bsonType": [
+                    "array",
+                    "null"
+                  ],
+                  "items": {
+                    "bsonType": "string"
+                  }
+                },
+                "llm_phrase_oov_grounding_retry_req_ids": {
                   "bsonType": "array",
                   "items": {
                     "bsonType": "string"
@@ -9301,7 +9491,6 @@
               "ontology_version_id",
               "llm_phrase_search",
               "llm_phrase_recursive_search",
-              "llm_phrase_relationship",
               "llm_phrase_relationship_screening",
               "llm_phrase_initial_grounding",
               "llm_phrase_recursive_grounding"
@@ -9696,7 +9885,10 @@
                 }
               },
               "llm_phrase_relationship": {
-                "bsonType": "object",
+                "bsonType": [
+                  "object",
+                  "null"
+                ],
                 "required": [
                   "llm_model",
                   "model_params",
@@ -11046,6 +11238,21 @@
                     "bsonType": "string"
                   }
                 },
+                "llm_phrase_relationship_screening_retry_record_ids": {
+                  "bsonType": [
+                    "array",
+                    "null"
+                  ],
+                  "items": {
+                    "bsonType": "string"
+                  }
+                },
+                "llm_phrase_relationship_screening_retry_req_ids": {
+                  "bsonType": "array",
+                  "items": {
+                    "bsonType": "string"
+                  }
+                },
                 "llm_phrase_relationship_screening_req_ids": {
                   "bsonType": "array",
                   "items": {
@@ -11074,7 +11281,37 @@
                     "bsonType": "string"
                   }
                 },
+                "llm_phrase_initial_grounding_retry_record_ids": {
+                  "bsonType": [
+                    "array",
+                    "null"
+                  ],
+                  "items": {
+                    "bsonType": "string"
+                  }
+                },
+                "llm_phrase_initial_grounding_retry_req_ids": {
+                  "bsonType": "array",
+                  "items": {
+                    "bsonType": "string"
+                  }
+                },
                 "llm_phrase_oov_grounding_req_ids": {
+                  "bsonType": "array",
+                  "items": {
+                    "bsonType": "string"
+                  }
+                },
+                "llm_phrase_oov_grounding_retry_record_ids": {
+                  "bsonType": [
+                    "array",
+                    "null"
+                  ],
+                  "items": {
+                    "bsonType": "string"
+                  }
+                },
+                "llm_phrase_oov_grounding_retry_req_ids": {
                   "bsonType": "array",
                   "items": {
                     "bsonType": "string"
@@ -11157,7 +11394,6 @@
               "ontology_version_id",
               "llm_phrase_search",
               "llm_phrase_recursive_search",
-              "llm_phrase_relationship",
               "llm_phrase_relationship_screening",
               "llm_phrase_initial_grounding",
               "llm_phrase_recursive_grounding"
@@ -11552,7 +11788,10 @@
                 }
               },
               "llm_phrase_relationship": {
-                "bsonType": "object",
+                "bsonType": [
+                  "object",
+                  "null"
+                ],
                 "required": [
                   "llm_model",
                   "model_params",
@@ -12902,6 +13141,21 @@
                     "bsonType": "string"
                   }
                 },
+                "llm_phrase_relationship_screening_retry_record_ids": {
+                  "bsonType": [
+                    "array",
+                    "null"
+                  ],
+                  "items": {
+                    "bsonType": "string"
+                  }
+                },
+                "llm_phrase_relationship_screening_retry_req_ids": {
+                  "bsonType": "array",
+                  "items": {
+                    "bsonType": "string"
+                  }
+                },
                 "llm_phrase_relationship_screening_req_ids": {
                   "bsonType": "array",
                   "items": {
@@ -12930,7 +13184,37 @@
                     "bsonType": "string"
                   }
                 },
+                "llm_phrase_initial_grounding_retry_record_ids": {
+                  "bsonType": [
+                    "array",
+                    "null"
+                  ],
+                  "items": {
+                    "bsonType": "string"
+                  }
+                },
+                "llm_phrase_initial_grounding_retry_req_ids": {
+                  "bsonType": "array",
+                  "items": {
+                    "bsonType": "string"
+                  }
+                },
                 "llm_phrase_oov_grounding_req_ids": {
+                  "bsonType": "array",
+                  "items": {
+                    "bsonType": "string"
+                  }
+                },
+                "llm_phrase_oov_grounding_retry_record_ids": {
+                  "bsonType": [
+                    "array",
+                    "null"
+                  ],
+                  "items": {
+                    "bsonType": "string"
+                  }
+                },
+                "llm_phrase_oov_grounding_retry_req_ids": {
                   "bsonType": "array",
                   "items": {
                     "bsonType": "string"

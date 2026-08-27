@@ -29,101 +29,216 @@ answerable to a mechanical floor.**
 
 ## STATE
 
-### RESUME HERE (written 2026-08-24, the 3.3 build session — supersedes every earlier RESUME block)
+### RESUME HERE (rewritten 2026-08-25 after the twelfth run — supersedes every earlier RESUME block)
 
-**3.3 IS BUILT.** The downstream re-key (D16) landed in one session, with the two user decisions taken
-that day: the per-group record downstream stages see is **`{focal_form, synthesis}`** (no member forms, no
-entries — the synthesis IS the evidence digest; `group_id` stays the opaque key, so v2's key-masking
-discipline holds with no masking step), and the **under-answer policy is the synthesis stage's retry
-pass, PORTED** to all three grounding stages and screening (the standing USER-OWNED watch item, closed).
-The **FE→DE twin fork is DECIDED: accept + tripwire** — the swap stays a known ~2-in-5 stochastic defect
-confined to nav-menu-only records (1 wrong in 700, the focal-form lint already catches it, screening sits
-downstream), and the **identical-synthesis tripwire** is in the synthesis dump (`§10` option (a):
-`identical_synthesis_in_request` per row + a summary counter, request membership recomputed through
-`pack_records`; a dump counter in the posture of the lints, NEVER a retry trigger). Option (b), evidence
-thickness, is deferred to Phase 5 by the run-the-whole-pipeline-first decision.
+**THE NEXT STEP, in one line: commit the tree, then run the bundled tail re-dispatch — it now also
+carries D8's reversal (decentralized mentions) and D21 (compound collapse), both BUILT 2026-08-27 and
+green on 1,070 tests, alongside the map→array shape change, the twin-dispatch question and the
+equipment FGR-E1 fix.**
 
-**What the re-key is, in one paragraph.** Every tail stage stopped reading the retired relationship stage
-and now derives its records from ONE new seam: `get_chunk_group_records` (synthesis service) recomputes
-the chunk's fold from the stored mention answers, holds the syntheses, and reduces to `GroupRecords =
-{group_id: {focal_form, synthesis}}` — synthesized groups only (the v3 analog of `records_with_mentions`;
-`no_mentions` and `not_synthesized` groups stay dump-visible and go nowhere downstream). Consumers:
-freehand/initial/OOV grounding (`build_group_record_payloads`, OOV still rides `already_identified`),
-screening (`build_screening_payloads` re-typed), descent (`descent_record_payloads` over group records in
-both the node and `llm_recursive_grounding_service`), and both reconcile nodes (the synthesis result is
-the row spine). The `|ud=` digest chain extends through the tail for free — every downstream custom id
-already digests its payload, and the payload is now the group record. The four tail nodes became
-RECURSIVE nodes (the synthesis two-pass pattern): pass 1 embeds group requests; pass 2 assesses each
-chunk once all are complete, stores `*_retry_record_ids` on the bundle (None = unassessed, [] = assessed
-clean), and embeds ONE retry request set (`>retry>1>` in the custom id) for exactly the unanswered ids.
-Holds THIN on missing ids now (`on_missing="drop"`); an id nobody sent still raises (fabrication); a
-record answered in two requests raises; still-missing after the retry is a warning and an absent record —
-grounding reads it as nothing-found, screening as no-verdict (fails closed, `screening_dropped` in rows).
+**BUILT 2026-08-27 (user-approved on measurement, uncommitted) — D8 REVERSED + D21 ADDED. Read the D8
+and D21 rows of the fork ledger first; they carry the numbers.** Longest-span containment is gone:
+every whole-word occurrence of every sent form is now a mention of that form's group whatever encloses
+it. Measured consequence on the 194457 mention state: mentions 8,540 → 12,945 (+52%) and **all 148
+empty bundles revive** — every `no_mentions` group in the corpus was a containment casualty, including
+`ISO 9001` (inside `ISO 9001:2015`), `IATF 16949`, `ASME`, `Oil & Gas` and `automotive`. **This
+corrects a census finding: `ISO 9001` was blamed on synthesis under-claiming, but it never reached
+synthesis — it was an empty bundle.** D21 then skips a group that is nothing but a coordination of
+sibling groups already holding all its mentions (18 of 3,309 groups, verified by re-running the SHIPPED
+rule over the run's own fold dumps). Also shipped: the FOLD BLOCK now lands in FULL-run dumps (it was
+partial-only, so a shipped run recorded mention COUNTS but not one mention, snippet or location), plus
+`collapsed_into`, `collapsed_groups`/`synthesized_groups` counters, and `max_entries_in_a_group` /
+`groups_over_50_entries` as the standing watch on decentralization's known cost (`door` 60 → 157
+entries; uncapped by user decision). **RE-DISPATCH SCOPE: the Location wire is unchanged for all but 4
+hits corpus-wide, so the mention stage replays; everything from SYNTHESIS onward must re-run.**
 
-**Also in this build:**
-- **Riders:** screening requests now carry `the name of the manufacturer in question: <name>` at the top
-  (same pattern as synthesis; `_subject_name_of` raises when unset), and the false *"never by name"*
-  sentence is REWRITTEN in all seven screening catalogs (now: the manufacturer is NAMED at the top;
-  records may use the name, "the manufacturer", or its brands). **All 7 statics re-rendered and
-  UNPUBLISHED — `check` fails on exactly those 7. Publish is the user's action, before the first
-  screening-enabled run; nothing else may go pending meanwhile.**
-- **Relationship retired:** the factory no longer builds its metadata (helper, prompt params and knob
-  deleted; `llm_phrase_relationship` is Optional-None on the metadata and prefill nodes — old stored runs
-  still load; the metadata change re-defers any stored deferred field, per the resume invariant). Node
-  classes and parse services stay, for stored v2 runs.
-- **Stats:** `LLMPhraseExtractionStatsV2` gains `llm_phrase_synthesis: dict[int, GroupRecords]` (the
-  id→focal-form join lives there now); `llm_phrase_relationship` is default-empty and only populated on
-  pre-3.3 results. Reconcile dumps write GROUP rows (`build_keyword_group_rows` /
-  `build_concept_group_rows` / `build_partial_group_rows`): group_id, focal form, member forms, key,
-  mention_count, provenance (earliest round of ANY member form), the record as sent, per-stage verdicts,
-  and a status with two new branches (`no_mentions` for empty bundles, `not_synthesized`), second-witness
-  checked. The partial dump uses the group spine whenever synthesis completed.
+**What happened. Run `20260825T194457` COMPLETED END TO END ON BOTH SUBJECTS — the first time ever.**
+steelcraft 727.8s, alecmfg 683.4s, all 14 field dumps present, zero exceptions, one warning class (the
+B1 drops, deliberate). The whole tail ran live under exactly the 21 published pv ids (2 freehand,
+4 initial, 4 OOV, 4 recursive, 7 screening; one pv per (field, stage)); search replayed from 08-23,
+mention+synthesis from 08-24. Live tail cost $10.36 (total rollup $18.84 includes replayed stages billed
+earlier). Full analysis, four record-level eyeball reports (subagents, key claims re-verified against the
+dumps), and every number below: `pipeline_v3_evidence/2026-08-25_run_194457_full_end_to_end/`.
 
-**Suites: 1,274 passed, 8 deselected** (core 568 + app 414 + the rest; new:
-`test_downstream_group_rekey.py` — derivation order/filter, tripwire same-request-only, row branches,
-partial-row null-vs-omitted — and the app-side retry-merge + two-requests-collision tests; the
-under-answer tests REWRITTEN to the thin-and-assess contract). Pyright delta over every touched file: 0
-(the override-variance errors on the node classes and the dump util's dynamic-typing errors all
-pre-exist at HEAD; verified against baselines). Ruff: 7 unused imports fixed; remaining E501/F541 match
-HEAD.
+**All three fixes verified live:**
+- **B1 fired 56 times and saved the run.** Both 190359 crash signatures recurred (steelcraft
+  process_caps `Testing` on the SAME record g21dwglm; alecmfg conformity RoHS/REACH) and were absorbed
+  as `dropped_options`. 53/56 drops are genuinely non-vocabulary (the process ontology has no generic
+  `Inspection`/`Testing`/`Welding`/`Cutting`; certificates lacks RoHS/REACH/ANSI-SDI; materials lacks
+  Polystyrene/Fiberglass/Zinc/Magnesium). The OOV net re-captured 45 of the 53 dropped rows. **3 drops
+  are FALSE**: the model echoed the menu's decorated display form (`Machining (also: Material Removal
+  Process, …)` ×2, `Extruding (also: Extrusion)`) and the membership test rejected the decoration — the
+  known OPTION-axis echo hole, now with a real cost (the `extrusion` record lost a true `Extruding`
+  grounding entirely). Fix: strip `(also: …)`/normalize before the membership check. No prompt change.
+- **The under-answer retry port fired live for the FIRST time and worked**: steelcraft material_caps
+  OOV, 1 of 46 records unanswered → embedded, dispatched, answered in 1.5s (`client_latency_ms` is the
+  real number; every request's `created_at` is the orchestrator run-start, so `turnaround_seconds` is
+  meaningless on eager runs). **A1's parse-error HOLD path is still test-only** — zero parse errors
+  occurred; the pv rule below stands.
+- **The mentions fix landed**: explanations citing a `mention(s)` evidence base 62.5% → 4.4% (the
+  residue is ordinary English), 84.1% now cite the focal form/synthesis.
 
-**NOTHING of 3.3 has run live.** The retry passes, the re-key, the tripwire and the group rows have unit
-tests only. The next step is the **Phase 3 review gate: the first END-TO-END run on a small subject** —
-user publishes the 7 screening statics, enables screening in the run config, and runs via the notebook
-(alecmfg is the natural subject). That run is also the first ever to exercise v3's grounding → screening
-→ reconcile tail, and the first comparable against the v1 baselines reserved for Phase 5. Then Phase 4
-(group-aware dumps are largely absorbed — 4.1's group rows exist; 4.2's subject-name lint already runs in
-the synthesis dump; judge what remains after reading a real dump).
+**ONE REGRESSION, mechanism verified: equipments FGR-E1.** The fix changed the evidence anchor from
+"clearly implied by what the mentions say" to "clearly implied by the record's focal form and synthesis"
+(same edit in all 10 grounding catalogs). On steelcraft equipments — whose search returns 68/75 product
+groups — grounding went 1/75 → 15 grounded rows, 14 of them products inflated through an inference
+bridge, verbatim: "Steelcraft manufactures and offers X … implying the use of machines to manufacture X"
+→ 9 fabricated `<door type> manufacturing machine` tags. Screening mirrors the inference and passes all
+of them. Identical records were declined last run ("Doors are finished goods, not production machines").
+The control: alecmfg equipments is the run's healthiest field (30/34, `Die Casting`→`die casting
+machine`, `CNC Turning`→`CNC lathe`) — process→machine is sound, product→machine is fabrication. Fix
+direction: equipment E1 must require the machine be named/described as operated/owned/used, and forbid
+inferring machinery from what the subject sells.
 
-**Still unrun:** the `loc=1` vs `loc=0` A/B. Every run so far is the same arm.
+**NEW MEASUREMENTS (each verified by hand on the dumps, details + verbatim quotes in the evidence README):**
+- **Per-chunk twin divergence: 412/2,780 groups (15%) are twins; 209 of 412 (51%) diverge in status or
+  final tag set between their two chunks** (steelcraft process 75%, conformity 71%). Groups grounded in
+  one chunk and `no_candidates` in the other; `Ceramic` passed one side, failed the other; all 8
+  case-only conformity duplicate pairs are twins. This is NEW EVIDENCE on the accepted twin fork
+  (29d2167 accepted on synthesis-identity evidence): the downstream cost was invisible then. Whether the
+  decided map→array change also collapses twin dispatch is exactly the question to put to the user.
+- **SCR-2's real circularity on steelcraft is ~87%, not the 24%/9% the regex reads** — the boilerplate
+  drifted to "product category for customer order" (15× this run, 0× last). On alecmfg the PRODUCTS
+  screen inverts evidence: "client provided … 3D models and specification sheets" → "showing Alec Model
+  manufactures and sells them as its own" (gr9whppn, verbatim). The correct alecmfg catalogue-products
+  list is ≈ empty; 85 groups pass. Both screens' REJECTIONS are sound in every sample — acceptance is
+  where they fail. The 190359 "subject-shaped" reading was a regex artifact.
+- **The process_caps output is flooded**: 37% of steelcraft's 89 tags are certification-lab testing
+  (Intertek's missile impact/salt spray/…) or installation-site work (anchor prep ×7, Field Assembly);
+  alecmfg's 86 singleton OOV tags are ~75–80% curator-discard (`Shipment`, `CMM Reporting`,
+  `Photographic Documentation` — OGR-K1 rubber-stamps them). Curator keep-as-is ≈ 40–45%.
+- **OGR-N1 outcomes are recorded but NOT enforced** (code bug): `Stainless Steel Stiffener` carries
+  `OGR-N1 failed` ("does not constitute a new material distinct…") yet the tag was emitted, screened
+  and survives (gwjvjhxy; twice more in process). A failed novelty rule must gate the tag.
+- **Recursive descent is unscreened and world-knowledge bridges** (M2 alive): screening kills top-level
+  `Plastic` on the vinyl-separator record (the site touts REPLACING vinyl) but the descent tree under
+  the passing `Polymer` still walks "Vinyl is a well-known type of plastic (PVC)"; every Painting→Wet
+  Painting hop (8 groups) inserts an unevidenced "liquid". 4/8 sampled lineages are bridges.
+- **Tag normalization is the dominant output-quality problem**: conformity 32→61 tags is half real
+  recall (7 new ASTM standards, NFPA 80, FBC…), half churn — 8–10 FEMA tags for 2 standards, 5 ICC 500
+  variants; only 8/61 match 190359 verbatim while ~20 of the 24 "lost" tags are re-worded twins. Same
+  disease: 209 door/frame product tags (15 flush-door variants → curator merges 12–13), 8 machining +
+  7 prototyping variants on alecmfg, 6 education-flavored industry tags. OOV coinage CAN normalize when
+  a canonical name exists (`'304'`/`'Type 304 Alloy'` → `Type 304 Stainless Steel`).
+- **A new conformity decline template kills real attestations**: "…which is a standard, not a
+  certification…" fired 10× — including against "Steelcraft claims compliance with ANSI UL 10C", which
+  IS a compliance attestation. Cost: UL 1784 and ANSI A250.8-2003, both captured in 190359, lost now.
+  Related, faithful-but-costly: alecmfg ISO 9001 lost because the SYNTHESIS under-claims ("lists ISO
+  9001:2015 in its certification statistics") and grounding correctly follows the synthesis.
+- **IGR-M2 own-activity leak into industries**: 18 alecmfg rows (`CNC Machining`, `machine shop`…) →
+  `Industrial Machinery and Equipment`; steelcraft shows the same tag ×4 from "industrial buildings".
+  No firm-name leak this run. alecmfg industries otherwise ~21/37 solid.
+- Field verdicts in one line each: alecmfg material_caps is the best field (29/33 real; `Lead` homonym
+  correctly declined on BOTH subjects); alecmfg conformity thin but honest (3 solid certs; vocabulary
+  threadbare); steelcraft material largely correct (4/26 wrong); products/contract split still co-admits
+  (steelcraft 151 groups pass both screens; stable vs 153).
+- Reproducibility A/A: 81.0% / 86.7% (was 77.7% / 90.1%) — noise floor unchanged. Evidence thickness
+  unchanged (mean 2.27, 67% single-mention). `record_own_name_hits` 84–100% — dead lint.
 
-**Open, deliberately not chased:**
-- The "whose words" element is formulaic — 2,791 of 2,805 locations say "in the site's own copy". It
-  carries almost nothing when 99% of a manufacturer's site is its own copy. Revisit only if the payload
-  needs trimming again.
-- 32 of the 77 document-listing records carry neither the scoped nor the unscoped phrasing; unmeasured,
-  never broken. Root cause is upstream — document titles are extracted as `products` at all (products
-  precision measured 37% on 2026-08-22).
-- Phase 5 question, parked 2026-08-24: **70% of all records rest on a single evidence entry** — the same
-  population where the collapse lives. Not a defect; should shape the measurement gate's design.
+**PLAIN-ENGLISH VERSION OF THE CENSUS:** `pipeline_v3_evidence/2026-08-25_run_194457_full_end_to_end/PLAIN_ENGLISH_REPORT.md` — every term defined before use, all 49 distinct problems enumerated with worked
+examples, written after the user pointed out (2026-08-25, second time) that I report findings in vocabulary I
+coined without defining it. Use it as the explanation of record when discussing this run with the user.
 
-**The recursive resume fix has NO live verification** — the publish minted new ids, so the 10 stranded
-rows were never consulted. Its evidence is the 5 tests in `test_recursive_node_eager_dispatch.py` and the
-next genuine mid-run failure. Do not claim otherwise. The same holds for the three grounding retry passes
-and the screening one: built to the synthesis template, tested at the parse layer, never fired live.
+**FULL HAND CENSUS (2026-08-25, second analysis session — `REPORT.md` + 8 `census_*.md` in the
+evidence folder).** ~6,900 judgments classified by READING, not regex: 2,005 grounding tag instances,
+1,860 declines, 2,155 screening verdicts, 128 descent hops, plus a full operational census. Six agents
+under one shared taxonomy; every headline re-verified by me against the dumps.
 
-**Tree:** committed on `new-ground-truth-v2` through `52d7fac` (§10) plus `29d2167` (this session's 3.3 build). The `ontology` submodule is deliberately left dirty — it is the
-user's own. Per the evidence-folder convention only `README.md` and the analysis script are tracked.
+- **Grounding is 65% clean / 35% defective** (2,005 instances): axis 189, vague 188, bridge 166,
+  wrong-actor 125, fabricated 33. Best alecmfg material_caps 84%, worst steelcraft equipments 5%
+  and steelcraft process_caps 49%. **31 of 33 fabrications sit in two dumps** (equipments 19, alecmfg
+  process 8); **steelcraft products has ZERO** — same stage, sibling prompt — so invention needs a
+  contaminated upstream or an open-ended OOV pass, while over-admission needs only a weak screen.
+  This localizes the equipments fix to `equipment_phrase_freehand_grounding` alone.
+- **Screening's acceptance side is the break.** steelcraft contract SCR-2 **202/219 = 92.2% unsound**
+  (the sampled ~87% confirmed as an exact count); alecmfg products SCR-2 **0 of 89** sound; steelcraft
+  products SCR-1 64% / SCR-2 54% do not test their rule. **SCR-3 has NEVER rejected anything: 0 failures
+  in 465 verdicts.** Rejections meanwhile are excellent everywhere (25/25, 241/246, 312 OK, 0 wrong on
+  alecmfg process). Verdict: ~6 of 219 steelcraft contract passes are real contract work; 0 of 89
+  alecmfg "products" are.
+- **SCR-2 is aimed backwards for `industries`** — one rule causes both halves of that field's failure:
+  it kills real customer sectors (`Unmanned Aerial Systems` from an actual UAV client, `Surgical
+  Robotics`, `Rail Equipment`, `Semiconductor Packaging`) because the client approached the shop, while
+  ratifying ~25 own-activity tags because those ARE the subject's. Fixing it removes 27 wrong-axis tags
+  and restores ~10 sectors at once.
+- **Descent is 42% defective (54/128 hops) and 99.3% unvetted** — `PipelineStage` ranks screening 8 and
+  `iterative_grounding` 9, so the stage making the most specific claims is the only one with nothing
+  downstream. Proof it matters: screening FAILED the `Plastic` tag on the vinyl-separator record and
+  descent still walked the same anti-evidence down to `PVC`. 8 named bridge families; two of them
+  (`Painting→Wet Painting` inserting "liquid" 7/7, `Anodizing→Decorative Anodizing` inserting
+  "aesthetic") exist only because the vocabulary forces a distinction the text never makes.
+- **A failed rule never gates its own tag — 6 cases, 3 shipped.** 3x `IGR-E1 failed` (evidence) were
+  caught by screening only incidentally; 3x `OGR-N1 failed` (novelty) reached output, because screening
+  tests evidence and actor but never novelty.
+- **Grounding hallucinates the vocabulary's contents** — 3 explanations cite options that do not exist
+  ("the vocabulary includes 'Inspection, testing, and measurement'"; none of those three words appears
+  in any of the 673 labels) while reaching the CORRECT verdict. With the self-refuting REACH decline and
+  an `IGR-M1 chosen` whose text reads "No material is evidenced", the conclusion is:
+  **rule explanations are post-hoc justifications, not decision traces.** Never gate or measure on
+  explanation text — which is exactly why the 6 failed-rule tags could ship.
+- **`FGR-Q1` validates a string other than the one persisted** (31/454 in steelcraft products: approves
+  `'L Series doors'`, stores `'doors'`). Same root as the 58 series names that DID leak: normalization
+  happens at persist time, silently and inconsistently.
+- **Reproducibility, recomputed at row level on byte-identical input: 12.9% (alecmfg) / 18.7%
+  (steelcraft) of grounding outcomes diverge.** Twin divergence 51% run-wide (45-75% per dump).
+- **Operational health is the best any v3 run has posted**: 381 live calls, log dispatches matching the
+  dumps exactly on every live stage, 0 parse errors, 0 unknown ids, 1 under-answer repaired. Three
+  instrument defects found: the descent dump lists 216 "requests" for 104 real calls (2.08x); the
+  `29d2167` identical-synthesis tripwire is ABSENT from full-run dumps (it only writes on
+  stop-after-synthesis runs); `record_own_name_hits` is saturated at exactly 100.0% (3,155/3,155).
+- FE→DE entity swap RECURRED (1 of 6 observations this run). Collapse 34 instances / 17 clusters (1.2%).
+- **Four of my own numbers were corrected by the census** (all recorded in `census_verification_log.md`):
+  the "37% lab/installation" was keyword-derived and is really 16.3% by instance; "Lead was correctly
+  declined" is true at output but grounding DID mint it with `IGR-E1 failed`; a reversal-marker regex
+  over-flagged self-refuting declines 69:1; and the equipments twin-flip is grounding bistability, NOT
+  synthesis verbosity — which moves that fix to FGR-E1's inference license.
+
+**RANKED BACKLOG (census-informed, pending user):**
+*Code only, no prompt change, no re-dispatch:* **(1)** gate tag emission on the tag's own rule outcomes
+(kills the 6 failed-rule tags, 3 of which ship); **(2)** strip the decorated display form before the
+vocabulary membership test (recovers the 3 false drops incl. a lost `Extruding`); **(3)** fix the two
+instruments — carry the synthesis tripwire into full-run dumps, stop counting non-dispatched descent
+nodes as requests.
+*Architecture:* **(4)** screen the descendants (move `iterative_grounding` above `screening`, or add a
+second pass; cheapest variant screens only hops whose RGR-E1 does not quote the record); **(5)** bundle
+ONE tail re-dispatch: map→array + twin-dispatch collapse + the prompt fixes below.
+*Prompts (all re-key the tail — same bundle as 5):* **(6)** SCR-2 per field — invert it for
+`industries`, add anti-circularity and ban standards-as-evidence for products/contract; expect this to
+move more than anything else; **(7)** equipment FGR-E1 only (localized by the zero-fabrication control)
+— require the machine be named as operated/owned/used, forbid inferring machinery from products sold;
+**(8)** descent RGR-E1 must quote the discriminating feature, plus an explicit "stop at the parent"
+outcome; **(9)** the conformity "standard, not a certification" template (14 misfires of 21; cost UL
+1784, ANSI A250.8-2003, ASTM A653, STC 46/43, TDI Impact, TAS 201+202) and SCR-1 literalism.
+*Design work:* **(10)** tag normalization across records/chunks/runs — the largest output-quality lever;
+**(11)** vocabulary gaps → ontology decision (generic Inspection/Testing/Welding/Cutting, the
+certificates family, Polystyrene/Zinc/Magnesium/Fiberglass, Industrial Automation); **(12)** retire
+`record_own_name_hits`; **(13)** equipment search precision and evidence thickness stay parked for
+Phase 5.
+
+**Tree:** `new-ground-truth-v2` through `22e7477`; UNCOMMITTED: the A1+B1 code, 21 catalogs + 5
+skeletons (mentions fix), regenerated db_schemas, `pipeline_v3_evidence/2026-08-25_run_194457_full_end_to_end/`
+(README, analyze_run.py, committed output, four eyeball reports — all tracked per the convention that
+this folder commits README + scripts + outputs). The `ontology` submodule and
+`apps/.../extraction_pipeline_factory.py` remain the USER'S dirty files — leave them.
 
 **Do not re-litigate:**
 - **Publish is the user's action, never the agent's.**
 - **Never leave two prompt changes pending at once.** `publish` ships EVERY static whose text differs from
-  its pin (`_publish_static`, `assemble_prompts.py:277`). The 7 screening statics are pending NOW.
+  its pin (`_publish_static`, `assemble_prompts.py:277`). NOTHING is pending as of 2026-08-25T19:43:45Z.
+- **Never use `git stash` to get a lint/type baseline.** Tried 2026-08-25: `git stash push -- <files>`
+  failed silently, the following `pop` popped a PRE-EXISTING stash from another branch, and left stray
+  files under a top-level `data_etl_app/` path. Recovered, nothing lost. Judge the delta by comparing
+  changed line ranges against the error lines, or pipe `git show HEAD:<file>` into the linter's stdin.
 - **A missing dump is not always a crash.** `012721` looked like a stalled run and was a finished one that
   had silently dropped three fields. Check the dump COUNT against the previous run's.
 - **A `pv` change orphans every stale row, so it also hides every resume bug.** Resume behaviour is only
   observable across two runs at the SAME prompt state. Do not claim a resume fix is verified by a run that
-  changed a prompt.
+  changed a prompt. **Run 194457 played out exactly this way: it verified B1 and the under-answer retry
+  (both observable in a single run) but A1's parse-error hold stays test-only.**
+- **Group ids are GLOBAL, not per chunk.** A group appearing in both chunks carries one id — 121 of
+  steelcraft products' 680 dump rows are the same 121 groups twice. De-duplicate before counting.
+  group_id is a hash of the normalized key and is FIELD-INDEPENDENT, which is what makes cross-field
+  overlap measurable.
 - **Deleting the stored batch requests is not free and not necessary.** Search and the single-stage fields
   replay from Mongo every run (worth $1.44 on the two-subject run).
 - **When sweeping for "invented" entity names, count the LOCATION as evidence, not just the snippet.**
@@ -133,11 +248,19 @@ user's own. Per the evidence-folder convention only `README.md` and the analysis
   Most pass the focal-form lint **correctly**: accurate-but-undifferentiated (a quality axis), not wrong.
   Only the subclass where a record's own name is absent is a defect, and the lint catches exactly that.
 - **Do not build a pre-emptive packer filter on twin-ness.** Measured: 1–3% precision, or 1-of-14 recall.
-  The affordable instrument is post-hoc — and it is now BUILT (the tripwire above).
+  The affordable instrument is post-hoc — and it is now BUILT (the tripwire above). **NEW EVIDENCE
+  2026-08-25 (does not reopen the packer question, but does reopen the DISPATCH question): 51% of twin
+  groups get divergent tail verdicts/tags between their two chunks — see the 194457 evidence README.**
 - The `[the manufacturer]` bracket convention is retired from synthesis only.
 - **The under-answer policy is DECIDED (retry port, 2026-08-24).** Do not reopen it as a watch item.
+- **Do not enum/index the OPTION axis.** Settled: the match-label set is plausibly thousands, enums hit
+  structured-output size limits, and per-request enums break the wire-schema pure-function tripwire.
 
 ---
+
+- **2026-08-25 (analysis session, after the twelfth run) — TWELFTH RUN ANALYZED (20260825T194457) = the first COMPLETED end-to-end run; everything in the RESUME block above. Method note for the record: four subagents each eyeballed a slice of the 14 dumps record-by-record (reports committed beside the evidence README); every headline claim they made was re-verified by hand against the dumps before being recorded (their two corrections of MY numbers both stood: the funnel's one-row-per-group dedup silently picks a chunk when twins diverge, and the SCR-2 regex undercounted circularity by ~10× because the boilerplate re-phrased itself). The mentions-fix regression on equipments was found by reading the grounding explanations, not the counts — the counts alone said "recall improved."**
+
+- **2026-08-25 (fixes session, earlier) — the session that built A1 + B1 + the mentions fix and published the 21 tail prompts (2026-08-25T19:43:45Z, `check` clean). Full record in the journal row "ELEVENTH RUN ANALYZED + THREE FIXES BUILT"; its RESUME block is superseded above. Correction it carried: the 7 screening statics were published 2026-08-24T19:02:39, not pending.**
 
 - **2026-08-24 (3.3 build session) — 3.3 BUILT end to end (details in the RESUME block above): the downstream re-key onto group records, the under-answer retry port (user decision), the twin-fork closure (accept + the identical-synthesis tripwire, user decision), the screening subject_name rider + the seven catalog rewrites (rendered, UNPUBLISHED), relationship metadata retired from the factory, group-keyed reconcile/partial dump rows, stats' `llm_phrase_synthesis` block. Suites 1,274 passed / 8 deselected; pyright delta 0.**
 
@@ -584,7 +707,7 @@ D-ids are v3's own numbering; no continuity with the v2 plan's F-ids.
 | D5 | Mention payload | ~~Flat `{record_id, form}` pairs~~ **AMENDED 2026-08-21 (user decision): bare form strings on the wire — no ids sent (see D6)**; window-local, NO payload dedup / variant logic — the LLM is deliberately dumb about variants (all casings ride as separate items; exact-case matching makes each occurrence match exactly one). Batching splits freely along forms (no judgment spans two forms). **AMENDED 2026-08-22: the wire carries the window's DISTINCT SNIPPETS as two blocks — `<<<MENTION_IDS` bare array + `<<<MENTIONS` array of `{mention_id, mention}` (`mention_id = hash(snippet)`, prefix `m`) — and NO forms (user decision: a passage's role does not depend on which word in it we care about). Groups of `max_mentions_per_request` = 50 (measured: median 23 items/window, p90 81, max 125).** |
 | D6 | Mention output | ~~Keyed by `record_id` (key-masking); mention = `{page, verbatim snippet}`; optional form-echo diagnostic arm~~ **AMENDED 2026-08-21 (user decision): keyed by the FORM STRING itself** — the id→form map is cognition load, and key-masking was built for judgment stages; the collector has no verdict to bias. Mention = `{freehand location, verbatim snippet}`: location is advisory color (stated default preference: page by path or heading + the governing heading/section or structural kind); the authoritative page is CODE-DERIVED at the fold from the snippet's position vs URL lines. Hold policy: a response key matching no sent form is DROPPED and the tier-1 floor scan flags the resulting unaccounted hits (raising would replay a temp-0 mis-echo to death — the alecmfg shape). `record_id = hash(form)` survives per D11, minted at the fold, never on this wire. If Phase 5 shows the echo channel bleeding, the id-keyed variant is the A/B fallback (the old form-echo arm, inverted). **Wire-shape note (1.4, 2026-08-21):** the output is an ARRAY `{"forms": [{form, mentions: [...]}]}`, not an object keyed by form — the response_format is OpenAI strict mode, which forbids objects with arbitrary keys; the form is echoed as a field, the parse rebuilds the map and raises on duplicates. **AMENDED 2026-08-22: response = `{"mentions": [{mention_id, location}]}`; `location` is the LLM's own wording and extent (semantic role: testimonial / job posting / listing title / company claim / menu …; describe only, once per recurring line). Page, repeat count and nearest-heading facts are CODE's. Hold = warn-only both ways on ids; an undescribed snippet keeps its mention under `DEFAULT_LOCATION` (`location_source=none`).** |
 | D7 | Mechanical floor scan, two tiers | Tier 1 (HOLD): exact-case word-boundary scan per sent form; every hit must be accounted for in the LLM's mentions or the window flags a discrepancy — the satisficing tripwire, zero GT cost. Tier 2 (DISCOVERY): case-insensitive scan; uncovered casings/near-forms feed the missed-form surface. Word-boundary ALWAYS (substring matching is the measured `Lead` 52-hits-0-real bug); short forms (≤3 chars, e.g. `Al`, `SS`) match case-sensitively or flagged. The standing brute word-boundary TODO graduates to load-bearing core. **Domain note (2026-08-21, follows the URL cut):** both tiers sweep window text MINUS URL lines — the scan domain must match the mention contract or every path hit is a phantom discrepancy. Measured basis (12 runs, 10,661 mention segments): 11 runs produced ZERO URL-occurrence mentions despite the v1 instruction; the one compliant run (20260814T203731) flooded 183 rows of sense-free URL mentions — dead weight either way. **AMENDED 2026-08-22: the scan IS the collector — tier 2's casings are collected as mentions of their family group (casing rescue, the mechanical replacement for recursive's one legitimate role; forms ≤3 chars stay exact). The hold moved from occurrences to LOCATIONS (`described`/`not_described` per window). Scan domain also minus EXCLUDED PAGES (P3, user-accepted): URL path matching privacy|cookie|terms|legal|disclaimer|gdpr|imprint|impressum — blanked for the scan, omitted from the search AND location wire (`floor_scan.wire_window_text`); measured 80k chars of legal text across alecmfg + steelcraft, 4% of collected spans.** |
-| D8 | Code re-attribution | Aggregation re-keys EVERY mention from its verbatim snippet (checks which sent forms exactly occur in it); the LLM's attribution is advisory, the fold's is authoritative — model case-sloppiness becomes harmless. The longest-match containment rule lives HERE, in code, not in the prompt (`Sample Lead Time` attributed to sent form `Lead Time`, never also to `Lead`). **2026-08-22: with code collecting there is nothing to re-attribute; longest-span containment lives in `collect_window._owning_hits` over tier-2 hits, one mention per distinct span (two sent casings of one string yield one mention).** |
+| D8 | Code re-attribution | Aggregation re-keys EVERY mention from its verbatim snippet (checks which sent forms exactly occur in it); the LLM's attribution is advisory, the fold's is authoritative — model case-sloppiness becomes harmless. The longest-match containment rule lives HERE, in code, not in the prompt (`Sample Lead Time` attributed to sent form `Lead Time`, never also to `Lead`). **2026-08-22: with code collecting there is nothing to re-attribute; longest-span containment lives in `collect_window._owning_hits` over tier-2 hits, one mention per distinct span (two sent casings of one string yield one mention).** **REVERSED 2026-08-27 (user decision, measured — DECENTRALIZED MENTIONS): longest-span containment is GONE. Every whole-word occurrence of every sent form is a mention of that form's group, whatever longer form encloses it; a span is still collected once (two casings of one string yield one mention), but nesting no longer suppresses. Rationale (user): a focal entity must never miss out on a mention that is genuinely present — "doors and frames" IS a mention of `door`, of `frame`, and of `door and frame`, and each is its own bundle synthesized under its own Focus On. Measured on run 20260824T020729 (the mention stage of 194457), simulated exactly with the real matcher and the real span-dedupe: mentions 8,540 → 12,945 (+52%), and **all 148 empty bundles in the corpus come back** — every group the pipeline recorded as `no_mentions` was a containment casualty, not a search false positive (a form occurring nowhere never becomes a group at all, so 100% is by construction). Casualties recovered include `ISO 9001` (hidden inside `ISO 9001:2015`), `IATF 16949` (inside `IATF 16949:2016 Certification`), `ASME` (inside `ASME-certified welders`), `Oil & Gas` (inside `U.S. Oil & Gas Client`), `automotive` (inside `automotive industry`), `semiconductor` (inside `semiconductor equipment`). **This rewrites a census finding: `ISO 9001` was blamed on the synthesis under-claiming, but it never reached synthesis at all — it was an empty bundle.** The `Lead`/"Sample Lead Time" objection this rule was built for does not survive measurement: of 4,405 restored hits, 47% sit at the HEAD of the enclosing form (unambiguously genuine) and 53% at modifier position — the D8 risk population — and reading the top 45 modifier cases found no clear false positive, because search already filters forms per field (`Aluminum`/`Metal`/`Alloy` inside "Aluminum Alloy Sheet Metal Structural Housing" for material_caps, `Semiconductor` inside "Semiconductor Equipment" for industries). This also kills the middle option: "restore head-position hits only" would be wrong for material_caps, where the material is ALWAYS the modifier. Note D2's shortness rationale rested partly on containment resolving polysemes "whenever both spans are emitted" — that clause is now void. COST: synthesis entries 5,832 → 8,463 (+45%), and generic head nouns become large records (`door` 60 → 157 entries, `frame` 14 → 90, `machine` 22 → 78) — accepted by the user, uncapped, on the grounds that the generic entity genuinely IS mentioned there and any cap would reintroduce arbitrary discarding; watched via a dump counter instead. MIGRATION: restored mentions share their owner's snippet and mention ids are snippet hashes, so the Location wire is unchanged for all but **4** hits corpus-wide (`Oil & Gas` inside `U.S. Oil & Gas Client`, where "U.S. " reads as a sentence break) — the item digest makes that one window re-dispatch itself and every other window replay. Only synthesis onward needs re-running.** |
 | D9 | Grouping | Pure code, runs at aggregation (AFTER mention collection — user preference: mention batching stays form-based, prompts stay flat/unnested), global scope (all windows, whole document). Normalization-KEY bucketing — groups are equivalence classes of `normalize()`, a dict, not union-find. Union-find machinery only becomes necessary for the future co-listing enhancement. |
 | D10 | `normalize()` | L0 (casefold, strip ™®©, unify hyphens/dashes/slashes→space, collapse whitespace) + L1 (per-token plural lemma) baseline for ALL fields; L2 (verb/participle fold) as per-field dial for process/material fields only. Code-token guard: never lemmatize tokens with digits, internal capitals, or OOV-capitalized (protects invented product names; `AccuGrip`/`AccuGrips` stay separate). Real lemmatizer, never naive suffix-stripping (`Brass`→`bras`). Normalizer VERSIONED like a prompt catalog — an upgrade is a loud event. Measured on 9,577 real phrases: zero wrong merges (appendix). |
 | D11 | Identity | Per-form `record_id = hash(form)` — mention provenance + mention-GT anchor, cross-run stable. `group_id = hash(normalized key)` — the wire key for everything downstream of aggregation; one key per group by construction, NO leader election, stable across chunks AND runs while grouping stays key-derived. The co-listing enhancement would break the one-key property and reopens the id question — that cost is booked against the enhancement, not v3. |
@@ -597,6 +720,7 @@ D-ids are v3's own numbering; no continuity with the v2 plan's F-ids.
 | D18 | GT v3 | Mention-level GT is near-mechanical (verbatim fidelity + location), anchored `(record_id, window, mention_index)` — survives any grouping change. **Location note (2026-08-21, follows the D6 amendment):** the auditable location is the fold's code-derived page; the freehand location string is unaudited color. **Synthesis note (2026-08-21, follows the D15 amendment):** the synthesis audit is faithfulness-to-entries only — no disposition audit, no split-flag tally; wrong-merge visibility is the Phase 4.1 dump's member-forms column. The missed-MENTION surface becomes a missed-FORM surface per 5k window (tractable for an annotator; tier-2 scan feeds it). Synthesis audits key on `group_id` (run-scoped addressing accepted; cross-run joins via member-form overlap). Synthesis is auditable AGAINST ITS BUNDLE without opening source text. Annotator budget concentrates on synthesis. Audit primitives (TextFieldAudit/EntityFieldAudit, rule_tree, fold, inflation pattern) carry over. |
 | D19 | Same-occurrence dedup | Cross-casing duplicates are impossible by construction (exact-case matching, D5). Containment overlaps resolved by longest-match in code (D8). Residual rule for two forms of one group reporting the same spot: keyed on (group, page, snippet overlap) at aggregation — exact rule OPEN, decide in Phase 2. **SETTLED 2.3 (2026-08-21, user-approved, built):** after re-attribution the unit is the OCCURRENCE — dedup key (group, occurrence span in the window); the longer snippet is kept; among equal snippets the collector's own filing wins, then lexical order (never answer order). `core/utils/aggregation_fold.py`; PIPELINE_V3_WALKTHROUGH_2_2.md §6 C. **2026-08-22: the occurrence is the unit by construction (code collects each span once); synthesis entries additionally dedupe by SNIPPET within a bundle (a repeated line reaches synthesis once, the per-occurrence mentions stay for the dump/GT).** |
 | D20 | Measurement gates | v3 proceeds at full scope; the Phase 5 gate compares v3 against the v1 hand-audit baselines only (56% boundary precision, 45% context coverage — appendix C). There is no v2 comparison arm: the v2 gate was abandoned 2026-08-21 after both subjects crashed inside the stages v3 replaced (appendix D, condensed). |
+| D21 | Compound collapse | **DECIDED 2026-08-27 (user, measured; DEPENDS ON the D8 reversal and must run after it).** A group whose surface form is nothing but a trivial coordination of sibling groups is not synthesized, grounded or screened as its own entity. User's framing: "a compound phrase shouldn't survive by itself if phrases smaller than it have already been identified independently, and there is nothing else this compound phrase has to offer." This is only SOUND after decentralization: before it the compound held its occurrences exclusively (containment), so collapsing lost real evidence — 0 of 21 candidates had their evidence covered by their parts; after it, all of them do. **THE SPLIT IS ON THE SURFACE FORM, NEVER THE KEY.** `normalize()` deletes commas and slashes (`"Oil, Gas, and Petroleum"` → key `"oil gas and petroleum"`, which would mis-split as `oil gas` \| `petroleum`; `"Design/Build"` → `"design build"`), so the rule splits a member SURFACE form on `,` / `&` / whole-word `and` / whole-word `or`, then normalizes each segment to get its key. Slash is deliberately NOT a separator (`CNC/Manual`, `ISO 9001/14001` are ambiguous). Three guards, all mechanical — **no ontology lookup** (user: "it's okay to not look at the ontology labels for the collapse gating, as long as the collapse is based purely on conjunctions and punctuations like commas or something similarly trivial"): **G2 — every segment's key must be an existing sibling group in the same 20k chunk** (eliminates 337 of 356 candidates and self-protects against shared-head coordination: `"Commercial and Institutional Buildings"` cannot collapse because bare `commercial` is not a group). **G4 — independent standing: every part must have at least one mention NOT enclosed by a mention of the compound** (blocks `"wood or steel stud anchors"`, which means "(wood or steel) stud anchors" and whose part `steel stud anchor` is a fragment, and `"fire-rated doors and frames"`, whose part `fire rated door` occurs nowhere alone). **G3 — evidence coverage: every snippet of the compound must appear in the union of its parts' snippets** — the direct mechanical expression of "offers no unique mentions", not a proxy for it. Guards run G2 → G4 → G3; a part that is itself a collapse candidate disqualifies the collapse (no chains). COLLAPSE IS NOT DELETION: the bundle stays in `bundles` with status `collapsed` and `collapsed_into: [group_ids]`, and `synthesis_records()` skips it — exactly the pattern empty bundles already use. SCOPE = the 20k macro chunk (`wide.max_tokens_per_chunk = 20_000`), which is already the fold's grouping scope, so no pooling change; a compound may collapse in one chunk and survive in another, as group identity already does. Carried in `AggregationFoldMetadata.collapse_compounds` so it is synthesis request identity and A/B-able. MEASURED on 194457, by the SHIPPED `collapsible_groups` re-run over the run's own fold dumps (not a reimplementation): **18 collapse** of 3,309 groups, at 12,945 post-decentralization mentions. The pre-implementation estimate was 16; the shipped rule finds two more (`Labeling & Packing` → `label`+`pack`, `Polishing and Finishing` → `polish`+`finish`, both alecmfg process_caps) because it normalizes segments with the field's VERB-FOLD dial, as it must — group keys in process/material fields are built with L2, so `Labeling` must fold to `label` to match its sibling. The estimate normalized segments without it and missed them; both extra collapses are sound. G4 correctly blocks `wood or steel stud anchors` and `fire-rated doors and frames`; G2 correctly blocks `commercial and institutional buildings`. Exactly one collapse is the sole source of a final tag — `transom and sidelight` → *architectural stick systems* — and that grounding is itself wrong (transoms and sidelights are not stick systems), so losing it is probably a gain. The `&` in `Labeling & Packing` is also the live proof that the separator set has to include it. **ACCEPTED RISK (user, explicit):** `Oil And Gas` IS a SUDOKN concept, so in a corpus where both `oil` and `gas` are independent sibling groups the rule would collapse a lexicalized in-vocabulary industry. It does not fire on this corpus; G4 makes it rarer, not impossible. |
 
 **Open items (small, decide in-phase):** ~~D19's exact residual rule~~ (settled 2.3); ~~snippet extent
 defaults~~ (settled in 1.2: sentence, or whole line for non-sentence text); the
@@ -608,7 +732,12 @@ group-aware dump row format;
 ~~**empty-bundle fate (Phase 2.3)**~~ (settled 2.3: a form with zero mentions
 after the fold — search false positive, or swallowed by containment — keeps its
 bundle with status `no_mentions`, is skipped by `synthesis_records()`, and stays
-dump-visible).
+dump-visible). **AMENDED 2026-08-27 with the D8 reversal: "swallowed by
+containment" is no longer a way to be empty — measured, it was the ONLY way (all
+148 empties in run 194457 were containment casualties). A `no_mentions` bundle
+now means exactly what it says: a searched form with no occurrence in its
+window. The status, the skip and the dump visibility are unchanged, and
+`collapsed` (D21) joins it as the second synthesized-nothing status.**
 
 **Standing watch items:** M2 match rules still owed; descent-attribution leak
 channel (measure at gates); search-divisor recall/quality A/Bs still unrun;
@@ -834,3 +963,8 @@ listing `pipeline_v3_evidence/2026-08-21_normalize_dry_run_output.txt`.
 | 2026-08-24 | **TENTH RUN ANALYZED (backfilled row; RESUME block + `pipeline_v3_evidence/2026-08-24_run_020729_heading_verbatim/README.md` are the record).** `20260824T020729` = the heading-verbatim fix, and it LANDED: both Allegion records read "the 'More from Allegion' section" again in location AND synthesis; everything the rewrite won held (opener 0%, whose-words 100%, 0 URLs); price +6.9% location text; delivery 2,133/2,133 clean, $5.25. A clean A/B despite a scoped pre-run delete (search replayed from `04:45`; 93 shared mention ids, `ud=` identical). THE FE→DE SWAP RECURRED — retires `002404`'s REPAIRED verdict: right/wrong/right/right/wrong across five observations, stochastic and unfixed; the twins' locations are byte-identical in both runs, and the model emitted the same synthesis string for both. Commit `dad8891`. |
 | 2026-08-24 | **DEEP SUPPLEMENT + JOURNAL BACKFILL (this row's commit).** Second pass over `020729` (`deep_supplement.py` + output beside the README; pyright 0, ruff clean): corrected 37 → **93** shared mention request ids and the pairing (242 group_ids straddle both chunks; (subject, field, group_id) keys dropped 114 records and hid **7 real party-name losses — all steelcraft/conformity_attestations, all the mild Falcon page-enumeration class**; full-pairing survival 47% → 66%, Allegion class still fixed). NEW: identical-synthesis collapse census 12 / 23 / 1 / 14 over the last four runs (standing behavior, concentrated in `steelcraft/products`; FE→DE the only wrong-for-one pair; a same-request identical-string tripwire is the affordable instrument); twin census **130** confusable same-request pairs (93 in `steelcraft/products`) — a framing RETIRED the same day by §10; own-name hits 2,154 → 2,477, identification steady; document rule held (19 → 20 scoped, 0 unscoped); mention delivery 3,345/3,345 clean; latency p50 8–10 s p90 ~16 s; paired synthesis +1.9%; thin single-entry records 69% → 70%. Journal rows for the seventh through tenth runs backfilled (the append-only journal had stopped at the sixth); `dad8891` recorded in the Tree line; the four unlisted dump folders accounted for (`170602` pre-v3 smoke; `063104`/`063147`/`063808` deferred-run polls collected by `195031`; `012354` the failed run). MEMORY.md and the v3 memory note reconciled (both still said 'one thing pending' / eight or ten runs with the stale party claim). §10 (added when the plain-language illustration pass turned up the mechanism) then MEASURED AND KILLED the pre-emptive twin fix: every collapse is a 'thin twin' (one entry each + byte-identical locations; 49 of 50) but that fires 837–1,557 times a run at 1–3% precision, and a confusable-name narrowing catches 1 of 14 — FE→DE is ATYPICAL. Replaces it: the exact post-hoc identical-synthesis tripwire; nothing new for the harmful subclass (`focal_form_lint` already catches exactly it — the '13 of 14 invisible' reading was backwards); and EVIDENCE THICKNESS as the real lever (the same FE/DE pair is fused on one nav-menu entry each and correct on 3 and 2 prose entries). Next: **3.3**, then the user's decision on the twin fork. |
 | 2026-08-24 | **3.3 BUILT (`29d2167`) — the downstream re-key (D16), in one session, with three user decisions taken via chat questions: (1) downstream record payload = `{focal_form, synthesis}`; (2) under-answer policy = the synthesis retry pass PORTED to freehand/initial/OOV grounding + screening (the USER-OWNED watch item, closed — holds thin on missing, unknown ids still raise, one assessment pass writes `*_retry_record_ids` on the bundle, one retry request set `>retry>1>`, still-missing warns and stays absent); (3) twin fork = ACCEPT + TRIPWIRE (the FE→DE swap stays a known stochastic defect; `identical_synthesis_in_request` row marker + summary counter in the synthesis dump, request membership recomputed via `pack_records`, never a retry trigger; evidence thickness deferred to Phase 5).** New seam `get_chunk_group_records` → `GroupRecords` (synthesized groups only, bundle order); consumers re-pointed: `build_group_record_payloads` (grounding ×3, OOV keeps `already_identified`), `build_screening_payloads` (re-typed), `descent_record_payloads` (node + recursive service), both reconcile nodes (synthesis result = row spine; group rows with `no_mentions`/`not_synthesized` branches, second-witness checked; partial dump uses the group spine when synthesis completed). All four tail nodes converted to recursive nodes (two-pass embed). Riders: screening context carries the manufacturer's NAME (synthesis pattern); the seven screening catalogs' "never by name" sentence rewritten, statics RENDERED and left UNPUBLISHED (check fails on exactly those 7 — publish is the user's, before the first screening-enabled run). Relationship stage retired from the factory (metadata Optional-None; node classes + parse services kept for stored v2 runs). Stats gain `llm_phrase_synthesis`; `llm_phrase_relationship` default-empty. Suites 1,274 passed / 8 deselected (new `test_downstream_group_rekey.py` + app retry-merge/collision tests; under-answer tests rewritten to thin-and-assess); pyright delta 0 vs HEAD baselines; ruff −7 unused imports. NOTHING of 3.3 has run live — the review gate is the first end-to-end run. |
+| 2026-08-25 | **ELEVENTH RUN ANALYZED (20260824T190359, the Phase 3 gate) + THREE FIXES BUILT.** Evidence `pipeline_v3_evidence/2026-08-24_run_190359_first_end_to_end/` (README + `analyze_run.py` + committed output). THE RUN FAILED ON BOTH SUBJECTS AT THE SAME STAGE: `ConceptInitialGroundingNode` raised on non-vocabulary options (steelcraft/process_caps `Testing`; alecmfg/conformity_attestations `RoHS`×3 `REACH`×3), throwing away nine already-completed fields of steelcraft. Only the TAIL was live (search replayed from 08-23, mention+synthesis from 08-24T02:07), so no upstream number in those dumps is a new measurement. BUILT: **A1** — the parse-error retry budget is now actually spent (the failure is raised inside `embed_request_ids` at the TOP of the recursive loop, so the exception escaped before the dispatch at the BOTTOM could spend one of `RESPONSE_PARSE_ERROR_CAP`'s re-asks; held for the rest of the pass now, re-raised only when the pass armed nothing, `RepeatedParseFailure` never held — this completes `29d2167`, which made the re-dispatch reachable but not reached); **B1** — a non-vocabulary option is DROPPED onto the new `RecordGroundingEntry.dropped_options` and shown in the dump instead of failing the subject, with the OOV pass still free to record a real gap (trap handled: the explanation branch keyed on units EMITTED not tags KEPT, which would have nulled the reason and failed the entry validator on exactly the rescued records); **the stale `mentions` promise fixed** in 21 catalogs + 5 skeletons — D16 made the record `{focal_form, synthesis}` but every tail static still promised a "mentions" field and told the model to quote it, and **30.6% of all 5,239 grounding explanations in the run cite that absent field**. NEW MEASUREMENTS: freehand grounding is only **77.7% / 90.1% reproducible on byte-identical payloads** (products vs contract_products share every pv except screening and carry identical `|ud=` digests — a free A/A test; ~7% decline-vs-tag flips) = the noise floor under every A/B on that stage; grounded tags are never normalized (steelcraft products 559 groups → 279 grounded → **206 distinct tags, 99% "door"/"frame"**, incl. a case-only duplicate); the equipment search returns products (**68 of steelcraft's 75 equipment groups are the products search's own group_ids**, 1 grounded); SCR-2 accepts circular evidence on a catalogue manufacturer (24% of 190 satisfactions, vs 3% on alecmfg); evidence thickness 2.12 mean / 68.1% single-mention (v2 was ~1.7). CORRECTED: the 7 screening statics were NOT pending — they were published 2026-08-24T19:02:39 and their id is the run's screening `pv=`; `check` was clean before this session. Suites 1,281 / 8 deselected; pyright delta 0; ruff delta 0. **The 21 tail prompts were PUBLISHED by the user at 2026-08-25T19:43:45Z**, `check` clean. Next: re-run both subjects end to end; the record-shape map→array change is DECIDED but unbuilt. |
+| 2026-08-25 | **TWELFTH RUN ANALYZED (20260825T194457) — THE FIRST COMPLETED END-TO-END v3 RUN; ALL THREE FIXES VERIFIED LIVE; ONE REGRESSION FOUND.** Evidence `pipeline_v3_evidence/2026-08-25_run_194457_full_end_to_end/` (README + analyze_run.py + committed output + four record-level eyeball reports, subagent-written, claims re-verified by hand). Both subjects completed all 7 multi-stage fields (727.8s / 683.4s live, $10.36 live tail); the whole tail ran under exactly the 21 published pv ids. VERIFIED: B1 fired 56× and absorbed both 190359 crash signatures (53/56 drops genuinely non-vocabulary — the process ontology lacks generic Inspection/Testing/Welding; 45/53 dropped rows re-captured by OOV; 3 FALSE drops from decorated menu-label echo `Machining (also: …)`/`Extruding (also: Extrusion)` — the OPTION-axis hole now has a live cost); the under-answer retry port fired live for the first time and worked (material_caps OOV, 1 of 46 unanswered, answered in 1.5s); the mentions fix landed (stale citations 62.5% → 4.4%). A1 parse-error hold: still test-only, zero parse errors occurred. REGRESSION: the softened FGR-E1 anchor ("clearly implied by the focal form and synthesis") lets steelcraft equipments fabricate machinery from products — 1/75 → 15 grounded rows, 14 leaked products, 9 invented `<door type> manufacturing machine` tags, screening passes all; alecmfg equipments (process→machine) stays the healthiest field. NEW MEASUREMENTS: per-chunk twin divergence 51% (209/412 twin groups; new evidence on the accepted twin fork); SCR-2 real circularity ~87% on steelcraft by hand-read (regex artifact hid it; boilerplate drifted); alecmfg products screen inverts client-spec evidence (correct catalogue list ≈ empty); process_caps flooded (37% lab/installation on steelcraft; alecmfg singleton OOV ~75–80% discard); OGR-N1 recorded-but-unenforced (failed novelty rule still emits its tag); descent unscreened + M2 bridges (PVC walked on anti-evidence); conformity 32→61 = half recall gain, half coinage churn (8–10 FEMA tags for 2 standards); a new "standard, not a certification" decline template killed UL 1784 + ANSI A250.8-2003 against explicit compliance claims; IGR-M2 own-activity→Industrial Machinery leak (18 rows); A/A reproducibility 81.0%/86.7% (floor unchanged); `record_own_name_hits` dead. RANKED BACKLOG written into the RESUME block; the headline user decision is whether ONE tail re-dispatch bundles map→array + twin-dispatch collapse + the equipment E1 fix. Nothing built this session (analysis + notes only); tree still uncommitted through the fixes session's work. |
+| 2026-08-25 | **FULL HAND CENSUS OF THE TWELFTH RUN (20260825T194457) — ~6,900 judgments classified by READING, not regex.** Evidence `pipeline_v3_evidence/2026-08-25_run_194457_full_end_to_end/REPORT.md` + 8 `census_*.md` + `census_verification_log.md`. Six agents under one shared taxonomy (D/N/B/V/X/P/F for tags; OK/LOST/TEMPLATE/TWIN/SCOPE for declines; R/C/G/I/M for screening rules), every headline re-verified by me against the dumps. **Grounding 65% clean / 35% defective across 2,005 tag instances** (axis 189, vague 188, bridge 166, wrong-actor 125, fabricated 33); 31 of 33 fabrications sit in equipments(19)+alecmfg process(8) while steelcraft products has ZERO with a sibling prompt — so the equipments fix is localized to one catalog. **Screening acceptance is the break**: steelcraft contract SCR-2 202/219 = 92.2% unsound, alecmfg products SCR-2 0-of-89 sound, steelcraft products SCR-1 64%/SCR-2 54% not testing their rule, and **SCR-3 has never rejected anything (0 of 465)** — while REJECTIONS are excellent everywhere (25/25, 241/246, 0 wrong on alecmfg process). ~6 of 219 contract passes are real; 0 of 89 alecmfg products are. **SCR-2 is aimed backwards for industries** — one rule kills real client sectors (UAS from a real UAV client, Surgical Robotics, Rail Equipment) AND ratifies ~25 own-activity tags. **Descent is 42% defective and 99.3% unvetted** because PipelineStage ranks screening 8 / iterative_grounding 9 — proven by the vinyl record whose `Plastic` tag screening FAILED and descent still walked to `PVC`; 8 named bridge families, two of them forced by vocabulary shape (Wet Painting's inserted "liquid" 7/7, Decorative Anodizing's "aesthetic"). **A failed rule never gates its own tag — 6 cases, 3 shipped** (3x IGR-E1 caught incidentally by the screen, 3x OGR-N1 with no backstop). **Grounding hallucinates the vocabulary** (3 citations of options that do not exist, incl. "Inspection, testing, and measurement", while reaching the right verdict) — with the self-refuting REACH decline and an `IGR-M1 chosen` reading "No material is evidenced", the meta-finding is that **rule explanations are post-hoc justifications, not decision traces; never gate or measure on them.** **FGR-Q1 validates a string other than the one persisted** (31/454). Row-level reproducibility on byte-identical input 12.9%/18.7%; twin divergence 51% run-wide. Operationally the best run yet: 381 live calls, dispatch counts matching dumps exactly, 0 parse errors; three instrument defects found (descent dump reports 216 requests for 104 calls; the 29d2167 synthesis tripwire is absent from full-run dumps; own-name lint saturated at exactly 100.0%). FE→DE swap recurred (1 of 6). **Four of my own numbers were corrected by the census** — the keyword-derived "37% lab/installation" is really 16.3% by instance, `Lead` WAS minted with IGR-E1 failed, a reversal regex over-flagged 69:1, and the equipments twin-flip is grounding bistability not synthesis verbosity. Nothing built this session (census + notes only). Backlog rewritten in the RESUME block: 3 code fixes need no re-dispatch, then the descent-screening decision, then ONE bundled tail re-dispatch. |
+| 2026-08-26 | **GROUNDING EVALUATION INSTRUMENT ESTABLISHED** (user-requested; separate from Phase 5/6 but feeds both): a standing per-field eval of the four grounding stages (freehand/initial/OOV/descent, declines included; screening = context only) at `apps/data_etl_app/tests/test_stages/grounding/` — TAXONOMY.md v1 (the census codes D/N/X/V/B/P/F + DS/DF/DR declines + H-* hops, formalized), RUNBOOK.md (full census every run by user decision — one judge agent per subject x field dump, verification pass mandatory, evolution step user-gated), config/ (common + 7 field yamls with census-seeded watch items + recall sets) and expectations/<slug>/ (8 subject inventories x 7 fields + subject.yaml, agent-built from the sample texts and spot-verified — NOTE: taylordunn's scrape is degenerate (30/31 pages identical cookie boilerplate), acimachine is a machine-tool DEALER (all-trap zero-signal precision probe)), checks/run_eval.py (deterministic pass: gate/membership/sentinel/decoration/twin/churn/descent-coverage/ops + A/A noise floor + noise-band arithmetic; --merge-judgments folds census JSONL into metrics/tiers/ledger), 11 pytest tests green in the app suite (454 total), .gitignore negations added for the instrument's json/jsonl/txt. Phase A on run 194457 REPRODUCED the census exactly by code (6 gate violations incl. the 3 shipped by name; 3 decoration false-drops; twin divergence per dump; A/A 0.182) and found ONE NEW defect the census missed: initial grounding emitted `Regulatory Approval` (alecmfg conformity, g03qqd2d) as an IN-VOCAB tag though no such label exists (vocabulary has `Regulatory Compliance Certificate`) — the OPTION-axis echo hole live in certificates; VERIFIED CONTAINED (screening rejected it, `screened_out`, did not ship). Also verified: the instrument's 135 descent hops and the census's 128 are the same set, per-row vs twin-deduped. Layout deliberately matches the sibling stage instruments (search/, mention_collection/, synthesis/) so one protocol vocabulary reads across all four. Census imported as the ledger's baseline rows (14, marked imported; seed script committed in history/runs/<run>/). Proposed for user (not yet applied, per the evolution rule): (a) new watch item for the option-axis echo in grounding output, (b) taxonomy sub-kind splitting equipment B-codes into sound process→machine conversion vs unsound bridge (census codes 21 alecmfg conversions B while the run report calls the field 33/34 sound). First fresh full census happens on the next pipeline run. |
+| 2026-08-27 | **BUILT — D8 REVERSED (decentralized mentions) + D21 (compound collapse) + the fold block in full-run dumps. User-approved on measurement; 1,070 tests green (593 core, 477 app), pyright delta zero (22 errors, all pre-existing at HEAD in the same five files).** The user's argument, which the measurement then confirmed: "a compound phrase shouldn't survive by itself if phrases smaller than it have already been identified independently, and there is nothing else this compound phrase has to offer… Why should a focal entity miss out on a mention at all?" My first analysis had the dependency backwards — I measured collapse UNDER containment (21 candidates, 12 holding unique tags) and recommended against it. The user corrected the order: decentralize first, then collapse becomes trivially safe. Both halves measured on run 20260824T020729's fold dumps with the real matcher and the real span-dedupe, exactly (a suppressed hit is by construction a whole-word occurrence inside an owner span, and the dump records each owner's span text verbatim, so no subject text is needed — the local sample texts have drifted from the S3 versions and cannot be used). **(1) Decentralization** (`_owning_hits` loses its containment loop): mentions 8,540 → 12,945 (+52%), **all 148 empty bundles revive — 100%, and explicably so: a form occurring nowhere never becomes a group at all, so every `no_mentions` bundle was by construction a containment casualty.** Recovered: `ISO 9001` inside `ISO 9001:2015` (**this corrects the census, which blamed synthesis under-claiming for a record that never reached synthesis**), `IATF 16949`, `ASME` inside "ASME-certified welders", `Oil & Gas` inside "U.S. Oil & Gas Client" — the user's own example, a live casualty — `automotive` inside "automotive industry", `semiconductor` inside "semiconductor equipment". The `Lead`/"Sample Lead Time" objection D8 was built for does not survive: 47% of the 4,405 restored hits are HEAD-position (unambiguously genuine) and the 53% modifier-position sample showed no clear false positive, because search already filters forms per field; this also kills the "head-position only" middle option, which would be wrong for material_caps where the material is always the modifier. Cost: synthesis entries 5,832 → 8,463 (+45%), `door` 60 → 157 entries — uncapped by user decision (the generic entity genuinely IS mentioned there; any cap reintroduces arbitrary discarding), watched by new dump counters instead. Migration: restored mentions share their owner's snippet and mention ids are snippet hashes, so only **4** hits corpus-wide gain a new id (`Oil & Gas` inside `U.S. Oil & Gas Client`, where "U.S. " reads as a sentence break) — the item digest re-dispatches that one window and every other replays; synthesis onward re-runs. **(2) D21** (`coordination_segments` + `collapsible_groups`, dial `AggregationFoldMetadata.collapse_compounds`, default ON): splits the SURFACE form on `,`/`&`/`and`/`or` — never the key, since `normalize` deletes commas (`"Oil, Gas, and Petroleum"` → `"oil gas and petroleum"` would mis-split as `oil gas`|`petroleum`) — then G2 (every segment is a sibling group in the same 20k chunk) → G4 (every part has a mention outside the compound) → G3 (every compound snippet is covered by its parts). Collapse is not deletion: status `collapsed` + `collapsed_into`, skipped by `synthesis_records()`, the empty-bundle posture. **18 of 3,309 groups collapse, verified by re-running the SHIPPED rule over the run's own fold dumps rather than a reimplementation** — two more than the pre-implementation estimate of 16, because the shipped code normalizes segments with the field's verb-fold dial as it must (`"Labeling & Packing"` → `label`+`pack`, `"Polishing and Finishing"` → `polish`+`finish` in process_caps, where group keys are built with L2); the estimate omitted it. G4 earns its keep by blocking `wood or steel stud anchors` (= "(wood or steel) stud anchors") and `fire-rated doors and frames`; G2 blocks `commercial and institutional buildings`. One collapse is the sole source of a tag — `transom and sidelight` → *architectural stick systems* — and that grounding is itself wrong. **ACCEPTED RISK, user explicit: no ontology gating, so `Oil And Gas` (a real SUDOKN concept) would collapse in a corpus where `oil` and `gas` are independent siblings.** **(3) Dumps** (the user's third ask from the same session — "the extraction dump should include the results of every stage"): the fold block was partial-run-only, so every shipped full run recorded per-group mention COUNTS but not one mention, snippet or location — the stage deciding what every later stage reads was the one stage a shipped dump could not show. Both reconcile nodes now build it from `synthesis_result.fold` (no recompute) under the same guarded try/except as the synthesis block. Fold dump gains `collapse_compounds`, `collapsed_into`, `collapsed_groups`, `synthesized_groups`, `max_entries_in_a_group`, `groups_over_50_entries`. Also confirmed this session and NOT changed: the location under-answer path already has the one-retry pass the user asked for, and on the baseline run it never fired — 4,606 of 4,606 snippets described first-pass, zero defaults, zero mis-echoes. Files: `aggregation_fold.py`, `fold_dump_util.py`, `llm_phrase_extraction_results.py`, `llm_phrase_mention_collection_node_service.py` (+`fold_collapse_compounds_of`), `llm_phrase_synthesis_node_service.py`, `partial_run_dump.py`, `llm_phrase_mention_collection_node.py`, `llm_phrase_synthesis_node.py`, `keyword_reconcile_node.py`, `concept_reconcile_node.py`, `extraction_pipeline_factory.py` (+`DEFAULT_COLLAPSE_COMPOUNDS`), `test_aggregation_fold.py` (7 new tests, 3 rewritten for the reversal). |

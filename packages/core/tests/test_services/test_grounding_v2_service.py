@@ -143,9 +143,15 @@ def test_case_drift_is_repaired_to_the_vocabulary_spelling():
     assert list(parsed["raaaaaa1"].tags) == ["Aerospace Industry"]
 
 
-def test_a_non_vocabulary_option_fails_the_response():
-    """Fork F4: no escape hatch means vocabulary-or-nothing, so a drifted or
-    invented label is corruption — never a discovered out-of-vocab tag."""
+def test_a_non_vocabulary_option_is_dropped_not_raised():
+    """Fork F4 still holds — vocabulary-or-nothing, and a drifted or invented
+    label is never a discovered out-of-vocab tag. What changed 2026-08-25 is
+    the cost: the label is dropped onto ``dropped_options`` instead of failing
+    the request and, through the recursive loop, the whole subject.
+
+    The model volunteered no declination here, so the drop has to supply one:
+    the stored entry's validator requires a reason whenever tags are empty.
+    """
     response = json.dumps(
         {
             "groundings": [
@@ -157,7 +163,75 @@ def test_a_non_vocabulary_option_fails_the_response():
             ]
         }
     )
-    with pytest.raises(AppliedRuleValidationError, match="not a vocabulary label"):
+    parsed = parse_record_grounding_result(
+        response, catalog=IN_VOCAB, allowed_labels=VOCAB_LABELS
+    )
+    entry = parsed["raaaaaa1"]
+    assert entry.tags == {}
+    assert entry.dropped_options == ["Aerospace & Defence Sector"]
+    assert entry.explanation is not None
+    assert "Aerospace & Defence Sector" in entry.explanation
+
+
+def test_a_dropped_option_keeps_the_models_own_declination():
+    """A record that volunteered a reason keeps it — the synthesized one is a
+    fallback for silence, not a replacement for what the model said."""
+    response = json.dumps(
+        {
+            "groundings": [
+                {
+                    "record_id": "raaaaaa1",
+                    "options": [_option("Aerospace & Defence Sector")],
+                    "explanation": "the record evidences no industry at all",
+                }
+            ]
+        }
+    )
+    entry = parse_record_grounding_result(
+        response, catalog=IN_VOCAB, allowed_labels=VOCAB_LABELS
+    )["raaaaaa1"]
+    assert entry.tags == {}
+    assert entry.dropped_options == ["Aerospace & Defence Sector"]
+    assert entry.explanation == "the record evidences no industry at all"
+
+
+def test_a_dropped_option_beside_a_kept_one_leaves_the_record_grounded():
+    """The drop is per option, not per record: a vocabulary label alongside an
+    invented one still lands as a tag, and the record carries no explanation
+    because it is not a declination."""
+    response = json.dumps(
+        {
+            "groundings": [
+                {
+                    "record_id": "raaaaaa1",
+                    "options": [
+                        _option("Aerospace Industry"),
+                        _option("Aerospace & Defence Sector"),
+                    ],
+                    "explanation": None,
+                }
+            ]
+        }
+    )
+    entry = parse_record_grounding_result(
+        response, catalog=IN_VOCAB, allowed_labels=VOCAB_LABELS
+    )["raaaaaa1"]
+    assert list(entry.tags) == ["Aerospace Industry"]
+    assert entry.dropped_options == ["Aerospace & Defence Sector"]
+    assert entry.explanation is None
+
+
+def test_an_empty_record_with_no_reason_still_fails():
+    """The drop path must not weaken the declination invariant for a record
+    that simply yielded nothing and said nothing."""
+    response = json.dumps(
+        {
+            "groundings": [
+                {"record_id": "raaaaaa1", "options": [], "explanation": None}
+            ]
+        }
+    )
+    with pytest.raises(AppliedRuleValidationError, match="must say why"):
         parse_record_grounding_result(
             response, catalog=IN_VOCAB, allowed_labels=VOCAB_LABELS
         )

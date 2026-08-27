@@ -1,5 +1,5 @@
 {
-  "catalog_version": "product_phrase_freehand_grounding.2026.08.2",
+  "catalog_version": "product_phrase_freehand_grounding.2026.08.3",
   "prompt_name": "product_phrase_freehand_grounding",
   "stage": "phrase_freehand_grounding",
   "field_types": [
@@ -12,7 +12,7 @@
     "third_person": "makes or works on",
     "gerund": "making or working on"
   },
-  "evidence_source": "the record's mentions and synthesis",
+  "evidence_source": "the record's focal form and synthesis",
   "outcome_vocab": {
     "condition": [
       "satisfied",
@@ -31,7 +31,7 @@
           "kind": "condition",
           "reportable": true,
           "report_when": "always",
-          "text": "The record's mentions evidence the {{entity_noun}} you identified — it is named, described, or clearly implied by what the mentions say, not merely suggested by a resemblance between words.",
+          "text": "The record evidences the {{entity_noun}} you identified — it is named, described, or clearly implied by the record's focal form and synthesis, not merely suggested by a resemblance between words.",
           "combinator": "note",
           "children": [
             {
@@ -92,8 +92,8 @@
     }
   ],
   "published": {
-    "s3_version_id": "ptDyfJ2dWtGGi6VYEyOWKRgGYkUBTY36",
-    "rendered_sha256": "aa7c8ed283ae857ef63917a58ddb6a6a8fbdf1119ce8fb46a58e26c24b113bcb",
-    "uploaded_at": "2026-08-23T19:49:26.182196+00:00"
+    "s3_version_id": "rehZYa3AuSAh1SxNTI4wXKqIrybw.WO_",
+    "rendered_sha256": "9bba1071138ce1e4d33c8ae5581515e210696108a628309fed7e86771ab90463",
+    "uploaded_at": "2026-08-25T19:43:45.000015+00:00"
   }
 }

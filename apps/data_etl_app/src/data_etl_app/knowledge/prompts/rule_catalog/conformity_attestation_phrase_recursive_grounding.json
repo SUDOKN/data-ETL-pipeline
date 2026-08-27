@@ -1,5 +1,5 @@
 {
-  "catalog_version": "conformity_attestation_phrase_recursive_grounding.2026.08.6",
+  "catalog_version": "conformity_attestation_phrase_recursive_grounding.2026.08.7",
   "prompt_name": "conformity_attestation_phrase_recursive_grounding",
   "stage": "phrase_recursive_grounding",
   "field_types": [
@@ -11,7 +11,7 @@
     "third_person": "holds or conforms to",
     "gerund": "holding or conforming to"
   },
-  "evidence_source": "the record's mentions and synthesis",
+  "evidence_source": "the record's focal form and synthesis",
   "option_evidence": "the definition given with the option",
   "outcome_vocab": {
     "condition": [
@@ -34,7 +34,7 @@
           "kind": "condition",
           "reportable": true,
           "report_when": "always",
-          "text": "This specific type qualifies on its own merits using only the immediate evidence in the record's mentions and synthesis; general evidence of {{parent_entity}} does not by itself prove any specific type of it."
+          "text": "This specific type qualifies on its own merits using only the immediate evidence in the record's focal form and synthesis; general evidence of {{parent_entity}} does not by itself prove any specific type of it."
         }
       ]
     },
@@ -88,8 +88,8 @@
     }
   ],
   "published": {
-    "s3_version_id": "jXcoa9nnHHqorhZ.QJdH0ooI._KIKQ1D",
-    "rendered_sha256": "230678b3ff066651c1b97f907dc42ea75159e6a52d765a6e3bd6825043857d2d",
-    "uploaded_at": "2026-08-23T19:49:26.182196+00:00"
+    "s3_version_id": "xhF.HgG.occqioFmPVbhSCqi_C4HN66W",
+    "rendered_sha256": "f09dbef15f2c8ba036f8a41f80c55a9a2e20d5293b52876f054d60822e72cb73",
+    "uploaded_at": "2026-08-25T19:43:45.000015+00:00"
   }
 }

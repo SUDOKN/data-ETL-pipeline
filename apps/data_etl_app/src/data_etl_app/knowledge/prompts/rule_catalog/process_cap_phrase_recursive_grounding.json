@@ -1,5 +1,5 @@
 {
-  "catalog_version": "process_cap_phrase_recursive_grounding.2026.08.7",
+  "catalog_version": "process_cap_phrase_recursive_grounding.2026.08.8",
   "prompt_name": "process_cap_phrase_recursive_grounding",
   "stage": "phrase_recursive_grounding",
   "field_types": [
@@ -11,7 +11,7 @@
     "third_person": "performs, offers, or specializes in",
     "gerund": "performing, offering, or specializing in"
   },
-  "evidence_source": "the record's mentions and synthesis",
+  "evidence_source": "the record's focal form and synthesis",
   "option_evidence": "the definition given with the option",
   "outcome_vocab": {
     "condition": [
@@ -34,7 +34,7 @@
           "kind": "condition",
           "reportable": true,
           "report_when": "always",
-          "text": "This specific type qualifies on its own merits using only the immediate evidence in the record's mentions and synthesis; general evidence of {{parent_entity}} does not by itself prove any specific type of it."
+          "text": "This specific type qualifies on its own merits using only the immediate evidence in the record's focal form and synthesis; general evidence of {{parent_entity}} does not by itself prove any specific type of it."
         }
       ]
     },
@@ -88,8 +88,8 @@
     }
   ],
   "published": {
-    "s3_version_id": ".3lqbxG_JgXZ8iYYTnnmBp80IR.0_mzK",
-    "rendered_sha256": "27c169966916665ed0447121bb3bfc0dd54cbd2c89cc3c93f579673411393af6",
-    "uploaded_at": "2026-08-23T19:49:26.182196+00:00"
+    "s3_version_id": "bgJg5bU9.111cu6tJbpPxo5GBq9bh12T",
+    "rendered_sha256": "c07ed1d3aaf6be6242d0386a3c094bcf598d74bfa258e115f76b6f84bc1bfab8",
+    "uploaded_at": "2026-08-25T19:43:45.000015+00:00"
   }
 }

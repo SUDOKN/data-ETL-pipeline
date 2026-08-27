@@ -1,8 +1,9 @@
-"""Pipeline v3's aggregation fold as amended 2026-08-22 (PIPELINE_V3_PLAN.md D7,
-D8, D9, D11, D19): CODE collects — casing-expanded whole-word occurrences,
-longest-span containment, sentence/line clip, distinct-snippet wire items —
-the Location stage's answer is attached per mention id, bundles ride in locked
-order, synthesis sees each distinct snippet once."""
+"""Pipeline v3's aggregation fold (PIPELINE_V3_PLAN.md D7, D8, D9, D11, D19,
+D21): CODE collects — casing-expanded whole-word occurrences, DECENTRALIZED so
+nesting never suppresses (D8 reversed 2026-08-27), sentence/line clip,
+distinct-snippet wire items — the Location stage's answer is attached per
+mention id, bundles ride in locked order, synthesis sees each distinct snippet
+once, and a compound that is a mere coordination of siblings collapses (D21)."""
 
 import re
 
@@ -12,6 +13,7 @@ from hypothesis import strategies as st
 
 from core.services.phrase_blocks_contract import render_synthesis_record_blocks
 from core.utils.aggregation_fold import (
+    BUNDLE_STATUS_COLLAPSED,
     BUNDLE_STATUS_NO_MENTIONS,
     BUNDLE_STATUS_OK,
     DEFAULT_LOCATION,
@@ -20,6 +22,7 @@ from core.utils.aggregation_fold import (
     FoldResult,
     WindowInput,
     collect_window,
+    coordination_segments,
     fold_document,
     fold_window,
 )
@@ -62,24 +65,55 @@ def _golden(locations=None) -> FoldResult:
     return fold_document([WindowInput(WINDOW, SENT, locations or {})])
 
 
-def test_golden_collection_is_every_owning_occurrence_in_text_order():
+def test_golden_collection_is_every_occurrence_in_text_order():
     c = collect_window(WINDOW, SENT)
     got = [(m.form, m.start, m.snippet) for m in c.mentions]
+    lead_time_snippet = "Sample Lead Time: 2 weeks."
     assert got == [
         ("Aluminum", _at(WINDOW, "Aluminum"), INTRO),
         ("Brass", _at(WINDOW, "Brass"), INTRO),
-        ("Sample Lead Time", _at(WINDOW, "Sample Lead Time"), "Sample Lead Time: 2 weeks."),
+        # DECENTRALIZED (D8 reversed 2026-08-27): the enclosing form first, then
+        # every form nested inside it — each is a mention of its own group.
+        ("Sample Lead Time", _at(WINDOW, "Sample Lead Time"), lead_time_snippet),
+        ("Lead Time", _at(WINDOW, "Lead Time"), lead_time_snippet),
+        ("Lead", _at(WINDOW, "Lead Time"), lead_time_snippet),
         ("aluminum", _at(WINDOW, "aluminum alloys"), "aluminum alloys ship daily."),
         ("Lead", _at(WINDOW, "Lead-free"), "Lead-free solder only."),
         ("Aluminum", _at(WINDOW, "Aluminum", 1), "Aluminum | Brass | Steel"),
         ("Brass", _at(WINDOW, "Brass", 1), "Aluminum | Brass | Steel"),
     ]
-    # containment: `Lead` and `Lead Time` inside "Sample Lead Time" own nothing there
-    assert all(m.form != "Lead Time" for m in c.mentions)
-    assert c.zero_hit_forms == ["die-casting"]
     assert sorted(c.forms_with_hits) == sorted(set(SENT) - {"die-casting"})
     # pages are code-derived from the occurrence offset
-    assert [m.page for m in c.mentions] == [MATERIALS] * 4 + [ABOUT] * 3
+    assert [m.page for m in c.mentions] == [MATERIALS] * 6 + [ABOUT] * 3
+
+
+def test_nesting_does_not_suppress_but_a_span_is_collected_once():
+    """D8 reversed: `Lead` inside "Sample Lead Time" is a mention of `Lead`.
+    Two sent casings of one string still yield ONE mention for the span."""
+    c = collect_window("Sample Lead Time", ["Sample Lead Time", "Lead Time", "Lead"])
+    assert [(m.form, m.start) for m in c.mentions] == [
+        ("Sample Lead Time", 0),
+        ("Lead Time", 7),
+        ("Lead", 7),
+    ]
+    # one span, two sent casings -> one mention (`by_span` dedupe survives)
+    same_span = collect_window("We stock ALUMINUM.", ["ALUMINUM", "aluminum"])
+    assert len(same_span.mentions) == 1
+
+
+def test_nesting_does_not_change_the_location_wire():
+    """The restored mentions share their owner's snippet, so the distinct-snippet
+    items — and therefore every mention_id and the request digest — are
+    unchanged by decentralization. This is what lets stored location answers
+    replay instead of re-dispatching."""
+    c = collect_window(WINDOW, SENT)
+    assert [i.mention for i in c.items] == [
+        INTRO,
+        "Sample Lead Time: 2 weeks.",
+        "aluminum alloys ship daily.",
+        "Lead-free solder only.",
+        "Aluminum | Brass | Steel",
+    ]
 
 
 def test_golden_wire_items_are_distinct_snippets_in_first_occurrence_order():
@@ -106,14 +140,18 @@ def test_golden_bundles_keys_forms_and_order():
         "aluminum",  # first mention: window 0, the intro
         "brass",
         "sample lead time",
+        # `lead` and `lead time` both start at "Lead Time" inside it; the
+        # shorter span sorts first (bundles order by first mention's end).
         "lead",
-        "die casting",  # empties last, by key
         "lead time",
+        "die casting",  # empties last, by key
     ]
     by_key = {b.key: b for b in result.bundles}
     assert by_key["aluminum"].forms == ("Aluminum", "aluminum")
     assert by_key["aluminum"].group_id == group_id_for_key("aluminum")
-    assert by_key["lead time"].status == BUNDLE_STATUS_NO_MENTIONS  # swallowed by containment
+    # `lead time` is no longer swallowed — it holds the mention nested in
+    # "Sample Lead Time" (D8 reversed); only a form occurring NOWHERE is empty.
+    assert by_key["lead time"].status == BUNDLE_STATUS_OK
     assert by_key["die casting"].status == BUNDLE_STATUS_NO_MENTIONS  # search false positive
     assert by_key["lead"].status == BUNDLE_STATUS_OK
     assert [m.record_id for m in by_key["aluminum"].mentions] == [
@@ -186,9 +224,20 @@ def test_short_forms_stay_exact_case():
     assert [(m.form, m.start) for m in c.mentions] == [("Al", 7)]
 
 
-def test_fragment_inside_a_fuller_span_is_not_collected_partial_overlap_is():
-    c = collect_window("Sample Lead Time is short. Lead Time-free zone.", ["Lead", "Lead Time", "Sample Lead Time"])
-    assert [m.form for m in c.mentions] == ["Sample Lead Time", "Lead Time"]
+def test_every_nested_and_overlapping_span_is_collected():
+    """D8 reversed 2026-08-27: a fragment inside a fuller span IS collected —
+    enclosing span first, then the spans nested in it, then the next position."""
+    c = collect_window(
+        "Sample Lead Time is short. Lead Time-free zone.",
+        ["Lead", "Lead Time", "Sample Lead Time"],
+    )
+    assert [m.form for m in c.mentions] == [
+        "Sample Lead Time",
+        "Lead Time",
+        "Lead",
+        "Lead Time",
+        "Lead",
+    ]
     c = collect_window("red hot steel", ["red hot", "hot steel"])
     assert [m.form for m in c.mentions] == ["red hot", "hot steel"]
 
@@ -297,12 +346,10 @@ def test_collection_invariants(text, forms):
         assert m.snippet_start <= m.start and m.end <= m.snippet_start + len(m.snippet)
         assert "\n" not in m.snippet
         assert m.mention_id == mention_id_for_snippet(m.snippet)
-        # no two mentions share a span; no mention sits strictly inside another's span
+        # no two mentions share a span (D8 reversed: nesting is allowed and
+        # expected, but a SPAN is still collected exactly once)
         assert (m.start, m.end) not in spans
         spans.add((m.start, m.end))
-    for a in c.mentions:
-        for b in c.mentions:
-            assert not (a.start <= b.start and b.end <= a.end and (a.start, a.end) != (b.start, b.end))
     # items are the distinct snippets, in first-occurrence order, ids unique
     first_seen: list[str] = []
     for m in c.mentions:
@@ -310,10 +357,11 @@ def test_collection_invariants(text, forms):
             first_seen.append(m.snippet)
     assert [i.mention for i in c.items] == first_seen
     assert len({i.mention_id for i in c.items}) == len(c.items)
-    # every tier-2 hit of a sent form is either collected or inside a collected span
+    # D8 reversed: EVERY tier-2 hit of a sent form is now collected in its own
+    # right — no hit is represented only by an enclosing span any more.
     for form, occs in scan.tier2.items():
         for o in occs:
-            assert any(m.start <= o.start and o.end <= m.end for m in c.mentions)
+            assert (o.start, o.end) in spans
 
 
 @settings(max_examples=100, deadline=None)
@@ -446,3 +494,109 @@ def test_synthesis_records_carry_the_focal_form_and_honour_the_location_arm():
     # the wire dicts render (the synthesis request's two blocks) on both arms
     assert render_synthesis_record_blocks([r.wire_dict() for r in with_loc])
     assert render_synthesis_record_blocks([r.wire_dict() for r in without])
+
+
+# ---------------------------------------------------------------------------
+# D21 — the compound collapse (2026-08-27). Sound only because mentions are
+# decentralized: under containment a compound held its occurrences exclusively.
+# ---------------------------------------------------------------------------
+
+COORD_TEXT = (
+    "We supply doors and frames to the trade.\n"
+    "Our doors are steel. The frames are galvanized.\n"
+)
+COORD_FORMS = ["doors and frames", "doors", "frames"]
+
+
+def _coord(**kwargs) -> FoldResult:
+    return fold_document([WindowInput(COORD_TEXT, COORD_FORMS, {})], **kwargs)
+
+
+def test_collapse_is_off_by_default():
+    result = _coord()
+    by_key = {b.key: b for b in result.bundles}
+    assert by_key["door and frame"].status == BUNDLE_STATUS_OK
+    assert by_key["door and frame"].collapsed_into == ()
+    # off means the compound is still synthesized as its own record
+    assert by_key["door and frame"].group_id in {
+        r.record_id for r in result.synthesis_records()
+    }
+
+
+def test_collapse_skips_the_compound_and_keeps_it_visible():
+    result = _coord(collapse_compounds=True)
+    by_key = {b.key: b for b in result.bundles}
+    compound = by_key["door and frame"]
+    assert compound.status == BUNDLE_STATUS_COLLAPSED
+    assert set(compound.collapsed_into) == {
+        by_key["door"].group_id,
+        by_key["frame"].group_id,
+    }
+    # kept in the fold, skipped by synthesis — the empty-bundle posture
+    assert compound.mentions
+    assert compound.group_id not in {r.record_id for r in result.synthesis_records()}
+    assert {b.key for b in result.collapsed_bundles} == {"door and frame"}
+    # the parts still carry the compound's evidence, so nothing is lost
+    covered = {m.snippet for b in (by_key["door"], by_key["frame"]) for m in b.mentions}
+    assert {m.snippet for m in compound.mentions} <= covered
+
+
+def test_collapse_splits_the_surface_form_so_commas_survive_normalization():
+    """`normalize` deletes commas, so an Oxford list must be split on the
+    SURFACE form — splitting the key would mis-segment it as `oil gas`."""
+    assert coordination_segments("Oil, Gas, and Petroleum") == ["Oil", "Gas", "Petroleum"]
+    assert coordination_segments("Oil & Gas") == ["Oil", "Gas"]
+    assert normalize("Oil, Gas, and Petroleum") == "oil gas and petroleum"
+    # not coordinations
+    assert coordination_segments("stainless steel") is None
+    assert coordination_segments("and") is None
+    assert coordination_segments("Design/Build") is None
+
+
+def test_g2_a_part_that_is_not_a_sibling_group_blocks_the_collapse():
+    """Shared-head coordination: "commercial and institutional buildings" splits
+    to `commercial` | `institutional building`, and bare `commercial` is not a
+    group — so the compound survives."""
+    text = "We serve commercial and institutional buildings and institutional buildings alike."
+    result = fold_document(
+        [WindowInput(text, ["commercial and institutional buildings", "institutional buildings"], {})],
+        collapse_compounds=True,
+    )
+    by_key = {b.key: b for b in result.bundles}
+    assert by_key["commercial and institutional building"].status == BUNDLE_STATUS_OK
+
+
+def test_g4_a_part_with_no_standing_outside_the_compound_blocks_the_collapse():
+    """`fire rated door` occurs ONLY inside "fire rated doors and frames", so it
+    is a fragment, not a sibling entity — the measured steelcraft case."""
+    text = "We list fire rated doors and frames.\nOur frames ship daily.\n"
+    result = fold_document(
+        [WindowInput(text, ["fire rated doors and frames", "fire rated doors", "frames"], {})],
+        collapse_compounds=True,
+    )
+    by_key = {b.key: b for b in result.bundles}
+    assert by_key["fire rated door and frame"].status == BUNDLE_STATUS_OK
+    assert by_key["fire rated door and frame"].collapsed_into == ()
+
+
+def test_g3_a_compound_holding_evidence_no_part_covers_blocks_the_collapse():
+    """The parts' groups exist by KEY but none of their surface forms occurs
+    inside the compound's occurrence — the plurals `doors`/`frames` do not
+    match the singular "Door and Frame" — so the compound holds a snippet no
+    part covers and collapsing it would destroy evidence."""
+    text = "We supply Door and Frame units.\ndoors and frames are stocked.\n"
+    result = fold_document(
+        [WindowInput(text, ["Door and Frame", "doors", "frames"], {})],
+        collapse_compounds=True,
+    )
+    by_key = {b.key: b for b in result.bundles}
+    compound = by_key["door and frame"]
+    covered = {m.snippet for b in (by_key["door"], by_key["frame"]) for m in b.mentions}
+    assert {m.snippet for m in compound.mentions} - covered  # uncovered evidence
+    assert compound.status == BUNDLE_STATUS_OK
+    assert compound.collapsed_into == ()
+
+
+def test_collapse_is_recorded_as_run_identity_on_the_result():
+    assert _coord(collapse_compounds=True).collapse_compounds is True
+    assert _coord().collapse_compounds is False

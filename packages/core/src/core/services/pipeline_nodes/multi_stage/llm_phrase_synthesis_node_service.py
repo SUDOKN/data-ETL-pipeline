@@ -92,6 +92,7 @@ from core.services.phrase_blocks_contract import (
     sent_record_ids_from_user_message,
 )
 from core.services.pipeline_nodes.multi_stage.llm_phrase_mention_collection_node_service import (
+    fold_collapse_compounds_of,
     fold_snippet_radius_of,
     fold_verb_fold_of,
     get_chunk_fold,
@@ -150,6 +151,7 @@ async def chunk_fold(
     subject_text: str,
     verb_fold: bool,
     snippet_radius: int,
+    collapse_compounds: bool = False,
 ) -> FoldResult:
     """The chunk's fold as the mention stage left it — the one computation the
     node's id-minting pass, request creation and the result all rest on."""
@@ -163,6 +165,7 @@ async def chunk_fold(
         subject_text=subject_text,
         verb_fold=verb_fold,
         snippet_radius=snippet_radius,
+        collapse_compounds=collapse_compounds,
     )
 
 
@@ -305,6 +308,7 @@ async def create_missing_synthesis_requests(
     verb_fold: bool,
     snippet_radius: int,
     eager: bool,
+    collapse_compounds: bool = False,
     BATCH_SIZE: int = 100,
 ) -> list[GPTBatchRequest]:
     """Fresh or only-missing requests, for every (chunk, group) whose embedded id
@@ -334,6 +338,7 @@ async def create_missing_synthesis_requests(
                 subject_text=subject_text,
                 verb_fold=verb_fold,
                 snippet_radius=snippet_radius,
+                collapse_compounds=collapse_compounds,
             )
             records = fold.synthesis_records(include_location=include_location)
             groups = pack_records(records, max_entries_per_request)
@@ -623,6 +628,7 @@ async def get_chunk_synthesis_result(
     verb_fold: bool,
     snippet_radius: int,
     include_location: bool,
+    collapse_compounds: bool = False,
 ) -> ChunkSynthesisResult:
     """The chunk's fold, its records, and the held syntheses (groups, then
     retry). The sent ids the requests carry and the fold's records are the
@@ -638,6 +644,7 @@ async def get_chunk_synthesis_result(
         subject_text=subject_text,
         verb_fold=verb_fold,
         snippet_radius=snippet_radius,
+        collapse_compounds=collapse_compounds,
     )
     records = fold.synthesis_records(include_location=include_location)
     answer = await get_chunk_syntheses(
@@ -722,5 +729,6 @@ async def get_chunk_group_records(
         verb_fold=fold_verb_fold_of(metadata),
         snippet_radius=fold_snippet_radius_of(metadata),
         include_location=synthesis_include_location_of(metadata),
+        collapse_compounds=fold_collapse_compounds_of(metadata),
     )
     return downstream_group_records(result)

@@ -65,6 +65,7 @@ from core.services.pipeline_nodes.multi_stage.llm_grounding_node_service import 
     get_record_grounding_result,
 )
 from core.services.pipeline_nodes.multi_stage.llm_phrase_mention_collection_node_service import (
+    fold_collapse_compounds_of,
     fold_snippet_radius_of,
     fold_verb_fold_of,
 )
@@ -72,6 +73,7 @@ from core.services.pipeline_nodes.multi_stage.llm_phrase_synthesis_node_service 
     downstream_group_records,
     get_chunk_synthesis_result,
     synthesis_include_location_of,
+    synthesis_max_entries_of,
 )
 from core.services.pipeline_nodes.multi_stage.llm_recursive_grounding_service import (
     get_phrase_trails,
@@ -91,6 +93,8 @@ from core.utils.extraction_dump_util import (
     build_run_provenance,
     write_extraction_dump,
 )
+from core.utils.fold_dump_util import build_fold_dump
+from core.utils.synthesis_dump_util import build_synthesis_dump
 
 logger = logging.getLogger(__name__)
 
@@ -200,6 +204,7 @@ class ConceptReconcileNode(ReconcileNode[ConceptFieldType]):
                 verb_fold=fold_verb_fold_of(metadata),
                 snippet_radius=fold_snippet_radius_of(metadata),
                 include_location=synthesis_include_location_of(metadata),
+                collapse_compounds=fold_collapse_compounds_of(metadata),
             )
             group_records = downstream_group_records(synthesis_result)
             focal_by_group = {
@@ -284,6 +289,43 @@ class ConceptReconcileNode(ReconcileNode[ConceptFieldType]):
                 else:
                     unrecognized_tagged_concepts.add(passed_candidate)
 
+            # The synthesis block (summary counters, per-record lints, the
+            # identical-synthesis tripwire) was written only by the partial dump
+            # path until 2026-08-26, leaving every shipped full run blind to it.
+            # Guarded: the dump is a diagnostic and must not sink the run.
+            try:
+                synthesis_dump: Optional[dict[str, object]] = build_synthesis_dump(
+                    synthesis_result,
+                    subject_name=pipeline_context.subject_name,
+                    max_entries_per_request=synthesis_max_entries_of(metadata),
+                )
+            except Exception as synthesis_dump_error:
+                logger.error(
+                    f"[{subject.subject_unique_id}] full-run dump could not build the "
+                    f"synthesis block of chunk {chunk_bounds} of "
+                    f"'{self.field_type.name}': {synthesis_dump_error}",
+                    exc_info=True,
+                )
+                synthesis_dump = None
+
+            # The fold block, same gap and same guard (2026-08-26): a full run
+            # recorded per-group mention COUNTS but not one mention, snippet or
+            # location, so the stage that decides what every later stage reads
+            # was the one stage a shipped dump could not show. No recompute —
+            # this is the fold the synthesis result was built on.
+            try:
+                fold_dump: Optional[dict[str, object]] = build_fold_dump(
+                    synthesis_result.fold, subject_name=pipeline_context.subject_name
+                )
+            except Exception as fold_dump_error:
+                logger.error(
+                    f"[{subject.subject_unique_id}] full-run dump could not build the "
+                    f"fold block of chunk {chunk_bounds} of "
+                    f"'{self.field_type.name}': {fold_dump_error}",
+                    exc_info=True,
+                )
+                fold_dump = None
+
             chunked_dump_contents[chunk_bounds] = {
                 "rows": build_concept_group_rows(
                     synthesis_result=synthesis_result,
@@ -294,7 +336,9 @@ class ConceptReconcileNode(ReconcileNode[ConceptFieldType]):
                     search_rounds=llm_search_results,
                     match_label_to_concept_map=self.match_label_to_concept_map,
                     subject_name=pipeline_context.subject_name,
-                )
+                ),
+                "fold": fold_dump,
+                "synthesis": synthesis_dump,
             }
 
             chunk_stats[chunk_bounds] = ConceptExtractionStatsV2(

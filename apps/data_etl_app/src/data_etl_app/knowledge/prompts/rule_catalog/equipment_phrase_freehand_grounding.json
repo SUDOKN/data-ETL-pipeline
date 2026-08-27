@@ -1,5 +1,5 @@
 {
-  "catalog_version": "equipment_phrase_freehand_grounding.2026.08.8",
+  "catalog_version": "equipment_phrase_freehand_grounding.2026.08.9",
   "prompt_name": "equipment_phrase_freehand_grounding",
   "stage": "phrase_freehand_grounding",
   "field_types": [
@@ -11,7 +11,7 @@
     "third_person": "operates, owns, uses, or otherwise has access to",
     "gerund": "operating, owning, using, or otherwise having access to"
   },
-  "evidence_source": "the record's mentions and synthesis",
+  "evidence_source": "the record's focal form and synthesis",
   "outcome_vocab": {
     "condition": [
       "satisfied",
@@ -30,7 +30,7 @@
           "kind": "condition",
           "reportable": true,
           "report_when": "always",
-          "text": "The record's mentions evidence the {{entity_noun}} you identified — it is named, described, or clearly implied by what the mentions say, not merely suggested by a resemblance between words.",
+          "text": "The record evidences the {{entity_noun}} you identified — it is named, described, or clearly implied by the record's focal form and synthesis, not merely suggested by a resemblance between words.",
           "combinator": "note",
           "children": [
             {
@@ -139,8 +139,8 @@
     }
   ],
   "published": {
-    "s3_version_id": "22CKnOUty0kenNpdp8GPVij_PAxsq3Dl",
-    "rendered_sha256": "00abb16060419de7e2096c0bf52d694fc1916143c0eb7fee347a6d37786eec42",
-    "uploaded_at": "2026-08-23T19:49:26.182196+00:00"
+    "s3_version_id": "bKFiJBgg5sPWQiguQMPvZPTr5PLNB4wQ",
+    "rendered_sha256": "713cb3a790a7f3e0dd57a18d2bc32c61fd791dec34421107b8c7b39a8252ff44",
+    "uploaded_at": "2026-08-25T19:43:45.000015+00:00"
   }
 }

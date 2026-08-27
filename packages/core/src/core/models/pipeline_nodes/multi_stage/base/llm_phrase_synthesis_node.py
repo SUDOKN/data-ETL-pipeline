@@ -55,6 +55,7 @@ from core.models.pipeline_nodes.base.pipeline_stage import (
     PipelineStage,
 )
 from core.services.pipeline_nodes.multi_stage.llm_phrase_mention_collection_node_service import (
+    fold_collapse_compounds_of,
     fold_snippet_radius_of,
     fold_verb_fold_of,
 )
@@ -142,6 +143,7 @@ class LLMPhraseSynthesisNode(
         )
         verb_fold = fold_verb_fold_of(metadata)
         snippet_radius = fold_snippet_radius_of(metadata)
+        collapse_compounds = fold_collapse_compounds_of(metadata)
 
         async def records_of(chunk_bounds: str, bundle: LLMPhraseExtractionRequestBundle):
             fold = await chunk_fold(
@@ -154,6 +156,7 @@ class LLMPhraseSynthesisNode(
                 subject_text=subject_text,
                 verb_fold=verb_fold,
                 snippet_radius=snippet_radius,
+                collapse_compounds=collapse_compounds,
             )
             return fold.synthesis_records(include_location=synthesis_metadata.include_location)
 
@@ -323,6 +326,7 @@ class LLMPhraseSynthesisNode(
             include_location=synthesis_metadata.include_location,
             verb_fold=fold_verb_fold_of(metadata),
             snippet_radius=fold_snippet_radius_of(metadata),
+            collapse_compounds=fold_collapse_compounds_of(metadata),
             eager=eager,
         )
 

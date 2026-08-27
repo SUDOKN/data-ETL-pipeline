@@ -14,14 +14,22 @@ Everything below is pure and deterministic:
 A. COLLECT. The owners of a window's text are the tier-2 floor-scan hits of
    every sent form (``floor_scan``: whole-word, case-insensitive for forms
    longer than ``SHORT_FORM_MAX_LENGTH``, over the window minus page headers
-   and excluded pages) after LONGEST-SPAN CONTAINMENT: a hit strictly inside a
-   longer hit of any form is not an owner — ``Lead`` and ``Lead Time`` inside
-   "Sample Lead Time" belong to ``Sample Lead Time`` (D8). One owner is one
-   mention; its ``form`` is the text at the span (a sent form, or a casing of
-   one the scan discovered — "casing rescue", the mechanical replacement for
-   what recursive search used to supply), ``sent_form`` the form whose scan
-   found it. Two sent casings of one string find the same spans and yield one
-   mention per span, not two.
+   and excluded pages). MENTIONS ARE DECENTRALIZED (D8, reversed 2026-08-27 by
+   user decision on measurement): nesting does NOT suppress — a hit inside a
+   longer hit is still a mention of its own form, so "doors and frames" is a
+   mention of ``door``, of ``frame`` AND of ``doors and frames``, each in its
+   own bundle with its own focal form. The rule this replaced (longest-span
+   containment: ``Lead`` and ``Lead Time`` inside "Sample Lead Time" owning
+   nothing) was measured to suppress 34% of all occurrences and to be the sole
+   cause of every empty bundle in the corpus — ``ISO 9001`` hidden inside
+   ``ISO 9001:2015``, ``Oil & Gas`` inside "U.S. Oil & Gas Client", ``ASME``
+   inside "ASME-certified welders" — each recorded as a searched form that was
+   never found, and skipped by synthesis. One hit is one mention; its ``form``
+   is the text at the span (a sent form, or a casing of one the scan discovered
+   — "casing rescue", the mechanical replacement for what recursive search used
+   to supply), ``sent_form`` the form whose scan found it. A SPAN is still
+   collected once: two sent casings of one string find the same spans and yield
+   one mention per span, not two.
 
 B. CLIP. The snippet is the sentence holding the occurrence within its line,
    or the whole line where the line has no sentence punctuation (menus,
@@ -57,8 +65,17 @@ E. GROUP + BUNDLE. Forms bucket by ``normalize()`` (D9/D10: a dict, global
    on nothing but the text; bundles are ordered by their first mention (empty
    bundles last, by key). The page on a mention is CODE-DERIVED from the
    occurrence offset (D6). EMPTY BUNDLES ARE KEPT (status ``no_mentions``): a
-   sent form with no occurrence in its window — a search false positive, or
-   one swallowed by containment — is skipped by synthesis but stays visible.
+   sent form with no occurrence in its window — now only a search false
+   positive, since containment no longer swallows anything — is skipped by
+   synthesis but stays visible.
+
+E2. COLLAPSE (D21, the ``collapse_compounds`` dial). A group whose surface form
+   is nothing but a coordination of sibling groups that already hold every one
+   of its mentions keeps its bundle and its dump row under status
+   ``collapsed`` (with ``collapsed_into``), and is skipped by synthesis. Only
+   sound because of A's decentralization: under containment a compound held its
+   occurrences exclusively, so collapsing it destroyed evidence. See
+   ``collapsible_groups`` for the split rule and its three guards.
 
 F. SYNTHESIS ENTRIES. A bundle's entries are its DISTINCT snippets in locked
    order, each with the location of its first occurrence (user decision
@@ -77,7 +94,7 @@ from __future__ import annotations
 import bisect
 import re
 from collections import Counter, defaultdict
-from dataclasses import dataclass, field
+from dataclasses import dataclass, field, replace
 from typing import Mapping, Optional, Sequence
 
 from core.models.extraction_schemas.mention_collection import MentionWireItem
@@ -99,6 +116,17 @@ from core.utils.record_id_util import (
 
 BUNDLE_STATUS_OK = "ok"
 BUNDLE_STATUS_NO_MENTIONS = "no_mentions"
+# A compound that is nothing but a coordination of sibling groups already
+# holding every one of its mentions (D21). Kept in `bundles`, skipped by
+# `synthesis_records()` — the same posture as an empty bundle.
+BUNDLE_STATUS_COLLAPSED = "collapsed"
+
+# D21's separators, matched on the SURFACE form. Never on the normalization key:
+# `normalize` deletes commas and turns slashes into spaces, so the key of
+# "Oil, Gas, and Petroleum" is "oil gas and petroleum" and would mis-split as
+# `oil gas` | `petroleum`. A slash is deliberately NOT a separator here
+# ("CNC/Manual", "ISO 9001/14001" are ambiguous).
+_COORDINATION_SPLIT = re.compile(r"\s*,\s*|\s*&\s*|\b(?:and|or)\b", re.IGNORECASE)
 
 # What a mention carries when the Location stage did not describe its snippet.
 DEFAULT_LOCATION = "(location not described)"
@@ -196,8 +224,15 @@ class _Hit:
 
 def _owning_hits(text: str, scan: FloorScan, sent_forms: Sequence[str]) -> list[_Hit]:
     """Tier-2 hits of every sent form, one per distinct span (several sent forms
-    can find the same span — casings of one string), minus those strictly
-    contained in a longer hit (D8's longest-span containment), by position."""
+    can find the same span — casings of one string), by position.
+
+    NESTING DOES NOT SUPPRESS (D8 reversed 2026-08-27). A hit inside a longer
+    hit is still a hit: "doors and frames" is a mention of ``door``, of
+    ``frame`` AND of ``doors and frames``, and each is its own bundle. Sorted
+    so an enclosing hit always precedes the hits inside it, which is what keeps
+    the wire items (first-occurrence order over distinct snippets) stable
+    against this change.
+    """
     by_span: dict[tuple[int, int], str] = {}
     for sent_form in sent_forms:
         for o in scan.tier2.get(sent_form, []):
@@ -206,21 +241,10 @@ def _owning_hits(text: str, scan: FloorScan, sent_forms: Sequence[str]) -> list[
             # otherwise the first (sent order) casing that found it.
             if span not in by_span or text[o.start:o.end] == sent_form:
                 by_span[span] = sent_form
-    hits = sorted(
+    return sorted(
         (_Hit(s, e, text[s:e], sf) for (s, e), sf in by_span.items()),
         key=lambda h: (h.start, -(h.end - h.start), h.form),
     )
-    owners: list[_Hit] = []
-    reach = -1  # furthest end among kept hits, all of which start at or before h
-    for h in hits:
-        # Kept hits start ≤ h.start (sorted); one reaching to or past h.end
-        # contains h. Equal spans collapsed above, so "reaches at least as far"
-        # is "strictly longer".
-        if h.end <= reach:
-            continue
-        owners.append(h)
-        reach = h.end
-    return owners
 
 
 _SENTENCE_BREAK = re.compile(r"(?<=[.!?])\s+")
@@ -441,20 +465,32 @@ class FoldedMention:
 @dataclass(frozen=True)
 class MentionBundle:
     """One group: its id, key, member forms (sorted), and mentions in locked
-    order. ``group_id`` is what rides the synthesis wire as ``record_id``."""
+    order. ``group_id`` is what rides the synthesis wire as ``record_id``.
+
+    ``collapsed_into`` is D21: the sibling group ids this bundle is a mere
+    coordination of. Non-empty means the bundle keeps its mentions and its
+    dump row but is not synthesized — the parts carry its evidence.
+    """
 
     group_id: str
     key: str
     forms: tuple[str, ...]
     mentions: tuple[FoldedMention, ...]
+    collapsed_into: tuple[str, ...] = ()
 
     @property
     def is_empty(self) -> bool:
         return not self.mentions
 
     @property
+    def is_collapsed(self) -> bool:
+        return bool(self.collapsed_into)
+
+    @property
     def status(self) -> str:
-        return BUNDLE_STATUS_NO_MENTIONS if self.is_empty else BUNDLE_STATUS_OK
+        if self.is_empty:
+            return BUNDLE_STATUS_NO_MENTIONS
+        return BUNDLE_STATUS_COLLAPSED if self.is_collapsed else BUNDLE_STATUS_OK
 
     @property
     def focal_form(self) -> Optional[str]:
@@ -541,6 +577,7 @@ class FoldResult:
     verb_fold: bool
     normalizer_version: str = NORMALIZER_VERSION
     snippet_radius: int = 0
+    collapse_compounds: bool = False
 
     def bundle(self, group_id: str) -> Optional[MentionBundle]:
         for b in self.bundles:
@@ -552,14 +589,19 @@ class FoldResult:
     def empty_bundles(self) -> list[MentionBundle]:
         return [b for b in self.bundles if b.is_empty]
 
+    @property
+    def collapsed_bundles(self) -> list[MentionBundle]:
+        return [b for b in self.bundles if b.is_collapsed]
+
     def synthesis_records(self, *, include_location: bool = True) -> list[SynthesisRecordInput]:
-        """The synthesis request side: one record per NON-EMPTY bundle, in
-        bundle order, each naming its focal form. Empty bundles are skipped
-        (nothing to synthesize) but remain in ``bundles`` for the dump."""
+        """The synthesis request side: one record per bundle that has something
+        to synthesize, in bundle order, each naming its focal form. Skipped:
+        EMPTY bundles (nothing to synthesize) and COLLAPSED ones (D21 — their
+        parts carry every mention). Both remain in ``bundles`` for the dump."""
         return [
             b.synthesis_record(include_location=include_location)
             for b in self.bundles
-            if not b.is_empty
+            if not b.is_empty and not b.is_collapsed
         ]
 
 
@@ -609,6 +651,109 @@ def fold_window(
     )
 
 
+# --- E2: the compound collapse (D21) --------------------------------------------------
+
+
+def coordination_segments(form: str) -> Optional[list[str]]:
+    """*form* split into its coordination segments, or None when it is not a
+    coordination at all.
+
+    Splits the SURFACE form — see ``_COORDINATION_SPLIT`` for why never the key.
+    Returns None unless the split yields at least two segments that each still
+    have a non-empty normalization key, so "and doors", "R & " and a form whose
+    only separator sits at an edge are not coordinations.
+    """
+    parts = [p.strip().strip(",;") for p in _COORDINATION_SPLIT.split(form)]
+    parts = [p for p in parts if p.strip()]
+    if len(parts) < 2:
+        return None
+    return parts
+
+
+def _encloses(outer: FoldedMention, inner: FoldedMention) -> bool:
+    return (
+        outer.window_index == inner.window_index
+        and outer.start <= inner.start
+        and inner.end <= outer.end
+    )
+
+
+def collapsible_groups(
+    bundles: Sequence[MentionBundle], *, verb_fold: bool = False
+) -> dict[str, tuple[str, ...]]:
+    """``group_id -> the sibling group ids it collapses into`` (D21).
+
+    A compound collapses only when all three guards pass, in this order:
+
+    G2 — every segment's normalized key is a DIFFERENT existing bundle in this
+         fold's scope (the 20k chunk). This is what stops a shared-head
+         coordination: "Commercial and Institutional Buildings" splits to
+         ``commercial`` | ``institutional building`` and bare ``commercial``
+         is not a group.
+    G4 — INDEPENDENT STANDING: every part has at least one mention that no
+         mention of the compound encloses. Without it a fragment that only ever
+         occurs inside the compound would count as a sibling — the measured
+         "wood or steel stud anchors" (= "(wood or steel) stud anchors") and
+         "fire-rated doors and frames" cases.
+    G3 — EVIDENCE COVERAGE: every snippet of the compound appears among its
+         parts' snippets. The direct statement of "offers no unique mentions",
+         and the guard that is only satisfiable once mentions are decentralized
+         (D8 reversed) — under containment the compound held its occurrences
+         exclusively and this could never pass.
+
+    A part that is itself a collapse candidate disqualifies the collapse, so
+    collapses never chain. Pure and deterministic.
+    """
+    by_key = {b.key: b for b in bundles}
+    candidate_ids: set[str] = set()
+    segments_of: dict[str, list[MentionBundle]] = {}
+
+    for bundle in bundles:
+        if bundle.is_empty:
+            continue  # nothing to collapse, and nothing to cover
+        for form in bundle.forms:
+            parts = coordination_segments(form)
+            if parts is None:
+                continue
+            keys = [normalize(p, verb_fold=verb_fold) for p in parts]
+            if any(not k or k == bundle.key for k in keys) or len(set(keys)) < 2:
+                continue
+            if not all(k in by_key for k in keys):  # G2
+                continue
+            part_bundles = [by_key[k] for k in dict.fromkeys(keys)]
+            if any(p.is_empty for p in part_bundles):
+                continue
+            candidate_ids.add(bundle.group_id)
+            segments_of[bundle.group_id] = part_bundles
+            break
+
+    collapsed: dict[str, tuple[str, ...]] = {}
+    for bundle in bundles:
+        part_bundles = segments_of.get(bundle.group_id)
+        if part_bundles is None:
+            continue
+        # no chains: a part that is itself collapsing cannot carry the evidence
+        if any(p.group_id in candidate_ids for p in part_bundles):
+            continue
+        # G4 — independent standing
+        if not all(
+            any(
+                not any(_encloses(outer, inner) for outer in bundle.mentions)
+                for inner in part.mentions
+            )
+            for part in part_bundles
+        ):
+            continue
+        # G3 — evidence coverage
+        covered: set[str] = set()
+        for part in part_bundles:
+            covered.update(m.snippet for m in part.mentions)
+        if {m.snippet for m in bundle.mentions} - covered:
+            continue
+        collapsed[bundle.group_id] = tuple(p.group_id for p in part_bundles)
+    return collapsed
+
+
 # --- the document fold ------------------------------------------------------------------
 
 
@@ -617,10 +762,13 @@ def fold_document(
     *,
     verb_fold: bool = False,
     snippet_radius: int = 0,
+    collapse_compounds: bool = False,
 ) -> FoldResult:
     """Steps A–D over every window, then E over the union of sent and
-    collected forms. ``snippet_radius`` is the clip dial (B), uniform over the
-    document — it is run identity, not a per-window fact.
+    collected forms, then E2 (D21) when *collapse_compounds*. ``snippet_radius``
+    is the clip dial (B), uniform over the document — it is run identity, not a
+    per-window fact; so is *collapse_compounds*, which decides which groups
+    reach synthesis at all.
 
     Raises ``GroupIdCollisionError`` (from ``assign_group_ids``) should two
     distinct keys ever hash to one id.
@@ -654,11 +802,27 @@ def fold_document(
         )
         for key, forms in forms_by_key.items()
     ]
+    if collapse_compounds:
+        collapsed = collapsible_groups(bundles, verb_fold=verb_fold)
+        if collapsed:
+            bundles = [
+                (
+                    replace(b, collapsed_into=collapsed[b.group_id])
+                    if b.group_id in collapsed
+                    else b
+                )
+                for b in bundles
+            ]
+
     filled = sorted(
         (b for b in bundles if not b.is_empty),
         key=lambda b: (b.mentions[0].window_index, b.mentions[0].start, b.mentions[0].end, b.key),
     )
     empty = sorted((b for b in bundles if b.is_empty), key=lambda b: b.key)
     return FoldResult(
-        bundles=filled + empty, windows=folds, verb_fold=verb_fold, snippet_radius=snippet_radius
+        bundles=filled + empty,
+        windows=folds,
+        verb_fold=verb_fold,
+        snippet_radius=snippet_radius,
+        collapse_compounds=collapse_compounds,
     )

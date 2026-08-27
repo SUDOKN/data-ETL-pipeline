@@ -1,5 +1,5 @@
 {
-  "catalog_version": "material_cap_phrase_initial_grounding.2026.08.14",
+  "catalog_version": "material_cap_phrase_initial_grounding.2026.08.15",
   "prompt_name": "material_cap_phrase_initial_grounding",
   "stage": "phrase_initial_grounding",
   "field_types": [
@@ -11,7 +11,7 @@
     "third_person": "processes",
     "gerund": "processing"
   },
-  "evidence_source": "the record's mentions and synthesis",
+  "evidence_source": "the record's focal form and synthesis",
   "option_evidence": "what the option names",
   "outcome_vocab": {
     "condition": [
@@ -34,7 +34,7 @@
           "kind": "condition",
           "reportable": true,
           "report_when": "always",
-          "text": "The record's mentions evidence the {{entity_noun}} you identified — it is named, described, or clearly implied by what the mentions say, not merely suggested by a resemblance between words.",
+          "text": "The record evidences the {{entity_noun}} you identified — it is named, described, or clearly implied by the record's focal form and synthesis, not merely suggested by a resemblance between words.",
           "combinator": "note",
           "children": [
             {
@@ -49,7 +49,7 @@
               "kind": "note",
               "reportable": false,
               "report_when": "never",
-              "text": "A {{entity_noun}} must actually be determinable: mentions that speak of {{entity_noun}}s only in general terms, with nothing that fixes which one, identify none. Where the record names a specific form or designation of a {{entity_noun}}, identify the {{entity_noun}} it is a form of. An object, part, or assembly made of a {{entity_noun}} is not itself the {{entity_noun}} — identify the {{entity_noun}} only where the record names which one it is made of."
+              "text": "A {{entity_noun}} must actually be determinable: a record that speaks of {{entity_noun}}s only in general terms, with nothing that fixes which one, identifies none. Where the record names a specific form or designation of a {{entity_noun}}, identify the {{entity_noun}} it is a form of. An object, part, or assembly made of a {{entity_noun}} is not itself the {{entity_noun}} — identify the {{entity_noun}} only where the record names which one it is made of."
             }
           ]
         }
@@ -98,8 +98,8 @@
     }
   ],
   "published": {
-    "s3_version_id": "qmR8eU0UWq2wB6YQAiSBYyYNo95QNq5I",
-    "rendered_sha256": "1c371ab0f0a171809ea6ab259d79c99dd65db616258dd7454a4dc0feeec42cf8",
-    "uploaded_at": "2026-08-23T19:49:26.182196+00:00"
+    "s3_version_id": "lmvthPStTHDA5Xbin_U9ebb996zpG45G",
+    "rendered_sha256": "c45a2e001877e306424f901621758006e1d572505d486b95a9a63c9da4b9e639",
+    "uploaded_at": "2026-08-25T19:43:45.000015+00:00"
   }
 }

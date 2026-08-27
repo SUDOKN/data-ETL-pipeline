@@ -19,6 +19,7 @@ from llm_providers.services.gpt_batch_request.gpt_batch_request_queries import (
     find_incomplete_gpt_batch_requests_by_custom_ids,
 )
 from llm_providers.services.gpt_batch_request.gpt_batch_request_writes import (
+    RepeatedParseFailure,
     bulk_record_gpt_batch_responses,
     bulk_upsert_gpt_batch_requests_with_only_req_bodies,
 )
@@ -56,6 +57,17 @@ class BaseLLMRecursiveExtractionNode(
     non-recursive base never had the bug — its eager path dispatches whatever
     ``find_incomplete_gpt_batch_requests_by_custom_ids`` returns — so this now
     does the same.
+
+    That fix made the re-dispatch REACHABLE; it did not make it REACHED. The
+    parse failure that arms it is raised from inside ``embed_request_ids``, at
+    the top of the loop, so until 2026-08-25 the exception escaped before the
+    dispatch at the bottom could spend a single one of the
+    ``RESPONSE_PARSE_ERROR_CAP`` re-asks. A parse error is now HELD for the
+    rest of the pass and re-raised only if the pass left nothing to re-ask;
+    ``RepeatedParseFailure`` is never held, because it is raised instead of
+    recording and so arms nothing. Two bounds stop a spin:
+    ``RESPONSE_PARSE_ERROR_CAP`` on one request's parse failures, and
+    ``MAX_UNPRODUCTIVE_PASSES`` on passes that shrink nothing.
     """
 
     async def execute(
@@ -112,13 +124,33 @@ class BaseLLMRecursiveExtractionNode(
             logger.info(
                 f"Embedding request ids for {self.__class__.__name__} ('{self.field_type.name}') for {subject.subject_unique_id}"
             )
-            await self.embed_request_ids(
-                subject_unique_id=subject.subject_unique_id,
-                pipeline_context=pipeline_context,
-                metadata=metadata,
-                chunked_request_map=chunked_request_map,
-                timestamp=timestamp,
-            )
+            # A response that fails to parse in here has ALREADY been recorded
+            # by record_response_parse_error_capped, which nulls its response
+            # and batch_id precisely so the dispatch below re-asks it. Until
+            # 2026-08-25 the exception escaped this loop instead, so the
+            # CAP re-dispatches that helper's docstring promises were never
+            # spent: run 20260824T190359 surfaced a grounding parse failure on
+            # attempt 1 of 4 and lost both subjects. Held here so the pass can
+            # finish and the retry can happen.
+            #
+            # RepeatedParseFailure passes through: it is raised INSTEAD of
+            # recording, so nothing became re-dispatchable and it is the signal
+            # that the budget is spent. Anything else is re-raised below unless
+            # this pass actually left work to re-dispatch — an error that made
+            # nothing incomplete cannot be retried, only spun on.
+            embed_error: Exception | None = None
+            try:
+                await self.embed_request_ids(
+                    subject_unique_id=subject.subject_unique_id,
+                    pipeline_context=pipeline_context,
+                    metadata=metadata,
+                    chunked_request_map=chunked_request_map,
+                    timestamp=timestamp,
+                )
+            except RepeatedParseFailure:
+                raise
+            except Exception as exc:
+                embed_error = exc
             logger.info(
                 f"Saving deferred subject after embedding request ids for {subject.subject_unique_id}"
             )
@@ -174,6 +206,19 @@ class BaseLLMRecursiveExtractionNode(
                 if all_request_ids
                 else {}
             )
+            if embed_error is not None:
+                # Nothing to re-ask means the error was not a recorded parse
+                # failure — a genuine bug, a re-defer, a malformed request —
+                # and retrying would spin against it. Surface it unchanged.
+                if not missing_req_ids and not incomplete_requests:
+                    raise embed_error
+                logger.warning(
+                    f"[{subject.subject_unique_id}] {self.__class__.__name__} "
+                    f"('{self.field_type.name}') held an embedding error and will "
+                    f"re-dispatch {len(incomplete_requests)} unanswered request(s): "
+                    f"{embed_error}"
+                )
+
             if not missing_req_ids and not incomplete_requests:
                 break
 

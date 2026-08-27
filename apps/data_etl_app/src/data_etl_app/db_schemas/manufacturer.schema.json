@@ -1855,7 +1855,6 @@
               "ontology_version_id",
               "llm_phrase_search",
               "llm_phrase_recursive_search",
-              "llm_phrase_relationship",
               "llm_phrase_relationship_screening",
               "llm_phrase_freehand_grounding"
             ],
@@ -2249,7 +2248,10 @@
                 }
               },
               "llm_phrase_relationship": {
-                "bsonType": "object",
+                "bsonType": [
+                  "object",
+                  "null"
+                ],
                 "required": [
                   "llm_model",
                   "model_params",
@@ -3187,7 +3189,6 @@
               "bsonType": "object",
               "required": [
                 "llm_phrase_search",
-                "llm_phrase_relationship",
                 "llm_phrase_screening",
                 "results",
                 "llm_phrase_freehand_grounding"
@@ -3254,6 +3255,28 @@
                               "bsonType": "string"
                             }
                           }
+                        }
+                      }
+                    }
+                  }
+                },
+                "llm_phrase_synthesis": {
+                  "bsonType": "object",
+                  "additionalProperties": {
+                    "bsonType": "object",
+                    "additionalProperties": {
+                      "bsonType": "object",
+                      "required": [
+                        "focal_form",
+                        "synthesis"
+                      ],
+                      "additionalProperties": false,
+                      "properties": {
+                        "focal_form": {
+                          "bsonType": "string"
+                        },
+                        "synthesis": {
+                          "bsonType": "string"
                         }
                       }
                     }
@@ -3370,6 +3393,12 @@
                             "string",
                             "null"
                           ]
+                        },
+                        "dropped_options": {
+                          "bsonType": "array",
+                          "items": {
+                            "bsonType": "string"
+                          }
                         }
                       }
                     }
@@ -3400,7 +3429,6 @@
               "ontology_version_id",
               "llm_phrase_search",
               "llm_phrase_recursive_search",
-              "llm_phrase_relationship",
               "llm_phrase_relationship_screening",
               "llm_phrase_freehand_grounding"
             ],
@@ -3794,7 +3822,10 @@
                 }
               },
               "llm_phrase_relationship": {
-                "bsonType": "object",
+                "bsonType": [
+                  "object",
+                  "null"
+                ],
                 "required": [
                   "llm_model",
                   "model_params",
@@ -4732,7 +4763,6 @@
               "bsonType": "object",
               "required": [
                 "llm_phrase_search",
-                "llm_phrase_relationship",
                 "llm_phrase_screening",
                 "results",
                 "llm_phrase_freehand_grounding"
@@ -4799,6 +4829,28 @@
                               "bsonType": "string"
                             }
                           }
+                        }
+                      }
+                    }
+                  }
+                },
+                "llm_phrase_synthesis": {
+                  "bsonType": "object",
+                  "additionalProperties": {
+                    "bsonType": "object",
+                    "additionalProperties": {
+                      "bsonType": "object",
+                      "required": [
+                        "focal_form",
+                        "synthesis"
+                      ],
+                      "additionalProperties": false,
+                      "properties": {
+                        "focal_form": {
+                          "bsonType": "string"
+                        },
+                        "synthesis": {
+                          "bsonType": "string"
                         }
                       }
                     }
@@ -4915,6 +4967,12 @@
                             "string",
                             "null"
                           ]
+                        },
+                        "dropped_options": {
+                          "bsonType": "array",
+                          "items": {
+                            "bsonType": "string"
+                          }
                         }
                       }
                     }
@@ -4945,7 +5003,6 @@
               "ontology_version_id",
               "llm_phrase_search",
               "llm_phrase_recursive_search",
-              "llm_phrase_relationship",
               "llm_phrase_relationship_screening",
               "llm_phrase_freehand_grounding"
             ],
@@ -5339,7 +5396,10 @@
                 }
               },
               "llm_phrase_relationship": {
-                "bsonType": "object",
+                "bsonType": [
+                  "object",
+                  "null"
+                ],
                 "required": [
                   "llm_model",
                   "model_params",
@@ -6277,7 +6337,6 @@
               "bsonType": "object",
               "required": [
                 "llm_phrase_search",
-                "llm_phrase_relationship",
                 "llm_phrase_screening",
                 "results",
                 "llm_phrase_freehand_grounding"
@@ -6344,6 +6403,28 @@
                               "bsonType": "string"
                             }
                           }
+                        }
+                      }
+                    }
+                  }
+                },
+                "llm_phrase_synthesis": {
+                  "bsonType": "object",
+                  "additionalProperties": {
+                    "bsonType": "object",
+                    "additionalProperties": {
+                      "bsonType": "object",
+                      "required": [
+                        "focal_form",
+                        "synthesis"
+                      ],
+                      "additionalProperties": false,
+                      "properties": {
+                        "focal_form": {
+                          "bsonType": "string"
+                        },
+                        "synthesis": {
+                          "bsonType": "string"
                         }
                       }
                     }
@@ -6460,6 +6541,12 @@
                             "string",
                             "null"
                           ]
+                        },
+                        "dropped_options": {
+                          "bsonType": "array",
+                          "items": {
+                            "bsonType": "string"
+                          }
                         }
                       }
                     }
@@ -6490,7 +6577,6 @@
               "ontology_version_id",
               "llm_phrase_search",
               "llm_phrase_recursive_search",
-              "llm_phrase_relationship",
               "llm_phrase_relationship_screening",
               "llm_phrase_initial_grounding",
               "llm_phrase_recursive_grounding"
@@ -6885,7 +6971,10 @@
                 }
               },
               "llm_phrase_relationship": {
-                "bsonType": "object",
+                "bsonType": [
+                  "object",
+                  "null"
+                ],
                 "required": [
                   "llm_model",
                   "model_params",
@@ -8172,7 +8261,6 @@
               "bsonType": "object",
               "required": [
                 "llm_phrase_search",
-                "llm_phrase_relationship",
                 "llm_phrase_screening",
                 "results",
                 "brute_search",
@@ -8241,6 +8329,28 @@
                               "bsonType": "string"
                             }
                           }
+                        }
+                      }
+                    }
+                  }
+                },
+                "llm_phrase_synthesis": {
+                  "bsonType": "object",
+                  "additionalProperties": {
+                    "bsonType": "object",
+                    "additionalProperties": {
+                      "bsonType": "object",
+                      "required": [
+                        "focal_form",
+                        "synthesis"
+                      ],
+                      "additionalProperties": false,
+                      "properties": {
+                        "focal_form": {
+                          "bsonType": "string"
+                        },
+                        "synthesis": {
+                          "bsonType": "string"
                         }
                       }
                     }
@@ -8372,6 +8482,12 @@
                                 "string",
                                 "null"
                               ]
+                            },
+                            "dropped_options": {
+                              "bsonType": "array",
+                              "items": {
+                                "bsonType": "string"
+                              }
                             }
                           }
                         }
@@ -8419,6 +8535,12 @@
                                 "string",
                                 "null"
                               ]
+                            },
+                            "dropped_options": {
+                              "bsonType": "array",
+                              "items": {
+                                "bsonType": "string"
+                              }
                             }
                           }
                         }
@@ -8547,7 +8669,6 @@
               "ontology_version_id",
               "llm_phrase_search",
               "llm_phrase_recursive_search",
-              "llm_phrase_relationship",
               "llm_phrase_relationship_screening",
               "llm_phrase_initial_grounding",
               "llm_phrase_recursive_grounding"
@@ -8942,7 +9063,10 @@
                 }
               },
               "llm_phrase_relationship": {
-                "bsonType": "object",
+                "bsonType": [
+                  "object",
+                  "null"
+                ],
                 "required": [
                   "llm_model",
                   "model_params",
@@ -10229,7 +10353,6 @@
               "bsonType": "object",
               "required": [
                 "llm_phrase_search",
-                "llm_phrase_relationship",
                 "llm_phrase_screening",
                 "results",
                 "brute_search",
@@ -10298,6 +10421,28 @@
                               "bsonType": "string"
                             }
                           }
+                        }
+                      }
+                    }
+                  }
+                },
+                "llm_phrase_synthesis": {
+                  "bsonType": "object",
+                  "additionalProperties": {
+                    "bsonType": "object",
+                    "additionalProperties": {
+                      "bsonType": "object",
+                      "required": [
+                        "focal_form",
+                        "synthesis"
+                      ],
+                      "additionalProperties": false,
+                      "properties": {
+                        "focal_form": {
+                          "bsonType": "string"
+                        },
+                        "synthesis": {
+                          "bsonType": "string"
                         }
                       }
                     }
@@ -10429,6 +10574,12 @@
                                 "string",
                                 "null"
                               ]
+                            },
+                            "dropped_options": {
+                              "bsonType": "array",
+                              "items": {
+                                "bsonType": "string"
+                              }
                             }
                           }
                         }
@@ -10476,6 +10627,12 @@
                                 "string",
                                 "null"
                               ]
+                            },
+                            "dropped_options": {
+                              "bsonType": "array",
+                              "items": {
+                                "bsonType": "string"
+                              }
                             }
                           }
                         }
@@ -10604,7 +10761,6 @@
               "ontology_version_id",
               "llm_phrase_search",
               "llm_phrase_recursive_search",
-              "llm_phrase_relationship",
               "llm_phrase_relationship_screening",
               "llm_phrase_initial_grounding",
               "llm_phrase_recursive_grounding"
@@ -10999,7 +11155,10 @@
                 }
               },
               "llm_phrase_relationship": {
-                "bsonType": "object",
+                "bsonType": [
+                  "object",
+                  "null"
+                ],
                 "required": [
                   "llm_model",
                   "model_params",
@@ -12286,7 +12445,6 @@
               "bsonType": "object",
               "required": [
                 "llm_phrase_search",
-                "llm_phrase_relationship",
                 "llm_phrase_screening",
                 "results",
                 "brute_search",
@@ -12355,6 +12513,28 @@
                               "bsonType": "string"
                             }
                           }
+                        }
+                      }
+                    }
+                  }
+                },
+                "llm_phrase_synthesis": {
+                  "bsonType": "object",
+                  "additionalProperties": {
+                    "bsonType": "object",
+                    "additionalProperties": {
+                      "bsonType": "object",
+                      "required": [
+                        "focal_form",
+                        "synthesis"
+                      ],
+                      "additionalProperties": false,
+                      "properties": {
+                        "focal_form": {
+                          "bsonType": "string"
+                        },
+                        "synthesis": {
+                          "bsonType": "string"
                         }
                       }
                     }
@@ -12486,6 +12666,12 @@
                                 "string",
                                 "null"
                               ]
+                            },
+                            "dropped_options": {
+                              "bsonType": "array",
+                              "items": {
+                                "bsonType": "string"
+                              }
                             }
                           }
                         }
@@ -12533,6 +12719,12 @@
                                 "string",
                                 "null"
                               ]
+                            },
+                            "dropped_options": {
+                              "bsonType": "array",
+                              "items": {
+                                "bsonType": "string"
+                              }
                             }
                           }
                         }
@@ -12661,7 +12853,6 @@
               "ontology_version_id",
               "llm_phrase_search",
               "llm_phrase_recursive_search",
-              "llm_phrase_relationship",
               "llm_phrase_relationship_screening",
               "llm_phrase_initial_grounding",
               "llm_phrase_recursive_grounding"
@@ -13056,7 +13247,10 @@
                 }
               },
               "llm_phrase_relationship": {
-                "bsonType": "object",
+                "bsonType": [
+                  "object",
+                  "null"
+                ],
                 "required": [
                   "llm_model",
                   "model_params",
@@ -14343,7 +14537,6 @@
               "bsonType": "object",
               "required": [
                 "llm_phrase_search",
-                "llm_phrase_relationship",
                 "llm_phrase_screening",
                 "results",
                 "brute_search",
@@ -14412,6 +14605,28 @@
                               "bsonType": "string"
                             }
                           }
+                        }
+                      }
+                    }
+                  }
+                },
+                "llm_phrase_synthesis": {
+                  "bsonType": "object",
+                  "additionalProperties": {
+                    "bsonType": "object",
+                    "additionalProperties": {
+                      "bsonType": "object",
+                      "required": [
+                        "focal_form",
+                        "synthesis"
+                      ],
+                      "additionalProperties": false,
+                      "properties": {
+                        "focal_form": {
+                          "bsonType": "string"
+                        },
+                        "synthesis": {
+                          "bsonType": "string"
                         }
                       }
                     }
@@ -14543,6 +14758,12 @@
                                 "string",
                                 "null"
                               ]
+                            },
+                            "dropped_options": {
+                              "bsonType": "array",
+                              "items": {
+                                "bsonType": "string"
+                              }
                             }
                           }
                         }
@@ -14590,6 +14811,12 @@
                                 "string",
                                 "null"
                               ]
+                            },
+                            "dropped_options": {
+                              "bsonType": "array",
+                              "items": {
+                                "bsonType": "string"
+                              }
                             }
                           }
                         }

@@ -1,11 +1,11 @@
-You will be given a list of records, each carrying a masked id. Each record gathers the evidence about one recurring subject in text scraped from a manufacturer's website: "mentions" — what the text says about it and where, quoting the text verbatim — and a "synthesis" of what the manufacturer does with or in relation to it.
+You will be given a list of records, each carrying a masked id. Each record gathers the evidence about one recurring subject in text scraped from a manufacturer's website: a "focal_form" — the wording the site itself uses for that subject — and a "synthesis" of what the text says about it and what the manufacturer does with or in relation to it.
 
 You will also be given the options to match against, written as an indented outline. Each line names one {{entity_noun}}, and a line indented under another is a narrower kind of the one above it. Every line is an option you may choose, whether or not it has lines indented beneath it. Where a line ends in "(also: …)", those are other names for that same {{entity_noun}} and choosing any of them chooses it. Name the option by its own words alone, without its indentation and without the lines above it.
 
 You will assess each record independently.
 
 ### Your job:
-From each record's mentions and synthesis, identify every distinct {{entity_noun}} the record evidences. Then, for each one you identify, choose a matching option from the options provided.
+From each record's focal form and synthesis, identify every distinct {{entity_noun}} the record evidences. Then, for each one you identify, choose a matching option from the options provided.
 
 Identification is your whole job here; relationships are not. Whether it is the manufacturer itself or some other party that {{entity_relationships.third_person}} an identified {{entity_noun}} plays no part. Do not withhold a candidate because that relationship looks doubtful, and do not record one on the strength of that relationship alone.
 

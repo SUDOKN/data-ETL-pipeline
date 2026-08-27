@@ -8,6 +8,12 @@ report: what code collected (occurrences, distinct snippets, forms with and
 without hits, casings the scan discovered, pages it excluded) and what the
 Location stage covered (``described`` / ``not_described`` ids, the ids a retry
 pass re-asked for, answer ids that were never sent).
+
+A group that collapsed (D21) carries ``collapsed_into`` and status
+``collapsed``; the summary separates the three populations a reader must not
+confuse — ``groups`` (all of them), ``empty_groups`` and ``collapsed_groups``
+(both skipped by synthesis, for different reasons), and ``synthesized_groups``
+(what actually reached the LLM).
 """
 
 from __future__ import annotations
@@ -45,6 +51,10 @@ def _bundle_row(b: MentionBundle, subject_name: Optional[str]) -> dict[str, Any]
         "distinct_snippets": len(b.synthesis_entries()),
         "mentions": [_mention_row(m) for m in b.mentions],
     }
+    # Present only when it happened, like every lint field: the sibling groups
+    # this compound collapsed into (D21).
+    if b.is_collapsed:
+        row["collapsed_into"] = list(b.collapsed_into)
     if subject_name:
         hits = sum(count_own_name_hits(m.snippet, subject_name) for m in b.mentions)
         if hits:
@@ -74,12 +84,25 @@ def _window_row(w: WindowFold) -> dict[str, Any]:
 
 def build_fold_dump(result: FoldResult, *, subject_name: Optional[str] = None) -> dict[str, Any]:
     windows = result.windows
+    # Entries are what synthesis actually reads, so their distribution is the
+    # standing watch on decentralization's known cost (D8 reversed 2026-08-27):
+    # a generic head noun now inherits every specific mention, and `door` went
+    # 60 -> 157 entries on the measured run. Uncapped by decision; watched here.
+    entry_counts = sorted(
+        (len(b.synthesis_entries()) for b in result.bundles if not b.is_empty),
+        reverse=True,
+    )
     return {
         "normalizer_version": result.normalizer_version,
         "verb_fold": result.verb_fold,
+        "collapse_compounds": result.collapse_compounds,
         "summary": {
             "groups": len(result.bundles),
             "empty_groups": len(result.empty_bundles),
+            "collapsed_groups": len(result.collapsed_bundles),
+            "synthesized_groups": len(result.synthesis_records()),
+            "max_entries_in_a_group": entry_counts[0] if entry_counts else 0,
+            "groups_over_50_entries": sum(1 for n in entry_counts if n > 50),
             "mentions": sum(len(b.mentions) for b in result.bundles),
             "windows": len(windows),
             "distinct_snippets": sum(len(w.collection.items) for w in windows),

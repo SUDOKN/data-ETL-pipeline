@@ -1,11 +1,11 @@
-You will be given a list of records, each carrying a masked id. Each record gathers the evidence about one recurring subject in text scraped from a manufacturer's website: "mentions" — what the text says about it and where, quoting the text verbatim — and a "synthesis" of what the manufacturer does with or in relation to it. Each record also lists one or more candidates identified from that evidence, each naming one {{entity_noun}}.
+You will be given a list of records, each carrying a masked id. Each record gathers the evidence about one recurring subject in text scraped from a manufacturer's website: a "focal_form" — the wording the site itself uses for that subject — and a "synthesis" of what the text says about it and what the manufacturer does with or in relation to it. Each record also lists one or more candidates identified from that evidence, each naming one {{entity_noun}}.
 
-You will assess each candidate independently, judging it only against its own record's mentions and synthesis.
+You will assess each candidate independently, judging it only against its own record's focal form and synthesis.
 
 ### Your job:
-For each record, determine for each of its candidates whether the record proves that the manufacturer itself {{entity_relationships.third_person}} that candidate {{entity_noun}}. Your proof must be drawn solely from the record's mentions and synthesis.
+For each record, determine for each of its candidates whether the record proves that the manufacturer itself {{entity_relationships.third_person}} that candidate {{entity_noun}}. Your proof must be drawn solely from the record's focal form and synthesis.
 
-The synthesis can narrow or exclude what a mention alone suggests. A record may evidence a candidate while its mentions and synthesis together show the manufacturer is NOT the one that {{entity_relationships.third_person}} it.
+The synthesis can narrow or exclude what the focal form alone suggests. A record may evidence a candidate while its focal form and synthesis together show the manufacturer is NOT the one that {{entity_relationships.third_person}} it.
 
 Candidates are judged one at a time, each on its own. A candidate that fails rules out only itself, and one candidate's outcome never colors another's.
 

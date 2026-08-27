@@ -45,6 +45,7 @@ from core.utils.extraction_dump_util import (
     write_extraction_dump,
 )
 from core.services.pipeline_nodes.multi_stage.llm_phrase_mention_collection_node_service import (
+    fold_collapse_compounds_of,
     fold_snippet_radius_of,
     fold_verb_fold_of,
 )
@@ -239,6 +240,9 @@ async def write_partial_run_dump(
                         include_location=synthesis_include_location_of(
                             extraction_requests.metadata
                         ),
+                        collapse_compounds=fold_collapse_compounds_of(
+                            extraction_requests.metadata
+                        ),
                     )
                 except Exception as synthesis_error:
                     synthesis_failed = True
@@ -286,6 +290,9 @@ async def write_partial_run_dump(
                         subject_text=scraped_text_file.text,
                         verb_fold=fold_verb_fold_of(extraction_requests.metadata),
                         snippet_radius=fold_snippet_radius_of(extraction_requests.metadata),
+                        collapse_compounds=fold_collapse_compounds_of(
+                            extraction_requests.metadata
+                        ),
                     )
                     contents["fold"] = build_fold_dump(
                         fold_result, subject_name=pipeline_context.subject_name
