@@ -1,7 +1,7 @@
 subject: alecmfg.com
 role: full_unit
 snapshot:
-  file: apps/data_etl_app/src/data_etl_app/knowledge/sample_scraped_texts/alecmfg.com.txt
+  file: apps/data_etl_app/tests/test_stages/sample_scraped_texts/alecmfg.com.txt
   sha256: f192654eaafbb44b699ffb23865174c401a604f230364fdf8d21a28c2cc245d8
 scrape_hazards:
 - hazard: the homepage block contains the site's Cookie Policy, not homepage content; its services table lists WordPress/Google

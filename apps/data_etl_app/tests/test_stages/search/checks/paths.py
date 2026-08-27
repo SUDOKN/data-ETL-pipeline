@@ -20,7 +20,7 @@ METRICS_JSONL = HISTORY_DIR / "metrics.jsonl"
 DUMP_ROOT = REPO_ROOT / "packages" / "logs" / "extraction_dumps"
 SAMPLE_TEXTS_DIR = (
     REPO_ROOT
-    / "apps/data_etl_app/src/data_etl_app/knowledge/sample_scraped_texts"
+    / "apps/data_etl_app/tests/test_stages/sample_scraped_texts"
 )
 
 # The six fields with search output. contract_products SHARES products'

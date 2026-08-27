@@ -1,7 +1,7 @@
 subject: anchor-mfg.com
 role: inventory_subject
 snapshot:
-  file: apps/data_etl_app/src/data_etl_app/knowledge/sample_scraped_texts/anchor-mfg.com.txt
+  file: apps/data_etl_app/tests/test_stages/sample_scraped_texts/anchor-mfg.com.txt
   sha256: e34daaa48321c56889764574c1e98456e927bf1c02b9eeb88f867ec0a1471b1f
 scrape_hazards:
 - hazard: nav/footer block repeats on every one of the 15 pages (the footer line below occurs
