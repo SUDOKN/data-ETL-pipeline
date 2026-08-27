@@ -1,0 +1,2704 @@
+subject: fzemanufacturing.com
+field: process_caps
+snapshot:
+  file: apps/data_etl_app/tests/test_stages/sample_scraped_texts/fzemanufacturing.com.txt
+  sha256: ff11844d0540b8e65c7c4c7f8f7614c3e36c192b093940bb99b8140eb5aace1e
+eval_set_version: 2
+expected_empty: false
+notes: 'Three registers. (1) first-party capability prose and the four repeated ''Machining Processes'' / ''Secondary
+  Services Offered'' spec tables; (2) the ''Methods of Inspection'' table - inspection, testing and measurement
+  qualify here by the prompt''s own sentence, so the CMM / optical comparator / penetrant / magnetic particle entries
+  live in THIS field, not in equipments; (3) a third-person SEO process encyclopedia that names processes nobody
+  claims (waterjet, plasma, oxy-fuel and chemical cutting; SMAW/stick, PAW, AHW, energy-beam welding; forging; casting;
+  sandblasting) - all carried as actor: unknown with the explainer context in notes.'
+entries:
+- id: fzemanufacturing_com-process_caps-0001
+  name: HMC machining
+  status: confirmed
+  acceptable_forms:
+  - HMC Machining
+  - HMC machining
+  - CNC HMC & VMC Machining
+  - CNC Horizontal Machining
+  - horizontal machining
+  evidence:
+  - quote: CNC HMC & VMC Machining
+    approx_offset: 331
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-process_caps-0002
+  name: CNC machining
+  status: confirmed
+  acceptable_forms:
+  - CNC machining
+  - CNC Machining
+  - CNC machining services
+  evidence:
+  - quote: FZE Manufacturing provides state-of-the-art FZE Manufacturing CNC machining services for a wide variety
+      of industries. We specialize in CNC machining, VMC, and HMC machining techniques.
+    approx_offset: 380
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-process_caps-0003
+  name: Shaft machining
+  status: confirmed
+  acceptable_forms:
+  - Shaft Machining
+  - shaft machining
+  - CNC shaft machining
+  - shaft manufacturing
+  evidence:
+  - quote: Shaft Machining
+    approx_offset: 638
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-process_caps-0004
+  name: Heat treating
+  status: confirmed
+  acceptable_forms:
+  - Heat Treating
+  - heat treating
+  - heat treatment
+  evidence:
+  - quote: design concepts into real-world products. Our design recommendations and machining, assembly, heat treating,
+      and painting services help our clients to compete and thrive in the global marketplace.
+    approx_offset: 1195
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-process_caps-0005
+  name: Just-in-time manufacturing
+  status: disputed
+  acceptable_forms:
+  - Just-In-Time
+  - Just-in-Time (JIT) manufacturing
+  - just-in-time manufacturing
+  - JIT manufacturing
+  evidence:
+  - quote: provide fabrication services, we help our partners optimize their supply chains and implement just-in-time
+      manufacturing practices, resulting in reduced inventory levels and storage costs, shorter
+    approx_offset: 1483
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: disputed
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+    reason: just-in-time manufacturing is a scheduling and inventory practice; nothing is performed on the materials,
+      parts or products, which is what the clause's defining phrase requires. Named in the text and offered as a
+      service, so the argument is two-sided
+  notes: just-in-time manufacturing is a scheduling and inventory practice; nothing is performed on the materials,
+    parts or products, which is what the clause's defining phrase requires. Named in the text and offered as a service,
+    so the argument is two-sided
+- id: fzemanufacturing_com-process_caps-0006
+  name: Hydraulic components machining
+  status: confirmed
+  acceptable_forms:
+  - Hydraulic Components Machining
+  - hydraulic parts machining
+  - hydraulic machining
+  evidence:
+  - quote: Hydraulic Components Machining
+    approx_offset: 3057
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-process_caps-0007
+  name: Anodizing
+  status: confirmed
+  acceptable_forms:
+  - Anodizing
+  - anodizing
+  evidence:
+  - quote: for motors, pumps, fittings and hose hardware. Our range of secondary services, including anodizing,
+      heat treating, passivating, plating, and assembly, gives us the ability to provide single-source
+    approx_offset: 3674
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-process_caps-0008
+  name: Plating
+  status: confirmed
+  acceptable_forms:
+  - Plating
+  - plating
+  - chrome plating
+  - reverse plating
+  evidence:
+  - quote: hardware. Our range of secondary services, including anodizing, heat treating, passivating, plating,
+      and assembly, gives us the ability to provide single-source solutions that simplify our customer’s
+    approx_offset: 3711
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-process_caps-0009
+  name: Boring
+  status: confirmed
+  acceptable_forms:
+  - Boring
+  - boring
+  evidence:
+  - quote: enabling us to perform a diverse range of machining processes including turning, milling, drilling, boring,
+      tapping, reaming, thread milling, cylindrical grinding, burnishing and polishing. This array
+    approx_offset: 6452
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-process_caps-0010
+  name: Tapping
+  status: confirmed
+  acceptable_forms:
+  - Tapping
+  - tapping
+  evidence:
+  - quote: perform a diverse range of machining processes including turning, milling, drilling, boring, tapping,
+      reaming, thread milling, cylindrical grinding, burnishing and polishing. This array of
+    approx_offset: 6467
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-process_caps-0011
+  name: Reaming
+  status: confirmed
+  acceptable_forms:
+  - Reaming
+  - reaming
+  evidence:
+  - quote: diverse range of machining processes including turning, milling, drilling, boring, tapping, reaming,
+      thread milling, cylindrical grinding, burnishing and polishing. This array of capabilities
+    approx_offset: 6477
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-process_caps-0012
+  name: Thread milling
+  status: confirmed
+  acceptable_forms:
+  - Thread Milling
+  - thread milling
+  evidence:
+  - quote: range of machining processes including turning, milling, drilling, boring, tapping, reaming, thread milling,
+      cylindrical grinding, burnishing and polishing. This array of capabilities allows us to
+    approx_offset: 6485
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-process_caps-0013
+  name: Cylindrical grinding
+  status: confirmed
+  acceptable_forms:
+  - cylindrical grinding
+  - Cylindrical Grinder
+  evidence:
+  - quote: including turning, milling, drilling, boring, tapping, reaming, thread milling, cylindrical grinding,
+      burnishing and polishing. This array of capabilities allows us to manufacture hydraulic parts and
+    approx_offset: 6514
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-process_caps-0014
+  name: Grinding
+  status: confirmed
+  acceptable_forms:
+  - Grinding
+  - grinding
+  evidence:
+  - quote: including turning, milling, drilling, boring, tapping, reaming, thread milling, cylindrical grinding,
+      burnishing and polishing. This array of capabilities allows us to manufacture hydraulic parts
+    approx_offset: 6514
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-process_caps-0015
+  name: Polishing
+  status: confirmed
+  acceptable_forms:
+  - polishing
+  - Polishing
+  - mechanical polishing
+  evidence:
+  - quote: including turning, milling, drilling, boring, tapping, reaming, thread milling, cylindrical grinding,
+      burnishing and polishing. This array of capabilities allows us to manufacture hydraulic parts and
+    approx_offset: 6514
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-process_caps-0016
+  name: Burnishing
+  status: confirmed
+  acceptable_forms:
+  - burnishing
+  evidence:
+  - quote: including turning, milling, drilling, boring, tapping, reaming, thread milling, cylindrical grinding,
+      burnishing and polishing. This array of capabilities allows us to manufacture hydraulic parts and
+    approx_offset: 6514
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-process_caps-0017
+  name: Counterboring
+  status: confirmed
+  acceptable_forms:
+  - Counterboring
+  - counterboring
+  evidence:
+  - quote: Counterboring
+    approx_offset: 8091
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-process_caps-0018
+  name: Countersinking
+  status: confirmed
+  acceptable_forms:
+  - Countersinking
+  - countersinking
+  evidence:
+  - quote: Countersinking
+    approx_offset: 8105
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-process_caps-0019
+  name: Milling
+  status: confirmed
+  acceptable_forms:
+  - Milling
+  - milling
+  - Face & Slab Milling/Contour Milling
+  - Multi-Axis Milling/Contour Milling
+  - keyway milling
+  - shaft milling
+  evidence:
+  - quote: Face & Slab Milling/Contour Milling
+    approx_offset: 8129
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-process_caps-0020
+  name: Gear hobbing
+  status: confirmed
+  acceptable_forms:
+  - Gear Hobbing
+  - hobbing
+  evidence:
+  - quote: Gear Hobbing
+    approx_offset: 8165
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-process_caps-0021
+  name: Internal forming
+  status: confirmed
+  acceptable_forms:
+  - Internal Forming
+  - internal forming
+  evidence:
+  - quote: Internal Forming
+    approx_offset: 8178
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-process_caps-0022
+  name: Parting / cutting
+  status: confirmed
+  acceptable_forms:
+  - Parting/Cutting
+  - Parting
+  - Cutoff/Parting
+  evidence:
+  - quote: Parting/Cutting
+    approx_offset: 8195
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-process_caps-0023
+  name: Pocketing
+  status: confirmed
+  acceptable_forms:
+  - Pocketing
+  evidence:
+  - quote: Pocketing
+    approx_offset: 8211
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-process_caps-0024
+  name: Profiling
+  status: confirmed
+  acceptable_forms:
+  - Profiling
+  - profiling
+  evidence:
+  - quote: Profiling
+    approx_offset: 8221
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-process_caps-0025
+  name: Spline cutting
+  status: confirmed
+  acceptable_forms:
+  - Spline Cutting
+  - spline cutting
+  evidence:
+  - quote: Spline Cutting
+    approx_offset: 8239
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-process_caps-0026
+  name: CAM programming
+  status: disputed
+  acceptable_forms:
+  - CAM Programming Services
+  - CAD/CAM
+  - CAM programming
+  evidence:
+  - quote: CAM Programming Services
+    approx_offset: 8482
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: disputed
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+    reason: CAM programming happens on a computer model before raw material is touched; the clause defines process/operation/capability
+      as 'an operation performed on materials, parts, or products'. Listed by the site as an Equipment Capability,
+      so arguable
+  notes: CAM programming happens on a computer model before raw material is touched; the clause defines process/operation/capability
+    as 'an operation performed on materials, parts, or products'. Listed by the site as an Equipment Capability,
+    so arguable
+- id: fzemanufacturing_com-process_caps-0027
+  name: Reverse engineering
+  status: disputed
+  acceptable_forms:
+  - Reverse Engineering
+  - reverse engineering
+  evidence:
+  - quote: Reverse Engineering
+    approx_offset: 8507
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: disputed
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+    reason: 'reverse engineering cuts both ways: it is pre-production engineering (outside the clause), but it proceeds
+      by measuring an existing part, and the clause admits measurement performed on the work'
+  notes: 'reverse engineering cuts both ways: it is pre-production engineering (outside the clause), but it proceeds
+    by measuring an existing part, and the clause admits measurement performed on the work'
+- id: fzemanufacturing_com-process_caps-0028
+  name: Bending
+  status: confirmed
+  acceptable_forms:
+  - Bending
+  - bending
+  - air-bend
+  evidence:
+  - quote: Bending
+    approx_offset: 9844
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-process_caps-0029
+  name: Centerless grinding
+  status: confirmed
+  acceptable_forms:
+  - Centerless Grinding
+  evidence:
+  - quote: Centerless Grinding
+    approx_offset: 9852
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-process_caps-0030
+  name: Drilling
+  status: confirmed
+  acceptable_forms:
+  - Drilling
+  - drilling
+  - Deep Hole Drilling
+  evidence:
+  - quote: Deep Hole Drilling
+    approx_offset: 9872
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-process_caps-0031
+  name: Deep hole drilling
+  status: confirmed
+  acceptable_forms:
+  - Deep Hole Drilling
+  evidence:
+  - quote: Deep Hole Drilling
+    approx_offset: 9872
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-process_caps-0032
+  name: Inserting plastic molding
+  status: confirmed
+  acceptable_forms:
+  - Inserting Plastic Molding Milling
+  - Plastic mold insertion
+  evidence:
+  - quote: Inserting Plastic Molding Milling
+    approx_offset: 9923
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-process_caps-0033
+  name: Pressing
+  status: confirmed
+  acceptable_forms:
+  - Pressing
+  evidence:
+  - quote: Pressing
+    approx_offset: 9985
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-process_caps-0034
+  name: Material certification
+  status: confirmed
+  acceptable_forms:
+  - material certification
+  evidence:
+  - quote: reflected in our comprehensive inspection processes, which include dimensional checks, material certification,
+      and in-process inspections. This attention to detail guarantees that our customers
+    approx_offset: 12731
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-process_caps-0035
+  name: In-process inspection
+  status: confirmed
+  acceptable_forms:
+  - in-process inspections
+  evidence:
+  - quote: reflected in our comprehensive inspection processes, which include dimensional checks, material certification,
+      and in-process inspections. This attention to detail guarantees that our customers
+    approx_offset: 12731
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-process_caps-0036
+  name: Kitting
+  status: confirmed
+  acceptable_forms:
+  - Kitting
+  - kitting
+  - Assembly and kitting
+  evidence:
+  - quote: provides custom fabrication tailored to the unique requirements of hydraulic systems. Our part assembly
+      and kitting services ensure that hydraulic machined parts are assembled correctly and ready for
+    approx_offset: 14027
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-process_caps-0037
+  name: Forging
+  status: confirmed
+  acceptable_forms:
+  - forging
+  - the art of forging
+  evidence:
+  - quote: turn a simple material into a cornerstone of industry. It may begin with the art of forging, where intense
+      heat and pressure shape the metal. Precision threading then imparts detailed helical grooves,
+    approx_offset: 21857
+  actor: unknown
+  notes: the specialized-fasteners page describes a generic fastener lifecycle ('It MAY begin with the art of forging')
+    - the site has no forge in its equipment roster
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-process_caps-0038
+  name: Threading
+  status: confirmed
+  acceptable_forms:
+  - threading
+  - Precision threading
+  - Internal and external threading
+  - Threading Tool
+  evidence:
+  - quote: the art of forging, where intense heat and pressure shape the metal. Precision threading then imparts
+      detailed helical grooves, followed by heat treatment, which tempers the metal, optimizing its
+    approx_offset: 21930
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-process_caps-0039
+  name: Electropolishing
+  status: confirmed
+  acceptable_forms:
+  - Electropolishing
+  - electropolishing
+  - Electropolish
+  - electrochemical polishing
+  - anodic polishing
+  - electrolytic polishing
+  - Electro-Polishing
+  evidence:
+  - quote: Stainless Steel Electropolishing Services
+    approx_offset: 28418
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-process_caps-0040
+  name: Passivation
+  status: confirmed
+  acceptable_forms:
+  - Passivation
+  - passivation
+  - Passivating
+  - passivating
+  evidence:
+  - quote: Stainless Steel Passivation Services
+    approx_offset: 28460
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-process_caps-0041
+  name: Assembly
+  status: confirmed
+  acceptable_forms:
+  - Assembly
+  - Part Assembly
+  - part assembly
+  - Sub-Assembly
+  - mechanical parts assembly
+  - Bushing Assembly
+  evidence:
+  - quote: Part Assembly Services
+    approx_offset: 28530
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-process_caps-0042
+  name: Packaging
+  status: confirmed
+  acceptable_forms:
+  - Packaging
+  - packaging
+  - Product Packaging
+  - customized packaging
+  evidence:
+  - quote: Design Assistance, Heat Treating, Packaging, and More
+    approx_offset: 28605
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-process_caps-0043
+  name: Design assistance
+  status: disputed
+  acceptable_forms:
+  - Design Assistance
+  - Design assistance
+  - design assistance
+  evidence:
+  - quote: Design Assistance, Heat Treating, Packaging, and More
+    approx_offset: 28605
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: disputed
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+    reason: design assistance is pre-production engineering; no operation is performed on materials, parts or products
+  notes: design assistance is pre-production engineering; no operation is performed on materials, parts or products
+- id: fzemanufacturing_com-process_caps-0044
+  name: Welding
+  status: confirmed
+  acceptable_forms:
+  - Welding
+  - welding
+  - welding services
+  evidence:
+  - quote: Welding Services
+    approx_offset: 34313
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-process_caps-0045
+  name: FCA / flux-cored arc welding
+  status: confirmed
+  acceptable_forms:
+  - FCA Welding
+  - FCAW
+  - Flux-cored arc welding
+  - Flux Core Arc Welding
+  - flux-cored welding
+  evidence:
+  - quote: FCA Welding
+    approx_offset: 35478
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-process_caps-0046
+  name: TIG welding
+  status: confirmed
+  acceptable_forms:
+  - TIG Welding
+  - TIG welding
+  - Tungsten Inert Gas
+  - GTAW
+  - Gas Tungsten Arc Welding
+  evidence:
+  - quote: Our TIG welding services provide strong and reliable results that are highly durable and stand up to
+      harsh conditions,
+    approx_offset: 37021
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-process_caps-0047
+  name: Spot welding
+  status: confirmed
+  acceptable_forms:
+  - Spot welding
+  - Spot and Stud Welding
+  - Spot & Stud Welding
+  - Spot
+  evidence:
+  - quote: Spot and Stud Welding
+    approx_offset: 37217
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-process_caps-0048
+  name: Percussion welding
+  status: confirmed
+  acceptable_forms:
+  - percussion
+  evidence:
+  - quote: by spot and stud welding. Various welding processes are available, such as percussion, arc, friction,
+      and resistance welding. By heating the stud and arcing between them, welding arcs connect
+    approx_offset: 37300
+  actor: unknown
+  notes: named in the stud-welding explainer as one of the process family, not claimed
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-process_caps-0049
+  name: Friction welding
+  status: confirmed
+  acceptable_forms:
+  - friction
+  evidence:
+  - quote: by spot and stud welding. Various welding processes are available, such as percussion, arc, friction,
+      and resistance welding. By heating the stud and arcing between them, welding arcs connect
+    approx_offset: 37300
+  actor: unknown
+  notes: named in the stud-welding explainer as one of the process family, not claimed
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-process_caps-0050
+  name: Automated welding
+  status: confirmed
+  acceptable_forms:
+  - Automated
+  evidence:
+  - quote: Free Hand
+    approx_offset: 38833
+  - quote: Automated
+    approx_offset: 38843
+  notes: the spec table's 'Welding Operation' row values are Free Hand / Automated
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: amended
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+    reason: the entry is named 'Automated welding' but its quote and one of its forms are 'Free Hand', which is
+      the OPPOSITE operation. The Welding Operation table lists 'Free Hand' (line 724) and 'Automated' (line 725)
+      as two separate line items; the entry keeps 'Automated' and free-hand welding is filed separately as a miss
+- id: fzemanufacturing_com-process_caps-0051
+  name: Lights-out / unmanned manufacturing
+  status: disputed
+  acceptable_forms:
+  - Lights Out Manufacturing
+  - Lights Out
+  - Lights-Out Manufacturing
+  - Unmanned manufacturing
+  - Lights Out / Unmanned Manufacturing
+  evidence:
+  - quote: Lights Out Manufacturing
+    approx_offset: 40227
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: disputed
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+    reason: lights-out/unmanned manufacturing describes how the shop is staffed while machines run, not an operation
+      performed on the work; it is a mode of production rather than a process
+  notes: lights-out/unmanned manufacturing describes how the shop is staffed while machines run, not an operation
+    performed on the work; it is a mode of production rather than a process
+- id: fzemanufacturing_com-process_caps-0052
+  name: MIG welding
+  status: confirmed
+  acceptable_forms:
+  - MIG Welding
+  - MIG welding
+  - Metal Inert Gas
+  - GMAW
+  - Gas Metal Arc Welding
+  evidence:
+  - quote: MIG Welding Services
+    approx_offset: 46558
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-process_caps-0053
+  name: Arc welding
+  status: confirmed
+  acceptable_forms:
+  - arc welding
+  - manual metal arc welding
+  evidence:
+  - quote: A form of arc welding, MIG welding is the most common welding technique. This highly versatile form of
+      welding is also called gas metal
+    approx_offset: 46943
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-process_caps-0054
+  name: Machining inspection & quality assurance
+  status: confirmed
+  acceptable_forms:
+  - Machining Inspection & Quality Assurance
+  - machining inspection
+  - quality assurance
+  evidence:
+  - quote: Machining Inspection & Quality Assurance
+    approx_offset: 50729
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-process_caps-0055
+  name: Machine safety inspection
+  status: confirmed
+  acceptable_forms:
+  - machine safety inspections
+  - machine safety inspection
+  - CNC machine inspections
+  evidence:
+  - quote: are essential for the machined component’s success. By having CNC machine inspections and machine safety
+      inspections, manufacturers can ensure their machined parts are safe, reliable,
+    approx_offset: 51223
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-process_caps-0056
+  name: On-site inspection
+  status: confirmed
+  acceptable_forms:
+  - On-site
+  - on-site inspections
+  - Onsite consultations
+  evidence:
+  - quote: We offer on-site inspections, consulting, parts fabrication, and repairs/reworks if required. Our capabilities
+      include dimensional
+    approx_offset: 52343
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-process_caps-0057
+  name: Reworks / repairs
+  status: confirmed
+  acceptable_forms:
+  - Reworks
+  - repairs/reworks
+  - repair services
+  evidence:
+  - quote: We offer on-site inspections, consulting, parts fabrication, and repairs/reworks if required. Our capabilities
+      include dimensional verification,
+    approx_offset: 52343
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-process_caps-0058
+  name: Dimensional inspection
+  status: confirmed
+  acceptable_forms:
+  - Dimensional
+  - dimensional verification
+  - dimensional checks
+  evidence:
+  - quote: consulting, parts fabrication, and repairs/reworks if required. Our capabilities include dimensional
+      verification, containment assessments, and advanced non-contact inspection methods such as CMM,
+    approx_offset: 52373
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-process_caps-0059
+  name: Containment assessment
+  status: confirmed
+  acceptable_forms:
+  - Containment
+  - containment assessments
+  evidence:
+  - quote: fabrication, and repairs/reworks if required. Our capabilities include dimensional verification, containment
+      assessments, and advanced non-contact inspection methods such as CMM, Optical Comparitor,
+    approx_offset: 52391
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-process_caps-0060
+  name: Borescope inspection
+  status: confirmed
+  acceptable_forms:
+  - Borescopes
+  - borescopes
+  evidence:
+  - quote: assessments, and advanced non-contact inspection methods such as CMM, Optical Comparitor, borescopes,
+      ultrasonic, penetrant, and magnetic particle testing. From prototyping to high-volume production,
+    approx_offset: 52500
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-process_caps-0061
+  name: Ultrasonic testing
+  status: confirmed
+  acceptable_forms:
+  - Ultrasonic
+  - ultrasonic
+  evidence:
+  - quote: advanced non-contact inspection methods such as CMM, Optical Comparitor, borescopes, ultrasonic, penetrant,
+      and magnetic particle testing. From prototyping to high-volume production
+    approx_offset: 52517
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-process_caps-0062
+  name: Optical comparator inspection
+  status: confirmed
+  acceptable_forms:
+  - Optical Comparitor
+  - Optical Comparator
+  evidence:
+  - quote: non-contact inspection methods such as CMM, Optical Comparitor, borescopes, ultrasonic, penetrant, and
+      magnetic particle testing. From prototyping to high-volume production, we support blanket
+    approx_offset: 52526
+  notes: the site misspells it 'Optical Comparitor' in the prose and 'Optical Comparator' in the equipment roster;
+    both spellings must count
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-process_caps-0063
+  name: Penetrant testing
+  status: confirmed
+  acceptable_forms:
+  - Penetrant
+  - penetrant
+  evidence:
+  - quote: non-contact inspection methods such as CMM, Optical Comparitor, borescopes, ultrasonic, penetrant, and
+      magnetic particle testing. From prototyping to high-volume production, we support
+    approx_offset: 52526
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-process_caps-0064
+  name: Magnetic particle testing
+  status: confirmed
+  acceptable_forms:
+  - Magnetic particle
+  - magnetic particle testing
+  evidence:
+  - quote: inspection methods such as CMM, Optical Comparitor, borescopes, ultrasonic, penetrant, and magnetic particle
+      testing. From prototyping to high-volume production, we support blanket orders with
+    approx_offset: 52538
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-process_caps-0065
+  name: Coordinate measuring machine inspection
+  status: confirmed
+  acceptable_forms:
+  - Coordinate Measuring Machines
+  - CMM
+  - CMM Inspection
+  - coordinate-measuring machines
+  evidence:
+  - quote: variety of best practices ranging from visual inspections, CNC machine inspection, coordinate measuring
+      machines, video monitoring, and an array of other indicators that ensure all parts meet your
+    approx_offset: 53832
+  notes: a CMM is EXCLUDED from equipments by that prompt's own words (measures rather than acts on the work); CMM
+    INSPECTION is an operation performed on the work and belongs here
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-process_caps-0066
+  name: Video monitoring / optical monitoring
+  status: confirmed
+  acceptable_forms:
+  - Video
+  - video monitoring
+  - optical monitoring
+  evidence:
+  - quote: practices ranging from visual inspections, CNC machine inspection, coordinate measuring machines, video
+      monitoring, and an array of other indicators that ensure all parts meet your specifications.
+    approx_offset: 53848
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-process_caps-0067
+  name: First article inspection
+  status: confirmed
+  acceptable_forms:
+  - First article
+  - First Articles
+  - ISIR
+  evidence:
+  - quote: First article
+    approx_offset: 55589
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-process_caps-0068
+  name: Hand and electronic gaging
+  status: confirmed
+  acceptable_forms:
+  - Hand & Electronic Gages
+  - Hand Gages
+  - gages
+  evidence:
+  - quote: Hand & Electronic Gages
+    approx_offset: 55603
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-process_caps-0069
+  name: On-stream inspection
+  status: confirmed
+  acceptable_forms:
+  - On-stream
+  evidence:
+  - quote: On-stream
+    approx_offset: 55627
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-process_caps-0070
+  name: Parts sorting
+  status: confirmed
+  acceptable_forms:
+  - Parts sorting
+  evidence:
+  - quote: Parts sorting
+    approx_offset: 55656
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-process_caps-0071
+  name: Positive material identification (ISM PMI)
+  status: confirmed
+  acceptable_forms:
+  - ISM PMI
+  - PMI
+  evidence:
+  - quote: ISM PMI
+    approx_offset: 55680
+  notes: appears as a bare cell in the Methods of Inspection table; the site never expands it
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-process_caps-0072
+  name: Laser engraving
+  status: confirmed
+  acceptable_forms:
+  - laser engraving
+  - Laser engraving
+  - engraving
+  evidence:
+  - quote: with high-precision semi-permanent or permanent markings. Unlike laser engraving or laser etching, laser
+      marking is non-subtractive and does no damage to the actual material. This makes it very
+    approx_offset: 58546
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-process_caps-0073
+  name: Laser etching
+  status: confirmed
+  acceptable_forms:
+  - laser etching
+  evidence:
+  - quote: with high-precision semi-permanent or permanent markings. Unlike laser engraving or laser etching, laser
+      marking is non-subtractive and does no damage to the actual material. This makes it very
+    approx_offset: 58546
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-process_caps-0074
+  name: CNC prototyping
+  status: confirmed
+  acceptable_forms:
+  - CNC Prototyping
+  - CNC prototyping
+  - CNC prototypes
+  evidence:
+  - quote: Guide to CNC Prototyping
+    approx_offset: 60160
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-process_caps-0075
+  name: Fiber laser marking
+  status: confirmed
+  acceptable_forms:
+  - fiber laser marking
+  - Fiber Laser Marking
+  - Fiber lasers
+  evidence:
+  - quote: What Is Fiber Laser Marking?
+    approx_offset: 61031
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-process_caps-0076
+  name: Electroplating
+  status: confirmed
+  acceptable_forms:
+  - electroplating
+  evidence:
+  - quote: electrochemical polishing, anodic polishing, or electrolytic polishing, is best understood as the reverse
+      of electroplating—i.e., it is an electrolytic finishing process that removes the surface
+    approx_offset: 62317
+  actor: unknown
+  notes: NEGATION / CONTRAST ECHO. Electroplating occurs ONLY in the sentence defining electropolishing as 'the
+    reverse of electroplating' - a contrast, never a capability. The old pipeline tagged Electroplating from exactly
+    this line. Recall-first keeps it as an entry (the text does name the process) with actor unknown; the attribution
+    error belongs downstream, not here.
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-process_caps-0077
+  name: Visual inspection
+  status: confirmed
+  acceptable_forms:
+  - Visual
+  - visual inspection
+  - visual inspections
+  evidence:
+  - quote: Inspection, including visual inspection, CMM, and optical monitoring
+    approx_offset: 68162
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-process_caps-0078
+  name: Inventory management
+  status: disputed
+  acceptable_forms:
+  - Inventory management
+  - inventory management
+  evidence:
+  - quote: Inventory management
+    approx_offset: 68231
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: disputed
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+    reason: inventory management is a logistics service; nothing is performed on the work
+  notes: inventory management is a logistics service; nothing is performed on the work
+- id: fzemanufacturing_com-process_caps-0079
+  name: Supply chain optimization
+  status: disputed
+  acceptable_forms:
+  - Supply chain optimization
+  - supply-chain management
+  - supply chain management services
+  evidence:
+  - quote: Supply chain optimization
+    approx_offset: 68316
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: disputed
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+    reason: supply chain optimization is a logistics/commercial service; nothing is performed on the work
+  notes: supply chain optimization is a logistics/commercial service; nothing is performed on the work
+- id: fzemanufacturing_com-process_caps-0080
+  name: 3D modeling
+  status: disputed
+  acceptable_forms:
+  - 3D modeling
+  evidence:
+  - quote: are proficient with custom-built or production parts, while our value-added services extend beyond fabrication
+      to include 3D modeling, rapid prototyping, assembly, finishing, and inspection.
+    approx_offset: 74472
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: disputed
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+    reason: 3D modeling is pre-production design work, performed on a CAD model rather than on materials, parts
+      or products
+  notes: 3D modeling is pre-production design work, performed on a CAD model rather than on materials, parts or
+    products
+- id: fzemanufacturing_com-process_caps-0081
+  name: Rapid prototyping
+  status: confirmed
+  acceptable_forms:
+  - rapid prototyping
+  - Prototyping
+  - prototype parts
+  evidence:
+  - quote: value-added services extend beyond fabrication to include 3D modeling, rapid prototyping, assembly, finishing,
+      and inspection.
+    approx_offset: 74536
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-process_caps-0082
+  name: Multi-axis machining
+  status: confirmed
+  acceptable_forms:
+  - multi-axis machining
+  - Multi-Axis
+  - 8 axes
+  - 3-axis, 4-axis, and 5-axis
+  evidence:
+  - quote: Our machining services utilize the latest in robotic automation and 3-axis, 4-axis, and 5-axis CNCs to
+      deliver precision components and assemblies from various metals,
+    approx_offset: 75328
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-process_caps-0083
+  name: Robotic welding
+  status: confirmed
+  acceptable_forms:
+  - robotic welding
+  evidence:
+  - quote: In addition to our standard welding services, our team can develop custom solutions to meet individual
+      needs such as robotic welding services for medium to high quantity orders.
+    approx_offset: 78803
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-process_caps-0084
+  name: Document verification
+  status: disputed
+  acceptable_forms:
+  - document verification
+  evidence:
+  - quote: Services include visual inspections, dimensional checks, material certification, in-process inspections,
+      and document verification. Working with the latest metrology
+    approx_offset: 80378
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: disputed
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+    reason: document verification acts on documents, not on the work; the clause admits inspection/testing/measurement
+      only where it is 'performed on the work' (contrast material certification, whose object is the material)
+  notes: document verification acts on documents, not on the work; the clause admits inspection/testing/measurement
+    only where it is 'performed on the work' (contrast material certification, whose object is the material)
+- id: fzemanufacturing_com-process_caps-0085
+  name: Abrasive blasting media reuse
+  status: disputed
+  acceptable_forms:
+  - abrasive blast media
+  evidence:
+  - quote: Reusing abrasive blast media previously used on iron parts
+    approx_offset: 86413
+  actor: unknown
+  notes: named in the passivation page's list of free-iron contamination sources | the text names 'abrasive blast
+    media' only as a source of iron contamination to be avoided, in a warning list on the passivation page; abrasive
+    blasting is at most implied, and 'media reuse' is not itself an operation
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: disputed
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+    reason: the text names 'abrasive blast media' only as a source of iron contamination to be avoided, in a warning
+      list on the passivation page; abrasive blasting is at most implied, and 'media reuse' is not itself an operation
+- id: fzemanufacturing_com-process_caps-0086
+  name: Salt spray testing
+  status: confirmed
+  acceptable_forms:
+  - salt sprays
+  evidence:
+  - quote: A final testing stage tests the material’s resistance to salt sprays and other corrosive materials such
+      as copper sulfate.
+    approx_offset: 87912
+  notes: the passivation step-by-step names a final test against salt sprays and copper sulfate
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-process_caps-0087
+  name: Deburring
+  status: confirmed
+  acceptable_forms:
+  - deburring
+  - deburrs
+  evidence:
+  - quote: completing measurements using gages and visual acceptance while machining, grinding, polishing, deburring,
+      broaching, sawing, assembly, etc.
+    approx_offset: 91214
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-process_caps-0088
+  name: Sawing
+  status: confirmed
+  acceptable_forms:
+  - sawing
+  - Autosaws
+  evidence:
+  - quote: completing measurements using gages and visual acceptance while machining, grinding, polishing, deburring,
+      broaching, sawing, assembly, etc.
+    approx_offset: 91214
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-process_caps-0089
+  name: Blueprint reading
+  status: disputed
+  acceptable_forms:
+  - blueprint reading
+  evidence:
+  - quote: Machinists need to be proficient in blueprint reading and understanding to select the proper machine
+      tool(s), then layout
+    approx_offset: 91714
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: disputed
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+    reason: blueprint reading is a machinist's skill listed in a job description, not an operation performed on
+      materials, parts or products
+  notes: blueprint reading is a machinist's skill listed in a job description, not an operation performed on materials,
+    parts or products
+- id: fzemanufacturing_com-process_caps-0090
+  name: 3D printing
+  status: confirmed
+  acceptable_forms:
+  - 3D printing
+  evidence:
+  - quote: requirements. We utilize cutting-edge technologies such as 3,4, and 5-axis CNC milling, 3D printing,
+      robotic part loading and unloading, bar feeding, and more to create Industrial equipment
+    approx_offset: 96740
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-process_caps-0091
+  name: Robotic part loading and unloading
+  status: confirmed
+  acceptable_forms:
+  - robotic part loading and unloading
+  - robotic automation
+  evidence:
+  - quote: utilize cutting-edge technologies such as 3,4, and 5-axis CNC milling, 3D printing, robotic part loading
+      and unloading, bar feeding, and more to create Industrial equipment components that
+    approx_offset: 96757
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-process_caps-0092
+  name: Bar feeding
+  status: confirmed
+  acceptable_forms:
+  - bar feeding
+  - Bar Feed
+  - bar feed equipment
+  evidence:
+  - quote: technologies such as 3,4, and 5-axis CNC milling, 3D printing, robotic part loading and unloading, bar
+      feeding, and more to create Industrial equipment components that
+    approx_offset: 96778
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-process_caps-0093
+  name: Micro-machining
+  status: confirmed
+  acceptable_forms:
+  - Micro-machining
+  evidence:
+  - quote: Micro-machining
+    approx_offset: 97304
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-process_caps-0094
+  name: Laser cutting
+  status: confirmed
+  acceptable_forms:
+  - Laser Cutting
+  - laser cutting
+  evidence:
+  - quote: From CNC Machining to Laser Cutting, FZE can provide Industrial components solutions from start to finish.
+      Our team can help customers with the design process when assistance is needed.
+    approx_offset: 97704
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-process_caps-0095
+  name: CNC Swiss machining
+  status: confirmed
+  acceptable_forms:
+  - CNC Swiss Machining
+  - Swiss machining
+  - swiss machining
+  - CNC swiss turning
+  - Swiss Precision Machining
+  evidence:
+  - quote: CNC Swiss Precision Machining Services
+    approx_offset: 101393
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-process_caps-0096
+  name: Knurling
+  status: confirmed
+  acceptable_forms:
+  - Knurling
+  - knurling
+  - Knurling Tool
+  evidence:
+  - quote: Knurling
+    approx_offset: 104888
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-process_caps-0097
+  name: Facing
+  status: confirmed
+  acceptable_forms:
+  - Facing
+  - face milling
+  - Facing Tool
+  evidence:
+  - quote: Turning – Contour/Form/Taper/Facing & Straight
+    approx_offset: 104999
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-process_caps-0098
+  name: Stress relieving
+  status: confirmed
+  acceptable_forms:
+  - Stress Relieving
+  - Electric Stress Relieving Oven
+  evidence:
+  - quote: -Electric Stress Relieving Oven
+    approx_offset: 111968
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-process_caps-0099
+  name: Abrasive polishing
+  status: confirmed
+  acceptable_forms:
+  - Abrasive Polishing
+  - Abrasive Polishing Equipment
+  evidence:
+  - quote: -Abrasive Polishing Equipment
+    approx_offset: 112027
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-process_caps-0100
+  name: VMC machining
+  status: confirmed
+  acceptable_forms:
+  - VMC Machining
+  - VMC machining
+  - vertical milling machining
+  - CNC Vertical Machining Services
+  - vertical machining
+  evidence:
+  - quote: Understanding VMC Machining
+    approx_offset: 128259
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-process_caps-0101
+  name: Metal fabrication
+  status: confirmed
+  acceptable_forms:
+  - Metal Fabrication
+  - metal fabrication
+  - Custom Metal Fabrication
+  - fabrication services
+  evidence:
+  - quote: Custom Metal Fabrication
+    approx_offset: 133791
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-process_caps-0102
+  name: Shearing / shaping
+  status: retired
+  acceptable_forms:
+  - bend, shape, and cut
+  - cut, bent, and assembled
+  evidence:
+  - quote: In metal fabrication, metal structures are cut, bent, and assembled. It involves converting raw materials
+      into machines, parts, and
+    approx_offset: 134649
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: retired
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+    reason: '''shear''/''shearing'' occurs nowhere in the file (0 hits), so the entry''s name asserts a process
+      the text does not name. Its two ''forms'' are sentence fragments (''bend, shape, and cut'', ''cut, bent, and
+      assembled'') rather than process names, and the operations they contain are already covered by Cutting (0103),
+      Bending (0028) and Assembly (0041)'
+  notes: '''shear''/''shearing'' occurs nowhere in the file (0 hits), so the entry''s name asserts a process the
+    text does not name. Its two ''forms'' are sentence fragments (''bend, shape, and cut'', ''cut, bent, and assembled'')
+    rather than process names, and the operations they contain are already covered by Cutting (0103), Bending (0028)
+    and Assembly (0041)'
+- id: fzemanufacturing_com-process_caps-0103
+  name: Cutting
+  status: confirmed
+  acceptable_forms:
+  - Cutting
+  - cutting
+  - precision cutting
+  evidence:
+  - quote: 'Cutting: There are several types of cutting methods, including sawing, laser cutting, punching, chiseling
+      and torching, as well as computer-controlled cutters.'
+    approx_offset: 135881
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-process_caps-0104
+  name: Punching
+  status: confirmed
+  acceptable_forms:
+  - punching
+  evidence:
+  - quote: 'Cutting: There are several types of cutting methods, including sawing, laser cutting, punching, chiseling
+      and torching, as well as computer-controlled cutters.'
+    approx_offset: 135881
+  actor: unknown
+  notes: in the generic 'what is metal fabrication' explainer list of cutting methods
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-process_caps-0105
+  name: Chiseling
+  status: confirmed
+  acceptable_forms:
+  - chiseling
+  evidence:
+  - quote: 'Cutting: There are several types of cutting methods, including sawing, laser cutting, punching, chiseling
+      and torching, as well as computer-controlled cutters.'
+    approx_offset: 135881
+  actor: unknown
+  notes: in the generic 'what is metal fabrication' explainer list of cutting methods
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-process_caps-0106
+  name: Torching
+  status: confirmed
+  acceptable_forms:
+  - torching
+  evidence:
+  - quote: 'Cutting: There are several types of cutting methods, including sawing, laser cutting, punching, chiseling
+      and torching, as well as computer-controlled cutters.'
+    approx_offset: 135881
+  actor: unknown
+  notes: in the generic 'what is metal fabrication' explainer list of cutting methods
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-process_caps-0107
+  name: Riveting
+  status: confirmed
+  acceptable_forms:
+  - rivets
+  evidence:
+  - quote: 'Assembly: In the process of assembly, welds, adhesives, rivets, threaded fasteners, or crimped seams
+      can be used. Materials used for fabrication typically include structural'
+    approx_offset: 136347
+  actor: unknown
+  notes: generic assembly-methods explainer sentence
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-process_caps-0108
+  name: Crimping
+  status: confirmed
+  acceptable_forms:
+  - crimped seams
+  evidence:
+  - quote: 'Assembly: In the process of assembly, welds, adhesives, rivets, threaded fasteners, or crimped seams
+      can be used. Materials used for fabrication typically include structural'
+    approx_offset: 136347
+  actor: unknown
+  notes: generic assembly-methods explainer sentence
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-process_caps-0109
+  name: Powder coating
+  status: confirmed
+  acceptable_forms:
+  - powder coating
+  evidence:
+  - quote: truly unique product. In addition, many metal fabrication manufacturers offer powder coating and other
+      finishing options to customize your products further.
+    approx_offset: 137500
+  actor: unknown
+  notes: attributed to 'many metal fabrication manufacturers' in the generic benefits section, not to FZE
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-process_caps-0110
+  name: Casting
+  status: confirmed
+  acceptable_forms:
+  - casting
+  - Castings
+  - casting replacements
+  evidence:
+  - quote: cutting and shaping of metal into different objects. It can be done through various methods, including
+      welding, fabricating, and casting. There are many reasons why people may need metal fabrication
+    approx_offset: 138069
+  actor: unknown
+  notes: generic metal-fabrication explainer; 'Castings' also appears as a Product Type INSPECTED and 'casting replacements'
+    as a fabricated product
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-process_caps-0111
+  name: Heliarc welding
+  status: confirmed
+  acceptable_forms:
+  - Heliarc welding
+  evidence:
+  - quote: tungsten electrode, an inert gas and a separate filler material. This process is sometimes mistakenly
+      referred to as Heliarc welding.
+    approx_offset: 139215
+  actor: unknown
+  notes: named only as a misnomer for GTAW inside the spec-table gloss
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-process_caps-0112
+  name: Stud welding
+  status: confirmed
+  acceptable_forms:
+  - Stud welding
+  - Stud Welding
+  - Stud
+  evidence:
+  - quote: Stud welding is a form of Spot welding where a bolt or weld nut is welded to another metal part. The
+      bolts are often fed automatically into the welder.
+    approx_offset: 139601
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-process_caps-0113
+  name: Stick welding / SMAW
+  status: confirmed
+  acceptable_forms:
+  - Stick Welding
+  - SMAW
+  - Shielded Metal Arc Welding
+  evidence:
+  - quote: Stick Welding / Shielded Metal Arc Welding (SMAW)
+    approx_offset: 150062
+  actor: unknown
+  notes: named only in the MIG Welding Guide's 'Other Types of Welding' explainer list, as a method FZE contrasts
+    against - not a claimed capability
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-process_caps-0114
+  name: Energy beam welding
+  status: confirmed
+  acceptable_forms:
+  - Energy Beam Welding
+  evidence:
+  - quote: Energy Beam Welding
+    approx_offset: 150513
+  actor: unknown
+  notes: bare item in the MIG Welding Guide's 'Other Types of Welding' explainer list
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-process_caps-0115
+  name: Atomic hydrogen welding (AHW)
+  status: confirmed
+  acceptable_forms:
+  - AHW
+  evidence:
+  - quote: AHW
+    approx_offset: 150533
+  actor: unknown
+  notes: bare acronym in the MIG Welding Guide's 'Other Types of Welding' explainer list; the guide never expands
+    it
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-process_caps-0116
+  name: Plasma arc welding (PAW)
+  status: confirmed
+  acceptable_forms:
+  - PAW
+  evidence:
+  - quote: PAW
+    approx_offset: 150537
+  actor: unknown
+  notes: bare acronym in the MIG Welding Guide's 'Other Types of Welding' explainer list; the guide never expands
+    it
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-process_caps-0117
+  name: Painting
+  status: confirmed
+  acceptable_forms:
+  - painting
+  - Painting
+  evidence:
+  - quote: Secondary services such as anodizing, plating, etching, heat treating, passivating, painting and chromating
+      are available. Prototype and low to high-volume production are offered.
+    approx_offset: 152818
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-process_caps-0118
+  name: Chromating
+  status: confirmed
+  acceptable_forms:
+  - chromating
+  evidence:
+  - quote: Secondary services such as anodizing, plating, etching, heat treating, passivating, painting and chromating
+      are available. Prototype and low to high-volume production are offered.
+    approx_offset: 152818
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-process_caps-0119
+  name: Etching
+  status: confirmed
+  acceptable_forms:
+  - etching
+  - Etching
+  - laser etching
+  evidence:
+  - quote: Secondary services such as anodizing, plating, etching, heat treating, passivating, painting and chromating
+      are available. Prototype and low to high-volume production are offered.
+    approx_offset: 152818
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-process_caps-0120
+  name: Electrical assembly
+  status: confirmed
+  acceptable_forms:
+  - electrical assembly
+  evidence:
+  - quote: Not only do we offer mechanical parts assembly services, but we also provide electrical assembly for
+      products. Our team is equipped to handle all types of electronic components such
+    approx_offset: 163138
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-process_caps-0121
+  name: Box build assembly
+  status: confirmed
+  acceptable_forms:
+  - Box Build Assembly
+  - Box-Build Assembly
+  evidence:
+  - quote: Box Build Assembly
+    approx_offset: 164088
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-process_caps-0122
+  name: Keyways
+  status: confirmed
+  acceptable_forms:
+  - keyways
+  - keyway milling
+  evidence:
+  - quote: machining includes such processes as shaft turning, shaft milling, drilling, keyways and threading of
+      bar material to detailed specifications. Using CNC Bar Feed Lathes, Swiss Bar Feed Turning
+    approx_offset: 165304
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-process_caps-0123
+  name: Turning
+  status: confirmed
+  acceptable_forms:
+  - Turning
+  - turning
+  - shaft turning
+  - Polygon Turning
+  evidence:
+  - quote: Polygon Turning
+    approx_offset: 171481
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-process_caps-0124
+  name: Laser marking
+  status: confirmed
+  acceptable_forms:
+  - Laser Marking
+  - laser marking
+  - Laser Part Marking
+  evidence:
+  - quote: High-Precision Laser Marking Services
+    approx_offset: 174005
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-process_caps-0125
+  name: Embossing
+  status: confirmed
+  acceptable_forms:
+  - Embossing
+  evidence:
+  - quote: Embossing
+    approx_offset: 178378
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-process_caps-0126
+  name: Resistance welding
+  status: confirmed
+  acceptable_forms:
+  - resistance welding
+  - Arc/Resistance Welding Process
+  evidence:
+  - quote: 'Spot & Stud Welding: Commonly referred to as resistance welding, this method is widely used for joining
+      sheets and components; and is performed'
+    approx_offset: 181332
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-process_caps-0127
+  name: Spinning / teeth cutting
+  status: confirmed
+  acceptable_forms:
+  - Internal and external spinning and teeth cutting
+  - teeth cutting
+  - spinning
+  evidence:
+  - quote: Internal and external spinning and teeth cutting
+    approx_offset: 202037
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-process_caps-0128
+  name: Broaching
+  status: confirmed
+  acceptable_forms:
+  - Broaching
+  - broaching
+  - Rotary Broaching
+  evidence:
+  - quote: Rotary Broaching
+    approx_offset: 202086
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-process_caps-0129
+  name: Oxy-fuel cutting
+  status: confirmed
+  acceptable_forms:
+  - Oxy-fuel cutting
+  evidence:
+  - quote: Oxy-fuel cutting
+    approx_offset: 218391
+  actor: unknown
+  notes: 'EXPLAINER PROSE, not a capability claim: a bare bullet inside the ''Guide to CNC Prototyping'' blog''s
+    list of ''Other types of CNC cutting that benefit from new technological developments''. The old pipeline harvested
+    waterjet/plasma/oxy-fuel from this list. Recall-first keeps it - the text names the process designation.'
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-process_caps-0130
+  name: Plasma cutting
+  status: confirmed
+  acceptable_forms:
+  - Plasma cutting
+  evidence:
+  - quote: Plasma cutting
+    approx_offset: 218408
+  actor: unknown
+  notes: 'EXPLAINER PROSE, not a capability claim: same ''Guide to CNC Prototyping'' blog list as oxy-fuel and water-jet
+    cutting. FZE owns no plasma cutter in its equipment roster.'
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-process_caps-0131
+  name: Water-jet cutting
+  status: confirmed
+  acceptable_forms:
+  - Water-jet cutting
+  - Water-jet
+  evidence:
+  - quote: Water-jet cutting
+    approx_offset: 218423
+  actor: unknown
+  notes: 'EXPLAINER PROSE, not a capability claim: same ''Guide to CNC Prototyping'' blog list. Note the site spells
+    it with a hyphen (''Water-jet''), so a form of ''waterjet'' alone would not match the text.'
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-process_caps-0132
+  name: Chemical cutting
+  status: confirmed
+  acceptable_forms:
+  - Chemical cutting
+  - chemical machining
+  evidence:
+  - quote: Chemical cutting
+    approx_offset: 218441
+  actor: unknown
+  notes: 'EXPLAINER PROSE, not a capability claim: same ''Guide to CNC Prototyping'' blog list'
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-process_caps-0133
+  name: Chamfering
+  status: confirmed
+  acceptable_forms:
+  - chamfering
+  evidence:
+  - quote: 'following: cutting, face milling, drilling, tapping, reaming, boring, countersinking, chamfering, carving,
+      and engraving. This versatility, combined with their ease of use and relatively low'
+    approx_offset: 226861
+  actor: unknown
+  notes: named in the 'What is VMC Machining?' blog explainer listing generic VMC operations
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-process_caps-0134
+  name: Carving
+  status: confirmed
+  acceptable_forms:
+  - carving
+  evidence:
+  - quote: 'following: cutting, face milling, drilling, tapping, reaming, boring, countersinking, chamfering, carving,
+      and engraving. This versatility, combined with their ease of use and relatively low'
+    approx_offset: 226861
+  actor: unknown
+  notes: named in the 'What is VMC Machining?' blog explainer listing generic VMC operations
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-process_caps-0135
+  name: Annealing laser marking
+  status: confirmed
+  acceptable_forms:
+  - Annealing laser marking
+  - annealing
+  evidence:
+  - quote: 1. Annealing laser marking. This process oxidizes the surface to create precise black markings with a
+      smooth finish. It can sometimes
+    approx_offset: 233791
+  actor: unknown
+  notes: one of four generic laser-marking METHODS enumerated in the Guide to Laser Marking
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-process_caps-0136
+  name: Carbon migration laser marking
+  status: confirmed
+  acceptable_forms:
+  - Carbon migration laser marking
+  - carbon migration
+  evidence:
+  - quote: 2. Carbon migration laser marking. In carbon migration, the laser brings carbon characteristics to the
+      surface of the material.
+    approx_offset: 234008
+  actor: unknown
+  notes: one of four generic laser-marking METHODS enumerated in the Guide to Laser Marking
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-process_caps-0137
+  name: Coloration laser marking
+  status: confirmed
+  acceptable_forms:
+  - Coloration laser marking
+  evidence:
+  - quote: 3. Coloration laser marking. This process adds color to the product material. It uses a foaming process
+      and lasers with a precise pulse frequency to create designs of different colors.
+    approx_offset: 234264
+  actor: unknown
+  notes: one of four generic laser-marking METHODS enumerated in the Guide to Laser Marking
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-process_caps-0138
+  name: Foaming laser marking
+  status: confirmed
+  acceptable_forms:
+  - Foaming laser marking
+  - foaming process
+  evidence:
+  - quote: 4. Foaming laser marking. This process creates a lighter-colored molten burn on the surface of plastics.
+      It can create highly visible markings
+    approx_offset: 234449
+  actor: unknown
+  notes: one of four generic laser-marking METHODS enumerated in the Guide to Laser Marking
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-process_caps-0139
+  name: Laser cleaning
+  status: confirmed
+  acceptable_forms:
+  - laser cleaning
+  - Laser cleaning
+  evidence:
+  - quote: All three of these processes also differ from laser cleaning. Laser cleaning operations use lasers to
+      “burn” away contaminants such as dirt, grease, or oil from a surface without
+    approx_offset: 241307
+  actor: unknown
+  notes: named in the Guide to Laser Marking only to contrast it against marking; FZE does not claim laser cleaning
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-process_caps-0140
+  name: Sandblasting
+  status: confirmed
+  acceptable_forms:
+  - sandblasting
+  evidence:
+  - quote: the surface itself. The process is used as an alternative to polishing and abrasive cleaning methods
+      such as sandblasting.
+    approx_offset: 241508
+  actor: unknown
+  notes: named in the laser-marking blog as the alternative laser cleaning replaces
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-process_caps-0141
+  name: Free hand (manual) welding
+  status: candidate
+  acceptable_forms:
+  - Free Hand
+  evidence:
+  - quote: Free Hand
+    approx_offset: 38833
+  notes: the Welding Operation table lists 'Free Hand' and 'Automated' as two separate operations on three pages;
+    the packet folds 'Free Hand' into its 'Automated welding' entry (process_caps-0050), so manual welding has no
+    entry of its own
+  provenance:
+  - action: added
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+    source: verification-pass-miss
+- id: fzemanufacturing_com-process_caps-0142
+  name: In-house fixturing and tooling
+  status: candidate
+  acceptable_forms:
+  - In-House Fixturing & Tooling
+  - Dedicated Fixturing
+  - custom fixturing and tooling
+  - custom tooling and fixturing
+  evidence:
+  - quote: In-House Fixturing & Tooling
+    approx_offset: 8642
+  notes: '''Fixturing'' occurs 11 times as a stated capability (Fixturing tables on three capability pages, plus
+    ''custom fixturing and tooling'' on the shaft page). A fixture itself is excluded from equipments as tooling,
+    but making one in-house is an operation, and no packet entry covers it'
+  provenance:
+  - action: added
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+    source: verification-pass-miss
+false_friends:
+- form: Injection Molding
+  reason: occurs ONLY as a sector row in the welding page's Industry Focus table; FZE claims no molding capability.
+    'Inserting Plastic Molding Milling' in the secondary-services table is insert-milling, a different operation
+- form: Brewing
+  reason: occurs only in 'companies who grow, brew, build, engineer' and 'Brewed In Wisconsin', describing the Made
+    In Wisconsin logo variants
+- form: Fracking
+  reason: a sector row in the Industry Focus table, not an operation FZE performs on work
+- form: Extrusion
+  reason: 'anticipatory: word-association from bar stock / tubing / profiles; does not occur'
+- form: Sheet Metal Stamping
+  reason: 'anticipatory: word-association from ''sheet metal'', ''press brakes'' and ''punching''; ''stamping''
+    does not occur anywhere in the text'
+- form: Screw machining
+  reason: '''Swiss screw machines'' occurs once inside a vendor-selection aside in the Swiss machining blog; there
+    is no screw-machining capability claim'

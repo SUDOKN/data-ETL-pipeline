@@ -1,0 +1,1332 @@
+subject: tanfel.com
+field: products
+snapshot:
+  file: apps/data_etl_app/tests/test_stages/sample_scraped_texts/tanfel.com.txt
+  sha256: 4942d992128752abeace6e11e1235e9e55f4737a21b51d3778cb2f818667bf9b
+eval_set_version: 2
+expected_empty: false
+notes: 71 entries (51 own, 18 unknown, 2 client, 1 disputed); this file doubles as the contract_products inventory.
+  Two clear own-brand groups (the four Tanfel-branded thread plug gage SKUs plus the gage line itself, and the silicone/membrane-switch
+  component catalog) sit next to a long tail of artifacts named only as textbook examples (train wheels, lamp posts,
+  beverage-can lids, O-ring seals) or as customer products in testimonials (sporting goods, energy efficient dog
+  doors). The textbook tail is labelled actor=unknown and the testimonial items actor=client.
+entries:
+- id: tanfel_com-products-0001
+  name: Stamped metal parts
+  status: confirmed
+  acceptable_forms:
+  - stamped metal parts
+  - precision stamped metal parts
+  - Stamped parts for a variety of industries
+  evidence:
+  - quote: Tanfel is a leading provider of stamped metal parts
+    approx_offset: 543
+  - quote: Stamped parts for a variety of industries
+    approx_offset: 121889
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+- id: tanfel_com-products-0002
+  name: Custom metal parts
+  status: confirmed
+  acceptable_forms:
+  - CUSTOM METAL PARTS
+  - custom metal parts
+  - Tanfel Custom Metal Parts
+  evidence:
+  - quote: TANFEL IS A LEADING PROVIDER OF CUSTOM METAL PARTS
+    approx_offset: 1554
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+- id: tanfel_com-products-0003
+  name: Thread plug gages (own brand line)
+  status: confirmed
+  acceptable_forms:
+  - THREAD PLUG GAGES
+  - Thread Plug Gages
+  - Thread Plug Gauges
+  - thread plug gauges
+  - thread plug gages
+  - thread gauges
+  - thread gages
+  evidence:
+  - quote: TANFEL NOW MAKES HIGH-QUALITY THREAD PLUG GAGES.
+    approx_offset: 2613
+  - quote: Thread plug gauges, also referred to as Thread Plug Gages, assure the assembly of mating parts and provide
+      quality control for production runs of threaded
+    approx_offset: 107209
+  notes: Tanfel Metrology, a division selling its own catalog gages direct. The banner 'TANFEL NOW MAKES HIGH-QUALITY
+    THREAD PLUG GAGES.' repeats on ~25 pages, so this entry is in scope for almost every window.
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+- id: tanfel_com-products-0004
+  name: Energy efficient dog doors
+  status: confirmed
+  acceptable_forms:
+  - energy efficient dog doors
+  evidence:
+  - quote: There are a variety of manufacturing challenges with our line of energy efficient dog doors, but great
+      suppliers like Tanfel makes our job much easier. They’ve hit their stated lead
+    approx_offset: 6916
+  actor: client
+  notes: a customer testimonial (ENDURA FLAP PET DOORS) describing the CUSTOMER's product. Recall-first keeps it
+    as an artifact named in the text; the old pipeline promoted this same sentence into an INDUSTRY, which is the
+    actual defect.
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+- id: tanfel_com-products-0005
+  name: Plastic products
+  status: confirmed
+  acceptable_forms:
+  - PLASTIC PRODUCTS
+  - Plastic Products
+  evidence:
+  - quote: PLASTIC PRODUCTS
+    approx_offset: 9278
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+- id: tanfel_com-products-0006
+  name: Mobile phone plastic housing
+  status: confirmed
+  acceptable_forms:
+  - mobile phone plastic housing
+  evidence:
+  - quote: mobile phone plastic housing, automotive panels, and computer accessories such as PC card adapters, IMD
+      lens/ covers
+    approx_offset: 9625
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+- id: tanfel_com-products-0007
+  name: Automotive panels
+  status: confirmed
+  acceptable_forms:
+  - automotive panels
+  - Automotive parts
+  evidence:
+  - quote: automotive panels, and computer accessories such as PC card adapters, IMD lens/ covers, multi-component
+      parts for electronic products, miniature gears, thin wall casings and many other components.
+    approx_offset: 9655
+  - quote: Automotive parts
+    approx_offset: 121980
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+- id: tanfel_com-products-0008
+  name: PC card adapters
+  status: confirmed
+  acceptable_forms:
+  - PC card adapters
+  evidence:
+  - quote: PC card adapters, IMD lens/ covers, multi-component parts for electronic products, miniature gears, thin
+      wall casings and many other components.
+    approx_offset: 9707
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+- id: tanfel_com-products-0009
+  name: IMD lens / covers
+  status: confirmed
+  acceptable_forms:
+  - IMD lens/ covers
+  evidence:
+  - quote: IMD lens/ covers, multi-component parts for electronic products, miniature gears, thin wall casings and
+      many other components.
+    approx_offset: 9725
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+- id: tanfel_com-products-0010
+  name: Miniature gears
+  status: confirmed
+  acceptable_forms:
+  - miniature gears
+  evidence:
+  - quote: miniature gears, thin wall casings and many other components.
+    approx_offset: 9790
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+- id: tanfel_com-products-0011
+  name: Thin wall casings
+  status: confirmed
+  acceptable_forms:
+  - thin wall casings
+  evidence:
+  - quote: thin wall casings and many other components.
+    approx_offset: 9807
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+- id: tanfel_com-products-0012
+  name: Silicone rubber products
+  status: confirmed
+  acceptable_forms:
+  - SILICONE RUBBER PRODUCTS
+  - Silicone Rubber Products
+  evidence:
+  - quote: SILICONE RUBBER PRODUCTS
+    approx_offset: 15750
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+- id: tanfel_com-products-0013
+  name: Conductive rubber pad
+  status: confirmed
+  acceptable_forms:
+  - conductive rubber pad
+  evidence:
+  - quote: we can design and produce a high quality and low-cost conductive rubber pad that precisely meets your
+      needs. You can choose from a complete range of key-stroke / travel
+    approx_offset: 16218
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+- id: tanfel_com-products-0014
+  name: Silicone rubber keypads
+  status: confirmed
+  acceptable_forms:
+  - Silicone rubber keypads
+  - silicone rubber and plastic keypads / keyboards
+  - Silicone Keypads
+  - conductive keypads
+  evidence:
+  - quote: Silicone rubber keypads can be co-molded with silicone conductive pills (carbon, gold or metal).
+    approx_offset: 16607
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+- id: tanfel_com-products-0015
+  name: Silicone conductive pills
+  status: confirmed
+  acceptable_forms:
+  - silicone conductive pills
+  - conductive pills
+  evidence:
+  - quote: silicone conductive pills (carbon, gold or metal).
+    approx_offset: 16653
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+- id: tanfel_com-products-0016
+  name: Metal-pill contact
+  status: confirmed
+  acceptable_forms:
+  - Metal-pill contact
+  evidence:
+  - quote: Metal-pill contact
+    approx_offset: 16954
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+- id: tanfel_com-products-0017
+  name: Plastic keycap-to-rubber keypad assembly
+  status: confirmed
+  acceptable_forms:
+  - Plastic keycap-to-rubber keypad assembly
+  evidence:
+  - quote: Plastic keycap-to-rubber keypad assembly
+    approx_offset: 16973
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+- id: tanfel_com-products-0018
+  name: Plastic key tree keycap
+  status: confirmed
+  acceptable_forms:
+  - Plastic key tree keycap
+  evidence:
+  - quote: Plastic key tree keycap
+    approx_offset: 17014
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+- id: tanfel_com-products-0019
+  name: PC films caps
+  status: confirmed
+  acceptable_forms:
+  - PC films caps
+  evidence:
+  - quote: PC films caps download silicone product sheet here
+    approx_offset: 17038
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+- id: tanfel_com-products-0020
+  name: Silicone rubber connectors
+  status: confirmed
+  acceptable_forms:
+  - SILICONE RUBBER CONNECTORS
+  evidence:
+  - quote: SILICONE RUBBER CONNECTORS
+    approx_offset: 17116
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+- id: tanfel_com-products-0021
+  name: O-ring seals and gaskets
+  status: confirmed
+  acceptable_forms:
+  - O-ring seals and gaskets
+  evidence:
+  - quote: small components like O-ring seals and gaskets
+    approx_offset: 24438
+  actor: unknown
+  notes: die-casting finish-class textbook prose.
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+- id: tanfel_com-products-0022
+  name: GO / NO-GO thread gauges
+  status: confirmed
+  acceptable_forms:
+  - 'Industrial Metrology: GO and NO-GO Thread Plug Gauges'
+  - GO/NO-GO thread gauges
+  - GO/NO-GO thread plug gauges
+  - GO NOGO
+  evidence:
+  - quote: 'Industrial Metrology: GO and NO-GO Thread Plug Gauges'
+    approx_offset: 25421
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+- id: tanfel_com-products-0023
+  name: Heat sinks
+  status: confirmed
+  acceptable_forms:
+  - Heat Sinks
+  - Skive Heatsink
+  - Heatsink
+  evidence:
+  - quote: Heat Sinks
+    approx_offset: 26440
+  - quote: Skive Heatsink
+    approx_offset: 122189
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+- id: tanfel_com-products-0024
+  name: Train wheels and lamp posts
+  status: confirmed
+  acceptable_forms:
+  - train wheels to lamp posts
+  - train wheels
+  evidence:
+  - quote: creating products ranging from train wheels to lamp posts.
+    approx_offset: 33902
+  actor: unknown
+  notes: metal-casting textbook prose.
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+- id: tanfel_com-products-0025
+  name: Compressors, generators, motors and pumps
+  status: confirmed
+  acceptable_forms:
+  - Compressors
+  - generators
+  - motors, and pumps
+  evidence:
+  - quote: Compressors, generators, motors, and pumps
+    approx_offset: 39795
+  actor: unknown
+  notes: metal-casting applications textbook prose.
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+- id: tanfel_com-products-0026
+  name: Automobiles, airplanes, trains and ships
+  status: confirmed
+  acceptable_forms:
+  - Automobiles
+  - airplanes
+  - trains, and ships
+  evidence:
+  - quote: Automobiles, airplanes, farming and mining vehicles, trains, and ships
+    approx_offset: 39883
+  actor: unknown
+  notes: metal-casting applications textbook prose.
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+- id: tanfel_com-products-0027
+  name: Valves and fittings
+  status: confirmed
+  acceptable_forms:
+  - valves, and fittings
+  - fittings
+  evidence:
+  - quote: plant machinery and tools, valves, and fittings
+    approx_offset: 40027
+  actor: unknown
+  notes: metal-casting applications textbook prose.
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+- id: tanfel_com-products-0028
+  name: Tubes and rods (extruded)
+  status: confirmed
+  acceptable_forms:
+  - tubes and rods
+  evidence:
+  - quote: Extrusion is widely used to make standard parts like tubes and rods as well as custom parts like door
+      and window frames for automobiles. Because of aluminum’s unique
+    approx_offset: 52666
+  actor: unknown
+  notes: extrusion textbook prose.
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+- id: tanfel_com-products-0029
+  name: Door and window frames
+  status: confirmed
+  acceptable_forms:
+  - door and window frames
+  evidence:
+  - quote: custom parts like door and window frames for automobiles. Because of aluminum’s unique ability to withstand
+      high and low temperatures
+    approx_offset: 52745
+  actor: unknown
+  notes: extrusion textbook prose.
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+- id: tanfel_com-products-0030
+  name: Seamless tube
+  status: confirmed
+  acceptable_forms:
+  - Seamless Tube
+  - seamless tubes
+  - SEAMLESS TUBE
+  evidence:
+  - quote: Seamless Tube, Rod, Bar, Plate, and Custom parts
+    approx_offset: 57415
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+- id: tanfel_com-products-0031
+  name: Hearing aids, radio towers, satellite arrays
+  status: confirmed
+  acceptable_forms:
+  - hearing aids
+  - radio towers
+  - satellite arrays
+  evidence:
+  - quote: hearing aids, radio towers, satellite arrays or quick serve restaurants, Tanfel will help your product
+      provide clarity for your customers.
+    approx_offset: 59203
+  actor: client
+  notes: Tanfel's list of what its communications customers build.
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+- id: tanfel_com-products-0032
+  name: PCB
+  status: confirmed
+  acceptable_forms:
+  - PCB
+  evidence:
+  - quote: PCB
+    approx_offset: 61219
+  actor: unknown
+  notes: RFQ 'Product Interest' dropdown option only; PCBs are named nowhere else.
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+- id: tanfel_com-products-0033
+  name: Busbars
+  status: confirmed
+  acceptable_forms:
+  - Busbar
+  - Stamped Aluminum and Copper Busbars
+  evidence:
+  - quote: Busbar
+    approx_offset: 63842
+  - quote: Stamped Aluminum and Copper Busbars
+    approx_offset: 121853
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+- id: tanfel_com-products-0034
+  name: Solid thread ring gauges
+  status: confirmed
+  acceptable_forms:
+  - Solid thread ring gauges
+  evidence:
+  - quote: Solid thread ring gauges
+    approx_offset: 106825
+  actor: unknown
+  notes: listed as a type of thread gauge that exists, not explicitly as a Tanfel product.
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+- id: tanfel_com-products-0035
+  name: Adjustable thread ring gauges
+  status: confirmed
+  acceptable_forms:
+  - Adjustable thread ring gauges
+  evidence:
+  - quote: Adjustable thread ring gauges
+    approx_offset: 106850
+  actor: unknown
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+- id: tanfel_com-products-0036
+  name: Thread caliper gauges
+  status: confirmed
+  acceptable_forms:
+  - Thread caliper gauges
+  evidence:
+  - quote: Thread caliper gauges
+    approx_offset: 106880
+  actor: unknown
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+- id: tanfel_com-products-0037
+  name: Tanfel 1:2-13 UNC-2B Taperlock GO NOGO Thread Plug Gage
+  status: confirmed
+  acceptable_forms:
+  - Tanfel 1:2-13 UNC-2B Taperlock GO NOGO Thread Plug Gage
+  evidence:
+  - quote: Tanfel 1:2-13 UNC-2B Taperlock GO NOGO Thread Plug Gage
+    approx_offset: 106921
+  notes: catalog SKU. The '1:2' is the scrape's rendering of the 1/2 fraction.
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+- id: tanfel_com-products-0038
+  name: 'Tanfel #2-56 UNC-2B Taperlock GO NOGO Thread Plug Gage'
+  status: confirmed
+  acceptable_forms:
+  - 'Tanfel #2-56 UNC-2B Taperlock GO NOGO Thread Plug Gage'
+  evidence:
+  - quote: 'Tanfel #2-56 UNC-2B Taperlock GO NOGO Thread Plug Gage'
+    approx_offset: 106977
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+- id: tanfel_com-products-0039
+  name: Tanfel 1:4-20 UNC-2B Taperlock GO NOGO Thread Plug Gage
+  status: confirmed
+  acceptable_forms:
+  - Tanfel 1:4-20 UNC-2B Taperlock GO NOGO Thread Plug Gage
+  evidence:
+  - quote: Tanfel 1:4-20 UNC-2B Taperlock GO NOGO Thread Plug Gage
+    approx_offset: 107034
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+- id: tanfel_com-products-0040
+  name: 'Tanfel #10-24 UNC- 2B Taperlock GO NOGO Thread Plug Gage'
+  status: confirmed
+  acceptable_forms:
+  - 'Tanfel #10-24 UNC- 2B Taperlock GO NOGO Thread Plug Gage'
+  evidence:
+  - quote: 'Tanfel #10-24 UNC- 2B Taperlock GO NOGO Thread Plug Gage'
+    approx_offset: 107090
+  notes: note the stray space in 'UNC- 2B' — this SKU is spelled differently from its three siblings, so a normalizing
+    echo will not match it.
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+- id: tanfel_com-products-0041
+  name: Membrane switches
+  status: confirmed
+  acceptable_forms:
+  - MEMBRANE SWITCHES
+  - Membrane Switches
+  - Membrane Switch
+  - membrane switches
+  evidence:
+  - quote: Our membrane switches, graphic overlays and label products are manufactured with strict process controls.
+      Processes
+    approx_offset: 110810
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+- id: tanfel_com-products-0042
+  name: LED sticker
+  status: confirmed
+  acceptable_forms:
+  - LED sticker
+  evidence:
+  - quote: LED sticker
+    approx_offset: 111306
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+- id: tanfel_com-products-0043
+  name: Graphic overlays and labels
+  status: confirmed
+  acceptable_forms:
+  - Graphic Overlays & labels
+  - graphic overlays
+  - label products
+  - textured overlays
+  evidence:
+  - quote: Graphic Overlays & labels
+    approx_offset: 111356
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+- id: tanfel_com-products-0044
+  name: Heat seal connectors
+  status: confirmed
+  acceptable_forms:
+  - heat seal connectors
+  - solder pins
+  - Transparent, male and female connector attachments
+  evidence:
+  - quote: Female, male connector, solder pins and heat seal connectors are available
+    approx_offset: 111872
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+- id: tanfel_com-products-0045
+  name: Hollow extrusion shapes
+  status: confirmed
+  acceptable_forms:
+  - Hollow Extrusion Shapes
+  - Hollow Extrusions
+  - OR SOLID SHAPES
+  evidence:
+  - quote: Hollow Extrusion Shapes
+    approx_offset: 113331
+  - quote: Hollow Extrusions
+    approx_offset: 118817
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+- id: tanfel_com-products-0046
+  name: Audio parts
+  status: confirmed
+  acceptable_forms:
+  - Audio parts
+  - Parts for the music industry
+  evidence:
+  - quote: Audio parts
+    approx_offset: 122104
+  - quote: Parts for the music industry
+    approx_offset: 121931
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+- id: tanfel_com-products-0047
+  name: Stainless pipes, welded
+  status: confirmed
+  acceptable_forms:
+  - Stainless Pipes Welded
+  evidence:
+  - quote: Stainless Pipes Welded
+    approx_offset: 122048
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+- id: tanfel_com-products-0048
+  name: Rod, bar and plate stock
+  status: confirmed
+  acceptable_forms:
+  - Seamless Tube, Rod, Bar, Plate, and Custom parts
+  - Rods, Bars and Strips
+  - Rods, Bars, Strips and Custom parts
+  - Carbide Rod
+  evidence:
+  - quote: Rods, Bars, Strips and Custom parts
+    approx_offset: 136303
+  - quote: Carbide Rod
+    approx_offset: 122116
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+- id: tanfel_com-products-0049
+  name: Metal parts assemblies
+  status: confirmed
+  acceptable_forms:
+  - assemblies
+  - stamped metal parts and assemblies
+  evidence:
+  - quote: precision stamped metal parts and assemblies since 2008.
+    approx_offset: 122880
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+- id: tanfel_com-products-0050
+  name: Sheet metal fabricated products
+  status: confirmed
+  acceptable_forms:
+  - Fabricated products
+  evidence:
+  - quote: Fabricated products made from sheet, coil or strip with a large variety of material choices.  Material
+      can be
+    approx_offset: 134018
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+- id: tanfel_com-products-0051
+  name: Carbide cutting tools
+  status: disputed
+  acceptable_forms:
+  - end mills
+  - drill bits
+  - saw blades
+  - cutting tools
+  evidence:
+  - quote: Carbide is often used for end mills, drill bits, cutters, mining tools, saw blades and other cutting
+      tools.
+    approx_offset: 135902
+  actor: unknown
+  notes: 'DISPUTED: these ARE artifacts that come out of manufacturing, but they are also tooling, which the products
+    clause names as excluded. Kept disputed so the call is visible. | end mills, drill bits, cutters and saw blades
+    are tooling, which the products clause separates out by name. The sentence is also generic - ''Carbide is often
+    used for end mills, drill bits...'' - a statement about what carbide is used for, not a claim that Tanfel makes
+    cutting tools; what Tanfel says it offers on that page is ''completed custom parts as well as standard Rods,
+    Bars and Strips'' (already products-0052).'
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: disputed
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+    reason: end mills, drill bits, cutters and saw blades are tooling, which the products clause separates out by
+      name. The sentence is also generic - 'Carbide is often used for end mills, drill bits...' - a statement about
+      what carbide is used for, not a claim that Tanfel makes cutting tools; what Tanfel says it offers on that
+      page is 'completed custom parts as well as standard Rods, Bars and Strips' (already products-0052).
+- id: tanfel_com-products-0052
+  name: Carbide custom parts, rods, bars and strips
+  status: confirmed
+  acceptable_forms:
+  - completed custom parts
+  - Rods, Bars and Strips
+  evidence:
+  - quote: Tanfel offers completed custom parts as well as standard Rods, Bars and Strips.
+    approx_offset: 136159
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+- id: tanfel_com-products-0053
+  name: Wire formed parts
+  status: confirmed
+  acceptable_forms:
+  - wire formed parts
+  - Wire Forming
+  evidence:
+  - quote: custom springs and wire formed parts.  Coil springs, compression springs, antenna springs, paper springs,
+      tension springs, torsion
+    approx_offset: 143036
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+- id: tanfel_com-products-0054
+  name: Coil springs
+  status: confirmed
+  acceptable_forms:
+  - Coil springs
+  evidence:
+  - quote: Coil springs, compression springs, antenna springs, paper springs, tension springs, torsion springs,
+      wire forming
+    approx_offset: 143075
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+- id: tanfel_com-products-0055
+  name: Compression springs
+  status: confirmed
+  acceptable_forms:
+  - compression springs
+  evidence:
+  - quote: compression springs, antenna springs, paper springs, tension springs, torsion springs, wire forming,
+      snap spring
+    approx_offset: 143089
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+- id: tanfel_com-products-0056
+  name: Antenna springs
+  status: confirmed
+  acceptable_forms:
+  - antenna springs
+  evidence:
+  - quote: antenna springs, paper springs, tension springs, torsion springs, wire forming, snap spring clips, battery
+      springs
+    approx_offset: 143110
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+- id: tanfel_com-products-0057
+  name: Paper springs
+  status: confirmed
+  acceptable_forms:
+  - paper springs
+  evidence:
+  - quote: paper springs, tension springs, torsion springs, wire forming, snap spring clips, battery springs, compression
+      springs, brush springs, spiral springs, clamp springs, extension springs and more.
+    approx_offset: 143127
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+- id: tanfel_com-products-0058
+  name: Tension springs
+  status: confirmed
+  acceptable_forms:
+  - tension springs
+  evidence:
+  - quote: tension springs, torsion springs, wire forming, snap spring clips, battery springs, compression springs,
+      brush springs, spiral springs, clamp springs, extension springs and more.
+    approx_offset: 143142
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+- id: tanfel_com-products-0059
+  name: Torsion springs
+  status: confirmed
+  acceptable_forms:
+  - torsion springs
+  evidence:
+  - quote: torsion springs, wire forming, snap spring clips, battery springs, compression springs, brush springs,
+      spiral springs, clamp springs, extension springs and more.
+    approx_offset: 143159
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+- id: tanfel_com-products-0060
+  name: Snap spring clips
+  status: confirmed
+  acceptable_forms:
+  - snap spring clips
+  evidence:
+  - quote: snap spring clips, battery springs, compression springs, brush springs, spiral springs, clamp springs,
+      extension springs and more.
+    approx_offset: 143190
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+- id: tanfel_com-products-0061
+  name: Battery springs
+  status: confirmed
+  acceptable_forms:
+  - battery springs
+  evidence:
+  - quote: battery springs, compression springs, brush springs, spiral springs, clamp springs, extension springs
+      and more.
+    approx_offset: 143209
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+- id: tanfel_com-products-0062
+  name: Brush springs
+  status: confirmed
+  acceptable_forms:
+  - brush springs
+  evidence:
+  - quote: brush springs, spiral springs, clamp springs, extension springs and more.
+    approx_offset: 143247
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+- id: tanfel_com-products-0063
+  name: Spiral springs
+  status: confirmed
+  acceptable_forms:
+  - spiral springs
+  evidence:
+  - quote: spiral springs, clamp springs, extension springs and more.
+    approx_offset: 143262
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+- id: tanfel_com-products-0064
+  name: Clamp springs
+  status: confirmed
+  acceptable_forms:
+  - clamp springs
+  evidence:
+  - quote: clamp springs, extension springs and more.
+    approx_offset: 143278
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+- id: tanfel_com-products-0065
+  name: Extension springs
+  status: confirmed
+  acceptable_forms:
+  - extension springs
+  evidence:
+  - quote: extension springs and more.
+    approx_offset: 143293
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+- id: tanfel_com-products-0066
+  name: Surgical tools
+  status: confirmed
+  acceptable_forms:
+  - surgical tools
+  evidence:
+  - quote: From springs and surgical tools in the medical field to gears and metal clips in the automotive
+    approx_offset: 166244
+  actor: unknown
+  notes: blog prose about where stamped parts end up.
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+- id: tanfel_com-products-0067
+  name: Gears and metal clips
+  status: confirmed
+  acceptable_forms:
+  - gears and metal clips
+  - metal clips
+  evidence:
+  - quote: gears and metal clips in the automotive
+    approx_offset: 166300
+  actor: unknown
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+- id: tanfel_com-products-0068
+  name: Cookware and utensils
+  status: confirmed
+  acceptable_forms:
+  - cookware
+  - utensils
+  - car and aerospace parts
+  evidence:
+  - quote: cookware, car and aerospace parts, and utensils.
+    approx_offset: 166855
+  actor: unknown
+  notes: blog prose about deep-drawn stamping applications.
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+- id: tanfel_com-products-0069
+  name: Lid of a beverage can
+  status: confirmed
+  acceptable_forms:
+  - lid of a beverage can
+  evidence:
+  - quote: lid of a beverage can. This process also produces brackets and clamps along with some firearm
+    approx_offset: 167415
+  actor: unknown
+  notes: blog prose.
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+- id: tanfel_com-products-0070
+  name: Brackets and clamps
+  status: confirmed
+  acceptable_forms:
+  - brackets and clamps
+  evidence:
+  - quote: This process also produces brackets and clamps along with some firearm
+    approx_offset: 167438
+  actor: unknown
+  notes: blog prose about progressive die stamping.
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+- id: tanfel_com-products-0071
+  name: Metal clamps for hospital tools
+  status: confirmed
+  acceptable_forms:
+  - metal clamps for hospital tools
+  evidence:
+  - quote: metal clamps for hospital tools to brackets and clamps for aerospace engineering, our processes
+    approx_offset: 168962
+  actor: unknown
+  notes: blog prose.
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+- id: tanfel_com-products-0072
+  name: Green part
+  status: candidate
+  acceptable_forms:
+  - green part
+  evidence:
+  - quote: The part is referred to as a “green part” after it is molded but before the binders are removed.
+    approx_offset: 29235
+  actor: unknown
+  notes: the named intermediate artifact of the MIM route, appearing three times on that page. It comes out of the
+    moulding step, so it satisfies 'comes out of manufacturing work'; note the text uses curly quotes around it
+    and once runs them together as 'The“green part”'.
+  provenance:
+  - action: added
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+    source: verification-pass-miss
+false_friends:
+- form: Tanfel
+  reason: 'witnessed everywhere: the company''s own name, not a product. The gage SKUs legitimately begin with it,
+    so only a BARE ''Tanfel'' is the trap.'
+- form: ROJO SPORT, INC.
+  reason: 'witnessed: a customer''s company name in a testimonial byline.'
+- form: ENDURA FLAP PET DOORS
+  reason: 'witnessed: a customer''s company name. The product named in that testimonial is ''energy efficient dog
+    doors'', which IS an entry.'
+- form: AutoCAD
+  reason: 'witnessed: CAD software from the ''COMMONLY USED SOFTWARE'' list — not a made artifact. Same for Solid
+    Works, Unigraphics NX, CATIA, Pro Engineer, ProNest, Autodesk.'
+- form: METAL OVERVIEW PRODUCT SHEET
+  reason: 'witnessed: a downloadable document. Same for ''SILICONE PRODUCT SHEET'', ''COMPANY PROFILE PRESENTATION'',
+    ''MEMBRANE SWITCHES & OVERLAY PRODUCT SHEET'' and ''DOWNLOAD INDUSTRY SHEETS''.'
+- form: plant machinery and tools
+  reason: 'witnessed: machinery is excluded from this field by the products clause.'
+- form: Design Parameters
+  reason: 'witnessed: a capability page title (a comparison table), not an item.'

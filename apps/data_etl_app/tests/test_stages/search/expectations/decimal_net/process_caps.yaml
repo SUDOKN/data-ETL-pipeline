@@ -1,0 +1,2829 @@
+subject: decimal.net
+field: process_caps
+snapshot:
+  file: apps/data_etl_app/tests/test_stages/sample_scraped_texts/decimal.net.txt
+  sha256: 7d0abda71e487643dff25037df3637c71c99a3c83f7e12a698277fe3710eadfb
+eval_set_version: 2
+expected_empty: false
+notes: 'The richest field: eight service pages plus five capability tables with Machining/Fabrication/Welding/Welding-Inspection/Finishing/Plating/Coating/Additional/Die-Stamping
+  process columns. Inspection and testing are IN per the prompt, so CMM inspection, dye penetrant, magnetic particle,
+  radiographic, leak, pressure and thread-gauge checks are entries here rather than in equipments.'
+entries:
+- id: decimal_net-process_caps-0001
+  name: wire EDM
+  status: confirmed
+  acceptable_forms:
+  - Wire EDM
+  - WIRE EDM SERVICES
+  - wire EDM
+  - Wire EDM Machining
+  evidence:
+  - quote: WIRE EDM SERVICES
+    approx_offset: 370
+  - quote: "Capabilities Applied/Processes\tWire EDM Machining"
+    approx_offset: 79483
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+- id: decimal_net-process_caps-0002
+  name: tapping
+  status: confirmed
+  acceptable_forms:
+  - Tapping
+  - tapping
+  - secondary tapping
+  evidence:
+  - quote: Tapping
+    approx_offset: 694
+  - quote: cutting edge technologies such as in-die tapping, a more efficient alternative to secondary tapping.
+    approx_offset: 10994
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+- id: decimal_net-process_caps-0003
+  name: punching
+  status: confirmed
+  acceptable_forms:
+  - Punching
+  - punch a part
+  evidence:
+  - quote: Punching
+    approx_offset: 20133
+  - quote: What factors do you look at when deciding whether to laser cut or punch a part?
+    approx_offset: 2639
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+- id: decimal_net-process_caps-0004
+  name: laser marking
+  status: confirmed
+  acceptable_forms:
+  - LASER MARKING SERVICE
+  - Laser Marking Services
+  - Laser Marking
+  - marking
+  evidence:
+  - quote: LASER MARKING SERVICE
+    approx_offset: 3371
+  - quote: Decimal Engineering now offers contract Laser Marking Services to a wide range of industries including
+      Medical Device,
+    approx_offset: 3394
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+- id: decimal_net-process_caps-0005
+  name: precision machining
+  status: confirmed
+  acceptable_forms:
+  - PRECISION MACHINING SERVICES
+  - Precision Machining
+  - precision machining
+  evidence:
+  - quote: PRECISION MACHINING SERVICES
+    approx_offset: 4627
+  - quote: For more information about our precision machining capabilities and value added services, see the table
+      below, or contact us directly.
+    approx_offset: 7059
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+- id: decimal_net-process_caps-0006
+  name: CNC machining
+  status: confirmed
+  acceptable_forms:
+  - CNC Machining
+  - CNC machining
+  - precision CNC machining
+  - full CNC machining
+  evidence:
+  - quote: As an industry leader in precision CNC machining for the aerospace, energy, defense, and commercial manufacturing
+    approx_offset: 4657
+  - quote: "Capabilities Applied/Processes\tCNC Machining"
+    approx_offset: 43696
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+- id: decimal_net-process_caps-0007
+  name: mill/turn machining
+  status: confirmed
+  acceptable_forms:
+  - Mill/Turn
+  - 9-Axis Mill/Turn Machining
+  - Mill-Turn
+  evidence:
+  - quote: variety of sophisticated equipment, including combination Mill/Turn centers which have a combined 9-axis
+      machining capability, these costs can be contained
+    approx_offset: 5040
+  - quote: Our capabilities include Advanced Manufacturing, CNC Machining, 9-Axis Mill/Turn Machining, Sheet Metal
+      Fabrication, Metal Stamping (Compound Die, Progressive,
+    approx_offset: 34025
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+- id: decimal_net-process_caps-0008
+  name: first article inspection
+  status: confirmed
+  acceptable_forms:
+  - first article reports
+  evidence:
+  - quote: according to programmed instructions. With the push of one button, first article reports can easily be
+      performed.
+    approx_offset: 6437
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+- id: decimal_net-process_caps-0009
+  name: precision grinding
+  status: confirmed
+  acceptable_forms:
+  - precision grinding
+  evidence:
+  - quote: provide a long list of finishing services; some of these include precision grinding, polishing, wet painting,
+      powder coating and a variety of plating.
+    approx_offset: 6791
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+- id: decimal_net-process_caps-0010
+  name: polishing
+  status: confirmed
+  acceptable_forms:
+  - Polishing
+  - polishing
+  evidence:
+  - quote: Graining (Brushed Finish)Polishing
+    approx_offset: 8568
+  - quote: a long list of finishing services; some of these include precision grinding, polishing, wet painting,
+      powder coating and a variety of plating. For NADCAP
+    approx_offset: 6799
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+- id: decimal_net-process_caps-0011
+  name: wet painting
+  status: confirmed
+  acceptable_forms:
+  - Wet Paint
+  - wet painting
+  - two-color painting
+  - Painting
+  evidence:
+  - quote: Wet Paint
+    approx_offset: 9189
+  - quote: services; some of these include precision grinding, polishing, wet painting, powder coating and a variety
+      of plating. For NADCAP certified finishing, we work with
+    approx_offset: 6824
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+- id: decimal_net-process_caps-0012
+  name: powder coating
+  status: confirmed
+  acceptable_forms:
+  - Powder Coating
+  - powder coating
+  - powder coat
+  - Powdercoated
+  - Powdercaoted
+  evidence:
+  - quote: Powder Coating
+    approx_offset: 57833
+  - quote: of these include precision grinding, polishing, wet painting, powder coating and a variety of plating.
+      For NADCAP certified finishing, we work with a
+    approx_offset: 6839
+  notes: four of the five capability tables fuse this cell as 'Powder CoatingPTFE'; the stamping table has it standalone
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+- id: decimal_net-process_caps-0013
+  name: plating
+  status: confirmed
+  acceptable_forms:
+  - Plating Services
+  - a variety of plating
+  - plating
+  evidence:
+  - quote: Plating Services
+    approx_offset: 8636
+  - quote: these include precision grinding, polishing, wet painting, powder coating and a variety of plating. For
+      NADCAP certified finishing, we work with a number
+    approx_offset: 6842
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+- id: decimal_net-process_caps-0014
+  name: boring
+  status: confirmed
+  acceptable_forms:
+  - Boring
+  evidence:
+  - quote: Boring
+    approx_offset: 7314
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+- id: decimal_net-process_caps-0015
+  name: countersinking
+  status: confirmed
+  acceptable_forms:
+  - Countersinking
+  evidence:
+  - quote: Countersinking
+    approx_offset: 7321
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+- id: decimal_net-process_caps-0016
+  name: counterboring
+  status: confirmed
+  acceptable_forms:
+  - Counterboring
+  evidence:
+  - quote: Counterboring
+    approx_offset: 7336
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+- id: decimal_net-process_caps-0017
+  name: drilling
+  status: confirmed
+  acceptable_forms:
+  - Drilling
+  - drilling
+  evidence:
+  - quote: Drilling
+    approx_offset: 7350
+  - quote: Our capabilities include, blanking, piercing, coining, drawing, drilling, tapping, reaming and forming.
+      We stamp all metals and some plastics.
+    approx_offset: 54381
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+- id: decimal_net-process_caps-0018
+  name: high speed machining
+  status: confirmed
+  acceptable_forms:
+  - High Speed Machining
+  evidence:
+  - quote: High Speed Machining
+    approx_offset: 7359
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+- id: decimal_net-process_caps-0019
+  name: facing
+  status: confirmed
+  acceptable_forms:
+  - Facing
+  evidence:
+  - quote: Facing
+    approx_offset: 7380
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+- id: decimal_net-process_caps-0020
+  name: profiling
+  status: confirmed
+  acceptable_forms:
+  - Profiling
+  evidence:
+  - quote: Profiling
+    approx_offset: 7404
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+- id: decimal_net-process_caps-0021
+  name: saw cutting
+  status: confirmed
+  acceptable_forms:
+  - Saw Cutting
+  evidence:
+  - quote: Saw Cutting
+    approx_offset: 7414
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+- id: decimal_net-process_caps-0022
+  name: surfacing
+  status: confirmed
+  acceptable_forms:
+  - Surfacing
+  evidence:
+  - quote: Surfacing
+    approx_offset: 7426
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+- id: decimal_net-process_caps-0023
+  name: threading
+  status: confirmed
+  acceptable_forms:
+  - Threading
+  evidence:
+  - quote: Threading
+    approx_offset: 7444
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+- id: decimal_net-process_caps-0024
+  name: turning
+  status: confirmed
+  acceptable_forms:
+  - Turning
+  - Turned
+  evidence:
+  - quote: Turning
+    approx_offset: 7454
+  - quote: Anodized Turned Aluminum Cyllinder
+    approx_offset: 80469
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+- id: decimal_net-process_caps-0025
+  name: in-house fixturing and tooling
+  status: confirmed
+  acceptable_forms:
+  - In-House Fixturing & Tooling
+  - fixturing
+  - progressive die and stage tooling
+  evidence:
+  - quote: "Fixturing\tIn-House Fixturing & Tooling"
+    approx_offset: 7712
+  - quote: tapping. As a full-service manufacturer, we can also design and fabricate all of the required tooling
+      and fixturing in-house; this includes progressive die and
+    approx_offset: 54983
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+- id: decimal_net-process_caps-0026
+  name: copper plating
+  status: confirmed
+  acceptable_forms:
+  - Copper
+  evidence:
+  - quote: Copper
+    approx_offset: 8039
+  notes: Copper is a row in the Plating Services column as well as in the Materials column; as a plating it is the
+    deposition process
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+- id: decimal_net-process_caps-0027
+  name: air gaging
+  status: confirmed
+  acceptable_forms:
+  - Air Gaging
+  evidence:
+  - quote: Air Gaging
+    approx_offset: 8309
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+- id: decimal_net-process_caps-0028
+  name: CMM inspection
+  status: confirmed
+  acceptable_forms:
+  - Coordinate Measuring Machine (CMM)
+  - CMM Equipment
+  - CMM
+  evidence:
+  - quote: was produced using a single machine setup, with inspection conducted via a Coordinate Measuring Machine
+      (CMM). Upon completion, each servo body was anodized
+    approx_offset: 42687
+  - quote: CMM Equipment
+    approx_offset: 8339
+  notes: inspection performed on the work; the search prompt puts inspection/measurement in process_caps, NOT in
+    equipments
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+- id: decimal_net-process_caps-0029
+  name: hardness testing
+  status: confirmed
+  acceptable_forms:
+  - Hardness Testers
+  evidence:
+  - quote: Hardness Testers
+    approx_offset: 8438
+  notes: the table names the instrument; hardness TESTING is the operation it implies
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+- id: decimal_net-process_caps-0030
+  name: laser scanning inspection
+  status: confirmed
+  acceptable_forms:
+  - Laser Scanners
+  - Virtek (Laser Scanner)
+  - Virtek Laser Scanning System
+  evidence:
+  - quote: Laser ScannersMaster Gauge Blocks
+    approx_offset: 31321
+  - quote: Virtek (Laser Scanner)
+    approx_offset: 8495
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+- id: decimal_net-process_caps-0031
+  name: deburring
+  status: confirmed
+  acceptable_forms:
+  - Deburring
+  evidence:
+  - quote: Deburring
+    approx_offset: 8538
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+- id: decimal_net-process_caps-0032
+  name: glass bead blasting
+  status: confirmed
+  acceptable_forms:
+  - Glass Bead Blasting
+  evidence:
+  - quote: Glass Bead Blasting
+    approx_offset: 8548
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+- id: decimal_net-process_caps-0033
+  name: graining
+  status: confirmed
+  acceptable_forms:
+  - Graining
+  - Graining (Brushed Finish)
+  - graining
+  evidence:
+  - quote: Graining
+    approx_offset: 8568
+  - quote: processes that round our capabilities. These include fastener insertion, riveting, graining, tumbling,
+      adhesive bonding and value added assembly. These can
+    approx_offset: 19270
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+- id: decimal_net-process_caps-0034
+  name: sand blasting
+  status: confirmed
+  acceptable_forms:
+  - Sand Blasting
+  evidence:
+  - quote: Sand Blasting
+    approx_offset: 8603
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+- id: decimal_net-process_caps-0035
+  name: tumbling
+  status: confirmed
+  acceptable_forms:
+  - Tumbling
+  - Vibratory Tumbling
+  - tumbling
+  evidence:
+  - quote: Vibratory Tumbling
+    approx_offset: 8617
+  - quote: Tumbling
+    approx_offset: 8627
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+- id: decimal_net-process_caps-0036
+  name: anodizing
+  status: confirmed
+  acceptable_forms:
+  - Anodizing
+  - anodized
+  - Anodize Coating
+  - Anodized
+  evidence:
+  - quote: Anodizing
+    approx_offset: 8654
+  - quote: Measuring Machine (CMM). Upon completion, each servo body was anodized according to MIL-A-8625 requirements.
+      Over the course of several months, 300 units
+    approx_offset: 42773
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+- id: decimal_net-process_caps-0037
+  name: bright dip
+  status: confirmed
+  acceptable_forms:
+  - Bright Dip
+  evidence:
+  - quote: Bright Dip
+    approx_offset: 8664
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+- id: decimal_net-process_caps-0038
+  name: hard coat anodize
+  status: confirmed
+  acceptable_forms:
+  - Hard Coat
+  evidence:
+  - quote: Hard Coat
+    approx_offset: 8702
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+- id: decimal_net-process_caps-0039
+  name: barrel plating
+  status: confirmed
+  acceptable_forms:
+  - Barrel Plating
+  evidence:
+  - quote: Barrel Plating
+    approx_offset: 8713
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+- id: decimal_net-process_caps-0040
+  name: black chrome plating
+  status: confirmed
+  acceptable_forms:
+  - Black Chrome
+  evidence:
+  - quote: Black Chrome
+    approx_offset: 8728
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+- id: decimal_net-process_caps-0041
+  name: black oxide
+  status: confirmed
+  acceptable_forms:
+  - Black Oxide
+  evidence:
+  - quote: Black Oxide
+    approx_offset: 8741
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+- id: decimal_net-process_caps-0042
+  name: bright nickel plating
+  status: confirmed
+  acceptable_forms:
+  - Bright Nickel
+  evidence:
+  - quote: Bright Nickel
+    approx_offset: 8753
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+- id: decimal_net-process_caps-0043
+  name: brush nickel plating
+  status: confirmed
+  acceptable_forms:
+  - Brush Nickel
+  evidence:
+  - quote: Brush Nickel
+    approx_offset: 8767
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+- id: decimal_net-process_caps-0044
+  name: cadmium plating
+  status: confirmed
+  acceptable_forms:
+  - Cadmium
+  evidence:
+  - quote: Cadmium
+    approx_offset: 8780
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+- id: decimal_net-process_caps-0045
+  name: chromate conversion coating
+  status: confirmed
+  acceptable_forms:
+  - Chromate (Clear or Yellow)
+  - Chromate
+  - Iridite
+  - Chem Film
+  - Iridited
+  evidence:
+  - quote: Chromate (Clear or Yellow)(Also known as Iridite or Chem Film)
+    approx_offset: 8788
+  - quote: Machined Iridited Aluminum Side Panel
+    approx_offset: 80540
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+- id: decimal_net-process_caps-0046
+  name: etching
+  status: confirmed
+  acceptable_forms:
+  - Etching
+  evidence:
+  - quote: Etching
+    approx_offset: 8865
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+- id: decimal_net-process_caps-0047
+  name: electroless nickel plating
+  status: confirmed
+  acceptable_forms:
+  - Electroless Nickel
+  evidence:
+  - quote: Electroless Nickel
+    approx_offset: 8874
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+- id: decimal_net-process_caps-0048
+  name: electropolishing
+  status: confirmed
+  acceptable_forms:
+  - Electropolish
+  evidence:
+  - quote: Electropolish
+    approx_offset: 8893
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+- id: decimal_net-process_caps-0049
+  name: gold plating
+  status: confirmed
+  acceptable_forms:
+  - Gold
+  - Gold Plated
+  evidence:
+  - quote: Gold
+    approx_offset: 8907
+  - quote: Gold Plated Turned Copper Spool
+    approx_offset: 80506
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+- id: decimal_net-process_caps-0050
+  name: hard chrome plating
+  status: confirmed
+  acceptable_forms:
+  - Hard Chrome
+  evidence:
+  - quote: Hard Chrome
+    approx_offset: 8912
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+- id: decimal_net-process_caps-0051
+  name: passivation
+  status: confirmed
+  acceptable_forms:
+  - Passivation (Nitric of Citric)
+  - Passivation
+  - Passivated
+  evidence:
+  - quote: Passivation (Nitric of Citric)
+    approx_offset: 8924
+  - quote: Stamped Passivated Stainless Latch Coupling Marine
+    approx_offset: 103302
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+- id: decimal_net-process_caps-0052
+  name: phosphate pretreat
+  status: confirmed
+  acceptable_forms:
+  - Phosphate (Pretreat)
+  - Phosphate
+  evidence:
+  - quote: Phosphate (Pretreat)
+    approx_offset: 8955
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+- id: decimal_net-process_caps-0053
+  name: rhodium plating
+  status: confirmed
+  acceptable_forms:
+  - Rhodium
+  evidence:
+  - quote: Rhodium
+    approx_offset: 8976
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+- id: decimal_net-process_caps-0054
+  name: silver plating
+  status: confirmed
+  acceptable_forms:
+  - Silver Plated
+  - Silver
+  evidence:
+  - quote: Silver Plated Reel to Reel Stamped Terminals
+    approx_offset: 103083
+  - quote: Silver
+    approx_offset: 8984
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+- id: decimal_net-process_caps-0055
+  name: tin plating
+  status: confirmed
+  acceptable_forms:
+  - Tin
+  evidence:
+  - quote: Tin
+    approx_offset: 8991
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+- id: decimal_net-process_caps-0056
+  name: zinc plating
+  status: confirmed
+  acceptable_forms:
+  - Zinc (Clear, Yellow or Black)
+  - Zinc Plated
+  - Zinc Cobalt
+  evidence:
+  - quote: Zinc (Clear, Yellow or Black)
+    approx_offset: 8995
+  - quote: Zinc Plated Steel Bracket Electronics
+    approx_offset: 81696
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+- id: decimal_net-process_caps-0057
+  name: dielectric paint coating
+  status: confirmed
+  acceptable_forms:
+  - Dielectric Paint
+  evidence:
+  - quote: Dielectric Paint
+    approx_offset: 9143
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+- id: decimal_net-process_caps-0058
+  name: E-coating
+  status: confirmed
+  acceptable_forms:
+  - E-coating
+  evidence:
+  - quote: E-coating
+    approx_offset: 9160
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+- id: decimal_net-process_caps-0059
+  name: assembly
+  status: confirmed
+  acceptable_forms:
+  - Assembly
+  - value added assembly
+  - Value-Added Assembly
+  - final assembly
+  evidence:
+  - quote: Assembly
+    approx_offset: 9220
+  - quote: include fastener insertion, riveting, graining, tumbling, adhesive bonding and value added assembly.
+      These can be combined with a myriad of finishing processes
+    approx_offset: 19315
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+- id: decimal_net-process_caps-0060
+  name: centerless grinding
+  status: confirmed
+  acceptable_forms:
+  - Centerless Grinding
+  evidence:
+  - quote: Centerless Grinding
+    approx_offset: 9229
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+- id: decimal_net-process_caps-0061
+  name: engraving
+  status: confirmed
+  acceptable_forms:
+  - Engraving
+  evidence:
+  - quote: Engraving
+    approx_offset: 9249
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+- id: decimal_net-process_caps-0062
+  name: heat treating
+  status: confirmed
+  acceptable_forms:
+  - Heat Treating
+  - heat treat
+  evidence:
+  - quote: Heat Treating
+    approx_offset: 9259
+  - quote: eliminated, allowing for tighter tolerances to be held and preventing the need for post-machining heat
+      treat. In addition, no custom tooling is required to create
+    approx_offset: 29841
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+- id: decimal_net-process_caps-0063
+  name: ink fill
+  status: confirmed
+  acceptable_forms:
+  - Ink Fill
+  evidence:
+  - quote: Ink Fill
+    approx_offset: 9273
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+- id: decimal_net-process_caps-0064
+  name: kitting
+  status: confirmed
+  acceptable_forms:
+  - Kitting
+  evidence:
+  - quote: Kitting
+    approx_offset: 9282
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+- id: decimal_net-process_caps-0065
+  name: OD grinding
+  status: confirmed
+  acceptable_forms:
+  - OD Grinding
+  evidence:
+  - quote: OD Grinding
+    approx_offset: 9290
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+- id: decimal_net-process_caps-0066
+  name: silk screening
+  status: confirmed
+  acceptable_forms:
+  - Silk Screening
+  - Silkscreened
+  evidence:
+  - quote: Silk Screening
+    approx_offset: 9302
+  - quote: Painted Silkscreened Bracket Electronics
+    approx_offset: 81370
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+- id: decimal_net-process_caps-0067
+  name: progressive stamping
+  status: confirmed
+  acceptable_forms:
+  - Progressive Stamping
+  - PROGRESSIVE STAMPING
+  - progressive
+  evidence:
+  - quote: PROGRESSIVE STAMPING IN-DIE TAPPING OF A HOT WATER HEATER FOR A HOUSEHOLD APPLIANCE APPLICATION
+    approx_offset: 10755
+  - quote: range of manufacturing options, including stamping processes such as progressive, single hit, in-die
+      tapping, and compound die stamping. The diversity
+    approx_offset: 53998
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+- id: decimal_net-process_caps-0068
+  name: tool and die work
+  status: confirmed
+  acceptable_forms:
+  - Tool & Die Work
+  - tool design, building, maintenance
+  - Complete Tooling Maintenance
+  evidence:
+  - quote: Mil-Spec Welding, Engineering & Design Services, Value-Added Assembly, Tool & Die Work, Reverse Engineering,
+      3D Printing, Design for Manufacturability, SolidWorks
+    approx_offset: 34239
+  - quote: team at Decimal Engineering, Inc. offers full service tool design, building, maintenance, and manufacturing
+      of parts while also utilizing cutting edge
+    approx_offset: 10856
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+- id: decimal_net-process_caps-0069
+  name: in-die tapping
+  status: confirmed
+  acceptable_forms:
+  - In-Die Tapping
+  - in-die tapping
+  - In-Die Tapped
+  evidence:
+  - quote: "Capabilities Applied/Processes\tIn-Die Tapping"
+    approx_offset: 12539
+  - quote: and time consuming secondary operations. In-die tapping allows metal stampers to tap a part within a
+      single station, saving die space and tooling costs. Using
+    approx_offset: 11562
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+- id: decimal_net-process_caps-0070
+  name: thread gauge measurement
+  status: confirmed
+  acceptable_forms:
+  - Thread Gauge
+  - thread gauge measurements
+  evidence:
+  - quote: "In Process Testing/Inspection Performed\tThread Gauge"
+    approx_offset: 12780
+  - quote: ensured consistent production quality, while also inspecting each part using thread gauge measurements.
+      With full automation, we were able to maintain just-in-time
+    approx_offset: 12063
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+- id: decimal_net-process_caps-0071
+  name: sheet metal fabrication
+  status: confirmed
+  acceptable_forms:
+  - PRECISION SHEET METAL FABRICATION SERVICES
+  - Sheet Metal Fabrication
+  - sheet metal fabrication
+  evidence:
+  - quote: PRECISION SHEET METAL FABRICATION SERVICES
+    approx_offset: 16612
+  - quote: At Decimal Engineering, Inc., we provide precision sheet metal fabrication that can accommodate the needs
+      of a wide range of industries and
+    approx_offset: 16656
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+- id: decimal_net-process_caps-0072
+  name: precision bending
+  status: confirmed
+  acceptable_forms:
+  - Precision Bending
+  - complex bending
+  - bending
+  evidence:
+  - quote: Precision Bending
+    approx_offset: 20238
+  - quote: applications. We operate a well-equipped facility that is geared for complex bending, air bending, coining,
+      CNC turret punching, louvering, embossing, laser cutting,
+    approx_offset: 16796
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+- id: decimal_net-process_caps-0073
+  name: coining
+  status: confirmed
+  acceptable_forms:
+  - coining
+  - Coining
+  evidence:
+  - quote: operate a well-equipped facility that is geared for complex bending, air bending, coining, CNC turret
+      punching, louvering, embossing, laser cutting, certified
+    approx_offset: 16813
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+- id: decimal_net-process_caps-0074
+  name: air bending
+  status: confirmed
+  acceptable_forms:
+  - air bending
+  evidence:
+  - quote: operate a well-equipped facility that is geared for complex bending, air bending, coining, CNC turret
+      punching, louvering, embossing, laser cutting, certified
+    approx_offset: 16813
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+- id: decimal_net-process_caps-0075
+  name: CNC turret punching
+  status: confirmed
+  acceptable_forms:
+  - CNC Turret Punching
+  - CNC turret punching
+  - CNC punched
+  evidence:
+  - quote: CNC Turret Punching
+    approx_offset: 20122
+  - quote: well-equipped facility that is geared for complex bending, air bending, coining, CNC turret punching,
+      louvering, embossing, laser cutting, certified welding
+    approx_offset: 16823
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+- id: decimal_net-process_caps-0076
+  name: louvering
+  status: confirmed
+  acceptable_forms:
+  - louvering
+  evidence:
+  - quote: that is geared for complex bending, air bending, coining, CNC turret punching, louvering, embossing,
+      laser cutting, certified welding and spot welding.
+    approx_offset: 16846
+  notes: the table row is 'Laser CuttingLouvering' - fused cells - so the prose occurrence is the one with word
+    boundaries
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+- id: decimal_net-process_caps-0077
+  name: embossing
+  status: confirmed
+  acceptable_forms:
+  - Embossing
+  - embossing
+  evidence:
+  - quote: Embossing
+    approx_offset: 20142
+  - quote: geared for complex bending, air bending, coining, CNC turret punching, louvering, embossing, laser cutting,
+      certified welding and spot welding.
+    approx_offset: 16854
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+- id: decimal_net-process_caps-0078
+  name: CNC programming
+  status: disputed
+  acceptable_forms:
+  - offline programming
+  - CNC programmers
+  - programming capabilities
+  evidence:
+  - quote: distinct competitive advantage. Fast set-ups, offline programming, offline simulation and superb accuracy
+      set us apart from our competition. Our Beyeler
+    approx_offset: 17110
+  notes: 'DISPUTED: programming precedes the operation rather than being performed on the work | not an operation
+    performed on materials, parts or products: the process_caps clause defines all three of ''process, operation,
+    or capability'' as ''an operation performed on materials, parts, or products at any stage of production''. CNC/offline
+    programming is preparation of machine code, not work done on the part'
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: disputed
+    by: verify-agent-decimal
+    date: '2026-08-27'
+    reason: 'not an operation performed on materials, parts or products: the process_caps clause defines all three
+      of ''process, operation, or capability'' as ''an operation performed on materials, parts, or products at any
+      stage of production''. CNC/offline programming is preparation of machine code, not work done on the part'
+- id: decimal_net-process_caps-0079
+  name: process simulation / virtual manufacturing
+  status: disputed
+  acceptable_forms:
+  - Process Simulation
+  - Virtual Machining
+  - virtual manufacturing
+  - offline simulation
+  evidence:
+  - quote: Process SimulationSolid Modeling
+    approx_offset: 47135
+  - quote: these advanced manufacturing processes, we utilize a virtual manufacturing process that simulates each
+      bend in sequence before any physical part is formed.
+    approx_offset: 17720
+  notes: 'DISPUTED: simulation of the process rather than the process itself; kept because the site lists it as
+    a Process and it is a real production-prep capability | not an operation performed on materials, parts or products:
+    the process_caps clause defines all three of ''process, operation, or capability'' as ''an operation performed
+    on materials, parts, or products at any stage of production''. virtual manufacturing/process simulation runs
+    on a model - the page says explicitly it happens ''before any physical part is formed'''
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: disputed
+    by: verify-agent-decimal
+    date: '2026-08-27'
+    reason: 'not an operation performed on materials, parts or products: the process_caps clause defines all three
+      of ''process, operation, or capability'' as ''an operation performed on materials, parts, or products at any
+      stage of production''. virtual manufacturing/process simulation runs on a model - the page says explicitly
+      it happens ''before any physical part is formed'''
+- id: decimal_net-process_caps-0080
+  name: dimensional inspection
+  status: confirmed
+  acceptable_forms:
+  - Dimensional Inspection
+  - dimensionally inspect
+  evidence:
+  - quote: Dimensional Inspection
+    approx_offset: 47300
+  - quote: matter of minutes. Traditionally, quality control required the technician to manually dimensionally inspect
+      each piece by hand. The Virtek not only eliminates
+    approx_offset: 18552
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+- id: decimal_net-process_caps-0081
+  name: forming
+  status: confirmed
+  acceptable_forms:
+  - Forming
+  - Metal Forming
+  - formed
+  evidence:
+  - quote: Forming
+    approx_offset: 18805
+  - quote: Metal Forming
+    approx_offset: 76554
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+- id: decimal_net-process_caps-0082
+  name: spot welding
+  status: confirmed
+  acceptable_forms:
+  - Spot Welding
+  - spot welding
+  - spotwelding
+  evidence:
+  - quote: Spot Welding
+    approx_offset: 20370
+  - quote: of our sheet metal fabrication capabilities. We also provide welding, spot welding, brazing and soldering,
+      all performed by highly trained certified welders.
+    approx_offset: 18845
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+- id: decimal_net-process_caps-0083
+  name: brazing
+  status: confirmed
+  acceptable_forms:
+  - Brazing
+  - brazing
+  evidence:
+  - quote: Brazing
+    approx_offset: 20323
+  - quote: sheet metal fabrication capabilities. We also provide welding, spot welding, brazing and soldering, all
+      performed by highly trained certified welders. We
+    approx_offset: 18852
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+- id: decimal_net-process_caps-0084
+  name: welding
+  status: confirmed
+  acceptable_forms:
+  - Welding
+  - welding
+  - certified welding
+  evidence:
+  - quote: fabrication capabilities. We also provide welding, spot welding, brazing and soldering, all performed
+      by highly trained certified welders. We specialize in PQR
+    approx_offset: 18864
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+- id: decimal_net-process_caps-0085
+  name: fastener insertion / pemming
+  status: confirmed
+  acceptable_forms:
+  - fastener insertion
+  - Pemming
+  - adding pems
+  evidence:
+  - quote: related processes that round our capabilities. These include fastener insertion, riveting, graining,
+      tumbling, adhesive bonding and value added assembly.
+    approx_offset: 19262
+  - quote: Pemming
+    approx_offset: 58000
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+- id: decimal_net-process_caps-0086
+  name: adhesive bonding
+  status: confirmed
+  acceptable_forms:
+  - adhesive bonding
+  evidence:
+  - quote: These include fastener insertion, riveting, graining, tumbling, adhesive bonding and value added assembly.
+      These can be combined with a myriad of finishing
+    approx_offset: 19309
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+- id: decimal_net-process_caps-0087
+  name: grind/file
+  status: confirmed
+  acceptable_forms:
+  - Grind/File
+  evidence:
+  - quote: Grind/File
+    approx_offset: 20161
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+- id: decimal_net-process_caps-0088
+  name: hem bending
+  status: confirmed
+  acceptable_forms:
+  - Hem Bending
+  evidence:
+  - quote: Hem Bending
+    approx_offset: 20180
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+- id: decimal_net-process_caps-0089
+  name: lancing
+  status: confirmed
+  acceptable_forms:
+  - Lancing
+  evidence:
+  - quote: Lancing
+    approx_offset: 20192
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+- id: decimal_net-process_caps-0090
+  name: part numbering
+  status: confirmed
+  acceptable_forms:
+  - Part Numbering
+  evidence:
+  - quote: Part Numbering
+    approx_offset: 20223
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+- id: decimal_net-process_caps-0091
+  name: riveting
+  status: confirmed
+  acceptable_forms:
+  - Riveting
+  - riveting
+  - Riveted
+  evidence:
+  - quote: Riveting
+    approx_offset: 20265
+  - quote: Riveted Formed Aluminum Assembly Aerospace
+    approx_offset: 81595
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+- id: decimal_net-process_caps-0092
+  name: shearing
+  status: confirmed
+  acceptable_forms:
+  - Shearing
+  evidence:
+  - quote: Shearing
+    approx_offset: 20286
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+- id: decimal_net-process_caps-0093
+  name: dip brazing
+  status: confirmed
+  acceptable_forms:
+  - Dip Brazing
+  evidence:
+  - quote: Dip Brazing
+    approx_offset: 20331
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+- id: decimal_net-process_caps-0094
+  name: GMAW (MIG) welding
+  status: confirmed
+  acceptable_forms:
+  - GMAW (MIG)
+  - GMAW
+  - MIG
+  evidence:
+  - quote: GMAW (MIG)
+    approx_offset: 20343
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+- id: decimal_net-process_caps-0095
+  name: micro spot welding
+  status: confirmed
+  acceptable_forms:
+  - Micro Spot Welding
+  evidence:
+  - quote: GTAW (TIG)Micro Spot Welding
+    approx_offset: 20354
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+- id: decimal_net-process_caps-0096
+  name: GTAW (TIG) welding
+  status: confirmed
+  acceptable_forms:
+  - GTAW (TIG)
+  - GTAW
+  - TIG
+  evidence:
+  - quote: GTAW (TIG)Micro Spot Welding
+    approx_offset: 20354
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+- id: decimal_net-process_caps-0097
+  name: silver soldering
+  status: confirmed
+  acceptable_forms:
+  - Silver Soldering
+  - soldering
+  evidence:
+  - quote: Silver Soldering
+    approx_offset: 20383
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+- id: decimal_net-process_caps-0098
+  name: certified welding
+  status: confirmed
+  acceptable_forms:
+  - Certified Welding
+  - certified welding
+  - Certified Mil-Spec Welding
+  evidence:
+  - quote: Certified Welding
+    approx_offset: 20413
+  - quote: Die, Progressive, Single-Hit), Wire EDM, 2D/3D Laser Cutting, Certified Mil-Spec Welding, Engineering
+      & Design Services, Value-Added Assembly, Tool & Die
+    approx_offset: 34167
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+- id: decimal_net-process_caps-0099
+  name: pull testing
+  status: confirmed
+  acceptable_forms:
+  - Pull Testers
+  evidence:
+  - quote: Pull Testers
+    approx_offset: 21299
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+- id: decimal_net-process_caps-0100
+  name: weld inspection
+  status: confirmed
+  acceptable_forms:
+  - 3rd Party Weld Inspection as Needed
+  - CWI (Certified Weld Inspection)
+  - Weld Inspection
+  evidence:
+  - quote: 3rd Party Weld Inspection as Needed
+    approx_offset: 21365
+  - quote: CWI (Certified Weld Inspection)
+    approx_offset: 21419
+  actor: unknown
+  notes: 3rd-party weld inspection is performed by an outside inspector 'as Needed'
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+- id: decimal_net-process_caps-0101
+  name: dye penetrant testing
+  status: confirmed
+  acceptable_forms:
+  - Dye Penetrant Testing
+  evidence:
+  - quote: Dye Penetrant Testing
+    approx_offset: 21473
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+- id: decimal_net-process_caps-0102
+  name: magnetic particle testing
+  status: confirmed
+  acceptable_forms:
+  - Magnetic Particle Testing
+  - Particle Testing
+  evidence:
+  - quote: Leak TestingMagnetic Particle Testing
+    approx_offset: 21495
+  notes: only occurrence is the fused cell 'Leak TestingMagnetic Particle Testing', where the full name has no left
+    word boundary
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+- id: decimal_net-process_caps-0103
+  name: leak testing
+  status: confirmed
+  acceptable_forms:
+  - Leak Testing
+  - Leak
+  evidence:
+  - quote: Leak TestingMagnetic Particle Testing
+    approx_offset: 21495
+  notes: only occurrence is the fused cell; the bare form 'Leak' is carried because 'Leak Testing' has no right
+    word boundary there
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+- id: decimal_net-process_caps-0104
+  name: pressure testing
+  status: confirmed
+  acceptable_forms:
+  - Pressure Testing
+  evidence:
+  - quote: Pressure Testing
+    approx_offset: 21539
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+- id: decimal_net-process_caps-0105
+  name: radiographic examination
+  status: confirmed
+  acceptable_forms:
+  - Radiographic Examination (X-Ray)
+  - Radiographic Examination
+  evidence:
+  - quote: Radiographic Examination (X-Ray)
+    approx_offset: 21556
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+- id: decimal_net-process_caps-0106
+  name: laser cutting
+  status: confirmed
+  acceptable_forms:
+  - LASER CUTTING SERVICES
+  - Laser Cutting
+  - laser cutting
+  - 2D Laser Cutting
+  - 2D/3D Laser Cutting
+  evidence:
+  - quote: LASER CUTTING SERVICES
+    approx_offset: 23772
+  - quote: At Decimal Engineering, Inc., part of this capability is high precision 2D laser cutting services. Laser
+      cutting is a versatile process that
+    approx_offset: 23913
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+- id: decimal_net-process_caps-0107
+  name: lights out manufacturing
+  status: confirmed
+  acceptable_forms:
+  - Lights Out Manufacturing
+  - lights out manufacturing
+  - lights-out operation
+  evidence:
+  - quote: Our laser cutting process includes lights out manufacturing capabilities. The cutting table is equipped
+      with a new
+    approx_offset: 24694
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+- id: decimal_net-process_caps-0108
+  name: electrical discharge machining
+  status: confirmed
+  acceptable_forms:
+  - Electrical Discharge Machining
+  - electrical discharge machining
+  - EDM
+  evidence:
+  - quote: components, at Decimal Engineering, Inc. we offer electrical discharge machining using wire EDM and hole
+      popper EDM equipment. Electrical discharge machining,
+    approx_offset: 28811
+  - quote: "Electrical Discharge Machining Processes\tHole Popper EDM"
+    approx_offset: 30705
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+- id: decimal_net-process_caps-0109
+  name: hole popper EDM
+  status: confirmed
+  acceptable_forms:
+  - Hole Popper EDM
+  - hole popper EDM
+  - hole popper
+  evidence:
+  - quote: "Electrical Discharge Machining Processes\tHole Popper EDM"
+    approx_offset: 30705
+  - quote: held with our wire EDM machines and holes between 0.020″ and 0.12″ can be accurately cut using our Mitsubishi
+      hole popper. We operate wire EDM equipment with
+    approx_offset: 29295
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+- id: decimal_net-process_caps-0110
+  name: compound die stamping
+  status: confirmed
+  acceptable_forms:
+  - Compound Die
+  evidence:
+  - quote: Compound Die
+    approx_offset: 34158
+  - quote: 9-Axis Mill/Turn Machining, Sheet Metal Fabrication, Metal Stamping (Compound Die, Progressive, Single-Hit),
+      Wire EDM, 2D/3D Laser Cutting, Certified Mil-Spec
+    approx_offset: 34089
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+- id: decimal_net-process_caps-0111
+  name: single-hit stamping
+  status: confirmed
+  acceptable_forms:
+  - Single-Hit
+  - single hit
+  evidence:
+  - quote: Single-Hit
+    approx_offset: 34185
+  - quote: range of manufacturing options, including stamping processes such as progressive, single hit, in-die
+      tapping, and compound die stamping. The diversity
+    approx_offset: 53998
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+- id: decimal_net-process_caps-0112
+  name: reverse engineering
+  status: confirmed
+  acceptable_forms:
+  - Reverse Engineering
+  - reverse engineer
+  evidence:
+  - quote: Services, Value-Added Assembly, Tool & Die Work, Reverse Engineering, 3D Printing, Design for Manufacturability,
+      SolidWorks and AutoCAD.
+    approx_offset: 34278
+  - quote: drawing off a bar napkin and I can make it happen. You can give me the part and we’ll reverse engineer
+      it. Or you can give us the detailed drawing. We will
+    approx_offset: 34658
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+- id: decimal_net-process_caps-0113
+  name: 3D printing
+  status: confirmed
+  acceptable_forms:
+  - 3D Printing
+  evidence:
+  - quote: Services, Value-Added Assembly, Tool & Die Work, Reverse Engineering, 3D Printing, Design for Manufacturability,
+      SolidWorks and AutoCAD.
+    approx_offset: 34278
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+- id: decimal_net-process_caps-0114
+  name: design for manufacturability
+  status: disputed
+  acceptable_forms:
+  - Design for Manufacturability
+  - design for manufacturability
+  - DFM
+  evidence:
+  - quote: Design for Manufacturability
+    approx_offset: 34361
+  - quote: Every project begins with the customer design. We excel at providing design for manufacturability assistance
+      to ensure that each part is produced in the
+    approx_offset: 44990
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: disputed
+    by: verify-agent-decimal
+    date: '2026-08-27'
+    reason: 'not an operation performed on materials, parts or products: the process_caps clause defines all three
+      of ''process, operation, or capability'' as ''an operation performed on materials, parts, or products at any
+      stage of production''. design for manufacturability is a design service delivered on the customer''s drawing'
+  notes: 'not an operation performed on materials, parts or products: the process_caps clause defines all three
+    of ''process, operation, or capability'' as ''an operation performed on materials, parts, or products at any
+    stage of production''. design for manufacturability is a design service delivered on the customer''s drawing'
+- id: decimal_net-process_caps-0115
+  name: parallel engineering
+  status: disputed
+  acceptable_forms:
+  - Parallel Engineering (Design Support)
+  - Parallel Engineering
+  evidence:
+  - quote: Parallel Engineering (Design Support)Reverse Engineering
+    approx_offset: 47005
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: disputed
+    by: verify-agent-decimal
+    date: '2026-08-27'
+    reason: 'not an operation performed on materials, parts or products: the process_caps clause defines all three
+      of ''process, operation, or capability'' as ''an operation performed on materials, parts, or products at any
+      stage of production''. parallel engineering (design support) is a design activity'
+  notes: 'not an operation performed on materials, parts or products: the process_caps clause defines all three
+    of ''process, operation, or capability'' as ''an operation performed on materials, parts, or products at any
+    stage of production''. parallel engineering (design support) is a design activity'
+- id: decimal_net-process_caps-0116
+  name: value engineering
+  status: disputed
+  acceptable_forms:
+  - Value Engineering
+  - value engineering
+  evidence:
+  - quote: Value Engineering
+    approx_offset: 47062
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: disputed
+    by: verify-agent-decimal
+    date: '2026-08-27'
+    reason: 'not an operation performed on materials, parts or products: the process_caps clause defines all three
+      of ''process, operation, or capability'' as ''an operation performed on materials, parts, or products at any
+      stage of production''. value engineering is a design/cost activity'
+  notes: 'not an operation performed on materials, parts or products: the process_caps clause defines all three
+    of ''process, operation, or capability'' as ''an operation performed on materials, parts, or products at any
+    stage of production''. value engineering is a design/cost activity'
+- id: decimal_net-process_caps-0117
+  name: cost analysis
+  status: disputed
+  acceptable_forms:
+  - Cost Analysis
+  evidence:
+  - quote: Cost Analysis
+    approx_offset: 47091
+  notes: 'DISPUTED: the site files it under ''Processes'', but it is a commercial analysis, not an operation on
+    the work | not an operation performed on materials, parts or products: the process_caps clause defines all three
+    of ''process, operation, or capability'' as ''an operation performed on materials, parts, or products at any
+    stage of production''. cost analysis is a business analysis'
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: disputed
+    by: verify-agent-decimal
+    date: '2026-08-27'
+    reason: 'not an operation performed on materials, parts or products: the process_caps clause defines all three
+      of ''process, operation, or capability'' as ''an operation performed on materials, parts, or products at any
+      stage of production''. cost analysis is a business analysis'
+- id: decimal_net-process_caps-0118
+  name: finite element analysis
+  status: disputed
+  acceptable_forms:
+  - Finite Element Analysis (FEA)
+  - Finite Element Analysis
+  - FEA
+  evidence:
+  - quote: Finite Element Analysis (FEA)
+    approx_offset: 47105
+  notes: 'DISPUTED: listed under the DFM page''s ''Processes'' header, but FEA is computed on a model, not performed
+    on the work | not an operation performed on materials, parts or products: the process_caps clause defines all
+    three of ''process, operation, or capability'' as ''an operation performed on materials, parts, or products
+    at any stage of production''. finite element analysis is simulation on a model'
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: disputed
+    by: verify-agent-decimal
+    date: '2026-08-27'
+    reason: 'not an operation performed on materials, parts or products: the process_caps clause defines all three
+      of ''process, operation, or capability'' as ''an operation performed on materials, parts, or products at any
+      stage of production''. finite element analysis is simulation on a model'
+- id: decimal_net-process_caps-0119
+  name: solid modeling
+  status: disputed
+  acceptable_forms:
+  - Solid Modeling
+  - Solid Modeling Software
+  evidence:
+  - quote: Solid Modeling Software
+    approx_offset: 47186
+  notes: 'DISPUTED: CAD modelling; the site calls it a Process but nothing is done to the material | not an operation
+    performed on materials, parts or products: the process_caps clause defines all three of ''process, operation,
+    or capability'' as ''an operation performed on materials, parts, or products at any stage of production''. solid
+    modeling is CAD work'
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: disputed
+    by: verify-agent-decimal
+    date: '2026-08-27'
+    reason: 'not an operation performed on materials, parts or products: the process_caps clause defines all three
+      of ''process, operation, or capability'' as ''an operation performed on materials, parts, or products at any
+      stage of production''. solid modeling is CAD work'
+- id: decimal_net-process_caps-0120
+  name: FMEA
+  status: disputed
+  acceptable_forms:
+  - FMEA (Failure Mode & Effects Analysis)
+  - FMEA
+  evidence:
+  - quote: FMEA (Failure Mode & Effects Analysis)
+    approx_offset: 47323
+  notes: 'DISPUTED: a risk-analysis method in the Inspection & Process Control column, not an operation on the work
+    | not an operation performed on materials, parts or products: the process_caps clause defines all three of ''process,
+    operation, or capability'' as ''an operation performed on materials, parts, or products at any stage of production''.
+    FMEA is a risk-analysis document'
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: disputed
+    by: verify-agent-decimal
+    date: '2026-08-27'
+    reason: 'not an operation performed on materials, parts or products: the process_caps clause defines all three
+      of ''process, operation, or capability'' as ''an operation performed on materials, parts, or products at any
+      stage of production''. FMEA is a risk-analysis document'
+- id: decimal_net-process_caps-0121
+  name: non-destructive testing
+  status: confirmed
+  acceptable_forms:
+  - Non-destructive Testing
+  - Non-destructive
+  evidence:
+  - quote: Non-destructive TestingPPAP (Production Part Approval Process)
+    approx_offset: 47362
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+- id: decimal_net-process_caps-0122
+  name: PPAP
+  status: disputed
+  acceptable_forms:
+  - PPAP (Production Part Approval Process)
+  - Production Part Approval Process
+  - PPAP
+  evidence:
+  - quote: Non-destructive TestingPPAP (Production Part Approval Process)
+    approx_offset: 47362
+  notes: 'DISPUTED: a customer part-approval submission built on measurements; seeded in conformity_attestations
+    too - one of the two homes is wrong and the verifier should pick | not an operation performed on materials,
+    parts or products: the process_caps clause defines all three of ''process, operation, or capability'' as ''an
+    operation performed on materials, parts, or products at any stage of production''. PPAP is a part-approval submission
+    package'
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: disputed
+    by: verify-agent-decimal
+    date: '2026-08-27'
+    reason: 'not an operation performed on materials, parts or products: the process_caps clause defines all three
+      of ''process, operation, or capability'' as ''an operation performed on materials, parts, or products at any
+      stage of production''. PPAP is a part-approval submission package'
+- id: decimal_net-process_caps-0123
+  name: root cause analysis
+  status: disputed
+  acceptable_forms:
+  - Root Cause Analysis
+  evidence:
+  - quote: Root Cause Analysis
+    approx_offset: 47425
+  notes: 'DISPUTED: a quality-investigation method, not an operation on the work | not an operation performed on
+    materials, parts or products: the process_caps clause defines all three of ''process, operation, or capability''
+    as ''an operation performed on materials, parts, or products at any stage of production''. root cause analysis
+    is an investigation of data'
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: disputed
+    by: verify-agent-decimal
+    date: '2026-08-27'
+    reason: 'not an operation performed on materials, parts or products: the process_caps clause defines all three
+      of ''process, operation, or capability'' as ''an operation performed on materials, parts, or products at any
+      stage of production''. root cause analysis is an investigation of data'
+- id: decimal_net-process_caps-0124
+  name: statistical process control
+  status: disputed
+  acceptable_forms:
+  - SPC (Statistical Process Control)
+  - SPC
+  evidence:
+  - quote: SPC (Statistical Process Control)
+    approx_offset: 47445
+  notes: 'DISPUTED: a statistical control technique over measurements rather than an operation on the work | not
+    an operation performed on materials, parts or products: the process_caps clause defines all three of ''process,
+    operation, or capability'' as ''an operation performed on materials, parts, or products at any stage of production''.
+    SPC is a statistical methodology applied to process data; the two rows of the same ''Inspection & Process Control''
+    table that ARE performed on the work (Dimensional Inspection 0080, Non-destructive Testing 0121) are confirmed'
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: disputed
+    by: verify-agent-decimal
+    date: '2026-08-27'
+    reason: 'not an operation performed on materials, parts or products: the process_caps clause defines all three
+      of ''process, operation, or capability'' as ''an operation performed on materials, parts, or products at any
+      stage of production''. SPC is a statistical methodology applied to process data; the two rows of the same
+      ''Inspection & Process Control'' table that ARE performed on the work (Dimensional Inspection 0080, Non-destructive
+      Testing 0121) are confirmed'
+- id: decimal_net-process_caps-0125
+  name: metal stamping
+  status: confirmed
+  acceptable_forms:
+  - METAL STAMPING SERVICES
+  - Metal Stamping
+  - die stamping
+  - Stamping
+  - stamping
+  - Stamped
+  - stamped
+  evidence:
+  - quote: METAL STAMPING SERVICES
+    approx_offset: 53910
+  - quote: In quantities over 5,000 parts, die stamping becomes a very economical manufacturing option; this is
+      enhanced further when combined with
+    approx_offset: 54818
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: amended
+    by: verify-agent-decimal
+    date: '2026-08-27'
+    reason: the machining/stamping tables and album lines use the bare words - 'METAL STAMPING CAPABILITIES', 'Stamping
+      Steel Hold Down Clamp', 'Stamped Brass Clip Sleeve' - and none of the seeded forms would credit a search output
+      of 'stamping' or 'stamped'
+- id: decimal_net-process_caps-0126
+  name: reaming
+  status: confirmed
+  acceptable_forms:
+  - reaming
+  evidence:
+  - quote: Our capabilities include, blanking, piercing, coining, drawing, drilling, tapping, reaming and forming.
+      We stamp all metals and some plastics. We can
+    approx_offset: 54381
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+- id: decimal_net-process_caps-0127
+  name: blanking
+  status: confirmed
+  acceptable_forms:
+  - blanking
+  evidence:
+  - quote: Our capabilities include, blanking, piercing, coining, drawing, drilling, tapping, reaming and forming.
+      We
+    approx_offset: 54381
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+- id: decimal_net-process_caps-0128
+  name: piercing
+  status: confirmed
+  acceptable_forms:
+  - piercing
+  evidence:
+  - quote: Our capabilities include, blanking, piercing, coining, drawing, drilling, tapping, reaming and forming.
+      We
+    approx_offset: 54381
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+- id: decimal_net-process_caps-0129
+  name: drawing (deep draw)
+  status: confirmed
+  acceptable_forms:
+  - drawing
+  - Maximum Draw Depth
+  evidence:
+  - quote: Our capabilities include, blanking, piercing, coining, drawing, drilling, tapping, reaming and forming.
+      We stamp all metals and
+    approx_offset: 54381
+  - quote: "Maximum Draw Depth\tUp to 7.88″"
+    approx_offset: 56473
+  notes: the stamping operation; 'Maximum Draw Depth' in the same table confirms the sense
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+- id: decimal_net-process_caps-0130
+  name: secondary operations
+  status: confirmed
+  acceptable_forms:
+  - Secondary Operations
+  - secondary operations
+  evidence:
+  - quote: Secondary Operations
+    approx_offset: 57964
+  - quote: and even spotwelding/welding when needed. While most stampers don’t like secondary operations, we excel
+      at these.
+    approx_offset: 54703
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+- id: decimal_net-process_caps-0131
+  name: PTFE coating
+  status: confirmed
+  acceptable_forms:
+  - PTFE
+  evidence:
+  - quote: PTFE
+    approx_offset: 57848
+  notes: standalone row on the stamping table; the other four fuse it as 'Powder CoatingPTFE' where it has no left
+    word boundary
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+- id: decimal_net-process_caps-0132
+  name: screw machining
+  status: confirmed
+  acceptable_forms:
+  - SCREW MACHINING SERVICES
+  - Screw Machining
+  - Screw machined
+  evidence:
+  - quote: SCREW MACHINING SERVICES
+    approx_offset: 62950
+  - quote: delivered on time and to your specifications. Screw machined parts that require milling features are
+      no
+    approx_offset: 63078
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+- id: decimal_net-process_caps-0133
+  name: milling
+  status: confirmed
+  acceptable_forms:
+  - Milling
+  - milling
+  - COMPLETE MILLING SERVICE
+  - milling features
+  - traditional milling
+  evidence:
+  - quote: COMPLETE MILLING SERVICE
+    approx_offset: 63476
+  - quote: delivered on time and to your specifications. Screw machined parts that require milling features are
+      no
+    approx_offset: 63078
+  notes: the capability-table row is 'MillingMill-Turn' - two cells fused with no separator, so the bare word has
+    no right word boundary there
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: amended
+    by: verify-agent-decimal
+    date: '2026-08-27'
+    reason: the Machining Processes table lists the process as the fused cell 'MillingMill-Turn', so the bare word
+      'Milling' is how the text names it (also boundary-safe in 'CNC Vertical Milling Centers'); none of the seeded
+      forms would credit a search output of 'milling'
+- id: decimal_net-process_caps-0134
+  name: slotting, tabbing and cleco self-alignment
+  status: confirmed
+  acceptable_forms:
+  - slotting, tabbing, and cleco holes
+  - slotting
+  evidence:
+  - quote: initial engineering design. Our team used techniques such as slotting, tabbing, and cleco holes to ensure
+      precise self-alignment. Each assembly was extensively
+    approx_offset: 75756
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+- id: decimal_net-process_caps-0135
+  name: form/fit and function testing
+  status: confirmed
+  acceptable_forms:
+  - Form/Fit and Function
+  - tested for form, fit, and function
+  evidence:
+  - quote: "In Process Testing/Inspection Performed\tForm/Fit and Function"
+    approx_offset: 77022
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+- id: decimal_net-process_caps-0136
+  name: nickel plating
+  status: confirmed
+  acceptable_forms:
+  - Nickel Plated
+  evidence:
+  - quote: Stamped Nickel Plated Steel Arm Connector
+    approx_offset: 103258
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+- id: decimal_net-process_caps-0137
+  name: serialization
+  status: candidate
+  acceptable_forms:
+  - serialization procedure
+  - serialization
+  evidence:
+  - quote: Each unit adhered to stringent material and machining requirements, including a serialization procedure
+      that conformed to military grade standards.
+    approx_offset: 42307
+  notes: marking each unit with a serial number is an operation on the part, and the seed already accepts the parallel
+    'Part Numbering' (0090)
+  provenance:
+  - action: added
+    by: verify-agent-decimal
+    date: '2026-08-27'
+    source: verification-pass-miss
+- id: decimal_net-process_caps-0138
+  name: contouring
+  status: candidate
+  acceptable_forms:
+  - contouring
+  evidence:
+  - quote: custom patterns can be cut on preformed parts utilizing our 2D laser cutting and contouring capabilities.
+    approx_offset: 24587
+  notes: named as a capability alongside 2D laser cutting on the laser-cutting page; absent from the packet
+  provenance:
+  - action: added
+    by: verify-agent-decimal
+    date: '2026-08-27'
+    source: verification-pass-miss
+- id: decimal_net-process_caps-0139
+  name: knurling
+  status: candidate
+  acceptable_forms:
+  - Knurled
+  - knurling
+  - knurled
+  evidence:
+  - quote: Stainless Knurled Knob Audio
+    approx_offset: 80686
+  notes: the CNC album line implies a knurling operation; the seed took 'Turned' from the neighbouring line the
+    same way (process_caps-0024) but skipped this one
+  provenance:
+  - action: added
+    by: verify-agent-decimal
+    date: '2026-08-27'
+    source: verification-pass-miss
+- id: decimal_net-process_caps-0140
+  name: annealing
+  status: candidate
+  acceptable_forms:
+  - annealed
+  - Bright annealed
+  - annealing
+  evidence:
+  - quote: Aluminum (All Alloys in soft, ¼ hard, ½ hard & annealed)
+    approx_offset: 56612
+  actor: unknown
+  notes: the stamping materials list names annealed tempers and '430 Bright annealed'; a heat treatment implied
+    by the material designation
+  provenance:
+  - action: added
+    by: verify-agent-decimal
+    date: '2026-08-27'
+    source: verification-pass-miss
+- id: decimal_net-process_caps-0141
+  name: optical comparator inspection
+  status: candidate
+  acceptable_forms:
+  - Optical Comparators
+  - Optical Comparator
+  evidence:
+  - quote: Optical Comparators
+    approx_offset: 8475
+  notes: Testing & Inspection Equipment row; inspection performed on the work qualifies under the clause, and the
+    seed treated 'Hardness Testers', 'Pull Testers' and 'CMM Equipment' exactly this way
+  provenance:
+  - action: added
+    by: verify-agent-decimal
+    date: '2026-08-27'
+    source: verification-pass-miss
+- id: decimal_net-process_caps-0142
+  name: pin gaging (Deltronic pins)
+  status: candidate
+  acceptable_forms:
+  - Deltronic Pins
+  evidence:
+  - quote: Deltronic Pins
+    approx_offset: 8353
+  notes: same Testing & Inspection Equipment row; implies pin-gage dimensional inspection
+  provenance:
+  - action: added
+    by: verify-agent-decimal
+    date: '2026-08-27'
+    source: verification-pass-miss
+- id: decimal_net-process_caps-0143
+  name: height gaging
+  status: candidate
+  acceptable_forms:
+  - Digital Height Gages
+  evidence:
+  - quote: Digital Height Gages
+    approx_offset: 8368
+  notes: same table; implies height-gage measurement of the work
+  provenance:
+  - action: added
+    by: verify-agent-decimal
+    date: '2026-08-27'
+    source: verification-pass-miss
+- id: decimal_net-process_caps-0144
+  name: micrometer and caliper measurement
+  status: candidate
+  acceptable_forms:
+  - Digital Micrometers & Calipers
+  evidence:
+  - quote: Digital Micrometers & Calipers
+    approx_offset: 21212
+  notes: same table; implies micrometer/caliper measurement
+  provenance:
+  - action: added
+    by: verify-agent-decimal
+    date: '2026-08-27'
+    source: verification-pass-miss
+- id: decimal_net-process_caps-0145
+  name: microscope inspection
+  status: candidate
+  acceptable_forms:
+  - Digital Microscope
+  evidence:
+  - quote: Digital Microscope
+    approx_offset: 21193
+  notes: same table; implies microscope inspection of the work
+  provenance:
+  - action: added
+    by: verify-agent-decimal
+    date: '2026-08-27'
+    source: verification-pass-miss
+- id: decimal_net-process_caps-0146
+  name: gauge block measurement
+  status: candidate
+  acceptable_forms:
+  - Master Gauge Blocks
+  evidence:
+  - quote: Master Gauge Blocks
+    approx_offset: 8455
+  notes: same table; implies gauge-block verification
+  provenance:
+  - action: added
+    by: verify-agent-decimal
+    date: '2026-08-27'
+    source: verification-pass-miss
+- id: decimal_net-process_caps-0147
+  name: ring gaging
+  status: candidate
+  acceptable_forms:
+  - Carbide Ring Gages
+  evidence:
+  - quote: Carbide Ring Gages
+    approx_offset: 8320
+  notes: precision-machining Testing & Inspection Equipment row; implies ring-gage inspection
+  provenance:
+  - action: added
+    by: verify-agent-decimal
+    date: '2026-08-27'
+    source: verification-pass-miss
+- id: decimal_net-process_caps-0148
+  name: slipstick measurement
+  status: candidate
+  acceptable_forms:
+  - Slipstick
+  evidence:
+  - quote: Slipstick
+    approx_offset: 21312
+  notes: sheet-metal / laser / stamping Testing & Inspection Equipment row; implies a measurement operation
+  provenance:
+  - action: added
+    by: verify-agent-decimal
+    date: '2026-08-27'
+    source: verification-pass-miss
+- id: decimal_net-process_caps-0149
+  name: surface measurement
+  status: candidate
+  acceptable_forms:
+  - Mitutoyo Surface Measurement System
+  - Surface Measurement System
+  evidence:
+  - quote: Virtek Laser Scanning System, TESAHITE 700, Mitutoyo Surface Measurement System, and Mitutoyo […]
+    approx_offset: 51528
+  notes: quality-department news post; surface measurement of the work is an inspection operation
+  provenance:
+  - action: added
+    by: verify-agent-decimal
+    date: '2026-08-27'
+    source: verification-pass-miss
+false_friends:
+- form: Kanban
+  reason: an inventory/logistics scheme in the Inventory Management column, not an operation on the work
+- form: JIT Shipping
+  reason: logistics, not a manufacturing operation
+- form: Vendor Managed Inventory
+  reason: an inventory program, not an operation on the work
+- form: Consignment Programs
+  reason: a stocking arrangement, not a process
+- form: Blanket Orders Accepted
+  reason: an order-taking term from the Production Volume column
+- form: SolidWorks
+  reason: CAD software in the File Formats / Solid Modeling Software column, not an operation
+- form: Radbend
+  reason: bend-simulation software, not an operation
+- form: Min-Max
+  reason: an inventory replenishment scheme
+- form: Vocational Training
+  reason: a community programme, not a manufacturing operation
+- form: Live Tooling
+  reason: a lathe attachment listed under Machinery Axis - tooling, not an operation
+- form: Hemming
+  reason: 'anticipatory: ''Hem Bending'' is the real row; ''Hemming'' never occurs'
+- form: Injection Molding
+  reason: 'anticipatory: no molding of any kind is offered; pure word-association from ''metal parts'''

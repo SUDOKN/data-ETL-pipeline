@@ -1,0 +1,2370 @@
+subject: lucasmilhaupt.com
+field: products
+snapshot:
+  file: apps/data_etl_app/tests/test_stages/sample_scraped_texts/lucasmilhaupt.com.txt
+  sha256: d92eed67ef99d67a791896d0467d78dc0c60bf7a96e2ec6f99926618da193236
+eval_set_version: 2
+expected_empty: false
+notes: 'products.yaml doubles as the contract_products expectation. THE PRODUCT-IS-A-MATERIAL CASE: this subject''s
+  own-brand goods (Sil-Fos, Silvaloy, Silvacut, Premabraze, AL 718, AL 822, Handy One, Handy Flux, Handy Paste,
+  Handy Flo, Easy-Flo, Fos-Flo 7, Stop-Off) are brazing alloys, fluxes and pastes -- i.e. consumable MATERIALS that
+  are also finished artifacts coming out of its own manufacturing. Every one of them is seeded in BOTH products
+  and material_caps on purpose; neither field is wrong to return them, and an eval that forces a choice would be
+  scoring an artefact of its own taxonomy. Physical FORMS (wire, strip, rings, preforms, foils, washers, powders,
+  sticks) are products only. A large second population is customer artifacts named in the seven ''Applications We
+  Support'' lists -- turbine components, vacuum interrupters, drill bits, EGR coolers, pacemakers; those carry actor:
+  client.'
+entries:
+- id: lucasmilhaupt_com-products-0001
+  name: Custom Solutions
+  status: disputed
+  acceptable_forms:
+  - Custom Solutions
+  - custom solutions
+  evidence:
+  - quote: Custom Solutions(15)
+    approx_offset: 144467
+  - quote: We offer a full portfolio of custom solutions designed to meet your metal joining needs. From
+    approx_offset: 2014
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: disputed
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+    reason: '''Custom Solutions'' is a product-family/marketing label (a facet on the demo-video page and ''a full
+      portfolio of custom solutions''); ''solutions'' names no made artifact. The artifacts it stands for (preforms,
+      rings, washers) are seeded separately.'
+  notes: '''Custom Solutions'' is a product-family/marketing label (a facet on the demo-video page and ''a full
+    portfolio of custom solutions''); ''solutions'' names no made artifact. The artifacts it stands for (preforms,
+    rings, washers) are seeded separately.'
+- id: lucasmilhaupt_com-products-0002
+  name: brazing alloys
+  status: confirmed
+  acceptable_forms:
+  - brazing alloys
+  - custom brazing alloys
+  - braze alloys
+  - engineered brazing alloys
+  evidence:
+  - quote: years, Lucas Milhaupt has been the name behind high-performance brazing alloys, fluxes, and custom pre-forms
+      that keep critical assemblies functioning in
+    approx_offset: 2881
+  - quote: solutions designed to meet your metal joining needs. From custom brazing alloys to fluxes to precision
+      metal joining components.
+    approx_offset: 2050
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+- id: lucasmilhaupt_com-products-0003
+  name: precision metal joining components
+  status: confirmed
+  acceptable_forms:
+  - precision metal joining components
+  - metal joining components
+  evidence:
+  - quote: solutions designed to meet your metal joining needs. From custom brazing alloys to fluxes to precision
+      metal joining components.
+    approx_offset: 2050
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+- id: lucasmilhaupt_com-products-0004
+  name: preforms
+  status: confirmed
+  acceptable_forms:
+  - preforms
+  - pre-forms
+  - custom pre-forms
+  - custom preforms
+  - brazing preforms
+  - silver alloy brazing preforms
+  - buried preform
+  evidence:
+  - quote: years, Lucas Milhaupt has been the name behind high-performance brazing alloys, fluxes, and custom pre-forms
+      that keep critical assemblies functioning in
+    approx_offset: 2881
+  - quote: was founded in 1942 as a tool manufacturer, but soon turned to the production of silver alloy brazing
+      preforms for the joining of metals. The use of preforms was a new technology that
+    approx_offset: 110670
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+- id: lucasmilhaupt_com-products-0005
+  name: turbine engine components
+  status: confirmed
+  acceptable_forms:
+  - turbine engine components
+  - Engine Components
+  - jet turbine blades
+  - hot-zone hardware
+  evidence:
+  - quote: expertise spans a remarkable range of markets. Whether you build turbine engine components for aerospace
+      and defense, battery and thermal-management systems for automotive
+    approx_offset: 3506
+  - quote: sustained temps approaching or exceeding ~900°F, such as turbine speed/torque sensors and hot-zone hardware.
+    approx_offset: 30815
+  actor: client
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+- id: lucasmilhaupt_com-products-0006
+  name: battery and thermal-management systems
+  status: confirmed
+  acceptable_forms:
+  - battery and thermal-management systems
+  - battery
+  evidence:
+  - quote: engine components for aerospace and defense, battery and thermal-management systems for automotive and
+      EV, copper-aluminum coils for HVAC/R and appliance,
+    approx_offset: 3579
+  actor: client
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+- id: lucasmilhaupt_com-products-0007
+  name: copper-aluminum coils
+  status: confirmed
+  acceptable_forms:
+  - copper-aluminum coils
+  - aluminum coils
+  - heat exchange coil
+  evidence:
+  - quote: thermal-management systems for automotive and EV, copper-aluminum coils for HVAC/R and appliance, hermetic
+      packages for microelectronics and semiconductor,
+    approx_offset: 3636
+  - quote: As a lightweight, corrosion-resistant alloy, aluminum can be a cost-effective solution for heat exchange
+      coil construction. Learn more about our innovative, patent pending
+    approx_offset: 11102
+  actor: client
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+- id: lucasmilhaupt_com-products-0008
+  name: hermetic packages
+  status: confirmed
+  acceptable_forms:
+  - hermetic packages
+  - ceramic-to-metal packages
+  - micro-packages
+  - microelectronic packages
+  evidence:
+  - quote: copper-aluminum coils for HVAC/R and appliance, hermetic packages for microelectronics and semiconductor,
+      high-current connectors for electrical power,
+    approx_offset: 3686
+  - quote: airtight, hermetic seals in microelectronic packages. Applications include sealing ceramic-to-metal packages,
+      lid attachment, and brazing connector feedthroughs for sensors,
+    approx_offset: 19481
+  actor: client
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+- id: lucasmilhaupt_com-products-0009
+  name: high-current connectors
+  status: confirmed
+  acceptable_forms:
+  - high-current connectors
+  evidence:
+  - quote: packages for microelectronics and semiconductor, high-current connectors for electrical power, biocompatible
+      assemblies for medical devices,
+    approx_offset: 3743
+  actor: client
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+- id: lucasmilhaupt_com-products-0010
+  name: biocompatible assemblies
+  status: confirmed
+  acceptable_forms:
+  - biocompatible assemblies
+  evidence:
+  - quote: high-current connectors for electrical power, biocompatible assemblies for medical devices, or rugged
+      tools for oil & gas, Lucas Milhaupt
+    approx_offset: 3792
+  actor: client
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+- id: lucasmilhaupt_com-products-0011
+  name: Sil-Fos
+  status: confirmed
+  acceptable_forms:
+  - Sil-Fos
+  - Sil-Fos®
+  - SilFos
+  - Sil-Fos Products
+  evidence:
+  - quote: refrigeration and air conditioning equipment . Our legacy began with the invention of Sil-Fos® – a silver-copper-phosphorus
+      brazing alloy patented
+    approx_offset: 8958
+  - quote: The Original Sil-Fos
+    approx_offset: 124621
+  notes: 'THE two-axes-one-object case: a silver-copper-phosphorus brazing alloy, so also a material_caps entry'
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+- id: lucasmilhaupt_com-products-0012
+  name: rings
+  status: confirmed
+  acceptable_forms:
+  - rings
+  - brazing ring
+  - brazing rings
+  - triangular brazing ring
+  - flux cored brazing rings
+  - Silvaloy® rings
+  evidence:
+  - quote: exchange coil construction. Learn more about our innovative, patent pending triangular brazing ring and
+      flux cored brazing rings for return bends, or U-bends.
+    approx_offset: 11198
+  - quote: Manufactured by high speed machines, rings maintain a true radius and may be partial turn, full turn
+      or multiple
+    approx_offset: 154483
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+- id: lucasmilhaupt_com-products-0013
+  name: return bends / U-bends
+  status: confirmed
+  acceptable_forms:
+  - return bends
+  - U-bends
+  - return bends, or U-bends
+  evidence:
+  - quote: innovative, patent pending triangular brazing ring and flux cored brazing rings for return bends, or
+      U-bends.
+    approx_offset: 11247
+  actor: client
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+- id: lucasmilhaupt_com-products-0014
+  name: compressors
+  status: confirmed
+  acceptable_forms:
+  - compressors
+  evidence:
+  - quote: courses give Service Technicians an opportunity to train alongside industry experts that helped design
+      the coils, compressors, evaporators, and condensers that you work on
+    approx_offset: 11464
+  actor: client
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+- id: lucasmilhaupt_com-products-0015
+  name: evaporators and condensers
+  status: confirmed
+  acceptable_forms:
+  - evaporators
+  - condensers
+  - coils, compressors, evaporators, and condensers
+  evidence:
+  - quote: alongside industry experts that helped design the coils, compressors, evaporators, and condensers that
+      you work on in the field. Learn how to braze copper to copper or copper
+    approx_offset: 11521
+  actor: client
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+- id: lucasmilhaupt_com-products-0016
+  name: Premabraze Series
+  status: confirmed
+  acceptable_forms:
+  - Premabraze® Series
+  - Premabraze Series
+  evidence:
+  - quote: Milhaupt’s high-purity alloy offerings, including the Premabraze® Series (AuSn Premabraze 800, AuGe Premabraze
+      880) and Silvaloy 721 – deliver exceptional bond strength,
+    approx_offset: 16097
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+- id: lucasmilhaupt_com-products-0017
+  name: foils
+  status: confirmed
+  acceptable_forms:
+  - stamped foils
+  - foils
+  evidence:
+  - quote: and components with extremely tight tolerances. We have achieved wire diameters as small as 0.006″ and
+      stamped foils down to 0.001″ thick, enabling reliable bonding even for the smallest
+    approx_offset: 17103
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+- id: lucasmilhaupt_com-products-0018
+  name: semiconductor chips / dies
+  status: confirmed
+  acceptable_forms:
+  - semiconductor chips
+  - semiconductor chips (dies)
+  - substrates
+  evidence:
+  - quote: 'Semiconductor Die Attach: Lucas Milhaupt supplies high-purity solders for attaching semiconductor chips
+      (dies) to substrates or packaging. Our Premabraze® 880 (an 88% Au / 12% Ge eutectic'
+    approx_offset: 18882
+  actor: client
+  notes: '''dies'' here means semiconductor die, NOT the stamping tooling of the same spelling elsewhere on the
+    site -- a genuine within-corpus homograph'
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: amended
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+    reason: 'bare ''dies'' is a homograph trap: 7 of the 9 occurrences in this text are STAMPING dies (''more than
+      4,000 dies'', ''carbide and diamond dies'', ''in stock dies'', ''compound or progressive dies''), which the
+      products clause excludes as tooling. Only the two in this quote mean semiconductor dies.'
+- id: lucasmilhaupt_com-products-0019
+  name: power transistors
+  status: confirmed
+  acceptable_forms:
+  - power transistors
+  evidence:
+  - quote: maintain vacuum integrity during device operation. Whether for power transistors, LEDs, or integrated
+      circuits, these solder alloys ensure a strong, void-free
+    approx_offset: 19191
+  actor: client
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+- id: lucasmilhaupt_com-products-0020
+  name: LEDs
+  status: confirmed
+  acceptable_forms:
+  - LEDs
+  evidence:
+  - quote: integrity during device operation. Whether for power transistors, LEDs, or integrated circuits, these
+      solder alloys ensure a strong, void-free
+    approx_offset: 19207
+  actor: client
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+- id: lucasmilhaupt_com-products-0021
+  name: integrated circuits
+  status: confirmed
+  acceptable_forms:
+  - integrated circuits
+  evidence:
+  - quote: integrity during device operation. Whether for power transistors, LEDs, or integrated circuits, these
+      solder alloys ensure a strong, void-free
+    approx_offset: 19207
+  actor: client
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+- id: lucasmilhaupt_com-products-0022
+  name: connector feedthroughs
+  status: confirmed
+  acceptable_forms:
+  - connector feedthroughs
+  - Feedthroughs
+  evidence:
+  - quote: Applications include sealing ceramic-to-metal packages, lid attachment, and brazing connector feedthroughs
+      for sensors, medical implants, and aerospace electronics. Lucas Milhaupt’s
+    approx_offset: 19535
+  actor: client
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+- id: lucasmilhaupt_com-products-0023
+  name: RF microwave modules
+  status: confirmed
+  acceptable_forms:
+  - RF microwave modules
+  - RF & Microwave Components
+  - RF lid seals
+  evidence:
+  - quote: and electrical transfer at the solder joint. This makes them ideal for RF microwave modules, telecommunications
+      hardware, and power electronics (heat spreaders, laser
+    approx_offset: 20261
+  actor: client
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+- id: lucasmilhaupt_com-products-0024
+  name: heat spreaders
+  status: confirmed
+  acceptable_forms:
+  - heat spreaders
+  evidence:
+  - quote: microwave modules, telecommunications hardware, and power electronics (heat spreaders, laser diode submounts)
+      where managing heat and ensuring signal integrity
+    approx_offset: 20335
+  actor: client
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+- id: lucasmilhaupt_com-products-0025
+  name: laser diode submounts
+  status: confirmed
+  acceptable_forms:
+  - laser diode submounts
+  - laser diodes
+  evidence:
+  - quote: telecommunications hardware, and power electronics (heat spreaders, laser diode submounts) where managing
+      heat and ensuring signal integrity
+    approx_offset: 20354
+  actor: client
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+- id: lucasmilhaupt_com-products-0026
+  name: MEMS sensors
+  status: confirmed
+  acceptable_forms:
+  - MEMS sensors
+  evidence:
+  - quote: 'Optoelectronics & Sensor Assemblies: From laser diodes and photonic packages to MEMS sensors and precision
+      medical devices, Lucas Milhaupt'
+    approx_offset: 20649
+  actor: client
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+- id: lucasmilhaupt_com-products-0027
+  name: photonic packages
+  status: confirmed
+  acceptable_forms:
+  - photonic packages
+  - optical components
+  evidence:
+  - quote: 'Optoelectronics & Sensor Assemblies: From laser diodes and photonic packages to MEMS sensors and precision
+      medical devices, Lucas Milhaupt'
+    approx_offset: 20649
+  actor: client
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+- id: lucasmilhaupt_com-products-0028
+  name: fiber-optic and imaging modules
+  status: confirmed
+  acceptable_forms:
+  - fiber-optic and imaging modules
+  evidence:
+  - quote: enable hermetic sealing of optical components, bonding of sensor elements, and assembly of fiber-optic
+      and imaging modules. The result is robust connectivity for optical
+    approx_offset: 21005
+  actor: client
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+- id: lucasmilhaupt_com-products-0029
+  name: strip
+  status: confirmed
+  acceptable_forms:
+  - strip
+  - precision strips
+  - perforated strip
+  evidence:
+  - quote: nickel-bearing and specialty aerospace brazing alloys available as wire, paste, strip, rings, and custom
+      preforms to fit your joining process and design envelope.
+    approx_offset: 30483
+  - quote: Supplied as precision strips or custom preforms to fit the tinest cond pads, Premabraze 800 is
+    approx_offset: 22723
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+- id: lucasmilhaupt_com-products-0030
+  name: washers
+  status: confirmed
+  acceptable_forms:
+  - washers
+  - washer preforms
+  - custom preform washers
+  - flux-cored washer
+  evidence:
+  - quote: produce simple, compound or progressive dies, utilizing high precision equipment to manufacture washers,
+      discs, perforated strip and irregular configurations.
+    approx_offset: 153544
+  - quote: Available as laser-cut frames, washer preforms, or ribbon for automated pick-and-place, this Au88/Ge12
+      eutectuc is designed for high-reliability
+    approx_offset: 23516
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+- id: lucasmilhaupt_com-products-0031
+  name: ribbon
+  status: confirmed
+  acceptable_forms:
+  - ribbon
+  evidence:
+  - quote: Available as laser-cut frames, washer preforms, or ribbon for automated pick-and-place, this Au88/Ge12
+      eutectuc is designed for high-reliability
+    approx_offset: 23516
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+- id: lucasmilhaupt_com-products-0032
+  name: laser-cut frames
+  status: confirmed
+  acceptable_forms:
+  - laser-cut frames
+  evidence:
+  - quote: Available as laser-cut frames, washer preforms, or ribbon for automated pick-and-place, this Au88/Ge12
+    approx_offset: 23516
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+- id: lucasmilhaupt_com-products-0033
+  name: dental handpieces
+  status: confirmed
+  acceptable_forms:
+  - handpieces
+  - dental equipment
+  evidence:
+  - quote: 'Dental Devices: Brazing solutions for dental equipment (handpieces, orthodontic appliances) that require
+      precise, durable joints and biocompatible'
+    approx_offset: 26303
+  actor: client
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+- id: lucasmilhaupt_com-products-0034
+  name: orthodontic appliances
+  status: confirmed
+  acceptable_forms:
+  - orthodontic appliances
+  evidence:
+  - quote: 'Dental Devices: Brazing solutions for dental equipment (handpieces, orthodontic appliances) that require
+      precise, durable joints and biocompatible'
+    approx_offset: 26303
+  actor: client
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+- id: lucasmilhaupt_com-products-0035
+  name: diagnostic equipment
+  status: confirmed
+  acceptable_forms:
+  - Diagnostic Equipment
+  - diagnostic machines
+  - MRI
+  - X-ray
+  - ultrasound equipment
+  evidence:
+  - quote: 'Diagnostic Equipment: Reliable joining of components in diagnostic machines and instruments (such as
+      MRI, X-ray, and ultrasound equipment), ensuring consistent operation and longevity'
+    approx_offset: 26518
+  actor: client
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+- id: lucasmilhaupt_com-products-0036
+  name: implants / pacemakers / prosthetics
+  status: confirmed
+  acceptable_forms:
+  - implants
+  - pacemakers
+  - prosthetics
+  - implantable devices
+  - medical implants
+  evidence:
+  - quote: brazing alloys (gold-based filler metals) to assemble implants like pacemakers, prosthetics, and sensor
+      housings with hermetic seals and precision joints that
+    approx_offset: 26809
+  actor: client
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+- id: lucasmilhaupt_com-products-0037
+  name: sensor housings
+  status: confirmed
+  acceptable_forms:
+  - sensor housings
+  - precision sensor housings
+  evidence:
+  - quote: alloys (gold-based filler metals) to assemble implants like pacemakers, prosthetics, and sensor housings
+      with hermetic seals and precision joints that
+    approx_offset: 26817
+  actor: client
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+- id: lucasmilhaupt_com-products-0038
+  name: surgical instruments
+  status: confirmed
+  acceptable_forms:
+  - Surgical Instruments
+  - surgical tools
+  - forceps
+  - endoscopes
+  - robotic surgery components
+  evidence:
+  - quote: 'Instruments & Other High-Tech Medical Devices: Brazed assemblies for surgical tools (forceps, endoscopes,
+      robotic surgery components) and other high-tech medical devices, providing'
+    approx_offset: 27008
+  actor: client
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+- id: lucasmilhaupt_com-products-0039
+  name: turbine speed/torque sensors
+  status: confirmed
+  acceptable_forms:
+  - turbine speed/torque sensors
+  evidence:
+  - quote: sustained temps approaching or exceeding ~900°F, such as turbine speed/torque sensors and hot-zone hardware.
+    approx_offset: 30815
+  actor: client
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+- id: lucasmilhaupt_com-products-0040
+  name: pitot probes
+  status: confirmed
+  acceptable_forms:
+  - Pitot Probes
+  - Sensors & Instrumentation
+  evidence:
+  - quote: Sensors & Instrumentation (Pitot Probes, Thermal, Pressure)
+    approx_offset: 30926
+  actor: client
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+- id: lucasmilhaupt_com-products-0041
+  name: circuit breakers
+  status: confirmed
+  acceptable_forms:
+  - circuit breakers
+  evidence:
+  - quote: materials, making it the go-to method for assembling high-power electrical devices like circuit breakers,
+      vacuum tubes, and busbars. These high-value components often require brazing
+    approx_offset: 40354
+  actor: client
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+- id: lucasmilhaupt_com-products-0042
+  name: vacuum tubes
+  status: confirmed
+  acceptable_forms:
+  - vacuum tubes
+  - Vacuum tube components
+  - vacuum electronic devices
+  evidence:
+  - quote: for assembling high-power electrical devices like circuit breakers, vacuum tubes, and busbars. These
+      high-value components often require brazing
+    approx_offset: 40392
+  - quote: Vacuum tube components, metallized ceramics,
+    approx_offset: 196047
+  actor: client
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+- id: lucasmilhaupt_com-products-0043
+  name: busbars
+  status: confirmed
+  acceptable_forms:
+  - busbars
+  - busbar assemblies
+  - Busbar Connections
+  evidence:
+  - quote: assembling high-power electrical devices like circuit breakers, vacuum tubes, and busbars. These high-value
+      components often require brazing
+    approx_offset: 40396
+  - quote: Transformers & Busbar Connections – In power transformers and busbar assemblies, brazed copper connections
+      ensure low-resistance, durable joints capable
+    approx_offset: 44150
+  actor: client
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+- id: lucasmilhaupt_com-products-0044
+  name: vacuum interrupters
+  status: confirmed
+  acceptable_forms:
+  - vacuum interrupters
+  - vacuum interrupter
+  - medium-voltage vacuum interrupter
+  evidence:
+  - quote: Power Distribution & Switchgear – Brazing is critical in devices like vacuum interrupters, electrical
+      fuses, and switch contact assemblies. These components
+    approx_offset: 43105
+  actor: client
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+- id: lucasmilhaupt_com-products-0045
+  name: electrical fuses
+  status: confirmed
+  acceptable_forms:
+  - electrical fuses
+  evidence:
+  - quote: Distribution & Switchgear – Brazing is critical in devices like vacuum interrupters, electrical fuses,
+      and switch contact assemblies. These components manage high voltages and currents,
+    approx_offset: 43111
+  actor: client
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+- id: lucasmilhaupt_com-products-0046
+  name: switch contact assemblies
+  status: confirmed
+  acceptable_forms:
+  - switch contact assemblies
+  - switchgear
+  - high-voltage switchgear
+  evidence:
+  - quote: Switchgear – Brazing is critical in devices like vacuum interrupters, electrical fuses, and switch contact
+      assemblies. These components manage high voltages and currents,
+    approx_offset: 43126
+  actor: client
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+- id: lucasmilhaupt_com-products-0047
+  name: traveling wave tubes
+  status: confirmed
+  acceptable_forms:
+  - Traveling wave tubes
+  - TWTs
+  - traveling wave tube
+  evidence:
+  - quote: Traveling wave tubes (TWTs) and other vacuum electronic devices rely on brazing
+    approx_offset: 43646
+  actor: client
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+- id: lucasmilhaupt_com-products-0048
+  name: transformers
+  status: confirmed
+  acceptable_forms:
+  - transformers
+  - power transformers
+  - Transformers
+  evidence:
+  - quote: Transformers & Busbar Connections – In power transformers and busbar assemblies, brazed copper connections
+      ensure low-resistance,
+    approx_offset: 44150
+  actor: client
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+- id: lucasmilhaupt_com-products-0049
+  name: cable lugs
+  status: confirmed
+  acceptable_forms:
+  - cable lugs
+  - high-current cable lugs
+  evidence:
+  - quote: across all segments of the electrical industry. From high-current cable lugs and grounding connectors
+      to precision sensor housings, we provide the
+    approx_offset: 44724
+  actor: client
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+- id: lucasmilhaupt_com-products-0050
+  name: grounding connectors
+  status: confirmed
+  acceptable_forms:
+  - grounding connectors
+  evidence:
+  - quote: all segments of the electrical industry. From high-current cable lugs and grounding connectors to precision
+      sensor housings, we provide the right filler metals and process
+    approx_offset: 44731
+  actor: client
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+- id: lucasmilhaupt_com-products-0051
+  name: brass bushing / steel sleeve
+  status: confirmed
+  acceptable_forms:
+  - brass bushing
+  - steel sleeve
+  evidence:
+  - quote: As an example, let’s say you’re brazing a brass bushing into a steel sleeve. Brass expands, when heated,
+      more than steel.
+    approx_offset: 58341
+  actor: unknown
+  notes: worked example in the joint-clearance section of the manual
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+- id: lucasmilhaupt_com-products-0052
+  name: Fos-Flo 7
+  status: confirmed
+  acceptable_forms:
+  - Fos-Flo 7
+  - Fos-Flo
+  evidence:
+  - quote: filler metal specially formulated for the job, such as Handy & Harman's Sil-Fos or Fos-Flo 7. (The phosphorus
+      in these alloys acts as a fluxing
+    approx_offset: 73650
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+- id: lucasmilhaupt_com-products-0053
+  name: studs and screws
+  status: confirmed
+  acceptable_forms:
+  - studs or screws
+  evidence:
+  - quote: on brazed joints in production quality control-for example, studs or screws brazed to thick sections
+    approx_offset: 101264
+  actor: unknown
+  notes: instructional prose, torsion-testing example
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+- id: lucasmilhaupt_com-products-0054
+  name: pastes
+  status: confirmed
+  acceptable_forms:
+  - Pastes
+  - pastes
+  - paste products
+  - Paste products
+  evidence:
+  - quote: Paste products are a custom blend of braze filler metal and specially formulated binders,
+    approx_offset: 105101
+  - quote: For operations that demand turnkey simplicity, our Pastes blend precisely metered alloy powders with
+      flux and rheology modifiers, ensuring accurate deposit control in automated
+    approx_offset: 113648
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+- id: lucasmilhaupt_com-products-0055
+  name: Handy Flo binder series
+  status: confirmed
+  acceptable_forms:
+  - Handy Flo
+  - HANDY FLO 100 Series
+  - HANDY FLO 800 Series
+  - Handy-Flo 310
+  - Handy Flo 500 Series
+  evidence:
+  - quote: HANDY FLO 100 Series
+    approx_offset: 105997
+  - quote: Handy Flo 300 Series are clean burning, flux-free binders that are mixed with high purity braze alloy
+      powders
+    approx_offset: 200334
+  notes: eight numbered paste-binder series, each with its own product page
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+- id: lucasmilhaupt_com-products-0056
+  name: soft solder forms
+  status: confirmed
+  acceptable_forms:
+  - soft solder forms
+  - soft solder
+  evidence:
+  - quote: II. Over the next twenty years, Lucas Milhaupt began to offer copper, brass and aluminum brazing preforms
+      and soft solder forms to keep up with the demand of the electronic
+    approx_offset: 110906
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+- id: lucasmilhaupt_com-products-0057
+  name: filler metals
+  status: confirmed
+  acceptable_forms:
+  - Filler Metals
+  - filler metals
+  - filler metal
+  evidence:
+  - quote: 'matter the alloy, geometry, or production scale. At the core are our Filler Metals: a comprehensive
+      line of silver, aluminum, copper, nickel, precious-metal, and specialized alloy forms'
+    approx_offset: 113032
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+- id: lucasmilhaupt_com-products-0058
+  name: wire
+  status: confirmed
+  acceptable_forms:
+  - wire
+  - flux-cored wire
+  - solid wire
+  - filler wire
+  evidence:
+  - quote: aluminum, copper, nickel, precious-metal, and specialized alloy forms (wire, strip, rings, preforms,
+      and powders) engineered to deliver consistent braze strength
+    approx_offset: 113148
+  - quote: joints in aluminum and multi-metal assemblies. Whether you need flux-cored wire, custom preform washers
+      for tapered valves, or highly fluid aluminum filler metals for high-throughput
+    approx_offset: 167001
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+- id: lucasmilhaupt_com-products-0059
+  name: powders
+  status: confirmed
+  acceptable_forms:
+  - powders
+  - alloy powders
+  - braze powders
+  evidence:
+  - quote: copper, nickel, precious-metal, and specialized alloy forms (wire, strip, rings, preforms, and powders)
+      engineered to deliver consistent braze strength
+    approx_offset: 113158
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+- id: lucasmilhaupt_com-products-0060
+  name: fluxes
+  status: confirmed
+  acceptable_forms:
+  - Fluxes
+  - fluxes
+  - flux
+  evidence:
+  - quote: demanding thermal cycles. To complement those alloys, we formulate Fluxes that provide optimal wetting
+      and oxide removal over a full temperature spectrum, from low-temp
+    approx_offset: 113345
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+- id: lucasmilhaupt_com-products-0061
+  name: tool joints and wear parts
+  status: confirmed
+  acceptable_forms:
+  - tool joints
+  - wear parts
+  - wear components
+  evidence:
+  - quote: and pastes that hold up in harsh environments. From tool joints and wear parts to valves and heat exchangers,
+      our solutions support both new build and MRO
+    approx_offset: 119478
+  actor: client
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+- id: lucasmilhaupt_com-products-0062
+  name: valves
+  status: confirmed
+  acceptable_forms:
+  - valves
+  - Valves
+  - tapered valves
+  evidence:
+  - quote: and pastes that hold up in harsh environments. From tool joints and wear parts to valves and heat exchangers,
+      our solutions support both new build and MRO
+    approx_offset: 119478
+  - quote: 'Valves, pumps and compression equipment:'
+    approx_offset: 121148
+  actor: client
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+- id: lucasmilhaupt_com-products-0063
+  name: Silvacut
+  status: confirmed
+  acceptable_forms:
+  - Silvacut
+  - Silvacut®
+  - SilvaCut
+  evidence:
+  - quote: 'Portfolio built for carbide, steel and copper: Highlighted solutions include Silvacut® and Silvaloy®
+      silver-braze alloys for bonding tungsten carbide to alloy steels,'
+    approx_offset: 120010
+  notes: also a material_caps entry
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+- id: lucasmilhaupt_com-products-0064
+  name: Handy Paste
+  status: confirmed
+  acceptable_forms:
+  - Handy Paste
+  - Handy Paste™
+  evidence:
+  - quote: for bonding tungsten carbide to alloy steels, plus Sil-Fos® for copper-to-copper and copper-to-brass
+      assemblies and Handy Flux™/Handy Paste™ options for clean, repeatable results.
+    approx_offset: 120131
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+- id: lucasmilhaupt_com-products-0065
+  name: Handy Flux
+  status: confirmed
+  acceptable_forms:
+  - Handy Flux
+  - Handy Flux™
+  - Handy® Flux
+  evidence:
+  - quote: copper-to-copper and copper-to-brass assemblies and Handy Flux™/Handy Paste™ options for clean, repeatable
+      results.
+    approx_offset: 120195
+  notes: also a material_caps entry
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+- id: lucasmilhaupt_com-products-0066
+  name: pellet forms
+  status: confirmed
+  acceptable_forms:
+  - pellet forms
+  - pellet
+  evidence:
+  - quote: filler metal and flux, optimize joint design, and tailor paste viscosity or pellet forms to your production
+      method, whether you braze in a torch, furnace, or induction
+    approx_offset: 120373
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+- id: lucasmilhaupt_com-products-0067
+  name: drill bits
+  status: confirmed
+  acceptable_forms:
+  - drill bits
+  - Downhole drilling bits
+  - roller-cone
+  - PDC
+  evidence:
+  - quote: 'Downhole drilling bits and reamers: Brazing of tungsten carbide inserts'
+    approx_offset: 120801
+  - quote: hard-metal ores destroy ordinary joints in minutes. The cutters, picks, and drill bits that tame these
+      materials rely on brazed joints that survive crushing loads,
+    approx_offset: 121565
+  actor: client
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+- id: lucasmilhaupt_com-products-0068
+  name: reamers
+  status: confirmed
+  acceptable_forms:
+  - reamers
+  evidence:
+  - quote: 'Downhole drilling bits and reamers: Brazing of tungsten carbide inserts and wear'
+    approx_offset: 120801
+  actor: client
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+- id: lucasmilhaupt_com-products-0069
+  name: tungsten carbide inserts
+  status: confirmed
+  acceptable_forms:
+  - tungsten carbide inserts
+  - carbide inserts
+  evidence:
+  - quote: 'Downhole drilling bits and reamers: Brazing of tungsten carbide inserts and wear protection features
+      for PDC and roller-cone designs to withstand'
+    approx_offset: 120801
+  actor: client
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+- id: lucasmilhaupt_com-products-0070
+  name: stabilizers, subs, mandrels
+  status: confirmed
+  acceptable_forms:
+  - Stabilizers, subs, mandrels
+  - stabilizers
+  - mandrels
+  - bearing surfaces
+  evidence:
+  - quote: Stabilizers, subs, mandrels and bearing surfaces that require robust carbide-to-steel joints
+    approx_offset: 121028
+  actor: client
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+- id: lucasmilhaupt_com-products-0071
+  name: pumps
+  status: confirmed
+  acceptable_forms:
+  - pumps
+  evidence:
+  - quote: 'Valves, pumps and compression equipment: Seals, impellers, housings and trim where leak-tight'
+    approx_offset: 121148
+  actor: client
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+- id: lucasmilhaupt_com-products-0072
+  name: impellers
+  status: confirmed
+  acceptable_forms:
+  - impellers
+  evidence:
+  - quote: 'Valves, pumps and compression equipment: Seals, impellers, housings and trim where leak-tight joints
+      and corrosion resistance'
+    approx_offset: 121148
+  actor: client
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+- id: lucasmilhaupt_com-products-0073
+  name: seals and trim
+  status: confirmed
+  acceptable_forms:
+  - Seals, impellers, housings and trim
+  - trim
+  evidence:
+  - quote: 'Valves, pumps and compression equipment: Seals, impellers, housings and trim where leak-tight joints
+      and corrosion resistance are vital in sour and corrosive environments.'
+    approx_offset: 121148
+  actor: client
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+- id: lucasmilhaupt_com-products-0074
+  name: heat exchangers
+  status: confirmed
+  acceptable_forms:
+  - heat exchangers
+  - High-Temp Engine Heat Exchangers
+  evidence:
+  - quote: 'Surface facilities and instrumentation: Tube-to-header joints in heat exchangers, manifolds and precision
+      fittings for reliable performance in processing, measurement'
+    approx_offset: 121320
+  actor: client
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+- id: lucasmilhaupt_com-products-0075
+  name: manifolds
+  status: confirmed
+  acceptable_forms:
+  - manifolds
+  evidence:
+  - quote: 'Surface facilities and instrumentation: Tube-to-header joints in heat exchangers, manifolds and precision
+      fittings for reliable performance in processing, measurement'
+    approx_offset: 121320
+  actor: client
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+- id: lucasmilhaupt_com-products-0076
+  name: precision fittings
+  status: confirmed
+  acceptable_forms:
+  - precision fittings
+  - fittings
+  evidence:
+  - quote: 'and instrumentation: Tube-to-header joints in heat exchangers, manifolds and precision fittings for
+      reliable performance in processing, measurement'
+    approx_offset: 121339
+  actor: client
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+- id: lucasmilhaupt_com-products-0077
+  name: cutters and picks
+  status: confirmed
+  acceptable_forms:
+  - cutters, picks
+  - cutters
+  - picks
+  - cutting structures
+  evidence:
+  - quote: hard-metal ores destroy ordinary joints in minutes. The cutters, picks, and drill bits that tame these
+      materials rely on brazed joints that survive crushing loads,
+    approx_offset: 121565
+  actor: client
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+- id: lucasmilhaupt_com-products-0078
+  name: Easy-Flo
+  status: confirmed
+  acceptable_forms:
+  - Easy-Flo
+  - Easy-Flo®
+  evidence:
+  - quote: Sil-Fos, Easy-Flo and other brazing alloys were used innumerable braze joints of planes, ships, and ammunition.
+      Sil-Fos was
+    approx_offset: 126737
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+- id: lucasmilhaupt_com-products-0079
+  name: aircraft
+  status: confirmed
+  acceptable_forms:
+  - aircraft
+  - airplanes
+  - planes
+  evidence:
+  - quote: repair shops. Examples are robotic assemblies plus fabrication of pressure vessels, bridges, building
+      structures, aircraft, railway coaches and tracks, pipelines and more.
+    approx_offset: 162009
+  - quote: Sil-Fos, Easy-Flo and other brazing alloys were used innumerable braze joints of planes, ships, and ammunition.
+      Sil-Fos was instrumental in increasing the strength
+    approx_offset: 126737
+  actor: client
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+- id: lucasmilhaupt_com-products-0080
+  name: ships
+  status: confirmed
+  acceptable_forms:
+  - ships
+  evidence:
+  - quote: Sil-Fos, Easy-Flo and other brazing alloys were used innumerable braze joints of planes, ships, and ammunition.
+      Sil-Fos was instrumental in increasing the strength
+    approx_offset: 126737
+  actor: client
+  notes: WWII history page
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+- id: lucasmilhaupt_com-products-0081
+  name: ammunition
+  status: confirmed
+  acceptable_forms:
+  - ammunition
+  evidence:
+  - quote: alloys were used innumerable braze joints of planes, ships, and ammunition. Sil-Fos was instrumental
+      in increasing the strength
+    approx_offset: 126773
+  actor: client
+  notes: WWII history page
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+- id: lucasmilhaupt_com-products-0082
+  name: airplane engine bearings
+  status: confirmed
+  acceptable_forms:
+  - airplane engine bearings
+  evidence:
+  - quote: braze joints of planes, ships, and ammunition. Sil-Fos was instrumental in increasing the strength of
+      airplane engine bearings and increasing engine efficiency, resulting in
+    approx_offset: 126802
+  actor: client
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+- id: lucasmilhaupt_com-products-0083
+  name: shaft, bearing or gear
+  status: confirmed
+  acceptable_forms:
+  - metal shaft, bearing or gear
+  - shaft, bearing or gear
+  - shaft
+  evidence:
+  - quote: contribution Sil-Fos offered was in machine repair. A broken or damaged metal shaft, bearing or gear
+      could put a vitally-needed machine tool out of production. Replacement of the part might
+    approx_offset: 127015
+  actor: client
+  notes: WWII machine-repair passage
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: amended
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+    reason: bare 'gear' is credited by 'Lucas Gear', the merchandise link in EVERY page footer (72 of its hits),
+      and 'bearing' is credited by 'nickel-bearing'/'silver-bearing'/'cadmium-bearing'. Neither can independently
+      miss and both invite false credit; 'shaft' occurs only in this sentence.
+- id: lucasmilhaupt_com-products-0084
+  name: tin cans
+  status: confirmed
+  acceptable_forms:
+  - tin cans
+  evidence:
+  - quote: example, or soft soldering or adhesive bonding.) If you are selecting a method to seal the seams of tin
+      cans, there is nothing to stop you from brazing.
+    approx_offset: 132784
+  actor: unknown
+  notes: hypothetical example in the why-brazing argument
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+- id: lucasmilhaupt_com-products-0085
+  name: tubing
+  status: confirmed
+  acceptable_forms:
+  - copper tubing
+  - steel tubing
+  - thin-wall tubing
+  - tubing
+  evidence:
+  - quote: What length of lap do you need to join 3/4" O.D. copper tubing (wall thickness .064") to 3/4" I.D. steel
+      tubing?
+    approx_offset: 138748
+  - quote: A/C Systems (A/C Lines & Radiator Coils) - Automotive HVAC assemblies combine thin-wall tubing, dissimilar
+      metals, and long capillary paths that must remain refrigerant-tight
+    approx_offset: 168279
+  actor: unknown
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+- id: lucasmilhaupt_com-products-0086
+  name: Pre-Packaged products
+  status: confirmed
+  acceptable_forms:
+  - Pre-Packaged
+  - pre-packaged products
+  - pre-packaged brazing and soldering materials
+  evidence:
+  - quote: Pre-Packaged(19)
+    approx_offset: 144593
+  - quote: Lucas Milhaupt is the leading provider of pre-packaged brazing and soldering materials for the HVAC/R
+      & plumbing markets. Lucas Milhaupt
+    approx_offset: 185248
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+- id: lucasmilhaupt_com-products-0087
+  name: Stop-Off
+  status: confirmed
+  acceptable_forms:
+  - Stop-Off
+  - 460 Stop-Off
+  - 470 Stop-Off
+  evidence:
+  - quote: 460 Stop-Off TDS
+    approx_offset: 145874
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+- id: lucasmilhaupt_com-products-0088
+  name: stamped parts
+  status: confirmed
+  acceptable_forms:
+  - stamped parts
+  evidence:
+  - quote: Our extensive inventory of more than 4,000 dies enables us to deliver high quality stamped parts
+    approx_offset: 153424
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+- id: lucasmilhaupt_com-products-0089
+  name: discs
+  status: confirmed
+  acceptable_forms:
+  - discs
+  evidence:
+  - quote: progressive dies, utilizing high precision equipment to manufacture washers, discs, perforated strip
+      and irregular configurations.
+    approx_offset: 153572
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+- id: lucasmilhaupt_com-products-0090
+  name: spools and coils (packaged material)
+  status: confirmed
+  acceptable_forms:
+  - spools or coils
+  evidence:
+  - quote: from 6” down to .062” (152.4mm to 1.57mm) and package the material on either spools or coils, depending
+      upon your needs and production requirements.
+    approx_offset: 153765
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+- id: lucasmilhaupt_com-products-0091
+  name: satellite components
+  status: confirmed
+  acceptable_forms:
+  - satellite components
+  evidence:
+  - quote: from air conditioning systems for automobiles to highly sensitive jet turbine blades to satellite components
+      to fine jewelry. Brazing offers a significant advantage in applications
+    approx_offset: 157808
+  actor: client
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+- id: lucasmilhaupt_com-products-0092
+  name: fine jewelry
+  status: confirmed
+  acceptable_forms:
+  - fine jewelry
+  evidence:
+  - quote: conditioning systems for automobiles to highly sensitive jet turbine blades to satellite components to
+      fine jewelry. Brazing offers a significant advantage in applications
+    approx_offset: 157817
+  actor: client
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+- id: lucasmilhaupt_com-products-0093
+  name: robotic assemblies
+  status: confirmed
+  acceptable_forms:
+  - robotic assemblies
+  evidence:
+  - quote: construction, manufacturing and repair shops. Examples are robotic assemblies plus fabrication of pressure
+      vessels, bridges, building structures, aircraft, railway
+    approx_offset: 161977
+  actor: unknown
+  notes: welding-application list in the contrast passage
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+- id: lucasmilhaupt_com-products-0094
+  name: pressure vessels
+  status: confirmed
+  acceptable_forms:
+  - pressure vessels
+  evidence:
+  - quote: repair shops. Examples are robotic assemblies plus fabrication of pressure vessels, bridges, building
+      structures, aircraft, railway coaches and tracks, pipelines
+    approx_offset: 162009
+  actor: unknown
+  notes: named as a welding application, in the anti-welding contrast passage
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+- id: lucasmilhaupt_com-products-0095
+  name: bridges
+  status: confirmed
+  acceptable_forms:
+  - bridges
+  evidence:
+  - quote: Examples are robotic assemblies plus fabrication of pressure vessels, bridges, building structures, aircraft,
+      railway coaches and tracks, pipelines and more.
+    approx_offset: 162023
+  actor: unknown
+  notes: welding-application list in the contrast passage
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+- id: lucasmilhaupt_com-products-0096
+  name: building structures
+  status: confirmed
+  acceptable_forms:
+  - building structures
+  evidence:
+  - quote: assemblies plus fabrication of pressure vessels, bridges, building structures, aircraft, railway coaches
+      and tracks, pipelines and more.
+    approx_offset: 162044
+  actor: unknown
+  notes: welding-application list in the contrast passage
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+- id: lucasmilhaupt_com-products-0097
+  name: railway coaches and tracks
+  status: confirmed
+  acceptable_forms:
+  - railway coaches and tracks
+  - railway coaches
+  evidence:
+  - quote: pressure vessels, bridges, building structures, aircraft, railway coaches and tracks, pipelines and more.
+    approx_offset: 162075
+  actor: unknown
+  notes: welding-application list in the contrast passage
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+- id: lucasmilhaupt_com-products-0098
+  name: pipelines
+  status: confirmed
+  acceptable_forms:
+  - pipelines
+  evidence:
+  - quote: vessels, bridges, building structures, aircraft, railway coaches and tracks, pipelines and more.
+    approx_offset: 162084
+  actor: unknown
+  notes: welding-application list in the contrast passage
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+- id: lucasmilhaupt_com-products-0099
+  name: A/C lines
+  status: confirmed
+  acceptable_forms:
+  - A/C lines
+  - A/C Lines
+  - A/C Systems
+  evidence:
+  - quote: transfer systems live or die by joint quality. From A/C lines and radiator coils to diesel EGR coolers
+      and fuel delivery assemblies, brazed connections
+    approx_offset: 166558
+  actor: client
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+- id: lucasmilhaupt_com-products-0100
+  name: radiator coils
+  status: confirmed
+  acceptable_forms:
+  - radiator coils
+  - Radiator Coils
+  evidence:
+  - quote: transfer systems live or die by joint quality. From A/C lines and radiator coils to diesel EGR coolers
+      and fuel delivery assemblies, brazed connections must be repeatable, corrosion-resistant,
+    approx_offset: 166558
+  actor: client
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+- id: lucasmilhaupt_com-products-0101
+  name: diesel EGR coolers
+  status: confirmed
+  acceptable_forms:
+  - EGR coolers
+  - diesel EGR coolers
+  - Diesel EGR Coolers
+  evidence:
+  - quote: joint quality. From A/C lines and radiator coils to diesel EGR coolers and fuel delivery assemblies,
+      brazed connections must be repeatable, corrosion-resistant,
+    approx_offset: 166590
+  actor: client
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+- id: lucasmilhaupt_com-products-0102
+  name: fuel delivery assemblies / fuel rails
+  status: confirmed
+  acceptable_forms:
+  - fuel delivery assemblies
+  - fuel rails
+  - Fuel Rails
+  - injector rails
+  - stainless fuel lines
+  evidence:
+  - quote: quality. From A/C lines and radiator coils to diesel EGR coolers and fuel delivery assemblies, brazed
+      connections must be repeatable, corrosion-resistant,
+    approx_offset: 166596
+  - quote: (Silvaloy® rings) and copper or silver alloys used to braze stainless fuel lines, injector rails, and
+      related hardware in engine bays.
+    approx_offset: 169571
+  actor: client
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+- id: lucasmilhaupt_com-products-0103
+  name: AL CC
+  status: confirmed
+  acceptable_forms:
+  - AL CC
+  - AL CC™
+  - AL CC™ (Aluminum Corrosive Cored Wire)
+  - Aluminum Corrosive Cored Wire
+  evidence:
+  - quote: AL CC™ (Aluminum Corrosive Cored Wire)
+    approx_offset: 171124
+  - quote: the vehicle. Our aluminum brazing consumables, including AL CC™ corrosive flux-cored wire and AL 718
+      Al-Si filler for aluminum-to-aluminum
+    approx_offset: 168470
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+- id: lucasmilhaupt_com-products-0104
+  name: AL 718
+  status: confirmed
+  acceptable_forms:
+  - AL 718
+  - AL718
+  evidence:
+  - quote: AL 718
+    approx_offset: 168564
+  notes: also a material_caps entry
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+- id: lucasmilhaupt_com-products-0105
+  name: Silvaloy
+  status: confirmed
+  acceptable_forms:
+  - Silvaloy
+  - Silvaloy®
+  - Silvaloy 721
+  - Silvaloy® rings
+  - SILVALOY 721 VTG Gr1
+  evidence:
+  - quote: SILVALOY 721 VTG Gr1
+    approx_offset: 195702
+  - quote: manifolds. Lucas Milhaupt supports these builds with preforms (Silvaloy® rings) and copper or silver
+      alloys used to braze stainless fuel lines, injector
+    approx_offset: 169509
+  notes: also a material_caps entry
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+- id: lucasmilhaupt_com-products-0106
+  name: Schrader valves / service ports
+  status: confirmed
+  acceptable_forms:
+  - Schrader
+  - Schrader-style valves
+  - service ports
+  - Service Port Joints
+  evidence:
+  - quote: Port Joints (Schrader / Tapered Connections) - Service ports and Schrader-style valves are notorious
+      leak paths when flux or filler distribution is inconsistent.
+    approx_offset: 169724
+  actor: client
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+- id: lucasmilhaupt_com-products-0107
+  name: Cone Cored flux-cored washer
+  status: confirmed
+  acceptable_forms:
+  - Cone Cored
+  - Cone Cored™
+  - Cone Cored™ Flux-Cored Washer
+  - HANDY ONE AL CONE CORED
+  evidence:
+  - quote: Cone Cored™ Flux-Cored Washer
+    approx_offset: 171466
+  - quote: flux or filler distribution is inconsistent. Our Cone Cored™ flux-cored washer was engineered to seat
+      properly in tapered geometries, protect flux until activation, and keep alloy
+    approx_offset: 169841
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+- id: lucasmilhaupt_com-products-0108
+  name: AL 822
+  status: confirmed
+  acceptable_forms:
+  - AL 822
+  - AL822
+  evidence:
+  - quote: AL 822
+    approx_offset: 183306
+  notes: also a material_caps entry
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+- id: lucasmilhaupt_com-products-0109
+  name: brazing rod
+  status: confirmed
+  acceptable_forms:
+  - brazing rod
+  - HVAC brazing rod
+  - rod
+  evidence:
+  - quote: Ideal HVAC brazing rod for making repairs
+    approx_offset: 183688
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+- id: lucasmilhaupt_com-products-0110
+  name: sticks
+  status: confirmed
+  acceptable_forms:
+  - Sticks
+  - sticks
+  evidence:
+  - quote: .090" DIA X 20" X 4 Sticks
+    approx_offset: 184312
+  notes: the packaged form in the AL 822 Distribution Offerings table
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+- id: lucasmilhaupt_com-products-0111
+  name: Premabraze 880
+  status: confirmed
+  acceptable_forms:
+  - Premabraze 880
+  - Premabraze® 880
+  - PREMABRAZE 880
+  evidence:
+  - quote: PREMABRAZE 880
+    approx_offset: 197743
+  notes: also a material_caps entry
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+- id: lucasmilhaupt_com-products-0112
+  name: Premabraze 800
+  status: confirmed
+  acceptable_forms:
+  - Premabraze 800
+  - Premabraze® 800
+  - PREMABRAZE 800
+  evidence:
+  - quote: PREMABRAZE 800
+    approx_offset: 198604
+  notes: also a material_caps entry
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+- id: lucasmilhaupt_com-products-0113
+  name: Handy One
+  status: confirmed
+  acceptable_forms:
+  - Handy One
+  - Handy One®
+  - HANDY ONE
+  - HANDY ONE AL CORROSIVE CORED
+  - HANDY ONE AL 718
+  evidence:
+  - quote: HANDY ONE AL CORROSIVE CORED
+    approx_offset: 212347
+  - quote: HANDY ONE AL 718
+    approx_offset: 216147
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+- id: lucasmilhaupt_com-products-0114
+  name: brazed assembly / brazement
+  status: candidate
+  acceptable_forms:
+  - brazement
+  - brazed assembly
+  - brazed assemblies
+  evidence:
+  - quote: Leak testing - for determining gas- or liquid-tightness of a brazement. Pressure (or bubble leak) testing
+      involves the application of air at
+    approx_offset: 98840
+  actor: unknown
+  notes: the central artifact of the whole site ('Brazed assemblies for surgical tools', 'the brazed assembly has
+    to be pressure-tight'); no generic entry for it in the packet
+  provenance:
+  - action: added
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+    source: verification-pass-miss
+- id: lucasmilhaupt_com-products-0115
+  name: air conditioning systems
+  status: candidate
+  acceptable_forms:
+  - air conditioning systems
+  - air conditioning systems for automobiles
+  evidence:
+  - quote: aerospace, automotive, HVAC/R, construction and more. Examples range from air conditioning systems for
+      automobiles to highly sensitive jet turbine blades to satellite components to fine jewelry.
+    approx_offset: 157739
+  actor: client
+  notes: a made artifact in the brazing-applications list; products-0099 'A/C Systems' does not cover this spelling
+    under containment matching
+  provenance:
+  - action: added
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+    source: verification-pass-miss
+- id: lucasmilhaupt_com-products-0116
+  name: dispensers
+  status: candidate
+  acceptable_forms:
+  - Dispensers
+  evidence:
+  - quote: Repairing Aluminum Coils & Dispensers
+    approx_offset: 181984
+  actor: client
+  notes: a serviced artifact named in the HVAC/R service-technician heading alongside coils, which IS seeded
+  provenance:
+  - action: added
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+    source: verification-pass-miss
+- id: lucasmilhaupt_com-products-0117
+  name: '99088'
+  status: candidate
+  acceptable_forms:
+  - '99088'
+  evidence:
+  - quote: "99088\t.090\" DIA X 20\" X 4 Sticks\t20/box"
+    approx_offset: 184306
+  notes: the Product Name cell of the AL 822 pre-packaged SKU table; a made artifact identified by number
+  provenance:
+  - action: added
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+    source: verification-pass-miss
+- id: lucasmilhaupt_com-products-0118
+  name: Silvaloy 720
+  status: candidate
+  acceptable_forms:
+  - Silvaloy 720
+  evidence:
+  - quote: Silvaloy 720 SDS
+    approx_offset: 196498
+  notes: distinct alloy product from Silvaloy 721; only 721 is seeded
+  provenance:
+  - action: added
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+    source: verification-pass-miss
+false_friends:
+- form: Lucas Gear
+  reason: 'witnessed on all 69 pages: a footer link to employee/branded merchandise, not a manufactured product
+    line -- and ''Gear'' invites a machinery reading too'
+- form: Trade Name Cross Reference Sheet
+  reason: 'witnessed: a downloadable DOCUMENT, which the products clause excludes by name'
+- form: Technical Data Sheets
+  reason: 'witnessed ~250x as ''TDS'': documents, excluded by name'
+- form: Safety Data Sheets
+  reason: 'witnessed ~250x as ''SDS'': documents, excluded by name'
+- form: Braze School
+  reason: 'witnessed ~15x: TRAINING, excluded by name in the products clause'
+- form: Brazing Academy
+  reason: 'witnessed: training, excluded by name'
+- form: Demo Videos
+  reason: 'witnessed: media, excluded by name'
+- form: ebooks
+  reason: 'witnessed: ''how-to braze ebooks'' -- documents, excluded by name'
+- form: Quick Reference Chart
+  reason: 'witnessed: ''Brazing Tips and Techniques Quick Reference Chart'' -- a document, excluded by name'
+- form: Center of Excellence
+  reason: 'witnessed ~12x: a FACILITY, which the clause separates from artifacts'
+- form: Steel Partners
+  reason: 'witnessed 7x: a company name, excluded by name'
+- form: Handy & Harman
+  reason: 'witnessed 6x: a company name (the 1967 merger partner), excluded by name'
+- form: Wolverine Technologies
+  reason: 'witnessed: a legacy trade-name family referenced on the products page; a brand/company, not an artifact'
+- form: dies
+  reason: 'AMBIGUOUS, and worth counting either way: ''stock dies'' and ''4,000 dies'' are stamping TOOLING (excluded),
+    while ''semiconductor chips (dies)'' on the microelectronics page is a genuine made artifact. The bare form
+    cannot be scored without its context.'
+- form: fixtures
+  reason: 'witnessed ~20x: tooling the work is held in, which the clause separates from artifacts'
+- form: Join with the BEST
+  reason: 'witnessed 3x: a marketing slogan / trademark, not a product'
+- form: Braze School 2025
+  reason: 'witnessed: an event, not an artifact'

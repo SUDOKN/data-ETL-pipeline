@@ -1,0 +1,482 @@
+subject: superiortech.org
+field: material_caps
+snapshot:
+  file: apps/data_etl_app/tests/test_stages/sample_scraped_texts/superiortech.org.txt
+  sha256: 96bf25a3e1f14d03fd06d8743ed8a1cbe3ed3d72169d96fbe2c81300bf03951f
+eval_set_version: 2
+expected_empty: false
+notes: 'One dense named-material sentence (line 299) does most of the work, plus the welding line''s three metals
+  and the incoming-stock forms the large machines accept. This field carries the subject''s headline FABRICATION
+  trap: the single plural noun ''plastics'' is the ONLY polymer reference in 60 KB, and every specific polymer name
+  is a zero. It also carries three separate substring false-positive traps (Iron, Lead, bar), one of them newly
+  found here.'
+entries:
+- id: superiortech_org-material_caps-0001
+  name: Nitrogen (via nitriding)
+  status: confirmed
+  acceptable_forms:
+  - nitriding
+  evidence:
+  - quote: induction hardening, nitriding, annealing
+    approx_offset: 10303
+  actor: supplier
+  notes: 'qualifies through the deposits-or-diffuses clause: nitriding diffuses nitrogen into the work. The surface
+    form in the text is the process word; there is no occurrence of ''nitrogen'' itself'
+  provenance:
+  - action: added
+    by: seed-agent-superiortech-org
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-superiortech
+    date: '2026-08-27'
+- id: superiortech_org-material_caps-0002
+  name: Copper
+  status: confirmed
+  acceptable_forms:
+  - copper alloys
+  - copper
+  evidence:
+  - quote: carbon & stainless steels, aluminum alloys, super alloys (such as Titanium and Inconel, Hastalloy), brass
+      & copper alloys, plastics, castings, forgings, and all materials in between.
+    approx_offset: 16355
+  - quote: aluminum and copper alloy treatments
+    approx_offset: 10364
+  provenance:
+  - action: added
+    by: seed-agent-superiortech-org
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-superiortech
+    date: '2026-08-27'
+- id: superiortech_org-material_caps-0003
+  name: Nickel
+  status: confirmed
+  acceptable_forms:
+  - nickel
+  evidence:
+  - quote: chrome and nickel plating
+    approx_offset: 10542
+  actor: supplier
+  notes: qualifies through the clause 'A process or treatment named after a substance it deposits on or diffuses
+    into the work does imply that substance' — nickel plating deposits nickel. Outsourced tier
+  provenance:
+  - action: added
+    by: seed-agent-superiortech-org
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-superiortech
+    date: '2026-08-27'
+- id: superiortech_org-material_caps-0004
+  name: Chrome
+  status: confirmed
+  acceptable_forms:
+  - chrome
+  evidence:
+  - quote: chrome and nickel plating
+    approx_offset: 10542
+  actor: supplier
+  notes: deposited-substance clause, same as Nickel; outsourced tier
+  provenance:
+  - action: added
+    by: seed-agent-superiortech-org
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-superiortech
+    date: '2026-08-27'
+- id: superiortech_org-material_caps-0005
+  name: Phosphate (via phosphatizing)
+  status: confirmed
+  acceptable_forms:
+  - phosphatizing
+  evidence:
+  - quote: phosphatizing, blackening
+    approx_offset: 10585
+  actor: supplier
+  notes: 'deposits-or-diffuses clause: phosphatizing deposits a phosphate conversion coating. ''phosphate'' itself
+    never occurs'
+  provenance:
+  - action: added
+    by: seed-agent-superiortech-org
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-superiortech
+    date: '2026-08-27'
+- id: superiortech_org-material_caps-0006
+  name: Stainless steel
+  status: confirmed
+  acceptable_forms:
+  - stainless steels
+  - Stainless Steel
+  - stainless
+  evidence:
+  - quote: carbon & stainless steels, aluminum alloys, super alloys (such as Titanium and Inconel, Hastalloy), brass
+      & copper alloys, plastics, castings, forgings, and all materials in between.
+    approx_offset: 16355
+  - quote: in Steel, Stainless Steel & Aluminum
+    approx_offset: 12268
+  provenance:
+  - action: added
+    by: seed-agent-superiortech-org
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-superiortech
+    date: '2026-08-27'
+- id: superiortech_org-material_caps-0007
+  name: Steel
+  status: confirmed
+  acceptable_forms:
+  - Steel
+  - steel
+  evidence:
+  - quote: in Steel, Stainless Steel
+    approx_offset: 12268
+  - quote: carbon & stainless steels, aluminum alloys, super alloys (such as Titanium and Inconel, Hastalloy), brass
+      & copper alloys, plastics, castings, forgings, and all materials in between.
+    approx_offset: 16355
+  notes: broad form and a substring of 'Stainless Steel'/'stainless steels'/'steel case hardening', so it can never
+    independently miss; recorded because line 216 names it standalone as a welded material
+  provenance:
+  - action: added
+    by: seed-agent-superiortech-org
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-superiortech
+    date: '2026-08-27'
+- id: superiortech_org-material_caps-0008
+  name: Aluminum
+  status: confirmed
+  acceptable_forms:
+  - Aluminum
+  - aluminum alloys
+  - aluminum
+  evidence:
+  - quote: carbon & stainless steels, aluminum alloys, super alloys (such as Titanium and Inconel, Hastalloy), brass
+      & copper alloys, plastics, castings, forgings, and all materials in between.
+    approx_offset: 16355
+  - quote: Stainless Steel & Aluminum
+    approx_offset: 12278
+  provenance:
+  - action: added
+    by: seed-agent-superiortech-org
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-superiortech
+    date: '2026-08-27'
+- id: superiortech_org-material_caps-0009
+  name: Carbon steel
+  status: confirmed
+  acceptable_forms:
+  - carbon & stainless steels
+  - carbon
+  evidence:
+  - quote: carbon & stainless steels, aluminum alloys, super alloys (such as Titanium and Inconel, Hastalloy), brass
+      & copper alloys, plastics, castings, forgings, and all materials in between.
+    approx_offset: 16355
+  provenance:
+  - action: added
+    by: seed-agent-superiortech-org
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-superiortech
+    date: '2026-08-27'
+- id: superiortech_org-material_caps-0010
+  name: Brass
+  status: confirmed
+  acceptable_forms:
+  - brass & copper alloys
+  - brass
+  evidence:
+  - quote: carbon & stainless steels, aluminum alloys, super alloys (such as Titanium and Inconel, Hastalloy), brass
+      & copper alloys, plastics, castings, forgings, and all materials in between.
+    approx_offset: 16355
+  provenance:
+  - action: added
+    by: seed-agent-superiortech-org
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-superiortech
+    date: '2026-08-27'
+- id: superiortech_org-material_caps-0011
+  name: Castings
+  status: confirmed
+  acceptable_forms:
+  - castings
+  evidence:
+  - quote: carbon & stainless steels, aluminum alloys, super alloys (such as Titanium and Inconel, Hastalloy), brass
+      & copper alloys, plastics, castings, forgings, and all materials in between.
+    approx_offset: 16355
+  - quote: accommodate large castings, forgings, or billets
+    approx_offset: 28277
+  notes: incoming workpiece form the large VTLs accept
+  provenance:
+  - action: added
+    by: seed-agent-superiortech-org
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-superiortech
+    date: '2026-08-27'
+- id: superiortech_org-material_caps-0012
+  name: Forgings
+  status: confirmed
+  acceptable_forms:
+  - forgings
+  evidence:
+  - quote: carbon & stainless steels, aluminum alloys, super alloys (such as Titanium and Inconel, Hastalloy), brass
+      & copper alloys, plastics, castings, forgings, and all materials in between.
+    approx_offset: 16355
+  - quote: forgings, or billets
+    approx_offset: 28305
+  provenance:
+  - action: added
+    by: seed-agent-superiortech-org
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-superiortech
+    date: '2026-08-27'
+- id: superiortech_org-material_caps-0013
+  name: Super alloys
+  status: confirmed
+  acceptable_forms:
+  - super alloys
+  evidence:
+  - quote: super alloys (such as Titanium and Inconel, Hastalloy)
+    approx_offset: 16399
+  provenance:
+  - action: added
+    by: seed-agent-superiortech-org
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-superiortech
+    date: '2026-08-27'
+- id: superiortech_org-material_caps-0014
+  name: Titanium
+  status: confirmed
+  acceptable_forms:
+  - Titanium
+  evidence:
+  - quote: such as Titanium and Inconel
+    approx_offset: 16413
+  provenance:
+  - action: added
+    by: seed-agent-superiortech-org
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-superiortech
+    date: '2026-08-27'
+- id: superiortech_org-material_caps-0015
+  name: Inconel
+  status: confirmed
+  acceptable_forms:
+  - Inconel
+  evidence:
+  - quote: Titanium and Inconel, Hastalloy)
+    approx_offset: 16421
+  provenance:
+  - action: added
+    by: seed-agent-superiortech-org
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-superiortech
+    date: '2026-08-27'
+- id: superiortech_org-material_caps-0016
+  name: Hastalloy
+  status: confirmed
+  acceptable_forms:
+  - Hastalloy
+  evidence:
+  - quote: Inconel, Hastalloy)
+    approx_offset: 16434
+  notes: printed as 'Hastalloy' — the trade name is normally spelled Hastelloy. Seed the text's spelling; a run
+    that returns the CORRECT spelling has silently normalized and is not quoting the text
+  provenance:
+  - action: added
+    by: seed-agent-superiortech-org
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-superiortech
+    date: '2026-08-27'
+- id: superiortech_org-material_caps-0017
+  name: Plastics
+  status: confirmed
+  acceptable_forms:
+  - plastics
+  evidence:
+  - quote: brass & copper alloys, plastics, castings
+    approx_offset: 16455
+  notes: THE FABRICATION BAIT. This single plural noun is the entire polymer content of the file — 1 occurrence,
+    no specific polymer named anywhere. The old pipeline expanded it into 13 named polymers with zero textual support.
+    Any run that returns a specific polymer here is minting, not extracting
+  provenance:
+  - action: added
+    by: seed-agent-superiortech-org
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-superiortech
+    date: '2026-08-27'
+- id: superiortech_org-material_caps-0018
+  name: Oxygen / Acetylene
+  status: disputed
+  acceptable_forms:
+  - Oxygen/Acetylene sets
+  - Oxygen/Acetylene
+  evidence:
+  - quote: (3)  PRODUCTION BRAZING STATION – Oxygen/Acetylene sets
+    approx_offset: 26478
+  notes: DISPUTED — brazing gases are a CONSUMABLE the machine burns, not 'a substance that the work is made from
+    or performed in'. Kept because they are a named substance adjacent to a production operation and a reader could
+    argue the braze joint is performed in them. | Oxygen and acetylene are the torch's fuel and oxidiser at the
+    'PRODUCTION BRAZING STATION - Oxygen/Acetylene sets', not a substance the work is made from or performed in.
+    The clause's second sentence rescues substances a process deposits on or diffuses into the work (which is why
+    nitriding and phosphatizing are confirmed above); a gas burned to make heat deposits nothing.
+  provenance:
+  - action: added
+    by: seed-agent-superiortech-org
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: disputed
+    by: verify-agent-superiortech
+    date: '2026-08-27'
+    reason: Oxygen and acetylene are the torch's fuel and oxidiser at the 'PRODUCTION BRAZING STATION - Oxygen/Acetylene
+      sets', not a substance the work is made from or performed in. The clause's second sentence rescues substances
+      a process deposits on or diffuses into the work (which is why nitriding and phosphatizing are confirmed above);
+      a gas burned to make heat deposits nothing.
+- id: superiortech_org-material_caps-0019
+  name: Billets
+  status: confirmed
+  acceptable_forms:
+  - billets
+  evidence:
+  - quote: castings, forgings, or billets
+    approx_offset: 28295
+  - quote: castings, forgings, or billets
+    approx_offset: 28295
+  provenance:
+  - action: added
+    by: seed-agent-superiortech-org
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-superiortech
+    date: '2026-08-27'
+- id: superiortech_org-material_caps-0020
+  name: CBN (cubic boron nitride)
+  status: disputed
+  acceptable_forms:
+  - CBN
+  evidence:
+  - quote: CBN Hard Turning
+    approx_offset: 32895
+  notes: DISPUTED — CBN names the CUTTING TOOL's substance, not the workpiece's. The clause wants 'a substance that
+    the work is made from or performed in', and the work is made from the steel being hard-turned, not from CBN.
+    Kept because it is a genuine named substance (a three-character form, matched case-sensitively) and the tool-material
+    boundary is arguable. | CBN, in 'CBN Hard Turning', is the cutting-tool substance -- the abrasive the insert
+    is made of -- not a material the work is made from or performed in, and hard turning deposits no boron nitride
+    on the part. Real material, arguably wrong field; it is closer to the tooling the clause's sibling fields exclude.
+  provenance:
+  - action: added
+    by: seed-agent-superiortech-org
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: disputed
+    by: verify-agent-superiortech
+    date: '2026-08-27'
+    reason: CBN, in 'CBN Hard Turning', is the cutting-tool substance -- the abrasive the insert is made of -- not
+      a material the work is made from or performed in, and hard turning deposits no boron nitride on the part.
+      Real material, arguably wrong field; it is closer to the tooling the clause's sibling fields exclude.
+- id: superiortech_org-material_caps-0021
+  name: Sheet metal
+  status: candidate
+  acceptable_forms:
+  - Sheetmetal
+  - sheet metal
+  - sheetmetal
+  evidence:
+  - quote: 'Misc Tools: Vertical Bandsaw, Broaching, Sandblaster, 50T Hydraulic Press Sheetmetal Bender & Shear'
+    approx_offset: 26258
+  notes: A material the shop works in -- it owns a press to bend and shear it -- and it is named generically, which
+    the clause allows. No seeded material form covers it.
+  provenance:
+  - action: added
+    by: verify-agent-superiortech
+    date: '2026-08-27'
+    source: verification-pass-miss
+- id: superiortech_org-material_caps-0022
+  name: Alloy steel
+  status: candidate
+  acceptable_forms:
+  - alloy steel
+  evidence:
+  - quote: steel case hardening, alloy steel heat treatment
+    approx_offset: 10253
+  notes: A named grade class of the work material, distinct from the plain 'Steel' entry (material_caps-0007) and
+    from 'carbon & stainless steels' (0009). It would credit 0007 by containment, which is exactly why its own absence
+    is invisible in the recall number.
+  provenance:
+  - action: added
+    by: verify-agent-superiortech
+    date: '2026-08-27'
+    source: verification-pass-miss
+false_friends:
+- form: Iron
+  reason: 'NEWLY CONFIRMED substring trap, same shape as PET and ITAR: ''Iron'' has ZERO word-boundary occurrences,
+    and all 7 substring hits are inside ''environment''/''environmental''. Only a substring matcher or a fabrication
+    returns it'
+- form: Cast Iron
+  reason: 'zero occurrences, and doubly baited: ''castings'' occurs 5 times as an incoming workpiece form, so the
+    phrase is one association step away from real text'
+- form: Lead
+  reason: occurs 4 times and only ever inside 'lead times'; never a metal here
+- form: bar stock
+  reason: the phrase itself has ZERO occurrences. The bare token 'bar' occurs 11 times and every single one is a
+    machine feature — 'bar feeder', 'bar feeders' (plus Barfeed/Barfeeders/BARBER). The material sense never appears,
+    so this is a one-word-association mint off a real token
+- form: Nylon
+  reason: zero occurrences. One of the 13 polymers the old pipeline fabricated from the single word 'plastics'
+- form: PEEK
+  reason: zero occurrences; fabricated polymer, see Nylon
+- form: Delrin
+  reason: zero occurrences; fabricated polymer, see Nylon
+- form: Acetal
+  reason: zero occurrences; fabricated polymer, see Nylon
+- form: PTFE
+  reason: zero occurrences; fabricated polymer, see Nylon
+- form: Teflon
+  reason: zero occurrences; fabricated polymer, see Nylon
+- form: Polycarbonate
+  reason: zero occurrences; fabricated polymer, see Nylon
+- form: PVC
+  reason: zero occurrences; fabricated polymer, see Nylon
+- form: Polypropylene
+  reason: zero occurrences; fabricated polymer, see Nylon
+- form: Polyethylene
+  reason: zero occurrences; fabricated polymer, see Nylon
+- form: ABS
+  reason: zero occurrences; fabricated polymer. Three-character form — a case-insensitive substring matcher would
+    also credit it from 'absolute'-type words, so it tests two defects at once
+- form: UHMW
+  reason: zero occurrences; fabricated polymer, see Nylon
+- form: Acrylic
+  reason: zero occurrences; fabricated polymer, see Nylon
+- form: Tool Steel
+  reason: zero occurrences as a phrase; primed by 34 'tooling', 9 'Tool' and the real 'Precision Tool & Surface
+    Grinders' census line
+- form: Titanium alloy
+  reason: zero occurrences as a phrase — the text says 'super alloys (such as Titanium and Inconel, Hastalloy)',
+    so the alloy suffix is minted

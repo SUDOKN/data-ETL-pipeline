@@ -1,0 +1,77 @@
+subject: mathewsco.com
+slug: mathewsco_com
+role: attribution_negative
+business_type: manufacturers' representative / commissioned sales agency; owns no plant, reproduces its principals'
+  first-person copy
+snapshot:
+  file: apps/data_etl_app/tests/test_stages/sample_scraped_texts/mathewsco.com.txt
+  sha256: f1a1ace7c17205dc4906f4f87eb1844cefd0661483e58b3f5d6538d30b33b15b
+eval_set_version: 1
+context: 'Mathews & Company is a manufacturers'' representative / commissioned sales agency (Kansas office est.
+  1962, California predecessor Hughson & Merton est. 1892). It owns no plant, no equipment and performs no process;
+  it sells the output of the factories (''principals'') that pay it commission. RECALL-FIRST STANCE: roughly 12
+  of the 25 pages are the principals'' own first-person marketing copy pasted onto Mathews'' domain, so the text
+  NAMES a large in-field inventory that Mathews itself does not do. Every one of those entities is seeded, with
+  actor=supplier (a named principal) or actor=unknown (an anonymous Kansas principal). Attribution is a downstream
+  stage''s question, measured from these actor labels; seeding six fields empty would have made every recall number
+  for this subject meaningless. Only the two ''Markets Covered'' lists and the Kansas Office Services page are genuinely
+  first-party.'
+scrape_hazards:
+- hazard: 'the Kansas Product Line page describes EIGHT principals in the first person with NO company name attached
+    to key on - each is a bare capability paragraph (''Investment Castings - ...'', ''Cold Heading - ...''); nothing
+    in the text ties them to a firm, so their entries carry actor: unknown'
+  quote: Cold Heading - Our cold header offers external thread parts
+- hazard: SMOKING GUN - ungrammatical agency shorthand puts the AGENCY'S OWN NAME in the subject position of a foundry's
+    capability sentence; read literally the page says Mathews & Company casts aluminum and iron, which it does not
+  quote: Sand Castings - Mathews & Company a large range of Aluminum
+- hazard: the site NEVER says it is not a manufacturer; over half the pages argue the opposite in the first person
+    plural ('We manufacture ...', 'we operate 70 compacting ... presses'), which is the principals' copy, not Mathews'
+  quote: We manufacture concentric and eccentric contoured forgings
+- hazard: 'MEMBERSHIP-AS-CERTIFICATION trap: the only ''credentials'' Mathews itself holds are three trade-association
+    memberships, seeded disputed under the conformity clause''s ''issuing body'' wording'
+  quote: Mathews & Company are active members in a number of professional organizations
+- hazard: Mathews' only literal 'equipment' is business software and a printed directory (Act Contact Manager, Harris
+    Industrial Guides) - neither is a production machine; both are seeded as equipments false friends
+  quote: Mathews & Company utilizes Act Contact Manager to track customer activity
+- hazard: the two 'Markets Covered' lists arrive as bare one-word lines and are then repeated verbatim in the footer
+    of ALL 25 pages, so every industry entry has evidence in ~25 windows and coverage must stay entry-level
+  quote: Industrial Style Market
+- hazard: '''Agricultural Equipment'' and ''Construction Equipment'' are MARKET names in the Kansas Markets list,
+    not machines the subject owns - a standing equipments trap'
+  quote: Agricultural Equipment
+- hazard: 'mojibake: the line card renders an en dash as ''a-hat euro quote'' inside the DuPont entry, so the company/product
+    name is split by garbage bytes'
+  quote: DuPontâ€“Vespel Parts & Shapes
+- hazard: 23 non-breaking spaces sit INSIDE phrases, concentrated on the Sun Microstamping and Hudson Technologies
+    pages ('custom<NBSP>Plastic Injection<NBSP>and<NBSP>Insert Molding'); a byte-exact matcher would score faithful
+    echoes as fabricated
+  quote: Plastic Injection and Insert Molding
+- hazard: a 58-line 1992 trade-magazine profile of the founder supplies most of the file's prose and almost none
+    of its in-field content; it does carry a Ford dealership anecdote whose 'stock of cars' is the only reseller_inventory
+    artifact on the site
+  quote: had a stock of cars
+- hazard: six line-card rows are 'category TAB domain' pairs with a trailing tab, so the capability and the company
+    that offers it are on separate lines
+  quote: Deep Draw Stampings
+- hazard: 'duplicate pages: the Kansas Office overview, the California Office overview and the company-history page
+    are each scraped twice under different Itemid values; the ''Brochure from 1952'' page is content-empty'
+  quote: Brochure from 1952
+sampling_notes: 'READ EXHAUSTIVELY - all 2,044 lines / 61,791 bytes / 25 pages, in sed slices (1-180, 180-500, 500-800,
+  800-852, 850-1110, 1110-1420, 1420-1478, 1475-1560, 1556-1620, 1620-1730, 1730-1800, 1799-1880, 1872-1991, 1991-2044);
+  every page URL enumerated first and each page''s unique block read before its boilerplate. Then targeted grep
+  sweeps: standards bodies (ISO/ASTM/ANSI/AMS/AS/NADCAP/UL/CE/EN/MIL-/ RoHS/REACH/DFARS/FDA/certified/registered/compliance/accredit);
+  every distinct 4+-letter -ing token (109 types, frequency-sorted); machine nouns (machine/press/furnace/laser/
+  cutter/lathe/mill/robot/oven/extruder/header/Swiss/CNC/vacuum system); material nouns and alloy-grade digits;
+  and a per-character Unicode census (23 NBSP, 25 (c), 3 TM, 3 (R), 1 em dash, 1 mojibake sequence, 6 trailing tabs,
+  zero ASCII double-spaces). Roughly 55 lines per page are an identical nav+footer block, so ~1,300 of the 2,044
+  lines are that repeat; unique content is ~700 lines across 20 distinct pages.'
+notes: 'NO field is expected_empty. That is the deliberate finding for this subject: the correct answer for six
+  of the seven capability fields as a statement about WHAT MATHEWS DOES is the empty set, but the search stage is
+  recall-first and scores what the TEXT NAMES, so all six are richly populated with actor=supplier / actor=unknown
+  entries. The wrong-party question is measured downstream from those actor labels, never by omitting the entity.
+  products.yaml doubles as the contract_products expectation.'
+provenance:
+- action: added
+  by: seed-agent-mathewsco-com
+  date: '2026-08-27'
+  source: corpus-seed

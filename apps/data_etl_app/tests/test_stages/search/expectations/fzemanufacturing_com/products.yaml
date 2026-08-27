@@ -1,0 +1,1969 @@
+subject: fzemanufacturing.com
+field: products
+snapshot:
+  file: apps/data_etl_app/tests/test_stages/sample_scraped_texts/fzemanufacturing.com.txt
+  sha256: ff11844d0540b8e65c7c4c7f8f7614c3e36c192b093940bb99b8140eb5aace1e
+eval_set_version: 2
+expected_empty: false
+notes: 'Doubles as the contract_products inventory. FZE is a contract machine shop, so almost nothing here is an
+  own-brand good: entries are customer parts it machines (actor: client) and artifacts named inside third-person
+  explainer prose (actor: unknown). The densest genuine sources are the hydraulic components list, the part-assembly
+  page''s ''mechanical parts assembly services'' list, the Assembled Products spec table and the shaft-machining
+  industry sections. The agriculture page''s harvester/planter/tractor parts and the electropolishing blog''s blades/fasteners/springs/wire
+  racks are explainer artifacts, not claimed work.'
+entries:
+- id: fzemanufacturing_com-products-0001
+  name: Hydraulic components / parts
+  status: confirmed
+  acceptable_forms:
+  - hydraulic parts and components
+  - hydraulic components
+  - hydraulic machined parts
+  - hydraulic machine parts
+  - machined parts for hydraulic equipment
+  evidence:
+  - quote: We manufacture a variety of individual hydraulic components and parts such as cylinder & rods, components
+      for motors, pumps, fittings and hose
+    approx_offset: 3568
+  actor: client
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-products-0002
+  name: Cylinders & rods
+  status: confirmed
+  acceptable_forms:
+  - cylinder & rods
+  - Cylinders, rods, and valves
+  - cylinders
+  - Cylinders
+  evidence:
+  - quote: a variety of individual hydraulic components and parts such as cylinder & rods, components for motors,
+      pumps, fittings and hose hardware. Our range of secondary services, including anodizing,
+    approx_offset: 3583
+  actor: client
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-products-0003
+  name: Pumps
+  status: confirmed
+  acceptable_forms:
+  - pumps
+  - Pumps
+  evidence:
+  - quote: a variety of individual hydraulic components and parts such as cylinder & rods, components for motors,
+      pumps, fittings and hose hardware. Our range of secondary services, including anodizing,
+    approx_offset: 3583
+  actor: client
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-products-0004
+  name: Motors
+  status: confirmed
+  acceptable_forms:
+  - components for motors
+  - motors
+  evidence:
+  - quote: a variety of individual hydraulic components and parts such as cylinder & rods, components for motors,
+      pumps, fittings and hose hardware. Our range of secondary services, including anodizing,
+    approx_offset: 3583
+  actor: client
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-products-0005
+  name: Fittings
+  status: confirmed
+  acceptable_forms:
+  - fittings
+  - Fittings
+  - hydraulic fittings
+  - copper fittings
+  evidence:
+  - quote: a variety of individual hydraulic components and parts such as cylinder & rods, components for motors,
+      pumps, fittings and hose hardware. Our range of secondary services, including anodizing,
+    approx_offset: 3583
+  actor: client
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-products-0006
+  name: Hose hardware
+  status: confirmed
+  acceptable_forms:
+  - hose hardware
+  - hoses and connectors
+  evidence:
+  - quote: a variety of individual hydraulic components and parts such as cylinder & rods, components for motors,
+      pumps, fittings and hose hardware. Our range of secondary services, including anodizing,
+    approx_offset: 3583
+  actor: client
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-products-0007
+  name: Cranes
+  status: confirmed
+  acceptable_forms:
+  - Cranes
+  - cranes
+  evidence:
+  - quote: Lifting equipment (cranes, hydraulic jacks, wheelchair & scissor lifts, etc.)
+    approx_offset: 4628
+  actor: client
+  notes: a Product Type INSPECTED; cranes also appear in the hydraulic lifting-equipment explainer and the MIG welding
+    heavy-machinery example
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-products-0008
+  name: Hydraulic jacks, wheelchair & scissor lifts
+  status: confirmed
+  acceptable_forms:
+  - hydraulic jacks, wheelchair & scissor lifts
+  - hydraulic jacks
+  - scissor lifts
+  evidence:
+  - quote: Lifting equipment (cranes, hydraulic jacks, wheelchair & scissor lifts, etc.)
+    approx_offset: 4628
+  actor: unknown
+  notes: 'EXPLAINER: the hydraulic-components page''s list of what hydraulic equipment powers'
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-products-0009
+  name: Hydraulic presses
+  status: confirmed
+  acceptable_forms:
+  - Hydraulic presses
+  evidence:
+  - quote: Hydraulic presses
+    approx_offset: 4794
+  actor: unknown
+  notes: 'EXPLAINER: the hydraulic-components page''s list of what hydraulic equipment powers'
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-products-0010
+  name: Brakes and braking equipment
+  status: confirmed
+  acceptable_forms:
+  - Brakes and Braking equipment
+  - brakes
+  evidence:
+  - quote: Brakes and Braking equipment
+    approx_offset: 4812
+  actor: unknown
+  notes: 'EXPLAINER: the hydraulic-components page''s list of what hydraulic equipment powers'
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-products-0011
+  name: Landing gear, flaps, doors
+  status: confirmed
+  acceptable_forms:
+  - landing gear, flaps, doors
+  - landing gear
+  evidence:
+  - quote: Aircraft – landing gear, flaps, doors
+    approx_offset: 4841
+  actor: unknown
+  notes: 'EXPLAINER: the hydraulic-components page''s list of what hydraulic equipment powers'
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-products-0012
+  name: Machine blades
+  status: confirmed
+  acceptable_forms:
+  - Machine blades
+  evidence:
+  - quote: Machine blades
+    approx_offset: 4899
+  actor: unknown
+  notes: 'EXPLAINER: the hydraulic-components page''s list of what hydraulic equipment powers'
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-products-0013
+  name: Robotic arms
+  status: confirmed
+  acceptable_forms:
+  - Robotic Arms
+  evidence:
+  - quote: Robotic Arms
+    approx_offset: 4930
+  actor: unknown
+  notes: 'EXPLAINER: the hydraulic-components page''s list of what hydraulic equipment powers'
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-products-0014
+  name: Valves
+  status: confirmed
+  acceptable_forms:
+  - valves
+  - Valves
+  - Valve actuators
+  evidence:
+  - quote: specialize in creating high-quality hydraulic machined parts, including fittings, valves, cylinders,
+      pistons, plungers and pumps, essential for the optimal operation of hydraulic equipment.
+    approx_offset: 11542
+  actor: client
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-products-0015
+  name: Pistons
+  status: confirmed
+  acceptable_forms:
+  - pistons
+  evidence:
+  - quote: specialize in creating high-quality hydraulic machined parts, including fittings, valves, cylinders,
+      pistons, plungers and pumps, essential for the optimal operation of hydraulic equipment.
+    approx_offset: 11542
+  actor: client
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-products-0016
+  name: Plungers
+  status: confirmed
+  acceptable_forms:
+  - plungers
+  evidence:
+  - quote: specialize in creating high-quality hydraulic machined parts, including fittings, valves, cylinders,
+      pistons, plungers and pumps, essential for the optimal operation of hydraulic equipment.
+    approx_offset: 11542
+  actor: client
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-products-0017
+  name: Specialized fasteners and fittings
+  status: confirmed
+  acceptable_forms:
+  - Specialized Fasteners and Fittings
+  - specialized fasteners
+  - custom fastener
+  - Specialized Fasteners
+  evidence:
+  - quote: Specialized Fasteners and Fittings
+    approx_offset: 16362
+  actor: client
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-products-0018
+  name: Stainless steel fasteners
+  status: confirmed
+  acceptable_forms:
+  - stainless steel fasteners
+  evidence:
+  - quote: Our stainless steel fasteners find widespread use across industries due to their exceptional corrosion
+      resistance and durability.
+    approx_offset: 18033
+  actor: client
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-products-0019
+  name: Stainless steel studs
+  status: confirmed
+  acceptable_forms:
+  - stainless steel studs
+  - studs
+  evidence:
+  - quote: components, but the bearers of trust in every application. As an example, our stainless steel studs are
+      crucial structural elements utilized in construction, machinery, and automotive industries for
+    approx_offset: 21203
+  actor: client
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-products-0020
+  name: Shafts
+  status: confirmed
+  acceptable_forms:
+  - shafts
+  - Shafts
+  - custom shafts
+  - propeller shafts
+  - pump shafts
+  evidence:
+  - quote: The shaft is the backbone of marine propulsion, and our shaft machining services ensure it is built to
+      last. Employing advanced techniques, we shape and refine shafts that transmit
+    approx_offset: 32069
+  actor: client
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-products-0021
+  name: Welds
+  status: disputed
+  acceptable_forms:
+  - Welds
+  - weld bead
+  - weld pool
+  evidence:
+  - quote: Our FCA Welding systems come with advanced features, that ensures precision welds and uniformly distributed
+      heat throughout each area of the welding job. You can benefit from
+    approx_offset: 35728
+  actor: client
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: disputed
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+    reason: 'a weld is a joint/feature formed on a part, not a discrete made artifact (''a product, part, component,
+      system, or item''). The case for it is that the site heads its list ''Product Types Inspected''. Two further
+      notes: the packet''s quote is process prose about FCA welding systems rather than that list, and the forms
+      ''weld bead''/''weld pool'' are transient process states, not artifacts'
+  notes: 'a weld is a joint/feature formed on a part, not a discrete made artifact (''a product, part, component,
+    system, or item''). The case for it is that the site heads its list ''Product Types Inspected''. Two further
+    notes: the packet''s quote is process prose about FCA welding systems rather than that list, and the forms ''weld
+    bead''/''weld pool'' are transient process states, not artifacts'
+- id: fzemanufacturing_com-products-0022
+  name: Prototypes
+  status: confirmed
+  acceptable_forms:
+  - Prototype
+  - prototype
+  - CNC prototypes
+  - prototype parts
+  evidence:
+  - quote: Prototype
+    approx_offset: 38887
+  actor: client
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-products-0023
+  name: Mower blades
+  status: confirmed
+  acceptable_forms:
+  - mower blades
+  - blades
+  - cutting blades
+  evidence:
+  - quote: superior quality and reliability for professional turf care needs, from mower blades to irrigation systems
+      and other specialized equipment. Furthermore, they offer flexibility when
+    approx_offset: 42947
+  actor: client
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-products-0024
+  name: Irrigation systems
+  status: confirmed
+  acceptable_forms:
+  - irrigation systems
+  evidence:
+  - quote: superior quality and reliability for professional turf care needs, from mower blades to irrigation systems
+      and other specialized equipment. Furthermore, they offer flexibility when it comes
+    approx_offset: 42947
+  actor: client
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-products-0025
+  name: Golf clubs
+  status: confirmed
+  acceptable_forms:
+  - golf clubs
+  evidence:
+  - quote: various materials, including metals, plastics, and . This makes it ideal for marking golf clubs, lawnmowers,
+      and other pieces of equipment that may need a permanent mark applied. The laser’s
+    approx_offset: 44180
+  actor: unknown
+  notes: 'EXPLAINER: the turf-care page''s laser-marking section'
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-products-0026
+  name: Mild steel and aluminum frames
+  status: confirmed
+  acceptable_forms:
+  - Mild Steel and/or Aluminum frames
+  - frames
+  evidence:
+  - quote: Mild Steel and/or Aluminum frames used in professional turf care
+    approx_offset: 49204
+  actor: client
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-products-0027
+  name: Railcars and rolling equipment
+  status: confirmed
+  acceptable_forms:
+  - railways, railcars, and other rolling equipment
+  - railcars
+  evidence:
+  - quote: Components found in heavy machinery, including cranes, tractors, railways, railcars, and other rolling
+      equipment
+    approx_offset: 49269
+  actor: client
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-products-0028
+  name: Professional hand tools
+  status: confirmed
+  acceptable_forms:
+  - Professional Hand Tools
+  - hand tools
+  - Power Tools
+  evidence:
+  - quote: Professional Hand Tools
+    approx_offset: 49382
+  actor: client
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-products-0029
+  name: Castings
+  status: confirmed
+  acceptable_forms:
+  - Castings
+  evidence:
+  - quote: processes guarantee the highest quality standards on a wide range of production run types, such as castings,
+      coatings, cranes, gears, machinery, and welds.
+    approx_offset: 54060
+  actor: client
+  notes: a Product Type INSPECTED, i.e. a customer part FZE inspects rather than makes
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-products-0030
+  name: Coatings
+  status: disputed
+  acceptable_forms:
+  - Coatings
+  evidence:
+  - quote: guarantee the highest quality standards on a wide range of production run types, such as castings, coatings,
+      cranes, gears, machinery, and welds.
+    approx_offset: 54070
+  actor: client
+  notes: a Product Type INSPECTED in the machining-inspection table | a coating is a layer applied to a part, not
+    a discrete made artifact; it sits in the same 'Product Types Inspected' list as Welds and raises the same boundary
+    question
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: disputed
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+    reason: a coating is a layer applied to a part, not a discrete made artifact; it sits in the same 'Product Types
+      Inspected' list as Welds and raises the same boundary question
+- id: fzemanufacturing_com-products-0031
+  name: Machined features
+  status: disputed
+  acceptable_forms:
+  - Machined Features
+  evidence:
+  - quote: Machined Features
+    approx_offset: 55770
+  actor: client
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: disputed
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+    reason: '''Machined Features'' is by its own wording a feature of a part rather than an artifact that comes
+      out of the work; same ''Product Types Inspected'' list'
+  notes: '''Machined Features'' is by its own wording a feature of a part rather than an artifact that comes out
+    of the work; same ''Product Types Inspected'' list'
+- id: fzemanufacturing_com-products-0032
+  name: Harvesters
+  status: confirmed
+  acceptable_forms:
+  - Harvesters
+  - havestors
+  - combines
+  - balers
+  evidence:
+  - quote: 'Harvesters: Harvesters are machines designed to harvest crops such as wheat, soybeans, corn, and other
+      grains. These machines'
+    approx_offset: 71218
+  actor: unknown
+  notes: 'EXPLAINER: the agriculture page''s generic ''CNC machined products in the agriculture sector'' list, describing
+    the machines that use CNC parts rather than what FZE makes'
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-products-0033
+  name: Feed rollers, grain conveyor augers, drive sprockets
+  status: confirmed
+  acceptable_forms:
+  - feed rollers, grain conveyor augers, and drive sprockets
+  - feed rollers
+  - grain conveyor augers
+  - drive sprockets
+  evidence:
+  - quote: corn, and other grains. These machines use CNC-machined parts, such as feed rollers, grain conveyor augers,
+      and drive sprockets, to precisely cut and collect the crop material during harvesting
+    approx_offset: 71305
+  actor: unknown
+  notes: 'EXPLAINER: parts of a harvester, in the agriculture page''s generic list'
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-products-0034
+  name: Planters
+  status: confirmed
+  acceptable_forms:
+  - Planters
+  - planter axles
+  evidence:
+  - quote: 'Planters: Planters are machines used to plant seeds into the soil or other substrates rapidly. They
+      use CNC-machined components,'
+    approx_offset: 71512
+  actor: unknown
+  notes: 'EXPLAINER: the agriculture page''s generic machine list'
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-products-0035
+  name: Seed plates, drop tubes, row cleaners, skid shoes
+  status: confirmed
+  acceptable_forms:
+  - seed plates, drop tubes, fertilizer hoppers, row cleaners, planter axles, and skid shoes
+  - seed plates
+  - drop tubes
+  - row cleaners
+  - skid shoes
+  evidence:
+  - quote: substrates rapidly. They use CNC-machined components, such as seed plates, drop tubes, fertilizer hoppers,
+      row cleaners, planter axles, and skid shoes, to measure and place seeds into the ground to
+    approx_offset: 71587
+  actor: unknown
+  notes: 'EXPLAINER: planter parts, in the agriculture page''s generic list'
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-products-0036
+  name: Tractors
+  status: confirmed
+  acceptable_forms:
+  - Tractors
+  - tractors
+  evidence:
+  - quote: 'Tractors: Modern tractors contain various CNC-machined parts to make them more precise and efficient.
+      Everything from the fuel'
+    approx_offset: 71874
+  actor: unknown
+  notes: 'EXPLAINER: the agriculture page''s generic machine list; tractors also appear in the MIG welding heavy-machinery
+    example and the shaft-machining agriculture section'
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-products-0037
+  name: Sprayers
+  status: confirmed
+  acceptable_forms:
+  - Sprayers
+  - sprayer machines
+  evidence:
+  - quote: 'Sprayers: Much like fertilizer applicators, sprayer machines use CNC-machined components like nozzles,
+      hoses and connectors, filters, and valves'
+    approx_offset: 72079
+  actor: unknown
+  notes: 'EXPLAINER: the agriculture page''s generic machine list'
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-products-0038
+  name: Nozzles, filters, connectors
+  status: confirmed
+  acceptable_forms:
+  - nozzles, hoses and connectors, filters, and valves
+  - nozzles
+  - filters
+  evidence:
+  - quote: fertilizer applicators, sprayer machines use CNC-machined components like nozzles, hoses and connectors,
+      filters, and valves to ensure that pesticides, fungicides, and other chemicals are accurately
+    approx_offset: 72099
+  actor: unknown
+  notes: 'EXPLAINER: sprayer parts, in the agriculture page''s generic list'
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-products-0039
+  name: Mowers
+  status: confirmed
+  acceptable_forms:
+  - Mowers
+  - Commercial mowers
+  - commercial mowers
+  - lawnmowers
+  - aerators
+  - dethatchers
+  evidence:
+  - quote: 'Mowers: Commercial mowers contain various CNC-machined parts to ensure accurate cuts on grass, weeds,
+      and other vegetation. Each'
+    approx_offset: 72354
+  actor: unknown
+  notes: EXPLAINER in the agriculture list, but 'commercial mowers, aerators, and dethatchers' is also a first-party
+    turf-care claim on the shaft-machining page
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-products-0040
+  name: Spindles
+  status: confirmed
+  acceptable_forms:
+  - spindles
+  evidence:
+  - quote: ensure accurate cuts on grass, weeds, and other vegetation. Each component is designed to provide an
+      even cut from blades to spindles every time.
+    approx_offset: 72418
+  actor: client
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-products-0041
+  name: Agricultural equipment
+  status: confirmed
+  acceptable_forms:
+  - Agricultural Equipment
+  - agricultural machinery components
+  - agriculture machinery
+  evidence:
+  - quote: and skilled machinists and technicians who understand the nuances of working with agricultural equipment,
+      we ensure that every product surpasses your expectations and outperforms competitors
+    approx_offset: 73000
+  actor: client
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-products-0042
+  name: Kit
+  status: confirmed
+  acceptable_forms:
+  - kit
+  evidence:
+  - quote: Kitting is grouping assembled parts together into a “kit” to provide a ready for assembly line offering.
+    approx_offset: 79794
+  actor: client
+  notes: '''kit'' is a 3-character form and therefore matched case-sensitively on word boundaries; the text writes
+    it in quotes as a “kit”'
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-products-0043
+  name: Aircraft structures and engine parts
+  status: confirmed
+  acceptable_forms:
+  - aircraft structures, engine parts, and landing gear systems
+  - engine parts
+  - airplane engines
+  evidence:
+  - quote: Aerospace – Precision-machined components for aircraft structures, engine parts, and landing gear systems.
+    approx_offset: 82901
+  actor: client
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-products-0044
+  name: Power transmission components
+  status: confirmed
+  acceptable_forms:
+  - power transmission components
+  evidence:
+  - quote: Machined parts are used for many agricultural needs, such as power transmission components, cutting tools,
+      mounting systems, hopper systems, bearing housings, and much more.
+    approx_offset: 93484
+  actor: client
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-products-0045
+  name: Mounting systems
+  status: confirmed
+  acceptable_forms:
+  - mounting systems
+  evidence:
+  - quote: Machined parts are used for many agricultural needs, such as power transmission components, cutting tools,
+      mounting systems, hopper systems, bearing housings, and much more.
+    approx_offset: 93484
+  actor: client
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-products-0046
+  name: Hopper systems
+  status: confirmed
+  acceptable_forms:
+  - hopper systems
+  - fertilizer hoppers
+  evidence:
+  - quote: Machined parts are used for many agricultural needs, such as power transmission components, cutting tools,
+      mounting systems, hopper systems, bearing housings, and much more.
+    approx_offset: 93484
+  actor: client
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-products-0047
+  name: Diagnostic equipment
+  status: confirmed
+  acceptable_forms:
+  - diagnostic equipment
+  - Diagnostic Equipment
+  - diagnostic equipment components
+  evidence:
+  - quote: Professional hand tools and power tools, as well as the design and engineering of diagnostic equipment
+      components. Our state-of-the-art facilities are equipped with the latest technologies
+    approx_offset: 95396
+  actor: client
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-products-0048
+  name: Oil suction pipes
+  status: confirmed
+  acceptable_forms:
+  - oil suction pipes
+  evidence:
+  - quote: has expertise in producing elements essential to oil & gas production, such as oil suction pipes, oil
+      well accessories, and components for oil processing or handling equipment.
+    approx_offset: 99621
+  actor: client
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-products-0049
+  name: Oil well accessories
+  status: confirmed
+  acceptable_forms:
+  - oil well accessories
+  evidence:
+  - quote: has expertise in producing elements essential to oil & gas production, such as oil suction pipes, oil
+      well accessories, and components for oil processing or handling equipment.
+    approx_offset: 99621
+  actor: client
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-products-0050
+  name: Drills, mills, taps
+  status: confirmed
+  acceptable_forms:
+  - drills, mills, and taps
+  evidence:
+  - quote: In metalworking applications, drills, mills, and taps create holes in materials such as steel and aluminum.
+      Drills have rotating bits that
+    approx_offset: 119776
+  actor: unknown
+  notes: 'EXPLAINER: the hand-tools page''s ''types of hand tools that need machining'' section'
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-products-0051
+  name: Saws (jigsaw, circular saw)
+  status: confirmed
+  acceptable_forms:
+  - a jigsaw or a circular saw
+  - jigsaw
+  - circular saw
+  evidence:
+  - quote: For working projects, saws are essential tools. Whether a jigsaw or a circular saw, both require machining
+      to create clean and accurate cuts. The blades must be sharpened, and
+    approx_offset: 120206
+  actor: unknown
+  notes: 'EXPLAINER: the hand-tools page''s ''types of hand tools that need machining'' section'
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-products-0052
+  name: Screwdrivers
+  status: confirmed
+  acceptable_forms:
+  - Screwdrivers
+  evidence:
+  - quote: Screwdrivers are another type of hand tool that requires machining for optimal performance. These tools
+      feature a handle with a tip
+    approx_offset: 120450
+  actor: unknown
+  notes: 'EXPLAINER: the hand-tools page''s ''types of hand tools that need machining'' section'
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-products-0053
+  name: CT scanner, MRI scanner, ultrasound, heart rate monitor
+  status: confirmed
+  acceptable_forms:
+  - CT Scanner
+  - MRI Scanner
+  - Ultrasound
+  - Heart rate monitor
+  evidence:
+  - quote: CT Scanner
+    approx_offset: 121601
+  actor: unknown
+  notes: 'EXPLAINER: the hand-tools page''s ''types of diagnostic equipment that require machining'' list'
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: amended
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+    reason: the entry's own name lists ultrasound but no form matches it; 'Ultrasound' is a standalone line in the
+      diagnostic-equipment list (line 2533), so a search return of that word would not credit
+- id: fzemanufacturing_com-products-0054
+  name: Gear drives
+  status: confirmed
+  acceptable_forms:
+  - gear drives
+  evidence:
+  - quote: ensures the critical moving parts within fire safety equipment operate without fail. From pump shafts
+      to gear drives and many other applications, we machine components that sustain critical operations
+    approx_offset: 124700
+  actor: client
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-products-0055
+  name: Brackets
+  status: confirmed
+  acceptable_forms:
+  - brackets
+  evidence:
+  - quote: sorts of reasons why people might need metal fabrication services. Maybe they need brackets, frames for
+      a machine or project, or something more complex like a metal enclosure. Finding a company
+    approx_offset: 133831
+  actor: unknown
+  notes: named in the generic 'why people need metal fabrication' opener
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-products-0056
+  name: Metal enclosure
+  status: confirmed
+  acceptable_forms:
+  - metal enclosure
+  evidence:
+  - quote: Maybe they need brackets, frames for a machine or project, or something more complex like a metal enclosure.
+      Finding a company that can provide quality fabrication services is essential
+    approx_offset: 133898
+  actor: unknown
+  notes: named in the generic 'why people need metal fabrication' opener
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-products-0057
+  name: Firearm components
+  status: confirmed
+  acceptable_forms:
+  - firearm components
+  - Firearm components
+  - firearm parts
+  - Firearm parts
+  evidence:
+  - quote: FZE Manufacturing Solutions is a Custom manufacturer and leading provider of high-quality firearm components,
+      and we are proud to offer our services to companies large and small.
+    approx_offset: 150911
+  actor: client
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-products-0058
+  name: Bolts, fasteners and screws
+  status: confirmed
+  acceptable_forms:
+  - Bolts, fasteners and screws
+  - Bolts
+  - screws
+  evidence:
+  - quote: Bolts, fasteners and screws
+    approx_offset: 162998
+  actor: client
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-products-0059
+  name: Springs, clamps and clips
+  status: confirmed
+  acceptable_forms:
+  - Springs, clamps, and clips
+  - Springs
+  - clamps
+  - clips
+  evidence:
+  - quote: Springs, clamps, and clips
+    approx_offset: 163026
+  actor: client
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-products-0060
+  name: Shafts, bearings and bushings
+  status: confirmed
+  acceptable_forms:
+  - Shafts, bearings and bushings
+  - bearings
+  - bushings
+  - bearing housings
+  evidence:
+  - quote: Shafts, bearings and bushings
+    approx_offset: 163053
+  actor: client
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-products-0061
+  name: Gears, pulleys and shafts
+  status: confirmed
+  acceptable_forms:
+  - Gears, pulleys, and shafts
+  - pulleys
+  - Gears
+  - gears
+  evidence:
+  - quote: Gears, pulleys, and shafts
+    approx_offset: 163083
+  actor: client
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-products-0062
+  name: Hinges, latches and plates
+  status: confirmed
+  acceptable_forms:
+  - Hinges, latches and plates
+  - Hinges
+  - latches
+  evidence:
+  - quote: Hinges, latches and plates
+    approx_offset: 163110
+  actor: client
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-products-0063
+  name: Electronic components
+  status: confirmed
+  acceptable_forms:
+  - resistors, capacitors, diodes, transistors, connectors
+  - electronic components
+  - Electronic components
+  evidence:
+  - quote: team is equipped to handle all types of electronic components such as resistors, capacitors, diodes,
+      transistors, connectors, and more.
+    approx_offset: 163253
+  actor: client
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-products-0064
+  name: Marine assemblies
+  status: confirmed
+  acceptable_forms:
+  - Marine Assemblies
+  evidence:
+  - quote: Marine Assemblies
+    approx_offset: 164214
+  actor: client
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-products-0065
+  name: All-terrain vehicle components
+  status: confirmed
+  acceptable_forms:
+  - All-Terrain Vehicle Components
+  - ATVs
+  evidence:
+  - quote: All-Terrain Vehicle Components
+    approx_offset: 164255
+  actor: client
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-products-0066
+  name: Mechanical assemblies
+  status: confirmed
+  acceptable_forms:
+  - Mechanical Assemblies
+  - Mechanisms
+  - mechanical assemblies
+  evidence:
+  - quote: Mechanical Assemblies
+    approx_offset: 164286
+  actor: client
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-products-0067
+  name: Welded assemblies
+  status: confirmed
+  acceptable_forms:
+  - Welded Assemblies
+  - welded assemblies
+  evidence:
+  - quote: Welded Assemblies
+    approx_offset: 164331
+  actor: client
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-products-0068
+  name: Boats, jet skis and watercraft
+  status: confirmed
+  acceptable_forms:
+  - recreational boats, jet skis, and other watercraft
+  - Recreational boats
+  - watercraft
+  evidence:
+  - quote: Our custom Shaft machining services allow us to produce corrosion-resistant shafts for recreational boats,
+      jet skis, and other watercraft. From propeller shafts to steering mechanisms, our components
+    approx_offset: 169774
+  actor: client
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-products-0069
+  name: Propeller shafts
+  status: confirmed
+  acceptable_forms:
+  - propeller shafts
+  evidence:
+  - quote: corrosion-resistant shafts for recreational boats, jet skis, and other watercraft. From propeller shafts
+      to steering mechanisms, our components are built to withstand fresh and saltwater environments
+    approx_offset: 169830
+  actor: client
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-products-0070
+  name: Steering mechanisms / systems
+  status: confirmed
+  acceptable_forms:
+  - steering mechanisms
+  - steering components
+  - steering and suspension systems
+  evidence:
+  - quote: resistant shafts for recreational boats, jet skis, and other watercraft. From propeller shafts to steering
+      mechanisms, our components are built to withstand fresh and saltwater environments in
+    approx_offset: 169840
+  actor: client
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-products-0071
+  name: Actuators
+  status: confirmed
+  acceptable_forms:
+  - actuators
+  evidence:
+  - quote: custom machining ensures exact tolerances, delivering optimal performance for pumps, motors, and actuators
+      in demanding applications such as construction, forestry, and material
+    approx_offset: 170269
+  actor: client
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-products-0072
+  name: Power drivetrains
+  status: confirmed
+  acceptable_forms:
+  - power drivetrains
+  - drivetrains
+  evidence:
+  - quote: machining allows for the production of high-quality shafts for parts like power drivetrains, suspension
+      systems, and steering components on ATVs, dirt bikes, and motorcycles. Designed for strength
+    approx_offset: 170497
+  actor: client
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-products-0073
+  name: Suspension systems
+  status: confirmed
+  acceptable_forms:
+  - suspension systems
+  evidence:
+  - quote: machining allows for the production of high-quality shafts for parts like power drivetrains, suspension
+      systems, and steering components on ATVs, dirt bikes, and motorcycles. Designed for strength
+    approx_offset: 170497
+  actor: client
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-products-0074
+  name: Medical devices
+  status: confirmed
+  acceptable_forms:
+  - medical devices
+  - medical device assemblies
+  - device components
+  evidence:
+  - quote: Unique device identifiers (UDIs) for medical devices, per FDA guidelines
+    approx_offset: 177662
+  actor: client
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-products-0075
+  name: Angles, casting replacements, plates, panels, tubes
+  status: confirmed
+  acceptable_forms:
+  - angles, casting replacements, plates, panels, tubes
+  - casting replacements
+  - panels
+  evidence:
+  - quote: staff can bend, shape, and cut a long list of metals to create products such as angles, casting replacements,
+      plates, panels, tubes, and more.
+    approx_offset: 181839
+  actor: client
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-products-0076
+  name: Office furniture
+  status: confirmed
+  acceptable_forms:
+  - office furniture
+  evidence:
+  - quote: markets, professional turf and lawn care, hydraulics, agriculture, precision metrology, office furniture,
+      firefighting, safety equipment, beverage components and firearm components.
+    approx_offset: 187556
+  actor: client
+  notes: named in the WEDC news post's list of markets FZE makes end products for
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-products-0077
+  name: Beverage components
+  status: confirmed
+  acceptable_forms:
+  - beverage components
+  evidence:
+  - quote: hydraulics, agriculture, precision metrology, office furniture, firefighting, safety equipment, beverage
+      components and firearm components.
+    approx_offset: 187598
+  actor: client
+  notes: named in the WEDC news post's list of markets FZE makes end products for
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-products-0078
+  name: Cell phones, tablets, computer chips, heat sinks
+  status: confirmed
+  acceptable_forms:
+  - cell phones, tablets
+  - computer chips and heat sinks
+  - heat sinks
+  evidence:
+  - quote: components and pieces used in medical machinery, electronic tools, cell phones, tablets, and sensitive
+      components like computer chips and heat sinks.
+    approx_offset: 194639
+  actor: unknown
+  notes: 'EXPLAINER: the aluminum laser marking blog''s electronics applications'
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-products-0079
+  name: Keychains, badges, trophies
+  status: confirmed
+  acceptable_forms:
+  - keychains, badges, trophies
+  - keychains
+  - trophies
+  evidence:
+  - quote: Adding promotional aspects, like a brand name, logo, or tagline, to aluminum items (e.g., keychains,
+      badges, trophies, etc.)
+    approx_offset: 194819
+  actor: unknown
+  notes: 'EXPLAINER: the aluminum laser marking blog''s promotional-applications list'
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-products-0080
+  name: Serial numbers, part numbers, barcodes and QR codes
+  status: disputed
+  acceptable_forms:
+  - barcodes, QR codes, and data matrix codes
+  - serial numbers
+  - Traceability lots
+  - Part identification numbers
+  evidence:
+  - quote: Creating barcodes, QR codes, and data matrix codes
+    approx_offset: 194944
+  actor: client
+  notes: markings applied to customer parts, listed as the laser-marking deliverables | serial numbers, part numbers,
+    barcodes and QR codes are marks and information applied to a product, not artifacts that come out of manufacturing
+    work; the clause explicitly separates artifacts from documents
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: disputed
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+    reason: serial numbers, part numbers, barcodes and QR codes are marks and information applied to a product,
+      not artifacts that come out of manufacturing work; the clause explicitly separates artifacts from documents
+- id: fzemanufacturing_com-products-0081
+  name: Blades and cutting instruments
+  status: confirmed
+  acceptable_forms:
+  - Blades and other cutting instruments
+  evidence:
+  - quote: Blades and other cutting instruments
+    approx_offset: 214087
+  actor: unknown
+  notes: 'EXPLAINER: the electropolishing-vs-passivation blog''s list of commonly electropolished parts'
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-products-0082
+  name: Fasteners and pins
+  status: confirmed
+  acceptable_forms:
+  - Fasteners and pins
+  - pins
+  evidence:
+  - quote: Fasteners and pins
+    approx_offset: 214124
+  actor: unknown
+  notes: 'EXPLAINER: the electropolishing-vs-passivation blog''s list of commonly electropolished parts'
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-products-0083
+  name: Piping and tubing
+  status: confirmed
+  acceptable_forms:
+  - Piping and tubing
+  - Piping
+  evidence:
+  - quote: Piping and tubing
+    approx_offset: 214143
+  actor: unknown
+  notes: 'EXPLAINER: the electropolishing-vs-passivation blog''s list of commonly electropolished parts'
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-products-0084
+  name: Wire racks
+  status: confirmed
+  acceptable_forms:
+  - Wire racks
+  evidence:
+  - quote: Wire racks
+    approx_offset: 214169
+  actor: unknown
+  notes: 'EXPLAINER: the electropolishing-vs-passivation blog''s list of commonly electropolished parts'
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-products-0085
+  name: Pressure vessels and steel structures
+  status: confirmed
+  acceptable_forms:
+  - pressure vessels and steel structures
+  - pressure vessels
+  - steel structures
+  evidence:
+  - quote: sheet metal welding in the automotive and home improvement industries as well as to produce pressure
+      vessels and steel structures.
+    approx_offset: 223212
+  actor: unknown
+  notes: 'EXPLAINER: the MIG-vs-TIG blog describing what MIG welding is commonly used for'
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-products-0086
+  name: Pipes / pipelines
+  status: confirmed
+  acceptable_forms:
+  - pipes/pipelines
+  - pipes
+  evidence:
+  - quote: industries that use it to make their metal parts and products include aerospace, sheet metal manufacturing,
+      and pipes/pipelines.
+    approx_offset: 224266
+  actor: unknown
+  notes: 'EXPLAINER: the MIG-vs-TIG blog''s list of industries that use TIG welding'
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-products-0087
+  name: Knives, cookware and appliances
+  status: confirmed
+  acceptable_forms:
+  - knives, cookware, and appliances
+  - cookware
+  evidence:
+  - quote: Culinary. Laser marking creates product labels, branding, and component identification for stainless
+      steel knives, cookware, and appliances.
+    approx_offset: 246242
+  actor: unknown
+  notes: 'EXPLAINER: the laser-marking-for-stainless-steel blog''s culinary applications'
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-products-0088
+  name: PCBs and circuits
+  status: confirmed
+  acceptable_forms:
+  - PCBs, circuits
+  - PCBs
+  - Circuit board printing
+  evidence:
+  - quote: Electronics. Electronics such as computers, cell phones, and tablets require small, easily identified
+      stainless steel components for PCBs, circuits, and other critical operations.
+    approx_offset: 246866
+  actor: unknown
+  notes: 'EXPLAINER: the laser-marking-for-stainless-steel blog''s electronics applications'
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-products-0089
+  name: Ball bearings
+  status: confirmed
+  acceptable_forms:
+  - ball bearings
+  evidence:
+  - quote: Heavy equipment (ball bearings, fasteners)
+    approx_offset: 252083
+  actor: unknown
+  notes: 'EXPLAINER: the passivation blog''s benefits-and-applications list'
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-products-0090
+  name: Orthopedic implants
+  status: confirmed
+  acceptable_forms:
+  - orthopedic implants
+  evidence:
+  - quote: Medical (orthopedic implants, surgical instruments)
+    approx_offset: 252160
+  actor: unknown
+  notes: 'EXPLAINER: the passivation blog''s benefits-and-applications list'
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-products-0091
+  name: Surgical instruments
+  status: confirmed
+  acceptable_forms:
+  - surgical instruments
+  - surgical tools
+  evidence:
+  - quote: Medical (orthopedic implants, surgical instruments)
+    approx_offset: 252160
+  actor: unknown
+  notes: 'EXPLAINER: the passivation blog''s benefits-and-applications list'
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-products-0092
+  name: Trenchers
+  status: candidate
+  acceptable_forms:
+  - trenchers
+  evidence:
+  - quote: size and shape of the shaft ensure optimal performance for the cutting blades on mowers, trenchers, and
+      other types of grass-cutting tools used by groundskeepers and landscapers alike.
+    approx_offset: 43656
+  actor: client
+  notes: named alongside mowers as grass-cutting machines FZE machines shafts for; mowers are seeded (products-0039),
+    trenchers are not
+  provenance:
+  - action: added
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+    source: verification-pass-miss
+- id: fzemanufacturing_com-products-0093
+  name: Edgers, brush hogs and slit seeders
+  status: candidate
+  acceptable_forms:
+  - edgers
+  - brush hogs
+  - slit seeders
+  evidence:
+  - quote: turf maintenance program. Machinery used in professional turf care includes mowers, edgers, dethatchers,
+      aerators, and specialty tools such as brush hogs or slit seeders.
+    approx_offset: 94128
+  actor: client
+  notes: the turf-care industry page's machinery list; the packet's Mowers entry picks up aerators and dethatchers
+    from this same sentence but leaves edgers, brush hogs and slit seeders uncovered
+  provenance:
+  - action: added
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+    source: verification-pass-miss
+- id: fzemanufacturing_com-products-0094
+  name: Tillage equipment
+  status: candidate
+  acceptable_forms:
+  - tillage equipment
+  evidence:
+  - quote: shafts that power essential farm machinery, including tractors, combines, balers, havestors, planters
+      and tillage equipment. Designed to endure harsh conditions, they provide reliable performance for
+    approx_offset: 169015
+  actor: client
+  notes: in the shaft-machining farm machinery list; the packet's Harvesters entry takes combines/balers/havestors
+    from this same sentence but not tillage equipment
+  provenance:
+  - action: added
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+    source: verification-pass-miss
+- id: fzemanufacturing_com-products-0095
+  name: Dirt bikes
+  status: candidate
+  acceptable_forms:
+  - dirt bikes
+  evidence:
+  - quote: like power drivetrains, suspension systems, and steering components on ATVs, dirt bikes, and motorcycles.
+      Designed for strength and precision, our products enhance reliability and durability in both
+    approx_offset: 170566
+  actor: client
+  notes: named with ATVs and motorcycles as vehicles FZE machines shafts for; the packet covers ATV components (products-0065)
+    but not dirt bikes
+  provenance:
+  - action: added
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+    source: verification-pass-miss
+- id: fzemanufacturing_com-products-0096
+  name: Fuel injection system and axles
+  status: candidate
+  acceptable_forms:
+  - fuel injection system
+  - axles
+  evidence:
+  - quote: various CNC-machined parts to make them more precise and efficient. Everything from the fuel injection
+      system to the axles is machined precisely for maximum performance.
+    approx_offset: 71908
+  actor: client
+  notes: the tractor paragraph names both as CNC-machined tractor parts; neither is in the packet ('planter axles'
+    appears only inside another entry's compound form)
+  provenance:
+  - action: added
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+    source: verification-pass-miss
+- id: fzemanufacturing_com-products-0097
+  name: Cams, impellers and propellers
+  status: candidate
+  acceptable_forms:
+  - cams, impellers, and propellers
+  - impellers
+  - propellers
+  evidence:
+  - quote: Complex curved parts. Examples of parts with complex curves include cams, impellers, and propellers.
+      While these parts are difficult to manufacture with precision and accuracy using conventional
+    approx_offset: 229501
+  actor: unknown
+  notes: the VMC blog names these as complex curved parts a multi-axis VMC produces; made artifacts, absent from
+    the packet
+  provenance:
+  - action: added
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+    source: verification-pass-miss
+- id: fzemanufacturing_com-products-0098
+  name: Exhaust components
+  status: candidate
+  acceptable_forms:
+  - exhaust components
+  evidence:
+  - quote: steel automotive components offer superior traceability, including steering and suspension systems, brakes,
+      engines, and exhaust components.
+    approx_offset: 246570
+  actor: client
+  notes: in the laser-marking automotive list; the packet seeds brakes and steering/suspension from this same sentence
+    but not exhaust components
+  provenance:
+  - action: added
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+    source: verification-pass-miss
+- id: fzemanufacturing_com-products-0099
+  name: LEDs and ID cards
+  status: candidate
+  acceptable_forms:
+  - LEDs
+  - ID cards
+  evidence:
+  - quote: Electronic components, such as semiconductors, LEDs, and ID cards
+    approx_offset: 177872
+  actor: unknown
+  notes: named as electronic components laser marking is applied to; the packet covers semiconductors from this
+    line (industries-0054) but not the two artifacts
+  provenance:
+  - action: added
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+    source: verification-pass-miss
+false_friends:
+- form: Equipment List
+  reason: '''DOWNLOAD OUR EQUIPMENT LIST'' / ''View Our Equipment List'' - a document on the equipment page, not
+    an artifact that comes out of manufacturing work'
+- form: Made In Wisconsin
+  reason: a program and logo the company is registered with - an award/membership, which the product prompt excludes
+    by name
+- form: Blanket Orders
+  reason: a commercial ordering arrangement in the Production Volume table, not a made thing
+- form: Box Build Assembly
+  reason: the NAME OF A SERVICE in the Assembly Services table ('Box-Build Assembly refers to the complete assembly
+    of a customer's finished product'), not an artifact
+- form: AutoCAD
+  reason: a CAD file format in the File Formats table; software, not a made artifact
+- form: Captcha
+  reason: a contact-form field label repeated on ~20 pages
+- form: Photo Gallery
+  reason: an empty site page whose only content is its own title
+- form: Kanban
+  reason: an inventory-signalling system named in the equipment roster's Finished Goods Inventory line, not a product
+- form: Ballizer
+  reason: occurs only as the video title 'FZE “Ballizer”'; the site never says what it is, and in context it reads
+    as a process/machine demo rather than a catalogued product

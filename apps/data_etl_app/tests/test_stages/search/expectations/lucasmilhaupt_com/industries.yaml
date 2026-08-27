@@ -1,0 +1,651 @@
+subject: lucasmilhaupt.com
+field: industries
+snapshot:
+  file: apps/data_etl_app/tests/test_stages/sample_scraped_texts/lucasmilhaupt.com.txt
+  sha256: d92eed67ef99d67a791896d0467d78dc0c60bf7a96e2ec6f99926618da193236
+eval_set_version: 2
+expected_empty: false
+notes: Brazing-consumables maker; the site is organised BY industry (7 industry landing pages) and each product
+  detail page carries a 'Common Industries' block, so industry designations are dense and repeat verbatim across
+  the .htm duplicate pages. The HVAC/R OEM and HVAC/R Distributor pages each dump the full ~240-entry ISO country
+  dropdown into the text -- countries are geography, not industries, and are the field's main junk-minting pressure.
+entries:
+- id: lucasmilhaupt_com-industries-0001
+  name: materials science
+  status: disputed
+  acceptable_forms:
+  - materials science
+  evidence:
+  - quote: in materials science
+    approx_offset: 127
+  - quote: quickly. With more than 500 custom alloys, and decades of materials science expertise, Lucas Milhaupt
+      develops custom joining solutions
+    approx_offset: 463
+  notes: named as the domain the company works in ('we're what's NEXT in materials science'), not as a customer
+    market; marginal against 'a domain a manufacturer's goods can serve'. | 'materials science' is a scientific
+    discipline and a claimed area of expertise ('decades of materials science expertise'), not a domain of economic
+    activity the company's goods serve; the sectors it serves are named separately (aerospace, HVAC/R, medical...).
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: disputed
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+    reason: '''materials science'' is a scientific discipline and a claimed area of expertise (''decades of materials
+      science expertise''), not a domain of economic activity the company''s goods serve; the sectors it serves
+      are named separately (aerospace, HVAC/R, medical...).'
+- id: lucasmilhaupt_com-industries-0002
+  name: EV
+  status: confirmed
+  acceptable_forms:
+  - EV
+  evidence:
+  - quote: defense, battery and thermal-management systems for automotive and EV, copper-aluminum coils for HVAC/R
+      and appliance,
+    approx_offset: 3615
+  - quote: EV
+    approx_offset: 1010
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+- id: lucasmilhaupt_com-industries-0003
+  name: HVAC
+  status: confirmed
+  acceptable_forms:
+  - HVAC
+  evidence:
+  - quote: HVAC
+    approx_offset: 1013
+  - quote: It is ideal for open air heating methods and very easy to use for aluminum brazing in HVAC/R applications.
+    approx_offset: 183498
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+- id: lucasmilhaupt_com-industries-0004
+  name: aerospace
+  status: confirmed
+  acceptable_forms:
+  - Aerospace
+  - aerospace and defense
+  - aerospace
+  evidence:
+  - quote: remarkable range of markets. Whether you build turbine engine components for aerospace and defense, battery
+      and thermal-management systems for automotive
+    approx_offset: 3524
+  - quote: As an AS9100-certified, vertically integrated producer of high-purity brazing filler metals and engineered
+      brazing alloys, Lucas Milhaupt helps aerospace leaders
+    approx_offset: 29455
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+- id: lucasmilhaupt_com-industries-0005
+  name: defense
+  status: confirmed
+  acceptable_forms:
+  - defense
+  - Defense
+  - aerospace and defense
+  evidence:
+  - quote: Whether you build turbine engine components for aerospace and defense, battery and thermal-management
+      systems for automotive
+    approx_offset: 3553
+  - quote: Committing to the highest quality standards in Aviation, Space and Defense
+    approx_offset: 14226
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+- id: lucasmilhaupt_com-industries-0006
+  name: automotive
+  status: confirmed
+  acceptable_forms:
+  - Automotive
+  - automotive
+  - automotive and EV
+  evidence:
+  - quote: engine components for aerospace and defense, battery and thermal-management systems for automotive and
+      EV, copper-aluminum coils for HVAC/R and appliance,
+    approx_offset: 3579
+  - quote: corrosion-resistant, and production-friendly. Lucas Milhaupt combines IATF 16949 certified quality, vertically
+      integrated manufacturing, and hands-on
+    approx_offset: 166730
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+- id: lucasmilhaupt_com-industries-0007
+  name: appliance
+  status: confirmed
+  acceptable_forms:
+  - appliance
+  evidence:
+  - quote: thermal-management systems for automotive and EV, copper-aluminum coils for HVAC/R and appliance, hermetic
+      packages for microelectronics and semiconductor,
+    approx_offset: 3636
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+- id: lucasmilhaupt_com-industries-0008
+  name: microelectronics
+  status: confirmed
+  acceptable_forms:
+  - Microelectronics
+  - microelectronics
+  - microelectronics sector
+  evidence:
+  - quote: copper-aluminum coils for HVAC/R and appliance, hermetic packages for microelectronics and semiconductor,
+      high-current connectors for electrical power,
+    approx_offset: 3686
+  - quote: In the competitive microelectronics sector, manufacturers demand partners
+    approx_offset: 15572
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+- id: lucasmilhaupt_com-industries-0009
+  name: semiconductor
+  status: confirmed
+  acceptable_forms:
+  - semiconductor
+  - Semiconductor
+  evidence:
+  - quote: copper-aluminum coils for HVAC/R and appliance, hermetic packages for microelectronics and semiconductor,
+      high-current connectors for electrical power,
+    approx_offset: 3686
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+- id: lucasmilhaupt_com-industries-0010
+  name: electrical
+  status: confirmed
+  acceptable_forms:
+  - Electrical
+  - electrical industry
+  - electrical power
+  evidence:
+  - quote: packages for microelectronics and semiconductor, high-current connectors for electrical power, biocompatible
+      assemblies for medical devices,
+    approx_offset: 3743
+  - quote: In the electrical industry, reliability is paramount, a single joint failure can leave
+    approx_offset: 39830
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+- id: lucasmilhaupt_com-industries-0011
+  name: medical devices
+  status: confirmed
+  acceptable_forms:
+  - medical devices
+  - medical device industry
+  - Medical
+  evidence:
+  - quote: high-current connectors for electrical power, biocompatible assemblies for medical devices, or rugged
+      tools for oil & gas, Lucas Milhaupt
+    approx_offset: 3792
+  - quote: Milhaupt is a leading provider of brazing alloys and custom brazing solutions for the medical device
+      industry. Our engineering-focused approach supports the
+    approx_offset: 24411
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+- id: lucasmilhaupt_com-industries-0012
+  name: oil and gas
+  status: confirmed
+  acceptable_forms:
+  - Oil & gas
+  - Oil and Gas
+  - oil & gas
+  - Oil & Gas
+  evidence:
+  - quote: biocompatible assemblies for medical devices, or rugged tools for oil & gas, Lucas Milhaupt has a proven
+      alloy family and
+    approx_offset: 3838
+  - quote: Oil and gas equipment operates where heat, pressure, vibration and abrasion are constant.
+    approx_offset: 119253
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+- id: lucasmilhaupt_com-industries-0013
+  name: HVAC/R
+  status: confirmed
+  acceptable_forms:
+  - HVAC/R
+  - HVAC/R industry
+  - HVAC & Refrigeration
+  evidence:
+  - quote: Lucas Milhaupt has been a trusted partner to the HVAC/R industry for decades,
+    approx_offset: 8788
+  - quote: the experts in the industry. Lucas Milhaupt is the leading provider of joining materials for the HVAC
+      & Refrigeration market. We work with OEMs to design the next wave of
+    approx_offset: 179354
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+- id: lucasmilhaupt_com-industries-0014
+  name: refrigeration
+  status: confirmed
+  acceptable_forms:
+  - refrigeration
+  - Refrigeration
+  evidence:
+  - quote: specialized brazing alloys and expertise that ensure durable, leak-free joints in refrigeration and air
+      conditioning equipment . Our legacy began with the invention of Sil-Fos®
+    approx_offset: 8876
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+- id: lucasmilhaupt_com-industries-0015
+  name: air conditioning
+  status: confirmed
+  acceptable_forms:
+  - air conditioning
+  evidence:
+  - quote: brazing alloys and expertise that ensure durable, leak-free joints in refrigeration and air conditioning
+      equipment . Our legacy began with the invention of Sil-Fos®
+    approx_offset: 8888
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+- id: lucasmilhaupt_com-industries-0016
+  name: plumbing
+  status: confirmed
+  acceptable_forms:
+  - plumbing
+  - plumbing industries
+  evidence:
+  - quote: Lucas Milhaupt partners with HVAC/R and plumbing distributors. Learn more about our products, order literature,
+    approx_offset: 10257
+  - quote: Sil-Fos® alloys have become popular in the HVAC/R and plumbing industries because of the ability to join
+      copper to copper
+    approx_offset: 124922
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+- id: lucasmilhaupt_com-industries-0017
+  name: aviation
+  status: confirmed
+  acceptable_forms:
+  - aviation
+  - Aviation
+  evidence:
+  - quote: common group of quality management standards for the aviation, space and defense industry.
+    approx_offset: 14081
+  - quote: Committing to the highest quality standards in Aviation, Space and Defense
+    approx_offset: 14226
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+- id: lucasmilhaupt_com-industries-0018
+  name: space
+  status: confirmed
+  acceptable_forms:
+  - Space
+  - space and defense
+  evidence:
+  - quote: 'AS 9100: Committing to the highest quality standards in Aviation, Space and Defense'
+    approx_offset: 14217
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+- id: lucasmilhaupt_com-industries-0019
+  name: telecommunications
+  status: confirmed
+  acceptable_forms:
+  - telecommunications
+  - telecom
+  evidence:
+  - quote: at the solder joint. This makes them ideal for RF microwave modules, telecommunications hardware, and
+      power electronics (heat spreaders, laser
+    approx_offset: 20285
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+- id: lucasmilhaupt_com-industries-0020
+  name: power electronics
+  status: confirmed
+  acceptable_forms:
+  - power electronics
+  evidence:
+  - quote: This makes them ideal for RF microwave modules, telecommunications hardware, and power electronics (heat
+      spreaders, laser diode submounts) where
+    approx_offset: 20306
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+- id: lucasmilhaupt_com-industries-0021
+  name: optoelectronics
+  status: confirmed
+  acceptable_forms:
+  - Optoelectronics
+  - optoelectronics
+  evidence:
+  - quote: 'Optoelectronics & Sensor Assemblies: From laser diodes and photonic packages to MEMS sensors'
+    approx_offset: 20649
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+- id: lucasmilhaupt_com-industries-0022
+  name: healthcare
+  status: confirmed
+  acceptable_forms:
+  - healthcare
+  evidence:
+  - quote: commitment to quality and traceability guarantees reliable performance in critical healthcare applications.
+    approx_offset: 25537
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+- id: lucasmilhaupt_com-industries-0023
+  name: dental
+  status: confirmed
+  acceptable_forms:
+  - Dental
+  - dental
+  evidence:
+  - quote: 'Dental Devices: Brazing solutions for dental equipment (handpieces, orthodontic appliances) that require'
+    approx_offset: 26303
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+- id: lucasmilhaupt_com-industries-0024
+  name: power distribution
+  status: confirmed
+  acceptable_forms:
+  - Power Distribution
+  - power distribution
+  evidence:
+  - quote: Power Distribution & Switchgear – Brazing is critical in devices like vacuum interrupters, electrical
+    approx_offset: 43105
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+- id: lucasmilhaupt_com-industries-0025
+  name: utility and industrial power
+  status: confirmed
+  acceptable_forms:
+  - utility and industrial power systems
+  - industrial power systems
+  evidence:
+  - quote: high-current joints, helping prevent hot spots and ensuring efficient power flow in utility and industrial
+      power systems.
+    approx_offset: 44540
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+- id: lucasmilhaupt_com-industries-0026
+  name: MRO
+  status: confirmed
+  acceptable_forms:
+  - MRO
+  evidence:
+  - quote: and wear parts to valves and heat exchangers, our solutions support both new build and MRO needs. With
+      global manufacturing and distribution,
+    approx_offset: 119542
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+- id: lucasmilhaupt_com-industries-0027
+  name: electronics
+  status: confirmed
+  acceptable_forms:
+  - Electronics
+  - electronics
+  - electronics packaging industry
+  evidence:
+  - quote: used on ferrous and non-ferrous base metals and sees most use in the electronics packaging industry or
+      applications where lead or silver are not
+    approx_offset: 198705
+  - quote: Brazing applications include electronics/electrical, aerospace, automotive, HVAC/R, construction and
+      more. Examples range from air
+    approx_offset: 157686
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+- id: lucasmilhaupt_com-industries-0028
+  name: construction
+  status: confirmed
+  acceptable_forms:
+  - construction
+  evidence:
+  - quote: include electronics/electrical, aerospace, automotive, HVAC/R, construction and more. Examples range
+      from air conditioning
+    approx_offset: 157707
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+- id: lucasmilhaupt_com-industries-0029
+  name: jewelry
+  status: confirmed
+  acceptable_forms:
+  - Jewelry
+  - jewelry
+  - fine jewelry
+  evidence:
+  - quote: variety of flux and flux-free binders that are primarily mixed with karat gold braze powders to form
+      a paste for use in jewelry brazing. Contact the Lucas Milhaupt Technical Support
+    approx_offset: 205267
+  - quote: conditioning systems for automobiles to highly sensitive jet turbine blades to satellite components to
+      fine jewelry. Brazing offers a significant advantage in applications
+    approx_offset: 157817
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+- id: lucasmilhaupt_com-industries-0030
+  name: transportation
+  status: confirmed
+  acceptable_forms:
+  - transportation
+  evidence:
+  - quote: cosmetic joints. Applications include transportation, construction, manufacturing and repair shops. Examples
+    approx_offset: 161923
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+- id: lucasmilhaupt_com-industries-0031
+  name: manufacturing
+  status: confirmed
+  acceptable_forms:
+  - manufacturing
+  - Manufacturing
+  evidence:
+  - quote: Applications include transportation, construction, manufacturing and repair shops. Examples
+    approx_offset: 161940
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+- id: lucasmilhaupt_com-industries-0032
+  name: repair shops
+  status: confirmed
+  acceptable_forms:
+  - repair shops
+  evidence:
+  - quote: transportation, construction, manufacturing and repair shops. Examples
+    approx_offset: 161961
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+false_friends:
+- form: Brazil
+  reason: 'witnessed: only in the ~240-entry country dropdown on the HVAC/R OEM and Distributor forms; a geography,
+    not an industry -- and its first four letters collide with ''braz(ing)'''
+- form: Turkey
+  reason: 'witnessed: country-dropdown entry only'
+- form: Georgia
+  reason: 'witnessed: country-dropdown entry only (the US state list is separate, as ''GA'')'
+- form: Jordan
+  reason: 'witnessed: country-dropdown entry only'
+- form: China
+  reason: 'witnessed: country dropdown plus the Suzhou site address; a location, not an industry'
+- form: France
+  reason: 'witnessed: country dropdown plus the Riberac site address; a location, not an industry'
+- form: Chile
+  reason: 'witnessed: country-dropdown entry only'
+- form: Steel Partners
+  reason: 'witnessed: the parent holding company''s name, not the steel industry'
+- form: Steel Sports
+  reason: 'witnessed: the parent''s youth-sports charity, not a market the subject serves'
+- form: Lucas Gear
+  reason: 'witnessed: a footer link to employee merchandise, repeated on all 69 pages'
+- form: Marine
+  reason: 'anticipatory: does not occur; word-association from ''ships'' in the WWII history page'
+- form: Nuclear
+  reason: 'anticipatory: does not occur; word-association from ''power'', ''turbine'', ''vacuum'''
+- form: Shipbuilding
+  reason: 'anticipatory: does not occur; ''planes, ships, and ammunition'' is a WWII list of brazed artifacts, not
+    a named market'
+- form: Food and Beverage
+  reason: 'anticipatory: does not occur; word-association from ''seal the seams of tin cans'''

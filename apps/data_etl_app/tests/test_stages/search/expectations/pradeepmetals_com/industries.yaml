@@ -1,0 +1,891 @@
+subject: pradeepmetals.com
+field: industries
+snapshot:
+  file: apps/data_etl_app/tests/test_stages/sample_scraped_texts/pradeepmetals.com.txt
+  sha256: d3b7875e2769b8347084c18df480028cf319fc9595695734c21041dff6961bc0
+eval_set_version: 2
+expected_empty: false
+notes: 'Two clean sources and three trap sources. Clean: the five-line INDUSTRIES WE SERVE strip repeated on the
+  homepage and Clientele page (Process Industry / Oil & Gas / Off-Highway Vehicles / Pipes & Fittings / General
+  Engineering), and the homepage sentence naming the Valve, Instrumentation, Petrochemical and General Engineering
+  industries. Traps: (1) the /industries-we-serve page itself is a ''Coming Soon'' stub, so the strip in the nav
+  is all there is; (2) the blog explainers name a dozen sectors that belong to the INDIAN FORGING INDUSTRY generally,
+  not to this company - those carry actor: unknown; (3) an independent director''s CV lists BFSI, FMCG, hospitality,
+  retail pharma, media and advertising as HIS consulting sectors. INVERSION: ''Wind Energy'' does NOT occur in this
+  file - what occurs is ''Wind Mill'' and ''Wind Power Project'', and both are the company''s OWN captive generation
+  covering 95% of its own energy needs, not a market served.'
+entries:
+- id: pradeepmetals_com-industries-0001
+  name: Valve industry
+  status: confirmed
+  acceptable_forms:
+  - Valve
+  - the Valve, Instrumentation, Petrochemical
+  - Ball Valve Industry
+  - valve manufacturers in India
+  evidence:
+  - quote: closed-die forgings for the Valve, Instrumentation, Petrochemical, and General Engineering industries
+    approx_offset: 455
+  - quote: EVOLVING WITH THE CHANGING LANDSCAPE OF BALL VALVE INDUSTRY
+    approx_offset: 252361
+  notes: the homepage sentence names 'the Valve ... industries'; a blog headline names the Ball Valve Industry
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: amended
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+    reason: 'entity stands: the homepage names the Valve industry and a blog names the Ball Valve Industry. But
+      the first form is an artificial three-industry fragment (''the Valve, Instrumentation, Petrochemical'') that
+      no returned phrase would reproduce, and it overlaps entries 0002/0004; adding the bare printed industry word
+      ''Valve'' makes the entry creditable.'
+- id: pradeepmetals_com-industries-0002
+  name: Instrumentation
+  status: confirmed
+  acceptable_forms:
+  - Instrumentation
+  evidence:
+  - quote: Instrumentation
+    approx_offset: 490
+  - quote: closed-die forgings for the Valve, Instrumentation, Petrochemical, and General Engineering industries
+    approx_offset: 455
+  notes: homepage sentence only; the Rosemount and Endress+Hauser awards are its corroboration
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: amended
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+    reason: entity stands, but the packet quote is the bare word 'Instrumentation', which never occurs as a standalone
+      line - only inside this sentence. The one-word quote passes the mechanical check as a substring while showing
+      nothing about field membership; the full clause shows it is named as an industry served.
+- id: pradeepmetals_com-industries-0003
+  name: General Engineering
+  status: confirmed
+  acceptable_forms:
+  - General Engineering
+  evidence:
+  - quote: General Engineering
+    approx_offset: 526
+  - quote: Petrochemical, and General Engineering industries
+    approx_offset: 507
+  notes: doubles as a PRODUCT category on this site (/general-engineering) and as an industry in the strip and the
+    homepage sentence
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+- id: pradeepmetals_com-industries-0004
+  name: Petrochemical
+  status: confirmed
+  acceptable_forms:
+  - Petrochemical
+  - petrochemicals
+  - petrochemical industry
+  evidence:
+  - quote: Petrochemical
+    approx_offset: 507
+  - quote: diverse industries like oil and petrochemicals, mining, and more
+    approx_offset: 28837
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+- id: pradeepmetals_com-industries-0005
+  name: Process Industry
+  status: confirmed
+  acceptable_forms:
+  - Process Industry
+  evidence:
+  - quote: Process Industry
+    approx_offset: 1002
+  notes: first line of the INDUSTRIES WE SERVE strip; repeated on the homepage, both Clientele fetches and the http
+    homepage
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+- id: pradeepmetals_com-industries-0006
+  name: Oil & Gas
+  status: confirmed
+  acceptable_forms:
+  - Oil & Gas
+  - Oil and Gas
+  evidence:
+  - quote: Oil & Gas
+    approx_offset: 1019
+  - quote: machined forgings for the Oil and Gas industry
+    approx_offset: 197805
+  notes: both the ampersand form (nav strip) and the spelled form (blog); the blog names it as the company's declared
+    growth focus
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+- id: pradeepmetals_com-industries-0007
+  name: Off-Highway Vehicles
+  status: confirmed
+  acceptable_forms:
+  - Off-Highway Vehicles
+  evidence:
+  - quote: Off-Highway Vehicles
+    approx_offset: 1029
+  notes: INDUSTRIES WE SERVE strip; the most distinctive form in the strip
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+- id: pradeepmetals_com-industries-0008
+  name: Pipes & Fittings
+  status: confirmed
+  acceptable_forms:
+  - Pipes & Fittings
+  evidence:
+  - quote: Pipes & Fittings
+    approx_offset: 1050
+  notes: INDUSTRIES WE SERVE strip
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+- id: pradeepmetals_com-industries-0009
+  name: manufacturing sector / manufacturing industry
+  status: confirmed
+  acceptable_forms:
+  - manufacturing sector
+  - manufacturing industry
+  - Indian manufacturing industry
+  - precision manufacturing industry
+  evidence:
+  - quote: industrial processes that are used in the manufacturing sector
+    approx_offset: 3713
+  - quote: one of the most important industrial process used in the precision manufacturing industry
+    approx_offset: 71746
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+- id: pradeepmetals_com-industries-0010
+  name: marine
+  status: disputed
+  acceptable_forms:
+  - MARINE CERTIFICATE
+  evidence:
+  - quote: MARINE CERTIFICATE
+    approx_offset: 9046
+  notes: '''Marine'' occurs exactly once in the whole file, as a certificate name. It implies the marine sector,
+    but nothing in the text says the company serves it. Disputed rather than a false_friend, to stay lenient | the
+    marine sector is only INFERABLE from a certificate label: ''MARINE CERTIFICATE'' on the quality page is the
+    sole occurrence, and it is also the sole acceptable form. Crediting therefore requires search to emit a certification
+    name into the industries field. Same shape as 0012 and 0013.'
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: disputed
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+    reason: 'the marine sector is only INFERABLE from a certificate label: ''MARINE CERTIFICATE'' on the quality
+      page is the sole occurrence, and it is also the sole acceptable form. Crediting therefore requires search
+      to emit a certification name into the industries field. Same shape as 0012 and 0013.'
+- id: pradeepmetals_com-industries-0011
+  name: defense
+  status: confirmed
+  acceptable_forms:
+  - INDIAN DEFENSE
+  - defense
+  evidence:
+  - quote: INDIAN DEFENSE
+    approx_offset: 9119
+  - quote: This project was conducted for defense
+    approx_offset: 136746
+  - quote: defense, construction equipment and power sector
+    approx_offset: 225933
+  notes: 'three unrelated sources: an approved-supplier line on the Quality page, an IMRC transparent-ceramics project,
+    and a blog list. American spelling throughout'
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+- id: pradeepmetals_com-industries-0012
+  name: railways
+  status: disputed
+  acceptable_forms:
+  - INDIAN RAILWAYS
+  evidence:
+  - quote: INDIAN RAILWAYS
+    approx_offset: 9153
+  notes: 'the sector is named only through the approved-supplier line on the Quality page | ''INDIAN RAILWAYS''
+    names a specific customer organisation under the APPROVALS heading (next line: ''APPROVED SUPPLIER''), not an
+    industry. The rail sector is an inference from an approval label, and the approval label is the only acceptable
+    form.'
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: disputed
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+    reason: '''INDIAN RAILWAYS'' names a specific customer organisation under the APPROVALS heading (next line:
+      ''APPROVED SUPPLIER''), not an industry. The rail sector is an inference from an approval label, and the approval
+      label is the only acceptable form.'
+- id: pradeepmetals_com-industries-0013
+  name: nuclear
+  status: disputed
+  acceptable_forms:
+  - NUCLEAR APPROVED SUPPLIER
+  evidence:
+  - quote: NUCLEAR APPROVED SUPPLIER (USA & GERMANY)
+    approx_offset: 11786
+  notes: the sector is named only through the approved-supplier claim in CORE STRENGHTS; the word never appears
+    in the industries strip | 'NUCLEAR APPROVED SUPPLIER (USA & GERMANY)' is a core-strengths approval claim; the
+    nuclear sector is inferable from it but is never named as an industry, and the approval string is the only acceptable
+    form.
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: disputed
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+    reason: '''NUCLEAR APPROVED SUPPLIER (USA & GERMANY)'' is a core-strengths approval claim; the nuclear sector
+      is inferable from it but is never named as an industry, and the approval string is the only acceptable form.'
+- id: pradeepmetals_com-industries-0014
+  name: iron and steel
+  status: confirmed
+  acceptable_forms:
+  - iron and steel industries
+  - Iron & Steel
+  - steelmaking industries
+  - steel and heavy engineering industries
+  evidence:
+  - quote: Going hand in hand with the iron and steel industries in India
+    approx_offset: 238643
+  - quote: 2. Iron & Steel
+    approx_offset: 96071
+  - quote: the steel and heavy engineering industries
+    approx_offset: 12072
+  notes: an IMRC patent-category heading, a blog sentence, and the founder's CV
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+- id: pradeepmetals_com-industries-0015
+  name: heavy engineering
+  status: confirmed
+  acceptable_forms:
+  - heavy engineering
+  evidence:
+  - quote: the steel and heavy engineering industries
+    approx_offset: 12072
+  - quote: vast experience in the heavy engineering and steelmaking industries
+    approx_offset: 228883
+  actor: unknown
+  notes: the founder's fifty years of experience, not a market served
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+- id: pradeepmetals_com-industries-0016
+  name: Mining
+  status: confirmed
+  acceptable_forms:
+  - mining
+  evidence:
+  - quote: oil and petrochemicals, mining, and more
+    approx_offset: 28861
+  notes: named once, as a ball-valve market
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+- id: pradeepmetals_com-industries-0017
+  name: wind power (captive, NOT a market served)
+  status: disputed
+  acceptable_forms:
+  - WIND POWER PROJECT
+  - Wind Mill
+  evidence:
+  - quote: PRADEEP METALS – REGISTRATION OF THE 2.10 MW (1 X 21000 KW) WIND POWER PROJECT…
+    approx_offset: 257441
+  - quote: Wind Mill commissioned on 31stMarch, 2015 to cover 95% of the total energy requirement of the company
+    approx_offset: 66257
+  notes: 'INVERSION TRAP, and the phrasing matters: the string ''Wind Energy'' does NOT occur anywhere in this file
+    - only ''Wind Mill'' and ''Wind Power Project'' do. Both refer to the company''s OWN 2.10 MW captive generation
+    covering 95% of ITS OWN energy requirement, registered with the Maharashtra Energy Development Agency. It is
+    an energy ASSET the company consumes from, not a sector its forgings serve. Kept as an entry because the text
+    names it and search is recall-first; the inversion is the finding | the seed''s own name says ''NOT a market
+    served'' and I agree: the wind mill and the 2.10 MW project are the company''s captive generation (''to cover
+    95% of the total energy requirement of the company''). The industries clause wants a sector ''that a manufacturer''s
+    goods or services can serve''; this is a sector the company buys from, not sells to.'
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: disputed
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+    reason: 'the seed''s own name says ''NOT a market served'' and I agree: the wind mill and the 2.10 MW project
+      are the company''s captive generation (''to cover 95% of the total energy requirement of the company''). The
+      industries clause wants a sector ''that a manufacturer''s goods or services can serve''; this is a sector
+      the company buys from, not sells to.'
+- id: pradeepmetals_com-industries-0018
+  name: automobile / automotive
+  status: confirmed
+  acceptable_forms:
+  - automobile industry
+  - automobile sector
+  - automotive
+  - non-automotive sectors
+  - auto forging space
+  evidence:
+  - quote: Impression die to forge is generally used in the automobile industry
+    approx_offset: 72678
+  - quote: increased demand from the automobile sector
+    approx_offset: 225242
+  actor: unknown
+  notes: the blogs' central claim is that the AUTOMOBILE INDUSTRY takes 60-65% of Indian forgings - an industry-wide
+    statistic, not this company's mix. Its own strip does not list automotive
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+- id: pradeepmetals_com-industries-0019
+  name: forging industry
+  status: confirmed
+  acceptable_forms:
+  - forging industry
+  - Indian forging industry
+  - metal forging industry
+  evidence:
+  - quote: The Indian forging industry is an important contributor to the manufacturing sector
+    approx_offset: 86541
+  - quote: Forged Steel Valves- Prominent trends in the Forging Industry
+    approx_offset: 84361
+  notes: 41 lines. The subject's own industry rather than a market it serves, and by far the most-named sector in
+    the file
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+- id: pradeepmetals_com-industries-0020
+  name: petroleum
+  status: confirmed
+  acceptable_forms:
+  - Petroleum
+  evidence:
+  - quote: 1. Petroleum
+    approx_offset: 95933
+  actor: lab
+  notes: an IMRC patent-category heading (heavy petroleum bottom stocks)
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+- id: pradeepmetals_com-industries-0021
+  name: aviation
+  status: confirmed
+  acceptable_forms:
+  - Aviation
+  evidence:
+  - quote: Aviation
+    approx_offset: 96438
+  - quote: copper-based brake liners (used in aviation)
+    approx_offset: 136334
+  actor: lab
+  notes: one IMRC patent-category heading ('Automobiles/ Aviation', split across two lines) and one IMRC project
+    note
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+- id: pradeepmetals_com-industries-0022
+  name: mineral processing
+  status: confirmed
+  acceptable_forms:
+  - Mineral processing
+  evidence:
+  - quote: 5. Mineral processing
+    approx_offset: 96581
+  actor: lab
+  notes: an IMRC patent-category heading
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+- id: pradeepmetals_com-industries-0023
+  name: chemical
+  status: confirmed
+  acceptable_forms:
+  - chemical
+  - chemicals
+  evidence:
+  - quote: include chemical, food processing, pharmaceutical, high-temperature
+    approx_offset: 102754
+  - quote: food processing, chemicals, water circulation
+    approx_offset: 260485
+  actor: unknown
+  notes: from the two butterfly-valve explainers' application lists
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+- id: pradeepmetals_com-industries-0024
+  name: food processing
+  status: confirmed
+  acceptable_forms:
+  - food processing
+  evidence:
+  - quote: food processing
+    approx_offset: 102772
+  - quote: food processing
+    approx_offset: 102772
+  actor: unknown
+  notes: butterfly-valve explainer application list
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+- id: pradeepmetals_com-industries-0025
+  name: pharmaceutical
+  status: confirmed
+  acceptable_forms:
+  - pharmaceutical
+  - pharmaceuticals
+  - pharma
+  - pharmaceutical industry
+  evidence:
+  - quote: pharmaceutical
+    approx_offset: 102789
+  - quote: petrochemical industry, pharmaceutical industry, dairy industry
+    approx_offset: 225496
+  actor: unknown
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+- id: pradeepmetals_com-industries-0026
+  name: high-pressure water and steam services
+  status: confirmed
+  acceptable_forms:
+  - high-temperature, and high-pressure water and steam services
+  - steam and water services
+  evidence:
+  - quote: high-temperature, and high-pressure water and steam services
+    approx_offset: 102805
+  - quote: steam and water services
+    approx_offset: 260549
+  actor: unknown
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+- id: pradeepmetals_com-industries-0027
+  name: water circulation
+  status: confirmed
+  acceptable_forms:
+  - water circulation
+  evidence:
+  - quote: water circulation, fire systems, and automation
+    approx_offset: 248126
+  - quote: water circulation
+    approx_offset: 102867
+  actor: unknown
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+- id: pradeepmetals_com-industries-0028
+  name: fire systems
+  status: confirmed
+  acceptable_forms:
+  - fire systems
+  evidence:
+  - quote: fire systems
+    approx_offset: 102886
+  actor: unknown
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+- id: pradeepmetals_com-industries-0029
+  name: electrical and electronics
+  status: confirmed
+  acceptable_forms:
+  - Electrical and Electronics Industry
+  evidence:
+  - quote: experience in the Electrical and Electronics Industry
+    approx_offset: 128487
+  actor: unknown
+  notes: 'CAPABILITY BAIT FROM A CV: fifty years of an independent director''s career at Crompton Greaves. Nothing
+    to do with this company''s markets'
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+- id: pradeepmetals_com-industries-0030
+  name: BFSI, FMCG, hospitality, retail pharma, media and advertising
+  status: confirmed
+  acceptable_forms:
+  - BFSI, engineering, automotive, retail pharma, FMCG, hospitality, media and advertising
+  - BFSI
+  - FMCG
+  evidence:
+  - quote: BFSI, engineering, automotive, retail pharma, FMCG, hospitality, media and advertising
+    approx_offset: 128990
+  actor: unknown
+  notes: 'CAPABILITY BAIT FROM A CV: these are the sectors a non-executive director''s MANAGEMENT CONSULTING projects
+    covered, printed in one sentence alongside Tata Motors, AF Ferguson and PWC. Recall-first keeps them; the attribution
+    is what makes them a trap'
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+- id: pradeepmetals_com-industries-0031
+  name: agriculture
+  status: disputed
+  acceptable_forms:
+  - agricultural waste
+  evidence:
+  - quote: converting agricultural waste into high-cost industrial material
+    approx_offset: 136633
+  actor: lab
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: disputed
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+    reason: '''agricultural waste'' names a feedstock for an IMRC activated-carbon project, not a sector. No form
+      of ''agriculture'' is named as an industry anywhere; the nearest neighbours (''Disinfestation of food grains'',
+      ''Turmeric Rhizome Drying'') are also processes on materials rather than a named sector.'
+  notes: '''agricultural waste'' names a feedstock for an IMRC activated-carbon project, not a sector. No form of
+    ''agriculture'' is named as an industry anywhere; the nearest neighbours (''Disinfestation of food grains'',
+    ''Turmeric Rhizome Drying'') are also processes on materials rather than a named sector.'
+- id: pradeepmetals_com-industries-0032
+  name: cosmetics
+  status: confirmed
+  acceptable_forms:
+  - cosmetics
+  - food & cosmetics
+  evidence:
+  - quote: used in pharma as well in food & cosmetics
+    approx_offset: 137608
+  actor: lab
+  notes: an IMRC food-additive project note
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: amended
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+    reason: entity stands - cosmetics is named as a sector the gum ghatti goes into. But 'food & cosmetics' is a
+      two-industry fragment; the bare 'cosmetics' is inside the same evidence quote and is what a returned phrase
+      would look like.
+- id: pradeepmetals_com-industries-0033
+  name: construction equipment
+  status: confirmed
+  acceptable_forms:
+  - construction equipment
+  evidence:
+  - quote: general engineering, construction equipment, oil and gas
+    approx_offset: 223287
+  - quote: construction equipment and power sector
+    approx_offset: 225942
+  actor: unknown
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+- id: pradeepmetals_com-industries-0034
+  name: dairy
+  status: confirmed
+  acceptable_forms:
+  - dairy industry
+  evidence:
+  - quote: dairy industry
+    approx_offset: 225545
+  actor: unknown
+  notes: one blog list of non-automotive forging consumers
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+- id: pradeepmetals_com-industries-0035
+  name: aerospace
+  status: confirmed
+  acceptable_forms:
+  - aerospace
+  evidence:
+  - quote: non-automotive sectors which includes aerospace, energy, oil and gas
+    approx_offset: 225843
+  - quote: high precision industries like aerospace, automotive, water circulation
+    approx_offset: 248072
+  actor: unknown
+  notes: named twice, both times in blog lists of where the forging industry is diversifying. The AS 9100D certificate
+    is the company-side corroboration
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+- id: pradeepmetals_com-industries-0036
+  name: energy / power sector
+  status: confirmed
+  acceptable_forms:
+  - energy, oil and gas
+  - power sector
+  evidence:
+  - quote: aerospace, energy, oil and gas, heavy engine parts, defense, construction equipment and power sector
+    approx_offset: 225881
+  actor: unknown
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+- id: pradeepmetals_com-industries-0037
+  name: banking and real estate
+  status: confirmed
+  acceptable_forms:
+  - banking sector
+  - real estate
+  evidence:
+  - quote: a positive impact in the banking sector
+    approx_offset: 226558
+  - quote: the real estate and automobile sector
+    approx_offset: 226694
+  actor: unknown
+  notes: a blog's speculation about knock-on effects of Make in India
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+- id: pradeepmetals_com-industries-0038
+  name: automation
+  status: confirmed
+  acceptable_forms:
+  - automation
+  evidence:
+  - quote: and automation to name a few
+    approx_offset: 248159
+  actor: unknown
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+- id: pradeepmetals_com-industries-0039
+  name: metallurgical industries
+  status: candidate
+  acceptable_forms:
+  - metallurgical industries
+  - non-ferrous metallurgical industries
+  evidence:
+  - quote: innovative applications of gases in ferrous and non-ferrous metallurgical industries
+    approx_offset: 23103
+  actor: unknown
+  notes: named as an industry in the founder's biography (his prior work applying gases in them); absent from the
+    packet, which took 'industrial gases' from the same sentence into material_caps and products but no industry.
+  provenance:
+  - action: added
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+    source: verification-pass-miss
+- id: pradeepmetals_com-industries-0040
+  name: heavy engine parts
+  status: candidate
+  acceptable_forms:
+  - heavy engine parts
+  evidence:
+  - quote: non-automotive sectors which includes aerospace, energy, oil and gas, heavy engine parts, defense, construction
+      equipment and power sector
+    approx_offset: 225843
+  actor: unknown
+  notes: the packet seeded aerospace, energy/power, defense and construction equipment from this one list but skipped
+    'heavy engine parts', which the sentence states as a non-automotive sector.
+  provenance:
+  - action: added
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+    source: verification-pass-miss
+false_friends:
+- form: Wind Energy
+  reason: 'anticipatory: the exact string does NOT occur. The wind content is ''Wind Mill'' (captive generation)
+    and ''Wind Power Project'' (a registered 2.10 MW installation the company owns). A returned ''Wind Energy''
+    is minted, and it also inverts a self-consumed asset into a served market'
+- form: semiconductor
+  reason: 'anticipatory: zero occurrences'
+- form: medical devices
+  reason: 'anticipatory: zero occurrences. The only ''medical'' in the file is ''Company-wide medical insurance''
+    in the CSR list'
+- form: shipbuilding
+  reason: 'anticipatory: zero occurrences, despite ''Minister of Shipping'' and ''ships'' appearing'
+- form: Shipping
+  reason: 'witnessed: ''Minister of Shipping from 2001 to 2003'' is the founder''s CABINET POST, printed on four
+    duplicate pages. The other uses are ''we ship products'''
+- form: Orient Cement
+  reason: 'witnessed: a cement company on the directorship register. Neither a market this subject serves nor a
+    client'
+- form: NRB Bearings
+  reason: 'witnessed: a bearings maker on the directorship register - an independent director''s other board seat,
+    not a customer'
+- form: Forgexel Enterprises
+  reason: 'witnessed: the most dangerous row in the directorship register - the name contains ''Forge''. It is a
+    separate private company a director sits on, not a plant, partner or capability'
+- form: Dhanlabh Engineering Works
+  reason: 'witnessed: another directorship-register company with a manufacturing-sounding name'
+- form: Munak Engineers
+  reason: 'witnessed: another directorship-register company with a manufacturing-sounding name'
+- form: Triton EV Technologies
+  reason: 'witnessed: a directorship-register company that reads as an electric-vehicle market'
+- form: Hubspot India
+  reason: 'witnessed: a directorship-register company that reads as a software market'
+- form: Sakthi Finance
+  reason: 'witnessed: a directorship-register finance company'
+- form: Jolly Board
+  reason: 'witnessed: a directorship-register building-materials company'
+- form: Khaitan & Co
+  reason: 'witnessed: a LAW FIRM a director is a partner of - a service provider posing as a partner'
+- form: MUFG Intime India
+  reason: 'witnessed: the SHARE REGISTRAR AND TRANSFER AGENT. A financial service provider, not a client, market
+    or partner'
+- form: Lockheed Martin
+  reason: 'witnessed: a director''s CV - he consulted on a technology merger for a Lockheed Martin/Boeing JV in
+    2006-2010. Not an aerospace customer of this company'
+- form: Boeing
+  reason: 'witnessed: same CV sentence as Lockheed Martin'
+- form: CISCO Systems
+  reason: 'witnessed: a director''s 2011 MBA internship'
+- form: Tata Motors
+  reason: 'witnessed: a non-executive director''s prior employer, printed with AF Ferguson and PWC. Not an automotive
+    customer'

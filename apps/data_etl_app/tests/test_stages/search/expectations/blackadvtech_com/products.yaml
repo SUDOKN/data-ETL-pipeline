@@ -1,0 +1,1548 @@
+subject: blackadvtech.com
+field: products
+snapshot:
+  file: apps/data_etl_app/tests/test_stages/sample_scraped_texts/blackadvtech.com.txt
+  sha256: cf1b9015df24bc7839f887e729c3408b761b970f78773e999c724227129fb9fb
+eval_set_version: 2
+expected_empty: false
+notes: 'Doubles as the contract_products inventory. TWO distinct product populations. (a) An OWN-BRAND CATALOGUE:
+  seven named standard military & marine furniture items on /industries-served/military/, the strongest own-product
+  evidence in this subject. (b) CONTRACT PARTS made to customer print - transportation/rail components, scientific
+  laboratory furniture, industrial enclosures - which stay entries under recall-first with actor: client where the
+  text attributes them. A third population is blog-explainer artifacts (soda cans, kitchen sinks, school lockers,
+  racing-car chassis) that Blackstone never claims to make; those carry actor: unknown.'
+entries:
+- id: blackadvtech_com-products-0001
+  name: enclosures
+  status: confirmed
+  acceptable_forms:
+  - enclosures
+  - Enclosures
+  - ENCLOSURE
+  - electronic enclosures
+  - Misc. Enclosures & Covers
+  - metal enclosure
+  evidence:
+  - quote: Provides enclosures for Windurance
+    approx_offset: 2106
+  - quote: Misc. Enclosures & Covers
+    approx_offset: 67450
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+- id: blackadvtech_com-products-0002
+  name: wind turbine blade pitch control systems
+  status: confirmed
+  acceptable_forms:
+  - wind turbine blade pitch control systems
+  evidence:
+  - quote: Windurance, a global supplier of wind turbine blade pitch control systems
+    approx_offset: 2130
+  actor: client
+  notes: the CLIENT's product; Blackstone makes its enclosures. Recall-first keeps it as an entry.
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+- id: blackadvtech_com-products-0003
+  name: underground mining equipment
+  status: confirmed
+  acceptable_forms:
+  - underground mining equipment
+  evidence:
+  - quote: house controls for underground mining equipment
+    approx_offset: 2259
+  actor: client
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+- id: blackadvtech_com-products-0004
+  name: sheet metal components
+  status: confirmed
+  acceptable_forms:
+  - sheet metal components
+  - large sheet metal components
+  - CUSTOM METAL COMPONENTS
+  - complex sheet metal components
+  evidence:
+  - quote: Ability to fabricate a variety of large sheet metal components for the transportation industry.
+    approx_offset: 2325
+  - quote: Laser cutting is perfect for small, complex sheet metal components.
+    approx_offset: 13851
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+- id: blackadvtech_com-products-0005
+  name: Cadaver Trays
+  status: confirmed
+  acceptable_forms:
+  - Cadaver Trays
+  evidence:
+  - quote: Cadaver Trays
+    approx_offset: 2522
+  - quote: Cadaver Trays, Computer Stands
+    approx_offset: 2522
+  notes: scientific-industry item made for customers; the most distinctive product string on the site
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+- id: blackadvtech_com-products-0006
+  name: Computer Stands
+  status: confirmed
+  acceptable_forms:
+  - Computer Stands
+  evidence:
+  - quote: Computer Stands
+    approx_offset: 2537
+  notes: scientific-industry item
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+- id: blackadvtech_com-products-0007
+  name: Furniture for Laboratories
+  status: confirmed
+  acceptable_forms:
+  - Furniture for Laboratories
+  - LABORATORY FURNITURE
+  - Metal Furniture & Enclosures
+  evidence:
+  - quote: Furniture for Laboratories
+    approx_offset: 2581
+  - quote: Metal Furniture & Enclosures
+    approx_offset: 76109
+  notes: scientific-industry item
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+- id: blackadvtech_com-products-0008
+  name: shipboard furniture
+  status: confirmed
+  acceptable_forms:
+  - shipboard furniture
+  evidence:
+  - quote: such as shipboard furniture and military lockers
+    approx_offset: 2772
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+- id: blackadvtech_com-products-0009
+  name: military lockers
+  status: confirmed
+  acceptable_forms:
+  - military lockers
+  evidence:
+  - quote: shipboard furniture and military lockers
+    approx_offset: 2780
+  - quote: From train cars and submarines to electronic enclosures and military lockers
+    approx_offset: 27745
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+- id: blackadvtech_com-products-0010
+  name: train cars
+  status: confirmed
+  acceptable_forms:
+  - train cars
+  evidence:
+  - quote: our 275,000 sq. ft. facility can accommodate trucks, train cars, and more
+    approx_offset: 4969
+  - quote: From train cars and submarines
+    approx_offset: 27745
+  actor: client
+  notes: named as work that fits through the paint shop and as project experience
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: amended
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+    reason: '''trucks, train cars'' bundles a second artifact; ''trucks'' also occurs twice in non-product senses
+      (hauling coils, transporting stock by truck), so the bundled form would let a returned ''trucks'' credit train
+      cars.'
+- id: blackadvtech_com-products-0011
+  name: weldments
+  status: confirmed
+  acceptable_forms:
+  - weldment
+  - weldments
+  evidence:
+  - quote: Large weldment wash booth
+    approx_offset: 6229
+  - quote: Large wet spray paint booth can comfortably accommodate weldment
+    approx_offset: 90585
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+- id: blackadvtech_com-products-0012
+  name: kitchen carts
+  status: confirmed
+  acceptable_forms:
+  - kitchen carts
+  evidence:
+  - quote: making it great for stainless steel and aluminum projects (i.e. kitchen carts)
+    approx_offset: 10660
+  actor: unknown
+  notes: an example the MIG-welding capability page gives, not a listed product line
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+- id: blackadvtech_com-products-0013
+  name: drive shafts
+  status: confirmed
+  acceptable_forms:
+  - drive shafts
+  evidence:
+  - quote: work area to handle drive shafts, bumpers, spoilers, rockers, ground effects
+    approx_offset: 15737
+  actor: unknown
+  notes: items the Skat Blast cabinet is sized for, quoted from the vendor's own copy
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: amended
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+    reason: that span bundles five separate artifacts, two of which already have their own entries (0014 bumpers,
+      0015 spoilers); the bundled form makes one returned phrase credit three entries. `drive shafts` is this entry's
+      own name and occurs on all three sand-blasting pages. rockers and ground effects kept as candidate misses.
+- id: blackadvtech_com-products-0014
+  name: bumpers
+  status: confirmed
+  acceptable_forms:
+  - bumpers
+  evidence:
+  - quote: drive shafts, bumpers, spoilers, rockers, ground effects
+    approx_offset: 15757
+  actor: unknown
+  notes: from the Skat Blast vendor copy
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+- id: blackadvtech_com-products-0015
+  name: spoilers
+  status: confirmed
+  acceptable_forms:
+  - spoilers
+  evidence:
+  - quote: bumpers, spoilers, rockers
+    approx_offset: 15771
+  actor: unknown
+  notes: from the Skat Blast vendor copy
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+- id: blackadvtech_com-products-0016
+  name: prototypes, components and final assemblies
+  status: confirmed
+  acceptable_forms:
+  - prototypes, components, or final assemblies
+  - prototype and production jobs
+  evidence:
+  - quote: whether it includes prototypes, components, or final assemblies
+    approx_offset: 120464
+  - quote: cost effective solutions for both prototype and production jobs
+    approx_offset: 19553
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+- id: blackadvtech_com-products-0017
+  name: submarines
+  status: confirmed
+  acceptable_forms:
+  - submarines
+  evidence:
+  - quote: From train cars and submarines to electronic enclosures
+    approx_offset: 27745
+  actor: client
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+- id: blackadvtech_com-products-0018
+  name: standard military and marine sheet metal products
+  status: confirmed
+  acceptable_forms:
+  - standard military and marine sheet metal products
+  - STANDARD MILITARY & MARINE METAL PRODUCTS
+  - marine sheet metal products
+  evidence:
+  - quote: STANDARD MILITARY & MARINE METAL PRODUCTS
+    approx_offset: 28840
+  - quote: We produce standard military and marine sheet metal products
+    approx_offset: 28680
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+- id: blackadvtech_com-products-0019
+  name: Shipboard Modular Secretary Bureaus
+  status: confirmed
+  acceptable_forms:
+  - SHIPBOARD MODULAR SECRETARY BUREAUS
+  evidence:
+  - quote: SHIPBOARD MODULAR SECRETARY BUREAUS
+    approx_offset: 28882
+  notes: one of the SEVEN named standard military & marine catalogue items - the subject's own-brand product line;
+    spec'd as .05 aluminum or steel with a semi-gloss solvent-based paint and an optional laminated writing desk,
+    wiring and light fixtures
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+- id: blackadvtech_com-products-0020
+  name: laminated writing desk
+  status: confirmed
+  acceptable_forms:
+  - laminated writing desk
+  evidence:
+  - quote: complete with a laminated writing desk, wiring and light fixtures
+    approx_offset: 29047
+  notes: an option on the shipboard secretary bureau
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+- id: blackadvtech_com-products-0021
+  name: light fixtures
+  status: confirmed
+  acceptable_forms:
+  - light fixtures
+  evidence:
+  - quote: wiring and light fixtures
+    approx_offset: 29087
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: amended
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+    reason: '''wiring'' is a separate item in the same list (''a laminated writing desk, wiring and light fixtures'')
+      and is not a surface form of light fixtures; it also occurs as ''Bus-duct wiring'', a plant service. Kept
+      as its own candidate miss.'
+- id: blackadvtech_com-products-0022
+  name: Marine Security Filing Cabinets
+  status: confirmed
+  acceptable_forms:
+  - MARINE SECURITY FILING CABINETS
+  evidence:
+  - quote: MARINE SECURITY FILING CABINETS
+    approx_offset: 29114
+  notes: one of the SEVEN named standard military & marine catalogue items - the subject's own-brand product line
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+- id: blackadvtech_com-products-0023
+  name: Navy SCBA Lockers
+  status: confirmed
+  acceptable_forms:
+  - NAVY SCBA LOCKERS
+  evidence:
+  - quote: NAVY SCBA LOCKERS
+    approx_offset: 29146
+  notes: one of the SEVEN named standard military & marine catalogue items - the subject's own-brand product line
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+- id: blackadvtech_com-products-0024
+  name: Shipboard Modular Transom Berth Bed/Couch
+  status: confirmed
+  acceptable_forms:
+  - SHIPBOARD MODULAR TRANSOM BERTH BED/COUCH
+  evidence:
+  - quote: SHIPBOARD MODULAR TRANSOM BERTH BED/COUCH
+    approx_offset: 29164
+  notes: one of the SEVEN named standard military & marine catalogue items - the subject's own-brand product line
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+- id: blackadvtech_com-products-0025
+  name: Shipboard Officer's Sleeping Berth With Storage Drawers
+  status: confirmed
+  acceptable_forms:
+  - SHIPBOARD OFFICER’S SLEEPING BERTH WITH STORAGE DRAWERS
+  evidence:
+  - quote: SHIPBOARD OFFICER’S SLEEPING BERTH WITH STORAGE DRAWERS
+    approx_offset: 29206
+  notes: one of the SEVEN named standard military & marine catalogue items - the subject's own-brand product line;
+    note the curly apostrophe in OFFICER’S
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+- id: blackadvtech_com-products-0026
+  name: Diesel Compressor Enclosure
+  status: confirmed
+  acceptable_forms:
+  - DIESEL COMPRESSOR ENCLOSURE
+  evidence:
+  - quote: DIESEL COMPRESSOR ENCLOSURE
+    approx_offset: 29262
+  notes: one of the SEVEN named standard military & marine catalogue items - the subject's own-brand product line
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+- id: blackadvtech_com-products-0027
+  name: Ammunition Locker
+  status: confirmed
+  acceptable_forms:
+  - AMMUNITION LOCKER
+  evidence:
+  - quote: AMMUNITION LOCKER
+    approx_offset: 29290
+  notes: one of the SEVEN named standard military & marine catalogue items - the subject's own-brand product line
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+- id: blackadvtech_com-products-0028
+  name: bookdrop
+  status: confirmed
+  acceptable_forms:
+  - Bookdrop
+  evidence:
+  - quote: Blackstone Donates Bookdrop to Prendergast Library
+    approx_offset: 42338
+  notes: a library book-drop the shop donated; a made artifact named on the news page
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+- id: blackadvtech_com-products-0029
+  name: tent frames
+  status: confirmed
+  acceptable_forms:
+  - tent frames
+  evidence:
+  - quote: the production of tent frames as a learning tool and project
+    approx_offset: 43677
+  notes: a real fabricated artifact - a Boy Scout camp project with Cassadaga Valley Central School, reported on
+    the news page
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+- id: blackadvtech_com-products-0030
+  name: locomotives and passenger cars
+  status: confirmed
+  acceptable_forms:
+  - locomotives and passenger cars
+  - locomotives
+  - passenger cars
+  evidence:
+  - quote: We produce products for locomotives and passenger cars.
+    approx_offset: 67042
+  actor: client
+  notes: the customer's end products; Blackstone supplies components into them
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+- id: blackadvtech_com-products-0031
+  name: Covers
+  status: confirmed
+  acceptable_forms:
+  - Covers
+  evidence:
+  - quote: Misc. Enclosures & Covers
+    approx_offset: 67450
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: amended
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+    reason: '`Misc. Enclosures & Covers` is already an acceptable form of products-0001 (enclosures); carrying it
+      here makes the one span credit both entries. `Covers` alone still covers every covers-occurrence in the file,
+      all of which are products.'
+- id: blackadvtech_com-products-0032
+  name: Inverter cabinets
+  status: confirmed
+  acceptable_forms:
+  - Inverter cabinets
+  evidence:
+  - quote: Inverter cabinets
+    approx_offset: 87809
+  notes: listed twice on the transportation page - once under Transportation Components and once under Passenger
+    Car Components
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+- id: blackadvtech_com-products-0033
+  name: Large hoods
+  status: confirmed
+  acceptable_forms:
+  - Large hoods
+  evidence:
+  - quote: Large hoods
+    approx_offset: 87827
+  notes: transportation component
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+- id: blackadvtech_com-products-0034
+  name: Rear noses
+  status: confirmed
+  acceptable_forms:
+  - Rear noses
+  evidence:
+  - quote: Rear noses
+    approx_offset: 87839
+  notes: transportation component (locomotive nose)
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+- id: blackadvtech_com-products-0035
+  name: Radiator cabinets
+  status: confirmed
+  acceptable_forms:
+  - Radiator cabinets
+  evidence:
+  - quote: Radiator cabinets
+    approx_offset: 87850
+  notes: transportation component
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+- id: blackadvtech_com-products-0036
+  name: Mufflers
+  status: confirmed
+  acceptable_forms:
+  - Mufflers
+  evidence:
+  - quote: Mufflers
+    approx_offset: 87868
+  notes: transportation component
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+- id: blackadvtech_com-products-0037
+  name: brackets
+  status: confirmed
+  acceptable_forms:
+  - Misc. parts, brackets & enclosures
+  - brackets
+  evidence:
+  - quote: Misc. parts, brackets & enclosures
+    approx_offset: 87877
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+- id: blackadvtech_com-products-0038
+  name: Stainless steel HVAC weldments
+  status: confirmed
+  acceptable_forms:
+  - Stainless steel HVAC weldments
+  evidence:
+  - quote: Stainless steel HVAC weldments
+    approx_offset: 87955
+  notes: passenger-car component
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+- id: blackadvtech_com-products-0039
+  name: Stainless steel HVAC covers
+  status: confirmed
+  acceptable_forms:
+  - Stainless steel HVAC covers
+  evidence:
+  - quote: Stainless steel HVAC covers
+    approx_offset: 87986
+  notes: passenger-car component
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+- id: blackadvtech_com-products-0040
+  name: Alternator silencer
+  status: confirmed
+  acceptable_forms:
+  - Alternator silencer
+  evidence:
+  - quote: Alternator silencer
+    approx_offset: 88014
+  notes: passenger-car component
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+- id: blackadvtech_com-products-0041
+  name: skids and crates
+  status: confirmed
+  acceptable_forms:
+  - skids and crates
+  evidence:
+  - quote: Capable of constructing skids and crates to customer specifications
+    approx_offset: 91210
+  notes: shipping packaging the shop builds in-house
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+- id: blackadvtech_com-products-0042
+  name: aircraft frames and turbine engines
+  status: confirmed
+  acceptable_forms:
+  - aircraft frames and turbine engines
+  evidence:
+  - quote: critical components such as aircraft frames and turbine engines
+    approx_offset: 137590
+  actor: unknown
+  notes: 'BLOG-ONLY: an artifact named as an application example in industry-explainer prose, never as Blackstone
+    work.'
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+- id: blackadvtech_com-products-0043
+  name: marine fuel tanks
+  status: confirmed
+  acceptable_forms:
+  - Marine fuel tanks
+  - marine fuel tank
+  - Marine tank
+  - aluminum fuel tanks
+  - Aluminum tanks
+  evidence:
+  - quote: HOW MARINE FUEL TANKS AND SHEET METAL FABRICATION COEXIST
+    approx_offset: 173759
+  - quote: Marine fuel tanks can either be made from aluminum or stainless steel.
+    approx_offset: 174112
+  actor: unknown
+  notes: 'BLOG-ONLY: an artifact named as an application example in industry-explainer prose, never as Blackstone
+    work. The article is generic marine-tank fabrication advice; it never says Blackstone builds them.'
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+- id: blackadvtech_com-products-0044
+  name: boat fuel system
+  status: confirmed
+  acceptable_forms:
+  - boat fuel system
+  evidence:
+  - quote: They will guide you on how to make a great boat fuel system
+    approx_offset: 177356
+  actor: unknown
+  notes: 'BLOG-ONLY: an artifact named as an application example in industry-explainer prose, never as Blackstone
+    work.'
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+- id: blackadvtech_com-products-0045
+  name: sheet metal containers
+  status: confirmed
+  acceptable_forms:
+  - sheet metal containers
+  evidence:
+  - quote: seam welding is used to fabricate sheet metal containers and automobile mufflers
+    approx_offset: 182738
+  actor: unknown
+  notes: 'BLOG-ONLY: an artifact named as an application example in industry-explainer prose, never as Blackstone
+    work.'
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: amended
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+    reason: automobile mufflers are a second artifact in the same sentence, not a surface form of sheet metal containers.
+      Kept as its own candidate miss.
+- id: blackadvtech_com-products-0046
+  name: steel drums, radiators and tin cans
+  status: confirmed
+  acceptable_forms:
+  - Steel drums, radiators, and tin cans
+  - Steel drums
+  - radiators
+  - tin cans
+  evidence:
+  - quote: Steel drums, radiators, and tin cans are produced through this process.
+    approx_offset: 184017
+  actor: unknown
+  notes: 'BLOG-ONLY: an artifact named as an application example in industry-explainer prose, never as Blackstone
+    work.'
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: amended
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+    reason: the single bundled form can only credit if the stage returns all three artifacts as one span, which
+      its prompt tells it not to do. Each of the three occurs exactly once in the file, on this line, so the split
+      forms are distinctive.
+- id: blackadvtech_com-products-0047
+  name: racing car chassis
+  status: confirmed
+  acceptable_forms:
+  - chasses for racing cars
+  - racing cars’ chassis
+  - car chassis
+  evidence:
+  - quote: car manufacturers use seam welding in making chasses for racing cars
+    approx_offset: 185681
+  actor: unknown
+  notes: 'BLOG-ONLY: an artifact named as an application example in industry-explainer prose, never as Blackstone
+    work.'
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+- id: blackadvtech_com-products-0048
+  name: heat exchangers
+  status: confirmed
+  acceptable_forms:
+  - heat exchangers
+  evidence:
+  - quote: Seam welding is also used in the fabrication of heat exchangers.
+    approx_offset: 185812
+  actor: unknown
+  notes: 'BLOG-ONLY: an artifact named as an application example in industry-explainer prose, never as Blackstone
+    work.'
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+- id: blackadvtech_com-products-0049
+  name: plasticizing screw
+  status: confirmed
+  acceptable_forms:
+  - plasticizing screw
+  evidence:
+  - quote: plasticizing screw
+    approx_offset: 188284
+  actor: unknown
+  notes: 'BLOG-ONLY: an artifact named as an application example in industry-explainer prose, never as Blackstone
+    work.'
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+- id: blackadvtech_com-products-0050
+  name: hydraulic cylinders
+  status: confirmed
+  acceptable_forms:
+  - making hydraulic cylinders
+  evidence:
+  - quote: making hydraulic cylinders
+    approx_offset: 188303
+  actor: unknown
+  notes: 'BLOG-ONLY: an artifact named as an application example in industry-explainer prose, never as Blackstone
+    work. From the transferred-plasma-arc application list.'
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+- id: blackadvtech_com-products-0051
+  name: industrial blades and knives
+  status: confirmed
+  acceptable_forms:
+  - forging industrial blades and knives
+  evidence:
+  - quote: forging industrial blades and knives
+    approx_offset: 188383
+  actor: unknown
+  notes: 'BLOG-ONLY: an artifact named as an application example in industry-explainer prose, never as Blackstone
+    work.'
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+- id: blackadvtech_com-products-0052
+  name: automotive valves
+  status: confirmed
+  acceptable_forms:
+  - making automotive valves
+  evidence:
+  - quote: making automotive valves
+    approx_offset: 188420
+  actor: unknown
+  notes: 'BLOG-ONLY: an artifact named as an application example in industry-explainer prose, never as Blackstone
+    work.'
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+- id: blackadvtech_com-products-0053
+  name: automobile parts
+  status: confirmed
+  acceptable_forms:
+  - manufacture of automobile parts
+  - automobile parts
+  evidence:
+  - quote: manufacture of automobile parts
+    approx_offset: 240755
+  - quote: Whether you are fabricating military equipment or automobile parts
+    approx_offset: 191819
+  actor: unknown
+  notes: 'BLOG-ONLY: an artifact named as an application example in industry-explainer prose, never as Blackstone
+    work.'
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+- id: blackadvtech_com-products-0054
+  name: military equipment
+  status: confirmed
+  acceptable_forms:
+  - military equipment
+  evidence:
+  - quote: Whether you are fabricating military equipment or automobile parts
+    approx_offset: 191819
+  actor: unknown
+  notes: 'BLOG-ONLY: an artifact named as an application example in industry-explainer prose, never as Blackstone
+    work.'
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+- id: blackadvtech_com-products-0055
+  name: gas cylinders
+  status: confirmed
+  acceptable_forms:
+  - gas cylinders
+  evidence:
+  - quote: Manufacture of gas cylinders
+    approx_offset: 196866
+  actor: unknown
+  notes: 'BLOG-ONLY: an artifact named as an application example in industry-explainer prose, never as Blackstone
+    work.'
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+- id: blackadvtech_com-products-0056
+  name: heavy forgings
+  status: confirmed
+  acceptable_forms:
+  - Heavy Forgings
+  - forgings
+  evidence:
+  - quote: Used for the Manufacture of Heavy Forgings
+    approx_offset: 197185
+  actor: unknown
+  notes: 'BLOG-ONLY: an artifact named as an application example in industry-explainer prose, never as Blackstone
+    work.'
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+- id: blackadvtech_com-products-0057
+  name: gears and shafts
+  status: confirmed
+  acceptable_forms:
+  - Gears and Shafts
+  - marine shafts and automobile gears
+  - rotating shafts
+  evidence:
+  - quote: Manufacture of Gears and Shafts
+    approx_offset: 197452
+  - quote: the manufacture of marine shafts and automobile gears
+    approx_offset: 197694
+  actor: unknown
+  notes: 'BLOG-ONLY: an artifact named as an application example in industry-explainer prose, never as Blackstone
+    work.'
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+- id: blackadvtech_com-products-0058
+  name: resistance wires
+  status: confirmed
+  acceptable_forms:
+  - resistance wires
+  evidence:
+  - quote: The addition of more than 20% chromium is ideal for the manufacture of resistance wires.
+    approx_offset: 198634
+  actor: unknown
+  notes: 'BLOG-ONLY: an artifact named as an application example in industry-explainer prose, never as Blackstone
+    work.'
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+- id: blackadvtech_com-products-0059
+  name: bolts, steel plates, fixtures and automobile body panels
+  status: confirmed
+  acceptable_forms:
+  - bolts, steel plates, fixtures, and automobile body panels
+  - bolts
+  - steel plates
+  - automobile body panels
+  evidence:
+  - quote: These steels are often used in to make bolts, steel plates, fixtures, and automobile body panels.
+    approx_offset: 201552
+  actor: unknown
+  notes: 'BLOG-ONLY: an artifact named as an application example in industry-explainer prose, never as Blackstone
+    work.'
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: amended
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+    reason: 'same bundling problem: split into the individual artifacts, each of which occurs exactly once. ''fixtures''
+      is deliberately NOT added - it also occurs in ''light fixtures'' (products-0021) and as a fixturing sense,
+      so it would mis-credit.'
+- id: blackadvtech_com-products-0060
+  name: utensils, faucets and taps
+  status: confirmed
+  acceptable_forms:
+  - utensils, faucets and taps
+  - utensils
+  - faucets and taps
+  evidence:
+  - quote: household items including utensils, faucets and taps
+    approx_offset: 201719
+  actor: unknown
+  notes: 'BLOG-ONLY: an artifact named as an application example in industry-explainer prose, never as Blackstone
+    work.'
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: amended
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+    reason: same bundling problem; 'utensils' and 'faucets and taps' are each contiguous in the source line and
+      each occur exactly once.
+- id: blackadvtech_com-products-0061
+  name: kitchen knives
+  status: confirmed
+  acceptable_forms:
+  - kitchen knives
+  - knives
+  evidence:
+  - quote: the manufacture of sturdy kitchen knives for high-end application
+    approx_offset: 202870
+  actor: unknown
+  notes: 'BLOG-ONLY: an artifact named as an application example in industry-explainer prose, never as Blackstone
+    work.'
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+- id: blackadvtech_com-products-0062
+  name: soda cans
+  status: confirmed
+  acceptable_forms:
+  - soda cans
+  evidence:
+  - quote: Ironing is another essential process in the manufacture of soda cans.
+    approx_offset: 206548
+  actor: unknown
+  notes: 'BLOG-ONLY: an artifact named as an application example in industry-explainer prose, never as Blackstone
+    work.'
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+- id: blackadvtech_com-products-0063
+  name: storage cabinets
+  status: confirmed
+  acceptable_forms:
+  - storage cabinets
+  evidence:
+  - quote: Whether you want to design a metal enclosure for a sensitive machine or for simple storage cabinets
+    approx_offset: 213348
+  actor: unknown
+  notes: 'BLOG-ONLY: an artifact named as an application example in industry-explainer prose, never as Blackstone
+    work.'
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+- id: blackadvtech_com-products-0064
+  name: 2-piece aluminum cans and kitchen sinks
+  status: confirmed
+  acceptable_forms:
+  - fuel tanks for automotive, 2-piece aluminum cans, and kitchen sinks
+  - kitchen sinks
+  - 2-piece aluminum cans
+  evidence:
+  - quote: This process is used to make fuel tanks for automotive, 2-piece aluminum cans, and kitchen sinks
+    approx_offset: 228145
+  actor: unknown
+  notes: 'BLOG-ONLY: an artifact named as an application example in industry-explainer prose, never as Blackstone
+    work.'
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+- id: blackadvtech_com-products-0065
+  name: surform
+  status: confirmed
+  acceptable_forms:
+  - surform
+  - surface cutting tools
+  evidence:
+  - quote: This process is used to create surface cutting tools such as surform.
+    approx_offset: 228809
+  actor: unknown
+  notes: 'BLOG-ONLY: an artifact named as an application example in industry-explainer prose, never as Blackstone
+    work.'
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+- id: blackadvtech_com-products-0066
+  name: metal nail plate
+  status: confirmed
+  acceptable_forms:
+  - Metal nail plate
+  evidence:
+  - quote: Metal nail plate– in this form, nails are used as a wood fastener.
+    approx_offset: 229433
+  actor: unknown
+  notes: 'BLOG-ONLY: an artifact named as an application example in industry-explainer prose, never as Blackstone
+    work.'
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+- id: blackadvtech_com-products-0067
+  name: metal connector plate
+  status: confirmed
+  acceptable_forms:
+  - Metal connector plate
+  evidence:
+  - quote: Metal connector plate– in this form, teeth are stamped out
+    approx_offset: 229569
+  actor: unknown
+  notes: 'BLOG-ONLY: an artifact named as an application example in industry-explainer prose, never as Blackstone
+    work.'
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+- id: blackadvtech_com-products-0068
+  name: computer-cabinet hardware
+  status: confirmed
+  acceptable_forms:
+  - computer-cabinet hardware
+  evidence:
+  - quote: computer-cabinet hardware
+    approx_offset: 240846
+  actor: unknown
+  notes: 'BLOG-ONLY: an artifact named as an application example in industry-explainer prose, never as Blackstone
+    work.'
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+- id: blackadvtech_com-products-0069
+  name: metal filing cabinets
+  status: confirmed
+  acceptable_forms:
+  - metal filing cabinets
+  evidence:
+  - quote: metal filing cabinets
+    approx_offset: 240872
+  actor: unknown
+  notes: 'BLOG-ONLY: an artifact named as an application example in industry-explainer prose, never as Blackstone
+    work.'
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+- id: blackadvtech_com-products-0070
+  name: exhaust pipes
+  status: confirmed
+  acceptable_forms:
+  - exhaust pipes
+  evidence:
+  - quote: exhaust pipes
+    approx_offset: 240894
+  actor: unknown
+  notes: 'BLOG-ONLY: an artifact named as an application example in industry-explainer prose, never as Blackstone
+    work. From the cold-rolling applications list.'
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+- id: blackadvtech_com-products-0071
+  name: school lockers
+  status: confirmed
+  acceptable_forms:
+  - school lockers
+  evidence:
+  - quote: school lockers
+    approx_offset: 240908
+  actor: unknown
+  notes: 'BLOG-ONLY: an artifact named as an application example in industry-explainer prose, never as Blackstone
+    work. From the cold-rolling applications list.'
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+- id: blackadvtech_com-products-0072
+  name: rockers
+  status: candidate
+  acceptable_forms:
+  - rockers
+  evidence:
+  - quote: work area to handle drive shafts, bumpers, spoilers, rockers, ground effects
+    approx_offset: 15737
+  actor: client
+  notes: named in the same Skat Blast list as bumpers (0014) and spoilers (0015), which do have entries; it had
+    only been reachable through the bundled form removed from products-0013.
+  provenance:
+  - action: added
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+    source: verification-pass-miss
+- id: blackadvtech_com-products-0073
+  name: ground effects
+  status: candidate
+  acceptable_forms:
+  - ground effects
+  evidence:
+  - quote: work area to handle drive shafts, bumpers, spoilers, rockers, ground effects
+    approx_offset: 15737
+  actor: client
+  notes: 'as with rockers: named in the Skat Blast parts list and only reachable through the bundled form removed
+    from products-0013.'
+  provenance:
+  - action: added
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+    source: verification-pass-miss
+- id: blackadvtech_com-products-0074
+  name: wiring
+  status: candidate
+  acceptable_forms:
+  - wiring
+  evidence:
+  - quote: can come complete with a laminated writing desk, wiring and light fixtures
+    approx_offset: 29038
+  notes: split out of products-0021; part of the shipboard modular secretary bureau's delivered content.
+  provenance:
+  - action: added
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+    source: verification-pass-miss
+- id: blackadvtech_com-products-0075
+  name: automobile mufflers
+  status: candidate
+  acceptable_forms:
+  - automobile mufflers
+  evidence:
+  - quote: seam welding is used to fabricate sheet metal containers and automobile mufflers
+    approx_offset: 182738
+  notes: split out of products-0045; a distinct surface form from the transportation list's 'Mufflers' (0036), which
+    containment will not bridge in the returned direction.
+  provenance:
+  - action: added
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+    source: verification-pass-miss
+- id: blackadvtech_com-products-0076
+  name: sheet metal parts
+  status: candidate
+  acceptable_forms:
+  - sheet metal parts
+  evidence:
+  - quote: ensure your sheet metal parts are welded strongly and evenly
+    approx_offset: 14238
+  notes: on /capabilities/ (welding section) and again in the enclosure-design article; 'sheet metal components'
+    (0004) does not contain it, so it credits nothing today.
+  provenance:
+  - action: added
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+    source: verification-pass-miss
+- id: blackadvtech_com-products-0077
+  name: metal fabricated parts
+  status: candidate
+  acceptable_forms:
+  - metal fabricated parts
+  evidence:
+  - quote: produce a large quantity of metal fabricated parts
+    approx_offset: 85394
+  notes: on /capabilities/press-braking-stamping/; a distinct product designation not contained in any existing
+    form.
+  provenance:
+  - action: added
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+    source: verification-pass-miss
+- id: blackadvtech_com-products-0078
+  name: stamped parts
+  status: candidate
+  acceptable_forms:
+  - stamped parts
+  evidence:
+  - quote: Both of the presses utilize “dies” in order to create stamped parts.
+    approx_offset: 85249
+  notes: on /capabilities/press-braking-stamping/; the artifact stamping produces, with no entry of its own.
+  provenance:
+  - action: added
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+    source: verification-pass-miss
+- id: blackadvtech_com-products-0079
+  name: metal structures
+  status: candidate
+  acceptable_forms:
+  - metal structures
+  evidence:
+  - quote: to create and repair metal structures, pipes, and machinery
+    approx_offset: 163024
+  notes: named in the dos-and-don'ts article as what welding produces.
+  provenance:
+  - action: added
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+    source: verification-pass-miss
+- id: blackadvtech_com-products-0080
+  name: pipes
+  status: candidate
+  acceptable_forms:
+  - pipes
+  evidence:
+  - quote: to create and repair metal structures, pipes, and machinery
+    approx_offset: 163024
+  notes: named in the same clause; 'exhaust pipes' (0070) does not contain the bare form in the returned direction.
+  provenance:
+  - action: added
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+    source: verification-pass-miss
+- id: blackadvtech_com-products-0081
+  name: electronic products
+  status: candidate
+  acceptable_forms:
+  - electronic products
+  - electronic components
+  evidence:
+  - quote: If you are designing a metal enclosure for electronic products
+    approx_offset: 216532
+  notes: in the enclosure-design article; 'electronic enclosures' is covered by products-0001 but the products themselves
+    are not.
+  provenance:
+  - action: added
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+    source: verification-pass-miss
+false_friends:
+- form: Windurance
+  reason: a client COMPANY name; the products clause explicitly excludes company and brand names
+- form: Matic Group
+  reason: a customer company name in a testimonial
+- form: Swartfarger Welding Inc.
+  reason: a customer company name in a testimonial
+- form: Prendergast Library
+  reason: the recipient of the donated bookdrop, not an artifact
+- form: Economic Development Award
+  reason: an AWARD on the news page; the clause explicitly excludes awards
+- form: Person Of The Year
+  reason: an award on the news page
+- form: Application Form
+  reason: a downloadable careers document, not a made artifact
+- form: Video Player
+  reason: a page widget heading repeated on 5 pages
+- form: Fusion 360
+  reason: CAD software from the facility list's SOFTWARE block, not an artifact
+- form: Epicor MRP
+  reason: software, not an artifact
+- form: Tallo
+  reason: a third-party job-board platform linked from the careers page
+- form: forging matrix dies
+  reason: TOOLING an application list names as plasma-arc-welded work; dies are excluded from products as things
+    work is done WITH
+- form: Lorem ipsum
+  reason: placeholder text left in two body slots on /work-with-blackstone/
+- form: sheet metal
+  reason: the input stock and the field of work, not an artifact coming out of the work; it is a material_caps entry
+    instead

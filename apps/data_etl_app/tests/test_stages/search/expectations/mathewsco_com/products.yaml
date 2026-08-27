@@ -1,0 +1,1318 @@
+subject: mathewsco.com
+field: products
+snapshot:
+  file: apps/data_etl_app/tests/test_stages/sample_scraped_texts/mathewsco.com.txt
+  sha256: f1a1ace7c17205dc4906f4f87eb1844cefd0661483e58b3f5d6538d30b33b15b
+eval_set_version: 2
+expected_empty: false
+notes: 'Doubles as the contract_products expectation. Mathews makes nothing; every artifact here is a principal''s
+  catalogue or custom part, so actor is supplier or unknown. Two special actors: the founder''s 1906 Ford dealership
+  inventory is reseller_inventory, and the agency''s own office furniture in the 1892 founding anecdote is a disputed
+  edge case. Seeded strictly to the clause, which excludes machinery, tooling, facilities, awards, memberships,
+  training, documents, and the names of companies, brands and customer groups - and this site is mostly company
+  names, so the false-friend list is long on purpose.'
+entries:
+- id: mathewsco_com-products-0001
+  name: contoured forgings
+  status: confirmed
+  acceptable_forms:
+  - concentric and eccentric contoured forgings
+  - contoured forgings
+  evidence:
+  - quote: We manufacture concentric and eccentric contoured forgings
+    approx_offset: 7638
+  actor: supplier
+  notes: Ellwood City Forge, first person plural on a Mathews page
+  provenance:
+  - action: added
+    by: seed-agent-mathewsco-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-mathewsco
+    date: '2026-08-27'
+- id: mathewsco_com-products-0002
+  name: single cross-section products
+  status: confirmed
+  acceptable_forms:
+  - single cross-section products
+  evidence:
+  - quote: contoured forgings and single cross-section products from carbon
+    approx_offset: 7678
+  actor: supplier
+  notes: Ellwood City Forge
+  provenance:
+  - action: added
+    by: seed-agent-mathewsco-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-mathewsco
+    date: '2026-08-27'
+- id: mathewsco_com-products-0003
+  name: custom forgings
+  status: confirmed
+  acceptable_forms:
+  - custom forgings
+  evidence:
+  - quote: a variety of custom forgings including shafts, blocks
+    approx_offset: 7901
+  actor: supplier
+  notes: Ellwood City Forge
+  provenance:
+  - action: added
+    by: seed-agent-mathewsco-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-mathewsco
+    date: '2026-08-27'
+- id: mathewsco_com-products-0004
+  name: shafts
+  status: confirmed
+  acceptable_forms:
+  - shafts
+  evidence:
+  - quote: including shafts, blocks, eccentrics
+    approx_offset: 7930
+  actor: supplier
+  notes: Ellwood
+  provenance:
+  - action: added
+    by: seed-agent-mathewsco-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-mathewsco
+    date: '2026-08-27'
+- id: mathewsco_com-products-0005
+  name: blocks
+  status: confirmed
+  acceptable_forms:
+  - blocks
+  evidence:
+  - quote: shafts, blocks, eccentrics, hollow sleeves
+    approx_offset: 7940
+  actor: supplier
+  notes: Ellwood
+  provenance:
+  - action: added
+    by: seed-agent-mathewsco-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-mathewsco
+    date: '2026-08-27'
+- id: mathewsco_com-products-0006
+  name: eccentrics
+  status: confirmed
+  acceptable_forms:
+  - eccentrics
+  evidence:
+  - quote: blocks, eccentrics, hollow sleeves
+    approx_offset: 7948
+  actor: supplier
+  notes: Ellwood
+  provenance:
+  - action: added
+    by: seed-agent-mathewsco-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-mathewsco
+    date: '2026-08-27'
+- id: mathewsco_com-products-0007
+  name: hollow sleeves
+  status: confirmed
+  acceptable_forms:
+  - hollow sleeves
+  evidence:
+  - quote: eccentrics, hollow sleeves, rings
+    approx_offset: 7956
+  actor: supplier
+  notes: Ellwood City Forge
+  provenance:
+  - action: added
+    by: seed-agent-mathewsco-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-mathewsco
+    date: '2026-08-27'
+- id: mathewsco_com-products-0008
+  name: rings
+  status: confirmed
+  acceptable_forms:
+  - rings, spindles
+  - sleeves, rings
+  evidence:
+  - quote: hollow sleeves, rings, spindles
+    approx_offset: 7968
+  actor: supplier
+  notes: Ellwood
+  provenance:
+  - action: added
+    by: seed-agent-mathewsco-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: amended
+    by: verify-agent-mathewsco
+    date: '2026-08-27'
+    reason: 'The forging is real, but the form "rings" is a substring artefact: forms over three characters match
+      by case-insensitive containment, and "rings" sits inside "springs" and "bearings", both seeded products for
+      this subject (products-0049, products-0051) and certain to be returned. As written the entry can never miss,
+      so its recall number carries no information. The corrected two-word forms still credit a bare "rings" return,
+      because containment is bidirectional, but are not matched by "springs".'
+- id: mathewsco_com-products-0009
+  name: spindles
+  status: confirmed
+  acceptable_forms:
+  - spindles
+  evidence:
+  - quote: rings, spindles, couplings
+    approx_offset: 7984
+  actor: supplier
+  notes: Ellwood
+  provenance:
+  - action: added
+    by: seed-agent-mathewsco-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-mathewsco
+    date: '2026-08-27'
+- id: mathewsco_com-products-0010
+  name: couplings
+  status: confirmed
+  acceptable_forms:
+  - couplings
+  evidence:
+  - quote: spindles, couplings, and discs
+    approx_offset: 7991
+  actor: supplier
+  notes: Ellwood
+  provenance:
+  - action: added
+    by: seed-agent-mathewsco-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-mathewsco
+    date: '2026-08-27'
+- id: mathewsco_com-products-0011
+  name: discs
+  status: confirmed
+  acceptable_forms:
+  - discs
+  evidence:
+  - quote: couplings, and discs, as well as smooth forged billet
+    approx_offset: 8001
+  actor: supplier
+  notes: Ellwood City Forge
+  provenance:
+  - action: added
+    by: seed-agent-mathewsco-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-mathewsco
+    date: '2026-08-27'
+- id: mathewsco_com-products-0012
+  name: smooth forged billet
+  status: confirmed
+  acceptable_forms:
+  - smooth forged billet
+  evidence:
+  - quote: as well as smooth forged billet and rough turned bar
+    approx_offset: 8023
+  actor: supplier
+  notes: Ellwood
+  provenance:
+  - action: added
+    by: seed-agent-mathewsco-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-mathewsco
+    date: '2026-08-27'
+- id: mathewsco_com-products-0013
+  name: rough turned bar
+  status: confirmed
+  acceptable_forms:
+  - rough turned bar
+  evidence:
+  - quote: smooth forged billet and rough turned bar
+    approx_offset: 8034
+  actor: supplier
+  notes: Ellwood City Forge
+  provenance:
+  - action: added
+    by: seed-agent-mathewsco-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-mathewsco
+    date: '2026-08-27'
+- id: mathewsco_com-products-0014
+  name: three chairs and two kitchen tables
+  status: disputed
+  acceptable_forms:
+  - three chairs and two kitchen tables
+  - kitchen tables
+  - chairs
+  evidence:
+  - quote: started their company with three chairs and two kitchen tables
+    approx_offset: 10746
+  notes: DISPUTED - chairs and tables are made artifacts and the text names them, which is all the clause literally
+    asks; but they are the AGENCY'S 1892 office furniture in a founding anecdote, nothing that comes out of any
+    work described here. Recorded rather than dropped because it is exactly the boundary case this subject exists
+    to probe. | "started their company with three chairs and two kitchen tables in a loft at 109 California Street"
+    - office furnishings in an 1892 founding anecdote. Made artifacts by the letter of the clause, but they come
+    out of nobody's manufacturing work as described here and sit closer to the facilities the work is done with.
+    Gating on them would fail a run that correctly declines to mint products from company history.
+  provenance:
+  - action: added
+    by: seed-agent-mathewsco-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: disputed
+    by: verify-agent-mathewsco
+    date: '2026-08-27'
+    reason: '"started their company with three chairs and two kitchen tables in a loft at 109 California Street"
+      - office furnishings in an 1892 founding anecdote. Made artifacts by the letter of the clause, but they come
+      out of nobody''s manufacturing work as described here and sit closer to the facilities the work is done with.
+      Gating on them would fail a run that correctly declines to mint products from company history.'
+- id: mathewsco_com-products-0015
+  name: cars
+  status: disputed
+  acceptable_forms:
+  - a stock of cars
+  - cars
+  evidence:
+  - quote: agent/automobile dealer had a stock of cars
+    approx_offset: 11524
+  actor: reseller_inventory
+  notes: 'the only reseller_inventory artifact on the site: the founder''s predecessor ran the world''s first Ford
+    dealership and gave his 1906 earthquake relief cars away. A made artifact the text names, held as dealer stock.
+    | "This enterprising manufacturers'' agent/automobile dealer had a stock of cars" - a 1906 car dealership''s
+    stock in a history article. Arguable both ways: reseller_inventory is a valid actor, so dealer stock can be
+    an entry, but nothing connects these cars to manufacturing work by the subject or any principal.'
+  provenance:
+  - action: added
+    by: seed-agent-mathewsco-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: disputed
+    by: verify-agent-mathewsco
+    date: '2026-08-27'
+    reason: '"This enterprising manufacturers'' agent/automobile dealer had a stock of cars" - a 1906 car dealership''s
+      stock in a history article. Arguable both ways: reseller_inventory is a valid actor, so dealer stock can be
+      an entry, but nothing connects these cars to manufacturing work by the subject or any principal.'
+- id: mathewsco_com-products-0016
+  name: Micro Stampings
+  status: confirmed
+  acceptable_forms:
+  - Micro Stampings
+  evidence:
+  - quote: Micro Stampings
+    approx_offset: 22706
+  actor: supplier
+  notes: California line-card row paired with sunmicrostamping.com on the next line
+  provenance:
+  - action: added
+    by: seed-agent-mathewsco-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-mathewsco
+    date: '2026-08-27'
+- id: mathewsco_com-products-0017
+  name: Vespel Parts & Shapes
+  status: confirmed
+  acceptable_forms:
+  - Vespel Parts & Shapes
+  - Parts and Shapes
+  - parts and shapes
+  evidence:
+  - quote: DuPontâ€“Vespel Parts & Shapes
+    approx_offset: 22744
+  - quote: Vespel® Parts and Shapes
+    approx_offset: 45253
+  actor: supplier
+  notes: line-506 span sits immediately after mojibake bytes standing in for an en dash; line 1405 prints it as
+    'DuPont(TM) Vespel(R) Parts and Shapes', so the '&' and 'and' spellings are both real surface forms
+  provenance:
+  - action: added
+    by: seed-agent-mathewsco-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-mathewsco
+    date: '2026-08-27'
+- id: mathewsco_com-products-0018
+  name: Metal Stampings
+  status: confirmed
+  acceptable_forms:
+  - Metal Stampings
+  - metal stampings
+  evidence:
+  - quote: Metal Stampings
+    approx_offset: 22787
+  - quote: short to medium volume metal stampings
+    approx_offset: 51478
+  actor: supplier
+  notes: line-card row (rowleyspring.com); Clow Stamping
+  provenance:
+  - action: added
+    by: seed-agent-mathewsco-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-mathewsco
+    date: '2026-08-27'
+- id: mathewsco_com-products-0019
+  name: Deep Draw Stampings
+  status: confirmed
+  acceptable_forms:
+  - Deep Draw Stampings
+  evidence:
+  - quote: Deep Draw Stampings
+    approx_offset: 22821
+  actor: supplier
+  notes: line-card row paired with hudson-technologies.com
+  provenance:
+  - action: added
+    by: seed-agent-mathewsco-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-mathewsco
+    date: '2026-08-27'
+- id: mathewsco_com-products-0020
+  name: Custom Springs
+  status: confirmed
+  acceptable_forms:
+  - Custom Springs
+  - custom springs
+  - Custom Spring
+  - Custom Made Spring
+  evidence:
+  - quote: Custom Springs
+    approx_offset: 22938
+  - quote: happens to make custom springs and wire forms
+    approx_offset: 57354
+  - quote: Custom Made Spring
+    approx_offset: 58642
+  actor: supplier
+  notes: line-card row (rowleyspring.com); Fox Valley Spring
+  provenance:
+  - action: added
+    by: seed-agent-mathewsco-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-mathewsco
+    date: '2026-08-27'
+- id: mathewsco_com-products-0021
+  name: Centrifugal Castings
+  status: confirmed
+  acceptable_forms:
+  - Centrifugal Castings
+  evidence:
+  - quote: Centrifugal Castings
+    approx_offset: 22971
+  actor: supplier
+  notes: line-card row paired with johnsoncentrifugal.com
+  provenance:
+  - action: added
+    by: seed-agent-mathewsco-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-mathewsco
+    date: '2026-08-27'
+- id: mathewsco_com-products-0022
+  name: Ductile Gray Castings
+  status: confirmed
+  acceptable_forms:
+  - Ductile Gray Castings
+  evidence:
+  - quote: Ductile Gray Castings
+    approx_offset: 23016
+  actor: supplier
+  notes: line-card row paired with ociw.com
+  provenance:
+  - action: added
+    by: seed-agent-mathewsco-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-mathewsco
+    date: '2026-08-27'
+- id: mathewsco_com-products-0023
+  name: Investment castings
+  status: confirmed
+  acceptable_forms:
+  - Investment Castings
+  - Investment castings
+  evidence:
+  - quote: Investment Castings - Investment castings offer a near net shape casting
+    approx_offset: 24091
+  actor: unknown
+  notes: anonymous Kansas principal
+  provenance:
+  - action: added
+    by: seed-agent-mathewsco-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-mathewsco
+    date: '2026-08-27'
+- id: mathewsco_com-products-0024
+  name: Gaskets
+  status: confirmed
+  acceptable_forms:
+  - Gaskets
+  evidence:
+  - quote: Rubber Fabrication & Gaskets
+    approx_offset: 25171
+  actor: unknown
+  notes: anonymous Kansas rubber principal
+  provenance:
+  - action: added
+    by: seed-agent-mathewsco-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-mathewsco
+    date: '2026-08-27'
+- id: mathewsco_com-products-0025
+  name: Castings
+  status: confirmed
+  acceptable_forms:
+  - Castings
+  evidence:
+  - quote: (Full range of ASTM A4876) Castings
+    approx_offset: 25646
+  actor: unknown
+  notes: the artifact on the smoking-gun sand-casting line, whose sentence subject is the AGENCY'S OWN NAME rather
+    than the foundry's
+  provenance:
+  - action: added
+    by: seed-agent-mathewsco-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-mathewsco
+    date: '2026-08-27'
+- id: mathewsco_com-products-0026
+  name: Precision components and assemblies
+  status: confirmed
+  acceptable_forms:
+  - Precision components and assemblies
+  evidence:
+  - quote: Precision components and assemblies - If you are looking for a company
+    approx_offset: 25819
+  actor: unknown
+  notes: anonymous Kansas principal
+  provenance:
+  - action: added
+    by: seed-agent-mathewsco-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-mathewsco
+    date: '2026-08-27'
+- id: mathewsco_com-products-0027
+  name: Heaters
+  status: confirmed
+  acceptable_forms:
+  - Heaters
+  - custom heater
+  evidence:
+  - quote: Heaters & Air Conditioning units for commercial vehicles
+    approx_offset: 26147
+  actor: unknown
+  notes: anonymous Kansas principal - the artifact made, not plant equipment
+  provenance:
+  - action: added
+    by: seed-agent-mathewsco-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-mathewsco
+    date: '2026-08-27'
+- id: mathewsco_com-products-0028
+  name: Air Conditioning units
+  status: confirmed
+  acceptable_forms:
+  - Air Conditioning units
+  - a/c units
+  evidence:
+  - quote: Heaters & Air Conditioning units for commercial vehicles and buses
+    approx_offset: 26147
+  actor: unknown
+  notes: the artifact made for vehicles; NOT plant conditioning equipment
+  provenance:
+  - action: added
+    by: seed-agent-mathewsco-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-mathewsco
+    date: '2026-08-27'
+- id: mathewsco_com-products-0029
+  name: defroster
+  status: confirmed
+  acceptable_forms:
+  - defroster
+  evidence:
+  - quote: custom heater, a/c units and defroster from 11,000 to 82,500 BTUs
+    approx_offset: 26230
+  actor: unknown
+  notes: anonymous Kansas principal
+  provenance:
+  - action: added
+    by: seed-agent-mathewsco-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-mathewsco
+    date: '2026-08-27'
+- id: mathewsco_com-products-0030
+  name: external thread parts
+  status: confirmed
+  acceptable_forms:
+  - external thread parts
+  evidence:
+  - quote: Our cold header offers external thread parts
+    approx_offset: 26388
+  actor: unknown
+  notes: anonymous Kansas cold-heading principal
+  provenance:
+  - action: added
+    by: seed-agent-mathewsco-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-mathewsco
+    date: '2026-08-27'
+- id: mathewsco_com-products-0031
+  name: fasteners
+  status: confirmed
+  acceptable_forms:
+  - fasteners
+  evidence:
+  - quote: They product fasteners in carbon steel, Alloy Steel
+    approx_offset: 26580
+  actor: unknown
+  notes: anonymous Kansas cold-heading principal ('They product' is the site's own typo for produce)
+  provenance:
+  - action: added
+    by: seed-agent-mathewsco-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-mathewsco
+    date: '2026-08-27'
+- id: mathewsco_com-products-0032
+  name: deep drawn metal enclosures
+  status: confirmed
+  acceptable_forms:
+  - deep drawn metal enclosures
+  - metal enclosures
+  - custom enclosures
+  - enclosures
+  evidence:
+  - quote: green manufacturer of deep drawn metal enclosures, or cases
+    approx_offset: 33925
+  - quote: for custom enclosures and diaphragms
+    approx_offset: 34331
+  actor: supplier
+  notes: Hudson Technologies
+  provenance:
+  - action: added
+    by: seed-agent-mathewsco-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-mathewsco
+    date: '2026-08-27'
+- id: mathewsco_com-products-0033
+  name: metal diaphragms
+  status: confirmed
+  acceptable_forms:
+  - metal diaphragms
+  - diaphragms
+  evidence:
+  - quote: and stampings, including metal diaphragms
+    approx_offset: 33986
+  actor: supplier
+  notes: Hudson Technologies
+  provenance:
+  - action: added
+    by: seed-agent-mathewsco-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-mathewsco
+    date: '2026-08-27'
+- id: mathewsco_com-products-0034
+  name: deep drawn shapes
+  status: confirmed
+  acceptable_forms:
+  - deep drawn shapes
+  evidence:
+  - quote: over 15,000 standard deep drawn shapes and sizes
+    approx_offset: 34469
+  actor: supplier
+  notes: Hudson Technologies catalogue; the line carries an NBSP after '15,000'
+  provenance:
+  - action: added
+    by: seed-agent-mathewsco-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-mathewsco
+    date: '2026-08-27'
+- id: mathewsco_com-products-0035
+  name: relay cases
+  status: confirmed
+  acceptable_forms:
+  - relay cases
+  evidence:
+  - quote: MIL-T-27 spec and relay cases
+    approx_offset: 34582
+  - quote: flow meters, relay cases, semi-conductor
+    approx_offset: 35050
+  actor: supplier
+  notes: Hudson Technologies
+  provenance:
+  - action: added
+    by: seed-agent-mathewsco-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-mathewsco
+    date: '2026-08-27'
+- id: mathewsco_com-products-0036
+  name: seamless enclosures
+  status: confirmed
+  acceptable_forms:
+  - seamless enclosures
+  evidence:
+  - quote: Hudson Technologies' seamless enclosures, also referred to as cases
+    approx_offset: 34819
+  actor: supplier
+  notes: Hudson Technologies
+  provenance:
+  - action: added
+    by: seed-agent-mathewsco-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-mathewsco
+    date: '2026-08-27'
+- id: mathewsco_com-products-0037
+  name: cans
+  status: confirmed
+  acceptable_forms:
+  - cans
+  evidence:
+  - quote: referred to as cases, cans, covers, containers
+    approx_offset: 34866
+  actor: supplier
+  notes: Hudson Technologies
+  provenance:
+  - action: added
+    by: seed-agent-mathewsco-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-mathewsco
+    date: '2026-08-27'
+- id: mathewsco_com-products-0038
+  name: covers
+  status: confirmed
+  acceptable_forms:
+  - covers
+  evidence:
+  - quote: cases, cans, covers, containers and stampings
+    approx_offset: 34881
+  actor: supplier
+  notes: Hudson Technologies
+  provenance:
+  - action: added
+    by: seed-agent-mathewsco-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-mathewsco
+    date: '2026-08-27'
+- id: mathewsco_com-products-0039
+  name: containers
+  status: confirmed
+  acceptable_forms:
+  - containers
+  evidence:
+  - quote: cans, covers, containers and stampings
+    approx_offset: 34888
+  actor: supplier
+  notes: Hudson Technologies
+  provenance:
+  - action: added
+    by: seed-agent-mathewsco-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-mathewsco
+    date: '2026-08-27'
+- id: mathewsco_com-products-0040
+  name: implantable medical devices
+  status: confirmed
+  acceptable_forms:
+  - implantable medical devices
+  evidence:
+  - quote: irrigation, implantable medical devices, flow meters
+    approx_offset: 35009
+  actor: supplier
+  notes: Hudson Technologies - named as an application, but it names a made artifact
+  provenance:
+  - action: added
+    by: seed-agent-mathewsco-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-mathewsco
+    date: '2026-08-27'
+- id: mathewsco_com-products-0041
+  name: flow meters
+  status: confirmed
+  acceptable_forms:
+  - flow meters
+  evidence:
+  - quote: implantable medical devices, flow meters, relay cases
+    approx_offset: 35021
+  actor: supplier
+  notes: Hudson Technologies
+  provenance:
+  - action: added
+    by: seed-agent-mathewsco-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-mathewsco
+    date: '2026-08-27'
+- id: mathewsco_com-products-0042
+  name: mechanical seals
+  status: confirmed
+  acceptable_forms:
+  - mechanical seals
+  evidence:
+  - quote: semi-conductor, mechanical seals, edge welded bellows
+    approx_offset: 35076
+  actor: supplier
+  notes: Hudson
+  provenance:
+  - action: added
+    by: seed-agent-mathewsco-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-mathewsco
+    date: '2026-08-27'
+- id: mathewsco_com-products-0043
+  name: edge welded bellows
+  status: confirmed
+  acceptable_forms:
+  - edge welded bellows
+  - bellows
+  evidence:
+  - quote: mechanical seals, edge welded bellows and other industrial applications
+    approx_offset: 35092
+  actor: supplier
+  notes: Hudson Technologies
+  provenance:
+  - action: added
+    by: seed-agent-mathewsco-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-mathewsco
+    date: '2026-08-27'
+- id: mathewsco_com-products-0044
+  name: Catalog Products
+  status: confirmed
+  acceptable_forms:
+  - Catalog Products
+  evidence:
+  - quote: Catalog Products
+    approx_offset: 35441
+  actor: supplier
+  notes: Hudson Technologies page-navigation heading naming a product class
+  provenance:
+  - action: added
+    by: seed-agent-mathewsco-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-mathewsco
+    date: '2026-08-27'
+- id: mathewsco_com-products-0045
+  name: Custom Components
+  status: confirmed
+  acceptable_forms:
+  - Custom Components
+  evidence:
+  - quote: Custom Components
+    approx_offset: 35458
+  actor: supplier
+  notes: Hudson Technologies page-navigation heading
+  provenance:
+  - action: added
+    by: seed-agent-mathewsco-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-mathewsco
+    date: '2026-08-27'
+- id: mathewsco_com-products-0046
+  name: plastic knobs
+  status: confirmed
+  acceptable_forms:
+  - plastic knobs
+  - furniture knobs
+  - knobs
+  evidence:
+  - quote: DimcoGray - plastic knobs and handles for the furniture
+    approx_offset: 36660
+  - quote: valve handles, furniture knobs and plastic handles
+    approx_offset: 36798
+  actor: supplier
+  notes: DimcoGray
+  provenance:
+  - action: added
+    by: seed-agent-mathewsco-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-mathewsco
+    date: '2026-08-27'
+- id: mathewsco_com-products-0047
+  name: handles
+  status: confirmed
+  acceptable_forms:
+  - plastic handles
+  - valve handles
+  - handles
+  evidence:
+  - quote: delivering valve handles, furniture knobs and plastic handles
+    approx_offset: 36787
+  actor: supplier
+  notes: DimcoGray
+  provenance:
+  - action: added
+    by: seed-agent-mathewsco-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-mathewsco
+    date: '2026-08-27'
+- id: mathewsco_com-products-0048
+  name: equipment knobs
+  status: confirmed
+  acceptable_forms:
+  - equipment knobs
+  evidence:
+  - quote: Competitive purchase costs for equipment knobs and handles
+    approx_offset: 37145
+  actor: supplier
+  notes: DimcoGray - a knob for equipment, not a piece of equipment
+  provenance:
+  - action: added
+    by: seed-agent-mathewsco-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-mathewsco
+    date: '2026-08-27'
+- id: mathewsco_com-products-0049
+  name: springs
+  status: confirmed
+  acceptable_forms:
+  - springs
+  evidence:
+  - quote: Our springs and stamping products are used
+    approx_offset: 43564
+  actor: supplier
+  notes: Rowley Spring & Stamping; broad umbrella form
+  provenance:
+  - action: added
+    by: seed-agent-mathewsco-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-mathewsco
+    date: '2026-08-27'
+- id: mathewsco_com-products-0050
+  name: stamping products
+  status: confirmed
+  acceptable_forms:
+  - stamping products
+  evidence:
+  - quote: Our springs and stamping products are used in hundreds of applications
+    approx_offset: 43564
+  actor: supplier
+  notes: Rowley Spring & Stamping
+  provenance:
+  - action: added
+    by: seed-agent-mathewsco-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-mathewsco
+    date: '2026-08-27'
+- id: mathewsco_com-products-0051
+  name: bearings
+  status: confirmed
+  acceptable_forms:
+  - bearings
+  evidence:
+  - quote: Oil Impregnation - makes bearings self-lubricate
+    approx_offset: 50035
+  actor: supplier
+  notes: Missouri Pressed Metals - the sintered part its impregnation line produces
+  provenance:
+  - action: added
+    by: seed-agent-mathewsco-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-mathewsco
+    date: '2026-08-27'
+- id: mathewsco_com-products-0052
+  name: food and beverage processing systems
+  status: confirmed
+  acceptable_forms:
+  - food and beverage processing systems
+  evidence:
+  - quote: food and beverage processing systems, appliances
+    approx_offset: 53684
+  actor: supplier
+  notes: Stadco Precision makes parts for these systems; the phrase names a made system
+  provenance:
+  - action: added
+    by: seed-agent-mathewsco-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-mathewsco
+    date: '2026-08-27'
+- id: mathewsco_com-products-0053
+  name: Electronic parts
+  status: confirmed
+  acceptable_forms:
+  - Electronic parts
+  evidence:
+  - quote: Electronic parts for your Industry
+    approx_offset: 55338
+  actor: supplier
+  notes: Amatom page heading
+  provenance:
+  - action: added
+    by: seed-agent-mathewsco-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-mathewsco
+    date: '2026-08-27'
+- id: mathewsco_com-products-0054
+  name: Standoffs and Spacers
+  status: confirmed
+  acceptable_forms:
+  - Metric Standoffs and Spacers
+  - Standoffs and Spacers
+  - Standoffs
+  - Spacers
+  evidence:
+  - quote: Standoffs and Spacers
+    approx_offset: 56087
+  - quote: Metric Standoffs and Spacers
+    approx_offset: 56109
+  actor: supplier
+  notes: Amatom catalogue
+  provenance:
+  - action: added
+    by: seed-agent-mathewsco-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-mathewsco
+    date: '2026-08-27'
+- id: mathewsco_com-products-0055
+  name: Captive Panel Hardware
+  status: confirmed
+  acceptable_forms:
+  - Captive Panel Hardware
+  evidence:
+  - quote: Captive Panel Hardware
+    approx_offset: 56138
+  actor: supplier
+  notes: Amatom catalogue
+  provenance:
+  - action: added
+    by: seed-agent-mathewsco-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-mathewsco
+    date: '2026-08-27'
+- id: mathewsco_com-products-0056
+  name: Ferrules
+  status: confirmed
+  acceptable_forms:
+  - Handles and Ferrules
+  - Ferrules
+  evidence:
+  - quote: Handles and Ferrules
+    approx_offset: 56161
+  actor: supplier
+  notes: Amatom catalogue
+  provenance:
+  - action: added
+    by: seed-agent-mathewsco-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-mathewsco
+    date: '2026-08-27'
+- id: mathewsco_com-products-0057
+  name: Insulating Washers
+  status: confirmed
+  acceptable_forms:
+  - Insulating Washers
+  - Washers
+  evidence:
+  - quote: Insulating Washers
+    approx_offset: 56182
+  actor: supplier
+  notes: Amatom catalogue
+  provenance:
+  - action: added
+    by: seed-agent-mathewsco-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-mathewsco
+    date: '2026-08-27'
+- id: mathewsco_com-products-0058
+  name: Panel Bushings
+  status: confirmed
+  acceptable_forms:
+  - Panel Bushings
+  - Bushings
+  evidence:
+  - quote: Panel Bushings
+    approx_offset: 56201
+  actor: supplier
+  notes: Amatom catalogue
+  provenance:
+  - action: added
+    by: seed-agent-mathewsco-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-mathewsco
+    date: '2026-08-27'
+- id: mathewsco_com-products-0059
+  name: Heavy Duty Handles
+  status: confirmed
+  acceptable_forms:
+  - Catches & Heavy Duty Handles
+  - Heavy Duty Handles
+  evidence:
+  - quote: Catches & Heavy Duty Handles
+    approx_offset: 56216
+  actor: supplier
+  notes: Amatom catalogue
+  provenance:
+  - action: added
+    by: seed-agent-mathewsco-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-mathewsco
+    date: '2026-08-27'
+- id: mathewsco_com-products-0060
+  name: wire forms
+  status: confirmed
+  acceptable_forms:
+  - wire forms
+  - Wire Forms
+  - Wire Form
+  evidence:
+  - quote: custom springs and wire forms
+    approx_offset: 57370
+  - quote: Wire Forms
+    approx_offset: 58608
+  actor: supplier
+  notes: Fox Valley Spring
+  provenance:
+  - action: added
+    by: seed-agent-mathewsco-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-mathewsco
+    date: '2026-08-27'
+- id: mathewsco_com-products-0061
+  name: precision spring component
+  status: confirmed
+  acceptable_forms:
+  - precision spring component
+  evidence:
+  - quote: to deliver your precision spring component
+    approx_offset: 57543
+  actor: supplier
+  notes: Fox Valley Spring
+  provenance:
+  - action: added
+    by: seed-agent-mathewsco-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-mathewsco
+    date: '2026-08-27'
+- id: mathewsco_com-products-0062
+  name: Compression Springs
+  status: confirmed
+  acceptable_forms:
+  - Compression Springs
+  evidence:
+  - quote: Compression Springs
+    approx_offset: 58554
+  actor: supplier
+  notes: Fox Valley Spring type list
+  provenance:
+  - action: added
+    by: seed-agent-mathewsco-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-mathewsco
+    date: '2026-08-27'
+- id: mathewsco_com-products-0063
+  name: Extension Springs
+  status: confirmed
+  acceptable_forms:
+  - Extension Springs
+  evidence:
+  - quote: Extension Springs
+    approx_offset: 58574
+  actor: supplier
+  notes: Fox Valley Spring type list
+  provenance:
+  - action: added
+    by: seed-agent-mathewsco-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-mathewsco
+    date: '2026-08-27'
+- id: mathewsco_com-products-0064
+  name: Torsion Springs
+  status: confirmed
+  acceptable_forms:
+  - Torsion Springs
+  evidence:
+  - quote: Torsion Springs
+    approx_offset: 58592
+  actor: supplier
+  notes: Fox Valley Spring type list
+  provenance:
+  - action: added
+    by: seed-agent-mathewsco-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-mathewsco
+    date: '2026-08-27'
+- id: mathewsco_com-products-0065
+  name: Die Springs
+  status: confirmed
+  acceptable_forms:
+  - Die Springs
+  evidence:
+  - quote: Die Springs
+    approx_offset: 58619
+  actor: supplier
+  notes: Fox Valley Spring type list - a spring FOR a die, so a product; not tooling and not equipment
+  provenance:
+  - action: added
+    by: seed-agent-mathewsco-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-mathewsco
+    date: '2026-08-27'
+- id: mathewsco_com-products-0066
+  name: catches, latches, and handles
+  status: confirmed
+  acceptable_forms:
+  - catches, latches, and handles
+  - latches
+  - catches
+  evidence:
+  - quote: a wide inventory of catches, latches, and handles for military
+    approx_offset: 59972
+  actor: supplier
+  notes: Carey
+  provenance:
+  - action: added
+    by: seed-agent-mathewsco-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-mathewsco
+    date: '2026-08-27'
+false_friends:
+- form: Sun Microstamping
+  reason: a principal's COMPANY NAME, excluded by the clause; it appears 12 times and reads like a product line
+- form: Missouri Pressed Metals
+  reason: a principal's company name (also abbreviated Mo-Press / MO-PRESS)
+- form: Rowley Spring & Stamping Corp
+  reason: a principal's company name that is built entirely from product and process words
+- form: Insulation Components Associates
+  reason: one of the two 1892 predecessor AGENCIES, named in the 1992 magazine profile; reads like a component product
+    line
+- form: Amatom Electronic Hardware
+  reason: 'a company name: ''We also own Carey''s sister company, Amatom Electronic Hardware'''
+- form: Ellwood City Forge
+  reason: a principal's company name, appearing in nav lists on 9 pages
+- form: Line Card
+  reason: the agency's own sales document listing its principals - a document, excluded
+- form: Online Catalog
+  reason: a document/website link on the Amatom page, not an artifact
+- form: Harris Industrial Guides
+  reason: a printed SIC directory the agency subscribes to
+- form: Act Contact Manager
+  reason: the agency's contact-management software
+- form: 1992 Agency Magazine
+  reason: a document - the trade-magazine reprint page title
+- form: Brochure from 1952
+  reason: a document - a nav entry for a content-empty page
+- form: Pump and Valve Manufacturers
+  reason: a CUSTOMER GROUP in the Kansas Markets list, explicitly excluded by the clause; the pumps and valves themselves
+    are never named as artifacts the site's principals make
+- form: Agricultural Equipment
+  reason: a market name in the Kansas Markets list, repeated in 25 footers
+- form: Construction Equipment
+  reason: a market name in the Kansas Markets list, repeated in 25 footers
+- form: in-house tooling
+  reason: tooling is excluded from products by the clause
+- form: Transition From Direct Sales To Manufacturers' Representatives
+  reason: one of the founder's two seminars - training, excluded by the clause by name
+- form: bicycle
+  reason: occurs only in 'Bill had met Henry Ford at a bicycle show in 1903' - an event
+- form: World Class Status
+  reason: an award-shaped marketing claim, excluded by the clause

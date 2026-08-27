@@ -46,6 +46,17 @@ push the search prompts back toward the blocklists that were deliberately
 removed. An unverified expectation set gates nothing: `confirmed_recall: null`
 means "not gated", never "no misses".
 
+**How much of a recall figure is load-bearing (measured 2026-08-27).** Coverage
+is credited by containment, so an entry whose acceptable forms are all
+substrings of SIBLING entries' forms is credited whenever any sibling is
+returned and can never independently miss. Corpus-wide that is **1,229 of 9,499
+entries — 12.9%** (882 of 8,987 = 9.8% before agstech's verification misses) (`validate_expectations.py` flags them; per-subject table in
+`expectations/VERIFICATION_LEDGER.md`, range 0% to 20.1%). The leniency is
+deliberate and stays — tightening it manufactures false REDs — but read a
+subject's recall knowing roughly a tenth of its denominator is carried by its
+siblings, and check that subject's own share before treating a small recall
+delta as real.
+
 ## Known leniencies in the recall metric (deliberate)
 
 Coverage is entry-level, not per window: an entity is missed only when NO

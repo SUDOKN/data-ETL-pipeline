@@ -1,0 +1,799 @@
+subject: sterlingmfg.net
+field: industries
+snapshot:
+  file: apps/data_etl_app/tests/test_stages/sample_scraped_texts/sterlingmfg.net.txt
+  sha256: f42c4b74d9eefaa7461fe85ed30745ce9465330ba86e7099f728423deb498cc5
+eval_set_version: 2
+expected_empty: false
+notes: Very dense. Nine dedicated industry pages plus a footer INDUSTRIES column on all 52 pages. The chief hazard
+  is the ~240-country dropdown appearing twice, not a shortage of real industries.
+entries:
+- id: sterlingmfg_net-industries-0001
+  name: biopharma
+  status: confirmed
+  acceptable_forms:
+  - BioPharma
+  - Bio-Pharma
+  - Biopharmaceutical industry
+  evidence:
+  - quote: BioPharma
+    approx_offset: 1024
+  - quote: Bio-Pharma
+    approx_offset: 149541
+  - quote: the Biopharmaceutical industry
+    approx_offset: 38177
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-industries-0002
+  name: diagnostics
+  status: confirmed
+  acceptable_forms:
+  - BioPharma, Diagnostics
+  - Diagnostics
+  evidence:
+  - quote: BioPharma, Diagnostics
+    approx_offset: 1024
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-industries-0003
+  name: home diagnostics
+  status: confirmed
+  acceptable_forms:
+  - Medical Home Diagnostics
+  - Home Diagnostics
+  evidence:
+  - quote: Medical Home Diagnostics
+    approx_offset: 1065
+  - quote: Home Diagnostics
+    approx_offset: 1073
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-industries-0004
+  name: medical robotics / robot-assisted surgery
+  status: confirmed
+  acceptable_forms:
+  - Medical Robotics
+  - Robot Assisted Surgery (RAS)
+  - Robotic-Assisted Surgery (RAS)
+  - Medical Robots
+  - Robotics
+  - RAS
+  evidence:
+  - quote: Medical Robotics
+    approx_offset: 1090
+  - quote: the Robot Assisted Surgery (RAS) and Minimally Invasive Surgery (MIS) industries
+    approx_offset: 66543
+  - quote: Robotic-Assisted Surgery (RAS)
+    approx_offset: 189742
+  notes: line 1832 literally calls RAS and MIS 'industries'
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-industries-0005
+  name: minimally invasive surgery
+  status: confirmed
+  acceptable_forms:
+  - Minimally Invasive Surgery (MIS)
+  - Medical Minimal Invasive Surgery
+  - Minimally Invasive Surgical
+  - Minimal Invasive Surgery
+  - MIS
+  evidence:
+  - quote: Minimally Invasive Surgery (MIS)
+    approx_offset: 66580
+  - quote: Medical Minimal Invasive Surgery
+    approx_offset: 98465
+  - quote: Minimally Invasive Surgical
+    approx_offset: 1150
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-industries-0006
+  name: interventional & structural heart
+  status: confirmed
+  acceptable_forms:
+  - Medical Interventional & Structural Heart
+  - Med Interventional & Structural Heart
+  - Structural Heart
+  - Interventional
+  evidence:
+  - quote: Medical Interventional & Structural Heart
+    approx_offset: 98536
+  - quote: Med Interventional & Structural Heart
+    approx_offset: 1178
+  - quote: Structural Heart
+    approx_offset: 1199
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-industries-0007
+  name: medical implants market
+  status: confirmed
+  acceptable_forms:
+  - Medical Implants
+  - Implants Industry
+  - medical implant market
+  evidence:
+  - quote: Medical Implants
+    approx_offset: 1216
+  - quote: Implants Industry
+    approx_offset: 40787
+  - quote: the rapidly growing and high-demand medical implant market
+    approx_offset: 40902
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-industries-0008
+  name: semiconductor
+  status: confirmed
+  acceptable_forms:
+  - Semi-Conductor
+  - SEMICONDUCTOR
+  - Semiconductor Manufacturing
+  - semiconductor industry
+  - semi-conductur industry
+  evidence:
+  - quote: Semi-Conductor
+    approx_offset: 1278
+  - quote: Semiconductor Manufacturing
+    approx_offset: 149139
+  - quote: semi-conductur industry
+    approx_offset: 118957
+  notes: the word is misspelled 'semi-conductur' on line 3647; a faithful run may return that exact string
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-industries-0009
+  name: space / aerospace / defense
+  status: confirmed
+  acceptable_forms:
+  - Space/Aerospace/Defense
+  - Aerospace / Space / Defense
+  - Aerospace & Defense
+  - Aerospace
+  - SPACE
+  - Defense
+  evidence:
+  - quote: Space/Aerospace/Defense
+    approx_offset: 1308
+  - quote: Aerospace / Space / Defense
+    approx_offset: 98593
+  - quote: Aerospace & Defense
+    approx_offset: 57349
+  notes: three punctuations of the same bundle - slashes, spaced slashes and an ampersand - each its own surface
+    form
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-industries-0010
+  name: medical / medical device
+  status: confirmed
+  acceptable_forms:
+  - Medical Device
+  - medical device industry
+  - medical industry
+  - MEDICAL
+  evidence:
+  - quote: Medical Device
+    approx_offset: 53288
+  - quote: the medical industry
+    approx_offset: 6897
+  - quote: the medical device industry
+    approx_offset: 115680
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-industries-0011
+  name: cardiovascular / endovascular / neurovascular
+  status: confirmed
+  acceptable_forms:
+  - cardiovascular
+  - endovascular
+  - neurovascular
+  - vascular
+  evidence:
+  - quote: cardiovascular, vascular, endovascular, and pelvic health sectors
+    approx_offset: 66439
+  - quote: neurovascular, cardiovascular, and diagnostic medical procedures
+    approx_offset: 11931
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-industries-0012
+  name: orthopedics / ortho-trauma
+  status: confirmed
+  acceptable_forms:
+  - Medical Ortho-Trauma
+  - Medical Ortho/Trauma
+  - Trauma Industry
+  - Medical Orthopedic
+  - Orthopedic
+  - orthopedics
+  evidence:
+  - quote: Medical Ortho-Trauma
+    approx_offset: 98515
+  - quote: Trauma Industry
+    approx_offset: 16173
+  - quote: Medical Orthopedic
+    approx_offset: 16154
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-industries-0013
+  name: industrial / diversified industrials
+  status: confirmed
+  acceptable_forms:
+  - Industrial Manufacturing
+  - diversified industrials sectors
+  - diversified industrial markets
+  - Diversified Industrials
+  - industrial
+  evidence:
+  - quote: Industrial Manufacturing
+    approx_offset: 149278
+  - quote: diversified industrials sectors
+    approx_offset: 159308
+  - quote: diversified industrial markets
+    approx_offset: 22679
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-industries-0014
+  name: MedTech
+  status: confirmed
+  acceptable_forms:
+  - MedTech industry
+  - MedTech
+  evidence:
+  - quote: the MedTech industry
+    approx_offset: 23598
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-industries-0015
+  name: pharmaceutical
+  status: confirmed
+  acceptable_forms:
+  - pharmaceutical and healthcare technology sectors
+  - pharmaceutical
+  evidence:
+  - quote: the pharmaceutical and healthcare technology sectors
+    approx_offset: 24181
+  actor: unknown
+  notes: named in the CFO's biography, describing a PREVIOUS employer's sectors - not EPTAM's own market
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-industries-0016
+  name: automotive
+  status: confirmed
+  acceptable_forms:
+  - Automotive & Industrial Manufacturing
+  - automotive
+  evidence:
+  - quote: Automotive & Industrial Manufacturing
+    approx_offset: 149265
+  - quote: aerospace, automotive and contract manufacturing industries
+    approx_offset: 25478
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-industries-0017
+  name: high-tech manufacturing
+  status: confirmed
+  acceptable_forms:
+  - high-tech manufacturing industries
+  - high-tech industries
+  evidence:
+  - quote: other high-tech manufacturing industries
+    approx_offset: 34307
+  - quote: medical, robotics and other high-tech industries
+    approx_offset: 168432
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-industries-0018
+  name: healthcare
+  status: confirmed
+  acceptable_forms:
+  - medical/healthcare
+  - healthcare sector
+  - healthcare industry
+  - healthcare
+  evidence:
+  - quote: the medical/healthcare, industrial, consumer, and defense industries
+    approx_offset: 45615
+  - quote: the healthcare sector
+    approx_offset: 160391
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-industries-0019
+  name: molecular diagnostics
+  status: confirmed
+  acceptable_forms:
+  - Molecular Diagnostics
+  evidence:
+  - quote: Molecular Diagnostics
+    approx_offset: 57290
+  - quote: molecular diagnostics
+    approx_offset: 115531
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-industries-0020
+  name: consumer / consumer electronics
+  status: confirmed
+  acceptable_forms:
+  - Consumer Electronics
+  - consumer product
+  - consumer
+  evidence:
+  - quote: Consumer Electronics
+    approx_offset: 57324
+  - quote: the consumer product, healthcare, and defense industries
+    approx_offset: 76115
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-industries-0021
+  name: urology
+  status: confirmed
+  acceptable_forms:
+  - urology
+  - Urological
+  evidence:
+  - quote: improving segments in urology, orthopedics, neurology, gynecology
+    approx_offset: 62939
+  notes: 'DISPUTED: a clinical specialty. The text calls these ''segments'', which is market language, but a surgical
+    specialty is not obviously ''a recognizable domain of economic activity'''
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-industries-0022
+  name: neurology
+  status: confirmed
+  acceptable_forms:
+  - neurology
+  evidence:
+  - quote: neurology, gynecology, and others
+    approx_offset: 62983
+  notes: 'DISPUTED: see urology'
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-industries-0023
+  name: gynecology
+  status: confirmed
+  acceptable_forms:
+  - gynecology
+  - Gynecological
+  evidence:
+  - quote: gynecology, and others
+    approx_offset: 62994
+  notes: 'DISPUTED: see urology'
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-industries-0024
+  name: pelvic health
+  status: confirmed
+  acceptable_forms:
+  - pelvic health sectors
+  - pelvic health
+  evidence:
+  - quote: vascular, endovascular, and pelvic health sectors
+    approx_offset: 66455
+  notes: 'DISPUTED: the text explicitly appends ''sectors'' to this list, which is the strongest industry signal
+    of the four clinical specialties'
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-industries-0025
+  name: endoscopy
+  status: confirmed
+  acceptable_forms:
+  - Endoscopy Applications
+  - Endoscopy
+  evidence:
+  - quote: Endoscopy Applications
+    approx_offset: 72868
+  notes: 'DISPUTED: an application area on the MIS page, arguably a product family rather than a market'
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-industries-0026
+  name: sports medicine
+  status: confirmed
+  acceptable_forms:
+  - Sports Medicine
+  evidence:
+  - quote: Sports Medicine
+    approx_offset: 72891
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-industries-0027
+  name: general surgery
+  status: confirmed
+  acceptable_forms:
+  - General Surgery
+  evidence:
+  - quote: General Surgery
+    approx_offset: 72954
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-industries-0028
+  name: aviation
+  status: confirmed
+  acceptable_forms:
+  - aviation
+  evidence:
+  - quote: the healthcare, aviation and industrial fields
+    approx_offset: 78140
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-industries-0029
+  name: contract manufacturing
+  status: confirmed
+  acceptable_forms:
+  - the contract manufacturing industry
+  - contract manufacturing
+  evidence:
+  - quote: the contract manufacturing industry
+    approx_offset: 97974
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-industries-0030
+  name: emerging markets
+  status: confirmed
+  acceptable_forms:
+  - Emerging Markets
+  evidence:
+  - quote: Emerging Markets
+    approx_offset: 98621
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-industries-0031
+  name: test kit market
+  status: confirmed
+  acceptable_forms:
+  - test kit market
+  evidence:
+  - quote: The rapidly growing test kit market
+    approx_offset: 121326
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-industries-0032
+  name: life sciences
+  status: confirmed
+  acceptable_forms:
+  - life sciences
+  evidence:
+  - quote: EPTAM’s presence in the life sciences, biopharma and broader medical device market
+    approx_offset: 156352
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-industries-0033
+  name: private equity
+  status: disputed
+  acceptable_forms:
+  - private equity firm
+  - private equity
+  evidence:
+  - quote: a leading private equity firm focused exclusively on the healthcare sector
+    approx_offset: 160338
+  actor: parent_sibling
+  notes: Frazier Healthcare Partners, EPTAM's owner | 'private equity' names a financial-services sector, but the
+    only occurrences describe the owner's own business (Frazier Healthcare Partners, New Heritage Capital). It is
+    never named as a domain EPTAM's goods or services serve, so whether it meets the clause's 'domain of economic
+    activity that a manufacturer's goods or services can serve' is genuinely arguable.
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: disputed
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+    reason: '''private equity'' names a financial-services sector, but the only occurrences describe the owner''s
+      own business (Frazier Healthcare Partners, New Heritage Capital). It is never named as a domain EPTAM''s goods
+      or services serve, so whether it meets the clause''s ''domain of economic activity that a manufacturer''s
+      goods or services can serve'' is genuinely arguable.'
+- id: sterlingmfg_net-industries-0034
+  name: electronics manufacturing
+  status: confirmed
+  acceptable_forms:
+  - electronics manufacturing
+  evidence:
+  - quote: aerospace, chemical processing, electronics manufacturing
+    approx_offset: 179745
+  actor: client
+  notes: named as an end-use market for Torlon parts, not as a market EPTAM claims
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-industries-0035
+  name: chemical processing
+  status: confirmed
+  acceptable_forms:
+  - chemical processing
+  evidence:
+  - quote: chemical processing
+    approx_offset: 179756
+  actor: client
+  notes: see electronics manufacturing
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-industries-0036
+  name: commercial
+  status: confirmed
+  acceptable_forms:
+  - commercial
+  evidence:
+  - quote: the aerospace & defense, commercial, medical, and semiconductor industries
+    approx_offset: 206851
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+false_friends:
+- form: Germany
+  reason: 'GEO POISON: one of ~240 ISO country names dumped twice by a careers-form country dropdown (lines 2663-2911
+    and 3900-4148). A country is not an industry'
+- form: Japan
+  reason: 'GEO POISON: careers-form country dropdown'
+- form: China
+  reason: 'GEO POISON: careers-form country dropdown'
+- form: India
+  reason: 'GEO POISON: careers-form country dropdown'
+- form: Brazil
+  reason: 'GEO POISON: careers-form country dropdown - and the site DOES name ANVISA, Brazil''s regulator, which
+    makes this the likeliest of the 240 to be mistaken for a market'
+- form: Singapore
+  reason: 'GEO POISON: careers-form country dropdown'
+- form: Israel
+  reason: 'GEO POISON: careers-form country dropdown'
+- form: Mexico
+  reason: 'GEO POISON: careers-form country dropdown'
+- form: Switzerland
+  reason: 'GEO POISON: careers-form country dropdown - doubly tempting because the site is full of ''Swiss machining''
+    and ''Swiss turning'''
+- form: Ireland
+  reason: 'GEO POISON: careers-form country dropdown - a real medical-device manufacturing hub in world knowledge,
+    which is exactly the association that mints it'
+- form: United States
+  reason: witnessed, but only as a country row in the dropdown and in 'across the United States' facility prose
+    - never as a market
+- form: Antarctica
+  reason: 'GEO POISON: proves the list is a raw ISO dump rather than a market list'
+- form: Holy See
+  reason: 'GEO POISON: same'
+- form: Frazier Healthcare Partners
+  reason: a private-equity OWNER, a company name not an industry (52+ mentions)
+- form: New Heritage Capital
+  reason: a former private-equity owner, a company name (line 5901)
+- form: Sterling Manufacturing
+  reason: an acquired company, not an industry (line 4819)
+- form: Albright Silicone
+  reason: an acquired subsidiary, a company name (line 4819)
+- form: Ingram Machining
+  reason: an acquired company, a company name (line 5003)
+- form: Mendell Machine and Manufacturing
+  reason: an acquired company, a company name (line 5466)
+- form: Relius Medical
+  reason: an acquired company, a company name (line 5893)
+- form: UFP Technologies
+  reason: a COO's former employer (line 690)
+- form: Viant Medical
+  reason: a former employer named in two biographies (lines 690, 4918)
+- form: Vention Medical
+  reason: a former employer (lines 690, 4918)
+- form: Becton Dickinson
+  reason: named as the buyer of a former employer (line 5379)
+- form: Rapid Prototyping
+  reason: a PROCESS listed in the footer INDUSTRIES column (52 copies) - the site's own nav mis-files it as an industry,
+    so the text invites this error
+- form: Southern New Hampshire University
+  reason: a university named in an HR biography (line 728)
+- form: North Carolina State University
+  reason: a university named in a CFO biography (line 706)
+- form: Montclair State University
+  reason: a university named in a quality biography (line 720)
+- form: oil and gas
+  reason: 'anticipatory: ZERO occurrences; a default manufacturing-website industry'
+- form: food and beverage
+  reason: 'anticipatory: ZERO occurrences'
+- form: energy
+  reason: 'witnessed: occurs only as ''laser energy'' / ''energy consumption'' (lines 393, 4600, 4617), never as
+    an energy-sector market'
+- form: marine
+  reason: 'anticipatory: ZERO occurrences'
+- form: dental
+  reason: 'anticipatory: ZERO occurrences, despite implants and titanium being everywhere'
+- form: veterinary
+  reason: 'anticipatory: ZERO occurrences'

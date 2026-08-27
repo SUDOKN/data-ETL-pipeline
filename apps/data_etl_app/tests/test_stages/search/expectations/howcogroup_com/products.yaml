@@ -1,0 +1,1772 @@
+subject: howcogroup.com
+field: products
+snapshot:
+  file: apps/data_etl_app/tests/test_stages/sample_scraped_texts/howcogroup.com.txt
+  sha256: 5e8b364e3ddcdacc1482566d012646b6d9d3947825d95c3108276f576df7046b
+eval_set_version: 2
+expected_empty: false
+entries:
+- id: howcogroup_com-products-0001
+  name: shafts
+  status: confirmed
+  acceptable_forms:
+  - Shafts
+  - Stems and Shafts
+  - shafts
+  evidence:
+  - quote: Shafts
+    approx_offset: 4275
+  - quote: solution treated and doubled aged condition it has become the preferred alloy for Stems and Shafts and
+      is used extensively in valve internals. High strength,
+    approx_offset: 4183
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+- id: howcogroup_com-products-0002
+  name: drilling jars
+  status: confirmed
+  acceptable_forms:
+  - drilling jars
+  evidence:
+  - quote: improved CVN impact toughness. This grade is widely used in downhole applications such as drilling jars.
+    approx_offset: 15415
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+- id: howcogroup_com-products-0003
+  name: semi and finished machined components
+  status: confirmed
+  acceptable_forms:
+  - semi and finished machined components
+  - finished machined components
+  - precision machined components
+  - Finished Machined Components
+  evidence:
+  - quote: We also provide semi and finished machined components and can provide cladding, pressure testing, assembly
+      and fabrication services.
+    approx_offset: 53519
+  - quote: market-leading manufacturer, processor and distributor of high-performance alloys and precision machined
+      components for all energy sectors worldwide.
+    approx_offset: 18380
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+- id: howcogroup_com-products-0004
+  name: near net shape components
+  status: confirmed
+  acceptable_forms:
+  - near net shape component
+  - near net shape components
+  evidence:
+  - quote: 'Supplying a near net shape component provides :'
+    approx_offset: 22486
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+- id: howcogroup_com-products-0005
+  name: polished bore receptacles (PBRs)
+  status: confirmed
+  acceptable_forms:
+  - Polished Bore Receptacles (PBRs)
+  - polished bore receptacle (PBR) extensions
+  - polished bore receptacles
+  - PBR
+  evidence:
+  - quote: Polished Bore Receptacles (PBRs)
+    approx_offset: 34680
+  - quote: Howco Norway has been a trusted name in the manufacture and supply of polished bore receptacle (PBR)
+      extensions, providing critical components to the oil
+    approx_offset: 24624
+  - quote: PBR
+    approx_offset: 24545
+  notes: 'the subject''s most-elaborated single product: a whole news post (6205-6246) describes Howco Norway''s
+    PBR extensions, sizes 3½" to 16", and their first geothermal delivery in 2024'
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+- id: howcogroup_com-products-0006
+  name: seal bore extensions
+  status: confirmed
+  acceptable_forms:
+  - Seal Bore Extensions
+  - Extensions
+  evidence:
+  - quote: Seal Bore Extensions
+    approx_offset: 83593
+  - quote: Extensions
+    approx_offset: 24549
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+- id: howcogroup_com-products-0007
+  name: casing hangers / hangers
+  status: confirmed
+  acceptable_forms:
+  - casing hangers
+  evidence:
+  - quote: wide variety of surface and subsea applications such as flanges, casing hangers, riser spools and hose
+      connectors.
+    approx_offset: 27472
+  - quote: alloy is widely used in oil patch applications for components such as connectors, hangers and block valves.
+      Hardness levels up to 22 HRC are approved to NACE
+    approx_offset: 125346
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: amended
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+    reason: 'SUBSTRING ARTEFACT: ''hangers'' is a substring of ''exchangers'' - all four embedded occurrences here
+      are ''heat exchangers'' / ''heat-exchangers'', so every return of heat exchangers (products-0040) would also
+      credit casing hangers. Dropping the bare form loses nothing: a returned ''hangers'' is still contained in
+      ''casing hangers'' and credits.'
+- id: howcogroup_com-products-0008
+  name: flanges
+  status: confirmed
+  acceptable_forms:
+  - Flanges
+  - flanges
+  evidence:
+  - quote: variety of surface and subsea applications such as flanges, casing hangers, riser spools and hose connectors.
+    approx_offset: 27477
+  - quote: also excellent, being extensively used in the manufacture of Valve Bodies, Flanges, Seats, Gates, and
+      Tubulars.
+    approx_offset: 46411
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+- id: howcogroup_com-products-0009
+  name: turnkey components / assembled packages
+  status: confirmed
+  acceptable_forms:
+  - turnkey components
+  - complete turnkey assembled packages
+  - turnkey packages
+  evidence:
+  - quote: With our supply chain partners we can to provide you with turnkey components, including HIP and post
+      machining.
+    approx_offset: 28982
+  - quote: round and flat bar, semi and finish machined components. And even complete turnkey assembled packages.
+    approx_offset: 60605
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+- id: howcogroup_com-products-0010
+  name: ingot / billet
+  status: confirmed
+  acceptable_forms:
+  - Ingot / Billet
+  - ingot/billet
+  - raw ingot
+  evidence:
+  - quote: Ingot / Billet
+    approx_offset: 33992
+  - quote: and delivery. We have significant experience of providing ingot/billet, forged and rolled round and flat
+      bar, semi and finish machined components. And even
+    approx_offset: 60515
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+- id: howcogroup_com-products-0011
+  name: forged and rolled round bar
+  status: confirmed
+  acceptable_forms:
+  - Forged and Rolled Round Bar
+  - forged and rolled round and flat bar
+  evidence:
+  - quote: Forged and Rolled Round Bar
+    approx_offset: 34007
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+- id: howcogroup_com-products-0012
+  name: forged flat bar
+  status: confirmed
+  acceptable_forms:
+  - Forged Flat Bar
+  evidence:
+  - quote: Forged Flat Bar
+    approx_offset: 34035
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+- id: howcogroup_com-products-0013
+  name: mechanical tube
+  status: confirmed
+  acceptable_forms:
+  - Mechanical Tube
+  - mechanical tube
+  evidence:
+  - quote: Tubulars i.e. Mechanical Tube, Coupling Stock, Hollow Bar, OCTG
+    approx_offset: 34051
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+- id: howcogroup_com-products-0014
+  name: coupling stock
+  status: confirmed
+  acceptable_forms:
+  - Coupling Stock
+  evidence:
+  - quote: Tubulars i.e. Mechanical Tube, Coupling Stock, Hollow Bar, OCTG
+    approx_offset: 34051
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+- id: howcogroup_com-products-0015
+  name: hollow bar
+  status: confirmed
+  acceptable_forms:
+  - Hollow Bar
+  evidence:
+  - quote: Tubulars i.e. Mechanical Tube, Coupling Stock, Hollow Bar, OCTG
+    approx_offset: 34051
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+- id: howcogroup_com-products-0016
+  name: OCTG
+  status: confirmed
+  acceptable_forms:
+  - OCTG
+  evidence:
+  - quote: Tubulars i.e. Mechanical Tube, Coupling Stock, Hollow Bar, OCTG
+    approx_offset: 34051
+  - quote: MECHANICAL TUBING & OCTG
+    approx_offset: 41000
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+- id: howcogroup_com-products-0017
+  name: tubulars
+  status: confirmed
+  acceptable_forms:
+  - Tubulars
+  - tubulars
+  - Valves & Tubulars
+  evidence:
+  - quote: Tubulars i.e. Mechanical Tube, Coupling Stock, Hollow Bar, OCTG
+    approx_offset: 34051
+  - quote: Used extensively as tubulars, structural and pressure containing members.
+    approx_offset: 41371
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+- id: howcogroup_com-products-0018
+  name: tubing hangers
+  status: confirmed
+  acceptable_forms:
+  - Tubing Hangers
+  evidence:
+  - quote: Tubing Hangers
+    approx_offset: 34531
+  notes: listed on the materials-overview product catalogue (lines 1174-1193)
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+- id: howcogroup_com-products-0019
+  name: tree caps
+  status: confirmed
+  acceptable_forms:
+  - Tree Caps
+  evidence:
+  - quote: Tree Caps
+    approx_offset: 34546
+  notes: listed on the materials-overview product catalogue (lines 1174-1193)
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+- id: howcogroup_com-products-0020
+  name: tubing heads
+  status: confirmed
+  acceptable_forms:
+  - Tubing Heads
+  evidence:
+  - quote: Tubing Heads
+    approx_offset: 34556
+  notes: listed on the materials-overview product catalogue (lines 1174-1193)
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+- id: howcogroup_com-products-0021
+  name: production / annulus blocks
+  status: confirmed
+  acceptable_forms:
+  - Production/Annulus Blocks
+  evidence:
+  - quote: Production/Annulus Blocks
+    approx_offset: 34569
+  notes: listed on the materials-overview product catalogue (lines 1174-1193)
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+- id: howcogroup_com-products-0022
+  name: blocks
+  status: confirmed
+  acceptable_forms:
+  - Blocks
+  - Frac Valve Blocs
+  evidence:
+  - quote: Blocks
+    approx_offset: 34588
+  - quote: Frac Valve Blocs
+    approx_offset: 62645
+  notes: '''Frac Valve Blocs'' at 2335 is printed ''Blocs'', not ''Blocks'''
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: amended
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+    reason: '''block valves'' names a VALVE, not a block; it belongs to products-0033. Keeping it here lets a return
+      of ''block valves'' credit the forged-blocks entry. ''Blocks'' (the FORGED PRODUCTS list line) and the site''s
+      own typo ''Frac Valve Blocs'' both stay.'
+- id: howcogroup_com-products-0023
+  name: bonnets
+  status: confirmed
+  acceptable_forms:
+  - Bonnets
+  - bonnets
+  evidence:
+  - quote: Bonnets
+    approx_offset: 34595
+  notes: listed on the materials-overview product catalogue (lines 1174-1193)
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+- id: howcogroup_com-products-0024
+  name: bored / honed bar
+  status: confirmed
+  acceptable_forms:
+  - Bored / Honed Bar
+  evidence:
+  - quote: Bored / Honed Bar
+    approx_offset: 34603
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+- id: howcogroup_com-products-0025
+  name: pump shaft bar (PSQ)
+  status: confirmed
+  acceptable_forms:
+  - Pump Shaft Bar (PSQ)
+  - Pump Shaft Bar
+  - pump shafting
+  - pump shafts
+  evidence:
+  - quote: Pump Shaft Bar (PSQ)
+    approx_offset: 34621
+  - quote: joints and packers. The alloy can also be used for fasteners, pump shafting and high strength piping
+      systems.
+    approx_offset: 120616
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+- id: howcogroup_com-products-0026
+  name: valve internals / actuator components
+  status: confirmed
+  acceptable_forms:
+  - Valve Internals / Actuator Components
+  - Valve Internals
+  - valve internals
+  evidence:
+  - quote: Valve Internals / Actuator Components
+    approx_offset: 34642
+  notes: listed on the materials-overview product catalogue (lines 1174-1193)
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+- id: howcogroup_com-products-0027
+  name: mandrels
+  status: confirmed
+  acceptable_forms:
+  - Mandrels
+  - side pocket mandrels
+  - Offset gauge mandrels
+  evidence:
+  - quote: Mandrels
+    approx_offset: 34713
+  notes: listed on the materials-overview product catalogue (lines 1174-1193)
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+- id: howcogroup_com-products-0028
+  name: flow couplings
+  status: confirmed
+  acceptable_forms:
+  - Flow Couplings
+  evidence:
+  - quote: Flow Couplings
+    approx_offset: 34733
+  notes: listed on the materials-overview product catalogue (lines 1174-1193)
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+- id: howcogroup_com-products-0029
+  name: pup joints
+  status: confirmed
+  acceptable_forms:
+  - Pup Jts
+  evidence:
+  - quote: Pup Jts
+    approx_offset: 34748
+  notes: listed on the materials-overview product catalogue (lines 1174-1193)
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+- id: howcogroup_com-products-0030
+  name: shaped forgings
+  status: confirmed
+  acceptable_forms:
+  - Shaped Forgings
+  evidence:
+  - quote: Shaped Forgings
+    approx_offset: 34772
+  notes: listed on the materials-overview product catalogue (lines 1174-1193)
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+- id: howcogroup_com-products-0031
+  name: rolled ring forgings
+  status: confirmed
+  acceptable_forms:
+  - Rolled Ring Forgings
+  evidence:
+  - quote: Rolled Ring Forgings
+    approx_offset: 34802
+  notes: listed on the materials-overview product catalogue (lines 1174-1193)
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+- id: howcogroup_com-products-0032
+  name: blanks
+  status: confirmed
+  acceptable_forms:
+  - Blanks
+  evidence:
+  - quote: Blanks
+    approx_offset: 34823
+  notes: listed on the materials-overview product catalogue (lines 1174-1193)
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+- id: howcogroup_com-products-0033
+  name: valves
+  status: confirmed
+  acceptable_forms:
+  - Valves & Tubulars
+  - Valves
+  - valves
+  - Valve Bodies
+  - valve seat facings
+  evidence:
+  - quote: Valves
+    approx_offset: 53142
+  - quote: Valves
+    approx_offset: 53142
+  - quote: also excellent, being extensively used in the manufacture of Valve Bodies, Flanges, Seats, Gates, and
+      Tubulars.
+    approx_offset: 46411
+  notes: the most repeated product word in the file; appears in the upstream, mid/downstream and energy application
+    lists and on most alloy datasheets
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+- id: howcogroup_com-products-0034
+  name: gates and seats
+  status: confirmed
+  acceptable_forms:
+  - Seats, Gates
+  - valve seat facings
+  evidence:
+  - quote: excellent, being extensively used in the manufacture of Valve Bodies, Flanges, Seats, Gates, and Tubulars.
+    approx_offset: 46416
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+- id: howcogroup_com-products-0035
+  name: running tools
+  status: confirmed
+  acceptable_forms:
+  - running tools
+  evidence:
+  - quote: Generally, the material is used in applications for subsea components such as running tools, seals and
+      hangers.
+    approx_offset: 51352
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+- id: howcogroup_com-products-0036
+  name: seals
+  status: confirmed
+  acceptable_forms:
+  - seals
+  - high-integrity seals
+  evidence:
+  - quote: material is used in applications for subsea components such as running tools, seals and hangers.
+    approx_offset: 51367
+  - quote: Components brings a wealth of expertise in the design and manufacture of high-integrity seals and complex
+      machined components. Their deep understanding of these
+    approx_offset: 208175
+  notes: the Cheshire Seals and Components acquisition (Sept 2024) brought seal design and manufacture into Howco
+    Scientific
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+- id: howcogroup_com-products-0037
+  name: pumps
+  status: confirmed
+  acceptable_forms:
+  - Pumps/Compressors/Separators
+  - Pumps
+  evidence:
+  - quote: Pumps/Compressors/Separators
+    approx_offset: 61834
+  - quote: Pumps
+    approx_offset: 53149
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+- id: howcogroup_com-products-0038
+  name: sensors
+  status: confirmed
+  acceptable_forms:
+  - Sensors
+  evidence:
+  - quote: Sensors
+    approx_offset: 53155
+  actor: client
+  notes: 'an APPLICATION-list item: what the customer builds out of Howco''s nickel/stainless/low alloys. The framing
+    sentence is ''Our Nickel, Stainless Steel and Low alloys are used in:'' (2047) / ''are vital in:'' (4720). Recall-first
+    keeps it as a named artifact'
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+- id: howcogroup_com-products-0039
+  name: pressure vessels
+  status: confirmed
+  acceptable_forms:
+  - Pressure Vessels
+  evidence:
+  - quote: Pressure Vessels
+    approx_offset: 53163
+  actor: client
+  notes: 'an APPLICATION-list item: what the customer builds out of Howco''s nickel/stainless/low alloys. The framing
+    sentence is ''Our Nickel, Stainless Steel and Low alloys are used in:'' (2047) / ''are vital in:'' (4720). Recall-first
+    keeps it as a named artifact'
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+- id: howcogroup_com-products-0040
+  name: heat exchangers
+  status: confirmed
+  acceptable_forms:
+  - Heat Exchangers
+  - heat exchangers
+  - heat-exchangers
+  evidence:
+  - quote: Heat Exchangers
+    approx_offset: 53180
+  actor: client
+  notes: 'an APPLICATION-list item: what the customer builds out of Howco''s nickel/stainless/low alloys. The framing
+    sentence is ''Our Nickel, Stainless Steel and Low alloys are used in:'' (2047) / ''are vital in:'' (4720). Recall-first
+    keeps it as a named artifact'
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+- id: howcogroup_com-products-0041
+  name: separators
+  status: confirmed
+  acceptable_forms:
+  - Separators
+  - STORAGE/SEPARATION
+  evidence:
+  - quote: Separators
+    approx_offset: 53196
+  - quote: Pumps/Compressors/Separators
+    approx_offset: 61834
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+- id: howcogroup_com-products-0042
+  name: manifolds
+  status: confirmed
+  acceptable_forms:
+  - Manifolds
+  evidence:
+  - quote: Manifolds
+    approx_offset: 53207
+  notes: listed in the /sectors/upstream/ system breakdown (lines 2285-2345)
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+- id: howcogroup_com-products-0043
+  name: instrumentation
+  status: confirmed
+  acceptable_forms:
+  - Instrumentation
+  - instrumentation units
+  evidence:
+  - quote: Instrumentation
+    approx_offset: 53217
+  actor: client
+  notes: 'an APPLICATION-list item: what the customer builds out of Howco''s nickel/stainless/low alloys. The framing
+    sentence is ''Our Nickel, Stainless Steel and Low alloys are used in:'' (2047) / ''are vital in:'' (4720). Recall-first
+    keeps it as a named artifact'
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+- id: howcogroup_com-products-0044
+  name: flow control equipment
+  status: confirmed
+  acceptable_forms:
+  - Flow Control Equipment
+  evidence:
+  - quote: Flow Control Equipment
+    approx_offset: 53233
+  actor: client
+  notes: 'an APPLICATION-list item: what the customer builds out of Howco''s nickel/stainless/low alloys. The framing
+    sentence is ''Our Nickel, Stainless Steel and Low alloys are used in:'' (2047) / ''are vital in:'' (4720). Recall-first
+    keeps it as a named artifact'
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+- id: howcogroup_com-products-0045
+  name: safety systems
+  status: confirmed
+  acceptable_forms:
+  - Safety Systems
+  evidence:
+  - quote: Safety Systems
+    approx_offset: 53256
+  actor: client
+  notes: 'an APPLICATION-list item: what the customer builds out of Howco''s nickel/stainless/low alloys. The framing
+    sentence is ''Our Nickel, Stainless Steel and Low alloys are used in:'' (2047) / ''are vital in:'' (4720). Recall-first
+    keeps it as a named artifact'
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+- id: howcogroup_com-products-0046
+  name: distillation tower packings / trays
+  status: confirmed
+  acceptable_forms:
+  - Distillation Tower Packings / Distillation Trays
+  - Distillation Trays
+  evidence:
+  - quote: Distillation Tower Packings / Distillation Trays
+    approx_offset: 53271
+  actor: client
+  notes: 'an APPLICATION-list item: what the customer builds out of Howco''s nickel/stainless/low alloys. The framing
+    sentence is ''Our Nickel, Stainless Steel and Low alloys are used in:'' (2047) / ''are vital in:'' (4720). Recall-first
+    keeps it as a named artifact'
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+- id: howcogroup_com-products-0047
+  name: catalytic grids and supports
+  status: confirmed
+  acceptable_forms:
+  - Catalytic Grids and Supports
+  - Crackers and Towers
+  evidence:
+  - quote: Crackers and Towers, including Catalytic Grids and Supports
+    approx_offset: 53392
+  actor: client
+  notes: 'an APPLICATION-list item: what the customer builds out of Howco''s nickel/stainless/low alloys. The framing
+    sentence is ''Our Nickel, Stainless Steel and Low alloys are used in:'' (2047) / ''are vital in:'' (4720). Recall-first
+    keeps it as a named artifact'
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+- id: howcogroup_com-products-0048
+  name: drill bit components
+  status: confirmed
+  acceptable_forms:
+  - Drill bit components
+  evidence:
+  - quote: Drill bit components
+    approx_offset: 60830
+  notes: listed in the /sectors/upstream/ system breakdown (lines 2285-2345)
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+- id: howcogroup_com-products-0049
+  name: drill collars and stabilisers
+  status: confirmed
+  acceptable_forms:
+  - Drill collars and stabilisers
+  - Drill Collars
+  - drill collars
+  evidence:
+  - quote: Drill collars and stabilisers
+    approx_offset: 60851
+  notes: listed in the /sectors/upstream/ system breakdown (lines 2285-2345)
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+- id: howcogroup_com-products-0050
+  name: well construction components
+  status: confirmed
+  acceptable_forms:
+  - Well Construction Components
+  evidence:
+  - quote: Well Construction Components
+    approx_offset: 60881
+  notes: listed in the /sectors/upstream/ system breakdown (lines 2285-2345)
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+- id: howcogroup_com-products-0051
+  name: rotary steerables
+  status: confirmed
+  acceptable_forms:
+  - Rotary Steerables
+  evidence:
+  - quote: Rotary Steerables
+    approx_offset: 60930
+  notes: listed in the /sectors/upstream/ system breakdown (lines 2285-2345)
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+- id: howcogroup_com-products-0052
+  name: mud motors
+  status: confirmed
+  acceptable_forms:
+  - Mud Motors
+  evidence:
+  - quote: Mud Motors
+    approx_offset: 60948
+  notes: listed in the /sectors/upstream/ system breakdown (lines 2285-2345)
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+- id: howcogroup_com-products-0053
+  name: MWD/LWD tools
+  status: confirmed
+  acceptable_forms:
+  - MWD/LWD Tools
+  - MWD/LWD
+  evidence:
+  - quote: MWD/LWD Tools
+    approx_offset: 60959
+  notes: listed in the /sectors/upstream/ system breakdown (lines 2285-2345)
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+- id: howcogroup_com-products-0054
+  name: sand screens
+  status: confirmed
+  acceptable_forms:
+  - Sand Screens
+  evidence:
+  - quote: Sand Screens
+    approx_offset: 60993
+  notes: listed in the /sectors/upstream/ system breakdown (lines 2285-2345)
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+- id: howcogroup_com-products-0055
+  name: packers
+  status: confirmed
+  acceptable_forms:
+  - Packers
+  - packers
+  evidence:
+  - quote: Packers
+    approx_offset: 61006
+  notes: listed in the /sectors/upstream/ system breakdown (lines 2285-2345)
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+- id: howcogroup_com-products-0056
+  name: safety valves
+  status: confirmed
+  acceptable_forms:
+  - Safety Valves
+  - Sub-Surface Safety Valves
+  evidence:
+  - quote: Safety Valves
+    approx_offset: 61014
+  notes: listed in the /sectors/upstream/ system breakdown (lines 2285-2345)
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+- id: howcogroup_com-products-0057
+  name: artificial lift systems
+  status: confirmed
+  acceptable_forms:
+  - Artificial Lift Systems
+  evidence:
+  - quote: Artificial Lift Systems
+    approx_offset: 61075
+  notes: listed in the /sectors/upstream/ system breakdown (lines 2285-2345)
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+- id: howcogroup_com-products-0058
+  name: chemical injection systems
+  status: confirmed
+  acceptable_forms:
+  - Instrumentation & Chemical Injection
+  - Chemical Injection
+  evidence:
+  - quote: Instrumentation & Chemical Injection
+    approx_offset: 61099
+  notes: listed in the /sectors/upstream/ system breakdown (lines 2285-2345)
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+- id: howcogroup_com-products-0059
+  name: risers and flowline umbilicals
+  status: confirmed
+  acceptable_forms:
+  - RISERS & FLOWLINE UMBILICALS
+  - riser spools
+  evidence:
+  - quote: RISERS & FLOWLINE UMBILICALS
+    approx_offset: 61753
+  notes: listed in the /sectors/upstream/ system breakdown (lines 2285-2345)
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+- id: howcogroup_com-products-0060
+  name: jumpers
+  status: confirmed
+  acceptable_forms:
+  - JUMPERS
+  evidence:
+  - quote: JUMPERS
+    approx_offset: 61783
+  notes: listed in the /sectors/upstream/ system breakdown (lines 2285-2345)
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+- id: howcogroup_com-products-0061
+  name: flowlines and connectors
+  status: confirmed
+  acceptable_forms:
+  - Flowlines & Connectors
+  - hose connectors
+  - connectors
+  evidence:
+  - quote: Flowlines & Connectors
+    approx_offset: 61791
+  notes: listed in the /sectors/upstream/ system breakdown (lines 2285-2345)
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+- id: howcogroup_com-products-0062
+  name: compressors
+  status: confirmed
+  acceptable_forms:
+  - Compressors
+  - Gas Compression & Power
+  evidence:
+  - quote: Compressors
+    approx_offset: 61840
+  - quote: Gas Compression & Power
+    approx_offset: 62790
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+- id: howcogroup_com-products-0063
+  name: ROV / AUV systems
+  status: confirmed
+  acceptable_forms:
+  - ROV AUV SYSTEMS
+  evidence:
+  - quote: ROV AUV SYSTEMS
+    approx_offset: 61864
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+- id: howcogroup_com-products-0064
+  name: subsea trees
+  status: confirmed
+  acceptable_forms:
+  - Trees
+  - Dry Tree Systems
+  evidence:
+  - quote: Trees
+    approx_offset: 61905
+  notes: listed in the /sectors/upstream/ system breakdown (lines 2285-2345)
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+- id: howcogroup_com-products-0065
+  name: blowout preventers
+  status: confirmed
+  acceptable_forms:
+  - BOP’s
+  - BOP
+  evidence:
+  - quote: BOP’s
+    approx_offset: 61911
+  notes: listed in the /sectors/upstream/ system breakdown (lines 2285-2345)
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+- id: howcogroup_com-products-0066
+  name: meters
+  status: confirmed
+  acceptable_forms:
+  - Meters
+  evidence:
+  - quote: Meters
+    approx_offset: 61927
+  notes: listed in the /sectors/upstream/ system breakdown (lines 2285-2345)
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+- id: howcogroup_com-products-0067
+  name: discharge pipe
+  status: confirmed
+  acceptable_forms:
+  - Discharge Pipe
+  evidence:
+  - quote: Discharge Pipe
+    approx_offset: 62630
+  notes: listed in the /sectors/upstream/ system breakdown (lines 2285-2345)
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+- id: howcogroup_com-products-0068
+  name: jigs, tooling skids and tool trolleys
+  status: confirmed
+  acceptable_forms:
+  - simple jigs and tooling skids
+  - jig and tool trolleys
+  - tooling skids
+  evidence:
+  - quote: range of components and material grades. From simple jigs and tooling skids to complex oil & gas wellhead
+      structures and assemblies, these components can
+    approx_offset: 71756
+  - quote: across a wide range of components and materials. From simple jig and tool trolleys to complex wellhead
+      structures and assemblies.
+    approx_offset: 101723
+  notes: named as fabrication OUTPUT ('these components can be fabricated'), which is what makes them products here
+    rather than tooling
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+- id: howcogroup_com-products-0069
+  name: wellhead components
+  status: confirmed
+  acceptable_forms:
+  - Wellhead Components
+  - wellhead structures and assemblies
+  evidence:
+  - quote: applications, has become the preferred material for the manufacture of Wellhead Components, Auxiliary
+      and Down Hole Tools, and Sub-Surface Safety Valves.
+    approx_offset: 84853
+  - quote: material grades. From simple jigs and tooling skids to complex oil & gas wellhead structures and assemblies,
+      these components can be fabricated in a variety
+    approx_offset: 71780
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+- id: howcogroup_com-products-0070
+  name: duplex connector body flowloop weldments
+  status: confirmed
+  acceptable_forms:
+  - DUPLEX CONNECTOR BODY FLOWLOOP WELDMENTS
+  - FLOWLOOP WELDMENTS
+  evidence:
+  - quote: DUPLEX CONNECTOR BODY FLOWLOOP WELDMENTS
+    approx_offset: 72795
+  actor: unknown
+  notes: a named fabrication deliverable on the Precision Fabrication page, whose work is done via supply chain
+    partners
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+- id: howcogroup_com-products-0071
+  name: general fabrications / weldments
+  status: confirmed
+  acceptable_forms:
+  - GENERAL FABRICATIONS / WELDMENTS
+  - WELDMENTS
+  evidence:
+  - quote: GENERAL FABRICATIONS / WELDMENTS
+    approx_offset: 72836
+  actor: unknown
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+- id: howcogroup_com-products-0072
+  name: fasteners
+  status: confirmed
+  acceptable_forms:
+  - fasteners
+  - high-strength fasteners
+  evidence:
+  - quote: processing environments, in forms such as seals, fasteners, heat exchangers, valves, steam lines, exhaust
+      ducts, etc. It is also used as a weld overlay
+    approx_offset: 75624
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+- id: howcogroup_com-products-0073
+  name: steam lines and exhaust ducts
+  status: confirmed
+  acceptable_forms:
+  - steam lines, exhaust ducts
+  - steam lines
+  - exhaust ducts
+  evidence:
+  - quote: environments, in forms such as seals, fasteners, heat exchangers, valves, steam lines, exhaust ducts,
+      etc. It is also used as a weld overlay for corrosion resistance
+    approx_offset: 75635
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+- id: howcogroup_com-products-0074
+  name: down hole tools
+  status: confirmed
+  acceptable_forms:
+  - Auxiliary and Down Hole Tools
+  - downhole tools
+  - Down Hole Tools
+  evidence:
+  - quote: preferred material for the manufacture of Wellhead Components, Auxiliary and Down Hole Tools, and Sub-Surface
+      Safety Valves.
+    approx_offset: 84882
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+- id: howcogroup_com-products-0075
+  name: springs
+  status: confirmed
+  acceptable_forms:
+  - springs
+  evidence:
+  - quote: applications for this alloy are used for hangers, side pocket mandrels, springs and polished bore receptacles
+      for sour gas service. The petrochemical and
+    approx_offset: 90937
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+- id: howcogroup_com-products-0076
+  name: instrumentation units
+  status: confirmed
+  acceptable_forms:
+  - instrumentation units
+  evidence:
+  - quote: Howco Scientific currently manufactures instrumentation units for a semi-conductor manufacturer, which
+      includes sourcing the
+    approx_offset: 102590
+  actor: client
+  notes: built to a semiconductor customer's specification; the clearest contract-manufacturing product in the file
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+- id: howcogroup_com-products-0077
+  name: electromechanical assemblies and sub-assemblies
+  status: confirmed
+  acceptable_forms:
+  - turnkey electromechanical assemblies and sub-assemblies
+  - electromechanical assemblies
+  evidence:
+  - quote: manufacturing requirements. We provide turnkey electromechanical assemblies and sub-assemblies to customer
+      drawings/designs/specifications.
+    approx_offset: 110943
+  actor: client
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+- id: howcogroup_com-products-0078
+  name: boiler nozzles, clamps and shields
+  status: confirmed
+  acceptable_forms:
+  - Boiler nozzles, clamps and shields
+  - Boiler nozzles
+  evidence:
+  - quote: Boiler nozzles, clamps and shields in coal fired boilers
+    approx_offset: 115073
+  actor: client
+  notes: 'an APPLICATION-list item: what the customer builds out of Howco''s nickel/stainless/low alloys. The framing
+    sentence is ''Our Nickel, Stainless Steel and Low alloys are used in:'' (2047) / ''are vital in:'' (4720). Recall-first
+    keeps it as a named artifact'
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+- id: howcogroup_com-products-0079
+  name: gas turbine components
+  status: confirmed
+  acceptable_forms:
+  - Components for land-based gas turbines and their exhaust streams
+  - land-based gas turbines
+  evidence:
+  - quote: Components for land-based gas turbines and their exhaust streams
+    approx_offset: 115130
+  actor: client
+  notes: 'an APPLICATION-list item: what the customer builds out of Howco''s nickel/stainless/low alloys. The framing
+    sentence is ''Our Nickel, Stainless Steel and Low alloys are used in:'' (2047) / ''are vital in:'' (4720). Recall-first
+    keeps it as a named artifact'
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+- id: howcogroup_com-products-0080
+  name: scrubbers, dampers and duct work
+  status: confirmed
+  acceptable_forms:
+  - Scrubbers, dampers, duct work
+  - Scrubbers
+  evidence:
+  - quote: Scrubbers, dampers, duct work in flue gas processing for pollution control
+    approx_offset: 115195
+  actor: client
+  notes: 'an APPLICATION-list item: what the customer builds out of Howco''s nickel/stainless/low alloys. The framing
+    sentence is ''Our Nickel, Stainless Steel and Low alloys are used in:'' (2047) / ''are vital in:'' (4720). Recall-first
+    keeps it as a named artifact'
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+- id: howcogroup_com-products-0081
+  name: condensing equipment
+  status: confirmed
+  acceptable_forms:
+  - Heat exchangers and condensing equipment
+  - condensing equipment
+  evidence:
+  - quote: Heat exchangers and condensing equipment
+    approx_offset: 115270
+  actor: client
+  notes: 'an APPLICATION-list item: what the customer builds out of Howco''s nickel/stainless/low alloys. The framing
+    sentence is ''Our Nickel, Stainless Steel and Low alloys are used in:'' (2047) / ''are vital in:'' (4720). Recall-first
+    keeps it as a named artifact'
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+- id: howcogroup_com-products-0082
+  name: coal and ash bins
+  status: confirmed
+  acceptable_forms:
+  - Coal and ash bins
+  evidence:
+  - quote: Coal and ash bins
+    approx_offset: 115311
+  actor: client
+  notes: 'an APPLICATION-list item: what the customer builds out of Howco''s nickel/stainless/low alloys. The framing
+    sentence is ''Our Nickel, Stainless Steel and Low alloys are used in:'' (2047) / ''are vital in:'' (4720). Recall-first
+    keeps it as a named artifact'
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+- id: howcogroup_com-products-0083
+  name: expansion joints
+  status: confirmed
+  acceptable_forms:
+  - Expansion joints
+  evidence:
+  - quote: Expansion joints
+    approx_offset: 115329
+  actor: client
+  notes: 'an APPLICATION-list item: what the customer builds out of Howco''s nickel/stainless/low alloys. The framing
+    sentence is ''Our Nickel, Stainless Steel and Low alloys are used in:'' (2047) / ''are vital in:'' (4720). Recall-first
+    keeps it as a named artifact'
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+- id: howcogroup_com-products-0084
+  name: wind turbine components
+  status: confirmed
+  acceptable_forms:
+  - Wind turbine components
+  evidence:
+  - quote: Wind turbine components
+    approx_offset: 116371
+  actor: client
+  notes: 'an APPLICATION-list item: what the customer builds out of Howco''s nickel/stainless/low alloys. The framing
+    sentence is ''Our Nickel, Stainless Steel and Low alloys are used in:'' (2047) / ''are vital in:'' (4720). Recall-first
+    keeps it as a named artifact'
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+- id: howcogroup_com-products-0085
+  name: geothermal drilling and power generation equipment
+  status: confirmed
+  acceptable_forms:
+  - Geothermal drilling and power generation equipment
+  evidence:
+  - quote: Geothermal drilling and power generation equipment
+    approx_offset: 116395
+  actor: client
+  notes: 'an APPLICATION-list item: what the customer builds out of Howco''s nickel/stainless/low alloys. The framing
+    sentence is ''Our Nickel, Stainless Steel and Low alloys are used in:'' (2047) / ''are vital in:'' (4720). Recall-first
+    keeps it as a named artifact'
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+- id: howcogroup_com-products-0086
+  name: hydroelectric turbine components
+  status: confirmed
+  acceptable_forms:
+  - Hydroelectric turbine components
+  evidence:
+  - quote: Hydroelectric turbine components
+    approx_offset: 116446
+  actor: client
+  notes: 'an APPLICATION-list item: what the customer builds out of Howco''s nickel/stainless/low alloys. The framing
+    sentence is ''Our Nickel, Stainless Steel and Low alloys are used in:'' (2047) / ''are vital in:'' (4720). Recall-first
+    keeps it as a named artifact'
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+- id: howcogroup_com-products-0087
+  name: landing nipples and tool joints
+  status: confirmed
+  acceptable_forms:
+  - landing nipples, tool joints
+  - landing nipples
+  - tool joints
+  evidence:
+  - quote: These applications include tubular products, valves, hangers, landing nipples, tool joints and packers.
+      The alloy can also be used for fasteners, pump
+    approx_offset: 120532
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+- id: howcogroup_com-products-0088
+  name: piping systems
+  status: confirmed
+  acceptable_forms:
+  - high strength piping systems
+  - piping systems
+  evidence:
+  - quote: and packers. The alloy can also be used for fasteners, pump shafting and high strength piping systems.
+    approx_offset: 120623
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+- id: howcogroup_com-products-0089
+  name: additively manufactured lunar lander components
+  status: confirmed
+  acceptable_forms:
+  - additively manufactured metal components
+  - precision-engineered components crafted by Howco Additive Manufacturing
+  evidence:
+  - quote: pride in being a supplier of additively manufactured metal components for the Intuitive Machines IM-1
+      mission Nova-C class lunar lander.
+    approx_offset: 205139
+  - quote: contribute to this remarkable achievement with the precision-engineered components crafted by Howco Additive
+      Manufacturing. Each meticulously designed intricate
+    approx_offset: 170761
+  actor: client
+  notes: components for the Intuitive Machines IM-1 Nova-C lunar lander, February 2024
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+- id: howcogroup_com-products-0090
+  name: fabricated cylinder monobloc
+  status: confirmed
+  acceptable_forms:
+  - fabricated cylinder monobloc
+  - cylinder monobloc
+  - monobloc
+  evidence:
+  - quote: An order was placed with the Howco Group to manufacture a fabricated cylinder monobloc for the locomotive.
+      The ‘bloc took a small
+    approx_offset: 216454
+  actor: client
+  notes: 'a single named contract product: the cylinder monobloc for the A1/P2 Steam Locomotive Trust''s new-build
+    Gresley P2 ''Prince of Wales''. Unique in the file - the only non-energy contract artifact named'
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+- id: howcogroup_com-products-0091
+  name: machined components for Formula Student cars
+  status: confirmed
+  acceptable_forms:
+  - the machining of complex components
+  evidence:
+  - quote: Howco has been supporting the University for over 8 years with technical support and the machining of
+      complex components.
+    approx_offset: 220813
+  actor: client
+  notes: University of Glasgow Formula Student team; a real machining contract, framed as sponsorship
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: amended
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+    reason: '''championship-winning cars'' names the students'' car, a different artifact from the components Howco
+      machines; leaving it here lets a return of the car credit a machined-components entry. If the car is wanted
+      it should be its own entry.'
+false_friends:
+- form: SLM280
+  reason: the old pipeline emitted this as a PRODUCT. It is the model name of a metal 3D PRINTER at Howco AM Houston
+    (291-294); it is seeded under equipments and belongs nowhere else
+- form: Brochure
+  reason: the news page lists seven downloadable brochures (2132-2139, e.g. 'Brochure – Capabilities 1.0.3'); the
+    products clause explicitly excludes documents
+- form: Made in Sheffield
+  reason: an accreditation mark, not a made artifact; the products clause excludes awards and memberships. Seeded
+    under conformity_attestations
+- form: Cock o’ the North
+  reason: the name of a 1934 LNER locomotive recounted as history (7441); Howco made no part of it - its order was
+    for the separate new-build 'Prince of Wales'
+- form: Cheshire Seals and Components
+  reason: a COMPANY Howco acquired in September 2024, not a product. The products clause excludes 'the names of
+    companies, brands, or customer groups'
+- form: Solar Photovoltaic Energy System
+  reason: a £750,000 roof installation Howco BOUGHT for its Sheffield and Cumbernauld sites (6714); it is a facility,
+    not something that comes out of the work
+- form: Nova-C
+  reason: the Intuitive Machines lunar lander Howco supplied components INTO; the lander is the customer's product,
+    and the name is a customer brand
+- form: Take 5, Zero Harm
+  reason: a Bredbury health-and-safety initiative (6867, 6871), not an artifact
+- form: PCB Assembly
+  reason: ZERO occurrences of 'PCB' anywhere in 7,573 lines. The old pipeline fabricated this from 'Electromechanical
+    Assembly' (4525). Only fabrication can produce it
+- form: Storage containers
+  reason: '''storage containers need to be made from steel'' (2067) describes what LNG SHIPPERS need, in a paragraph
+    of general LNG background; Howco is not said to make them'

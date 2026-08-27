@@ -1,0 +1,63 @@
+subject: tanfel.com
+slug: tanfel_com
+role: attribution_negative
+business_type: US sourcing intermediary (broker) writing offshore partner factories' capabilities in the first person
+snapshot:
+  file: apps/data_etl_app/tests/test_stages/sample_scraped_texts/tanfel.com.txt
+  sha256: 4942d992128752abeace6e11e1235e9e55f4737a21b51d3778cb2f818667bf9b
+eval_set_version: 1
+context: 'Tanfel (footer: Tanfel Metal; warranty page: Tanfel Inc.), of Scottsdale AZ, is a US SOURCING INTERMEDIARY:
+  it brokers custom metal parts made by partner factories in China, Vietnam, India, Mexico and the US, and it writes
+  those factories'' capabilities, tonnages, alloy lists and ISO registrations IN THE FIRST PERSON (''our facility
+  maintains a fleet of 3-axis, 4-axis, and 5-axis machines''). Only two things are unambiguously Tanfel''s own:
+  the ISO 9001:2015 certificate linked on the About page, and Tanfel Metrology, a division that sells its own branded
+  GO/NO-GO thread plug gages. It is in the corpus precisely because it reads like a manufacturer and is not one;
+  every capability entry below therefore carries an `actor`, and none is withheld on attribution grounds.'
+scrape_hazards:
+- hazard: 263 non-breaking spaces sit inside sentences and after colons
+  quote: CNC-milled parts are used in every industry from aerospace
+- hazard: the site duplicates whole pages under two URLs (/about and /about-tanfel and /about-tanfel/; /services
+    and /services/; /products/cnc-machining-service/ and /cnc-machining-service/; http:// and https:// home). Most
+    facts appear 2-3 times, and the home page repeats its own hero and testimonial blocks twice within one page.
+  quote: TANFEL IS A LEADING PROVIDER OF CUSTOM METAL PARTS
+- hazard: the 'TANFEL NOW MAKES HIGH-QUALITY THREAD PLUG GAGES.' banner and the four-line OUR SERVICES block appear
+    on ~25 pages, so they land in nearly every window
+  quote: TANFEL NOW MAKES HIGH-QUALITY THREAD PLUG GAGES.
+- hazard: 'three long pages are generic textbook prose with no Tanfel subject: the aluminum-extrusion walkthrough,
+    the metal-casting explainer and the metrology explainer. Machines, industries and products named there belong
+    to nobody.'
+  quote: An extrusion puller guides the extrusion to the runout table
+- hazard: the RFQ and Contact forms print their entire Industry and Product Interest dropdowns as plain text (twice),
+    which is where Aerospace, Energy / Utility, Oil / Gas, Maquiladora, Wireless and PCB come from
+  quote: Energy / Utility
+- hazard: a hard line break splits 'metal stamping machine' across two lines in the blog post, so no single line
+    contains the whole phrase
+  quote: stamping machine, different stations will form punches and bends
+- hazard: an entire page (section-301-tariffs-china) is a 2019 trade-policy explainer with no manufacturing content
+    at all
+  quote: SECTION 301 TARIFFS ON CHINA
+sampling_notes: 'EXHAUSTIVE. All 5,192 lines / 182,322 bytes read in sed slices: 1-180, 180-420, 403-620, 620-860,
+  856-1140, 1139-1420, 1414-1700, 1700-1975, 1975-2280, 2280-2545, 2545-2800, 2787-3060, 3060-3410, 3400-3670, 3664-3990,
+  3980-4280, 4400-4760, 4760-5192. The one uncovered slice, 4280-4400, was verified by diff to be byte-identical
+  to 2358-2492 (the /services page) apart from its URL line. All 52 page URLs enumerated and accounted for. Grep
+  sweeps run for: standards bodies (ISO|IATF|TS 16949|AS 9100|ASTM|ANSI|API|AMS|NADCAP|UL|CE|EN n|ITAR|RoHS|REACH|FDA|NIST|PPAP|APQP|MIL-|SAE|DFARS|C-TPAT|NAFTA|Six
+  Sigma|Kanban|D-U-N-S|OHSAS|IPC); 60+ machine-tool BRAND names (Haas, Mazak, Okuma, Fanuc, DMG/Mori, Amada, Trumpf,
+  Bystronic, Hurco, Doosan, Makino, Kitamura, Matsuura, Citizen, Tsugami, Hardinge, Bridgeport, Fadal, Zeiss, Mitutoyo,
+  FARO, Renishaw, Keyence, Brown & Sharpe, Starrett, Hexagon, Instron, Arburg, Engel, Husky, Milacron, Krauss-Maffei
+  and others) -- ZERO hits; machine nouns (machine|press|lathe|mill|saw|furnace|oven|robot|welder|brake|punch|shear|grinder|extruder|kiln|autoclave|EDM|CNC);
+  and a full non-ASCII character census.'
+notes: 'Two prior-belief corrections came out of this pass. (1) EQUIPMENTS IS NOT EMPTY. The vetting note said ''zero
+  named machines''; that is true only of BRANDS. The text names ~20 generic production machines, and six of them
+  sit in a first-person owned-fleet claim (''We use the following types of CNC lathes and CNC turning machines:
+  Bench lathe / Center lathe / Multi-spindle lathe / Screw machines / Swiss style / Swiss turning center''). Seeding
+  this field empty would have manufactured a false ''junk-minting'' verdict on correct output. (2) THE 16949 TRAP
+  IS REAL AND IS AN ECHO DEFECT, NOT AN ATTRIBUTION ONE: neither ''ISO 16949'' nor ''IATF 16949'' occurs in this
+  file. What occurs is ''ISO/TS 16949:2009'' once, ''TS 16949'' once, ''TS16949'' once, and a BARE ''IATF'' once
+  inside ''ISO & IATF certified facilities''. Both minted strings are seeded as anticipatory false friends. The
+  certification count itself is not inflated by the search stage — the text really does print 9 distinct standard
+  designations; what is wrong is the ACTOR, which is why 15 of the 25 conformity rows carry actor=supplier.'
+provenance:
+- action: added
+  by: seed-agent-tanfel-com
+  date: '2026-08-27'
+  source: corpus-seed

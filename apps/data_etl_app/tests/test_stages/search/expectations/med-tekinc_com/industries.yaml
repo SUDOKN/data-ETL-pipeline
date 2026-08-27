@@ -1,0 +1,95 @@
+subject: med-tekinc.com
+field: industries
+snapshot:
+  file: apps/data_etl_app/tests/test_stages/sample_scraped_texts/med-tekinc.com.txt
+  sha256: f1b1f156176cb3c86757d25176c0c27f9d6d704a021a47bdc0bfdcd662c4717c
+eval_set_version: 2
+expected_empty: false
+notes: 'TWO entries, both from one clause on line 19. The prior corpus-vetting note claimed this field was hard-empty;
+  that is REFUTED - ''machine shops and fabricators'' names the market MED-TEK''s services serve, which is exactly
+  the field''s clause (''a recognizable domain of economic activity that a manufacturer''s goods or services can
+  serve''). Beyond those two the field really is bare: a full sweep for aerospace, automotive, defense, firearms,
+  oil and gas, energy, agriculture, mining, marine, dental, surgical, implant, semiconductor, electronics, food,
+  pharma, nuclear, rail, truck and construction returned ZERO hits. DEFENSIBLE BORDERLINES not seeded and not false-friended:
+  ''HEAT TREATING TECHNOLOGY'' (line 10) and ''commercial'' / ''commercial clients'' (lines 19, 100) - commercial
+  heat treating is a real sector, but it is MED-TEK''s OWN sector rather than one its services serve, so a run returning
+  it is a code-B borderline, not a must-find and not junk.'
+entries:
+- id: med-tekinc_com-industries-0001
+  name: machine shops
+  status: confirmed
+  acceptable_forms:
+  - machine shops
+  - machine shop
+  evidence:
+  - quote: as possible for machine shops and fabricators to use
+    approx_offset: 510
+  actor: client
+  notes: the customer market the toll-processing service serves; named once, in the home-page about paragraph
+  provenance:
+  - action: added
+    by: seed-agent-med-tekinc-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-med-tekinc
+    date: '2026-08-27'
+- id: med-tekinc_com-industries-0002
+  name: metal fabrication
+  status: confirmed
+  acceptable_forms:
+  - fabricators
+  - fabricator
+  evidence:
+  - quote: as possible for machine shops and fabricators to use
+    approx_offset: 510
+  actor: client
+  notes: second half of the same clause; 'fabricators' is the only surface form - the words 'fabrication' and 'metal
+    fabrication' never appear
+  provenance:
+  - action: added
+    by: seed-agent-med-tekinc-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-med-tekinc
+    date: '2026-08-27'
+- id: med-tekinc_com-industries-0003
+  name: commercial market
+  status: candidate
+  acceptable_forms:
+  - commercial purposes
+  - commercial clients
+  - commercial
+  evidence:
+  - quote: heat-treating metal for commercial purposes
+    approx_offset: 381
+  - quote: huge heat‑treating jobs for commercial clients
+    approx_offset: 3129
+  notes: 'ARGUABLE - do not promote without a deliberate decision. The text twice states the market it serves (''for
+    commercial purposes'', line 19; ''for commercial clients'', line 101), which is the only market statement besides
+    machine shops and fabricators. Against: ''commercial'' is a qualifier, not ''a recognizable domain of economic
+    activity'', and gating on it would force the stage to mint a contentless industry.'
+  provenance:
+  - action: added
+    by: verify-agent-med-tekinc
+    date: '2026-08-27'
+    source: verification-pass-miss
+false_friends:
+- form: medical
+  reason: ANTICIPATORY and the subject's headline trap - 'MED-TEK' occurs on 15 lines and reads as MEDical TEKnology,
+    but 'medical' occurs ZERO times in the file. Only fabrication from the company name can hit it
+- form: medical device
+  reason: ANTICIPATORY - same domain-name association, zero occurrences
+- form: aerospace
+  reason: ANTICIPATORY - zero occurrences. The default industry association for any heat treater; nothing in the
+    text supports it
+- form: automotive
+  reason: ANTICIPATORY - zero occurrences. Same association as aerospace
+- form: Minnesota
+  reason: WITNESSED (address lines and the contact page's 'Service Area:' list, which is duplicated) - a geography,
+    not a domain of economic activity. The Service Area block is nine consecutive bare state/region names and is
+    the field's main over-generation surface
+- form: Central Canada
+  reason: WITNESSED (lines 27 and the duplicated Service Area lists) - geography again, and the one that reads least
+    like a US state list entry

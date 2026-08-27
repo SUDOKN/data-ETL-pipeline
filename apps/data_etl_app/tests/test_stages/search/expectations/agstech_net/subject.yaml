@@ -1,0 +1,53 @@
+subject: agstech.net
+slug: agstech_net
+role: attribution_negative
+business_type: sourcing and integration intermediary with partial equity in offshore plants, plus a distributor
+  arm
+snapshot:
+  file: apps/data_etl_app/tests/test_stages/sample_scraped_texts/agstech.net.txt
+  sha256: 1bc0ba503cc3d838798442a2b98cd509bb20604d97c42c21dc206b850317fc2f
+eval_set_version: 1
+context: 'AGS-TECH Inc self-describes as ''Global Custom Manufacturer, Integrator, Consolidator, Outsourcing Partner''
+  - three of those four are intermediary roles - and states plainly that it owns some manufacturing plants and holds
+  partial ownership in others. The only US addresses in 1.8 MB are a PO Box and a marketing suite. Its value to
+  the corpus is threefold: the widest process and material ontology of any subject (~110 processes, ~44 materials,
+  including tail concepts found nowhere else); the TEXTBOOK-AS-CAPABILITY trap, where roughly 45 pages are manufacturing-engineering
+  textbook chapters with ''we'' injected, so fluent technically-correct encyclopedia prose reads as a first-person
+  capability claim; and an unusually clean attestation-attribution case, since the Quality page says in plain English
+  that the certificates belong to the supplier plants while the Fasteners page claims them in the first person.
+  Under recall-first every designation the text names is an entry; the attribution lives in the actor field.'
+scrape_hazards:
+- hazard: non-native-speaker typos throughout, including a Turkish dotless i; copy quotes exactly and never correct
+    them
+  quote: artificial
+- hazard: cell fusion runs a designation into the following word with no space, so the full name cannot match on
+    a word boundary
+  quote: Male Bottom Connection Valvesare designed
+- hazard: a second fusion of the same kind, on the filtration page
+  quote: Filtration Systemremoves water vapor
+- hazard: a missing space inside an all-caps heading breaks the leading form
+  quote: TWO andFOUR POST RACKS
+- hazard: non-breaking hyphen U+2011 inside an ordinary hyphenated word
+  quote: as a pre-treatment for RO
+- hazard: roughly 30% of the document is byte-identical nav and footer boilerplate repeated on all 172 pages
+  quote: Custom Manufacturing of Parts, Components, Assemblies, Finished Products, Machines and Industrial Equipment
+- hazard: one page is effectively empty - a title plus a brochure link, no in-field content
+  quote: https://www.agstech.net/optical-displays-screen-monitors
+sampling_notes: 'Seeded EXHAUSTIVELY by eight parallel page-aligned slice agents covering lines 1-30044 (slice bounds:
+  1-4463, 4464-8574, 8575-11193, 11194-14073, 14074-17043, 17044-21171, 21172-26681, 26682-30044). Each slice agent
+  covered all six fields for its own range and ran targeted grep sweeps restricted to it; entries were deduplicated
+  by name at build time, so cross-slice overlap collapsed rather than double-counting. One caveat recorded by the
+  slice-3 agent: it deliberately skipped the per-page nav/footer boilerplate as byte-identical and already covered
+  by slice 1, which did seed it - the merged inventory was checked for those site-wide service designations afterwards.'
+notes: 'OPEN QUESTION, recorded and deliberately NOT blocking this stage: whether a process performed at a PARTIALLY-OWNED
+  partner plant counts as this subject''s own capability. It is a downstream attribution decision; here it only
+  changes the actor label, and partner-plant capabilities carry actor supplier. A second open reading, flagged by
+  the slice-7 agent and worth the user''s eye: roughly 200 product entries are drill bits, saw blades, wheels and
+  taps that AGS-TECH sells as goods. They are seeded as products on the reading that the products clause excludes
+  the tooling THE SUBJECT''S OWN work is done with, not tooling it sells. If the clause is read the other way those
+  entries retire together.'
+provenance:
+- action: added
+  by: seed-agent-agstech-net
+  date: '2026-08-27'
+  source: corpus-seed

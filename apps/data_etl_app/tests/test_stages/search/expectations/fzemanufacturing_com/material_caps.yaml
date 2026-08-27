@@ -1,0 +1,1712 @@
+subject: fzemanufacturing.com
+field: material_caps
+snapshot:
+  file: apps/data_etl_app/tests/test_stages/sample_scraped_texts/fzemanufacturing.com.txt
+  sha256: ff11844d0540b8e65c7c4c7f8f7614c3e36c192b093940bb99b8140eb5aace1e
+eval_set_version: 2
+expected_empty: false
+notes: Four verbatim copies of the same Thomas-directory materials block (Metals / Exotic & Precious Metals / Plastic
+  Polymers / Other Materials) on the hydraulic, Swiss, HMC-VMC and shaft pages, plus a separate firearm-components
+  materials list and the process chemistry named in the passivation and electropolishing pages. The 'named after
+  a substance it deposits or diffuses' clause pulls in chromating (chromium) and Stellite hardfacing.
+entries:
+- id: fzemanufacturing_com-material_caps-0001
+  name: Lead
+  status: confirmed
+  acceptable_forms:
+  - Lead
+  evidence:
+  - quote: just-in-time manufacturing practices, resulting in reduced inventory levels and storage costs, shorter
+      lead times, and a demonstrated positive impact on the customer’s bottom line.
+    approx_offset: 1577
+  - quote: Lead
+    approx_offset: 9120
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: amended
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+    reason: 'the metal is real - a standalone item in all four Materials (Metals) tables (lines 225/2011/2756/3532)
+      - but the packet''s quote proves ''shorter lead times'', not the element. Re-anchored on the Materials (Metals)
+      line. Caveat for whoever scores this: ''Lead'' is 4 chars so it is matched case-insensitively without word
+      boundaries, and only 4 of the 46 ''lead'' occurrences in the file are the metal (the rest are ''lead times'',
+      ''leading'', ''leader''), so this entry''s recall number carries almost no information whichever quote it
+      holds'
+- id: fzemanufacturing_com-material_caps-0002
+  name: Alloy, plain carbon & tool steels
+  status: confirmed
+  acceptable_forms:
+  - Alloy, Plain Carbon & Tool Steels
+  - Alloy steel
+  - alloy steel
+  - Tool Steels
+  - carbon steel
+  - Carbon and Alloy Steels
+  evidence:
+  - quote: Alloy, Plain Carbon & Tool Steels
+    approx_offset: 9037
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-material_caps-0003
+  name: Aluminum
+  status: confirmed
+  acceptable_forms:
+  - Aluminum
+  - aluminum
+  - Aluminum alloys
+  - anodized aluminum
+  evidence:
+  - quote: Aluminum
+    approx_offset: 9071
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-material_caps-0004
+  name: Brass
+  status: confirmed
+  acceptable_forms:
+  - Brass
+  - brass
+  evidence:
+  - quote: Brass
+    approx_offset: 9080
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-material_caps-0005
+  name: Bronze
+  status: confirmed
+  acceptable_forms:
+  - Bronze Alloys
+  - Bronze
+  - bronze
+  evidence:
+  - quote: Bronze Alloys
+    approx_offset: 9086
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-material_caps-0006
+  name: Carbide
+  status: confirmed
+  acceptable_forms:
+  - Carbide
+  evidence:
+  - quote: Carbide
+    approx_offset: 9100
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-material_caps-0007
+  name: Copper
+  status: confirmed
+  acceptable_forms:
+  - Copper
+  - copper
+  evidence:
+  - quote: Copper
+    approx_offset: 9108
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-material_caps-0008
+  name: Iron
+  status: confirmed
+  acceptable_forms:
+  - Iron
+  - iron
+  - free iron
+  evidence:
+  - quote: Iron
+    approx_offset: 9115
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-material_caps-0009
+  name: Magnesium
+  status: confirmed
+  acceptable_forms:
+  - Magnesium
+  - magnesium
+  evidence:
+  - quote: Magnesium
+    approx_offset: 9126
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-material_caps-0010
+  name: Molybdenum
+  status: confirmed
+  acceptable_forms:
+  - Molybdenum
+  evidence:
+  - quote: Molybdenum
+    approx_offset: 9136
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-material_caps-0011
+  name: Stainless steel
+  status: confirmed
+  acceptable_forms:
+  - Stainless Steel
+  - stainless steel
+  - Stainless Steels
+  evidence:
+  - quote: Stainless Steel
+    approx_offset: 9147
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-material_caps-0012
+  name: Stellite (hardfacing)
+  status: confirmed
+  acceptable_forms:
+  - Stellite (Hardfacing)
+  - Stellite
+  - Hardfacing
+  evidence:
+  - quote: Stellite (Hardfacing)
+    approx_offset: 9163
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-material_caps-0013
+  name: Tin
+  status: confirmed
+  acceptable_forms:
+  - Tin
+  evidence:
+  - quote: Tin
+    approx_offset: 9185
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-material_caps-0014
+  name: Titanium
+  status: confirmed
+  acceptable_forms:
+  - Titanium
+  - titanium
+  evidence:
+  - quote: Titanium
+    approx_offset: 9189
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-material_caps-0015
+  name: Tungsten
+  status: confirmed
+  acceptable_forms:
+  - Tungsten
+  - tungsten
+  - tungsten electrode
+  evidence:
+  - quote: Tungsten
+    approx_offset: 9198
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-material_caps-0016
+  name: Zinc
+  status: confirmed
+  acceptable_forms:
+  - Zinc
+  evidence:
+  - quote: Zinc
+    approx_offset: 9207
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-material_caps-0017
+  name: Inconel
+  status: confirmed
+  acceptable_forms:
+  - Inconel
+  - Inconel®
+  evidence:
+  - quote: Inconel
+    approx_offset: 9252
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-material_caps-0018
+  name: Invar
+  status: confirmed
+  acceptable_forms:
+  - Invar
+  evidence:
+  - quote: Invar
+    approx_offset: 9260
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-material_caps-0019
+  name: Iridium
+  status: confirmed
+  acceptable_forms:
+  - Iridium
+  evidence:
+  - quote: Iridium
+    approx_offset: 9266
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-material_caps-0020
+  name: Kovar
+  status: confirmed
+  acceptable_forms:
+  - Kovars
+  - Kovar
+  evidence:
+  - quote: Kovars
+    approx_offset: 9274
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-material_caps-0021
+  name: Monel
+  status: confirmed
+  acceptable_forms:
+  - Monel
+  evidence:
+  - quote: Monel
+    approx_offset: 9293
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-material_caps-0022
+  name: Niobium
+  status: confirmed
+  acceptable_forms:
+  - Niobium
+  evidence:
+  - quote: Niobium
+    approx_offset: 9299
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-material_caps-0023
+  name: Platinum
+  status: confirmed
+  acceptable_forms:
+  - Platinum
+  evidence:
+  - quote: Platinum
+    approx_offset: 9307
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-material_caps-0024
+  name: Superalloys
+  status: confirmed
+  acceptable_forms:
+  - Superalloys
+  evidence:
+  - quote: Superalloys
+    approx_offset: 9316
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-material_caps-0025
+  name: Tantalum
+  status: confirmed
+  acceptable_forms:
+  - Tantalum
+  evidence:
+  - quote: Tantalum
+    approx_offset: 9328
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-material_caps-0026
+  name: ABS
+  status: confirmed
+  acceptable_forms:
+  - ABS (Acrylonitrile Butadiene Styrene)
+  - Acrylonitrile Butadiene Styrene
+  - ABS
+  evidence:
+  - quote: ABS (Acrylonitrile Butadiene Styrene)
+    approx_offset: 9369
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-material_caps-0027
+  name: Acetal
+  status: confirmed
+  acceptable_forms:
+  - Acetal
+  evidence:
+  - quote: Acetal
+    approx_offset: 9407
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-material_caps-0028
+  name: Acrylic
+  status: confirmed
+  acceptable_forms:
+  - Acrylic
+  evidence:
+  - quote: Acrylic
+    approx_offset: 9414
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-material_caps-0029
+  name: Fiberglass reinforced plastics
+  status: confirmed
+  acceptable_forms:
+  - Fiberglass Reinforced Plastics
+  evidence:
+  - quote: Fiberglass Reinforced Plastics
+    approx_offset: 9422
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-material_caps-0030
+  name: Fiberglass
+  status: confirmed
+  acceptable_forms:
+  - Fiberglass
+  - fiberglass
+  evidence:
+  - quote: Fiberglass Reinforced Plastics
+    approx_offset: 9422
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-material_caps-0031
+  name: Nylon
+  status: confirmed
+  acceptable_forms:
+  - Nylon
+  evidence:
+  - quote: Nylon
+    approx_offset: 9453
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-material_caps-0032
+  name: PEEK
+  status: confirmed
+  acceptable_forms:
+  - PEEK (Polyetheretherketone)
+  - Polyetheretherketone
+  - PEEK
+  evidence:
+  - quote: PEEK (Polyetheretherketone)
+    approx_offset: 9459
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-material_caps-0033
+  name: Phenolic
+  status: confirmed
+  acceptable_forms:
+  - Phenolic
+  evidence:
+  - quote: Phenolic
+    approx_offset: 9487
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-material_caps-0034
+  name: Polyamide-Imide
+  status: confirmed
+  acceptable_forms:
+  - Polyamide-Imide
+  evidence:
+  - quote: Polyamide-Imide
+    approx_offset: 9496
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-material_caps-0035
+  name: Polycarbonate
+  status: confirmed
+  acceptable_forms:
+  - Polycarbonate
+  evidence:
+  - quote: Polycarbonate
+    approx_offset: 9512
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-material_caps-0036
+  name: Polyetherimide
+  status: confirmed
+  acceptable_forms:
+  - Polyetherimide
+  evidence:
+  - quote: Polyetherimide
+    approx_offset: 9526
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-material_caps-0037
+  name: Polyethylene
+  status: confirmed
+  acceptable_forms:
+  - Polyethylene
+  evidence:
+  - quote: Polyethylene
+    approx_offset: 9542
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-material_caps-0038
+  name: Polyphenylene Sulfide
+  status: confirmed
+  acceptable_forms:
+  - Polyphenylene Sulfide
+  evidence:
+  - quote: Polyphenylene Sulfide
+    approx_offset: 9555
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-material_caps-0039
+  name: Polypropylene
+  status: confirmed
+  acceptable_forms:
+  - Polypropylene
+  evidence:
+  - quote: Polypropylene
+    approx_offset: 9577
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-material_caps-0040
+  name: Polystyrene
+  status: confirmed
+  acceptable_forms:
+  - Polystyrene
+  - polystyrene
+  evidence:
+  - quote: Polystyrene
+    approx_offset: 9591
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-material_caps-0041
+  name: Polysulphone
+  status: confirmed
+  acceptable_forms:
+  - Polysulphone
+  evidence:
+  - quote: Polysulphone
+    approx_offset: 9603
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-material_caps-0042
+  name: PTFE
+  status: confirmed
+  acceptable_forms:
+  - PTFE (PolyTetraFluoroEthylene)
+  - PolyTetraFluoroEthylene
+  - PTFE
+  evidence:
+  - quote: PTFE (PolyTetraFluoroEthylene)
+    approx_offset: 9616
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-material_caps-0043
+  name: PVC
+  status: confirmed
+  acceptable_forms:
+  - PVC (Polyvinyl Chloride)
+  - Polyvinyl Chloride
+  - PVC
+  evidence:
+  - quote: PVC (Polyvinyl Chloride)
+    approx_offset: 9647
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-material_caps-0044
+  name: PVDF
+  status: confirmed
+  acceptable_forms:
+  - PVDF (Polyvinylidene Fluoride)
+  - Polyvinylidene Fluoride
+  - PVDF
+  evidence:
+  - quote: PVDF (Polyvinylidene Fluoride)
+    approx_offset: 9672
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-material_caps-0045
+  name: Teflon
+  status: confirmed
+  acceptable_forms:
+  - Teflon
+  evidence:
+  - quote: Teflon
+    approx_offset: 9703
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-material_caps-0046
+  name: UHMW
+  status: confirmed
+  acceptable_forms:
+  - UHMW
+  evidence:
+  - quote: UHMW
+    approx_offset: 9710
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-material_caps-0047
+  name: Ceramic
+  status: confirmed
+  acceptable_forms:
+  - Ceramic
+  - ceramics
+  - ceramic
+  evidence:
+  - quote: Ceramic
+    approx_offset: 9746
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-material_caps-0048
+  name: Composite materials
+  status: confirmed
+  acceptable_forms:
+  - Composite Materials
+  - composites
+  evidence:
+  - quote: Composite Materials
+    approx_offset: 9754
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-material_caps-0049
+  name: Graphite
+  status: confirmed
+  acceptable_forms:
+  - Graphite
+  - graphite
+  evidence:
+  - quote: Graphite
+    approx_offset: 9786
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-material_caps-0050
+  name: Shielding gas
+  status: confirmed
+  acceptable_forms:
+  - shielding gas
+  - inert gas
+  - inert shielding gas
+  evidence:
+  - quote: melting together the two base materials. With the help of the gun, a shielding gas is fed alongside the
+      electrode to prevent contaminants from entering the weld pool.
+    approx_offset: 36144
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-material_caps-0051
+  name: Nickel
+  status: confirmed
+  acceptable_forms:
+  - Nickel
+  - nickel
+  evidence:
+  - quote: variety of metals and alloys, such as stainless steel, aluminum, mild steel, copper, magnesium, nickel,
+      and many other types of alloys, including iron alloys.
+    approx_offset: 48179
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-material_caps-0052
+  name: Mild steel
+  status: confirmed
+  acceptable_forms:
+  - Mild Steel
+  - mild steel
+  - mild carbon steel
+  evidence:
+  - quote: Mild Steel and/or Aluminum frames used in professional turf care
+    approx_offset: 49204
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-material_caps-0053
+  name: Electrolyte solution
+  status: confirmed
+  acceptable_forms:
+  - electrolyte solution
+  - chemical electrolyte solution
+  - electrolyte bath
+  evidence:
+  - quote: 'electric current between positive (anode) and negative (cathode) terminals immersed in a chemical electrolyte
+      solution. A standard finishing operation typically includes the following steps:'
+    approx_offset: 63256
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-material_caps-0054
+  name: Plastics / polymers
+  status: confirmed
+  acceptable_forms:
+  - plastics
+  - Plastic compounds
+  - polymers
+  - plastic
+  evidence:
+  - quote: Plastic compounds
+    approx_offset: 76746
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-material_caps-0055
+  name: Chromium
+  status: confirmed
+  acceptable_forms:
+  - chromium
+  - oxidized chromium
+  - chromating
+  evidence:
+  - quote: alloyed iron contained within the passivated stainless steel itself. While stainless steel has chromium
+      and nickel to protect it, the chromium and nickel itself is made of about 60–70% iron. As
+    approx_offset: 86693
+  notes: also implied by 'chromating' in the firearm-components secondary-services sentence - a treatment named
+    after the substance it deposits
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-material_caps-0056
+  name: Sulfur
+  status: confirmed
+  acceptable_forms:
+  - sulfur
+  evidence:
+  - quote: During stainless steel production, mills add sulfur to the stainless steel to make it easier to form
+      and machine. This sulfur, along
+    approx_offset: 86969
+  actor: unknown
+  notes: named in the passivation explainer describing what mills add during steel production
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-material_caps-0057
+  name: Citric acid
+  status: confirmed
+  acceptable_forms:
+  - citric acid
+  - Citric Acid Bath
+  - citric acid bath
+  evidence:
+  - quote: bath to dissolve the iron—typically nitric or citric acid. FZE uses a citric acid bath and this is when
+      the protective passive layer forms on the part.
+    approx_offset: 87690
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-material_caps-0058
+  name: Copper sulfate
+  status: confirmed
+  acceptable_forms:
+  - copper sulfate
+  evidence:
+  - quote: A final testing stage tests the material’s resistance to salt sprays and other corrosive materials such
+      as copper sulfate.
+    approx_offset: 87912
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-material_caps-0059
+  name: Palladium
+  status: confirmed
+  acceptable_forms:
+  - Palladium
+  evidence:
+  - quote: Palladium
+    approx_offset: 106070
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-material_caps-0060
+  name: Argon
+  status: confirmed
+  acceptable_forms:
+  - argon
+  evidence:
+  - quote: of the electrode is enveloped in an inert shielded gas barrier, such as helium or argon, to prevent contamination
+      of the weld pool or puddle.
+    approx_offset: 114073
+  notes: the TIG shielding gas - the work is performed in it
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-material_caps-0061
+  name: Helium
+  status: confirmed
+  acceptable_forms:
+  - helium
+  - helium-neon
+  evidence:
+  - quote: of the electrode is enveloped in an inert shielded gas barrier, such as helium or argon, to prevent contamination
+      of the weld pool or puddle.
+    approx_offset: 114073
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-material_caps-0062
+  name: Sheet metal
+  status: confirmed
+  acceptable_forms:
+  - sheet metal
+  - metal sheets
+  - Perforated metal
+  evidence:
+  - quote: 'Starting with raw materials such as sheet metal, bar stock, tubing, or metal plate, FZE can provide
+      custom metal fabrication within these parameters:'
+    approx_offset: 135239
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-material_caps-0063
+  name: Bar stock
+  status: confirmed
+  acceptable_forms:
+  - bar stock
+  - bars of materials
+  - bar material
+  evidence:
+  - quote: 'Starting with raw materials such as sheet metal, bar stock, tubing, or metal plate, FZE can provide
+      custom metal fabrication within these parameters:'
+    approx_offset: 135239
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-material_caps-0064
+  name: Tubing
+  status: confirmed
+  acceptable_forms:
+  - tubing
+  - tubes
+  evidence:
+  - quote: 'Starting with raw materials such as sheet metal, bar stock, tubing, or metal plate, FZE can provide
+      custom metal fabrication within these parameters:'
+    approx_offset: 135239
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-material_caps-0065
+  name: Metal plate
+  status: confirmed
+  acceptable_forms:
+  - metal plate
+  - plates
+  evidence:
+  - quote: 'Starting with raw materials such as sheet metal, bar stock, tubing, or metal plate, FZE can provide
+      custom metal fabrication within these parameters:'
+    approx_offset: 135239
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-material_caps-0066
+  name: Structural steel
+  status: confirmed
+  acceptable_forms:
+  - structural steel
+  evidence:
+  - quote: rivets, threaded fasteners, or crimped seams can be used. Materials used for fabrication typically include
+      structural steel and sheet metal, welding wire, and fasteners to join pieces.
+    approx_offset: 136403
+  actor: unknown
+  notes: generic metal-fabrication explainer sentence
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-material_caps-0067
+  name: Welding wire
+  status: confirmed
+  acceptable_forms:
+  - welding wire
+  - electrode wire
+  - wire electrode
+  - filler rod
+  - filler metal
+  evidence:
+  - quote: fasteners, or crimped seams can be used. Materials used for fabrication typically include structural
+      steel and sheet metal, welding wire, and fasteners to join pieces.
+    approx_offset: 136420
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-material_caps-0068
+  name: Oxygen
+  status: confirmed
+  acceptable_forms:
+  - oxygen
+  evidence:
+  - quote: both the electrode and the metal surface into a weld pool. A gas nozzle pumps a combination of argon
+      and oxygen into the workspace, forming the arc plasma and shielding the entire process from
+    approx_offset: 147086
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-material_caps-0069
+  name: Beryllium
+  status: confirmed
+  acceptable_forms:
+  - Beryllium
+  evidence:
+  - quote: Beryllium
+    approx_offset: 151840
+  notes: from the firearm-components materials list
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-material_caps-0070
+  name: Cobalt
+  status: confirmed
+  acceptable_forms:
+  - Cobalt
+  evidence:
+  - quote: Cobalt
+    approx_offset: 151856
+  notes: from the firearm-components materials list
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-material_caps-0071
+  name: Gold
+  status: confirmed
+  acceptable_forms:
+  - Gold
+  evidence:
+  - quote: Gold
+    approx_offset: 151984
+  notes: from the firearm-components 'Other materials' list
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-material_caps-0072
+  name: Wood
+  status: confirmed
+  acceptable_forms:
+  - Wood
+  evidence:
+  - quote: Wood
+    approx_offset: 152056
+  notes: from the firearm-components 'Other materials' list
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-material_caps-0073
+  name: Carbon dioxide (CO2)
+  status: disputed
+  acceptable_forms:
+  - CO2
+  - CO2 gas lasers
+  evidence:
+  - quote: (10600 nm wavelength) utilize gas as a medium to amplify light. Manufacturers commonly use CO2 gas lasers
+      for a range of processes because they are generally affordable and work well with organic
+    approx_offset: 175627
+  actor: unknown
+  notes: the laser medium in the laser-marking explainer, not a work material | CO2 is named only as the gas that
+    AMPLIFIES LIGHT inside a marking laser ('use gas as a medium to amplify light'), never as something the work
+    is made from or performed in - see the laser gain media note below
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: disputed
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+    reason: CO2 is named only as the gas that AMPLIFIES LIGHT inside a marking laser ('use gas as a medium to amplify
+      light'), never as something the work is made from or performed in - see the laser gain media note below
+- id: fzemanufacturing_com-material_caps-0074
+  name: Nd:YAG / vanadate
+  status: disputed
+  acceptable_forms:
+  - Nd:YAG
+  - Vanadate
+  - neodymium
+  - yttrium aluminum garnet
+  evidence:
+  - quote: in association with a laser diode or discharge lamp. Nd:YAG and Vanadate are two of the most common crystal
+      types used for solid-state lasers. These laser marking systems are well-suited for small
+    approx_offset: 176185
+  actor: unknown
+  notes: a LASER GAIN MEDIUM, not a substance the work is made from or performed in. Kept as an entry because the
+    text names the substance, but it is a boundary question - the search prompt's clause is about materials the
+    work is made from or performed in | Nd:YAG and Vanadate are named only as 'crystal types used for solid-state
+    lasers', i.e. the gain medium inside the machine, not a substance the work is made from or performed in
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: disputed
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+    reason: Nd:YAG and Vanadate are named only as 'crystal types used for solid-state lasers', i.e. the gain medium
+      inside the machine, not a substance the work is made from or performed in
+- id: fzemanufacturing_com-material_caps-0075
+  name: Rare earth elements
+  status: disputed
+  acceptable_forms:
+  - rare earth elements
+  evidence:
+  - quote: (1070 nm wavelength) are very similar to solid-state systems, but they utilize rare earth elements as
+      their light amplification medium. Erbium and Ytterbium are the most commonly used elements for
+    approx_offset: 176607
+  actor: unknown
+  notes: a laser gain medium, same boundary question as Nd:YAG | 'rare earth elements' is named only as the 'light
+    amplification medium' of a fiber laser - a substance belonging to the equipment, not to the work
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: disputed
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+    reason: '''rare earth elements'' is named only as the ''light amplification medium'' of a fiber laser - a substance
+      belonging to the equipment, not to the work'
+- id: fzemanufacturing_com-material_caps-0076
+  name: Erbium
+  status: disputed
+  acceptable_forms:
+  - Erbium
+  evidence:
+  - quote: utilize rare earth elements as their light amplification medium. Erbium and Ytterbium are the most commonly
+      used elements for fiber lasers. While fiber lasers offer a low maintenance threshold and
+    approx_offset: 176678
+  actor: unknown
+  notes: a laser gain medium, same boundary question as Nd:YAG | Erbium is named only as one of the elements 'used
+    for fiber lasers' as their amplification medium; the work is marked BY the beam, it is not made from or performed
+    in erbium
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: disputed
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+    reason: Erbium is named only as one of the elements 'used for fiber lasers' as their amplification medium; the
+      work is marked BY the beam, it is not made from or performed in erbium
+- id: fzemanufacturing_com-material_caps-0077
+  name: Ytterbium
+  status: disputed
+  acceptable_forms:
+  - Ytterbium
+  evidence:
+  - quote: utilize rare earth elements as their light amplification medium. Erbium and Ytterbium are the most commonly
+      used elements for fiber lasers. While fiber lasers offer a low maintenance threshold and
+    approx_offset: 176678
+  actor: unknown
+  notes: 'a laser gain medium, same boundary question as Nd:YAG | Ytterbium: same as Erbium - named only as a fiber-laser
+    gain medium, not as a substance the work is made from or performed in'
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: disputed
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+    reason: 'Ytterbium: same as Erbium - named only as a fiber-laser gain medium, not as a substance the work is
+      made from or performed in'
+- id: fzemanufacturing_com-material_caps-0078
+  name: Heat-resistant metals
+  status: confirmed
+  acceptable_forms:
+  - Heat-resistant metals
+  - heat resistant metals
+  evidence:
+  - quote: Heat-resistant metals
+    approx_offset: 178176
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-material_caps-0079
+  name: Light metal
+  status: confirmed
+  acceptable_forms:
+  - Light metal
+  evidence:
+  - quote: Light metal, Perforated metal
+    approx_offset: 178226
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-material_caps-0080
+  name: Sulfuric and phosphoric acid
+  status: confirmed
+  acceptable_forms:
+  - sulfuric and phosphoric acid
+  - phosphoric acid
+  - sulfuric
+  evidence:
+  - quote: the unit into a temperature-controlled electrolyte bath—typically containing a high-viscosity mixture
+      of sulfuric and phosphoric acid—and apply an electric current. The combination of the chemical
+    approx_offset: 213641
+  actor: unknown
+  notes: the electropolishing electrolyte, described generically in the blog
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-material_caps-0081
+  name: Foam
+  status: confirmed
+  acceptable_forms:
+  - foam
+  evidence:
+  - quote: Versatility: CNC machinery can work with a diverse array of materials, including many types of foam,
+      metals, plastics, polymers, organic materials, etc. CNC technology can also apply a wide range
+    approx_offset: 218575
+  actor: unknown
+  notes: generic CNC-prototyping explainer list of what CNC machinery can work with
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-material_caps-0082
+  name: Fabrics
+  status: confirmed
+  acceptable_forms:
+  - fabrics
+  evidence:
+  - quote: Additionally, the process can be used on a variety of substrates, ranging from metals and alloys to plastics,
+      fabrics, and paper, for marking many different designs.
+    approx_offset: 235585
+  actor: unknown
+  notes: laser-marking substrate list in the Guide to Laser Marking
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-material_caps-0083
+  name: Glass
+  status: confirmed
+  acceptable_forms:
+  - glass
+  evidence:
+  - quote: Inorganics such as glass, gemstones, and stone
+    approx_offset: 240387
+  actor: unknown
+  notes: laser-marking materials list in the Guide to Laser Marking
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-material_caps-0084
+  name: Gemstones
+  status: confirmed
+  acceptable_forms:
+  - gemstones
+  evidence:
+  - quote: Inorganics such as glass, gemstones, and stone
+    approx_offset: 240387
+  actor: unknown
+  notes: laser-marking materials list in the Guide to Laser Marking
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-material_caps-0085
+  name: Stone
+  status: confirmed
+  acceptable_forms:
+  - stone
+  evidence:
+  - quote: Inorganics such as glass, gemstones, and stone
+    approx_offset: 240387
+  actor: unknown
+  notes: laser-marking materials list in the Guide to Laser Marking
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-material_caps-0086
+  name: Leather
+  status: confirmed
+  acceptable_forms:
+  - leather
+  evidence:
+  - quote: Organics such as leather, paper, and
+    approx_offset: 240434
+  actor: unknown
+  notes: laser-marking materials list; the scrape truncates the sentence after 'paper, and'
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-material_caps-0087
+  name: Paper
+  status: confirmed
+  acceptable_forms:
+  - paper
+  - paper materials
+  evidence:
+  - quote: Organics such as leather, paper, and
+    approx_offset: 240434
+  actor: unknown
+  notes: laser-marking materials list in the Guide to Laser Marking
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-material_caps-0088
+  name: Nitric acid
+  status: confirmed
+  acceptable_forms:
+  - Nitric Acid Bath
+  - nitric acid passivation
+  - Nitric acid
+  evidence:
+  - quote: Nitric Acid Bath
+    approx_offset: 249985
+  notes: named as the traditional passivation chemistry; the page then says FZE uses citric acid instead, so nitric
+    is a contrast for FZE but a real named process material
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-material_caps-0089
+  name: Sodium dichromate
+  status: confirmed
+  acceptable_forms:
+  - sodium dichromate
+  - Sodium Dichromate
+  evidence:
+  - quote: Nitric Acid with Sodium Dichromate Bath
+    approx_offset: 250394
+  actor: unknown
+  notes: named in the passivation blog as a less common bath additive, explicitly not FZE's choice
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-material_caps-0090
+  name: Silicon
+  status: confirmed
+  acceptable_forms:
+  - silicon
+  evidence:
+  - quote: can work with a huge range of fiber laser materials, including plastic, metal, ceramic, polymers, silicon,
+      gemstones and many others. This allows for greater versatility and the ability
+    approx_offset: 255423
+  actor: unknown
+  notes: fiber-laser materials list in the What Is Fiber Laser Marking blog
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-material_caps-0091
+  name: Adhesives
+  status: candidate
+  acceptable_forms:
+  - adhesives
+  evidence:
+  - quote: 'Assembly: In the process of assembly, welds, adhesives, rivets, threaded fasteners, or crimped seams
+      can be used. Materials used for fabrication typically include structural steel and sheet metal,'
+    approx_offset: 136347
+  actor: unknown
+  notes: named as a joining material in the metal-fabrication assembly list, alongside welding wire and fasteners
+    which the packet does seed; absent from the packet
+  provenance:
+  - action: added
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+    source: verification-pass-miss
+- id: fzemanufacturing_com-material_caps-0092
+  name: Flux
+  status: candidate
+  acceptable_forms:
+  - flux
+  evidence:
+  - quote: Stick welding is the most basic welding technique. In SMAW, the shielding gas comes from flux—a coating
+      on the electrode that releases shielding gas when burned. Unlike MIG, the electrode is not fed
+    approx_offset: 150112
+  actor: unknown
+  notes: 'named as the electrode coating that supplies shielding gas in SMAW, and again in ''MIG welding does not
+    use flux''. Caveat: the bare form ''flux'' is a substring of ''flux-cored''/''Flux Core'', so it will also credit
+    on FCAW mentions - tighten before relying on it'
+  provenance:
+  - action: added
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+    source: verification-pass-miss
+- id: fzemanufacturing_com-material_caps-0093
+  name: Deionized (DI) water
+  status: candidate
+  acceptable_forms:
+  - deionized (DI) water
+  - DI water
+  - deionized
+  evidence:
+  - quote: Next, the part is rinsed with deionized (DI) water and then placed in an acid bath to dissolve the iron—typically
+      nitric or citric acid. FZE uses a citric acid bath and this is when the protective
+    approx_offset: 87612
+  notes: a rinse the part is immersed in during FZE's passivation line - the same 'performed in' class as the citric
+    and nitric acid baths, both of which the packet seeds
+  provenance:
+  - action: added
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+    source: verification-pass-miss
+- id: fzemanufacturing_com-material_caps-0094
+  name: Alkaline-based cleaner
+  status: candidate
+  acceptable_forms:
+  - alkaline-based cleaner
+  evidence:
+  - quote: The stainless-steel item first undergoes cleaning with an alkaline-based cleaner. This removes surface
+      contaminants, including iron molecules, grease, and oils that may have been left on the part.
+    approx_offset: 87415
+  notes: step 1 of FZE's stated passivation process; a substance the work is processed in, same class as the acid
+    baths already seeded
+  provenance:
+  - action: added
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+    source: verification-pass-miss
+false_friends:
+- form: Carbide
+  reason: the Materials (Metals) table row is genuine, BUT 'carbide' also reads as tooling (carbide inserts) - anything
+    returning it from the Turning Tools & Accessories block has the wrong sense
+- form: Granite
+  reason: occurs only as 'Granite Tables W/Ht. Gages' - inspection-room furniture, not a material the work is made
+    from
+- form: Sod
+  reason: '''rolls of sod'' in the laser-marking industries list is a landscaping good being labelled, not a material
+    FZE works in'
+- form: Chrome
+  reason: '''chrome plating'' is named only as the finish electropolishing is compared against; chromium as a work
+    material is separately covered'
+- form: Inconel 718
+  reason: 'anticipatory: the text names bare ''Inconel'' and ''Inconel(R)'' only - no grade numbers appear anywhere
+    in this corpus subject'
+- form: '6061'
+  reason: 'anticipatory: no alloy grade designations occur anywhere in this text; a grep for 3-4 digit runs finds
+    only the phone number and machine model numbers'

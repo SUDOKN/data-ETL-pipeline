@@ -1,0 +1,56 @@
+subject: superiortech.org
+slug: superiortech_org
+role: full_unit
+business_type: build-to-print machining shop; ~100-machine equipment census, stratified in-house vs outsourced tiers
+snapshot:
+  file: apps/data_etl_app/tests/test_stages/sample_scraped_texts/superiortech.org.txt
+  sha256: 96bf25a3e1f14d03fd06d8743ed8a1cbe3ed3d72169d96fbe2c81300bf03951f
+eval_set_version: 1
+context: 'Superior Technology, Inc. (superiortech.org) — a 50-year-old family-owned Rochester NY build-to-print
+  precision CNC machine shop, 81,000 sq ft, ISO 9001:2015, ~70 CNC machines. Chosen for STRATIFIED DEPTH: five in-house
+  capabilities (CNC turning, CNC milling, large-part turning/milling, grinding-lapping-honing, electro-mechanical
+  assembly & test) are each backed by a named-machine census on the facilities-list page, while a second tier of
+  processes (heat treatment, plating/paint/surface treatment, outsourced destructive & chemical testing, and the
+  wider value-added list) appears ONLY as hedged vendor lists with no machine behind them. Both tiers are seeded
+  as entries under recall-first; the tier is recorded per entry in `notes` and via `actor: supplier`. The subject
+  also carries the corpus''s largest equipment census (~100 machine units, ~75 distinct designations, lines 376-606)
+  and is a genuine own-products NEGATIVE: every artifact named is a customer part.'
+scrape_hazards:
+- hazard: 139 NO-BREAK SPACEs, many INSIDE machine designations, so a retyped form fails a byte-exact check
+  quote: (1) WENZEL  XO97 CMM (36”/60”/24”) Resolution 0.000004” (4 millionths). 0.1µm
+- hazard: The census uses a '(N)  DESIGNATION; spec; spec' shape where the count prefix is NBSP-padded and the specs
+    are semicolon-delimited
+  quote: (2)  SUNNEN Honing Machines with auto stroker
+- hazard: Inch marks are inconsistently DOUBLE PRIME (U+2033) and RIGHT DOUBLE QUOTATION MARK (U+201D), sometimes
+    both on one line
+  quote: (1)  HWACHEON VT650R VERTICAL TURNING CENTER 18” chuck; live tooling, 32″ turn diameter, 30″ turn length
+- hazard: Nine pages are near-duplicates served at two URL prefixes (/capabilities-superior-technology-inc/X and
+    /capabilities/X), so most prose entities have two evidence sites; the facilities-list machine census appears
+    ONCE only (lines 376-606)
+  quote: https://superiortech.org/capabilities/large-cnc-turning-milling-superior-technology-inc/
+- hazard: A 30x repeated footer carries 'ISO 9001:2015 CERTIFIED', which makes that one attestation window-scoped
+    almost everywhere
+  quote: ISO 9001:2015 CERTIFIED
+- hazard: En-dash separates a brand from its machine type in the census ('PEMSERTER – Self-Clinching Fastener Press')
+  quote: (3)  PEMSERTER – Self-Clinching Fastener Press
+sampling_notes: 'EXHAUSTIVE. Whole file read in slices covering lines 1-1164 (all 60,180 bytes; sha256 96bf25a3...):
+  1-120, 120-280, 280-440, 440-600, 600-780, 780-960, 960-1164. Then targeted grep sweeps: every -ing word by frequency
+  (112 distinct); standards bodies (ISO/ASTM/ANSI/API/AMS/NADCAP/UL/CE/EN/AWS/ASME/NIST/SAE/AS9100/IATF/ITAR/RoHS/FDA/OSHA/MIL/APQP/PPAP/SPC/DFARS/D-U-N-S);
+  40 metal, alloy and polymer names; short forms on word boundaries (CNC/MIG/TIG/NDT/MPI/CMM/VTL/OEM/SPC/SEM/PET/ITAR/ABS);
+  a non-ASCII character census; and substring-trap checks on pet/itar/iron/bar/lead/tin/sem. Every one of the 1,164
+  lines was inspected.'
+notes: 'Prior-lead verification, all three CONFIRMED against the bytes: (1) ''PET'' has 0 word-boundary occurrences
+  and 9 substring hits, all inside ''competitive''; (2) ''ITAR'' has 0 word-boundary occurrences and 9 substring
+  hits, all inside ''Military''; (3) the word ''plastics'' occurs exactly once (line 299) and NOT ONE specific polymer
+  name occurs anywhere — nylon, PEEK, Delrin, acetal, PTFE, Teflon, polycarbonate, PVC, polypropylene, polyethylene,
+  ABS, UHMW, acrylic, polyurethane, epoxy, PVDF, polyamide, ''polymer'', ''resin'' and ''thermoplastic'' are all
+  zero, so the old pipeline''s 13 polymers were pure fabrication off a single plural noun. NEW trap found by the
+  same method: ''Iron'' also has 0 word-boundary occurrences, with all 7 substring hits inside ''environment''/''environmental''
+  — the same shape as PET and ITAR, and ''Cast Iron'' is additionally primed by the 5 real occurrences of ''castings''.
+  Also new: ''bar'' occurs 11 times and NEVER as bar stock (always ''bar feeder''), and ''Sheetmetal'' is one word
+  so ''Sheet Metal'' is zero.'
+provenance:
+- action: added
+  by: seed-agent-superiortech-org
+  date: '2026-08-27'
+  source: corpus-seed

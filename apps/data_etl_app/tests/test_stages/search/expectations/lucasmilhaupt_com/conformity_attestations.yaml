@@ -1,0 +1,496 @@
+subject: lucasmilhaupt.com
+field: conformity_attestations
+snapshot:
+  file: apps/data_etl_app/tests/test_stages/sample_scraped_texts/lucasmilhaupt.com.txt
+  sha256: d92eed67ef99d67a791896d0467d78dc0c60bf7a96e2ec6f99926618da193236
+eval_set_version: 2
+expected_empty: false
+notes: 'Two distinct populations. (1) Company quality-system certifications, concentrated on /About/Certification
+  and repeated in the industry-page intros: AS9100 D, ISO 9001, ISO 14001, IATF 16949, ITAR, DFARS, RoHS, NATE.
+  (2) PRODUCT specification designations printed in the ''Industry Specifications'' block of every product detail
+  page: AWS filler-metal classifications (BVAg-8, BAlSi-4, BCuP-5), ISO 17672 alloy numbers (Ag 272, Al 112) and
+  AMS numbers (4185, 3410, 3411). The second population is the one a name-only reading of the field would miss.
+  TDS/SDS occur ~500 times and are documents, not attestations.'
+entries:
+- id: lucasmilhaupt_com-conformity_attestations-0001
+  name: AS9100
+  status: confirmed
+  acceptable_forms:
+  - AS9100
+  - AS 9100
+  - AS9100 D
+  - AS9100-certified
+  - AS9100 certification
+  evidence:
+  - quote: Our commitment to quality is just as broad. Lucas Milhaupt operates under AS9100 D, ISO 9001, ISO 14001,
+      and IATF 16949 quality systems, maintains
+    approx_offset: 4001
+  - quote: 'AS 9100: Committing to the highest quality standards in Aviation, Space and Defense'
+    approx_offset: 14217
+  - quote: Vacuum tube components, metallized ceramics, applications where AS9100 certification is required
+    approx_offset: 196047
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+- id: lucasmilhaupt_com-conformity_attestations-0002
+  name: ITAR
+  status: confirmed
+  acceptable_forms:
+  - ITAR
+  evidence:
+  - quote: 9001, ISO 14001, and IATF 16949 quality systems, maintains ITAR and DFARS compliance, and holds numerous
+      customer-specific approvals
+    approx_offset: 4089
+  - quote: ITAR & DFAR Certified Compliance
+    approx_offset: 14349
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+- id: lucasmilhaupt_com-conformity_attestations-0003
+  name: DFARS
+  status: confirmed
+  acceptable_forms:
+  - DFARS
+  - DFAR
+  - DFAR Certified Compliance
+  evidence:
+  - quote: 9001, ISO 14001, and IATF 16949 quality systems, maintains ITAR and DFARS compliance, and holds numerous
+      customer-specific approvals
+    approx_offset: 4089
+  - quote: ITAR & DFAR Certified Compliance
+    approx_offset: 14349
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+- id: lucasmilhaupt_com-conformity_attestations-0004
+  name: customer-specific approvals
+  status: disputed
+  acceptable_forms:
+  - customer-specific approvals
+  evidence:
+  - quote: systems, maintains ITAR and DFARS compliance, and holds numerous customer-specific approvals so you can
+      specify our products with confidence. Backed by vertically integrated
+    approx_offset: 4129
+  notes: named as approvals the company holds, but with no name, number or issuing body of its own -- boundary case
+    against 'one with an identity of its own' | 'numerous customer-specific approvals' has no identity of its own
+    - no name, number, mark or issuing body - which the clause explicitly requires.
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: disputed
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+    reason: '''numerous customer-specific approvals'' has no identity of its own - no name, number, mark or issuing
+      body - which the clause explicitly requires.'
+- id: lucasmilhaupt_com-conformity_attestations-0005
+  name: Sil-Fos patent (1931)
+  status: disputed
+  acceptable_forms:
+  - patented in 1931
+  - Sil-Fos patent
+  - patent
+  evidence:
+  - quote: Sil-Fos® has been the preferred silver brazing alloy for HVAC/R contractors since it was patented in
+      1931. Sil-Fos alloys combine silver (Ag), copper (Cu),
+    approx_offset: 124643
+  - quote: joining solutions of HVAC/R Service Technicians since our Sil-Fos patent was released for WWII. We offer
+      how-to videos and in person training
+    approx_offset: 10625
+  notes: a patent is a registration with an identity and an issuing body, but is an IP grant rather than a conformity
+    attestation -- same argument class as D-U-N-S and contractor licences | a patent is a grant of intellectual
+    property, not a certification, accreditation, registration of conformity, standard or compliance; the bare form
+    'patent' also matches 'patent pending' on the HVAC/R page.
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: disputed
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+    reason: a patent is a grant of intellectual property, not a certification, accreditation, registration of conformity,
+      standard or compliance; the bare form 'patent' also matches 'patent pending' on the HVAC/R page.
+- id: lucasmilhaupt_com-conformity_attestations-0006
+  name: NATE certification
+  status: confirmed
+  acceptable_forms:
+  - NATE
+  - NATE certified
+  - NATE-certified
+  - NATE Training
+  - NATE certified training course
+  - NATE certified brazing courses
+  evidence:
+  - quote: in the field. Refresh your brazing knowledge, join a NATE certified training course, or learn where to
+      buy Sil-Fos today.
+    approx_offset: 10817
+  - quote: Sharpen your brazing skills with Lucas Milhaupt’s NATE-certified training programs.
+    approx_offset: 182559
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+- id: lucasmilhaupt_com-conformity_attestations-0007
+  name: ISO 9001
+  status: confirmed
+  acceptable_forms:
+  - ISO 9001
+  - ISO 9001-certified
+  - ISO 9001 & ISO 14001 Certification
+  evidence:
+  - quote: ISO 9001 & ISO 14001 Certification
+    approx_offset: 14182
+  - quote: 'Quality & Regulatory Compliance: We uphold rigorous quality systems (ISO 9001-certified processes) and
+      adhere to strict regulatory standards to'
+    approx_offset: 25309
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+- id: lucasmilhaupt_com-conformity_attestations-0008
+  name: ISO 14001
+  status: confirmed
+  acceptable_forms:
+  - ISO 14001
+  - ISO 14001:2015
+  - ISO 14001:2015 Environmental Policy
+  evidence:
+  - quote: ISO 9001 & ISO 14001 Certification
+    approx_offset: 14182
+  - quote: Lucas Milhaupt ISO 14001:2015 Environmental Policy
+    approx_offset: 123542
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+- id: lucasmilhaupt_com-conformity_attestations-0009
+  name: IATF 16949
+  status: confirmed
+  acceptable_forms:
+  - IATF 16949
+  - IATF16949
+  - IATF 16949 Certification
+  - IATF 16949 certified
+  evidence:
+  - quote: 'IATF 16949: Committing to Automotive Excellence'
+    approx_offset: 14301
+  - quote: IATF 16949–Certified Quality & Traceability – Our Ribérac facility is IATF 16949 certified, and we maintain
+      industry-specific quality systems
+    approx_offset: 167284
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+- id: lucasmilhaupt_com-conformity_attestations-0010
+  name: RoHS
+  status: confirmed
+  acceptable_forms:
+  - RoHS
+  evidence:
+  - quote: pads, Premabraze 800 is lead and silver-free formulation hat meets RoHS and medical-device purity mandates.
+      Ultra-low vapor pressure keeps voiding to a
+    approx_offset: 22794
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+- id: lucasmilhaupt_com-conformity_attestations-0011
+  name: AWS (American Welding Society)
+  status: confirmed
+  acceptable_forms:
+  - AWS
+  - American Welding Society
+  evidence:
+  - quote: The American Welding Society (AWS) defines brazing
+    approx_offset: 51492
+  - quote: 'AWS: BVAg-8 Grade 1'
+    approx_offset: 196442
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+- id: lucasmilhaupt_com-conformity_attestations-0012
+  name: AWS BCuP-5
+  status: confirmed
+  acceptable_forms:
+  - BCuP-5
+  evidence:
+  - quote: filler metal such as the Lucas Milhaupt Sil-Fos alloys (BCuP-5) in copper-based assemblies must be used.
+    approx_offset: 53182
+  notes: AWS copper-phosphorus filler classification, given as the spec Sil-Fos meets
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+- id: lucasmilhaupt_com-conformity_attestations-0013
+  name: AMS 3410
+  status: confirmed
+  acceptable_forms:
+  - AMS 3410
+  evidence:
+  - quote: Industry flux standards focus on water-based fluxes. AMS 3410 and AMS 3411 stipulate that all fluxes
+      conforming to these specifications should be soluble in
+    approx_offset: 90738
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+- id: lucasmilhaupt_com-conformity_attestations-0014
+  name: AMS 3411
+  status: confirmed
+  acceptable_forms:
+  - AMS 3411
+  evidence:
+  - quote: Industry flux standards focus on water-based fluxes. AMS 3410 and AMS 3411 stipulate that all fluxes
+      conforming to these specifications should be soluble in
+    approx_offset: 90738
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+- id: lucasmilhaupt_com-conformity_attestations-0015
+  name: Six Sigma / Lean Manufacturing programs
+  status: disputed
+  acceptable_forms:
+  - Six Sigma
+  - Design for Six Sigma
+  - Lean Manufacturing
+  - Strategy Deployment
+  evidence:
+  - quote: Partners Operational Excellence Programs include Lean Manufacturing, Design for Six Sigma, Six Sigma
+      and Strategy Deployment to reduce and eliminate waste.
+    approx_offset: 111569
+  notes: named operational-excellence methodologies the company states it uses; a methodology is not something a
+    company holds or is certified to, so this is a boundary case | management methodologies (Lean Manufacturing,
+    Design for Six Sigma, Strategy Deployment) with no issuing body and nothing to hold or be certified to in this
+    text; the site calls them 'Operational Excellence Programs'.
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: disputed
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+    reason: management methodologies (Lean Manufacturing, Design for Six Sigma, Strategy Deployment) with no issuing
+      body and nothing to hold or be certified to in this text; the site calls them 'Operational Excellence Programs'.
+- id: lucasmilhaupt_com-conformity_attestations-0016
+  name: Lucas Milhaupt Code of Conduct
+  status: disputed
+  acceptable_forms:
+  - Code of Conduct
+  - Lucas Milhaupt Code of Conduct
+  evidence:
+  - quote: Lucas Milhaupt Code of Conduct
+    approx_offset: 123593
+  - quote: Our Code of Conduct, which applies to all Lucas Milhaupt personnel,
+    approx_offset: 150861
+  notes: a self-issued corporate policy document that the company states it complies with; argued either way like
+    a membership -- it has a name and something to follow, but no external issuer | the Code of Conduct is a self-issued
+    internal policy document, not a third-party attestation; it does have a name and people must follow it, which
+    is why this is arguable rather than wrong.
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: disputed
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+    reason: the Code of Conduct is a self-issued internal policy document, not a third-party attestation; it does
+      have a name and people must follow it, which is why this is arguable rather than wrong.
+- id: lucasmilhaupt_com-conformity_attestations-0017
+  name: AWS BVAg-8 Grade 1
+  status: confirmed
+  acceptable_forms:
+  - BVAg-8 Grade 1
+  - BVAg-8
+  - 'AWS: BVAg-8 Grade 1'
+  evidence:
+  - quote: 'AWS: BVAg-8 Grade 1'
+    approx_offset: 196442
+  notes: AWS filler-metal classification printed in the SILVALOY 721 VTG Gr1 'Industry Specifications' block
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+- id: lucasmilhaupt_com-conformity_attestations-0018
+  name: ISO 17672
+  status: confirmed
+  acceptable_forms:
+  - ISO 17672
+  evidence:
+  - quote: 'ISO 17672: Ag 272'
+    approx_offset: 196462
+  - quote: 'ISO 17672: Al 112'
+    approx_offset: 212972
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+- id: lucasmilhaupt_com-conformity_attestations-0019
+  name: ISO 17672 Ag 272
+  status: confirmed
+  acceptable_forms:
+  - Ag 272
+  - 'ISO 17672: Ag 272'
+  evidence:
+  - quote: 'ISO 17672: Ag 272'
+    approx_offset: 196462
+  notes: ISO alloy designation; also readable as a material grade, so it may legitimately be returned by material_caps
+    as well
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+- id: lucasmilhaupt_com-conformity_attestations-0020
+  name: AMS 4185
+  status: confirmed
+  acceptable_forms:
+  - 'AMS: 4185'
+  - AMS 4185
+  - '4185'
+  evidence:
+  - quote: 'AMS: 4185'
+    approx_offset: 212949
+  - quote: 'AMS: 4185'
+    approx_offset: 212949
+  notes: 'the aerospace-material spec on the AL 718 family pages; printed as ''AMS: 4185'', so the bare number is
+    the only span linking it to the standard'
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+- id: lucasmilhaupt_com-conformity_attestations-0021
+  name: AWS BAlSi-4
+  status: confirmed
+  acceptable_forms:
+  - BAlSi-4
+  - 'AWS: BAlSi-4'
+  evidence:
+  - quote: 'AWS: BAlSi-4'
+    approx_offset: 212959
+  - quote: 'AWS: BAlSi-4'
+    approx_offset: 212959
+  notes: AWS aluminium-silicon filler classification, on all four AL 718 / HANDY ONE AL product pages
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+- id: lucasmilhaupt_com-conformity_attestations-0022
+  name: ISO 17672 Al 112
+  status: confirmed
+  acceptable_forms:
+  - Al 112
+  - 'ISO 17672: Al 112'
+  evidence:
+  - quote: 'ISO 17672: Al 112'
+    approx_offset: 212972
+  notes: ISO alloy designation; also readable as a material grade
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+false_friends:
+- form: TDS
+  reason: 'witnessed ~250x: ''Technical Data Sheet'', a product document, not an attestation'
+- form: SDS
+  reason: 'witnessed ~250x: ''Safety Data Sheet'', a product document, not an attestation'
+- form: VTG
+  reason: 'witnessed: ''vacuum tube grade'', an alloy purity grade in product names (SILVALOY 721 VTG Gr1) -- a
+    material designation, not a certification'
+- form: Braze School
+  reason: 'witnessed ~15x: a training course, not a certification (only its NATE accreditation is)'
+- form: Brazing Academy
+  reason: 'witnessed: the company''s training portal, not an accreditation'
+- form: Steel Partners Operational Excellence Programs
+  reason: 'witnessed: the parent''s internal improvement programme, not a standard held or met'
+- form: Grade 1
+  reason: witnessed only as the tail of the AWS class 'BVAg-8 Grade 1'; alone it names no standard
+- form: NADCAP
+  reason: 'anticipatory: does not occur; strong word-association from AS9100 + aerospace brazing'
+- form: ISO 13485
+  reason: 'anticipatory: does not occur; word-association from the medical-device pages, which cite only ISO 9001'
+- form: AS9100 Rev D
+  reason: 'anticipatory: the text says ''AS9100 D'', never ''Rev D'''
+- form: FDA
+  reason: 'anticipatory: does not occur; word-association from ''medical-device purity mandates'''
+- form: REACH
+  reason: 'anticipatory: does not occur; word-association from RoHS'

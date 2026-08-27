@@ -1,0 +1,60 @@
+subject: med-tekinc.com
+slug: med-tekinc_com
+role: empty_field_probe
+business_type: commercial heat-treating toll processor; sells process time, designs and makes nothing
+snapshot:
+  file: apps/data_etl_app/tests/test_stages/sample_scraped_texts/med-tekinc.com.txt
+  sha256: f1b1f156176cb3c86757d25176c0c27f9d6d704a021a47bdc0bfdcd662c4717c
+eval_set_version: 1
+context: 'MED-TEK, INC. (Minneapolis, MN) is a COMMERCIAL HEAT-TREATING TOLL PROCESSOR: it sells furnace/bath time
+  on other companies'' parts and designs, makes and sells nothing of its own. Three unique pages (home, /services/,
+  /contact) plus one duplicate; ~1,000 words total - the smallest healthy in-domain site in the corpus. Content
+  shape is HYBRID: a ~20-item BARE KEYWORD LIST of process names (lines 78-97, no sentence context at all) sitting
+  above a concrete equipment block (six furnace/bath families with atmospheres, temperature ranges, work envelopes
+  and 50-200 KW induction). Its corpus value is (a) a dense single-capability process/equipment inventory with no
+  marketing padding, and (b) three near-empty fields on an otherwise healthy site - products/contract_products and
+  conformity_attestations are expected_empty, and industries yields only two entries - so anything sizable the stage
+  mints there is junk-minting signal. NOTE: the prior corpus-vetting note claimed industries was hard-empty too;
+  that is REFUTED - line 19 names ''machine shops'' and ''fabricators'' as the market served.'
+scrape_hazards:
+- hazard: NON-BREAKING HYPHEN U+2011 inside 'heat‑treating' on lines 74 and 100, while lines 19/21/27 spell the
+    same word with an ASCII hyphen and lines 10/11/25/30/72 use a space. Three distinct surface spellings of the
+    subject's single core capability. text_matching normalizes unicode SPACES but NOT U+2011, so a quote or form
+    retyped with an ASCII hyphen does not match these two lines.
+  quote: meet your heat‑treating needs
+- hazard: NO-BREAK SPACE U+00A0 mid-phrase on 10 lines (10, 11, 14, 19, 21, 23, 25, 27, 32, 36). All sit before
+    the final word of a sentence, so no seeded form spans one - but the headline 'HEAT TECHNOLOGY'/'HEAT TREATING'
+    pair does, and a run echoing it with an ordinary space still matches only because the matcher is elastic.
+  quote: A LEADING PLAYER IN HEAT TREATING TECHNOLOGY
+- hazard: 'TYPO IN THE SERVICE LIST: the bare keyword list says ''Tampering Steel'' where the equipment paragraph
+    (line 102) says ''tempering steel''. A model that silently corrects the typo returns a form that is NOT in the
+    text; both spellings are carried as acceptable_forms on one entry.'
+  quote: Tampering Steel
+- hazard: 'DUPLICATE PAGE: /contact and /contact/ are scraped separately and their bodies are byte-identical (lines
+    134-199 == lines 202-267, verified by diff). Only the URL header differs by a trailing slash. Every contact-page
+    string - the whole Service Area state list included - therefore occurs exactly twice.'
+  quote: https://med-tekinc.com/contact/
+- hazard: 'CORRUPT ZIP in all four page footers: ''Minneapolis, MN 5541818'' (eight digits) against the correct
+    ''55418'' in the two contact-page bodies.'
+  quote: Minneapolis, MN 5541818
+- hazard: 'DOMAIN-NAME BAIT: ''MED-TEK'' reads as MEDical TEKnology and the string ''MED-TEK'' occurs on 15 lines,
+    but word ''medical'' occurs ZERO times in the file (verified by grep -i). Medical / medical device are carried
+    as anticipatory false friends on industries.'
+  quote: Learn About MED-TEK, INC.
+sampling_notes: 'EXHAUSTIVE. All 267 lines (7,093 bytes) read in one pass, then grep-swept. Sweeps run and their
+  results: (1) every ''-ing'' token in the file enumerated and reconciled against the process_caps inventory - 34
+  unique, all accounted for; (2) standards bodies ISO/ASTM/ANSI/API/AMS/AS9100/NADCAP/UL/CE/EN/ITAR/RoHS/REACH/MIL-/IATF/OSHA/FDA/SAE/ASME/AWS/AISI/PPAP
+  - ZERO hits (the only match was the substring ''REACH'' inside ''Reach Out to Us''); (3) certification vocabulary
+  certif|accredit|registr|standard|complian|qualif|approv|audit|conform - exactly 2 lines (25 and 32), both bait,
+  both recorded as false friends; (4) industry associations aerospace|automotive|defense|firearm|oil and gas|energy|agricultur|mining|marine|dental|surgic|implant|semiconduct|electronic|food|pharma|nuclear|rail|truck|construction
+  - ZERO hits; (5) 3-4 digit runs for alloy/grade designations - only temperatures, KW, loads, a ZIP and a phone
+  number, no grades; (6) absence confirmed by word-boundary grep for stainless, tool steel, alloy, titanium, inconel,
+  gear, shaft, fastener, spring, bearing, die, mold, CNC, lathe, press brake, machining center, welding, grinding,
+  machining, cryogenic, case hardening and FLAME HARDENING (0 occurrences - the old pipeline''s ''Flame Hardening''
+  output was fabricated; it is now an anticipatory false friend); (7) medical - ZERO. No byte range was skipped.'
+notes: Seeded 2026-08-27 against sha256 f1b1f156176cb3c86757d25176c0c27f9d6d704a021a47bdc0bfdcd662c4717c.
+provenance:
+- action: added
+  by: seed-agent-med-tekinc-com
+  date: '2026-08-27'
+  source: corpus-seed

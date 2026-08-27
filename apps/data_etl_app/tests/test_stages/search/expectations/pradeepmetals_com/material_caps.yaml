@@ -1,0 +1,1414 @@
+subject: pradeepmetals.com
+field: material_caps
+snapshot:
+  file: apps/data_etl_app/tests/test_stages/sample_scraped_texts/pradeepmetals.com.txt
+  sha256: d3b7875e2769b8347084c18df480028cf319fc9595695734c21041dff6961bc0
+eval_set_version: 2
+expected_empty: false
+notes: 'The single densest in-field block on the site is the MATERIAL GRADES USED table - 48 lines carrying about
+  53 grade designations across five columns (Stainless Steel / Alloy Steel / Duplex / Carbon Steel / Die Steel),
+  printed twice (/material-grades and /material-grades/). The table is flattened to one grade per line, with a tab
+  where the column changes, and three cells are RUN TOGETHER by the flattening: ''F347H1.4301'', ''414020MnCr5''
+  and ''42CrMo4F5''. Grades are seeded grouped by alloy family so that no entry rests on a bare two- or three-character
+  number. The regime is European and Indian (DIN, EN, CK45, 1.4xxx, F-series) rather than US. All four reported
+  fabrications - HDPE, LDPE, Teflon, Bronze - were checked on word boundaries and have ZERO occurrences; they are
+  seeded as anticipatory false_friends, as is ''Lead'', which occurs 21 times and never once as a metal.'
+entries:
+- id: pradeepmetals_com-material_caps-0001
+  name: aluminium / aluminum
+  status: confirmed
+  acceptable_forms:
+  - aluminium
+  - aluminum
+  evidence:
+  - quote: From aluminium forging, steel to brass
+    approx_offset: 6005
+  - quote: Aluminium – It is best for applications where the temperature does not exceed 1500C
+    approx_offset: 220643
+  - quote: including brass, steel, and aluminum
+    approx_offset: 231521
+  notes: both spellings occur; the /aluminium-forging page is a stub, so the material is named only in explainer
+    prose and the page heading
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+- id: pradeepmetals_com-material_caps-0002
+  name: steel (general)
+  status: confirmed
+  acceptable_forms:
+  - steel
+  - high quality steel forgings
+  - high-strength steel forgings
+  evidence:
+  - quote: high quality steel forgings around the world
+    approx_offset: 12308
+  - quote: Pradeep Metals makes high-strength steel forgings
+    approx_offset: 205458
+  notes: 'broad: 73 lines. A substring of nearly every siblings'' form, so its recall number carries no independent
+    information'
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+- id: pradeepmetals_com-material_caps-0003
+  name: Stainless Steel
+  status: confirmed
+  acceptable_forms:
+  - STAINLESS STEEL
+  evidence:
+  - quote: STAINLESS STEEL
+    approx_offset: 16631
+  - quote: Stainless Steel – It is apt for machines that require high resistance to heat and corrosion
+    approx_offset: 220551
+  notes: first column of the grade table and the most-named material in the file
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+- id: pradeepmetals_com-material_caps-0004
+  name: Alloy Steel
+  status: confirmed
+  acceptable_forms:
+  - Alloy Steel
+  evidence:
+  - quote: Alloy Steel
+    approx_offset: 16647
+  - quote: micro-alloy and alloy steel
+    approx_offset: 220801
+  notes: second column of the grade table
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+- id: pradeepmetals_com-material_caps-0005
+  name: Duplex / Super Duplex steel
+  status: confirmed
+  acceptable_forms:
+  - Duplex
+  - duplex steel
+  - super duplex steel
+  - super duplex stainless steel
+  evidence:
+  - quote: Duplex
+    approx_offset: 16659
+  - quote: The duplex steel has the best qualities of the austenitic as well as the ferric phases
+    approx_offset: 56935
+  notes: third column of the grade table, plus a whole page of duplex metallurgy prose
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+- id: pradeepmetals_com-material_caps-0006
+  name: Carbon Steel
+  status: confirmed
+  acceptable_forms:
+  - Carbon Steel
+  evidence:
+  - quote: Carbon Steel
+    approx_offset: 16666
+  - quote: carbon steel, alloy steel, stainless steel
+    approx_offset: 223645
+  notes: fourth column of the grade table
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+- id: pradeepmetals_com-material_caps-0007
+  name: Die Steel
+  status: confirmed
+  acceptable_forms:
+  - Die Steel
+  evidence:
+  - quote: Die Steel
+    approx_offset: 16679
+  notes: fifth column of the grade table - the material evidence for the die-making capability whose own page is
+    a 'Coming Soon' stub
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+- id: pradeepmetals_com-material_caps-0008
+  name: F303
+  status: confirmed
+  acceptable_forms:
+  - F303
+  evidence:
+  - quote: F303
+    approx_offset: 16689
+  notes: grade table, stainless column
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+- id: pradeepmetals_com-material_caps-0009
+  name: F304 / F304L
+  status: confirmed
+  acceptable_forms:
+  - F304/F304L
+  - F304
+  evidence:
+  - quote: F304/F304L
+    approx_offset: 16694
+  notes: grade table, stainless column
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+- id: pradeepmetals_com-material_caps-0010
+  name: F316 Ti
+  status: confirmed
+  acceptable_forms:
+  - F316 Ti
+  evidence:
+  - quote: F316 Ti
+    approx_offset: 16705
+  notes: grade table, stainless column
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+- id: pradeepmetals_com-material_caps-0011
+  name: F316 / F316L
+  status: confirmed
+  acceptable_forms:
+  - F316/F316L
+  - F316
+  evidence:
+  - quote: F316/F316L
+    approx_offset: 16713
+  notes: grade table, stainless column
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+- id: pradeepmetals_com-material_caps-0012
+  name: F321
+  status: confirmed
+  acceptable_forms:
+  - F321
+  evidence:
+  - quote: F321
+    approx_offset: 16724
+  notes: grade table, stainless column
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+- id: pradeepmetals_com-material_caps-0013
+  name: F347H / 1.4301
+  status: confirmed
+  acceptable_forms:
+  - F347H1.4301
+  - F347H
+  - '1.4301'
+  evidence:
+  - quote: F347H1.4301
+    approx_offset: 16729
+  notes: 'RUN-TOGETHER CELL: the flattening has fused grade ''F347H'' and grade ''1.4301'' into one token with no
+    separator. Both designations are real and neither can be matched on its own in this printing'
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: amended
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+    reason: 'entity stands and the run-together printed form is correctly recorded (the scrape concatenated the
+      F347H cell with the 1.4301 cell). But these are two distinct grades and a reader that splits them - which
+      is the natural reading - credits nothing. NOTE for the next reader: the added halves do NOT stand alone in
+      the source text (they are glued to their neighbour, so a word-boundary scan of the file will not find them);
+      they are there to credit a RETURNED phrase that splits the run-together token, which is the natural reading.
+      The run-together form is kept first and is what covers the evidence quote.'
+- id: pradeepmetals_com-material_caps-0014
+  name: EN 1.4xxx stainless numbers
+  status: confirmed
+  acceptable_forms:
+  - '1.4307'
+  - '1.4435'
+  - '1.4436'
+  - '1.4404'
+  - '1.4541'
+  - '1.4571'
+  evidence:
+  - quote: '1.4307'
+    approx_offset: 16741
+  - quote: '1.4435'
+    approx_offset: 16748
+  - quote: '1.4436'
+    approx_offset: 16755
+  - quote: '1.4404'
+    approx_offset: 16762
+  - quote: '1.4541'
+    approx_offset: 16769
+  - quote: '1.4571'
+    approx_offset: 16776
+  notes: six consecutive European steel numbers, one per line, the last of them sharing a line with the Alloy Steel
+    column's first entry
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+- id: pradeepmetals_com-material_caps-0015
+  name: SAE 4130
+  status: confirmed
+  acceptable_forms:
+  - SAE – 4130
+  evidence:
+  - quote: SAE – 4130
+    approx_offset: 16783
+  notes: grade table, alloy steel column; the dash is an en dash (U+2013) with spaces on both sides
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+- id: pradeepmetals_com-material_caps-0016
+  name: 8620H
+  status: confirmed
+  acceptable_forms:
+  - 8620H
+  evidence:
+  - quote: 8620H
+    approx_offset: 16794
+  notes: grade table, alloy steel column
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+- id: pradeepmetals_com-material_caps-0017
+  name: 4140 / 20MnCr5
+  status: confirmed
+  acceptable_forms:
+  - 414020MnCr5
+  - '4140'
+  - 20MnCr5
+  evidence:
+  - quote: 414020MnCr5
+    approx_offset: 16800
+  notes: 'RUN-TOGETHER CELL: grade ''4140'' fused with grade ''20MnCr5''. Neither is separately matchable in this
+    printing'
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: amended
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+    reason: 'same run-together artefact as 0013: ''4140'' and ''20MnCr5'' are two separate grades concatenated by
+      the scrape, and the packet''s single form credits only a reader that reproduces the concatenation. NOTE for
+      the next reader: the added halves do NOT stand alone in the source text (they are glued to their neighbour,
+      so a word-boundary scan of the file will not find them); they are there to credit a RETURNED phrase that splits
+      the run-together token, which is the natural reading. The run-together form is kept first and is what covers
+      the evidence quote.'
+- id: pradeepmetals_com-material_caps-0018
+  name: 18NiCrMo4
+  status: confirmed
+  acceptable_forms:
+  - 18NiCrMo4
+  evidence:
+  - quote: 18NiCrMo4
+    approx_offset: 16812
+  notes: grade table, alloy steel column
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+- id: pradeepmetals_com-material_caps-0019
+  name: En-series steels (En19, En3A, En8, En8D, En9, En24)
+  status: confirmed
+  acceptable_forms:
+  - En19
+  - En3A
+  - En8
+  - En8D
+  - En9
+  - En24
+  evidence:
+  - quote: En19
+    approx_offset: 16822
+  - quote: 1140 En3A
+    approx_offset: 16972
+  - quote: En8
+    approx_offset: 16982
+  - quote: En8D
+    approx_offset: 16986
+  - quote: En9
+    approx_offset: 16991
+  - quote: En24
+    approx_offset: 17067
+  notes: the British En specification, spread across the alloy, carbon and die-steel columns. 'En8' and 'En9' are
+    three characters and match case-sensitively - the file capitalises only the E
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+- id: pradeepmetals_com-material_caps-0020
+  name: 42CrMo4 / F5
+  status: confirmed
+  acceptable_forms:
+  - 42CrMo4F5
+  - 42CrMo4
+  evidence:
+  - quote: 42CrMo4F5
+    approx_offset: 16827
+  notes: 'RUN-TOGETHER CELL: grade ''42CrMo4'' fused with grade ''F5'', which is the first of the F-series run below
+    it'
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: amended
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+    reason: 'same run-together artefact (''42CrMo4'' + ''F5''). Adding ''42CrMo4''; deliberately NOT adding ''F5'',
+      which is a two-character form that would match nothing on word boundaries here and is a false-friend risk
+      elsewhere. NOTE for the next reader: the added halves do NOT stand alone in the source text (they are glued
+      to their neighbour, so a word-boundary scan of the file will not find them); they are there to credit a RETURNED
+      phrase that splits the run-together token, which is the natural reading. The run-together form is kept first
+      and is what covers the evidence quote.'
+- id: pradeepmetals_com-material_caps-0021
+  name: F-series alloy steel grades (F9, F11, F20, F22, F91, F92)
+  status: confirmed
+  acceptable_forms:
+  - F9
+  - F11
+  - F20
+  - F22
+  - F91
+  - F92
+  evidence:
+  - quote: F9
+    approx_offset: 16837
+  - quote: F11
+    approx_offset: 16840
+  - quote: F20
+    approx_offset: 16844
+  - quote: F22
+    approx_offset: 16848
+  - quote: F91
+    approx_offset: 16852
+  - quote: F92
+    approx_offset: 16856
+  notes: six ASTM A182 F-grade designations, one per line. Every form here is a two- or three-character short form
+    matched case-sensitively on word boundaries - the casing in the file is a capital F
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+- id: pradeepmetals_com-material_caps-0022
+  name: F51 / 1.4462 / 2205 duplex
+  status: confirmed
+  acceptable_forms:
+  - F51/1.4462/2205
+  - '1.4462'
+  - '2205'
+  evidence:
+  - quote: F51/1.4462/2205
+    approx_offset: 16860
+  notes: grade table, duplex column; three equivalent designations printed as one slash-separated token
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+- id: pradeepmetals_com-material_caps-0023
+  name: Inconel 625 / Inconel 825
+  status: confirmed
+  acceptable_forms:
+  - Inconel 625
+  - Inconel
+  - '825'
+  evidence:
+  - quote: Inconel 625
+    approx_offset: 16876
+  - quote: '825'
+    approx_offset: 16888
+  notes: grade table, duplex column. The '825' sits alone on the next line, so it is only readable as Inconel 825
+    from the table layout. '825' is a short form matched on word boundaries
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+- id: pradeepmetals_com-material_caps-0024
+  name: Monel 400 / Monel 500
+  status: confirmed
+  acceptable_forms:
+  - Monel 400
+  - Monel
+  evidence:
+  - quote: Monel 400
+    approx_offset: 16892
+  - quote: '500'
+    approx_offset: 16902
+  notes: 'same layout as Inconel: ''500'' sits alone on the following line. ''500'' is a short numeric form and
+    will collide with unrelated numbers elsewhere; the distinctive form is ''Monel 400'''
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: amended
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+    reason: 'entity stands (Monel 400 and Monel 500 are in the grades table). But the bare form ''500'' is over-broad:
+      under the harness rule (word boundaries always, case-sensitive at 3 chars) it matches 6 places, only 2 of
+      which are the grade - the other 4 are ''capacity in the range of 5,000 to 12,500 MT'' (twice) and the microwave
+      ''Work zone: 500 x 500 x 400 mm'' (twice). A returned plant-capacity or work-zone phrase would falsely credit
+      Monel 500.'
+- id: pradeepmetals_com-material_caps-0025
+  name: Hastelloy C-276
+  status: confirmed
+  acceptable_forms:
+  - Hastelloy C-276
+  - Hastelloy
+  evidence:
+  - quote: Hastelloy C-276
+    approx_offset: 16906
+  notes: grade table, duplex column
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+- id: pradeepmetals_com-material_caps-0026
+  name: Alloy 20
+  status: confirmed
+  acceptable_forms:
+  - Alloy 20
+  evidence:
+  - quote: Alloy 20
+    approx_offset: 16922
+  notes: grade table, duplex column; shares its line with the carbon column's SAE - 1008
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+- id: pradeepmetals_com-material_caps-0027
+  name: SAE carbon steel numbers (1008-1141)
+  status: confirmed
+  acceptable_forms:
+  - SAE – 1008
+  - '1010'
+  - '1018'
+  - '1030'
+  - '1040'
+  - '1045'
+  - '1141'
+  - 1140 En3A
+  evidence:
+  - quote: SAE – 1008
+    approx_offset: 16931
+  - quote: '1010'
+    approx_offset: 16942
+  - quote: '1018'
+    approx_offset: 16947
+  - quote: '1030'
+    approx_offset: 16952
+  - quote: '1040'
+    approx_offset: 16957
+  - quote: '1045'
+    approx_offset: 16962
+  - quote: '1141'
+    approx_offset: 16967
+  - quote: 1140 En3A
+    approx_offset: 16972
+  notes: eight SAE carbon grades, one per line; only the first carries the 'SAE –' prefix, so the rest are bare
+    four-digit numbers that a search will only recognise from the table context
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+- id: pradeepmetals_com-material_caps-0028
+  name: C22.8 / 1.0460
+  status: confirmed
+  acceptable_forms:
+  - C22.8 / 1.0460
+  - C22.8
+  - '1.0460'
+  evidence:
+  - quote: C22.8 / 1.0460
+    approx_offset: 16995
+  notes: grade table, carbon column; German designation pair
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+- id: pradeepmetals_com-material_caps-0029
+  name: CK45 / C45 Gr55
+  status: confirmed
+  acceptable_forms:
+  - CK45 / C45 Gr55
+  - CK45
+  - C45
+  evidence:
+  - quote: CK45 / C45 Gr55
+    approx_offset: 17010
+  notes: grade table, carbon column
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+- id: pradeepmetals_com-material_caps-0030
+  name: Gr70
+  status: confirmed
+  acceptable_forms:
+  - Gr70
+  evidence:
+  - quote: Gr70
+    approx_offset: 17026
+  notes: grade table, carbon column
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+- id: pradeepmetals_com-material_caps-0031
+  name: A668 CLF
+  status: confirmed
+  acceptable_forms:
+  - A668 CLF
+  - A668
+  evidence:
+  - quote: A668 CLF
+    approx_offset: 17031
+  notes: grade table, carbon column; ASTM A668 forging class
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+- id: pradeepmetals_com-material_caps-0032
+  name: A105 / 1.0481
+  status: confirmed
+  acceptable_forms:
+  - A105 / 1.0481
+  - A105
+  - '1.0481'
+  evidence:
+  - quote: A105 / 1.0481
+    approx_offset: 17040
+  notes: grade table, carbon column; the standard flange forging grade
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+- id: pradeepmetals_com-material_caps-0033
+  name: LF2 / 1.0436
+  status: confirmed
+  acceptable_forms:
+  - LF2 / 1.0436
+  - LF2
+  - '1.0436'
+  evidence:
+  - quote: LF2 / 1.0436
+    approx_offset: 17054
+  notes: grade table, carbon column; ASTM A350 low-temperature grade
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+- id: pradeepmetals_com-material_caps-0034
+  name: DIN 1.2714 / DIN 1.2713 die steels
+  status: confirmed
+  acceptable_forms:
+  - DIN1.2714
+  - DIN1.2713
+  evidence:
+  - quote: DIN1.2714
+    approx_offset: 17072
+  - quote: DIN1.2713
+    approx_offset: 17082
+  notes: 'grade table, die-steel column, printed with NO space after DIN. COLLISION: the same three letters appear
+    ten times elsewhere in the file as ''DIN: 00008370'' - Indian Director Identification Numbers for people'
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+- id: pradeepmetals_com-material_caps-0035
+  name: H11
+  status: confirmed
+  acceptable_forms:
+  - H11
+  evidence:
+  - quote: H11
+    approx_offset: 17092
+  notes: grade table, die-steel column; the last line of the table. Three-character short form, matched case-sensitively
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+- id: pradeepmetals_com-material_caps-0036
+  name: industrial gases
+  status: confirmed
+  acceptable_forms:
+  - industrial gases
+  evidence:
+  - quote: international marketing of industrial gases
+    approx_offset: 22943
+  actor: unknown
+  notes: 'CAPABILITY BAIT FROM A CV: the chairman''s three years at Air Products and Chemicals Inc. Not a material
+    this company works'
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+- id: pradeepmetals_com-material_caps-0037
+  name: chromium
+  status: confirmed
+  acceptable_forms:
+  - chromium
+  evidence:
+  - quote: the percentage of other compositions used like chromium
+    approx_offset: 58000
+  actor: unknown
+  notes: named once, as a duplex-steel constituent in metallurgy prose
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+- id: pradeepmetals_com-material_caps-0038
+  name: natural gas
+  status: disputed
+  acceptable_forms:
+  - natural gas
+  evidence:
+  - quote: Moved from liquid fuels to natural gas
+    approx_offset: 65831
+  notes: a FUEL for the furnaces, not a substance the work is made from. The gas-fired furnaces line is its only
+    in-process connection. Disputed | natural gas is a furnace fuel ('Moved from liquid fuels to natural gas', an
+    environment-initiative bullet), not a substance the work is made from. The clause's 'or performed in' is arguable
+    for a gas-fired furnace atmosphere, but the text never says the work is performed in it.
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: disputed
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+    reason: natural gas is a furnace fuel ('Moved from liquid fuels to natural gas', an environment-initiative bullet),
+      not a substance the work is made from. The clause's 'or performed in' is arguable for a gas-fired furnace
+      atmosphere, but the text never says the work is performed in it.
+- id: pradeepmetals_com-material_caps-0039
+  name: Galvalume and Polycarbonate sheets
+  status: disputed
+  acceptable_forms:
+  - Galvalume & Polycarbonate sheets
+  - Polycarbonate sheets
+  - Galvalume
+  evidence:
+  - quote: Replacing asbestos roofing sheets with Galvalume & Polycarbonate sheets
+    approx_offset: 66106
+  notes: BUILDING materials for the factory ROOF, not substances the work is made from or performed in. Disputed
+    - the clause's 'the work is made from' is what excludes them, and a model has fair grounds to read 'sheets'
+    as stock | Galvalume and polycarbonate sheets are FACTORY ROOFING ('Replacing asbestos roofing sheets with Galvalume
+    & Polycarbonate sheets'), a building material. The clause wants a substance the work is made from or performed
+    in.
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: disputed
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+    reason: Galvalume and polycarbonate sheets are FACTORY ROOFING ('Replacing asbestos roofing sheets with Galvalume
+      & Polycarbonate sheets'), a building material. The clause wants a substance the work is made from or performed
+      in.
+- id: pradeepmetals_com-material_caps-0040
+  name: asbestos
+  status: disputed
+  acceptable_forms:
+  - asbestos roofing sheets
+  - asbestos
+  evidence:
+  - quote: asbestos roofing sheets
+    approx_offset: 66116
+  notes: 'same argument as Galvalume: it is the roof being replaced, not the work | same as 0039: asbestos is named
+    only as the roofing being replaced. A building material, not a work material.'
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: disputed
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+    reason: 'same as 0039: asbestos is named only as the roofing being replaced. A building material, not a work
+      material.'
+- id: pradeepmetals_com-material_caps-0041
+  name: brass
+  status: confirmed
+  acceptable_forms:
+  - brass
+  evidence:
+  - quote: Suitable for all kinds of materials like steel, brass and aluminium
+    approx_offset: 72478
+  - quote: copper, brass and aluminium
+    approx_offset: 223712
+  actor: unknown
+  notes: named only in generic 'metals that can be forged' lists, never as a stocked material; it is absent from
+    the grade table
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+- id: pradeepmetals_com-material_caps-0042
+  name: iron ore / low grade iron ores
+  status: confirmed
+  acceptable_forms:
+  - iron ore fines
+  - iron ore
+  - low grade iron ores
+  evidence:
+  - quote: Microwave assisted reduction of iron ore fines
+    approx_offset: 96088
+  - quote: low grade iron ores
+    approx_offset: 98893
+  actor: lab
+  notes: IMRC research feedstock
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+- id: pradeepmetals_com-material_caps-0043
+  name: sponge iron
+  status: confirmed
+  acceptable_forms:
+  - sponge iron
+  evidence:
+  - quote: to manufacture sponge iron
+    approx_offset: 96135
+  actor: lab
+  notes: both a research OUTPUT and a material; also seeded under products
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+- id: pradeepmetals_com-material_caps-0044
+  name: resin (resin-bonded)
+  status: confirmed
+  acceptable_forms:
+  - resin bonded
+  evidence:
+  - quote: resin bonded grinding wheels
+    approx_offset: 96243
+  - quote: Resin Bonded Grinding Wheels
+    approx_offset: 98302
+  actor: lab
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+- id: pradeepmetals_com-material_caps-0045
+  name: goethite ore
+  status: confirmed
+  acceptable_forms:
+  - Goethite ore
+  evidence:
+  - quote: Processing of Goethite ore using microwave
+    approx_offset: 96604
+  actor: lab
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+- id: pradeepmetals_com-material_caps-0046
+  name: polymers and elastomers
+  status: confirmed
+  acceptable_forms:
+  - polymers or elastomers
+  - polymers
+  - elastomers
+  evidence:
+  - quote: Different types of polymers or elastomers are used to make the seat in a butterfly valve
+    approx_offset: 102107
+  actor: unknown
+  notes: valve seat materials in a generic butterfly-valve explainer
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+- id: pradeepmetals_com-material_caps-0047
+  name: coal
+  status: confirmed
+  acceptable_forms:
+  - coal
+  evidence:
+  - quote: Pre-treatment of coal with microwaves
+    approx_offset: 135541
+  actor: lab
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+- id: pradeepmetals_com-material_caps-0048
+  name: food grains (rice, wheat)
+  status: confirmed
+  acceptable_forms:
+  - food grains (rice, wheat)
+  - rice, wheat
+  evidence:
+  - quote: food grains (rice, wheat)
+    approx_offset: 135713
+  actor: lab
+  notes: an IMRC disinfestation feedstock; outside the metal domain entirely
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+- id: pradeepmetals_com-material_caps-0049
+  name: ceramics / transparent ceramics
+  status: confirmed
+  acceptable_forms:
+  - Transparent Ceramics
+  - Ceramic plates
+  - Ceramics
+  - ceramic composites
+  evidence:
+  - quote: Sintering of Transparent Ceramics
+    approx_offset: 136699
+  - quote: Sintering of Ceramic plates for solid oxide fuel cell electrode materials
+    approx_offset: 135766
+  actor: lab
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+- id: pradeepmetals_com-material_caps-0050
+  name: SS (stainless steel, abbreviated)
+  status: confirmed
+  acceptable_forms:
+  - SS
+  evidence:
+  - quote: components made from SS
+    approx_offset: 135887
+  actor: lab
+  notes: two-character short form matched case-sensitively; occurs once, in the IMRC powder-metals project line
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+- id: pradeepmetals_com-material_caps-0051
+  name: tungsten / refractory metals
+  status: confirmed
+  acceptable_forms:
+  - refractory metals (tungsten)
+  - tungsten
+  evidence:
+  - quote: refractory metals (tungsten)
+    approx_offset: 135912
+  actor: lab
+  notes: an IMRC sintering feedstock
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+- id: pradeepmetals_com-material_caps-0052
+  name: copper / copper alloys
+  status: confirmed
+  acceptable_forms:
+  - Copper alloys
+  - copper
+  - Cu+Cr
+  evidence:
+  - quote: Copper alloys – Ensuring high electrical and thermal conductivity
+    approx_offset: 220727
+  - quote: composites of Cu+Cr etc
+    approx_offset: 135942
+  actor: unknown
+  notes: explainer prose plus an IMRC research composite; absent from the grade table
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+- id: pradeepmetals_com-material_caps-0053
+  name: forging scale (industrial metallic waste)
+  status: confirmed
+  acceptable_forms:
+  - forging scales
+  - Industrial metallic waste
+  evidence:
+  - quote: Industrial metallic waste like forging scales
+    approx_offset: 136121
+  actor: lab
+  notes: the one IMRC feedstock that comes out of this company's own forge
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+- id: pradeepmetals_com-material_caps-0054
+  name: low alloy steel
+  status: confirmed
+  acceptable_forms:
+  - low alloy steel
+  evidence:
+  - quote: to low alloy steel
+    approx_offset: 136167
+  actor: lab
+  notes: the recycling project's output
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+- id: pradeepmetals_com-material_caps-0055
+  name: hydrogen / nitrogen sintering atmosphere
+  status: confirmed
+  acceptable_forms:
+  - 8% H2 + 92% N2 atmosphere
+  - H2
+  - N2
+  evidence:
+  - quote: under 8% H2 + 92% N2 atmosphere
+    approx_offset: 136407
+  actor: lab
+  notes: the clause covers a substance the work is PERFORMED IN, which a sintering atmosphere is. 'H2' and 'N2'
+    are short forms matched case-sensitively
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+- id: pradeepmetals_com-material_caps-0056
+  name: activated carbon / coconut shells
+  status: confirmed
+  acceptable_forms:
+  - Activated carbon from coconut shells
+  - Activated carbon
+  - coconut shells
+  evidence:
+  - quote: Activated carbon from coconut shells
+    approx_offset: 136554
+  actor: lab
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+- id: pradeepmetals_com-material_caps-0057
+  name: AlON (Al-Oxy Nitride)
+  status: confirmed
+  acceptable_forms:
+  - AlON (Al-Oxy Nitride)
+  - AlON
+  evidence:
+  - quote: AlON (Al-Oxy Nitride)
+    approx_offset: 136820
+  actor: lab
+  notes: a transparent-armour ceramic, sintered for a defence project
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+- id: pradeepmetals_com-material_caps-0058
+  name: Spinels (Al-Mg Oxides)
+  status: confirmed
+  acceptable_forms:
+  - Spinels (Al-Mg Oxides)
+  - Spinels
+  evidence:
+  - quote: Spinels (Al-Mg Oxides)
+    approx_offset: 136846
+  actor: lab
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+- id: pradeepmetals_com-material_caps-0059
+  name: concrete
+  status: confirmed
+  acceptable_forms:
+  - concrete pre-cast paver blocks
+  - concrete paver blocks
+  - concrete
+  evidence:
+  - quote: Curing of concrete pre-cast paver blocks
+    approx_offset: 136946
+  actor: lab
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+- id: pradeepmetals_com-material_caps-0060
+  name: Gum Ghatti / Karaya
+  status: confirmed
+  acceptable_forms:
+  - Gum Ghatti/Karaya
+  evidence:
+  - quote: “Gum Ghatti/Karaya”
+    approx_offset: 137412
+  actor: lab
+  notes: a natural food additive; note the curly quotes around it in the source
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+- id: pradeepmetals_com-material_caps-0061
+  name: metal billet
+  status: confirmed
+  acceptable_forms:
+  - metal billets
+  - metal billet
+  evidence:
+  - quote: high-value pressure over metal billets or pieces
+    approx_offset: 200457
+  actor: unknown
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+- id: pradeepmetals_com-material_caps-0062
+  name: sheet metal
+  status: confirmed
+  acceptable_forms:
+  - sheet metal
+  evidence:
+  - quote: sheet metal fabrication follows a predetermined set of rules
+    approx_offset: 214159
+  - quote: The specifications of the sheet metal required
+    approx_offset: 214233
+  actor: unknown
+  notes: the workpiece of the generic precision-metal-manufacturing blog; the company forges bar and billet, not
+    sheet
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+- id: pradeepmetals_com-material_caps-0063
+  name: micro-alloy steel
+  status: confirmed
+  acceptable_forms:
+  - micro-alloy
+  evidence:
+  - quote: Carbon, micro-alloy and alloy steel
+    approx_offset: 220793
+  actor: unknown
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+- id: pradeepmetals_com-material_caps-0064
+  name: titanium
+  status: confirmed
+  acceptable_forms:
+  - titanium
+  evidence:
+  - quote: super alloy, titanium, copper, brass and aluminium
+    approx_offset: 223689
+  - quote: stainless steel, brass, carbon, titanium, copper, brass, etc
+    approx_offset: 249762
+  actor: unknown
+  notes: named twice, both times in industry-wide 'materials that can be forged' lists, never as this company's
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+- id: pradeepmetals_com-material_caps-0065
+  name: super alloy
+  status: confirmed
+  acceptable_forms:
+  - super alloy
+  evidence:
+  - quote: super alloy
+    approx_offset: 223689
+  actor: unknown
+  notes: industry-capability list, not a company claim
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+- id: pradeepmetals_com-material_caps-0066
+  name: ingot
+  status: confirmed
+  acceptable_forms:
+  - castable ingots
+  - ingot
+  evidence:
+  - quote: The wide variety of sizes of castable ingots
+    approx_offset: 240503
+  - quote: refine the ingot’s dendritic structure
+    approx_offset: 239187
+  actor: unknown
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+- id: pradeepmetals_com-material_caps-0067
+  name: nickel, cobalt and molybdenum alloys
+  status: confirmed
+  acceptable_forms:
+  - cobalt, molybdenum or nickel
+  - cobalt
+  - molybdenum
+  - nickel
+  evidence:
+  - quote: alloys that contain cobalt, molybdenum or nickel can be used
+    approx_offset: 249869
+  actor: unknown
+  notes: one explainer sentence about high-temperature alloys generally
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+false_friends:
+- form: HDPE
+  reason: 'anticipatory: ZERO occurrences on a word-boundary check. A plastics reflex with no basis anywhere in
+    this all-metal file'
+- form: LDPE
+  reason: 'anticipatory: ZERO occurrences'
+- form: Teflon
+  reason: 'anticipatory: ZERO occurrences - and neither does PTFE, despite valve-seat prose that mentions ''polymers
+    or elastomers'' generically'
+- form: Bronze
+  reason: 'anticipatory: ZERO occurrences. Brass and copper both occur; bronze never does'
+- form: Lead
+  reason: 'witnessed: 21 occurrences and not one is the metal - LEADERSHIP, leading manufacturer, leading forging
+    companies, and ''ACHIEVING 5-DAY LEAD TIMES''. This is the exact substring trap that scored Lead at 52 hits
+    and 0 real ones in the pipeline''s brute search'
+- form: Inconel 718
+  reason: 'anticipatory: the table lists Inconel 625 and 825; 718 never appears'
+- form: '6061'
+  reason: 'anticipatory: no aluminium grade of any kind is listed - the aluminium pages are ''Coming Soon'' stubs'
+- form: Carbide
+  reason: 'witnessed: occurs only in a conference title, ''Workshop on Ceramics, Carbides & Diamonds'''
+- form: Diamond
+  reason: 'witnessed: same conference title only'
+- form: Orient Cement
+  reason: 'witnessed: a company on the directorship register whose name reads like a construction material'

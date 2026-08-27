@@ -1,0 +1,969 @@
+subject: howcogroup.com
+field: conformity_attestations
+snapshot:
+  file: apps/data_etl_app/tests/test_stages/sample_scraped_texts/howcogroup.com.txt
+  sha256: 5e8b364e3ddcdacc1482566d012646b6d9d3947825d95c3108276f576df7046b
+eval_set_version: 2
+expected_empty: false
+entries:
+- id: howcogroup_com-conformity_attestations-0001
+  name: UK Modern Slavery Act statement
+  status: confirmed
+  acceptable_forms:
+  - Modern Slavery and Human Trafficking Statement
+  - Modern Slavery Transparency Statement
+  evidence:
+  - quote: Modern Slavery Transparency Statement for the Fiscal Year 2024
+    approx_offset: 119080
+  - quote: Slavery and Human Trafficking Statement
+    approx_offset: 3438
+  notes: 'DISPUTED: statutory-compliance DOCUMENTS rather than a certification. In the footer of all 97 pages plus
+    a dedicated page listing four fiscal years'
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+- id: howcogroup_com-conformity_attestations-0002
+  name: ISO 9001
+  status: confirmed
+  acceptable_forms:
+  - 'ISO 9001: 2015'
+  - 'ISO 9001 : 2015'
+  - ISO 9001:2015
+  - LRQA ISO 9001
+  - ISO 9001
+  - ISO9001
+  evidence:
+  - quote: 'LRQA ISO 9001: QUALITY ASSURANCE'
+    approx_offset: 87145
+  - quote: 'Certified: ISO 9001: 2015'
+    approx_offset: 3687
+  - quote: 'ISO 9001 : 2015 Quality Management System'
+    approx_offset: 39522
+  - quote: 'recognition complements the site’s long standing ISO accreditations  ISO 9001:2015, ISO 14001: 2015,
+      ISO 45001:2018 & ISO 50001:2018.'
+    approx_offset: 190266
+  notes: 'SITE SCOPE: ''Howco Group Global'' (3526) - the only group-wide certificate on the accreditations page.
+    Also asserted on the Irvine coating page (1429, spaced colons), the Precision Fabrication page (2673), the Sheffield
+    news post (6824, no spaces), the AM article as ''ISO9001'' (6530), and in the legal footer of all 97 pages as
+    ''Certified: ISO 9001: 2015''. FIVE distinct printed spacings'
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+- id: howcogroup_com-conformity_attestations-0003
+  name: Registered in Scotland No. SC79844
+  status: disputed
+  acceptable_forms:
+  - Registered in Scotland No. SC79844
+  - SC79844
+  evidence:
+  - quote: Registered in Scotland No. SC79844.
+    approx_offset: 3714
+  notes: 'DISPUTED: a business-registry identifier, the same class as D-U-N-S, which the seeding brief flags as
+    argued either way. Appears in the legal footer of all 97 pages (100 occurrences), so it is in scope for nearly
+    every window | a business-registry identifier (Companies House number). SEEDING_BRIEF section 4 names registry
+    identifiers such as D-U-N-S as the class to seed disputed: it identifies the legal entity, it is not something
+    a company holds, meets or follows.'
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: disputed
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+    reason: 'a business-registry identifier (Companies House number). SEEDING_BRIEF section 4 names registry identifiers
+      such as D-U-N-S as the class to seed disputed: it identifies the legal entity, it is not something a company
+      holds, meets or follows.'
+- id: howcogroup_com-conformity_attestations-0004
+  name: ASTM A564
+  status: confirmed
+  acceptable_forms:
+  - ASTM A564
+  evidence:
+  - quote: 'UNS S17400 : ASTM A564 GRADE 630'
+    approx_offset: 4042
+  - quote: ASTM A564 lists several alternative supply conditions.
+    approx_offset: 4865
+  notes: 17-4 PH supply standard
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+- id: howcogroup_com-conformity_attestations-0005
+  name: NACE MR0175
+  status: confirmed
+  acceptable_forms:
+  - NACE MR0175
+  - NACE approved
+  evidence:
+  - quote: In addition to limiting the hardness, NACE MR0175 restricts the age hardening cycles that can be applied
+      to the alloy to two of the several
+    approx_offset: 4522
+  - quote: The grade is approved by NACE MR0175 supplied to 22 HRC for packers and other sub-surface equipment.
+    approx_offset: 43110
+  notes: 'SCOPE: a MATERIAL standard, not a site certificate - it appears on 12 alloy datasheet pages as the sour-service
+    approval status of the grade Howco stocks. The most frequent standard in the file after ISO 9001'
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: amended
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+    reason: 'SUBSTRING ARTEFACT: the bare form ''NACE'' (4 chars, bare containment) is a substring of ''furnace''
+      - ''furnace'', ''furnaces'' and ''vacuum furnace'' all occur here, and any such return would credit NACE MR0175.
+      Dropping the bare form loses nothing: a returned ''NACE'' is still contained in ''NACE MR0175'' and credits.'
+- id: howcogroup_com-conformity_attestations-0006
+  name: ASTM A29
+  status: confirmed
+  acceptable_forms:
+  - ASTM A29
+  evidence:
+  - quote: 'LOW ALLOY 4330V: ASTM A29'
+    approx_offset: 15084
+  notes: the supply standard cited in the sub-heading of all six AISI low-alloy datasheets
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+- id: howcogroup_com-conformity_attestations-0007
+  name: ASTM B-series nickel alloy standards
+  status: confirmed
+  acceptable_forms:
+  - ASTM B425 & B564
+  - ASTM B446 & B564
+  - ASTM B637
+  - ASTM B423
+  - ASTM B805
+  - ASTM B668
+  - B425
+  - B564
+  - B668
+  evidence:
+  - quote: 'UNS N08825 : ASTM B425 & B564 (VO2.04)'
+    approx_offset: 16817
+  - quote: 'UNS N06625: ASTM B446 & B564'
+    approx_offset: 75189
+  - quote: 'UNS N07718 : ASTM B637 GRADE 630 AMS 5662, 5663 & 5664'
+    approx_offset: 84669
+  notes: 'the nickel-alloy supply standards cited across the Alloy 625/718/825/28/625-Plus datasheets: B425, B446,
+    B564, B637, B423, B805. ''ASTM B668'' is deliberately NOT an acceptable form: line 3150 is a scrape run-on,
+    ''ASTM B668GENERAL SCOPE'', so no word-boundary matcher can find it'
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: amended
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+    reason: 'MISSING DESIGNATION: the Alloy 825 & Alloy 28 tube page prints ''UNS N08825 : ASTM B423 UNS N080287
+      : ASTM B668GENERAL SCOPE'' - ASTM B668 is a seventh B-series standard in this bundle and was absent from the
+      forms, so a correct return of it could never credit. Note the scrape glues ''B668'' to ''GENERAL SCOPE'',
+      which is probably why it was missed.'
+- id: howcogroup_com-conformity_attestations-0008
+  name: API 6A / API 6A CRA
+  status: confirmed
+  acceptable_forms:
+  - API 6A CRA
+  - API 6ACRA
+  - API 6A
+  - AP16A
+  evidence:
+  - quote: API 6A CRA (UNS N07725)
+    approx_offset: 90342
+  - quote: analysis and Howco’s heat treatment control, the increased, demanding requirements of 10”ER QTCs per
+      API 6A 21st edition can be satisfied.
+    approx_offset: 27823
+  - quote: 925 is manufactured to the requirements of API 6ACRA, and is approved for use under NACE MR0175 in a
+      number
+    approx_offset: 104461
+  notes: a wellhead-equipment material standard cited on 5 alloy datasheets; printed both spaced ('API 6A CRA')
+    and closed-up ('API 6ACRA')
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: amended
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+    reason: 'UNUSUAL PRINTING: the Alloy 625 Plus header prints this designation as ''AP16A'' - ''API 6A'' with
+      the letter I rendered as the digit 1 - in ''API 6A CRA (UNS N07716) : AMS 5854 : ASTM B805 : AP16A)''. A model
+      reading that line would return ''AP16A'', which credits nothing under the current forms. Added.'
+- id: howcogroup_com-conformity_attestations-0009
+  name: GDPR
+  status: confirmed
+  acceptable_forms:
+  - GDPR Privacy Notice & Retention Policy
+  - GDPR
+  evidence:
+  - quote: GDPR Privacy Notice & Retention Policy
+    approx_offset: 35751
+  notes: 'DISPUTED: a data-protection regulation a company must comply with, so it fits the clause''s ''compliance
+    ... with an identity of its own'', but it is not a manufacturing or product conformity. Single occurrence, on
+    the ESG page'
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+- id: howcogroup_com-conformity_attestations-0010
+  name: Conflict minerals statement
+  status: confirmed
+  acceptable_forms:
+  - Statement on Conflict Minerals during Steel Production
+  - Conflict Minerals Policy
+  evidence:
+  - quote: Statement on Conflict Minerals during Steel Production
+    approx_offset: 35820
+  notes: 'DISPUTED: a supply-chain compliance policy document; footer link on 97 pages'
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+- id: howcogroup_com-conformity_attestations-0011
+  name: Norwegian Transparency Act report
+  status: confirmed
+  acceptable_forms:
+  - Report on the Norwegian Transparency Act
+  - Norwegian Transparency Act
+  evidence:
+  - quote: Report on the Norwegian Transparency Act for 2023/24
+    approx_offset: 36167
+  notes: 'DISPUTED: statutory compliance document, tied to the Figgjo, Norway site. Footer link on 97 pages'
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+- id: howcogroup_com-conformity_attestations-0012
+  name: Section 172 statement
+  status: confirmed
+  acceptable_forms:
+  - Section 172 Statement
+  evidence:
+  - quote: Section 172 Statement For the Year Ended March 2023
+    approx_offset: 36246
+  notes: 'DISPUTED: UK Companies Act 2006 s.172 director-duty statement; a statutory document, not a certificate'
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+- id: howcogroup_com-conformity_attestations-0013
+  name: Streamlined Energy and Carbon Reporting (SECR)
+  status: confirmed
+  acceptable_forms:
+  - Streamlined Energy and Carbon Reporting
+  - Energy & Carbon Report
+  evidence:
+  - quote: Streamlined Energy and Carbon Reporting For the Year Ended March 2023
+    approx_offset: 36325
+  notes: 'DISPUTED: a UK statutory reporting regime; document rather than certificate'
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+- id: howcogroup_com-conformity_attestations-0014
+  name: ISO 3834-2
+  status: confirmed
+  acceptable_forms:
+  - ISO 3834-2
+  - 'ISO 3834 : 2'
+  - ISO 3834
+  evidence:
+  - quote: 'ISO 3834 : 2 Quality Requirements for Welding'
+    approx_offset: 39564
+  - quote: ISO 3834-2 Quality Requirements for Welding
+    approx_offset: 72542
+  notes: 'SITE SCOPE: claimed twice with different punctuation and different scope - ''ISO 3834 : 2'' as an Irvine
+    coating-site accreditation (1430) and ''ISO 3834-2'' on the Precision Fabrication page (2674), whose welding
+    is done by supply chain partners. It does NOT appear on the /about/accreditations/ page at all'
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+- id: howcogroup_com-conformity_attestations-0015
+  name: ISO 14001
+  status: confirmed
+  acceptable_forms:
+  - 'ISO 14001 : 2015'
+  - 'ISO 14001: 2015'
+  - ISO 14001
+  - LRQA ISO 14001
+  evidence:
+  - quote: LRQA ISO 14001 | ISO 45001 OCCUPATIONAL HEALTH & SAFETY STANDARD
+    approx_offset: 87260
+  - quote: 'ISO 14001 : 2015 Environmental Management System'
+    approx_offset: 39610
+  - quote: 'complements the site’s long standing ISO accreditations  ISO 9001:2015, ISO 14001: 2015, ISO 45001:2018
+      & ISO 50001:2018.'
+    approx_offset: 190278
+  notes: 'SITE SCOPE: ''Bredbury | Cumbernauld | Drummond | Irvine | Sheffield | Norway'' (3538) - SIX named sites,
+    one of which (''Drummond'') appears nowhere else in the file. Also claimed for Irvine alone (1431) and Sheffield
+    alone (6824)'
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+- id: howcogroup_com-conformity_attestations-0016
+  name: BS OHSAS 18001
+  status: confirmed
+  acceptable_forms:
+  - BS OHSAS 18001
+  - OHSAS 18001
+  evidence:
+  - quote: BS OHSAS 18001 Safety Management System
+    approx_offset: 39659
+  notes: 'SITE SCOPE: the Irvine coating facility only, under ''CURRENT SITE ACCREDITATIONS''. A superseded standard
+    (withdrawn in favour of ISO 45001) still presented as current; the accreditations page and the fabrication page
+    both list ISO 45001 instead. Only occurrence of ''OHSAS'' in the file'
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+- id: howcogroup_com-conformity_attestations-0017
+  name: ISO 50001
+  status: confirmed
+  acceptable_forms:
+  - LRQA ISO 50001 ENERGY STANDARD
+  - ISO 50001:2018
+  - ISO 50,001
+  - ISO 50001
+  evidence:
+  - quote: LRQA ISO 50001 ENERGY STANDARD – HELD BY ALL UNITED KINGDOM MANUFACTURING SITES
+    approx_offset: 87395
+  - quote: ISO 50,001 Energy Management Systems
+    approx_offset: 39699
+  - quote: 'ISO accreditations  ISO 9001:2015, ISO 14001: 2015, ISO 45001:2018 & ISO 50001:2018.'
+    approx_offset: 190315
+  notes: 'SITE SCOPE: ''HELD BY ALL UNITED KINGDOM MANUFACTURING SITES'' (3540), enumerated at 3543 as ''Bredbury
+    | Cumbernauld | Drummond | Irvine | Sheffield'' - five UK sites, Norway dropped from the ISO 14001/45001 row.
+    PRINTING TRAP: the Irvine page writes it ''50,001'' WITH A COMMA (1433)'
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+- id: howcogroup_com-conformity_attestations-0018
+  name: Norsok M-501
+  status: confirmed
+  acceptable_forms:
+  - Norsok M-501 System 7 B & C, System 1 coatings
+  - Norsok M-501
+  evidence:
+  - quote: Norsok M-501 System 7 B & C, System 1 coatings
+    approx_offset: 39763
+  notes: 'SITE SCOPE: the Irvine coating facility, listed under ''COATING FACILITY PROCESSES'' rather than under
+    accreditations. A Norwegian offshore surface-treatment standard, named with the specific systems (7 B & C, 1).
+    Single occurrence'
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+- id: howcogroup_com-conformity_attestations-0019
+  name: ICorr Level 3
+  status: confirmed
+  acceptable_forms:
+  - ICorr level 3
+  - ICorr
+  evidence:
+  - quote: Coating inspection personnel Nace level 2, ICorr level 3 qualified
+    approx_offset: 40372
+  notes: 'SITE SCOPE: the Irvine coating facility. Institute of Corrosion painting/coating inspector grade. Single
+    occurrence, and it is a PERSONNEL qualification (''Coating inspection personnel ... qualified''), not a company
+    certificate'
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+- id: howcogroup_com-conformity_attestations-0020
+  name: NACE Level 2 coating inspector
+  status: confirmed
+  acceptable_forms:
+  - Nace level 2
+  evidence:
+  - quote: Coating inspection personnel Nace level 2, ICorr level 3 qualified
+    approx_offset: 40372
+  notes: 'SITE SCOPE: the Irvine coating facility. PRINTING TRAP: printed ''Nace'' in mixed case here, while the
+    same body''s material standard is printed ''NACE MR0175'' in caps everywhere else. A personnel qualification'
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+- id: howcogroup_com-conformity_attestations-0021
+  name: API 5CT
+  status: confirmed
+  acceptable_forms:
+  - API 5CT
+  evidence:
+  - quote: GRADE 420 MOD & API 5CT 13CR TUBE
+    approx_offset: 42274
+  notes: the OCTG casing/tubing spec, used here as part of a stocked grade name rather than as a held certificate
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+- id: howcogroup_com-conformity_attestations-0022
+  name: ASTM A519
+  status: confirmed
+  acceptable_forms:
+  - ASTM A519
+  evidence:
+  - quote: either as mechanical tube or casing tube The manufacturing standards of ASTM A519 are used for mechanical
+      tube supply.
+    approx_offset: 42537
+  notes: mechanical tubing standard, cited on the two tube datasheets
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+- id: howcogroup_com-conformity_attestations-0023
+  name: ASTM A182
+  status: confirmed
+  acceptable_forms:
+  - ASTM A182
+  evidence:
+  - quote: 'UNS S41500: ASTM A182'
+    approx_offset: 45880
+  - quote: ASTM A182 specifies a minimum 0.2 PS value of 95 KSI. This NACE approved grade is limited to 75 KSI because
+    approx_offset: 46524
+  notes: forged-fitting standard cited on the F6NM, 9Cr/1Mo, F22, S31803 and S32760 datasheets
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+- id: howcogroup_com-conformity_attestations-0024
+  name: AMS 2750 Class 3
+  status: confirmed
+  acceptable_forms:
+  - AMS 2750 Class 3
+  - AMS 2750
+  evidence:
+  - quote: Our furnace is calibrated to AMS 2750 Class 3 and can perform API and AMS recipes up to 2200F.
+    approx_offset: 49668
+  notes: 'SITE SCOPE: the Howco AM Houston furnace only. A pyrometry standard, stated as a furnace CALIBRATION class
+    rather than as a held certificate. Single occurrence'
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+- id: howcogroup_com-conformity_attestations-0025
+  name: AS9100D
+  status: confirmed
+  acceptable_forms:
+  - LRQA AS9100D
+  - AS9100D
+  - AS9100
+  evidence:
+  - quote: 'LRQA AS9100D: QUALITY ASSURANCE'
+    approx_offset: 87203
+  - quote: AS9100
+    approx_offset: 50131
+  - quote: AS9100 approved for Manufacture of Additively Manufactured Parts including Machining, Heat Treatment,
+      Testing and Hot Isostatic Pressing.
+    approx_offset: 50139
+  notes: 'SITE SCOPE: ''Howco Houston, USA'' (3532) ONLY - the additive-manufacturing division. Scope at 1900: ''Manufacture
+    of Additively Manufactured Parts including Machining, Heat Treatment, Testing and Hot Isostatic Pressing''.
+    The bare ''AS9100'' (no D) form is used on the AM pages'
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+- id: howcogroup_com-conformity_attestations-0026
+  name: PCN Level II / Level III
+  status: confirmed
+  acceptable_forms:
+  - PCN Level III consultancy
+  - PCN Level II Operators
+  - PCN NDE Level II
+  - PCN Level III
+  - PCN Level II
+  - PCN
+  evidence:
+  - quote: PCN Level III consultancy. Procedure – technique sheets and scan plan writing in all disciplines.
+    approx_offset: 59001
+  - quote: PCN NDE Level II Non-destructive Testing MT, LPI, UT
+    approx_offset: 72716
+  notes: 'SITE SCOPE: none stated. Claimed twice in different words - ''PCN Level III consultancy ... PCN Level
+    II Operators'' on the worldwide Testing & NDT page (2248), and ''PCN NDE Level II Non-destructive Testing MT,
+    LPI, UT'' under the Precision Fabrication accreditation list (2678). A UK personnel certification scheme (Personnel
+    Certification in Non-Destructive Testing)'
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+- id: howcogroup_com-conformity_attestations-0027
+  name: ASME 1X (Section IX) welder qualification
+  status: confirmed
+  acceptable_forms:
+  - ASME 1X
+  - ASME
+  evidence:
+  - quote: materials in our dedicated Fabrication & Welding facility. Welder qualifications to ASME 1X, EN ISO 9606-1.
+      This enables us to provide full turnkey packages for
+    approx_offset: 72292
+  actor: unknown
+  notes: 'SITE SCOPE: ''our dedicated Fabrication & Welding facility'', but the welders are the ''established supply
+    chain partners''''. PRINTING TRAP: the text uses the DIGIT ONE - ''ASME 1X'' - not the Roman numeral ''ASME
+    IX''. Single occurrence of ''ASME'' in the file'
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+- id: howcogroup_com-conformity_attestations-0028
+  name: EN ISO 9606-1
+  status: confirmed
+  acceptable_forms:
+  - EN ISO 9606-1
+  - ISO 9606-1
+  - ISO 9606
+  evidence:
+  - quote: dedicated Fabrication & Welding facility. Welder qualifications to ASME 1X, EN ISO 9606-1. This enables
+      us to provide full turnkey packages for a range of
+    approx_offset: 72309
+  actor: unknown
+  notes: same welder-qualification sentence; welding done by supply chain partners. Single occurrence
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+- id: howcogroup_com-conformity_attestations-0029
+  name: ISO 45001
+  status: confirmed
+  acceptable_forms:
+  - ISO 45001:2018
+  - ISO 45001
+  - ISO 45001 Occupational Health and Safety Management
+  evidence:
+  - quote: LRQA ISO 14001 | ISO 45001 OCCUPATIONAL HEALTH & SAFETY STANDARD
+    approx_offset: 87260
+  - quote: ISO 45001 Occupational Health and Safety Management
+    approx_offset: 72628
+  - quote: 'site’s long standing ISO accreditations  ISO 9001:2015, ISO 14001: 2015, ISO 45001:2018 & ISO 50001:2018.'
+    approx_offset: 190294
+  notes: 'SITE SCOPE: shares one accreditations-page row with ISO 14001 - ''Bredbury | Cumbernauld | Drummond |
+    Irvine | Sheffield | Norway'' (3538). The Irvine coating page instead claims the SUPERSEDED ''BS OHSAS 18001''
+    (1432), so the two pages disagree about which safety standard Irvine holds'
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+- id: howcogroup_com-conformity_attestations-0030
+  name: CSWIP 3.2
+  status: confirmed
+  acceptable_forms:
+  - Weld Inspection CSWIP 3.2
+  - CSWIP 3.2
+  - CSWIP
+  evidence:
+  - quote: Weld Inspection CSWIP 3.2
+    approx_offset: 72769
+  notes: 'SITE SCOPE: none stated; listed under the Precision Fabrication ACCREDITATIONS heading, on the page whose
+    welding is done by ''our established supply chain partners''. Senior Welding Inspector personnel qualification.
+    Single occurrence'
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+- id: howcogroup_com-conformity_attestations-0031
+  name: AMS 5662 / 5663 / 5664
+  status: confirmed
+  acceptable_forms:
+  - AMS 5662, 5663 & 5664
+  - AMS 5662
+  evidence:
+  - quote: 'UNS N07718 : ASTM B637 GRADE 630 AMS 5662, 5663 & 5664'
+    approx_offset: 84669
+  notes: Alloy 718 aerospace material specifications, cited in the datasheet sub-heading
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+- id: howcogroup_com-conformity_attestations-0032
+  name: LRQA (certification body)
+  status: disputed
+  acceptable_forms:
+  - LRQA
+  evidence:
+  - quote: 'LRQA ISO 9001: QUALITY ASSURANCE'
+    approx_offset: 87145
+  - quote: LRQA ISO 50001 ENERGY STANDARD – HELD BY ALL UNITED KINGDOM MANUFACTURING SITES
+    approx_offset: 87395
+  notes: 'the issuing body prefixed to four of the accreditations-page rows; not a certificate itself but an issuing-body
+    identity, which the clause admits | LRQA is the ISSUING BODY, not an attestation. The clause names an issuing
+    body as one of the things that give a certification its identity (''a name, number, mark, or issuing body''),
+    not as a certification in its own right - a company cannot hold ''LRQA'', it holds LRQA-issued ISO 9001/AS9100D.
+    The bare form also cannot miss independently: it is contained in every ''LRQA ISO ...'' return.'
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: disputed
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+    reason: 'LRQA is the ISSUING BODY, not an attestation. The clause names an issuing body as one of the things
+      that give a certification its identity (''a name, number, mark, or issuing body''), not as a certification
+      in its own right - a company cannot hold ''LRQA'', it holds LRQA-issued ISO 9001/AS9100D. The bare form also
+      cannot miss independently: it is contained in every ''LRQA ISO ...'' return.'
+- id: howcogroup_com-conformity_attestations-0033
+  name: ISO/IEC 17025 test laboratory
+  status: confirmed
+  acceptable_forms:
+  - 'ISO 17025: TEST LABORATORY MECHANICAL TESTING'
+  - ISO 17025
+  evidence:
+  - quote: 'ISO 17025: TEST LABORATORY MECHANICAL TESTING'
+    approx_offset: 87643
+  notes: 'SITE SCOPE: ''Howco, UK (Sheffield)'' (3569) ONLY. Single occurrence in the file. The related UKAS claims
+    (3866, 6826) are the same Sheffield laboratory described without the standard number'
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+- id: howcogroup_com-conformity_attestations-0034
+  name: ASNT NDE Level II
+  status: confirmed
+  acceptable_forms:
+  - WORLDWIDE ASNT NDE LEVEL II
+  - ASNT NDE LEVEL II
+  - ASNT
+  evidence:
+  - quote: 'WORLDWIDE ASNT NDE LEVEL II: NONDESTRUCTIVE TESTING'
+    approx_offset: 87717
+  notes: 'SITE SCOPE: the widest on the page - SEVEN sites listed at 3572-3578: ''Howco, Cumbernauld, UK'', ''Howco,
+    Sheffield, UK'', ''Howco, Dubai, UAE'', ''Howco, Houston, USA'', ''Howco, Irvine, Scotland'', ''Howco, Singapore'',
+    ''Howco, Figgjo, Norway''. Note this is a PERSONNEL qualification scheme presented as a site accreditation'
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+- id: howcogroup_com-conformity_attestations-0035
+  name: API 5B
+  status: confirmed
+  acceptable_forms:
+  - API 5B
+  evidence:
+  - quote: API 5B
+    approx_offset: 87914
+  notes: 'SITE SCOPE: ''Howco, Dubai, UAE'' (3583) ONLY. Printed as a bare two-word line with no scope text; the
+    site is on the next non-glyph line. API 5B is the threading/gauging spec for casing, tubing and line pipe threads'
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+- id: howcogroup_com-conformity_attestations-0036
+  name: API 7-2
+  status: confirmed
+  acceptable_forms:
+  - API-7-2
+  evidence:
+  - quote: API-7-2
+    approx_offset: 87945
+  notes: 'SITE SCOPE: ''Howco, Dubai, UAE'' (3589) ONLY. PRINTING TRAP: hyphenated ''API-7-2'', not the conventional
+    ''API 7-2'' or ''API Spec 7-2''. Rotary shouldered thread connections'
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+- id: howcogroup_com-conformity_attestations-0037
+  name: API Specification Q1
+  status: confirmed
+  acceptable_forms:
+  - API SPECIFICATION Q1
+  evidence:
+  - quote: API SPECIFICATION Q1
+    approx_offset: 87977
+  notes: 'SITE SCOPE: THREE sites, each on its own line after a U+F1C1 glyph - ''Howco, Houston, USA'' (3595), ''Howco,
+    Cumbernauld, UK'' (3600), ''Howco, Dubai, UAE'' (3605). The only multi-site API certificate. Printed in full
+    as ''API SPECIFICATION Q1''; the common short forms ''API Spec Q1'' and ''API Q1'' occur ZERO times'
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+- id: howcogroup_com-conformity_attestations-0038
+  name: ASTM A276 / A479
+  status: confirmed
+  acceptable_forms:
+  - ASTM A182, A276, A479
+  - A276
+  - A479
+  evidence:
+  - quote: 'UNS S31803 – F51 : DUPLEX STAINLESS : ASTM A182, A276, A479, BS EN 10088'
+    approx_offset: 88741
+  notes: stainless bar standards, cited on the two duplex datasheets
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+- id: howcogroup_com-conformity_attestations-0039
+  name: BS EN 10088
+  status: confirmed
+  acceptable_forms:
+  - BS EN 10088
+  evidence:
+  - quote: 'UNS S31803 – F51 : DUPLEX STAINLESS : ASTM A182, A276, A479, BS EN 10088'
+    approx_offset: 88741
+  - quote: 'UNS S32760 – F55 : SUPER DUPLEX : ASTM A182, A276, A479, BS EN 10088'
+    approx_offset: 107728
+  notes: the only BS EN standard in the file; cited on both duplex datasheets
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+- id: howcogroup_com-conformity_attestations-0040
+  name: UKAS accreditation
+  status: confirmed
+  acceptable_forms:
+  - UKAS approved mechanical and metallurgical testing laboratory
+  - UKAS approved test laboratory
+  - UKAS
+  evidence:
+  - quote: In-house UKAS approved mechanical and metallurgical testing laboratory
+    approx_offset: 93264
+  - quote: Today, it’s also the site of our UKAS approved test laboratory. Just minutes away from the well-known
+      ‘Five
+    approx_offset: 190401
+  notes: 'SITE SCOPE: the Sheffield laboratory (6826 is in the ''Made in Sheffield'' post about the Carbrook Street
+    site); 3866 says only ''In-house'' on the heat-treatment page. UKAS is the accreditation BODY behind the ISO
+    17025 row, but the two are never printed together'
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+- id: howcogroup_com-conformity_attestations-0041
+  name: Cleanroom Class 10,000
+  status: confirmed
+  acceptable_forms:
+  - Cleanroom technology (Class 10,000)
+  - Class 10,000
+  evidence:
+  - quote: Cleanroom technology (Class 10,000)
+    approx_offset: 111104
+  notes: 'DISPUTED: ''Class 10,000'' is a FED-STD-209E cleanliness classification with an identity of its own that
+    a facility can be certified to, but the text states it as a facility spec, not as a held certificate, and never
+    names the standard it comes from'
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+- id: howcogroup_com-conformity_attestations-0042
+  name: AMS 5854
+  status: confirmed
+  acceptable_forms:
+  - AMS 5854
+  evidence:
+  - quote: 'API 6A CRA (UNS N07716) : AMS 5854 : ASTM B805 : AP16A)'
+    approx_offset: 117321
+  notes: Alloy 625 Plus aerospace material specification
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+- id: howcogroup_com-conformity_attestations-0043
+  name: Made in Sheffield
+  status: confirmed
+  acceptable_forms:
+  - ‘Made in Sheffield’ mark
+  - Made in Sheffield
+  - Made In Sheffield
+  - ‘Made In Sheffield’ licence holder
+  evidence:
+  - quote: That’s why we’re so pleased to announce that we have received the world recognised ‘Made in Sheffield’
+      mark.
+    approx_offset: 189714
+  - quote: Howco has been a proud ‘Made In Sheffield’ licence holder since the end of 2023, but we’ve recently discovered
+      that
+    approx_offset: 163942
+  notes: 'SITE SCOPE: Sheffield (Carbrook Street) only - the mark is restricted to businesses in the ''S'' postcode.
+    A regional provenance LICENCE, awarded end-2023. CASING VARIES: ''Made in Sheffield'' and ''Made In Sheffield''
+    both occur, inside curly single quotes. 19 occurrences across two news posts'
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+false_friends:
+- form: CE
+  reason: ZERO occurrences in 7,573 lines. A Scottish/UK manufacturer selling pressure-containing oil-and-gas components
+    is a very strong word-association pull for CE marking; nothing in the text supports it
+- form: UKCA
+  reason: ZERO occurrences. The post-Brexit UK counterpart of CE; same pull, same absence
+- form: PED
+  reason: ZERO occurrences. The Pressure Equipment Directive is strongly associated with 'pressure containing members',
+    'Pressure Vessels' and 'Hydrostatic Pressure Testing up to 23,000 psi', all of which the text does say
+- form: ATEX
+  reason: ZERO occurrences. Associated with oil-and-gas hazardous-area equipment
+- form: Achilles
+  reason: ZERO occurrences. The oil-and-gas supplier prequalification registry (Achilles JQS) that a North Sea supplier
+    would typically hold
+- form: FPAL
+  reason: ZERO occurrences. First Point Assessment Ltd, the other standard North Sea supplier registry
+- form: NADCAP
+  reason: ZERO occurrences, despite an AS9100D-certified aerospace additive-manufacturing division with in-house
+    heat treatment and NDT - exactly the scope Nadcap normally covers
+- form: ISO 45001:2018
+  reason: the ':2018' edition suffix appears ONLY at 6824 for Sheffield; the accreditations page prints the standard
+    bare. Listing the suffixed form as if it were the general claim over-specifies
+- form: ASME IX
+  reason: the text prints 'ASME 1X' with the DIGIT ONE (2669). 'ASME IX' with the Roman numeral occurs zero times
+- form: ISO 9001:2008
+  reason: zero occurrences; only the :2015 edition is claimed
+- form: ISO 17025:2017
+  reason: 'the edition year is never printed; the accreditations page says only ''ISO 17025: TEST LABORATORY MECHANICAL
+    TESTING'''
+- form: Regulatory Approval
+  reason: not a named attestation anywhere in this text; flagged because the grounding eval found this exact option-axis
+    echo on another subject

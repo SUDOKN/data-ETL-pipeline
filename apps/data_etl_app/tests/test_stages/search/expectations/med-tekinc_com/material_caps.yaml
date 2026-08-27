@@ -1,0 +1,255 @@
+subject: med-tekinc.com
+field: material_caps
+snapshot:
+  file: apps/data_etl_app/tests/test_stages/sample_scraped_texts/med-tekinc.com.txt
+  sha256: f1b1f156176cb3c86757d25176c0c27f9d6d704a021a47bdc0bfdcd662c4717c
+eval_set_version: 2
+expected_empty: false
+notes: 'Ten entries, but only four (metal, steel, aluminum, nitrogen) are named as substances outright; the rest
+  come in through two explicit clauses in the material prompt. (a) ''a substance that the work is ... performed
+  in'' admits the furnace atmospheres and the quench media - salt, oil, polymer, endothermic gas, air. (b) ''A process
+  or treatment named after a substance it deposits on or diffuses into the work does imply that substance, and qualifies''
+  admits Nitriding/Carbonitriding (nitrogen) and Carburizing/Carbonitriding (carbon). Entry ''carbon'' has NO direct
+  mention anywhere in the file and exists only through clause (b) - it is the sharpest test in this subject of whether
+  search applies that clause, and the likeliest source of a defensible miss. There are no alloys or grade designations
+  anywhere: a sweep for 3-4 digit runs found only temperatures, KW ratings, load capacities, a ZIP and a phone number.'
+entries:
+- id: med-tekinc_com-material_caps-0001
+  name: metal
+  status: confirmed
+  acceptable_forms:
+  - metal
+  - metals
+  - Metal
+  evidence:
+  - quote: specializes in heat-treating metal for commercial purposes
+    approx_offset: 366
+  - quote: to help make your metals more durable
+    approx_offset: 1737
+  - quote: Heat Treating Metal
+    approx_offset: 1577
+  notes: the generic substance the whole business acts on; broad, so its coverage number carries little information
+    of its own
+  provenance:
+  - action: added
+    by: seed-agent-med-tekinc-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-med-tekinc
+    date: '2026-08-27'
+- id: med-tekinc_com-material_caps-0002
+  name: nitrogen
+  status: confirmed
+  acceptable_forms:
+  - Nitrogen Atmospheres
+  - Nitrogen
+  - Nitriding
+  - Carbonitriding
+  evidence:
+  - quote: With Vacuum or Nitrogen Atmospheres
+    approx_offset: 3427
+  - quote: Nitriding
+    approx_offset: 2833
+  - quote: Carbonitriding
+    approx_offset: 2732
+  notes: named directly as a furnace atmosphere (a substance the work is performed in) AND implied by Nitriding/Carbonitriding
+    under the prompt's diffused-substance clause
+  provenance:
+  - action: added
+    by: seed-agent-med-tekinc-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-med-tekinc
+    date: '2026-08-27'
+- id: med-tekinc_com-material_caps-0003
+  name: carbon
+  status: confirmed
+  acceptable_forms:
+  - Carburizing
+  - Carbonitriding
+  evidence:
+  - quote: Carburizing
+    approx_offset: 2747
+  - quote: Carbonitriding
+    approx_offset: 2732
+  notes: BORDERLINE / the clause test. The word 'carbon' never appears in the file. This entry qualifies ONLY through
+    the material prompt's explicit clause that a treatment named after a substance it diffuses into the work implies
+    that substance. If a later pass judges that clause inapplicable, retire this entry rather than reading it as
+    a recall failure
+  provenance:
+  - action: added
+    by: seed-agent-med-tekinc-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-med-tekinc
+    date: '2026-08-27'
+- id: med-tekinc_com-material_caps-0004
+  name: molten salt
+  status: confirmed
+  acceptable_forms:
+  - Neutral Salt Bath
+  - Salt Bath Hardening
+  - Salt Bath
+  evidence:
+  - quote: Salt Bath Hardening
+    approx_offset: 2892
+  - quote: For neutral Salt Bath, Austemper Bath, and Marquench Bath Processing
+    approx_offset: 4234
+  notes: the work is austempered and marquenched IN molten salt - 'a substance that the work is ... performed in'
+  provenance:
+  - action: added
+    by: seed-agent-med-tekinc-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-med-tekinc
+    date: '2026-08-27'
+- id: med-tekinc_com-material_caps-0005
+  name: steel
+  status: confirmed
+  acceptable_forms:
+  - Tampering Steel
+  - tempering steel
+  - Steel
+  evidence:
+  - quote: Tampering Steel
+    approx_offset: 2993
+  - quote: In addition to tempering steel
+    approx_offset: 3178
+  notes: the only named ferrous material; appears once misspelled ('Tampering') and once correctly
+  provenance:
+  - action: added
+    by: seed-agent-med-tekinc-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-med-tekinc
+    date: '2026-08-27'
+- id: med-tekinc_com-material_caps-0006
+  name: quench oil
+  status: confirmed
+  acceptable_forms:
+  - Warm Oil Quench
+  - Oil Quench
+  - Oil
+  evidence:
+  - quote: All Case Furnaces with Warm Oil Quench
+    approx_offset: 3650
+  notes: quenchant the work is immersed in. 'Oil' is a 3-character form and so matches case-sensitively on word
+    boundaries - the longer 'Oil Quench' form is the one that will normally credit
+  provenance:
+  - action: added
+    by: seed-agent-med-tekinc-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-med-tekinc
+    date: '2026-08-27'
+- id: med-tekinc_com-material_caps-0007
+  name: endothermic atmosphere gas
+  status: confirmed
+  acceptable_forms:
+  - Endothermic Atmospheres
+  - Endothermic
+  evidence:
+  - quote: With Endothermic Atmospheres
+    approx_offset: 3691
+  notes: generated carrier gas the work is processed in; a substance, unlike the vacuum it is contrasted with
+  provenance:
+  - action: added
+    by: seed-agent-med-tekinc-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-med-tekinc
+    date: '2026-08-27'
+- id: med-tekinc_com-material_caps-0008
+  name: air (furnace atmosphere)
+  status: disputed
+  acceptable_forms:
+  - Air Atmospheres
+  evidence:
+  - quote: With Air Atmospheres and Operating Temperatures
+    approx_offset: 3909
+  notes: BORDERLINE. Air is literally 'a substance that the work is performed in' and the text names it as the pit/box
+    furnaces' atmosphere, so it is seeded - but a run that declines air as too generic to be a material capability
+    is defensible, and this entry should be retired rather than counted as a miss if a later pass agrees | 'With
+    Air Atmospheres and Operating Temperatures Of 200 to 1,450 Degrees Fahrenheit' is real text, but air as a MATERIAL
+    is a genuine boundary call. The clause covers 'a substance that the work is made from or performed in'; nitrogen
+    and endothermic gas are supplied process gases named as substances, whereas an air atmosphere is what a draw
+    furnace contains when no atmosphere is supplied - i.e. a process condition rather than a substance the shop
+    stocks or works in. Confirming it would charge a recall miss against a stage that reads it that way, which is
+    the false-RED direction this harness has already fired in once. Kept on the record, not gating.
+  provenance:
+  - action: added
+    by: seed-agent-med-tekinc-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: disputed
+    by: verify-agent-med-tekinc
+    date: '2026-08-27'
+    reason: '''With Air Atmospheres and Operating Temperatures Of 200 to 1,450 Degrees Fahrenheit'' is real text,
+      but air as a MATERIAL is a genuine boundary call. The clause covers ''a substance that the work is made from
+      or performed in''; nitrogen and endothermic gas are supplied process gases named as substances, whereas an
+      air atmosphere is what a draw furnace contains when no atmosphere is supplied - i.e. a process condition rather
+      than a substance the shop stocks or works in. Confirming it would charge a recall miss against a stage that
+      reads it that way, which is the false-RED direction this harness has already fired in once. Kept on the record,
+      not gating.'
+- id: med-tekinc_com-material_caps-0009
+  name: aluminum
+  status: confirmed
+  acceptable_forms:
+  - Aging Aluminum
+  - Aluminum
+  evidence:
+  - quote: Solution Annealing, and Aging Aluminum
+    approx_offset: 4582
+  notes: the only non-ferrous material named; occurs once, inside the electric-furnace equipment line rather than
+    in any services list
+  provenance:
+  - action: added
+    by: seed-agent-med-tekinc-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-med-tekinc
+    date: '2026-08-27'
+- id: med-tekinc_com-material_caps-0010
+  name: quench polymer
+  status: confirmed
+  acceptable_forms:
+  - Polymer Quench
+  - Polymer
+  evidence:
+  - quote: Polymer Quench for Distortion Minimization
+    approx_offset: 4761
+  notes: polymer quenchant on the electric furnaces
+  provenance:
+  - action: added
+    by: seed-agent-med-tekinc-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-med-tekinc
+    date: '2026-08-27'
+false_friends:
+- form: Vacuum
+  reason: 'WITNESSED (3 lines: 97, 104 twice) - ''Vacuum Heat Treating'', ''Vacuum Furnaces'', ''Vacuum or Nitrogen
+    Atmospheres''. Vacuum is the ABSENCE of an atmosphere, not a substance the work is made from or performed in;
+    it sits in exactly the slot where nitrogen and endothermic gas (which ARE materials) sit'
+- form: Bar
+  reason: WITNESSED (line 104) - 'Up To Two Bar Pressure Quench' is a unit of PRESSURE. Reads as bar stock, which
+    is the single most likely material misread in the file
+- form: Gas
+  reason: WITNESSED (lines 105, 106) - 'Gas Fired' / 'Gas-Fired' names the furnaces' FUEL, not a substance the work
+    is made from or performed in
+- form: Stainless Steel
+  reason: ANTICIPATORY - 'stainless' occurs zero times; only bare 'Steel' is named. Word association from a heat
+    treater's usual material list
+- form: Tool Steel
+  reason: ANTICIPATORY - zero occurrences. Very likely to be minted from the service-list line 'Tool Hardening'
+- form: Titanium
+  reason: ANTICIPATORY - zero occurrences; no alloy or grade designation appears anywhere in the file

@@ -1,0 +1,171 @@
+subject: med-tekinc.com
+field: equipments
+snapshot:
+  file: apps/data_etl_app/tests/test_stages/sample_scraped_texts/med-tekinc.com.txt
+  sha256: f1b1f156176cb3c86757d25176c0c27f9d6d704a021a47bdc0bfdcd662c4717c
+eval_set_version: 2
+expected_empty: false
+notes: 'Six entries, all from the one equipment block at lines 104-109, and all of them genuine production machines:
+  a furnace or a salt bath acts on the work itself. SEEDED TO THE PROMPT''S BOUNDARY, NOT THE WORD ''EQUIPMENT'':
+  ''Rockwell Hardness Machines'' (line 32) is the site''s only other machine noun and it is EXCLUDED - the clause
+  separates a production machine from ''equipment that only measures, inspects, or tests the work'' - so it is a
+  false friend here and a process_caps entry instead. Same for the standard block (tooling for that tester) and
+  the three indoor loading docks (''moves, stores, or carries''). This is the alecmfg 2026-08-27 lesson applied
+  up front. NOT seeded, as a defensible borderline rather than a false friend: the individual ''Austemper Bath''
+  and ''Marquench Bath'' vessels, which are parts of the seeded Salt Bath Line and are seeded as process_caps.'
+entries:
+- id: med-tekinc_com-equipments-0001
+  name: Surface Combustion single-chamber vacuum furnaces
+  status: confirmed
+  acceptable_forms:
+  - Surface Combustion Single Chamber Vacuum Furnaces
+  - Single Chamber Vacuum Furnaces
+  - Vacuum Furnaces
+  evidence:
+  - quote: Surface Combustion Single Chamber Vacuum Furnaces With Up To Two Bar Pressure Quench
+    approx_offset: 3340
+  notes: named by OEM (Surface Combustion) and type; 36" x 48" x 30" work area, 2,000 lb load, 600-2,300 F
+  provenance:
+  - action: added
+    by: seed-agent-med-tekinc-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-med-tekinc
+    date: '2026-08-27'
+- id: med-tekinc_com-equipments-0002
+  name: Surface Combustion Super 30 gas-fired all-case furnaces
+  status: confirmed
+  acceptable_forms:
+  - Surface Combustion Super 30 Gas Fired All Case Furnaces
+  - Super 30 Gas Fired All Case Furnaces
+  - All Case Furnaces
+  evidence:
+  - quote: Surface Combustion Super 30 Gas Fired All Case Furnaces with Warm Oil Quench
+    approx_offset: 3612
+  notes: OEM plus model designation ('Super 30'); integral-quench batch furnace
+  provenance:
+  - action: added
+    by: seed-agent-med-tekinc-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-med-tekinc
+    date: '2026-08-27'
+- id: med-tekinc_com-equipments-0003
+  name: pit and box draw gas-fired furnaces
+  status: confirmed
+  acceptable_forms:
+  - Pit and Box Draw Gas-Fired Furnaces
+  - Box Draw Gas-Fired Furnaces
+  evidence:
+  - quote: Pit and Box Draw Gas-Fired Furnaces
+    approx_offset: 3871
+  notes: draw (tempering) furnaces, 200-1,450 F
+  provenance:
+  - action: added
+    by: seed-agent-med-tekinc-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-med-tekinc
+    date: '2026-08-27'
+- id: med-tekinc_com-equipments-0004
+  name: induction hardening equipment
+  status: confirmed
+  acceptable_forms:
+  - Low and High-Frequency Induction Hardening Equipment
+  - Induction Hardening Equipment
+  - Scanner
+  evidence:
+  - quote: Low and High-Frequency Induction Hardening Equipment
+    approx_offset: 4068
+  - quote: Scanner Length Is Up To 60
+    approx_offset: 4164
+  notes: 50-200 KW; 'Scanner' carried as a form because the scanning head is the part of this machine that acts
+    on the work
+  provenance:
+  - action: added
+    by: seed-agent-med-tekinc-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-med-tekinc
+    date: '2026-08-27'
+- id: med-tekinc_com-equipments-0005
+  name: salt bath line
+  status: confirmed
+  acceptable_forms:
+  - Salt Bath Line Incorporating Equipment
+  - Salt Bath Line
+  evidence:
+  - quote: Salt Bath Line Incorporating Equipment
+    approx_offset: 4193
+  notes: a processing line of three baths (neutral, austemper, marquench); the baths themselves are seeded as process_caps
+    rather than as separate machines
+  provenance:
+  - action: added
+    by: seed-agent-med-tekinc-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-med-tekinc
+    date: '2026-08-27'
+- id: med-tekinc_com-equipments-0006
+  name: electric furnaces
+  status: confirmed
+  acceptable_forms:
+  - Electric Furnaces
+  evidence:
+  - quote: Electric Furnaces for Annealing, Solution Annealing, and Aging Aluminum
+    approx_offset: 4549
+  notes: the aluminum solution/age furnaces, with polymer quench
+  provenance:
+  - action: added
+    by: seed-agent-med-tekinc-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-med-tekinc
+    date: '2026-08-27'
+- id: med-tekinc_com-equipments-0007
+  name: salt bath furnaces (neutral / austemper / marquench baths)
+  status: candidate
+  acceptable_forms:
+  - Neutral Salt Bath
+  - Austemper Bath
+  - Marquench Bath
+  - Marquench Baths
+  evidence:
+  - quote: For neutral Salt Bath, Austemper Bath, and Marquench Bath Processing
+    approx_offset: 4234
+  - quote: The Austemper and Marquench Baths Operate At Temperatures
+    approx_offset: 4421
+  notes: 'ARGUABLE - do not promote without a deliberate decision. Line 108 names three baths as separate machines
+    with their own working capacities and operating temperatures (''The Neutral Salt Bath Has a 24" x 28" capacity''),
+    exactly as the furnace entries are named, and a molten-salt bath acts directly on the work. None of these forms
+    appears in equipments-0005, whose forms are only ''Salt Bath Line Incorporating Equipment'' / ''Salt Bath Line''.
+    Against: they may be the same entity as 0005 at finer granularity, so gating both could charge a false miss
+    on a run that returned only the line-level name.'
+  provenance:
+  - action: added
+    by: verify-agent-med-tekinc
+    date: '2026-08-27'
+    source: verification-pass-miss
+false_friends:
+- form: Rockwell Hardness Machines
+  reason: WITNESSED (line 32) - the site's most machine-shaped noun and the field's central trap. A hardness tester
+    only MEASURES the work; the prompt's clause excludes 'equipment that only measures, inspects, or tests the work'.
+    Belongs to process_caps (Rockwell & Brinell testing), where it is seeded
+- form: state-of-the-art equipment
+  reason: WITNESSED (lines 21 and 32) - marketing filler containing the word 'equipment' but naming no machine at
+    all
+- form: loading docks
+  reason: WITNESSED (line 21, 'three indoor loading docks') - excluded by the clause's 'moves, stores, or carries
+    what it makes'; also a facility rather than a machine
+- form: standard block
+  reason: WITNESSED (line 32) - the reference block the Rockwell tester is verified against. Tooling for a measuring
+    device, doubly excluded
+- form: CNC machining center
+  reason: ANTICIPATORY - zero occurrences of CNC, lathe, press brake or machining center. MED-TEK owns no metal-removal
+    machinery; word association from 'machine shops', which are its customers

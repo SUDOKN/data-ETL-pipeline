@@ -1,0 +1,2470 @@
+subject: lucasmilhaupt.com
+field: material_caps
+snapshot:
+  file: apps/data_etl_app/tests/test_stages/sample_scraped_texts/lucasmilhaupt.com.txt
+  sha256: d92eed67ef99d67a791896d0467d78dc0c60bf7a96e2ec6f99926618da193236
+eval_set_version: 2
+expected_empty: false
+notes: 'The corpus''s densest material inventory, and its only subject whose PRODUCT IS A MATERIAL: Lucas Milhaupt
+  makes brazing filler metals, fluxes and pastes, so every own-brand product name (Sil-Fos, Silvaloy, Premabraze,
+  AL 718, AL 822, Handy One, Handy Flux) is legitimately BOTH a material_caps entry and a products entry -- both
+  are seeded, on purpose, rather than one being chosen. Four separate strata: (1) elements and generic metals in
+  prose; (2) the Pastes-page filter facets, which enumerate alloy families and base materials as bare list items;
+  (3) the Technical-and-Safety-Data-Sheets page, whose first 30 of 517 rows are raw composition designations (78ZN/22AL,
+  97.5PB/2.5AG, 35AU/62CU/3NI VTG); (4) ''Nominal Composition'' lines on the product detail pages. Brazing atmospheres
+  are seeded because the field clause covers a substance the work is ''performed in''.'
+entries:
+- id: lucasmilhaupt_com-material_caps-0001
+  name: 500 custom alloys
+  status: confirmed
+  acceptable_forms:
+  - 500 custom alloys
+  - 500 alloy formulations
+  - 400 custom alloys
+  - 500+ custom brazing alloys
+  evidence:
+  - quote: help bring their innovations to market quickly. With more than 500 custom alloys, and decades of materials
+      science expertise, Lucas Milhaupt develops custom joining solutions
+    approx_offset: 424
+  - quote: With more than 400 custom alloys and decades of applications expertise, we help customers bring innovations
+      to market
+    approx_offset: 147644
+  notes: the portfolio size is stated as 500 on most pages and 400 on /About -- an internal inconsistency worth
+    a judged look, not a material as such
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+- id: lucasmilhaupt_com-material_caps-0002
+  name: brazing alloy
+  status: confirmed
+  acceptable_forms:
+  - brazing alloys
+  - brazing alloy
+  - braze alloy
+  - braze alloys
+  evidence:
+  - quote: years, Lucas Milhaupt has been the name behind high-performance brazing alloys, fluxes, and custom pre-forms
+      that keep critical assemblies functioning in
+    approx_offset: 2881
+  - quote: Sil-Fos® has been the preferred silver brazing alloy for HVAC/R contractors since it was patented in
+      1931. Sil-Fos alloys
+    approx_offset: 124643
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+- id: lucasmilhaupt_com-material_caps-0003
+  name: flux
+  status: confirmed
+  acceptable_forms:
+  - flux
+  - fluxes
+  - Fluxes
+  evidence:
+  - quote: years, Lucas Milhaupt has been the name behind high-performance brazing alloys, fluxes, and custom pre-forms
+      that keep critical assemblies functioning in
+    approx_offset: 2881
+  - quote: Flux is a chemical compound applied to the joint surfaces before brazing.
+    approx_offset: 69165
+  notes: flux is both the company's own product line and a consumable substance applied to the work
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+- id: lucasmilhaupt_com-material_caps-0004
+  name: Sil-Fos
+  status: confirmed
+  acceptable_forms:
+  - Sil-Fos
+  - Sil-Fos®
+  - SilFos
+  - Sil-Fos alloys
+  evidence:
+  - quote: refrigeration and air conditioning equipment . Our legacy began with the invention of Sil-Fos® – a silver-copper-phosphorus
+      brazing alloy patented
+    approx_offset: 8958
+  - quote: HVAC/R contractors since it was patented in 1931. Sil-Fos alloys combine silver (Ag), copper (Cu), and
+      phosphorous (P) to produce consistent, quality joints while saving
+    approx_offset: 124700
+  notes: own-brand silver-copper-phosphorus brazing alloy -- also a products entry
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+- id: lucasmilhaupt_com-material_caps-0005
+  name: silver-copper eutectic alloy
+  status: confirmed
+  acceptable_forms:
+  - silver-copper eutectic alloy
+  - silver-copper-phosphorus
+  evidence:
+  - quote: Silvaloy 721 is a silver-copper eutectic alloy that can flow into long, narrow joints.
+    approx_offset: 17803
+  - quote: legacy began with the invention of Sil-Fos® – a silver-copper-phosphorus brazing alloy patented in 1931
+      – which allows flux-free brazing of copper connections
+    approx_offset: 9009
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+- id: lucasmilhaupt_com-material_caps-0006
+  name: copper
+  status: confirmed
+  acceptable_forms:
+  - copper
+  - Copper
+  evidence:
+  - quote: was patented in 1931. Sil-Fos alloys combine silver (Ag), copper (Cu), and phosphorous (P) to produce
+      consistent, quality joints while saving
+    approx_offset: 124728
+  - quote: silver-copper-phosphorus brazing alloy patented in 1931 – which allows flux-free brazing of copper connections
+      and remains a staple for HVAC/R contractors .
+    approx_offset: 9057
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+- id: lucasmilhaupt_com-material_caps-0007
+  name: AL 822
+  status: confirmed
+  acceptable_forms:
+  - AL 822
+  - AL822
+  evidence:
+  - quote: AL 822 is a low temperature alloy ideal for brazing or soldering aluminum
+    approx_offset: 183330
+  - quote: products. We offer advanced flux-cored alloys (such as AL822 for aluminum-to-aluminum or aluminum-to-copper
+      repair brazing ) and provide industry-specific training and
+    approx_offset: 9444
+  notes: own-brand Al22/Zn78 alloy -- also a products entry
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+- id: lucasmilhaupt_com-material_caps-0008
+  name: aluminum
+  status: confirmed
+  acceptable_forms:
+  - aluminum
+  - Aluminum
+  evidence:
+  - quote: In the last three decades the HVAC/R industry has steadily moved toward aluminum brazing solutions. As
+      a lightweight, corrosion-resistant alloy,
+    approx_offset: 11002
+  - quote: Aluminum 22.00, Zinc 78.00
+    approx_offset: 183951
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+- id: lucasmilhaupt_com-material_caps-0009
+  name: high-purity alloy
+  status: confirmed
+  acceptable_forms:
+  - high-purity alloys
+  - high purity
+  - vacuum-grade alloys
+  - vacuum tube grade filler metals
+  evidence:
+  - quote: largest braze and solder alloy manufacturer, Lucas Milhaupt’s high-purity alloy offerings, including
+      the Premabraze® Series (AuSn Premabraze
+    approx_offset: 16046
+  - quote: and ensuring first-time-through joint quality . High-purity, vacuum tube grade filler metals from Lucas
+      Milhaupt give you brazed assemblies with reliability you
+    approx_offset: 41567
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+- id: lucasmilhaupt_com-material_caps-0010
+  name: gold-tin eutectic solder
+  status: confirmed
+  acceptable_forms:
+  - gold-tin eutectic solder
+  - AuSn
+  - gold-tin
+  evidence:
+  - quote: Premabraze 800 is a high purity gold-tin eutectic solder
+    approx_offset: 198636
+  - quote: Milhaupt’s high-purity alloy offerings, including the Premabraze® Series (AuSn Premabraze 800, AuGe Premabraze
+      880) and Silvaloy 721 – deliver exceptional bond strength,
+    approx_offset: 16097
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: amended
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+    reason: 'two of the four forms name a DIFFERENT alloy: ''Au / 12% Ge'' and ''Au88/Ge12'' are Premabraze 880
+      (gold-germanium), already material_caps-0016/0017. Leaving them here lets a returned gold-germanium phrase
+      credit the gold-tin entry. ''gold-tin'' added - it is how the text writes it.'
+- id: lucasmilhaupt_com-material_caps-0011
+  name: filler metal
+  status: confirmed
+  acceptable_forms:
+  - filler metal
+  - filler metals
+  - Filler Metals
+  - brazing filler metal
+  evidence:
+  - quote: As a one-stop shop for filler metals, Lucas Milhaupt offers an industry-leading portfolio
+    approx_offset: 17463
+  - quote: corrosive environments. As an AS9100-certified, vertically integrated producer of high-purity brazing
+      filler metals and engineered brazing alloys, Lucas Milhaupt
+    approx_offset: 29431
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+- id: lucasmilhaupt_com-material_caps-0012
+  name: gold
+  status: confirmed
+  acceptable_forms:
+  - gold
+  - Gold
+  - karat gold
+  evidence:
+  - quote: shop for filler metals, Lucas Milhaupt offers an industry-leading portfolio ranging from gold-based solders
+      to lead-free alloys. Our Premabraze® 800 and 880 series, provides
+    approx_offset: 17477
+  - quote: Broad Alloy Portfolio & Forms – Gold, silver, palladium, nickel-bearing and specialty aerospace brazing
+      alloys available as wire, paste, strip, rings, and custom
+    approx_offset: 30426
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+- id: lucasmilhaupt_com-material_caps-0013
+  name: lead
+  status: confirmed
+  acceptable_forms:
+  - lead-free
+  - Tin-Lead
+  - lead or silver are not permissible
+  - lead and silver-free
+  evidence:
+  - quote: Milhaupt offers an industry-leading portfolio ranging from gold-based solders to lead-free alloys. Our
+      Premabraze® 800 and 880 series, provides
+    approx_offset: 17507
+  - quote: 63/37 Tin-Lead Soft Solder SDS
+    approx_offset: 146107
+  - quote: use in the electronics packaging industry or applications where lead or silver are not permissible. Due
+      to its low vapor pressure, Premabraze 800
+    approx_offset: 198763
+  notes: lead IS a real material here (lead-free alloys, Tin-Lead Soft Solders, 97.5PB/2.5AG), but the bare token
+    'lead' occurs ~24x and almost all of them are 'lead time' or 'leading' -- the acceptable_forms deliberately
+    exclude the bare word
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+- id: lucasmilhaupt_com-material_caps-0014
+  name: solder
+  status: confirmed
+  acceptable_forms:
+  - solder
+  - solders
+  - soft solder
+  evidence:
+  - quote: Milhaupt offers an industry-leading portfolio ranging from gold-based solders to lead-free alloys. Our
+      Premabraze® 800 and 880 series, provides
+    approx_offset: 17507
+  - quote: 60/40 Tin-Lead Soft Solder SDS
+    approx_offset: 145953
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+- id: lucasmilhaupt_com-material_caps-0015
+  name: Silvaloy
+  status: confirmed
+  acceptable_forms:
+  - Silvaloy
+  - Silvaloy®
+  - Silvaloy 721
+  - SILVALOY 721 VTG Gr1
+  evidence:
+  - quote: SILVALOY 721 VTG Gr1
+    approx_offset: 195702
+  - quote: Silvaloy 721 is a silver-copper eutectic alloy
+    approx_offset: 17803
+  notes: own-brand silver-copper braze alloy -- also a products entry
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+- id: lucasmilhaupt_com-material_caps-0016
+  name: Premabraze 880
+  status: confirmed
+  acceptable_forms:
+  - Premabraze 880
+  - Premabraze® 880
+  - PREMABRAZE 880
+  evidence:
+  - quote: PREMABRAZE 880
+    approx_offset: 197743
+  - quote: semiconductor chips (dies) to substrates or packaging. Our Premabraze® 880 (an 88% Au / 12% Ge eutectic
+      alloy) is used for die attachment in many high-reliability
+    approx_offset: 18966
+  notes: own-brand Au88/Ge12 eutectic -- also a products entry
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+- id: lucasmilhaupt_com-material_caps-0017
+  name: germanium
+  status: confirmed
+  acceptable_forms:
+  - germanium
+  - Germanium
+  - AuGe
+  - Ge
+  evidence:
+  - quote: Gold 88.00, Germanium 12.00
+    approx_offset: 197960
+  - quote: substrates or packaging. Our Premabraze® 880 (an 88% Au / 12% Ge eutectic alloy) is used for die attachment
+      in many high-reliability
+    approx_offset: 18996
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+- id: lucasmilhaupt_com-material_caps-0018
+  name: Premabraze 800
+  status: confirmed
+  acceptable_forms:
+  - Premabraze 800
+  - Premabraze® 800
+  - PREMABRAZE 800
+  evidence:
+  - quote: PREMABRAZE 800
+    approx_offset: 198604
+  - quote: custom preforms to fit the tinest cond pads, Premabraze 800 is lead and silver-free formulation hat meets
+      RoHS and medical-device purity mandates.
+    approx_offset: 22755
+  notes: own-brand Au80/Sn20 solder -- also a products entry
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+- id: lucasmilhaupt_com-material_caps-0019
+  name: ceramic
+  status: confirmed
+  acceptable_forms:
+  - ceramic
+  - Ceramic
+  - ceramics
+  - metallized ceramic
+  evidence:
+  - quote: in your fixture that are poor heat conductors, such as stainless steel, Inconel or ceramics. Since these
+      are poor conductors, they draw the
+    approx_offset: 75163
+  - quote: alloy that can flow into long, narrow joints. It can be used for joining metallized ceramic to metals
+      in vacuum. It is especially useful for applications where
+    approx_offset: 23140
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+- id: lucasmilhaupt_com-material_caps-0020
+  name: nickel
+  status: confirmed
+  acceptable_forms:
+  - nickel
+  - Nickel
+  evidence:
+  - quote: Broad Alloy Portfolio & Forms – Gold, silver, palladium, nickel-bearing and specialty aerospace brazing
+      alloys available as wire, paste, strip, rings, and custom
+    approx_offset: 30426
+  - quote: designed for high-reliability hermetic seals. Excellent wetting on nickel-plated substrates enables leak-tight
+      micro-packages and RF lid
+    approx_offset: 23631
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+- id: lucasmilhaupt_com-material_caps-0021
+  name: nickel plating
+  status: confirmed
+  acceptable_forms:
+  - nickel-plated
+  - nickel-plated substrates
+  evidence:
+  - quote: designed for high-reliability hermetic seals. Excellent wetting on nickel-plated substrates enables leak-tight
+      micro-packages and RF lid seals. Eutectic melt point of 356
+    approx_offset: 23631
+  notes: a treatment named after the substance it deposits -- the field clause admits it explicitly
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+- id: lucasmilhaupt_com-material_caps-0022
+  name: biocompatible material
+  status: confirmed
+  acceptable_forms:
+  - biocompatible materials
+  - biocompatible
+  evidence:
+  - quote: orthodontic appliances) that require precise, durable joints and biocompatible materials to ensure safe,
+      long-lasting performance in patient care.
+    approx_offset: 26371
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+- id: lucasmilhaupt_com-material_caps-0023
+  name: precious metal
+  status: confirmed
+  acceptable_forms:
+  - precious metal
+  - precious-metal
+  - Precious metals
+  - precious metals
+  evidence:
+  - quote: Precious metals are ideal for joining applications in medical devices.
+    approx_offset: 28480
+  - quote: 'At the core are our Filler Metals: a comprehensive line of silver, aluminum, copper, nickel, precious-metal,
+      and specialized alloy forms (wire, strip, rings, preforms, and powders) engineered'
+    approx_offset: 113081
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+- id: lucasmilhaupt_com-material_caps-0024
+  name: palladium
+  status: confirmed
+  acceptable_forms:
+  - palladium
+  - Palladium
+  evidence:
+  - quote: Broad Alloy Portfolio & Forms – Gold, silver, palladium, nickel-bearing and specialty aerospace brazing
+      alloys available as wire, paste, strip, rings, and custom
+    approx_offset: 30426
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+- id: lucasmilhaupt_com-material_caps-0025
+  name: gold-nickel filler metal
+  status: confirmed
+  acceptable_forms:
+  - Gold-nickel
+  - gold-nickel
+  evidence:
+  - quote: Gold-nickel and other high-purity filler metals for assemblies exposed to sustained temps
+    approx_offset: 30741
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+- id: lucasmilhaupt_com-material_caps-0026
+  name: silver
+  status: confirmed
+  acceptable_forms:
+  - silver
+  - Silver
+  - fine silver
+  evidence:
+  - quote: HVAC/R contractors since it was patented in 1931. Sil-Fos alloys combine silver (Ag), copper (Cu), and
+      phosphorous (P) to produce consistent, quality joints while saving
+    approx_offset: 124700
+  - quote: so their joints must be absolutely reliable. Using high-purity silver and copper alloys, we help create
+      hermetic ceramic-to-metal seals
+    approx_offset: 43297
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+- id: lucasmilhaupt_com-material_caps-0027
+  name: zinc
+  status: confirmed
+  acceptable_forms:
+  - zinc
+  - Zinc
+  evidence:
+  - quote: amplifiers. We provide vacuum-grade brazing alloys free of elements like zinc or cadmium that could outgas
+      and contaminate the vacuum. The result is strong,
+    approx_offset: 43854
+  - quote: Aluminum 22.00, Zinc 78.00
+    approx_offset: 183951
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+- id: lucasmilhaupt_com-material_caps-0028
+  name: cadmium
+  status: confirmed
+  acceptable_forms:
+  - cadmium
+  - Cadmium
+  - cadmium-bearing
+  evidence:
+  - quote: amplifiers. We provide vacuum-grade brazing alloys free of elements like zinc or cadmium that could outgas
+      and contaminate the vacuum. The result is strong,
+    approx_offset: 43854
+  - quote: A cadmium coating on a base metal will volatilize and produce toxic fume during heating. Zinc coatings
+    approx_offset: 88167
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+- id: lucasmilhaupt_com-material_caps-0029
+  name: base metal
+  status: confirmed
+  acceptable_forms:
+  - base metal
+  - base metals
+  - Base Material
+  - base materials
+  evidence:
+  - quote: Base Material
+    approx_offset: 105736
+  - quote: (solder) having a liquidus above 840°F (450°C) and below the solidus of the base metals.
+    approx_offset: 51684
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+- id: lucasmilhaupt_com-material_caps-0030
+  name: Easy-Flo
+  status: confirmed
+  acceptable_forms:
+  - Easy-Flo
+  - Easy-Flo®
+  evidence:
+  - quote: The following chart is based on brazing butt joints of stainless steel, using Easy-Flo® filler metal.
+    approx_offset: 56375
+  - quote: Sil-Fos, Easy-Flo and other brazing alloys were used innumerable braze joints
+    approx_offset: 126737
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+- id: lucasmilhaupt_com-material_caps-0031
+  name: steel
+  status: confirmed
+  acceptable_forms:
+  - steel
+  - Steel
+  - steels
+  evidence:
+  - quote: As an example, let’s say you’re brazing a brass bushing into a steel sleeve. Brass expands, when heated,
+      more than steel.
+    approx_offset: 58341
+  - quote: Oxide removal from irons and steels.
+    approx_offset: 94794
+  notes: broad entry; a substring of 'stainless steel' and 'carbon steels', so its coverage number carries no information
+    of its own
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+- id: lucasmilhaupt_com-material_caps-0032
+  name: brass
+  status: confirmed
+  acceptable_forms:
+  - brass
+  - Brass
+  evidence:
+  - quote: As an example, let’s say you’re brazing a brass bushing into a steel sleeve. Brass expands, when heated,
+      more than steel.
+    approx_offset: 58341
+  - quote: Oxide removal from copper, brass, bronze, nickel silver and other copper alloys
+    approx_offset: 94223
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+- id: lucasmilhaupt_com-material_caps-0033
+  name: boron
+  status: confirmed
+  acceptable_forms:
+  - boron
+  - metallic boron
+  - Boron-modified
+  evidence:
+  - quote: The addition of metallic boron changes white flux to black. Black flux is beneficial for fast induction
+    approx_offset: 71167
+  - quote: Boron-modified black flux can help ensure a successful braze joint
+    approx_offset: 71407
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+- id: lucasmilhaupt_com-material_caps-0034
+  name: black flux / white flux
+  status: confirmed
+  acceptable_forms:
+  - black flux
+  - white flux
+  - white versus black flux
+  evidence:
+  - quote: The addition of metallic boron changes white flux to black. Black flux is beneficial for fast induction
+    approx_offset: 71167
+  - quote: Boron-modified black flux can help ensure a successful braze joint
+    approx_offset: 71407
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+- id: lucasmilhaupt_com-material_caps-0035
+  name: Handy Flux
+  status: confirmed
+  acceptable_forms:
+  - Handy Flux
+  - Handy® Flux
+  - Handy Flux™
+  - Handy & Harman's Handy Flux
+  evidence:
+  - quote: Fortunately for your inventory, general-purpose fluxes, such as Handy & Harman's Handy Flux, are suitable
+      for most typical brazing jobs.
+    approx_offset: 71724
+  - quote: for bonding tungsten carbide to alloy steels, plus Sil-Fos® for copper-to-copper and copper-to-brass
+      assemblies and Handy Flux™/Handy Paste™ options for clean, repeatable results.
+    approx_offset: 120131
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+- id: lucasmilhaupt_com-material_caps-0036
+  name: Fos-Flo 7
+  status: confirmed
+  acceptable_forms:
+  - Fos-Flo 7
+  - Fos-Flo
+  evidence:
+  - quote: filler metal specially formulated for the job, such as Handy & Harman's Sil-Fos or Fos-Flo 7. (The phosphorus
+      in these alloys acts as a fluxing
+    approx_offset: 73650
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+- id: lucasmilhaupt_com-material_caps-0037
+  name: hydrogen
+  status: confirmed
+  acceptable_forms:
+  - hydrogen
+  evidence:
+  - quote: an enclosed space, usually a brazing furnace). The atmosphere (such as hydrogen, nitrogen or dissociated
+      ammonia) completely envelops the assemblies and, by excluding
+    approx_offset: 73920
+  notes: furnace atmosphere; the field clause covers a substance the work is 'performed in'
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+- id: lucasmilhaupt_com-material_caps-0038
+  name: nitrogen
+  status: confirmed
+  acceptable_forms:
+  - nitrogen
+  evidence:
+  - quote: space, usually a brazing furnace). The atmosphere (such as hydrogen, nitrogen or dissociated ammonia)
+      completely envelops the assemblies and, by excluding
+    approx_offset: 73932
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+- id: lucasmilhaupt_com-material_caps-0039
+  name: dissociated ammonia
+  status: confirmed
+  acceptable_forms:
+  - dissociated ammonia
+  evidence:
+  - quote: usually a brazing furnace). The atmosphere (such as hydrogen, nitrogen or dissociated ammonia) completely
+      envelops the assemblies and, by excluding
+    approx_offset: 73939
+  - quote: and bronze. These binders are best suited for high temperature furnace brazing application in exothermic,
+      dissociated ammonia, or vacuum atmosphere. Contact the Lucas Milhaupt Technical Support
+    approx_offset: 209479
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+- id: lucasmilhaupt_com-material_caps-0040
+  name: stainless steel
+  status: confirmed
+  acceptable_forms:
+  - stainless steel
+  - Stainless Steel
+  - stainless steels
+  - 300-series, non-magnetic stainless steel
+  evidence:
+  - quote: Construct fixtures from 300-series, non-magnetic stainless steel
+    approx_offset: 78699
+  - quote: in your fixture that are poor heat conductors, such as stainless steel, Inconel or ceramics. Since these
+      are poor conductors, they draw the
+    approx_offset: 75163
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+- id: lucasmilhaupt_com-material_caps-0041
+  name: Inconel
+  status: confirmed
+  acceptable_forms:
+  - Inconel
+  evidence:
+  - quote: in your fixture that are poor heat conductors, such as stainless steel, Inconel or ceramics. Since these
+      are poor conductors, they draw the
+    approx_offset: 75163
+  - quote: corrosion resistance and dimensional stability (other ideas include Inconel and some ceramics).
+    approx_offset: 78775
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+- id: lucasmilhaupt_com-material_caps-0042
+  name: acetylene
+  status: disputed
+  acceptable_forms:
+  - acetylene
+  - oxy-acetylene
+  - oxy/acetylene
+  evidence:
+  - quote: In torch brazing, a variety of fuels are available—natural gas, acetylene, propane, propylene, etc.,
+      combusted with either oxygen or air. The
+    approx_offset: 81087
+  notes: torch fuel gas, not a work material -- named as a substance but neither made from nor performed in | acetylene
+    is named only as a torch FUEL gas ('a variety of fuels are available-natural gas, acetylene, propane, propylene')
+    and as a cylinder contents; the work is neither made from it nor performed in it. Contrast the furnace atmospheres
+    (hydrogen, nitrogen, dissociated ammonia), which the work IS performed in.
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: disputed
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+    reason: acetylene is named only as a torch FUEL gas ('a variety of fuels are available-natural gas, acetylene,
+      propane, propylene') and as a cylinder contents; the work is neither made from it nor performed in it. Contrast
+      the furnace atmospheres (hydrogen, nitrogen, dissociated ammonia), which the work IS performed in.
+- id: lucasmilhaupt_com-material_caps-0043
+  name: natural gas
+  status: disputed
+  acceptable_forms:
+  - natural gas
+  evidence:
+  - quote: In torch brazing, a variety of fuels are available—natural gas, acetylene, propane, propylene, etc.,
+      combusted with either
+    approx_offset: 81087
+  notes: 'torch fuel gas, not a work material | torch fuel gas, same argument as acetylene: named as a fuel that
+    is combusted, not as a substance the work is made from or performed in.'
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: disputed
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+    reason: 'torch fuel gas, same argument as acetylene: named as a fuel that is combusted, not as a substance the
+      work is made from or performed in.'
+- id: lucasmilhaupt_com-material_caps-0044
+  name: propane
+  status: disputed
+  acceptable_forms:
+  - propane
+  evidence:
+  - quote: torch brazing, a variety of fuels are available—natural gas, acetylene, propane, propylene, etc., combusted
+      with either oxygen or air. The
+    approx_offset: 81090
+  notes: torch fuel gas, not a work material | torch fuel gas, same argument as acetylene.
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: disputed
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+    reason: torch fuel gas, same argument as acetylene.
+- id: lucasmilhaupt_com-material_caps-0045
+  name: propylene
+  status: disputed
+  acceptable_forms:
+  - propylene
+  evidence:
+  - quote: a variety of fuels are available—natural gas, acetylene, propane, propylene, etc., combusted with either
+      oxygen or air. The most
+    approx_offset: 81105
+  notes: torch fuel gas, not a work material | torch fuel gas, same argument as acetylene.
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: disputed
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+    reason: torch fuel gas, same argument as acetylene.
+- id: lucasmilhaupt_com-material_caps-0046
+  name: oxygen
+  status: disputed
+  acceptable_forms:
+  - oxygen
+  - Oxygen
+  evidence:
+  - quote: available—natural gas, acetylene, propane, propylene, etc., combusted with either oxygen or air. The
+      most popular is still the oxy/acetylene
+    approx_offset: 81128
+  - quote: Oxygen and acetylene are kept in separate cylinders
+    approx_offset: 81755
+  notes: torch oxidiser gas, not a work material | oxygen is named as the torch oxidiser and as the thing excluded
+    from a controlled atmosphere; it is a process gas rather than a substance the work is made from or performed
+    in.
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: disputed
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+    reason: oxygen is named as the torch oxidiser and as the thing excluded from a controlled atmosphere; it is
+      a process gas rather than a substance the work is made from or performed in.
+- id: lucasmilhaupt_com-material_caps-0047
+  name: cadmium coating
+  status: confirmed
+  acceptable_forms:
+  - cadmium coating
+  evidence:
+  - quote: A cadmium coating on a base metal will volatilize and produce toxic fume during heating. Zinc coatings
+      (galvanized) will
+    approx_offset: 88167
+  notes: 'deposit clause: names the substance it coats the work with'
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+- id: lucasmilhaupt_com-material_caps-0048
+  name: zinc coating (galvanized)
+  status: confirmed
+  acceptable_forms:
+  - Zinc coatings
+  - galvanized
+  - Zinc coatings (galvanized)
+  evidence:
+  - quote: volatilize and produce toxic fume during heating. Zinc coatings (galvanized) will also fume when heated.
+      Learn to recognize these coatings. It is recommended
+    approx_offset: 88206
+  notes: 'deposit clause: a galvanized coating implies zinc'
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+- id: lucasmilhaupt_com-material_caps-0049
+  name: hydrochloric acid
+  status: confirmed
+  acceptable_forms:
+  - hydrochloric acid
+  evidence:
+  - quote: flux has to be removed by a mild acid solution. A 25% hydrochloric acid bath (heated to 140-160°F/60-70°C)
+      will usually dissolve the most stubborn flux
+    approx_offset: 93200
+  - quote: A 50% hydrochloric acid solution, used cold or warm.
+    approx_offset: 94831
+  notes: 'pickling chemical: applied TO the work but neither what the work is made from nor what it is performed
+    in; a boundary case for the field clause'
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+- id: lucasmilhaupt_com-material_caps-0050
+  name: nitric acid
+  status: confirmed
+  acceptable_forms:
+  - nitric acid
+  - nitric dip
+  evidence:
+  - quote: you’re using. Highly oxidizing pickling solutions, such as bright dips containing nitric acid, should
+      be avoided if possible, as they attack the silver filler metal. If you
+    approx_offset: 93877
+  notes: pickling chemical; same boundary argument
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+- id: lucasmilhaupt_com-material_caps-0051
+  name: bronze
+  status: confirmed
+  acceptable_forms:
+  - bronze
+  - Bronze
+  evidence:
+  - quote: Oxide removal from copper, brass, bronze, nickel silver
+    approx_offset: 94223
+  - quote: Flo 400 Series are flux-free binders that are mixed with braze alloy powders such as copper, nickel,
+      and bronze. These binders are best suited for high temperature
+    approx_offset: 209378
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+- id: lucasmilhaupt_com-material_caps-0052
+  name: nickel silver
+  status: confirmed
+  acceptable_forms:
+  - nickel silver
+  evidence:
+  - quote: copper, brass, bronze, nickel silver and other copper alloys containing high percentages
+    approx_offset: 94242
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+- id: lucasmilhaupt_com-material_caps-0053
+  name: sulphuric acid
+  status: confirmed
+  acceptable_forms:
+  - sulphuric acid
+  - sulphuric
+  evidence:
+  - quote: "10 to 25% hot sulphuric acid with 5-10% potassium dichromate added.\tPickling can be done at same time\
+      \ flux is removed."
+    approx_offset: 94344
+  notes: pickling chemical; same boundary argument as hydrochloric acid
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+- id: lucasmilhaupt_com-material_caps-0054
+  name: potassium dichromate
+  status: confirmed
+  acceptable_forms:
+  - potassium dichromate
+  evidence:
+  - quote: "10 to 25% hot sulphuric acid with 5-10% potassium dichromate added.\tPickling can be done at same time\
+      \ flux is removed."
+    approx_offset: 94344
+  notes: pickling additive; same boundary argument
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+- id: lucasmilhaupt_com-material_caps-0055
+  name: carbon steel
+  status: confirmed
+  acceptable_forms:
+  - carbon steels
+  - carbon steel
+  evidence:
+  - quote: Pickling can be done at same time flux is removed. Will work on carbon steels, but if pickle is contaminated
+      with copper, the copper will plate out on the steel and will
+    approx_offset: 94412
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+- id: lucasmilhaupt_com-material_caps-0056
+  name: iron
+  status: confirmed
+  acceptable_forms:
+  - irons
+  - iron
+  evidence:
+  - quote: Oxide removal from irons and steels.
+    approx_offset: 94794
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+- id: lucasmilhaupt_com-material_caps-0057
+  name: Monel
+  status: confirmed
+  acceptable_forms:
+  - Monel
+  evidence:
+  - quote: A mixture of 1 part hydrochloric acid to 2 parts water can be used for Monel
+    approx_offset: 94967
+  - quote: What length of lap do you need to join .050" annealed Monel sheet to a metal of equal or greater strength?
+    approx_offset: 137858
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+- id: lucasmilhaupt_com-material_caps-0058
+  name: chromium
+  status: confirmed
+  acceptable_forms:
+  - chromium
+  - Chromium
+  evidence:
+  - quote: Oxide removal from stainless steels and alloys containing chromium.
+    approx_offset: 95247
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+- id: lucasmilhaupt_com-material_caps-0059
+  name: phosphorus
+  status: confirmed
+  acceptable_forms:
+  - phosphorous
+  - phosphorus
+  - phos-copper
+  evidence:
+  - quote: was patented in 1931. Sil-Fos alloys combine silver (Ag), copper (Cu), and phosphorous (P) to produce
+      consistent, quality joints while saving
+    approx_offset: 124728
+  - quote: are required for the individual filler metals. The phos-copper and silver-bearing phos-copper filler
+      metals are different, and then only when used on copper without flux.
+    approx_offset: 95822
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+- id: lucasmilhaupt_com-material_caps-0060
+  name: electroplated finish
+  status: disputed
+  acceptable_forms:
+  - electroplated finish
+  - plated or tinned
+  evidence:
+  - quote: further finishing operations are seldom needed. The assembly is ready for use, or for the application
+      of an electroplated finish. In the few instances where you need an ultra-clean
+    approx_offset: 102062
+  - quote: hydrochloric acid for a few minutes is more effective. When the brazed joint is to be plated or tinned,
+      the removal of the slag is absolutely essential.
+    approx_offset: 96168
+  notes: a deposition treatment, but the text never names which metal is deposited -- kept because the clause admits
+    treatments named after what they deposit, contested because none is named here | the material_caps carve-out
+    is for a treatment NAMED AFTER the substance it deposits (nickel plating, cadmium coating, galvanising). 'electroplated
+    finish' names no substance, so it implies no material; the operation itself is already process_caps-0061.
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: disputed
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+    reason: the material_caps carve-out is for a treatment NAMED AFTER the substance it deposits (nickel plating,
+      cadmium coating, galvanising). 'electroplated finish' names no substance, so it implies no material; the operation
+      itself is already process_caps-0061.
+- id: lucasmilhaupt_com-material_caps-0061
+  name: helium
+  status: confirmed
+  acceptable_forms:
+  - helium
+  evidence:
+  - quote: refrigeration equipment and detection of minute leaks, employing a mass spectrometer and a helium atmosphere.
+    approx_offset: 99042
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+- id: lucasmilhaupt_com-material_caps-0062
+  name: emery cloth
+  status: disputed
+  acceptable_forms:
+  - emery cloth
+  - fine emery cloth
+  evidence:
+  - quote: instances where you need an ultra-clean finish, you can get it by polishing the assembly with a fine
+      emery cloth. If the assemblies are going to be stored for
+    approx_offset: 102203
+  notes: an abrasive consumable, not a work material | emery cloth is an abrasive consumable applied BY hand TO
+    the work ('polishing the assembly with a fine emery cloth') - closer to tooling than to a substance the work
+    is made from or performed in.
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: disputed
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+    reason: emery cloth is an abrasive consumable applied BY hand TO the work ('polishing the assembly with a fine
+      emery cloth') - closer to tooling than to a substance the work is made from or performed in.
+- id: lucasmilhaupt_com-material_caps-0063
+  name: binder
+  status: confirmed
+  acceptable_forms:
+  - binders
+  - binder
+  - flux binders
+  - flux-free binders
+  evidence:
+  - quote: Paste products are a custom blend of braze filler metal and specially formulated binders,
+    approx_offset: 105101
+  - quote: Handy Flo 300 Series are clean burning, flux-free binders
+    approx_offset: 200334
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+- id: lucasmilhaupt_com-material_caps-0064
+  name: Active Filler Metals
+  status: confirmed
+  acceptable_forms:
+  - Active Filler Metals
+  evidence:
+  - quote: Active Filler Metals(4)
+    approx_offset: 105429
+  notes: Pastes-page 'Alloy Family' filter facet
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+- id: lucasmilhaupt_com-material_caps-0065
+  name: Aluminum Filler Metals
+  status: confirmed
+  acceptable_forms:
+  - Aluminum Filler Metals
+  evidence:
+  - quote: Aluminum Filler Metals(1)
+    approx_offset: 105453
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+- id: lucasmilhaupt_com-material_caps-0066
+  name: Cadmium-Bearing Silver Filler Metals
+  status: confirmed
+  acceptable_forms:
+  - Cadmium-Bearing Silver Filler Metals
+  evidence:
+  - quote: Cadmium-Bearing Silver Filler Metals(1)
+    approx_offset: 105479
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+- id: lucasmilhaupt_com-material_caps-0067
+  name: Copper Filler Metals
+  status: confirmed
+  acceptable_forms:
+  - Copper Filler Metals
+  evidence:
+  - quote: Copper Filler Metals(3)
+    approx_offset: 105519
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+- id: lucasmilhaupt_com-material_caps-0068
+  name: Copper-Phosphorous Filler Metals
+  status: confirmed
+  acceptable_forms:
+  - Copper-Phosphorous Filler Metals
+  evidence:
+  - quote: Copper-Phosphorous Filler Metals(2)
+    approx_offset: 105543
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+- id: lucasmilhaupt_com-material_caps-0069
+  name: Gold and/or Palladium Filler Metals
+  status: confirmed
+  acceptable_forms:
+  - Gold and/or Palladium Filler Metals
+  evidence:
+  - quote: Gold and/or Palladium Filler Metals(4)
+    approx_offset: 105579
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+- id: lucasmilhaupt_com-material_caps-0070
+  name: Nickel Filler Metals
+  status: confirmed
+  acceptable_forms:
+  - Nickel Filler Metals
+  evidence:
+  - quote: Nickel Filler Metals(3)
+    approx_offset: 105618
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+- id: lucasmilhaupt_com-material_caps-0071
+  name: Silver Filler Metals
+  status: confirmed
+  acceptable_forms:
+  - Silver Filler Metals
+  evidence:
+  - quote: Silver Filler Metals(4)
+    approx_offset: 105642
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+- id: lucasmilhaupt_com-material_caps-0072
+  name: Silver-Copper-Phosphorous Filler Metals
+  status: confirmed
+  acceptable_forms:
+  - Silver-Copper-Phosphorous Filler Metals
+  evidence:
+  - quote: Silver-Copper-Phosphorous Filler Metals(2)
+    approx_offset: 105666
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+- id: lucasmilhaupt_com-material_caps-0073
+  name: Soldering Filler Metals
+  status: confirmed
+  acceptable_forms:
+  - Soldering Filler Metals
+  evidence:
+  - quote: Soldering Filler Metals(1)
+    approx_offset: 105709
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+- id: lucasmilhaupt_com-material_caps-0074
+  name: carbide
+  status: confirmed
+  acceptable_forms:
+  - carbide
+  - Carbide
+  evidence:
+  - quote: that is sized specifically for your assemblies. Our carbide and diamond dies produce wire diameters from
+      .187” to .005” (4.75mm to .127mm). The ability to draw wire
+    approx_offset: 154218
+  - quote: Carbide(6)
+    approx_offset: 105787
+  notes: also a Base Material filter facet on the Pastes page; broad, since 'tungsten carbide' contains it
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+- id: lucasmilhaupt_com-material_caps-0075
+  name: rheology modifier
+  status: confirmed
+  acceptable_forms:
+  - rheology modifiers
+  evidence:
+  - quote: For operations that demand turnkey simplicity, our Pastes blend precisely metered alloy powders with
+      flux and rheology modifiers, ensuring accurate deposit control in automated
+    approx_offset: 113648
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+- id: lucasmilhaupt_com-material_caps-0076
+  name: tungsten carbide
+  status: confirmed
+  acceptable_forms:
+  - tungsten carbide
+  evidence:
+  - quote: 'steel and copper: Highlighted solutions include Silvacut® and Silvaloy® silver-braze alloys for bonding
+      tungsten carbide to alloy steels, plus Sil-Fos® for copper-to-copper and copper-to-brass'
+    approx_offset: 120039
+  - quote: metals, including copper and steel as well as non-metals such as tungsten carbide, alumina, graphite
+      and diamond.
+    approx_offset: 158029
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+- id: lucasmilhaupt_com-material_caps-0077
+  name: Silvacut
+  status: confirmed
+  acceptable_forms:
+  - Silvacut
+  - Silvacut®
+  - SilvaCut
+  evidence:
+  - quote: 'steel and copper: Highlighted solutions include Silvacut® and Silvaloy® silver-braze alloys for bonding
+      tungsten carbide to alloy steels, plus Sil-Fos® for copper-to-copper'
+    approx_offset: 120039
+  - quote: Collaborative joint design, preform sizing (SilvaCut), and process tuning to improve wetting, control
+    approx_offset: 122033
+  notes: own-brand alloy for carbide-to-steel bonding -- also a products entry
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+- id: lucasmilhaupt_com-material_caps-0078
+  name: alloy steel
+  status: confirmed
+  acceptable_forms:
+  - alloy steels
+  - alloy steel
+  evidence:
+  - quote: Highlighted solutions include Silvacut® and Silvaloy® silver-braze alloys for bonding tungsten carbide
+      to alloy steels, plus Sil-Fos® for copper-to-copper and copper-to-brass
+    approx_offset: 120057
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+- id: lucasmilhaupt_com-material_caps-0079
+  name: Handy Paste
+  status: confirmed
+  acceptable_forms:
+  - Handy Paste
+  - Handy Paste™
+  evidence:
+  - quote: copper-to-copper and copper-to-brass assemblies and Handy Flux™/Handy Paste™ options for clean, repeatable
+      results.
+    approx_offset: 120195
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+- id: lucasmilhaupt_com-material_caps-0080
+  name: rock / shale / hard-metal ores
+  status: disputed
+  acceptable_forms:
+  - Rock, shale, and hard-metal ores
+  - shale
+  - hard-metal ores
+  evidence:
+  - quote: Rock, shale, and hard-metal ores destroy ordinary joints in minutes.
+    approx_offset: 121548
+  notes: the substances the customer's drill bits cut, i.e. what the finished product is performed in rather than
+    what it is made from | rock, shale and hard-metal ores are what the customer's finished drill bits CUT; they
+    are not a substance this work is made from or performed in. Real in the text, arguable as a material of the
+    work.
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: disputed
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+    reason: rock, shale and hard-metal ores are what the customer's finished drill bits CUT; they are not a substance
+      this work is made from or performed in. Real in the text, arguable as a material of the work.
+- id: lucasmilhaupt_com-material_caps-0081
+  name: 12-009 Commercial Grade Fine Silver
+  status: confirmed
+  acceptable_forms:
+  - 12-009 Commercial Grade Fine Silver
+  - Commercial Grade Fine Silver
+  evidence:
+  - quote: 12-009 Commercial Grade Fine Silver TDS
+    approx_offset: 145700
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+- id: lucasmilhaupt_com-material_caps-0082
+  name: magnesium
+  status: confirmed
+  acceptable_forms:
+  - Magnesium
+  - magnesium
+  evidence:
+  - quote: 280 Magnesium TDS
+    approx_offset: 145740
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+- id: lucasmilhaupt_com-material_caps-0083
+  name: 280 Magnesium
+  status: confirmed
+  acceptable_forms:
+  - 280 Magnesium
+  evidence:
+  - quote: 280 Magnesium TDS
+    approx_offset: 145740
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+- id: lucasmilhaupt_com-material_caps-0084
+  name: 35AU/62CU/3NI VTG
+  status: confirmed
+  acceptable_forms:
+  - 35AU/62CU/3NI VTG
+  - 35AU/62CU/3NI
+  evidence:
+  - quote: 35AU/62CU/3NI VTG SDS
+    approx_offset: 145758
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+- id: lucasmilhaupt_com-material_caps-0085
+  name: 35AU/65CU VTG
+  status: confirmed
+  acceptable_forms:
+  - 35AU/65CU VTG
+  - 35AU/65CU
+  evidence:
+  - quote: 35AU/65CU VTG SDS
+    approx_offset: 145780
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+- id: lucasmilhaupt_com-material_caps-0086
+  name: 40/60 Tin-Lead Soft Solder
+  status: confirmed
+  acceptable_forms:
+  - 40/60 Tin-Lead Soft Solder
+  evidence:
+  - quote: 40/60 Tin-Lead Soft Solder SDS
+    approx_offset: 145798
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+- id: lucasmilhaupt_com-material_caps-0087
+  name: 40AG/60CU
+  status: confirmed
+  acceptable_forms:
+  - 40AG/60CU
+  evidence:
+  - quote: 40AG/60CU SDS
+    approx_offset: 145860
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+- id: lucasmilhaupt_com-material_caps-0088
+  name: Stop-Off
+  status: confirmed
+  acceptable_forms:
+  - Stop-Off
+  - 460 Stop-Off
+  - 470 Stop-Off
+  evidence:
+  - quote: 460 Stop-Off TDS
+    approx_offset: 145874
+  - quote: 470 Stop-Off TDS
+    approx_offset: 145891
+  notes: a stop-off is a coating that prevents braze flow; the TDS list is the only place it is named
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+- id: lucasmilhaupt_com-material_caps-0089
+  name: 50/50 solder
+  status: confirmed
+  acceptable_forms:
+  - 50/50
+  evidence:
+  - quote: 50/50 SDS
+    approx_offset: 145908
+  notes: a tin-lead solder designation; the bare '50/50' is the only span the listing gives
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+- id: lucasmilhaupt_com-material_caps-0090
+  name: 502 SSK Copper Paste
+  status: confirmed
+  acceptable_forms:
+  - 502 SSK Copper Paste
+  evidence:
+  - quote: 502 SSK Copper Paste TDS
+    approx_offset: 145928
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+- id: lucasmilhaupt_com-material_caps-0091
+  name: 60/40 Tin-Lead Soft Solder
+  status: confirmed
+  acceptable_forms:
+  - 60/40 Tin-Lead Soft Solder
+  evidence:
+  - quote: 60/40 Tin-Lead Soft Solder SDS
+    approx_offset: 145953
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+- id: lucasmilhaupt_com-material_caps-0092
+  name: 60-112 (99.4 Min Copper)
+  status: confirmed
+  acceptable_forms:
+  - 60-112 (99.4 Min Copper)
+  - 99.4 Min Copper
+  evidence:
+  - quote: 60-112 (99.4 Min Copper) SDS
+    approx_offset: 146015
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+- id: lucasmilhaupt_com-material_caps-0093
+  name: 60AU/20CU/20AG VTG
+  status: confirmed
+  acceptable_forms:
+  - 60AU/20CU/20AG VTG
+  - 60AU/20CU/20AG
+  evidence:
+  - quote: 60AU/20CU/20AG VTG SDS
+    approx_offset: 146044
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+- id: lucasmilhaupt_com-material_caps-0094
+  name: tin
+  status: confirmed
+  acceptable_forms:
+  - tin
+  - Tin
+  evidence:
+  - quote: Gold 80.00, Tin 20.00
+    approx_offset: 199206
+  - quote: 62/36/2 Silver-Tin-Lead Soft Solder TDS
+    approx_offset: 146067
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+- id: lucasmilhaupt_com-material_caps-0095
+  name: 62/36/2 Silver-Tin-Lead Soft Solder
+  status: confirmed
+  acceptable_forms:
+  - 62/36/2 Silver-Tin-Lead Soft Solder
+  - Silver-Tin-Lead Soft Solder
+  evidence:
+  - quote: 62/36/2 Silver-Tin-Lead Soft Solder TDS
+    approx_offset: 146067
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+- id: lucasmilhaupt_com-material_caps-0096
+  name: 63/37 Tin-Lead Soft Solder
+  status: confirmed
+  acceptable_forms:
+  - 63/37 Tin-Lead Soft Solder
+  evidence:
+  - quote: 63/37 Tin-Lead Soft Solder SDS
+    approx_offset: 146107
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+- id: lucasmilhaupt_com-material_caps-0097
+  name: 69-285 VTG
+  status: confirmed
+  acceptable_forms:
+  - 69-285 VTG
+  - 69-285
+  evidence:
+  - quote: 69-285 VTG TDS
+    approx_offset: 146180
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+- id: lucasmilhaupt_com-material_caps-0098
+  name: 75AU/20CU/5AG VTG
+  status: confirmed
+  acceptable_forms:
+  - 75AU/20CU/5AG VTG
+  - 75AU/20CU/5AG
+  evidence:
+  - quote: 75AU/20CU/5AG VTG SDS
+    approx_offset: 146195
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+- id: lucasmilhaupt_com-material_caps-0099
+  name: 78ZN/22AL
+  status: confirmed
+  acceptable_forms:
+  - 78ZN/22AL
+  evidence:
+  - quote: 78ZN/22AL SDS
+    approx_offset: 146228
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+- id: lucasmilhaupt_com-material_caps-0100
+  name: 81.5AU/16.5CU/2NI VTG
+  status: confirmed
+  acceptable_forms:
+  - 81.5AU/16.5CU/2NI VTG
+  - 81.5AU/16.5CU/2NI
+  evidence:
+  - quote: 81.5AU/16.5CU/2NI VTG SDS
+    approx_offset: 146242
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+- id: lucasmilhaupt_com-material_caps-0101
+  name: 88AL/12SI
+  status: confirmed
+  acceptable_forms:
+  - 88AL/12SI
+  evidence:
+  - quote: 88AL/12SI TDS
+    approx_offset: 146268
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+- id: lucasmilhaupt_com-material_caps-0102
+  name: 97.5PB/1.5AG/1SN
+  status: confirmed
+  acceptable_forms:
+  - 97.5PB/1.5AG/1SN
+  evidence:
+  - quote: 97.5PB/1.5AG/1SN SDS
+    approx_offset: 146282
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+- id: lucasmilhaupt_com-material_caps-0103
+  name: 97.5PB/2.5AG
+  status: confirmed
+  acceptable_forms:
+  - 97.5PB/2.5AG
+  evidence:
+  - quote: 97.5PB/2.5AG SDS
+    approx_offset: 146324
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+- id: lucasmilhaupt_com-material_caps-0104
+  name: diamond
+  status: confirmed
+  acceptable_forms:
+  - diamond
+  evidence:
+  - quote: well as non-metals such as tungsten carbide, alumina, graphite and diamond.
+    approx_offset: 158067
+  - quote: that is sized specifically for your assemblies. Our carbide and diamond dies produce wire diameters from
+      .187” to .005” (4.75mm
+    approx_offset: 154218
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+- id: lucasmilhaupt_com-material_caps-0105
+  name: alloy powder
+  status: confirmed
+  acceptable_forms:
+  - alloy powders
+  - braze alloy powders
+  - solder alloy powder
+  - karat gold braze powders
+  - atomized filler metal powder
+  - powders
+  evidence:
+  - quote: and yield consistent high quality joints with paste products consisting of an atomized filler metal powder,
+      a flux (when necessary) and a binder to hold
+    approx_offset: 154761
+  - quote: variety of flux and flux-free binders that are primarily mixed with karat gold braze powders to form
+      a paste for use in jewelry brazing. Contact the Lucas
+    approx_offset: 205267
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+- id: lucasmilhaupt_com-material_caps-0106
+  name: alumina
+  status: confirmed
+  acceptable_forms:
+  - alumina
+  evidence:
+  - quote: including copper and steel as well as non-metals such as tungsten carbide, alumina, graphite and diamond.
+    approx_offset: 158037
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+- id: lucasmilhaupt_com-material_caps-0107
+  name: graphite
+  status: confirmed
+  acceptable_forms:
+  - graphite
+  evidence:
+  - quote: copper and steel as well as non-metals such as tungsten carbide, alumina, graphite and diamond.
+    approx_offset: 158047
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+- id: lucasmilhaupt_com-material_caps-0108
+  name: corrosive flux
+  status: confirmed
+  acceptable_forms:
+  - corrosive flux
+  - Non corrosive flux
+  - AL CC
+  evidence:
+  - quote: Non corrosive flux does not require removal after brazing.
+    approx_offset: 183439
+  - quote: vehicle. Our aluminum brazing consumables, including AL CC™ corrosive flux-cored wire and AL 718 Al-Si
+      filler for aluminum-to-aluminum
+    approx_offset: 168474
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+- id: lucasmilhaupt_com-material_caps-0109
+  name: silicon
+  status: confirmed
+  acceptable_forms:
+  - silicon
+  - Silicon
+  - Al-Si
+  evidence:
+  - quote: Aluminum 88.00, Silicon 12.00
+    approx_offset: 212754
+  - quote: including AL CC™ corrosive flux-cored wire and AL 718 Al-Si filler for aluminum-to-aluminum joints, help
+      cut through oxide layers, improve capillary
+    approx_offset: 168517
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+- id: lucasmilhaupt_com-material_caps-0110
+  name: AL 718
+  status: confirmed
+  acceptable_forms:
+  - AL 718
+  - AL718
+  evidence:
+  - quote: AL 718 is a eutectic aluminum-silicon brazing alloy
+    approx_offset: 213466
+  - quote: including AL CC™ corrosive flux-cored wire and AL 718 Al-Si filler for aluminum-to-aluminum joints, help
+      cut through oxide layers, improve capillary
+    approx_offset: 168517
+  notes: own-brand Al88/Si12 filler -- also a products entry
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+- id: lucasmilhaupt_com-material_caps-0111
+  name: nickel-based high-temperature brazing alloy
+  status: confirmed
+  acceptable_forms:
+  - nickel-based / high-temperature brazing alloys
+  - nickel-based
+  - high-temperature brazing alloys
+  evidence:
+  - quote: oxidation and attack at elevated temperatures. Many diesel builders specify nickel-based / high-temperature
+      brazing alloys for these assemblies because they maintain joint
+    approx_offset: 169119
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+- id: lucasmilhaupt_com-material_caps-0112
+  name: aluminum-silicon brazing alloy
+  status: confirmed
+  acceptable_forms:
+  - aluminum-silicon brazing alloy
+  - eutectic aluminum-silicon brazing alloy
+  - aluminum-silicon
+  evidence:
+  - quote: AL 718 is a eutectic aluminum-silicon brazing alloy meant for joining of aluminum base materials.
+    approx_offset: 213466
+  - quote: A general-purpose, free-flowing aluminum-silicon brazing alloy
+    approx_offset: 171842
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+- id: lucasmilhaupt_com-material_caps-0113
+  name: Handy One
+  status: confirmed
+  acceptable_forms:
+  - Handy One
+  - Handy One®
+  - HANDY ONE
+  evidence:
+  - quote: HANDY ONE AL CORROSIVE CORED
+    approx_offset: 212347
+  - quote: aluminum in A/C and heat-transfer components; available in Handy One® flux-cored forms for automated
+      brazing. Offers good corrosion resistance and capillary
+    approx_offset: 171929
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+- id: lucasmilhaupt_com-material_caps-0114
+  name: Aluminum 22.00, Zinc 78.00
+  status: confirmed
+  acceptable_forms:
+  - Aluminum 22.00, Zinc 78.00
+  evidence:
+  - quote: Aluminum 22.00, Zinc 78.00
+    approx_offset: 183951
+  notes: AL 822 nominal composition line
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+- id: lucasmilhaupt_com-material_caps-0115
+  name: Silver 72.00, Copper 28.00
+  status: confirmed
+  acceptable_forms:
+  - Silver 72.00, Copper 28.00
+  evidence:
+  - quote: Silver 72.00, Copper 28.00
+    approx_offset: 196229
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+- id: lucasmilhaupt_com-material_caps-0116
+  name: Gold 88.00, Germanium 12.00
+  status: confirmed
+  acceptable_forms:
+  - Gold 88.00, Germanium 12.00
+  evidence:
+  - quote: Gold 88.00, Germanium 12.00
+    approx_offset: 197960
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+- id: lucasmilhaupt_com-material_caps-0117
+  name: Gold 80.00, Tin 20.00
+  status: confirmed
+  acceptable_forms:
+  - Gold 80.00, Tin 20.00
+  evidence:
+  - quote: Gold 80.00, Tin 20.00
+    approx_offset: 199206
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+- id: lucasmilhaupt_com-material_caps-0118
+  name: exothermic atmosphere
+  status: confirmed
+  acceptable_forms:
+  - exothermic
+  evidence:
+  - quote: copper, nickel, and bronze. These binders are best suited for high temperature furnace brazing application
+      in exothermic, dissociated ammonia, or vacuum atmosphere. Contact
+    approx_offset: 209463
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+- id: lucasmilhaupt_com-material_caps-0119
+  name: Aluminum 88.00, Silicon 12.00
+  status: confirmed
+  acceptable_forms:
+  - Aluminum 88.00, Silicon 12.00
+  evidence:
+  - quote: Aluminum 88.00, Silicon 12.00
+    approx_offset: 212754
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+- id: lucasmilhaupt_com-material_caps-0120
+  name: 69-054
+  status: candidate
+  acceptable_forms:
+  - 69-054
+  evidence:
+  - quote: 69-054 TDS
+    approx_offset: 146169
+  notes: alloy data-sheet designation in the TDS/SDS listing; 18 of its siblings in the same list are seeded, these
+    two are not
+  provenance:
+  - action: added
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+    source: verification-pass-miss
+- id: lucasmilhaupt_com-material_caps-0121
+  name: 77-525
+  status: candidate
+  acceptable_forms:
+  - 77-525
+  evidence:
+  - quote: 77-525 TDS
+    approx_offset: 146217
+  notes: alloy data-sheet designation in the same TDS/SDS listing, absent from the packet
+  provenance:
+  - action: added
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+    source: verification-pass-miss
+- id: lucasmilhaupt_com-material_caps-0122
+  name: Silvaloy 720
+  status: candidate
+  acceptable_forms:
+  - Silvaloy 720
+  evidence:
+  - quote: Silvaloy 720 SDS
+    approx_offset: 196498
+  notes: a distinct Silvaloy alloy from 721, named in the product-resources list; only 721 is seeded
+  provenance:
+  - action: added
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+    source: verification-pass-miss
+- id: lucasmilhaupt_com-material_caps-0123
+  name: AWS BCuP-5
+  status: candidate
+  acceptable_forms:
+  - BCuP-5
+  evidence:
+  - quote: or a self-fluxing filler metal such as the Lucas Milhaupt Sil-Fos alloys (BCuP-5) in copper-based assemblies
+      must be used.  
+    approx_offset: 53164
+  notes: AWS filler-metal classification = an alloy designation, which material_caps explicitly covers ('named ...
+    by an alloy or grade designation'); seeded only under conformity_attestations
+  provenance:
+  - action: added
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+    source: verification-pass-miss
+- id: lucasmilhaupt_com-material_caps-0124
+  name: AWS BAlSi-4
+  status: candidate
+  acceptable_forms:
+  - BAlSi-4
+  - 'AWS: BAlSi-4'
+  evidence:
+  - quote: 'AWS: BAlSi-4'
+    approx_offset: 212959
+  notes: aluminium-silicon filler-metal classification for AL 718; an alloy designation as well as a standard reference
+  provenance:
+  - action: added
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+    source: verification-pass-miss
+- id: lucasmilhaupt_com-material_caps-0125
+  name: AWS BVAg-8 Grade 1
+  status: candidate
+  acceptable_forms:
+  - BVAg-8 Grade 1
+  - BVAg-8
+  evidence:
+  - quote: 'AWS: BVAg-8 Grade 1'
+    approx_offset: 196442
+  notes: vacuum-grade silver filler-metal classification for Silvaloy 721; an alloy designation as well as a standard
+    reference
+  provenance:
+  - action: added
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+    source: verification-pass-miss
+- id: lucasmilhaupt_com-material_caps-0126
+  name: ISO 17672 Ag 272
+  status: candidate
+  acceptable_forms:
+  - Ag 272
+  evidence:
+  - quote: 'ISO 17672: Ag 272'
+    approx_offset: 196462
+  notes: ISO filler-metal designation for the 72Ag/28Cu alloy; an alloy designation as well as a standard reference
+  provenance:
+  - action: added
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+    source: verification-pass-miss
+- id: lucasmilhaupt_com-material_caps-0127
+  name: ISO 17672 Al 112
+  status: candidate
+  acceptable_forms:
+  - Al 112
+  evidence:
+  - quote: 'ISO 17672: Al 112'
+    approx_offset: 212972
+  notes: ISO filler-metal designation for the 88Al/12Si alloy; an alloy designation as well as a standard reference
+  provenance:
+  - action: added
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+    source: verification-pass-miss
+- id: lucasmilhaupt_com-material_caps-0128
+  name: paste
+  status: candidate
+  acceptable_forms:
+  - paste
+  - Paste products
+  - pastes
+  evidence:
+  - quote: Paste products are a custom blend of braze filler metal and specially formulated binders, suited to unique
+      customer
+    approx_offset: 105101
+  notes: the paste itself is a substance (alloy powder + flux + binder); products-0054 seeds 'pastes' but material_caps
+    has only the branded Handy Paste and 502 SSK Copper Paste
+  provenance:
+  - action: added
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+    source: verification-pass-miss
+false_friends:
+- form: Sterling
+  reason: 'witnessed: occurs only in a distributor street address (''100 Sterling Pkwy''), never as sterling silver'
+- form: Steel Partners
+  reason: 'witnessed 7x: the parent holding company''s name -- ''Steel'' in it is not the metal'
+- form: Steel Sports
+  reason: 'witnessed: the parent''s youth-sports charity'
+- form: The Strength of Steel
+  reason: 'witnessed: a heading on /About/History announcing the Steel Partners acquisition; no metal is meant'
+- form: Titanium
+  reason: 'anticipatory: does not occur anywhere; heavy word-association from aerospace brazing'
+- form: Hastelloy
+  reason: 'anticipatory: does not occur; word-association from Monel and Inconel'
+- form: Kovar
+  reason: 'anticipatory: does not occur; word-association from hermetic ceramic-to-metal sealing'
+- form: '6061'
+  reason: 'anticipatory: no numeric aluminium grades occur -- the aluminium designations here are AL 718 / AL 822
+    / 88AL/12SI, which are filler-metal names, not wrought grades'
+- form: 304 Stainless
+  reason: 'anticipatory: does not occur; the only stainless designation is ''300-series, non-magnetic stainless
+    steel'''
+- form: Lead
+  reason: the bare token occurs ~24x and is 'lead time' or 'leading' in all but three places; the real lead senses
+    are 'lead-free', 'Tin-Lead Soft Solder' and '97.5PB'
+- form: Cone Cored
+  reason: a preform GEOMETRY brand (a flux-cored washer shape), not a substance -- belongs in products; listed here
+    because its sibling brands are genuine materials

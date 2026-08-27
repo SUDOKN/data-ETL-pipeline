@@ -1,0 +1,612 @@
+subject: blackadvtech.com
+field: industries
+snapshot:
+  file: apps/data_etl_app/tests/test_stages/sample_scraped_texts/blackadvtech.com.txt
+  sha256: cf1b9015df24bc7839f887e729c3408b761b970f78773e999c724227129fb9fb
+eval_set_version: 2
+expected_empty: false
+notes: 'Five industries are named as first-party served markets on the home page and repeated on four dedicated
+  /industries-served/ pages. Everything after those is blog-explainer prose (the robotic-welding article lists automotive/aerospace/shipbuilding/medical-device/construction/mining/energy
+  as industries robots serve, not as Blackstone customers) and carries actor: unknown.'
+entries:
+- id: blackadvtech_com-industries-0001
+  name: transportation
+  status: confirmed
+  acceptable_forms:
+  - transportation
+  - Transportation
+  - transportation industry
+  - TRANSPORTATION
+  evidence:
+  - quote: We’ve designed winning products for many industries including transportation, marine construction, military,
+      industrial, scientific, and more.
+    approx_offset: 1263
+  - quote: large sheet metal components for the transportation industry
+    approx_offset: 2359
+  notes: one of the five named served markets; has its own /industries-served/transportation/ page
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+- id: blackadvtech_com-industries-0002
+  name: marine construction
+  status: confirmed
+  acceptable_forms:
+  - marine construction
+  evidence:
+  - quote: We’ve designed winning products for many industries including transportation, marine construction, military,
+      industrial, scientific, and more.
+    approx_offset: 1263
+  notes: named only in the home-page industries sentence; the dedicated page is military & marine
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+- id: blackadvtech_com-industries-0003
+  name: military
+  status: confirmed
+  acceptable_forms:
+  - military
+  - Military
+  - MILITARY
+  - military & marine
+  - MILITARY & MARINE
+  evidence:
+  - quote: We’ve designed winning products for many industries including transportation, marine construction, military,
+      industrial, scientific, and more.
+    approx_offset: 1263
+  - quote: transportation, military & marine, industrial, scientific
+    approx_offset: 12738
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+- id: blackadvtech_com-industries-0004
+  name: industrial
+  status: confirmed
+  acceptable_forms:
+  - industrial
+  - Industrial
+  - INDUSTRIAL
+  - industrial manufacturing
+  evidence:
+  - quote: We’ve designed winning products for many industries including transportation, marine construction, military,
+      industrial, scientific, and more.
+    approx_offset: 1263
+  - quote: sheet metal fabrication for industrial manufacturing
+    approx_offset: 3184
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+- id: blackadvtech_com-industries-0005
+  name: scientific
+  status: confirmed
+  acceptable_forms:
+  - scientific
+  - Scientific
+  - SCIENTIFIC
+  - Scientific industry
+  evidence:
+  - quote: We’ve designed winning products for many industries including transportation, marine construction, military,
+      industrial, scientific, and more.
+    approx_offset: 1263
+  - quote: Manufactured numerous solutions for the Scientific industry
+    approx_offset: 2434
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+- id: blackadvtech_com-industries-0006
+  name: wind turbine
+  status: confirmed
+  acceptable_forms:
+  - wind turbine
+  - wind turbine blade pitch control systems
+  evidence:
+  - quote: Windurance, a global supplier of wind turbine blade pitch control systems
+    approx_offset: 2130
+  actor: client
+  notes: the wind-energy market reached through the client Windurance; recall-first keeps it
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+- id: blackadvtech_com-industries-0007
+  name: mining industry
+  status: confirmed
+  acceptable_forms:
+  - the mining industry
+  - mining industry
+  - underground mining
+  evidence:
+  - quote: We also provide enclosures for the mining industry to house controls for underground mining equipment.
+    approx_offset: 2205
+  notes: named as a market Blackstone supplies enclosures into
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+- id: blackadvtech_com-industries-0008
+  name: laboratories
+  status: confirmed
+  acceptable_forms:
+  - Laboratories
+  - Furniture for Laboratories
+  - LABORATORY
+  - laboratory
+  evidence:
+  - quote: Furniture for Laboratories
+    approx_offset: 2581
+  - quote: LABORATORY FURNITURE & ENCLOSURE MANUFACTURING
+    approx_offset: 76062
+  notes: the scientific page is really a laboratory-furniture page
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+- id: blackadvtech_com-industries-0009
+  name: U.S. military
+  status: confirmed
+  acceptable_forms:
+  - U.S. military
+  - the U.S. military
+  evidence:
+  - quote: A trusted partner for the U.S. military
+    approx_offset: 2620
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+- id: blackadvtech_com-industries-0010
+  name: Navy
+  status: confirmed
+  acceptable_forms:
+  - Navy
+  - the Navy
+  - U.S. Navy
+  - NAVY
+  evidence:
+  - quote: specifically the Navy, Marines, and Coast Guard
+    approx_offset: 2662
+  - quote: sheet metal fabricators trusted by the U.S. Navy
+    approx_offset: 65194
+  notes: a customer branch, but it designates the naval/defence market the shop serves
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+- id: blackadvtech_com-industries-0011
+  name: Marines
+  status: confirmed
+  acceptable_forms:
+  - Marines
+  evidence:
+  - quote: specifically the Navy, Marines, and Coast Guard
+    approx_offset: 2662
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+- id: blackadvtech_com-industries-0012
+  name: Coast Guard
+  status: confirmed
+  acceptable_forms:
+  - Coast Guard
+  - U.S. Coast Guard
+  evidence:
+  - quote: specifically the Navy, Marines, and Coast Guard
+    approx_offset: 2662
+  - quote: U.S. Coast Guard
+    approx_offset: 37294
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+- id: blackadvtech_com-industries-0013
+  name: marine
+  status: confirmed
+  acceptable_forms:
+  - marine
+  - Marine
+  - MARINE
+  - military and marine
+  evidence:
+  - quote: standard military and marine sheet metal products
+    approx_offset: 2721
+  - quote: MILITARY & MARINE SHEET METAL FURNITURE FABRICATION
+    approx_offset: 28500
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+- id: blackadvtech_com-industries-0014
+  name: rail
+  status: confirmed
+  acceptable_forms:
+  - RAIL
+  - RAIL & AUTOMOBILE COMPONENT MANUFACTURING
+  - locomotives
+  - Passenger Car
+  evidence:
+  - quote: RAIL & AUTOMOBILE COMPONENT MANUFACTURING
+    approx_offset: 87741
+  - quote: We produce products for locomotives and passenger cars.
+    approx_offset: 67042
+  notes: 'the transportation page is a rail page: locomotive and passenger-car components'
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+- id: blackadvtech_com-industries-0015
+  name: automotive
+  status: confirmed
+  acceptable_forms:
+  - automobile
+  - automotive
+  - Automotive
+  - automotive industry
+  - AUTOMOBILE
+  evidence:
+  - quote: RAIL & AUTOMOBILE COMPONENT MANUFACTURING
+    approx_offset: 87741
+  - quote: In the automotive industry, seam welding has various uses.
+    approx_offset: 185538
+  actor: unknown
+  notes: named on the transportation page as AUTOMOBILE component manufacturing; the seam-welding blog also uses
+    'automotive industry' as explainer prose
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+- id: blackadvtech_com-industries-0016
+  name: automotive refinishing
+  status: confirmed
+  acceptable_forms:
+  - automotive refinishing
+  evidence:
+  - quote: including residential and commercial painting projects, automotive refinishing, furniture finishing
+    approx_offset: 126727
+  actor: unknown
+  notes: 'BLOG-ONLY: wet-paint explainer listing where liquid paint is used'
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: amended
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+    reason: '`residential and commercial painting` is a different sector from automotive refinishing, not a surface
+      form of it; both sit in one list on the powder-coat-or-wet-paint article. Kept as its own candidate miss.'
+- id: blackadvtech_com-industries-0017
+  name: infrastructure development
+  status: confirmed
+  acceptable_forms:
+  - infrastructure development
+  evidence:
+  - quote: from automotive production to infrastructure development
+    approx_offset: 133709
+  actor: unknown
+  notes: BLOG-ONLY
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+- id: blackadvtech_com-industries-0018
+  name: medical device manufacturing
+  status: confirmed
+  acceptable_forms:
+  - medical device manufacturing
+  evidence:
+  - quote: such as aerospace and medical device manufacturing
+    approx_offset: 135499
+  actor: unknown
+  notes: BLOG-ONLY
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+- id: blackadvtech_com-industries-0019
+  name: aerospace
+  status: confirmed
+  acceptable_forms:
+  - aerospace
+  - Aerospace
+  - aerospace industry
+  - aerospace manufacturing
+  evidence:
+  - quote: In aerospace manufacturing, precision is paramount
+    approx_offset: 137365
+  actor: unknown
+  notes: 'BLOG-ONLY: the robotic-welding explainer lists industries robotic welding serves; Blackstone never claims
+    aerospace work'
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+- id: blackadvtech_com-industries-0020
+  name: shipbuilding
+  status: confirmed
+  acceptable_forms:
+  - Shipbuilding
+  evidence:
+  - quote: Shipbuilding is another industry that benefits from robotic welding.
+    approx_offset: 137795
+  actor: unknown
+  notes: BLOG-ONLY industry-explainer prose
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+- id: blackadvtech_com-industries-0021
+  name: heavy equipment
+  status: confirmed
+  acceptable_forms:
+  - heavy equipment
+  - Heavy Equipment
+  - heavy machinery production
+  evidence:
+  - quote: Robots are also making waves in the heavy equipment sector
+    approx_offset: 138163
+  actor: unknown
+  notes: BLOG-ONLY
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+- id: blackadvtech_com-industries-0022
+  name: construction
+  status: confirmed
+  acceptable_forms:
+  - construction
+  evidence:
+  - quote: industries such as construction, mining, and energy
+    approx_offset: 138413
+  actor: unknown
+  notes: BLOG-ONLY
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+- id: blackadvtech_com-industries-0023
+  name: energy
+  status: confirmed
+  acceptable_forms:
+  - energy
+  evidence:
+  - quote: industries such as construction, mining, and energy
+    approx_offset: 138413
+  actor: unknown
+  notes: BLOG-ONLY
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+- id: blackadvtech_com-industries-0024
+  name: manufacturing industry
+  status: confirmed
+  acceptable_forms:
+  - manufacturing industry
+  evidence:
+  - quote: a common technique used in the manufacturing industry
+    approx_offset: 161262
+  actor: unknown
+  notes: blog prose
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: amended
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+    reason: '`industrial manufacturing` is the home-page phrase that already gates industries-0004; carrying it
+      here makes one returned phrase credit two entries. The blog phrase `manufacturing industry` is this entry''s
+      own evidence and is the only form it should key on.'
+- id: blackadvtech_com-industries-0025
+  name: glass industry
+  status: confirmed
+  acceptable_forms:
+  - the glass industry
+  - glass industry
+  evidence:
+  - quote: making moulds and accessories for the glass industry
+    approx_offset: 188330
+  actor: unknown
+  notes: 'BLOG-ONLY: an application of transferred plasma arc welding, not a Blackstone market'
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+- id: blackadvtech_com-industries-0026
+  name: metal industries
+  status: confirmed
+  acceptable_forms:
+  - metal industries
+  evidence:
+  - quote: essential metal materials used in the majority of metal industries
+    approx_offset: 200072
+  actor: unknown
+  notes: BLOG-ONLY
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+- id: blackadvtech_com-industries-0027
+  name: furniture finishing
+  status: candidate
+  acceptable_forms:
+  - furniture finishing
+  evidence:
+  - quote: automotive refinishing, furniture finishing, and artistic creations
+    approx_offset: 126783
+  notes: a third application sector in the same powder-coat-or-wet-paint list; only automotive refinishing (0016)
+    had an entry.
+  provenance:
+  - action: added
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+    source: verification-pass-miss
+- id: blackadvtech_com-industries-0028
+  name: residential and commercial painting
+  status: candidate
+  acceptable_forms:
+  - residential and commercial painting
+  evidence:
+  - quote: including residential and commercial painting projects, automotive refinishing
+    approx_offset: 126727
+  notes: split out of industries-0016, where it had been carried as a form of 'automotive refinishing'; it is a
+    separate sector.
+  provenance:
+  - action: added
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+    source: verification-pass-miss
+- id: blackadvtech_com-industries-0029
+  name: electronics
+  status: candidate
+  acceptable_forms:
+  - electronic products
+  - electronic components
+  - electronic enclosures
+  evidence:
+  - quote: If you are designing a metal enclosure for electronic products
+    approx_offset: 216532
+  notes: the site names electronic enclosures on /rfq/ and electronic products/components in two blog articles;
+    no industries entry covers the electronics sector.
+  provenance:
+  - action: added
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+    source: verification-pass-miss
+- id: blackadvtech_com-industries-0030
+  name: repair work
+  status: candidate
+  acceptable_forms:
+  - repair work
+  evidence:
+  - quote: Welding is commonly used in manufacturing, construction, and repair work
+    approx_offset: 162951
+  notes: named alongside manufacturing and construction, both of which have entries (0024, 0022), in the dos-and-don'ts
+    article.
+  provenance:
+  - action: added
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+    source: verification-pass-miss
+false_friends:
+- form: Defense
+  reason: word-association from military/Navy/AMMUNITION LOCKER; the string never occurs
+- form: Oil & Gas
+  reason: never occurs; 'oil' appears only as lubricant residue and an 'Air over Oil Feed System'
+- form: Semiconductor
+  reason: never occurs anywhere in the text
+- form: Food and Beverage
+  reason: never occurs; 'soda cans' and 'kitchen sinks' in the blogs invite it
+- form: Agriculture
+  reason: never occurs
+- form: United Way of Southern Chautauqua County
+  reason: a charity the company donates to, not a market
+- form: Chautauqua County Chamber of Commerce
+  reason: an award-giving body on the news page, not a served sector
+- form: Dream It, Do It Western New York
+  reason: a school outreach programme named on the news page
+- form: Manufacturing Today
+  reason: a trade magazine that profiled the owner, not an industry

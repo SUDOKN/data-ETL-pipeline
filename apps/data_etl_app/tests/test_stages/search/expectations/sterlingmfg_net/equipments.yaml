@@ -1,0 +1,949 @@
+subject: sterlingmfg.net
+field: equipments
+snapshot:
+  file: apps/data_etl_app/tests/test_stages/sample_scraped_texts/sterlingmfg.net.txt
+  sha256: f42c4b74d9eefaa7461fe85ed30745ce9465330ba86e7099f728423deb498cc5
+eval_set_version: 2
+expected_empty: false
+notes: 'Dense in named machine tools (Okuma, Tsugami, Komo, Mazak, Haas, Tornos, Star, Engel, Arburg, Toyo, Brother,
+  Topper) but seeded strictly to the equipment prompt''s boundary: metrology, cleanrooms, tooling and molds are
+  false_friends, not entries.'
+entries:
+- id: sterlingmfg_net-equipments-0001
+  name: laser processing equipment
+  status: confirmed
+  acceptable_forms:
+  - laser processing equipment
+  - laser systems
+  - laser equipment
+  evidence:
+  - quote: EPTAM utilizes laser processing equipment
+    approx_offset: 11213
+  - quote: Our proprietary laser systems
+    approx_offset: 140240
+  - quote: We can customize laser equipment
+    approx_offset: 140813
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-equipments-0002
+  name: laser tube cutters
+  status: confirmed
+  acceptable_forms:
+  - Tube cutters 3, 4, 5 axis
+  - 4 and 5th axis Tube Cutters
+  - 4th and 5th-Axis Tube Cutters
+  - Tube cutters
+  evidence:
+  - quote: Tube cutters 3, 4, 5 axis
+    approx_offset: 12317
+  - quote: 4 and 5th axis Tube Cutters
+    approx_offset: 14436
+  - quote: 4th and 5th-Axis Tube Cutters
+    approx_offset: 147285
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-equipments-0003
+  name: laser welders
+  status: confirmed
+  acceptable_forms:
+  - Welder
+  - Welders
+  - laser welding systems
+  evidence:
+  - quote: 2. Welder
+    approx_offset: 12344
+  - quote: and Welders over the past 3 years
+    approx_offset: 14465
+  - quote: Our laser welding systems
+    approx_offset: 143804
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-equipments-0004
+  name: laser part markers
+  status: confirmed
+  acceptable_forms:
+  - Part markers including picosecond
+  - Laser Part Markers
+  - Part markers
+  - laser marking systems
+  evidence:
+  - quote: Part markers including picosecond
+    approx_offset: 12358
+  - quote: a fleet of Laser Part Markers
+    approx_offset: 14405
+  - quote: Our laser marking systems
+    approx_offset: 150512
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-equipments-0005
+  name: picosecond laser
+  status: confirmed
+  acceptable_forms:
+  - Picosecond Laser Technology
+  - picosecond
+  evidence:
+  - quote: Picosecond Laser Technology
+    approx_offset: 145040
+  - quote: Part markers including picosecond
+    approx_offset: 12358
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-equipments-0006
+  name: Engel injection machines
+  status: confirmed
+  acceptable_forms:
+  - Engel and Arburg injection machines
+  - Engel
+  evidence:
+  - quote: fleet of Engel and Arburg injection machines
+    approx_offset: 47933
+  - quote: Engel and Arburg injection machines
+    approx_offset: 47942
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-equipments-0007
+  name: Arburg injection/molding machines
+  status: confirmed
+  acceptable_forms:
+  - Arburg
+  evidence:
+  - quote: Engel and Arburg injection machines
+    approx_offset: 47942
+  - quote: Toyo and Arburg molding machines
+    approx_offset: 79916
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-equipments-0008
+  name: injection molding machines
+  status: confirmed
+  acceptable_forms:
+  - 29 injection molding machines
+  - injection molding machines
+  - LSR injection molding machines
+  - injection machines
+  - thermoplastic injection machines
+  - production molding machines
+  - molding machines
+  evidence:
+  - quote: EPTAM is equipped with 29 injection molding machines
+    approx_offset: 50410
+  - quote: LSR injection molding machines ranging from 14-120 ton
+    approx_offset: 80370
+  - quote: a diverse range of injection machines from 14 to 120 tons
+    approx_offset: 50905
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-equipments-0009
+  name: Star (Swiss lathe brand)
+  status: confirmed
+  acceptable_forms:
+  - Star
+  evidence:
+  - quote: Over 50 Machining centers driven by Star, Tornos Deco
+    approx_offset: 67097
+  notes: occurs EXACTLY ONCE in 211KB, as the first item of the machine-brand list on line 1836; a 4-char form and
+    a very common English word, so a run that returns it is only credible in this one context
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-equipments-0010
+  name: Machining centers
+  status: confirmed
+  acceptable_forms:
+  - Over 50 Machining centers
+  - Machining centers
+  - machining center
+  evidence:
+  - quote: Over 50 Machining centers
+    approx_offset: 67097
+  - quote: 3, 4, and 5-axis machining centers
+    approx_offset: 133120
+  notes: generic count line; a substring of the branded entries so its coverage carries little independent information
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-equipments-0011
+  name: Tornos Deco
+  status: confirmed
+  acceptable_forms:
+  - Tornos Deco
+  - Tornos
+  evidence:
+  - quote: Tornos Deco
+    approx_offset: 67139
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-equipments-0012
+  name: Tornos Nanos / SwissNano
+  status: confirmed
+  acceptable_forms:
+  - TornosNanos
+  - Tornos Nanos
+  - SwissNano
+  evidence:
+  - quote: TornosNanos
+    approx_offset: 67152
+  - quote: Tornos Nanos
+    approx_offset: 68431
+  - quote: SwissNano line of machines
+    approx_offset: 68557
+  notes: 'THREE spellings of one machine line: ''TornosNanos'' (no space, line 1836), ''Tornos Nanos'' (heading,
+    1864) and ''SwissNano'' (1866). Each is its own surface form under the Variants rule'
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-equipments-0013
+  name: Haas VF-4SS vertical machining center
+  status: confirmed
+  acceptable_forms:
+  - Hass VF-SS
+  - HAAS VF-4SS
+  - VF-4SS
+  - Haas high-performance super-speed vertical machining centers
+  evidence:
+  - quote: Hass VF-SS
+    approx_offset: 67165
+  - quote: HAAS VF-4SS
+    approx_offset: 69554
+  - quote: Haas high-performance super-speed vertical machining centers  are a key part of our milling department
+    approx_offset: 69571
+  notes: the brand is MISSPELLED 'Hass' on line 1836 and correct 'HAAS'/'Haas' on 1877/1879 - a scrape-faithful
+    typo, not a fabrication
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-equipments-0014
+  name: Mazak Integrex i-150
+  status: confirmed
+  acceptable_forms:
+  - Mazak Integrex i-150
+  - INTEGREX i-150
+  - Mazak Integrex
+  - Mazak Integrex Machines
+  - Mazak
+  evidence:
+  - quote: Mazak Integrex i-150
+    approx_offset: 70096
+  - quote: The INTEGREX i-150 advanced Multi-Tasking machine from Mazak
+    approx_offset: 70118
+  - quote: Mazak Integrex
+    approx_offset: 67181
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-equipments-0015
+  name: UR10 collaborative robots (cobots)
+  status: disputed
+  acceptable_forms:
+  - UR10 Cobots
+  - UR10 Collaborative robots
+  - UR10
+  evidence:
+  - quote: Utilization of UR10 Cobots for improved cycle time
+    approx_offset: 67365
+  - quote: Works well with our UR10 Collaborative robots
+    approx_offset: 70050
+  notes: 'DISPUTED: a machine-tending cobot loads and unloads the work rather than shaping it, which lands it on
+    the excluded ''moves, stores, or carries'' side of the prompt''s boundary. Kept because it is a named production-floor
+    machine and the argument is genuinely two-sided | the text never says the UR10 acts on the work. ''Utilization
+    of UR10 Cobots for improved cycle time and through-put'' and ''Works well with our UR10 Collaborative robots''
+    (a bullet under the Haas VF-4SS milling centre) describe machine tending — loading/unloading the mill — which
+    is the clause''s ''moves, stores, or carries'' exclusion, not a machine that processes, shapes, assembles or
+    converts.'
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: disputed
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+    reason: the text never says the UR10 acts on the work. 'Utilization of UR10 Cobots for improved cycle time and
+      through-put' and 'Works well with our UR10 Collaborative robots' (a bullet under the Haas VF-4SS milling centre)
+      describe machine tending — loading/unloading the mill — which is the clause's 'moves, stores, or carries'
+      exclusion, not a machine that processes, shapes, assembles or converts.
+- id: sterlingmfg_net-equipments-0016
+  name: Toyo molding machines
+  status: confirmed
+  acceptable_forms:
+  - Toyo and Arburg molding machines
+  - Toyo
+  evidence:
+  - quote: state-of-the-art Toyo and Arburg molding machines
+    approx_offset: 79899
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-equipments-0017
+  name: compression presses
+  status: confirmed
+  acceptable_forms:
+  - compression presses
+  evidence:
+  - quote: compression presses ranging from 10-100 tons
+    approx_offset: 80429
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-equipments-0018
+  name: Brother CNC machines
+  status: confirmed
+  acceptable_forms:
+  - Brother and Topper CNC machines
+  - Brother
+  evidence:
+  - quote: Brother and Topper CNC machines
+    approx_offset: 80758
+  notes: Albright Silicone's in-house tool-room machines, Leominster MA
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-equipments-0019
+  name: Topper CNC machines
+  status: confirmed
+  acceptable_forms:
+  - Topper CNC machines
+  - Topper
+  evidence:
+  - quote: Brother and Topper CNC machines
+    approx_offset: 80758
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-equipments-0020
+  name: FDM printers
+  status: confirmed
+  acceptable_forms:
+  - FDM printer
+  - FDM Printers
+  evidence:
+  - quote: FDM printer
+    approx_offset: 88622
+  - quote: FDM Printers
+    approx_offset: 88984
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-equipments-0021
+  name: SLA printer
+  status: confirmed
+  acceptable_forms:
+  - SLA printer
+  evidence:
+  - quote: SLA printer
+    approx_offset: 88763
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-equipments-0022
+  name: SLS printer
+  status: confirmed
+  acceptable_forms:
+  - SLS printer
+  evidence:
+  - quote: SLS printer
+    approx_offset: 88875
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-equipments-0023
+  name: Okuma M560 vertical mill
+  status: confirmed
+  acceptable_forms:
+  - Okuma M560-vertical mill
+  - Okuma M560
+  evidence:
+  - quote: Okuma M560-vertical mill
+    approx_offset: 104571
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-equipments-0024
+  name: Okuma MU-4000V 5-axis CNC vertical mill
+  status: confirmed
+  acceptable_forms:
+  - Okuma MU-4000V 5-axis CNC vertical mill
+  - Okuma MU-4000V
+  - MU-4000V
+  evidence:
+  - quote: Okuma MU-4000V 5-axis CNC vertical mill
+    approx_offset: 104697
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-equipments-0025
+  name: Okuma L3000 lathe
+  status: confirmed
+  acceptable_forms:
+  - Okuma L3000 lathe
+  - Okuma L3000
+  - L3000
+  evidence:
+  - quote: Okuma L3000 lathe
+    approx_offset: 104838
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-equipments-0026
+  name: Okuma LT2000 EX lathe
+  status: confirmed
+  acceptable_forms:
+  - Okuma LT2000 EX lathe
+  - Okuma LT2000 EX
+  - LT2000 EX
+  - LT2000
+  evidence:
+  - quote: Okuma LT2000 EX lathe
+    approx_offset: 104929
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-equipments-0027
+  name: Okuma Multus B300 mill/turn
+  status: confirmed
+  acceptable_forms:
+  - Okuma Multus B300 mill/turn
+  - Okuma Multus B300
+  - Multus B300
+  evidence:
+  - quote: Okuma Multus B300 mill/turn
+    approx_offset: 105036
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-equipments-0028
+  name: Okuma MA-600H horizontal mill
+  status: confirmed
+  acceptable_forms:
+  - Okuma MA-600H horizontal mill
+  - Okuma MA-600H
+  - MA-600H
+  evidence:
+  - quote: Okuma MA-600H horizontal mill
+    approx_offset: 105202
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-equipments-0029
+  name: Tsugami swiss lathe
+  status: confirmed
+  acceptable_forms:
+  - Tsugami swiss lathe
+  - Tsugami
+  evidence:
+  - quote: Tsugami swiss lathe
+    approx_offset: 105333
+  notes: Tsugami is also named without a model on the metals page (lines 4272, 4285)
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-equipments-0030
+  name: Tsugami VA2/VA3 vertical mills
+  status: confirmed
+  acceptable_forms:
+  - Tsugami VA2/VA3 vertical mills
+  - Tsugami VA2/VA3
+  - VA2/VA3
+  evidence:
+  - quote: Tsugami VA2/VA3 vertical mills
+    approx_offset: 105414
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-equipments-0031
+  name: Komo Routers
+  status: confirmed
+  acceptable_forms:
+  - Komo Routers
+  - Komo
+  evidence:
+  - quote: Komo Routers
+    approx_offset: 105511
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-equipments-0032
+  name: 3D printers
+  status: confirmed
+  acceptable_forms:
+  - more than thirty 3D printers
+  - 3D printers
+  - 3D printer
+  - 30 printers
+  evidence:
+  - quote: EPTAM operates more than thirty 3D printers
+    approx_offset: 107448
+  - quote: EPTAM has an expanded 3D printer prototyping and production line
+    approx_offset: 107831
+  - quote: FDM printing with 30 printers online
+    approx_offset: 154382
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-equipments-0033
+  name: sintering furnaces
+  status: confirmed
+  acceptable_forms:
+  - three sintering furnaces
+  - sintering furnaces
+  - three furnaces
+  - 3 Furnaces
+  - furnaces
+  evidence:
+  - quote: three furnaces
+    approx_offset: 107493
+  - quote: our three sintering furnaces
+    approx_offset: 107594
+  - quote: 3 Furnaces. 2 Production, 1 Prototype
+    approx_offset: 108277
+  notes: a furnace acts on the work (debinding/sintering the printed part), so it is a production machine rather
+    than a plant utility
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-equipments-0034
+  name: binder jet printing system
+  status: confirmed
+  acceptable_forms:
+  - binder jet printing system
+  evidence:
+  - quote: binder jet printing system
+    approx_offset: 107553
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-equipments-0035
+  name: turning center
+  status: confirmed
+  acceptable_forms:
+  - multifunction turning center
+  - turning center
+  - turning centers
+  evidence:
+  - quote: Swiss turn / milling multifunction turning center
+    approx_offset: 133200
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-equipments-0036
+  name: automatic tool changer (ATC)
+  status: disputed
+  acceptable_forms:
+  - 60-tool automatic tool changer (ATC)
+  - automatic tool changer (ATC)
+  - automatic tool changer
+  - ATC
+  evidence:
+  - quote: an automatic tool changer (ATC) and 16-station turret
+    approx_offset: 134275
+  - quote: 60-tool automatic tool changer (ATC)
+    approx_offset: 134620
+  notes: 'DISPUTED: an ATC holds and swaps tooling, so it is on the excluded tooling side; it is however a powered
+    mechanism of the machine. Never gates while disputed | an automatic tool changer handles TOOLING, not the work.
+    The text itself frames it as storage: ''60-tool automatic tool changer (ATC) for additional storage and flexibility.''
+    It is a sub-mechanism of the Tsugami that swaps what the machine acts through, so it fails ''a production machine
+    acts on the work itself''.'
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: disputed
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+    reason: 'an automatic tool changer handles TOOLING, not the work. The text itself frames it as storage: ''60-tool
+      automatic tool changer (ATC) for additional storage and flexibility.'' It is a sub-mechanism of the Tsugami
+      that swaps what the machine acts through, so it fails ''a production machine acts on the work itself''.'
+- id: sterlingmfg_net-equipments-0037
+  name: 16-station turret
+  status: disputed
+  acceptable_forms:
+  - 16-station turret
+  evidence:
+  - quote: an automatic tool changer (ATC) and 16-station turret
+    approx_offset: 134275
+  notes: 'DISPUTED: tool storage on the machine - excluded as tooling by the prompt''s own list, kept for the record
+    | the site defines this turret in the excluded terms itself: ''16-station turret for flexible tool storage.''
+    It holds and stores tooling rather than acting on the work, hitting both the ''stores'' exclusion and the tooling
+    exclusion (''what a machine holds, guides, or acts through'').'
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: disputed
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+    reason: 'the site defines this turret in the excluded terms itself: ''16-station turret for flexible tool storage.''
+      It holds and stores tooling rather than acting on the work, hitting both the ''stores'' exclusion and the
+      tooling exclusion (''what a machine holds, guides, or acts through'').'
+- id: sterlingmfg_net-equipments-0038
+  name: Fanuc 32i-B control
+  status: disputed
+  acceptable_forms:
+  - Fanuc 32i-B control
+  - Fanuc 32i-B
+  - Fanuc
+  evidence:
+  - quote: Controlled by a Fanuc 32i-B control
+    approx_offset: 134831
+  notes: 'DISPUTED: a CNC controller is a subsystem of a machine rather than a machine; it reads exactly like the
+    branded machine names around it, so a run returning it is not obviously wrong | ''Controlled by a Fanuc 32i-B
+    control'' names the CNC control unit of the Tsugami, not a machine. A control commands the machine that acts
+    on the work; it does not itself process, shape, assemble or convert material.'
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: disputed
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+    reason: '''Controlled by a Fanuc 32i-B control'' names the CNC control unit of the Tsugami, not a machine. A
+      control commands the machine that acts on the work; it does not itself process, shape, assemble or convert
+      material.'
+- id: sterlingmfg_net-equipments-0039
+  name: Wire EDM machine (Ingram)
+  status: confirmed
+  acceptable_forms:
+  - Wire EDM Machining
+  - Wire EDM
+  evidence:
+  - quote: CNC Machining, Wire EDM, Laser Engraving
+    approx_offset: 168551
+  - quote: Wire EDM Machining
+    approx_offset: 171228
+  actor: parent_sibling
+  notes: also seeded in process_caps as the EDM process; the machine reading is what puts it here
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-equipments-0040
+  name: 5-Axis Mills (Ingram / Rapid Launch Center)
+  status: confirmed
+  acceptable_forms:
+  - 5-Axis Mills
+  evidence:
+  - quote: 5-Axis Mills, CNC Lathes, and Wire EDM Machining
+    approx_offset: 171198
+  actor: parent_sibling
+  notes: listed in the 'About Ingram' boilerplate of the acquisition press release; Ingram was re-branded EPTAM
+    Rapid Launch Center, so the fleet is now in-group but the text attributes it to Ingram
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-equipments-0041
+  name: CNC Lathes (Ingram / Rapid Launch Center)
+  status: confirmed
+  acceptable_forms:
+  - CNC Lathes
+  evidence:
+  - quote: 5-Axis Mills, CNC Lathes, and Wire EDM Machining
+    approx_offset: 171198
+  actor: parent_sibling
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-equipments-0042
+  name: micro-blast stations
+  status: candidate
+  acceptable_forms:
+  - Sodium-bicarbonate-based micro-blast stations
+  - micro-blast stations
+  evidence:
+  - quote: Sodium-bicarbonate-based micro-blast stations ensure critical components are "Burr Free" at customer
+      delivery.
+    approx_offset: 43399
+  notes: a blast station acts directly on the work (it removes burrs from the part), so it is a production machine
+    under the clause, not a measuring, plant-conditioning, handling or tooling item. The packet records only the
+    deburring PROCESS (process_caps-0032) and the media, never the machine.
+  provenance:
+  - action: added
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+    source: verification-pass-miss
+- id: sterlingmfg_net-equipments-0043
+  name: passivation and anodization line
+  status: candidate
+  acceptable_forms:
+  - In-house passivation and anodization line
+  - passivation and anodization line
+  - anodization line
+  evidence:
+  - quote: In-house passivation and anodization line.
+    approx_offset: 67434
+  notes: a passivation/anodizing line is a system that chemically processes the work; both processes are seeded
+    (process_caps-0054, -0055) but the line itself is not in equipments.
+  provenance:
+  - action: added
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+    source: verification-pass-miss
+- id: sterlingmfg_net-equipments-0044
+  name: molding equipment (generic)
+  status: candidate
+  acceptable_forms:
+  - Advanced Molding Equipment
+  - state of the art molding equipment
+  evidence:
+  - quote: Advanced Molding Equipment
+    approx_offset: 8061
+  notes: the MIM capabilities list heads with 'Advanced Molding Equipment' and line 2070 has 'state of the art molding
+    equipment'; both name production machines generically. The packet carries the branded machines (Engel, Arburg,
+    Toyo) and 'injection molding machines' but not these two printed forms.
+  provenance:
+  - action: added
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+    source: verification-pass-miss
+false_friends:
+- form: CMM
+  reason: METROLOGY, explicitly excluded by the equipment prompt ('equipment that only measures, inspects, or tests
+    the work'). The site names CMMs five times (lines 1271, 1848, 2098, 3084, 3094). This is the exact string class
+    that produced the alecmfg false RED
+- form: Coordinate-Measure Machines
+  reason: metrology - same exclusion (line 1848, 3286)
+- form: coordinate-measuring machines
+  reason: metrology - same exclusion (line 3084)
+- form: Zeiss O-inspect
+  reason: a Zeiss inspection machine - reads like a branded production machine and is not one (line 1848)
+- form: Contura
+  reason: the Zeiss Contura CMM line, named on line 1848; metrology, excluded
+- form: Touch Probe CMM Vision Systems
+  reason: measurement, excluded (line 1271)
+- form: vision systems
+  reason: inspection, excluded (lines 1271, 1848, 2098)
+- form: Advanced Inspection Equipment
+  reason: the word 'Equipment' is in the string but it inspects rather than shapes (line 5482)
+- form: MUD based molds
+  reason: TOOLING - a mold is what the machine acts through, excluded by the prompt (line 230)
+- form: molds
+  reason: tooling, excluded
+- form: Custom Tooling
+  reason: tooling, excluded (line 253)
+- form: production tooling
+  reason: tooling, excluded (line 2130)
+- form: ISO Class 8 cleanroom
+  reason: a FACILITY, not a machine (lines 1296, 2110, 2122)
+- form: Class 7 clean room
+  reason: a facility (lines 963, 4224, 4236)
+- form: metrology lab
+  reason: a facility/service (line 1643)
+- form: metallurgical lab
+  reason: a facility (line 230)
+- form: IQMS
+  reason: an ERP software system, not a machine (lines 1267, 2094)
+- form: GUI Workstations
+  reason: plant IT for barcode checking, not a production machine (line 1150)
+- form: Microblast Deburring
+  reason: a PROCESS heading; 'micro-blast stations' on line 1152 is the nearest thing to a machine and the process
+    name is what is printed
+- form: Advanced Molding Equipment
+  reason: a capability bullet with no machine named (line 250/253)
+- form: press brake
+  reason: 'anticipatory: no sheet-metal work anywhere on this site; ZERO occurrences'
+- form: laser cutter
+  reason: 'anticipatory: the site says ''laser cutting'' and ''Tube cutters'' but never ''laser cutter''; ZERO occurrences'
+- form: forklift
+  reason: 'anticipatory: material handling, excluded, and ZERO occurrences'
+- form: air compressor
+  reason: 'anticipatory: plant utility, excluded, and ZERO occurrences'
+- form: autoclave
+  reason: 'anticipatory: ''repeated sterilization'' is named twice (lines 4565, 4649) which is exactly the association
+    that mints it; ZERO occurrences'
+- form: hardness tester
+  reason: 'anticipatory: testing equipment, excluded, ZERO occurrences'

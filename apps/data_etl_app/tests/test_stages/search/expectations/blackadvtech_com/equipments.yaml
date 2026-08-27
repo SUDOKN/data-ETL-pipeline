@@ -1,0 +1,2926 @@
+subject: blackadvtech.com
+field: equipments
+snapshot:
+  file: apps/data_etl_app/tests/test_stages/sample_scraped_texts/blackadvtech.com.txt
+  sha256: cf1b9015df24bc7839f887e729c3408b761b970f78773e999c724227129fb9fb
+eval_set_version: 2
+expected_empty: false
+notes: 'The richest equipments inventory in the corpus: /about-us/facility/ publishes 92 numbered machines and /capabilities/machinery/
+  publishes a second, partly different fleet with capacities. SEEDED TO THE PROMPT''S BOUNDARY, not to the everyday
+  sense of ''equipment'': a production machine acts on the work itself. So the QUALITY CONTROL block (Faro Arm,
+  Positector, Glossmeter, Sharp Edge Tester) and the CMM/calipers/micrometers in the QC Inspector posting are METROLOGY
+  and are false_friends here, not entries; the March 360 sheet loader, lift tables, dock levellers and overhead
+  crane are MATERIAL HANDLING; the dust collectors, boilers, sprinklers, bus-duct wiring and lighting are PLANT
+  UTILITIES; dies, punches, grinding wheels, chucks and grid tables are TOOLING; and the six CAD/MRP packages are
+  software. All of those are recorded as false_friends so the judged pass can count them, exactly as the alecmfg
+  false-RED lesson prescribes.'
+entries:
+- id: blackadvtech_com-equipments-0001
+  name: robotic powder coating equipment
+  status: confirmed
+  acceptable_forms:
+  - top-of-the-line robotic equipment
+  evidence:
+  - quote: High repeatability — our top-of-the-line robotic equipment makes the process a breeze
+    approx_offset: 5620
+  notes: the powder line's robot, named only descriptively
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+- id: blackadvtech_com-equipments-0002
+  name: large weldment wash booth
+  status: confirmed
+  acceptable_forms:
+  - Large weldment wash booth
+  evidence:
+  - quote: Large weldment wash booth
+    approx_offset: 6229
+  - quote: 12′ x 28′ x 12′
+    approx_offset: 90522
+  notes: 12' x 28' x 12'
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+- id: blackadvtech_com-equipments-0003
+  name: 5-stage wash & phosphate coating system
+  status: confirmed
+  acceptable_forms:
+  - 5-stage wash & phosphate coating system
+  - 5-stage wash & phosphate powder coating system
+  evidence:
+  - quote: (2) 5-stage wash & phosphate coating system
+    approx_offset: 90669
+  - quote: (2) 5-stage wash & phosphate powder coating system
+    approx_offset: 6292
+  notes: two; accommodates 4' x 8' x 9' and up to 1,500 lbs
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+- id: blackadvtech_com-equipments-0004
+  name: batch paint/powder booths
+  status: confirmed
+  acceptable_forms:
+  - Batch paint/powder booths
+  evidence:
+  - quote: (5) Batch paint/powder booths
+    approx_offset: 6343
+  notes: five, 5' x 10'
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+- id: blackadvtech_com-equipments-0005
+  name: baking ovens
+  status: confirmed
+  acceptable_forms:
+  - Baking ovens
+  evidence:
+  - quote: (2) Baking ovens
+    approx_offset: 6373
+  - quote: 36′ x 16′ x 10′
+    approx_offset: 90825
+  notes: two, 36' x 16' x 10'
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+- id: blackadvtech_com-equipments-0006
+  name: Gema Volstatic powder applicators
+  status: confirmed
+  acceptable_forms:
+  - Gema Volstatic powder applicators
+  evidence:
+  - quote: (8) Gema Volstatic powder applicators
+    approx_offset: 6390
+  notes: eight
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+- id: blackadvtech_com-equipments-0007
+  name: Timesavers belt sanders
+  status: confirmed
+  acceptable_forms:
+  - 30″ Timesavers belt sander
+  - 19″ Timesavers belt sander
+  - Timesavers belt sander
+  - TIMESAVERS 2100
+  - Timesavers 2100 Series
+  evidence:
+  - quote: (1) 30″ Timesavers belt sander
+    approx_offset: 6564
+  - quote: TIMESAVERS 2100
+    approx_offset: 62829
+  notes: a 37-inch single wide-belt head machine used for metal finishing and deburring; has its own /capabilities/timesaver/
+    page
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+- id: blackadvtech_com-equipments-0008
+  name: belt sanders to 14'
+  status: confirmed
+  acceptable_forms:
+  - Belt sanders to 14′ 0″
+  - Belt sanders
+  evidence:
+  - quote: (2) Belt sanders to 14′ 0″
+    approx_offset: 6626
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+- id: blackadvtech_com-equipments-0009
+  name: Falls metal edge deburring machine
+  status: confirmed
+  acceptable_forms:
+  - Falls metal edge deburring machine
+  evidence:
+  - quote: (1) Falls metal edge deburring machine
+    approx_offset: 6653
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+- id: blackadvtech_com-equipments-0010
+  name: Sweco vibratory deburring machine
+  status: confirmed
+  acceptable_forms:
+  - Sweco 4′ vibratory deburring machine
+  evidence:
+  - quote: (2) Sweco 4′ vibratory deburring machine
+    approx_offset: 6692
+  - quote: • 2 – Sweco Deburrer Mil
+    approx_offset: 21341
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: amended
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+    reason: '`Sweco Deburrer Mil` is the identity and sole/primary acceptable form of equipments-0068, so carrying
+      it here makes one returned phrase credit two entries and inflates the equipments denominator. This entry keeps
+      its own distinct surface forms.'
+- id: blackadvtech_com-equipments-0011
+  name: MIG machine
+  status: confirmed
+  acceptable_forms:
+  - metal inert gas (MIG) machine
+  evidence:
+  - quote: opt for a metal inert gas (MIG) machine
+    approx_offset: 10566
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+- id: blackadvtech_com-equipments-0012
+  name: welding robots (prose)
+  status: confirmed
+  acceptable_forms:
+  - welding robots
+  - robotic arms
+  - robotic arm
+  evidence:
+  - quote: We also have added welding robots added to Blackstone Advanced Technologies.
+    approx_offset: 11554
+  - quote: Smooth welding precision automated by a robotic arm.
+    approx_offset: 40369
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+- id: blackadvtech_com-equipments-0013
+  name: laser cutters
+  status: confirmed
+  acceptable_forms:
+  - Multiple laser cutters
+  - laser cutters
+  - laser machines
+  evidence:
+  - quote: Multiple laser cutters help us reduce lead times
+    approx_offset: 13991
+  - quote: Our laser machines use CNC to laser cut a programmed pattern into your material.
+    approx_offset: 64688
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+- id: blackadvtech_com-equipments-0014
+  name: XSharp grinder
+  status: confirmed
+  acceptable_forms:
+  - XSHARP™ GRINDER
+  - XSharp grinder
+  - XSharp Grinder
+  - XSharp Tool Grinder
+  - Xsharp Grinder
+  - XSharp
+  evidence:
+  - quote: XSHARP™ GRINDER
+    approx_offset: 23253
+  - quote: Wilson Tool International’s XSharp grinder
+    approx_offset: 15465
+  notes: 'a Wilson Tool International punch-tool sharpener. BOUNDARY NOTE: its work is the shop''s punch tooling
+    rather than a customer part, but tool sharpening is a service Blackstone sells, so the grinder is acting on
+    the work of that service.'
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+- id: blackadvtech_com-equipments-0015
+  name: Skat Blast 985 cabinet
+  status: confirmed
+  acceptable_forms:
+  - Skat Blast 985 Cabinet
+  - 985 SKAT BLAST Cabinet
+  evidence:
+  - quote: • 1 – Skat Blast 985 Abrasive Blasting Cabinet
+    approx_offset: 22530
+  - quote: The Skat Blast 985 Cabinet is manufactured to blast long items.
+    approx_offset: 15652
+  notes: 72" wide work area, dual glove stations, automatic abrasive recycling
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: amended
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+    reason: '`Skat Blast 985 Abrasive Blasting Cabinet` is the identity and sole/primary acceptable form of equipments-0104,
+      so carrying it here makes one returned phrase credit two entries and inflates the equipments denominator.
+      This entry keeps its own distinct surface forms.'
+- id: blackadvtech_com-equipments-0016
+  name: C-35-M Power Gun
+  status: confirmed
+  acceptable_forms:
+  - C-35-M Power Gun
+  - C-35 Foot-Pedal-Operated Power Gun
+  evidence:
+  - quote: one center-mounted C-35-M Power Gun
+    approx_offset: 15876
+  - quote: C-35 Foot-Pedal-Operated Power Gun
+    approx_offset: 52261
+  notes: the blast gun inside the Skat Blast cabinet
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+- id: blackadvtech_com-equipments-0017
+  name: Mazak Optiplex 3015 4000watt C02 5×10
+  status: confirmed
+  acceptable_forms:
+  - Mazak Optiplex 3015 4000watt C02 5×10
+  evidence:
+  - quote: • 1 – Mazak Optiplex 3015 4000watt C02 5×10
+    approx_offset: 19764
+  notes: one of the 92 numbered machines on /about-us/facility/, under the LASER CUTTING heading
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+- id: blackadvtech_com-equipments-0018
+  name: Trumpf TruLaser 3040 Fiber
+  status: confirmed
+  acceptable_forms:
+  - Trumpf TruLaser 3040 Fiber
+  evidence:
+  - quote: • 1 – Trumpf TruLaser 3040 Fiber
+    approx_offset: 19808
+  notes: one of the 92 numbered machines on /about-us/facility/, under the LASER CUTTING heading
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+- id: blackadvtech_com-equipments-0019
+  name: Trumpf 6×12 laser
+  status: confirmed
+  acceptable_forms:
+  - Trumpf 6×12
+  evidence:
+  - quote: • 1 – Trumpf 6×12
+    approx_offset: 19841
+  notes: one of the 92 numbered machines on /about-us/facility/, under the LASER CUTTING heading
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+- id: blackadvtech_com-equipments-0020
+  name: Cincinnati CL-900 4000watt Fiber 6×12
+  status: confirmed
+  acceptable_forms:
+  - Cincinnati CL-900 4000watt Fiber 6×12
+  evidence:
+  - quote: • 2 – Cincinnati CL-900 4000watt Fiber 6×12
+    approx_offset: 19859
+  notes: one of the 92 numbered machines on /about-us/facility/, under the LASER CUTTING heading
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+- id: blackadvtech_com-equipments-0021
+  name: Amada Coma-567 44 station 50 ton 60” X 72”
+  status: confirmed
+  acceptable_forms:
+  - Amada Coma-567 44 station 50 ton 60” X 72”
+  evidence:
+  - quote: • 1 – Amada Coma-567 44 station 50 ton 60” X 72”
+    approx_offset: 19951
+  notes: one of the 92 numbered machines on /about-us/facility/, under the PUNCHING heading
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+- id: blackadvtech_com-equipments-0022
+  name: Ferracute P23 40 Ton
+  status: confirmed
+  acceptable_forms:
+  - Ferracute P23 40 Ton
+  evidence:
+  - quote: • 1 – Ferracute P23 40 Ton
+    approx_offset: 20000
+  notes: one of the 92 numbered machines on /about-us/facility/, under the PUNCHING heading
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+- id: blackadvtech_com-equipments-0023
+  name: Verson 300 Ton
+  status: confirmed
+  acceptable_forms:
+  - Verson 300 Ton
+  evidence:
+  - quote: • 1 – Verson 300 Ton
+    approx_offset: 20027
+  notes: one of the 92 numbered machines on /about-us/facility/, under the PUNCHING heading
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+- id: blackadvtech_com-equipments-0024
+  name: Toledo 40 Ton
+  status: confirmed
+  acceptable_forms:
+  - Toledo 40 Ton
+  evidence:
+  - quote: • 1 – Toledo 40 Ton
+    approx_offset: 20048
+  notes: one of the 92 numbered machines on /about-us/facility/, under the PUNCHING heading
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+- id: blackadvtech_com-equipments-0025
+  name: Rousselle 300 Ton
+  status: confirmed
+  acceptable_forms:
+  - Rousselle 300 Ton
+  evidence:
+  - quote: • 1 – Rousselle 300 Ton
+    approx_offset: 20068
+  notes: one of the 92 numbered machines on /about-us/facility/, under the PUNCHING heading
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+- id: blackadvtech_com-equipments-0026
+  name: Nordson Encore LT Powder Coat Machine
+  status: confirmed
+  acceptable_forms:
+  - Nordson Encore LT Powder Coat Machine
+  evidence:
+  - quote: • 2 – Nordson Encore LT Powder Coat Machine
+    approx_offset: 20107
+  notes: one of the 92 numbered machines on /about-us/facility/, under the PAINT & POWDER heading
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+- id: blackadvtech_com-equipments-0027
+  name: Gema MPSI-B Powder Coat Machine
+  status: confirmed
+  acceptable_forms:
+  - Gema MPSI-B Powder Coat Machine
+  evidence:
+  - quote: • 5 – Gema MPSI-B Powder Coat Machine
+    approx_offset: 20151
+  notes: one of the 92 numbered machines on /about-us/facility/, under the PAINT & POWDER heading
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+- id: blackadvtech_com-equipments-0028
+  name: 15x10x15 Paint Booths
+  status: confirmed
+  acceptable_forms:
+  - 15x10x15 Paint Booths
+  evidence:
+  - quote: • 5 – 15x10x15 Paint Booths
+    approx_offset: 20189
+  notes: one of the 92 numbered machines on /about-us/facility/, under the PAINT & POWDER heading
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+- id: blackadvtech_com-equipments-0029
+  name: Large Bay Wash Booth
+  status: confirmed
+  acceptable_forms:
+  - Large Bay Wash Booth
+  evidence:
+  - quote: • 1 – Large Bay Wash Booth
+    approx_offset: 20217
+  notes: one of the 92 numbered machines on /about-us/facility/, under the PAINT & POWDER heading
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+- id: blackadvtech_com-equipments-0030
+  name: 5 Stage Iron Phosphate Bonderiser
+  status: confirmed
+  acceptable_forms:
+  - 5 Stage Iron Phosphate Bonderiser
+  evidence:
+  - quote: • 1 – 5 Stage Iron Phosphate Bonderiser
+    approx_offset: 20244
+  notes: one of the 92 numbered machines on /about-us/facility/, under the PAINT & POWDER heading
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+- id: blackadvtech_com-equipments-0031
+  name: HVLP Finex & Devilbliss Guns
+  status: confirmed
+  acceptable_forms:
+  - HVLP Finex & Devilbliss Guns
+  evidence:
+  - quote: • 5 – HVLP Finex & Devilbliss Guns
+    approx_offset: 20284
+  notes: one of the 92 numbered machines on /about-us/facility/, under the PAINT & POWDER heading
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+- id: blackadvtech_com-equipments-0032
+  name: HVLP spray gun
+  status: confirmed
+  acceptable_forms:
+  - HVLP gun
+  - HVLP spray gun
+  evidence:
+  - quote: This is true for painting with an HVLP gun
+    approx_offset: 75111
+  - quote: • 5 – HVLP Finex & Devilbliss Guns
+    approx_offset: 20284
+  notes: NOTE the vendor typo 'Devilbliss' for DeVilbiss
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: amended
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+    reason: '`HVLP Finex & Devilbliss Guns` is the identity and sole/primary acceptable form of equipments-0031,
+      so carrying it here makes one returned phrase credit two entries and inflates the equipments denominator.
+      This entry keeps its own distinct surface forms.'
+- id: blackadvtech_com-equipments-0033
+  name: 12X30X8.5 Rohner Paint/powder coat ovens
+  status: confirmed
+  acceptable_forms:
+  - 12X30X8.5 Rohner Paint/powder coat ovens
+  evidence:
+  - quote: • 2 – 12X30X8.5 Rohner Paint/powder coat ovens
+    approx_offset: 20319
+  notes: one of the 92 numbered machines on /about-us/facility/, under the PAINT & POWDER heading
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+- id: blackadvtech_com-equipments-0034
+  name: Miller Millermatic 250
+  status: confirmed
+  acceptable_forms:
+  - Miller Millermatic 250
+  evidence:
+  - quote: • 2 – Miller Millermatic 250
+    approx_offset: 20378
+  notes: one of the 92 numbered machines on /about-us/facility/, under the MIG WELDERS heading
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+- id: blackadvtech_com-equipments-0035
+  name: Miller Dimension 452
+  status: confirmed
+  acceptable_forms:
+  - Miller Dimension 452
+  evidence:
+  - quote: • 4 – Miller Dimension 452
+    approx_offset: 20407
+  notes: one of the 92 numbered machines on /about-us/facility/, under the MIG WELDERS heading
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+- id: blackadvtech_com-equipments-0036
+  name: Miller CP-302
+  status: confirmed
+  acceptable_forms:
+  - Miller CP-302
+  evidence:
+  - quote: • 5 – Miller CP-302
+    approx_offset: 20434
+  notes: one of the 92 numbered machines on /about-us/facility/, under the MIG WELDERS heading
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+- id: blackadvtech_com-equipments-0037
+  name: Miller Dimension 400
+  status: confirmed
+  acceptable_forms:
+  - Miller Dimension 400
+  evidence:
+  - quote: • 1 – Miller Dimension 400
+    approx_offset: 20454
+  notes: one of the 92 numbered machines on /about-us/facility/, under the MIG WELDERS heading
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+- id: blackadvtech_com-equipments-0038
+  name: Miller Invision 456MP Pulse
+  status: confirmed
+  acceptable_forms:
+  - Miller Invision 456MP Pulse
+  evidence:
+  - quote: • 2 – Miller Invision 456MP Pulse
+    approx_offset: 20481
+  notes: one of the 92 numbered machines on /about-us/facility/, under the MIG WELDERS heading
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+- id: blackadvtech_com-equipments-0039
+  name: Lincoln STT II
+  status: confirmed
+  acceptable_forms:
+  - Lincoln STT II
+  evidence:
+  - quote: • 13 – Lincoln STT II
+    approx_offset: 20515
+  notes: one of the 92 numbered machines on /about-us/facility/, under the MIG WELDERS heading
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+- id: blackadvtech_com-equipments-0040
+  name: Miller 252
+  status: confirmed
+  acceptable_forms:
+  - Miller 252
+  evidence:
+  - quote: • 2 – Miller 252
+    approx_offset: 20537
+  notes: one of the 92 numbered machines on /about-us/facility/, under the MIG WELDERS heading
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+- id: blackadvtech_com-equipments-0041
+  name: Lincoln Electric Power Wave
+  status: confirmed
+  acceptable_forms:
+  - Lincoln Electric Power Wave
+  evidence:
+  - quote: • 4 – Lincoln Electric Power Wave
+    approx_offset: 20554
+  notes: one of the 92 numbered machines on /about-us/facility/, under the MIG WELDERS heading
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+- id: blackadvtech_com-equipments-0042
+  name: Miller 450
+  status: confirmed
+  acceptable_forms:
+  - Miller 450
+  evidence:
+  - quote: • 2 – Miller 450
+    approx_offset: 20588
+  notes: one of the 92 numbered machines on /about-us/facility/, under the MIG WELDERS heading
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+- id: blackadvtech_com-equipments-0043
+  name: Miller Axcess 300
+  status: confirmed
+  acceptable_forms:
+  - Miller Axcess 300
+  evidence:
+  - quote: • 2 – Miller Axcess 300
+    approx_offset: 20605
+  notes: one of the 92 numbered machines on /about-us/facility/, under the MIG WELDERS heading
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+- id: blackadvtech_com-equipments-0044
+  name: Weldmark 140
+  status: confirmed
+  acceptable_forms:
+  - Weldmark 140
+  evidence:
+  - quote: • 1 – Weldmark 140
+    approx_offset: 20629
+  notes: one of the 92 numbered machines on /about-us/facility/, under the MIG WELDERS heading
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+- id: blackadvtech_com-equipments-0045
+  name: Hobart 140
+  status: confirmed
+  acceptable_forms:
+  - Hobart 140
+  evidence:
+  - quote: • 1 – Hobart 140
+    approx_offset: 20648
+  notes: one of the 92 numbered machines on /about-us/facility/, under the MIG WELDERS heading
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+- id: blackadvtech_com-equipments-0046
+  name: Miller Axcess 450
+  status: confirmed
+  acceptable_forms:
+  - Miller Axcess 450
+  evidence:
+  - quote: • 4 – Miller Axcess 450
+    approx_offset: 20665
+  notes: one of the 92 numbered machines on /about-us/facility/, under the MIG WELDERS heading
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+- id: blackadvtech_com-equipments-0047
+  name: Miller Continuum 350
+  status: confirmed
+  acceptable_forms:
+  - Miller Continuum 350
+  evidence:
+  - quote: • 2 – Miller Continuum 350
+    approx_offset: 20689
+  notes: one of the 92 numbered machines on /about-us/facility/, under the MIG WELDERS heading
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+- id: blackadvtech_com-equipments-0048
+  name: Miller Deltaweld 350
+  status: confirmed
+  acceptable_forms:
+  - Miller Deltaweld 350
+  evidence:
+  - quote: • 7 – Miller Deltaweld 350
+    approx_offset: 20716
+  notes: one of the 92 numbered machines on /about-us/facility/, under the MIG WELDERS heading
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+- id: blackadvtech_com-equipments-0049
+  name: THG Automation Fronius Robot
+  status: confirmed
+  acceptable_forms:
+  - THG Automation Fronius Robot
+  evidence:
+  - quote: • 3 – THG Automation Fronius Robot
+    approx_offset: 20743
+  notes: one of the 92 numbered machines on /about-us/facility/, under the MIG WELDERS heading
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+- id: blackadvtech_com-equipments-0050
+  name: Miller 351
+  status: confirmed
+  acceptable_forms:
+  - Miller 351
+  evidence:
+  - quote: • 7 – Miller 351
+    approx_offset: 20790
+  notes: one of the 92 numbered machines on /about-us/facility/, under the TIG WELDERS heading
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+- id: blackadvtech_com-equipments-0051
+  name: Lincoln Square Wave
+  status: confirmed
+  acceptable_forms:
+  - Lincoln Square Wave
+  evidence:
+  - quote: • 2 – Lincoln Square Wave
+    approx_offset: 20807
+  notes: one of the 92 numbered machines on /about-us/facility/, under the TIG WELDERS heading
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+- id: blackadvtech_com-equipments-0052
+  name: Miller syncrowave 350
+  status: confirmed
+  acceptable_forms:
+  - Miller syncrowave 350
+  evidence:
+  - quote: • 3 – Miller syncrowave 350
+    approx_offset: 20833
+  notes: one of the 92 numbered machines on /about-us/facility/, under the TIG WELDERS heading
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+- id: blackadvtech_com-equipments-0053
+  name: Lincoln Electric TIG welder
+  status: confirmed
+  acceptable_forms:
+  - Lincoln Electric
+  evidence:
+  - quote: • 1 – Lincoln Electric
+    approx_offset: 20861
+  notes: one of the 92 numbered machines on /about-us/facility/, under the TIG WELDERS heading
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+- id: blackadvtech_com-equipments-0054
+  name: Miller Syncrowave 350 LX
+  status: confirmed
+  acceptable_forms:
+  - Miller Syncrowave 350 LX
+  evidence:
+  - quote: • 6 – Miller Syncrowave 350 LX
+    approx_offset: 20884
+  notes: one of the 92 numbered machines on /about-us/facility/, under the TIG WELDERS heading
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+- id: blackadvtech_com-equipments-0055
+  name: Miller Dynasty 280 DX
+  status: confirmed
+  acceptable_forms:
+  - Miller Dynasty 280 DX
+  evidence:
+  - quote: • 8 – Miller Dynasty 280 DX
+    approx_offset: 20915
+  notes: one of the 92 numbered machines on /about-us/facility/, under the TIG WELDERS heading
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+- id: blackadvtech_com-equipments-0056
+  name: Pandjiris 8′ bed
+  status: confirmed
+  acceptable_forms:
+  - Pandjiris 8′ bed
+  evidence:
+  - quote: SEAM WELDERS • 1 – Pandjiris 8′ bed
+    approx_offset: 20943
+  notes: one of the 92 numbered machines on /about-us/facility/, under the TIG WELDERS heading
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+- id: blackadvtech_com-equipments-0057
+  name: IPG LightWeld 2000XR
+  status: confirmed
+  acceptable_forms:
+  - IPG LightWeld 2000XR
+  evidence:
+  - quote: HANDHELD WELDER • 1 – IPG LightWeld 2000XR
+    approx_offset: 20979
+  notes: one of the 92 numbered machines on /about-us/facility/, under the TIG WELDERS heading
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+- id: blackadvtech_com-equipments-0058
+  name: IPG LightWeld handheld laser welder
+  status: confirmed
+  acceptable_forms:
+  - LightWELD
+  - Handheld Laser Welding & Cleaning Systems
+  evidence:
+  - quote: IPG LightWeld 2000XR
+    approx_offset: 21001
+  - quote: Handheld Laser Welding & Cleaning Systems
+    approx_offset: 31025
+  notes: handheld laser welding and cleaning system
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: amended
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+    reason: '`IPG LightWeld 2000XR` is the identity and sole/primary acceptable form of equipments-0057, so carrying
+      it here makes one returned phrase credit two entries and inflates the equipments denominator. This entry keeps
+      its own distinct surface forms.'
+- id: blackadvtech_com-equipments-0059
+  name: Sciaki Spot welders
+  status: confirmed
+  acceptable_forms:
+  - Sciaki Spot welders
+  evidence:
+  - quote: • 2 – Sciaki Spot welders
+    approx_offset: 21035
+  notes: one of the 92 numbered machines on /about-us/facility/, under the SPOT WELDING heading
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+- id: blackadvtech_com-equipments-0060
+  name: Sciaki spot welder
+  status: confirmed
+  acceptable_forms:
+  - Sciaki spot welder
+  evidence:
+  - quote: (2) Sciaki spot welder
+    approx_offset: 89839
+  - quote: • 2 – Sciaki Spot welders
+    approx_offset: 21035
+  notes: '250 KVA, 48 inch throat, 8 inch gap, solid-state controller, 440V 3-phase. NOTE the vendor typo: Sciaki
+    for Sciaky.'
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: amended
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+    reason: '`Sciaki Spot welders` is the identity and sole/primary acceptable form of equipments-0059, so carrying
+      it here makes one returned phrase credit two entries and inflates the equipments denominator. This entry keeps
+      its own distinct surface forms.'
+- id: blackadvtech_com-equipments-0061
+  name: Taylor Winfield spot welders
+  status: confirmed
+  acceptable_forms:
+  - Taylor Winfield
+  evidence:
+  - quote: • 17 – Taylor Winfield
+    approx_offset: 21061
+  notes: one of the 92 numbered machines on /about-us/facility/, under the SPOT WELDING heading
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+- id: blackadvtech_com-equipments-0062
+  name: 38 KVA portable/hanging spot welders
+  status: confirmed
+  acceptable_forms:
+  - 38 KVA Portable/hanging
+  evidence:
+  - quote: • 4 – 38 KVA Portable/hanging
+    approx_offset: 21084
+  notes: one of the 92 numbered machines on /about-us/facility/, under the SPOT WELDING heading
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+- id: blackadvtech_com-equipments-0063
+  name: Capacitive discharge stud guns
+  status: confirmed
+  acceptable_forms:
+  - Capacitive discharge stud guns
+  evidence:
+  - quote: • 3 – Capacitive discharge stud guns
+    approx_offset: 21114
+  notes: one of the 92 numbered machines on /about-us/facility/, under the SPOT WELDING heading
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+- id: blackadvtech_com-equipments-0064
+  name: Mattison 138 Belt Sander
+  status: confirmed
+  acceptable_forms:
+  - Mattison 138 Belt Sander
+  evidence:
+  - quote: • 1 – Mattison 138 Belt Sander
+    approx_offset: 21180
+  notes: one of the 92 numbered machines on /about-us/facility/, under the GRAINING/DEBURRING/FINISHING heading
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+- id: blackadvtech_com-equipments-0065
+  name: Mattison 124 Belt Sander
+  status: confirmed
+  acceptable_forms:
+  - Mattison 124 Belt Sander
+  evidence:
+  - quote: • 1 – Mattison 124 Belt Sander
+    approx_offset: 21211
+  notes: one of the 92 numbered machines on /about-us/facility/, under the GRAINING/DEBURRING/FINISHING heading
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+- id: blackadvtech_com-equipments-0066
+  name: Doucet Stroke Sander
+  status: confirmed
+  acceptable_forms:
+  - Doucet Stroke Sander
+  evidence:
+  - quote: • 1 – Doucet Stroke Sander
+    approx_offset: 21278
+  notes: one of the 92 numbered machines on /about-us/facility/, under the GRAINING/DEBURRING/FINISHING heading
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+- id: blackadvtech_com-equipments-0067
+  name: 35”x15’ 2100 Series Timesaver
+  status: confirmed
+  acceptable_forms:
+  - 35”x15’ 2100 Series Timesaver
+  evidence:
+  - quote: • 1 – 35”x15’ 2100 Series Timesaver
+    approx_offset: 21305
+  notes: one of the 92 numbered machines on /about-us/facility/, under the GRAINING/DEBURRING/FINISHING heading
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+- id: blackadvtech_com-equipments-0068
+  name: Sweco Deburrer Mil
+  status: confirmed
+  acceptable_forms:
+  - Sweco Deburrer Mil
+  evidence:
+  - quote: • 2 – Sweco Deburrer Mil
+    approx_offset: 21341
+  notes: one of the 92 numbered machines on /about-us/facility/, under the GRAINING/DEBURRING/FINISHING heading
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+- id: blackadvtech_com-equipments-0069
+  name: Weld Passivation Wand Systems
+  status: confirmed
+  acceptable_forms:
+  - Weld Passivation Wand Systems
+  evidence:
+  - quote: • 2 – Weld Passivation Wand Systems
+    approx_offset: 21366
+  notes: one of the 92 numbered machines on /about-us/facility/, under the GRAINING/DEBURRING/FINISHING heading
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+- id: blackadvtech_com-equipments-0070
+  name: Pemserter Autosert AS-7.5 press
+  status: confirmed
+  acceptable_forms:
+  - Autosert AS-7.5
+  evidence:
+  - quote: • 3 – Autosert AS-7.5
+    approx_offset: 21420
+  notes: one of the 92 numbered machines on /about-us/facility/, under the PEMSERTER PRESSES heading
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+- id: blackadvtech_com-equipments-0071
+  name: Pemserter Series 2000 press
+  status: confirmed
+  acceptable_forms:
+  - Series 2000
+  evidence:
+  - quote: • 2 – Series 2000
+    approx_offset: 21442
+  notes: one of the 92 numbered machines on /about-us/facility/, under the PEMSERTER PRESSES heading
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+- id: blackadvtech_com-equipments-0072
+  name: Sebastion A-6 Lathe
+  status: confirmed
+  acceptable_forms:
+  - Sebastion A-6 Lathe
+  evidence:
+  - quote: • 1 – Sebastion A-6 Lathe
+    approx_offset: 21470
+  notes: one of the 92 numbered machines on /about-us/facility/, under the MACHINING heading
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+- id: blackadvtech_com-equipments-0073
+  name: Bridgeport milling machines
+  status: confirmed
+  acceptable_forms:
+  - Bridgeport’s
+  evidence:
+  - quote: • 2 – Bridgeport’s
+    approx_offset: 21496
+  notes: one of the 92 numbered machines on /about-us/facility/, under the MACHINING heading
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+- id: blackadvtech_com-equipments-0074
+  name: Radial Arm Drill
+  status: confirmed
+  acceptable_forms:
+  - Radial Arm Drill
+  evidence:
+  - quote: • 2 – Radial Arm Drill
+    approx_offset: 21515
+  notes: one of the 92 numbered machines on /about-us/facility/, under the MACHINING heading
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+- id: blackadvtech_com-equipments-0075
+  name: Fadel CNC
+  status: confirmed
+  acceptable_forms:
+  - Fadel CNC
+  evidence:
+  - quote: • 1 – Fadel CNC
+    approx_offset: 21538
+  notes: one of the 92 numbered machines on /about-us/facility/, under the MACHINING heading
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+- id: blackadvtech_com-equipments-0076
+  name: Trumpf TruBend v130
+  status: confirmed
+  acceptable_forms:
+  - Trumpf TruBend v130
+  evidence:
+  - quote: • 1 – Trumpf TruBend v130
+    approx_offset: 21562
+  notes: one of the 92 numbered machines on /about-us/facility/, under the FORMING heading
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+- id: blackadvtech_com-equipments-0077
+  name: Trumpf TruBend v170
+  status: confirmed
+  acceptable_forms:
+  - Trumpf TruBend v170
+  evidence:
+  - quote: • 2 – Trumpf TruBend v170
+    approx_offset: 21588
+  notes: one of the 92 numbered machines on /about-us/facility/, under the FORMING heading
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+- id: blackadvtech_com-equipments-0078
+  name: Trumpf TruBend v320
+  status: confirmed
+  acceptable_forms:
+  - Trumpf TruBend v320
+  evidence:
+  - quote: • 1 – Trumpf TruBend v320
+    approx_offset: 21614
+  notes: one of the 92 numbered machines on /about-us/facility/, under the FORMING heading
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+- id: blackadvtech_com-equipments-0079
+  name: Trumpf TruBend v7036
+  status: confirmed
+  acceptable_forms:
+  - Trumpf TruBend v7036
+  evidence:
+  - quote: • 2 – Trumpf TruBend v7036
+    approx_offset: 21640
+  notes: one of the 92 numbered machines on /about-us/facility/, under the FORMING heading
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+- id: blackadvtech_com-equipments-0080
+  name: Trumpf TruBend v2100
+  status: confirmed
+  acceptable_forms:
+  - Trumpf TruBend v2100
+  evidence:
+  - quote: • 1 – Trumpf TruBend v2100
+    approx_offset: 21667
+  notes: one of the 92 numbered machines on /about-us/facility/, under the FORMING heading
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+- id: blackadvtech_com-equipments-0081
+  name: Trumpf TruBend v5320
+  status: confirmed
+  acceptable_forms:
+  - Trumpf TruBend v5320
+  evidence:
+  - quote: • 2 – Trumpf TruBend v5320
+    approx_offset: 21694
+  notes: one of the 92 numbered machines on /about-us/facility/, under the FORMING heading
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+- id: blackadvtech_com-equipments-0082
+  name: Trumpf TruBend v5130
+  status: confirmed
+  acceptable_forms:
+  - Trumpf TruBend v5130
+  evidence:
+  - quote: • 1 – Trumpf TruBend v5130
+    approx_offset: 21721
+  notes: one of the 92 numbered machines on /about-us/facility/, under the FORMING heading
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+- id: blackadvtech_com-equipments-0083
+  name: Trumpf TrueBend V5100
+  status: confirmed
+  acceptable_forms:
+  - Trumpf TrueBend V5100
+  evidence:
+  - quote: • 1 – Trumpf TrueBend V5100
+    approx_offset: 21748
+  notes: one of the 92 numbered machines on /about-us/facility/, under the FORMING heading
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+- id: blackadvtech_com-equipments-0084
+  name: Trumpf TruBend v3170
+  status: confirmed
+  acceptable_forms:
+  - Trumpf TruBend v3170
+  evidence:
+  - quote: • 1 – Trumpf TruBend v3170
+    approx_offset: 21776
+  notes: one of the 92 numbered machines on /about-us/facility/, under the FORMING heading
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+- id: blackadvtech_com-equipments-0085
+  name: Trumpf TruBend 7050
+  status: confirmed
+  acceptable_forms:
+  - Trumpf TruBend 7050
+  evidence:
+  - quote: • 1 – Trumpf TruBend 7050
+    approx_offset: 21803
+  notes: one of the 92 numbered machines on /about-us/facility/, under the FORMING heading
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+- id: blackadvtech_com-equipments-0086
+  name: Darley 110 31/25 press brake
+  status: confirmed
+  acceptable_forms:
+  - Darley 110 31/25
+  evidence:
+  - quote: • 1 – Darley 110 31/25
+    approx_offset: 21829
+  notes: one of the 92 numbered machines on /about-us/facility/, under the FORMING heading
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+- id: blackadvtech_com-equipments-0087
+  name: Cincinnati Mechanical Brake
+  status: confirmed
+  acceptable_forms:
+  - Cincinnati Mechanical Brake
+  evidence:
+  - quote: • 3 – Cincinnati Mechanical Brake
+    approx_offset: 21852
+  notes: one of the 92 numbered machines on /about-us/facility/, under the FORMING heading
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+- id: blackadvtech_com-equipments-0088
+  name: Cincinnati 230 Autoform +8
+  status: confirmed
+  acceptable_forms:
+  - Cincinnati 230 Autoform +8
+  evidence:
+  - quote: • 1 – Cincinnati 230 Autoform +8
+    approx_offset: 21886
+  notes: one of the 92 numbered machines on /about-us/facility/, under the FORMING heading
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+- id: blackadvtech_com-equipments-0089
+  name: Pacific Hydraulic Brake
+  status: confirmed
+  acceptable_forms:
+  - Pacific Hydraulic Brake
+  evidence:
+  - quote: • 1 – Pacific Hydraulic Brake
+    approx_offset: 21919
+  notes: one of the 92 numbered machines on /about-us/facility/, under the FORMING heading
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+- id: blackadvtech_com-equipments-0090
+  name: Cincinnati Hydraulic Brake
+  status: confirmed
+  acceptable_forms:
+  - Cincinnati Hydraulic Brake
+  evidence:
+  - quote: • 1 – Cincinnati Hydraulic Brake
+    approx_offset: 21949
+  notes: one of the 92 numbered machines on /about-us/facility/, under the FORMING heading
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+- id: blackadvtech_com-equipments-0091
+  name: Devin Arbor Press
+  status: confirmed
+  acceptable_forms:
+  - Devin Arbor Press
+  evidence:
+  - quote: • 1 – Devin Arbor Press
+    approx_offset: 21982
+  notes: one of the 92 numbered machines on /about-us/facility/, under the FORMING heading
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+- id: blackadvtech_com-equipments-0092
+  name: K.R. Wilson 3750V Arbor Press
+  status: confirmed
+  acceptable_forms:
+  - K.R. Wilson 3750V Arbor Press
+  evidence:
+  - quote: • 1 – K.R. Wilson 3750V Arbor Press
+    approx_offset: 22006
+  notes: one of the 92 numbered machines on /about-us/facility/, under the FORMING heading
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+- id: blackadvtech_com-equipments-0093
+  name: 4ft Niagara plate roll
+  status: confirmed
+  acceptable_forms:
+  - 4ft Niagara
+  evidence:
+  - quote: • 1 – 4ft Niagara
+    approx_offset: 22050
+  notes: one of the 92 numbered machines on /about-us/facility/, under the ROLLING heading
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+- id: blackadvtech_com-equipments-0094
+  name: Buffalo Channel roll
+  status: confirmed
+  acceptable_forms:
+  - Buffalo Channel
+  evidence:
+  - quote: • 1 – Buffalo Channel
+    approx_offset: 22068
+  notes: one of the 92 numbered machines on /about-us/facility/, under the ROLLING heading
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+- id: blackadvtech_com-equipments-0095
+  name: Marvel 8 Series 8
+  status: confirmed
+  acceptable_forms:
+  - Marvel 8 Series 8
+  evidence:
+  - quote: • 1 – Marvel 8 Series 8
+    approx_offset: 22221
+  notes: one of the 92 numbered machines on /about-us/facility/, under the SAWS heading
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+- id: blackadvtech_com-equipments-0096
+  name: HEM Saw Auto Feed Programmable Jobs
+  status: confirmed
+  acceptable_forms:
+  - HEM Saw Auto Feed Programmable Jobs
+  evidence:
+  - quote: • 1 – HEM Saw Auto Feed Programmable Jobs
+    approx_offset: 22245
+  notes: one of the 92 numbered machines on /about-us/facility/, under the SAWS heading
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+- id: blackadvtech_com-equipments-0097
+  name: HEM CNC vertical Band Saw
+  status: confirmed
+  acceptable_forms:
+  - HEM CNC vertical Band Saw
+  evidence:
+  - quote: • 1 – HEM CNC vertical Band Saw
+    approx_offset: 22287
+  notes: one of the 92 numbered machines on /about-us/facility/, under the SAWS heading
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+- id: blackadvtech_com-equipments-0098
+  name: PMI-20 CNC Auto Miter Upcut Saw
+  status: confirmed
+  acceptable_forms:
+  - PMI-20 CNC Auto Miter Upcut Saw
+  - upcut miter saw
+  evidence:
+  - quote: PMI-20 CNC Auto Miter Upcut Saw
+    approx_offset: 22325
+  - quote: a fully automatic upcut miter saw that is built and designed to cut aluminum extrusions
+    approx_offset: 31402
+  notes: 7.5 HP saw motor, 3000 RPM, 20" blade, servo-controlled head +/- 45 degrees
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+- id: blackadvtech_com-equipments-0099
+  name: aluminum up-cut saw
+  status: confirmed
+  acceptable_forms:
+  - Aluminum up-cut
+  evidence:
+  - quote: • 1 – Aluminum up-cut
+    approx_offset: 22357
+  notes: one of the 92 numbered machines on /about-us/facility/, under the SAWS heading
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+- id: blackadvtech_com-equipments-0100
+  name: 10ft Cincinnati shear
+  status: confirmed
+  acceptable_forms:
+  - 10ft Cincinnati
+  evidence:
+  - quote: • 1 – 10ft Cincinnati
+    approx_offset: 22388
+  notes: one of the 92 numbered machines on /about-us/facility/, under the SHEARING heading
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+- id: blackadvtech_com-equipments-0101
+  name: 10ft Niagara shear
+  status: confirmed
+  acceptable_forms:
+  - 10ft Niagara
+  evidence:
+  - quote: • 1 – 10ft Niagara
+    approx_offset: 22410
+  notes: one of the 92 numbered machines on /about-us/facility/, under the SHEARING heading
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+- id: blackadvtech_com-equipments-0102
+  name: 6ft Cincinnati shear
+  status: confirmed
+  acceptable_forms:
+  - 6ft Cincinnati
+  evidence:
+  - quote: • 1 – 6ft Cincinnati
+    approx_offset: 22429
+  notes: one of the 92 numbered machines on /about-us/facility/, under the SHEARING heading
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+- id: blackadvtech_com-equipments-0103
+  name: Comaca Notcher
+  status: confirmed
+  acceptable_forms:
+  - Comaca Notcher
+  evidence:
+  - quote: • 1 – Comaca Notcher
+    approx_offset: 22459
+  notes: one of the 92 numbered machines on /about-us/facility/, under the NOTCHERS heading
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+- id: blackadvtech_com-equipments-0104
+  name: Skat Blast 985 Abrasive Blasting Cabinet
+  status: confirmed
+  acceptable_forms:
+  - Skat Blast 985 Abrasive Blasting Cabinet
+  evidence:
+  - quote: • 1 – Skat Blast 985 Abrasive Blasting Cabinet
+    approx_offset: 22530
+  notes: one of the 92 numbered machines on /about-us/facility/, under the SAND BLASTER heading
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+- id: blackadvtech_com-equipments-0105
+  name: Dragon A400 Plasma Cutting Machine
+  status: confirmed
+  acceptable_forms:
+  - Dragon A400 Plasma Cutting Machine
+  evidence:
+  - quote: • 1 – Dragon A400 Plasma Cutting Machine
+    approx_offset: 22589
+  notes: one of the 92 numbered machines on /about-us/facility/, under the TUBE & PIPE heading
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+- id: blackadvtech_com-equipments-0106
+  name: mechanical punch presses
+  status: confirmed
+  acceptable_forms:
+  - Mechanical punch presses
+  - punch press
+  - punch presses
+  evidence:
+  - quote: (3) Mechanical punch presses
+    approx_offset: 89610
+  - quote: A small footprint is placed next to the our punch press.
+    approx_offset: 25289
+  notes: three, 'Ranging from 20 to 40 tons'
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+- id: blackadvtech_com-equipments-0107
+  name: Trumpf Flex Cell 7050
+  status: confirmed
+  acceptable_forms:
+  - Trumpf Flex Cell 7050
+  - Flex Cell
+  - mobile robot cell
+  evidence:
+  - quote: Trumpf Flex Cell 7050
+    approx_offset: 30048
+  - quote: The Flex Cell bending automation transforms your manual TruBend 7050 into the fastest bending cell
+    approx_offset: 30071
+  notes: bending automation cell bolted onto the manual TruBend 7050
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+- id: blackadvtech_com-equipments-0108
+  name: TruDisk solid-state laser
+  status: confirmed
+  acceptable_forms:
+  - TruDisk solid-state laser
+  evidence:
+  - quote: The TruDisk solid-state laser enables the processing of non-ferrous metals
+    approx_offset: 30688
+  notes: the source inside the TruLaser 3040 Fiber
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: amended
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+    reason: BrightLine fiber is a beam-quality mode of the TruLaser, not a machine or a system - 'BrightLine fiber
+      guarantees the highest edge quality'. The TruDisk solid-state laser is the machine and stays.
+- id: blackadvtech_com-equipments-0109
+  name: Dragon A400 tube and pipe plasma cutter
+  status: confirmed
+  acceptable_forms:
+  - Dragon A400 CNC tube and pipe plasma cutter
+  - Dragon Tube and Pipe Plastma Cutting Machine
+  evidence:
+  - quote: Dragon Tube and Pipe Plastma Cutting Machine
+    approx_offset: 31969
+  - quote: The Dragon A400 CNC tube and pipe plasma cutter easily marks and engraves
+    approx_offset: 32016
+  notes: NOTE the heading typo 'Plastma'
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: amended
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+    reason: '`Dragon A400 Plasma Cutting Machine` is the identity and sole/primary acceptable form of equipments-0105,
+      so carrying it here makes one returned phrase credit two entries and inflates the equipments denominator.
+      This entry keeps its own distinct surface forms.'
+- id: blackadvtech_com-equipments-0110
+  name: Trumpf TruBend 5130 (spec block)
+  status: confirmed
+  acceptable_forms:
+  - TruBend 5130
+  - Trmpf TruBend 5130
+  evidence:
+  - quote: Trmpf TruBend 5130
+    approx_offset: 32356
+  - quote: Press force 292 US tons / 1300 kN
+    approx_offset: 32540
+  notes: 'EQUIPMENT-PARAMETER DEPTH: the page''s own prose says 110 US tons while its spec table says 292 US tons
+    / 1300 kN and 127" bending length - the page contradicts itself. NOTE the vendor typo ''Trmpf''.'
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+- id: blackadvtech_com-equipments-0111
+  name: THG Automation Fronius welding robot
+  status: confirmed
+  acceptable_forms:
+  - THG Automation Fronius Welding Robot
+  - THG Automation Fronius
+  evidence:
+  - quote: THG Automation Fronius Welding Robot
+    approx_offset: 32699
+  - quote: The THG Automation Fronius.
+    approx_offset: 40288
+  notes: spring 2022 investment; TPS 400i power source, push torch, wire feeder
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: amended
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+    reason: '`THG Automation Fronius Robot` is the identity and sole/primary acceptable form of equipments-0049,
+      so carrying it here makes one returned phrase credit two entries and inflates the equipments denominator.
+      This entry keeps its own distinct surface forms.'
+- id: blackadvtech_com-equipments-0112
+  name: Fronius TPS 400i power source
+  status: confirmed
+  acceptable_forms:
+  - TPS 400i Power Source
+  evidence:
+  - quote: TPS 400i Power Source with 1000 jobs, Teach Mode, Job Editor, and more
+    approx_offset: 32908
+  notes: the welding power source inside the Fronius robot cell
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+- id: blackadvtech_com-equipments-0113
+  name: Universal Robots UR10e
+  status: confirmed
+  acceptable_forms:
+  - Universal Robots UR10e
+  - UR10e
+  evidence:
+  - quote: the Universal Robots UR10e 12.5 kg payload robot
+    approx_offset: 33067
+  notes: the arm the Fronius push system is mounted on
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+- id: blackadvtech_com-equipments-0114
+  name: Trumpf TruBend 2100 (spec block)
+  status: confirmed
+  acceptable_forms:
+  - TruBend 2100
+  - Trmpf TruBend 2100
+  evidence:
+  - quote: Trmpf TruBend 2100
+    approx_offset: 33307
+  - quote: Press force 110 US tons / 1000 kN
+    approx_offset: 33491
+  notes: 110 US tons / 1000 kN, 120" bending length, 4" table width
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+- id: blackadvtech_com-equipments-0115
+  name: HEM Saw VT100HLA-60 CTS
+  status: confirmed
+  acceptable_forms:
+  - HEM Saw VT100HLA-60 CTS
+  - Metal-Cutting Production Band Saw
+  - HEM Saw
+  evidence:
+  - quote: HEM Saw VT100HLA-60 CTS
+    approx_offset: 34594
+  - quote: A vertical, Metal-Cutting Production Band Saw
+    approx_offset: 34619
+  notes: 'a vertical metal-cutting production band saw; 18" x 20.75" at 90 degrees, 5 HP. THE BRAND BEHIND THE HEMMING
+    TRAP: ''HEM'' here is a saw maker, not the process word.'
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: amended
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+    reason: '`HEM CNC vertical Band Saw` is the identity and sole/primary acceptable form of equipments-0097, so
+      carrying it here makes one returned phrase credit two entries and inflates the equipments denominator. This
+      entry keeps its own distinct surface forms.'
+- id: blackadvtech_com-equipments-0116
+  name: Trumpf TruBend 7036 (spec block)
+  status: confirmed
+  acceptable_forms:
+  - Trumpf TruBend 7036
+  - Trumpf Trubend 7036
+  evidence:
+  - quote: Trumpf TruBend 7036
+    approx_offset: 34965
+  - quote: The ergonomic high-speed machine bends small and medium-sized parts
+    approx_offset: 35029
+  notes: direct drive plus an automatic angle measuring system
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+- id: blackadvtech_com-equipments-0117
+  name: Cincinnati CL-940
+  status: confirmed
+  acceptable_forms:
+  - CINCINNATI CL-940
+  - CL-900 Series Fiber Laser System
+  - CL-900
+  evidence:
+  - quote: CINCINNATI CL-940
+    approx_offset: 35370
+  - quote: The CL-900 Series Fiber Laser System offers high speed cutting on thinner materials
+    approx_offset: 35389
+  notes: Dynamic Power Control (DPC), touch-screen HMI
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+- id: blackadvtech_com-equipments-0118
+  name: bonderizer
+  status: confirmed
+  acceptable_forms:
+  - bonderizer
+  - Bonderizer
+  evidence:
+  - quote: Bonderizer
+    approx_offset: 40468
+  - quote: invested in a new state of the art technology bonderizer
+    approx_offset: 40527
+  notes: early-2022 investment; a 5-stage iron phosphate conversion line
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: amended
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+    reason: '`5 Stage Iron Phosphate Bonderiser` is the identity and sole/primary acceptable form of equipments-0030,
+      so carrying it here makes one returned phrase credit two entries and inflates the equipments denominator.
+      This entry keeps its own distinct surface forms.'
+- id: blackadvtech_com-equipments-0119
+  name: 2000-watt CO2 lasers
+  status: confirmed
+  acceptable_forms:
+  - 2000-watt CO2 lasers
+  - 2000 watt C02 6×12 laser
+  - 4000 watt C02 5×10 laser
+  - 4000 watt Fiber 6×12 laser
+  evidence:
+  - quote: (5) 2000-watt CO2 lasers
+    approx_offset: 88719
+  - quote: (1) 2000 watt C02 6×12 laser
+    approx_offset: 71882
+  notes: the press-room laser fleet as the machinery page states it
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+- id: blackadvtech_com-equipments-0120
+  name: CNC turret punch press
+  status: confirmed
+  acceptable_forms:
+  - CNC turret punch press
+  - turret punch press
+  - 44-station turret
+  evidence:
+  - quote: (1) CNC turret punch press
+    approx_offset: 72008
+  - quote: (1) CNC turret punch press 44 station 60×72 with 2 auto index stations
+    approx_offset: 72008
+  - quote: 44-station turret with 2 auto index stations
+    approx_offset: 85878
+  notes: 'EQUIPMENT-PARAMETER DEPTH: 55 punching tons, 4.5 inch max tool, 60x72 max sheet, a 44-station turret with
+    2 auto index stations. The turret station count is the distinctive spec.'
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+- id: blackadvtech_com-equipments-0121
+  name: 10' shear
+  status: confirmed
+  acceptable_forms:
+  - 10′ shear
+  - 10′ shears
+  evidence:
+  - quote: (2) 10′ shear
+    approx_offset: 72079
+  - quote: 10′ shears
+    approx_offset: 85924
+  notes: two 10-foot shears, up to 1/4 inch capacity, one with a CNC front gauge
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: amended
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+    reason: '`10ft Cincinnati` and `10ft Niagara` are the identities of equipments-0100 and 0101 (the two facility-list
+      shears). The machinery page''s ''(2) 10'' shear'' is the same pair described generically, so carrying their
+      names here double-credits. Keeps the two generic forms.'
+- id: blackadvtech_com-equipments-0122
+  name: CNC hydraulic press brakes
+  status: confirmed
+  acceptable_forms:
+  - CNC hydraulic press brakes
+  evidence:
+  - quote: (5) CNC hydraulic press brakes
+    approx_offset: 72093
+  notes: 'EQUIPMENT-PARAMETER DEPTH: five of them, ''Ranging from 130 tons to 320 tons'', 14'' max bed, lift assist
+    arms on the 320-ton machine, automatic bed deflection compensators'
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+- id: blackadvtech_com-equipments-0123
+  name: CNC electric press brake
+  status: confirmed
+  acceptable_forms:
+  - CNC electric press brake
+  evidence:
+  - quote: (1) CNC electric press brake
+    approx_offset: 72124
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+- id: blackadvtech_com-equipments-0124
+  name: conventional hydraulic press brakes
+  status: confirmed
+  acceptable_forms:
+  - Conventional hydraulic press brakes
+  evidence:
+  - quote: (2) Conventional hydraulic press brakes
+    approx_offset: 72153
+  - quote: 120 tons, 10′ bed
+    approx_offset: 86275
+  notes: two, with 2-axis CNCs, 120 tons on a 10' bed
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: amended
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+    reason: '''120 tons, 10'' bed'' is the capacity line under the machine, not a name for it; the clause needs
+      a phrase that names or implies a production machine. `Conventional hydraulic press brakes` already does.'
+- id: blackadvtech_com-equipments-0125
+  name: mechanical press brakes
+  status: confirmed
+  acceptable_forms:
+  - Mechanical press brakes
+  evidence:
+  - quote: Mechanical press brakes
+    approx_offset: 72197
+  - quote: Ranging from 100 to 230 tons
+    approx_offset: 86319
+  notes: '''Ranging from 100 to 230 tons'', 10''-14'' beds, NC backgauge controllers'
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+- id: blackadvtech_com-equipments-0126
+  name: 4' bending roll
+  status: confirmed
+  acceptable_forms:
+  - 4′ bending roll
+  - 4′ roll machine
+  evidence:
+  - quote: (1) 4′ bending roll
+    approx_offset: 89666
+  - quote: 4′ roll machine capable of rolling up to 1/4″ thick material
+    approx_offset: 84911
+  notes: the shop's only rolling machine - a 4-foot plate/bending roll to 1/4 inch, NOT a rolling mill
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+- id: blackadvtech_com-equipments-0127
+  name: 55 punching tons
+  status: retired
+  acceptable_forms:
+  - 55 punching tons
+  evidence:
+  - quote: 55 punching tons
+    approx_offset: 85772
+  notes: the turret press's capacity line; an equipment parameter, kept because the corpus note asks for parameter-level
+    precision on this subject | '55 punching tons' is the punching-capacity line of the CNC turret punch press already
+    entered at equipments-0120 (it sits directly under it in both the machinery and press-room lists). It names
+    a capacity, not a device, so it does not satisfy 'names, states or implies a production machine', and it is
+    the entry's only acceptable form, so nothing survives correction.
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: retired
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+    reason: '''55 punching tons'' is the punching-capacity line of the CNC turret punch press already entered at
+      equipments-0120 (it sits directly under it in both the machinery and press-room lists). It names a capacity,
+      not a device, so it does not satisfy ''names, states or implies a production machine'', and it is the entry''s
+      only acceptable form, so nothing survives correction.'
+- id: blackadvtech_com-equipments-0128
+  name: 130 to 320 ton press brake range
+  status: confirmed
+  acceptable_forms:
+  - 320-ton machine
+  evidence:
+  - quote: Ranging from 130 tons to 320 tons
+    approx_offset: 86015
+  - quote: Lift assist arms on 320-ton machine
+    approx_offset: 86069
+  notes: the headline capacity spec for this shop; the vetting note calls it out as where the real depth is on this
+    subject
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: amended
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+    reason: '''Ranging from 130 tons to 320 tons'' and ''320 tons'' are tonnage specifications of the press brakes
+      already entered at equipments-0122, not names of machines. `320-ton machine` is the one form on this entry
+      that names a device (''Lift assist arms on 320-ton machine'') and is kept.'
+- id: blackadvtech_com-equipments-0129
+  name: straight-sided mechanical presses
+  status: confirmed
+  acceptable_forms:
+  - Straight-sided mechanical presses
+  evidence:
+  - quote: (2) Straight-sided mechanical presses
+    approx_offset: 89563
+  - quote: 300 tons
+    approx_offset: 86448
+  notes: two at 300 tons
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+- id: blackadvtech_com-equipments-0130
+  name: sheet seam-welder
+  status: confirmed
+  acceptable_forms:
+  - Sheet seam-welder
+  - Seam welder
+  - seam-welder
+  evidence:
+  - quote: (1) Sheet seam-welder for making oversize sheets
+    approx_offset: 89697
+  - quote: (1) Seam welder
+    approx_offset: 89755
+  notes: for making oversize sheets; 96 inch seam, 106 inch clamping, 2 mandrel configurations
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+- id: blackadvtech_com-equipments-0131
+  name: Taylor Winfield spot welders (machinery page)
+  status: confirmed
+  acceptable_forms:
+  - Taylor Winfield spot welders ram and press types
+  - Taylor Winfield spot welders
+  evidence:
+  - quote: (17) Taylor Winfield spot welders ram and press types
+    approx_offset: 89935
+  - quote: Up to 100 KVA
+    approx_offset: 89989
+  notes: seventeen, ram and press types, up to 100 KVA, electronic controls
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+- id: blackadvtech_com-equipments-0132
+  name: MIG welders (fleet count)
+  status: confirmed
+  acceptable_forms:
+  - (30) MIG welders
+  - MIG welders
+  evidence:
+  - quote: (30) MIG welders
+    approx_offset: 90023
+  notes: thirty on the machinery page
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+- id: blackadvtech_com-equipments-0133
+  name: TIG welders (fleet count)
+  status: confirmed
+  acceptable_forms:
+  - (16) TIG welders
+  - TIG welders
+  evidence:
+  - quote: (16) TIG welders
+    approx_offset: 90040
+  notes: sixteen on the machinery page
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+- id: blackadvtech_com-equipments-0134
+  name: SST welders
+  status: confirmed
+  acceptable_forms:
+  - 9 SST welders
+  - SST welders
+  evidence:
+  - quote: 9 SST welders
+    approx_offset: 90057
+  - quote: For spatter reduction on stainless steel
+    approx_offset: 90071
+  notes: for spatter reduction on stainless steel; the bare 3-letter form SST matches case-sensitively on word boundaries
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+- id: blackadvtech_com-equipments-0135
+  name: push/pull arc weld guns
+  status: confirmed
+  acceptable_forms:
+  - Push/pull arc weld guns
+  evidence:
+  - quote: (3) Push/pull arc weld guns
+    approx_offset: 90141
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+- id: blackadvtech_com-equipments-0136
+  name: plasma welder-cutters
+  status: confirmed
+  acceptable_forms:
+  - Plasma welder-cutters
+  evidence:
+  - quote: (2) Plasma welder-cutters
+    approx_offset: 90169
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+- id: blackadvtech_com-equipments-0137
+  name: large weldment wet spray booth
+  status: confirmed
+  acceptable_forms:
+  - Large weldment wet spray booth
+  - Large weldment wet spray paint booth
+  - Large wet spray paint booth
+  evidence:
+  - quote: Large weldment wet spray booth
+    approx_offset: 90538
+  - quote: Large wet spray paint booth can comfortably accommodate weldment
+    approx_offset: 90585
+  notes: 12' x 28' x 12'; a second large wet spray booth is 25'L x 14'W x 14'H
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+- id: blackadvtech_com-equipments-0138
+  name: frame-straightening stations
+  status: confirmed
+  acceptable_forms:
+  - Frame-straightening stations
+  evidence:
+  - quote: (2) Frame-straightening stations
+    approx_offset: 90916
+  - quote: With leveling plates
+    approx_offset: 90949
+  notes: two, with leveling plates
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+- id: blackadvtech_com-equipments-0139
+  name: Bracker riveting machines
+  status: confirmed
+  acceptable_forms:
+  - Bracker riveting machines
+  evidence:
+  - quote: (2) Bracker riveting machines
+    approx_offset: 91005
+  notes: two
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+- id: blackadvtech_com-equipments-0140
+  name: sheet metal nibbler
+  status: confirmed
+  acceptable_forms:
+  - Sheet metal nibbler
+  evidence:
+  - quote: (1) Sheet metal nibbler
+    approx_offset: 91035
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+- id: blackadvtech_com-equipments-0141
+  name: Muller semi-automatic stretch machine
+  status: confirmed
+  acceptable_forms:
+  - Muller semi-automatic stretch machine
+  evidence:
+  - quote: (1) Muller semi-automatic stretch machine
+    approx_offset: 91059
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+- id: blackadvtech_com-equipments-0142
+  name: Cincinnati CL-707
+  status: confirmed
+  acceptable_forms:
+  - Cincinnati CL-707 2000watt C02 6×12
+  evidence:
+  - quote: the Cincinnati CL-707 2000watt C02 6×12
+    approx_offset: 120754
+  notes: named only in the fiber-laser blog post, not in either machine list
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+- id: blackadvtech_com-equipments-0143
+  name: electrostatic spray system
+  status: confirmed
+  acceptable_forms:
+  - electrostatic spray system
+  - electrostatic spray guns
+  - specialized spray gun
+  evidence:
+  - quote: using a specialized spray gun or an electrostatic spray system
+    approx_offset: 122129
+  - quote: operation requires specialized equipment, such as spray booths, curing ovens, and electrostatic spray
+      guns. The initial investment can be relatively high, especially for small businesses
+    approx_offset: 124735
+  actor: unknown
+  notes: 'BLOG-ONLY: the powder-coating explainer''s generic equipment list'
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: amended
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+    reason: curing ovens and spray booths are two other pieces of powder-coating equipment listed in the same sentence,
+      not surface forms of an electrostatic spray system. Kept as their own candidate misses.
+- id: blackadvtech_com-equipments-0144
+  name: collaborative robots
+  status: confirmed
+  acceptable_forms:
+  - collaborative robots (cobots)
+  - cobots
+  evidence:
+  - quote: collaborative robots (cobots) are becoming more prevalent in welding applications
+    approx_offset: 139618
+  actor: unknown
+  notes: 'BLOG-ONLY: the robotic-welding explainer''s outlook section'
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+- id: blackadvtech_com-equipments-0145
+  name: oxyacetylene torch
+  status: confirmed
+  acceptable_forms:
+  - oxyacetylene torch
+  evidence:
+  - quote: This process is performed using an oxyacetylene torch.
+    approx_offset: 146347
+  actor: unknown
+  notes: 'BLOG-ONLY: the tool the weld-distortion article prescribes for heat straightening'
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+- id: blackadvtech_com-equipments-0146
+  name: plasma arc torch
+  status: confirmed
+  acceptable_forms:
+  - plasma arc torch
+  evidence:
+  - quote: the plasma arc torch has two electrodes, a rear and a front one
+    approx_offset: 189553
+  actor: unknown
+  notes: BLOG-ONLY
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+- id: blackadvtech_com-equipments-0147
+  name: rolling mills
+  status: confirmed
+  acceptable_forms:
+  - rollers
+  - work rolls
+  evidence:
+  - quote: In the mills, rollers are used to reduce the metal thickness
+    approx_offset: 205780
+  actor: unknown
+  notes: 'BLOG-ONLY and the crux of the cold-rolling trap: the rolling MILL exists only in the thickness/cold-rolling
+    articles. Neither machine list contains one.'
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: amended
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+    reason: '''In the mills, rollers are used'' is a sentence fragment, not a designation - the search prompt''s
+      Extent section forbids returning the statement around the name, so no correct run could ever emit it. `rollers`
+      and `work rolls` name the machine''s working elements and are kept.'
+- id: blackadvtech_com-equipments-0148
+  name: powered shears
+  status: confirmed
+  acceptable_forms:
+  - powered shears
+  evidence:
+  - quote: while using tools such as snips or even powered shears
+    approx_offset: 227866
+  actor: unknown
+  notes: BLOG-ONLY
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: amended
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+    reason: snips are hand tools ('using tools such as snips or even powered shears'), which the clause puts outside
+      the boundary along with tooling; powered shears are the production machine in that sentence and are kept.
+- id: blackadvtech_com-equipments-0149
+  name: Projection weld stud welders
+  status: candidate
+  acceptable_forms:
+  - Projection weld stud welders
+  evidence:
+  - quote: Projection weld stud welders
+    approx_offset: 90112
+  notes: a production machine on /capabilities/machinery/. The string is in the packet only as evidence for process_caps-0060
+    (projection welding); it has no equipments entry, so a returned equipment phrase for it credits nothing.
+  provenance:
+  - action: added
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+    source: verification-pass-miss
+- id: blackadvtech_com-equipments-0150
+  name: Pemserter presses
+  status: candidate
+  acceptable_forms:
+  - PEMSERTER PRESSES
+  evidence:
+  - quote: PEMSERTER PRESSES
+    approx_offset: 21402
+  notes: the facility-list section heading naming the machine class; the two units under it are entered (0070, 0071)
+    but neither acceptable form is contained in this heading, so it cannot credit through them.
+  provenance:
+  - action: added
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+    source: verification-pass-miss
+- id: blackadvtech_com-equipments-0151
+  name: sand blaster
+  status: candidate
+  acceptable_forms:
+  - SAND BLASTER
+  evidence:
+  - quote: SAND BLASTER
+    approx_offset: 22517
+  notes: facility-list heading naming the machine class; not contained in any Skat Blast form, so it credits nothing
+    today.
+  provenance:
+  - action: added
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+    source: verification-pass-miss
+- id: blackadvtech_com-equipments-0152
+  name: handheld welder
+  status: candidate
+  acceptable_forms:
+  - HANDHELD WELDER
+  evidence:
+  - quote: HANDHELD WELDER • 1 – IPG LightWeld 2000XR
+    approx_offset: 20979
+  notes: facility-list heading naming the machine class; not contained in 'IPG LightWeld 2000XR' or 'LightWELD',
+    so it credits nothing today.
+  provenance:
+  - action: added
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+    source: verification-pass-miss
+- id: blackadvtech_com-equipments-0153
+  name: Fronius Push Torch
+  status: candidate
+  acceptable_forms:
+  - Push Torch
+  evidence:
+  - quote: Push Torch
+    approx_offset: 33034
+  notes: a welding torch listed as part of the THG Automation Fronius push system on /capabilities/newequipment/;
+    a torch acts on the work, and the packet already treats torches as equipment at 0145 and 0146.
+  provenance:
+  - action: added
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+    source: verification-pass-miss
+- id: blackadvtech_com-equipments-0154
+  name: Fronius wire feeder
+  status: candidate
+  acceptable_forms:
+  - Wire Feeder
+  evidence:
+  - quote: Wire Feeder
+    approx_offset: 32979
+  notes: listed with the Fronius push system on /capabilities/newequipment/; it drives filler wire into the weld
+    pool rather than measuring, powering the plant or carrying product.
+  provenance:
+  - action: added
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+    source: verification-pass-miss
+- id: blackadvtech_com-equipments-0155
+  name: welding torch
+  status: candidate
+  acceptable_forms:
+  - welding torch
+  evidence:
+  - quote: the operator should re-bake, use fresh consumables, and check the welding torch for any leaks
+    approx_offset: 142048
+  notes: named in the common-welding-issues article; same class as the oxyacetylene torch (0145) and plasma arc
+    torch (0146) the packet does enter.
+  provenance:
+  - action: added
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+    source: verification-pass-miss
+- id: blackadvtech_com-equipments-0156
+  name: curing ovens
+  status: candidate
+  acceptable_forms:
+  - curing ovens
+  evidence:
+  - quote: such as spray booths, curing ovens, and electrostatic spray guns
+    approx_offset: 124777
+  notes: split out of equipments-0143, where it had been carried as a form of 'electrostatic spray system'; a separate
+    machine, and a distinct surface form from the facility list's 'Baking ovens' (0005).
+  provenance:
+  - action: added
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+    source: verification-pass-miss
+- id: blackadvtech_com-equipments-0157
+  name: spray booths
+  status: candidate
+  acceptable_forms:
+  - spray booths
+  evidence:
+  - quote: such as spray booths, curing ovens, and electrostatic spray guns
+    approx_offset: 124777
+  notes: split out of equipments-0143; a distinct surface form from the facility list's paint booths (0028) and
+    wet spray booths (0137).
+  provenance:
+  - action: added
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+    source: verification-pass-miss
+false_friends:
+- form: Faro Arm Edge
+  reason: METROLOGY. Listed under the facility list's QUALITY CONTROL heading; a portable CMM measures the work,
+    it does not act on it - excluded by this field's clause
+- form: Positector 6000 Mil Gauge
+  reason: 'METROLOGY: a coating-thickness gauge under QUALITY CONTROL'
+- form: Glossmeter
+  reason: 'METROLOGY: a gloss measuring instrument under QUALITY CONTROL'
+- form: Ergonomics se300 Sharp Edge Tester
+  reason: 'METROLOGY/TESTING: a sharp-edge tester under QUALITY CONTROL'
+- form: CMM
+  reason: METROLOGY. Named in the QC Inspector job posting alongside calipers and micrometers. This is the exact
+    string that produced the alecmfg false RED.
+- form: calipers
+  reason: METROLOGY, from the same QC Inspector posting
+- form: micrometers
+  reason: METROLOGY, from the same QC Inspector posting
+- form: March 360 4 tray sheet loader system
+  reason: 'MATERIAL HANDLING: a sheet loader feeds the laser, it does not process the work. Also appears as ''M.A.R.C.H
+    (Multi Axis Rapid Cincinnati Handling System) 360 system'' - the vendor''s own expansion says Handling System.'
+- form: Timesaver Wet Dust Collectors
+  reason: 'PLANT UTILITY: dust collection conditions the plant, it does not act on the work'
+- form: Adjustable height lift tables
+  reason: 'MATERIAL HANDLING: 35 of them on the machinery page'
+- form: Hydraulic dock levelers for shipping
+  reason: MATERIAL HANDLING
+- form: 5-ton overhead crane system
+  reason: MATERIAL HANDLING
+- form: Shipping and receiving docks
+  reason: FACILITY, not a machine
+- form: Gas-fired boilers
+  reason: 'PLANT UTILITY: named in the machinery page''s facility tail'
+- form: Complete sprinkler system
+  reason: PLANT UTILITY / life safety
+- form: High-intensity lighting
+  reason: PLANT UTILITY
+- form: Bus-duct wiring
+  reason: 'PLANT UTILITY: power distribution'
+- form: Vac-50 HEPA Vacuum
+  reason: 'PLANT UTILITY: dust extraction on the blast cabinet'
+- form: Variable-size grid tables
+  reason: 'TOOLING/FIXTURING: eight of them; a welding table holds the work, the machine does not drive it'
+- form: grinding wheel
+  reason: 'TOOLING: the consumable the XSharp acts through'
+- form: XSharp shear grinding chuck
+  reason: 'TOOLING: a workholding chuck, explicitly excluded by the clause'
+- form: punch die setup
+  reason: 'TOOLING: dies are what the press acts through'
+- form: segmented precision tooling with quick-change clamps
+  reason: 'TOOLING: press-brake tooling, not the brake'
+- form: Solid Edge
+  reason: 'SOFTWARE: one of six CAD/CAM/MRP packages under the facility list''s SOFTWARE heading'
+- form: AutoCad
+  reason: SOFTWARE
+- form: Radan
+  reason: 'SOFTWARE: sheet-metal CAM, not a machine'
+- form: Fusion 360
+  reason: SOFTWARE - and the most machine-sounding of the six
+- form: Draftsight
+  reason: SOFTWARE
+- form: Epicor MRP
+  reason: 'SOFTWARE: an ERP/MRP system'
+- form: Video Player
+  reason: a website widget heading that appears on 5 pages, not a machine
+- form: Waterjet
+  reason: never occurs; a model may mint it alongside laser and plasma cutting
+- form: CNC machining center
+  reason: never occurs; the MACHINING block is a lathe, two Bridgeports, a radial arm drill and a 'Fadel CNC'

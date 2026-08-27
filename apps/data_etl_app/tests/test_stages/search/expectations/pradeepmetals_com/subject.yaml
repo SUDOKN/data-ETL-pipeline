@@ -1,0 +1,99 @@
+subject: pradeepmetals.com
+slug: pradeepmetals_com
+role: genre_probe
+business_type: BSE-listed Indian closed-die forging house; investor-relations genre, non-US standards regime
+snapshot:
+  file: apps/data_etl_app/tests/test_stages/sample_scraped_texts/pradeepmetals.com.txt
+  sha256: d3b7875e2769b8347084c18df480028cf319fc9595695734c21041dff6961bc0
+eval_set_version: 1
+context: 'Pradeep Metals Limited, Navi Mumbai - a closed-die steel forging house, BSE-listed since 1993. The corpus''s
+  only Indian and only investor-relations-heavy subject. 114 page fetches / 96 distinct URLs: ~24 investor-relations
+  pages (AGM/EOGM, announcements, policies, quarterly disclosures, financial reports, corporate governance, unpaid
+  dividend), 15 blog posts, and only ~12 real capability pages (manufacturing, machining, quality, material grades,
+  design & engineering, products, IMRC research centre).'
+scrape_hazards:
+- hazard: a 42-line site footer (ABOUT US ... Powered by) is repeated 112 times - 4,704 of the file's 10,412 lines,
+    45%. It carries nav labels that read as products, industries and quality items (Forged Flanges / Valves / Manifolds
+    / Material Grades / Approvals / Certificates / Quality Policy / Industries We Serve), so the same handful of
+    forms is in scope for nearly every window
+  quote: © 2016 Pradeep Metals Limited. All rights reserved | XML Sitemap | Powered by
+- hazard: '33-35% of page fetches are duplicates: http:// and https:// variants, with and without a trailing slash,
+    fetched as separate pages (114 fetches, 74 distinct bodies once the login/share-price chrome is normalized).
+    /quality, /machining, /forging, /clientele, /our-team, /corporate-governance, /material-grades, /india-facilities
+    all appear 2-3 times'
+  quote: http://www.pradeepmetals.com/quality/
+- hazard: '15 ''Coming Soon'' stubs, and they are exactly the pages whose names promise the densest in-field content:
+    /tool-die-development, /aluminium-forging, /industries-we-serve, /stainless-steel-forgings, /testing-validation,
+    /gears-automative, /forged-steel-check-valve, /forged-steel-globe-valve, /us-facilities, /investors'
+  quote: Coming soon
+- hazard: 'CMS defect: the Clientele page''s client list is the literal keyboard-mash placeholder ''hdsjkfhsjkd''
+    (twice). The site names no customer at all on that page'
+  quote: hdsjkfhsjkd
+- hazard: 'CMS defect: the IMRC landing page runs the DMW marketing paragraph with the company name replaced by
+    the placeholder ''test Machine Works'', while the same paragraph elsewhere says ''Dimensional Machine Works'''
+  quote: test Machine Works stands on its reputation of machining difficult parts
+- hazard: 'ENTITY TRAP: /india-facilities is headed ''INDIA FACILITIES'', immediately followed by ''USA FACILITIES''
+    and then US marketing copy for Dimensional Machine Works, LLC (Houston) - a step-down subsidiary. Wrong legal
+    entity and wrong continent under an India heading. The India facilities page has NO India content at all'
+  quote: Dimensional Machine Works stands on its reputation of machining difficult parts to .0005 tolerance
+- hazard: the same DMW is placed in Houston on three pages and in Dallas in one blog - the site contradicts itself
+    about where its US plant is
+  quote: Pradeep Metals currently operates under the moniker of Dimensional Machine Works, Dallas
+- hazard: 'PERSON-NAME DENSITY: the Our Team / Corporate Governance pages carry ~10 director and officer names with
+    DIN numbers, committee memberships and full CVs, repeated across 3 duplicate page fetches - an own-name leak
+    surface of a kind no other corpus subject has'
+  quote: "Audit Committee\tMr. Kartick Maheshwari (Chairman)"
+- hazard: 'DIRECTORSHIP REGISTER: a 28-row table of OTHER companies the directors sit on, several with manufacturing-sounding
+    names (Forgexel Enterprises, Dhanlabh Engineering Works, Munak Engineers, NRB Bearings, Orient Cement, Power
+    Team Hydraulic Technologies, Maini Materials Movement). None of them is a capability, a client or a product
+    of this subject'
+  quote: "Forgexel Enterprises Private Limited\tDirector\t23.09.2024"
+- hazard: 'DIRECTORS'' EMPLOYMENT HISTORIES read as capability bait: Lockheed Martin, Boeing, CISCO Systems, Tata
+    Motors, Crompton Greaves, Indian Aluminium, Degussa International, Air Products and Chemicals, PWC, The World
+    Bank'
+  quote: he was involved in implementing a technology merger for a JV between Lockheed Martin and Boeing
+- hazard: 'SERVICE PROVIDERS POSING AS PARTNERS: MUFG Intime India Pvt. Ltd. is the share registrar and transfer
+    agent, Khaitan & Co is a law firm a director is a partner of - neither is a supplier, client or plant'
+  quote: MUFG Intime India Pvt. Ltd.
+- hazard: 'rupee financial figures sit line-for-line beside tonnage capacity figures: ''Rs 4,602.62 lakhs'' on the
+    homepage ticker, ''8000 MTPA to 9200 MTPA'' and ''8000 tons'' / ''2400 tons'' on the history and blog pages.
+    Only the tonnages are capacity'
+  quote: Pradeep Metals has reported a sales total income from operations of Rs 4,602.62 lakhs and a net profit
+    of Rs 291.31 lakhs for the quarter ended March 2019
+- hazard: 'REGULATORY VOCABULARY MASSED AS IF IT WERE STANDARDS: SEBI (LODR) Regulations 2015, Companies Act 2013,
+    Regulation 29/30/46, IEPF, BSE, Annual Secretarial Compliance Report, Scrutinizer''s Report, Postal Ballot -
+    ~24 pages of it, versus 11 real certificate lines'
+  quote: DISCLOSURE PURSUANT TO REGULATION 46 OF SEBI (LISTING OBLIGATION AND DISCLOSURE REQUIREMENTS) REGULATIONS,
+    2015
+- hazard: 'GOVERNANCE POLICIES SIT ADJACENT TO REAL CERTIFICATES: the Quality page prints CERTIFICATES, then APPROVALS,
+    then a POLICY block whose only item is ''IMS POLICY'' - and a 24-item POLICIES page repeats it among CSR / whistle-blower
+    / insider-trading policies'
+  quote: IMS POLICY
+- hazard: 'the material grade table is flattened into one column per line with tabs where the category changes,
+    and three cells are run together by the flattening: ''F347H1.4301'' (F347H + 1.4301), ''414020MnCr5'' (4140
+    + 20MnCr5) and ''42CrMo4F5'' (42CrMo4 + F5)'
+  quote: F347H1.4301
+- hazard: 211 non-breaking spaces and many double spaces sit inside phrases; the file also carries en/em dashes,
+    curly quotes and a U+2028 line separator
+  quote: 'Invited Speakers: National and International Microwave Experts'
+- hazard: 'in-text typos that change a designation: ''Austentizing furnaces'' (austenitizing), ''ISO 140001-2015''
+    (five digits, twice, in blog prose), ''ISO 45001- 2018'' (stray space), ''GEARS & AUTOMATIVE'' (automotive),
+    ''COTINUOUS BELT TYPE'', ''CORE STRENGHTS'', ''srategy'''
+  quote: Austentizing furnaces
+sampling_notes: 'Read EXHAUSTIVELY. Method: (1) stripped the 112 identical 42-line footers and blank lines, leaving
+  3,397 substantive lines, and read all of them in nine sed slices, covering original lines 1-10,412 and every one
+  of the 114 page fetches; (2) targeted greps over the FULL unmodified file for standards bodies (ISO/ASTM/ANSI/API/AMS/NADCAP/ASME/DNV/TUV/Lloyd/IBR/EIL/CRN/ISI/DSIR/PED/NORSOK/AD2000/AS
+  9100), every -ing word (231 distinct), alloy and grade patterns, machine/brand words, industry words and product
+  words. Nothing was sampled. The footer text itself was read once in full (lines 44-89) and is quoted in the hazards.'
+notes: 'Six non-empty fields. The subject''s own capability content is concentrated in ~12 pages; the other ~84
+  fetches are investor relations, blog explainers and duplicates. Two recall-relevant consequences: (a) many process/material
+  entries are named ONLY in generic blog explainers about the forging industry, not as this company''s own capability
+  - those carry actor: unknown and a note, because search is recall-first and downstream owns attribution; (b) the
+  IMRC (Industrial Microwave Research Center) pages name a large amount of lab equipment and a set of microwave
+  processes that are concluded research, not production - they are entries with the research context in notes. products.yaml
+  doubles as the contract_products expectation.'
+provenance:
+- action: added
+  by: seed-agent-pradeepmetals-com
+  date: '2026-08-27'
+  source: corpus-seed

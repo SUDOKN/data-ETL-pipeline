@@ -1,10 +1,17 @@
 # RUNBOOK — running the search-stage evaluation
 
+> For the eval SET's own state, how it was built, and its known limits, see
+> [`HANDOFF.md`](HANDOFF.md). This file is the protocol for running the
+> evaluation against a pipeline run.
+
+
 This is the protocol the assistant follows whenever the user says some form of
 **"run the search eval"** (typically after a full pipeline run). It exists so
 any future session executes the same evaluation without re-deriving it. The
 user's standing decisions are baked in (2026-08-26): **recall-only gating**,
-**assistant-grown eval set with user veto**, all 8 corpus subjects seeded.
+**assistant-grown eval set with user veto**, and every corpus subject seeded
+(8 on 2026-08-26, 12 more on 2026-08-27 — see `expectations/SEEDING_BRIEF.md`
+for how a new subject is added).
 
 **Standing authorization: spawn as many agents as the protocol needs.** One
 judge agent per (subject, field), double-judge agents on samples, verification
@@ -48,7 +55,7 @@ agents — this fan-out is the user's explicit instruction, renewed by every
    table, every returned form, the exact window text the stage read, and the
    subject's confirmed must-find list. (Packets embed site text and stay
    gitignored.) Then spawn ONE agent per packet — products serves
-   contract_products, so never judge it twice; 12 packets on a two-subject
+   contract_products, so never judge it twice; 6 packets per subject in a run
    run. Each agent codes EVERY form (J1), flags actor/evidence kind (J3/J4),
    and lists in-window entities no form covers (J2 misses). It writes JSONL to
    `history/runs/<run_id>/judgments/<subject_slug>__<field>.jsonl`:

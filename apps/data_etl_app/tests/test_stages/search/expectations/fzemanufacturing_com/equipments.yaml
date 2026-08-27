@@ -1,0 +1,1090 @@
+subject: fzemanufacturing.com
+field: equipments
+snapshot:
+  file: apps/data_etl_app/tests/test_stages/sample_scraped_texts/fzemanufacturing.com.txt
+  sha256: ff11844d0540b8e65c7c4c7f8f7614c3e36c192b093940bb99b8140eb5aace1e
+eval_set_version: 2
+expected_empty: false
+notes: 'The strongest owned-machine roster in the corpus: two listings on /equipment/ naming ~35 machines by make
+  and model. SEEDED TO THE PROMPT''S BOUNDARY, not to the everyday sense of ''equipment'': the Sheffield Discovery
+  CMMs, Keyence IM7030T, J&L Optical Comparator, granite tables and hand gages that sit in the SAME roster under
+  ''Inspection Equipment'' are metrology and are EXCLUDED here (they are recorded as process_caps inspection operations,
+  and as false_friends for this field). Rotary tables, tombstones, pallets, vices, chucks, collets, live tooling,
+  drill bits and inserts are tooling and are excluded. Bar feeders and the part-tending cobots/gantry robot are
+  recorded as DISPUTED - they move material rather than act on the work.'
+entries:
+- id: fzemanufacturing_com-equipments-0001
+  name: Lathe
+  status: confirmed
+  acceptable_forms:
+  - Lathes
+  - CNC lathes
+  - Bar Feed Lathes
+  - CNC Bar Feed Lathes
+  evidence:
+  - quote: FZE’s precision equipment consists of CNC HMC’s, VMC’s, Lathes and Swiss machines enabling us to perform
+      a diverse range of machining processes including turning, milling,
+    approx_offset: 6370
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-equipments-0002
+  name: CNC turning center
+  status: confirmed
+  acceptable_forms:
+  - CNC Turning Centers
+  - Swiss Bar Feed Turning Centers
+  - turning machines
+  evidence:
+  - quote: the zenith of manufacturing, where innovation meets precision. FZE Manufacturing Solutions harnesses
+      barfed CNC Turning Centers as well as CNC Swiss Machining to achieve unparalleled accuracy
+    approx_offset: 19524
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-equipments-0003
+  name: Swiss lathe / Swiss turning center
+  status: confirmed
+  acceptable_forms:
+  - Swiss Lathe
+  - Swiss Turning Center
+  - Swiss-type lathe
+  - Swiss automatic
+  - swiss CNC machines
+  - Swiss CNC machine
+  - Swiss machines
+  - Swiss screw machines
+  evidence:
+  - quote: Swiss Lathe – Engine/CNC
+    approx_offset: 105059
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: amended
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+    reason: the text also calls this machine a 'Swiss screw machine' ('the majority of Swiss screw machines are
+      run by CNC automation'), a spelling none of the listed forms would match; a search return of that phrase would
+      read as a false miss
+- id: fzemanufacturing_com-equipments-0004
+  name: Horizontal machining center
+  status: confirmed
+  acceptable_forms:
+  - Horizontal Machining Center
+  - Machining Centers
+  - horizontal machining center
+  - CNC HMC
+  evidence:
+  - quote: Horizontal Machining Center
+    approx_offset: 109239
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-equipments-0005
+  name: OKK HM600
+  status: confirmed
+  acceptable_forms:
+  - OKK HM600
+  - HM600
+  evidence:
+  - quote: -OKK HM600
+    approx_offset: 109268
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-equipments-0006
+  name: OKK HM80
+  status: confirmed
+  acceptable_forms:
+  - OKK HM80
+  - HM80
+  evidence:
+  - quote: -OKK HM80
+    approx_offset: 109354
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-equipments-0007
+  name: Doosan NHP5000
+  status: confirmed
+  acceptable_forms:
+  - DOOSAN NHP5000
+  - NHP5000
+  evidence:
+  - quote: -DOOSAN NHP5000
+    approx_offset: 109438
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-equipments-0008
+  name: Daewoo Puma 300 MSB
+  status: confirmed
+  acceptable_forms:
+  - Daewoo Puma 300 MSB
+  - Puma 300 MSB
+  evidence:
+  - quote: -Daewoo Puma 300 MSB
+    approx_offset: 109558
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-equipments-0009
+  name: Magazine bar feeder
+  status: disputed
+  acceptable_forms:
+  - Magazine Bar Feeder
+  - bar feeder
+  - Bar Feeder
+  - bar feed equipment
+  evidence:
+  - quote: 4’ Magazine Bar Feeder
+    approx_offset: 109625
+  notes: 'DISPUTED: a bar feeder LOADS raw stock into the lathe; under this prompt''s exclusion of equipment that
+    ''moves, stores, or carries'', it reads as material handling rather than a machine acting on the work. Kept
+    on the record because it is an integral, named part of nine machine listings and a reasonable reader would call
+    it production equipment. | a bar feeder does not process, shape, assemble or convert - it presents bar stock
+    to the lathe. That is the clause''s ''moves, stores, or carries'' side of the line, even though it is an integrated
+    subsystem of a production machine rather than a standalone conveyor'
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: disputed
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+    reason: a bar feeder does not process, shape, assemble or convert - it presents bar stock to the lathe. That
+      is the clause's 'moves, stores, or carries' side of the line, even though it is an integrated subsystem of
+      a production machine rather than a standalone conveyor
+- id: fzemanufacturing_com-equipments-0010
+  name: Daewoo Puma 230 MSB
+  status: confirmed
+  acceptable_forms:
+  - Daewoo Puma 230 MSB
+  - Puma 230 MSB
+  evidence:
+  - quote: -Daewoo Puma 230 MSB
+    approx_offset: 109649
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-equipments-0011
+  name: Doosan Puma2600YB
+  status: confirmed
+  acceptable_forms:
+  - Doosan Puma2600YB
+  - Puma2600YB
+  - Doosan Puma2600SY
+  evidence:
+  - quote: -(2) Doosan Puma2600YB
+    approx_offset: 109736
+  notes: the videos page also names a 'Doosan Puma2600SY' being tended by an M1013 cobot
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-equipments-0012
+  name: Doosan cobot
+  status: disputed
+  acceptable_forms:
+  - Doosan Cobot
+  - Doosan M1013 Cobot
+  - Cobot
+  evidence:
+  - quote: and Doosan Cobot
+    approx_offset: 109826
+  notes: 'DISPUTED: a collaborative robot TENDING a lathe (the video title says ''Doosan M1013 Cobot tending Doosan
+    Puma2600SY'') - it loads and unloads parts, which this prompt excludes as moving what the plant makes. Kept
+    as a boundary question. | the cobot is a part-handling robot, not a machine that acts on the work: the video
+    list says ''Doosan M1013 Cobot tending Doosan Puma2600SY'', and the site elsewhere calls this ''robotic part
+    loading and unloading''. Tending = load/unload = the clause''s ''moves, stores, or carries'' exclusion. (Contrast
+    the Miller Welding Cobot, which welds and does act on the work)'
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: disputed
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+    reason: 'the cobot is a part-handling robot, not a machine that acts on the work: the video list says ''Doosan
+      M1013 Cobot tending Doosan Puma2600SY'', and the site elsewhere calls this ''robotic part loading and unloading''.
+      Tending = load/unload = the clause''s ''moves, stores, or carries'' exclusion. (Contrast the Miller Welding
+      Cobot, which welds and does act on the work)'
+- id: fzemanufacturing_com-equipments-0013
+  name: Doosan TT1800SY
+  status: confirmed
+  acceptable_forms:
+  - Doosan TT1800SY
+  - TT1800SY
+  - DOOSAN TT18000SY
+  - TT18000SY
+  evidence:
+  - quote: -(2) Doosan TT1800SY
+    approx_offset: 109844
+  notes: the second Equipment List block on the same page spells it TT18000SY - an extra zero
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-equipments-0014
+  name: Doosan gantry robot
+  status: disputed
+  acceptable_forms:
+  - Doosan Gantry Robot
+  - Gantry Robot
+  evidence:
+  - quote: and Doosan Gantry Robot + Cobot
+    approx_offset: 109940
+  notes: 'DISPUTED: same boundary question as the cobot: a gantry robot moves the work between operations rather
+    than acting on it | the gantry robot is listed as part loading/unloading automation on a turning centre (''Doosan
+    Gantry Robot + Cobot''), matching the site''s own ''robotic part loading and unloading''; it moves the work
+    rather than acting on it'
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: disputed
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+    reason: the gantry robot is listed as part loading/unloading automation on a turning centre ('Doosan Gantry
+      Robot + Cobot'), matching the site's own 'robotic part loading and unloading'; it moves the work rather than
+      acting on it
+- id: fzemanufacturing_com-equipments-0015
+  name: Hanwha XD32/38II
+  status: confirmed
+  acceptable_forms:
+  - Hanwha XD32/38II
+  - HANHWA XD32/38II
+  - XD32/38II
+  evidence:
+  - quote: -Hanwha XD32/38II
+    approx_offset: 109973
+  notes: the second Equipment List block misspells the make as HANHWA and gives it 6 axes where the first block
+    says 7
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-equipments-0016
+  name: Hanwha XD26II-V(B)
+  status: confirmed
+  acceptable_forms:
+  - Hanwha XD26II-V(B)
+  - XD26II-V(B)
+  - XD26II
+  evidence:
+  - quote: -Hanwha XD26II-V(B)
+    approx_offset: 110125
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-equipments-0017
+  name: Hanwa ML32HP
+  status: confirmed
+  acceptable_forms:
+  - Hanwa ML32HP
+  - ML32HP
+  evidence:
+  - quote: -Hanwa ML32HP
+    approx_offset: 110278
+  notes: the roster spells this make 'Hanwa' (one h) where the XD models are 'Hanwha'
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-equipments-0018
+  name: Hanwa ML26HP
+  status: confirmed
+  acceptable_forms:
+  - Hanwa ML26HP
+  - ML26HP
+  evidence:
+  - quote: -(2) Hanwa ML26HP
+    approx_offset: 110317
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-equipments-0019
+  name: Hanwa ML20HP
+  status: confirmed
+  acceptable_forms:
+  - Hanwa ML20HP
+  - ML20HP
+  evidence:
+  - quote: -Hanwa ML20HP
+    approx_offset: 110360
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-equipments-0020
+  name: Nomura NN32YB
+  status: confirmed
+  acceptable_forms:
+  - Nomura NN32YB
+  - NOMURA NN32YB
+  - NN32YB
+  evidence:
+  - quote: Nomura NN32YB
+    approx_offset: 110533
+  notes: the second Equipment List block gives NOMURA NN32YB the OKK HM600's horizontal-machining-center specs -
+    a copy/paste error in the source
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-equipments-0021
+  name: Nakamura WT-150
+  status: confirmed
+  acceptable_forms:
+  - Nakamura WT-150
+  - WT-150
+  evidence:
+  - quote: Nakamura WT-150
+    approx_offset: 110600
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-equipments-0022
+  name: Vertical machining center
+  status: confirmed
+  acceptable_forms:
+  - Vertical Machining Centers
+  - vertical machining center
+  - vertical machining centers (VMCs)
+  - VMCs
+  evidence:
+  - quote: Vertical Machining Centers
+    approx_offset: 110912
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-equipments-0023
+  name: OKK 820V
+  status: confirmed
+  acceptable_forms:
+  - OKK 820V
+  - 820V
+  evidence:
+  - quote: -OKK 820V
+    approx_offset: 110940
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-equipments-0024
+  name: Daewoo DVC500
+  status: confirmed
+  acceptable_forms:
+  - Daewoo DVC500
+  - DVC500
+  evidence:
+  - quote: -Daewoo DVC500
+    approx_offset: 111002
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-equipments-0025
+  name: Haas VF3
+  status: confirmed
+  acceptable_forms:
+  - Haas VF3
+  - VF3
+  evidence:
+  - quote: -(6) Haas VF3
+    approx_offset: 111091
+  notes: six of them
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-equipments-0026
+  name: Haas MDC-500
+  status: confirmed
+  acceptable_forms:
+  - Haas MDC-500
+  - MDC-500
+  evidence:
+  - quote: -(2) Haas MDC-500
+    approx_offset: 111161
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-equipments-0027
+  name: Haas VM3
+  status: confirmed
+  acceptable_forms:
+  - Haas VM3
+  - VM3
+  evidence:
+  - quote: -Haas VM3
+    approx_offset: 111247
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-equipments-0028
+  name: Haas VM4SS
+  status: confirmed
+  acceptable_forms:
+  - Haas VM4SS
+  - VM4SS
+  evidence:
+  - quote: -Haas VM4SS
+    approx_offset: 111323
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-equipments-0029
+  name: Haas VF5/40
+  status: confirmed
+  acceptable_forms:
+  - Haas VF5/40
+  - VF5/40
+  evidence:
+  - quote: -Haas VF5/40
+    approx_offset: 111401
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-equipments-0030
+  name: Doosan Puma400
+  status: confirmed
+  acceptable_forms:
+  - Doosan Puma400
+  - Puma400
+  evidence:
+  - quote: Doosan Puma400
+    approx_offset: 111487
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-equipments-0031
+  name: Daewoo Puma 12S
+  status: confirmed
+  acceptable_forms:
+  - Daewoo Puma 12S
+  - Puma 12S
+  evidence:
+  - quote: Daewoo Puma 12S
+    approx_offset: 111530
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-equipments-0032
+  name: Daewoo Lynx 200
+  status: confirmed
+  acceptable_forms:
+  - Daewoo Lynx 200
+  - Lynx 200
+  evidence:
+  - quote: Daewoo Lynx 200
+    approx_offset: 111574
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-equipments-0033
+  name: Haas SL30 / SL20
+  status: confirmed
+  acceptable_forms:
+  - Haas SL30 & SL20
+  - Haas SL30
+  - SL30
+  - SL20
+  evidence:
+  - quote: (3) Haas SL30 & SL20
+    approx_offset: 111617
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-equipments-0034
+  name: Hwacheon HI-EC031
+  status: confirmed
+  acceptable_forms:
+  - Hwacheon HI-EC031
+  - HI-EC031
+  evidence:
+  - quote: Hwacheon HI-EC031
+    approx_offset: 111666
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-equipments-0035
+  name: Beamer fiber marking laser
+  status: confirmed
+  acceptable_forms:
+  - Beamer Fiber Marking Laser
+  - BEAMER FIBER LASER ETCHER
+  - Beamer
+  evidence:
+  - quote: Beamer Fiber Marking Laser
+    approx_offset: 111735
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-equipments-0036
+  name: SST finishing lines
+  status: confirmed
+  acceptable_forms:
+  - SST Finishing Lines
+  - SST Electro-Polishing
+  - SST Passivation
+  evidence:
+  - quote: SST Finishing Lines
+    approx_offset: 111763
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-equipments-0037
+  name: CNC autosaw
+  status: confirmed
+  acceptable_forms:
+  - CNC 12” Autosaws
+  - Autosaws
+  evidence:
+  - quote: -(2) CNC 12” Autosaws
+    approx_offset: 111841
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-equipments-0038
+  name: Cylindrical grinder
+  status: confirmed
+  acceptable_forms:
+  - Cylindrical Grinder
+  evidence:
+  - quote: Cylindrical Grinder 12” Dia x 40”CC
+    approx_offset: 111863
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-equipments-0039
+  name: Vertical broach
+  status: confirmed
+  acceptable_forms:
+  - Vertical Broach
+  evidence:
+  - quote: -(1) Vertical Broach
+    approx_offset: 111899
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-equipments-0040
+  name: Horizontal broach
+  status: confirmed
+  acceptable_forms:
+  - Horizontal Broaches
+  - Horizontal Broach
+  evidence:
+  - quote: -(3) Horizontal Broaches
+    approx_offset: 111920
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-equipments-0041
+  name: Electric stress relieving oven
+  status: confirmed
+  acceptable_forms:
+  - Electric Stress Relieving Oven
+  - Stress Relieving Oven
+  evidence:
+  - quote: -Electric Stress Relieving Oven
+    approx_offset: 111968
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-equipments-0042
+  name: Knee mill
+  status: confirmed
+  acceptable_forms:
+  - Knee Mills
+  evidence:
+  - quote: -Knee Mills, Drill Presses
+    approx_offset: 112000
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-equipments-0043
+  name: Drill press
+  status: confirmed
+  acceptable_forms:
+  - Drill Presses
+  - Drill presses
+  - drill presses
+  evidence:
+  - quote: -Knee Mills, Drill Presses
+    approx_offset: 112000
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-equipments-0044
+  name: Abrasive polishing equipment
+  status: confirmed
+  acceptable_forms:
+  - Abrasive Polishing Equipment
+  evidence:
+  - quote: -Abrasive Polishing Equipment
+    approx_offset: 112027
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-equipments-0045
+  name: Passivation tank
+  status: confirmed
+  acceptable_forms:
+  - Passivation Tank
+  evidence:
+  - quote: Passivation Tank
+    approx_offset: 112659
+  notes: a process tank the work is immersed in - same reading as the electropolish tank
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-equipments-0046
+  name: Electropolish tank
+  status: confirmed
+  acceptable_forms:
+  - Electropolish Tank
+  evidence:
+  - quote: Electropolish Tank
+    approx_offset: 112676
+  notes: a process tank the work is immersed in and acted on by current - a production system, not a measuring,
+    plant-utility, handling or tooling item
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-equipments-0047
+  name: Miller welding cobot
+  status: confirmed
+  acceptable_forms:
+  - Miller Welding Cobot
+  evidence:
+  - quote: Miller Welding Cobot
+    approx_offset: 117645
+  notes: named only as a video title on /videos/; a welding cobot does act on the work, unlike the part-tending
+    cobots below
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-equipments-0048
+  name: Milling machine
+  status: confirmed
+  acceptable_forms:
+  - Milling machines
+  - CNC milling machines
+  - milling machines
+  - vertical milling machines
+  - mills
+  evidence:
+  - quote: 'Milling machines: Milling machines shape metals by removing excess material from the surface.'
+    approx_offset: 121072
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-equipments-0049
+  name: Computer-controlled cutter
+  status: confirmed
+  acceptable_forms:
+  - computer-controlled cutters
+  evidence:
+  - quote: 'Cutting: There are several types of cutting methods, including sawing, laser cutting, punching, chiseling
+      and torching, as well as computer-controlled cutters.'
+    approx_offset: 135881
+  actor: unknown
+  notes: 'EXPLAINER PROSE: the generic cutting-methods list on the metal fabrication page'
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-equipments-0050
+  name: Press brake
+  status: confirmed
+  acceptable_forms:
+  - Press brakes
+  - CNC press brakes
+  - press brake
+  evidence:
+  - quote: 'Bending: Press brakes and similar devices are used to weld or air-bend metal sheets in modern metal
+      manufacturing. Correct placement of bend'
+    approx_offset: 136041
+  actor: unknown
+  notes: 'EXPLAINER PROSE: the generic ''common metal fabrication processes'' section of the custom-metal-fabrication
+    page, describing modern metal manufacturing in general. No press brake appears in FZE''s own equipment roster.'
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-equipments-0051
+  name: MIG welding machine
+  status: confirmed
+  acceptable_forms:
+  - MIG welding machine
+  - welding equipment
+  evidence:
+  - quote: welding gun with a wire feed unit and an electrode wire. A dedicated MIG welding machine typically supplies
+      the feed wire, shielding gas, and power to expedite the process.
+    approx_offset: 146814
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: amended
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+    reason: '''welder'' is badly over-broad here: 16 of the 18 ''welder/welders'' occurrences in the file are the
+      human operator (''Our welders are highly skilled'', ''the welder doesn''t need to stop''), so the form would
+      credit on people. ''welding gun'' and ''wire feed unit'' are the torch and a feed subsystem, which the clause
+      puts under tooling rather than the machine. The machine itself survives on the two machine-sense forms'
+- id: fzemanufacturing_com-equipments-0052
+  name: Laser marking machine
+  status: confirmed
+  acceptable_forms:
+  - Laser marking machines
+  - laser marking systems
+  - fiber laser marking machines
+  - laser machine
+  - Fiber lasers
+  - Gas lasers
+  - Solid-state lasers
+  evidence:
+  - quote: numbers, or a broad range of other important information. Laser marking machines commonly utilize gas,
+      solid-state, and/or fiber technology.
+    approx_offset: 174308
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-equipments-0053
+  name: CNC router
+  status: confirmed
+  acceptable_forms:
+  - routers
+  evidence:
+  - quote: are operated by computers through programmed commands. It includes various types of machines, including
+      lathes, mills, routers, and grinders, each capable of performing different tasks such as
+    approx_offset: 227346
+  actor: unknown
+  notes: 'EXPLAINER PROSE: a generic list of what the CNC category covers, in the ''What is VMC Machining?'' blog.
+    No router in FZE''s roster.'
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+- id: fzemanufacturing_com-equipments-0054
+  name: Grinder (CNC machine class)
+  status: candidate
+  acceptable_forms:
+  - grinders
+  evidence:
+  - quote: commands. It includes various types of machines, including lathes, mills, routers, and grinders, each
+      capable of performing different tasks such as cutting, drilling, and face milling. The key
+    approx_offset: 227391
+  actor: unknown
+  notes: the CNC prototyping blog names lathes, mills, routers and grinders as CNC machine types; the packet seeds
+    routers (equipments-0053), mills (0048) and lathes (0001) from this same sentence but not grinders. The only
+    grinder in the packet is the specific Cylindrical Grinder on the equipment list
+  provenance:
+  - action: added
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+    source: verification-pass-miss
+- id: fzemanufacturing_com-equipments-0055
+  name: CNC machine (generic class)
+  status: candidate
+  acceptable_forms:
+  - CNC machines
+  - CNC machinery
+  - CNC machine
+  evidence:
+  - quote: Our CNC machines manufacture parts with dimensions ranging from 0.1–15 in diameter, with maximum linear
+      dimensions up to 35 in × 50 in × 120 in in height, length, and width, respectively. We also
+    approx_offset: 7042
+  notes: the site names its CNC machines as machines repeatedly ('Our CNC machines manufacture parts with dimensions...',
+    'Our state-of-the-art CNC machines allow us to work quickly'); the packet has the HMC/VMC/lathe/Swiss subclasses
+    and the named models but no entry for the umbrella class
+  provenance:
+  - action: added
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+    source: verification-pass-miss
+false_friends:
+- form: Harvesters
+  reason: the agriculture page's explainer calls them 'machines designed to harvest crops', but they are a CUSTOMER'S
+    end product FZE machines parts for, not a production machine in its plant - recorded as a products entry instead
+- form: Sheffield Discovery CMM
+  reason: an owned machine listed under 'Inspection Equipment' in the same roster, but a CMM only MEASURES the work
+    - the equipment prompt excludes measuring/inspecting/testing equipment by name. Recorded as a process_caps inspection
+    operation instead
+- form: Coordinate Measuring Machines
+  reason: same exclusion as above; the string is a Methods-of-Inspection table cell
+- form: Keyence IM7030T
+  reason: an 'Instant Measuring Vision System' in the Inspection Equipment block - measurement, excluded from this
+    field by the prompt
+- form: Optical Comparator
+  reason: the 14-inch J&L optical comparator measures profiles; excluded as metrology (the prose spells it 'Optical
+    Comparitor')
+- form: Granite Tables
+  reason: inspection-room surface plates listed with height gages - metrology furniture
+- form: Hand Gages
+  reason: '''Many, Many Hand Gages, Mics, etc'' - handheld measuring instruments, excluded'
+- form: Tombstones
+  reason: workholding the machine acts through - tooling, excluded by the prompt's final clause
+- form: Rotary Tables
+  reason: an indexing fixture the machine acts through - tooling, excluded
+- form: Three & Four-jaw chuck
+  reason: workholding under the 'Fixturing' table header - tooling, excluded
+- form: Collet chucks
+  reason: workholding under the 'Fixturing' table header - tooling, excluded
+- form: Drill Bits
+  reason: a cutting tool under 'Turning Tools & Accessories' - tooling, excluded
+- form: Live Tooling
+  reason: driven tool holders; the word 'tooling' is in the name and the prompt excludes it
+- form: High Pressure Coolant thru spindle
+  reason: a coolant delivery capability - plant conditioning, not a machine acting on the work
+- form: Central Tooling Set-up Area
+  reason: a floor area, not a machine
+- form: Finished Goods Inventory
+  reason: storage - the prompt excludes equipment that stores what the plant makes
+- form: CT Scanner
+  reason: witnessed in the hand-tools page's 'types of diagnostic equipment that require machining' list - a customer's
+    medical device, and a measuring instrument at that
+- form: MRI Scanner
+  reason: 'same list as the CT scanner: a customer''s diagnostic device, not a production machine'
+- form: Forklift
+  reason: 'anticipatory: word-association from ''Maximum Lifting Capacity 1,000 lbs'' and ''Material Handling'';
+    does not occur'
+- form: Air Compressor
+  reason: 'anticipatory: plant utility a model may mint from ''High Pressure Coolant'' / ''Pneumatics''; does not
+    occur'

@@ -1,0 +1,35 @@
+subject: med-tekinc.com
+field: products
+snapshot:
+  file: apps/data_etl_app/tests/test_stages/sample_scraped_texts/med-tekinc.com.txt
+  sha256: f1b1f156176cb3c86757d25176c0c27f9d6d704a021a47bdc0bfdcd662c4717c
+eval_set_version: 1
+expected_empty: true
+notes: 'SHARED OUTPUT NOTE: products and contract_products share one physical search request; this file is the expectation
+  set for BOTH. expected_empty=true. MED-TEK is a toll processor - it sells furnace time on parts that arrive and
+  leave as the customer''s - and, checked against the field''s clause rather than that business fact, the text still
+  names NO made artifact. Everything the work is described as coming out of is a generic placeholder with no designation
+  content: ''the final product'' (lines 14, 19), ''one piece or a thousand pieces'' (line 32), ''your metals'' (line
+  32, a material), ''huge heat-treating jobs'' (line 100, a job not an artifact). The only concrete manufactured
+  objects named anywhere are the furnaces, the salt baths, the Rockwell testers, the standard block and the loading
+  docks - all excluded by the clause''s carve-out for ''the machinery, tooling, and facilities the work is done
+  with''. Following the 101machine convention, the generic output nouns are recorded as false friends rather than
+  as disputed entries. Any sizable yield here is junk-minting signal.'
+entries: []
+false_friends:
+- form: final product
+  reason: WITNESSED (lines 14 and 19) - a generic reference to whatever the customer sent in, carrying no designation
+    content. The strongest product-shaped string in the file
+- form: pieces
+  reason: WITNESSED (line 32, 'one piece or a thousand pieces') - batch-size language about the customer's parts,
+    not a product designation
+- form: standard block
+  reason: 'WITNESSED (line 32) - a manufactured object, but the hardness tester''s reference artifact: tooling for
+    a measuring device, excluded by the clause'
+- form: loading docks
+  reason: WITNESSED (line 21) - a facility, explicitly carved out by the clause
+- form: gears
+  reason: ANTICIPATORY - zero occurrences. The archetypal carburized/induction-hardened part; pure word association
+    from the process list
+- form: shafts
+  reason: ANTICIPATORY - zero occurrences. Same association, reinforced by 'Spin Hardening' and the induction scanner

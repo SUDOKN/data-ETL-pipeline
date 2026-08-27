@@ -1,0 +1,901 @@
+subject: mathewsco.com
+field: industries
+snapshot:
+  file: apps/data_etl_app/tests/test_stages/sample_scraped_texts/mathewsco.com.txt
+  sha256: f1a1ace7c17205dc4906f4f87eb1844cefd0661483e58b3f5d6538d30b33b15b
+eval_set_version: 2
+expected_empty: false
+notes: 'The only genuinely first-party in-field content on the site: the ''Markets Covered'' lists for the California
+  and Kansas offices (actor own - they are the agency''s own sales territories). Everything after them is a principal''s
+  market list quoted in that principal''s own voice.'
+entries:
+- id: mathewsco_com-industries-0001
+  name: Medical
+  status: confirmed
+  acceptable_forms:
+  - Medical
+  - medical
+  evidence:
+  - quote: Medical
+    approx_offset: 1091
+  - quote: automotive, aerospace and medical manufacturers
+    approx_offset: 53544
+  notes: California Markets list; repeated in every page footer
+  provenance:
+  - action: added
+    by: seed-agent-mathewsco-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-mathewsco
+    date: '2026-08-27'
+- id: mathewsco_com-industries-0002
+  name: Electronics
+  status: confirmed
+  acceptable_forms:
+  - Electronics
+  - electronics
+  evidence:
+  - quote: Electronics
+    approx_offset: 1099
+  - quote: the electrical and electronics industries
+    approx_offset: 53738
+  notes: California Markets list
+  provenance:
+  - action: added
+    by: seed-agent-mathewsco-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-mathewsco
+    date: '2026-08-27'
+- id: mathewsco_com-industries-0003
+  name: Transportation
+  status: confirmed
+  acceptable_forms:
+  - Transportation
+  evidence:
+  - quote: Transportation
+    approx_offset: 1111
+  - quote: Semiconductors and Transportation
+    approx_offset: 45972
+  notes: California Markets list; also a DuPont Vespel market
+  provenance:
+  - action: added
+    by: seed-agent-mathewsco-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-mathewsco
+    date: '2026-08-27'
+- id: mathewsco_com-industries-0004
+  name: Aerospace
+  status: confirmed
+  acceptable_forms:
+  - Aerospace (commercial)
+  - Aerospace
+  - aerospace
+  evidence:
+  - quote: Aerospace (commercial)
+    approx_offset: 1126
+  - quote: and aerospace industries
+    approx_offset: 8441
+  - quote: are integral to aerospace, aviation
+    approx_offset: 34928
+  notes: California Markets list; also Ellwood/Hudson/Stadco/Carey markets
+  provenance:
+  - action: added
+    by: seed-agent-mathewsco-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-mathewsco
+    date: '2026-08-27'
+- id: mathewsco_com-industries-0005
+  name: Industrial Style Market
+  status: confirmed
+  acceptable_forms:
+  - Industrial Style Market
+  evidence:
+  - quote: Industrial Style Market
+    approx_offset: 1149
+  notes: California Markets list
+  provenance:
+  - action: added
+    by: seed-agent-mathewsco-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-mathewsco
+    date: '2026-08-27'
+- id: mathewsco_com-industries-0006
+  name: Military
+  status: confirmed
+  acceptable_forms:
+  - Military
+  - military
+  evidence:
+  - quote: Military
+    approx_offset: 1173
+  - quote: for military, aerospace, computer
+    approx_offset: 60022
+  notes: California Markets list; also a Carey market
+  provenance:
+  - action: added
+    by: seed-agent-mathewsco-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-mathewsco
+    date: '2026-08-27'
+- id: mathewsco_com-industries-0007
+  name: Various OEM Industries
+  status: confirmed
+  acceptable_forms:
+  - Various OEM Industries
+  - OEM Industries
+  evidence:
+  - quote: Various OEM Industries
+    approx_offset: 1182
+  notes: California Markets list
+  provenance:
+  - action: added
+    by: seed-agent-mathewsco-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-mathewsco
+    date: '2026-08-27'
+- id: mathewsco_com-industries-0008
+  name: Diversified
+  status: disputed
+  acceptable_forms:
+  - Diversified
+  evidence:
+  - quote: Diversified
+    approx_offset: 1205
+  notes: 'DISPUTED: listed under ''California Markets'' so the site treats it as a market, but it names no recognizable
+    domain of economic activity on its own - it is a catch-all bucket label | "Diversified" is real in the text
+    but only as a catch-all bullet under the "California Markets" heading; on its own it names no recognizable domain
+    of economic activity, which is what the industries clause requires. Gating on it would penalise a run that correctly
+    declines to mint an industry from a filler word.'
+  provenance:
+  - action: added
+    by: seed-agent-mathewsco-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: disputed
+    by: verify-agent-mathewsco
+    date: '2026-08-27'
+    reason: '"Diversified" is real in the text but only as a catch-all bullet under the "California Markets" heading;
+      on its own it names no recognizable domain of economic activity, which is what the industries clause requires.
+      Gating on it would penalise a run that correctly declines to mint an industry from a filler word.'
+- id: mathewsco_com-industries-0009
+  name: Agricultural Equipment
+  status: confirmed
+  acceptable_forms:
+  - Agricultural Equipment
+  evidence:
+  - quote: Agricultural Equipment
+    approx_offset: 1239
+  - quote: Agricultural Equipment
+    approx_offset: 1239
+  notes: Kansas Markets list - a MARKET, not a machine the subject owns
+  provenance:
+  - action: added
+    by: seed-agent-mathewsco-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-mathewsco
+    date: '2026-08-27'
+- id: mathewsco_com-industries-0010
+  name: Pump and Valve Manufacturers
+  status: confirmed
+  acceptable_forms:
+  - Pump and Valve Manufacturers
+  evidence:
+  - quote: Pump and Valve Manufacturers
+    approx_offset: 1262
+  notes: Kansas Markets list
+  provenance:
+  - action: added
+    by: seed-agent-mathewsco-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-mathewsco
+    date: '2026-08-27'
+- id: mathewsco_com-industries-0011
+  name: Truck and Bus
+  status: confirmed
+  acceptable_forms:
+  - Truck and Bus
+  evidence:
+  - quote: Truck and Bus
+    approx_offset: 1291
+  notes: Kansas Markets list
+  provenance:
+  - action: added
+    by: seed-agent-mathewsco-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-mathewsco
+    date: '2026-08-27'
+- id: mathewsco_com-industries-0012
+  name: Lawn and Garden
+  status: confirmed
+  acceptable_forms:
+  - Lawn and Garden
+  evidence:
+  - quote: Lawn and Garden
+    approx_offset: 1305
+  notes: Kansas Markets list
+  provenance:
+  - action: added
+    by: seed-agent-mathewsco-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-mathewsco
+    date: '2026-08-27'
+- id: mathewsco_com-industries-0013
+  name: Construction Equipment
+  status: confirmed
+  acceptable_forms:
+  - Construction Equipment
+  evidence:
+  - quote: Construction Equipment
+    approx_offset: 1321
+  notes: Kansas Markets list - a MARKET, not a machine
+  provenance:
+  - action: added
+    by: seed-agent-mathewsco-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-mathewsco
+    date: '2026-08-27'
+- id: mathewsco_com-industries-0014
+  name: Aerospace Tier II & III
+  status: confirmed
+  acceptable_forms:
+  - Aerospace Tier II & III
+  evidence:
+  - quote: Aerospace Tier II & III
+    approx_offset: 1344
+  notes: Kansas Markets list
+  provenance:
+  - action: added
+    by: seed-agent-mathewsco-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-mathewsco
+    date: '2026-08-27'
+- id: mathewsco_com-industries-0015
+  name: OEM's and Distributors
+  status: disputed
+  acceptable_forms:
+  - OEM's and Distributors
+  - Distributors
+  evidence:
+  - quote: the OEM's and Distributors in the Plain States
+    approx_offset: 1981
+  notes: 'DISPUTED: names the agency''s customer types (channel), not a domain of economic activity; ''Various OEM
+    Industries'' in the markets list is the same idea stated as an industry | "the OEM''s and Distributors in the
+    Plain States" names the agency''s customer channel, not a domain of economic activity; "Distributors" is a route
+    to market. The OEM half is already carried by industries-0007 (Various OEM Industries) and industries-0038 (OEM
+    Industry).'
+  provenance:
+  - action: added
+    by: seed-agent-mathewsco-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: disputed
+    by: verify-agent-mathewsco
+    date: '2026-08-27'
+    reason: '"the OEM''s and Distributors in the Plain States" names the agency''s customer channel, not a domain
+      of economic activity; "Distributors" is a route to market. The OEM half is already carried by industries-0007
+      (Various OEM Industries) and industries-0038 (OEM Industry).'
+- id: mathewsco_com-industries-0016
+  name: Metal Stamping and Plastic Molding Industries
+  status: confirmed
+  acceptable_forms:
+  - Metal Stamping and Plastic Molding Industries
+  evidence:
+  - quote: Our experience in the Metal Stamping and Plastic Molding Industries
+    approx_offset: 4411
+  actor: supplier
+  notes: Sun Microstamping's own copy; the text literally calls these 'Industries'
+  provenance:
+  - action: added
+    by: seed-agent-mathewsco-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-mathewsco
+    date: '2026-08-27'
+- id: mathewsco_com-industries-0017
+  name: oil & gas
+  status: confirmed
+  acceptable_forms:
+  - oil & gas
+  evidence:
+  - quote: we serve major customers in the oil & gas
+    approx_offset: 8271
+  actor: supplier
+  notes: Ellwood City Forge's market list, quoted in Ellwood's own voice
+  provenance:
+  - action: added
+    by: seed-agent-mathewsco-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-mathewsco
+    date: '2026-08-27'
+- id: mathewsco_com-industries-0018
+  name: mining
+  status: confirmed
+  acceptable_forms:
+  - mining
+  evidence:
+  - quote: the oil & gas, mining, power transmission
+    approx_offset: 8299
+  actor: supplier
+  notes: Ellwood City Forge market
+  provenance:
+  - action: added
+    by: seed-agent-mathewsco-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-mathewsco
+    date: '2026-08-27'
+- id: mathewsco_com-industries-0019
+  name: power transmission
+  status: confirmed
+  acceptable_forms:
+  - power transmission
+  evidence:
+  - quote: mining, power transmission, machinery
+    approx_offset: 8314
+  actor: supplier
+  notes: Ellwood City Forge market
+  provenance:
+  - action: added
+    by: seed-agent-mathewsco-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-mathewsco
+    date: '2026-08-27'
+- id: mathewsco_com-industries-0020
+  name: machinery
+  status: confirmed
+  acceptable_forms:
+  - machinery
+  evidence:
+  - quote: power transmission, machinery, machine shop
+    approx_offset: 8322
+  actor: supplier
+  notes: Ellwood City Forge market
+  provenance:
+  - action: added
+    by: seed-agent-mathewsco-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-mathewsco
+    date: '2026-08-27'
+- id: mathewsco_com-industries-0021
+  name: machine shop
+  status: confirmed
+  acceptable_forms:
+  - machine shop
+  evidence:
+  - quote: machinery, machine shop, power generation
+    approx_offset: 8342
+  actor: supplier
+  notes: Ellwood City Forge market
+  provenance:
+  - action: added
+    by: seed-agent-mathewsco-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-mathewsco
+    date: '2026-08-27'
+- id: mathewsco_com-industries-0022
+  name: power generation
+  status: confirmed
+  acceptable_forms:
+  - power generation
+  evidence:
+  - quote: machine shop, power generation, shipbuilding
+    approx_offset: 8353
+  actor: supplier
+  notes: Ellwood City Forge market
+  provenance:
+  - action: added
+    by: seed-agent-mathewsco-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-mathewsco
+    date: '2026-08-27'
+- id: mathewsco_com-industries-0023
+  name: shipbuilding
+  status: confirmed
+  acceptable_forms:
+  - shipbuilding
+  evidence:
+  - quote: power generation, shipbuilding, pulp & paper
+    approx_offset: 8367
+  actor: supplier
+  notes: Ellwood City Forge market
+  provenance:
+  - action: added
+    by: seed-agent-mathewsco-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-mathewsco
+    date: '2026-08-27'
+- id: mathewsco_com-industries-0024
+  name: pulp & paper
+  status: confirmed
+  acceptable_forms:
+  - pulp & paper
+  evidence:
+  - quote: shipbuilding, pulp & paper, automotive
+    approx_offset: 8385
+  actor: supplier
+  notes: Ellwood City Forge market
+  provenance:
+  - action: added
+    by: seed-agent-mathewsco-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-mathewsco
+    date: '2026-08-27'
+- id: mathewsco_com-industries-0025
+  name: automotive
+  status: confirmed
+  acceptable_forms:
+  - automotive
+  evidence:
+  - quote: pulp & paper, automotive, infrastructure
+    approx_offset: 8399
+  actor: supplier
+  notes: Ellwood, Hudson, Stadco and Carey all name it
+  provenance:
+  - action: added
+    by: seed-agent-mathewsco-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-mathewsco
+    date: '2026-08-27'
+- id: mathewsco_com-industries-0026
+  name: infrastructure
+  status: confirmed
+  acceptable_forms:
+  - infrastructure
+  evidence:
+  - quote: automotive, infrastructure, and aerospace
+    approx_offset: 8413
+  actor: supplier
+  notes: Ellwood City Forge market
+  provenance:
+  - action: added
+    by: seed-agent-mathewsco-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-mathewsco
+    date: '2026-08-27'
+- id: mathewsco_com-industries-0027
+  name: hardware
+  status: confirmed
+  acceptable_forms:
+  - hardware manufacturers
+  - hardware business
+  - hardware
+  evidence:
+  - quote: to represent hardware manufacturers in the rapidly expanding West
+    approx_offset: 10552
+  - quote: we've learned a good deal about the hardware business
+    approx_offset: 59791
+  actor: unknown
+  notes: 1892 founding narrative; also Carey's self-description
+  provenance:
+  - action: added
+    by: seed-agent-mathewsco-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-mathewsco
+    date: '2026-08-27'
+- id: mathewsco_com-industries-0028
+  name: automobile
+  status: disputed
+  acceptable_forms:
+  - automobile dealer
+  - automobile company
+  - automobile
+  evidence:
+  - quote: the world's first Ford automobile dealer
+    approx_offset: 11204
+  actor: unknown
+  notes: 'historical narrative about the founder''s Ford dealership, not a served market | Both occurrences are
+    1900s biography rather than a served market: "the world''s first Ford automobile dealer" and "stock in his budding
+    automobile company". The car-making sector is already seeded as industries-0025 (automotive) from Ellwood''s
+    real customer list; this entry adds only a retail/biographical mention.'
+  provenance:
+  - action: added
+    by: seed-agent-mathewsco-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: disputed
+    by: verify-agent-mathewsco
+    date: '2026-08-27'
+    reason: 'Both occurrences are 1900s biography rather than a served market: "the world''s first Ford automobile
+      dealer" and "stock in his budding automobile company". The car-making sector is already seeded as industries-0025
+      (automotive) from Ellwood''s real customer list; this entry adds only a retail/biographical mention.'
+- id: mathewsco_com-industries-0029
+  name: aviation
+  status: confirmed
+  acceptable_forms:
+  - aviation
+  evidence:
+  - quote: integral to aerospace, aviation, automotive
+    approx_offset: 34932
+  actor: supplier
+  notes: Hudson Technologies market
+  provenance:
+  - action: added
+    by: seed-agent-mathewsco-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-mathewsco
+    date: '2026-08-27'
+- id: mathewsco_com-industries-0030
+  name: commercial battery
+  status: confirmed
+  acceptable_forms:
+  - commercial battery
+  evidence:
+  - quote: automotive, commercial battery, electrical
+    approx_offset: 34965
+  actor: supplier
+  notes: Hudson Technologies market
+  provenance:
+  - action: added
+    by: seed-agent-mathewsco-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-mathewsco
+    date: '2026-08-27'
+- id: mathewsco_com-industries-0031
+  name: electrical
+  status: confirmed
+  acceptable_forms:
+  - electrical
+  evidence:
+  - quote: commercial battery, electrical, irrigation
+    approx_offset: 34977
+  - quote: the electrical and electronics industries
+    approx_offset: 53738
+  actor: supplier
+  notes: Hudson Technologies and Stadco markets
+  provenance:
+  - action: added
+    by: seed-agent-mathewsco-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-mathewsco
+    date: '2026-08-27'
+- id: mathewsco_com-industries-0032
+  name: irrigation
+  status: confirmed
+  acceptable_forms:
+  - irrigation
+  evidence:
+  - quote: electrical, irrigation, implantable medical devices
+    approx_offset: 34997
+  actor: supplier
+  notes: Hudson Technologies market
+  provenance:
+  - action: added
+    by: seed-agent-mathewsco-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-mathewsco
+    date: '2026-08-27'
+- id: mathewsco_com-industries-0033
+  name: semi-conductor
+  status: confirmed
+  acceptable_forms:
+  - semi-conductor
+  - Semiconductors
+  evidence:
+  - quote: relay cases, semi-conductor, mechanical seals
+    approx_offset: 35063
+  - quote: Semiconductors and Transportation
+    approx_offset: 45972
+  actor: supplier
+  notes: two spellings from two different principals (Hudson; DuPont Vespel)
+  provenance:
+  - action: added
+    by: seed-agent-mathewsco-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-mathewsco
+    date: '2026-08-27'
+- id: mathewsco_com-industries-0034
+  name: industrial applications
+  status: confirmed
+  acceptable_forms:
+  - industrial applications
+  - commercial and industrial
+  evidence:
+  - quote: and other industrial applications worldwide
+    approx_offset: 35130
+  - quote: the supply of commercial and industrial knobs and handles
+    approx_offset: 37322
+  actor: supplier
+  notes: Hudson Technologies and DimcoGray
+  provenance:
+  - action: added
+    by: seed-agent-mathewsco-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-mathewsco
+    date: '2026-08-27'
+- id: mathewsco_com-industries-0035
+  name: furniture
+  status: confirmed
+  acceptable_forms:
+  - furniture
+  evidence:
+  - quote: handles for the furniture, medical, mechanical and valve OEM
+    approx_offset: 36690
+  actor: supplier
+  notes: DimcoGray market
+  provenance:
+  - action: added
+    by: seed-agent-mathewsco-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-mathewsco
+    date: '2026-08-27'
+- id: mathewsco_com-industries-0036
+  name: valve OEM
+  status: confirmed
+  acceptable_forms:
+  - valve OEM
+  evidence:
+  - quote: mechanical and valve OEM
+    approx_offset: 36726
+  actor: supplier
+  notes: DimcoGray market
+  provenance:
+  - action: added
+    by: seed-agent-mathewsco-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-mathewsco
+    date: '2026-08-27'
+- id: mathewsco_com-industries-0037
+  name: Energy and Material Handling
+  status: confirmed
+  acceptable_forms:
+  - Energy and Material Handling
+  - Material Handling
+  evidence:
+  - quote: Energy and Material Handling
+    approx_offset: 45943
+  actor: supplier
+  notes: DuPont Vespel market heading
+  provenance:
+  - action: added
+    by: seed-agent-mathewsco-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-mathewsco
+    date: '2026-08-27'
+- id: mathewsco_com-industries-0038
+  name: OEM Industry
+  status: confirmed
+  acceptable_forms:
+  - OEM Industry
+  evidence:
+  - quote: provides services to the OEM Industry in prototype
+    approx_offset: 51423
+  actor: supplier
+  notes: Clow Stamping market
+  provenance:
+  - action: added
+    by: seed-agent-mathewsco-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-mathewsco
+    date: '2026-08-27'
+- id: mathewsco_com-industries-0039
+  name: trucks and heavy equipment
+  status: confirmed
+  acceptable_forms:
+  - trucks and heavy equipment
+  - heavy equipment
+  evidence:
+  - quote: We also manufacture parts for trucks and heavy equipment
+    approx_offset: 53626
+  actor: supplier
+  notes: Stadco market
+  provenance:
+  - action: added
+    by: seed-agent-mathewsco-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-mathewsco
+    date: '2026-08-27'
+- id: mathewsco_com-industries-0040
+  name: food and beverage processing
+  status: confirmed
+  acceptable_forms:
+  - food and beverage processing
+  evidence:
+  - quote: food and beverage processing systems, appliances
+    approx_offset: 53684
+  actor: supplier
+  notes: Stadco market
+  provenance:
+  - action: added
+    by: seed-agent-mathewsco-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-mathewsco
+    date: '2026-08-27'
+- id: mathewsco_com-industries-0041
+  name: appliances
+  status: confirmed
+  acceptable_forms:
+  - appliances
+  evidence:
+  - quote: processing systems, appliances, and the electrical
+    approx_offset: 53702
+  actor: supplier
+  notes: Stadco market
+  provenance:
+  - action: added
+    by: seed-agent-mathewsco-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-mathewsco
+    date: '2026-08-27'
+- id: mathewsco_com-industries-0042
+  name: computer
+  status: confirmed
+  acceptable_forms:
+  - computer
+  evidence:
+  - quote: for military, aerospace, computer, electronics, telecom
+    approx_offset: 60022
+  actor: supplier
+  notes: Carey market
+  provenance:
+  - action: added
+    by: seed-agent-mathewsco-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-mathewsco
+    date: '2026-08-27'
+- id: mathewsco_com-industries-0043
+  name: telecom
+  status: confirmed
+  acceptable_forms:
+  - telecom
+  evidence:
+  - quote: computer, electronics, telecom, automotive
+    approx_offset: 60047
+  actor: supplier
+  notes: Carey market
+  provenance:
+  - action: added
+    by: seed-agent-mathewsco-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-mathewsco
+    date: '2026-08-27'
+- id: mathewsco_com-industries-0044
+  name: consumer applications
+  status: confirmed
+  acceptable_forms:
+  - consumer applications
+  - consumer
+  evidence:
+  - quote: automotive, and consumer applications since 1981
+    approx_offset: 60079
+  actor: supplier
+  notes: Carey market
+  provenance:
+  - action: added
+    by: seed-agent-mathewsco-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-mathewsco
+    date: '2026-08-27'
+- id: mathewsco_com-industries-0045
+  name: commercial vehicles and buses
+  status: candidate
+  acceptable_forms:
+  - commercial vehicles and buses
+  - commercial vehicles
+  evidence:
+  - quote: Air Conditioning units for commercial vehicles and buses
+    approx_offset: 26157
+  actor: supplier
+  notes: 'A market served by the Kansas heater/AC principal, named on the Kansas Product Line page and absent from
+    the packet. Distinct from industries-0011 (Truck and Bus, from the markets list): neither string contains the
+    other, so that entry cannot credit this one.'
+  provenance:
+  - action: added
+    by: verify-agent-mathewsco
+    date: '2026-08-27'
+    source: verification-pass-miss
+- id: mathewsco_com-industries-0046
+  name: mechanical OEM
+  status: candidate
+  acceptable_forms:
+  - mechanical and valve OEM
+  - mechanical
+  evidence:
+  - quote: DimcoGray - plastic knobs and handles for the furniture, medical, mechanical and valve OEM
+    approx_offset: 36660
+  actor: supplier
+  notes: The DimcoGray strapline lists four OEM markets - furniture, medical, mechanical, valve. The packet seeded
+    furniture (industries-0035) and valve OEM (industries-0036) but not the mechanical one.
+  provenance:
+  - action: added
+    by: verify-agent-mathewsco
+    date: '2026-08-27'
+    source: verification-pass-miss
+false_friends:
+- form: Plain States
+  reason: 'a sales territory (geography), not a market or sector: ''Distributors in the Plain States'''
+- form: Marine
+  reason: occurs only as 'Camp Pendleton (California) Marine base' and 'the Army and the Marine Corps' in the founder
+    profile - military installations, never the marine/shipbuilding sector
+- form: Finance
+  reason: occurs only in 'the Wharton School of Finance', the founder's postgraduate school
+- form: bicycle
+  reason: occurs only in 'Bill had met Henry Ford at a bicycle show in 1903'
+- form: Salvation Army
+  reason: a charity the founder donates seminar fees to, not a served market
+- form: defense
+  reason: word-association from Military/Aerospace Tier II & III; the string never occurs
+- form: dental
+  reason: word-association from Medical; the string never occurs
+- form: firearms
+  reason: word-association from Military; the string never occurs
+- form: nuclear
+  reason: word-association from power generation; the string never occurs

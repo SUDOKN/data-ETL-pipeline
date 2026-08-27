@@ -1,0 +1,1554 @@
+subject: sterlingmfg.net
+field: products
+snapshot:
+  file: apps/data_etl_app/tests/test_stages/sample_scraped_texts/sterlingmfg.net.txt
+  sha256: f42c4b74d9eefaa7461fe85ed30745ce9465330ba86e7099f728423deb498cc5
+eval_set_version: 2
+expected_empty: false
+notes: 'Dense: ortho/spine implant lists, structural-heart micro components, LSR device families, a semiconductor
+  applications list (client-side) and the acquired companies'' product lines. Doubles as the contract_products inventory.'
+entries:
+- id: sterlingmfg_net-products-0001
+  name: MIM components / parts
+  status: confirmed
+  acceptable_forms:
+  - MIM components
+  - MIM parts
+  evidence:
+  - quote: MIM components are easily joined or brazed
+    approx_offset: 6287
+  - quote: MIM parts
+    approx_offset: 9491
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-products-0002
+  name: surgical tools
+  status: confirmed
+  acceptable_forms:
+  - Surgical Tools
+  evidence:
+  - quote: Surgical Tools
+    approx_offset: 6944
+  - quote: surgical tools
+    approx_offset: 143355
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-products-0003
+  name: orthopedic implants
+  status: confirmed
+  acceptable_forms:
+  - orthopedic implants
+  - Ortho-Implants
+  - Ortho-Trauma Devices
+  - Orthopedic Devices
+  - Orthopedic Medical Devices & Products
+  evidence:
+  - quote: orthopedic implants
+    approx_offset: 148957
+  - quote: Ortho-Implants
+    approx_offset: 115914
+  - quote: Orthopedic Devices
+    approx_offset: 7032
+  - quote: Orthopedic Medical Devices & Products
+    approx_offset: 16716
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-products-0004
+  name: surgical disposable instruments
+  status: confirmed
+  acceptable_forms:
+  - surgical disposable instruments
+  evidence:
+  - quote: implants and surgical disposable instruments
+    approx_offset: 7093
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-products-0005
+  name: diagnostic devices / equipment
+  status: confirmed
+  acceptable_forms:
+  - Diagnostic Devices
+  - Diagnostic Equipment
+  - clinical diagnostic tools
+  evidence:
+  - quote: Diagnostic Devices
+    approx_offset: 48510
+  - quote: Diagnostic Equipment
+    approx_offset: 7141
+  - quote: molecular and clinical diagnostic tools
+    approx_offset: 7194
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-products-0006
+  name: medical device components
+  status: confirmed
+  acceptable_forms:
+  - medical device components
+  - medical devices
+  evidence:
+  - quote: medical device components
+    approx_offset: 66290
+  - quote: Medical Devices
+    approx_offset: 16727
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-products-0007
+  name: cervical implants
+  status: confirmed
+  acceptable_forms:
+  - Cervical Implants
+  evidence:
+  - quote: Cervical Implants
+    approx_offset: 16754
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-products-0008
+  name: lumbar implants
+  status: confirmed
+  acceptable_forms:
+  - Lumbar Implants
+  evidence:
+  - quote: Lumbar Implants
+    approx_offset: 16772
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-products-0009
+  name: facet screws
+  status: confirmed
+  acceptable_forms:
+  - Facet Screws
+  evidence:
+  - quote: Facet Screws
+    approx_offset: 16788
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-products-0010
+  name: pedicle screw systems
+  status: confirmed
+  acceptable_forms:
+  - Pedicle screw systems
+  - cervical pedicle screws
+  - pedicle screws
+  evidence:
+  - quote: Pedicle screw systems
+    approx_offset: 16801
+  - quote: cervical pedicle screws
+    approx_offset: 17383
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-products-0011
+  name: PEEK spacers
+  status: confirmed
+  acceptable_forms:
+  - PEEK™ spacers
+  evidence:
+  - quote: PEEK™ spacers
+    approx_offset: 16823
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-products-0012
+  name: titanium fusion cages
+  status: confirmed
+  acceptable_forms:
+  - Titanium fusion cages
+  evidence:
+  - quote: Titanium fusion cages
+    approx_offset: 16837
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-products-0013
+  name: intramedullary nails
+  status: confirmed
+  acceptable_forms:
+  - Intramedullary nails
+  evidence:
+  - quote: Intramedullary nails
+    approx_offset: 16859
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-products-0014
+  name: bone screws
+  status: confirmed
+  acceptable_forms:
+  - Bone Screws
+  evidence:
+  - quote: Bone Screws
+    approx_offset: 16880
+  - quote: bone screws
+    approx_offset: 17408
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-products-0015
+  name: hip stems
+  status: confirmed
+  acceptable_forms:
+  - Hip Stems
+  evidence:
+  - quote: Hip Stems
+    approx_offset: 16892
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-products-0016
+  name: custom implants
+  status: confirmed
+  acceptable_forms:
+  - Custom Implants
+  evidence:
+  - quote: Custom Implants
+    approx_offset: 16902
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-products-0017
+  name: humerus plates
+  status: confirmed
+  acceptable_forms:
+  - Humerus Plates
+  evidence:
+  - quote: Humerus Plates
+    approx_offset: 16918
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-products-0018
+  name: radius plates
+  status: confirmed
+  acceptable_forms:
+  - Radius Plates
+  evidence:
+  - quote: Radius Plates
+    approx_offset: 16933
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-products-0019
+  name: trauma fixation plates
+  status: confirmed
+  acceptable_forms:
+  - Trauma Fixation Plates
+  evidence:
+  - quote: Trauma Fixation Plates
+    approx_offset: 16963
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-products-0020
+  name: wrist plates
+  status: confirmed
+  acceptable_forms:
+  - Wrist Plates
+  evidence:
+  - quote: Wrist Plates
+    approx_offset: 17001
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-products-0021
+  name: micro screws
+  status: confirmed
+  acceptable_forms:
+  - Bone, Cervical, Micro Screws
+  - micro screws
+  evidence:
+  - quote: Bone, Cervical, Micro Screws
+    approx_offset: 17026
+  - quote: micro screws
+    approx_offset: 17421
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-products-0022
+  name: implants (generic)
+  status: confirmed
+  acceptable_forms:
+  - implantable devices
+  - polymer implants
+  - medical implants
+  - Implants
+  evidence:
+  - quote: implantable devices
+    approx_offset: 17342
+  - quote: polymer implants
+    approx_offset: 44091
+  - quote: medical implants
+    approx_offset: 131412
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-products-0023
+  name: expandable spacers
+  status: confirmed
+  acceptable_forms:
+  - Expandable Spacers
+  evidence:
+  - quote: Expandable Spacers
+    approx_offset: 17514
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-products-0024
+  name: bone plates
+  status: confirmed
+  acceptable_forms:
+  - Bone Plates
+  evidence:
+  - quote: Bone Plates
+    approx_offset: 17833
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-products-0025
+  name: micro housings
+  status: confirmed
+  acceptable_forms:
+  - Micro housings
+  - micro-housings
+  evidence:
+  - quote: Micro housings
+    approx_offset: 31020
+  - quote: micro-housings
+    approx_offset: 192500
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-products-0026
+  name: micro surgical components
+  status: confirmed
+  acceptable_forms:
+  - Various micro surgical components
+  - micro-surgical components
+  - micro surgical components
+  evidence:
+  - quote: Various micro surgical components
+    approx_offset: 31035
+  - quote: micro-surgical components
+    approx_offset: 192526
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-products-0027
+  name: trans catheter applications
+  status: confirmed
+  acceptable_forms:
+  - Trans catheter applications
+  evidence:
+  - quote: Trans catheter applications
+    approx_offset: 31069
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-products-0028
+  name: micro delivery and implantable components
+  status: confirmed
+  acceptable_forms:
+  - Micro delivery and implantable components
+  evidence:
+  - quote: Micro delivery and implantable components
+    approx_offset: 31097
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-products-0029
+  name: catheter systems
+  status: confirmed
+  acceptable_forms:
+  - single-use advanced catheter systems
+  - catheter shafts
+  - catheters
+  - catheter
+  evidence:
+  - quote: single-use advanced catheter systems
+    approx_offset: 31349
+  - quote: catheter shafts
+    approx_offset: 143310
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-products-0030
+  name: rollers
+  status: confirmed
+  acceptable_forms:
+  - rollers
+  evidence:
+  - quote: such as rollers, gears, and other parts
+    approx_offset: 38667
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-products-0031
+  name: gears
+  status: confirmed
+  acceptable_forms:
+  - gears
+  evidence:
+  - quote: rollers, gears, and other parts
+    approx_offset: 38675
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-products-0032
+  name: hip and knee joint replacements
+  status: confirmed
+  acceptable_forms:
+  - Hip and knee joint replacements
+  evidence:
+  - quote: Hip and knee joint replacements
+    approx_offset: 41756
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-products-0033
+  name: spinal / osteosynthesis / soft tissue repair implants
+  status: confirmed
+  acceptable_forms:
+  - Spinal, osteosynthesis and soft tissue repair implants
+  evidence:
+  - quote: Spinal, osteosynthesis and soft tissue repair implants
+    approx_offset: 41788
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-products-0034
+  name: cardiac rhythm devices
+  status: confirmed
+  acceptable_forms:
+  - Cardiac Rhythm Devices
+  evidence:
+  - quote: Cardiac Rhythm Devices
+    approx_offset: 48487
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-products-0035
+  name: drug delivery systems
+  status: confirmed
+  acceptable_forms:
+  - Drug Delivery Systems
+  evidence:
+  - quote: Drug Delivery Systems
+    approx_offset: 48529
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-products-0036
+  name: neuromodulation devices
+  status: confirmed
+  acceptable_forms:
+  - Neuromodulation Devices
+  evidence:
+  - quote: Neuromodulation Devices
+    approx_offset: 48551
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-products-0037
+  name: ophthalmic devices
+  status: confirmed
+  acceptable_forms:
+  - Ophthalmic Devices
+  evidence:
+  - quote: Ophthalmic Devices
+    approx_offset: 48575
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-products-0038
+  name: surgical instruments
+  status: confirmed
+  acceptable_forms:
+  - Surgical Instruments
+  - minimally invasive surgical instruments
+  - multi-use surgical instruments
+  - Navigated Surgical Instrumentation
+  - surgical instrumentation
+  evidence:
+  - quote: Surgical Instruments
+    approx_offset: 48594
+  - quote: Navigated Surgical Instrumentation
+    approx_offset: 72833
+  - quote: multi-use surgical instruments
+    approx_offset: 171414
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-products-0039
+  name: vascular devices
+  status: confirmed
+  acceptable_forms:
+  - Vascular Devices
+  evidence:
+  - quote: Vascular Devices
+    approx_offset: 48615
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-products-0040
+  name: medical robot systems
+  status: confirmed
+  acceptable_forms:
+  - Medical Robot Systems
+  - surgical robotic systems
+  - robotic systems components
+  evidence:
+  - quote: Medical Robot Systems
+    approx_offset: 72797
+  - quote: surgical robotic systems
+    approx_offset: 64223
+  - quote: the robotic systems components
+    approx_offset: 63040
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-products-0041
+  name: robotic surgical instrumentation
+  status: confirmed
+  acceptable_forms:
+  - robotic surgical instrumentation
+  evidence:
+  - quote: vertically integrated to manufacture robotic surgical instrumentation
+    approx_offset: 63079
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-products-0042
+  name: subassemblies
+  status: confirmed
+  acceptable_forms:
+  - subassemblies
+  evidence:
+  - quote: components and subassemblies OEMs of robotic-assisted surgical devices
+    approx_offset: 64148
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-products-0043
+  name: laparoscopic instrumentation systems
+  status: confirmed
+  acceptable_forms:
+  - laparoscopic instrumentation systems
+  evidence:
+  - quote: laparoscopic instrumentation systems
+    approx_offset: 72372
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-products-0044
+  name: cutting devices
+  status: confirmed
+  acceptable_forms:
+  - cutting devices
+  evidence:
+  - quote: cutting devices, and endoscopic / arthroscopic assemblies
+    approx_offset: 72410
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-products-0045
+  name: endoscopic tools / arthroscopic assemblies
+  status: confirmed
+  acceptable_forms:
+  - endoscopic / arthroscopic assemblies
+  - endoscopic tools
+  evidence:
+  - quote: endoscopic / arthroscopic assemblies
+    approx_offset: 72431
+  - quote: endoscopic tools
+    approx_offset: 148982
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-products-0046
+  name: end effectors
+  status: confirmed
+  acceptable_forms:
+  - End Effectors
+  evidence:
+  - quote: End Effectors
+    approx_offset: 72819
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-products-0047
+  name: catheter surgical instruments (occluder)
+  status: confirmed
+  acceptable_forms:
+  - Catheter Surgical Instruments (Occluder)
+  - Occluder
+  evidence:
+  - quote: Catheter Surgical Instruments (Occluder)
+    approx_offset: 73002
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-products-0048
+  name: custom molded plastic & silicone parts
+  status: confirmed
+  acceptable_forms:
+  - Custom Molded Plastic & Silicone Parts
+  evidence:
+  - quote: Custom Molded Plastic & Silicone Parts
+    approx_offset: 115875
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-products-0049
+  name: bushings
+  status: confirmed
+  acceptable_forms:
+  - Bushings
+  evidence:
+  - quote: Bushings
+    approx_offset: 119150
+  actor: client
+  notes: from the 'Semiconductor plastics applications' list - the part types EPTAM's polymer parts become
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-products-0050
+  name: clamping rings
+  status: confirmed
+  acceptable_forms:
+  - Clamping Rings
+  evidence:
+  - quote: Clamping Rings
+    approx_offset: 119159
+  actor: client
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-products-0051
+  name: computers, laptops, tablets
+  status: confirmed
+  acceptable_forms:
+  - Computers, Laptops, Tablets
+  evidence:
+  - quote: Computers, Laptops, Tablets
+    approx_offset: 119174
+  actor: client
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-products-0052
+  name: exhaust tubes
+  status: confirmed
+  acceptable_forms:
+  - Exhaust Tubes
+  evidence:
+  - quote: Exhaust Tubes
+    approx_offset: 119202
+  actor: client
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-products-0053
+  name: insulating blocks
+  status: confirmed
+  acceptable_forms:
+  - Insulating Blocks
+  evidence:
+  - quote: Insulating Blocks
+    approx_offset: 119216
+  actor: client
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-products-0054
+  name: seal rings
+  status: confirmed
+  acceptable_forms:
+  - Seal Rings
+  evidence:
+  - quote: Seal Rings
+    approx_offset: 119234
+  actor: client
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-products-0055
+  name: smart phones
+  status: confirmed
+  acceptable_forms:
+  - Smart Phones
+  evidence:
+  - quote: Smart Phones
+    approx_offset: 119245
+  actor: client
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-products-0056
+  name: valve adapters
+  status: confirmed
+  acceptable_forms:
+  - Valve Adapters
+  evidence:
+  - quote: Valve Adapters
+    approx_offset: 119258
+  actor: client
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-products-0057
+  name: valve housings
+  status: confirmed
+  acceptable_forms:
+  - Valve Housings
+  evidence:
+  - quote: Valve Housings
+    approx_offset: 119273
+  actor: client
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-products-0058
+  name: wafer carriers
+  status: confirmed
+  acceptable_forms:
+  - Wafer Carriers
+  evidence:
+  - quote: Wafer Carriers
+    approx_offset: 119288
+  actor: client
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-products-0059
+  name: wafer combs
+  status: confirmed
+  acceptable_forms:
+  - Wafer Combs
+  evidence:
+  - quote: Wafer Combs
+    approx_offset: 119303
+  actor: client
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-products-0060
+  name: water manifolds
+  status: confirmed
+  acceptable_forms:
+  - Water Manifolds
+  evidence:
+  - quote: Water Manifolds
+    approx_offset: 119315
+  actor: client
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-products-0061
+  name: wear guides
+  status: confirmed
+  acceptable_forms:
+  - Wear Guides
+  evidence:
+  - quote: Wear Guides
+    approx_offset: 119331
+  actor: client
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-products-0062
+  name: windows (semiconductor part)
+  status: confirmed
+  acceptable_forms:
+  - Windows
+  evidence:
+  - quote: Windows
+    approx_offset: 119370
+  actor: client
+  notes: listed among semiconductor plastic applications; the plain word 'Windows' also reads as the operating system,
+    which is the trap
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-products-0063
+  name: test kit parts / consumables
+  status: confirmed
+  acceptable_forms:
+  - permanent kit parts to consumables
+  - consumables
+  evidence:
+  - quote: Products ranging from permanent kit parts to consumables
+    approx_offset: 121435
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-products-0064
+  name: external fixation clamps
+  status: confirmed
+  acceptable_forms:
+  - external fixation clamps
+  - external fixation
+  evidence:
+  - quote: medical implants and external fixation clamps
+    approx_offset: 204940
+  - quote: external fixation
+    approx_offset: 131430
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-products-0065
+  name: stents
+  status: confirmed
+  acceptable_forms:
+  - vascular stents
+  - neurovascular stent
+  - stents
+  - stent
+  evidence:
+  - quote: vascular stents
+    approx_offset: 143293
+  - quote: Neurovascular Stent Manufacturing
+    approx_offset: 151279
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-products-0066
+  name: delivery systems
+  status: confirmed
+  acceptable_forms:
+  - delivery systems
+  evidence:
+  - quote: catheter shafts, delivery systems
+    approx_offset: 143310
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-products-0067
+  name: neurovascular devices
+  status: confirmed
+  acceptable_forms:
+  - Neurovascular devices
+  evidence:
+  - quote: Neurovascular devices
+    approx_offset: 148934
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-products-0068
+  name: microfluidic components
+  status: confirmed
+  acceptable_forms:
+  - microfluidic components
+  evidence:
+  - quote: microfluidic components and semiconductor tools
+    approx_offset: 149215
+  actor: client
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-products-0069
+  name: pacemakers
+  status: confirmed
+  acceptable_forms:
+  - implantable pacemaker
+  - pacemakers
+  evidence:
+  - quote: pacemakers and neurostimulators
+    approx_offset: 150326
+  - quote: an implantable pacemaker
+    approx_offset: 151657
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-products-0070
+  name: neurostimulators
+  status: confirmed
+  acceptable_forms:
+  - neurostimulators
+  evidence:
+  - quote: pacemakers and neurostimulators
+    approx_offset: 150326
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-products-0071
+  name: finished device assemblies
+  status: confirmed
+  acceptable_forms:
+  - finished device assemblies
+  - complex system assemblies
+  - finished devices
+  evidence:
+  - quote: single-use disposables and finished device assemblies
+    approx_offset: 162798
+  - quote: complex system assemblies
+    approx_offset: 197538
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-products-0072
+  name: interventional and structural heart components
+  status: confirmed
+  acceptable_forms:
+  - interventional and structural heart components
+  evidence:
+  - quote: interventional and structural heart components
+    approx_offset: 162962
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-products-0073
+  name: single-use medical disposables
+  status: confirmed
+  acceptable_forms:
+  - Single-Use Medical Disposables
+  - single-use medical disposable
+  - single-use disposables
+  evidence:
+  - quote: Single-Use Medical Disposables
+    approx_offset: 169116
+  - quote: single-use medical disposables
+    approx_offset: 163010
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-products-0074
+  name: biopharma processing equipment components
+  status: confirmed
+  acceptable_forms:
+  - biopharma processing equipment components
+  - BioPharma equipment components
+  evidence:
+  - quote: biopharma processing equipment components
+    approx_offset: 163042
+  - quote: BioPharma equipment components
+    approx_offset: 169084
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-products-0075
+  name: molecular diagnostic testing cartridges
+  status: confirmed
+  acceptable_forms:
+  - molecular diagnostic testing cartridges
+  evidence:
+  - quote: molecular diagnostic testing cartridges
+    approx_offset: 163089
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-products-0076
+  name: sterile packaging
+  status: confirmed
+  acceptable_forms:
+  - sterile packaging
+  evidence:
+  - quote: medical devices, sterile packaging, and robotic surgical drape systems
+    approx_offset: 174543
+  actor: unknown
+  notes: made by UFP Technologies, a former employer named in the COO's biography - recall-first keeps it, the actor
+    records that it is not EPTAM's
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-products-0077
+  name: robotic surgical drape systems
+  status: confirmed
+  acceptable_forms:
+  - robotic surgical drape systems
+  evidence:
+  - quote: robotic surgical drape systems
+    approx_offset: 174583
+  actor: unknown
+  notes: see sterile packaging
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-products-0078
+  name: automated pharmacy solutions
+  status: disputed
+  acceptable_forms:
+  - automated pharmacy solutions
+  evidence:
+  - quote: a company that brought automated pharmacy solutions to market
+    approx_offset: 185692
+  actor: unknown
+  notes: 'Parata Systems, a former employer in the CFO''s biography | the head noun is ''solutions'', an abstraction,
+    in a CFO bio about Parata Systems: ''a company that brought automated pharmacy solutions to market''. Whether
+    the phrase names a made artifact rather than a product-and-service category is arguable; the actor is not the
+    objection (recall-first), the artifact status is.'
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: disputed
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+    reason: 'the head noun is ''solutions'', an abstraction, in a CFO bio about Parata Systems: ''a company that
+      brought automated pharmacy solutions to market''. Whether the phrase names a made artifact rather than a product-and-service
+      category is arguable; the actor is not the objection (recall-first), the artifact status is.'
+- id: sterlingmfg_net-products-0079
+  name: plates, screws, cages, stems (Mendell ortho line)
+  status: confirmed
+  acceptable_forms:
+  - plates, screws, cages, stems, and implants
+  evidence:
+  - quote: products such as plates, screws, cages, stems, and implants
+    approx_offset: 192337
+  actor: parent_sibling
+  notes: from the Mendell acquisition boilerplate
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-products-0080
+  name: micro-cutters
+  status: confirmed
+  acceptable_forms:
+  - micro-cutters
+  evidence:
+  - quote: micro-cutters, micro-housings
+    approx_offset: 192485
+  actor: parent_sibling
+  notes: from the Mendell acquisition boilerplate
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-products-0081
+  name: lab service equipment
+  status: candidate
+  acceptable_forms:
+  - lab service equipment
+  evidence:
+  - quote: When it comes to manufacturing critical parts for lab service equipment or fluid handling, no one stands-up
+      to the achievements of EPTAM. Customers come to us with incredible
+    approx_offset: 37374
+  actor: client
+  notes: on the biopharma page, a made artifact EPTAM manufactures critical parts for. Absent from the packet.
+  provenance:
+  - action: added
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+    source: verification-pass-miss
+- id: sterlingmfg_net-products-0082
+  name: medical robotic components
+  status: candidate
+  acceptable_forms:
+  - medical robotic components
+  evidence:
+  - quote: Specialized laser processing for medical robotic components and biopharmaceutical equipment.
+    approx_offset: 149448
+  notes: a distinct printed form on the laser industries list; the packet has 'robotic systems components' (products-0040)
+    but not this wording.
+  provenance:
+  - action: added
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+    source: verification-pass-miss
+- id: sterlingmfg_net-products-0083
+  name: biopharmaceutical equipment
+  status: candidate
+  acceptable_forms:
+  - biopharmaceutical equipment
+  evidence:
+  - quote: Specialized laser processing for medical robotic components and biopharmaceutical equipment.
+    approx_offset: 149448
+  actor: client
+  notes: same line; the packet covers 'biopharma processing equipment components' (products-0074) but not this shorter
+    printed form.
+  provenance:
+  - action: added
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+    source: verification-pass-miss
+- id: sterlingmfg_net-products-0084
+  name: orthopedic screws
+  status: candidate
+  acceptable_forms:
+  - other orthopedic screws
+  - orthopedic screws
+  evidence:
+  - quote: pedicle screws, bone screws, micro screws, and other orthopedic screws, our team use a variety of high-quality
+      machines.
+    approx_offset: 17392
+  notes: the ortho page's screw sentence ends with a fourth category the packet does not carry; pedicle, bone and
+    micro screws are each seeded, orthopedic screws is not.
+  provenance:
+  - action: added
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+    source: verification-pass-miss
+false_friends:
+- form: Okuma L3000 lathe
+  reason: MACHINERY, excluded by the product prompt ('separates it from the machinery, tooling, and facilities the
+    work is done with')
+- form: Mazak Integrex i-150
+  reason: machinery, excluded (line 1887)
+- form: FDM Printer
+  reason: machinery, excluded (line 2482)
+- form: Komo Routers
+  reason: machinery, excluded (line 3187)
+- form: compression presses
+  reason: machinery, excluded (line 2130)
+- form: Laser Part Markers
+  reason: machinery, excluded (line 397)
+- form: sintering furnaces
+  reason: machinery, excluded (line 3272)
+- form: MUD based molds
+  reason: tooling, excluded (line 230)
+- form: Custom Tooling
+  reason: tooling, excluded (line 253)
+- form: EPTAM Precision Solutions
+  reason: a COMPANY NAME, explicitly excluded ('the names of companies, brands, or customer groups')
+- form: Albright Silicone
+  reason: a company name (line 4819)
+- form: Sterling Manufacturing
+  reason: a company name (line 4819)
+- form: Ingram Machining
+  reason: a company name (line 5003)
+- form: Relius Medical
+  reason: a company name (line 5893)
+- form: Frazier Healthcare Partners
+  reason: a company name (52+ mentions)
+- form: Rapid Launch Center
+  reason: a FACILITY / re-branded site, not an artifact (lines 2643, 5004)
+- form: READI
+  reason: EPTAM's name for its rapid-development centers - a facility program, not a product (line 54)
+- form: White Paper
+  reason: a DOCUMENT, explicitly excluded (line 5572)
+- form: whitepaper
+  reason: a document (line 272)
+- form: Counterfeit Parts Prevention Policy
+  reason: a document (line 2997)
+- form: Management Commitment Statement
+  reason: a document (line 3003)
+- form: AS 9100 D Certified
+  reason: a certification, not an artifact (52 footer copies)
+- form: Employee Assistance Program (EAP)
+  reason: an HR benefit (line 2600)
+- form: Recognition and Rewards program
+  reason: an HR program (line 2597)
+- form: Private IPO
+  reason: an investment structure, not a made artifact (line 5902)
+- form: IQMS
+  reason: ERP software (line 1267)
+- form: Playlist
+  reason: a website widget label appearing three times (lines 2108, 2602, 3839)
+- form: valve body
+  reason: 'anticipatory: the site names ''Valve Adapters'' and ''Valve Housings'' but never a valve body; ZERO occurrences'
+- form: heat sink
+  reason: 'anticipatory: ZERO occurrences'
+- form: enclosure
+  reason: 'anticipatory: ZERO occurrences, despite housings being everywhere'
+- form: bracket
+  reason: 'anticipatory: ZERO occurrences'
+- form: manifold
+  reason: witnessed only inside 'Water Manifolds' (line 3662) - the bare singular never occurs
+- form: syringe
+  reason: 'anticipatory: ZERO occurrences, despite drug delivery systems being named'
+- form: guidewire
+  reason: 'anticipatory: ZERO occurrences, despite catheters and stents being named repeatedly'
+- form: trocar
+  reason: 'anticipatory: ZERO occurrences; a classic MIS-instrument association'

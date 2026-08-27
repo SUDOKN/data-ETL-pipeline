@@ -1,0 +1,1432 @@
+subject: sterlingmfg.net
+field: material_caps
+snapshot:
+  file: apps/data_etl_app/tests/test_stages/sample_scraped_texts/sterlingmfg.net.txt
+  sha256: f42c4b74d9eefaa7461fe85ed30745ce9465330ba86e7099f728423deb498cc5
+eval_set_version: 2
+expected_empty: false
+notes: 'Very dense: four separate per-page material lists (semiconductor polymers, micro-machining materials, plastics-machining
+  materials, metals grades) plus the additive filament lists. All six previously-fabricated materials (Plexiglas,
+  LDPE, PVC, Epoxy, Bronze, Carbon Steel) are verified ZERO-occurrence and seeded as anticipatory false_friends.'
+entries:
+- id: sterlingmfg_net-material_caps-0001
+  name: metals (generic)
+  status: confirmed
+  acceptable_forms:
+  - metals
+  - metal
+  evidence:
+  - quote: Materials including plastics, metals, and thermoplastics
+    approx_offset: 1820
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-material_caps-0002
+  name: plastics (generic)
+  status: confirmed
+  acceptable_forms:
+  - plastics
+  - plastic
+  - polymers
+  - polymer
+  evidence:
+  - quote: Materials including plastics, metals, and thermoplastics
+    approx_offset: 1820
+  - quote: Polymers such as HDPE
+    approx_offset: 117107
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-material_caps-0003
+  name: thermoplastic
+  status: confirmed
+  acceptable_forms:
+  - thermoplastics
+  - thermoplastic
+  - thermo-plastics
+  - thermoplastic engineering grade resins
+  - engineering-grade resins
+  evidence:
+  - quote: thermoplastics
+    approx_offset: 1862
+  - quote: thermo-plastics
+    approx_offset: 117728
+  - quote: thermoplastic engineering grade resins
+    approx_offset: 77072
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-material_caps-0004
+  name: stainless steel
+  status: confirmed
+  acceptable_forms:
+  - stainless steel
+  - stainless steels
+  - stainless steel alloys
+  - 300 series stainless steels
+  - Various 300 series stainless steels
+  - 400 series stainless steels
+  evidence:
+  - quote: stainless steel
+    approx_offset: 6122
+  - quote: Various 300 series stainless steels
+    approx_offset: 31217
+  - quote: 400 series stainless steels
+    approx_offset: 68340
+  - quote: 'Stainless steels, including:'
+    approx_offset: 132914
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-material_caps-0005
+  name: titanium
+  status: confirmed
+  acceptable_forms:
+  - Titanium
+  evidence:
+  - quote: titanium
+    approx_offset: 6139
+  - quote: Titanium
+    approx_offset: 16837
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-material_caps-0006
+  name: cobalt chrome
+  status: confirmed
+  acceptable_forms:
+  - cobalt-chrome
+  - Cobalt chrome
+  - cobalt-chromium
+  - cobalt and chrome
+  evidence:
+  - quote: cobalt-chrome
+    approx_offset: 6153
+  - quote: Cobalt chrome
+    approx_offset: 68258
+  - quote: cobalt-chromium
+    approx_offset: 41994
+  - quote: made of cobalt and chrome
+    approx_offset: 18035
+  notes: four spellings of one alloy family, each its own surface form
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-material_caps-0007
+  name: powdered metal (MIM feedstock)
+  status: confirmed
+  acceptable_forms:
+  - finely-powdered metal
+  - binder material
+  evidence:
+  - quote: finely-powdered metal is mixed with binder material
+    approx_offset: 8223
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-material_caps-0008
+  name: 17-4 stainless
+  status: confirmed
+  acceptable_forms:
+  - SS 17-4
+  - 17-4 stainless steel
+  - 17-4
+  evidence:
+  - quote: SS 17-4
+    approx_offset: 9097
+  - quote: 17-4 stainless steel
+    approx_offset: 68279
+  - quote: 17-4
+    approx_offset: 9100
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-material_caps-0009
+  name: 303 stainless
+  status: confirmed
+  acceptable_forms:
+  - SS 303
+  - '303'
+  evidence:
+  - quote: SS 303
+    approx_offset: 9105
+  - quote: '303'
+    approx_offset: 9108
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-material_caps-0010
+  name: 304 / 304L stainless
+  status: confirmed
+  acceptable_forms:
+  - SS 304
+  - 304L
+  - '304'
+  evidence:
+  - quote: SS 304
+    approx_offset: 9112
+  - quote: 304L
+    approx_offset: 143726
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-material_caps-0011
+  name: 316 / 316L stainless
+  status: confirmed
+  acceptable_forms:
+  - SS 316
+  - 316L
+  - 316 Stainless Steel
+  - '316'
+  evidence:
+  - quote: SS 316
+    approx_offset: 9119
+  - quote: 316L
+    approx_offset: 143735
+  - quote: 316 Stainless Steel
+    approx_offset: 109398
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-material_caps-0012
+  name: MP35N
+  status: confirmed
+  acceptable_forms:
+  - SS MP35N
+  - MP35N
+  evidence:
+  - quote: SS MP35N
+    approx_offset: 9126
+  - quote: MP35N
+    approx_offset: 9129
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-material_caps-0013
+  name: PEEK
+  status: confirmed
+  acceptable_forms:
+  - PEEK™ and PEEK OPTIMA™
+  - PEEK OPTIMA™
+  - PEEK™
+  - PEEK
+  evidence:
+  - quote: PEEK™ and PEEK OPTIMA™
+    approx_offset: 68235
+  - quote: PEEK
+    approx_offset: 16823
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-material_caps-0014
+  name: Nitinol
+  status: confirmed
+  acceptable_forms:
+  - Nitinol
+  evidence:
+  - quote: Nitinol
+    approx_offset: 31253
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-material_caps-0015
+  name: silicone / liquid silicone rubber
+  status: confirmed
+  acceptable_forms:
+  - Liquid Silicone Rubber (LSR)
+  - liquid silicone rubber
+  - silicone rubber
+  - LSR
+  - silicone
+  evidence:
+  - quote: LSR (Liquid Silicone Rubber)
+    approx_offset: 48006
+  - quote: silicone rubber
+    approx_offset: 34670
+  - quote: LSR grades
+    approx_offset: 77356
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-material_caps-0016
+  name: ceramics
+  status: confirmed
+  acceptable_forms:
+  - ceramics
+  - ceramic
+  evidence:
+  - quote: plastics, metals, and ceramics
+    approx_offset: 87664
+  - quote: stainless steel alloys, ceramic, PEEK
+    approx_offset: 42021
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-material_caps-0017
+  name: PE polymers
+  status: confirmed
+  acceptable_forms:
+  - highly linked PE polymers
+  evidence:
+  - quote: PEEK and highly linked PE polymers
+    approx_offset: 42054
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-material_caps-0018
+  name: PLLA
+  status: confirmed
+  acceptable_forms:
+  - PLLA
+  evidence:
+  - quote: PLLA and TCP
+    approx_offset: 42101
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-material_caps-0019
+  name: TCP
+  status: confirmed
+  acceptable_forms:
+  - TCP
+  evidence:
+  - quote: PLLA and TCP
+    approx_offset: 42101
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-material_caps-0020
+  name: UHMW-PE
+  status: confirmed
+  acceptable_forms:
+  - UHMW-PE®
+  - UHMW-PE – Implantable
+  - UHMW-PE
+  - UHMWPE
+  - UHMW
+  evidence:
+  - quote: UHMW-PE®
+    approx_offset: 42115
+  - quote: UHMW-PE – Implantable
+    approx_offset: 104209
+  - quote: UHMWPE
+    approx_offset: 68272
+  - quote: UHMW
+    approx_offset: 42115
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-material_caps-0021
+  name: sodium bicarbonate blast media
+  status: disputed
+  acceptable_forms:
+  - Sodium-bicarbonate-based micro-blast
+  - Sodium-bicarbonate-based
+  evidence:
+  - quote: Sodium-bicarbonate-based micro-blast stations
+    approx_offset: 43399
+  notes: a blast medium, i.e. a substance the work is processed with rather than made from - the prompt's 'named
+    after a substance' clause is the closest fit | sodium bicarbonate is the blast MEDIA of the deburring station,
+    not a substance the work is made from or performed in, and micro-blasting deposits nothing on the part (the
+    sentence's point is that parts come out 'Burr Free'). The deposit/diffuse extension in the clause therefore
+    does not reach it. Retained as deburring under process_caps-0032.
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: disputed
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+    reason: sodium bicarbonate is the blast MEDIA of the deburring station, not a substance the work is made from
+      or performed in, and micro-blasting deposits nothing on the part (the sentence's point is that parts come
+      out 'Burr Free'). The deposit/diffuse extension in the clause therefore does not reach it. Retained as deburring
+      under process_caps-0032.
+- id: sterlingmfg_net-material_caps-0022
+  name: uni-glaze paints
+  status: confirmed
+  acceptable_forms:
+  - uni-glaze paints
+  evidence:
+  - quote: uni-glaze paints, machining and laser
+    approx_offset: 43838
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-material_caps-0023
+  name: polycarbonate
+  status: confirmed
+  acceptable_forms:
+  - Polycarbonate
+  - PC
+  evidence:
+  - quote: Polycarbonate
+    approx_offset: 68384
+  - quote: PC, PS, and TPE
+    approx_offset: 48079
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-material_caps-0024
+  name: TPE
+  status: confirmed
+  acceptable_forms:
+  - TPE
+  evidence:
+  - quote: PC, PS, and TPE
+    approx_offset: 48079
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-material_caps-0025
+  name: PS (polystyrene)
+  status: confirmed
+  acceptable_forms:
+  - PS
+  evidence:
+  - quote: PC, PS, and TPE
+    approx_offset: 48079
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-material_caps-0026
+  name: PMMA
+  status: confirmed
+  acceptable_forms:
+  - PMMA
+  evidence:
+  - quote: PEEK and PMMA
+    approx_offset: 48142
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-material_caps-0027
+  name: Vespel
+  status: confirmed
+  acceptable_forms:
+  - Vespel®
+  - VESPEL
+  evidence:
+  - quote: Vespel®
+    approx_offset: 118270
+  - quote: VESPEL
+    approx_offset: 117145
+  - quote: Vespel and Torlon
+    approx_offset: 54625
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-material_caps-0028
+  name: Torlon
+  status: confirmed
+  acceptable_forms:
+  - Torlon® 4203
+  - Torlon® 4301
+  - Torlon®
+  - Torlon
+  evidence:
+  - quote: Torlon® 4203
+    approx_offset: 118187
+  - quote: Torlon® 4301
+    approx_offset: 118200
+  - quote: Torlon
+    approx_offset: 54636
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-material_caps-0029
+  name: Radel
+  status: confirmed
+  acceptable_forms:
+  - Radel® R5500
+  - Radel
+  evidence:
+  - quote: Radel® R5500
+    approx_offset: 104115
+  - quote: Radel
+    approx_offset: 68334
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-material_caps-0030
+  name: acetal
+  status: confirmed
+  acceptable_forms:
+  - Acetals
+  - Acetal
+  evidence:
+  - quote: Acetals
+    approx_offset: 104043
+  - quote: Acetal
+    approx_offset: 68368
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-material_caps-0031
+  name: Tantalum
+  status: confirmed
+  acceptable_forms:
+  - Tantalum
+  evidence:
+  - quote: Tantalum
+    approx_offset: 68375
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-material_caps-0032
+  name: nickel
+  status: confirmed
+  acceptable_forms:
+  - nickel
+  evidence:
+  - quote: plastic, titanium, stainless steel, nickel, and Nitinol
+    approx_offset: 73590
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-material_caps-0033
+  name: HIPS
+  status: confirmed
+  acceptable_forms:
+  - HIPS
+  evidence:
+  - quote: HIPS
+    approx_offset: 88428
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-material_caps-0034
+  name: TPU
+  status: confirmed
+  acceptable_forms:
+  - TPU
+  evidence:
+  - quote: TPU
+    approx_offset: 88438
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-material_caps-0035
+  name: nylon
+  status: confirmed
+  acceptable_forms:
+  - Nylon 11/ Nylond 12 powder
+  - Nylon 11/Nylon12
+  - Nylon 11
+  - Nylon 12
+  - NYLON
+  evidence:
+  - quote: Nylon 11/ Nylond 12 powder
+    approx_offset: 88536
+  - quote: Nylon 11/Nylon12
+    approx_offset: 109270
+  - quote: NYLON
+    approx_offset: 88448
+  notes: line 2473 misspells the second grade as 'Nylond 12'; copy verbatim
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-material_caps-0036
+  name: PETG
+  status: confirmed
+  acceptable_forms:
+  - PETG
+  evidence:
+  - quote: PETG
+    approx_offset: 88455
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-material_caps-0037
+  name: ASA
+  status: confirmed
+  acceptable_forms:
+  - ASA
+  evidence:
+  - quote: ASA
+    approx_offset: 88461
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-material_caps-0038
+  name: PP (polypropylene)
+  status: confirmed
+  acceptable_forms:
+  - PP
+  - Polyproplene
+  evidence:
+  - quote: PP
+    approx_offset: 88466
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: amended
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+    reason: polypropylene is named twice and the packet captures only the acronym. Line 3636 prints it in words,
+      misspelled, as part of 'HDPE - Polyproplene' in the semiconductor materials list. That misspelling is the
+      only long-form spelling the site uses for this polymer, so it belongs among the acceptable forms.
+- id: sterlingmfg_net-material_caps-0039
+  name: PVA
+  status: confirmed
+  acceptable_forms:
+  - PVA
+  evidence:
+  - quote: PVA
+    approx_offset: 88470
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-material_caps-0040
+  name: Ultem PEI
+  status: confirmed
+  acceptable_forms:
+  - Ultem® 1000 PEI
+  - Ultem® 2300 PEI
+  - Ultem (Colored)
+  - ULTEM
+  evidence:
+  - quote: Ultem® 1000 PEI
+    approx_offset: 118238
+  - quote: Ultem® 2300 PEI
+    approx_offset: 118254
+  - quote: Ultem (Colored)
+    approx_offset: 88475
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-material_caps-0041
+  name: glass fibre
+  status: confirmed
+  acceptable_forms:
+  - Glass Fiber Infused
+  - Glass or Carbon Fiber reinforced
+  - Glass Fiber
+  evidence:
+  - quote: Glass Fiber Infused
+    approx_offset: 88492
+  - quote: Glass or Carbon Fiber reinforced
+    approx_offset: 109287
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-material_caps-0042
+  name: metal fill filament
+  status: confirmed
+  acceptable_forms:
+  - Metal Fill
+  evidence:
+  - quote: Metal Fill
+    approx_offset: 88513
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-material_caps-0043
+  name: wood fill filament
+  status: confirmed
+  acceptable_forms:
+  - Wood FIll
+  evidence:
+  - quote: Wood FIll
+    approx_offset: 88525
+  - quote: Wood Fill
+    approx_offset: 89218
+  notes: line 2471 capitalises the second I ('Wood FIll') - a scrape-faithful typo
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-material_caps-0044
+  name: carbon-fibre PEEK
+  status: confirmed
+  acceptable_forms:
+  - Carbon Fiber PEEK
+  - 60% Woven CF PEEK
+  evidence:
+  - quote: Carbon Fiber PEEK
+    approx_offset: 104062
+  - quote: 60% Woven CF PEEK
+    approx_offset: 88570
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-material_caps-0045
+  name: PEKK
+  status: confirmed
+  acceptable_forms:
+  - PEKK
+  evidence:
+  - quote: PEEK / ABS / PEKK / NYLON
+    approx_offset: 88717
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-material_caps-0046
+  name: PPSU
+  status: confirmed
+  acceptable_forms:
+  - PPSU
+  evidence:
+  - quote: PPSU
+    approx_offset: 88750
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-material_caps-0047
+  name: resins
+  status: confirmed
+  acceptable_forms:
+  - resins
+  - Variety of resins
+  evidence:
+  - quote: Variety of resins depending on needs
+    approx_offset: 88838
+  - quote: Large variety of resins
+    approx_offset: 109327
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-material_caps-0048
+  name: carbon fibre
+  status: confirmed
+  acceptable_forms:
+  - Carbon Fiber Infused
+  - Carbon Fiber
+  evidence:
+  - quote: Carbon Fiber Infused
+    approx_offset: 89183
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-material_caps-0049
+  name: aluminum
+  status: confirmed
+  acceptable_forms:
+  - Aluminum
+  evidence:
+  - quote: Aluminum
+    approx_offset: 104052
+  - quote: aluminum
+    approx_offset: 132032
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-material_caps-0050
+  name: Polysulfone
+  status: confirmed
+  acceptable_forms:
+  - Polysulfone
+  evidence:
+  - quote: Polysulfone
+    approx_offset: 104081
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-material_caps-0051
+  name: Propylux HS2
+  status: confirmed
+  acceptable_forms:
+  - Propylux® HS2
+  - Propylux
+  evidence:
+  - quote: Propylux® HS2
+    approx_offset: 104094
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-material_caps-0052
+  name: Nitronic 60
+  status: confirmed
+  acceptable_forms:
+  - SS Nitronic 60
+  - Nitronic 60
+  evidence:
+  - quote: SS Nitronic 60
+    approx_offset: 104172
+  - quote: Nitronic 60
+    approx_offset: 104175
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-material_caps-0053
+  name: BioDur stainless
+  status: confirmed
+  acceptable_forms:
+  - SS Biodur
+  - BioDur
+  evidence:
+  - quote: SS Biodur
+    approx_offset: 104188
+  - quote: BioDur
+    approx_offset: 132126
+  - quote: Biodur
+    approx_offset: 104191
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-material_caps-0054
+  name: PLA
+  status: confirmed
+  acceptable_forms:
+  - PLA
+  evidence:
+  - quote: 'FDM: PLA, ABS, PC, PET, PETG, ASA, PVA, PA12'
+    approx_offset: 109164
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-material_caps-0055
+  name: ABS
+  status: confirmed
+  acceptable_forms:
+  - ABS
+  evidence:
+  - quote: PLA, ABS, PC
+    approx_offset: 109169
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-material_caps-0056
+  name: PET
+  status: confirmed
+  acceptable_forms:
+  - PET
+  evidence:
+  - quote: PC, PET, PETG
+    approx_offset: 109179
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-material_caps-0057
+  name: PA12
+  status: confirmed
+  acceptable_forms:
+  - PA12
+  evidence:
+  - quote: PA12
+    approx_offset: 109204
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-material_caps-0058
+  name: HDPE
+  status: confirmed
+  acceptable_forms:
+  - HDPE - Polyproplene
+  - HDPE
+  evidence:
+  - quote: HDPE - Polyproplene
+    approx_offset: 118213
+  - quote: HDPE
+    approx_offset: 117124
+  notes: line 3636 misspells polypropylene as 'Polyproplene' and hyphenates it onto HDPE; copy verbatim
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-material_caps-0059
+  name: Delrin
+  status: confirmed
+  acceptable_forms:
+  - Delrin
+  evidence:
+  - quote: Delrin
+    approx_offset: 117130
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-material_caps-0060
+  name: ECTFE
+  status: confirmed
+  acceptable_forms:
+  - ECTFE
+  evidence:
+  - quote: ECTFE
+    approx_offset: 117138
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-material_caps-0061
+  name: PVDF
+  status: confirmed
+  acceptable_forms:
+  - PVDF
+  evidence:
+  - quote: PVDF
+    approx_offset: 117153
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-material_caps-0062
+  name: thermosets
+  status: confirmed
+  acceptable_forms:
+  - thermo-sets
+  evidence:
+  - quote: thermo-sets, thermo-plastics
+    approx_offset: 117715
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-material_caps-0063
+  name: HPHT materials
+  status: confirmed
+  acceptable_forms:
+  - high-altitude / high-temperature (HPHT) materials
+  - HPHT
+  evidence:
+  - quote: high-altitude / high-temperature (HPHT) materials
+    approx_offset: 117749
+  notes: the site glosses HPHT as 'high-altitude / high-temperature', which is a mis-expansion of the usual high-pressure/high-temperature;
+    kept verbatim
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-material_caps-0064
+  name: Acetron GP
+  status: confirmed
+  acceptable_forms:
+  - Acetron® GP
+  - Acetron
+  evidence:
+  - quote: Acetron® GP
+    approx_offset: 118104
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-material_caps-0065
+  name: Noryl
+  status: confirmed
+  acceptable_forms:
+  - Noryl®
+  - Noryl
+  evidence:
+  - quote: Noryl®
+    approx_offset: 118116
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-material_caps-0066
+  name: Semitron
+  status: confirmed
+  acceptable_forms:
+  - SemitronTM ESD
+  - Semitron® MP370
+  - Semitron
+  evidence:
+  - quote: SemitronTM ESD
+    approx_offset: 118142
+  - quote: Semitron® MP370
+    approx_offset: 118157
+  notes: line 3631 prints the trademark as literal letters 'TM' with no space ('SemitronTM ESD') while 3632 uses
+    the (R) glyph - a scrape artefact worth preserving verbatim
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-material_caps-0067
+  name: Techtron PPS
+  status: confirmed
+  acceptable_forms:
+  - Techtron® PPS
+  - Techtron
+  evidence:
+  - quote: Techtron® PPS
+    approx_offset: 118173
+  - quote: Techtron
+    approx_offset: 118173
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-material_caps-0068
+  name: Teflon
+  status: confirmed
+  acceptable_forms:
+  - Teflon
+  evidence:
+  - quote: Teflon
+    approx_offset: 119034
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-material_caps-0069
+  name: 455 stainless
+  status: confirmed
+  acceptable_forms:
+  - '455'
+  evidence:
+  - quote: '455'
+    approx_offset: 132092
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-material_caps-0070
+  name: 465 stainless
+  status: confirmed
+  acceptable_forms:
+  - '465'
+  evidence:
+  - quote: '465'
+    approx_offset: 132097
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-material_caps-0071
+  name: composites
+  status: confirmed
+  acceptable_forms:
+  - composites
+  evidence:
+  - quote: plastics and composites
+    approx_offset: 143550
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-material_caps-0072
+  name: T17-7 stainless
+  status: confirmed
+  acceptable_forms:
+  - T17-7
+  evidence:
+  - quote: T17-7
+    approx_offset: 143716
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-material_caps-0073
+  name: 321 stainless
+  status: confirmed
+  acceptable_forms:
+  - '321'
+  evidence:
+  - quote: '321'
+    approx_offset: 143740
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-material_caps-0074
+  name: polyimide
+  status: confirmed
+  acceptable_forms:
+  - polyimide plastic
+  - polyimide
+  evidence:
+  - quote: Vespel® is a polyimide plastic
+    approx_offset: 177938
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-material_caps-0075
+  name: polyamide-imide
+  status: confirmed
+  acceptable_forms:
+  - polyamide-imide plastic
+  - polyamide-imide
+  evidence:
+  - quote: This polyamide-imide plastic
+    approx_offset: 179203
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+false_friends:
+- form: Plexiglas
+  reason: ANTICIPATORY - ZERO occurrences. A prior pipeline run fabricated this material for this subject. Only
+    fabrication can hit it
+- form: LDPE
+  reason: ANTICIPATORY - ZERO occurrences, despite HDPE being named three times. A prior pipeline run fabricated
+    it
+- form: PVC
+  reason: ANTICIPATORY - ZERO occurrences, despite PVDF being named twice. A prior pipeline run fabricated it
+- form: Epoxy
+  reason: ANTICIPATORY - ZERO occurrences. A prior pipeline run fabricated it
+- form: Bronze
+  reason: ANTICIPATORY - ZERO occurrences. A prior pipeline run fabricated it
+- form: Carbon Steel
+  reason: ANTICIPATORY - ZERO occurrences, despite 'Carbon Fiber' and 'stainless steel' both being present. A prior
+    pipeline run fabricated it
+- form: Brass
+  reason: 'anticipatory: ZERO occurrences; the classic co-occurrence partner of the bronze fabrication'
+- form: Copper
+  reason: 'anticipatory: ZERO occurrences'
+- form: Inconel
+  reason: 'anticipatory: ZERO occurrences; word-association from the aerospace + exotic-alloy framing'
+- form: Kovar
+  reason: 'anticipatory: ZERO occurrences; associates with hermetic sealing, which the laser page does name'
+- form: Polypropylene
+  reason: witnessed only as the MISSPELLING 'Polyproplene' on line 3636; the correctly spelled string occurs ZERO
+    times, so returning it is an unmarked normalization
+- form: Delrin AF
+  reason: 'anticipatory: ZERO occurrences; ''Delrin'' alone appears twice'
+- form: Grade 5 titanium
+  reason: 'anticipatory: ZERO occurrences; the site names titanium eleven times but never a grade'
+- form: Ti-6Al-4V
+  reason: 'anticipatory: ZERO occurrences'
+- form: '6061'
+  reason: 'anticipatory: ZERO occurrences; aluminum is named without any grade'
+- form: Star
+  reason: 'witnessed: a machine brand on line 1836, not a material - but it sits inside a list whose other members
+    read like grades'

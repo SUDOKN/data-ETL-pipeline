@@ -1,0 +1,438 @@
+subject: lucasmilhaupt.com
+field: equipments
+snapshot:
+  file: apps/data_etl_app/tests/test_stages/sample_scraped_texts/lucasmilhaupt.com.txt
+  sha256: d92eed67ef99d67a791896d0467d78dc0c60bf7a96e2ec6f99926618da193236
+eval_set_version: 2
+expected_empty: false
+notes: 'SEEDED TO THE PROMPT''S BOUNDARY, NOT THE WORD ''EQUIPMENT''. The subject sells consumables, so most of
+  its own plant is described only as ''high precision equipment'' / ''high speed machines''; the named hardware
+  sits in the Brazing Fundamentals manual, and most of it is EXCLUDED by the clause: dies, fixtures, grinding wheels
+  and wire brushes are tooling; the mass spectrometer and transducer only test; cylinders, regulators, check valves,
+  flashback arrestors, ventilating fans and exhaust hoods power or condition the plant; spools carry. Those are
+  all false_friends, not entries. What survives as a production machine: furnaces, torches, the induction work coil,
+  the stamping/preform machines, the flux applicator gun, and the cleaning tanks the work is immersed in. This is
+  the field where the alecmfg false-RED lesson bites hardest.'
+entries:
+- id: lucasmilhaupt_com-equipments-0001
+  name: production line
+  status: confirmed
+  acceptable_forms:
+  - production line
+  evidence:
+  - quote: Trust our team of brazing experts to help you improve robust processes on your production line. Learn
+      about the cutting-edge joining solutions
+    approx_offset: 9968
+  actor: client
+  notes: the customer's line, and a system rather than a single machine; kept because a production line does convert
+    materials into finished goods
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+- id: lucasmilhaupt_com-equipments-0002
+  name: pilot equipment
+  status: confirmed
+  acceptable_forms:
+  - pilot equipment
+  evidence:
+  - quote: to prototype next-gen electrical assemblies. State-of-the-art analytical labs and pilot equipment accelerate
+      alloy development, joint design validation, and scale-up, so customers
+    approx_offset: 45378
+  notes: pilot-scale production equipment in the Center of Excellence; the 'analytical labs' half of the same sentence
+    is testing and does NOT qualify
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+- id: lucasmilhaupt_com-equipments-0003
+  name: flux applicator gun
+  status: confirmed
+  acceptable_forms:
+  - applicator gun
+  evidence:
+  - quote: more effective to apply the flux by dipping or dispensing a pre-measured deposit of high-viscosity dispensable
+      flux from an applicator gun. Why dispensable flux? Many companies find the
+    approx_offset: 70153
+  actor: unknown
+  notes: a dispensing device that deposits flux onto the work; instructional prose
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+- id: lucasmilhaupt_com-equipments-0004
+  name: automated flux dispensing machines
+  status: confirmed
+  acceptable_forms:
+  - automated machines
+  evidence:
+  - quote: refractory oxides, fluxes for long heating cycles, and fluxes for dispensing by automated machines.
+    approx_offset: 71066
+  actor: unknown
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+- id: lucasmilhaupt_com-equipments-0005
+  name: brazing furnace
+  status: confirmed
+  acceptable_forms:
+  - brazing furnace
+  - furnace
+  - vacuum furnace
+  - furnace brazing
+  evidence:
+  - quote: brazing occurs in a controlled atmosphere (i.e. a gaseous mixture contained in an enclosed space, usually
+      a brazing furnace). The atmosphere (such as hydrogen, nitrogen
+    approx_offset: 73841
+  - quote: and appropriate filler metals used in brazing such as torch, induction, resistance, vacuum furnace, and
+      more
+    approx_offset: 193673
+  actor: unknown
+  notes: named in the how-to manual as a heating method the READER may have, and in the Braze School syllabus; a
+    furnace acts on the work, so it qualifies
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+- id: lucasmilhaupt_com-equipments-0006
+  name: induction work coil
+  status: disputed
+  acceptable_forms:
+  - work coil
+  evidence:
+  - quote: When fixturing for induction heating, keep fixtures away from the work coil, so they will not act as
+      heat sinks or interfere
+    approx_offset: 79046
+  actor: unknown
+  notes: the coil is the induction heater's business end and couples energy into the work | the induction work coil
+    is the applicator the induction heater acts THROUGH ('keep fixtures away from the work coil ... interfere with
+    the magnetic field'), which is exactly what the clause's tooling exclusion covers.
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: disputed
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+    reason: the induction work coil is the applicator the induction heater acts THROUGH ('keep fixtures away from
+      the work coil ... interfere with the magnetic field'), which is exactly what the clause's tooling exclusion
+      covers.
+- id: lucasmilhaupt_com-equipments-0007
+  name: induction heating equipment
+  status: disputed
+  acceptable_forms:
+  - induction heating
+  - induction brazing
+  - induction
+  evidence:
+  - quote: When fixturing for induction heating, keep fixtures away from the work coil, so they will not act as
+      heat sinks or interfere
+    approx_offset: 79046
+  - quote: 'are four main types of brazing heating methods: torch or manual brazing, induction brazing, resistance
+      brazing, and vacuum brazing. The heating method most commonly used in brazing'
+    approx_offset: 79975
+  actor: unknown
+  notes: named as a heating method rather than a named machine; kept because the method implies the machine, which
+    is how the field clause reads ('names, states or implies') | no machine is named anywhere - all three acceptable
+    forms ('induction heating', 'induction brazing', 'induction') are PROCESS names, and they are already process_caps-0051.
+    The heater is only inferable from the operation, which is the brief's own dispute example.
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: disputed
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+    reason: no machine is named anywhere - all three acceptable forms ('induction heating', 'induction brazing',
+      'induction') are PROCESS names, and they are already process_caps-0051. The heater is only inferable from
+      the operation, which is the brief's own dispute example.
+- id: lucasmilhaupt_com-equipments-0008
+  name: torch
+  status: confirmed
+  acceptable_forms:
+  - torch
+  - hand held torch
+  - hand-held torch
+  - oxy-acetylene torch
+  - oxy-acetylene torches
+  evidence:
+  - quote: brazing, resistance brazing, and vacuum brazing. The heating method most commonly used in brazing a single
+      assembly is the hand held torch, therefore most of this guide will focus on manual
+    approx_offset: 80058
+  - quote: 'most popular is still the oxy/acetylene mixture. When it comes to safely brazing with oxy-acetylene
+      torches, let''s look at two important aspects: safety'
+    approx_offset: 81229
+  actor: unknown
+  notes: a hand-held torch is a device that acts directly on the work (it heats and joins it), so it qualifies under
+    'used directly to process ... materials'; the hand-tool-vs-machine question is the only argument against it.
+    Context is instructional prose addressed to the reader.
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+- id: lucasmilhaupt_com-equipments-0009
+  name: soak tank
+  status: confirmed
+  acceptable_forms:
+  - soak tank
+  - soak bath
+  evidence:
+  - quote: Use hot water with agitation in a soak tank to remove excess flux immediately following the braze operation,
+      and
+    approx_offset: 91085
+  actor: unknown
+  notes: same argument as the ultrasonic cleaning tank
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+- id: lucasmilhaupt_com-equipments-0010
+  name: ultrasonic cleaning tank
+  status: confirmed
+  acceptable_forms:
+  - ultrasonic cleaning tank
+  evidence:
+  - quote: 'more elaborate methods of removing flux as well—an ultrasonic cleaning tank to speed the action of the
+      hot water, or live steam. Additional cleaning methods include:'
+    approx_offset: 91924
+  actor: unknown
+  notes: the work is immersed in it and it acts on the work (cleans it); a tank is arguably a vessel rather than
+    a machine, which is the only argument against
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+- id: lucasmilhaupt_com-equipments-0011
+  name: machine tool
+  status: confirmed
+  acceptable_forms:
+  - machine tool
+  evidence:
+  - quote: in machine repair. A broken or damaged metal shaft, bearing or gear could put a vitally-needed machine
+      tool out of production. Replacement of the part might take as long as
+    approx_offset: 127048
+  actor: client
+  notes: 'WWII history page: a customer''s machine tool repaired with Sil-Fos, not the subject''s own'
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+- id: lucasmilhaupt_com-equipments-0012
+  name: high precision equipment
+  status: confirmed
+  acceptable_forms:
+  - high precision equipment
+  evidence:
+  - quote: produce simple, compound or progressive dies, utilizing high precision equipment to manufacture washers,
+      discs, perforated strip and irregular configurations.
+    approx_offset: 153544
+  notes: the stamping presses, named only generically
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+- id: lucasmilhaupt_com-equipments-0013
+  name: high speed machines
+  status: confirmed
+  acceptable_forms:
+  - high speed machines
+  evidence:
+  - quote: Manufactured by high speed machines, rings maintain a true radius and may be partial turn, full turn
+      or multiple
+    approx_offset: 154483
+  notes: the preform/ring-forming machines on the Capabilities page
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+- id: lucasmilhaupt_com-equipments-0014
+  name: heating station
+  status: confirmed
+  acceptable_forms:
+  - heating station
+  evidence:
+  - quote: possible to automate this tracing operation, moving the joint line, for example, past a heating station
+      and feeding filler wire automatically from big
+    approx_offset: 164243
+  actor: unknown
+  notes: named inside the brazing-vs-welding argument as part of an automated welding line
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+- id: lucasmilhaupt_com-equipments-0015
+  name: HVAC/R brazing equipment
+  status: confirmed
+  acceptable_forms:
+  - HVAC/R brazing equipment
+  - brazing equipment
+  evidence:
+  - quote: Lucas Milhaupt offers the best brazing alloys, soldering products, and HVAC/R brazing equipment on the
+      market.
+    approx_offset: 184541
+  actor: reseller_inventory
+  notes: stated as something the company offers on the market; appears on four product detail pages
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+- id: lucasmilhaupt_com-equipments-0016
+  name: steam lance
+  status: candidate
+  acceptable_forms:
+  - steam lance
+  - Steam lance cleaning
+  evidence:
+  - quote: Steam lance cleaning - This process employs superheated steam under pressure to dissolve and blast away
+      flux residue.
+    approx_offset: 92091
+  actor: unknown
+  notes: a device that acts directly on the work (blasts flux residue off the brazed part); same class as the seeded
+    torch and soak tank
+  provenance:
+  - action: added
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+    source: verification-pass-miss
+- id: lucasmilhaupt_com-equipments-0017
+  name: automated pick-and-place
+  status: candidate
+  acceptable_forms:
+  - automated pick-and-place
+  - pick-and-place
+  evidence:
+  - quote: Available as laser-cut frames, washer preforms, or ribbon for automated pick-and-place, this Au88/Ge12
+      eutectuc is designed for high-reliability hermetic seals. Excellent
+    approx_offset: 23516
+  actor: client
+  notes: an assembly machine that places the preform on the work; 'assemble' is one of the clause's own verbs
+  provenance:
+  - action: added
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+    source: verification-pass-miss
+false_friends:
+- form: dies
+  reason: 'witnessed heavily (4,000 dies, stock dies, progressive dies, carbide and diamond dies): TOOLING, which
+    the equipment clause excludes by name'
+- form: progressive dies
+  reason: 'witnessed: tooling the stamping press holds, not the machine'
+- form: carbide and diamond dies
+  reason: 'witnessed: wire-drawing tooling; the metals in it belong to material_caps'
+- form: fixture
+  reason: 'witnessed ~20x with a whole ''Fixture Facts'' and ''Fixturing Tips'' section: tooling, excluded by name.
+    The densest equipment-shaped trap in this subject.'
+- form: brazing support fixture
+  reason: 'witnessed: tooling, excluded by name'
+- form: grinding wheel
+  reason: 'witnessed: an abrasive the machine acts through -- tooling, and the operation (''abrasive cleaning'')
+    belongs in process_caps'
+- form: wire brush
+  reason: 'witnessed 3x: a hand tool for flux removal, not a production machine'
+- form: spray bottle
+  reason: 'witnessed: a hand applicator, not a production machine'
+- form: mass spectrometer
+  reason: 'witnessed: leak-detection instrumentation -- equipment that only tests, excluded by name; the operation
+    ''Vacuum testing'' is a process_caps entry'
+- form: transducer
+  reason: 'witnessed: ultrasonic inspection instrumentation -- measures only'
+- form: ventilating fans
+  reason: 'witnessed: plant ventilation -- conditions the plant, excluded by name'
+- form: exhaust hoods
+  reason: 'witnessed: plant ventilation, excluded by name'
+- form: respirators
+  reason: 'witnessed: personal protective equipment, not a production machine'
+- form: Oxygen cylinders
+  reason: 'witnessed: gas storage -- stores and carries, excluded by name'
+- form: regulators
+  reason: 'witnessed: gas pressure conditioning, not acting on the work'
+- form: check valves
+  reason: 'witnessed: torch gas-line safety hardware'
+- form: flashback arrestors
+  reason: 'witnessed: torch gas-line safety hardware'
+- form: spools
+  reason: 'witnessed: ''feeding filler wire automatically from big spools'' and ''package the material on either
+    spools or coils'' -- carries and stores, and is also packaging'
+- form: stencil
+  reason: 'witnessed: paste-application tooling (''automated dispensing, stencil, or syringe'')'
+- form: lab equipment
+  reason: 'witnessed: ''state of the art lab equipment'' -- testing and analysis, excluded'
+- form: analytical labs
+  reason: 'witnessed: a facility for testing, excluded'
+- form: clean lab room
+  reason: 'witnessed: a facility, not a machine'
+- form: MRI
+  reason: 'witnessed: a CUSTOMER''S medical device that brazed joints go into -- a product, not a production machine
+    (belongs in products)'
+- form: X-ray
+  reason: 'witnessed twice with different senses: the customer''s diagnostic machine, and ''X-ray absorption ratios''
+    inside radiographic examination -- neither is a production machine'
+- form: compressors
+  reason: 'witnessed: HVAC/R components the customer builds -- a product, and an air compressor would be plant utility
+    anyway'
+- form: evaporators
+  reason: 'witnessed: HVAC/R components the customer builds -- a product'
+- form: condensers
+  reason: 'witnessed: HVAC/R components the customer builds -- a product'
+- form: CNC machine
+  reason: 'anticipatory: does not occur anywhere; word-association from ''precision'', ''stamping'', ''tolerances'''
+- form: press brake
+  reason: 'anticipatory: does not occur; word-association from ''stamping'' and ''strip'''
+- form: rolling mill
+  reason: 'anticipatory: does not occur -- the text says ''Strip Rolling'' and ''not available directly from the
+    mills'', never a named mill machine'

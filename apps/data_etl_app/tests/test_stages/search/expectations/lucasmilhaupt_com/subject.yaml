@@ -1,0 +1,132 @@
+subject: lucasmilhaupt.com
+slug: lucasmilhaupt_com
+role: genre_probe
+business_type: brazing alloy and flux maker; ~1,000 lines of second-person technical manual; product IS the material
+snapshot:
+  file: apps/data_etl_app/tests/test_stages/sample_scraped_texts/lucasmilhaupt.com.txt
+  sha256: d92eed67ef99d67a791896d0467d78dc0c60bf7a96e2ec6f99926618da193236
+eval_set_version: 1
+context: 'Lucas-Milhaupt LLC (Cudahy, WI; a Steel Partners company) -- a vertically integrated maker of brazing
+  filler metals, fluxes, pastes and custom preforms, with plants in Cudahy WI, Warwick RI, Riberac France and Suzhou
+  China. 69 pages / 6,493 lines / 259 KB.
+
+
+  WHY THIS SUBJECT IS IN THE CORPUS -- THE PRODUCT-IS-A-MATERIAL CASE. It is the corpus''s only consumable-materials
+  maker: what it manufactures and ships IS a material. Sil-Fos, Silvaloy, Silvacut, Premabraze 800/880, AL 718,
+  AL 822, Handy One, Handy Flux, Handy Paste, Handy Flo and Easy-Flo are simultaneously (a) finished artifacts coming
+  out of its own casting, rolling, drawing and stamping lines, and (b) alloys and chemical compounds. Both field
+  clauses are satisfied by the SAME OBJECT: the products clause because it ''comes out of manufacturing work'',
+  the material_caps clause because it is ''a substance ... named generically, by trade name, or by an alloy or grade
+  designation''. EVERY such object is therefore seeded in BOTH products.yaml and material_caps.yaml, deliberately,
+  rather than one field being chosen -- neither field is wrong to return it, and scoring a run for returning it
+  in ''the wrong one'' would be measuring the taxonomy, not the run. Physical forms (wire, strip, rings, foils,
+  washers, sticks) stay products-only; elements, compositions and grades stay material_caps-only.'
+scrape_hazards:
+- hazard: 'COUNTRY-DROPDOWN GEO POISON: the full ~240-entry ISO country list is dumped into the body text TWICE,
+    on /Industries/HVACR/OEM and /Industries/HVACR/Distributor. Countries are geography, not industries; a dozen
+    are seeded as industries false_friends, ''Brazil'' especially since its first four letters collide with ''braz(ing)''.'
+  quote: Congo {Democratic Rep}
+- hazard: 'DISTRIBUTOR-REP DUMP: the same two pages also dump a 50-entry US state selector plus 19 manufacturer''s-rep
+    companies with contact names, emails and street addresses. Company names, not customers or capabilities; ''Sterling''
+    appears only inside one of the addresses.'
+  quote: 100 Sterling Pkwy, Suite 111
+- hazard: 'SECOND-PERSON TECHNICAL MANUAL: roughly 1,000 lines across Brazing-Fundamentals (lines 1186-1757), Principles-of-Joint-Design,
+    Why-Brazing, Brazing-vs-Soldering and Brazing-vs-Welding are a how-to addressed to the READER, not a first-party
+    capability claim. It names two dozen further processes (degreasing, acid pickling, abrasive cleaning, sandblasting,
+    quenching, twelve NDT and destructive test methods) and several machines (furnace, torch, work coil, applicator
+    gun, soak tank). Recall-first keeps all of them as entries; every one carries actor: unknown for that reason.'
+  quote: you should take care to maintain a clearance between the base metals
+- hazard: 'NEGATION / CONTRAST ECHO: /Brazing-Academy/Metal-Joining-Brazing-vs.-Welding argues at length AGAINST
+    welding, and /Why-Brazing and /Brazing-vs-Soldering do the same for mechanical fastening, adhesive bonding and
+    soft soldering. Welding, electrical resistance welding, electron beam, capacitor discharge and friction welding
+    occur ONLY as the rejected alternative. They are seeded (the text does name them) with the contrast recorded
+    in notes -- a downstream stage that reads them as this company''s capabilities is wrong.'
+  quote: there are disadvantages to this linear-joint-welding approach
+- hazard: '8 of 69 pages are BYTE-IDENTICAL duplicates: /EN/Industries/{HVACR,Automotive,Microelectronic,Medical,Aerospace,Electrical,Oil-and-Gas}.htm
+    and /NA/EN/About/Contact-Us.htm mirror their non-.htm originals. Every phrase on the seven industry pages therefore
+    occurs exactly twice, which inflates any frequency reading.'
+  quote: https://www.lucasmilhaupt.com/EN/Industries/HVACR.htm
+- hazard: 'TRUNCATED ALLOY CATALOG: /Resources-Library/Technical-and-Safety-Data-Sheets announces 517 results and
+    18 pages but the scrape captured only page 1 -- 30 rows. Those 30 rows are the densest material designations
+    in the corpus (78ZN/22AL, 97.5PB/2.5AG, 35AU/62CU/3NI VTG); the other ~487 are simply not in the text and cannot
+    be expected.'
+  quote: 517 Results Listed
+- hazard: 'FILTER-FACET LIST ITEMS: the /Products/Pastes page renders its facets as bare lines with a count suffix
+    and no sentence around them (''Carbide(6)'', ''Stainless Steel(6)'', ''Gold and/or Palladium Filler Metals(4)'').
+    They are real material designations arriving with no grammatical context at all.'
+  quote: Cadmium-Bearing Silver Filler Metals(1)
+- hazard: 791 NON-BREAKING SPACES across 716 lines, several of them MID-PHRASE ('Sil-Fos alloys', 'Brazing applications include').
+    Any quote or form crossing one must be matched with elastic whitespace. There are zero ASCII double-spaces.
+  quote: Brazing applications include electronics/electrical, aerospace, automotive
+- hazard: 'COOKIE / CMS BOILERPLATE: /Privacy lists ASP.NET, Google Tag Manager, Google Analytics, HubSpot and Titan
+    CMS cookie names in prose. Software-name junk pressure for equipments and products.'
+  quote: 'ASP.NET Framework Cookies: Technology stack required for hosting website.'
+- hazard: 'TYPOS THAT BREAK EXACT MATCHING: ''Manfacturing Excellence'', ''Techincal and Safety Data Sheets'', ''Good
+    Fit and Proper Learances'' (heading) vs ''Proper Clearances'' (body), ''Precision Capabilites'', ''eutectuc'',
+    ''tinest cond pads'', ''prodvide'', ''collabortative'', ''protype'', ''COOKIE EXPLAINATION'', ''shrader valves'',
+    ''síx months'' (accented i), and the URL /About/Center-of-Exellence.'
+  quote: Manfacturing Excellence from Casting to Fabrication
+- hazard: 'INTERNAL FACT CONTRADICTIONS: the alloy portfolio is ''500 custom alloys'' on the home, microelectronics
+    and Lucas pages but ''400 custom alloys'' on /About; Sil-Fos is ''patented in 1931'' on four pages and ''invented
+    ... in 1932'' on the Distributor page; company age is given as 80 years, 75 years and ''nearly ninety years''.'
+  quote: With more than 400 custom alloys and decades of applications expertise
+- hazard: 'WITHIN-CORPUS HOMOGRAPH ''dies'': stamping TOOLING on /Services/Capabilities (''4,000 dies'', ''progressive
+    dies'', ''carbide and diamond dies'') and SEMICONDUCTOR DIES on the microelectronics page (''semiconductor chips
+    (dies)''). One is excluded from equipments as tooling, the other is a genuine product. The bare form is unscoreable
+    without context.'
+  quote: high-purity solders for attaching semiconductor chips (dies) to substrates
+- hazard: '''Lead'' is a real material here (lead-free alloys, Tin-Lead Soft Solders, 97.5PB/2.5AG) but the bare
+    token occurs ~24 times and is ''lead time'' or ''leading'' in all but three of them. The material_caps entry
+    deliberately excludes the bare word from its forms.'
+  quote: we deliver consistent quality, shorter lead times
+- hazard: EMPLOYEE TESTIMONIALS on /About/Careers give first names and job titles ('Goyko, Plant Metallurgist'),
+    each repeated three times by a carousel. Personnel, not capabilities.
+  quote: '- Goyko, Plant Metallurgist'
+- hazard: 'PARENT-COMPANY CSR CONTENT: Steel Partners, Steel Sports, Kids First youth sports camps, DEI and Code
+    of Conduct sections. ''Steel'' in all of these is a corporate name, not the metal.'
+  quote: Steel Sports exists to forge a path of success for the next generation of leaders
+- hazard: 'MALFORMED UNITS on every product detail page: a stray degree sign after the Fahrenheit value (''900 °F
+    °, 482 °C'').'
+  quote: 900 °F °, 482 °C
+sampling_notes: 'READ EXHAUSTIVELY -- all 6,493 lines, in sed slices of 200-450 lines: 1-120, 105-440, 438-780,
+  780-1190, 1190-1450, 1450-1760, 1758-2200, 2199-2600, 2600-3000, 3000-3440, 3437-3880, 3875-4100, 4096-4640, 4632-5010,
+  5004-5570, 5565-5860. Lines 5848-6493 were then PROVEN by md5 to be byte-identical duplicates of pages already
+  read (the eight .htm mirrors), so they were not re-read line by line; the duplicate check itself is recorded above
+  as a hazard.
+
+
+  Targeted grep sweeps after the read: standards bodies (ISO|ASTM|ANSI|AMS|AWS|AS9100|NADCAP|UL|CE|IATF|ITAR|DFARS|RoHS|NATE);
+  AWS/ISO filler classes (BAg|BCuP|BAlSi|BVAg|Ag 272|Al 112); every ''Industry Specifications'' / ''AMS:'' / ''AWS:''
+  block; all 33 metal, alloy and ceramic nouns with occurrence counts; every trade name (Sil-Fos|Silvaloy|Silvacut|Premabraze|Handy
+  *|Easy-Flo|Fos-Flo|AL 822|AL 718|AL CC|Cone Cored|Stop-Off|Wolverine); every distinct -ing word in the file (~290
+  of them, reviewed in full); and an anchor-existence check on ~180 candidate quotes before any entry was written.
+  Every quote in this seed was extracted programmatically from the file by line offset and re-verified against the
+  file with the harness''s own flexible_pattern matcher -- none was retyped.'
+notes: 'All six fields are non-empty; none is expected_empty. Entry counts are the corpus''s largest so far because
+  the subject is genuinely dense, not because the boundary was stretched.
+
+
+  PRODUCT-IS-A-MATERIAL OVERLAP: 13 objects are seeded in BOTH products and material_caps (Sil-Fos, Silvaloy, Silvacut,
+  Premabraze 800, Premabraze 880, AL 718, AL 822, Handy One, Handy Flux, Handy Paste, Easy-Flo, Fos-Flo 7, Stop-Off),
+  each carrying a note saying so. This is the point of the subject.
+
+
+  EQUIPMENTS was seeded strictly to the prompt clause, not to the word ''equipment'' -- the alecmfg false-RED lesson.
+  Dies, fixtures, grinding wheels, wire brushes, the mass spectrometer, the ultrasonic transducer, ventilating fans,
+  exhaust hoods, gas cylinders, regulators, check valves, flashback arrestors, spools, stencils, lab equipment and
+  the customer''s MRI/X-ray machines are all recorded as false_friends rather than entries. Only 15 things survive
+  as production machines, and several of those carry actor: unknown because they are named in reader-addressed how-to
+  prose.
+
+
+  STATUS_HINT DISPUTED was used on 24 entries where I believe the clause and the plain reading disagree, so the
+  argument survives without gating: torch fuel gases and pickling chemicals under material_caps (''substance the
+  work is made from or performed in'' arguably excludes them); brazing audits, consulting, Six Sigma and VMI under
+  process_caps (services and methodologies rather than operations on the work); customer-specific approvals, the
+  Code of Conduct, the Sil-Fos patent and Six Sigma under conformity_attestations (the membership/licence argument
+  class).'
+provenance:
+- action: added
+  by: seed-agent-lucasmilhaupt-com
+  date: '2026-08-27'
+  source: corpus-seed

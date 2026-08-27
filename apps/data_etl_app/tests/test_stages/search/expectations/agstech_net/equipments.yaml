@@ -1,0 +1,3572 @@
+subject: agstech.net
+field: equipments
+snapshot:
+  file: apps/data_etl_app/tests/test_stages/sample_scraped_texts/agstech.net.txt
+  sha256: 1bc0ba503cc3d838798442a2b98cd509bb20604d97c42c21dc206b850317fc2f
+eval_set_version: 2
+expected_empty: false
+notes: Deliberately small relative to the subject's size. This site sells and describes hundreds of test instruments,
+  hand tools, material-handling gear and tooling, all of which the equipments clause excludes; they are seeded as
+  products instead. Machines AGS-TECH resells that DO act on the work carry actor reseller_inventory.
+entries:
+- id: agstech_net-equipments-0001
+  name: CNC machines
+  status: confirmed
+  acceptable_forms:
+  - automated CNC machines
+  - CNC machines
+  - automated CNCs
+  evidence:
+  - quote: For almost all fabrication techniques, whether it be conventional or non-conventional, we do use CAD/CAM
+      and automated CNC machines as well as manual machines.
+    approx_offset: 21920
+  notes: 'AGS-TECH is an intermediary: line 3239 says ''We own some of these manufacturing plants and have partial
+    ownership in some others.'' Actor recorded as the first-person claim; partner-plant ownership is unresolved
+    and is a downstream stage''s problem.'
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-equipments-0002
+  name: manual machines / conventional machine tools
+  status: confirmed
+  acceptable_forms:
+  - manual machines
+  - conventional machine tools
+  - manual machinery
+  evidence:
+  - quote: For almost all fabrication techniques, whether it be conventional or non-conventional, we do use CAD/CAM
+      and automated CNC machines as well as manual machines.
+    approx_offset: 21920
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-equipments-0003
+  name: hose crimping machine
+  status: confirmed
+  acceptable_forms:
+  - Hose Crimping Machines
+  evidence:
+  - quote: '- Hose Crimping Machines'
+    approx_offset: 348055
+  - quote: Hose Crimping Machines
+    approx_offset: 62299
+  actor: reseller_inventory
+  notes: Named in a private-label / white-label CATALOG LIST of goods AGS-TECH resells, not as a machine they run.
+    Seeded here as DISPUTED because it is unambiguously a production machine under the equipments clause (it acts
+    on the work) while the actor is reseller_inventory; the primary entry for it is under products.
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-equipments-0004
+  name: power tools
+  status: disputed
+  acceptable_forms:
+  - Power Tools
+  evidence:
+  - quote: Private Label Power Tools for Every Industry
+    approx_offset: 63861
+  actor: reseller_inventory
+  notes: 'DISPUTED: hand-held power tools sit between a production machine and tooling; they are resold goods here,
+    so products is the likelier home. | ''Private Label Power Tools'' is a merchandise category the site itself
+    groups with hand tools (''We can private label these hand tools'' sits under the Power Tools heading). A hand-held
+    tool the operator drives is arguable as a production machine; the power tools that do act on the work are already
+    covered by products-0124'
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: disputed
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+    reason: '''Private Label Power Tools'' is a merchandise category the site itself groups with hand tools (''We
+      can private label these hand tools'' sits under the Power Tools heading). A hand-held tool the operator drives
+      is arguable as a production machine; the power tools that do act on the work are already covered by products-0124'
+- id: agstech_net-equipments-0005
+  name: flowlines
+  status: confirmed
+  acceptable_forms:
+  - FLOWLINES
+  - automation flowlines
+  evidence:
+  - quote: At the other extreme, for an order that requires minimum flexibility but maximum productivity, we assign
+      the production to our FLOWLINES and TRANSFER LINES.
+    approx_offset: 99107
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-equipments-0006
+  name: dedicated special-purpose machinery
+  status: confirmed
+  acceptable_forms:
+  - dedicated special-purpose machinery
+  evidence:
+  - quote: Our mass production facilities are equipped with automation equipment which are dedicated special-purpose
+      machinery.
+    approx_offset: 99687
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-equipments-0007
+  name: transfer machines / transfer lines
+  status: confirmed
+  acceptable_forms:
+  - transfer machines
+  - TRANSFER LINES
+  - transfer lines
+  evidence:
+  - quote: These are high value modern automation equipment called transfer machines that produce components very
+      fast for pennies a piece in most cases.
+    approx_offset: 101051
+  notes: '''high value modern automation equipment called transfer machines'''
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-equipments-0008
+  name: industrial robots
+  status: confirmed
+  acceptable_forms:
+  - INDUSTRIAL ROBOTS
+  - industrial robots
+  - Industrial Robot Platforms
+  evidence:
+  - quote: Vital components in our automation lines are INDUSTRIAL ROBOTS.
+    approx_offset: 104525
+  notes: '''Besides moving objects they do also other operations in our automation lines, such as welding, soldering,
+    arc cutting, drilling, deburring, grinding, spray painting'' -- acts on the work, so not excluded as material
+    handling'
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-equipments-0009
+  name: articulated variable-sequence robots
+  status: confirmed
+  acceptable_forms:
+  - articulated variable-sequence robots
+  evidence:
+  - quote: Our articulated variable-sequence robots enable human-like complex movements in multiple operation sequences,
+      any of which they can
+    approx_offset: 105228
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-equipments-0010
+  name: intelligent sensory robots
+  status: confirmed
+  acceptable_forms:
+  - intelligent sensory robots
+  evidence:
+  - quote: For demanding automation applications, our intelligent sensory robots carry out functions similar to
+      humans in complexity.
+    approx_offset: 105486
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-equipments-0011
+  name: lathes
+  status: confirmed
+  acceptable_forms:
+  - lathes
+  evidence:
+  - quote: Machine tools used in our manufacturing cells are generally lathes, milling machines, drills, grinders,
+      machining centers, EDM, injection molding machines…
+    approx_offset: 128081
+  notes: '''Machine tools used in our manufacturing cells are generally lathes, milling machines, drills, grinders,
+    machining centers, EDM, injection molding machines'''
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-equipments-0012
+  name: milling machines
+  status: confirmed
+  acceptable_forms:
+  - milling machines
+  evidence:
+  - quote: Machine tools used in our manufacturing cells are generally lathes, milling machines, drills, grinders,
+      machining centers, EDM, injection molding machines…
+    approx_offset: 128081
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-equipments-0013
+  name: drills (drilling machines)
+  status: confirmed
+  acceptable_forms:
+  - drills
+  evidence:
+  - quote: Machine tools used in our manufacturing cells are generally lathes, milling machines, drills, grinders,
+      machining centers, EDM, injection molding machines…
+    approx_offset: 128081
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: amended
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+    reason: the form 'drills, grinders' contains equipments-0014's sole form 'grinders', so this entry credits whenever
+      the drill is never returned. 'drills' is in the same quote and is what the entry claims.
+- id: agstech_net-equipments-0014
+  name: grinders
+  status: confirmed
+  acceptable_forms:
+  - grinders
+  evidence:
+  - quote: Machine tools used in our manufacturing cells are generally lathes, milling machines, drills, grinders,
+      machining centers, EDM, injection molding machines…
+    approx_offset: 128081
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-equipments-0015
+  name: machining centers
+  status: confirmed
+  acceptable_forms:
+  - machining centers
+  evidence:
+  - quote: Machine tools used in our manufacturing cells are generally lathes, milling machines, drills, grinders,
+      machining centers, EDM, injection molding machines…
+    approx_offset: 128081
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-equipments-0016
+  name: EDM machines
+  status: confirmed
+  acceptable_forms:
+  - EDM
+  evidence:
+  - quote: Machine tools used in our manufacturing cells are generally lathes, milling machines, drills, grinders,
+      machining centers, EDM, injection molding machines…
+    approx_offset: 128081
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: amended
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+    reason: the form 'EDM, injection molding machines' contains equipments-0017's sole form, so the two cross-credit.
+      'EDM' alone is in the same quote and is matched case-sensitively on word boundaries, which is the distinctive
+      form.
+- id: agstech_net-equipments-0017
+  name: injection molding machines
+  status: confirmed
+  acceptable_forms:
+  - injection molding machines
+  evidence:
+  - quote: Machine tools used in our manufacturing cells are generally lathes, milling machines, drills, grinders,
+      machining centers, EDM, injection molding machines…
+    approx_offset: 128081
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-equipments-0018
+  name: CNC lathe
+  status: confirmed
+  acceptable_forms:
+  - CNC lathe
+  evidence:
+  - quote: Examples are CNC milling machine and operator, CNC grinder and operator, CNC lathe and operator.
+    approx_offset: 132340
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-equipments-0019
+  name: CNC grinder
+  status: confirmed
+  acceptable_forms:
+  - CNC grinder
+  evidence:
+  - quote: Examples are CNC milling machine and operator, CNC grinder and operator, CNC lathe and operator.
+    approx_offset: 132340
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-equipments-0020
+  name: CNC milling machine
+  status: confirmed
+  acceptable_forms:
+  - CNC milling machine
+  evidence:
+  - quote: Examples are CNC milling machine and operator, CNC grinder and operator, CNC lathe and operator.
+    approx_offset: 132340
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-equipments-0021
+  name: miniature lathes
+  status: confirmed
+  acceptable_forms:
+  - Miniature lathes
+  evidence:
+  - quote: Miniature lathes, with 1.5 Watt motor and dimensions of 32 x 25 x 30.5 mm and weights of 100 grams have
+      been fabricated using mesoscale manufacturing methods.
+    approx_offset: 154781
+  actor: unknown
+  notes: Textbook/explainer prose with 'we' injected -- pedagogy, not a verified capability claim. Mesomanufacturing
+    explainer, not a machine AGS-TECH states it owns.
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-equipments-0022
+  name: miniature milling machines and presses
+  status: confirmed
+  acceptable_forms:
+  - miniature machine tools
+  evidence:
+  - quote: Other such miniature machine tools such as milling machines and presses have also been manufactured using
+      mesomanufacturing.
+    approx_offset: 155077
+  actor: unknown
+  notes: Textbook/explainer prose with 'we' injected -- pedagogy, not a verified capability claim.
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: amended
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+    reason: the form 'miniature machine tools such as milling machines and presses' is a claim span that contains
+      equipments-0012's form 'milling machines'. 'miniature machine tools' is the designation and is verbatim in
+      the same quote.
+- id: agstech_net-equipments-0023
+  name: robotic machines
+  status: confirmed
+  acceptable_forms:
+  - Robotic Machines, Robots
+  evidence:
+  - quote: '- Robotic Machines, Robots'
+    approx_offset: 223460
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-equipments-0024
+  name: high vacuum equipment
+  status: disputed
+  acceptable_forms:
+  - High Vacuum Equipment
+  evidence:
+  - quote: '- High Vacuum Equipment'
+    approx_offset: 223488
+  notes: 'DISPUTED: a vacuum system arguably conditions the process environment rather than acting on the work,
+    which would put it on the excluded side of the equipments clause. Also seeded under products, where it is unambiguous.
+    | a generic group heading with no machine named; vacuum systems condition the process environment rather than
+    act on the work, and the clause excludes equipment that ''powers or conditions the plant''.'
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: disputed
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+    reason: a generic group heading with no machine named; vacuum systems condition the process environment rather
+      than act on the work, and the clause excludes equipment that 'powers or conditions the plant'.
+- id: agstech_net-equipments-0025
+  name: thermal processing machines and equipment
+  status: confirmed
+  acceptable_forms:
+  - Thermal Processing Machines and Equipment
+  evidence:
+  - quote: '- Thermal Processing Machines and Equipment'
+    approx_offset: 223569
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-equipments-0026
+  name: continuous process machines and equipment
+  status: confirmed
+  acceptable_forms:
+  - Continuous Process Machines and Equipment
+  evidence:
+  - quote: '- Continuous Process Machines and Equipment'
+    approx_offset: 223614
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-equipments-0027
+  name: special purpose machines
+  status: confirmed
+  acceptable_forms:
+  - Special Purpose Machines Automation
+  - Special Purpose Machines
+  evidence:
+  - quote: '- Special Purpose Machines Automation'
+    approx_offset: 224050
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-equipments-0028
+  name: one-off machines
+  status: confirmed
+  acceptable_forms:
+  - One-Off Machines
+  evidence:
+  - quote: '- One-Off Machines'
+    approx_offset: 224089
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-equipments-0029
+  name: pipe bending machines
+  status: confirmed
+  acceptable_forms:
+  - Pipe bending machines
+  evidence:
+  - quote: '- Pipe bending machines'
+    approx_offset: 224508
+  notes: machines AGS-TECH builds, rebuilds or upgrades
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-equipments-0030
+  name: sheet metal bending and forming machines
+  status: confirmed
+  acceptable_forms:
+  - sheet metal bending and forming machines
+  - Press room equipment
+  evidence:
+  - quote: '- Press room equipment such as sheet metal bending and forming machines'
+    approx_offset: 224533
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-equipments-0031
+  name: cable and wire winding machines
+  status: confirmed
+  acceptable_forms:
+  - Cable and wire winding machines
+  evidence:
+  - quote: '- Cable and wire winding machines, coil processing'
+    approx_offset: 224606
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-equipments-0032
+  name: crushers
+  status: confirmed
+  acceptable_forms:
+  - Single and double leg crushers
+  - crushers
+  evidence:
+  - quote: '- Single and double leg crushers'
+    approx_offset: 224710
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-equipments-0033
+  name: labeling, printing, packaging machines
+  status: confirmed
+  acceptable_forms:
+  - Labeling, printing, packaging machines
+  evidence:
+  - quote: '- Labeling, printing, packaging machines'
+    approx_offset: 224744
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-equipments-0034
+  name: metal forming machinery
+  status: confirmed
+  acceptable_forms:
+  - Metal forming machinery
+  evidence:
+  - quote: '- Metal forming machinery'
+    approx_offset: 224786
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-equipments-0035
+  name: slitting, trimming, cutting machines
+  status: confirmed
+  acceptable_forms:
+  - Slitting, trimming, cutting machines
+  evidence:
+  - quote: '- Slitting, trimming, cutting machines'
+    approx_offset: 224847
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-equipments-0036
+  name: shape correction and leveling machinery
+  status: confirmed
+  acceptable_forms:
+  - Shape correction and leveling machinery
+  evidence:
+  - quote: '- Shape correction and leveling machinery'
+    approx_offset: 224887
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-equipments-0037
+  name: grinding machines
+  status: confirmed
+  acceptable_forms:
+  - Grinding machines
+  evidence:
+  - quote: '- Grinding machines'
+    approx_offset: 224930
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-equipments-0038
+  name: chopping machinery
+  status: confirmed
+  acceptable_forms:
+  - Chopping Machinery
+  evidence:
+  - quote: '- Chopping Machinery'
+    approx_offset: 224951
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-equipments-0039
+  name: ovens, dryers, roasters
+  status: confirmed
+  acceptable_forms:
+  - Ovens, dryers, roasters
+  evidence:
+  - quote: '- Ovens, dryers, roasters'
+    approx_offset: 224973
+  notes: kept in equipments because thermal processing acts on the product, unlike a plant utility
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-equipments-0040
+  name: food processing machines
+  status: confirmed
+  acceptable_forms:
+  - Food processing machines
+  evidence:
+  - quote: '- Food processing machines'
+    approx_offset: 225000
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-equipments-0041
+  name: sizing and separation machines
+  status: confirmed
+  acceptable_forms:
+  - Sizing and separation machines
+  evidence:
+  - quote: '- Sizing and separation machines'
+    approx_offset: 225028
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-equipments-0042
+  name: industrial filling machines
+  status: confirmed
+  acceptable_forms:
+  - Industrial filling machine solutions
+  - filling machine
+  evidence:
+  - quote: '- Industrial filling machine solutions'
+    approx_offset: 225062
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-equipments-0043
+  name: oiling, finishing, painting, coating machines
+  status: confirmed
+  acceptable_forms:
+  - Oiling, finishing, painting, coating machines
+  evidence:
+  - quote: '- Oiling, finishing, painting, coating machines'
+    approx_offset: 225149
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-equipments-0044
+  name: surface treatment equipment
+  status: confirmed
+  acceptable_forms:
+  - Surface treatment equipment
+  evidence:
+  - quote: '- Surface treatment equipment'
+    approx_offset: 225198
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-equipments-0045
+  name: brazing machines
+  status: confirmed
+  acceptable_forms:
+  - Brazing Machines
+  evidence:
+  - quote: Brazing Machines (We private label these with your brand name and logo if you wish)
+    approx_offset: 225991
+  actor: reseller_inventory
+  notes: private-labelled machine AGS-TECH resells
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-equipments-0046
+  name: collaborative robots
+  status: confirmed
+  acceptable_forms:
+  - Collaborative Robots
+  evidence:
+  - quote: Collaborative Robots
+    approx_offset: 226243
+  actor: reseller_inventory
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-equipments-0047
+  name: hose crimping machines
+  status: confirmed
+  acceptable_forms:
+  - Hose Crimping Machines
+  evidence:
+  - quote: Hose Crimping Machines  (We private label these with your brand name and logo if you wish)
+    approx_offset: 226707
+  actor: reseller_inventory
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-equipments-0048
+  name: hose cut-off / skive machine
+  status: confirmed
+  acceptable_forms:
+  - Hose-Cut-Off-Skive-Machine
+  evidence:
+  - quote: Hose-Cut-Off-Skive-Machine  (We private label these with your brand name and logo if you wish)
+    approx_offset: 226799
+  actor: reseller_inventory
+  notes: 'NOTE: the line carries two non-breaking spaces before the parenthetical'
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-equipments-0049
+  name: hose endforming machines
+  status: confirmed
+  acceptable_forms:
+  - Hose Endforming Machines
+  evidence:
+  - quote: Hose Endforming Machines  (We private label these with your brand name and logo if you wish)
+    approx_offset: 226895
+  actor: reseller_inventory
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-equipments-0050
+  name: robot palletizing workstation
+  status: disputed
+  acceptable_forms:
+  - Robot Palletizing Workstation
+  evidence:
+  - quote: Robot Palletizing Workstation
+    approx_offset: 227711
+  actor: reseller_inventory
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: disputed
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+    reason: palletizing stacks finished goods, i.e. it 'moves, stores, or carries what it makes', which the equipment
+      clause excludes. (The palletizing operation is still sound under process_caps-0260, whose clause carries no
+      handling exclusion.)
+  notes: palletizing stacks finished goods, i.e. it 'moves, stores, or carries what it makes', which the equipment
+    clause excludes. (The palletizing operation is still sound under process_caps-0260, whose clause carries no
+    handling exclusion.)
+- id: agstech_net-equipments-0051
+  name: robotic laser welding workstation
+  status: confirmed
+  acceptable_forms:
+  - Robotic Laser Welding Workstation
+  evidence:
+  - quote: Robotic Laser Welding Workstation
+    approx_offset: 227742
+  actor: reseller_inventory
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-equipments-0052
+  name: servo C-frame utility press
+  status: confirmed
+  acceptable_forms:
+  - Servo C-Frame Utility Press
+  evidence:
+  - quote: Servo C-Frame Utility Press (We private label these with your brand name and logo if you wish)
+    approx_offset: 227874
+  actor: reseller_inventory
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-equipments-0053
+  name: tube bending machines
+  status: confirmed
+  acceptable_forms:
+  - Tube Bending Machines
+  evidence:
+  - quote: Tube Bending Machines  (We private label these with your brand name and logo if you wish)
+    approx_offset: 227970
+  actor: reseller_inventory
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-equipments-0054
+  name: tube bending machine
+  status: confirmed
+  acceptable_forms:
+  - Tube Bending Machines
+  evidence:
+  - quote: '- Tube Bending Machines'
+    approx_offset: 349571
+  - quote: Tube Bending Machines
+    approx_offset: 227970
+  actor: reseller_inventory
+  notes: Named in a private-label / white-label CATALOG LIST of goods AGS-TECH resells, not as a machine they run.
+    Seeded here as DISPUTED because it is unambiguously a production machine under the equipments clause (it acts
+    on the work) while the actor is reseller_inventory; the primary entry for it is under products.
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-equipments-0055
+  name: welding robots
+  status: confirmed
+  acceptable_forms:
+  - Welding Robots
+  evidence:
+  - quote: Welding Robots Brochure
+    approx_offset: 228061
+  actor: reseller_inventory
+  notes: brochure of machines AGS-TECH supplies and integrates
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-equipments-0056
+  name: brazing machine
+  status: confirmed
+  acceptable_forms:
+  - Brazing Machines
+  evidence:
+  - quote: '- Brazing Machines'
+    approx_offset: 347644
+  actor: reseller_inventory
+  notes: Named in a private-label / white-label CATALOG LIST of goods AGS-TECH resells, not as a machine they run.
+    Seeded here as DISPUTED because it is unambiguously a production machine under the equipments clause (it acts
+    on the work) while the actor is reseller_inventory; the primary entry for it is under products.
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-equipments-0057
+  name: hose / tube endforming machine
+  status: confirmed
+  acceptable_forms:
+  - Hose Endforming Machines
+  - Tube Endforming Machine
+  evidence:
+  - quote: '- Hose Endforming Machines'
+    approx_offset: 348111
+  - quote: Tube Endforming Machine
+    approx_offset: 374152
+  actor: reseller_inventory
+  notes: Named in a private-label / white-label CATALOG LIST of goods AGS-TECH resells, not as a machine they run.
+    Seeded here as DISPUTED because it is unambiguously a production machine under the equipments clause (it acts
+    on the work) while the actor is reseller_inventory; the primary entry for it is under products.
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-equipments-0058
+  name: electron beam gun
+  status: confirmed
+  acceptable_forms:
+  - electron beam gun
+  - electron beam guns
+  - Elecron beam guns
+  evidence:
+  - quote: The electron beams in EBM-Machining equipment are generated in an electron beam gun. The
+    approx_offset: 438811
+  - quote: The electron beam guns in our EBM machines are also provided with
+    approx_offset: 439211
+  - quote: No shielding gases, flux or filler material is needed. Elecron beam guns have 100 kW capacities
+    approx_offset: 560495
+  notes: the beam-generating subsystem that acts on the work; 'our EBM machines' makes the actor own.
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: amended
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+    reason: the welding page spells it 'Elecron beam guns' (sic, missing the 't'), on a different page from the
+      EBM page the entry is anchored to. A search stage copying that span verbatim -- which the prompt requires
+      -- cannot credit 'electron beam guns', because the typo is not a substring of it.
+- id: agstech_net-equipments-0059
+  name: EBM machine / electron-beam machining equipment
+  status: confirmed
+  acceptable_forms:
+  - EBM machines
+  - EBM-Machines
+  - EBM equipment
+  - EBM-Machining equipment
+  - Electron-beam machines
+  evidence:
+  - quote: The electron beam guns in our EBM machines are also provided with illumination systems and
+    approx_offset: 439211
+  - quote: EBM equipment is built similarly to electron beam welding machines.
+    approx_offset: 439969
+  - quote: helps us to take advantage of this valuable equipment in our manufacturing environment.
+    approx_offset: 445404
+  notes: The EBM page is textbook prose with 'we' injected, but it makes a first-person ownership claim twice ('our
+    EBM machines', 'this valuable equipment in our manufacturing environment').
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: amended
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+    reason: '''electron beam machines'' (unhyphenated) occurs nowhere in the file -- the text writes ''Electron-beam
+      machines''. A form absent from the text can never be returned verbatim by search, so it is dead weight in
+      the entry; the hyphenated spelling is already there and is kept.'
+- id: agstech_net-equipments-0060
+  name: CNC table
+  status: disputed
+  acceptable_forms:
+  - CNC table
+  evidence:
+  - quote: Workpiece is mounted on a CNC table so that holes of any shape can be machined using the
+    approx_offset: 439359
+  notes: 'DISPUTED: a positioning/workholding stage rather than a machine acting on the work; the equipments clause
+    pushes work-carrying and work-holding hardware out of the field. | a CNC table holds and positions the workpiece
+    under the beam (''Workpiece is mounted on a CNC table''); it does not itself process, shape, assemble or convert
+    the material. The clause puts work-holding on the tooling side of the line -- ''what a machine holds, guides,
+    or acts through'' -- and the machine proper is separately entered at equipments-0064. Real device, arguable
+    membership.'
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: disputed
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+    reason: a CNC table holds and positions the workpiece under the beam ('Workpiece is mounted on a CNC table');
+      it does not itself process, shape, assemble or convert the material. The clause puts work-holding on the tooling
+      side of the line -- 'what a machine holds, guides, or acts through' -- and the machine proper is separately
+      entered at equipments-0064. Real device, arguable membership.
+- id: agstech_net-equipments-0061
+  name: electron beam welding machine
+  status: confirmed
+  acceptable_forms:
+  - electron beam welding machines
+  evidence:
+  - quote: EBM equipment is built similarly to electron beam welding machines. Electron-beam
+    approx_offset: 439969
+  actor: unknown
+  notes: named only as the machine class EBM equipment resembles - textbook comparison, no claim of owning one.
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-equipments-0062
+  name: electrical discharge machine
+  status: confirmed
+  acceptable_forms:
+  - electrical discharge machines
+  - EDM machines
+  - electrical discharge machines (EDM)
+  evidence:
+  - quote: so a new liquid dielectric breakdown can occur. Our modern electrical discharge machines (EDM) offer
+      numerically controlled movements and are equipped with pumps and filtering systems for
+    approx_offset: 474382
+  actor: unknown
+  notes: textbook/explainer prose with 'we' injected; the page reads as a manufacturing-engineering chapter, so
+    the owner of the capability is unresolved (AGS-TECH is an intermediary with wholly- and partially-owned partner
+    plants)
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-equipments-0063
+  name: sinker EDM machine
+  status: confirmed
+  acceptable_forms:
+  - SINKER EDM
+  - Sinker EDM
+  evidence:
+  - quote: EDM (sometimes called CONVENTIONAL EDM or RAM EDM). The machines for this operation are called SINKER
+      EDM. The electrodes for this type of EDM have complex
+    approx_offset: 479547
+  actor: unknown
+  notes: textbook/explainer prose with 'we' injected; the page reads as a manufacturing-engineering chapter, so
+    the owner of the capability is unresolved (AGS-TECH is an intermediary with wholly- and partially-owned partner
+    plants)
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-equipments-0064
+  name: CNC machine
+  status: confirmed
+  acceptable_forms:
+  - CNC machine
+  - Modern CNC machines
+  - CNC machines
+  evidence:
+  - quote: erodes, and the spark gap subsequently increases, the electrode is lowered automatically by our CNC machine
+      so that the process can continue uninterrupted. Our
+    approx_offset: 482128
+  actor: unknown
+  notes: textbook/explainer prose with 'we' injected; the page reads as a manufacturing-engineering chapter, so
+    the owner of the capability is unresolved (AGS-TECH is an intermediary with wholly- and partially-owned partner
+    plants)
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-equipments-0065
+  name: band saw
+  status: confirmed
+  acceptable_forms:
+  - band saw
+  evidence:
+  - quote: to machine with other manufacturing methods. In this process which resembles to contour cutting with
+      a band saw, the wire, which is constantly fed from a spool, is
+    approx_offset: 483262
+  actor: unknown
+  notes: named only inside a SIMILE describing wire EDM, not as an owned machine; kept because search is recall-first
+    over designations the text names
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-equipments-0066
+  name: multi axis EDM wire-cutting machining center
+  status: confirmed
+  acceptable_forms:
+  - multi axis EDM wire-cutting machining centers
+  - EDM wire-cutting machining centers
+  evidence:
+  - quote: Along with tighter tolerances, our modern multi axis EDM wire-cutting machining centers have added features
+      such as multi heads for cutting two parts at the same
+    approx_offset: 485781
+  actor: unknown
+  notes: textbook/explainer prose with 'we' injected; the page reads as a manufacturing-engineering chapter, so
+    the owner of the capability is unresolved (AGS-TECH is an intermediary with wholly- and partially-owned partner
+    plants)
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-equipments-0067
+  name: drop hammer
+  status: confirmed
+  acceptable_forms:
+  - drop hammer
+  evidence:
+  - quote: is used only once. The resultant negative die is then hardened and used in a drop hammer to produce stamped
+      flats from cutout sheet blanks of bronze, silver, or low
+    approx_offset: 488151
+  actor: unknown
+  notes: textbook/explainer prose with 'we' injected; the page reads as a manufacturing-engineering chapter, so
+    the owner of the capability is unresolved (AGS-TECH is an intermediary with wholly- and partially-owned partner
+    plants); generic encyclopedia sentence about coinage die making, not a claimed asset
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-equipments-0068
+  name: wire-cut EDM machine
+  status: confirmed
+  acceptable_forms:
+  - wire-cut EDM machines
+  - wire-cut machines
+  evidence:
+  - quote: On our wire-cut EDM machines, we use small hole drilling EDM to make a through hole in a workpiece through
+      which
+    approx_offset: 488726
+  actor: unknown
+  notes: textbook/explainer prose with 'we' injected; the page reads as a manufacturing-engineering chapter, so
+    the owner of the capability is unresolved (AGS-TECH is an intermediary with wholly- and partially-owned partner
+    plants)
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-equipments-0069
+  name: small hole drilling EDM machine
+  status: confirmed
+  acceptable_forms:
+  - stand-alone small hole drilling EDM machines
+  - small hole drilling EDM machines
+  - small-hole drilling EDMs
+  evidence:
+  - quote: system components. Besides the integrated EDM heads, we deploy stand-alone small hole drilling EDM machines
+      with x–y axes to machine blind or through holes. EDM drills bore
+    approx_offset: 489577
+  actor: unknown
+  notes: textbook/explainer prose with 'we' injected; the page reads as a manufacturing-engineering chapter, so
+    the owner of the capability is unresolved (AGS-TECH is an intermediary with wholly- and partially-owned partner
+    plants)
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-equipments-0070
+  name: industrial laser cutter
+  status: confirmed
+  acceptable_forms:
+  - industrial laser cutters
+  - laser cutters
+  - laser cutter
+  evidence:
+  - quote: leaving an edge with a high-quality surface finish. Our industrial laser cutters are suitable for cutting
+      flat-sheet material as well as structural and piping materials, metallic
+    approx_offset: 495247
+  actor: unknown
+  notes: textbook/explainer prose with 'we' injected; the page reads as a manufacturing-engineering chapter, so
+    the owner of the capability is unresolved (AGS-TECH is an intermediary with wholly- and partially-owned partner
+    plants)
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-equipments-0071
+  name: CO2 laser
+  status: confirmed
+  acceptable_forms:
+  - CO2 LASER
+  - CO2 lasers
+  - CO2 laser
+  evidence:
+  - quote: of lasers used in laser cutting and manufacturing. The pulsed or continuous wave CO2 LASER is suited
+      for cutting, boring, and engraving. The NEODYMIUM (Nd) and
+    approx_offset: 495561
+  actor: unknown
+  notes: textbook/explainer prose with 'we' injected; the page reads as a manufacturing-engineering chapter, so
+    the owner of the capability is unresolved (AGS-TECH is an intermediary with wholly- and partially-owned partner
+    plants)
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-equipments-0072
+  name: Nd-YAG laser
+  status: confirmed
+  acceptable_forms:
+  - Nd-YAG) LASERS
+  - Nd-YAG laser
+  - YAG lasers
+  - NEODYMIUM (Nd)
+  evidence:
+  - quote: boring, and engraving. The NEODYMIUM (Nd) and neodymium yttrium-aluminum-garnet (Nd-YAG) LASERS are identical
+      in style and differ only in application. The neodymium Nd is
+    approx_offset: 495675
+  actor: unknown
+  notes: textbook/explainer prose with 'we' injected; the page reads as a manufacturing-engineering chapter, so
+    the owner of the capability is unresolved (AGS-TECH is an intermediary with wholly- and partially-owned partner
+    plants)
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-equipments-0073
+  name: excimer laser
+  status: confirmed
+  acceptable_forms:
+  - EXCIMER
+  - excimer laser
+  - excimer lasers
+  evidence:
+  - quote: 'EXCIMER LASER CUTTING and MACHINING: An excimer laser is a kind of laser with wavelengths in the ultraviolet
+      region. The exact wavelength depends on the molecules used.'
+    approx_offset: 497748
+  actor: unknown
+  notes: textbook/explainer prose with 'we' injected; the page reads as a manufacturing-engineering chapter, so
+    the owner of the capability is unresolved (AGS-TECH is an intermediary with wholly- and partially-owned partner
+    plants)
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-equipments-0074
+  name: laser-beam torch
+  status: confirmed
+  acceptable_forms:
+  - LASER-BEAM TORCH
+  evidence:
+  - quote: nitrogen or argon for cutting thin sheet materials. This is done using a LASER-BEAM TORCH. For stainless
+      steel and aluminum we use
+    approx_offset: 498510
+  actor: unknown
+  notes: textbook/explainer prose with 'we' injected; the page reads as a manufacturing-engineering chapter, so
+    the owner of the capability is unresolved (AGS-TECH is an intermediary with wholly- and partially-owned partner
+    plants)
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-equipments-0075
+  name: pulsed laser
+  status: confirmed
+  acceptable_forms:
+  - PULSED LASERS
+  - pulsed laser
+  - DOUBLE PULSE LASERS
+  - continuous wave laser
+  evidence:
+  - quote: PULSED LASERS provide us a high-power burst of energy for a short period and are very effective in some
+    approx_offset: 501235
+  actor: unknown
+  notes: textbook/explainer prose with 'we' injected; the page reads as a manufacturing-engineering chapter, so
+    the owner of the capability is unresolved (AGS-TECH is an intermediary with wholly- and partially-owned partner
+    plants)
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-equipments-0076
+  name: plasma cutting machine
+  status: confirmed
+  acceptable_forms:
+  - plasma cutting machines
+  - plasma machines
+  evidence:
+  - quote: cost of these 6000 Watt laser cutters is much higher than that of plasma cutting machines capable of
+      cutting thick materials like steel plate.
+    approx_offset: 504582
+  actor: unknown
+  notes: textbook/explainer prose with 'we' injected; the page reads as a manufacturing-engineering chapter, so
+    the owner of the capability is unresolved (AGS-TECH is an intermediary with wholly- and partially-owned partner
+    plants)
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-equipments-0077
+  name: laser marking and engraving equipment
+  status: confirmed
+  acceptable_forms:
+  - laser marking and engraving equipment
+  evidence:
+  - quote: polymers and special new metal alloys. Although laser marking and engraving equipment is relatively more
+      expensive compared to alternatives such as punches, pins,
+    approx_offset: 506901
+  actor: unknown
+  notes: textbook/explainer prose with 'we' injected; the page reads as a manufacturing-engineering chapter, so
+    the owner of the capability is unresolved (AGS-TECH is an intermediary with wholly- and partially-owned partner
+    plants)
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-equipments-0078
+  name: numerically controlled machining center
+  status: confirmed
+  acceptable_forms:
+  - numerically controlled machining centers
+  - machining centers
+  evidence:
+  - quote: manufacturing methods. Electrochemical-machining systems we use for production are numerically controlled
+      machining centers with high production rates, flexibility, perfect
+    approx_offset: 511588
+  actor: unknown
+  notes: 'first-person corporate claim, not just ''we'' prose: the sentence names AGS-TECH Inc itself; actor still
+    unresolved because the company states it only part-owns some of the plants that do the work'
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-equipments-0079
+  name: electrochemical machine
+  status: confirmed
+  acceptable_forms:
+  - Commercial electrochemical machines
+  - electrochemical machines
+  evidence:
+  - quote: away the metal hydroxide formed during this process. Commercial electrochemical machines with current
+      capacities between 5A and 40,000A are available. The material removal rate in
+    approx_offset: 514759
+  actor: unknown
+  notes: textbook/explainer prose with 'we' injected; the page reads as a manufacturing-engineering chapter, so
+    the owner of the capability is unresolved (AGS-TECH is an intermediary with wholly- and partially-owned partner
+    plants)
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-equipments-0080
+  name: grinder
+  status: confirmed
+  acceptable_forms:
+  - grinder
+  evidence:
+  - quote: not so much of a fit for die-sinking or mould making because the grinder may not easily access deep cavities.
+      The material removal rate in electrochemical
+    approx_offset: 517785
+  actor: unknown
+  notes: textbook/explainer prose with 'we' injected; the page reads as a manufacturing-engineering chapter, so
+    the owner of the capability is unresolved (AGS-TECH is an intermediary with wholly- and partially-owned partner
+    plants)
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-equipments-0081
+  name: etching line
+  status: confirmed
+  acceptable_forms:
+  - etching lines
+  evidence:
+  - quote: plate, leaving the areas to be etched unprotected. Our etching lines have driven-wheel conveyors to move
+      the plates and arrays of spray nozzles above and below the
+    approx_offset: 528454
+  actor: unknown
+  notes: textbook/explainer prose with 'we' injected; the page reads as a manufacturing-engineering chapter, so
+    the owner of the capability is unresolved (AGS-TECH is an intermediary with wholly- and partially-owned partner
+    plants)
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-equipments-0082
+  name: plasma torch
+  status: confirmed
+  acceptable_forms:
+  - plasma torch
+  - plasma torches
+  - air plasma torch
+  evidence:
+  - quote: to cut and machine steel, aluminum, metals and other materials of different thicknesses using a plasma
+      torch. In plasma-cutting (also sometimes called PLASMA-ARC
+    approx_offset: 533908
+  actor: unknown
+  notes: textbook/explainer prose with 'we' injected; the page reads as a manufacturing-engineering chapter, so
+    the owner of the capability is unresolved (AGS-TECH is an intermediary with wholly- and partially-owned partner
+    plants)
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-equipments-0083
+  name: hand-held torch
+  status: confirmed
+  acceptable_forms:
+  - hand-held torches
+  - computer-controlled torches
+  evidence:
+  - quote: and thick, ferrous and nonferrous materials alike. Our hand-held torches can usually cut up to 2 inches
+      thick steel plate, and our stronger computer-controlled torches can cut
+    approx_offset: 535045
+  actor: unknown
+  notes: textbook/explainer prose with 'we' injected; the page reads as a manufacturing-engineering chapter, so
+    the owner of the capability is unresolved (AGS-TECH is an intermediary with wholly- and partially-owned partner
+    plants)
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-equipments-0084
+  name: plasma cutter
+  status: confirmed
+  acceptable_forms:
+  - Plasma cutters
+  - plasma cutters
+  - plasma-arc cutters
+  evidence:
+  - quote: torches can cut steel up to 6 inches thick. Plasma cutters produce a very hot and localized cone to cut
+      with, and are therefore very suitable for cutting metal
+    approx_offset: 535205
+  actor: unknown
+  notes: textbook/explainer prose with 'we' injected; the page reads as a manufacturing-engineering chapter, so
+    the owner of the capability is unresolved (AGS-TECH is an intermediary with wholly- and partially-owned partner
+    plants)
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-equipments-0085
+  name: vertical CNC plasma cutting machine
+  status: confirmed
+  acceptable_forms:
+  - vertical CNC plasma cutting machines
+  - CNC plasma equipment
+  evidence:
+  - quote: our laser cutter's superior hole-cutting abilities. We also deploy vertical CNC plasma cutting machines,
+      offering us a smaller footprint, increased
+    approx_offset: 538981
+  actor: unknown
+  notes: textbook/explainer prose with 'we' injected; the page reads as a manufacturing-engineering chapter, so
+    the owner of the capability is unresolved (AGS-TECH is an intermediary with wholly- and partially-owned partner
+    plants)
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-equipments-0086
+  name: brazing machines (resold)
+  status: confirmed
+  acceptable_forms:
+  - Brazing Machines
+  evidence:
+  - quote: Brazing Machines (We private label these with your brand name and logo if you wish.
+    approx_offset: 546850
+  actor: reseller_inventory
+  notes: 'resold and private-labelled, not run by AGS-TECH: ''Brazing Machines (We private label these with your
+    brand name and logo if you wish. This way you can promote your  brand name when you resell these machines to
+    your customers)'''
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-equipments-0087
+  name: oxyacetylene torch
+  status: confirmed
+  acceptable_forms:
+  - oxyacetylene gas torch
+  - Oxyacetylene torch
+  evidence:
+  - quote: PRESSURE GAS WELDING, where the two components are heated at their interface using oxyacetylene gas torch
+      and once the interface starts to melt, the torch is
+    approx_offset: 549721
+  actor: unknown
+  notes: textbook/explainer prose with 'we' injected; the page reads as a manufacturing-engineering chapter, so
+    the owner of the capability is unresolved (AGS-TECH is an intermediary with wholly- and partially-owned partner
+    plants)
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-equipments-0088
+  name: automated welding equipment
+  status: confirmed
+  acceptable_forms:
+  - Automated welding equipment
+  evidence:
+  - quote: is about 2 times that of the SMAW process. Automated welding equipment is being used. Metal is transferred
+      in one of three ways in this
+    approx_offset: 554299
+  actor: unknown
+  notes: textbook/explainer prose with 'we' injected; the page reads as a manufacturing-engineering chapter, so
+    the owner of the capability is unresolved (AGS-TECH is an intermediary with wholly- and partially-owned partner
+    plants)
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-equipments-0089
+  name: spot welding equipment
+  status: confirmed
+  acceptable_forms:
+  - spot welding equipment
+  evidence:
+  - quote: in spot welding in order to reach difficult areas. Our spot welding equipment is CNC controlled and has
+      multiple electrodes that can be used simultaneously. Another variation
+    approx_offset: 567232
+  actor: unknown
+  notes: textbook/explainer prose with 'we' injected; the page reads as a manufacturing-engineering chapter, so
+    the owner of the capability is unresolved (AGS-TECH is an intermediary with wholly- and partially-owned partner
+    plants)
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-equipments-0090
+  name: press
+  status: confirmed
+  acceptable_forms:
+  - press
+  evidence:
+  - quote: pressure are required in diffusion bonding and are supplied by electrical resistance or furnace and dead
+      weights, press or else. Similar and dissimilar metals can be joined with
+    approx_offset: 571082
+  actor: unknown
+  notes: textbook/explainer prose with 'we' injected; the page reads as a manufacturing-engineering chapter, so
+    the owner of the capability is unresolved (AGS-TECH is an intermediary with wholly- and partially-owned partner
+    plants)
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-equipments-0091
+  name: furnace
+  status: confirmed
+  acceptable_forms:
+  - furnace
+  - in a furnace
+  evidence:
+  - quote: packages aligned. After placing the components, we heat the assembly in a furnace so the reflow soldering
+      takes place. During this process, the solvents in the paste
+    approx_offset: 576105
+  actor: unknown
+  notes: textbook/explainer prose with 'we' injected; the page reads as a manufacturing-engineering chapter, so
+    the owner of the capability is unresolved (AGS-TECH is an intermediary with wholly- and partially-owned partner
+    plants)
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-equipments-0092
+  name: waterjet cutting machine
+  status: confirmed
+  acceptable_forms:
+  - waterjet cutting machines
+  - waterjet cutters
+  - waterjet machining equipment
+  evidence:
+  - quote: glass and metals; to rapid hole drilling of titanium. Our waterjet cutting machines can handle large
+      flat stock material with many feet of dimensions with no limit to the
+    approx_offset: 598516
+  actor: unknown
+  notes: textbook/explainer prose with 'we' injected; the page reads as a manufacturing-engineering chapter, so
+    the owner of the capability is unresolved (AGS-TECH is an intermediary with wholly- and partially-owned partner
+    plants)
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-equipments-0093
+  name: CNC controlled waterjet machining equipment
+  status: confirmed
+  acceptable_forms:
+  - CNC controlled waterjet machining equipment
+  - multiple-axis, CNC controlled waterjet
+  evidence:
+  - quote: automotive dashboard coverings made of vinyl and foam can be cut using multiple-axis, CNC controlled
+      waterjet machining equipment. Waterjet machining is an efficient and clean process
+    approx_offset: 599979
+  actor: unknown
+  notes: textbook/explainer prose with 'we' injected; the page reads as a manufacturing-engineering chapter, so
+    the owner of the capability is unresolved (AGS-TECH is an intermediary with wholly- and partially-owned partner
+    plants)
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-equipments-0094
+  name: multiple-axis robotic control machines
+  status: confirmed
+  acceptable_forms:
+  - multiple-axis robotic control machines
+  - robotic control machines
+  evidence:
+  - quote: speed in AWJM is less as compared to plastics. Using our multiple-axis robotic control machines we can
+      machine complex three-dimensional parts to finish dimensions without the need for a second
+    approx_offset: 601329
+  actor: unknown
+  notes: textbook/explainer prose with 'we' injected; the page reads as a manufacturing-engineering chapter, so
+    the owner of the capability is unresolved (AGS-TECH is an intermediary with wholly- and partially-owned partner
+    plants)
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-equipments-0095
+  name: fusion splicing machine
+  status: confirmed
+  acceptable_forms:
+  - Fusion splicing machines
+  - fusion splicer
+  - FUSION SPLICER
+  evidence:
+  - quote: Fusion splicing machines can splice a single fiber or a ribbon of multiple fibers at one time.
+    approx_offset: 698519
+  actor: reseller_inventory
+  notes: 'DISPUTED: a resold instrument, so the seeding brief files it under products; recorded here too because
+    a fusion splicer does act on the work and so reads as a production machine'
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-equipments-0096
+  name: portable fiber optic polishing machine
+  status: confirmed
+  acceptable_forms:
+  - portable fiber optic polishing machine
+  evidence:
+  - quote: fiber microscope, fiber connector cleaner, connector heating oven, crimping tool, pen type fiber cutter,
+      ribbon fiber buff stripper, FTTH tool bag, portable fiber optic polishing machine.
+    approx_offset: 713439
+  actor: reseller_inventory
+  notes: 'DISPUTED: a resold FTTH tool; a polishing machine acts on the work, so the equipments boundary is arguable'
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-equipments-0097
+  name: shell-hardening oven
+  status: confirmed
+  acceptable_forms:
+  - heated in an oven
+  evidence:
+  - quote: Next, the shell and pattern are heated in an oven so that the shell hardens.
+    approx_offset: 831751
+  actor: unknown
+  notes: 'textbook/explainer prose: the page teaches the process generically (''we''-injected encyclopedia writing),
+    it is not a plant capability claim; an oven that hardens the shell mold acts on the work, so it reads as a production
+    machine rather than a plant utility'
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-equipments-0098
+  name: die casting machine
+  status: confirmed
+  acceptable_forms:
+  - die casting machine
+  evidence:
+  - quote: 2.) Mold installed on die casting machine
+    approx_offset: 839483
+  actor: unknown
+  notes: 'textbook/explainer prose: the page teaches the process generically (''we''-injected encyclopedia writing),
+    it is not a plant capability claim'
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-equipments-0099
+  name: rolling mill
+  status: confirmed
+  acceptable_forms:
+  - rolling mill
+  - rolling mills
+  evidence:
+  - quote: Continuous casting process can be integrated with ROLLING PROCESS, where the continuously cast metal
+      can be fed directly into a rolling mill to produce I-Beams,
+    approx_offset: 842727
+  actor: unknown
+  notes: 'textbook/explainer prose: the page teaches the process generically (''we''-injected encyclopedia writing),
+    it is not a plant capability claim'
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-equipments-0100
+  name: lathe
+  status: confirmed
+  acceptable_forms:
+  - lathe
+  - lathes
+  - Swiss-type lathe
+  evidence:
+  - quote: For this process a machine called lathe is being used.
+    approx_offset: 844488
+  actor: unknown
+  notes: 'textbook/explainer prose: the page teaches the process generically (''we''-injected encyclopedia writing),
+    it is not a plant capability claim; a production machine under the equipments clause (it acts on the work)'
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-equipments-0101
+  name: milling machine
+  status: confirmed
+  acceptable_forms:
+  - milling machine
+  evidence:
+  - quote: In MILLING, a machine called milling machine has a rotating tool to bring cutting edges to bear against
+      a workpiece.
+    approx_offset: 844547
+  actor: unknown
+  notes: 'textbook/explainer prose: the page teaches the process generically (''we''-injected encyclopedia writing),
+    it is not a plant capability claim'
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-equipments-0102
+  name: drill press
+  status: confirmed
+  acceptable_forms:
+  - Drill presses
+  evidence:
+  - quote: Drill presses, lathes or mills are generally used.
+    approx_offset: 844786
+  actor: unknown
+  notes: 'textbook/explainer prose: the page teaches the process generically (''we''-injected encyclopedia writing),
+    it is not a plant capability claim'
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-equipments-0103
+  name: Swiss-type lathe / turning center
+  status: confirmed
+  acceptable_forms:
+  - Swiss-type lathe
+  - Swiss-type turning centers
+  - Swiss-type equipment
+  evidence:
+  - quote: Using Swiss-type lathe we turn small, complex, precision parts inexpensively.
+    approx_offset: 845499
+  notes: first-person capability claim; AGS-TECH is a sourcing/integration intermediary that part-owns some of the
+    plants, so ownership of the machine is a downstream question
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-equipments-0104
+  name: press (stamping)
+  status: confirmed
+  acceptable_forms:
+  - press
+  - stamping press
+  evidence:
+  - quote: We use dies and press most of the time for this operation.
+    approx_offset: 874802
+  notes: first-person capability claim; AGS-TECH is a sourcing/integration intermediary that part-owns some of the
+    plants, so ownership of the machine is a downstream question
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: amended
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+    reason: '''We use dies and press most of the time'' is a sentence fragment; containment credits it on a returned
+      ''dies'', which is TOOLING and explicitly excluded from this field. ''press'' is the machine the text names'
+- id: agstech_net-equipments-0105
+  name: brazing furnace / vacuum furnace
+  status: confirmed
+  acceptable_forms:
+  - furnace
+  - furnace of vacuum
+  - vacuum furnace
+  evidence:
+  - quote: VACUUM BRAZING takes place in a furnace of vacuum.
+    approx_offset: 898080
+  notes: first-person capability claim; AGS-TECH is a sourcing/integration intermediary that part-owns some of the
+    plants, so ownership of the machine is a downstream question
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: amended
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+    reason: '''FURNACE BRAZING'' is a PROCESS name, not an equipment form - it credits this equipment entry whenever
+      the model correctly returns the brazing process; the machine the text names is the furnace'
+- id: agstech_net-equipments-0106
+  name: induction coil
+  status: disputed
+  acceptable_forms:
+  - induction coil
+  - copper coil
+  evidence:
+  - quote: The alternating current from the induction coil creates an electromagnetic field which induces induction
+      heating on mostly ferrous magnetic materials.
+    approx_offset: 898933
+  actor: unknown
+  notes: 'textbook/explainer prose: the page teaches the process generically (''we''-injected encyclopedia writing),
+    it is not a plant capability claim | an induction coil is the applicator an induction brazing machine acts THROUGH,
+    not the machine driving the work - the clause''s own ''tooling'' exclusion (''what a machine holds, guides,
+    or acts through'')'
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: disputed
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+    reason: an induction coil is the applicator an induction brazing machine acts THROUGH, not the machine driving
+      the work - the clause's own 'tooling' exclusion ('what a machine holds, guides, or acts through')
+- id: agstech_net-equipments-0107
+  name: soldering iron
+  status: disputed
+  acceptable_forms:
+  - soldering iron
+  evidence:
+  - quote: Only for small quantity of prototyping purposes we use hand soldering using soldering iron.
+    approx_offset: 901728
+  notes: 'DISPUTED: a hand tool, arguably tooling rather than a production machine under the equipments clause |
+    a hand soldering iron is a hand tool, not a production machine; the text itself frames it as the manual alternative
+    (''Only for small quantity of prototyping purposes we use hand soldering using soldering iron'')'
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: disputed
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+    reason: a hand soldering iron is a hand tool, not a production machine; the text itself frames it as the manual
+      alternative ('Only for small quantity of prototyping purposes we use hand soldering using soldering iron')
+- id: agstech_net-equipments-0108
+  name: wave soldering machine
+  status: disputed
+  acceptable_forms:
+  - an equipment that contains molten solder
+  evidence:
+  - quote: A temporary glue keeps the components attached to the circuit board and the assembly is placed on a conveyor
+      and moves through an equipment that contains molten solder.
+    approx_offset: 901912
+  notes: first-person capability claim; AGS-TECH is a sourcing/integration intermediary that part-owns some of the
+    plants, so ownership of the machine is a downstream question; the site never names the machine, it describes
+    it | no machine is NAMED here - the text says only 'an equipment that contains molten solder', a periphrasis;
+    and because forms_overlap is bidirectional containment, that form is credited by a returned 'solder', 'molten
+    solder' or 'equipment', none of which is this machine
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: disputed
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+    reason: no machine is NAMED here - the text says only 'an equipment that contains molten solder', a periphrasis;
+      and because forms_overlap is bidirectional containment, that form is credited by a returned 'solder', 'molten
+      solder' or 'equipment', none of which is this machine
+- id: agstech_net-equipments-0109
+  name: reflow oven
+  status: confirmed
+  acceptable_forms:
+  - reflow oven
+  evidence:
+  - quote: Then the boards are put through a reflow oven with temperature control.
+    approx_offset: 902675
+  notes: first-person capability claim; AGS-TECH is a sourcing/integration intermediary that part-owns some of the
+    plants, so ownership of the machine is a downstream question
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-equipments-0110
+  name: stapling gun
+  status: disputed
+  acceptable_forms:
+  - stapling guns
+  evidence:
+  - quote: In STAPLING we use stapling guns and staples which are two-pronged fasteners used to join or bind materials.
+    approx_offset: 909785
+  notes: 'DISPUTED: a hand tool rather than a production machine; kept on the record because it does act on the
+    work | a stapling gun is a hand tool; it does act on the work, so it fails none of the four listed exclusions,
+    but ''production machine'' is the clause''s head noun and a hand-held gun is arguable under it'
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: disputed
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+    reason: a stapling gun is a hand tool; it does act on the work, so it fails none of the four listed exclusions,
+      but 'production machine' is the clause's head noun and a hand-held gun is arguable under it
+- id: agstech_net-equipments-0111
+  name: hydraulic press / hand operated press
+  status: confirmed
+  acceptable_forms:
+  - hydraulic press or a hand operated press
+  - hydraulic press
+  evidence:
+  - quote: When a press fitting is established by applying a force, we either use a hydraulic press or a hand operated
+      press.
+    approx_offset: 910516
+  notes: first-person capability claim; AGS-TECH is a sourcing/integration intermediary that part-owns some of the
+    plants, so ownership of the machine is a downstream question
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-equipments-0112
+  name: extrusion press
+  status: confirmed
+  acceptable_forms:
+  - press
+  - extrusion press
+  evidence:
+  - quote: In warm or hot extrusions the material is heated and loaded into a container in the press.
+    approx_offset: 916278
+  actor: unknown
+  notes: 'textbook/explainer prose: the page teaches the process generically (''we''-injected encyclopedia writing),
+    it is not a plant capability claim'
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: amended
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+    reason: '''loaded into a container in the press'' is a sentence fragment; containment credits it on a returned
+      ''container'', which is not a production machine'
+- id: agstech_net-equipments-0113
+  name: extrusion machine
+  status: confirmed
+  acceptable_forms:
+  - barrel of the extrusion machine
+  - extrusion machine
+  evidence:
+  - quote: In the process small plastic beads / resin is gravity fed from hopper into barrel of the extrusion machine.
+    approx_offset: 917971
+  notes: first-person capability claim; AGS-TECH is a sourcing/integration intermediary that part-owns some of the
+    plants, so ownership of the machine is a downstream question
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-equipments-0114
+  name: twin-screw extruder
+  status: confirmed
+  acceptable_forms:
+  - twin-screw extruders
+  - multiple extruders
+  - extruders
+  evidence:
+  - quote: Our twin-screw extruders produce compounding extrusions.
+    approx_offset: 919927
+  notes: first-person capability claim; AGS-TECH is a sourcing/integration intermediary that part-owns some of the
+    plants, so ownership of the machine is a downstream question
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-equipments-0115
+  name: mechanical press
+  status: confirmed
+  acceptable_forms:
+  - mechanical press
+  evidence:
+  - quote: '• COINING : Another popular process carried out by mechanical press, exerting large forces over a short
+      distance. The name “coining” comes from the fine details'
+    approx_offset: 950678
+  actor: unknown
+  notes: coining; textbook/explainer prose
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-equipments-0116
+  name: hydraulic press
+  status: confirmed
+  acceptable_forms:
+  - hydraulic presses
+  evidence:
+  - quote: are commonly used to enhance compactability. We are capable of powder press forming using hydraulic presses
+      with several thousand tons of capacity. Also we have double action presses with opposing top
+    approx_offset: 954596
+  notes: '''We are capable of powder press forming using hydraulic presses with several thousand tons of capacity'''
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-equipments-0117
+  name: double action press
+  status: confirmed
+  acceptable_forms:
+  - double action presses
+  evidence:
+  - quote: forming using hydraulic presses with several thousand tons of capacity. Also we have double action presses
+      with opposing top & bottom punches as well as multiple action presses for highly
+    approx_offset: 954672
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-equipments-0118
+  name: multiple action press
+  status: confirmed
+  acceptable_forms:
+  - multiple action presses
+  evidence:
+  - quote: Also we have double action presses with opposing top & bottom punches as well as multiple action presses
+      for highly complex part geometries. Uniformity which is an important challenge
+    approx_offset: 954744
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-equipments-0119
+  name: sintering furnace
+  status: confirmed
+  acceptable_forms:
+  - batch and continuous furnaces
+  - sintering furnace
+  evidence:
+  - quote: ductility, thermal conductivity, electrical conductivity are increased. We do have batch and continuous
+      furnaces for sintering. One of our capabilities is adjusting the level of porosity of
+    approx_offset: 955748
+  notes: '''We do have batch and continuous furnaces for sintering'''
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-equipments-0120
+  name: CNC wire former
+  status: confirmed
+  acceptable_forms:
+  - CNC wire formers
+  - wire formers
+  evidence:
+  - quote: used as springs under automobile chassis. Equipment we use for wire forming are manual and CNC wire formers,
+      coiler, power presses, fourslide, multi-slide. Our processes are drawing, bending,
+    approx_offset: 964751
+  notes: '''Equipment we use for wire forming are manual and CNC wire formers, coiler, power presses, fourslide,
+    multi-slide'''
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-equipments-0121
+  name: coiler
+  status: confirmed
+  acceptable_forms:
+  - coiler
+  evidence:
+  - quote: under automobile chassis. Equipment we use for wire forming are manual and CNC wire formers, coiler,
+      power presses, fourslide, multi-slide. Our processes are drawing, bending, straightening,
+    approx_offset: 964767
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-equipments-0122
+  name: power press
+  status: confirmed
+  acceptable_forms:
+  - power presses
+  evidence:
+  - quote: chassis. Equipment we use for wire forming are manual and CNC wire formers, coiler, power presses, fourslide,
+      multi-slide. Our processes are drawing, bending, straightening, flattening,
+    approx_offset: 964784
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-equipments-0123
+  name: fourslide
+  status: confirmed
+  acceptable_forms:
+  - fourslide
+  evidence:
+  - quote: Equipment we use for wire forming are manual and CNC wire formers, coiler, power presses, fourslide,
+      multi-slide. Our processes are drawing, bending, straightening, flattening, stretching,
+    approx_offset: 964793
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-equipments-0124
+  name: multi-slide
+  status: confirmed
+  acceptable_forms:
+  - multi-slide
+  evidence:
+  - quote: we use for wire forming are manual and CNC wire formers, coiler, power presses, fourslide, multi-slide.
+      Our processes are drawing, bending, straightening, flattening, stretching, cutting,
+    approx_offset: 964803
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-equipments-0125
+  name: annealing oven
+  status: confirmed
+  acceptable_forms:
+  - annealing oven
+  evidence:
+  - quote: to take its desired shape. Finally, the manufactured glass container is transfered into an annealing
+      oven for subsequent reheating and removal of stresses produced during the molding and is cooled in
+    approx_offset: 971695
+  actor: supplier
+  notes: glass container line; textbook/explainer prose
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-equipments-0126
+  name: Westlake machine
+  status: confirmed
+  acceptable_forms:
+  - Westlake machines
+  evidence:
+  - quote: for withstanding dishwashers for many times and are fit for making domestic products. Using Westlake
+      machines tens of thousands of pieces of drinking glasses are being produced per day. To simplify,
+    approx_offset: 973481
+  actor: supplier
+  notes: named glassware-forming machine brand; 'Using Westlake machines tens of thousands of pieces of drinking
+    glasses are being produced per day'
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-equipments-0127
+  name: glass drawing machine
+  status: confirmed
+  acceptable_forms:
+  - drawing machine
+  evidence:
+  - quote: mandrel and the bowl and takes the shape of a tube. Thereafter it travels over rollers to a drawing machine
+      and is cooled. At the end of the cooling line cutting and final processing takes place. The
+    approx_offset: 975233
+  actor: supplier
+  notes: Vello glass-tube line; textbook/explainer prose
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-equipments-0128
+  name: stereolithography equipment
+  status: confirmed
+  acceptable_forms:
+  - stereolithography equipment
+  evidence:
+  - quote: layer by layer. Of course the maximum dimensions of the produced part are determined by the stereolithography
+      equipment.
+    approx_offset: 992947
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-equipments-0129
+  name: extruder head
+  status: disputed
+  acceptable_forms:
+  - extruder head
+  evidence:
+  - quote: '• FUSED DEPOSITION MODELING : Also abbreviated as FDM, in this method a robot-controlled extruder head
+      moves in two principle directions over a table. The cable is lowered and raised as needed.'
+    approx_offset: 993902
+  actor: unknown
+  notes: FDM machine head; textbook/explainer prose | the FDM extruder head is the sub-assembly the printer drives,
+    not a standalone production machine; it sits on the tooling side of the clause ('what a machine holds, guides,
+    or acts through'). The machine in this paragraph is the FDM printer; the print heads at line 14784 are the same
+    class
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: disputed
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+    reason: the FDM extruder head is the sub-assembly the printer drives, not a standalone production machine; it
+      sits on the tooling side of the clause ('what a machine holds, guides, or acts through'). The machine in this
+      paragraph is the FDM printer; the print heads at line 14784 are the same class
+- id: agstech_net-equipments-0130
+  name: automated pick-and-place machines
+  status: disputed
+  acceptable_forms:
+  - automated pick-and-place machines
+  - pick-and-place machines
+  evidence:
+  - quote: We use automated pick-and-place machines specially manufactured for microelectronics industry to sort
+      out the good and bad semiconductor dies.
+    approx_offset: 1164339
+  notes: 'acts on the work: it sorts and places semiconductor dies | a pick-and-place machine, and the text names
+    it only as sortation: ''to sort out the good and bad semiconductor dies''. In that described role it moves and
+    sorts finished dies rather than acting on the work, which the equipments clause excludes (''moves, stores, or
+    carries what it makes''). The same machine class IS a production machine when it places components in assembly,
+    so the membership is genuinely arguable, not wrong.'
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: disputed
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+    reason: 'a pick-and-place machine, and the text names it only as sortation: ''to sort out the good and bad semiconductor
+      dies''. In that described role it moves and sorts finished dies rather than acting on the work, which the
+      equipments clause excludes (''moves, stores, or carries what it makes''). The same machine class IS a production
+      machine when it places components in assembly, so the membership is genuinely arguable, not wrong.'
+- id: agstech_net-equipments-0131
+  name: marking laser
+  status: confirmed
+  acceptable_forms:
+  - advanced lasers
+  evidence:
+  - quote: Marking speeds over 1000 characters/second and material penetration depths less than 25 microns are common
+      in semiconductor microelectronics industry using advanced lasers.
+    approx_offset: 1175827
+  notes: laser marking machine; it acts on the work (etches names and numbers onto packages)
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-equipments-0132
+  name: automated assembly machines
+  status: confirmed
+  acceptable_forms:
+  - automated assembly machines
+  evidence:
+  - quote: 'frames are produced in long strips, which allows them to be quickly processed on automated assembly
+      machines, and generally two manufacturing processes are used: photo etching of some sort'
+    approx_offset: 1177022
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-equipments-0133
+  name: robotic systems
+  status: confirmed
+  acceptable_forms:
+  - robotic systems
+  evidence:
+  - quote: We can micro-assemble devices and components in the microns level dimensions using robotic systems.
+    approx_offset: 1189579
+  notes: micro-assembly robots that place the parts, so they act on the work
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-equipments-0134
+  name: robotic workcell
+  status: confirmed
+  acceptable_forms:
+  - robotic workcell
+  evidence:
+  - quote: Top notch motion control equipment including a robotic workcell with nanometric position resolution
+    approx_offset: 1189777
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-equipments-0135
+  name: CAD-driven workcells
+  status: confirmed
+  acceptable_forms:
+  - CAD-driven workcells
+  evidence:
+  - quote: Fully automated CAD-driven workcells for micro assembly
+    approx_offset: 1189883
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-equipments-0136
+  name: nano manipulator
+  status: confirmed
+  acceptable_forms:
+  - nano manipulator
+  evidence:
+  - quote: 12 degrees of freedom nano manipulator
+    approx_offset: 1190561
+  notes: listed among AGS-TECH's automated micro assembly equipment; it manipulates parts during assembly rather
+    than merely transporting them
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-equipments-0137
+  name: focused ion beam machine
+  status: confirmed
+  acceptable_forms:
+  - microscale capable machine
+  - FIB
+  evidence:
+  - quote: Some FIBs available to us have beam diameters as small as 5 nanometers, making the FIB a mesoscale and
+      even microscale capable machine.
+    approx_offset: 1202826
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-equipments-0138
+  name: high precision milling machines
+  status: confirmed
+  acceptable_forms:
+  - high precision milling machines
+  evidence:
+  - quote: We mount micro-milling tools on high precision milling machines to machine channels in aluminum.
+    approx_offset: 1202962
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-equipments-0139
+  name: YAG laser
+  status: confirmed
+  acceptable_forms:
+  - YAG lasers
+  evidence:
+  - quote: Our excimer and YAG lasers can be used to machine polymers, ceramics, glass and metals having feature
+      sizes as small as 12 microns.
+    approx_offset: 1204517
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-equipments-0140
+  name: Ti-sapphire femtosecond laser
+  status: confirmed
+  acceptable_forms:
+  - Ti-sapphire femtosecond laser
+  - femtosecond laser
+  evidence:
+  - quote: A cleaner laser meso-machining approach is to use a Ti-sapphire femtosecond laser.
+    approx_offset: 1204795
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-equipments-0141
+  name: micro-EDM machine
+  status: confirmed
+  acceptable_forms:
+  - micro-EDM machines
+  - micro-EDM machine
+  evidence:
+  - quote: Our micro-EDM machines can produce features as small as 25 microns.
+    approx_offset: 1205494
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-equipments-0142
+  name: wire micro-EDM machine
+  status: confirmed
+  acceptable_forms:
+  - wire micro-EDM machine
+  evidence:
+  - quote: For the sinker and the wire micro-EDM machine, the two major considerations for determining feature size
+      are the electrode size and the over-bum gap.
+    approx_offset: 1205562
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-equipments-0143
+  name: heat treatment furnace
+  status: confirmed
+  acceptable_forms:
+  - heat treatment furnaces
+  evidence:
+  - quote: In heat treatment furnaces, the diffused elements usually originate from gases reacting at high temperatures
+      with the metal surfaces.
+    approx_offset: 1219491
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-equipments-0144
+  name: hot press
+  status: confirmed
+  acceptable_forms:
+  - hot press
+  evidence:
+  - quote: Next, the wafers are aligned face to face with guide pins and press fit together in a hot press.
+    approx_offset: 1256217
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-equipments-0145
+  name: test and cutting station
+  status: confirmed
+  acceptable_forms:
+  - test and cutting station
+  evidence:
+  - quote: '- A test and cutting station for polarized attenuators.'
+    approx_offset: 1323353
+  actor: unknown
+  notes: developed by AGS-TECH engineers; the cutting half acts on the work, the test half would not qualify on
+    its own
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-equipments-0146
+  name: GS 600 laser drilling system
+  status: confirmed
+  acceptable_forms:
+  - GS 600 LASER DRILLING SYSTEM
+  - GS600
+  evidence:
+  - quote: engineers is the concept design, optical and opto-mechanical design of optical scan head for GS 600 LASER
+      DRILLING SYSTEM with dual galvo scanners and self compensating alignment.
+    approx_offset: 1355661
+  actor: client
+  notes: AGS-TECH engineers designed the optical scan head; the drilling system itself belongs to the customer's
+    product line
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-equipments-0147
+  name: custom automation systems
+  status: confirmed
+  acceptable_forms:
+  - CUSTOM AUTOMATION SYSTEMS
+  - custom automation systems
+  evidence:
+  - quote: you CUSTOM MANUFACTURING and ENGINEERING INTEGRATION capability. We also build CUSTOM AUTOMATION SYSTEMS, MONITORING and PROCESS
+      CONTROL SYSTEMS by integrating computers, translation
+    approx_offset: 1405825
+  actor: client
+  notes: industrial-computer page, first person
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-equipments-0148
+  name: pick and place systems
+  status: confirmed
+  acceptable_forms:
+  - pick and place systems
+  evidence:
+  - quote: air bearing spindles, hardware-software interface cards and software, custom built pick and place systems,
+      custom built automated inspection systems assembled from translation
+    approx_offset: 1428879
+  actor: client
+  notes: automation page; a placement machine acts on the work during assembly
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-equipments-0149
+  name: hose cut-off skive machine
+  status: confirmed
+  acceptable_forms:
+  - Hose-Cut-Off-Skive-Machine
+  evidence:
+  - quote: - Hose-Cut-Off-Skive-Machine  (We private label these with your brand name and logo if you wish)
+    approx_offset: 1559051
+  actor: reseller_inventory
+  notes: equipment page, resold and private-labelled machine
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-equipments-0150
+  name: mini lathe
+  status: confirmed
+  acceptable_forms:
+  - Mini Lathe
+  evidence:
+  - quote: '- Mini Lathe'
+    approx_offset: 1559152
+  actor: reseller_inventory
+  notes: equipment page; a resold tabletop production machine, not one AGS-TECH is said to run
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-equipments-0151
+  name: mini milling machine
+  status: confirmed
+  acceptable_forms:
+  - Mini Milling Machine
+  evidence:
+  - quote: '- Mini Milling Machine'
+    approx_offset: 1559169
+  actor: reseller_inventory
+  notes: equipment page, resold machine
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-equipments-0152
+  name: mini hobbing machine
+  status: confirmed
+  acceptable_forms:
+  - Mini Hobbing Machine
+  evidence:
+  - quote: '- Mini Hobbing Machine'
+    approx_offset: 1559196
+  actor: reseller_inventory
+  notes: equipment page, resold machine
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-equipments-0153
+  name: mini stamping press
+  status: confirmed
+  acceptable_forms:
+  - Mini Stamping Press
+  evidence:
+  - quote: '- Mini Stamping Press'
+    approx_offset: 1559223
+  actor: reseller_inventory
+  notes: equipment page, resold machine
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-equipments-0154
+  name: mini laser cutter
+  status: confirmed
+  acceptable_forms:
+  - Mini Laser Cutter
+  evidence:
+  - quote: '- Mini Laser Cutter'
+    approx_offset: 1559249
+  actor: reseller_inventory
+  notes: equipment page, resold machine
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-equipments-0155
+  name: mini waterjet cutter
+  status: confirmed
+  acceptable_forms:
+  - Mini Waterjet Cutter
+  evidence:
+  - quote: '- Mini Waterjet Cutter'
+    approx_offset: 1559273
+  actor: reseller_inventory
+  notes: equipment page, resold machine
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-equipments-0156
+  name: mini plasma cutter
+  status: confirmed
+  acceptable_forms:
+  - Mini Plasma Cutter
+  evidence:
+  - quote: '- Mini Plasma Cutter'
+    approx_offset: 1559300
+  actor: reseller_inventory
+  notes: equipment page, resold machine
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-equipments-0157
+  name: ultrasonic drill
+  status: confirmed
+  acceptable_forms:
+  - Ultrasonic Drill
+  evidence:
+  - quote: '- Ultrasonic Drill'
+    approx_offset: 1559532
+  actor: reseller_inventory
+  notes: equipment page, resold machine
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-equipments-0158
+  name: kiln
+  status: confirmed
+  acceptable_forms:
+  - kiln
+  evidence:
+  - quote: Open-cell polymer foams are internally impregnated with ceramic slurry and then fired in a kiln, leaving
+      only ceramic material. The foams may consist of several ceramic materials such
+    approx_offset: 1641389
+  actor: unknown
+  notes: 'textbook/explainer prose: a generic encyclopedia description with ''we''/''our'' injected; a kiln acts
+    on the work, so it is a production machine'
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-equipments-0159
+  name: industrial sewing machine
+  status: confirmed
+  acceptable_forms:
+  - Industrial Sewing Machines
+  evidence:
+  - quote: includes Flat Leather Belting for power transmission and Round Leather Belting for Industrial Sewing
+      Machines. Industrial leather is one of the oldest types of manufactured products. Our
+    approx_offset: 1694492
+  actor: unknown
+  notes: named as the machine the leather belting drives, not one AGS-TECH is said to run; a sewing machine is a
+    production machine so it is in scope under the equipments clause
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-equipments-0160
+  name: factory machine
+  status: confirmed
+  acceptable_forms:
+  - factory machines
+  evidence:
+  - quote: as AUTOMATIC CONTROL, is the use of various CONTROL SYSTEMS for operating equipment such as factory machines,
+      heat treating and curing ovens, telecommunication equipment, …etc. with minimal or reduced
+    approx_offset: 1760647
+  actor: unknown
+  notes: 'textbook/explainer prose: a generic encyclopedia description with ''we''/''our'' injected'
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-equipments-0161
+  name: heat treating and curing oven
+  status: confirmed
+  acceptable_forms:
+  - heat treating and curing ovens
+  evidence:
+  - quote: of various CONTROL SYSTEMS for operating equipment such as factory machines, heat treating and curing
+      ovens, telecommunication equipment, …etc. with minimal or reduced human intervention
+    approx_offset: 1760680
+  actor: unknown
+  notes: 'textbook/explainer prose: a generic encyclopedia description with ''we''/''our'' injected; a heat-treating/curing
+    oven acts on the work, so it is a production machine'
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-equipments-0162
+  name: lathe
+  status: candidate
+  acceptable_forms:
+  - lathe
+  evidence:
+  - quote: of the particular process and disturbances that may arise. As an example, in a turning operation on a
+      lathe, our adaptive control system does sense in real time the cutting forces, torque,
+    approx_offset: 102562
+  notes: a machine that acts on the work, named directly; no lathe entry exists in the packet
+  provenance:
+  - action: added
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+    source: verification-pass-miss
+- id: agstech_net-equipments-0163
+  name: hose endforming machine
+  status: candidate
+  acceptable_forms:
+  - Hose Endforming Machines
+  evidence:
+  - quote: Hose Endforming Machines and Tools
+    approx_offset: 62524
+  actor: reseller_inventory
+  notes: the sibling of 'Hose Crimping Machines' (equipments-0003); an end-forming machine forms the hose itself
+  provenance:
+  - action: added
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+    source: verification-pass-miss
+- id: agstech_net-equipments-0164
+  name: equipment to cut, drill, polish
+  status: candidate
+  acceptable_forms:
+  - Equipment to Cut Drill Polish
+  evidence:
+  - quote: Equipment to Cut Drill Polish
+    approx_offset: 215752
+  actor: reseller_inventory
+  notes: line 4022, the last submenu on the cutting-tools page; machines that cut, drill and polish act on the work,
+    and every other submenu on that page was seeded (as products).
+  provenance:
+  - action: added
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+    source: verification-pass-miss
+- id: agstech_net-equipments-0165
+  name: EDM head
+  status: candidate
+  acceptable_forms:
+  - Separate EDM heads
+  - EDM heads
+  evidence:
+  - quote: Separate EDM heads specifically for small hole drilling are mounted on our wire-cut machines
+    approx_offset: 488890
+  notes: a beam/electrode head mounted on the wire-cut machines that does the small-hole drilling -- it acts on
+    the work, in the same way as the 'electron beam gun' that IS entered at equipments-0058. Named twice ('the integrated
+    EDM heads').
+  provenance:
+  - action: added
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+    source: verification-pass-miss
+- id: agstech_net-equipments-0166
+  name: mini grinder
+  status: retired
+  acceptable_forms:
+  - mini grinder
+  evidence:
+  - quote: ' eyepiece, CCD with interface, eyepiece 5x/10x/15x/16x, objective 4x/5x/20x/25x/40x/100x, mini grinder,
+      electrolytic polisher, a set of wheel heads, polishing cloth wheel, replica film, filt'
+  actor: reseller_inventory
+  notes: supplied with the portable metallurgical microscope; it grinds the specimen, so it acts on the work rather
+    than measuring it. Seeded only as products-0685. Arguable because the work here is specimen preparation, not
+    finished goods
+  provenance:
+  - action: added
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+    source: verification-pass-miss
+  - action: retired
+    by: assistant-repair
+    date: '2026-08-27'
+    reason: no acceptable form occurs in the text; the miss could not be evidenced
+- id: agstech_net-equipments-0167
+  name: electrolytic polisher
+  status: candidate
+  acceptable_forms:
+  - electrolytic polisher
+  evidence:
+  - quote: with interface, eyepiece 5x/10x/15x/16x, objective 4x/5x/20x/25x/40x/100x, mini grinder, electrolytic
+      polisher, a set of wheel heads, polishing cloth wheel, replica film, filter (green, blue, yellow)
+    approx_offset: 690068
+  actor: reseller_inventory
+  notes: 'same list and same argument as the mini grinder: polishing removes material from the work. Seeded only
+    as products-0686'
+  provenance:
+  - action: added
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+    source: verification-pass-miss
+  - action: amended
+    by: assistant-repair
+    date: '2026-08-27'
+    reason: verification-pass miss quote was not verbatim; re-derived from the text
+- id: agstech_net-equipments-0168
+  name: sinker EDM machine
+  status: candidate
+  acceptable_forms:
+  - sinker EDM machine
+  evidence:
+  - quote: The copper LIGA electrode can then be mounted onto the sinker EDM machine for mesomanufacturing a part
+      in a different material such as stainless steel
+    approx_offset: 1206147
+  notes: packet seeds micro-EDM and wire micro-EDM machines from the same paragraph but not the sinker machine;
+    it removes material from the work, so it satisfies the clause
+  provenance:
+  - action: added
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+    source: verification-pass-miss
+- id: agstech_net-equipments-0169
+  name: furnace
+  status: candidate
+  acceptable_forms:
+  - furnace
+  evidence:
+  - quote: Parts are packed in a high carbon medium such as carbon powder and heated in a furnace for 12 to 72 hours
+      at 900 Centigrade (1652 Fahrenheit). At these temperatures CO gas is
+    approx_offset: 1308624
+  notes: a machine that heats and case-hardens the work; named repeatedly in the carburizing/nitriding paragraphs
+  provenance:
+  - action: added
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+    source: verification-pass-miss
+- id: agstech_net-equipments-0170
+  name: robotic laser welding workstation
+  status: candidate
+  acceptable_forms:
+  - Robotic Laser Welding Workstation
+  evidence:
+  - quote: '- Robotic Laser Welding Workstation'
+    approx_offset: 1431732
+  actor: reseller_inventory
+  notes: a machine that welds the work; passes the equipments clause
+  provenance:
+  - action: added
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+    source: verification-pass-miss
+- id: agstech_net-equipments-0171
+  name: welding robots
+  status: candidate
+  acceptable_forms:
+  - Welding Robots
+  evidence:
+  - quote: '- Welding Robots Brochure'
+    approx_offset: 1432038
+  actor: reseller_inventory
+  notes: a machine that welds the work; passes the equipments clause
+  provenance:
+  - action: added
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+    source: verification-pass-miss
+- id: agstech_net-equipments-0172
+  name: milling machine
+  status: candidate
+  acceptable_forms:
+  - milling machine
+  evidence:
+  - quote: our clients a table of cam radii with corresponding cam angles. Cams are then cut on a milling machine
+      by point settings. As a result, a cam surface with a series of ridges is obtained which is
+    approx_offset: 1591808
+  notes: a machine that cuts the cam blank - it acts on the work, so it passes the equipments clause [line 26323]
+  provenance:
+  - action: added
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+    source: verification-pass-miss
+- id: agstech_net-equipments-0173
+  name: servo C-frame utility press
+  status: candidate
+  acceptable_forms:
+  - Servo C-Frame Utility Press
+  evidence:
+  - quote: '- Servo C-Frame Utility Press (We private label these with your brand name and logo if you wish)'
+    approx_offset: 1559430
+  notes: a press in the same supplied-equipment list as the seeded mini machines; it acts on the work [line 25567]
+  provenance:
+  - action: added
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+    source: verification-pass-miss
+false_friends:
+- form: Hardness Testers
+  reason: 'witnessed (93, 109, 452): real, but a TEST instrument, which the equipments clause excludes; it belongs
+    to products. Returning it under equipments is the exact mistake that produced a false RED on alecmfg.'
+- form: Vision Measuring Machines
+  reason: 'witnessed (460): a measuring instrument, excluded by the equipments clause; belongs to products.'
+- form: Conveyors
+  reason: 'witnessed (1941, 2322, 4334): moves what is made, excluded by the equipments clause (''moves, stores,
+    or carries'').'
+- form: Automated Guided Vehicles
+  reason: 'witnessed (1941): material handling, excluded by the equipments clause.'
+- form: Jigs
+  reason: 'witnessed as a whole page (1106-1157): tooling, excluded by the equipments clause (''what a machine holds,
+    guides, or acts through'').'
+- form: Fixtures
+  reason: 'witnessed (1133-1155, 1965): tooling, excluded by the equipments clause.'
+- form: Extrusion dies
+  reason: 'witnessed (1163): tooling, excluded by the equipments clause.'
+- form: Piston air compressor
+  reason: 'witnessed (1742): powers/conditions the plant, excluded by the equipments clause; belongs to products.'
+- form: Profile Projectors
+  reason: 'witnessed (460): an inspection instrument, excluded by the equipments clause.'
+- form: CATIA
+  reason: 'witnessed (2246, 2254): software, not a production machine.'
+- form: hardness testers
+  reason: a measuring instrument AGS-TECH resells; the equipments clause excludes equipment that only measures,
+    inspects or tests the work
+- form: metallurgical microscopes
+  reason: a measuring instrument AGS-TECH resells; excluded by the equipments clause
+- form: ultrasonic fault detectors
+  reason: a test instrument AGS-TECH resells; excluded by the equipments clause
+- form: Helium Leak Tester
+  reason: a test instrument in the private-label catalog; excluded by the equipments clause
+- form: Leak Testing Machine
+  reason: a test instrument in the private-label list; the word 'Machine' is the trap - it only tests the work
+- form: quality control equipment
+  reason: inspection equipment AGS-TECH resells; excluded by the equipments clause
+- form: Hand Tools
+  reason: tooling in the resale catalog, not a production machine
+- form: Drill Bits
+  reason: cutting tooling a machine acts through, explicitly excluded by the equipments clause
+- form: Hole Saws
+  reason: cutting tooling, excluded by the equipments clause
+- form: jigs and fixtures
+  reason: workholding tooling AGS-TECH manufactures; the equipments clause excludes tooling, and 'Jigs, Fixtues,
+    Tools Manufacturing' is a product line
+- form: mold inserts
+  reason: tooling a machine holds, excluded by the equipments clause; also the exact class that caused the alecmfg
+    false RED
+- form: Hydraulic Reservoirs
+  reason: a fluid-storage vessel in the resale catalog; storage, not a machine acting on the work
+- form: Industrial Filters
+  reason: a filtration consumable/utility item in the resale catalog, not a production machine
+- form: vacuum systems
+  reason: plant-conditioning hardware ('operating and maintaining vacuum systems requires specialized technicians'),
+    excluded by the equipments clause
+- form: ESD controlled tables
+  reason: packaging-bench furniture, not a machine that acts on the work
+- form: industrial computers
+  reason: a computing product AGS-TECH resells, not a production machine
+- form: panel PC
+  reason: a computing product AGS-TECH resells, not a production machine
+- form: grinding wheel
+  reason: tooling the machine acts through, not a production machine; the equipments clause excludes tooling
+- form: conveyors
+  reason: material handling ('driven-wheel conveyors to move the plates'), which the equipments clause excludes
+- form: chiller
+  reason: plant conditioning ('circulated through a chiller or heat transfer system'), which the equipments clause
+    excludes
+- form: electrode
+  reason: tooling the EDM/ECM machine acts through, not a production machine
+- form: sonotrode
+  reason: the vibrating tool tip of the ultrasonic machine - tooling, not a production machine
+- form: wire brush
+  reason: a hand tool used to remove slag, not a production machine
+- form: Infrared Cameras
+  reason: an imaging/test instrument, which the equipments clause excludes ('equipment that only measures, inspects,
+    or tests the work'); it is a resold PRODUCT here
+- form: Differential Scanning Calorimeter
+  reason: a laboratory test instrument, excluded by the equipments clause; it is a resold product
+- form: Vibration Meter
+  reason: a measuring instrument, excluded by the equipments clause; it is a resold product
+- form: Tachometer
+  reason: a measuring instrument, excluded by the equipments clause; it is a resold product
+- form: Oscilloscope
+  reason: a test instrument, excluded by the equipments clause; it is a resold product here
+- form: Spectrum Analyzer
+  reason: a test instrument, excluded by the equipments clause
+- form: Microscope
+  reason: an inspection instrument, excluded by the equipments clause
+- form: Borescope
+  reason: an inspection instrument, excluded by the equipments clause
+- form: Coating Thickness Meter
+  reason: a measuring instrument, which the equipments clause excludes; it is a resold product
+- form: Surface Profilometer
+  reason: a measuring instrument, excluded by the equipments clause
+- form: mini grinder
+  reason: a metallographic sample-prep accessory sold with a microscope, not a production machine that acts on the
+    work
+- form: Conveyor
+  reason: 'witnessed: ''the assembly is placed on a conveyor''. The equipments clause excludes machinery that only
+    moves, stores or carries what the plant makes'
+- form: Universal Testing Machine
+  reason: witnessed and abundant, but the equipments clause excludes equipment that only measures, inspects or tests
+    the work. It is seeded under products instead
+- form: Ultrasonic Flaw Detector
+  reason: 'witnessed: a test instrument, excluded by the equipments clause; seeded under products'
+- form: Hardness Tester
+  reason: witnessed on an entire page of them, and excluded by the equipments clause for the same reason; seeded
+    under products
+- form: Environmental Test Chamber
+  reason: 'witnessed: a test chamber conditions a specimen for a test, it does not convert material into finished
+    goods'
+- form: Progressive Dies
+  reason: 'witnessed: a die is tooling - what a machine holds or acts through - which the equipments clause excludes
+    by name'
+- form: Permanent Mold
+  reason: 'witnessed: a mold is tooling, excluded by the equipments clause. AGS-TECH also sells moulds, so they
+    belong under products'
+- form: Mandrel
+  reason: 'witnessed in the spinning explainer (''held between a rotating mandrel and tail stock''): tooling, not
+    a production machine'
+- form: Guide Bushing
+  reason: 'witnessed in the Swiss-type machining explainer: tooling'
+- form: Indenter
+  reason: 'witnessed throughout the hardness pages: a consumable tip of a test instrument, doubly excluded (tooling,
+    and part of test equipment)'
+- form: Test Block
+  reason: 'witnessed (''can work in the field without test block''): a calibration reference, not a production machine'
+- form: Water Bath
+  reason: 'witnessed in the extrusion explainer (''goes through a water bath for cooling''): a cooling tank, closer
+    to a plant utility than a machine that shapes the work'
+- form: air compressors
+  reason: 'witnessed: compressors are named all over the pneumatics pages, but a compressor powers/conditions the
+    plant rather than acting on the work - excluded by the equipments clause (it is a products entry instead)'
+- form: Capacitance Manometers
+  reason: 'witnessed: a measuring instrument AGS-TECH resells; equipment that only measures is excluded'
+- form: Flow Meters
+  reason: 'witnessed: a measuring instrument; excluded by the ''only measures, inspects, or tests'' carve-out'
+- form: Vacuum & Pressure Gauges
+  reason: 'witnessed: measuring instruments AGS-TECH resells'
+- form: Contamination Indicators
+  reason: 'witnessed: a sensor plus warning device that measures filter contamination'
+- form: vernier indicator
+  reason: 'witnessed: ''An integrated vernier indicator provides exact measurements of the stem revolutions'' -
+    a measuring device'
+- form: VACUUM LIFTERS
+  reason: 'witnessed: moves and carries the work; material handling is excluded'
+- form: VACUUM MANIPULATORS and GRIPPERS
+  reason: 'witnessed: handling and moving parts, not processing them'
+- form: AIR CONVEYORS
+  reason: 'witnessed: moves what is made; material handling is excluded'
+- form: forklift
+  reason: 'witnessed: occurs only as ''automotive, forklift, crane parts'' - material handling, and here it is a
+    part name anyway'
+- form: mandrel
+  reason: 'witnessed: tooling the machine acts through (ring forging, filament winding, Vello tube forming)'
+- form: blow mold
+  reason: 'witnessed: tooling; ''pushed against the walls of the blow mold cavity'''
+- form: blank mold
+  reason: 'witnessed: tooling in the blow-and-blow container glass line'
+- form: curing die
+  reason: 'witnessed: pultrusion tooling, not the machine'
+- form: HOB
+  reason: 'witnessed: ''We call this punch a HOB'' - tooling, and a 3-char form'
+- form: heat exchangers
+  reason: 'witnessed: conditions the plant fluid; plant utility, excluded'
+- form: reservoir heaters
+  reason: 'witnessed: plant/fluid conditioning, excluded'
+- form: hydraulic clamping systems
+  reason: 'witnessed: work-holding fixtures - tooling the machine holds the work with, excluded'
+- form: coordinate measuring machines
+  reason: 'witnessed: a CMM only measures the work, which the equipment clause excludes; occurs in "Non-contact
+    zoom videoprobe for coordinate measuring machines"'
+- form: Laser interferometers
+  reason: 'witnessed: metrology instrument listed among AGS-TECH''s micro-assembly kit; measurement is excluded
+    from the equipment clause'
+- form: Scanning Electron Microscopes
+  reason: 'witnessed: inspection instrument (SEM/TEM), excluded as it only images the work'
+- form: Transmission Electron Microscopes
+  reason: 'witnessed: inspection instrument, excluded'
+- form: semiconductor wafer test equipment
+  reason: 'witnessed: "We use semiconductor wafer test equipment to verify that the wafers haven''t been damaged"
+    - testing, not production'
+- form: electronic tester
+  reason: 'witnessed: "an electronic tester that presses tiny probes against the semiconductor chip" - a tester,
+    excluded'
+- form: color readers
+  reason: 'witnessed: "We have advanced tools such as color readers, color comparators" - measurement only'
+- form: color comparators
+  reason: 'witnessed: measurement instrument, excluded'
+- form: metallurgical microscope
+  reason: 'witnessed: an inspection instrument AGS-TECH SELLS; it belongs under products, never under production
+    machines'
+- form: gravure inspection microscope
+  reason: 'witnessed: inspection instrument developed as a product'
+- form: fiber end inspection interferometer
+  reason: 'witnessed: built "for in-process and final inspection" - inspection, excluded from equipment'
+- form: vacuum chamber
+  reason: 'witnessed: a process enclosure / plant conditioning, not a machine that acts on the work'
+- form: humidity chambers
+  reason: 'witnessed: environmental test chambers used for cycling tests, excluded twice over (test + conditioning)'
+- form: chip holders
+  reason: 'witnessed: fixtures sold as accessories for microfluidic chips - tooling, excluded'
+- form: dies and moulds
+  reason: 'witnessed: "minimizing wear and tolerance deviations in manufacturing tools such as dies and moulds"
+    - tooling, excluded'
+- form: LIGA molds
+  reason: 'witnessed: a mould is tooling the machine acts through, excluded'
+- form: master mold
+  reason: 'witnessed: soft-lithography tooling, excluded'
+- form: elastomer stamp
+  reason: 'witnessed: a stamp is tooling, excluded'
+- form: micro-milling tools
+  reason: 'witnessed: cutting tools mounted ON the milling machine - tooling, excluded'
+- form: micro-turning tools
+  reason: 'witnessed: tooling, excluded'
+- form: translational stages
+  reason: 'witnessed: positioning sub-assembly of the laser, not a machine in its own right'
+- form: pumps
+  reason: 'witnessed: fluid-handling goods AGS-TECH resells with its microfluidic chips; not a machine that shapes
+    or converts material'
+- form: microwave oven
+  reason: textbook prose about domestic microwave ovens heating food; not a production machine
+- form: Vending Machine
+  reason: '''Robotic Vending Machine A406'' is a resold robot product, not a machine that makes anything'
+- form: Machine Vision
+  reason: Hikrobot machine-vision products inspect and measure, which the equipment clause excludes
+- form: Material Handling Systems
+  reason: occurs only in 'Bearings for Material Handling Systems'; handling equipment is excluded from this field
+- form: Hone
+  reason: '''Honing Tools, Hone, Hones'' names abrasive tooling sold as a product, not a honing machine'
+- form: Trommel Screen
+  reason: occurs only inside the brush product name "Trommel Screen Brushes"; no trommel screen is said to be run
+- form: Haida Cookware Testing Machines
+  reason: a TEST machine; the equipments clause excludes equipment that only measures, inspects or tests the work
+- form: vacuum cleaners
+  reason: a consumer appliance named as a place HEPA filters are used, not a production machine
+- form: disk drive trays
+  reason: computer storage hardware, not a machine that acts on the work
+- form: CNC machining center
+  reason: 'anticipatory: "machined from gray-iron castings" invites a machine that is never named'
+- form: printing press
+  reason: 'anticipatory: "silkscreen print" and "print blankets" invite a press that is never named'

@@ -1,0 +1,287 @@
+subject: mathewsco.com
+field: equipments
+snapshot:
+  file: apps/data_etl_app/tests/test_stages/sample_scraped_texts/mathewsco.com.txt
+  sha256: f1a1ace7c17205dc4906f4f87eb1844cefd0661483e58b3f5d6538d30b33b15b
+eval_set_version: 2
+expected_empty: false
+notes: 'NOT empty, but small and entirely third-party. Mathews owns no production machine; its only literal ''equipment''
+  is Act Contact Manager (contact-management software) and Harris Industrial Guides (a printed SIC directory), both
+  seeded as false friends. The real entries come from two principals'' plant descriptions. Seeded strictly to the
+  prompt''s clause: a production machine ACTS ON THE WORK, which excludes measuring/inspecting/testing gear, plant
+  power and conditioning, material movement and storage, and ALL TOOLING (dies, molds, jigs, fixtures). That is
+  why ''in-house tooling'', ''permanent mold'' and ''Die Springs'' are false friends here even though they are real
+  entries in other fields.'
+entries:
+- id: mathewsco_com-equipments-0001
+  name: presses
+  status: confirmed
+  acceptable_forms:
+  - presses
+  evidence:
+  - quote: Equipment- presses from 20 to 400 tons
+    approx_offset: 24950
+  - quote: 40 coining (sizing to 60T in 2) presses
+    approx_offset: 49291
+  actor: unknown
+  notes: anonymous Kansas stamping principal (20-400 ton); Missouri Pressed Metals runs 70 compacting and 40 coining
+    presses. The bare form 'presses' is deliberately the only one - 'Press' alone is a case-insensitive substring
+    of the principal names 'Mo-Press', 'MO-PRESS' and 'Missouri Pressed Metals' and would credit itself on a company
+    name.
+  provenance:
+  - action: added
+    by: seed-agent-mathewsco-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-mathewsco
+    date: '2026-08-27'
+- id: mathewsco_com-equipments-0002
+  name: Laser cutters
+  status: confirmed
+  acceptable_forms:
+  - Laser cutters
+  evidence:
+  - quote: Laser cutters including 2-D and 5 axis 3-D
+    approx_offset: 24990
+  actor: unknown
+  notes: anonymous Kansas stamping principal; cuts the work, so a production machine
+  provenance:
+  - action: added
+    by: seed-agent-mathewsco-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-mathewsco
+    date: '2026-08-27'
+- id: mathewsco_com-equipments-0003
+  name: 9-axis Swiss machines
+  status: confirmed
+  acceptable_forms:
+  - 9-axis Swiss machines
+  - Swiss machines
+  evidence:
+  - quote: Their equipment list includes 9-axis Swiss machines
+    approx_offset: 25964
+  actor: unknown
+  notes: anonymous Kansas precision-machining principal; the text calls it an 'equipment list'
+  provenance:
+  - action: added
+    by: seed-agent-mathewsco-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-mathewsco
+    date: '2026-08-27'
+- id: mathewsco_com-equipments-0004
+  name: cold header
+  status: disputed
+  acceptable_forms:
+  - cold header
+  evidence:
+  - quote: Cold Heading - Our cold header offers external thread parts
+    approx_offset: 26373
+  actor: unknown
+  notes: 'DISPUTED. The string names a real production machine type, but in context it is agency metonymy for the
+    PRINCIPAL FIRM (''Our cold header offers ... They are licensed ... They product fasteners''). A run that correctly
+    declines to read it as a machine should not be charged a miss, so it must not gate. | In this sentence "our
+    cold header" reads as the supplier firm, not a machine: the rest of the paragraph refers back to it as a company
+    - "They are licensed to produce a number of different products", "They product fasteners in carbon steel", "They
+    offer a wide variety of sorting". The operation is already seeded as process_caps-0043. Whether the phrase also
+    names the machine is genuinely arguable, so the argument is recorded rather than the entry deleted.'
+  provenance:
+  - action: added
+    by: seed-agent-mathewsco-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: disputed
+    by: verify-agent-mathewsco
+    date: '2026-08-27'
+    reason: 'In this sentence "our cold header" reads as the supplier firm, not a machine: the rest of the paragraph
+      refers back to it as a company - "They are licensed to produce a number of different products", "They product
+      fasteners in carbon steel", "They offer a wide variety of sorting". The operation is already seeded as process_caps-0043.
+      Whether the phrase also names the machine is genuinely arguable, so the argument is recorded rather than the
+      entry deleted.'
+- id: mathewsco_com-equipments-0005
+  name: production presses
+  status: confirmed
+  acceptable_forms:
+  - production presses
+  evidence:
+  - quote: a 5,000 square foot building, three production presses
+    approx_offset: 48983
+  actor: supplier
+  notes: Missouri Pressed Metals, 1973 founding description
+  provenance:
+  - action: added
+    by: seed-agent-mathewsco-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-mathewsco
+    date: '2026-08-27'
+- id: mathewsco_com-equipments-0006
+  name: vacuum systems
+  status: confirmed
+  acceptable_forms:
+  - complete vacuum systems
+  - vacuum systems
+  evidence:
+  - quote: For impregnation we utilize five complete vacuum systems
+    approx_offset: 49332
+  actor: supplier
+  notes: Missouri Pressed Metals; used to force lubricant into the sintered part, so it acts on the work - not plant
+    conditioning
+  provenance:
+  - action: added
+    by: seed-agent-mathewsco-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-mathewsco
+    date: '2026-08-27'
+- id: mathewsco_com-equipments-0007
+  name: sintering furnaces
+  status: confirmed
+  acceptable_forms:
+  - controlled atmosphere sintering furnaces
+  - sintering furnaces
+  evidence:
+  - quote: Seven controlled atmosphere sintering furnaces heat up the situation
+    approx_offset: 49499
+  actor: supplier
+  notes: Missouri Pressed Metals; a sintering furnace consolidates the compact itself, so it acts on the work rather
+    than conditioning the plant
+  provenance:
+  - action: added
+    by: seed-agent-mathewsco-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-mathewsco
+    date: '2026-08-27'
+- id: mathewsco_com-equipments-0008
+  name: laser technology
+  status: disputed
+  acceptable_forms:
+  - laser technology
+  - Laser Technology
+  evidence:
+  - quote: solutions we offer...such as laser technology
+    approx_offset: 51838
+  - quote: Laser Technology
+    approx_offset: 52065
+  actor: supplier
+  notes: DISPUTED. 'Implies a production machine' would admit it - the laser is the machine - but the phrase itself
+    designates a capability, and the same page's 'Laser prototyping' and the Kansas page's 'Laser cutters' cover
+    the capability and the machine respectively. | "such as laser technology, in-house tooling with CAD assistance"
+    names a technology, not a production machine with an identity of its own; the equipments clause wants a device
+    or system that acts on the work. The actual machine appears on another page and is seeded as equipments-0002
+    (Laser cutters); the capability is seeded as process_caps-0057.
+  provenance:
+  - action: added
+    by: seed-agent-mathewsco-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: disputed
+    by: verify-agent-mathewsco
+    date: '2026-08-27'
+    reason: '"such as laser technology, in-house tooling with CAD assistance" names a technology, not a production
+      machine with an identity of its own; the equipments clause wants a device or system that acts on the work.
+      The actual machine appears on another page and is seeded as equipments-0002 (Laser cutters); the capability
+      is seeded as process_caps-0057.'
+- id: mathewsco_com-equipments-0009
+  name: punch presses
+  status: confirmed
+  acceptable_forms:
+  - punch presses
+  evidence:
+  - quote: and punch presses with coil feeds and a capacity range of 45 to 400 tons
+    approx_offset: 51959
+  actor: supplier
+  notes: Clow Stamping
+  provenance:
+  - action: added
+    by: seed-agent-mathewsco-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-mathewsco
+    date: '2026-08-27'
+- id: mathewsco_com-equipments-0010
+  name: coil feeds
+  status: disputed
+  acceptable_forms:
+  - coil feeds
+  evidence:
+  - quote: punch presses with coil feeds and a capacity range
+    approx_offset: 51963
+  actor: supplier
+  notes: 'DISPUTED. A coil feed moves strip stock into the press rather than forming it, which lands it on the excluded
+    ''moves, stores, or carries'' side of the clause; against that, it is part of the press line and indexes the
+    work. Argument kept on the record. | A coil feed is the strip-feeding attachment on the press ("punch presses
+    with coil feeds and a capacity range of 45 to 400 tons"): it moves stock into the machine rather than shaping
+    the work, which is the line the equipments clause draws against equipment that moves or carries material. The
+    press itself is seeded as equipments-0009.'
+  provenance:
+  - action: added
+    by: seed-agent-mathewsco-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: disputed
+    by: verify-agent-mathewsco
+    date: '2026-08-27'
+    reason: 'A coil feed is the strip-feeding attachment on the press ("punch presses with coil feeds and a capacity
+      range of 45 to 400 tons"): it moves stock into the machine rather than shaping the work, which is the line
+      the equipments clause draws against equipment that moves or carries material. The press itself is seeded as
+      equipments-0009.'
+false_friends:
+- form: Act Contact Manager
+  reason: 'the agency''s contact-management SOFTWARE, the only thing on the site that Mathews itself ''utilizes'':
+    ''Mathews & Company utilizes Act Contact Manager to track customer activity''. Processes no material.'
+- form: Harris Industrial Guides
+  reason: a printed industrial directory used for SIC lookups, not a machine
+- form: Agricultural Equipment
+  reason: a MARKET name in the Kansas Markets list, repeated in all 25 page footers; the agency sells INTO this
+    market, it owns no such machine
+- form: Construction Equipment
+  reason: a MARKET name in the Kansas Markets list, repeated in all 25 footers
+- form: heavy equipment
+  reason: 'a market segment in Stadco''s copy: ''parts for trucks and heavy equipment'''
+- form: equipment knobs
+  reason: 'a DimcoGray product line: ''Competitive purchase costs for equipment knobs and handles'' - the artifact,
+    not the machine'
+- form: Air Conditioning units
+  reason: the artifact a principal MAKES ('Heaters & Air Conditioning units for commercial vehicles and buses');
+    even as plant gear, conditioning equipment is excluded by the clause
+- form: in-house tooling
+  reason: 'tooling is excluded by name in the clause - what a machine holds, guides or acts through: ''in-house
+    tooling with CAD assistance'''
+- form: customized tooling
+  reason: 'tooling, excluded by the clause: ''tool & die makers build customized tooling'''
+- form: permanent mold
+  reason: a mold is tooling, excluded by the clause; the phrase IS a legitimate process_caps entry (permanent-mold
+    casting), which is where it belongs
+- form: Die Springs
+  reason: a Fox Valley Spring PRODUCT line, not a die; 'die' would be tooling anyway
+- form: EDI capability
+  reason: electronic data interchange - a business system, not a production machine
+- form: CAD assistance
+  reason: design software, not a production machine
+- form: CMM
+  reason: 'the canonical equipment-boundary trap: measuring machines are excluded by the clause. Never occurs in
+    this text either'
+- form: press brake
+  reason: word-association from the stamping and press pages; never occurs
+- form: lathe
+  reason: word-association from 'rough turned bar' and Swiss machines; never occurs
+- form: milling machine
+  reason: word-association from '5-axis vertical milling'; never occurs
+- form: machining center
+  reason: word-association from 'CNC Machining'; never occurs
+- form: forklift
+  reason: excluded as material movement, and never occurs
+- form: conveyor
+  reason: excluded as material movement, and never occurs
+- form: injection molding machine
+  reason: word-association from the injection/insert molding pages; never occurs as a machine name

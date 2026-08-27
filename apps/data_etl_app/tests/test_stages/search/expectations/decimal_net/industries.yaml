@@ -1,0 +1,673 @@
+subject: decimal.net
+field: industries
+snapshot:
+  file: apps/data_etl_app/tests/test_stages/sample_scraped_texts/decimal.net.txt
+  sha256: 7d0abda71e487643dff25037df3637c71c99a3c83f7e12a698277fe3710eadfb
+eval_set_version: 2
+expected_empty: false
+notes: 'Dense: a 23-24 row ''Industry Focus'' block repeats on five capability pages, the homepage names nine sectors
+  in caps, five case studies each carry an ''Industry for Use'' cell, and album captions append an industry tag
+  to the part name. The ~580 lines of country/state dropdown are the junk pressure.'
+entries:
+- id: decimal_net-industries-0001
+  name: Medical Device
+  status: confirmed
+  acceptable_forms:
+  - Medical Device
+  evidence:
+  - quote: contract Laser Marking Services to a wide range of industries including Medical Device, Aerospace, Military,
+      Automotive, Electronics, Promotional and much
+    approx_offset: 3425
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+- id: decimal_net-industries-0002
+  name: Automotive
+  status: confirmed
+  acceptable_forms:
+  - Automotive
+  - AUTOMOTIVE
+  evidence:
+  - quote: Automotive
+    approx_offset: 3534
+  - quote: Services to a wide range of industries including Medical Device, Aerospace, Military, Automotive, Electronics,
+      Promotional and much more. Our new FOBA M2000-B
+    approx_offset: 3448
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+- id: decimal_net-industries-0003
+  name: Promotional
+  status: confirmed
+  acceptable_forms:
+  - Promotional
+  evidence:
+  - quote: including Medical Device, Aerospace, Military, Automotive, Electronics, Promotional and much more. Our
+      new FOBA M2000-B advanced laser marking workstation
+    approx_offset: 3487
+  notes: listed as a served market for laser marking; borderline (promotional-products sector)
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+- id: decimal_net-industries-0004
+  name: Medical
+  status: confirmed
+  acceptable_forms:
+  - Medical
+  - MEDICAL
+  evidence:
+  - quote: Medical
+    approx_offset: 3497
+  - quote: Aluminum Eye Exam Chin Rest Medical
+    approx_offset: 106854
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+- id: decimal_net-industries-0005
+  name: Aerospace
+  status: confirmed
+  acceptable_forms:
+  - Aerospace
+  - AEROSPACE
+  - Aerospace components
+  evidence:
+  - quote: Aerospace
+    approx_offset: 3513
+  - quote: several standards related to this project, including AS9100 quality management for Aerospace components,
+      P.S. 806-1-1, and P.S. 806-3-20A. Our client was
+    approx_offset: 43045
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+- id: decimal_net-industries-0006
+  name: Military
+  status: confirmed
+  acceptable_forms:
+  - Military
+  - MILITARY
+  - military
+  evidence:
+  - quote: Military
+    approx_offset: 3524
+  - quote: CUSTOM MACHINING OF A SERVO BODY FOR A MILITARY APPLICATION
+    approx_offset: 42056
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+- id: decimal_net-industries-0007
+  name: Electronics
+  status: confirmed
+  acceptable_forms:
+  - Electronics
+  - ELECTRONICS
+  evidence:
+  - quote: Electronics
+    approx_offset: 3546
+  - quote: Painted Steel Back Panel Electronics
+    approx_offset: 81413
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+- id: decimal_net-industries-0008
+  name: Defense
+  status: confirmed
+  acceptable_forms:
+  - Defense
+  - DEFENSE
+  - defense
+  evidence:
+  - quote: Defense
+    approx_offset: 9792
+  - quote: industry leader in precision CNC machining for the aerospace, energy, defense, and commercial manufacturing
+      sectors, Decimal Engineering, Inc. utilizes the most
+    approx_offset: 4663
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+- id: decimal_net-industries-0009
+  name: commercial manufacturing sector
+  status: confirmed
+  acceptable_forms:
+  - commercial manufacturing sectors
+  - commercial manufacturing
+  evidence:
+  - quote: in precision CNC machining for the aerospace, energy, defense, and commercial manufacturing sectors,
+      Decimal Engineering, Inc. utilizes the most advanced
+    approx_offset: 4679
+  notes: generic but explicitly framed as a sector served
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+- id: decimal_net-industries-0010
+  name: Computers
+  status: confirmed
+  acceptable_forms:
+  - Computers
+  - COMPUTER
+  evidence:
+  - quote: Computers
+    approx_offset: 9769
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+- id: decimal_net-industries-0011
+  name: Construction
+  status: confirmed
+  acceptable_forms:
+  - Construction
+  evidence:
+  - quote: Construction
+    approx_offset: 9779
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+- id: decimal_net-industries-0012
+  name: Energy
+  status: confirmed
+  acceptable_forms:
+  - Energy
+  - energy
+  evidence:
+  - quote: Energy
+    approx_offset: 9812
+  - quote: Copper Bus Bars Energy
+    approx_offset: 107227
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+- id: decimal_net-industries-0013
+  name: Entertainment
+  status: confirmed
+  acceptable_forms:
+  - Entertainment
+  evidence:
+  - quote: Entertainment
+    approx_offset: 9819
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+- id: decimal_net-industries-0014
+  name: Environmental
+  status: confirmed
+  acceptable_forms:
+  - Environmental
+  evidence:
+  - quote: Environmental
+    approx_offset: 9833
+  - quote: Powdercoated Aluminum Pump Housing Environmental
+    approx_offset: 81544
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+- id: decimal_net-industries-0015
+  name: Firearms
+  status: confirmed
+  acceptable_forms:
+  - Firearms
+  evidence:
+  - quote: Firearms
+    approx_offset: 9847
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+- id: decimal_net-industries-0016
+  name: Furniture
+  status: confirmed
+  acceptable_forms:
+  - Furniture
+  evidence:
+  - quote: Furniture
+    approx_offset: 9856
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+- id: decimal_net-industries-0017
+  name: Lighting
+  status: confirmed
+  acceptable_forms:
+  - Lighting
+  evidence:
+  - quote: Lighting
+    approx_offset: 9885
+  notes: standalone row on 4 tables; the wire-EDM table runs it together as 'JewelryLighting'
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+- id: decimal_net-industries-0018
+  name: Marine
+  status: confirmed
+  acceptable_forms:
+  - Marine
+  - MARINE
+  evidence:
+  - quote: Marine
+    approx_offset: 9894
+  - quote: Stamped Passivated Stainless Latch Coupling Marine
+    approx_offset: 103302
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+- id: decimal_net-industries-0019
+  name: Mining
+  status: confirmed
+  acceptable_forms:
+  - Mining
+  evidence:
+  - quote: Mining
+    approx_offset: 9918
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+- id: decimal_net-industries-0020
+  name: OEM
+  status: confirmed
+  acceptable_forms:
+  - OEM
+  evidence:
+  - quote: OEM
+    approx_offset: 9925
+  notes: Industry Focus table row; a customer type rather than a sector, but the table presents it as one
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+- id: decimal_net-industries-0021
+  name: Retail
+  status: confirmed
+  acceptable_forms:
+  - Retail
+  evidence:
+  - quote: Retail
+    approx_offset: 9929
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+- id: decimal_net-industries-0022
+  name: Security
+  status: confirmed
+  acceptable_forms:
+  - Security
+  - SECURITY
+  evidence:
+  - quote: Security
+    approx_offset: 9936
+  - quote: Aluminum Booking Station Cabinet Security
+    approx_offset: 106768
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+- id: decimal_net-industries-0023
+  name: Telecommunications
+  status: confirmed
+  acceptable_forms:
+  - Telecommunications
+  - TELECOMMUNICATIONS
+  evidence:
+  - quote: Telecommunications
+    approx_offset: 9945
+  - quote: Painted Steel Cabinet Telecommunications
+    approx_offset: 81452
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+- id: decimal_net-industries-0024
+  name: Textile
+  status: confirmed
+  acceptable_forms:
+  - Textile
+  evidence:
+  - quote: Textile
+    approx_offset: 9964
+  - quote: Aluminum Fabric Test Fixture Textile
+    approx_offset: 106892
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+- id: decimal_net-industries-0025
+  name: Transportation
+  status: confirmed
+  acceptable_forms:
+  - Transportation
+  - TRANSPORTATION INDUSTRY
+  - transportation industry
+  evidence:
+  - quote: Transportation
+    approx_offset: 9972
+  - quote: CUSTOM MANUFACTURING OF A POWER CONVERSION LOCKER FOR THE TRANSPORTATION INDUSTRY
+    approx_offset: 74485
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+- id: decimal_net-industries-0026
+  name: Home Appliances / household appliance
+  status: confirmed
+  acceptable_forms:
+  - Home Appliances
+  - HOUSEHOLD APPLIANCE APPLICATION
+  - household appliances
+  evidence:
+  - quote: "Industry for Use\tHome Appliances"
+    approx_offset: 12833
+  - quote: PROGRESSIVE STAMPING IN-DIE TAPPING OF A HOT WATER HEATER FOR A HOUSEHOLD APPLIANCE APPLICATION
+    approx_offset: 10755
+  actor: client
+  notes: the served market of a Mexican hot-water-heater maker (case study)
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+- id: decimal_net-industries-0027
+  name: Hospitality
+  status: confirmed
+  acceptable_forms:
+  - Hospitality
+  evidence:
+  - quote: Hospitality
+    approx_offset: 32726
+  notes: standalone row on the wire-EDM page; the other four capability tables run it together as 'HospitalityJewelry'
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+- id: decimal_net-industries-0028
+  name: Environmental Protection
+  status: confirmed
+  acceptable_forms:
+  - Environmental Protection
+  - ENVIRONMENTAL PROTECTION INDUSTRY
+  - environmental protection
+  evidence:
+  - quote: "Industry for Use\tEnvironmental Protection"
+    approx_offset: 61777
+  - quote: ENGINEERING & MACHINING OF A SPRAY SHOWER TESTER FOR THE ENVIRONMENTAL PROTECTION INDUSTRY
+    approx_offset: 59611
+  actor: client
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+- id: decimal_net-industries-0029
+  name: Jewelry
+  status: confirmed
+  acceptable_forms:
+  - Jewelry Industry
+  - JEWELRY INDUSTRY
+  - jewelry design
+  - Jewelry fabrication
+  evidence:
+  - quote: WIRE EDM MACHINING OF CROSS PENDANTS FOR THE JEWELRY INDUSTRY
+    approx_offset: 77695
+  - quote: Engineering, Inc. can produce intricate products for a variety of industries, including jewelry design.
+      We offer a full range of machining processes designed
+    approx_offset: 77851
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+- id: decimal_net-industries-0030
+  name: Audio
+  status: confirmed
+  acceptable_forms:
+  - Audio
+  - Knob Audio
+  - Grill Audio
+  - Speaker Audio
+  evidence:
+  - quote: Stainless Knurled Knob Audio
+    approx_offset: 80686
+  - quote: Perforated Steel Grill Audio
+    approx_offset: 103014
+  - quote: Steel Front Panel for Speaker Audio
+    approx_offset: 80717
+  notes: album caption industry tag on three parts; borderline - it names an application domain, not a formal sector
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: amended
+    by: verify-agent-decimal
+    date: '2026-08-27'
+    reason: the album lines tag the trailing word as the industry ('... Knob Audio', '... Grill Audio'); the seeded
+      two-word forms are scrape compounds a search would never emit, so bare 'Audio' is added as the form that can
+      actually credit
+- id: decimal_net-industries-0031
+  name: Food
+  status: confirmed
+  acceptable_forms:
+  - Assembly Food
+  - Food
+  evidence:
+  - quote: Aluminum Espresso Machine Assembly Food
+    approx_offset: 106812
+  notes: album caption industry tag; the bare form 'Food' is a single trailing word, so the fuller span is the reliable
+    one
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+- id: decimal_net-industries-0032
+  name: Avionics
+  status: confirmed
+  acceptable_forms:
+  - Avionics
+  evidence:
+  - quote: Aluminum Front Panel Avionics
+    approx_offset: 106964
+  notes: album caption industry tag
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+- id: decimal_net-industries-0033
+  name: Street Furniture
+  status: confirmed
+  acceptable_forms:
+  - Street Furniture
+  evidence:
+  - quote: Aluminum News Rack Street Furniture
+    approx_offset: 106996
+  notes: album caption industry tag; borderline market rather than named sector
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+- id: decimal_net-industries-0034
+  name: Fabricating and Machining Industry
+  status: candidate
+  acceptable_forms:
+  - Fabricating and Machining Industry
+  - Fabricating and Machining
+  evidence:
+  - quote: Alan Garey the President and CEO of Decimal Engineering has been in the Fabricating and Machining Industry
+      for over 40 years.
+    approx_offset: 63901
+  notes: the Ask Alan page names an industry outright; absent from the packet
+  provenance:
+  - action: added
+    by: verify-agent-decimal
+    date: '2026-08-27'
+    source: verification-pass-miss
+false_friends:
+- form: Other
+  reason: Industry Focus table row on the wire-EDM page - a dropdown filler, not a sector
+- form: Turkey
+  reason: ISO country dropdown on /ask-alan/ and /contact-rfq/, not a poultry/food market
+- form: Chad
+  reason: ISO country dropdown, not a sector
+- form: Georgia
+  reason: US-state AND ISO-country dropdown; a geography, not a market
+- form: Antarctica
+  reason: ISO country dropdown - the clearest tell that the ~240-name run is a form control
+- form: United Arab Emirates
+  reason: ISO country dropdown
+- form: Zimbabwe
+  reason: ISO country dropdown (last entry of the run)
+- form: District of Columbia
+  reason: US-state dropdown on the RFQ form
+- form: Fabricating and Machining Industry
+  reason: the subject's OWN activity presented as an industry (Alan Garey's bio line)
+- form: Modern Machine Shop
+  reason: a trade magazine that featured them, not a market they serve
+- form: Precision Machining
+  reason: own service line; returned as an industry it is own-activity-as-sector
+- form: Manufacturing
+  reason: generic - 'precision manufacturing business', 'Manufacturing plant'
+- form: Oil & Gas
+  reason: word-association from 'Stainless Oil Tank Energy'; the phrase never occurs
+- form: Coral Springs
+  reason: the plant's city, not a market
+- form: Vocational Training
+  reason: a community-outreach commitment, not a sector served

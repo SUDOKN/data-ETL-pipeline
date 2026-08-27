@@ -1,0 +1,712 @@
+subject: sterlingmfg.net
+field: conformity_attestations
+snapshot:
+  file: apps/data_etl_app/tests/test_stages/sample_scraped_texts/sterlingmfg.net.txt
+  sha256: f42c4b74d9eefaa7461fe85ed30745ce9465330ba86e7099f728423deb498cc5
+eval_set_version: 2
+expected_empty: false
+notes: THE POINT OF THIS SUBJECT. Certifications are scoped to FOUR named legal registrants with four distinct FDA
+  establishment numbers, and the footer's registrant names differ from the quality page's site names. Each entry's
+  notes record which name the certificate is printed under.
+entries:
+- id: sterlingmfg_net-conformity_attestations-0001
+  name: ISO 9001:2015
+  status: confirmed
+  acceptable_forms:
+  - ISO 9001:2015 Certified
+  - ISO 9001:2015
+  - ISO9001:2015
+  - ISO 9001:2015 Registered
+  evidence:
+  - quote: ISO 9001:2015 Certified
+    approx_offset: 3112
+  - quote: ISO9001:2015
+    approx_offset: 35515
+  - quote: ISO 9001:2015 registered
+    approx_offset: 77742
+  notes: printed under BOTH EPTAM Precision Plastics (line 4367) and EPTAM Precision Molding (line 4380) in the
+    'Certifications by location' block; the site-wide footer prints it unattributed on all 52 pages
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-conformity_attestations-0002
+  name: AS9100D
+  status: confirmed
+  acceptable_forms:
+  - AS 9100 D Certified
+  - AS 9100D Certification
+  - AS9100D Certified
+  - AS 9100D
+  - AS9100D
+  evidence:
+  - quote: AS 9100 D Certified
+    approx_offset: 3161
+  - quote: AS 9100D
+    approx_offset: 181866
+  - quote: AS9100D Certified
+    approx_offset: 35555
+  notes: printed under EPTAM Precision Plastics ONLY (line 4369 in the by-location block); the 2017 news post 'EPTAM
+    Plastics Awarded AS 9100D Certification' confirms the registrant is EPTAM Plastics, not the group
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-conformity_attestations-0003
+  name: FDA registration 3005144609 (EPTAM Plastics, LTD)
+  status: confirmed
+  acceptable_forms:
+  - 'EPTAM Plastics, LTD Registration Number: 3005144609'
+  - 'FDA #3005144609 Registered'
+  - 'FDA #3005144609'
+  - '3005144609'
+  evidence:
+  - quote: 'EPTAM Plastics, LTD Registration Number: 3005144609'
+    approx_offset: 3181
+  - quote: 'FDA #3005144609 Registered'
+    approx_offset: 35579
+  notes: 'REGISTRANT: ''EPTAM Plastics, LTD'' in the footer (line 83); the same number is printed under ''EPTAM
+    Precision Plastics'' on the quality page (4370). Northfield NH site'
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-conformity_attestations-0004
+  name: 21 CFR 820 / FDA QSR
+  status: confirmed
+  acceptable_forms:
+  - 21 CFR 820 Compliant
+  - 21 CFR 820 - Compliant
+  - 21 CFR 820 – Compliant
+  - 21 CFR 820
+  - FDA CFR Part 820
+  - FDA CFR Part 820 Registered
+  - 21 CFR Part 820
+  - FDA 21 CFR Part 820
+  - 21 CFR audit
+  evidence:
+  - quote: 21 CFR 820 - Compliant
+    approx_offset: 136759
+  - quote: 21 CFR 820 Compliant
+    approx_offset: 3233
+  - quote: FDA CFR Part 820 Registered
+    approx_offset: 61305
+  - quote: FDA 21 CFR Part 820
+    approx_offset: 194894
+  - quote: for our customers: 21 CFR 820 – Compliant
+    approx_offset: 136299
+  notes: printed under EPTAM Precision Plastics in the by-location block (4371) and unattributed in the footer;
+    line 1154 says a CUSTOMER 21 CFR audit was completed
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: amended
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+    reason: the site prints this compliance with THREE different dashes and the packet carries only two. Line 84
+      etc. print '21 CFR 820 Compliant' (no dash, 53x), line 4371 prints '21 CFR 820 - Compliant' (ASCII hyphen),
+      and lines 973 and 4358 print '21 CFR 820 – Compliant' with an EN DASH (U+2013). The en-dash spelling is the
+      one the entry's own fifth evidence quote uses, yet it is not an acceptable form, so that quote could never
+      credit its own entry. Added it.
+- id: sterlingmfg_net-conformity_attestations-0005
+  name: CAGE Code 1TYA1
+  status: disputed
+  acceptable_forms:
+  - 'CAGE Code: 1TYA1'
+  - CAGE Code
+  - 1TYA1
+  evidence:
+  - quote: 'CAGE Code: 1TYA1'
+    approx_offset: 3254
+  notes: a US government supplier registry identifier; footer prints it unattributed. Registry identifiers have
+    been argued either way (see SEEDING_BRIEF on D-U-N-S) but this one has a name, a number and an issuing body
+    | a CAGE code is a government-assigned entity identifier, the same class of thing as D-U-N-S, which SEEDING_BRIEF
+    section 4 says has repeatedly been argued either way and should be seeded disputed. It attests to registration
+    in a supplier registry, not to conformity with any standard.
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: disputed
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+    reason: a CAGE code is a government-assigned entity identifier, the same class of thing as D-U-N-S, which SEEDING_BRIEF
+      section 4 says has repeatedly been argued either way and should be seeded disputed. It attests to registration
+      in a supplier registry, not to conformity with any standard.
+- id: sterlingmfg_net-conformity_attestations-0006
+  name: ITAR
+  status: confirmed
+  acceptable_forms:
+  - ITAR, DDT Registered
+  - ITAR and DDT Registered
+  - ITAR
+  evidence:
+  - quote: ITAR, DDT Registered
+    approx_offset: 3271
+  - quote: ITAR and DDT Registered
+    approx_offset: 148361
+  notes: printed under EPTAM Precision Plastics only (4374); footer repeats it unattributed on 52 pages
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-conformity_attestations-0007
+  name: DDT registration
+  status: confirmed
+  acceptable_forms:
+  - DDT Registered
+  - DDT
+  evidence:
+  - quote: ITAR, DDT Registered
+    approx_offset: 3271
+  notes: always bundled with ITAR; 'DDT' is a 3-char form so it matches case-sensitively on word boundaries
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-conformity_attestations-0008
+  name: FDA registration 3011302692 (EPTAM West, LLC)
+  status: confirmed
+  acceptable_forms:
+  - 'EPTAM West, LLC Registration Number: 3011302692'
+  - 'FDA #3011302692 Registered'
+  - 'FDA #3011302692'
+  - '3011302692'
+  evidence:
+  - quote: 'EPTAM West, LLC Registration Number: 3011302692'
+    approx_offset: 3292
+  - quote: 'FDA #3011302692 Registered'
+    approx_offset: 136981
+  - quote: 'FDA #3011302692 (West/Metals)'
+    approx_offset: 148293
+  notes: 'REGISTRANT: ''EPTAM West, LLC'' (line 87); printed under ''EPTAM Precision Metals'' on the quality page
+    (4378). Line 4611 spells the alias out: ''FDA #3011302692 (West/Metals)'' = Colorado Springs'
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-conformity_attestations-0009
+  name: FDA registration 3038429246 (EPTAM Precision Molding MA, Lancaster)
+  status: confirmed
+  acceptable_forms:
+  - 'EPTAM Precision Molding MA (Lancaster Site Only) Registration Number: 3038429246'
+  - 'FDA #3038429246 Registered'
+  - 'FDA #3038429246'
+  - '3038429246'
+  evidence:
+  - quote: 'EPTAM Precision Molding MA (Lancaster Site Only) Registration Number: 3038429246'
+    approx_offset: 3340
+  - quote: 'FDA #3038429246 Registered'
+    approx_offset: 137081
+  notes: 'REGISTRANT: ''EPTAM Precision Molding MA (Lancaster Site Only)'' (line 88) - the footer scopes it to ONE
+    site explicitly. This is the ex-Sterling Manufacturing plant at 640 Sterling Street, Lancaster MA'
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-conformity_attestations-0010
+  name: FDA registration 3009998573 (EPTAM Micro-Machining)
+  status: confirmed
+  acceptable_forms:
+  - 'EPTAM Micro-Machining Registration Number: 3009998573'
+  - 'FDA #3009998573'
+  - '3009998573'
+  evidence:
+  - quote: 'EPTAM Micro-Machining Registration Number: 3009998573'
+    approx_offset: 3421
+  - quote: 'FDA #3009998573'
+    approx_offset: 137165
+  notes: 'REGISTRANT: ''EPTAM Micro-Machining'' (line 89) = the ex-Mendell plant, Lakeville MN. Note 4385 omits
+    the word ''Registered'' that the other three carry'
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-conformity_attestations-0011
+  name: ISO 13485:2016
+  status: confirmed
+  acceptable_forms:
+  - ISO:13485:2016 Certified
+  - ISO 13485:2016 Certified
+  - DS/EN ISO:13485:2016 Certified
+  - DS/EN ISO:13485:2016
+  - ISO 13485:2016 registered
+  - ISO 13485 Certified
+  - ISO 13485-certified
+  - ISO:13485:2016
+  evidence:
+  - quote: ISO 13485:2016 Certified
+    approx_offset: 48765
+  - quote: DS/EN ISO:13485:2016 Certified
+    approx_offset: 43936
+  - quote: ISO 13485 Certified
+    approx_offset: 12800
+  - quote: ISO 13485:2016 registered
+    approx_offset: 77715
+  notes: 'the ONLY certification printed under all four registrants: EPTAM Precision Plastics (4368), EPTAM Precision
+    Metals (4377), EPTAM Precision Molding (4381), EPTAM Precision Micro-Machining (4384). ''DS/EN ISO:13485:2016''
+    (lines 973, 1154) is the Danish/European adoption spelling and is a distinct surface form'
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-conformity_attestations-0012
+  name: RAPS Regulatory Affairs Certification (RAC)
+  status: confirmed
+  acceptable_forms:
+  - RAPS Regulatory Affairs (RAC)
+  - RAC
+  evidence:
+  - quote: RAPS Regulatory Affairs (RAC)
+    approx_offset: 25805
+  notes: held by the VP Quality & Regulatory Affairs, not by the company. The prompt clause explicitly covers what
+    'its people ... could hold', so it qualifies; 'RAC' is a 3-char form and matches case-sensitively
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-conformity_attestations-0013
+  name: ASQ Certified Quality Manager / Lead Auditor
+  status: confirmed
+  acceptable_forms:
+  - CQM & Lead Auditor Certified by ASQ
+  - Lead Auditor Certified by ASQ
+  - ASQ
+  evidence:
+  - quote: CQM & Lead Auditor Certified by ASQ
+    approx_offset: 25839
+  notes: personal certification with a named issuing body (ASQ); same 'its people' rationale as RAC
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-conformity_attestations-0014
+  name: ISO Class 7 cleanroom classification
+  status: confirmed
+  acceptable_forms:
+  - ISO Class 7 & 8 cleanrooms
+  - ISO Class 7 and 8 cleanrooms
+  - ISO Class 7
+  evidence:
+  - quote: ISO Class 7 & 8 cleanrooms
+    approx_offset: 35921
+  - quote: ISO Class 7 and 8 cleanrooms
+    approx_offset: 79763
+  notes: companion to ISO Class 8; note '&' vs 'and' are two distinct surface forms per the Variants rule
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-conformity_attestations-0015
+  name: 'Pending FDA Registration (#3005144609, #3011302692)'
+  status: confirmed
+  acceptable_forms:
+  - 'Pending FDA Registration (#3005144609, #3011302692)'
+  - Pending FDA Registration
+  evidence:
+  - quote: 'Pending FDA Registration (#3005144609, #3011302692)'
+    approx_offset: 48808
+  notes: the silicone-molding page states these two registrations are PENDING while the quality page states them
+    as held - an internal contradiction in the site, kept because the text names it
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-conformity_attestations-0016
+  name: ISO Class 8 cleanroom classification
+  status: confirmed
+  acceptable_forms:
+  - ISO Class 8 Certified Cleanrooms
+  - ISO Class 8 cleanroom
+  - ISO Class 8
+  evidence:
+  - quote: ISO Class 8 Certified Cleanrooms
+    approx_offset: 49062
+  - quote: ISO Class 8 certified cleanrooms
+    approx_offset: 77891
+  notes: ISO 14644-1 cleanliness class; text calls them 'certified'. Named at Lancaster MA, Leominster MA and Phillipsburg
+    NJ
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-conformity_attestations-0017
+  name: PPAP
+  status: disputed
+  acceptable_forms:
+  - PPAP
+  evidence:
+  - quote: PPAP and IQ OQ PQ needs
+    approx_offset: 56222
+  notes: 'DISPUTED: the AIAG Production Part Approval Process is a named industry standard, but here it is offered
+    as a service the plant performs, which reads as a process_cap. Seeded in BOTH fields; disputed here | PPAP appears
+    once, as a customer service EPTAM performs: ''can handle all its customers'' assembly, packaging, DFM, and PPAP
+    and IQ OQ PQ needs''. Read as a part-approval process it is a capability (already confirmed at process_caps-0042);
+    read as an AIAG standard a supplier follows it is an attestation. Genuinely arguable, and nothing in the text
+    says EPTAM holds or is certified to it.'
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: disputed
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+    reason: 'PPAP appears once, as a customer service EPTAM performs: ''can handle all its customers'' assembly,
+      packaging, DFM, and PPAP and IQ OQ PQ needs''. Read as a part-approval process it is a capability (already
+      confirmed at process_caps-0042); read as an AIAG standard a supplier follows it is an attestation. Genuinely
+      arguable, and nothing in the text says EPTAM holds or is certified to it.'
+- id: sterlingmfg_net-conformity_attestations-0018
+  name: FDA registered (unnumbered)
+  status: confirmed
+  acceptable_forms:
+  - FDA-registered
+  - FDA Registered
+  evidence:
+  - quote: FDA-registered
+    approx_offset: 66699
+  - quote: FDA Registered
+    approx_offset: 136400
+  notes: unattributed generic form used on the metals, micro-machining and plastics-machining pages
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-conformity_attestations-0019
+  name: Family and Medical Leave Act (FMLA)
+  status: confirmed
+  acceptable_forms:
+  - Family and Medical Leave Act (FMLA)
+  - FMLA
+  evidence:
+  - quote: Family and Medical Leave Act (FMLA)
+    approx_offset: 96709
+  notes: 'DISPUTED: employment-law notice on the careers page, not a manufacturing conformity. It IS a named statute
+    the company must comply with, so the clause arguably reaches it; seeded disputed so it cannot manufacture a
+    false miss'
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-conformity_attestations-0020
+  name: Equal Employment Opportunity (EEO)
+  status: confirmed
+  acceptable_forms:
+  - Equal Employment Opportunity (EEO)
+  - EEO
+  evidence:
+  - quote: Equal Employment Opportunity (EEO)
+    approx_offset: 96745
+  notes: 'DISPUTED: see FMLA'
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-conformity_attestations-0021
+  name: Employee Polygraph Protection Act (EPPA)
+  status: confirmed
+  acceptable_forms:
+  - Employee Polygraph Protection Act (EPPA)
+  - EPPA
+  evidence:
+  - quote: Employee Polygraph Protection Act (EPPA)
+    approx_offset: 96780
+  notes: 'DISPUTED: see FMLA'
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-conformity_attestations-0022
+  name: AS9102 (first article inspection standard)
+  status: confirmed
+  acceptable_forms:
+  - First Article Inspection to AS9102
+  - AS9102
+  evidence:
+  - quote: First Article Inspection to AS9102
+    approx_offset: 136782
+  notes: printed under EPTAM Precision Plastics only
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-conformity_attestations-0023
+  name: ISO 10012 (measurement management)
+  status: confirmed
+  acceptable_forms:
+  - ISO 10012
+  evidence:
+  - quote: 'Equipment Calibration: ISO 10012 and/or NCSL Z540 Compliant'
+    approx_offset: 136817
+  notes: EPTAM Precision Plastics only; named as the calibration standard
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-conformity_attestations-0024
+  name: NCSL Z540
+  status: confirmed
+  acceptable_forms:
+  - NCSL Z540
+  - NCSL Z540 Compliant
+  evidence:
+  - quote: NCSL Z540 Compliant
+    approx_offset: 136857
+  notes: EPTAM Precision Plastics only
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-conformity_attestations-0025
+  name: MIL-I-45662A
+  status: confirmed
+  acceptable_forms:
+  - Mil-I-45662A
+  evidence:
+  - quote: Meets Mil-I-45662A and Mil-I-45208
+    approx_offset: 136898
+  notes: printed under EPTAM Precision Plastics (4375); the About page (973) repeats it group-wide
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-conformity_attestations-0026
+  name: MIL-I-45208
+  status: confirmed
+  acceptable_forms:
+  - Mil-I-45208
+  evidence:
+  - quote: Meets Mil-I-45662A and Mil-I-45208
+    approx_offset: 136898
+  notes: see MIL-I-45662A
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-conformity_attestations-0027
+  name: ANVISA (Brazil)
+  status: confirmed
+  acceptable_forms:
+  - ANVISA certified
+  - ANVISA
+  evidence:
+  - quote: ANVISA certified
+    approx_offset: 137181
+  notes: the ONLY certification unique to EPTAM Precision Micro-Machining (Lakeville MN, ex-Mendell); Brazilian
+    health-regulator certification, appears exactly once in 211KB
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-conformity_attestations-0028
+  name: UDI (Unique Device Identification)
+  status: confirmed
+  acceptable_forms:
+  - UDI (Unique Device Identification)
+  - UDI
+  evidence:
+  - quote: FDA-compliant UDI (Unique Device Identification)
+    approx_offset: 144686
+  notes: 'DISPUTED: a mandated marking/identification scheme rather than something a company holds or is certified
+    to. Named with its own identity and an issuing body (FDA), so it arguably fits ''compliance ... with an identity
+    of its own''. Never gates while disputed'
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-conformity_attestations-0029
+  name: EU MDR
+  status: confirmed
+  acceptable_forms:
+  - EU MDR
+  evidence:
+  - quote: EU MDR
+    approx_offset: 194917
+  actor: unknown
+  notes: named in the regulatory white-paper teaser as a regime OEMs must meet, not claimed as held by EPTAM
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-conformity_attestations-0030
+  name: Health Canada
+  status: confirmed
+  acceptable_forms:
+  - Health Canada
+  evidence:
+  - quote: Health Canada
+    approx_offset: 194925
+  actor: unknown
+  notes: named as a regulatory regime alongside ISO 13485 / 21 CFR 820 / EU MDR; it is an issuing body used as a
+    regime name, not a certificate EPTAM claims
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+false_friends:
+- form: Quality Management System
+  reason: a system, not a certification with an identity of its own - the thing ISO 13485 certifies, not itself
+    an attestation (line 971)
+- form: IQMS
+  reason: IQMS(TM) is an ERP software product listed inside the 'Our quality system' bullet list, immediately below
+    real certifications (line 1267/2094)
+- form: 8D Problem-Solving Methodology
+  reason: a problem-solving methodology, not a certification; sits in the same bullet list as the ISO rows (line
+    1269)
+- form: Total Cost of Non-Quality of Less than 1%
+  reason: a performance metric printed in the certification bullet list (line 1266)
+- form: Counterfeit Parts Prevention Policy
+  reason: an internal company policy document on the Policies page, no issuing body (line 2997)
+- form: Management Commitment Statement
+  reason: an internal policy document (line 3003)
+- form: Purchase Order Terms and Conditions
+  reason: a commercial document (line 2999)
+- form: Customer Terms and Conditions
+  reason: a commercial document (line 3001)
+- form: Privacy Statement
+  reason: a website legal document (line 3005)
+- form: Private IPO
+  reason: New Heritage Capital's trademarked investment structure, printed with a (R) mark next to compliance-flavoured
+    prose (line 5902)
+- form: Lean Enterprise Initiative
+  reason: a named internal efficiency program at a former employer, not a standard (line 690)
+- form: MBA from UC Irvine
+  reason: an academic degree, not a certification (line 690)
+- form: West Point graduate
+  reason: an academic credential (line 690)
+- form: Society for Human Resource Management
+  reason: a professional-association membership (line 728)
+- form: certified to produce polymer implants
+  reason: a customer survey outcome with no named standard or issuing body (line 1154)
+- form: ISO 14001
+  reason: 'anticipatory: the environmental-management sibling standard. EPTAM''s page has a ''Sustainability Initiatives''
+    section (line 4615) and this string occurs ZERO times'
+- form: ISO 45001
+  reason: 'anticipatory: the occupational-health sibling standard; ZERO occurrences'
+- form: IATF 16949
+  reason: 'anticipatory: the automotive QMS standard. The site names Automotive as an industry (line 4631) but this
+    string occurs ZERO times'
+- form: NADCAP
+  reason: 'anticipatory: the aerospace special-process accreditation. AS9100D + passivation + anodizing are all
+    present, which is exactly the association that mints it; ZERO occurrences'
+- form: MDSAP
+  reason: 'anticipatory: the Medical Device Single Audit Program pairs with ISO 13485 + ANVISA in world knowledge;
+    ZERO occurrences'
+- form: CE Mark
+  reason: 'anticipatory: EU MDR is named (line 5560) but ''CE Mark'' occurs ZERO times'
+- form: ISO 14644
+  reason: 'anticipatory: the cleanroom standard the ''ISO Class 7/8'' rows actually come from - never spelled out
+    in the text'
+- form: D-U-N-S
+  reason: 'anticipatory: business-registry identifier; the site carries a CAGE Code but ZERO D-U-N-S'

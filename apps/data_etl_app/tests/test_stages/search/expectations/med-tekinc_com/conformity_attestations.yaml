@@ -1,0 +1,40 @@
+subject: med-tekinc.com
+field: conformity_attestations
+snapshot:
+  file: apps/data_etl_app/tests/test_stages/sample_scraped_texts/med-tekinc.com.txt
+  sha256: f1b1f156176cb3c86757d25176c0c27f9d6d704a021a47bdc0bfdcd662c4717c
+eval_set_version: 1
+expected_empty: true
+notes: 'expected_empty=true, and BAITED: the site talks about certification twice while holding none. Word-boundary
+  greps for ISO, ISO 9001, AS9100, IATF, NADCAP, ASTM, ANSI, ASME, AMS, API, UL, CE, EN, ITAR, RoHS, OSHA, FDA,
+  SAE, AWS, AISI and PPAP all return ZERO hits - NADCAP in particular, which is THE heat-treating accreditation
+  and is the single most likely thing to be fabricated for this subject. The certification vocabulary sweep (certif|accredit|registr|standard|complian|qualif|approv|audit|conform)
+  matches exactly two lines, both recorded below as false friends: line 25 offers to ISSUE ''laboratory and specification
+  certifications'' to a customer on request - a deliverable about someone else''s parts, with no name, number, mark
+  or issuing body, and nothing MED-TEK holds, meets or follows - and line 32 says the Rockwell testers ''are certified
+  every six months'', which is a calibration interval for a machine, not a certification with an identity of its
+  own. Both fail the clause''s ''identity of its own'' test, so neither is seeded even as a disputed entry. One
+  further near-miss noted but NOT listed as a false friend because no plausible run would return it: the string
+  ''Reach'' occurs (four times) only as the verb in ''Reach Out to Us'', never as the EU REACH regime.'
+entries: []
+false_friends:
+- form: laboratory and specification certifications
+  reason: WITNESSED (line 25) - the field's central bait. MED-TEK ISSUES these to customers on request; they name
+    no certification with an identity of its own (no name, number, mark or issuing body) and are not something the
+    company holds, meets or follows
+- form: specification certifications
+  reason: WITNESSED (line 25) - the shorter span of the same bait, and the likelier return since the prompt asks
+    for short designations
+- form: certified every six months
+  reason: WITNESSED (line 32) - a calibration interval for the Rockwell hardness testers. Uses the word 'certified'
+    about equipment upkeep, not about any attestation held
+- form: standard block
+  reason: WITNESSED (line 32) - contains the word 'standard' but names a physical reference block for hardness-tester
+    verification, not a published standard
+- form: NADCAP
+  reason: ANTICIPATORY - zero occurrences. The aerospace heat-treating accreditation and the highest-prior fabrication
+    for a commercial heat treater; only invention can hit it
+- form: ISO 9001
+  reason: ANTICIPATORY - zero occurrences of 'ISO' at all. The default certification hallucination for any manufacturer
+- form: AS9100
+  reason: ANTICIPATORY - zero occurrences; pairs with the absent aerospace industry claim

@@ -1,5 +1,11 @@
 # Search-stage evaluation
 
+> **New here? Read [`HANDOFF.md`](HANDOFF.md) first.** It carries the current
+> state of the eval set, the exact commands, every measured trap with the
+> reasoning behind each deliberate non-fix, and the open items. It is the
+> pick-up-where-we-left-off document and is appended to, not rewritten.
+
+
 A permanent, per-field, evolving evaluation of the SEARCH stage only — the
 first LLM pass that extracts verbatim surface forms from ~5k-token windows of
 scraped site text (plus brute round 0 on concept fields, plus recursive
@@ -18,8 +24,12 @@ contract_products — one physical request, never double-counted).
 - **TAXONOMY.md** — judgment codes per field + shared rollup + audit format.
 - **EXPECTATIONS_SCHEMA.md** — the evolving eval set's contract (span-witnessed
   entries, candidate→confirmed lifecycle with user veto).
-- **expectations/** — per-(subject, field) inventories for all 8 corpus
-  subjects, seeded 2026-08-26 from the sample scraped texts.
+- **expectations/** — per-(subject, field) inventories, seeded from the sample
+  scraped texts: the original 8 corpus subjects (2026-08-26) and the 12 added by
+  the corpus expansion (2026-08-27). `SEEDING_BRIEF.md` and `VERIFY_BRIEF.md`
+  are the two-pass procedure that produces them; `VERIFICATION_LEDGER.md` holds
+  the per-subject counts and is the file to check before trusting any recall
+  number.
 - **config/** — thresholds, prices, per-field sweep lexicons, born-from baselines.
 - **checks/** — the mechanical battery (see each module's docstring):
   pull.py (Mongo → raw request docs), loading.py, masking.py, mechanical.py,

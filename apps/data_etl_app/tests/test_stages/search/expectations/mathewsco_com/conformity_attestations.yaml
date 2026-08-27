@@ -1,0 +1,578 @@
+subject: mathewsco.com
+field: conformity_attestations
+snapshot:
+  file: apps/data_etl_app/tests/test_stages/sample_scraped_texts/mathewsco.com.txt
+  sha256: f1a1ace7c17205dc4906f4f87eb1844cefd0661483e58b3f5d6538d30b33b15b
+eval_set_version: 2
+expected_empty: false
+notes: 'Mathews holds no quality certification. Every ISO/AS/ASTM/MIL number on the site belongs to a principal,
+  most of them stated as a bare trailing token on the Kansas Product Line page (''... ISO 9001''). The MEMBERSHIP-AS-CERTIFICATION
+  trap is live: the only credentials the agency claims for itself are three trade-association memberships plus the
+  founder''s degree and pilot rating, all seeded disputed per the brief.'
+entries:
+- id: mathewsco_com-conformity_attestations-0001
+  name: Manufacturers' Agents National Association
+  status: disputed
+  acceptable_forms:
+  - Manufacturers' Agents National Association
+  - MANA
+  evidence:
+  - quote: Manufacturers' Agents National Association
+    approx_offset: 42234
+  - quote: these two MANA member agencies
+    approx_offset: 1506
+  notes: 'DISPUTED - the MEMBERSHIP-AS-CERTIFICATION question. FOR: it has an identity of its own with a named issuing
+    body, and it is something the company specifically holds, which is the clause''s wording verbatim. AGAINST:
+    membership is bought by subscription and attests nothing about the company''s people, sites or products; it
+    is affiliation, not conformity. This is one of the very few genuinely first-party in-field strings on the whole
+    site. | A trade-association membership ("these two MANA member agencies"), which SEEDING_BRIEF section 4 says
+    to seed disputed. Separately the form "MANA" is a mechanics hazard: forms over three characters match by case-insensitive
+    containment, so it is also matched by "Management" and "Manager", both of which occur in this text.'
+  provenance:
+  - action: added
+    by: seed-agent-mathewsco-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: disputed
+    by: verify-agent-mathewsco
+    date: '2026-08-27'
+    reason: 'A trade-association membership ("these two MANA member agencies"), which SEEDING_BRIEF section 4 says
+      to seed disputed. Separately the form "MANA" is a mechanics hazard: forms over three characters match by case-insensitive
+      containment, so it is also matched by "Management" and "Manager", both of which occur in this text.'
+- id: mathewsco_com-conformity_attestations-0002
+  name: Bachelor of Science
+  status: disputed
+  acceptable_forms:
+  - Bachelor of Science
+  evidence:
+  - quote: His Bachelor of Science is from Rockhurst College
+    approx_offset: 16014
+  notes: DISPUTED - the clause admits things 'its people ... could specifically hold', and an academic degree is
+    exactly that; against it, a degree is education rather than conformity. Seeded per the brief's staff-credential
+    guidance. | A personal academic degree of the owner ("His Bachelor of Science is from Rockhurst College"), in
+    the same class as the staff job titles SEEDING_BRIEF section 4 says to seed disputed. It attests nothing that
+    the company, its sites or its products hold, meet or follow.
+  provenance:
+  - action: added
+    by: seed-agent-mathewsco-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: disputed
+    by: verify-agent-mathewsco
+    date: '2026-08-27'
+    reason: A personal academic degree of the owner ("His Bachelor of Science is from Rockhurst College"), in the
+      same class as the staff job titles SEEDING_BRIEF section 4 says to seed disputed. It attests nothing that
+      the company, its sites or its products hold, meet or follow.
+- id: mathewsco_com-conformity_attestations-0003
+  name: instrument rated private pilot
+  status: disputed
+  acceptable_forms:
+  - instrument rated private pilot
+  - instrument rated
+  evidence:
+  - quote: Bob's an instrument rated private pilot with more than 5000 hours
+    approx_offset: 16264
+  notes: DISPUTED - an instrument rating is a genuine airman certificate held by a person and issued by a named
+    authority, which fits the clause's wording; it has nothing to do with manufacturing conformity. A high-value
+    trap for the judged pass. | A personal aviation rating in a biography paragraph ("Bob's an instrument rated
+    private pilot with more than 5000 hours in the air"). Held by a person, so arguable under "its people", but
+    it attests nothing about the company, its sites or its products.
+  provenance:
+  - action: added
+    by: seed-agent-mathewsco-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: disputed
+    by: verify-agent-mathewsco
+    date: '2026-08-27'
+    reason: A personal aviation rating in a biography paragraph ("Bob's an instrument rated private pilot with more
+      than 5000 hours in the air"). Held by a person, so arguable under "its people", but it attests nothing about
+      the company, its sites or its products.
+- id: mathewsco_com-conformity_attestations-0004
+  name: 100 RMS
+  status: disputed
+  acceptable_forms:
+  - 100 RMS
+  evidence:
+  - quote: surface finishes of 100 RMS or better
+    approx_offset: 24197
+  actor: unknown
+  notes: DISPUTED - a surface-roughness specification the parts meet, with a named unit and a numeric value, so
+    it is standard-shaped; against that, it is a measurement result rather than a standard with an issuing body
+    | "surface finishes of 100 RMS or better" is a surface-roughness specification value, not a standard with an
+    identity of its own - no name, number, mark or issuing body anyone could hold or be registered to. The finishing
+    operation is seeded as process_caps-0014.
+  provenance:
+  - action: added
+    by: seed-agent-mathewsco-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: disputed
+    by: verify-agent-mathewsco
+    date: '2026-08-27'
+    reason: '"surface finishes of 100 RMS or better" is a surface-roughness specification value, not a standard
+      with an identity of its own - no name, number, mark or issuing body anyone could hold or be registered to.
+      The finishing operation is seeded as process_caps-0014.'
+- id: mathewsco_com-conformity_attestations-0005
+  name: ISO 9001
+  status: confirmed
+  acceptable_forms:
+  - ISO 9001
+  evidence:
+  - quote: We can supply your rapid prototype machined. ISO 9001
+    approx_offset: 24378
+  - quote: They have in house engineering and tooling. ISO 9001
+    approx_offset: 25115
+  - quote: ISO 9001 and ISO 14001
+    approx_offset: 26755
+  actor: unknown
+  notes: appears five times as a bare trailing token on the Kansas Product Line page, once per anonymous principal
+  provenance:
+  - action: added
+    by: seed-agent-mathewsco-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-mathewsco
+    date: '2026-08-27'
+- id: mathewsco_com-conformity_attestations-0006
+  name: ISO 9001:2000
+  status: confirmed
+  acceptable_forms:
+  - ISO 9001:2000
+  evidence:
+  - quote: ISO 9001:2000 certified
+    approx_offset: 24771
+  actor: unknown
+  notes: anonymous Kansas die-casting principal
+  provenance:
+  - action: added
+    by: seed-agent-mathewsco-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-mathewsco
+    date: '2026-08-27'
+- id: mathewsco_com-conformity_attestations-0007
+  name: FDA approved
+  status: confirmed
+  acceptable_forms:
+  - FDA approved
+  evidence:
+  - quote: silicone materials, FDA approved Buna
+    approx_offset: 25268
+  actor: unknown
+  notes: compliance with a named issuing body (US Food and Drug Administration)
+  provenance:
+  - action: added
+    by: seed-agent-mathewsco-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-mathewsco
+    date: '2026-08-27'
+- id: mathewsco_com-conformity_attestations-0008
+  name: ASTM A536-80
+  status: confirmed
+  acceptable_forms:
+  - ASTM A536-80
+  evidence:
+  - quote: Ductile (Full range of ASTM A536-80)
+    approx_offset: 25594
+  actor: unknown
+  notes: ductile iron material standard, on the smoking-gun sand-casting line
+  provenance:
+  - action: added
+    by: seed-agent-mathewsco-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-mathewsco
+    date: '2026-08-27'
+- id: mathewsco_com-conformity_attestations-0009
+  name: ASTM A4876
+  status: confirmed
+  acceptable_forms:
+  - ASTM A4876
+  evidence:
+  - quote: Gray Irons (Full range of ASTM A4876)
+    approx_offset: 25635
+  actor: unknown
+  notes: gray iron material standard as printed - the real ASTM gray-iron spec is A48, so the designation on the
+    page is itself garbled; seeded exactly as printed
+  provenance:
+  - action: added
+    by: seed-agent-mathewsco-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-mathewsco
+    date: '2026-08-27'
+- id: mathewsco_com-conformity_attestations-0010
+  name: AS9100c:2009
+  status: confirmed
+  acceptable_forms:
+  - AS9100c:2009
+  evidence:
+  - quote: that is AS9100c:2009/ISO9001:2008 Registered
+    approx_offset: 25918
+  actor: unknown
+  notes: anonymous Kansas precision-machining principal; slash-joined to the ISO number
+  provenance:
+  - action: added
+    by: seed-agent-mathewsco-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-mathewsco
+    date: '2026-08-27'
+- id: mathewsco_com-conformity_attestations-0011
+  name: ISO 9001:2008
+  status: confirmed
+  acceptable_forms:
+  - ISO 9001:2008
+  - ISO9001:2008
+  evidence:
+  - quote: AS9100c:2009/ISO9001:2008 Registered
+    approx_offset: 25926
+  - quote: is ISO 9001:2008, 13485:2003 and 14001:2004 certified
+    approx_offset: 35297
+  - quote: DimcoGray is an ISO 9001:2008 registered company
+    approx_offset: 37257
+  - quote: ISO 9001:2008
+    approx_offset: 35300
+  actor: supplier
+  notes: two spellings, spaced and unspaced; held by Hudson, DimcoGray, Clow and an anonymous Kansas principal
+  provenance:
+  - action: added
+    by: seed-agent-mathewsco-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-mathewsco
+    date: '2026-08-27'
+- id: mathewsco_com-conformity_attestations-0012
+  name: licensed
+  status: disputed
+  acceptable_forms:
+  - licensed
+  evidence:
+  - quote: They are licensed to produce a number of different products
+    approx_offset: 26488
+  actor: unknown
+  notes: 'DISPUTED - states a licence held, which is compliance-shaped, but names no licence: no number, mark or
+    issuing body, so it fails the clause''s ''identity of its own'' test | "They are licensed to produce a number
+    of different products" states a licensing status but names no licence - no issuing body, number or mark - so
+    it has no identity of its own, which the clause requires. This is the contractor-licence argument of SEEDING_BRIEF
+    section 4 in its weakest form.'
+  provenance:
+  - action: added
+    by: seed-agent-mathewsco-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: disputed
+    by: verify-agent-mathewsco
+    date: '2026-08-27'
+    reason: '"They are licensed to produce a number of different products" states a licensing status but names no
+      licence - no issuing body, number or mark - so it has no identity of its own, which the clause requires. This
+      is the contractor-licence argument of SEEDING_BRIEF section 4 in its weakest form.'
+- id: mathewsco_com-conformity_attestations-0013
+  name: ISO 14001
+  status: confirmed
+  acceptable_forms:
+  - ISO 14001
+  evidence:
+  - quote: ISO 9001 and ISO 14001
+    approx_offset: 26755
+  actor: unknown
+  notes: anonymous Kansas cold-heading principal
+  provenance:
+  - action: added
+    by: seed-agent-mathewsco-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-mathewsco
+    date: '2026-08-27'
+- id: mathewsco_com-conformity_attestations-0014
+  name: MIL-T-27
+  status: confirmed
+  acceptable_forms:
+  - MIL-T-27 spec
+  - MIL-T-27
+  evidence:
+  - quote: rectangular, MIL-T-27 spec and relay cases
+    approx_offset: 34569
+  actor: supplier
+  notes: Hudson Technologies transformer-case military specification
+  provenance:
+  - action: added
+    by: seed-agent-mathewsco-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-mathewsco
+    date: '2026-08-27'
+- id: mathewsco_com-conformity_attestations-0015
+  name: 14001:2004
+  status: confirmed
+  acceptable_forms:
+  - 14001:2004
+  evidence:
+  - quote: ISO 9001:2008, 13485:2003 and 14001:2004 certified
+    approx_offset: 35300
+  actor: supplier
+  notes: Hudson Technologies; the 'ISO' prefix is elided in the list, so 'ISO 14001:2004' never occurs verbatim
+  provenance:
+  - action: added
+    by: seed-agent-mathewsco-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-mathewsco
+    date: '2026-08-27'
+- id: mathewsco_com-conformity_attestations-0016
+  name: 13485:2003
+  status: confirmed
+  acceptable_forms:
+  - 13485:2003
+  evidence:
+  - quote: ISO 9001:2008, 13485:2003 and 14001:2004
+    approx_offset: 35300
+  actor: supplier
+  notes: Hudson Technologies; the 'ISO' prefix is elided, so 'ISO 13485' never occurs verbatim anywhere in this
+    text
+  provenance:
+  - action: added
+    by: seed-agent-mathewsco-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-mathewsco
+    date: '2026-08-27'
+- id: mathewsco_com-conformity_attestations-0017
+  name: SIC Codes
+  status: disputed
+  acceptable_forms:
+  - SIC Codes
+  - SIC
+  evidence:
+  - quote: Harris Industrial Guides for SIC Codes
+    approx_offset: 41994
+  notes: DISPUTED - a business-registry classification identifier, the same class of thing as the D-U-N-S number
+    the brief names. It has an identity and an issuing body but attests nothing. 'SIC' is a 3-character form and
+    matches case-sensitively on word boundaries. | "Harris Industrial Guides for SIC Codes" is a government industry-classification
+    scheme used here as a prospecting tool, not something the company holds, meets or follows. Same class as the
+    business-registry identifiers (D-U-N-S) SEEDING_BRIEF section 4 says to seed disputed.
+  provenance:
+  - action: added
+    by: seed-agent-mathewsco-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: disputed
+    by: verify-agent-mathewsco
+    date: '2026-08-27'
+    reason: '"Harris Industrial Guides for SIC Codes" is a government industry-classification scheme used here as
+      a prospecting tool, not something the company holds, meets or follows. Same class as the business-registry
+      identifiers (D-U-N-S) SEEDING_BRIEF section 4 says to seed disputed.'
+- id: mathewsco_com-conformity_attestations-0018
+  name: Society of Manufacturing Engineers
+  status: disputed
+  acceptable_forms:
+  - Society of Manufacturing Engineers
+  evidence:
+  - quote: Society of Manufacturing Engineers
+    approx_offset: 42277
+  notes: 'DISPUTED - same membership-as-certification argument as MANA. Listed under ''Mathews & Company are active
+    members in a number of professional organizations''. SME does issue real certifications, which makes the association
+    name read more like a credential than it is. | A professional-society membership: the line introducing it reads
+    "Mathews & Company are active members in a number of professional organizations". SEEDING_BRIEF section 4 says
+    to seed memberships disputed.'
+  provenance:
+  - action: added
+    by: seed-agent-mathewsco-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: disputed
+    by: verify-agent-mathewsco
+    date: '2026-08-27'
+    reason: 'A professional-society membership: the line introducing it reads "Mathews & Company are active members
+      in a number of professional organizations". SEEDING_BRIEF section 4 says to seed memberships disputed.'
+- id: mathewsco_com-conformity_attestations-0019
+  name: American Foundrymen's Society
+  status: disputed
+  acceptable_forms:
+  - American Foundrymen's Society
+  evidence:
+  - quote: American Foundrymen's Society
+    approx_offset: 42312
+  notes: 'DISPUTED - same membership-as-certification argument. Note the trap it sets downstream: an agency''s foundry-society
+    membership sits three lines from a sand-casting capability paragraph that already names the agency in subject
+    position. | Same list and same argument as conformity_attestations-0018 - it sits under "Mathews & Company are
+    active members in a number of professional organizations". A membership, not a certification the company holds.'
+  provenance:
+  - action: added
+    by: seed-agent-mathewsco-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: disputed
+    by: verify-agent-mathewsco
+    date: '2026-08-27'
+    reason: Same list and same argument as conformity_attestations-0018 - it sits under "Mathews & Company are active
+      members in a number of professional organizations". A membership, not a certification the company holds.
+- id: mathewsco_com-conformity_attestations-0020
+  name: ISO 9001:2015
+  status: confirmed
+  acceptable_forms:
+  - ISO 9001:2015
+  evidence:
+  - quote: gained World Class Status as a Certified ISO 9001:2015 Manufacturer
+    approx_offset: 43938
+  - quote: and we are ISO 9001:2015 certified
+    approx_offset: 53852
+  actor: supplier
+  notes: Rowley Spring; Stadco Precision
+  provenance:
+  - action: added
+    by: seed-agent-mathewsco-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-mathewsco
+    date: '2026-08-27'
+- id: mathewsco_com-conformity_attestations-0021
+  name: AS9100
+  status: confirmed
+  acceptable_forms:
+  - AS9100
+  evidence:
+  - quote: as well as having an AS9100 certification
+    approx_offset: 44006
+  actor: supplier
+  notes: Rowley Spring & Stamping
+  provenance:
+  - action: added
+    by: seed-agent-mathewsco-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-mathewsco
+    date: '2026-08-27'
+- id: mathewsco_com-conformity_attestations-0022
+  name: Bureau VERITAS Certification
+  status: confirmed
+  acceptable_forms:
+  - Bureau VERITAS Certification
+  - Bureau VERITAS
+  evidence:
+  - quote: the Bureau VERITAS Certification certified our Quality Management System in 1996
+    approx_offset: 52344
+  actor: supplier
+  notes: Clow Stamping's certification body - an issuing body named outright
+  provenance:
+  - action: added
+    by: seed-agent-mathewsco-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-mathewsco
+    date: '2026-08-27'
+- id: mathewsco_com-conformity_attestations-0023
+  name: Quality Management System
+  status: confirmed
+  acceptable_forms:
+  - Quality Management System
+  evidence:
+  - quote: certified our Quality Management System in 1996
+    approx_offset: 52377
+  actor: supplier
+  notes: Clow Stamping
+  provenance:
+  - action: added
+    by: seed-agent-mathewsco-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-mathewsco
+    date: '2026-08-27'
+- id: mathewsco_com-conformity_attestations-0024
+  name: ROHS
+  status: confirmed
+  acceptable_forms:
+  - ROHS
+  evidence:
+  - quote: ROHS, REACH, and DFARS Compliance
+    approx_offset: 56247
+  - quote: ROHS and REACH Compliance Statements
+    approx_offset: 60854
+  actor: supplier
+  notes: Amatom and Carey; the site spells it in full caps, not 'RoHS'
+  provenance:
+  - action: added
+    by: seed-agent-mathewsco-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-mathewsco
+    date: '2026-08-27'
+- id: mathewsco_com-conformity_attestations-0025
+  name: REACH
+  status: confirmed
+  acceptable_forms:
+  - REACH
+  evidence:
+  - quote: ROHS, REACH, and DFARS Compliance
+    approx_offset: 56247
+  - quote: ROHS and REACH Compliance Statements
+    approx_offset: 60854
+  actor: supplier
+  notes: Amatom and Carey
+  provenance:
+  - action: added
+    by: seed-agent-mathewsco-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-mathewsco
+    date: '2026-08-27'
+- id: mathewsco_com-conformity_attestations-0026
+  name: DFARS
+  status: confirmed
+  acceptable_forms:
+  - DFARS
+  evidence:
+  - quote: ROHS, REACH, and DFARS Compliance
+    approx_offset: 56247
+  actor: supplier
+  notes: Amatom
+  provenance:
+  - action: added
+    by: seed-agent-mathewsco-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-mathewsco
+    date: '2026-08-27'
+false_friends:
+- form: World Class Status
+  reason: 'a marketing claim, not a certification: ''has gained World Class Status as a Certified ISO 9001:2015
+    Manufacturer'''
+- form: Lean Manufacturing
+  reason: a management philosophy with no issuing body, name or number
+- form: JIT delivery scheduling
+  reason: 'a delivery method, not a standard: ''We offer SPC data collection, JIT delivery scheduling, EDI capability'''
+- form: SPC data collection
+  reason: statistical process control is a technique, not a certification
+- form: Wharton School of Finance
+  reason: the founder's postgraduate school - an institution that looks like an issuing body but attests nothing
+    about the company
+- form: Rockhurst College
+  reason: the founder's undergraduate college, not a certifying body
+- form: NADCAP
+  reason: word-association from Aerospace Tier II & III and AS9100; never occurs
+- form: ITAR
+  reason: word-association from Military/DFARS; never occurs
+- form: Six Sigma
+  reason: word-association from 'Lean Manufacturing'; never occurs
+- form: UL Listed
+  reason: word-association from the electrical/electronics markets; never occurs

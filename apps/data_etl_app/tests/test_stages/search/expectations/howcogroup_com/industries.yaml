@@ -1,0 +1,864 @@
+subject: howcogroup.com
+field: industries
+snapshot:
+  file: apps/data_etl_app/tests/test_stages/sample_scraped_texts/howcogroup.com.txt
+  sha256: 5e8b364e3ddcdacc1482566d012646b6d9d3947825d95c3108276f576df7046b
+eval_set_version: 2
+expected_empty: false
+entries:
+- id: howcogroup_com-industries-0001
+  name: oil and gas
+  status: confirmed
+  acceptable_forms:
+  - oil and gas upstream industry
+  - oil and gas
+  - oil & gas
+  - oil, gas, chemical processing and energy sectors
+  evidence:
+  - quote: manufacture, supply and management of bespoke metal products for the oil and gas upstream industry. We
+      provide a comprehensive and reliable supply chain partnership
+    approx_offset: 59926
+  - quote: Our clients are typically in the oil, gas, chemical processing and energy sectors. Clients who work exclusively
+      with suppliers that truly
+    approx_offset: 251
+  - quote: modern coating facility offering services to the oil & gas, petrochemical, aviation and heavy engineering
+      sectors.
+    approx_offset: 39376
+  notes: the subject's primary declared market; named dozens of times
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+- id: howcogroup_com-industries-0002
+  name: downhole
+  status: confirmed
+  acceptable_forms:
+  - downhole
+  - down hole
+  - DOWNHOLE SYSTEMS
+  evidence:
+  - quote: Howco has a reputation for supplying critical infrastructure for Downhole, Subsea and Surface systems.
+    approx_offset: 1981
+  - quote: DOWNHOLE SYSTEMS
+    approx_offset: 60303
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+- id: howcogroup_com-industries-0003
+  name: subsea
+  status: confirmed
+  acceptable_forms:
+  - subsea
+  - SUBSEA SYSTEMS
+  evidence:
+  - quote: Howco has a reputation for supplying critical infrastructure for Downhole, Subsea and Surface systems.
+    approx_offset: 1981
+  - quote: Howco works very closely with subsea equipment manufacturers to ensure the correct grades of metal are
+      sourced and manufactured
+    approx_offset: 61169
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+- id: howcogroup_com-industries-0004
+  name: LNG / liquefied natural gas
+  status: confirmed
+  acceptable_forms:
+  - LIQUEFIED NATURAL GAS (LNG)
+  - liquified natural gas
+  - LNG
+  evidence:
+  - quote: LIQUEFIED NATURAL GAS (LNG)
+    approx_offset: 53653
+  - quote: Howco provides specialist components for the leading processors of chemicals and liquified natural gas.
+    approx_offset: 2105
+  notes: site spells it 'liquified' at line 49 and 'LIQUEFIED' at 2066
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+- id: howcogroup_com-industries-0005
+  name: power generation
+  status: confirmed
+  acceptable_forms:
+  - power generation
+  - POWER SECTOR
+  evidence:
+  - quote: Howco components are integral to many businesses in the power generation and renewable energy industries.
+    approx_offset: 2218
+  - quote: POWER SECTOR
+    approx_offset: 114807
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+- id: howcogroup_com-industries-0006
+  name: aerospace
+  status: confirmed
+  acceptable_forms:
+  - aerospace components
+  - aerospace applications
+  - aerospace
+  evidence:
+  - quote: A build envelope 280 x 280 x 365mm is perfect for aerospace components or similar applications.
+    approx_offset: 14287
+  - quote: and excel. Whether it’s delivering precision-engineered components for aerospace applications or pioneering
+      new techniques in additive manufacturing,
+    approx_offset: 172820
+  notes: additive-manufacturing division; backed by the AS9100D certificate at Houston
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+- id: howcogroup_com-industries-0007
+  name: energy sector
+  status: confirmed
+  acceptable_forms:
+  - energy sector
+  - energy sectors
+  - all energy sectors
+  evidence:
+  - quote: supplies and manages high value alloys and finished machined components for the energy sector. Our clients
+      include a number of leading gas turbine, compressors
+    approx_offset: 114610
+  - quote: high-performance alloys and precision machined components for all energy sectors worldwide.
+    approx_offset: 18438
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+- id: howcogroup_com-industries-0008
+  name: steel production
+  status: confirmed
+  acceptable_forms:
+  - Steel Production
+  evidence:
+  - quote: Statement on Conflict Minerals during Steel Production
+    approx_offset: 35820
+  notes: named only in the title of the ESG conflict-minerals document
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+- id: howcogroup_com-industries-0009
+  name: petrochemical
+  status: confirmed
+  acceptable_forms:
+  - petrochemical
+  evidence:
+  - quote: modern coating facility offering services to the oil & gas, petrochemical, aviation and heavy engineering
+      sectors.
+    approx_offset: 39376
+  - quote: corrosion-resistant alloy welding on engineered components for the oil & gas, petrochemical and engineering
+      sectors.
+    approx_offset: 44638
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+- id: howcogroup_com-industries-0010
+  name: aviation
+  status: confirmed
+  acceptable_forms:
+  - aviation
+  evidence:
+  - quote: modern coating facility offering services to the oil & gas, petrochemical, aviation and heavy engineering
+      sectors.
+    approx_offset: 39376
+  notes: named only in the Irvine coating-facility sector list
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+- id: howcogroup_com-industries-0011
+  name: heavy engineering
+  status: confirmed
+  acceptable_forms:
+  - heavy engineering
+  evidence:
+  - quote: facility offering services to the oil & gas, petrochemical, aviation and heavy engineering sectors.
+    approx_offset: 39391
+  notes: named only in the Irvine coating-facility sector list
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+- id: howcogroup_com-industries-0012
+  name: mid and downstream
+  status: confirmed
+  acceptable_forms:
+  - mid and downstream
+  - MID & DOWNSTREAM
+  - mid and downstream sector
+  evidence:
+  - quote: manages high value alloys and finished machined components for the mid and downstream sector. We provide
+      product solutions to a number of leading flow
+    approx_offset: 52777
+  - quote: HOME  SECTORS  MID & DOWNSTREAM
+    approx_offset: 52712
+  notes: named sector page /sectors/mid-downstream/
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+- id: howcogroup_com-industries-0013
+  name: flow control
+  status: confirmed
+  acceptable_forms:
+  - flow control and processing equipment OEMs
+  - Flow Control Equipment
+  evidence:
+  - quote: sector. We provide product solutions to a number of leading flow control and processing equipment OEMs.
+    approx_offset: 52863
+  - quote: Flow Control Equipment
+    approx_offset: 53233
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+- id: howcogroup_com-industries-0014
+  name: chemical processing
+  status: confirmed
+  acceptable_forms:
+  - chemical processing sector
+  - chemical processing
+  - chemical process
+  evidence:
+  - quote: Howco provides corrosion resistant and high temperature alloys for the chemical processing sector.
+    approx_offset: 52985
+  - quote: CHEMICAL PROCESS
+    approx_offset: 52967
+  notes: own page section under Mid & Downstream
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+- id: howcogroup_com-industries-0015
+  name: upstream
+  status: confirmed
+  acceptable_forms:
+  - upstream
+  evidence:
+  - quote: manufacture, supply and management of bespoke metal products for the oil and gas upstream industry. We
+      provide a comprehensive and reliable supply chain partnership
+    approx_offset: 59926
+  - quote: HOME  SECTORS  UPSTREAM
+    approx_offset: 59867
+  notes: named sector page /sectors/upstream/
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+- id: howcogroup_com-industries-0016
+  name: distribution / metal stockholding
+  status: disputed
+  acceptable_forms:
+  - metal distribution
+  - distributors of high-performance alloys
+  - leading distributors and processors of Nickel Alloys
+  evidence:
+  - quote: Greaves, who is one of our Key Account Managers dealing with the metal distribution side of the company.
+      Carla’s Father, Dr Mike Lowden, was instrumental in setting
+    approx_offset: 177489
+  - quote: As one of the world’s leading distributors of high-performance alloys and supplier of highly-engineered
+      components, we
+    approx_offset: 69861
+  notes: the subject's own primary business line; ~half the site is stock it did not make | both phrases name Howco's
+    OWN line of trade (metals distribution/stockholding), not a domain that its goods or services serve; the clause's
+    qualifier is 'a domain of economic activity that a manufacturer's goods or services can serve', and whether
+    a company's own trade counts as one of its industries is an open boundary question. Text is unambiguous ('the
+    metal distribution side of the company', 'leading distributors of high-performance alloys'), so the entity is
+    real either way.
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: disputed
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+    reason: both phrases name Howco's OWN line of trade (metals distribution/stockholding), not a domain that its
+      goods or services serve; the clause's qualifier is 'a domain of economic activity that a manufacturer's goods
+      or services can serve', and whether a company's own trade counts as one of its industries is an open boundary
+      question. Text is unambiguous ('the metal distribution side of the company', 'leading distributors of high-performance
+      alloys'), so the entity is real either way.
+- id: howcogroup_com-industries-0017
+  name: marine
+  status: confirmed
+  acceptable_forms:
+  - marine and chemical processing environments
+  - marine applications
+  - marine environments
+  evidence:
+  - quote: It has widely used applications in marine and chemical processing environments, in forms such as seals,
+      fasteners, heat exchangers,
+    approx_offset: 75569
+  - quote: good candidates for this alloy. A725 is also used for high-strength fasteners in marine applications
+      to resist corrosion, pitting and crevice attack in sea
+    approx_offset: 91117
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+- id: howcogroup_com-industries-0018
+  name: gas turbines
+  status: confirmed
+  acceptable_forms:
+  - gas turbine
+  - leading gas turbine, compressors and power generation equipment OEMs
+  evidence:
+  - quote: energy sector. Our clients include a number of leading gas turbine, compressors and power generation
+      equipment OEMs.
+    approx_offset: 114690
+  - quote: superalloy, developed initially for use in rotating parts in aerospace and gas turbine applications,
+      has become the preferred material for the manufacture of
+    approx_offset: 84766
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+- id: howcogroup_com-industries-0019
+  name: semiconductor
+  status: confirmed
+  acceptable_forms:
+  - Semi-Conductor
+  - semi-conductor manufacturer
+  evidence:
+  - quote: is involved in a number of sectors including Oilfield, Semi-Conductor and Scientific Instrument Industries
+      and our vision is to become a one-source supplier
+    approx_offset: 110755
+  - quote: Howco Scientific currently manufactures instrumentation units for a semi-conductor manufacturer, which
+      includes sourcing the components, manufacture,
+    approx_offset: 102590
+  notes: Howco Scientific; the text always hyphenates - 'semiconductor' unhyphenated occurs ZERO times
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+- id: howcogroup_com-industries-0020
+  name: oilfield
+  status: confirmed
+  acceptable_forms:
+  - Oilfield
+  evidence:
+  - quote: Howco Scientific is involved in a number of sectors including Oilfield, Semi-Conductor and Scientific
+      Instrument Industries and our vision is to
+    approx_offset: 110738
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+- id: howcogroup_com-industries-0021
+  name: scientific instruments
+  status: confirmed
+  acceptable_forms:
+  - Scientific Instrument Industries
+  - Scientific Instrument
+  evidence:
+  - quote: a number of sectors including Oilfield, Semi-Conductor and Scientific Instrument Industries and our vision
+      is to become a one-source supplier for all our
+    approx_offset: 110770
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+- id: howcogroup_com-industries-0022
+  name: coal-fired power
+  status: confirmed
+  acceptable_forms:
+  - coal fired boilers
+  evidence:
+  - quote: Boiler nozzles, clamps and shields in coal fired boilers
+    approx_offset: 115073
+  - quote: Coal and ash bins
+    approx_offset: 115311
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: amended
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+    reason: '''Coal and ash bins'' is a made artifact, not an industry - it is already, correctly, products-0082.
+      Leaving it here lets any products-style return of that phrase credit an industries entry. ''coal fired boilers''
+      still implies coal-fired power generation and is covered by evidence quote 1.'
+- id: howcogroup_com-industries-0023
+  name: pollution control
+  status: confirmed
+  acceptable_forms:
+  - flue gas processing for pollution control
+  - pollution control
+  evidence:
+  - quote: Scrubbers, dampers, duct work in flue gas processing for pollution control
+    approx_offset: 115195
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+- id: howcogroup_com-industries-0024
+  name: renewable energy
+  status: confirmed
+  acceptable_forms:
+  - renewable energy
+  - RENEWABLES
+  - renewable energy sector
+  evidence:
+  - quote: from sustainable sources. And Howco is deeply involved in the growing renewable energy sector.
+    approx_offset: 115573
+  - quote: RENEWABLES
+    approx_offset: 115481
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+- id: howcogroup_com-industries-0025
+  name: offshore wind
+  status: confirmed
+  acceptable_forms:
+  - offshore wind farms
+  - Wind turbine
+  - wind farm
+  evidence:
+  - quote: On offshore wind farms, our nickel alloys are used in gearing and generator components.
+    approx_offset: 115669
+  - quote: Wind turbine
+    approx_offset: 116371
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+- id: howcogroup_com-industries-0026
+  name: wave and tidal power
+  status: confirmed
+  acceptable_forms:
+  - Wave/tidal
+  - tidal and wave power generation
+  evidence:
+  - quote: Wave/tidal
+    approx_offset: 116526
+  - quote: components. And our stainless steel is proving invaluable in tidal and wave power generation thanks to
+      its ability to perform in spite of marine corrosion
+    approx_offset: 115745
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+- id: howcogroup_com-industries-0027
+  name: geothermal energy
+  status: confirmed
+  acceptable_forms:
+  - geothermal energy sector
+  - geothermal energy
+  - geothermal market
+  - Geothermal
+  evidence:
+  - quote: We are also working with operators and OEMs in the geothermal energy sector, who need alloys and finished
+      components that enable long distance
+    approx_offset: 115913
+  - quote: With a heritage rooted in engineering excellence, Howco is now expanding its reach into the geothermal
+      market.
+    approx_offset: 157937
+  notes: also the subject of a dedicated news post on PBR extensions for geothermal
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+- id: howcogroup_com-industries-0028
+  name: hydroelectric power
+  status: confirmed
+  acceptable_forms:
+  - Hydroelectric turbine components
+  - hydroelectric installations
+  evidence:
+  - quote: Hydroelectric turbine components
+    approx_offset: 116446
+  - quote: Meanwhile, many hydroelectric installations use turbines that contain our nickel alloys to prevent erosion
+      and corrosion.
+    approx_offset: 116138
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+- id: howcogroup_com-industries-0029
+  name: hydrogen
+  status: confirmed
+  acceptable_forms:
+  - Hydrogen/ammonia
+  - gas turbines creating hydrogen
+  evidence:
+  - quote: Hydrogen/ammonia
+    approx_offset: 116490
+  - quote: Land based gas turbines creating hydrogen
+    approx_offset: 116329
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+- id: howcogroup_com-industries-0030
+  name: solar
+  status: confirmed
+  acceptable_forms:
+  - Solar
+  evidence:
+  - quote: Solar
+    approx_offset: 116520
+  notes: bare token in the ENERGY page suitability list (lines 4748-4756); no elaborating prose. A solar PV array
+    is separately named at 6714 but that is Howco's own roof, not a market
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+- id: howcogroup_com-industries-0031
+  name: biomass
+  status: confirmed
+  acceptable_forms:
+  - Biomass
+  evidence:
+  - quote: Biomass
+    approx_offset: 116537
+  notes: bare token in the ENERGY suitability list; no elaborating prose
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+- id: howcogroup_com-industries-0032
+  name: nuclear
+  status: confirmed
+  acceptable_forms:
+  - Nuclear
+  evidence:
+  - quote: Nuclear
+    approx_offset: 116549
+  notes: 'TRAP: a BARE one-word list token in the ENERGY page suitability list (4748-4756). The text never elaborates,
+    never claims nuclear qualification, and no nuclear code (ASME III, RCC-M, 10CFR50) appears anywhere. It is still
+    a named sector, so recall-first keeps it - but any downstream claim of nuclear capability is unsupported'
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+- id: howcogroup_com-industries-0033
+  name: CCUS
+  status: confirmed
+  acceptable_forms:
+  - CCUS
+  evidence:
+  - quote: CCUS
+    approx_offset: 116557
+  notes: bare token in the ENERGY suitability list; carbon capture, utilisation and storage
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+- id: howcogroup_com-industries-0034
+  name: refining
+  status: confirmed
+  acceptable_forms:
+  - refining and chemical process applications
+  - refining
+  evidence:
+  - quote: are of concern, such as deep sour gas wells and a variety of refining and chemical process applications.
+      Marine environments could be considered a candidate
+    approx_offset: 117727
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+- id: howcogroup_com-industries-0035
+  name: automotive
+  status: confirmed
+  acceptable_forms:
+  - automotive components
+  - automotive
+  evidence:
+  - quote: handle a wide range of materials and applications, from aerospace and automotive components to medical
+      devices and industrial parts. And with its energy-efficient
+    approx_offset: 124273
+  actor: supplier
+  notes: 'TRAP: this is the ONLY occurrence of ''automotive'' in 7,573 lines and it is inside verbatim VENDOR BROCHURE
+    COPY for the G-M HVF 101-XB vacuum furnace, describing what that furnace model can handle in general. It is
+    not a Howco market. Recall-first keeps it (the string is in the text); attribution is the downstream stage''s
+    problem'
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+- id: howcogroup_com-industries-0036
+  name: medical devices
+  status: confirmed
+  acceptable_forms:
+  - medical devices
+  evidence:
+  - quote: applications, from aerospace and automotive components to medical devices and industrial parts. And with
+      its energy-efficient design, the HVF 101-xb is
+    approx_offset: 124310
+  actor: supplier
+  notes: same furnace-vendor brochure sentence as 'automotive'; only occurrence in the file
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+- id: howcogroup_com-industries-0037
+  name: space exploration
+  status: confirmed
+  acceptable_forms:
+  - space exploration
+  - sent to space
+  - lunar lander
+  evidence:
+  - quote: but we did not miss. February 2024 marked a historic milestone in space exploration as the Intuitive
+      Machines IM-1 mission Nova-C class lunar lander touched
+    approx_offset: 170468
+  - quote: manufactured metal components for the Intuitive Machines IM-1 mission Nova-C class lunar lander.
+    approx_offset: 205179
+  notes: Howco AM supplied components for the Intuitive Machines IM-1 lunar lander
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+- id: howcogroup_com-industries-0038
+  name: motorsport
+  status: confirmed
+  acceptable_forms:
+  - motorsport contest
+  - Formula Student
+  - student motorsport competitions
+  evidence:
+  - quote: dominated the grassroots motorsport contest for the last couple of seasons.
+    approx_offset: 202546
+  - quote: STUDENT CHAMPIONS at the Silverstone racing circuit one of the largest student motorsport competitions
+      in Europe. Howco has been supporting the...
+    approx_offset: 197569
+  actor: client
+  notes: University of Glasgow Formula Student sponsorship - Howco supplies 'the machining of complex components'
+    (7539), so it is a served application, not only a sponsorship
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+- id: howcogroup_com-industries-0039
+  name: rail / steam locomotive
+  status: confirmed
+  acceptable_forms:
+  - locomotive
+  - Steam Locomotive Trust
+  - London North Eastern Railway
+  evidence:
+  - quote: An order was placed with the Howco Group to manufacture a fabricated cylinder monobloc for the locomotive.
+      The ‘bloc took a small
+    approx_offset: 216454
+  - quote: The Steam Locomotive Trust has launched it project to build a Gresley Class P2 based on the
+    approx_offset: 216177
+  actor: client
+  notes: 'a real order: Howco machined a cylinder monobloc for the Gresley P2 ''Prince of Wales'' new-build locomotive'
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+- id: howcogroup_com-industries-0040
+  name: offshore energy industry
+  status: candidate
+  acceptable_forms:
+  - offshore energy industry
+  - offshore energy
+  evidence:
+  - quote: at SPE Offshore Europe 2023, widely recognised as the leading event for the entire offshore energy industry
+      from 5th to 8th September 2023.
+    approx_offset: 196871
+  notes: named as an industry in the SPE Offshore Europe exhibition news item; no packet entry carries this surface
+    form (industries-0001 oil and gas and -0025 offshore wind do not contain it).
+  provenance:
+  - action: added
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+    source: verification-pass-miss
+- id: howcogroup_com-industries-0041
+  name: Sheffield cutlery, edge tool and agricultural implement industry (historical)
+  status: candidate
+  acceptable_forms:
+  - cutlery
+  - edge tools
+  - agricultural implements
+  evidence:
+  - quote: of the original Act establishing the Company of Cutlers in Hallamshire, there was a thriving industry
+      producing cutlery (knives), edge tools (such as wood chisels) and agricultural
+    approx_offset: 178084
+  actor: unknown
+  notes: explicitly called 'a thriving industry' in the Made in Sheffield history interview. Historical and third-party,
+    but the recall-first stance excludes only entities the text does not name, and these are named; worth recording
+    so a later judged pass can decide whether historical-context industries should gate.
+  provenance:
+  - action: added
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+    source: verification-pass-miss
+false_friends:
+- form: CE
+  reason: zero occurrences in 7,573 lines; a UK/EU industrial site is a strong word-association pull for CE marking
+- form: Defense
+  reason: ZERO occurrences of the US spelling. The only near-strings are the historical 'Sheffield Defence Committee'
+    (6645), a 1900s trade body, and 'Howco Defenders', a Dubai cricket team (5860)
+- form: Mining
+  reason: zero occurrences; strongly associated with 'oil patch', 'drilling' and 'downhole' vocabulary that saturates
+    this text
+- form: Pharmaceutical
+  reason: zero occurrences; pulled by 'clean room facility' and 'Class 10,000' cleanroom, which here serve semiconductor
+    instrumentation
+- form: Food and Beverage
+  reason: ZERO occurrences as a phrase. 'food' appears only in CSR posts (a Singapore food bank, appreciation lunches,
+    a hog roast), never as a served sector
+- form: Construction
+  reason: the only in-field 'construction' is 'Well Construction Components' (2296), an oil-and-gas downhole product
+    family, not the building trade
+- form: Shipbuilding
+  reason: zero occurrences; pulled by 'marine', 'offshore' and 'SHIPBOARD PROCESSING' (2345), which is a subsea/topside
+    system category

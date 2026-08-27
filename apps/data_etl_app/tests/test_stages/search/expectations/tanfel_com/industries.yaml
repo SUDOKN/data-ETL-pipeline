@@ -1,0 +1,673 @@
+subject: tanfel.com
+field: industries
+snapshot:
+  file: apps/data_etl_app/tests/test_stages/sample_scraped_texts/tanfel.com.txt
+  sha256: 4942d992128752abeace6e11e1235e9e55f4737a21b51d3778cb2f818667bf9b
+eval_set_version: 2
+expected_empty: false
+notes: '29 entries: 9 actor=own, 19 actor=unknown, 1 actor=client, 3 of them disputed. Only 9 are Tanfel market
+  claims (Automotive, Medical/Life Science, Lighting, Communications, Audio/Music, Instrumentation-Control-Automation,
+  Health & Fitness, Consumer Electronics) plus quick-serve restaurants. The other 20 come from three low-authority
+  contexts and are labelled actor=unknown: (a) the Request-a-Quote / Contact-Us industry DROPDOWN, printed verbatim
+  twice, which is the sole source of Aerospace, Energy / Utility, Oil / Gas, Wireless, Maquiladora, Computer, Contract
+  Manufacturer, Engineering and Government / Military; (b) textbook prose about what CNC-milled, MIM and cast parts
+  are used for; (c) a customer testimonial. Recall-first keeps every one of them; the downstream measure is whether
+  the actor labels survive.'
+entries:
+- id: tanfel_com-industries-0001
+  name: Automotive
+  status: confirmed
+  acceptable_forms:
+  - Automotive
+  - AUTOMOTIVE
+  - Automotive Industry
+  - automotive
+  evidence:
+  - quote: such as Automotive, Medical, Lighting, Communications and more.
+    approx_offset: 654
+  - quote: AUTOMOTIVE
+    approx_offset: 26796
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+- id: tanfel_com-industries-0002
+  name: Communications
+  status: confirmed
+  acceptable_forms:
+  - Communications
+  - COMMUNICATIONS
+  - Communication
+  evidence:
+  - quote: Communications, Lighting, Audio – Music , Medical – Life Sciences, Automotive, Health & Fitness, Consumer
+      Electronics, Instrumentation, Control & Automation and more.
+    approx_offset: 2149
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+- id: tanfel_com-industries-0003
+  name: Audio / Music
+  status: confirmed
+  acceptable_forms:
+  - Audio – Music
+  - AUDIO – MUSIC
+  - music industry
+  - Music
+  evidence:
+  - quote: Audio – Music , Medical – Life Sciences, Automotive, Health & Fitness, Consumer Electronics, Instrumentation,
+      Control & Automation and more.
+    approx_offset: 2175
+  - quote: music industry leaders and would like an opportunity to work with you. We understand the unique requirements
+    approx_offset: 118384
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+- id: tanfel_com-industries-0004
+  name: Medical / Life Science
+  status: confirmed
+  acceptable_forms:
+  - Medical – Life Science
+  - MEDICAL – LIFE SCIENCE
+  - Medical – Life Sciences
+  - medical and life sciences industry
+  - Medical
+  evidence:
+  - quote: Medical – Life Sciences
+    approx_offset: 2191
+  - quote: medical and life sciences industry need to be as well. With ISO 13485 certified facilities, and project
+      relationships
+    approx_offset: 26130
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+- id: tanfel_com-industries-0005
+  name: Health & Fitness
+  status: confirmed
+  acceptable_forms:
+  - Health & Fitness
+  - Health / Fitness
+  evidence:
+  - quote: Health & Fitness, Consumer Electronics, Instrumentation, Control & Automation and more.
+    approx_offset: 2228
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+- id: tanfel_com-industries-0006
+  name: Consumer Electronics
+  status: confirmed
+  acceptable_forms:
+  - Consumer Electronics
+  - Consumer electronics
+  evidence:
+  - quote: Consumer Electronics, Instrumentation, Control & Automation and more.
+    approx_offset: 2246
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+- id: tanfel_com-industries-0007
+  name: Electronics
+  status: confirmed
+  acceptable_forms:
+  - Electronics
+  - electronic products
+  evidence:
+  - quote: Electronics
+    approx_offset: 2255
+  - quote: multi-component parts for electronic products, miniature gears, thin wall casings and many other components.
+    approx_offset: 9743
+  actor: unknown
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+- id: tanfel_com-industries-0008
+  name: Instrumentation, Control & Automation
+  status: confirmed
+  acceptable_forms:
+  - Instrumentation, Control & Automation
+  - INSTRUMENTATION, CONTROL & AUTOMATION
+  - Instrumentation / Sensors
+  - instrumentation
+  evidence:
+  - quote: Instrumentation, Control & Automation and more.
+    approx_offset: 2268
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+- id: tanfel_com-industries-0009
+  name: Sporting goods
+  status: confirmed
+  acceptable_forms:
+  - sporting goods product
+  - sporting goods
+  evidence:
+  - quote: When our brand new globally retailed sporting goods product sold out faster than planned, I was both
+      excited and anxious. The first question that came
+    approx_offset: 6461
+  actor: client
+  notes: a customer testimonial (ROJO SPORT, INC.) describing the CUSTOMER's product, not a Tanfel market claim.
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+- id: tanfel_com-industries-0010
+  name: Computer
+  status: confirmed
+  acceptable_forms:
+  - Computer
+  - computer accessories
+  - computers
+  evidence:
+  - quote: Computer
+    approx_offset: 18737
+  - quote: computer accessories such as PC card adapters, IMD lens/ covers, multi-component parts for electronic
+      products, miniature gears, thin wall casings and many other components.
+    approx_offset: 9678
+  actor: unknown
+  notes: dropdown option; prose names computer accessories as parts made.
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+- id: tanfel_com-industries-0011
+  name: Engineering
+  status: confirmed
+  acceptable_forms:
+  - Engineering
+  evidence:
+  - quote: Engineering
+    approx_offset: 10178
+  actor: unknown
+  notes: 'DISPUTED: dropdown option. ''Engineering'' is a discipline/service, not obviously a market sector, and
+    the bare word is everywhere on the site as a service line (''Engineering & Design Support''), so crediting it
+    teaches nothing.'
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+- id: tanfel_com-industries-0012
+  name: Aerospace
+  status: confirmed
+  acceptable_forms:
+  - Aerospace
+  - aerospace
+  - aerospace engineering
+  evidence:
+  - quote: CNC-milled parts are used in every industry from aerospace, military, firearms to consumer goods.
+    approx_offset: 17987
+  - quote: Aerospace
+    approx_offset: 60743
+  actor: unknown
+  notes: 'named three ways and never as a Tanfel market: textbook prose about what CNC-milled/MIM parts are used
+    for, a bare item in the ''INDUSTRIAL APPLICATIONS'' list, and an option in the Request-a-Quote industry dropdown.
+    Recall-first: the text names the sector, so it is an entry; attribution is downstream''s problem.'
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+- id: tanfel_com-industries-0013
+  name: Military / Defense
+  status: confirmed
+  acceptable_forms:
+  - Military and defense
+  - Government / Military
+  - military
+  evidence:
+  - quote: Military and defense
+    approx_offset: 83322
+  - quote: from aerospace, military, firearms to consumer goods.
+    approx_offset: 18031
+  - quote: Government / Military
+    approx_offset: 60859
+  actor: unknown
+  notes: 'same three contexts as Aerospace: textbook prose, the industrial-applications list, and the RFQ dropdown
+    (''Government / Military''). No Tanfel-specific claim.'
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+- id: tanfel_com-industries-0014
+  name: Consumer goods
+  status: confirmed
+  acceptable_forms:
+  - Consumer goods
+  - consumer goods
+  evidence:
+  - quote: Consumer goods
+    approx_offset: 83285
+  - quote: firearms to consumer goods.  Most materials including metal, plastic, and ceramics can be milled.  Milled
+      parts can be small precision parts up to large, heavy parts.
+    approx_offset: 18057
+  actor: unknown
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+- id: tanfel_com-industries-0015
+  name: Firearms
+  status: confirmed
+  acceptable_forms:
+  - Firearms
+  - firearms
+  evidence:
+  - quote: Firearms
+    approx_offset: 83312
+  - quote: (including medical, dental, firearms, aerospace, and automotive.)
+    approx_offset: 29616
+  actor: unknown
+  notes: textbook prose + industrial-applications list only.
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+- id: tanfel_com-industries-0016
+  name: Dental
+  status: confirmed
+  acceptable_forms:
+  - dental
+  evidence:
+  - quote: (including medical, dental, firearms, aerospace, and automotive.)
+    approx_offset: 29616
+  actor: unknown
+  notes: one word inside MIM textbook prose.
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+- id: tanfel_com-industries-0017
+  name: Mining
+  status: confirmed
+  acceptable_forms:
+  - mining vehicles
+  - mining tools
+  evidence:
+  - quote: Heavy equipment and transportation vehicles: Automobiles, airplanes, farming and mining vehicles, trains,
+      and ships
+    approx_offset: 39838
+  - quote: Carbide is often used for end mills, drill bits, cutters, mining tools, saw blades and other cutting
+      tools.
+    approx_offset: 135902
+  actor: unknown
+  notes: two separate textbook passages (metal-casting applications; what carbide is used for). No Tanfel claim.
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+- id: tanfel_com-industries-0018
+  name: Transportation
+  status: confirmed
+  acceptable_forms:
+  - transportation vehicles
+  evidence:
+  - quote: Heavy equipment and transportation vehicles: Automobiles, airplanes, farming and mining vehicles, trains,
+      and ships
+    approx_offset: 39838
+  actor: unknown
+  notes: metal-casting textbook prose.
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+- id: tanfel_com-industries-0019
+  name: General manufacturing
+  status: confirmed
+  acceptable_forms:
+  - general manufacturing
+  evidence:
+  - quote: They’re most commonly used for metal spinning and general manufacturing.
+    approx_offset: 54772
+  actor: unknown
+  notes: aluminum-alloy textbook prose.
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+- id: tanfel_com-industries-0020
+  name: Food and chemical industries
+  status: confirmed
+  acceptable_forms:
+  - food and chemical industries
+  evidence:
+  - quote: These types of alloys frequently appear in the food and chemical industries as well as in general manufacturing.
+    approx_offset: 55211
+  actor: unknown
+  notes: generic aluminum-alloy textbook prose about where 3xxx alloys appear.
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+- id: tanfel_com-industries-0021
+  name: Marine
+  status: confirmed
+  acceptable_forms:
+  - marine environments
+  evidence:
+  - quote: which make it ideally suited for use in marine environments. However, 5xxx series alloys do not respond
+      well to heat treatment.
+    approx_offset: 55432
+  actor: unknown
+  notes: 'DISPUTED: ''marine environments'' names a service condition for 5xxx aluminum, not a market Tanfel sells
+    into. Kept so the boundary question survives.'
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+- id: tanfel_com-industries-0022
+  name: Architectural / structural
+  status: confirmed
+  acceptable_forms:
+  - architectural and structural settings
+  evidence:
+  - quote: It’s a highly weldable alloy found in many architectural and structural settings. This alloy can also
+      be easily anodized, which lets manufacturers pair it with different
+    approx_offset: 55628
+  actor: unknown
+  notes: 'DISPUTED: same shape as Marine: an alloy-behaviour sentence, not a market claim.'
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+- id: tanfel_com-industries-0023
+  name: Quick serve restaurants
+  status: confirmed
+  acceptable_forms:
+  - quick serve restaurants
+  evidence:
+  - quote: Whether your project is for hearing aids, radio towers, satellite arrays or quick serve restaurants
+    approx_offset: 59175
+  notes: Tanfel's own list of communications-industry applications it serves.
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+- id: tanfel_com-industries-0024
+  name: Contract Manufacturer
+  status: confirmed
+  acceptable_forms:
+  - Contract Manufacturer
+  evidence:
+  - quote: Contract Manufacturer
+    approx_offset: 60808
+  actor: unknown
+  notes: dropdown option only.
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+- id: tanfel_com-industries-0025
+  name: Energy / Utility
+  status: confirmed
+  acceptable_forms:
+  - Energy / Utility
+  evidence:
+  - quote: Energy / Utility
+    approx_offset: 60830
+  actor: unknown
+  notes: occurs ONLY as an option in the Request-a-Quote / Contact-Us industry dropdown (twice, identical lists).
+    Not claimed anywhere in prose. This is the string the old pipeline turned into an 'Energy' industry.
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+- id: tanfel_com-industries-0026
+  name: Maquiladora
+  status: confirmed
+  acceptable_forms:
+  - Maquiladora
+  evidence:
+  - quote: Maquiladora
+    approx_offset: 60943
+  actor: unknown
+  notes: dropdown option only; distinctive form, cannot be reached by paraphrase.
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+- id: tanfel_com-industries-0027
+  name: Oil / Gas
+  status: confirmed
+  acceptable_forms:
+  - Oil / Gas
+  evidence:
+  - quote: Oil / Gas
+    approx_offset: 60969
+  actor: unknown
+  notes: dropdown option only, both forms.
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+- id: tanfel_com-industries-0028
+  name: Wireless
+  status: confirmed
+  acceptable_forms:
+  - Wireless
+  evidence:
+  - quote: Wireless
+    approx_offset: 60979
+  actor: unknown
+  notes: dropdown option only.
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+- id: tanfel_com-industries-0029
+  name: Lighting
+  status: confirmed
+  acceptable_forms:
+  - Lighting
+  - LIGHTING
+  - lighting industry
+  - Lighting / Signing
+  evidence:
+  - quote: Tanfel has been a trusted partner in the lighting industry for over 10 years. Like your lighting solutions,
+      there’s a bright future ahead.
+    approx_offset: 113050
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+- id: tanfel_com-industries-0030
+  name: Farming / agriculture
+  status: candidate
+  acceptable_forms:
+  - farming and mining vehicles
+  - farming
+  evidence:
+  - quote: Automobiles, airplanes, farming and mining vehicles, trains, and ships
+    approx_offset: 39883
+  actor: unknown
+  notes: the same clause the packet mined for Mining (industries-0017) and Transportation (0018) also names farming
+    vehicles; farming was left out.
+  provenance:
+  - action: added
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+    source: verification-pass-miss
+- id: tanfel_com-industries-0031
+  name: Electrical equipment
+  status: candidate
+  acceptable_forms:
+  - Electrical equipment
+  evidence:
+  - quote: Electrical equipment: Compressors, generators, motors, and pumps
+    approx_offset: 39773
+  actor: unknown
+  notes: one of the three headings under 'COMMON INDUSTRIAL APPLICATIONS' of metal casting; its members were seeded
+    as products (0025) but the sector heading itself was not seeded as an industry.
+  provenance:
+  - action: added
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+    source: verification-pass-miss
+- id: tanfel_com-industries-0032
+  name: Heavy equipment
+  status: candidate
+  acceptable_forms:
+  - Heavy equipment
+  evidence:
+  - quote: 'Heavy equipment and transportation vehicles:'
+    approx_offset: 39838
+  actor: unknown
+  notes: second of the three 'COMMON INDUSTRIAL APPLICATIONS' headings; the packet took 'transportation vehicles'
+    from this line (industries-0018) but not 'Heavy equipment'.
+  provenance:
+  - action: added
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+    source: verification-pass-miss
+- id: tanfel_com-industries-0033
+  name: Industrial machinery and hardware
+  status: candidate
+  acceptable_forms:
+  - Industrial machinery and hardware
+  - Industrial machinery
+  evidence:
+  - quote: Industrial machinery and hardware: Casting, forging and extrusion tools, plant machinery and tools, valves,
+      and fittings
+    approx_offset: 39954
+  actor: unknown
+  notes: third of the three 'COMMON INDUSTRIAL APPLICATIONS' headings; its members were seeded as products (0027)
+    but the sector was not.
+  provenance:
+  - action: added
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+    source: verification-pass-miss
+false_friends:
+- form: energy efficient dog doors
+  reason: 'witnessed: occurs only in a customer testimonial about ENDURA FLAP PET DOORS'' own product line. Naming
+    an energy or pet industry from it is the documented import error for this subject.'
+- form: OEM
+  reason: 'witnessed: ''leading OEM’s'' is a customer group, not a sector.'
+- form: Fortune 500
+  reason: 'witnessed: a company ranking used as a credential, not an industry.'
+- form: Semiconductor
+  reason: 'anticipatory: never occurs; a plausible mint from ''Consumer Electronics'' + ''Instrumentation''.'
+- form: Aerospace & Defense
+  reason: 'anticipatory: the text never pairs them; it prints ''aerospace, military, firearms'' and ''Military and
+    defense'' separately.'
+- form: Oil and Gas
+  reason: 'anticipatory: the dropdown prints ''Oil / Gas'' only.'

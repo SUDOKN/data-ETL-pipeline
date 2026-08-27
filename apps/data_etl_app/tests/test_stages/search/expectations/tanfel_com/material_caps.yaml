@@ -1,0 +1,1651 @@
+subject: tanfel.com
+field: material_caps
+snapshot:
+  file: apps/data_etl_app/tests/test_stages/sample_scraped_texts/tanfel.com.txt
+  sha256: 4942d992128752abeace6e11e1235e9e55f4737a21b51d3778cb2f818667bf9b
+eval_set_version: 2
+expected_empty: false
+notes: 90 entries, all actor=own. Heavy in alloy and grade designations (four separate stainless grade families,
+  MIM powder grades, tool-steel SK/SKD codes, aluminum series numbers) plus two abbreviation blocks — 10 thermoplastics
+  and 11 elastomer codes — where most forms are 2-4 characters and therefore match case-sensitively on word boundaries.
+  Casing was copied from the file.
+entries:
+- id: tanfel_com-material_caps-0001
+  name: Aluminum
+  status: confirmed
+  acceptable_forms:
+  - Aluminum
+  - aluminum
+  - ALUMINUM
+  - Aluminum alloys
+  - Aluminum Alloy
+  - AL Die Casting
+  evidence:
+  - quote: 'Die Casting: Aluminum, Magnesium, Zinc'
+    approx_offset: 254
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+- id: tanfel_com-material_caps-0002
+  name: Magnesium
+  status: confirmed
+  acceptable_forms:
+  - Magnesium
+  - MAGNESIUM
+  - magnesium
+  - MAGNESIUM ALLOYS
+  evidence:
+  - quote: Aluminum, Magnesium, Zinc
+    approx_offset: 267
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+- id: tanfel_com-material_caps-0003
+  name: Zinc
+  status: confirmed
+  acceptable_forms:
+  - Zinc
+  - ZINC
+  - zinc
+  - ZINC ALLOYS
+  evidence:
+  - quote: Magnesium, Zinc
+    approx_offset: 277
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+- id: tanfel_com-material_caps-0004
+  name: Polycarbonate (PC)
+  status: confirmed
+  acceptable_forms:
+  - PC
+  - Polycarbonate
+  - Polyester or Polycarbonate overlays
+  evidence:
+  - quote: 'Materials include: PC, ABS, PMMA, HDPE, PVC, PP, PU, Nylon, PBT, LCP'
+    approx_offset: 9853
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+- id: tanfel_com-material_caps-0005
+  name: ABS
+  status: confirmed
+  acceptable_forms:
+  - ABS
+  evidence:
+  - quote: PC, ABS, PMMA, HDPE, PVC, PP, PU, Nylon, PBT, LCP
+    approx_offset: 9872
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+- id: tanfel_com-material_caps-0006
+  name: PMMA
+  status: confirmed
+  acceptable_forms:
+  - PMMA
+  evidence:
+  - quote: PMMA, HDPE, PVC, PP, PU, Nylon, PBT, LCP
+    approx_offset: 9881
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+- id: tanfel_com-material_caps-0007
+  name: HDPE
+  status: confirmed
+  acceptable_forms:
+  - HDPE
+  evidence:
+  - quote: HDPE, PVC, PP, PU, Nylon, PBT, LCP
+    approx_offset: 9887
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+- id: tanfel_com-material_caps-0008
+  name: PVC
+  status: confirmed
+  acceptable_forms:
+  - PVC
+  evidence:
+  - quote: PVC, PP, PU, Nylon, PBT, LCP
+    approx_offset: 9893
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+- id: tanfel_com-material_caps-0009
+  name: PP
+  status: confirmed
+  acceptable_forms:
+  - PP
+  evidence:
+  - quote: PP, PU, Nylon, PBT, LCP
+    approx_offset: 9898
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+- id: tanfel_com-material_caps-0010
+  name: PU
+  status: confirmed
+  acceptable_forms:
+  - PU
+  evidence:
+  - quote: PU, Nylon, PBT, LCP
+    approx_offset: 9902
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+- id: tanfel_com-material_caps-0011
+  name: Nylon
+  status: confirmed
+  acceptable_forms:
+  - Nylon
+  evidence:
+  - quote: Nylon, PBT, LCP
+    approx_offset: 9906
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+- id: tanfel_com-material_caps-0012
+  name: PBT
+  status: confirmed
+  acceptable_forms:
+  - PBT
+  evidence:
+  - quote: PBT, LCP
+    approx_offset: 9913
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+- id: tanfel_com-material_caps-0013
+  name: LCP
+  status: confirmed
+  acceptable_forms:
+  - LCP
+  evidence:
+  - quote: LCP
+    approx_offset: 9918
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+- id: tanfel_com-material_caps-0014
+  name: EPDM
+  status: confirmed
+  acceptable_forms:
+  - EPDM
+  evidence:
+  - quote: 'Polymers Available: EPDM, EPM, SBR, BR, NR, NBR, SR, CR, IR, CIIR, BIIR'
+    approx_offset: 10010
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+- id: tanfel_com-material_caps-0015
+  name: EPM
+  status: confirmed
+  acceptable_forms:
+  - EPM
+  evidence:
+  - quote: EPM, SBR, BR, NR, NBR, SR, CR, IR, CIIR, BIIR
+    approx_offset: 10036
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+- id: tanfel_com-material_caps-0016
+  name: SBR
+  status: confirmed
+  acceptable_forms:
+  - SBR
+  evidence:
+  - quote: SBR, BR, NR, NBR, SR, CR, IR, CIIR, BIIR
+    approx_offset: 10041
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+- id: tanfel_com-material_caps-0017
+  name: BR
+  status: confirmed
+  acceptable_forms:
+  - BR
+  evidence:
+  - quote: BR, NR, NBR, SR, CR, IR, CIIR, BIIR
+    approx_offset: 10046
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+- id: tanfel_com-material_caps-0018
+  name: NR
+  status: confirmed
+  acceptable_forms:
+  - NR
+  evidence:
+  - quote: NR, NBR, SR, CR, IR, CIIR, BIIR
+    approx_offset: 10050
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+- id: tanfel_com-material_caps-0019
+  name: NBR
+  status: confirmed
+  acceptable_forms:
+  - NBR
+  evidence:
+  - quote: NBR, SR, CR, IR, CIIR, BIIR
+    approx_offset: 10054
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+- id: tanfel_com-material_caps-0020
+  name: SR
+  status: confirmed
+  acceptable_forms:
+  - SR
+  evidence:
+  - quote: SR, CR, IR, CIIR, BIIR
+    approx_offset: 10059
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+- id: tanfel_com-material_caps-0021
+  name: CR
+  status: confirmed
+  acceptable_forms:
+  - CR
+  evidence:
+  - quote: CR, IR, CIIR, BIIR
+    approx_offset: 10063
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+- id: tanfel_com-material_caps-0022
+  name: IR
+  status: confirmed
+  acceptable_forms:
+  - IR
+  evidence:
+  - quote: IR, CIIR, BIIR
+    approx_offset: 10067
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+- id: tanfel_com-material_caps-0023
+  name: CIIR
+  status: confirmed
+  acceptable_forms:
+  - CIIR
+  evidence:
+  - quote: CIIR, BIIR
+    approx_offset: 10071
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+- id: tanfel_com-material_caps-0024
+  name: BIIR
+  status: confirmed
+  acceptable_forms:
+  - BIIR
+  evidence:
+  - quote: BIIR
+    approx_offset: 10077
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+- id: tanfel_com-material_caps-0025
+  name: Silicone rubber
+  status: confirmed
+  acceptable_forms:
+  - Silicone rubber
+  - SILICONE RUBBER
+  - silicone rubber
+  - silicone
+  - conductive rubber
+  evidence:
+  - quote: Tanfel offers silicone rubber and plastic keypads / keyboards for use in computers, mobile phones, data
+      organizers, calculators, remote controls and numerous other items.
+    approx_offset: 16018
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+- id: tanfel_com-material_caps-0026
+  name: Carbon (conductive pill)
+  status: confirmed
+  acceptable_forms:
+  - carbon
+  evidence:
+  - quote: silicone conductive pills (carbon, gold or metal).
+    approx_offset: 16653
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+- id: tanfel_com-material_caps-0027
+  name: Gold
+  status: confirmed
+  acceptable_forms:
+  - gold
+  evidence:
+  - quote: (carbon, gold or metal).
+    approx_offset: 16679
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+- id: tanfel_com-material_caps-0028
+  name: Ceramics
+  status: confirmed
+  acceptable_forms:
+  - ceramics
+  - ceramic
+  evidence:
+  - quote: Most materials including metal, plastic, and ceramics can be milled.  Milled parts can be small precision
+      parts up to large, heavy parts.
+    approx_offset: 18086
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+- id: tanfel_com-material_caps-0029
+  name: Plastics
+  status: confirmed
+  acceptable_forms:
+  - plastic
+  - plastics
+  evidence:
+  - quote: metal, plastic, and ceramics can be milled.  Milled parts can be small precision parts up to large, heavy
+      parts.
+    approx_offset: 18111
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+- id: tanfel_com-material_caps-0030
+  name: Cast iron
+  status: confirmed
+  acceptable_forms:
+  - Cast Iron
+  - Cast iron
+  - cast iron
+  evidence:
+  - quote: 'Materials: Aluminum, Brass, Bronze, Cast Iron, Copper,'
+    approx_offset: 18971
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: amended
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+    reason: '''wrought iron'' is a different material from cast iron and belongs to no part of this entry: it appears
+      once, as a density benchmark - ''Metal injection molded parts are up to 98% as dense as wrought iron'' - not
+      as a material anything is made from. Leaving it in would let a return of ''wrought iron'' credit the cast-iron
+      entry. The other three forms are the printed spellings on the CNC materials list.'
+- id: tanfel_com-material_caps-0031
+  name: Bronze
+  status: confirmed
+  acceptable_forms:
+  - Bronze
+  - bronze
+  evidence:
+  - quote: Bronze, Cast Iron, Copper,
+    approx_offset: 18999
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+- id: tanfel_com-material_caps-0032
+  name: Hardened metals
+  status: confirmed
+  acceptable_forms:
+  - Hardened metals
+  - Hardened metals have been heat-treated
+  evidence:
+  - quote: Hardened metals, Nickel / nickel alloys, Stainless steel
+    approx_offset: 19026
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+- id: tanfel_com-material_caps-0033
+  name: Sand
+  status: confirmed
+  acceptable_forms:
+  - sand
+  - Sand
+  - molding sand
+  evidence:
+  - quote: using materials like sand and glass beads produces smooth finish at a lower cost for clients. Abrasive
+      blasting elevates good
+    approx_offset: 24670
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+- id: tanfel_com-material_caps-0034
+  name: Glass beads
+  status: confirmed
+  acceptable_forms:
+  - glass beads
+  evidence:
+  - quote: using materials like sand and glass beads produces smooth finish at a lower cost for clients. Abrasive
+      blasting elevates good finishes to
+    approx_offset: 24670
+  notes: blasting media rather than a workpiece material; kept because the clause covers a substance the work is
+    performed in.
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+- id: tanfel_com-material_caps-0035
+  name: Tool steel
+  status: confirmed
+  acceptable_forms:
+  - Tool steel
+  - Tool Steel
+  - tool steel
+  evidence:
+  - quote: Nickel Steel, Tool steel, Titanium and more.
+    approx_offset: 28169
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+- id: tanfel_com-material_caps-0036
+  name: Nickel steel
+  status: confirmed
+  acceptable_forms:
+  - Nickel Steel
+  evidence:
+  - quote: Nickel Steel, Tool steel, Titanium and more.
+    approx_offset: 28169
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+- id: tanfel_com-material_caps-0037
+  name: Case hardened steel
+  status: confirmed
+  acceptable_forms:
+  - Case hardened steel
+  - MIM8620
+  - '9310'
+  - '4600'
+  evidence:
+  - quote: 'Material: Case hardened steel: MIM8620, 9310, 4600'
+    approx_offset: 28249
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+- id: tanfel_com-material_caps-0038
+  name: Through hardened steel
+  status: confirmed
+  acceptable_forms:
+  - Through hardened steel
+  - MIM 4650
+  - '4340'
+  - '4140'
+  - '52100'
+  evidence:
+  - quote: 'Through hardened steel: MIM 4650, 4340, 4140, 52100'
+    approx_offset: 28300
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+- id: tanfel_com-material_caps-0039
+  name: 304L / 420 stainless
+  status: confirmed
+  acceptable_forms:
+  - 304L
+  - '420'
+  evidence:
+  - quote: 'Stainless steel: SS17-4ph, 304L, 420'
+    approx_offset: 28352
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+- id: tanfel_com-material_caps-0040
+  name: 310 / 310Nb
+  status: confirmed
+  acceptable_forms:
+  - 310Nb
+  - '310'
+  evidence:
+  - quote: 'High Temp. App: 440C, 310Nb, 310'
+    approx_offset: 28389
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+- id: tanfel_com-material_caps-0041
+  name: SS316L
+  status: confirmed
+  acceptable_forms:
+  - SS316L
+  evidence:
+  - quote: 'Corrosion Resistant: SS316L, 310Nb'
+    approx_offset: 28422
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+- id: tanfel_com-material_caps-0042
+  name: Fe3Si
+  status: confirmed
+  acceptable_forms:
+  - Fe3Si
+  evidence:
+  - quote: 'Magnetic material: Fe3Si, SS430, Fe-49Co-2V'
+    approx_offset: 28457
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+- id: tanfel_com-material_caps-0043
+  name: Fe-49Co-2V
+  status: confirmed
+  acceptable_forms:
+  - Fe-49Co-2V
+  evidence:
+  - quote: Fe-49Co-2V
+    approx_offset: 28490
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+- id: tanfel_com-material_caps-0044
+  name: Inconel
+  status: confirmed
+  acceptable_forms:
+  - Inconel
+  evidence:
+  - quote: 'Heavy / Super Alloy: WHA1, WHA2, Inconel, Nimonic90'
+    approx_offset: 28501
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+- id: tanfel_com-material_caps-0045
+  name: Tungsten heavy alloy WHA1 / WHA2
+  status: confirmed
+  acceptable_forms:
+  - WHA1
+  - WHA2
+  evidence:
+  - quote: WHA1, WHA2, Inconel, Nimonic90
+    approx_offset: 28522
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+- id: tanfel_com-material_caps-0046
+  name: Nimonic90
+  status: confirmed
+  acceptable_forms:
+  - Nimonic90
+  evidence:
+  - quote: Nimonic90
+    approx_offset: 28543
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+- id: tanfel_com-material_caps-0047
+  name: Tool steel S7 / M2 / D2
+  status: confirmed
+  acceptable_forms:
+  - S7
+  - M2
+  - D2
+  evidence:
+  - quote: 'Tool steel: S7, M2, D2'
+    approx_offset: 28553
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+- id: tanfel_com-material_caps-0048
+  name: Iron
+  status: confirmed
+  acceptable_forms:
+  - Iron
+  - iron
+  evidence:
+  - quote: Aluminum, Steel, Brass, Bronze, Iron and more
+    approx_offset: 32231
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+- id: tanfel_com-material_caps-0049
+  name: Wax
+  status: confirmed
+  acceptable_forms:
+  - wax molds
+  - wax
+  evidence:
+  - quote: uses specialty wax molds to create highly detailed and intricate models that capture every detail of
+      the design. Mold creators
+    approx_offset: 36724
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+- id: tanfel_com-material_caps-0050
+  name: Clay
+  status: confirmed
+  acceptable_forms:
+  - clay
+  evidence:
+  - quote: molds are made from mixtures of sand and clay. Builders pack the sand and clay mixture over an existing
+      model or pattern to give it structural integrity
+    approx_offset: 37325
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+- id: tanfel_com-material_caps-0051
+  name: 300 / 400 series stainless steel
+  status: confirmed
+  acceptable_forms:
+  - 300 Series Stainless Steel
+  - 400 Series Stainless Steel
+  - 300 and 400 series stainless steel
+  evidence:
+  - quote: 300 and 400 series stainless steel, precipitation hardened stainless steel, low-alloy steel, and tool
+      steel
+    approx_offset: 40296
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+- id: tanfel_com-material_caps-0052
+  name: Carbon steel
+  status: confirmed
+  acceptable_forms:
+  - Carbon steel
+  - Carbon Steel
+  evidence:
+  - quote: 'Material: Carbon steel, Low alloy steel, Stainless steel,'
+    approx_offset: 48451
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+- id: tanfel_com-material_caps-0053
+  name: Low alloy steel
+  status: confirmed
+  acceptable_forms:
+  - Low alloy steel
+  - Low Alloy Steel
+  - low-alloy steel
+  evidence:
+  - quote: Low alloy steel, Stainless steel,
+    approx_offset: 48475
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+- id: tanfel_com-material_caps-0054
+  name: Stainless steel
+  status: confirmed
+  acceptable_forms:
+  - Stainless steel
+  - Stainless Steel
+  - stainless steel
+  - Stainless
+  evidence:
+  - quote: Low alloy steel, Stainless steel,
+    approx_offset: 48475
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+- id: tanfel_com-material_caps-0055
+  name: Cobalt alloys
+  status: confirmed
+  acceptable_forms:
+  - Cobalt alloys
+  - Cobalt Base Alloy
+  - cobalt-based alloys
+  evidence:
+  - quote: Nickel and Cobalt alloys, Heat resistant alloys, Aluminum, Brass, Copper, CuVerro antibacterial copper,
+      Bronze
+    approx_offset: 48509
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+- id: tanfel_com-material_caps-0056
+  name: Heat resistant alloys
+  status: confirmed
+  acceptable_forms:
+  - Heat resistant alloys
+  evidence:
+  - quote: Heat resistant alloys, Aluminum, Brass, Copper, CuVerro antibacterial copper, Bronze
+    approx_offset: 48535
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+- id: tanfel_com-material_caps-0057
+  name: Copper
+  status: confirmed
+  acceptable_forms:
+  - Copper
+  - copper
+  - Copper Alloys
+  - copper-zinc alloy
+  - copper-tin alloy
+  evidence:
+  - quote: Aluminum, Brass, Copper, CuVerro antibacterial copper, Bronze
+    approx_offset: 48558
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+- id: tanfel_com-material_caps-0058
+  name: Brass
+  status: confirmed
+  acceptable_forms:
+  - Brass
+  - brass
+  evidence:
+  - quote: Aluminum, Brass, Copper, CuVerro antibacterial copper, Bronze
+    approx_offset: 48558
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+- id: tanfel_com-material_caps-0059
+  name: CuVerro antibacterial copper
+  status: confirmed
+  acceptable_forms:
+  - CuVerro antibacterial copper
+  - CuVerro
+  evidence:
+  - quote: CuVerro antibacterial copper, Bronze
+    approx_offset: 48583
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+- id: tanfel_com-material_caps-0060
+  name: Carbon steel grades
+  status: confirmed
+  acceptable_forms:
+  - '1018'
+  - '1020'
+  - '1025'
+  - '1030'
+  - '1040'
+  - '1045'
+  evidence:
+  - quote: "1018\t1020\t1025\t1030\t1040\t1045"
+    approx_offset: 50590
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+- id: tanfel_com-material_caps-0061
+  name: Low alloy steel grades
+  status: confirmed
+  acceptable_forms:
+  - '4130'
+  - '6150'
+  - '8620'
+  evidence:
+  - quote: "4130\t4140\t4340\t6150\t8620"
+    approx_offset: 50636
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+- id: tanfel_com-material_caps-0062
+  name: 400-series stainless grades
+  status: confirmed
+  acceptable_forms:
+  - '410'
+  - '431'
+  - 440C
+  - 440F
+  evidence:
+  - quote: "410\t420\t431\t440C\t440F"
+    approx_offset: 50688
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+- id: tanfel_com-material_caps-0063
+  name: Precipitation hardened stainless steel
+  status: confirmed
+  acceptable_forms:
+  - Precipitation Hardened Stainless Steel
+  - precipitation hardened stainless steel
+  - 15-5
+  - 17-4
+  - SS17-4ph
+  evidence:
+  - quote: "15-5\t17-4"
+    approx_offset: 50749
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+- id: tanfel_com-material_caps-0064
+  name: Tool steel grades
+  status: confirmed
+  acceptable_forms:
+  - SK2
+  - SKD11
+  - SKD61
+  - SKS3
+  evidence:
+  - quote: "SK2\tSKD11\tSKD61\tSKS3"
+    approx_offset: 50770
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+- id: tanfel_com-material_caps-0065
+  name: A356 / A357 aluminum
+  status: confirmed
+  acceptable_forms:
+  - A356
+  - A357
+  evidence:
+  - quote: "A356\tA357"
+    approx_offset: 50844
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+- id: tanfel_com-material_caps-0066
+  name: Aluminum billets
+  status: confirmed
+  acceptable_forms:
+  - Aluminum billets
+  - billets
+  evidence:
+  - quote: Aluminum billets are heated to the desired temperature, which is typically 800–925°F. Although aluminum
+      remains solid at this temperature, it is much more malleable here than at room temperature.
+    approx_offset: 53143
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+- id: tanfel_com-material_caps-0067
+  name: Manganese
+  status: confirmed
+  acceptable_forms:
+  - manganese
+  evidence:
+  - quote: This alloy type is built with manganese, which raises the aluminum’s strength by 20% while preserving
+      its purity. These types of alloys
+    approx_offset: 55097
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+- id: tanfel_com-material_caps-0068
+  name: Aluminum 1xxx-7xxx series
+  status: confirmed
+  acceptable_forms:
+  - Aluminum (1xxx, 2xxx , 3xxx , 5xxx , 6xxx , 7xxx) series
+  - 1xxx series aluminum alloys
+  - 6xxx series
+  - 2xxx series
+  - 5xxx series
+  - 3xxx series
+  evidence:
+  - quote: Aluminum (1xxx, 2xxx , 3xxx , 5xxx , 6xxx , 7xxx) series
+    approx_offset: 57323
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+- id: tanfel_com-material_caps-0069
+  name: Teflon
+  status: confirmed
+  acceptable_forms:
+  - Teflon
+  evidence:
+  - quote: Teflon coating, Ceramic coating, polishing, wet paint, powder coating, Silkscreen, Pad printing, Sand
+      blasting
+    approx_offset: 69454
+  notes: named as the coating 'Teflon coating'; the material-clause explicitly counts a treatment named after the
+    substance it deposits.
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+- id: tanfel_com-material_caps-0070
+  name: Nickel alloys
+  status: confirmed
+  acceptable_forms:
+  - Nickel alloys
+  - Nickel Alloys
+  - Nickel Base Alloy
+  - nickel-based alloys
+  - nickel-iron alloys
+  - nickel-copper alloys
+  - nickel-molybdenum alloys
+  evidence:
+  - quote: Nickel alloys, which include nickel-iron alloys, nickel-copper alloys, and nickel-molybdenum alloys.
+    approx_offset: 82562
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+- id: tanfel_com-material_caps-0071
+  name: Chromium
+  status: confirmed
+  acceptable_forms:
+  - chromium
+  evidence:
+  - quote: Stainless steel also contains chromium and has excellent resistance to corrosion.
+    approx_offset: 82812
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+- id: tanfel_com-material_caps-0072
+  name: Polyester
+  status: confirmed
+  acceptable_forms:
+  - Polyester
+  evidence:
+  - quote: Polyester or Polycarbonate overlays
+    approx_offset: 111202
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+- id: tanfel_com-material_caps-0073
+  name: Solder
+  status: disputed
+  acceptable_forms:
+  - solder pins
+  evidence:
+  - quote: Female, male connector, solder pins and heat seal connectors are available
+    approx_offset: 111872
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: disputed
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+    reason: solder is named only inside the component name 'solder pins' in the membrane-switch connector list ('Female,
+      male connector, solder pins and heat seal connectors are available'). A solder pin is a pin intended to be
+      soldered, not a pin made of solder, so the material is an inference from a part name rather than a material
+      the work is made from. The part itself is already carried by products-0044.
+  notes: solder is named only inside the component name 'solder pins' in the membrane-switch connector list ('Female,
+    male connector, solder pins and heat seal connectors are available'). A solder pin is a pin intended to be soldered,
+    not a pin made of solder, so the material is an inference from a part name rather than a material the work is
+    made from. The part itself is already carried by products-0044.
+- id: tanfel_com-material_caps-0074
+  name: Acrylic
+  status: confirmed
+  acceptable_forms:
+  - Acrylic
+  evidence:
+  - quote: Acrylic
+    approx_offset: 122238
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+- id: tanfel_com-material_caps-0075
+  name: Steel
+  status: confirmed
+  acceptable_forms:
+  - Steel
+  - steel
+  evidence:
+  - quote: 'Materials: Aluminum, Copper, Zinc, Steel, Nickel and Nickel Alloys'
+    approx_offset: 123374
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+- id: tanfel_com-material_caps-0076
+  name: Nickel
+  status: confirmed
+  acceptable_forms:
+  - Nickel
+  - nickel
+  - black nickel finish
+  evidence:
+  - quote: Steel, Nickel and Nickel Alloys
+    approx_offset: 123409
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+- id: tanfel_com-material_caps-0077
+  name: Titanium
+  status: confirmed
+  acceptable_forms:
+  - Titanium
+  - Titanium Grade 2
+  evidence:
+  - quote: 'Material: Aluminum, Brass, Stainless steel, Titanium Grade 2'
+    approx_offset: 132890
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+- id: tanfel_com-material_caps-0078
+  name: Sheet, coil and strip stock
+  status: confirmed
+  acceptable_forms:
+  - sheet, coil or strip
+  - sheet metal
+  - Sheet Metal
+  - flat sheet metal
+  evidence:
+  - quote: Fabricated products made from sheet, coil or strip with a large variety of material choices.  Material
+      can be worked using a number of methods
+    approx_offset: 134018
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+- id: tanfel_com-material_caps-0079
+  name: Carbide / cemented carbide
+  status: confirmed
+  acceptable_forms:
+  - CARBIDE
+  - Carbide
+  - Cemented carbide
+  - cemented carbide
+  - Large Carbide
+  - Small Carbide
+  evidence:
+  - quote: Carbide – Cemented carbide – Tungsten carbide
+    approx_offset: 135574
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+- id: tanfel_com-material_caps-0080
+  name: Tungsten carbide
+  status: confirmed
+  acceptable_forms:
+  - Tungsten carbide
+  - WC
+  evidence:
+  - quote: Tungsten carbide – WC , Titanium carbide – TiC, Tantalum carbide – Tac
+    approx_offset: 135621
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+- id: tanfel_com-material_caps-0081
+  name: Titanium carbide
+  status: confirmed
+  acceptable_forms:
+  - Titanium carbide
+  - TiC
+  evidence:
+  - quote: Titanium carbide – TiC, Tantalum carbide – Tac
+    approx_offset: 135645
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+- id: tanfel_com-material_caps-0082
+  name: Tantalum carbide
+  status: confirmed
+  acceptable_forms:
+  - Tantalum carbide
+  - Tac
+  evidence:
+  - quote: Tantalum carbide – Tac
+    approx_offset: 135669
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+- id: tanfel_com-material_caps-0083
+  name: Tungsten
+  status: confirmed
+  acceptable_forms:
+  - Tungsten
+  - tungsten
+  evidence:
+  - quote: 'Material: Carbide , Tungsten, Molybdenum, Tantalum, Niobium'
+    approx_offset: 136243
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+- id: tanfel_com-material_caps-0084
+  name: Molybdenum
+  status: confirmed
+  acceptable_forms:
+  - Molybdenum
+  evidence:
+  - quote: Molybdenum, Tantalum, Niobium
+    approx_offset: 136273
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+- id: tanfel_com-material_caps-0085
+  name: Tantalum
+  status: confirmed
+  acceptable_forms:
+  - Tantalum
+  evidence:
+  - quote: Tantalum, Niobium
+    approx_offset: 136285
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+- id: tanfel_com-material_caps-0086
+  name: Niobium
+  status: confirmed
+  acceptable_forms:
+  - Niobium
+  evidence:
+  - quote: Niobium
+    approx_offset: 136295
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+- id: tanfel_com-material_caps-0087
+  name: SUS 304 / SUS 316
+  status: confirmed
+  acceptable_forms:
+  - SUS 304
+  - SUS 316
+  evidence:
+  - quote: 'Materials: SUS 304 , SUS 316 , Copper and Brass wire'
+    approx_offset: 143507
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+- id: tanfel_com-material_caps-0088
+  name: Copper and brass wire
+  status: confirmed
+  acceptable_forms:
+  - Copper and Brass wire
+  evidence:
+  - quote: Copper and Brass wire
+    approx_offset: 143538
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+- id: tanfel_com-material_caps-0089
+  name: Stainless grades SS304 / SS301 / SS302 / SS316 / SS430
+  status: confirmed
+  acceptable_forms:
+  - SS304
+  - SS301
+  - SS302
+  - SS316
+  - SS430
+  evidence:
+  - quote: 'Stainless Steel: SS304, SS301, SS302, SS316, SS430'
+    approx_offset: 145984
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+- id: tanfel_com-material_caps-0090
+  name: Mild steels and Fe-alloys
+  status: confirmed
+  acceptable_forms:
+  - Mild Steels and Fe-Alloys
+  - Fe-Alloys
+  evidence:
+  - quote: Mild Steels and Fe-Alloys
+    approx_offset: 146058
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+- id: tanfel_com-material_caps-0091
+  name: Fine metal powder
+  status: candidate
+  acceptable_forms:
+  - fine metal powders
+  - fine powdered metal
+  evidence:
+  - quote: The MIM process combines fine metal powders with plastic binders.
+    approx_offset: 29065
+  notes: the MIM feedstock, named twice ('fine powdered metal is injected into a mold', line 718). It is the substance
+    the MIM work is made from and is not covered by any packet material entry.
+  provenance:
+  - action: added
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+    source: verification-pass-miss
+- id: tanfel_com-material_caps-0092
+  name: Binders (plastic / chemical)
+  status: candidate
+  acceptable_forms:
+  - plastic binders
+  - chemical binders
+  evidence:
+  - quote: Nobake casting utilizes chemical binders to bond molding sand.
+    approx_offset: 21521
+  - quote: The MIM process combines fine metal powders with plastic binders.
+    approx_offset: 29065
+  actor: unknown
+  notes: binder is a constituent of both the MIM feedstock and the nobake sand mix; it is a substance the work is
+    performed in and no packet entry carries it.
+  provenance:
+  - action: added
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+    source: verification-pass-miss
+- id: tanfel_com-material_caps-0093
+  name: Heavy / super alloy
+  status: candidate
+  acceptable_forms:
+  - Heavy / Super Alloy
+  - Super Alloy
+  evidence:
+  - quote: 'Heavy / Super Alloy: WHA1, WHA2, Inconel, Nimonic90'
+    approx_offset: 28501
+  notes: the MIM material table's class label. Its four members are all seeded (0044-0046), but the class name itself
+    - the phrase a search stage is most likely to return - is not.
+  provenance:
+  - action: added
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+    source: verification-pass-miss
+false_friends:
+- form: Lead
+  reason: 'witnessed: occurs only in ''lead times'', ''lead-time'' and ''leading provider''. This is the documented
+    brute-search false positive.'
+- form: Chrome
+  reason: 'witnessed: appears only in ''Chrome-free passivation'', which asserts the ABSENCE of chromate.'
+- form: Kevlar
+  reason: 'anticipatory: never occurs.'
+- form: Carbon Fiber
+  reason: 'anticipatory: ''carbon'' occurs only as carbon steel and as the conductive pill material.'

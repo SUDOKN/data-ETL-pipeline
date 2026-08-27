@@ -1,0 +1,4237 @@
+subject: agstech.net
+field: conformity_attestations
+snapshot:
+  file: apps/data_etl_app/tests/test_stages/sample_scraped_texts/agstech.net.txt
+  sha256: 1bc0ba503cc3d838798442a2b98cd509bb20604d97c42c21dc206b850317fc2f
+eval_set_version: 2
+expected_empty: false
+notes: 'Attribution is the point of this field here: the Quality page states that the certificates belong to the
+  plants manufacturing for AGS-TECH (actor supplier), while the Fasteners page and the product marks (UL, CE, FCC)
+  are claimed in the first person (actor own). Both are seeded, each with its attributing sentence quoted in notes.'
+entries:
+- id: agstech_net-conformity_attestations-0001
+  name: Telcordia
+  status: confirmed
+  acceptable_forms:
+  - Telcordia
+  evidence:
+  - quote: manufacturing products compliant to Telcordia and other industry standards.
+    approx_offset: 5508
+  - quote: IP, Telcordia, ANSI, NIST
+    approx_offset: 291771
+  notes: 'first-person: ''we take advantage of special brazing and soldering materials and techniques for manufacturing
+    products compliant to Telcordia''.'
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-conformity_attestations-0002
+  name: certified professional engineers
+  status: disputed
+  acceptable_forms:
+  - certified professional engineers
+  evidence:
+  - quote: Our engineering services can be delivered with a signature or several signatures of certified professional
+      engineers in your state.
+    approx_offset: 8070
+  notes: 'DISPUTED: a staff professional licence (''delivered with a signature ... of certified professional engineers
+    in your state''), which SEEDING_BRIEF flags as argued either way. | a staff licence, not a named credential:
+    the phrase names the PEOPLE (''signature ... of certified professional engineers in your state''), and no issuing
+    body, number or mark is given; SEEDING_BRIEF flags staff titles/licences as arguable either way'
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: disputed
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+    reason: 'a staff licence, not a named credential: the phrase names the PEOPLE (''signature ... of certified
+      professional engineers in your state''), and no issuing body, number or mark is given; SEEDING_BRIEF flags
+      staff titles/licences as arguable either way'
+- id: agstech_net-conformity_attestations-0003
+  name: IP31 ingress protection
+  status: confirmed
+  acceptable_forms:
+  - IP31
+  evidence:
+  - quote: In order to survive under harsh environment, JetNet 2005 features an industrial-grade aluminum case with
+      IP31 grade protection ability against dust and water.
+    approx_offset: 35049
+  actor: reseller_inventory
+  notes: rating of the resold Korenix JetNet 2005 switch, not an AGS-TECH attestation
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-conformity_attestations-0004
+  name: NATO standards
+  status: confirmed
+  acceptable_forms:
+  - NATO and military standards
+  evidence:
+  - quote: Custom tempered and bulletproof glass compliant with NATO and military standards
+    approx_offset: 78877
+  actor: supplier
+  notes: '''Custom tempered and bulletproof glass compliant with NATO and military standards'' -- first-person product
+    bullet but made at partner plants'
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: amended
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+    reason: 'the bare form `NATO` is 4 characters, so it is matched by case-folded containment, not on word boundaries:
+      12 of its 13 occurrences in this file are inside Coordinator, terminators, resonators, illuminator, combinatorial
+      and Alternator. Only L1612 is the real one. The replacement still credits a returned ''NATO'' or ''NATO standards''
+      by containment, and no longer credits ''Coordinator'''
+- id: agstech_net-conformity_attestations-0005
+  name: ISO 14001
+  status: confirmed
+  acceptable_forms:
+  - ISO14001
+  evidence:
+  - quote: Our products are manufactured in ISO9001:2000, QS9000, ISO14001, TS16949 certified environments and possess
+      CE, UL mark and meet other industry standards.
+    approx_offset: 80591
+  actor: supplier
+  notes: '''Our products are manufactured in ISO9001:2000, QS9000, ISO14001, TS16949 certified environments'' --
+    the environments (plants), not AGS-TECH itself'
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-conformity_attestations-0006
+  name: IGES
+  status: disputed
+  acceptable_forms:
+  - IGES
+  evidence:
+  - quote: Our customers can submit us their CAD drawings in any of the popular formats used in the industry, such
+      as DFX, STL, IGES, STEP, PDES.
+    approx_offset: 120431
+  notes: 'DISPUTED: a CAD data-exchange standard named among the formats customers may submit (''DFX, STL, IGES,
+    STEP, PDES''). It has an identity of its own, but it is a file format a drawing follows rather than something
+    the company, its sites or its products hold. | IGES is a CAD interchange file format offered as an upload option,
+    not something a company, its people, its sites or its products hold, meet or follow. DFX and STL sit in the
+    same sentence and were not seeded, so the list is being read inconsistently either way.'
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: disputed
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+    reason: IGES is a CAD interchange file format offered as an upload option, not something a company, its people,
+      its sites or its products hold, meet or follow. DFX and STL sit in the same sentence and were not seeded,
+      so the list is being read inconsistently either way.
+- id: agstech_net-conformity_attestations-0007
+  name: STEP / PDES
+  status: disputed
+  acceptable_forms:
+  - STEP, PDES
+  - PDES
+  evidence:
+  - quote: Our customers can submit us their CAD drawings in any of the popular formats used in the industry, such
+      as DFX, STL, IGES, STEP, PDES.
+    approx_offset: 120431
+  notes: 'DISPUTED: same argument as IGES. ''STEP'' alone is also a common English word and would be a substring
+    trap, hence the multi-token form. | same as conformity_attestations-0006: STEP/PDES is a CAD interchange format
+    in the accepted-uploads list, not an attestation the subject or its products hold.'
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: disputed
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+    reason: 'same as conformity_attestations-0006: STEP/PDES is a CAD interchange format in the accepted-uploads
+      list, not an attestation the subject or its products hold.'
+- id: agstech_net-conformity_attestations-0008
+  name: ISO 9001:2000
+  status: confirmed
+  acceptable_forms:
+  - ISO9001:2000
+  evidence:
+  - quote: All of the factories are either one of ISO9001:2000, QS9000, TS16949, ISO13485 or AS9100 quality management
+      systems certified and manufacture products
+    approx_offset: 181220
+  actor: supplier
+  notes: 'Attributed to the supplier plants: ''All of the factories are either one of ISO9001:2000, QS9000, TS16949,
+    ISO13485 or AS9100 quality management systems certified'' (line 3239).'
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-conformity_attestations-0009
+  name: QS-9000
+  status: confirmed
+  acceptable_forms:
+  - QS9000
+  evidence:
+  - quote: All of the factories are either one of ISO9001:2000, QS9000, TS16949, ISO13485 or AS9100 quality management
+      systems certified and manufacture products compliant with
+    approx_offset: 181220
+  actor: supplier
+  notes: 'Attributed to the supplier plants: ''All of the factories are either one of ISO9001:2000, QS9000, TS16949,
+    ISO13485 or AS9100 quality management systems certified'' (line 3239).'
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-conformity_attestations-0010
+  name: TS 16949
+  status: confirmed
+  acceptable_forms:
+  - TS16949
+  evidence:
+  - quote: All of the factories are either one of ISO9001:2000, QS9000, TS16949, ISO13485 or AS9100 quality management
+      systems certified and manufacture products compliant with European
+    approx_offset: 181220
+  actor: supplier
+  notes: 'Attributed to the supplier plants: ''All of the factories are either one of ISO9001:2000, QS9000, TS16949,
+    ISO13485 or AS9100 quality management systems certified'' (line 3239).'
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-conformity_attestations-0011
+  name: ISO 13485
+  status: confirmed
+  acceptable_forms:
+  - ISO13485
+  evidence:
+  - quote: All of the factories are either one of ISO9001:2000, QS9000, TS16949, ISO13485 or AS9100 quality management
+      systems certified and manufacture products compliant with European and
+    approx_offset: 181220
+  actor: supplier
+  notes: 'Attributed to the supplier plants: ''All of the factories are either one of ISO9001:2000, QS9000, TS16949,
+    ISO13485 or AS9100 quality management systems certified'' (line 3239).'
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-conformity_attestations-0012
+  name: AS9100
+  status: confirmed
+  acceptable_forms:
+  - AS9100
+  evidence:
+  - quote: All of the factories are either one of ISO9001:2000, QS9000, TS16949, ISO13485 or AS9100 quality management
+      systems certified and manufacture products compliant with European and American
+    approx_offset: 181220
+  actor: supplier
+  notes: 'Attributed to the supplier plants: ''All of the factories are either one of ISO9001:2000, QS9000, TS16949,
+    ISO13485 or AS9100 quality management systems certified'' (line 3239).'
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-conformity_attestations-0013
+  name: ASTM
+  status: confirmed
+  acceptable_forms:
+  - ASTM
+  evidence:
+  - quote: certified and manufacture products compliant with European and American industrial standards such as
+      ASTM, ISO, DIN, IEEE, MIL.
+    approx_offset: 181336
+  actor: supplier
+  notes: '''manufacture products compliant with European and American industrial standards such as ASTM, ISO, DIN,
+    IEEE, MIL'''
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-conformity_attestations-0014
+  name: ISO (standards body)
+  status: confirmed
+  acceptable_forms:
+  - ISO
+  evidence:
+  - quote: certified and manufacture products compliant with European and American industrial standards such as
+      ASTM, ISO, DIN, IEEE, MIL.
+    approx_offset: 181336
+  actor: supplier
+  notes: bare 'ISO' as a standards body in the compliance list; given a distinctive multi-token form because bare
+    ISO is a substring of every ISO9001 sibling
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: amended
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+    reason: the second form 'ASTM, ISO, DIN' is a comma-list that contains the sole forms of conformity_attestations-0013
+      (ASTM) and -0015/-0047 (DIN); 'ISO' alone is in the same quote and is matched case-sensitively on word boundaries.
+- id: agstech_net-conformity_attestations-0015
+  name: DIN
+  status: confirmed
+  acceptable_forms:
+  - DIN
+  evidence:
+  - quote: and manufacture products compliant with European and American industrial standards such as ASTM, ISO,
+      DIN, IEEE, MIL.
+    approx_offset: 181346
+  actor: supplier
+  notes: 'TRAP: the bare token ''DIN'' also occurs 28 times inside the word LINKEDIN in the repeated social-media
+    footer; only line 3239 is the standards body, hence the multi-token acceptable form'
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: amended
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+    reason: the form 'ASTM, ISO, DIN, IEEE' contains the sole forms of -0013 (ASTM) and -0016/-0058 (IEEE); 'DIN'
+      alone is in the same quote.
+- id: agstech_net-conformity_attestations-0016
+  name: IEEE
+  status: confirmed
+  acceptable_forms:
+  - IEEE
+  evidence:
+  - quote: and manufacture products compliant with European and American industrial standards such as ASTM, ISO,
+      DIN, IEEE, MIL.
+    approx_offset: 181346
+  actor: supplier
+  notes: also 3361 'meet other industry standards such as IEEE, ANSI'
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-conformity_attestations-0017
+  name: MIL (military standards)
+  status: confirmed
+  acceptable_forms:
+  - MIL
+  evidence:
+  - quote: and manufacture products compliant with European and American industrial standards such as ASTM, ISO,
+      DIN, IEEE, MIL.
+    approx_offset: 181346
+  actor: supplier
+  notes: 3-char token; multi-token form used because bare MIL carries no independent signal
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: amended
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+    reason: the form 'DIN, IEEE, MIL' contains the sole forms of -0015/-0047 (DIN) and -0016/-0058 (IEEE); 'MIL'
+      alone is in the same quote and is matched case-sensitively on word boundaries.
+- id: agstech_net-conformity_attestations-0018
+  name: UL mark
+  status: confirmed
+  acceptable_forms:
+  - UL and/or CE mark
+  - UL mark
+  evidence:
+  - quote: Whenever needed or required, products are certified and affixed the UL and/or CE mark, or if for medical
+      application, they are accompanied with an FDA certification.
+    approx_offset: 181464
+  actor: supplier
+  notes: '''products are certified and affixed the UL and/or CE mark''; also 501 ''equipment that meet recognized
+    industry standards such as CE and UL'''
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-conformity_attestations-0019
+  name: CE mark
+  status: confirmed
+  acceptable_forms:
+  - CE mark
+  - UL and/or CE mark
+  evidence:
+  - quote: Whenever needed or required, products are certified and affixed the UL and/or CE mark, or if for medical
+      application, they are accompanied with an FDA certification.
+    approx_offset: 181464
+  actor: supplier
+  notes: see UL mark
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-conformity_attestations-0020
+  name: FDA certification
+  status: confirmed
+  acceptable_forms:
+  - FDA certification
+  - FDA approval
+  - FDA
+  evidence:
+  - quote: Whenever needed or required, products are certified and affixed the UL and/or CE mark, or if for medical
+      application, they are accompanied with an FDA certification.
+    approx_offset: 181464
+  actor: supplier
+  notes: '''if for medical application, they are accompanied with an FDA certification''; also 2914 ''FDA approval
+    (when needed)'''
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-conformity_attestations-0021
+  name: ANSI
+  status: confirmed
+  acceptable_forms:
+  - ANSI
+  evidence:
+  - quote: Our products are manufactured in ISO9001:2000, QS9000, ISO14001, TS16949 certified environments and possess
+      CE, UL mark and meet other industry standards such as IEEE, ANSI.
+    approx_offset: 186504
+  actor: supplier
+  notes: '''meet other industry standards such as IEEE, ANSI'''
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-conformity_attestations-0022
+  name: HS code
+  status: disputed
+  acceptable_forms:
+  - HS code
+  evidence:
+  - quote: There are legal ways to reduce or eliminate import duties by properly assigning the HS code to the products
+      in your shipment.
+    approx_offset: 203379
+  notes: 'DISPUTED: a customs tariff classification, closer to a business-registry identifier than a conformity
+    attestation. | an HS code is a customs tariff classification assigned to a shipment, not a certification, accreditation,
+    registration or standard.'
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: disputed
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+    reason: an HS code is a customs tariff classification assigned to a shipment, not a certification, accreditation,
+      registration or standard.
+- id: agstech_net-conformity_attestations-0023
+  name: ISO 9001
+  status: confirmed
+  acceptable_forms:
+  - ISO9001
+  evidence:
+  - quote: are manufactured at ISO9001 or TS16949 certified plants and conform to internationally accepted industry
+      standards.
+    approx_offset: 215200
+  actor: supplier
+  notes: '''our cutting... tools, blades, discs, drill bits... are manufactured at ISO9001 or TS16949 certified
+    plants'''
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: amended
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+    reason: the form 'ISO9001 or TS16949 certified plants' is a claim span, not a designation, and it contains the
+      sole form of -0010/-0025 (TS16949); 'ISO9001' alone is in the same quote.
+- id: agstech_net-conformity_attestations-0024
+  name: IP65/IP67/IP68 ingress protection
+  status: confirmed
+  acceptable_forms:
+  - IP65/IP67/IP68
+  evidence:
+  - quote: Catalog for Vandal-Proof IP65/IP67/IP68 Keyboards, Keypads, Pointing Devices, ATM Pinpads, Medical &
+      Military Keyboards and other similar Rugged Computer Peripherals
+    approx_offset: 226076
+  actor: reseller_inventory
+  notes: rating of resold vandal-proof keyboards
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-conformity_attestations-0025
+  name: ISO/TS 16949
+  status: confirmed
+  acceptable_forms:
+  - TS 16949
+  - TS16949
+  - ISO/TS 16949
+  evidence:
+  - quote: '- TS 16949'
+    approx_offset: 291328
+  - quote: 'THE ISO/TS 16949 STANDARD: This is an ISO technical specification aimed at the'
+    approx_offset: 293717
+  - quote: Many of AGS-TECH Inc. plants maintain this quality standard instead of or in addition to the ISO 9001.
+    approx_offset: 294241
+  actor: supplier
+  notes: 'Quality page attributes every QMS certificate to SUPPLIER PLANTS: "All plants manufacturing parts and
+    products for AGS-TECH Inc are certified to one or several of the following QUALITY MANAGEMENT SYSTEM (QMS) standards:"'
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-conformity_attestations-0026
+  name: QS 9000
+  status: confirmed
+  acceptable_forms:
+  - QS 9000
+  - QS9000
+  evidence:
+  - quote: '- QS 9000'
+    approx_offset: 291343
+  - quote: AGS-TECH Inc. plants serving especially the automotive industry are certified to QS 9000 quality standard.
+    approx_offset: 294595
+  actor: supplier
+  notes: 'Quality page attributes every QMS certificate to SUPPLIER PLANTS: "All plants manufacturing parts and
+    products for AGS-TECH Inc are certified to one or several of the following QUALITY MANAGEMENT SYSTEM (QMS) standards:"'
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-conformity_attestations-0027
+  name: AS 9100
+  status: confirmed
+  acceptable_forms:
+  - AS 9100
+  - AS9100
+  - AS9001
+  evidence:
+  - quote: '- AS 9100'
+    approx_offset: 291357
+  - quote: Plants manufacturing our aerospace components are certified to the AS 9100 quality standard.
+    approx_offset: 295163
+  - quote: AS9001, ISO13485 are among the first requirements for
+    approx_offset: 355946
+  actor: supplier
+  notes: 'Quality page attributes every QMS certificate to SUPPLIER PLANTS: "All plants manufacturing parts and
+    products for AGS-TECH Inc are certified to one or several of the following QUALITY MANAGEMENT SYSTEM (QMS) standards:"
+    The Become-a-Supplier page spells it ''AS9001'', a typo for AS9100; that spelling is kept as an acceptable form
+    because the text uses it.'
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-conformity_attestations-0028
+  name: ISO 14000
+  status: confirmed
+  acceptable_forms:
+  - ISO 14000
+  evidence:
+  - quote: '- ISO 14000'
+    approx_offset: 291387
+  - quote: 'THE ISO 14000 STANDARD: This family of standards pertains to the international Environmental'
+    approx_offset: 296269
+  - quote: many of AGS-TECH Inc.’s global production facilities are certified to.
+    approx_offset: 296827
+  actor: supplier
+  notes: 'Quality page attributes every QMS certificate to SUPPLIER PLANTS: "All plants manufacturing parts and
+    products for AGS-TECH Inc are certified to one or several of the following QUALITY MANAGEMENT SYSTEM (QMS) standards:"'
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-conformity_attestations-0029
+  name: EMC (Electromagnetic Compatibility) directive
+  status: confirmed
+  acceptable_forms:
+  - EMC
+  - EMC-directive
+  - Electromagnetic Compatibility
+  evidence:
+  - quote: The EMC-directive (89/336/EEC) Electromagnetic Compatibility
+    approx_offset: 300615
+  - quote: UL, CE, EMC, FCC and CSA Certification Marks, FDA Listing, DIN /
+    approx_offset: 291634
+  notes: listed among the marks AGS-TECH manufactures to; the directive number is given on the CE page.
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-conformity_attestations-0030
+  name: FDA Listing
+  status: confirmed
+  acceptable_forms:
+  - FDA Listing
+  - FDA-listed
+  - FDA listed
+  - FDA
+  evidence:
+  - quote: FDA Listing, DIN / MIL / ASME / NEMA / SAE / JIS
+    approx_offset: 291680
+  - quote: AGS-TECH Inc. does market and sell some products such as implants that are FDA listed. In addition to
+      manufacturing their medical products, as a service we can guide our
+    approx_offset: 303422
+  notes: first-person claim for implants.
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-conformity_attestations-0031
+  name: IP rating
+  status: disputed
+  acceptable_forms:
+  - IP
+  evidence:
+  - quote: IEEE Standards, IP, Telcordia, ANSI, NIST
+    approx_offset: 291755
+  notes: two-character form, matched case-sensitively on word boundaries; appears only in the run-on standards list.
+    | the sole form is the two-character token 'IP', which also occurs as 'IP&E electronic components' (line 5865)
+    and 'IP addresses' (line 29239), so it credits on non-conformity text. The ingress-protection ratings themselves
+    are already carried by conformity_attestations-0024 (IP65/IP67/IP68).
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: disputed
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+    reason: the sole form is the two-character token 'IP', which also occurs as 'IP&E electronic components' (line
+      5865) and 'IP addresses' (line 29239), so it credits on non-conformity text. The ingress-protection ratings
+      themselves are already carried by conformity_attestations-0024 (IP65/IP67/IP68).
+- id: agstech_net-conformity_attestations-0032
+  name: ANSI accreditation
+  status: confirmed
+  acceptable_forms:
+  - ANSI
+  evidence:
+  - quote: 'ANSI ACCREDITATION: The American National Standards Institute is a private non-profit'
+    approx_offset: 314627
+  - quote: IP, Telcordia, ANSI, NIST
+    approx_offset: 291771
+  actor: unknown
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-conformity_attestations-0033
+  name: NIST
+  status: confirmed
+  acceptable_forms:
+  - NIST
+  evidence:
+  - quote: 'NIST REFERENCE: The National Institute of Standards and Technology (NIST), is a measurement'
+    approx_offset: 316654
+  - quote: IP, Telcordia, ANSI, NIST
+    approx_offset: 291771
+  actor: unknown
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-conformity_attestations-0034
+  name: Six Sigma
+  status: disputed
+  acceptable_forms:
+  - Six Sigma
+  evidence:
+  - quote: '- Six Sigma'
+    approx_offset: 292224
+  - quote: 'SIX SIGMA: This is a set of statistical tools based on well known total quality'
+    approx_offset: 317702
+  actor: supplier
+  notes: 'DISPUTED: a quality methodology the plants ''focus on'', not a certificate with an issuing body - but
+    Six Sigma belt certifications do exist, so the boundary is arguable. | Six Sigma is a statistical improvement
+    methodology, listed by the site beside TQM and SPC as ''other tools and methods'', not a certification or standard
+    held or met. TQM and SPC in the same list were not seeded, so the sibling list is read inconsistently.'
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: disputed
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+    reason: Six Sigma is a statistical improvement methodology, listed by the site beside TQM and SPC as 'other
+      tools and methods', not a certification or standard held or met. TQM and SPC in the same list were not seeded,
+      so the sibling list is read inconsistently.
+- id: agstech_net-conformity_attestations-0035
+  name: ISO 9000
+  status: confirmed
+  acceptable_forms:
+  - ISO 9000
+  evidence:
+  - quote: this quality standard has extras in addition to the ISO 9000 quality standard. All of the ISO 9000 quality
+      standard’s clauses serve as the foundation of the QS 9000
+    approx_offset: 294412
+  actor: unknown
+  notes: named inside the QS 9000 explainer as its foundation, not claimed as held.
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-conformity_attestations-0036
+  name: AS 9000
+  status: confirmed
+  acceptable_forms:
+  - AS9000
+  evidence:
+  - quote: AS9100 replaces the earlier AS9000 and fully incorporates the entirety of the current version
+    approx_offset: 294830
+  actor: unknown
+  notes: named only as the standard AS9100 superseded, in explainer prose.
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-conformity_attestations-0037
+  name: declaration of conformity
+  status: confirmed
+  acceptable_forms:
+  - declaration of conformity
+  - Manufacturers declaration
+  evidence:
+  - quote: after preparing a declaration of conformity, the certificate which shows the product conforms to the
+    approx_offset: 299392
+  - quote: •Manufacturers declaration (route acc. art. 10.1)
+    approx_offset: 300912
+  actor: unknown
+  notes: CE explainer prose describing the self-certification route.
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-conformity_attestations-0038
+  name: Machine Directive 93/37/EC
+  status: confirmed
+  acceptable_forms:
+  - 93/37/EC
+  - machine directive
+  evidence:
+  - quote: the machine directive 93/37/EC or the low voltage directive
+    approx_offset: 299652
+  actor: unknown
+  notes: CE explainer prose.
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-conformity_attestations-0039
+  name: Low Voltage Directive
+  status: confirmed
+  acceptable_forms:
+  - 73/23/EEC
+  - LVD-directive
+  - 73/26/EEC
+  evidence:
+  - quote: the low voltage directive 73/23/EEC, the European standards used, e.g. EN
+    approx_offset: 299686
+  - quote: The LVD-directive (73/26/EEC) Safety
+    approx_offset: 301024
+  actor: unknown
+  notes: CE explainer prose; the page gives the LVD two different numbers (73/23/EEC and 73/26/EEC) - both kept
+    verbatim.
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-conformity_attestations-0040
+  name: EN 50081-2:1993
+  status: confirmed
+  acceptable_forms:
+  - EN 50081-2:1993
+  evidence:
+  - quote: EN 50081-2:1993 for the EMC directive or EN 60950:1991 for the low
+    approx_offset: 299757
+  actor: unknown
+  notes: named as an example European standard in CE explainer prose.
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-conformity_attestations-0041
+  name: EN 60950:1991
+  status: confirmed
+  acceptable_forms:
+  - EN 60950:1991
+  evidence:
+  - quote: EN 60950:1991 for the low voltage requirement for information technology. The
+    approx_offset: 299798
+  actor: unknown
+  notes: named as an example European standard in CE explainer prose.
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-conformity_attestations-0042
+  name: EMC Directive 89/336/EEC
+  status: confirmed
+  acceptable_forms:
+  - 89/336/EEC
+  evidence:
+  - quote: The EMC-directive (89/336/EEC) Electromagnetic Compatibility
+    approx_offset: 300615
+  actor: unknown
+  notes: CE explainer prose.
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-conformity_attestations-0043
+  name: FCC Mark
+  status: confirmed
+  acceptable_forms:
+  - FCC mark
+  - FCC
+  evidence:
+  - quote: AGS-TECH Inc. relevant products for the US market are affixed with FCC mark. In addition to manufacturing
+      their electronic products, as a service we can guide our
+    approx_offset: 301784
+  notes: first-person claim.
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-conformity_attestations-0044
+  name: CSA Mark
+  status: confirmed
+  acceptable_forms:
+  - CSA-US Mark
+  - CSA Mark
+  - CSA
+  evidence:
+  - quote: 'THE CSA MARK: The Canadian Standards Association (CSA) is a nonprofit association serving'
+    approx_offset: 302015
+  - quote: the CSA-US Mark qualifies as an alternative to the UL Mark.
+    approx_offset: 302386
+  actor: unknown
+  notes: named in the standards explainer; no first-person claim of holding it.
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-conformity_attestations-0045
+  name: OSHA regulations
+  status: confirmed
+  acceptable_forms:
+  - OSHA
+  evidence:
+  - quote: According to OSHA regulations, the CSA-US Mark
+    approx_offset: 302355
+  actor: unknown
+  notes: standards explainer only.
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-conformity_attestations-0046
+  name: 510(k)
+  status: confirmed
+  acceptable_forms:
+  - 510(k)
+  evidence:
+  - quote: considered ''510(k) exempt.'' These medical
+    approx_offset: 302807
+  actor: unknown
+  notes: FDA explainer prose.
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-conformity_attestations-0047
+  name: DIN standards
+  status: confirmed
+  acceptable_forms:
+  - DIN
+  evidence:
+  - quote: 'DIN STANDARDS: DIN, the German Institute for Standardization develops norms for rationalization,'
+    approx_offset: 304096
+  - quote: meet internationally relevant standards such as ISO, SAE, ASME, DIN.
+    approx_offset: 389624
+  actor: supplier
+  notes: machine-elements page attributes the standards compliance to the plants fabricating them.
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-conformity_attestations-0048
+  name: MIL-STD / MIL-SPEC
+  status: confirmed
+  acceptable_forms:
+  - MIL-STD
+  - MIL-SPEC
+  evidence:
+  - quote: 'MIL STANDARDS: This is a United States defense or military norm, ''''MIL-STD'''', ''''MIL-SPEC'''',
+      and is used to help achieve standardization objectives by the U.S.'
+    approx_offset: 304513
+  - quote: international standards such as IEEE, IEC, ASTM, DIN, MIL-SPEC…etc. to customers
+    approx_offset: 356435
+  actor: unknown
+  notes: standards explainer plus a requirement placed on prospective suppliers.
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-conformity_attestations-0049
+  name: ASME standards
+  status: confirmed
+  acceptable_forms:
+  - ASME
+  evidence:
+  - quote: 'ASME STANDARDS: American Society of Mechanical Engineers (ASME) is an engineering'
+    approx_offset: 305075
+  - quote: such as ISO, SAE, ASME, DIN.
+    approx_offset: 389664
+  actor: supplier
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-conformity_attestations-0050
+  name: NEMA standards
+  status: confirmed
+  acceptable_forms:
+  - NEMA
+  evidence:
+  - quote: 'NEMA STANDARDS: The National Electrical Manufacturers Association (NEMA) is the association'
+    approx_offset: 306144
+  actor: unknown
+  notes: standards explainer only.
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-conformity_attestations-0051
+  name: SAE standards
+  status: confirmed
+  acceptable_forms:
+  - SAE
+  evidence:
+  - quote: 'SAE STANDARDS: SAE International, initially established as the Society of Automotive'
+    approx_offset: 306852
+  - quote: such as ISO, SAE, ASME, DIN.
+    approx_offset: 389664
+  actor: supplier
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-conformity_attestations-0052
+  name: JIS standards
+  status: confirmed
+  acceptable_forms:
+  - JIS
+  - JIS mark
+  evidence:
+  - quote: 'JIS STANDARDS: Japanese Industrial Standards (JIS) specify the norms used for industrial'
+    approx_offset: 308172
+  - quote: the ''JIS mark'' (product certification) was changed.
+    approx_offset: 308489
+  actor: unknown
+  notes: standards explainer only.
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-conformity_attestations-0053
+  name: British Standards / BSI
+  status: confirmed
+  acceptable_forms:
+  - BSI
+  - British Standards
+  - Kitemark
+  evidence:
+  - quote: 'BSI STANDARDS: British Standards are produced by BSI Group which is'
+    approx_offset: 308966
+  - quote: The Kitemark can be used to indicate certification by BSI, but only where a
+    approx_offset: 309908
+  actor: unknown
+  notes: standards explainer only.
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-conformity_attestations-0054
+  name: EIA standards
+  status: confirmed
+  acceptable_forms:
+  - EIA
+  evidence:
+  - quote: 'EIA STANDARDS: The Electronic Industries Alliance was a standards and trade'
+    approx_offset: 310623
+  actor: unknown
+  notes: standards explainer only.
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-conformity_attestations-0055
+  name: JEDEC
+  status: confirmed
+  acceptable_forms:
+  - JEDEC
+  evidence:
+  - quote: JEDEC – JEDEC Solid State Technology Association (formerly the Joint
+    approx_offset: 311716
+  actor: unknown
+  notes: named as an EIA sector in explainer prose.
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-conformity_attestations-0056
+  name: IEC standards
+  status: confirmed
+  acceptable_forms:
+  - IEC
+  evidence:
+  - quote: 'IEC STANDARDS: The International Electrotechnical Commission (IEC) is a World'
+    approx_offset: 312032
+  - quote: international standards such as IEEE, IEC, ASTM, DIN, MIL-SPEC…etc.
+    approx_offset: 356435
+  actor: unknown
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-conformity_attestations-0057
+  name: ASTM standards
+  status: confirmed
+  acceptable_forms:
+  - ASTM
+  - ASTM F963
+  evidence:
+  - quote: 'ASTM STANDARDS: ASTM International, (formerly known as the American Society for'
+    approx_offset: 313071
+  - quote: must meet the safety requirements of ASTM F963.
+    approx_offset: 314018
+  actor: unknown
+  notes: standards explainer; ASTM F963 named as the US toy safety example.
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-conformity_attestations-0058
+  name: IEEE standards
+  status: confirmed
+  acceptable_forms:
+  - IEEE
+  evidence:
+  - quote: 'IEEE STANDARDS: The Institute of Electrical and Electronics Engineers Standards Association (IEEE-SA)
+      is an'
+    approx_offset: 314070
+  - quote: international standards such as IEEE, IEC, ASTM, DIN, MIL-SPEC…etc.
+    approx_offset: 356435
+  actor: unknown
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-conformity_attestations-0059
+  name: Department of Transportation requirements
+  status: confirmed
+  acceptable_forms:
+  - Department of Transportation
+  evidence:
+  - quote: which meets Department of Transportation requirements.
+    approx_offset: 395171
+  notes: claimed for a motorcycle taillight assembly AGS-TECH manufactured.
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-conformity_attestations-0060
+  name: Quality Management Certification
+  status: disputed
+  acceptable_forms:
+  - Quality Management Certification
+  evidence:
+  - quote: Ask potential suppliers for a copy of their Quality Management Certification, such as ISO9001, QS9000,
+      ISO14969….etc. Make sure to check who the issuing
+    approx_offset: 407199
+  actor: unknown
+  notes: same blog sentence | 'Quality Management Certification' names the CLASS, not a scheme with an identity
+    of its own; the sentence then lists the schemes that do have one ('such as ISO9001, QS9000, ISO14969'), and
+    each of those is separately entered. The clause asks for something 'with an identity of its own, such as a name,
+    number, mark, or issuing body'.
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: disputed
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+    reason: '''Quality Management Certification'' names the CLASS, not a scheme with an identity of its own; the
+      sentence then lists the schemes that do have one (''such as ISO9001, QS9000, ISO14969''), and each of those
+      is separately entered. The clause asks for something ''with an identity of its own, such as a name, number,
+      mark, or issuing body''.'
+- id: agstech_net-conformity_attestations-0061
+  name: QS9000
+  status: confirmed
+  acceptable_forms:
+  - QS9000
+  evidence:
+  - quote: suppliers for a copy of their Quality Management Certification, such as ISO9001, QS9000, ISO14969….etc.
+      Make sure to check who the issuing agency is and how reputable the
+    approx_offset: 407213
+  actor: unknown
+  notes: BLOG PROSE - generic advice telling buyers to ask a prospective supplier for its quality certificate; not
+    a certificate AGS-TECH claims
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-conformity_attestations-0062
+  name: ISO14969
+  status: confirmed
+  acceptable_forms:
+  - ISO14969
+  evidence:
+  - quote: copy of their Quality Management Certification, such as ISO9001, QS9000, ISO14969….etc. Make sure to
+      check who the issuing agency is and how reputable the
+    approx_offset: 407229
+  actor: unknown
+  notes: same blog sentence; not claimed by AGS-TECH
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-conformity_attestations-0063
+  name: ISO 14969
+  status: retired
+  acceptable_forms:
+  - ISO14969
+  evidence:
+  - quote: such as ISO9001, QS9000, ISO14969….etc. Make sure to
+    approx_offset: 407277
+  actor: unknown
+  notes: 'blog post advising buyers what to ask a potential supplier for; not a held certificate. | exact duplicate
+    of conformity_attestations-0062: same single acceptable form ''ISO14969'', same evidence line. Keeping both
+    counts one certification twice in the recall denominator; the entry name differing by a space (''ISO 14969''
+    vs ''ISO14969'') is not a second entity, and that spacing is not what the text prints.'
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: retired
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+    reason: 'exact duplicate of conformity_attestations-0062: same single acceptable form ''ISO14969'', same evidence
+      line. Keeping both counts one certification twice in the recall denominator; the entry name differing by a
+      space (''ISO 14969'' vs ''ISO14969'') is not a second entity, and that spacing is not what the text prints.'
+- id: agstech_net-conformity_attestations-0064
+  name: FDA
+  status: confirmed
+  acceptable_forms:
+  - FDA
+  evidence:
+  - quote: have ever sold a product that has other certifications & marks such as UL, CE, FDA, RoHS compliance,
+      Electromagnetic Compatibility…..etc. There are many such certifications
+    approx_offset: 407615
+  actor: unknown
+  notes: BLOG PROSE listing marks a buyer should ask a supplier about
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-conformity_attestations-0065
+  name: RoHS
+  status: confirmed
+  acceptable_forms:
+  - RoHS
+  evidence:
+  - quote: ever sold a product that has other certifications & marks such as UL, CE, FDA, RoHS compliance, Electromagnetic
+      Compatibility…..etc. There are many such certifications
+    approx_offset: 407620
+  actor: unknown
+  notes: same blog sentence
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-conformity_attestations-0066
+  name: Electromagnetic Compatibility
+  status: confirmed
+  acceptable_forms:
+  - Electromagnetic Compatibility
+  evidence:
+  - quote: sold a product that has other certifications & marks such as UL, CE, FDA, RoHS compliance, Electromagnetic
+      Compatibility…..etc. There are many such certifications and you should
+    approx_offset: 407625
+  actor: unknown
+  notes: same blog sentence
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-conformity_attestations-0067
+  name: RoHS compliance
+  status: retired
+  acceptable_forms:
+  - RoHS
+  evidence:
+  - quote: such as UL, CE, FDA, RoHS compliance, Electromagnetic Compatibility…..etc.
+    approx_offset: 407678
+  actor: unknown
+  notes: 'blog advice about vetting suppliers, not a claim about AGS-TECH. | exact duplicate of conformity_attestations-0065:
+    same single acceptable form ''RoHS'', same evidence line. ''RoHS compliance'' is the same attestation as ''RoHS'',
+    not a second one.'
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: retired
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+    reason: 'exact duplicate of conformity_attestations-0065: same single acceptable form ''RoHS'', same evidence
+      line. ''RoHS compliance'' is the same attestation as ''RoHS'', not a second one.'
+- id: agstech_net-conformity_attestations-0068
+  name: Alibaba Trustpass and Gold Membership
+  status: disputed
+  acceptable_forms:
+  - Trustpass and Gold Membership
+  - Trustpass
+  evidence:
+  - quote: probably time to rethink about your options. Sites such as Alibaba do have Trustpass and Gold Membership,
+      which are big bonuses a potential supplier should have. Check them out
+    approx_offset: 412355
+  actor: unknown
+  notes: 'DISPUTED: a marketplace membership status, argued either way for this field; BLOG PROSE about vetting
+    suppliers, not something AGS-TECH holds. | Alibaba Trustpass / Gold Membership are marketplace paid-membership
+    badges, not a certification, accreditation, registration, standard or compliance a company''s products or sites
+    could hold or meet -- SEEDING_BRIEF flags trade memberships as the seed-disputed class. They are also named
+    in advice about vetting OTHER suppliers, not as anything AGS-TECH holds.'
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: disputed
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+    reason: Alibaba Trustpass / Gold Membership are marketplace paid-membership badges, not a certification, accreditation,
+      registration, standard or compliance a company's products or sites could hold or meet -- SEEDING_BRIEF flags
+      trade memberships as the seed-disputed class. They are also named in advice about vetting OTHER suppliers,
+      not as anything AGS-TECH holds.
+- id: agstech_net-conformity_attestations-0069
+  name: Alibaba Gold Membership / Trustpass
+  status: disputed
+  acceptable_forms:
+  - Gold Membership
+  - Trustpass
+  evidence:
+  - quote: Sites such as Alibaba do have Trustpass and Gold Membership, which are big bonuses a
+    approx_offset: 412400
+  actor: unknown
+  notes: 'DISPUTED per SEEDING_BRIEF: a marketplace membership, not a certification; appears only as buyer-vetting
+    advice in the blog post. | same argument as conformity_attestations-0068, of which this is a near-duplicate
+    (its two forms are both already in 0068''s form list and both point at the same sentence).'
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: disputed
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+    reason: same argument as conformity_attestations-0068, of which this is a near-duplicate (its two forms are
+      both already in 0068's form list and both point at the same sentence).
+- id: agstech_net-conformity_attestations-0070
+  name: NEMA 4
+  status: confirmed
+  acceptable_forms:
+  - NEMA 4
+  evidence:
+  - quote: of equipment in remote or hazardous locations. They are designed in rugged NEMA 4 rated cases. Programmable
+      version are available. Other versions
+    approx_offset: 608104
+  actor: supplier
+  notes: 'a rating of the RESOLD instrument''s enclosure, held by whoever makes it, not by AGS-TECH: ''They are
+    designed in rugged NEMA 4 rated cases.'''
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-conformity_attestations-0071
+  name: IP65 / IP67 / IP68
+  status: confirmed
+  acceptable_forms:
+  - IP65/IP67/IP68
+  - IP65
+  - IP67
+  - IP68
+  evidence:
+  - quote: VANDAL-PROOF IP65/IP67/IP68 Keyboards, Keypads, Pointing Devices, ATM Pinpads, Medical & Military
+    approx_offset: 631858
+  actor: supplier
+  notes: 'an ingress-protection rating met by the RESOLD peripherals, not held by AGS-TECH: ''VANDAL-PROOF IP65/IP67/IP68
+    Keyboards, Keypads, Pointing Devices'''
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-conformity_attestations-0072
+  name: RS232
+  status: confirmed
+  acceptable_forms:
+  - RS232
+  evidence:
+  - quote: current or frequency can be remotely controlled through an analog input or digital interface such as
+      an RS232 or GPIB. Many of them have an integral microcomputer to
+    approx_offset: 633409
+  actor: unknown
+  notes: 'DISPUTED: an interface specification a product can follow, but it is named as a connector option rather
+    than as a compliance the company or product holds'
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-conformity_attestations-0073
+  name: GPIB
+  status: confirmed
+  acceptable_forms:
+  - GPIB
+  evidence:
+  - quote: can be remotely controlled through an analog input or digital interface such as an RS232 or GPIB. Many
+      of them have an integral microcomputer to
+    approx_offset: 633430
+  actor: unknown
+  notes: DISPUTED for the same reason as RS232
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-conformity_attestations-0074
+  name: GSM
+  status: confirmed
+  acceptable_forms:
+  - GSM
+  evidence:
+  - quote: radio signals. Vector signal generators can generate signals based on industry standards such as GSM,
+      W-CDMA (UMTS) and Wi-Fi (IEEE 802.11). LOGIC SIGNAL GENERATORS are
+    approx_offset: 635416
+  actor: unknown
+  notes: same explainer sentence as IEEE 802.11
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-conformity_attestations-0075
+  name: IEEE 802.11
+  status: confirmed
+  acceptable_forms:
+  - IEEE 802.11
+  - Wi-Fi (IEEE 802.11)
+  evidence:
+  - quote: Vector signal generators can generate signals based on industry standards such as GSM, W-CDMA (UMTS)
+      and Wi-Fi (IEEE 802.11). LOGIC SIGNAL GENERATORS are also called DIGITAL
+    approx_offset: 635431
+  actor: unknown
+  notes: a communications standard the resold signal generators can generate signals to; named in explainer prose,
+    not claimed by anyone
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-conformity_attestations-0076
+  name: W-CDMA (UMTS)
+  status: confirmed
+  acceptable_forms:
+  - W-CDMA (UMTS)
+  - W-CDMA
+  evidence:
+  - quote: signal generators can generate signals based on industry standards such as GSM, W-CDMA (UMTS) and Wi-Fi
+      (IEEE 802.11). LOGIC SIGNAL GENERATORS are also
+    approx_offset: 635438
+  actor: unknown
+  notes: same explainer sentence as IEEE 802.11
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-conformity_attestations-0077
+  name: USDA approved index
+  status: confirmed
+  acceptable_forms:
+  - USDA approved index
+  - USDA
+  evidence:
+  - quote: set by the user. To give you an example, there are handheld tomato colorimeters which use an USDA approved
+      index to measure and grade the color of processed tomato
+    approx_offset: 683614
+  actor: supplier
+  notes: a US Department of Agriculture colour index the RESOLD tomato colorimeter uses; not a certification AGS-TECH
+    holds
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-conformity_attestations-0078
+  name: ISO2813
+  status: confirmed
+  acceptable_forms:
+  - ISO2813
+  evidence:
+  - quote: 'GT SERIES Gloss Meters : GT series gloss meters are designed and manufactured according to international
+      standards ISO2813, ASTMD523 and DIN67530. The technical parameters conform to JJG696-2002. The'
+    approx_offset: 686639
+  actor: supplier
+  notes: 'held by the instrument''s MAKER (SADT), not by AGS-TECH: ''GT series gloss meters are designed and manufactured
+    according to international standards ISO2813, ASTMD523 and DIN67530. The technical parameters conform to JJG696-2002.'''
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-conformity_attestations-0079
+  name: ASTM D523
+  status: confirmed
+  acceptable_forms:
+  - ASTMD523
+  - ASTM D523
+  evidence:
+  - quote: meters are designed and manufactured according to international standards ISO2813, ASTMD523 and DIN67530.
+      The technical parameters conform to JJG696-2002. The
+    approx_offset: 686680
+  actor: supplier
+  notes: 'held by the instrument''s MAKER (SADT), not by AGS-TECH: ''GT series gloss meters are designed and manufactured
+    according to international standards ISO2813, ASTMD523 and DIN67530. The technical parameters conform to JJG696-2002.''
+    The same standard is written ''ASTMD523'' on one line and ''ASTM D523'' on the next gloss-meter paragraph; both
+    spellings are acceptable forms.'
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-conformity_attestations-0080
+  name: DIN67530
+  status: confirmed
+  acceptable_forms:
+  - DIN67530
+  evidence:
+  - quote: designed and manufactured according to international standards ISO2813, ASTMD523 and DIN67530. The technical
+      parameters conform to JJG696-2002. The
+    approx_offset: 686691
+  actor: supplier
+  notes: 'held by the instrument''s MAKER (SADT), not by AGS-TECH: ''GT series gloss meters are designed and manufactured
+    according to international standards ISO2813, ASTMD523 and DIN67530. The technical parameters conform to JJG696-2002.'''
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-conformity_attestations-0081
+  name: JJG696-2002
+  status: confirmed
+  acceptable_forms:
+  - JJG696-2002
+  evidence:
+  - quote: standards ISO2813, ASTMD523 and DIN67530. The technical parameters conform to JJG696-2002. The GT45 gloss
+      meter is especially designed for
+    approx_offset: 686744
+  actor: supplier
+  notes: 'held by the instrument''s MAKER (SADT), not by AGS-TECH: ''GT series gloss meters are designed and manufactured
+    according to international standards ISO2813, ASTMD523 and DIN67530. The technical parameters conform to JJG696-2002.'''
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-conformity_attestations-0082
+  name: ISO7668
+  status: confirmed
+  acceptable_forms:
+  - ISO7668
+  evidence:
+  - quote: ': These glossmeters are designed and manufactured according to international standards ISO2813, ISO7668,
+      ASTM D523, ASTM D2457. The technical parameters also conform to'
+    approx_offset: 686992
+  actor: supplier
+  notes: 'held by the instrument''s maker: ''These glossmeters are designed and manufactured according to international
+    standards ISO2813, ISO7668, ASTM D523, ASTM D2457.'''
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-conformity_attestations-0083
+  name: ASTM D2457
+  status: confirmed
+  acceptable_forms:
+  - ASTM D2457
+  evidence:
+  - quote: and manufactured according to international standards ISO2813, ISO7668, ASTM D523, ASTM D2457. The technical
+      parameters also conform to
+    approx_offset: 687025
+  actor: supplier
+  notes: same GMS/GM60 gloss-meter sentence as ISO7668
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-conformity_attestations-0084
+  name: NIST traceable calibration
+  status: confirmed
+  acceptable_forms:
+  - NIST traceable calibration systems
+  evidence:
+  - quote: Fiber optic power meters should be recalibrated frequently by labs with NIST traceable calibration systems.
+    approx_offset: 703430
+  actor: lab
+  notes: an accreditation-style claim attached to outside calibration labs
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: amended
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+    reason: 'bare `NIST` is 4 chars, one over the short-form threshold, so it is matched by loose case-insensitive
+      containment and is credited by ''deterministic'', ''receptionist'', ''administration'' and ''canisters'' -
+      the documented `Lead` defect class. Dropping it costs nothing: a returned bare ''NIST'' still credits the
+      long form by reverse containment'
+- id: agstech_net-conformity_attestations-0085
+  name: ASTM C805
+  status: confirmed
+  acceptable_forms:
+  - ASTM C805
+  evidence:
+  - quote: This test method for testing concrete is governed by ASTM C805.
+    approx_offset: 720708
+  actor: unknown
+  notes: 'cited as the governing test method in explainer prose, not held by anyone: ''This test method for testing
+    concrete is governed by ASTM C805.'''
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-conformity_attestations-0086
+  name: ASTM D5873
+  status: confirmed
+  acceptable_forms:
+  - ASTM D5873
+  evidence:
+  - quote: On the other hand, the ASTM D5873 standard describes the procedure for testing of rock.
+    approx_offset: 720772
+  actor: unknown
+  notes: 'cited as a test procedure in explainer prose: ''the ASTM D5873 standard describes the procedure for testing
+    of rock'''
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-conformity_attestations-0087
+  name: ASTM D1894
+  status: confirmed
+  acceptable_forms:
+  - ASTM D1894
+  evidence:
+  - quote: ASTM D1894 is the main coefficient of friction test standard and is used by many industries with different
+      applications and products.
+    approx_offset: 730113
+  actor: unknown
+  notes: 'cited as the governing standard for a test the sold instrument performs: ''ASTM D1894 is the main coefficient
+    of friction test standard'''
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-conformity_attestations-0088
+  name: international Rockwell standard
+  status: confirmed
+  acceptable_forms:
+  - international Rockwell standard
+  evidence:
+  - quote: This machine uses the standard preliminary test force of 10kgf and main loads of 60/100/150 kilograms
+      while conforming to the international Rockwell standard.
+    approx_offset: 747868
+  actor: reseller_inventory
+  notes: a conformance claim repeated for several resold SADT bench testers
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-conformity_attestations-0089
+  name: DIN 51225/1
+  status: confirmed
+  acceptable_forms:
+  - DIN 51225/1
+  evidence:
+  - quote: This automatic Brinell hardness tester features a wide measurement range up to 3000 Kgf with a high accuracy
+      conforming to DIN 51225/1 standard.
+    approx_offset: 757784
+  actor: reseller_inventory
+  notes: 'a conformance claim for a resold SADT hardness tester: ''a high accuracy conforming to DIN 51225/1 standard'''
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-conformity_attestations-0090
+  name: DIN 50351
+  status: confirmed
+  acceptable_forms:
+  - DIN 50351
+  evidence:
+  - quote: the automatic test cycle the applied force will be controlled by a closed loop system guaranteeing a
+      constant force on the work piece, conforming to DIN 50351 standard.
+    approx_offset: 757936
+  actor: reseller_inventory
+  notes: 'a conformance claim for a resold SADT hardness tester: ''guaranteeing a constant force on the work piece,
+    conforming to DIN 50351 standard'''
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-conformity_attestations-0091
+  name: IP65
+  status: confirmed
+  acceptable_forms:
+  - IP65
+  evidence:
+  - quote: Solid metal housing (IP65)
+    approx_offset: 787135
+  actor: reseller_inventory
+  notes: ingress-protection rating claimed for a resold SADT flaw detector housing
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-conformity_attestations-0092
+  name: IPX1 & X2
+  status: confirmed
+  acceptable_forms:
+  - IPX1
+  evidence:
+  - quote: HAIDA IPX1＆X2 Water Drip Test Chamber
+    approx_offset: 796481
+  actor: reseller_inventory
+  notes: ingress-protection test grades named in a resold HAIDA chamber title; the title uses a fullwidth ampersand
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-conformity_attestations-0093
+  name: CIE (Class A)
+  status: confirmed
+  acceptable_forms:
+  - Class A status to meet CIE
+  - CIE
+  evidence:
+  - quote: High end version lux meters offer Class A status to meet CIE,
+    approx_offset: 816903
+  actor: reseller_inventory
+  notes: a compliance class claimed for resold lux meters
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-conformity_attestations-0094
+  name: ANSI (American National Standards Institute)
+  status: confirmed
+  acceptable_forms:
+  - American National Standards Institute (ANSI)
+  - ANSI
+  evidence:
+  - quote: The American National Standards Institute (ANSI) specifies sound level meters as three different types,
+    approx_offset: 821368
+  actor: unknown
+  notes: explainer prose naming the body that classifies sound level meters
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-conformity_attestations-0095
+  name: ANSI Type 1 / Type 2 sound level meter
+  status: confirmed
+  acceptable_forms:
+  - ANSI Type 2 sound level meter
+  - ANSI Type 2
+  - Type 1 instrument
+  evidence:
+  - quote: For compliance purposes, readings with an ANSI Type 2 sound level meter and dosimeter are considered
+      to have an accuracy of ±2 dBA,
+    approx_offset: 821740
+  actor: reseller_inventory
+  notes: an instrument accuracy class defined by ANSI standards
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-conformity_attestations-0096
+  name: OSHA
+  status: confirmed
+  acceptable_forms:
+  - OSHA
+  evidence:
+  - quote: A Type 2 meter is the minimum requirement by OSHA for noise measurements,
+    approx_offset: 821927
+  actor: unknown
+  notes: 'regulatory minimum named in explainer prose: ''A Type 2 meter is the minimum requirement by OSHA for noise
+    measurements'''
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-conformity_attestations-0097
+  name: ASTM (test specifications)
+  status: confirmed
+  acceptable_forms:
+  - MIL-STD, SAE, ASTM
+  - ASTM
+  evidence:
+  - quote: There is a broad range of test specifications such as MIL-STD, SAE, ASTM to help determine the most appropriate
+      temperature humidity profile for your product.
+    approx_offset: 822888
+  actor: unknown
+  notes: named as one of a family of test specifications for environmental chambers
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-conformity_attestations-0098
+  name: MIL-STD
+  status: confirmed
+  acceptable_forms:
+  - MIL-STD
+  evidence:
+  - quote: There is a broad range of test specifications such as MIL-STD,
+    approx_offset: 822888
+  actor: unknown
+  notes: listed as a test specification family for temperature/humidity profiles
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-conformity_attestations-0099
+  name: SAE
+  status: confirmed
+  acceptable_forms:
+  - SAE
+  evidence:
+  - quote: There is a broad range of test specifications such as MIL-STD, SAE,
+    approx_offset: 822888
+  actor: unknown
+  notes: listed as a test specification family for temperature/humidity profiles
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-conformity_attestations-0100
+  name: CE
+  status: confirmed
+  acceptable_forms:
+  - CE and UL qualifications
+  - CE
+  evidence:
+  - quote: We are experienced in CE and UL qualifications of plastic components for the electronic industry.
+    approx_offset: 855521
+  notes: 'first-person claim: ''We are experienced in CE and UL qualifications of plastic components for the electronic
+    industry.'''
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-conformity_attestations-0101
+  name: UL
+  status: confirmed
+  acceptable_forms:
+  - CE and UL qualifications
+  - FDA, UL, and LE requirements
+  - UL
+  evidence:
+  - quote: We are experienced in CE and UL qualifications of plastic components for the electronic industry.
+    approx_offset: 855521
+  notes: claimed twice in the first person - as a qualification AGS-TECH performs, and as a requirement its tubing
+    is manufactured to
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-conformity_attestations-0102
+  name: Material Safety Data Sheets (MSDS)
+  status: disputed
+  acceptable_forms:
+  - Material Safety Data Sheets (MSDS)
+  - MSDS
+  evidence:
+  - quote: Material Safety Data Sheets (MSDS), conformance reports, material certifications and other documents
+      such as ROHS compliance for our materials
+    approx_offset: 865792
+  notes: 'DISPUTED: a document supplied with the goods rather than a certification, accreditation or standard the
+    company holds; kept on the record because it sits in a list with ''conformance reports, material certifications''
+    | an MSDS is a document a company SUPPLIES, not a certification, standard or compliance it holds, meets or follows'
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: disputed
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+    reason: an MSDS is a document a company SUPPLIES, not a certification, standard or compliance it holds, meets
+      or follows
+- id: agstech_net-conformity_attestations-0103
+  name: conformance reports and material certifications
+  status: disputed
+  acceptable_forms:
+  - conformance reports, material certifications
+  evidence:
+  - quote: Material Safety Data Sheets (MSDS), conformance reports, material certifications and other documents
+      such as ROHS compliance for our materials and products.
+    approx_offset: 865792
+  notes: 'DISPUTED: generic document classes with no identity of their own (no name, number, mark or issuing body),
+    which the conformity clause requires | ''conformance reports, material certifications'' is generic - the clause
+    requires ''an identity of its own, such as a name, number, mark, or issuing body'', and neither phrase has one'
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: disputed
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+    reason: '''conformance reports, material certifications'' is generic - the clause requires ''an identity of
+      its own, such as a name, number, mark, or issuing body'', and neither phrase has one'
+- id: agstech_net-conformity_attestations-0104
+  name: certified government approved laboratories
+  status: disputed
+  acceptable_forms:
+  - certified government or government approved laboratories
+  evidence:
+  - quote: Additional special tests are carried out at certified government or government approved laboratories
+      if needed.
+    approx_offset: 865949
+  actor: lab
+  notes: 'DISPUTED: an unnamed accreditation - ''Additional special tests are carried out at certified government
+    or government approved laboratories if needed'' | ''certified government or government approved laboratories''
+    names no accreditation with an identity of its own - no name, number, mark or issuing body is given'
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: disputed
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+    reason: '''certified government or government approved laboratories'' names no accreditation with an identity
+      of its own - no name, number, mark or issuing body is given'
+- id: agstech_net-conformity_attestations-0105
+  name: FDA requirements
+  status: confirmed
+  acceptable_forms:
+  - FDA, UL, and LE requirements
+  - FDA
+  evidence:
+  - quote: AGS-TECH manufactures tubing to FDA, UL, and LE requirements for medical,
+    approx_offset: 919107
+  notes: 'first-person claim: ''AGS-TECH manufactures tubing to FDA, UL, and LE requirements'''
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-conformity_attestations-0106
+  name: LE requirements
+  status: confirmed
+  acceptable_forms:
+  - and LE requirements
+  - LE requirements
+  evidence:
+  - quote: AGS-TECH manufactures tubing to FDA, UL, and LE requirements for medical,
+    approx_offset: 919107
+  notes: listed alongside FDA and UL; 'LE' is not expanded anywhere on the page
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-conformity_attestations-0107
+  name: industry standard warranties
+  status: disputed
+  acceptable_forms:
+  - industry standard warranties
+  evidence:
+  - quote: enough for anyone to fix. All components in our service and repair kits have industry standard warranties
+      and you are assured full satisfaction or money back guarantee. For details on
+    approx_offset: 1007765
+  notes: 'DISPUTED: ''industry standard'' with no named standard, number, mark or issuing body | a warranty is not
+    a certification, accreditation, registration, standard or compliance, and ''industry standard warranties'' carries
+    no name, number, mark or issuing body - it fails the clause''s ''identity of its own'' test outright'
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: disputed
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+    reason: a warranty is not a certification, accreditation, registration, standard or compliance, and 'industry
+      standard warranties' carries no name, number, mark or issuing body - it fails the clause's 'identity of its
+      own' test outright
+- id: agstech_net-conformity_attestations-0108
+  name: ISO
+  status: confirmed
+  acceptable_forms:
+  - ISO
+  evidence:
+  - quote: 'Our adapters are manufactured to meet or exceed the industrial standards requirements of SAE, ISO, DIN,
+      DOT and JIS. A wide range of adapter styles are available including: Swivel Adapters,'
+    approx_offset: 1021540
+  actor: supplier
+  notes: named as an issuing body in the adapters standards list
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-conformity_attestations-0109
+  name: DOT
+  status: confirmed
+  acceptable_forms:
+  - DOT
+  evidence:
+  - quote: 'are manufactured to meet or exceed the industrial standards requirements of SAE, ISO, DIN, DOT and JIS.
+      A wide range of adapter styles are available including: Swivel Adapters, Steel and'
+    approx_offset: 1021553
+  actor: supplier
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-conformity_attestations-0110
+  name: JIS
+  status: confirmed
+  acceptable_forms:
+  - JIS
+  evidence:
+  - quote: 'to meet or exceed the industrial standards requirements of SAE, ISO, DIN, DOT and JIS. A wide range
+      of adapter styles are available including: Swivel Adapters, Steel and Stainless'
+    approx_offset: 1021570
+  actor: supplier
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-conformity_attestations-0111
+  name: BS 6241
+  status: confirmed
+  acceptable_forms:
+  - BS 6241
+  evidence:
+  - quote: BS 6241 - Specifications for dimensions of housing for hydraulic seals incorporating bearing rings
+    approx_offset: 1025491
+  actor: unknown
+  notes: listed under 'Standards related to seals are:'; not claimed as held by AGS-TECH
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-conformity_attestations-0112
+  name: ISO 7632
+  status: confirmed
+  acceptable_forms:
+  - ISO 7632
+  evidence:
+  - quote: ISO 7632 - Road vehicles - elastomeric seals
+    approx_offset: 1025625
+  actor: unknown
+  notes: listed under 'Standards related to seals are:'
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-conformity_attestations-0113
+  name: GOST 14896
+  status: confirmed
+  acceptable_forms:
+  - GOST 14896
+  evidence:
+  - quote: GOST 14896 - Rubber U-packing seals for hydraulic devices
+    approx_offset: 1025674
+  actor: unknown
+  notes: listed under 'Standards related to seals are:'
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-conformity_attestations-0114
+  name: NPT
+  status: confirmed
+  acceptable_forms:
+  - NPT
+  - standard NPT pipe connections
+  evidence:
+  - quote: Pipe Connection Valves allow users to plumb a system through 15,000 psi using standard NPT pipe connections.
+      Male Bottom Connection Valvesare designed for applications where extra
+    approx_offset: 1076660
+  actor: supplier
+  notes: 'DISPUTED: a thread standard with an identity of its own, but it names a thread form rather than something
+    a company holds'
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-conformity_attestations-0115
+  name: ANSI 321
+  status: disputed
+  acceptable_forms:
+  - ANSI 321
+  evidence:
+  - quote: steel annular corrugated METALLIC FLEXIBLE HOSES are manufactured in austenitic steel grades ANSI 321,
+      316, 316L & 304 and conform to BS 6501, Part-1. The annular corrugated metallic hose body
+    approx_offset: 1115067
+  actor: supplier
+  notes: steel grade designation issued by ANSI; also seeded as a material grade | in this quote ANSI 321 is an
+    austenitic steel GRADE designation ('manufactured in austenitic steel grades ANSI 321, 316, 316L & 304'), which
+    is material_caps territory ('by an alloy or grade designation'); the bare issuing body ANSI does appear as a
+    standard in its own right at line 16511, which is where an attestation entry belongs
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: disputed
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+    reason: in this quote ANSI 321 is an austenitic steel GRADE designation ('manufactured in austenitic steel grades
+      ANSI 321, 316, 316L & 304'), which is material_caps territory ('by an alloy or grade designation'); the bare
+      issuing body ANSI does appear as a standard in its own right at line 16511, which is where an attestation
+      entry belongs
+- id: agstech_net-conformity_attestations-0116
+  name: BS 6501
+  status: confirmed
+  acceptable_forms:
+  - BS 6501, Part-1
+  - BS 6501
+  evidence:
+  - quote: HOSES are manufactured in austenitic steel grades ANSI 321, 316, 316L & 304 and conform to BS 6501, Part-1.
+      The annular corrugated metallic hose body provides the flexibility and pressure
+    approx_offset: 1115110
+  actor: supplier
+  notes: '''Our stainless steel annular corrugated METALLIC FLEXIBLE HOSES ... conform to BS 6501, Part-1.'''
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-conformity_attestations-0117
+  name: USCG
+  status: confirmed
+  acceptable_forms:
+  - USCG
+  evidence:
+  - quote: hoses are manufactured to meet or exceed industrial specification requirements of SAE, DOT, USCG, ISO,
+      DNV, EN, MSHA, German Lloyd, ABS, FDA, NFPA, ANSI, CSA, NGV, CARB and UL-21 LPG
+    approx_offset: 1120023
+  actor: supplier
+  notes: '''Our pneumatic and hydraulic hoses are manufactured to meet or exceed industrial specification requirements
+    of SAE, DOT, USCG, ISO, DNV, EN, MSHA, German Lloyd, ABS, FDA, NFPA, ANSI, CSA, NGV, CARB and UL-21 LPG standards.'''
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-conformity_attestations-0118
+  name: DNV
+  status: confirmed
+  acceptable_forms:
+  - DNV
+  evidence:
+  - quote: manufactured to meet or exceed industrial specification requirements of SAE, DOT, USCG, ISO, DNV, EN,
+      MSHA, German Lloyd, ABS, FDA, NFPA, ANSI, CSA, NGV, CARB and UL-21 LPG standards.
+    approx_offset: 1120033
+  actor: supplier
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-conformity_attestations-0119
+  name: EN
+  status: confirmed
+  acceptable_forms:
+  - EN
+  evidence:
+  - quote: to meet or exceed industrial specification requirements of SAE, DOT, USCG, ISO, DNV, EN, MSHA, German
+      Lloyd, ABS, FDA, NFPA, ANSI, CSA, NGV, CARB and UL-21 LPG standards.
+    approx_offset: 1120046
+  actor: supplier
+  notes: '2-char form: matched case-sensitively on word boundaries'
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-conformity_attestations-0120
+  name: MSHA
+  status: confirmed
+  acceptable_forms:
+  - MSHA
+  evidence:
+  - quote: to meet or exceed industrial specification requirements of SAE, DOT, USCG, ISO, DNV, EN, MSHA, German
+      Lloyd, ABS, FDA, NFPA, ANSI, CSA, NGV, CARB and UL-21 LPG standards.
+    approx_offset: 1120046
+  actor: supplier
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-conformity_attestations-0121
+  name: German Lloyd
+  status: confirmed
+  acceptable_forms:
+  - German Lloyd
+  evidence:
+  - quote: meet or exceed industrial specification requirements of SAE, DOT, USCG, ISO, DNV, EN, MSHA, German Lloyd,
+      ABS, FDA, NFPA, ANSI, CSA, NGV, CARB and UL-21 LPG standards.
+    approx_offset: 1120049
+  actor: supplier
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-conformity_attestations-0122
+  name: ABS (American Bureau of Shipping)
+  status: confirmed
+  acceptable_forms:
+  - ABS
+  evidence:
+  - quote: industrial specification requirements of SAE, DOT, USCG, ISO, DNV, EN, MSHA, German Lloyd, ABS, FDA,
+      NFPA, ANSI, CSA, NGV, CARB and UL-21 LPG standards.
+    approx_offset: 1120064
+  actor: supplier
+  notes: 3-char form; NOTE 'ABS' also occurs at line 14790 as the polymer, so this entry can be credited by an out-of-field
+    hit
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-conformity_attestations-0123
+  name: NFPA
+  status: confirmed
+  acceptable_forms:
+  - NFPA
+  evidence:
+  - quote: specification requirements of SAE, DOT, USCG, ISO, DNV, EN, MSHA, German Lloyd, ABS, FDA, NFPA, ANSI,
+      CSA, NGV, CARB and UL-21 LPG standards.
+    approx_offset: 1120075
+  actor: supplier
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-conformity_attestations-0124
+  name: CSA
+  status: confirmed
+  acceptable_forms:
+  - CSA
+  evidence:
+  - quote: requirements of SAE, DOT, USCG, ISO, DNV, EN, MSHA, German Lloyd, ABS, FDA, NFPA, ANSI, CSA, NGV, CARB
+      and UL-21 LPG standards.
+    approx_offset: 1120089
+  actor: supplier
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-conformity_attestations-0125
+  name: NGV
+  status: confirmed
+  acceptable_forms:
+  - NGV
+  evidence:
+  - quote: requirements of SAE, DOT, USCG, ISO, DNV, EN, MSHA, German Lloyd, ABS, FDA, NFPA, ANSI, CSA, NGV, CARB
+      and UL-21 LPG standards.
+    approx_offset: 1120089
+  actor: supplier
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-conformity_attestations-0126
+  name: CARB
+  status: confirmed
+  acceptable_forms:
+  - CARB
+  evidence:
+  - quote: of SAE, DOT, USCG, ISO, DNV, EN, MSHA, German Lloyd, ABS, FDA, NFPA, ANSI, CSA, NGV, CARB and UL-21 LPG
+      standards.
+    approx_offset: 1120102
+  actor: supplier
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-conformity_attestations-0127
+  name: UL-21 LPG
+  status: confirmed
+  acceptable_forms:
+  - UL-21 LPG
+  - UL-21
+  evidence:
+  - quote: of SAE, DOT, USCG, ISO, DNV, EN, MSHA, German Lloyd, ABS, FDA, NFPA, ANSI, CSA, NGV, CARB and UL-21 LPG
+      standards.
+    approx_offset: 1120102
+  actor: supplier
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-conformity_attestations-0128
+  name: ISO9001
+  status: confirmed
+  acceptable_forms:
+  - ISO9001
+  evidence:
+  - quote: All our passive optical components and assemblies are manufactured in ISO9001 and TS16949 certified plants
+      and conform to relevant international standards such as Telcordia for
+    approx_offset: 1323994
+  actor: supplier
+  notes: 'attributed to supplier plants, not to AGS-TECH: "All our passive optical components and assemblies are
+    manufactured in ISO9001 and TS16949 certified plants and conform to relevant international standards such as
+    Telcordia for communication optics and UL, CE for industrial optical assemblies."'
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-conformity_attestations-0129
+  name: TS16949
+  status: confirmed
+  acceptable_forms:
+  - TS16949
+  evidence:
+  - quote: All our passive optical components and assemblies are manufactured in ISO9001 and TS16949 certified plants
+      and conform to relevant international standards such as Telcordia for communication
+    approx_offset: 1323994
+  actor: supplier
+  notes: 'same sentence attributes the certificate to the manufacturing plants: "...are manufactured in ISO9001
+    and TS16949 certified plants..."'
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-conformity_attestations-0130
+  name: ITU grid
+  status: confirmed
+  acceptable_forms:
+  - ITU grid
+  evidence:
+  - quote: medical lasers for surgery or diagnostics, or telecommunication lasers or detectors suitable for the
+      ITU grid, we are your one-stop source.
+    approx_offset: 1355145
+  actor: supplier
+  notes: 'DISPUTED: the ITU wavelength grid is a standard with an issuing body, but the text uses it as a product-spec
+    descriptor rather than something a company holds; recorded so the boundary question survives'
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-conformity_attestations-0131
+  name: cellular air interface standards (5G / LTE 4G / 3G / 2G)
+  status: confirmed
+  acceptable_forms:
+  - 5G - LTE 4G - LPWA 3G - 2G
+  - 5G
+  - LTE
+  evidence:
+  - quote: Antenna Brochure for 5G - LTE 4G - LPWA 3G - 2G - GPS - GNSS - WLAN - BT - Combo - ISM​
+    approx_offset: 1366548
+  actor: reseller_inventory
+  notes: 'DISPUTED: cellular standards named as antenna coverage in a resold brochure line; products are certified
+    against them but the text uses them as a spec list'
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: amended
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+    reason: the sole form was the whole run-on brochure title, which no search output would ever reproduce; adding
+      the individual standard names the line actually prints.
+- id: agstech_net-conformity_attestations-0132
+  name: ISM band
+  status: disputed
+  acceptable_forms:
+  - ISM
+  evidence:
+  - quote: Antenna Brochure for 5G - LTE 4G - LPWA 3G - 2G - GPS - GNSS - WLAN - BT - Combo - ISM​
+    approx_offset: 1366548
+  actor: reseller_inventory
+  notes: 'DISPUTED: a regulator-allocated radio band rather than a certification a company holds | ''ISM'' here
+    is a radio-spectrum band allocation in an antenna brochure title, not something a company, site or product holds,
+    meets or follows. The clause wants a certification/standard with an issuing body; the ISM designation is a regulatory
+    band class instead.'
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: disputed
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+    reason: '''ISM'' here is a radio-spectrum band allocation in an antenna brochure title, not something a company,
+      site or product holds, meets or follows. The clause wants a certification/standard with an issuing body; the
+      ISM designation is a regulatory band class instead.'
+- id: agstech_net-conformity_attestations-0133
+  name: IrDA
+  status: confirmed
+  acceptable_forms:
+  - IrDA
+  evidence:
+  - quote: '- Short-range point-to-point communication devices such as wireless microphones, remote controls, IrDA,'
+    approx_offset: 1370001
+  actor: unknown
+  notes: 'DISPUTED: an infrared interface standard with an issuing association; named here as a technology'
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-conformity_attestations-0134
+  name: Wireless USB
+  status: confirmed
+  acceptable_forms:
+  - Wireless USB
+  evidence:
+  - quote: IrDA, RFID (Radio Frequency Identification), Wireless USB,
+    approx_offset: 1370099
+  actor: unknown
+  notes: 'DISPUTED: an interface specification products conform to; named here as a technology'
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-conformity_attestations-0135
+  name: DSRC
+  status: confirmed
+  acceptable_forms:
+  - DSRC
+  - Dedicated Short Range Communications
+  evidence:
+  - quote: DSRC (Dedicated Short Range Communications),
+    approx_offset: 1370158
+  actor: unknown
+  notes: 'DISPUTED: a communications standard; named here as a technology'
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-conformity_attestations-0136
+  name: Near Field Communication
+  status: confirmed
+  acceptable_forms:
+  - Near Field Communication
+  evidence:
+  - quote: 'EnOcean, Near Field Communication, Wireless Sensor Networks :'
+    approx_offset: 1370203
+  actor: unknown
+  notes: 'DISPUTED: a standardised short-range protocol; named here as a technology'
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-conformity_attestations-0137
+  name: ZigBee
+  status: confirmed
+  acceptable_forms:
+  - ZigBee
+  evidence:
+  - quote: 'Wireless Sensor Networks : ZigBee, EnOcean;'
+    approx_offset: 1370238
+  actor: unknown
+  notes: 'DISPUTED: a wireless networking standard products are certified against; named here as an application
+    technology'
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-conformity_attestations-0138
+  name: Bluetooth
+  status: confirmed
+  acceptable_forms:
+  - Bluetooth
+  evidence:
+  - quote: 'ZigBee, EnOcean; Personal area networks, Bluetooth, Ultra-wideband, wireless computer networks: Wireless
+      Local Area Networks (WLAN), Wireless Metropolitan Area Networks (WMAN)...etc.'
+    approx_offset: 1370265
+  actor: unknown
+  notes: 'DISPUTED: a radio interoperability standard that a product can be certified to, but named here only as
+    a technology a wireless device may use'
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-conformity_attestations-0139
+  name: UL 796
+  status: confirmed
+  acceptable_forms:
+  - UL 796
+  - Safety Standard UL 796
+  evidence:
+  - quote: Safety Standard UL 796 covers component safety requirements for printed wiring boards for use as components
+      in devices or appliances.
+    approx_offset: 1374934
+  notes: 'the standard itself is described in third person, but the very next sentence is a first-person claim to
+    testing against it: "Our tests analyze characteristics such as flammability, maximum operating temperature,
+    electrical tracking, heat deflection, and direct support of live electrical parts."'
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-conformity_attestations-0140
+  name: FCC
+  status: confirmed
+  acceptable_forms:
+  - FCC
+  evidence:
+  - quote: is available. We also offer custom labeling, packaging and obtain UL, CE Mark, FCC compliance upon request.
+    approx_offset: 1381083
+  notes: same power-supply sentence
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-conformity_attestations-0141
+  name: IP67
+  status: confirmed
+  acceptable_forms:
+  - IP67
+  evidence:
+  - quote: Various output power levels, outstanding specifications, IP67 approved, FCC / CE approvals
+    approx_offset: 1384905
+  notes: waterproof power supply spec line
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-conformity_attestations-0142
+  name: IEC
+  status: confirmed
+  acceptable_forms:
+  - IEC
+  evidence:
+  - quote: organizations and comply with industry regulations and standards such as IEEE, IEC, ISO...etc.
+    approx_offset: 1399793
+  notes: same cable-page sentence; three-character form, exact casing
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-conformity_attestations-0143
+  name: IEEE 802.16
+  status: confirmed
+  acceptable_forms:
+  - IEEE 802.16
+  evidence:
+  - quote: protocols, such as WiMAX (Worldwide Interoperability for Microwave Access) based in the IEEE 802.16 specification.
+      The IEEE 802.16 specification was designed to operate between 2 to 11
+    approx_offset: 1413520
+  actor: unknown
+  notes: TEXTBOOK PROSE about WiMAX
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-conformity_attestations-0144
+  name: IEEE 802.20
+  status: confirmed
+  acceptable_forms:
+  - IEEE 802.20
+  evidence:
+  - quote: 'Wireless Access: MBWA protocols based on standards specifications such as IEEE 802.20 or ATIS/ANSI HC-SDMA
+      (e.g. iBurst) are designed to operate between 1.6'
+    approx_offset: 1413850
+  actor: unknown
+  notes: TEXTBOOK PROSE about mobile broadband wireless access
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-conformity_attestations-0145
+  name: ATIS/ANSI HC-SDMA
+  status: confirmed
+  acceptable_forms:
+  - ATIS/ANSI HC-SDMA
+  - ANSI
+  evidence:
+  - quote: MBWA protocols based on standards specifications such as IEEE 802.20 or ATIS/ANSI HC-SDMA (e.g. iBurst)
+      are designed to operate between 1.6 and 2.3 GHz to give
+    approx_offset: 1413867
+  actor: unknown
+  notes: same textbook sentence; the only ANSI in the slice
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-conformity_attestations-0146
+  name: IP68
+  status: confirmed
+  acceptable_forms:
+  - IP68
+  evidence:
+  - quote: '- Vandal-Proof IP65/IP67/IP68 Keyboards, Keypads, Pointing Devices, ATM Pinpads, Medical & Military
+      Keyboards and other similar Rugged Computer Peripherals'
+    approx_offset: 1433908
+  notes: rugged peripherals catalog line
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-conformity_attestations-0147
+  name: UL and CE Certification (component catalog marks)
+  status: confirmed
+  acceptable_forms:
+  - with UL and CE Certification
+  evidence:
+  - quote: Contactors with UL and CE Certification NC1100111-1042532​
+    approx_offset: 1447347
+  actor: reseller_inventory
+  notes: repeated across the resold contactor/relay/breaker catalog lines with a registration number
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-conformity_attestations-0148
+  name: MIL
+  status: confirmed
+  acceptable_forms:
+  - MIL
+  evidence:
+  - quote: management system according to international standards such as ASTM, SAE, ISO, DIN, MIL. All our fasteners
+      are shipped along with material certifications and
+    approx_offset: 1486128
+  notes: same Fasteners standards list; three-character form, exact casing
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-conformity_attestations-0149
+  name: material certifications
+  status: disputed
+  acceptable_forms:
+  - material certifications
+  evidence:
+  - quote: international standards such as ASTM, SAE, ISO, DIN, MIL. All our fasteners are shipped along with material
+      certifications and inspection reports. We supply off-shelf fasteners as well as custom
+    approx_offset: 1486159
+  notes: Fasteners page, first person | 'material certifications' names a generic class of shipping paperwork, not
+    a conformity attestation 'with an identity of its own, such as a name, number, mark, or issuing body'. The named
+    standards in the very same sentence (ASTM, SAE, ISO, DIN, MIL) are the entries that do have identities.
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: disputed
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+    reason: '''material certifications'' names a generic class of shipping paperwork, not a conformity attestation
+      ''with an identity of its own, such as a name, number, mark, or issuing body''. The named standards in the
+      very same sentence (ASTM, SAE, ISO, DIN, MIL) are the entries that do have identities.'
+- id: agstech_net-conformity_attestations-0150
+  name: ISO Metric Screw Thread
+  status: confirmed
+  acceptable_forms:
+  - ISO Metric Screw Thread
+  evidence:
+  - quote: '- ISO Metric Screw Thread'
+    approx_offset: 1488434
+  notes: Fasteners page thread-standard list
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-conformity_attestations-0151
+  name: ACME thread
+  status: disputed
+  acceptable_forms:
+  - ACME
+  evidence:
+  - quote: '- ACME'
+    approx_offset: 1488464
+  notes: 'DISPUTED: a thread form rather than a standard with an issuing body, though it is a named dimensional
+    convention a product can be made to. | in its own list ACME sits beside Worm, Square, Knuckle and Buttress,
+    which are plainly thread profiles, not standards; unlike its ISO / American National / Unified National siblings
+    it carries no issuing body here.'
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: disputed
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+    reason: in its own list ACME sits beside Worm, Square, Knuckle and Buttress, which are plainly thread profiles,
+      not standards; unlike its ISO / American National / Unified National siblings it carries no issuing body here.
+- id: agstech_net-conformity_attestations-0152
+  name: American National Screw Thread
+  status: confirmed
+  acceptable_forms:
+  - American National Screw Thread
+  evidence:
+  - quote: '- American National Screw Thread (Inch Sizes)'
+    approx_offset: 1488475
+  notes: Fasteners page thread-standard list
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-conformity_attestations-0153
+  name: Unified National Screw Thread
+  status: confirmed
+  acceptable_forms:
+  - Unified National Screw Thread
+  evidence:
+  - quote: '- Unified National Screw Thread (Inch Sizes)'
+    approx_offset: 1488525
+  notes: Fasteners page thread-standard list
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-conformity_attestations-0154
+  name: inch thread classes 1A/2A/3A and 1B/2B/3B
+  status: confirmed
+  acceptable_forms:
+  - thread classes 1A, 2A and 3A
+  - 1A
+  evidence:
+  - quote: Threads are available for fasteners. For Inch threaded fasteners external thread classes 1A, 2A and 3A
+      as well as internal thread classes of 1B, 2B and 3B are available. These
+    approx_offset: 1488781
+  notes: 'DISPUTED: tolerance classes inside a thread standard, not a certificate held; recorded because the text
+    presents them as a conformance grade a fastener meets.'
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-conformity_attestations-0155
+  name: Gear Precision Grade standards
+  status: disputed
+  acceptable_forms:
+  - Standards of Raw Material and Gear Precision Grade
+  evidence:
+  - quote: Equivalency Tables for Standards of Raw Material and Gear Precision Grade
+    approx_offset: 1567751
+  notes: 'DISPUTED: names a family of comparable national standards rather than one identified standard. | no specific
+    standard is named - the line only offers equivalency tables ''for Standards of Raw Material and Gear Precision
+    Grade''. The clause wants an attestation with an identity of its own (name, number, mark, issuing body).'
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: disputed
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+    reason: no specific standard is named - the line only offers equivalency tables 'for Standards of Raw Material
+      and Gear Precision Grade'. The clause wants an attestation with an identity of its own (name, number, mark,
+      issuing body).
+- id: agstech_net-conformity_attestations-0156
+  name: ANSI standards
+  status: confirmed
+  acceptable_forms:
+  - ANSI standards
+  - ANSI
+  evidence:
+  - quote: '- Sprockets: Our standard sprockets conform to ANSI standards. Plate sprockets are flat, hubless sprockets.
+      Our small and medium-size hub sprockets are turned from bar'
+    approx_offset: 1630760
+  notes: 'first-person conformance claim: "Our standard sprockets conform to ANSI standards."'
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-conformity_attestations-0157
+  name: CE marking
+  status: confirmed
+  acceptable_forms:
+  - CE
+  evidence:
+  - quote: customers specifications. Our filter products comply with international standards such as CE, UL and
+      ROHS standards.  Please click on the links below to select the filtration product
+    approx_offset: 1636723
+  notes: first-person conformance claim about AGS-TECH filter products
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-conformity_attestations-0158
+  name: HEPA standard
+  status: confirmed
+  acceptable_forms:
+  - HEPA standard
+  - HEPA
+  evidence:
+  - quote: abbreviation stands for High-Efficiency Particulate Arrestance (HEPA). Filters meeting the HEPA standard
+      have many applications in clean rooms, medical facilities, automobiles, aircraft and
+    approx_offset: 1642447
+  notes: a named efficiency standard; the same paragraph names the US DOE as the body setting it
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-conformity_attestations-0159
+  name: United States Department of Energy standards
+  status: confirmed
+  acceptable_forms:
+  - United States Department of Energy (DOE)
+  - US government standards
+  evidence:
+  - quote: must satisfy certain standards of efficiency such as those set by the United States Department of Energy
+      (DOE). To qualify as HEPA by US government standards, an air filter must remove
+    approx_offset: 1642657
+  actor: unknown
+  notes: 'textbook/explainer prose: a generic encyclopedia description with ''we''/''our'' injected'
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-conformity_attestations-0160
+  name: UN approval for hazardous transport
+  status: confirmed
+  acceptable_forms:
+  - UN approved for transportation of hazardous products
+  - UN approved
+  evidence:
+  - quote: stackable. We have powder, granules and pellets storage tanks that are UN approved for transportation
+      of hazardous products. We are capable to custom design and fabricate stainless and metal
+    approx_offset: 1676143
+  notes: 'first-person: the tanks AGS-TECH offers are stated to be UN approved'
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-conformity_attestations-0161
+  name: FDA approval
+  status: confirmed
+  acceptable_forms:
+  - FDA approved
+  evidence:
+  - quote: For example FDA approved food grade plastic materials are important for some containers storing beverages,
+      grains, fruit juice....etc. On the other hand, if you
+    approx_offset: 1677229
+  notes: named as a material qualification for AGS-TECH containers
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-conformity_attestations-0162
+  name: ASTM 4097
+  status: confirmed
+  acceptable_forms:
+  - ASTM 4097
+  evidence:
+  - quote: Fiberglass tanks & containers are fabricated with contact molded laminates conforming to ASTM 4097 and
+      filament wound laminates conforming to ASTM 3299. Special resins used in fiberglass
+    approx_offset: 1678032
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-conformity_attestations-0163
+  name: ASTM 3299
+  status: confirmed
+  acceptable_forms:
+  - ASTM 3299
+  evidence:
+  - quote: contact molded laminates conforming to ASTM 4097 and filament wound laminates conforming to ASTM 3299.
+      Special resins used in fiberglass tanks fabrication are chosen based upon customer information
+    approx_offset: 1678082
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-conformity_attestations-0164
+  name: PCI Local Bus standard
+  status: confirmed
+  acceptable_forms:
+  - PCI Local Bus standard
+  evidence:
+  - quote: CONVENTIONAL PCI (PCI stands for PERIPHERAL COMPONENT INTERCONNECT, part of the PCI Local Bus standard)
+      is a computer bus for attaching hardware devices in a computer. These devices can take either
+    approx_offset: 1699928
+  actor: unknown
+  notes: 'DISPUTED: a bus specification named as a standard; arguably an interface spec rather than something a
+    company holds'
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-conformity_attestations-0165
+  name: IEEE 1394
+  status: confirmed
+  acceptable_forms:
+  - IEEE 1394 Firewire
+  - IEEE 1394
+  evidence:
+  - quote: '7. IEEE 1394 Firewire : Firewire is a high speed connection widely used for digital video editing and
+      other high bandwidth'
+    approx_offset: 1705803
+  actor: unknown
+  notes: 'textbook/explainer prose: a generic encyclopedia description with ''we''/''our'' injected; a numbered
+    interface standard rather than a certification a company holds'
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-conformity_attestations-0166
+  name: CAN protocol V 2.0 A and A 2.0 B
+  status: confirmed
+  acceptable_forms:
+  - CAN protocol V 2.0 A and A 2.0 B
+  evidence:
+  - quote: 'Sockets offers the following features: Intel 82527 Full CAN controller, Supports CAN protocol V 2.0
+      A and A 2.0 B, ISO/DIS 11898-2, 9-pin D-SUB connector, Options Isolated CAN interface, Supported'
+    approx_offset: 1709568
+  actor: reseller_inventory
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-conformity_attestations-0167
+  name: ISO/DIS 11898-2
+  status: confirmed
+  acceptable_forms:
+  - ISO/DIS 11898-2
+  evidence:
+  - quote: 'features: Intel 82527 Full CAN controller, Supports CAN protocol V 2.0 A and A 2.0 B, ISO/DIS 11898-2,
+      9-pin D-SUB connector, Options Isolated CAN interface, Supported Operating Systems'
+    approx_offset: 1709597
+  actor: reseller_inventory
+  notes: CAN bus standard the offered controller is stated to support
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-conformity_attestations-0168
+  name: RS485
+  status: confirmed
+  acceptable_forms:
+  - RS485
+  evidence:
+  - quote: an open standard and is recognized as the fastest FieldBus in operation today, based on RS485 and the
+      European EN50170 Electrical Specification. The DP suffix refers to ''Decentralized
+    approx_offset: 1712419
+  actor: unknown
+  notes: 'DISPUTED: an electrical interface standard; arguably an interface spec rather than a compliance a company
+    holds'
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-conformity_attestations-0169
+  name: EN 50170
+  status: confirmed
+  acceptable_forms:
+  - EN 50170
+  - EN50170
+  evidence:
+  - quote: recognized as the fastest FieldBus in operation today, based on RS485 and the European EN50170 Electrical
+      Specification. The DP suffix refers to ''Decentralized Periphery'', which is
+    approx_offset: 1712443
+  actor: reseller_inventory
+  notes: the ProfiBus electrical standard the offered interface is based on
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-conformity_attestations-0170
+  name: NEMA / IP rating
+  status: confirmed
+  acceptable_forms:
+  - NEMA / IP RATED
+  - NEMA 4X (IP66)
+  evidence:
+  - quote: small 2 – 4 slot benchtop systems up to 2U, 4U or higher rackmount systems. We offer NEMA / IP RATED
+      FULLY ENCLOSEDworkstations. Our industrial workstations outperform similar competitors
+    approx_offset: 1742442
+  notes: 'first-person: the workstations AGS-TECH offers are stated to be NEMA/IP rated'
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-conformity_attestations-0171
+  name: NEMA 4X
+  status: confirmed
+  acceptable_forms:
+  - NEMA 4X
+  evidence:
+  - quote: '- NEMA 4 (IP65) or NEMA 4X (IP66) environmental protection'
+    approx_offset: 1744104
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-conformity_attestations-0172
+  name: IP66
+  status: confirmed
+  acceptable_forms:
+  - IP66
+  evidence:
+  - quote: '- NEMA 4 (IP65) or NEMA 4X (IP66) environmental protection'
+    approx_offset: 1744104
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-conformity_attestations-0173
+  name: C1D1 / C1D2
+  status: confirmed
+  acceptable_forms:
+  - C1D1
+  - C1D2
+  evidence:
+  - quote: '- Integrated purge system for C1D1 applications as well as non-purged C1D2 designs'
+    approx_offset: 1744651
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-conformity_attestations-0174
+  name: FC compliance
+  status: confirmed
+  acceptable_forms:
+  - FC
+  evidence:
+  - quote: '- UL, CE, FC, RoHS, MET compliances'
+    approx_offset: 1744735
+  notes: listed among the compliances the industrial workstations carry
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-conformity_attestations-0175
+  name: MET
+  status: confirmed
+  acceptable_forms:
+  - MET
+  evidence:
+  - quote: '- UL, CE, FC, RoHS, MET compliances'
+    approx_offset: 1744735
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-conformity_attestations-0176
+  name: MIL-SPEC connectors
+  status: confirmed
+  acceptable_forms:
+  - Sealed MIL-SPEC or Circular-MIL connectors
+  - MIL-SPEC
+  evidence:
+  - quote: '- Sealed MIL-SPEC or Circular-MIL connectors'
+    approx_offset: 1773014
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-conformity_attestations-0177
+  name: Western Electric standard
+  status: confirmed
+  acceptable_forms:
+  - Western Electric standard
+  evidence:
+  - quote: Hole spacing is either on 1-inch (25 mm) centres (Western Electric standard), or the same as for 19-inch
+      (480 mm) racks (0.625 inches / 15.9 millimetres spacing).
+    approx_offset: 1791727
+  actor: unknown
+  notes: 'textbook/explainer prose: a generic encyclopedia description with ''we''/''our'' injected'
+  provenance:
+  - action: added
+    by: seed-agent-agstech-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+- id: agstech_net-conformity_attestations-0178
+  name: ISO 9001
+  status: candidate
+  acceptable_forms:
+  - ISO9001:2000
+  - ISO9001
+  evidence:
+  - quote: any other custom manufacturer. Our products are manufactured in ISO9001:2000, QS9000, ISO14001, TS16949
+      certified environments and possess CE, UL mark and meet other industry standards. Once
+    approx_offset: 80560
+  actor: supplier
+  notes: same sentence the seed took ISO14001 from; four of its five attestations were left behind
+  provenance:
+  - action: added
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+    source: verification-pass-miss
+- id: agstech_net-conformity_attestations-0179
+  name: QS9000
+  status: candidate
+  acceptable_forms:
+  - QS9000
+  evidence:
+  - quote: any other custom manufacturer. Our products are manufactured in ISO9001:2000, QS9000, ISO14001, TS16949
+      certified environments and possess CE, UL mark and meet other industry standards. Once
+    approx_offset: 80560
+  actor: supplier
+  provenance:
+  - action: added
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+    source: verification-pass-miss
+- id: agstech_net-conformity_attestations-0180
+  name: TS 16949
+  status: candidate
+  acceptable_forms:
+  - TS16949
+  evidence:
+  - quote: any other custom manufacturer. Our products are manufactured in ISO9001:2000, QS9000, ISO14001, TS16949
+      certified environments and possess CE, UL mark and meet other industry standards. Once
+    approx_offset: 80560
+  actor: supplier
+  provenance:
+  - action: added
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+    source: verification-pass-miss
+- id: agstech_net-conformity_attestations-0181
+  name: CE mark
+  status: candidate
+  acceptable_forms:
+  - CE
+  - CE mark
+  evidence:
+  - quote: manufactured in ISO9001:2000, QS9000, ISO14001, TS16949 certified environments and possess CE, UL mark
+      and meet other industry standards. Once we are appointed for your project, we can
+    approx_offset: 80608
+  notes: '''our products ... possess CE, UL mark''; CE is 2 chars so it is word-boundary + case-sensitive matched'
+  provenance:
+  - action: added
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+    source: verification-pass-miss
+- id: agstech_net-conformity_attestations-0182
+  name: UL mark
+  status: candidate
+  acceptable_forms:
+  - UL mark
+  - UL
+  evidence:
+  - quote: manufactured in ISO9001:2000, QS9000, ISO14001, TS16949 certified environments and possess CE, UL mark
+      and meet other industry standards. Once we are appointed for your project, we can
+    approx_offset: 80608
+  provenance:
+  - action: added
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+    source: verification-pass-miss
+- id: agstech_net-conformity_attestations-0183
+  name: Telcordia
+  status: candidate
+  acceptable_forms:
+  - Telcordia
+  evidence:
+  - quote: needed) and meet other industry standards. Our telecommunication fiber optical products pass Telcordia
+      standards. Our optical engineers have many years of experience working with Zemax and Code
+    approx_offset: 166671
+  notes: occurs four times (lines 101, 2914, 5021, 5649) including twice inside this packet's evidence range, always
+    as a standard the products 'pass' or are 'compliant to'. It appears inside conformity_attestations-0031's evidence
+    quote yet has no entry of its own.
+  provenance:
+  - action: added
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+    source: verification-pass-miss
+- id: agstech_net-conformity_attestations-0184
+  name: ISO 14001
+  status: candidate
+  acceptable_forms:
+  - ISO14001
+  evidence:
+  - quote: particular specifications and requirements. Our products are manufactured in ISO9001:2000, QS9000, ISO14001,
+      TS16949 certified environments and possess CE, UL mark and meet other industry standards
+    approx_offset: 186460
+  notes: lines 2914 and 3361 name ISO14001 among the certified environments. conformity_attestations-0028 covers
+    'ISO 14000' only, and neither form contains the other once whitespace is collapsed, so ISO14001 cannot credit
+    through it.
+  provenance:
+  - action: added
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+    source: verification-pass-miss
+- id: agstech_net-conformity_attestations-0185
+  name: Underwriters Laboratories
+  status: candidate
+  acceptable_forms:
+  - Underwriters Laboratories
+  evidence:
+  - quote: 'THE UL MARK: If a product carries the UL Mark, Underwriters Laboratories found that samples of this
+      product met UL''s safety requirements. These requirements are primarily'
+    approx_offset: 297077
+  notes: line 5777 names the issuing body in full; the clause admits an 'issuing body' as the identity, and only
+    the mark (conformity_attestations-0018) was seeded.
+  provenance:
+  - action: added
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+    source: verification-pass-miss
+- id: agstech_net-conformity_attestations-0186
+  name: New Approach Directives
+  status: candidate
+  acceptable_forms:
+  - New Approach Directives
+  - New Approach
+  evidence:
+  - quote: Most products covered by New Approach Directives can be self-certified by the manufacturer and do not
+      require the intervention of an EU-authorized
+    approx_offset: 298717
+  notes: lines 5781 and 5785; a named EU compliance regime that products are 'covered by' and self-certified against,
+    alongside the individual directives that were seeded (-0038, -0039, -0042).
+  provenance:
+  - action: added
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+    source: verification-pass-miss
+- id: agstech_net-conformity_attestations-0187
+  name: ASTM standards
+  status: candidate
+  acceptable_forms:
+  - ASTM standards
+  evidence:
+  - quote: 'ASTM STANDARDS: ASTM International, (formerly known as the American Society for Testing and Materials),
+      is an'
+    approx_offset: 313071
+  notes: '''Test specimen are prepared according to ASTM standards'' on the tension-tester section names the issuing
+    body without a number; the clause admits an issuing body as an identity. The five numbered ASTM designations
+    in this range are all seeded, this generic one is not'
+  provenance:
+  - action: added
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+    source: verification-pass-miss
+  - action: amended
+    by: assistant-repair
+    date: '2026-08-27'
+    reason: verification-pass miss quote was not verbatim; re-derived from the text
+- id: agstech_net-conformity_attestations-0188
+  name: CIE L*a*b / CIE L*c*h
+  status: candidate
+  acceptable_forms:
+  - CIE_L*a*b
+  - CIE_L*c*h
+  evidence:
+  - quote: Our COLOR DIFFERENCE METERS display directly color difference by E*ab, L*a*b, CIE_L*a*b, CIE_L*c*h. Standard
+      deviation is within E
+    approx_offset: 683978
+  notes: CIE colour-space designations the colour-difference meters report against; an issuing body plus a named
+    scale, on the same footing as the seeded ISO/ASTM/DIN gloss standards
+  provenance:
+  - action: added
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+    source: verification-pass-miss
+- id: agstech_net-conformity_attestations-0189
+  name: RoHS
+  status: candidate
+  acceptable_forms:
+  - RoHS compliance
+  - ROHS compliance
+  - RoHS
+  - ROHS
+  evidence:
+  - quote: We use lead-free alloys for soldering and have RoHS compliance and for different applications and requirements
+      we have different and suitable
+    approx_offset: 900035
+  notes: stated twice in this range (13472 and 13768) and absent from the packet; a first-class compliance regime
+    with an issuing body
+  provenance:
+  - action: added
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+    source: verification-pass-miss
+- id: agstech_net-conformity_attestations-0190
+  name: AS9100
+  status: candidate
+  acceptable_forms:
+  - AS9100 certified
+  - AS9100
+  evidence:
+  - quote: some most demanding parts are manufactured at an AS9100 certified plant.
+    approx_offset: 843889
+  actor: supplier
+  notes: the only aerospace quality registration stated in this range and the packet has no entry for it
+  provenance:
+  - action: added
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+    source: verification-pass-miss
+- id: agstech_net-conformity_attestations-0191
+  name: ASME
+  status: candidate
+  acceptable_forms:
+  - ASME standards
+  - ASME
+  evidence:
+  - quote: Our screws and bolts meet ASME standards.
+    approx_offset: 907841
+  notes: named standards body the subject's fasteners are said to meet; absent from the packet
+  provenance:
+  - action: added
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+    source: verification-pass-miss
+- id: agstech_net-conformity_attestations-0192
+  name: SAE
+  status: candidate
+  acceptable_forms:
+  - SAE
+  evidence:
+  - quote: 'adapters are manufactured to meet or exceed the industrial standards requirements of SAE, ISO, DIN,
+      DOT and JIS. A wide range of adapter styles are available including: Swivel'
+    approx_offset: 1021544
+  notes: named beside ISO/DIN/DOT/JIS in the adapters standards list; the packet seeded ISO, DOT and JIS from this
+    same sentence but not SAE
+  provenance:
+  - action: added
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+    source: verification-pass-miss
+- id: agstech_net-conformity_attestations-0193
+  name: DIN
+  status: candidate
+  acceptable_forms:
+  - DIN
+  evidence:
+  - quote: 'are manufactured to meet or exceed the industrial standards requirements of SAE, ISO, DIN, DOT and JIS.
+      A wide range of adapter styles are available including: Swivel Adapters,'
+    approx_offset: 1021553
+  notes: same standards list as the seeded ISO/DOT/JIS entries
+  provenance:
+  - action: added
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+    source: verification-pass-miss
+- id: agstech_net-conformity_attestations-0194
+  name: USCG
+  status: candidate
+  acceptable_forms:
+  - USCG
+  evidence:
+  - quote: are manufactured to meet or exceed industrial specification requirements of SAE, DOT, USCG, ISO, DNV,
+      EN, MSHA, German Lloyd, ABS, FDA, NFPA, ANSI, CSA, NGV, CARB and UL-21 LPG
+    approx_offset: 1120029
+  notes: hose standards sentence on the pipes page; the whole sentence was missed by the seed
+  provenance:
+  - action: added
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+    source: verification-pass-miss
+- id: agstech_net-conformity_attestations-0195
+  name: DNV
+  status: candidate
+  acceptable_forms:
+  - DNV
+  evidence:
+  - quote: manufactured to meet or exceed industrial specification requirements of SAE, DOT, USCG, ISO, DNV, EN,
+      MSHA, German Lloyd, ABS, FDA, NFPA, ANSI, CSA, NGV, CARB and UL-21 LPG standards.
+    approx_offset: 1120033
+  notes: hose standards sentence on the pipes page
+  provenance:
+  - action: added
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+    source: verification-pass-miss
+- id: agstech_net-conformity_attestations-0196
+  name: MSHA
+  status: candidate
+  acceptable_forms:
+  - MSHA
+  evidence:
+  - quote: meet or exceed industrial specification requirements of SAE, DOT, USCG, ISO, DNV, EN, MSHA, German Lloyd,
+      ABS, FDA, NFPA, ANSI, CSA, NGV, CARB and UL-21 LPG standards.
+    approx_offset: 1120049
+  notes: hose standards sentence on the pipes page
+  provenance:
+  - action: added
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+    source: verification-pass-miss
+- id: agstech_net-conformity_attestations-0197
+  name: German Lloyd
+  status: candidate
+  acceptable_forms:
+  - German Lloyd
+  evidence:
+  - quote: exceed industrial specification requirements of SAE, DOT, USCG, ISO, DNV, EN, MSHA, German Lloyd, ABS,
+      FDA, NFPA, ANSI, CSA, NGV, CARB and UL-21 LPG standards.
+    approx_offset: 1120057
+  notes: classification society named in the hose standards sentence
+  provenance:
+  - action: added
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+    source: verification-pass-miss
+- id: agstech_net-conformity_attestations-0198
+  name: ABS (American Bureau of Shipping)
+  status: candidate
+  acceptable_forms:
+  - ABS
+  evidence:
+  - quote: industrial specification requirements of SAE, DOT, USCG, ISO, DNV, EN, MSHA, German Lloyd, ABS, FDA,
+      NFPA, ANSI, CSA, NGV, CARB and UL-21 LPG standards.
+    approx_offset: 1120064
+  notes: in this sentence ABS is the classification society, not the polymer named at line 14790; both strings are
+    real and distinct
+  provenance:
+  - action: added
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+    source: verification-pass-miss
+- id: agstech_net-conformity_attestations-0199
+  name: FDA
+  status: candidate
+  acceptable_forms:
+  - FDA
+  evidence:
+  - quote: specification requirements of SAE, DOT, USCG, ISO, DNV, EN, MSHA, German Lloyd, ABS, FDA, NFPA, ANSI,
+      CSA, NGV, CARB and UL-21 LPG standards.
+    approx_offset: 1120075
+  notes: hose standards sentence on the pipes page
+  provenance:
+  - action: added
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+    source: verification-pass-miss
+- id: agstech_net-conformity_attestations-0200
+  name: NFPA
+  status: candidate
+  acceptable_forms:
+  - NFPA
+  evidence:
+  - quote: specification requirements of SAE, DOT, USCG, ISO, DNV, EN, MSHA, German Lloyd, ABS, FDA, NFPA, ANSI,
+      CSA, NGV, CARB and UL-21 LPG standards.
+    approx_offset: 1120075
+  notes: hose standards sentence on the pipes page
+  provenance:
+  - action: added
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+    source: verification-pass-miss
+- id: agstech_net-conformity_attestations-0201
+  name: ANSI
+  status: candidate
+  acceptable_forms:
+  - ANSI
+  evidence:
+  - quote: specification requirements of SAE, DOT, USCG, ISO, DNV, EN, MSHA, German Lloyd, ABS, FDA, NFPA, ANSI,
+      CSA, NGV, CARB and UL-21 LPG standards.
+    approx_offset: 1120075
+  notes: issuing body named in its own right in the hose standards sentence
+  provenance:
+  - action: added
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+    source: verification-pass-miss
+- id: agstech_net-conformity_attestations-0202
+  name: CSA
+  status: candidate
+  acceptable_forms:
+  - CSA
+  evidence:
+  - quote: requirements of SAE, DOT, USCG, ISO, DNV, EN, MSHA, German Lloyd, ABS, FDA, NFPA, ANSI, CSA, NGV, CARB
+      and UL-21 LPG standards.
+    approx_offset: 1120089
+  notes: hose standards sentence on the pipes page
+  provenance:
+  - action: added
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+    source: verification-pass-miss
+- id: agstech_net-conformity_attestations-0203
+  name: NGV
+  status: candidate
+  acceptable_forms:
+  - NGV
+  evidence:
+  - quote: requirements of SAE, DOT, USCG, ISO, DNV, EN, MSHA, German Lloyd, ABS, FDA, NFPA, ANSI, CSA, NGV, CARB
+      and UL-21 LPG standards.
+    approx_offset: 1120089
+  notes: hose standards sentence on the pipes page
+  provenance:
+  - action: added
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+    source: verification-pass-miss
+- id: agstech_net-conformity_attestations-0204
+  name: CARB
+  status: candidate
+  acceptable_forms:
+  - CARB
+  evidence:
+  - quote: of SAE, DOT, USCG, ISO, DNV, EN, MSHA, German Lloyd, ABS, FDA, NFPA, ANSI, CSA, NGV, CARB and UL-21 LPG
+      standards.
+    approx_offset: 1120102
+  notes: hose standards sentence on the pipes page
+  provenance:
+  - action: added
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+    source: verification-pass-miss
+- id: agstech_net-conformity_attestations-0205
+  name: UL-21 LPG
+  status: candidate
+  acceptable_forms:
+  - UL-21 LPG
+  - UL-21
+  evidence:
+  - quote: USCG, ISO, DNV, EN, MSHA, German Lloyd, ABS, FDA, NFPA, ANSI, CSA, NGV, CARB and UL-21 LPG standards.
+    approx_offset: 1120115
+  notes: hose standards sentence on the pipes page
+  provenance:
+  - action: added
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+    source: verification-pass-miss
+- id: agstech_net-conformity_attestations-0206
+  name: EN
+  status: candidate
+  acceptable_forms:
+  - EN
+  evidence:
+  - quote: to meet or exceed industrial specification requirements of SAE, DOT, USCG, ISO, DNV, EN, MSHA, German
+      Lloyd, ABS, FDA, NFPA, ANSI, CSA, NGV, CARB and UL-21 LPG standards.
+    approx_offset: 1120046
+  notes: European Norm named in the hose standards sentence; two-character form, matched case-sensitively
+  provenance:
+  - action: added
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+    source: verification-pass-miss
+- id: agstech_net-conformity_attestations-0207
+  name: IP65
+  status: candidate
+  acceptable_forms:
+  - IP65
+  evidence:
+  - quote: Additional indicator lamps with UL and CE and IP65 certification ND16100111-1150582
+    approx_offset: 1422248
+  actor: reseller_inventory
+  notes: the packet carries IP67 and IP68 but not IP65, which is named twice in my range
+  provenance:
+  - action: added
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+    source: verification-pass-miss
+- id: agstech_net-conformity_attestations-0208
+  name: Telcordia
+  status: candidate
+  acceptable_forms:
+  - Telcordia
+  evidence:
+  - quote: and TS16949 certified plants and conform to relevant international standards such as Telcordia for communication
+      optics and UL, CE for industrial optical assemblies.
+    approx_offset: 1324072
+  actor: supplier
+  notes: named as a conformance standard in the same sentence as the seeded ISO9001/TS16949
+  provenance:
+  - action: added
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+    source: verification-pass-miss
+- id: agstech_net-conformity_attestations-0209
+  name: QS9000
+  status: candidate
+  acceptable_forms:
+  - QS9000
+  evidence:
+  - quote: potential suppliers for a copy of their Quality Management Certification, such as ISO9001, QS9000, ISO14969….etc.
+      Make sure to check who the issuing agency is and how reputable the issuer
+    approx_offset: 407203
+  actor: supplier
+  notes: named as a quality-management certification in the supplier-vetting post
+  provenance:
+  - action: added
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+    source: verification-pass-miss
+- id: agstech_net-conformity_attestations-0210
+  name: ISO14969
+  status: candidate
+  acceptable_forms:
+  - ISO14969
+  evidence:
+  - quote: suppliers for a copy of their Quality Management Certification, such as ISO9001, QS9000, ISO14969….etc.
+      Make sure to check who the issuing agency is and how reputable the issuer is. Some
+    approx_offset: 407213
+  actor: supplier
+  notes: named as a quality-management certification in the supplier-vetting post
+  provenance:
+  - action: added
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+    source: verification-pass-miss
+- id: agstech_net-conformity_attestations-0211
+  name: RoHS
+  status: candidate
+  acceptable_forms:
+  - RoHS
+  evidence:
+  - quote: they have ever sold a product that has other certifications & marks such as UL, CE, FDA, RoHS compliance,
+      Electromagnetic Compatibility…..etc. There are many such certifications and you
+    approx_offset: 407610
+  actor: supplier
+  notes: named among certifications and marks in the supplier-vetting post
+  provenance:
+  - action: added
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+    source: verification-pass-miss
+- id: agstech_net-conformity_attestations-0212
+  name: IEEE 802.11
+  status: candidate
+  acceptable_forms:
+  - IEEE 802.11
+  evidence:
+  - quote: Wireless LAN protocols, such as Bluetooth and the IEEE 802.11 specifications, also use microwaves in
+      the 2.4 GHz ISM band, although 802.11a uses ISM band and U-NII frequencies in the 5 GHz
+    approx_offset: 1413132
+  actor: unknown
+  notes: the packet has IEEE 802.16 and 802.20 from the same textbook section but not 802.11
+  provenance:
+  - action: added
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+    source: verification-pass-miss
+- id: agstech_net-conformity_attestations-0213
+  name: 3964R protocol
+  status: candidate
+  acceptable_forms:
+  - 3964R
+  - 3964®
+  evidence:
+  - quote: '- Intelligent PLC Link Concept (3964R) : A programmable logic controller or briefly PLC is a digital
+      computer used for automation of industrial electromechanical processes, such as control of'
+    approx_offset: 1711466
+  actor: supplier
+  notes: '''communication procedure 3964® ... serial data communication according to 3964® protocol'' - a named
+    protocol standard of the same kind as the seeded RS485, EN 50170 and ISO/DIS 11898-2. Occurs nowhere else in
+    the file.'
+  provenance:
+  - action: added
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+    source: verification-pass-miss
+- id: agstech_net-conformity_attestations-0214
+  name: CANopen
+  status: candidate
+  acceptable_forms:
+  - CANopen
+  evidence:
+  - quote: D-SUB connector, ICANOS firmware on-board, MODULbus+ compatible, options such as isolated CAN interface,
+      CANopen available, operating systems supported are Windows, Windows CE, Linux, QNX, VxWorks.
+    approx_offset: 1710030
+  actor: supplier
+  notes: a named CAN application-layer standard listed as an option beside ISO/DIS 11898-2, which was seeded from
+    the neighbouring bullet. Occurs nowhere else in the file.
+  provenance:
+  - action: added
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+    source: verification-pass-miss
+- id: agstech_net-conformity_attestations-0215
+  name: SCSI
+  status: candidate
+  acceptable_forms:
+  - SCSI
+  evidence:
+  - quote: '6. Small Computer System Interface (known as SCSI) : Laser printers and some others use SCSI interfaces
+      to PC as there is the benefit of daisy chaining wherein multiple devices could be on a single'
+    approx_offset: 1705556
+  actor: unknown
+  notes: a named interface standard given with its expansion, in the same eight-item list from which IEEE 1394 was
+    seeded. Both of its occurrences are in this range.
+  provenance:
+  - action: added
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+    source: verification-pass-miss
+- id: agstech_net-conformity_attestations-0216
+  name: Circular-MIL
+  status: candidate
+  acceptable_forms:
+  - Circular-MIL
+  evidence:
+  - quote: '- Sealed MIL-SPEC or Circular-MIL connectors'
+    approx_offset: 1773014
+  actor: supplier
+  notes: 'the other half of ''Sealed MIL-SPEC or Circular-MIL connectors'', of which only MIL-SPEC was seeded (0176).
+    Arguable: it may be a connector-family designation rather than a standard a company could hold - worth carrying
+    as a candidate either way. Occurs nowhere else in the file.'
+  provenance:
+  - action: added
+    by: verify-agents-agstech-p1-p10
+    date: '2026-08-27'
+    source: verification-pass-miss
+false_friends:
+- form: REACH
+  reason: witnessed as a substring only, inside 'CANCELLATION AND BREACH' at line 856. The EU REACH regulation is
+    never mentioned.
+- form: API
+  reason: witnessed as a substring only, inside 'RAPID PROTOTYPING' at line 1909. The API standards body is never
+    mentioned.
+- form: NADCAP
+  reason: 'anticipatory: never occurs. AS9100 at line 3239 makes an aerospace-accreditation hallucination likely.'
+- form: ITAR
+  reason: 'anticipatory: never occurs, despite ''compliant with NATO and military standards'' at line 1612.'
+- form: IATF 16949
+  reason: 'anticipatory: the text says only the superseded ''TS16949'' (1630, 2914, 3239, 3361, 3916). The modern
+    IATF name never appears and would be a normalization, not a designation.'
+- form: ISO 9001:2015
+  reason: 'anticipatory: the text pins ISO9001:2000 (1630, 2914, 3239). Any later revision number is invented.'
+- form: Underwriters Laboratories
+  reason: the issuing body behind the UL Mark; the mark is the attestation, the laboratory is a company name
+- form: Group Technology
+  reason: 'word-association trap: an uppercase acronym-shaped software method sitting among genuine uppercase standard
+    names'
+- form: certified calibration
+  reason: 'looks like a certification but has no identity of its own - no name, number, mark or issuing body: ''laboratory-grade
+    models with certified calibration'''
+- form: safety standards
+  reason: 'generic, unnamed: ''to ensure products meet safety standards'''
+- form: industry standards
+  reason: 'the generic phrase carrying the real ones: ''based on industry standards such as GSM, W-CDMA (UMTS) and
+    Wi-Fi (IEEE 802.11)''; the phrase itself names nothing'
+- form: gloss standard
+  reason: a physical reference surface the glossmeter is compared against ('the ratio for the gloss standard'),
+    not a certification with an issuing body
+- form: ITAR
+  reason: 'witnessed as a substring only: the sole occurrence is inside ''mILITARy rangefinders''. No export-control
+    registration is claimed'
+- form: NADCAP
+  reason: 'anticipatory: never occurs, but the AS9100 aerospace paragraph makes it an easy invention'
+- form: Warranty
+  reason: 'witnessed twice (''All our equipment is under warranty''; ''design and warranty specifications''): a
+    commercial promise, not a certification, standard or accreditation with an issuing body'
+- form: QC Department
+  reason: 'witnessed (''Suitable for research institutes, industrial labs and QC departments''): an organisational
+    unit that buys the instrument, not an attestation'
+- form: ISO 9001
+  reason: 'anticipatory: never occurs anywhere in this slice; the slice names ISO 7632 and a bare ''ISO'' only,
+    so any ISO 9001 is minted from word association'
+- form: NADCAP
+  reason: 'anticipatory: does not occur in this slice'
+- form: 316L
+  reason: 'witnessed: an austenitic steel grade, not a certification a company holds - it appears as a material
+    designation on the hoses and vacuum-chamber pages'
+- form: Pascal's law
+  reason: 'witnessed: ''Hydrostatic pumps ... work on the principle of Pascal''s law'' - a physical law, not a standard
+    with an issuing body'
+- form: Rz 0.7 microns
+  reason: 'witnessed: a surface-roughness specification value, not a certification'
+- form: Torr
+  reason: 'witnessed: a pressure unit used throughout the vacuum pages'
+- form: UHV
+  reason: 'witnessed: a vacuum pressure regime (''Ultra High Vacuum''), not a standard'
+- form: OEM
+  reason: 'witnessed: ''compared to the OEM''s originally installed hydraulic filter elements'' - a supplier category,
+    not an attestation'
+- form: office regulations
+  reason: 'witnessed: "support luminaries to fulfill office regulations for de-glaring" - a regulation with no identity,
+    name, number or issuing body'
+- form: RC
+  reason: 'witnessed: the Rockwell C hardness scale ("The hardness achieved is 60 - 65 RC"), a measurement unit
+    rather than a standard a company holds'
+- form: OEM
+  reason: witnessed as a business model label ("OEM option available"), not a certification
+- form: NADCAP
+  reason: 'anticipatory: a special-process accreditation a reader would expect from a shop describing heat treating,
+    coating and welding; it appears nowhere in the file'
+- form: ITAR
+  reason: 'anticipatory: easy to mint from the NASA / satellite instrument work; absent from the file'
+- form: NSC
+  reason: a seal-catalog section prefix; reads like a standards-body abbreviation but names no standard
+- form: OSI layer 2
+  reason: a reference-model layer used to place network devices, not a standard a company holds or meets
+- form: NADCAP
+  reason: 'anticipatory: never appears; a manufacturing site with this much process talk invites it'
+- form: ITAR
+  reason: 'anticipatory: never appears, though the text names military, navy and defense applications'

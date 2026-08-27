@@ -1,0 +1,1018 @@
+subject: pradeepmetals.com
+field: equipments
+snapshot:
+  file: apps/data_etl_app/tests/test_stages/sample_scraped_texts/pradeepmetals.com.txt
+  sha256: d3b7875e2769b8347084c18df480028cf319fc9595695734c21041dff6961bc0
+eval_set_version: 2
+expected_empty: false
+notes: 'SEEDED TO THE PROMPT''S CLAUSE, NOT TO THE WORD ''EQUIPMENT''. A production machine acts on the work itself,
+  which excludes anything that only measures/inspects/tests, anything that powers or conditions the plant, anything
+  that moves/stores/carries, and all tooling. This subject supplies unusually rich traps in every one of those four
+  exclusion classes, and they are seeded as false_friends rather than entries: the CMM / Spectrometer / Tensile
+  Tester / Microscopy testing block, the Wind Mill and ETP plant and mist collectors and recuperators, the vertical
+  storage yard and Vibro-feeder, and the dies and forging dies and tool-room equipment. Two real sources of named
+  machines: the Manufacturing page (shear, saws, hammers, presses, furnaces) and the Machining page (eight HAAS
+  models). A third block, the IMRC lab, names a dozen microwave and mineral-processing machines - research kit,
+  kept as entries with actor: lab.'
+entries:
+- id: pradeepmetals_com-equipments-0001
+  name: forging machine
+  status: confirmed
+  acceptable_forms:
+  - forging machine
+  evidence:
+  - quote: the forging is done with proper precision by using a forging machine
+    approx_offset: 4098
+  - quote: a forging machine is used to perform precision forging
+    approx_offset: 230052
+  notes: generic but names a production machine; occurs in the forging explainer on four duplicate page fetches
+    and again in a blog
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+- id: pradeepmetals_com-equipments-0002
+  name: industrial hammer
+  status: confirmed
+  acceptable_forms:
+  - industrial hammer
+  evidence:
+  - quote: The force is delivered basically by using an industrial hammer or a die cast
+    approx_offset: 4884
+  notes: generic explainer prose about forging in general, not a machine list of this plant; actor unknown
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+- id: pradeepmetals_com-equipments-0003
+  name: die cast (as a force-delivering machine)
+  status: disputed
+  acceptable_forms:
+  - a die cast
+  - A die-cast
+  evidence:
+  - quote: using an industrial hammer or a die cast
+    approx_offset: 4920
+  - quote: A die-cast or industrial hammer is harnessed
+    approx_offset: 230707
+  actor: unknown
+  notes: the explainer uses 'die cast' as the thing that delivers forging force, alongside 'industrial hammer'.
+    On the clause it is tooling (a die), which is excluded; on the sentence it is being used as the machine. Disputed
+    - and it is also a strong casting-process false lead | 'a die cast' / 'A die-cast' is the text's loose name
+    for the die that delivers the forging force. The equipments clause explicitly excludes tooling - 'what a machine
+    holds, guides, or acts through rather than the machine driving it' - and names a die as the example. The text
+    does present it as the force-delivering device, which is why this is arguable rather than wrong.
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: disputed
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+    reason: '''a die cast'' / ''A die-cast'' is the text''s loose name for the die that delivers the forging force.
+      The equipments clause explicitly excludes tooling - ''what a machine holds, guides, or acts through rather
+      than the machine driving it'' - and names a die as the example. The text does present it as the force-delivering
+      device, which is why this is arguable rather than wrong.'
+- id: pradeepmetals_com-equipments-0004
+  name: SCIENTIFIC LAB-MICROWAVE SYSTEM
+  status: confirmed
+  acceptable_forms:
+  - SCIENTIFIC LAB-MICROWAVE SYSTEM
+  evidence:
+  - quote: SCIENTIFIC LAB-MICROWAVE SYSTEM
+    approx_offset: 19096
+  actor: lab
+  notes: IMRC amenities list; 2450 MHz, 750 W, heats 200-300 g to 1100 C. Research kit, not production - recall-first
+    keeps it
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+- id: pradeepmetals_com-equipments-0005
+  name: PANASONIC NE-1756
+  status: confirmed
+  acceptable_forms:
+  - PANASONIC NE-1756
+  evidence:
+  - quote: PANASONIC NE-1756
+    approx_offset: 19349
+  actor: lab
+  notes: a named model with two magnetrons in the IMRC list
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+- id: pradeepmetals_com-equipments-0006
+  name: magnetrons
+  status: disputed
+  acceptable_forms:
+  - two magnetrons
+  - 4 magnetrons
+  - magnetrons
+  evidence:
+  - quote: with two magnetrons)
+    approx_offset: 19447
+  - quote: 'Microwave power: 6 kW x 4 magnetrons'
+    approx_offset: 21157
+  actor: lab
+  notes: a magnetron is the microwave SOURCE inside the systems already seeded, not a machine in its own right.
+    Disputed | a magnetron is the microwave-generating component INSIDE the systems already seeded at 0004/0005/0008/0009/0013,
+    not a machine in its own right. It never acts on the work directly; the cavity does.
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: disputed
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+    reason: a magnetron is the microwave-generating component INSIDE the systems already seeded at 0004/0005/0008/0009/0013,
+      not a machine in its own right. It never acts on the work directly; the cavity does.
+- id: pradeepmetals_com-equipments-0007
+  name: SYNOTHERM'S 3 KW MICROWAVE SYSTEM
+  status: confirmed
+  acceptable_forms:
+  - SYNOTHERM’S 3 KW MICROWAVE SYSTEM
+  - 3 KW MICROWAVE SYSTEM
+  evidence:
+  - quote: SYNOTHERM’S 3 KW MICROWAVE SYSTEM
+    approx_offset: 19493
+  actor: lab
+  notes: note the curly apostrophe in SYNOTHERM’S
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+- id: pradeepmetals_com-equipments-0008
+  name: PANASONIC XJ-03MK100DN MICROWAVE SYSTEM
+  status: confirmed
+  acceptable_forms:
+  - PANASONIC XJ-03MK100DN MICROWAVE SYSTEM
+  - XJ-03MK100DN
+  evidence:
+  - quote: PANASONIC XJ-03MK100DN MICROWAVE SYSTEM
+    approx_offset: 19845
+  actor: lab
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+- id: pradeepmetals_com-equipments-0009
+  name: GRT- S5 MICROWAVE SYSTEM
+  status: confirmed
+  acceptable_forms:
+  - GRT- S5 MICROWAVE SYSTEM
+  evidence:
+  - quote: GRT- S5 MICROWAVE SYSTEM
+    approx_offset: 20105
+  actor: lab
+  notes: the stray space after 'GRT-' is in the source
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+- id: pradeepmetals_com-equipments-0010
+  name: CONTINUOUS MICROWAVE PROCESSING SYSTEM
+  status: confirmed
+  acceptable_forms:
+  - CONTINUOUS MICROWAVE PROCESSING SYSTEM
+  evidence:
+  - quote: CONTINUOUS MICROWAVE PROCESSING SYSTEM
+    approx_offset: 20324
+  - quote: CONTINUOUS MICROWAVE PROCESSING SYSTEM
+    approx_offset: 20324
+  actor: lab
+  notes: two different units with identical headings (different microwave-zone dimensions), 3000 mm long, PLC/HMI
+    controlled
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+- id: pradeepmetals_com-equipments-0011
+  name: Vibro-mixer
+  status: confirmed
+  acceptable_forms:
+  - Vibro-mixer
+  evidence:
+  - quote: Installed with Vibro-mixer
+    approx_offset: 20997
+  actor: lab
+  notes: mixes the charge, so it acts on the work. The Vibro-feeder and Aspirator on the same line move and extract
+    material and are excluded - see false_friends
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+- id: pradeepmetals_com-equipments-0012
+  name: Cyclone separator
+  status: confirmed
+  acceptable_forms:
+  - Cyclone separator
+  evidence:
+  - quote: Cyclone separator
+    approx_offset: 21053
+  actor: lab
+  notes: 'borderline: separation is a unit operation performed on the material rather than pure conveying, so kept
+    as an entry'
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+- id: pradeepmetals_com-equipments-0013
+  name: PROTOTYPE MICROWAVE-ASSISTED PLANT FOR DIRECT REDUCTION
+  status: confirmed
+  acceptable_forms:
+  - PROTOTYPE MICROWAVE-ASSISTED PLANT FOR DIRECT REDUCTION
+  evidence:
+  - quote: PROTOTYPE MICROWAVE-ASSISTED PLANT FOR DIRECT REDUCTION
+    approx_offset: 21071
+  actor: lab
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+- id: pradeepmetals_com-equipments-0014
+  name: MINERAL COMMINUTION SYSTEMS
+  status: confirmed
+  acceptable_forms:
+  - MINERAL COMMINUTION SYSTEMS
+  evidence:
+  - quote: MINERAL COMMINUTION SYSTEMS
+    approx_offset: 21333
+  actor: lab
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+- id: pradeepmetals_com-equipments-0015
+  name: BALL MILL
+  status: confirmed
+  acceptable_forms:
+  - BALL MILL
+  evidence:
+  - quote: BALL MILL
+    approx_offset: 21361
+  actor: lab
+  notes: one of four machines run together on a single comma-separated line ('BALL MILL, MIXER, CRUSHER, NODULIZER,
+    ETC'); the prompt asks for separate phrases for separate machines
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+- id: pradeepmetals_com-equipments-0016
+  name: MIXER
+  status: confirmed
+  acceptable_forms:
+  - MIXER
+  evidence:
+  - quote: MIXER
+    approx_offset: 21372
+  actor: lab
+  notes: same run-together line as BALL MILL
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+- id: pradeepmetals_com-equipments-0017
+  name: CRUSHER
+  status: confirmed
+  acceptable_forms:
+  - CRUSHER
+  evidence:
+  - quote: CRUSHER
+    approx_offset: 21379
+  actor: lab
+  notes: same run-together line as BALL MILL
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+- id: pradeepmetals_com-equipments-0018
+  name: NODULIZER
+  status: confirmed
+  acceptable_forms:
+  - NODULIZER
+  evidence:
+  - quote: NODULIZER
+    approx_offset: 21388
+  actor: lab
+  notes: same run-together line as BALL MILL
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+- id: pradeepmetals_com-equipments-0019
+  name: MAGNETIZERS
+  status: confirmed
+  acceptable_forms:
+  - MAGNETIZERS
+  evidence:
+  - quote: MAGNETIZERS
+    approx_offset: 21403
+  actor: lab
+  notes: the two following lines ('PERMANENT & ELECTROMAGNET BASED SYSTEMS', 'COTINUOUS BELT TYPE' - the typo is
+    in the source) describe these
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+- id: pradeepmetals_com-equipments-0020
+  name: machinery (unnamed)
+  status: confirmed
+  acceptable_forms:
+  - state-of-the-art machinery
+  - finest machinery
+  - high-end machinery
+  - most modern machinery
+  evidence:
+  - quote: Pradeep Metals uses state-of-the-art machinery with sophisticated tool-room equipment
+    approx_offset: 197269
+  - quote: We use the finest machinery and best-grade raw materials
+    approx_offset: 31170
+  - quote: importing some of the high-end machinery from our step-down subsidiary
+    approx_offset: 196476
+  notes: 'broad: the marketing pages say ''machinery'' four different ways and never name a machine. Low-information
+    as a recall target, but it is what those windows actually offer'
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+- id: pradeepmetals_com-equipments-0021
+  name: machining center
+  status: confirmed
+  acceptable_forms:
+  - new machining center
+  - new machining centre
+  - machining center
+  - machining centre
+  evidence:
+  - quote: 2012 – Added new machining center
+    approx_offset: 35895
+  - quote: 2012 – Opened new machining centre
+    approx_offset: 207191
+  notes: 'two spellings on two different pages: ''center'' in the history timeline, ''centre'' in the blog retelling
+    of the same timeline'
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+- id: pradeepmetals_com-equipments-0022
+  name: 2500T, 1250T, 700T Mechanical Presses
+  status: confirmed
+  acceptable_forms:
+  - 2500T, 1250T, 700T Mechanical Presses
+  - Mechanical Presses
+  - presses
+  evidence:
+  - quote: 2500T, 1250T, 700T Mechanical Presses
+    approx_offset: 172648
+  - quote: New state- of-the-art facility with presses commissioned at Rabale
+    approx_offset: 36295
+  notes: the FORGING block's press line; the history timeline separately says presses were commissioned at Rabale
+    in 1994. A forging PRESS is equipment; the DIES it drives are tooling and are excluded
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+- id: pradeepmetals_com-equipments-0023
+  name: HAAS SL-10
+  status: confirmed
+  acceptable_forms:
+  - HAAS SL-10
+  evidence:
+  - quote: HAAS SL-10
+    approx_offset: 52684
+  notes: one of eight HAAS models in the Machining page table (MACHINE TYPE / MAX. DIA. / NUMBER OF MACHINES); the
+    SL/ST/TL rows are turning machines and the VF rows are vertical mills. The tab-separated diameter and count
+    cells sit on the same line
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+- id: pradeepmetals_com-equipments-0024
+  name: HAAS ST-10
+  status: confirmed
+  acceptable_forms:
+  - HAAS ST-10
+  evidence:
+  - quote: HAAS ST-10
+    approx_offset: 52703
+  notes: one of eight HAAS models in the Machining page table (MACHINE TYPE / MAX. DIA. / NUMBER OF MACHINES); the
+    SL/ST/TL rows are turning machines and the VF rows are vertical mills. The tab-separated diameter and count
+    cells sit on the same line
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+- id: pradeepmetals_com-equipments-0025
+  name: HAAS ST-20
+  status: confirmed
+  acceptable_forms:
+  - HAAS ST-20
+  evidence:
+  - quote: HAAS ST-20
+    approx_offset: 52722
+  notes: one of eight HAAS models in the Machining page table (MACHINE TYPE / MAX. DIA. / NUMBER OF MACHINES); the
+    SL/ST/TL rows are turning machines and the VF rows are vertical mills. The tab-separated diameter and count
+    cells sit on the same line
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+- id: pradeepmetals_com-equipments-0026
+  name: HAAS SL-30
+  status: confirmed
+  acceptable_forms:
+  - HAAS SL-30
+  evidence:
+  - quote: HAAS SL-30
+    approx_offset: 52741
+  notes: one of eight HAAS models in the Machining page table (MACHINE TYPE / MAX. DIA. / NUMBER OF MACHINES); the
+    SL/ST/TL rows are turning machines and the VF rows are vertical mills. The tab-separated diameter and count
+    cells sit on the same line
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+- id: pradeepmetals_com-equipments-0027
+  name: HAAS ST-30
+  status: confirmed
+  acceptable_forms:
+  - HAAS ST-30
+  evidence:
+  - quote: HAAS ST-30
+    approx_offset: 52760
+  notes: one of eight HAAS models in the Machining page table (MACHINE TYPE / MAX. DIA. / NUMBER OF MACHINES); the
+    SL/ST/TL rows are turning machines and the VF rows are vertical mills. The tab-separated diameter and count
+    cells sit on the same line
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+- id: pradeepmetals_com-equipments-0028
+  name: HAAS TL-15
+  status: confirmed
+  acceptable_forms:
+  - HAAS TL-15
+  evidence:
+  - quote: HAAS TL-15
+    approx_offset: 52779
+  notes: one of eight HAAS models in the Machining page table (MACHINE TYPE / MAX. DIA. / NUMBER OF MACHINES); the
+    SL/ST/TL rows are turning machines and the VF rows are vertical mills. The tab-separated diameter and count
+    cells sit on the same line
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+- id: pradeepmetals_com-equipments-0029
+  name: HAAS VF-1
+  status: confirmed
+  acceptable_forms:
+  - HAAS VF-1
+  evidence:
+  - quote: HAAS VF-1
+    approx_offset: 52798
+  notes: one of eight HAAS models in the Machining page table (MACHINE TYPE / MAX. DIA. / NUMBER OF MACHINES); the
+    SL/ST/TL rows are turning machines and the VF rows are vertical mills. The tab-separated diameter and count
+    cells sit on the same line
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+- id: pradeepmetals_com-equipments-0030
+  name: HAAS VF-3
+  status: confirmed
+  acceptable_forms:
+  - HAAS VF-3
+  evidence:
+  - quote: HAAS VF-3
+    approx_offset: 52828
+  notes: one of eight HAAS models in the Machining page table (MACHINE TYPE / MAX. DIA. / NUMBER OF MACHINES); the
+    SL/ST/TL rows are turning machines and the VF rows are vertical mills. The tab-separated diameter and count
+    cells sit on the same line
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+- id: pradeepmetals_com-equipments-0031
+  name: CNC machines
+  status: confirmed
+  acceptable_forms:
+  - CNC machines
+  evidence:
+  - quote: Mist collectors installed on CNC machines
+    approx_offset: 65921
+  notes: named in the CSR environment list; the mist collectors on them are plant conditioning and are a false_friend
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+- id: pradeepmetals_com-equipments-0032
+  name: 6T & 1T Die Hammers
+  status: confirmed
+  acceptable_forms:
+  - 6T & 1T Die Hammers
+  - Die Hammers
+  evidence:
+  - quote: 6T & 1T Die Hammers
+    approx_offset: 172628
+  - quote: Hammers converted from Pneumatic to Hydraulic
+    approx_offset: 65985
+  notes: forging hammers; the CSR page separately records 'Hammers converted from Pneumatic to Hydraulic'
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+- id: pradeepmetals_com-equipments-0033
+  name: Microwave Composite Heating Furnace
+  status: confirmed
+  acceptable_forms:
+  - Microwave Composite Heating Furnace
+  evidence:
+  - quote: Microwave Composite Heating Furnace (Jointly with Chubu University, Japan)
+    approx_offset: 96712
+  - quote: Smelting-reduction of iron ore (Microwave Composite Heating Furnace)
+    approx_offset: 135986
+  actor: lab
+  notes: a patented furnace developed jointly with Chubu University, Japan; granted in Ukraine, Russia, Japan, Australia
+    and India
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+- id: pradeepmetals_com-equipments-0034
+  name: 1600T Shear
+  status: confirmed
+  acceptable_forms:
+  - 1600T Shear
+  evidence:
+  - quote: 1600T Shear
+    approx_offset: 172558
+  notes: billet shear under the CUTTING heading; acts on the work, so equipment (the OPERATION 'shearing' is a separate
+    process_caps entry)
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+- id: pradeepmetals_com-equipments-0035
+  name: 125mm dia. Hi-speed Circular Saw
+  status: confirmed
+  acceptable_forms:
+  - 125mm dia. Hi-speed Circular Saw
+  - Hi-speed Circular Saw
+  - Circular Saw
+  evidence:
+  - quote: 125mm dia. Hi-speed Circular Saw
+    approx_offset: 172570
+  notes: CUTTING block
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+- id: pradeepmetals_com-equipments-0036
+  name: 250mm Band Saws
+  status: confirmed
+  acceptable_forms:
+  - 250mm Band Saws
+  - Band Saws
+  evidence:
+  - quote: 250mm Band Saws
+    approx_offset: 172603
+  notes: CUTTING block
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+- id: pradeepmetals_com-equipments-0037
+  name: Trimming Presses
+  status: confirmed
+  acceptable_forms:
+  - Trimming Presses
+  evidence:
+  - quote: Trimming Presses
+    approx_offset: 172686
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+- id: pradeepmetals_com-equipments-0038
+  name: Induction & Gas-fired furnaces
+  status: confirmed
+  acceptable_forms:
+  - Induction & Gas-fired furnaces
+  - Gas-fired furnaces
+  evidence:
+  - quote: Induction & Gas-fired furnaces
+    approx_offset: 172703
+  notes: billet-heating furnaces in the FORGING block. A furnace heats the work itself, so it is a production machine
+    rather than plant conditioning
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+- id: pradeepmetals_com-equipments-0039
+  name: Austentizing furnaces
+  status: confirmed
+  acceptable_forms:
+  - Austentizing furnaces
+  evidence:
+  - quote: Austentizing furnaces
+    approx_offset: 172750
+  notes: HEAT TREATMENT block; 'Austentizing' is the site's own misspelling of austenitizing and is what must be
+    matched
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+- id: pradeepmetals_com-equipments-0040
+  name: Electric Tempering furnace
+  status: confirmed
+  acceptable_forms:
+  - Electric Tempering furnace
+  - Tempering furnace
+  evidence:
+  - quote: Electric Tempering furnace
+    approx_offset: 172772
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+- id: pradeepmetals_com-equipments-0041
+  name: Mechanical charger
+  status: disputed
+  acceptable_forms:
+  - Mechanical charger
+  evidence:
+  - quote: Mechanical charger
+    approx_offset: 172799
+  notes: listed in the HEAT TREATMENT block beside two furnaces, so it reads as plant equipment - but a charger
+    LOADS work into a furnace, which is 'moves, stores, or carries' and is excluded by the clause. Disputed so the
+    argument survives without gating | a 'Mechanical charger' loads billets into the heat-treatment furnace - it
+    moves the work rather than processing or shaping it, which is the clause's 'moves, stores, or carries' exclusion.
+    Listed under HEAT TREATMENT alongside the furnaces, so its being production-line equipment is not in doubt;
+    only its being a production MACHINE is.
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: disputed
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+    reason: a 'Mechanical charger' loads billets into the heat-treatment furnace - it moves the work rather than
+      processing or shaping it, which is the clause's 'moves, stores, or carries' exclusion. Listed under HEAT TREATMENT
+      alongside the furnaces, so its being production-line equipment is not in doubt; only its being a production
+      MACHINE is.
+- id: pradeepmetals_com-equipments-0042
+  name: machine shop
+  status: disputed
+  acceptable_forms:
+  - a new machine shop
+  evidence:
+  - quote: set up a new machine shop within the existing plant
+    approx_offset: 196421
+  notes: a facility that holds machines, not a machine. Disputed | 'set up a new machine shop within the existing
+    plant' names a FACILITY, not a machine. No machine is identified by the phrase.
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: disputed
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+    reason: '''set up a new machine shop within the existing plant'' names a FACILITY, not a machine. No machine
+      is identified by the phrase.'
+- id: pradeepmetals_com-equipments-0043
+  name: 3T Hammer
+  status: confirmed
+  acceptable_forms:
+  - the new 3T Hammer
+  - 3T Hammer
+  evidence:
+  - quote: With the acquisition of the new 3T Hammer
+    approx_offset: 197913
+  notes: named only in blog prose, as the acquisition that took forging capacity from 8000 to 9200 MTPA. The rupee
+    figures on the same page are NOT capacity
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+- id: pradeepmetals_com-equipments-0044
+  name: press brakes
+  status: confirmed
+  acceptable_forms:
+  - press brakes
+  evidence:
+  - quote: tools like press brakes are used to bend the metal
+    approx_offset: 216037
+  actor: unknown
+  notes: 'named in a generic sheet-metal-fabrication explainer, and the text calls them ''tools'' - but a press
+    brake drives the work and is a production machine, so it is an entry. Recall-first: the attribution question
+    is downstream''s'
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+- id: pradeepmetals_com-equipments-0045
+  name: rolling mills
+  status: confirmed
+  acceptable_forms:
+  - rolling mills
+  evidence:
+  - quote: metals are put into a forge before being rolled in rolling mills
+    approx_offset: 238497
+  actor: unknown
+  notes: generic explainer prose about the iron-and-steel industry
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+- id: pradeepmetals_com-equipments-0046
+  name: CNC Turning Centers
+  status: confirmed
+  acceptable_forms:
+  - CNC Turning Centers
+  evidence:
+  - quote: adding CNC Turning Centers, Vertical Machining Centers (VMC)
+    approx_offset: 255317
+  notes: blog prose about capacity additions
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+- id: pradeepmetals_com-equipments-0047
+  name: Vertical Machining Centers (VMC)
+  status: confirmed
+  acceptable_forms:
+  - Vertical Machining Centers (VMC)
+  - Vertical Machining Centers
+  - VMC
+  evidence:
+  - quote: Vertical Machining Centers (VMC)
+    approx_offset: 255345
+  notes: '''VMC'' is a 3-character short form matched case-sensitively on word boundaries; it occurs exactly once,
+    inside the parentheses'
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+- id: pradeepmetals_com-equipments-0048
+  name: Vibro-feeder and Aspirator
+  status: candidate
+  acceptable_forms:
+  - Vibro-feeder
+  - Aspirator
+  evidence:
+  - quote: Installed with Vibro-mixer, Vibro-feeder, Aspirator and Cyclone separator
+    approx_offset: 20997
+  notes: 'the packet took Vibro-mixer (0011) and Cyclone separator (0012) from this line but not the other two items
+    on it. Flagging as arguable rather than clean: a feeder moves material, which the equipments clause excludes,
+    so a later reader should decide - but the asymmetry within one line looks like an oversight, not a judgment.'
+  provenance:
+  - action: added
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+    source: verification-pass-miss
+false_friends:
+- form: CMM
+  reason: 'witnessed and EXCLUDED BY THE CLAUSE: a coordinate measuring machine only measures the work. It heads
+    the Manufacturing page''s TESTING block, which is exactly where a plain reading of ''equipment'' goes wrong.
+    It is seeded as a process_caps entry instead. Short form: matched case-sensitively'
+- form: Spectrometer
+  reason: 'witnessed and excluded: measures composition, does not act on the work. Seeded under process_caps'
+- form: Tensile Tester
+  reason: 'witnessed and excluded: tests the work. Seeded under process_caps'
+- form: Microscopy
+  reason: 'witnessed and excluded: inspection. Seeded under process_caps'
+- form: SUSCEPTIBILITY MEASURING SYSTEM
+  reason: 'witnessed and excluded: an IMRC measuring instrument, listed among real machines'
+- form: CONVENTIONAL C & S ANALYSER
+  reason: 'witnessed and excluded: a carbon-and-sulphur analyser measures, it does not process'
+- form: IR Pyrometer
+  reason: 'witnessed and excluded: temperature sensing on the IMRC microwave systems; four separate printings'
+- form: Innovative vertical storage yard
+  reason: 'witnessed and excluded: the Manufacturing page''s RAW MATERIAL block names a storage yard - storing,
+    not processing'
+- form: Vibro-feeder
+  reason: 'witnessed and excluded: feeds material, i.e. moves it'
+- form: Wind Mill
+  reason: 'witnessed and excluded: it POWERS THE PLANT (95% of the company''s own energy), which the clause names
+    as a non-machine. It is also the industries-field inversion trap'
+- form: ETP plant
+  reason: 'witnessed and excluded: an effluent treatment plant conditions the site, not the work'
+- form: Recuperators
+  reason: 'witnessed and excluded: heat recovery on the furnaces, i.e. plant efficiency'
+- form: Mist collectors
+  reason: 'witnessed and excluded: extraction on the CNC machines - plant conditioning'
+- form: Fire hydrant system
+  reason: 'witnessed and excluded: site safety infrastructure'
+- form: Low power T5 lighting
+  reason: 'witnessed and excluded: plant lighting'
+- form: Mechanical Emergency siren
+  reason: 'witnessed and excluded: site safety'
+- form: forging dies
+  reason: 'witnessed and excluded: TOOLING. ''the forging dies are precision machined'' - a die is what a press
+    acts through, not the machine'
+- form: tool-room equipment
+  reason: 'witnessed and excluded: ''sophisticated tool-room equipment'' is tooling by name'
+- form: mould
+  reason: 'witnessed and excluded: ''a huge mould is prepared within which the metal is placed'' - tooling'
+- form: molds
+  reason: 'witnessed and excluded: the casting comparator''s ''putting it into molds'' - tooling'
+- form: cutting tools
+  reason: 'witnessed and excluded: ''several basic methods with advanced cutting tools are used'' - tooling'
+- form: gearbox
+  reason: 'witnessed: a COMPONENT OF A VALVE the company makes (''a gearbox which is attached to the stem of the
+    valve''), not a machine in the plant'
+- form: Dimensional Machine Works
+  reason: 'witnessed: a company name (the Houston step-down subsidiary), not a machine - and it is templated under
+    an ''INDIA FACILITIES'' heading'
+- form: test Machine Works
+  reason: 'witnessed: a CMS placeholder where the subsidiary''s name should be; contains the word ''Machine'' and
+    nothing machine-like'
+- form: Maini Materials Movement
+  reason: 'anticipatory-adjacent: a company on the directorship register whose name reads like materials-handling
+    equipment'
+- form: Power Team Hydraulic Technologies
+  reason: 'witnessed: a company on the directorship register whose name reads like hydraulic press equipment'
+- form: lathe
+  reason: 'anticipatory: zero occurrences. The HAAS SL/ST/TL rows are lathes but the word is never used'
+- form: EDM
+  reason: 'anticipatory: zero occurrences, despite a die-making shop being described'
+- form: hydraulic press
+  reason: 'anticipatory: zero occurrences - the presses are named ''Mechanical Presses'', and the only hydraulic
+    thing is the hammers'' converted drive'

@@ -1,0 +1,827 @@
+subject: pradeepmetals.com
+field: conformity_attestations
+snapshot:
+  file: apps/data_etl_app/tests/test_stages/sample_scraped_texts/pradeepmetals.com.txt
+  sha256: d3b7875e2769b8347084c18df480028cf319fc9595695734c21041dff6961bc0
+eval_set_version: 2
+expected_empty: false
+notes: 'The widest non-US standards regime in the corpus: PED 2014/68/EU + AD2000-Merkblatt W0, NORSOK, AS 9100D,
+  three ISO schemes, a Marine certificate, INDIAN BOILER / Central Boiler Board, Engineers India Ltd (EIL) vendor
+  approval, INDIAN DEFENSE and INDIAN RAILWAYS approved-supplier status, CANADIAN REGISTRATION, ISI standards and
+  DSIR R&D recognition. THREE OF THE LEADS ARE NOT PRINTED AS ABBREVIATIONS: the text never writes ''IBR'', ''EIL''
+  or ''CRN'' - it writes ''INDIAN BOILER'', ''ENGINEERS INDIA LTD'' and ''CANADIAN REGISTRATION''. Those three abbreviations
+  are anticipatory false_friends. Against 11 real certificate lines sits ~24 pages of securities-regulation vocabulary
+  (SEBI LODR, Companies Act, IEPF, BSE, Regulation 29/30/46, compliance reports) plus 24 governance policies - all
+  seeded disputed or as false_friends with the argument recorded.'
+entries:
+- id: pradeepmetals_com-conformity_attestations-0001
+  name: AS 9100D
+  status: confirmed
+  acceptable_forms:
+  - AS 9100D
+  evidence:
+  - quote: AS 9100D
+    approx_offset: 906
+  - quote: AS 9100D
+    approx_offset: 906
+  notes: aerospace QMS standard; printed identically on the homepage strip and the Quality page CERTIFICATES block
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+- id: pradeepmetals_com-conformity_attestations-0002
+  name: ISO 9001
+  status: confirmed
+  acceptable_forms:
+  - ISO 9001:2015
+  - ISO 9001-2015
+  evidence:
+  - quote: ISO 9001:2015
+    approx_offset: 915
+  - quote: ISO 9001-2015
+    approx_offset: 8908
+  - quote: ISO 9001-2015
+    approx_offset: 8908
+  notes: 'two printings: colon form on the homepage strip, hyphen form on the Quality page and in blog prose'
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+- id: pradeepmetals_com-conformity_attestations-0003
+  name: ISO 14001
+  status: confirmed
+  acceptable_forms:
+  - ISO 14001:2015
+  - ISO 14001-2015
+  - ISO 140001-2015
+  evidence:
+  - quote: ISO 14001:2015
+    approx_offset: 929
+  - quote: ISO 14001-2015
+    approx_offset: 8924
+  - quote: ISO 140001-2015
+    approx_offset: 207392
+  notes: '''ISO 140001-2015'' (five digits) is an in-text typo appearing twice in blog prose (L8463, L9355); kept
+    as an acceptable form because it is what the text prints'
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+- id: pradeepmetals_com-conformity_attestations-0004
+  name: ISO 45001
+  status: confirmed
+  acceptable_forms:
+  - ISO 45001:2018
+  - ISO 45001- 2018
+  evidence:
+  - quote: ISO 45001:2018
+    approx_offset: 944
+  - quote: ISO 45001- 2018
+    approx_offset: 8941
+  notes: 'the Quality page printing carries a stray space after the hyphen: ''ISO 45001- 2018'''
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+- id: pradeepmetals_com-conformity_attestations-0005
+  name: Pressure Equipment Directive (PED 2014/68/EU)
+  status: confirmed
+  acceptable_forms:
+  - PRESSURE EQUIPMENT DIRECTIVE (PED 2014/68/EU)
+  - PED 2014/68/EU
+  - PED certification
+  - PED
+  evidence:
+  - quote: PRESSURE EQUIPMENT DIRECTIVE (PED 2014/68/EU),AD2000-MERKBLATT W0
+    approx_offset: 8959
+  - quote: PED
+    approx_offset: 959
+  - quote: 2002 – PED certification
+    approx_offset: 36131
+  notes: EU pressure-equipment directive; the bare form 'PED' is a 3-character short form and is matched case-sensitively
+    on word boundaries - the text prints it uppercase
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+- id: pradeepmetals_com-conformity_attestations-0006
+  name: NORSOK
+  status: confirmed
+  acceptable_forms:
+  - NORSOK CERTIFIED
+  - NORSOK
+  evidence:
+  - quote: NORSOK CERTIFIED
+    approx_offset: 9027
+  - quote: NORSOK
+    approx_offset: 963
+  notes: Norwegian offshore standard; homepage strip prints the bare word, Quality page prints 'NORSOK CERTIFIED'
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+- id: pradeepmetals_com-conformity_attestations-0007
+  name: CIN (Corporate Identity Number)
+  status: disputed
+  acceptable_forms:
+  - 'CIN : L99999MH1982PLC026191'
+  - L99999MH1982PLC026191
+  evidence:
+  - quote: 'CIN : L99999MH1982PLC026191'
+    approx_offset: 1651
+  notes: a business-registry identifier, exactly the D-U-N-S case the brief says has been argued both ways. It sits
+    in the footer, so it appears 114 times and is in scope for nearly every window | the CIN is a business-registry
+    identifier, which SEEDING_BRIEF section 4 names explicitly as the seed-disputed class alongside D-U-N-S. It
+    also sits in the footer of all 114 page fetches, so it is unmissable and carries no recall information.
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: disputed
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+    reason: the CIN is a business-registry identifier, which SEEDING_BRIEF section 4 names explicitly as the seed-disputed
+      class alongside D-U-N-S. It also sits in the footer of all 114 page fetches, so it is unmissable and carries
+      no recall information.
+- id: pradeepmetals_com-conformity_attestations-0008
+  name: quality management system
+  status: disputed
+  acceptable_forms:
+  - quality management system
+  evidence:
+  - quote: by using a quality management system to ensure continual improvement in product quality
+    approx_offset: 8790
+  notes: no name, number, mark or issuing body of its own, so it fails the clause's identity requirement - but it
+    plainly implies the ISO 9001 certification listed two lines away. Disputed rather than a false_friend, because
+    charging a miss here would penalise defensible behaviour | 'quality management system' is a generic phrase in
+    the quality-policy sentence. The clause requires a certification/standard 'with an identity of its own, such
+    as a name, number, mark, or issuing body'; this phrase names no scheme. The identified schemes are already at
+    0002/0003/0004.
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: disputed
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+    reason: '''quality management system'' is a generic phrase in the quality-policy sentence. The clause requires
+      a certification/standard ''with an identity of its own, such as a name, number, mark, or issuing body''; this
+      phrase names no scheme. The identified schemes are already at 0002/0003/0004.'
+- id: pradeepmetals_com-conformity_attestations-0009
+  name: AD2000-Merkblatt W0
+  status: confirmed
+  acceptable_forms:
+  - AD2000-MERKBLATT W0
+  - AD2000-MERKBLATT
+  evidence:
+  - quote: PRESSURE EQUIPMENT DIRECTIVE (PED 2014/68/EU),AD2000-MERKBLATT W0
+    approx_offset: 8959
+  notes: German pressure-vessel manufacturer-qualification standard; printed with NO space in AD2000 and run onto
+    the PED line with no space after the comma
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+- id: pradeepmetals_com-conformity_attestations-0010
+  name: Marine certificate
+  status: confirmed
+  acceptable_forms:
+  - MARINE CERTIFICATE
+  evidence:
+  - quote: MARINE CERTIFICATE
+    approx_offset: 9046
+  notes: named only as a bare two-word line in the Quality page CERTIFICATES block - no issuing society (no DNV/Lloyd/ABS
+    anywhere in the file)
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+- id: pradeepmetals_com-conformity_attestations-0011
+  name: Indian Boiler approval
+  status: confirmed
+  acceptable_forms:
+  - INDIAN BOILER
+  evidence:
+  - quote: INDIAN BOILER
+    approx_offset: 9067
+  notes: this is the IBR / Indian Boiler Regulations lead, and the text NEVER writes 'IBR' or 'Regulations' - just
+    the bare line 'INDIAN BOILER' in the CERTIFICATES block. 'IBR' is seeded as an anticipatory false_friend
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+- id: pradeepmetals_com-conformity_attestations-0012
+  name: Engineers India Ltd (EIL) approval
+  status: confirmed
+  acceptable_forms:
+  - ENGINEERS INDIA LTD
+  evidence:
+  - quote: ENGINEERS INDIA LTD
+    approx_offset: 9083
+  - quote: certified by Engineers India Ltd
+    approx_offset: 207457
+  notes: EIL vendor approval - the standard Indian refinery/petrochemical vendor gate. The text never abbreviates
+    it to 'EIL'; that abbreviation is seeded as an anticipatory false_friend
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+- id: pradeepmetals_com-conformity_attestations-0013
+  name: Indian Defense approved supplier
+  status: confirmed
+  acceptable_forms:
+  - INDIAN DEFENSE
+  evidence:
+  - quote: INDIAN DEFENSE
+    approx_offset: 9119
+  notes: printed with the American spelling; 'Indian Defence' does not occur anywhere in the file. The words APPROVED
+    SUPPLIER sit on the NEXT line (L366), so the designation is split across a line break and no single-line quote
+    can carry both
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+- id: pradeepmetals_com-conformity_attestations-0014
+  name: APPROVED SUPPLIER
+  status: disputed
+  acceptable_forms:
+  - APPROVED SUPPLIER
+  evidence:
+  - quote: APPROVED SUPPLIER
+    approx_offset: 9134
+  - quote: APPROVED SUPPLIER
+    approx_offset: 9134
+  - quote: APPROVED SUPPLIER
+    approx_offset: 9134
+  notes: 'broad: the bare phrase is its own line three times under INDIAN DEFENSE, INDIAN RAILWAYS and CANADIAN
+    REGISTRATION. It is a substring of the Nuclear entry''s form, so its recall number carries little information
+    of its own - kept because it is what a line-scoped extractor will actually return | ''APPROVED SUPPLIER'' is
+    the second line of three designations the scrape split across a line break - INDIAN DEFENSE / APPROVED SUPPLIER,
+    INDIAN RAILWAYS / APPROVED SUPPLIER, CANADIAN REGISTRATION / APPROVED SUPPLIER - plus the tail of NUCLEAR APPROVED
+    SUPPLIER. Splitting the entries was the right call given the no-line-break rule, but the bare status label has
+    no issuing body of its own, so it fails the ''identity of its own'' clause on its own.'
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: disputed
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+    reason: '''APPROVED SUPPLIER'' is the second line of three designations the scrape split across a line break
+      - INDIAN DEFENSE / APPROVED SUPPLIER, INDIAN RAILWAYS / APPROVED SUPPLIER, CANADIAN REGISTRATION / APPROVED
+      SUPPLIER - plus the tail of NUCLEAR APPROVED SUPPLIER. Splitting the entries was the right call given the
+      no-line-break rule, but the bare status label has no issuing body of its own, so it fails the ''identity of
+      its own'' clause on its own.'
+- id: pradeepmetals_com-conformity_attestations-0015
+  name: Indian Railways approved supplier
+  status: confirmed
+  acceptable_forms:
+  - INDIAN RAILWAYS
+  evidence:
+  - quote: INDIAN RAILWAYS
+    approx_offset: 9153
+  notes: '''APPROVED SUPPLIER'' is on the following line (L369); RDSO is never named'
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+- id: pradeepmetals_com-conformity_attestations-0016
+  name: Canadian Registration approved supplier
+  status: confirmed
+  acceptable_forms:
+  - CANADIAN REGISTRATION
+  evidence:
+  - quote: CANADIAN REGISTRATION
+    approx_offset: 9188
+  notes: this is the CRN lead; the text never writes 'CRN' or 'Canadian Registration Number'. 'CRN' is seeded as
+    an anticipatory false_friend
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+- id: pradeepmetals_com-conformity_attestations-0017
+  name: IMS Policy
+  status: confirmed
+  acceptable_forms:
+  - IMS POLICY
+  - IMS
+  evidence:
+  - quote: IMS POLICY
+    approx_offset: 9240
+  - quote: IMS POLICY
+    approx_offset: 9240
+  notes: 'TRAP: this sits in a ''POLICY'' block DIRECTLY BELOW the CERTIFICATES and APPROVALS blocks on the Quality
+    page, and again among 24 governance policies on /policies. IMS = Integrated Management System, and an IMS certificate
+    would qualify - but what the text names is the company''s own internal policy document, which has no external
+    issuing body and is not something a third party attests. Disputed: arguable either way, and the adjacent ''Stage
+    1 IMS audit completed'' line is the reason it is arguable at all'
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+- id: pradeepmetals_com-conformity_attestations-0018
+  name: Nuclear approved supplier (USA & Germany)
+  status: confirmed
+  acceptable_forms:
+  - NUCLEAR APPROVED SUPPLIER (USA & GERMANY)
+  - NUCLEAR APPROVED SUPPLIER
+  evidence:
+  - quote: NUCLEAR APPROVED SUPPLIER (USA & GERMANY)
+    approx_offset: 11786
+  notes: listed under CORE STRENGHTS on About Us / Our Vision & Strengths, not on the Quality page; no scheme name
+    (no 10CFR50, no KTA) is given
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+- id: pradeepmetals_com-conformity_attestations-0019
+  name: Accounting Treatment Certificate
+  status: disputed
+  acceptable_forms:
+  - ACCOUNTING TREATMENT CERTIFICATE
+  evidence:
+  - quote: ACCOUNTING TREATMENT CERTIFICATE
+    approx_offset: 15135
+  notes: one of 24 line items in the Scheme of Amalgamation list; carries the word 'CERTIFICATE' and nothing else
+    in-field. Disputed - a good measure of whether the stage reads the word or the thing | the Accounting Treatment
+    Certificate is a merger filing in the scheme-of-amalgamation document list, issued for a transaction rather
+    than attesting the company, its people, its sites or its products. Literally a certificate, which is why this
+    is arguable.
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: disputed
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+    reason: the Accounting Treatment Certificate is a merger filing in the scheme-of-amalgamation document list,
+      issued for a transaction rather than attesting the company, its people, its sites or its products. Literally
+      a certificate, which is why this is arguable.
+- id: pradeepmetals_com-conformity_attestations-0020
+  name: DIN (Director Identification Number)
+  status: disputed
+  acceptable_forms:
+  - 'DIN: 00008370'
+  - 'DIN: 05017190'
+  evidence:
+  - quote: 'Pradeep Vedprakash Goyal (DIN: 00008370)'
+    approx_offset: 24112
+  - quote: 'Neeru Pradeep Goyal (DIN: 05017190)'
+    approx_offset: 24357
+  notes: 'COLLISION TRAP: ''DIN'' here is an Indian Director Identification Number for a PERSON, but the same file''s
+    material-grade table prints ''DIN1.2714'' and ''DIN1.2713'' - real Deutsches Institut fuer Normung tool-steel
+    grades. Ten DIN: numbers, all people. Disputed as an attestation; the grade forms belong to material_caps |
+    a DIN is a registry identifier issued to a PERSON (a director), the same class as the CIN at 0007 and the D-U-N-S
+    example in SEEDING_BRIEF section 4. It attests nothing about the company, its sites or its products.'
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: disputed
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+    reason: a DIN is a registry identifier issued to a PERSON (a director), the same class as the CIN at 0007 and
+      the D-U-N-S example in SEEDING_BRIEF section 4. It attests nothing about the company, its sites or its products.
+- id: pradeepmetals_com-conformity_attestations-0021
+  name: ISO certification (undated, 1995)
+  status: confirmed
+  acceptable_forms:
+  - ISO certification
+  evidence:
+  - quote: 1995 – ISO certification
+    approx_offset: 36375
+  notes: the history timeline's generic mention; not a substring of the numbered ISO entries, so it can miss independently
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+- id: pradeepmetals_com-conformity_attestations-0022
+  name: SEBI (LODR) Regulations, 2015
+  status: confirmed
+  acceptable_forms:
+  - SEBI (LISTING OBLIGATION AND DISCLOSURE REQUIREMENTS) REGULATIONS, 2015
+  - SEBI LODR
+  evidence:
+  - quote: SEBI (LISTING OBLIGATION AND DISCLOSURE REQUIREMENTS) REGULATIONS, 2015
+    approx_offset: 43479
+  - quote: SEBI LODR
+    approx_offset: 43427
+  notes: 'REGULATOR PHRASED LIKE A STANDARD. For: it is a named, numbered regulation with an issuing body that this
+    company must specifically follow, which is literally what the clause says. Against: it is securities-market
+    listing regulation, nothing a manufacturer''s people, sites or products conform to, and admitting it opens the
+    door to the whole ~24-page investor-relations vocabulary. Disputed'
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+- id: pradeepmetals_com-conformity_attestations-0023
+  name: Annual Secretarial Compliance Report
+  status: disputed
+  acceptable_forms:
+  - Annual Secretarial Compliance Report
+  - Secretarial compliance report
+  evidence:
+  - quote: "30 May 2025\tAnnual Secretarial Compliance Report\t 1.73 MB"
+    approx_offset: 74861
+  - quote: Secretarial compliance report
+    approx_offset: 45346
+  notes: a filing produced under a regulation, not an attestation held. Seeded disputed because the word 'Compliance'
+    is in the field's own clause and a model has fair grounds to return it | the Annual Secretarial Compliance Report
+    is a filing the company submits, not a certification/accreditation/standard it holds, meets or follows. Its
+    subject matter is compliance, which is why this is arguable rather than wrong.
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: disputed
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+    reason: the Annual Secretarial Compliance Report is a filing the company submits, not a certification/accreditation/standard
+      it holds, meets or follows. Its subject matter is compliance, which is why this is arguable rather than wrong.
+- id: pradeepmetals_com-conformity_attestations-0024
+  name: Companies Act, 2013
+  status: confirmed
+  acceptable_forms:
+  - Companies Act,2013
+  - Companies Act
+  evidence:
+  - quote: section 92 of the Companies Act,2013
+    approx_offset: 45965
+  notes: same argument as SEBI LODR; note the text prints it with no space after the comma. Named once
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+- id: pradeepmetals_com-conformity_attestations-0025
+  name: ISI standards
+  status: confirmed
+  acceptable_forms:
+  - ISI standards
+  - ISI
+  evidence:
+  - quote: Adherence to ISI standards for fire and evacuation
+    approx_offset: 65209
+  notes: Bureau of Indian Standards mark, named once (twice with the duplicate CSR page) and only for fire and evacuation,
+    not for product. 'ISI' is a 3-character short form matched case-sensitively - the text prints it uppercase
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+- id: pradeepmetals_com-conformity_attestations-0026
+  name: IMS audit (Stage 1 / Stage 2)
+  status: confirmed
+  acceptable_forms:
+  - Stage 1 IMS audit completed
+  evidence:
+  - quote: Stage 1 IMS audit completed. Stage 2 planned in 1st week of June
+    approx_offset: 65614
+  notes: a certification audit in progress implies a management-system certification being pursued; but an audit
+    stage is not itself a held attestation. Disputed
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+- id: pradeepmetals_com-conformity_attestations-0027
+  name: Certificate of Incorporation
+  status: confirmed
+  acceptable_forms:
+  - Certificate of Incorporation
+  evidence:
+  - quote: Certificate of Incorporation
+    approx_offset: 93768
+  notes: a registration document with an issuing body, which fits the clause's letter; but it attests corporate
+    existence, not conformity. Same class as a D-U-N-S number. Disputed
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+- id: pradeepmetals_com-conformity_attestations-0028
+  name: granted patents (numbered IP registrations)
+  status: disputed
+  acceptable_forms:
+  - Granted in India (N0. 277603)
+  - Granted in India (No. 309420)
+  - US US9873185
+  - China No. CN 104661795 B
+  - Australia (No. 2015300579)
+  evidence:
+  - quote: Granted in India (N0. 277603) on Nov. 25,2016
+    approx_offset: 96024
+  - quote: Granted in India (No. 309420) on March 19,2019
+    approx_offset: 96163
+  - quote: US US9873185, on Jan 28,2018
+    approx_offset: 96284
+  - quote: China No. CN 104661795 B on April 9,2019
+    approx_offset: 96347
+  - quote: Australia (No. 2015300579) on March 25,2021
+    approx_offset: 96913
+  notes: 'six patent families across India, US, Japan, China, Ukraine, Russia and Australia. For: each is a numbered
+    registration granted by a named authority that the company specifically holds - the clause''s words fit. Against:
+    a patent is an IP grant, not a conformity attestation. Disputed. Note the OCR-style typo ''N0.'' (zero) in the
+    first one | granted patents are IP registrations. ''registration'' is in the clause and each has a number and
+    an issuing office, so the literal reading passes; but a patent attests invention ownership, not conformity to
+    anything the company holds, meets or follows.'
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: disputed
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+    reason: granted patents are IP registrations. 'registration' is in the clause and each has a number and an issuing
+      office, so the literal reading passes; but a patent attests invention ownership, not conformity to anything
+      the company holds, meets or follows.
+- id: pradeepmetals_com-conformity_attestations-0029
+  name: Member of Bar Association of West Bengal
+  status: disputed
+  acceptable_forms:
+  - Member of Bar Association of West Bengal
+  evidence:
+  - quote: He is a Member of Bar Association of West Bengal
+    approx_offset: 127140
+  notes: a professional licence/membership held by an independent DIRECTOR, in his personal capacity, not by the
+    company or its sites. Actor is the person, not the firm. Disputed | a trade-association membership held by a
+    non-executive director - exactly the class SEEDING_BRIEF section 4 says to seed disputed ('Trade-association
+    memberships ... have repeatedly been argued either way').
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: disputed
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+    reason: a trade-association membership held by a non-executive director - exactly the class SEEDING_BRIEF section
+      4 says to seed disputed ('Trade-association memberships ... have repeatedly been argued either way').
+- id: pradeepmetals_com-conformity_attestations-0030
+  name: DSIR R&D Centre recognition
+  status: confirmed
+  acceptable_forms:
+  - recognized as a R&D Center by DSIR
+  - DSIR
+  evidence:
+  - quote: IMRC is also recognized as a R&D Center by DSIR, Govt. of India since 2008
+    approx_offset: 139975
+  notes: Department of Scientific and Industrial Research recognition of the IMRC research centre; a genuine government
+    recognition the company holds, unlike the securities regulators. Named exactly once in the whole file
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+- id: pradeepmetals_com-conformity_attestations-0031
+  name: ASM International membership / office
+  status: disputed
+  acceptable_forms:
+  - under the aegis of ASM International, India Chapter
+  - President Of ASM International 2023-24
+  evidence:
+  - quote: under the aegis of ASM International, India Chapter
+    approx_offset: 140215
+  - quote: President Of ASM International 2023-24
+    approx_offset: 142983
+  notes: 'a professional-society office held by the chairman; the brief flags trade-association memberships and
+    staff titles as argued-both-ways. Disputed | same class as 0029: one form is a society affiliation for a workshop
+    (''under the aegis of ASM International, India Chapter'') and the other is an office held by a person (''President
+    Of ASM International 2023-24''), which section 4 lists as the staff-job-title case.'
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: disputed
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+    reason: 'same class as 0029: one form is a society affiliation for a workshop (''under the aegis of ASM International,
+      India Chapter'') and the other is an office held by a person (''President Of ASM International 2023-24''),
+      which section 4 lists as the staff-job-title case.'
+- id: pradeepmetals_com-conformity_attestations-0032
+  name: Central Boiler Board certification
+  status: confirmed
+  acceptable_forms:
+  - Central Boiler Board
+  evidence:
+  - quote: the firm is also certified by Engineers India Ltd, the Central Boiler Board
+    approx_offset: 207440
+  - quote: It is also certified by the Central Boiler Board
+    approx_offset: 245380
+  notes: the blog prose names the issuing body for the Quality page's bare 'INDIAN BOILER' line; separate designation,
+    so a separate entry
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+- id: pradeepmetals_com-conformity_attestations-0033
+  name: MEDA registration of the wind power project
+  status: confirmed
+  acceptable_forms:
+  - Maharashtra Energy Development Agency (MEDA)
+  - REGISTRATION OF THE 2.10 MW (1 X 21000 KW) WIND POWER PROJECT
+  evidence:
+  - quote: a Letter dated February 22, 2016 from Maharashtra Energy Development Agency (MEDA)
+    approx_offset: 257588
+  - quote: PRADEEP METALS – REGISTRATION OF THE 2.10 MW (1 X 21000 KW) WIND POWER PROJECT…
+    approx_offset: 257441
+  notes: a genuine registration with a named issuing body, for the company's own captive wind installation rather
+    than for its products
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+- id: pradeepmetals_com-conformity_attestations-0034
+  name: SEBI LODR Regulation 30 / Regulation 29 disclosures
+  status: candidate
+  acceptable_forms:
+  - Regulation 30 of the SEBI
+  - Regulation 30 (LODR)
+  - Regulation 29
+  evidence:
+  - quote: Disclosure under Regulation 30 of the SEBI
+    approx_offset: 75384
+  notes: the announcements page names these numbered regulations dozens of times as the instruments the listed company
+    complies under. Same class as the packet's 0022 (SEBI LODR Regulations, 2015), which I confirmed, so the omission
+    is inconsistent - though like 0022 and 0023 it is investor-relations material and a later reader may want it
+    disputed.
+  provenance:
+  - action: added
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+    source: verification-pass-miss
+- id: pradeepmetals_com-conformity_attestations-0035
+  name: Chartered Engineer
+  status: candidate
+  acceptable_forms:
+  - Chartered Engineer
+  evidence:
+  - quote: Late Mr. Ved Prakash Goyal who was a Chartered Engineer with 50 years of experience
+    approx_offset: 11985
+  notes: a professional credential held by the co-founder, named 7 times across the history and blog pages. SEEDING_BRIEF
+    section 4's staff-credential class, so likely disputed on promotion - but it is a named accreditation and the
+    packet has no entry for it.
+  provenance:
+  - action: added
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+    source: verification-pass-miss
+false_friends:
+- form: IBR
+  reason: 'anticipatory: the Indian Boiler Regulations lead is real but the text NEVER writes the abbreviation -
+    it prints only the bare line ''INDIAN BOILER''. Zero occurrences of ''IBR'' as a word in the whole file'
+- form: Indian Boiler Regulations
+  reason: 'anticipatory: zero occurrences; the text prints ''INDIAN BOILER'' and nothing more'
+- form: EIL
+  reason: 'anticipatory: zero occurrences as a word. The text prints ''ENGINEERS INDIA LTD'' / ''Engineers India
+    Ltd'' only'
+- form: CRN
+  reason: 'anticipatory: zero occurrences. The text prints ''CANADIAN REGISTRATION'' only; no number, no province'
+- form: Indian Defence
+  reason: 'anticipatory: zero occurrences - the text uses the American spelling ''INDIAN DEFENSE'''
+- form: ASTM
+  reason: 'anticipatory: zero occurrences. A US-standards reflex on a forging site whose grade table is European/Indian
+    (DIN, EN, SAE, F-series)'
+- form: ANSI
+  reason: 'anticipatory: zero occurrences'
+- form: ASME
+  reason: 'anticipatory: zero occurrences, despite pressure-equipment and boiler content that makes it a natural
+    fabrication'
+- form: NADCAP
+  reason: 'anticipatory: zero occurrences, despite AS 9100D aerospace certification being present'
+- form: API 6A
+  reason: 'anticipatory: zero occurrences of any API specification; the only ''API'' substrings in the file are
+    inside ordinary words'
+- form: DNV
+  reason: 'anticipatory: zero occurrences - the marine line is the bare ''MARINE CERTIFICATE'' with no society named'
+- form: Lloyd's Register
+  reason: 'anticipatory: zero occurrences'
+- form: IATF 16949
+  reason: 'anticipatory: zero occurrences, despite heavy automotive-forging blog prose'
+- form: BSE
+  reason: 'witnessed: 121 occurrences, all of them the ''BSE SHARE PRICE'' page chrome or a stock-exchange filing.
+    A securities exchange the company is listed on, not a standard it meets'
+- form: IEPF
+  reason: 'witnessed: 23 occurrences, all in the Unpaid and Unclaimed Dividend table. The Investor Education and
+    Protection Fund is a statutory fund shares are transferred to, not an attestation'
+- form: Credit Rating
+  reason: 'witnessed: appears as announcement titles (''PML - Credit Rating'', ''Reaffirmation in Credit Ratings'').
+    A financial rating, with no named agency and no conformity content'
+- form: Rosemount Strategic Supplier Award
+  reason: 'witnessed: a customer award on the Awards & Recognition page, not a certification'
+- form: Star Performer Shield, Western Region, 2012
+  reason: 'witnessed: an export-council award'
+- form: Engineering Export Promotion Council of India
+  reason: 'witnessed: named only as the body that gave an award, not as a certifier or a body the company is registered
+    with'
+- form: Best patent portfolio
+  reason: 'witnessed: an IMRC award title, not an attestation'
+- form: Endress+Hauser Letter of Recognition
+  reason: 'witnessed: a thank-you letter from a customer, printed among the awards'
+- form: AIFI
+  reason: 'witnessed: the Association of Indian Forging Industry is cited only as the SOURCE OF INDUSTRY STATISTICS
+    in two blog posts, never as a body the company belongs to'
+- form: Whistle Blower Policy
+  reason: 'witnessed: one of 24 internal governance policy documents on /policies; a policy the company wrote, not
+    one it is certified against'
+- form: Quality Policy
+  reason: 'witnessed: the company''s own one-sentence policy statement, repeated in the footer of 112 pages'

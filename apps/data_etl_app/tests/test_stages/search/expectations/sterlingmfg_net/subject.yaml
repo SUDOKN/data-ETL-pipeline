@@ -1,0 +1,81 @@
+subject: sterlingmfg.net
+slug: sterlingmfg_net
+role: full_unit
+business_type: five-acquisition roll-up (EPTAM Precision Solutions); certifications bound to four legal registrants
+snapshot:
+  file: apps/data_etl_app/tests/test_stages/sample_scraped_texts/sterlingmfg.net.txt
+  sha256: f42c4b74d9eefaa7461fe85ed30745ce9465330ba86e7099f728423deb498cc5
+eval_set_version: 1
+context: 'ENTITY DRIFT - this is the corpus''s entity-drift case. The seed domain is sterlingmfg.net but every one
+  of the 51 scraped pages is served from eptam.com and the site names itself EPTAM Precision Solutions, headquartered
+  at 2 Riverside Business Park, Northfield, NH 03276. Sterling Manufacturing (founded 1968, Lancaster MA) was ACQUIRED
+  by EPTAM on 2022-09-19; the press release on line 4819 is the only page that explains the link, and line 4835
+  is the only place the seed domain itself appears, as ''For more information about Sterling and Albright, visit
+  (http://www.sterlingmfg.net/)''. The old database record''s Colorado HQ is also wrong for the group as a whole,
+  though EPTAM does run two Colorado sites (Colorado Springs metals/laser, Broomfield rapid launch). FIVE-ACQUISITION
+  ROLL-UP, all named in the news posts: Relius Medical (2018, Colorado Springs metals), Mendell Machine and Manufacturing
+  (2021, Lakeville MN micro-machining), Ingram Machining (2022, Broomfield CO, re-branded EPTAM Rapid Launch Center),
+  Sterling Manufacturing + its subsidiary Albright Silicone (2022, Lancaster and Leominster MA molding). Owned by
+  Frazier Healthcare Partners since Dec 2019; previously New Heritage Capital. NINE named sites across NH, MA(2),
+  NJ, CT, MI, MN, CO(2). MEDICAL-DEVICE REGIME: ISO 13485:2016 at all four registrants, four separate FDA establishment
+  registration numbers, 21 CFR 820, AS9100D, ITAR/DDT, CAGE code, ANVISA.'
+scrape_hazards:
+- hazard: the site is eptam.com, not sterlingmfg.net - the subject name and the text's self-name disagree completely;
+    anything keyed on the domain will mis-attribute every fact
+  quote: ©2023 EPTAM Precision - All Rights Reserved. Site by wedu
+- hazard: a ~240-entry ISO country dropdown from the careers form is dumped into the text TWICE (lines 2663-2911
+    and 3900-4148), roughly 8% of all lines; countries are not industries
+  quote: Bonaire, Sint Eustatius and Saba
+- hazard: a 54-line nav+footer block repeats on all 52 pages (3,120 of 6,102 lines, 51% of the file). It carries
+    the CERTIFICATIONS list, so every certification form occurs 52+ times and every window sees them
+  quote: 'EPTAM Plastics, LTD Registration Number: 3005144609'
+- hazard: certifications are scoped to FOUR DIFFERENT LEGAL REGISTRANTS with four FDA numbers, and the footer names
+    them differently from the quality page (EPTAM Plastics LTD vs EPTAM Precision Plastics; EPTAM West LLC vs EPTAM
+    Precision Metals)
+  quote: 'FDA #3011302692 (West/Metals)'
+- hazard: 'the quality page and the silicone-molding page CONTRADICT each other: one lists FDA #3005144609 and #3011302692
+    as held, the other as pending'
+  quote: 'Pending FDA Registration (#3005144609, #3011302692)'
+- hazard: 'scrape-faithful typos throughout: ''Hass VF-SS'' for Haas, ''semi-conductur'', ''Polyproplene'', ''Nylond
+    12'', ''Wood FIll'', ''manfanufacturing'', ''design-forassembly'''
+  quote: Over 50 Machining centers driven by Star, Tornos Deco, TornosNanos, Hass VF-SS, and Mazak Integrex.
+- hazard: three pages scrape to the 404 stub and one page is a duplicate of another; /capabilities/laser-old/ and
+    /capabilities/laser/ are two versions of the same page
+  quote: It looks like nothing was found at this location.
+- hazard: acquisition press releases carry 'About <acquired company>' boilerplate describing OTHER firms' equipment,
+    products and certifications (Ingram, Mendell, Relius, Sterling, Frazier, New Heritage)
+  quote: The company utilizes state-of-the-art equipment including 5-Axis Mills, CNC Lathes, and Wire EDM Machining.
+- hazard: executive biographies name former employers (UFP Technologies, Viant Medical, Vention Medical, ATEK Medical,
+    Parata Systems, Tecomet, Flextronics Medical, iiMED, LongueVue) and their products; those are not EPTAM's
+  quote: he oversaw the design and manufacture of medical devices, sterile packaging, and robotic surgical drape
+    systems
+- hazard: the footer's INDUSTRIES column mis-files a process ('Rapid Prototyping') as an industry, 52 times
+  quote: Rapid Prototyping
+- hazard: 92 non-breaking spaces and 13 zero-width spaces sit mid-phrase, several inside certification lines
+  quote: ISO Class 8 certified cleanrooms
+- hazard: the semiconductor page's applications list names client-side parts (Smart Phones, Computers, Laptops,
+    Tablets, Windows) that read as EPTAM products and are not
+  quote: Computers, Laptops, Tablets
+sampling_notes: 'READ EXHAUSTIVELY. 211,477 bytes / 6,102 lines / 51 distinct page URLs, all on eptam.com. Method:
+  the whole file was read in sed slices after mechanically stripping the 52 repeated nav+footer blocks (3,120 lines,
+  51% of the file) into markers, leaving 3,086 unique-content lines, every one of which was read. Both copies of
+  the ~240-line country dropdown were read once and skimmed the second time. Then targeted greps: standards bodies
+  (ISO/AS/CFR/FDA/ITAR/Mil-I/NCSL/ANVISA/EU MDR), machine brands (Okuma/Tsugami/Komo/Mazak/Haas/Tornos/Star/Engel/Arburg/Toyo/Brother/Topper/Fanuc/UR10),
+  generic machine nouns (printer/furnace/lathe/mill/router/press/turret/spindle/welder/cutter/marker), every -ing
+  word in the file (ranked by frequency), a 60-term word-boundary material roll-call, an industry roll-call, and
+  a product-designation sweep. Unique content is: 9 capability pages, 9 industry pages, about/leadership/locations/quality/policies/careers,
+  and 12 news posts; the rest is duplicate stubs, 404 stubs and repeated resource-index listings.'
+notes: 'All six fields are non-empty and dense. products.yaml doubles as the contract_products expectation: EPTAM
+  is an OUTSOURCED/contract manufacturer, so most product entries are parts made for OEM customers, and the semiconductor
+  applications list is explicitly client-side (actor: client). The site''s own service lines (machining, molding,
+  laser, additive) are process_caps, not products. equipments was seeded strictly to the equipment prompt''s exclusion
+  list: the five CMM mentions, the Zeiss O-inspect/Contura metrology line, the cleanrooms, the molds and the tooling
+  are all false_friends there, not entries - the alecmfg false-RED failure mode. UR10 cobots, the Fanuc control,
+  the ATC and the turret are seeded DISPUTED because they sit exactly on that boundary. NOTE FOR THE BUILD STEP:
+  build_expectations.py does not carry `status_hint` through, so the 17 disputed entries will land as `candidate`
+  unless their status is set by hand.'
+provenance:
+- action: added
+  by: seed-agent-sterlingmfg-net
+  date: '2026-08-27'
+  source: corpus-seed

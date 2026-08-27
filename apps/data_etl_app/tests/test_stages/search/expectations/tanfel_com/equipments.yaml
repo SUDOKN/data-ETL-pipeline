@@ -1,0 +1,478 @@
+subject: tanfel.com
+field: equipments
+snapshot:
+  file: apps/data_etl_app/tests/test_stages/sample_scraped_texts/tanfel.com.txt
+  sha256: 4942d992128752abeace6e11e1235e9e55f4737a21b51d3778cb2f818667bf9b
+eval_set_version: 2
+expected_empty: false
+notes: '23 entries (14 own, 9 unknown, 1 disputed) and ZERO equipment brands. The brand absence is confirmed by
+  a sweep of 60+ machine-tool makers with no hits, so any branded machine a run returns here is fabricated. What
+  the text DOES name splits three ways: an owned-fleet claim (six CNC lathe/turning-centre types, 3/4/5-axis machining
+  centres, turret punch, 7-axis press brake, tonnage presses, trim press); a generic-definition mention (hot/cold
+  chamber machine, forging hammer); and an aluminum-extrusion textbook walkthrough (aging ovens, stretcher, extrusion
+  puller, saws) carrying actor=unknown. Metrology instruments — of which this site has many, including the products
+  it sells — are excluded by the field''s own clause and are seeded as false friends instead.'
+entries:
+- id: tanfel_com-equipments-0001
+  name: CNC machines (horizontal and vertical)
+  status: confirmed
+  acceptable_forms:
+  - 'CNC MACHINES: HORIZONTAL AND VERTICAL'
+  - CNC machines
+  evidence:
+  - quote: 'There are two basic forms of CNC machines: horizontal and vertical.'
+    approx_offset: 18539
+  actor: unknown
+  notes: a generic definition of the two CNC machine orientations, not a claim about what any plant holds.
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+- id: tanfel_com-equipments-0002
+  name: 3-axis / 4-axis / 5-axis machining centres
+  status: confirmed
+  acceptable_forms:
+  - 3-axis, 4-axis and 5-axis machines
+  - 3-axis, 4-axis, and 5-axis machines
+  - 5-axis machines
+  evidence:
+  - quote: We use 3-axis, 4-axis and 5-axis machines.
+    approx_offset: 18927
+  - quote: a fleet of 3-axis, 4-axis, and 5-axis machines that can create complex and intricate products with spindles
+      and machining tools that
+    approx_offset: 80120
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+- id: tanfel_com-equipments-0003
+  name: Rotary transfer machine
+  status: confirmed
+  acceptable_forms:
+  - Rotary transfer machine
+  evidence:
+  - quote: 'Specialty machining: Rotary transfer machine, Jig / Fixture manufacturing, Casting machining, Tool &
+      die manufacturing'
+    approx_offset: 19109
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+- id: tanfel_com-equipments-0004
+  name: Lathe
+  status: confirmed
+  acceptable_forms:
+  - lathe machine
+  - Machine Lathe
+  - lathes
+  - CNC lathes
+  evidence:
+  - quote: A lathe machine rotates raw material around an axis to perform operations such as cutting, sanding, knurling,
+      drilling or turning.  Tools are used to create a part that is symmetric around the axis.
+    approx_offset: 31893
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+- id: tanfel_com-equipments-0005
+  name: Bench lathe
+  status: confirmed
+  acceptable_forms:
+  - Bench lathe
+  - bench lathe
+  evidence:
+  - quote: Bench lathe
+    approx_offset: 81375
+  - quote: Center lathe, bench lathe, screw machines, multi spindle lathe, Swiss style, Swiss turning center.
+    approx_offset: 32119
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+- id: tanfel_com-equipments-0006
+  name: Center lathe
+  status: confirmed
+  acceptable_forms:
+  - Center lathe
+  evidence:
+  - quote: Center lathe
+    approx_offset: 32119
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+- id: tanfel_com-equipments-0007
+  name: Multi-spindle lathe
+  status: confirmed
+  acceptable_forms:
+  - Multi-spindle lathe
+  - multi spindle lathe
+  evidence:
+  - quote: Multi-spindle lathe
+    approx_offset: 81412
+  - quote: multi spindle lathe, Swiss style, Swiss turning center.
+    approx_offset: 32162
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+- id: tanfel_com-equipments-0008
+  name: Swiss turning center
+  status: confirmed
+  acceptable_forms:
+  - Swiss turning center
+  - Swiss style
+  evidence:
+  - quote: Swiss turning center
+    approx_offset: 32196
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+- id: tanfel_com-equipments-0009
+  name: Extrusion ram
+  status: disputed
+  acceptable_forms:
+  - the ram
+  evidence:
+  - quote: The part that will push the metal through the die, called the ram, is also coated with the lubricant.
+      The lubricant prevents aluminum from sticking to the machine walls and the ram.
+    approx_offset: 53408
+  actor: unknown
+  notes: 'DISPUTED: the ram is the element of an extrusion press that pushes the billet, so it acts on the work
+    — but it is a machine PART, and the prompt separates machines from what a machine acts through. Kept disputed
+    so the boundary call is on the record. | the ram is the driven member of the extrusion press, not a machine
+    in its own right: ''The part that will push the metal through the die, called the ram''. It does act on the
+    work, so it is not tooling either, but it is a component of a machine the text never separately names, and the
+    field''s clause is about production machines.'
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: disputed
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+    reason: 'the ram is the driven member of the extrusion press, not a machine in its own right: ''The part that
+      will push the metal through the die, called the ram''. It does act on the work, so it is not tooling either,
+      but it is a component of a machine the text never separately names, and the field''s clause is about production
+      machines.'
+- id: tanfel_com-equipments-0010
+  name: Extrusion puller
+  status: disputed
+  acceptable_forms:
+  - extrusion puller
+  evidence:
+  - quote: An extrusion puller guides the extrusion to the runout table, where special saws cut it to the stock
+      length of 150
+    approx_offset: 53806
+  actor: unknown
+  notes: 'same textbook walkthrough. It guides the extrusion, so it acts on the work. | by the text''s own description
+    the puller conveys rather than processes: ''An extrusion puller guides the extrusion to the runout table''.
+    The clause explicitly excludes equipment that ''moves, stores, or carries what it makes'', which is exactly
+    the function the sentence assigns it.'
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: disputed
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+    reason: 'by the text''s own description the puller conveys rather than processes: ''An extrusion puller guides
+      the extrusion to the runout table''. The clause explicitly excludes equipment that ''moves, stores, or carries
+      what it makes'', which is exactly the function the sentence assigns it.'
+- id: tanfel_com-equipments-0011
+  name: Cut-off saws
+  status: confirmed
+  acceptable_forms:
+  - special saws
+  evidence:
+  - quote: where special saws cut it to the stock length of 150’. The cut stock is transferred to a cooling table
+      to let it
+    approx_offset: 53868
+  actor: unknown
+  notes: same textbook walkthrough.
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+- id: tanfel_com-equipments-0012
+  name: Stretcher
+  status: confirmed
+  acceptable_forms:
+  - stretcher
+  - A stretcher
+  evidence:
+  - quote: A stretcher is used to straighten the cooled stock. Then, stock pieces are cut the component to its final
+    approx_offset: 54074
+  actor: unknown
+  notes: same textbook walkthrough.
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: amended
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+    reason: the entity is right and the quote is verbatim, but the only acceptable form 'A stretcher' carries the
+      article, so a stage returning the natural phrase 'stretcher' would not credit it. 'stretcher' occurs in the
+      text only inside 'A stretcher is used to straighten the cooled stock' (lines 1322, 2046), so adding the bare
+      form widens nothing it should not.
+- id: tanfel_com-equipments-0013
+  name: Artificial aging ovens
+  status: confirmed
+  acceptable_forms:
+  - artificial aging ovens
+  evidence:
+  - quote: the parts are heat treated in artificial aging ovens.
+    approx_offset: 54222
+  actor: unknown
+  notes: generic aluminum-extrusion textbook walkthrough, printed twice (extrusion pages).
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+- id: tanfel_com-equipments-0014
+  name: Hot or cold chamber die casting machine
+  status: confirmed
+  acceptable_forms:
+  - hot or cold chamber machine
+  evidence:
+  - quote: Depending on the type of metal being cast, a hot or cold chamber machine is used.
+    approx_offset: 68512
+  actor: unknown
+  notes: stated as how die casting works in general, not as a machine anyone here owns.
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+- id: tanfel_com-equipments-0015
+  name: Trim press
+  status: confirmed
+  acceptable_forms:
+  - Trim press
+  evidence:
+  - quote: Trim press, drill and tap, CNC, polishing, buffing, vibratory finish, shot blasting
+    approx_offset: 69336
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+- id: tanfel_com-equipments-0016
+  name: CNC turning machines
+  status: confirmed
+  acceptable_forms:
+  - CNC turning machines
+  evidence:
+  - quote: 'We use the following types of CNC lathes and CNC turning machines:'
+    approx_offset: 81301
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+- id: tanfel_com-equipments-0017
+  name: Screw machines
+  status: confirmed
+  acceptable_forms:
+  - Screw machines
+  - screw machines
+  evidence:
+  - quote: Screw machines
+    approx_offset: 81438
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+- id: tanfel_com-equipments-0018
+  name: Single and progressive die presses
+  status: confirmed
+  acceptable_forms:
+  - single and progressive die presses
+  - 5 ton to 600 ton single and progressive die presses
+  evidence:
+  - quote: 5 ton to 600 ton single and progressive die presses
+    approx_offset: 123441
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+- id: tanfel_com-equipments-0019
+  name: Forging hammer
+  status: disputed
+  acceptable_forms:
+  - hammer, press or rolling
+  - hammer
+  evidence:
+  - quote: Shaping metal by using a hammer, press or rolling.
+    approx_offset: 132633
+  actor: unknown
+  notes: generic forging definition rather than an owned-machine claim. | 'Shaping metal by using a hammer, press
+    or rolling' names three means of forging in one breath; 'press' is separately and concretely evidenced two lines
+    later ('300 and 400 ton presses'), but 'hammer' here can be read as an implement rather than as a forging hammer
+    machine, and nothing else on the page names a hammer.
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: disputed
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+    reason: '''Shaping metal by using a hammer, press or rolling'' names three means of forging in one breath; ''press''
+      is separately and concretely evidenced two lines later (''300 and 400 ton presses''), but ''hammer'' here
+      can be read as an implement rather than as a forging hammer machine, and nothing else on the page names a
+      hammer.'
+- id: tanfel_com-equipments-0020
+  name: Forging presses
+  status: confirmed
+  acceptable_forms:
+  - 300 and 400 ton presses
+  evidence:
+  - quote: Hot forging. 300 and 400 ton presses
+    approx_offset: 132951
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+- id: tanfel_com-equipments-0021
+  name: Turret punch
+  status: confirmed
+  acceptable_forms:
+  - Turret punch
+  - turret punch
+  evidence:
+  - quote: Punching, Turret punch, 7 axis Press brake, Welding, Hardware insertion
+    approx_offset: 134500
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+- id: tanfel_com-equipments-0022
+  name: 7 axis press brake
+  status: confirmed
+  acceptable_forms:
+  - 7 axis Press brake
+  evidence:
+  - quote: 7 axis Press brake, Welding, Hardware insertion
+    approx_offset: 134524
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+- id: tanfel_com-equipments-0023
+  name: Metal stamping machine
+  status: confirmed
+  acceptable_forms:
+  - stamping machine
+  evidence:
+  - quote: stamping machine, different stations will form punches and bends to achieve the desired shape.
+    approx_offset: 167129
+  actor: unknown
+  notes: blog prose; the phrase 'metal stamping machine' is split by a hard line break ('...unrolled into the metal'
+    / 'stamping machine, ...'), so only the second half is quotable as one line. That line break is itself a scrape
+    hazard.
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+false_friends:
+- form: runout table
+  reason: 'witnessed: it receives and carries the extrusion — ''moves, stores, or carries what it makes'' is explicitly
+    excluded from this field.'
+- form: cooling table
+  reason: 'witnessed: same exclusion as the runout table.'
+- form: loader
+  reason: 'witnessed: ''the billets are ... transferred to a loader'' — material handling, excluded.'
+- form: extruders
+  reason: 'witnessed: ''most extruders offer extruded aluminum ...'' means extrusion COMPANIES, not extrusion presses.'
+- form: precision measurement and inspection equipment
+  reason: 'witnessed: measuring/inspection equipment is explicitly excluded from this field. Same for ''metrology
+    equipment'' and ''process gauges''.'
+- form: thread plug gauges
+  reason: 'witnessed: a measuring instrument, and here also a product Tanfel sells. Belongs in products, never in
+    equipments.'
+- form: AutoCAD
+  reason: 'witnessed: CAD software from the ''COMMONLY USED SOFTWARE'' list, not a production machine. Same for
+    Solid Works, Unigraphics NX, CATIA, Pro Engineer, ProNest and Autodesk.'
+- form: coordinate measuring machine
+  reason: 'anticipatory: never occurs; a likely mint from the metrology page.'
+- form: tool steel molds
+  reason: 'witnessed: ''Die casting uses tool steel molds'' — a mold is tooling, which this field excludes.'

@@ -1,0 +1,1801 @@
+subject: sterlingmfg.net
+field: process_caps
+snapshot:
+  file: apps/data_etl_app/tests/test_stages/sample_scraped_texts/sterlingmfg.net.txt
+  sha256: f42c4b74d9eefaa7461fe85ed30745ce9465330ba86e7099f728423deb498cc5
+eval_set_version: 2
+expected_empty: false
+notes: 'The densest field on the site: machining, molding, laser, additive and finishing are each given their own
+  capability page. Inspection and metrology are seeded HERE (the process prompt admits them) rather than under equipments.'
+entries:
+- id: sterlingmfg_net-process_caps-0001
+  name: rapid prototyping
+  status: confirmed
+  acceptable_forms:
+  - Rapid Prototyping
+  - rapid-prototyping
+  - Prototype Machining
+  evidence:
+  - quote: Rapid Prototyping
+    approx_offset: 2937
+  - quote: rapid prototyping
+    approx_offset: 45731
+  - quote: rapid-prototyping
+    approx_offset: 157612
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-process_caps-0002
+  name: metal injection molding (MIM)
+  status: confirmed
+  acceptable_forms:
+  - Metal Injection Molding (MIM)
+  - METAL INJECTION MOLDING
+  evidence:
+  - quote: Metal Injection Molding (MIM)
+    approx_offset: 5222
+  - quote: Metal injection molding (MIM) is a metalworking process
+    approx_offset: 8158
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-process_caps-0003
+  name: injection molding
+  status: confirmed
+  acceptable_forms:
+  - plastic injection molding
+  - precision injection molding
+  - Injection molding
+  evidence:
+  - quote: plastic injection molding
+    approx_offset: 5335
+  - quote: Injection molding
+    approx_offset: 75991
+  - quote: precision injection molding
+    approx_offset: 78053
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-process_caps-0004
+  name: brazing
+  status: confirmed
+  acceptable_forms:
+  - brazed
+  evidence:
+  - quote: easily joined or brazed into larger assemblies
+    approx_offset: 6306
+  notes: named only in participle form ('brazed'), never as 'brazing'
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-process_caps-0005
+  name: tool development / tooling services
+  status: confirmed
+  acceptable_forms:
+  - In-house tooling services
+  - tool development
+  - Tooling design
+  - in-house tooling
+  evidence:
+  - quote: In-house tooling services
+    approx_offset: 60558
+  - quote: tool development
+    approx_offset: 45750
+  - quote: Tooling design
+    approx_offset: 6582
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-process_caps-0006
+  name: sintering
+  status: confirmed
+  acceptable_forms:
+  - sintering
+  evidence:
+  - quote: densify the powders into solid metal (sintering)
+    approx_offset: 8543
+  - quote: on site sintering and molding
+    approx_offset: 6612
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-process_caps-0007
+  name: conditioning operations
+  status: confirmed
+  acceptable_forms:
+  - conditioning operations
+  evidence:
+  - quote: the part undergoes conditioning operations
+    approx_offset: 8463
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-process_caps-0008
+  name: debinding
+  status: confirmed
+  acceptable_forms:
+  - debinding
+  evidence:
+  - quote: remove the binder (debinding)
+    approx_offset: 8509
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-process_caps-0009
+  name: supply chain management
+  status: disputed
+  acceptable_forms:
+  - supply-chain management
+  - supply chain management
+  evidence:
+  - quote: deliverability, and supply-chain management
+    approx_offset: 8933
+  - quote: technical assistance, and supply chain management
+    approx_offset: 114999
+  notes: 'DISPUTED: logistics, not an operation on the work | supply-chain management is procurement/logistics,
+    not an operation performed on materials, parts or products. Both occurrences (''deliverability, and supply-chain
+    management''; ''technical assistance, and supply chain management'') list it as a commercial service alongside
+    speed-to-market, not as work done on the part.'
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: disputed
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+    reason: supply-chain management is procurement/logistics, not an operation performed on materials, parts or
+      products. Both occurrences ('deliverability, and supply-chain management'; 'technical assistance, and supply
+      chain management') list it as a commercial service alongside speed-to-market, not as work done on the part.
+- id: sterlingmfg_net-process_caps-0010
+  name: micro-machining
+  status: confirmed
+  acceptable_forms:
+  - Metal Micro-Machining
+  - micro-machining
+  - micromachining
+  evidence:
+  - quote: Metal Micro-Machining
+    approx_offset: 43104
+  - quote: micro-machining
+    approx_offset: 17287
+  - quote: micromachining processes
+    approx_offset: 11814
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-process_caps-0011
+  name: laser marking and engraving
+  status: confirmed
+  acceptable_forms:
+  - Laser Marking and Engraving
+  - Laser Marking
+  - Laser Engraving
+  evidence:
+  - quote: Laser Marking and Engraving
+    approx_offset: 12056
+  - quote: Laser Marking
+    approx_offset: 12056
+  - quote: Laser Engraving
+    approx_offset: 168576
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-process_caps-0012
+  name: laser cutting
+  status: confirmed
+  acceptable_forms:
+  - Laser Cutting
+  - laser cutting & welding
+  - laser cutting/welding
+  evidence:
+  - quote: Laser Cutting
+    approx_offset: 12471
+  - quote: laser cutting & welding
+    approx_offset: 34005
+  - quote: laser cutting/welding
+    approx_offset: 157320
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-process_caps-0013
+  name: Laser Pulse Modulation (LPM)
+  status: confirmed
+  acceptable_forms:
+  - Laser Pulse Modulation (LPM)
+  - Laser Pulse Modulation
+  evidence:
+  - quote: Laser Pulse Modulation (LPM)
+    approx_offset: 12523
+  - quote: Utilize Laser Pulse Modulation techniques
+    approx_offset: 150918
+  notes: EPTAM's own name for its pulse-control technique; named on five pages
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-process_caps-0014
+  name: Programmable Pulse Generator (PPG)
+  status: confirmed
+  acceptable_forms:
+  - Programmable Pulse Generator (PPG)
+  - Programmable Pulse Generator
+  evidence:
+  - quote: Programmable Pulse Generator (PPG)
+    approx_offset: 12556
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-process_caps-0015
+  name: Position Synchronized Output
+  status: confirmed
+  acceptable_forms:
+  - Position Synchronized Output technology
+  - Position Synchronized Output
+  evidence:
+  - quote: Position Synchronized Output technology
+    approx_offset: 13497
+  - quote: Position Synchronized Output
+    approx_offset: 13497
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-process_caps-0016
+  name: assembly, pack and clean
+  status: confirmed
+  acceptable_forms:
+  - Assembly pack and clean
+  - assembly, pack
+  evidence:
+  - quote: Assembly pack and clean, including complex assemblies
+    approx_offset: 103578
+  - quote: a dedicated metal machining, assembly, pack, and laser processing
+    approx_offset: 13888
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-process_caps-0017
+  name: laser processing
+  status: confirmed
+  acceptable_forms:
+  - laser processing
+  evidence:
+  - quote: laser processing high volume facility
+    approx_offset: 13937
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-process_caps-0018
+  name: metrology
+  status: confirmed
+  acceptable_forms:
+  - Metrology
+  - world-class metrology
+  - in-house metrology capabilities
+  evidence:
+  - quote: Metrology and Process Validation
+    approx_offset: 79046
+  - quote: metrology
+    approx_offset: 14294
+  - quote: world-class metrology
+    approx_offset: 102862
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-process_caps-0019
+  name: swaging
+  status: confirmed
+  acceptable_forms:
+  - swaging
+  evidence:
+  - quote: swaging
+    approx_offset: 14318
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-process_caps-0020
+  name: Swiss machining / Swiss turning
+  status: confirmed
+  acceptable_forms:
+  - Swiss and Super-Swiss machining
+  - Swiss machining
+  - Swiss turning
+  - Swiss turn
+  - Multi-Axis Swiss Turning
+  - Super-Swiss
+  evidence:
+  - quote: Swiss and Super-Swiss machining
+    approx_offset: 131812
+  - quote: Swiss machining
+    approx_offset: 131828
+  - quote: Swiss turning
+    approx_offset: 14327
+  - quote: Multi-Axis Swiss Turning
+    approx_offset: 192197
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-process_caps-0021
+  name: overmolding / over-molding
+  status: confirmed
+  acceptable_forms:
+  - Overmolding
+  - over-molding
+  evidence:
+  - quote: Overmolding to metals
+    approx_offset: 77497
+  - quote: over-molding
+    approx_offset: 14353
+  notes: two spellings, one with a hyphen and one without - separate surface forms under the Variants rule
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-process_caps-0022
+  name: insert molding
+  status: confirmed
+  acceptable_forms:
+  - insert molding
+  evidence:
+  - quote: insert molding
+    approx_offset: 30819
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-process_caps-0023
+  name: assembly
+  status: confirmed
+  acceptable_forms:
+  - Automated assembly
+  - cleanroom assembly
+  - final assembly
+  - Assembly
+  evidence:
+  - quote: Automated assembly
+    approx_offset: 77208
+  - quote: cleanroom assembly
+    approx_offset: 157535
+  - quote: final assembly
+    approx_offset: 30838
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-process_caps-0024
+  name: machining (general)
+  status: confirmed
+  acceptable_forms:
+  - polymer machining
+  - plastic machining
+  - Plastics Machining
+  - Metal Machining
+  - precision machining
+  - machining
+  evidence:
+  - quote: polymer machining
+    approx_offset: 33931
+  - quote: Plastics Machining
+    approx_offset: 43017
+  - quote: Metal Machining
+    approx_offset: 43088
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-process_caps-0025
+  name: process validation
+  status: confirmed
+  acceptable_forms:
+  - Process Validation
+  - Process driven validation
+  evidence:
+  - quote: process validation
+    approx_offset: 34114
+  - quote: Process Validation
+    approx_offset: 67607
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-process_caps-0026
+  name: cleanroom molding
+  status: confirmed
+  acceptable_forms:
+  - cleanroom molding
+  evidence:
+  - quote: design-for-manufacturing cleanroom molding
+    approx_offset: 34134
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-process_caps-0027
+  name: dry machining
+  status: confirmed
+  acceptable_forms:
+  - dry-machining technology
+  - dry-machining techniques
+  - dry-machining
+  evidence:
+  - quote: dry-machining technology
+    approx_offset: 34409
+  - quote: dry-machining techniques
+    approx_offset: 119487
+  - quote: Dry-Machining Technology
+    approx_offset: 44318
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-process_caps-0028
+  name: liquid silicone rubber molding
+  status: confirmed
+  acceptable_forms:
+  - liquid silicone rubber molding
+  - Liquid Silicone Rubber (LSR)
+  - LSR molding
+  - LSR injection molding
+  - silicone molding
+  evidence:
+  - quote: liquid silicone rubber molding
+    approx_offset: 34663
+  - quote: LSR injection molding
+    approx_offset: 51283
+  - quote: Liquid silicone rubber (LSR)
+    approx_offset: 77629
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-process_caps-0029
+  name: cleanroom manufacturing
+  status: confirmed
+  acceptable_forms:
+  - Cleanroom manufacturing
+  evidence:
+  - quote: 'Cleanroom manufacturing: EPTAM offers cleanroom manufacturing capabilities'
+    approx_offset: 38333
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-process_caps-0030
+  name: 3D printing / additive manufacturing
+  status: confirmed
+  acceptable_forms:
+  - 3D printing
+  - Additive Manufacturing
+  - Plastic Additive Printing
+  - Metal Additive Printing
+  - 3D printing metal
+  evidence:
+  - quote: 3D Printing – BinderJet/FDM/SLS 3D printing metals and plastics
+    approx_offset: 87815
+  - quote: Plastic Additive Printing
+    approx_offset: 43062
+  - quote: 3D printing metal
+    approx_offset: 132513
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-process_caps-0031
+  name: cellular manufacturing
+  status: confirmed
+  acceptable_forms:
+  - Cellular Manufacturing Environment
+  - Manufacturing cells
+  evidence:
+  - quote: Cellular Manufacturing Environment
+    approx_offset: 43198
+  - quote: Manufacturing cells and employee specialization
+    approx_offset: 119886
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-process_caps-0032
+  name: deburring
+  status: confirmed
+  acceptable_forms:
+  - Microblast Deburring
+  - deburring
+  - micro-blast
+  evidence:
+  - quote: Microblast Deburring
+    approx_offset: 43378
+  - quote: Deburring
+    approx_offset: 43389
+  - quote: micro-blast stations
+    approx_offset: 43424
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-process_caps-0033
+  name: marking (part/serial-number traceability)
+  status: confirmed
+  acceptable_forms:
+  - Enhanced Marking Capability
+  - marking
+  evidence:
+  - quote: Enhanced Marking Capability
+    approx_offset: 43801
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-process_caps-0034
+  name: micro-molding
+  status: confirmed
+  acceptable_forms:
+  - micro-molding
+  evidence:
+  - quote: micro-molding
+    approx_offset: 46331
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-process_caps-0035
+  name: multi-material molding
+  status: confirmed
+  acceptable_forms:
+  - multi-material
+  evidence:
+  - quote: micro-molding, multi-material, and insert molding
+    approx_offset: 46331
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-process_caps-0036
+  name: post-molding annealing
+  status: confirmed
+  acceptable_forms:
+  - post-molding annealing
+  evidence:
+  - quote: post-molding annealing
+    approx_offset: 47689
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-process_caps-0037
+  name: SPC (statistical process control) monitoring
+  status: confirmed
+  acceptable_forms:
+  - SPC Monitoring
+  - SPC Review
+  - SPC
+  evidence:
+  - quote: SPC Monitoring
+    approx_offset: 49016
+  - quote: SPC Review
+    approx_offset: 67630
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-process_caps-0038
+  name: in-process inspection
+  status: confirmed
+  acceptable_forms:
+  - In-Process Inspections
+  evidence:
+  - quote: In-Process Inspections
+    approx_offset: 49222
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-process_caps-0039
+  name: First Article Inspection (FAI)
+  status: confirmed
+  acceptable_forms:
+  - First Article Inspection (FAI)
+  - First Article Inspection
+  evidence:
+  - quote: First Article Inspection (FAI)
+    approx_offset: 49321
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-process_caps-0040
+  name: compression molding
+  status: confirmed
+  acceptable_forms:
+  - Compression molding
+  evidence:
+  - quote: Compression molding
+    approx_offset: 77322
+  - quote: compression molding
+    approx_offset: 51100
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-process_caps-0041
+  name: packaging
+  status: confirmed
+  acceptable_forms:
+  - packaging
+  - Packaging & Assembly
+  - pack
+  evidence:
+  - quote: Packaging & Assembly
+    approx_offset: 145902
+  - quote: assembly, packaging, DFM
+    approx_offset: 56192
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-process_caps-0042
+  name: PPAP
+  status: confirmed
+  acceptable_forms:
+  - PPAP
+  evidence:
+  - quote: PPAP and IQ OQ PQ needs
+    approx_offset: 56222
+  notes: also seeded (disputed) in conformity_attestations, where the AIAG-standard reading of it lives
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-process_caps-0043
+  name: IQ / OQ / PQ qualification
+  status: confirmed
+  acceptable_forms:
+  - IQ, OQ, PQ
+  - IQ OQ PQ
+  - IQ, OQ, and PQ
+  evidence:
+  - quote: IQ, OQ, PQ
+    approx_offset: 67595
+  - quote: IQ OQ PQ
+    approx_offset: 56231
+  - quote: IQ, OQ, and PQ
+    approx_offset: 131953
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-process_caps-0044
+  name: mold building / precision mold making
+  status: confirmed
+  acceptable_forms:
+  - production mold building capabilities
+  - mold building
+  - precision mold making
+  - silicone injection tooling fabrication
+  evidence:
+  - quote: In house Silicone prototype and production mold building capabilities
+    approx_offset: 77558
+  - quote: precision mold making
+    approx_offset: 56556
+  - quote: silicone injection tooling fabrication
+    approx_offset: 156696
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-process_caps-0045
+  name: production molding
+  status: confirmed
+  acceptable_forms:
+  - production molding
+  evidence:
+  - quote: validation, production molding, and automated secondary operations
+    approx_offset: 56979
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-process_caps-0046
+  name: secondary operations / post-processing
+  status: confirmed
+  acceptable_forms:
+  - Secondary processes
+  - automated secondary operations
+  - secondary operations
+  - Post-Processing
+  - post-processing services
+  - Secondary Support Processing
+  evidence:
+  - quote: Secondary processes
+    approx_offset: 77188
+  - quote: automated secondary operations
+    approx_offset: 57015
+  - quote: Secondary Support Processing
+    approx_offset: 147371
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-process_caps-0047
+  name: fabricating
+  status: confirmed
+  acceptable_forms:
+  - complete fabricating capabilities
+  - fabricating
+  - fabricated
+  evidence:
+  - quote: complete fabricating capabilities
+    approx_offset: 58025
+  - quote: Plastic semiconductor components fabricated by EPTAM
+    approx_offset: 116982
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-process_caps-0048
+  name: CNC turning
+  status: confirmed
+  acceptable_forms:
+  - CNC turning
+  evidence:
+  - quote: CNC turning, milling, routing, sawing, and drilling
+    approx_offset: 58063
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-process_caps-0049
+  name: milling
+  status: confirmed
+  acceptable_forms:
+  - milling
+  - CNC milling
+  - 5-Axis Mill Turning
+  evidence:
+  - quote: milling
+    approx_offset: 58076
+  - quote: 5-Axis Mill Turning
+    approx_offset: 192223
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-process_caps-0050
+  name: routing
+  status: confirmed
+  acceptable_forms:
+  - routing
+  evidence:
+  - quote: routing
+    approx_offset: 58085
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-process_caps-0051
+  name: sawing
+  status: confirmed
+  acceptable_forms:
+  - sawing
+  evidence:
+  - quote: sawing
+    approx_offset: 58094
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-process_caps-0052
+  name: drilling
+  status: confirmed
+  acceptable_forms:
+  - drilling
+  evidence:
+  - quote: drilling
+    approx_offset: 58106
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-process_caps-0053
+  name: tool life monitoring / tool breakage detection
+  status: confirmed
+  acceptable_forms:
+  - tool life monitoring, tool breakage detection
+  - tool life monitoring
+  - tool breakage detection
+  evidence:
+  - quote: Process driven validation, tool life monitoring, tool breakage detection and automation
+    approx_offset: 67275
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-process_caps-0054
+  name: passivation
+  status: confirmed
+  acceptable_forms:
+  - passivation
+  - Passivation & Cleaning
+  evidence:
+  - quote: In-house passivation and anodization line
+    approx_offset: 67434
+  - quote: Passivation & Cleaning
+    approx_offset: 145805
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-process_caps-0055
+  name: anodization / anodizing
+  status: confirmed
+  acceptable_forms:
+  - anodization
+  - anodizing
+  evidence:
+  - quote: anodization line
+    approx_offset: 67459
+  - quote: passivation, and anodizing
+    approx_offset: 192700
+  notes: two nominal forms of the same treatment; 'anodization' on the micro-machining page, 'anodizing' in the
+    Mendell boilerplate
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-process_caps-0056
+  name: design for manufacturability (DFM)
+  status: confirmed
+  acceptable_forms:
+  - Design for Manufacturability (DFM)
+  - design for manufacturability
+  - Design for Manufacturing
+  - DFM
+  evidence:
+  - quote: Design for Manufacturability (DFM)
+    approx_offset: 67540
+  - quote: Design for manufacturability (DFM)
+    approx_offset: 102977
+  notes: 'DISPUTED: DFM is a design/engineering review, not an operation performed on materials, parts or products
+    - so it falls outside the process prompt''s own definition. It is named 17 times and reads like a capability,
+    so a run returning it is not obviously wrong. Never gates while disputed'
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-process_caps-0057
+  name: GD&T (geometric dimensioning and tolerancing)
+  status: confirmed
+  acceptable_forms:
+  - Geometric Dimension and Tolerancing (GDT)
+  - GDT
+  evidence:
+  - quote: Geometric Dimension and Tolerancing (GDT)
+    approx_offset: 67691
+  - quote: Geometric dimension and tolerancing (GDT)
+    approx_offset: 103364
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-process_caps-0058
+  name: automated inspection
+  status: confirmed
+  acceptable_forms:
+  - comprehensive automated inspection
+  - automated inspection
+  - automated inspections
+  evidence:
+  - quote: comprehensive automated inspection
+    approx_offset: 102363
+  - quote: Automated inspection
+    approx_offset: 132335
+  - quote: automated inspections
+    approx_offset: 74379
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-process_caps-0059
+  name: heat staking
+  status: confirmed
+  acceptable_forms:
+  - Heat staking
+  evidence:
+  - quote: Heat staking
+    approx_offset: 77227
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-process_caps-0060
+  name: ultrasonic welding / sonic welding
+  status: confirmed
+  acceptable_forms:
+  - Ultrasonic welding
+  - sonic welding
+  evidence:
+  - quote: Ultrasonic welding
+    approx_offset: 77240
+  - quote: sonic welding
+    approx_offset: 159918
+  notes: '''sonic welding'' (line 4835) is Sterling Manufacturing''s own wording in the acquisition release; ''Ultrasonic
+    welding'' is EPTAM''s'
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-process_caps-0061
+  name: pad printing
+  status: confirmed
+  acceptable_forms:
+  - Pad printing
+  evidence:
+  - quote: Pad printing
+    approx_offset: 77259
+  - quote: pad printing
+    approx_offset: 159900
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-process_caps-0062
+  name: decorating
+  status: confirmed
+  acceptable_forms:
+  - Decorating and Assembly
+  - Decorating
+  evidence:
+  - quote: Decorating and Assembly
+    approx_offset: 78992
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-process_caps-0063
+  name: binder jetting
+  status: confirmed
+  acceptable_forms:
+  - Binder Jet
+  - BinderJet
+  - binder jet printing
+  evidence:
+  - quote: Binder Jet
+    approx_offset: 107200
+  - quote: BinderJet
+    approx_offset: 87829
+  - quote: binder jet printing system
+    approx_offset: 107553
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-process_caps-0064
+  name: pilot production / small-scale production runs
+  status: confirmed
+  acceptable_forms:
+  - Pilot Production
+  - small-scale production runs
+  - Low-volume production runs
+  - low-volume production
+  evidence:
+  - quote: Pilot Production
+    approx_offset: 114744
+  - quote: small-scale production runs
+    approx_offset: 114773
+  - quote: Low-volume production runs
+    approx_offset: 87881
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-process_caps-0065
+  name: CNC machining
+  status: confirmed
+  acceptable_forms:
+  - CNC Machining
+  - precision CNC machining
+  - CNC micro-machining
+  evidence:
+  - quote: CNC Machining, Wire EDM, Laser Engraving
+    approx_offset: 168551
+  - quote: CNC machining
+    approx_offset: 101340
+  - quote: precision CNC micro-machining
+    approx_offset: 189427
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-process_caps-0066
+  name: metal-to-plastic conversions
+  status: confirmed
+  acceptable_forms:
+  - metal-to-plastic conversions
+  evidence:
+  - quote: metal-to-plastic conversions
+    approx_offset: 102498
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-process_caps-0067
+  name: FMEA practice
+  status: confirmed
+  acceptable_forms:
+  - FMEA practice
+  - FMEA
+  evidence:
+  - quote: design for manufacturability using FMEA practice
+    approx_offset: 102557
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-process_caps-0068
+  name: new product introduction (NPI)
+  status: confirmed
+  acceptable_forms:
+  - New Product Introduction (NPI)
+  - NPI SERVICES
+  - NPI
+  evidence:
+  - quote: New Product Introduction (NPI)
+    approx_offset: 108722
+  - quote: new product introduction (NPI)
+    approx_offset: 103016
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-process_caps-0069
+  name: FDM
+  status: confirmed
+  acceptable_forms:
+  - FDM
+  evidence:
+  - quote: FDM, FFF, SLA, SLS, and Binder Jet
+    approx_offset: 107176
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-process_caps-0070
+  name: FFF
+  status: confirmed
+  acceptable_forms:
+  - FFF
+  evidence:
+  - quote: FDM, FFF, SLA, SLS, and Binder Jet
+    approx_offset: 107176
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-process_caps-0071
+  name: SLA
+  status: confirmed
+  acceptable_forms:
+  - SLA
+  evidence:
+  - quote: FDM, FFF, SLA, SLS, and Binder Jet
+    approx_offset: 107176
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-process_caps-0072
+  name: SLS
+  status: confirmed
+  acceptable_forms:
+  - SLS
+  evidence:
+  - quote: FDM, FFF, SLA, SLS, and Binder Jet
+    approx_offset: 107176
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-process_caps-0073
+  name: material selection
+  status: confirmed
+  acceptable_forms:
+  - Material Selection Assistance
+  - Material Selection
+  evidence:
+  - quote: Material Selection Assistance
+    approx_offset: 108493
+  - quote: Material Selection
+    approx_offset: 108493
+  notes: 'DISPUTED: an engineering service rather than an operation performed on the work'
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-process_caps-0074
+  name: advanced 3D packaging
+  status: confirmed
+  acceptable_forms:
+  - Advanced 3D Packaging
+  evidence:
+  - quote: Advanced 3D Packaging
+    approx_offset: 119128
+  actor: client
+  notes: a semiconductor back-end process named in the same applications list
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-process_caps-0075
+  name: wet processing / wet bench
+  status: confirmed
+  acceptable_forms:
+  - Wet Processing / Wet Bench
+  - Wet Processing
+  - wet bench
+  evidence:
+  - quote: Wet Processing / Wet Bench
+    approx_offset: 119343
+  actor: client
+  notes: listed under 'Semiconductor plastics applications' - a process EPTAM's parts are used IN, performed by
+    the customer
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-process_caps-0076
+  name: multi-axis CNC machining (3/4/5/7 axis)
+  status: confirmed
+  acceptable_forms:
+  - 3-axis, 4-axis, and 5-axis CNC machining
+  - 3-, 4-, and 5-axis CNC milling
+  - 3-, 5-, and 7-axis machine centers
+  - 3, 5, and 7-axis plastics-machining capabilities
+  - 7- and 5-axis plastics-machining capabilities
+  evidence:
+  - quote: 3-axis, 4-axis, and 5-axis CNC machining
+    approx_offset: 132203
+  - quote: 3-, 4-, and 5-axis CNC milling
+    approx_offset: 131747
+  - quote: 3, 5, and 7-axis plastics-machining capabilities
+    approx_offset: 119426
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-process_caps-0077
+  name: gun drilling
+  status: confirmed
+  acceptable_forms:
+  - Gun drilling
+  evidence:
+  - quote: Gun drilling
+    approx_offset: 132246
+  - quote: gun drilling
+    approx_offset: 131779
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-process_caps-0078
+  name: water jet cutting
+  status: confirmed
+  acceptable_forms:
+  - water jet cutting
+  evidence:
+  - quote: water jet cutting
+    approx_offset: 131793
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-process_caps-0079
+  name: EDM (electrical discharge machining)
+  status: confirmed
+  acceptable_forms:
+  - EDM (Electrical Discharge Machining)
+  - Electrical Discharge Machining
+  - EDM machining
+  - Wire EDM
+  - EDM
+  evidence:
+  - quote: EDM (Electrical Discharge Machining)
+    approx_offset: 132297
+  - quote: EDM machining
+    approx_offset: 131849
+  - quote: Wire EDM
+    approx_offset: 168566
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-process_caps-0080
+  name: manual inspection
+  status: confirmed
+  acceptable_forms:
+  - manual inspection
+  - human inspection
+  evidence:
+  - quote: Some projects require manual inspection
+    approx_offset: 137210
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-process_caps-0081
+  name: cleaning / surface cleaning
+  status: confirmed
+  acceptable_forms:
+  - surface cleaning
+  - cleaning
+  evidence:
+  - quote: deburring, passivation, and surface cleaning
+    approx_offset: 142073
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-process_caps-0082
+  name: laser tube cutting
+  status: confirmed
+  acceptable_forms:
+  - Laser Tube Cutting
+  - Tube Cutting 3, 4, and 5-Axis
+  evidence:
+  - quote: Laser Tube Cutting
+    approx_offset: 149834
+  - quote: laser tube cutting
+    approx_offset: 147012
+  - quote: Tube Cutting 3, 4, and 5-Axis
+    approx_offset: 142664
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-process_caps-0083
+  name: laser welding
+  status: confirmed
+  acceptable_forms:
+  - Laser Welding
+  - micro-welding
+  evidence:
+  - quote: Laser Welding
+    approx_offset: 143744
+  - quote: 'Laser Welding: Airtight Hermetic Sealing and Micro-Welding'
+    approx_offset: 143744
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-process_caps-0084
+  name: hermetic sealing
+  status: confirmed
+  acceptable_forms:
+  - Airtight Hermetic Sealing
+  - Hermetic Sealing
+  - Hermetic Seals
+  - hermetic seal
+  evidence:
+  - quote: 'Laser Welding: Airtight Hermetic Sealing and Micro-Welding'
+    approx_offset: 143744
+  - quote: Pacemaker Hermetic Sealing
+    approx_offset: 151582
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-process_caps-0085
+  name: laser micromachining
+  status: confirmed
+  acceptable_forms:
+  - Laser micromachining
+  evidence:
+  - quote: Laser micromachining and welding
+    approx_offset: 149021
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-process_caps-0086
+  name: finishing operations
+  status: confirmed
+  acceptable_forms:
+  - in-house finishing operations
+  - Finishing and Secondary Process capabilities
+  - finishing operations
+  - Finishing
+  evidence:
+  - quote: in-house finishing operations
+    approx_offset: 171538
+  - quote: Finishing and Secondary Process capabilities
+    approx_offset: 168639
+  actor: parent_sibling
+  notes: named in the acquired-company boilerplate for Mendell and Ingram
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-process_caps-0087
+  name: advanced inspection
+  status: confirmed
+  acceptable_forms:
+  - Advanced Inspection Equipment
+  evidence:
+  - quote: Prototype Machining and Advanced Inspection Equipment
+    approx_offset: 192244
+  actor: parent_sibling
+  provenance:
+  - action: added
+    by: seed-agent-sterlingmfg-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+- id: sterlingmfg_net-process_caps-0088
+  name: grinding
+  status: candidate
+  acceptable_forms:
+  - grinding
+  evidence:
+  - quote: laser applications for a variety of cutting, flaring, grinding and many more processes we reduce costs,
+      increase throughput and improve quality.
+    approx_offset: 141003
+  notes: line 4529 of the laser page names grinding as one of the laser processes EPTAM builds applications for,
+    and the sentence calls them 'processes' outright. Absent from the packet.
+  provenance:
+  - action: added
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+    source: verification-pass-miss
+- id: sterlingmfg_net-process_caps-0089
+  name: flaring
+  status: candidate
+  acceptable_forms:
+  - flaring
+  evidence:
+  - quote: laser applications for a variety of cutting, flaring, grinding and many more processes we reduce costs,
+      increase throughput and improve quality.
+    approx_offset: 141003
+  notes: same sentence as grinding; flaring is a named forming operation on tube ends and the text calls it a process.
+    Absent from the packet.
+  provenance:
+  - action: added
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+    source: verification-pass-miss
+- id: sterlingmfg_net-process_caps-0090
+  name: design-for-assembly
+  status: candidate
+  acceptable_forms:
+  - design-for-assembly
+  - design-forassembly
+  evidence:
+  - quote: range of value-added services such as process validation, design-for-assembly, cleanroom assembly, laser
+      cutting/welding equipment and process development, rapid-prototyping, and
+    approx_offset: 157456
+  notes: named 4 times in the press releases as a value-added service, exactly parallel to design-for-manufacturing
+    which IS seeded (process_caps-0056). Line 5006 prints the typo variant 'design-forassembly', which is why both
+    spellings are listed.
+  provenance:
+  - action: added
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+    source: verification-pass-miss
+- id: sterlingmfg_net-process_caps-0091
+  name: extrusion (3D printing)
+  status: candidate
+  acceptable_forms:
+  - Dual Extrusion Capable
+  - Dual Extrusion
+  - extrusion heads
+  evidence:
+  - quote: Dual Extrusion Capable
+    approx_offset: 89008
+  notes: the additive page describes the FDM printers as 'Dual Extrusion Capable' with 'Two separate extrusion heads';
+    extrusion is the operation those printers perform on the filament. Absent from the packet.
+  provenance:
+  - action: added
+    by: verify-agent-sterlingmfg
+    date: '2026-08-27'
+    source: verification-pass-miss
+false_friends:
+- form: Project Management
+  reason: a service line in the footer nav (52 copies), not an operation performed on the work
+- form: Client Services
+  reason: a footer nav item (52 copies)
+- form: technical program management
+  reason: a management service (line 961)
+- form: Concept Development
+  reason: an NPI phase that produces no operation on materials (line 3510)
+- form: Product Launch and Support
+  reason: an NPI phase, commercial not physical (line 3526)
+- form: Tuition Reimbursement
+  reason: a careers benefit (line 2598)
+- form: On the Job Training
+  reason: a careers benefit (line 2594)
+- form: Lean Enterprise Initiative
+  reason: an efficiency program at a former employer (line 690)
+- form: Rough Cut capacity planning
+  reason: a planning model, not a shop operation (line 3092)
+- form: change management
+  reason: a project-management activity (line 801)
+- form: live simulation testing
+  reason: engineering simulation, not an operation on the work (line 801)
+- form: Cost mitigation
+  reason: a commercial heading on the diagnostics page (line 3749)
+- form: sheet metal fabrication
+  reason: 'anticipatory: ''fabricating'' and ''metals'' both appear; this exact string occurs ZERO times'
+- form: stamping
+  reason: 'anticipatory: a metal-forming process this shop does not do; ZERO occurrences'
+- form: die casting
+  reason: 'anticipatory: association from ''injection molding'' + ''metals''; ZERO occurrences'
+- form: Extrusion
+  reason: 'witnessed: occurs ONLY as a 3D-printer feature - ''Dual Extrusion Capable'' (line 2499) and ''Two separate
+    extrusion heads'' (line 2509) - never as the plastics-extrusion process'
+- form: powder coating
+  reason: 'anticipatory: association from ''finely-powdered metal'' + ''uni-glaze paints''; ZERO occurrences'
+- form: heat treating
+  reason: 'anticipatory: the site names furnaces and sintering, which is exactly the association that mints it;
+    ZERO occurrences'
+- form: electropolishing
+  reason: 'anticipatory: pairs with passivation in world knowledge; ZERO occurrences'
+- form: tumbling
+  reason: 'anticipatory: pairs with deburring; ZERO occurrences'
