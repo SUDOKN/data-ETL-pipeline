@@ -584,3 +584,280 @@ def test_the_conformity_sweep_matches_letter_prefixed_designations():
                         "ASTM A653", "ANSI A250.8", "ISO 9001", "UL 10C",
                         "NFPA 80", "ICC 500-2020", "TAS 201", "FEMA P-320"):
         assert pattern.search(designation), designation
+
+
+# --- Seeding pipeline: agent JSONL -> expectation YAML -> verification ---------
+# These pin the mechanical half of seeding a new corpus subject, which is the
+# half that goes silently wrong: ids, offsets, dedup, status transitions, and
+# above all the refusal to let an unverified entry look verified.
+
+
+def _seed_fixture(tmp_path, monkeypatch, jsonl_lines, text):
+    """A throwaway corpus of one subject, wired into both seeding scripts."""
+    import apply_verifications as av  # type: ignore[import-not-found]
+    import build_expectations as be  # type: ignore[import-not-found]
+
+    # The built YAML records `snapshot.file` as a REPO-RELATIVE path, and
+    # apply_verifications resolves it against REPO_ROOT — so the fixture has to
+    # mirror that layout, not just park the text anywhere.
+    texts = tmp_path / be.SAMPLE_TEXTS_REL
+    texts.mkdir(parents=True, exist_ok=True)
+    text_file = texts / "widget.co.txt"
+    text_file.write_text(text)
+    expectations = tmp_path / "expectations"
+    expectations.mkdir(parents=True, exist_ok=True)
+
+    monkeypatch.setattr(be, "EXPECTATIONS_DIR", expectations)
+    monkeypatch.setattr(be, "_text_path_for", lambda slug: text_file)
+    monkeypatch.setattr(av, "EXPECTATIONS_DIR", expectations)
+    monkeypatch.setattr(av, "REPO_ROOT", tmp_path)
+
+    jsonl = tmp_path / "seed.jsonl"
+    jsonl.write_text("\n".join(json.dumps(row) for row in jsonl_lines))
+    return be, av, expectations, jsonl
+
+
+_SEED_TEXT = (
+    "https://widget.co/capabilities\n"
+    "We run vacuum brazing in two furnaces.\n"
+    "Our partner holds AS9100D for the Houston site.\n"
+    "https://widget.co/process\n"
+    "Inside our vacuum brazing furnaces the joint is heated slowly.\n"
+)
+
+
+def _entry(**overrides):
+    row = {
+        "field": "process_caps",
+        "name": "vacuum brazing",
+        "acceptable_forms": ["vacuum brazing"],
+        "evidence": [{"quote": "We run vacuum brazing in two furnaces."}],
+        "actor": "own",
+    }
+    row.update(overrides)
+    return row
+
+
+def test_seeding_assigns_ids_offsets_and_leaves_everything_candidate(tmp_path, monkeypatch):
+    be, _, expectations, jsonl = _seed_fixture(
+        tmp_path, monkeypatch,
+        [{"type": "subject", "role": "attribution_negative"}, _entry()],
+        _SEED_TEXT,
+    )
+    assert be.build("widget_co", jsonl, merge=False) == 0
+
+    payload = yaml.safe_load((expectations / "widget_co" / "process_caps.yaml").read_text())
+    entry = payload["entries"][0]
+    assert entry["id"] == "widget_co-process_caps-0001"
+    # A seed is never self-confirming: promotion is the verification pass's act.
+    assert entry["status"] == "candidate"
+    assert entry["evidence"][0]["approx_offset"] == _SEED_TEXT.index("We run vacuum")
+    assert "actor" not in entry  # `own` is the default and stays implicit
+    subject = yaml.safe_load((expectations / "widget_co" / "subject.yaml").read_text())
+    assert subject["role"] == "attribution_negative"
+
+
+def test_seeding_complains_when_a_quote_is_not_in_the_text(tmp_path, monkeypatch):
+    """The failure mode this catches is a retyped quote — the commonest defect,
+    and one that turns into a false fabrication verdict months later."""
+    be, _, _, jsonl = _seed_fixture(
+        tmp_path, monkeypatch,
+        [_entry(evidence=[{"quote": "We run vacuum brazing in three furnaces."}])],
+        _SEED_TEXT,
+    )
+    assert be.build("widget_co", jsonl, merge=False) == 1
+
+
+def test_seeding_deduplicates_across_slices_of_one_subject(tmp_path, monkeypatch):
+    """agstech is seeded by eight parallel slice agents over one document whose
+    boilerplate repeats; the same entity arriving twice must not become two."""
+    be, _, expectations, jsonl = _seed_fixture(
+        tmp_path, monkeypatch,
+        [_entry(), _entry(name="Vacuum  Brazing")],
+        _SEED_TEXT,
+    )
+    be.build("widget_co", jsonl, merge=False)
+    payload = yaml.safe_load((expectations / "widget_co" / "process_caps.yaml").read_text())
+    assert len(payload["entries"]) == 1
+
+
+def test_verification_promotes_disputes_retires_and_amends(tmp_path, monkeypatch):
+    be, av, expectations, jsonl = _seed_fixture(
+        tmp_path, monkeypatch,
+        [
+            _entry(),
+            _entry(name="AS9100D", field="conformity_attestations",
+                   acceptable_forms=["AS9100D"], actor="supplier",
+                   evidence=[{"quote": "Our partner holds AS9100D for the Houston site."}]),
+        ],
+        _SEED_TEXT,
+    )
+    be.build("widget_co", jsonl, merge=False)
+
+    verdicts = tmp_path / "verify.jsonl"
+    verdicts.write_text("\n".join(json.dumps(row) for row in [
+        {"id": "widget_co-process_caps-0001", "verdict": "amend",
+         "corrected_forms": ["vacuum brazing", "vacuum braze"], "reason": "spelling"},
+        {"id": "widget_co-conformity_attestations-0001", "verdict": "dispute",
+         "reason": "held by the partner, not the subject"},
+    ]))
+    av.apply("widget_co", verdicts, by="verify-agent-widget", date="2026-08-27")
+
+    process = yaml.safe_load((expectations / "widget_co" / "process_caps.yaml").read_text())
+    amended = process["entries"][0]
+    assert amended["status"] == "confirmed"
+    assert amended["acceptable_forms"] == ["vacuum brazing", "vacuum braze"]
+    assert amended["provenance"][-1]["by"] == "verify-agent-widget"
+    assert process["eval_set_version"] == 2
+
+    conformity = yaml.safe_load(
+        (expectations / "widget_co" / "conformity_attestations.yaml").read_text())
+    disputed = conformity["entries"][0]
+    assert disputed["status"] == "disputed"
+    assert "held by the partner" in disputed["notes"]
+
+
+def test_an_unjudged_entry_stays_candidate_and_is_reported(tmp_path, monkeypatch, capsys):
+    """Silence is not consent. A verification pass that quietly skips entries
+    must leave them non-gating AND say which ones, or a thin census reads as a
+    complete one."""
+    be, av, expectations, jsonl = _seed_fixture(
+        tmp_path, monkeypatch, [_entry(), _entry(name="furnaces")], _SEED_TEXT,
+    )
+    be.build("widget_co", jsonl, merge=False)
+    verdicts = tmp_path / "verify.jsonl"
+    verdicts.write_text(json.dumps(
+        {"id": "widget_co-process_caps-0001", "verdict": "confirm"}))
+    av.apply("widget_co", verdicts, by="verify-agent-widget", date="2026-08-27")
+
+    payload = yaml.safe_load((expectations / "widget_co" / "process_caps.yaml").read_text())
+    statuses = {e["id"]: e["status"] for e in payload["entries"]}
+    assert statuses["widget_co-process_caps-0001"] == "confirmed"
+    assert statuses["widget_co-process_caps-0002"] == "candidate"
+    assert "widget_co-process_caps-0002" in capsys.readouterr().out
+
+
+def test_verification_misses_enter_as_candidate_not_confirmed(tmp_path, monkeypatch):
+    """Finding an entity is one reading, not two — a miss the verifier adds has
+    been seen by exactly one person and must not gate."""
+    be, av, expectations, jsonl = _seed_fixture(
+        tmp_path, monkeypatch, [_entry()], _SEED_TEXT,
+    )
+    be.build("widget_co", jsonl, merge=False)
+    verdicts = tmp_path / "verify.jsonl"
+    verdicts.write_text(json.dumps({
+        "type": "miss", "field": "conformity_attestations", "name": "AS9100D",
+        "acceptable_forms": ["AS9100D"],
+        "evidence": [{"quote": "Our partner holds AS9100D for the Houston site."}],
+        "actor": "supplier", "reason": "on the quality page",
+    }))
+    av.apply("widget_co", verdicts, by="verify-agent-widget", date="2026-08-27")
+
+    payload = yaml.safe_load(
+        (expectations / "widget_co" / "conformity_attestations.yaml").read_text())
+    added = payload["entries"][0]
+    assert added["status"] == "candidate"
+    assert added["actor"] == "supplier"
+    assert added["provenance"][0]["source"] == "verification-pass-miss"
+
+
+def test_a_seed_may_dispute_an_entry_but_never_confirm_one(tmp_path, monkeypatch):
+    """A seed can argue an entity sits outside its field's clause — that argument
+    must survive as `disputed`. What it must NOT be able to do is promote itself
+    to `confirmed`, which is the second reader's word alone."""
+    be, _, expectations, jsonl = _seed_fixture(
+        tmp_path, monkeypatch,
+        [
+            _entry(name="vacuum brazing", status_hint="disputed"),
+            _entry(name="furnaces", notes="DISPUTED — tooling, not a process"),
+            _entry(name="two furnaces", status_hint="confirmed"),
+        ],
+        _SEED_TEXT,
+    )
+    assert be.build("widget_co", jsonl, merge=False) == 1  # the self-confirm complains
+
+    payload = yaml.safe_load((expectations / "widget_co" / "process_caps.yaml").read_text())
+    statuses = {e["name"]: e["status"] for e in payload["entries"]}
+    assert statuses["vacuum brazing"] == "disputed"
+    assert statuses["furnaces"] == "disputed"      # the notes-prefix convention
+    assert statuses["two furnaces"] == "candidate"  # refused, not honoured
+
+
+def test_a_corrected_quote_is_added_beside_the_old_ones_not_swapped_for_them(tmp_path, monkeypatch):
+    """Recall is WINDOW-SCOPED: an entry counts against a run only if one of its
+    quotes falls in a window that run searched. So replacing the evidence list
+    with a single correction silently deletes window coverage — the entry stops
+    being findable in pages it really appears on. Found by the superiortech
+    verification pass, 2026-08-27."""
+    be, av, expectations, jsonl = _seed_fixture(
+        tmp_path, monkeypatch,
+        [_entry(evidence=[{"quote": "We run vacuum brazing in two furnaces."}])],
+        _SEED_TEXT,
+    )
+    be.build("widget_co", jsonl, merge=False)
+    verdicts = tmp_path / "verify.jsonl"
+    verdicts.write_text(json.dumps({
+        "id": "widget_co-process_caps-0001", "verdict": "amend",
+        "corrected_quote": "our vacuum brazing furnaces",
+        "reason": "a second occurrence on another page",
+    }))
+    av.apply("widget_co", verdicts, by="verify-agent-widget", date="2026-08-27")
+
+    payload = yaml.safe_load((expectations / "widget_co" / "process_caps.yaml").read_text())
+    quotes = [e["quote"] for e in payload["entries"][0]["evidence"]]
+    assert "We run vacuum brazing in two furnaces." in quotes  # kept
+    assert "our vacuum brazing furnaces" in quotes             # added
+
+
+def test_replace_evidence_drops_the_old_quotes_when_asked_explicitly(tmp_path, monkeypatch):
+    """The escape hatch for a quote that is actually WRONG, not merely unhelpful."""
+    be, av, expectations, jsonl = _seed_fixture(
+        tmp_path, monkeypatch,
+        [_entry(evidence=[{"quote": "We run vacuum brazing in two furnaces."}])],
+        _SEED_TEXT,
+    )
+    be.build("widget_co", jsonl, merge=False)
+    verdicts = tmp_path / "verify.jsonl"
+    verdicts.write_text(json.dumps({
+        "id": "widget_co-process_caps-0001", "verdict": "amend",
+        "corrected_quote": "our vacuum brazing furnaces",
+        "replace_evidence": True, "reason": "the original quote was misattributed",
+    }))
+    av.apply("widget_co", verdicts, by="verify-agent-widget", date="2026-08-27")
+
+    payload = yaml.safe_load((expectations / "widget_co" / "process_caps.yaml").read_text())
+    quotes = [e["quote"] for e in payload["entries"][0]["evidence"]]
+    assert quotes == ["our vacuum brazing furnaces"]
+
+
+def test_an_entry_shadowed_by_its_siblings_is_flagged_not_failed(tmp_path, monkeypatch):
+    """`forms_overlap` credits an entry when a RETURNED form contains one of its
+    acceptable forms. So an entry whose forms are all substrings of sibling
+    entries' forms is credited whenever any sibling is returned — its recall
+    number carries no information of its own. That leniency is deliberate and
+    must stay (tightening it manufactures false REDs), so this is a WARNING the
+    reader can weigh, never an error. Measured corpus-wide at 9.8% on
+    2026-08-27."""
+    import expectations as expectations_mod  # type: ignore[import-not-found]
+    import validate_expectations as ve  # type: ignore[import-not-found]
+
+    be, _, expectations, jsonl = _seed_fixture(
+        tmp_path, monkeypatch,
+        [
+            {"type": "subject", "role": "full_unit"},
+            _entry(name="brazing", acceptable_forms=["brazing"]),
+            _entry(name="vacuum brazing", acceptable_forms=["vacuum brazing"]),
+        ],
+        _SEED_TEXT,
+    )
+    be.build("widget_co", jsonl, merge=False)
+    monkeypatch.setattr(ve, "EXPECTATIONS_DIR", expectations)
+    monkeypatch.setattr(ve, "REPO_ROOT", tmp_path)
+    # the loader resolves its own copy of the constant, not the validator's
+    monkeypatch.setattr(expectations_mod, "EXPECTATIONS_DIR", expectations)
+
+    errors, warnings, _ = ve.validate_subject("widget_co")
+    assert errors == []  # shadowing is never an error
+    shadowed = [w for w in warnings if "never independently miss" in w]
+    assert len(shadowed) == 1
+    assert "process_caps-0001" in shadowed[0]  # `brazing` ⊂ `vacuum brazing`

@@ -29,7 +29,7 @@ subject: alecmfg.com
 field: products            # industries | process_caps | material_caps |
                            # equipments | conformity_attestations | products
 snapshot:
-  file: apps/data_etl_app/src/data_etl_app/knowledge/sample_scraped_texts/alecmfg.com.txt
+  file: apps/data_etl_app/tests/test_stages/sample_scraped_texts/alecmfg.com.txt
   sha256: "<sha256 of that file at annotation time>"
 eval_set_version: 1        # bump on any change to entries/false_friends
 expected_empty: false      # true = the text offers (almost) nothing in-field;
@@ -58,10 +58,47 @@ false_friends:             # strings that look in-field but are not; the judged
     reason: "word-association: 'defense against harsh weather'"
 ```
 
-`subject.yaml` records: role (`full_unit` | `inventory_subject` | `scale_stress` |
-`out_of_domain_negative` | `degenerate_input_probe`), scrape hazards (short
-quotes), sampling notes (acimachine is sampled, not exhaustively read), and the
-file sha256.
+`subject.yaml` records: `role`, an optional free-text `business_type`, scrape
+hazards (short quotes), sampling notes (acimachine is sampled, not exhaustively
+read), and the file sha256.
+
+### `role` — what the subject is FOR in the corpus
+
+`role` is the subject's job in the eval set, not its industry. It answers "what
+would we stop being able to measure if this subject were removed?"
+
+- `full_unit` — an ordinary manufacturer, read exhaustively; the baseline case.
+- `inventory_subject` — a catalog-shaped site where the interesting question is
+  breadth of listed items rather than depth of claims.
+- `scale_stress` — text large enough that chunking and windowing are themselves
+  under test.
+- `out_of_domain_negative` — not a manufacturer at all; measures what the stage
+  mints from irrelevant text.
+- `degenerate_input_probe` — the SCRAPE is the test (cookie modals, error pages,
+  duplicate stubs), not the company.
+- `attribution_negative` — **added 2026-08-27.** The text names real in-field
+  entities that belong to SOMEONE ELSE: brokers, sales agencies, distributors and
+  sourcing intermediaries writing partners' capabilities in the first person.
+  Search is recall-first, so these are must-find entries with a non-`own` `actor`
+  — the subject exists to measure whether the ATTRIBUTION survives downstream,
+  and its recall here should be as high as any other subject's.
+- `genre_probe` — **added 2026-08-27.** A prose genre the corpus otherwise lacks
+  (investor-relations filings, SEO process encyclopedias, second-person technical
+  manuals, engineering-textbook chapters with "we" injected). The entities are
+  real designations in real text; what is being probed is whether the stage can
+  read that genre at all.
+- `empty_field_probe` — **added 2026-08-27.** A healthy, well-formed site where
+  the correct answer for one or more fields is genuinely the empty list. Distinct
+  from `degenerate_input_probe`, where emptiness comes from a broken scrape.
+
+Pick the role that names the reason the subject was added. Where two apply, put
+the primary one in `role` and say so in `notes`; the business description belongs
+in `business_type`, which is free text and never gates anything.
+
+**A subject's role never changes what goes in its inventories.** An
+`attribution_negative` subject is seeded exactly like a `full_unit` one — the
+role changes how its `actor` labels are read downstream, not which entities the
+text names.
 
 ## Status lifecycle (locked by user decision 2026-08-26)
 
