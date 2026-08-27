@@ -1,0 +1,558 @@
+subject: alecmfg.com
+field: products
+snapshot:
+  file: apps/data_etl_app/src/data_etl_app/knowledge/sample_scraped_texts/alecmfg.com.txt
+  sha256: f192654eaafbb44b699ffb23865174c401a604f230364fdf8d21a28c2cc245d8
+eval_set_version: 2
+expected_empty: false
+notes: 'NOTE: this file also serves the contract_products field (shared search output). Recall-first: client parts
+  in case studies are entries with actor: client; the clients'' own systems (drone, laparoscopic system, gripper...)
+  are C-code false friends, not entries.'
+entries:
+- id: alecmfg_com-products-0001
+  name: stainless steel valve body
+  status: confirmed
+  acceptable_forms:
+  - Stainless Steel Valve Body
+  - valve body
+  - valve bodies
+  - valve body assemblies
+  evidence:
+  - quote: High-Precision Stainless Steel Valve Body for Semiconductor Equipment
+    approx_offset: 24191
+  - quote: persistent quality issues with their high-purity gas control valve bodies
+    approx_offset: 60944
+  - quote: they urgently needed 30 ultra-precision valve body assemblies for cleanroom testing
+    approx_offset: 61588
+  actor: client
+  provenance:
+  - action: added
+    by: seed-agent-alecmfg
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-alecmfg
+    date: '2026-08-26'
+- id: alecmfg_com-products-0002
+  name: vacuum chamber components
+  status: confirmed
+  acceptable_forms:
+  - vacuum chamber components
+  evidence:
+  - quote: particularly our vacuum chamber components for etching equipment
+    approx_offset: 61358
+  actor: own
+  notes: the subject's earlier project, cited as credentials
+  provenance:
+  - action: added
+    by: seed-agent-alecmfg
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-alecmfg
+    date: '2026-08-26'
+- id: alecmfg_com-products-0003
+  name: battery module housings
+  status: confirmed
+  acceptable_forms:
+  - battery module housings
+  - aluminum alloy sheet metal housings
+  - Aluminum Alloy Sheet Metal Structural Housing
+  evidence:
+  - quote: Their engineering team was struggling with battery module housings
+    approx_offset: 24792
+  - quote: they urgently needed 20 functional aluminum alloy sheet metal housings for fit-check
+    approx_offset: 55179
+  actor: client
+  provenance:
+  - action: added
+    by: seed-agent-alecmfg
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-alecmfg
+    date: '2026-08-26'
+- id: alecmfg_com-products-0004
+  name: battery tray
+  status: confirmed
+  acceptable_forms:
+  - battery tray
+  evidence:
+  - quote: particularly our aerospace-grade battery tray project
+    approx_offset: 54972
+  actor: own
+  provenance:
+  - action: added
+    by: seed-agent-alecmfg
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-alecmfg
+    date: '2026-08-26'
+- id: alecmfg_com-products-0005
+  name: UAV structural frames
+  status: confirmed
+  acceptable_forms:
+  - structural frames
+  evidence:
+  - quote: The client has further engaged us to manufacture structural frames for their next-generation endurance
+      UAV
+    approx_offset: 59139
+  actor: client
+  notes: distinct from the offshore welded steel frames entry; same bare designation, different part
+  provenance:
+  - action: added
+    by: seed-agent-alecmfg
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-alecmfg
+    date: '2026-08-26'
+- id: alecmfg_com-products-0006
+  name: precision sensor ring
+  status: confirmed
+  acceptable_forms:
+  - Precision Sensor Ring
+  - sensor ring
+  - optical sensor ring
+  evidence:
+  - quote: Precision Sensor Ring for Laparoscopic Arm Prototype
+    approx_offset: 24950
+  - quote: One critical component—the optical sensor ring—required precision machining for high-speed, real-time
+      angular feedback
+    approx_offset: 25159
+  actor: client
+  provenance:
+  - action: added
+    by: seed-agent-alecmfg
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-alecmfg
+    date: '2026-08-26'
+- id: alecmfg_com-products-0007
+  name: aluminum mounting brackets
+  status: confirmed
+  acceptable_forms:
+  - Aluminum Mounting Brackets
+  - aluminum bracket
+  - mounting bracket
+  evidence:
+  - quote: Custom CNC Machining of Aluminum Mounting Brackets for Robotic Gripper Assembly
+    approx_offset: 25336
+  - quote: The design called for a custom-machined aluminum bracket
+    approx_offset: 76397
+  actor: client
+  provenance:
+  - action: added
+    by: seed-agent-alecmfg
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-alecmfg
+    date: '2026-08-26'
+- id: alecmfg_com-products-0008
+  name: sensor brackets
+  status: confirmed
+  acceptable_forms:
+  - sensor brackets
+  evidence:
+  - quote: preparing to supply additional sensor brackets in the same platform
+    approx_offset: 79540
+  actor: client
+  provenance:
+  - action: added
+    by: seed-agent-alecmfg
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-alecmfg
+    date: '2026-08-26'
+- id: alecmfg_com-products-0009
+  name: end-effectors
+  status: confirmed
+  acceptable_forms:
+  - end-effectors
+  - end effectors
+  evidence:
+  - quote: including custom end-effectors and mounting plates
+    approx_offset: 78762
+  actor: client
+  provenance:
+  - action: added
+    by: seed-agent-alecmfg
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-alecmfg
+    date: '2026-08-26'
+- id: alecmfg_com-products-0010
+  name: mounting plates
+  status: confirmed
+  acceptable_forms:
+  - mounting plates
+  evidence:
+  - quote: including custom end-effectors and mounting plates
+    approx_offset: 78762
+  actor: client
+  provenance:
+  - action: added
+    by: seed-agent-alecmfg
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-alecmfg
+    date: '2026-08-26'
+- id: alecmfg_com-products-0011
+  name: aluminum baseplates
+  status: confirmed
+  acceptable_forms:
+  - Aluminum Baseplates
+  - aluminum baseplates
+  - baseplates
+  evidence:
+  - quote: High-Precision CNC Machined Aluminum Baseplates for Robotic Transport Modules
+    approx_offset: 25690
+  - quote: submitted a trial PO for 8 cnc machined aluminum baseplates
+    approx_offset: 72615
+  actor: client
+  provenance:
+  - action: added
+    by: seed-agent-alecmfg
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-alecmfg
+    date: '2026-08-26'
+- id: alecmfg_com-products-0012
+  name: vertical panel brackets
+  status: confirmed
+  acceptable_forms:
+  - vertical panel brackets
+  evidence:
+  - quote: invited us to support new vertical panel brackets and cable tray bases in their upcoming line expansion
+    approx_offset: 74326
+  actor: client
+  provenance:
+  - action: added
+    by: seed-agent-alecmfg
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-alecmfg
+    date: '2026-08-26'
+- id: alecmfg_com-products-0013
+  name: cable tray bases
+  status: confirmed
+  acceptable_forms:
+  - cable tray bases
+  evidence:
+  - quote: invited us to support new vertical panel brackets and cable tray bases in their upcoming line expansion
+    approx_offset: 74326
+  actor: client
+  provenance:
+  - action: added
+    by: seed-agent-alecmfg
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-alecmfg
+    date: '2026-08-26'
+- id: alecmfg_com-products-0014
+  name: aluminum brackets (rail power module)
+  status: confirmed
+  acceptable_forms:
+  - aluminum brackets
+  evidence:
+  - quote: required custom-machined aluminum brackets and thermal support frames using non-standard aerospace-grade
+      material
+    approx_offset: 68223
+  actor: client
+  provenance:
+  - action: added
+    by: seed-agent-alecmfg
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-alecmfg
+    date: '2026-08-26'
+- id: alecmfg_com-products-0015
+  name: thermal support frames
+  status: confirmed
+  acceptable_forms:
+  - thermal support frames
+  evidence:
+  - quote: required custom-machined aluminum brackets and thermal support frames using non-standard aerospace-grade
+      material
+    approx_offset: 68223
+  actor: client
+  provenance:
+  - action: added
+    by: seed-agent-alecmfg
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-alecmfg
+    date: '2026-08-26'
+- id: alecmfg_com-products-0016
+  name: copper heat sink
+  status: confirmed
+  acceptable_forms:
+  - copper heat sink
+  - heat sink
+  evidence:
+  - quote: urgently needed a custom copper heat sink machining solution
+    approx_offset: 100326
+  - quote: urgently needed a precision-machined copper heat sink with tight tolerances
+    approx_offset: 105870
+  actor: client
+  provenance:
+  - action: added
+    by: seed-agent-alecmfg
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-alecmfg
+    date: '2026-08-26'
+- id: alecmfg_com-products-0017
+  name: titanium surgical guide components
+  status: confirmed
+  acceptable_forms:
+  - titanium components
+  - Titanium Alloy Component
+  evidence:
+  - quote: High-Precision Titanium Alloy Component Machining Case Study
+    approx_offset: 99424
+  - quote: specification sheets for a series of titanium components
+    approx_offset: 119522
+  actor: client
+  notes: the parts integrate into the client's orthopedic surgical guide (the guide itself is the client's product,
+    code C)
+  provenance:
+  - action: added
+    by: seed-agent-alecmfg
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-alecmfg
+    date: '2026-08-26'
+- id: alecmfg_com-products-0018
+  name: welded structural steel frames
+  status: confirmed
+  acceptable_forms:
+  - Welded structural steel frames
+  - structural steel frames
+  - Structural Frames for Offshore Skid Systems
+  evidence:
+  - quote: Welded structural steel frames + machined interfaces
+    approx_offset: 106562
+  - quote: U.S. Oil & Gas Client | Integrated Welding and CNC Machining of Structural Frames for Offshore Skid Systems
+    approx_offset: 93802
+  actor: client
+  provenance:
+  - action: added
+    by: seed-agent-alecmfg
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-alecmfg
+    date: '2026-08-26'
+- id: alecmfg_com-products-0019
+  name: lightweight CNC components (power module)
+  status: confirmed
+  acceptable_forms:
+  - Lightweight CNC Components
+  - metal structural parts
+  evidence:
+  - quote: Lightweight CNC Components for Power Module Prototype
+    approx_offset: 104960
+  - quote: the client urgently required a batch of metal structural parts with high strength
+    approx_offset: 126341
+  actor: client
+  provenance:
+  - action: added
+    by: seed-agent-alecmfg
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-alecmfg
+    date: '2026-08-26'
+- id: alecmfg_com-products-0020
+  name: aluminum powertrain components (EV)
+  status: confirmed
+  acceptable_forms:
+  - High-Precision Aluminum Parts
+  - aluminum alloy components
+  evidence:
+  - quote: 'German EV Client: High-Precision Aluminum Parts CNC Machining Project'
+    approx_offset: 49792
+  - quote: The client provided 3D drawings and technical specifications for three aluminum alloy components
+    approx_offset: 96310
+  actor: client
+  notes: the same 'three aluminum alloy components' sentence is copy-pasted into the oil & gas welding page (cross-contamination
+    hazard)
+  provenance:
+  - action: added
+    by: seed-agent-alecmfg
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-alecmfg
+    date: '2026-08-26'
+- id: alecmfg_com-products-0021
+  name: EV battery enclosures
+  status: confirmed
+  acceptable_forms:
+  - EV battery enclosures
+  - battery enclosures
+  evidence:
+  - quote: Whether you are working on EV battery enclosures, aluminum gearbox housings, or complex thermal management
+      systems
+    approx_offset: 65003
+  actor: client
+  notes: offered/prospective application named in the IATF post, not a delivered part
+  provenance:
+  - action: added
+    by: seed-agent-alecmfg
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-alecmfg
+    date: '2026-08-26'
+- id: alecmfg_com-products-0022
+  name: aluminum gearbox housings
+  status: confirmed
+  acceptable_forms:
+  - aluminum gearbox housings
+  - gearbox housings
+  evidence:
+  - quote: Whether you are working on EV battery enclosures, aluminum gearbox housings, or complex thermal management
+      systems
+    approx_offset: 65003
+  actor: client
+  notes: offered/prospective application named in the IATF post
+  provenance:
+  - action: added
+    by: seed-agent-alecmfg
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-alecmfg
+    date: '2026-08-26'
+- id: alecmfg_com-products-0023
+  name: titanium aerospace parts (expo showcase)
+  status: confirmed
+  acceptable_forms:
+  - CNC machined parts in titanium
+  - 5-axis components
+  evidence:
+  - quote: CNC machined parts in titanium and high-temperature alloys, for engine and structural use
+    approx_offset: 43893
+  - quote: Complex 5-axis components demonstrating advanced surface control and tight tolerances
+    approx_offset: 43984
+  actor: own
+  notes: 'borderline (B): expo showcase designations'
+  provenance:
+  - action: added
+    by: seed-agent-alecmfg
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-alecmfg
+    date: '2026-08-26'
+- id: alecmfg_com-products-0024
+  name: SLA/SLS printed prototypes
+  status: confirmed
+  acceptable_forms:
+  - SLA/SLS printed prototypes
+  - printed prototypes
+  evidence:
+  - quote: SLA/SLS printed prototypes for functional validation and assembly fitting
+    approx_offset: 44071
+  actor: own
+  notes: 'borderline (B): expo showcase designation'
+  provenance:
+  - action: added
+    by: seed-agent-alecmfg
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-alecmfg
+    date: '2026-08-26'
+false_friends:
+- form: parts
+  reason: generic (G)
+- form: components
+  reason: generic (G)
+- form: prototypes
+  reason: generic (G) when bare
+- form: products
+  reason: generic (G) / legal boilerplate
+- form: goods
+  reason: terms-and-conditions boilerplate
+- form: shopping cart
+  reason: cookie-policy boilerplate on the scraped homepage ('items remain in your shopping cart')
+- form: stl
+  reason: file-upload format list, junk (U)
+- form: stp
+  reason: file-upload format list, junk (U)
+- form: step
+  reason: file-upload format list, junk (U); also a common word
+- form: igs
+  reason: file-upload format list, junk (U)
+- form: iges
+  reason: file-upload format list, junk (U)
+- form: dwg
+  reason: file-upload format list, junk (U)
+- form: sldprt
+  reason: file-upload format list, junk (U)
+- form: catpart
+  reason: file-upload format list, junk (U)
+- form: dxf
+  reason: file-upload format list, junk (U)
+- form: zip
+  reason: file-upload format list, junk (U)
+- form: jpeg
+  reason: file-upload format list, junk (U)
+- form: png
+  reason: file-upload format list, junk (U)
+- form: pdf
+  reason: file-upload format list / 'download our Terms and Conditions as a PDF', junk (U)
+- form: 1020 mm × 720 mm × 460 mm
+  reason: dimensional spec (S), not a product designation
+- form: 420 mm × 285 mm × 16 mm
+  reason: dimensional spec (S)
+- form: 160 mm × 95 mm × 16 mm
+  reason: dimensional spec (S)
+- form: 830 x 550 x 550mm
+  reason: dimensional spec (S), ASCII x variant
+- form: plumbing fixtures
+  reason: 'word-association: brass explainer blurb, not a subject or client part'
+- form: decorative items
+  reason: 'word-association: brass explainer blurb'
+- form: kitchen equipment
+  reason: 'word-association: stainless steel explainer blurb'
+- form: gears and axles
+  reason: 'word-association: alloy steel explainer blurb'
+- form: cutting and machining tools
+  reason: 'word-association: tool steel explainer blurb'
+- form: electrical components
+  reason: 'word-association: copper explainer blurb'
+- form: wafer handling system
+  reason: client's application/system (C), not a part made through the subject
+- form: heavy-lift drone
+  reason: client's application (C)
+- form: laparoscopic system
+  reason: client's application (C)
+- form: robotic gripper
+  reason: client's application (C); the subject made only the bracket
+- form: modular power unit
+  reason: client's application (C)
+- form: high-power rectifier
+  reason: client's application (C)
+- form: surgical guide
+  reason: client's application (C); the subject made the titanium components that go into it
+- form: shockwatch labels
+  reason: packaging consumable, junk (U)
+- form: IATF 16949:2016 certification
+  reason: certificate/document, conformity_attestations territory (adjacent field)

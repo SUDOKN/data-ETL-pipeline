@@ -1,0 +1,24 @@
+subject: 101machine.com
+field: contract_products
+expected:
+- name: Engineering prototypes
+  evidence: full-functioning engineering prototypes
+  strength: strong
+- name: Piece parts
+  evidence: piece parts and injection molds
+  strength: strong
+- name: Injection molds
+  evidence: produce the finest, highly accurate parts, full-functioning engineering prototypes, piece
+    parts and injection molds
+  strength: strong
+- name: Custom machined solutions
+  evidence: producing the finest custom machined solutions
+  strength: moderate
+- name: Precision components
+  evidence: 'precision components including: CNC turning services for...'
+  strength: moderate
+traps:
+- name: Chevalier EM2040L
+  kind: wrong_axis
+  note: a milling machine 101 Machine purchased and operates, not something made to a customer's order;
+    belongs under equipments

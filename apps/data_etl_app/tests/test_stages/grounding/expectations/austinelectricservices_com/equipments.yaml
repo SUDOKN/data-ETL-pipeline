@@ -1,0 +1,27 @@
+subject: austinelectricservices.com
+field: equipments
+expected:
+- name: Field power tools (drills, sawzalls, generators)
+  evidence: power hand tools such as drills, panduit straps, snips, sawzall and general construction tools
+  strength: weak
+traps:
+- name: Smart Security Hub (319MHz)
+  kind: wrong_axis
+  note: '''The brain of your system—manages all connected devices'' — hardware sold/installed at the customer''s
+    premises, not equipment the subject owns for its own operations'
+- name: PowerG + 319MHz Smart Panel
+  kind: wrong_axis
+  note: top-of-the-line security panel sold to customers as part of the Pro Premium Package, not equipment
+    Austin Companies operates itself
+- name: V723X 1080P Outdoor Camera
+  kind: wrong_axis
+  note: '''Built to capture sharp, detailed footage outside'' — camera hardware installed at the customer''s
+    site as a sold product, not subject-owned equipment'
+- name: Company Take Home Vehicles
+  kind: wrong_axis
+  note: listed under Careers > Benefits ('Company Take Home Vehicles (depending on position)'), an employee
+    perk, not described as operational/production equipment
+- name: Tool Program
+  kind: wrong_actor
+  note: Careers benefit that funds/reimburses employees' own tools ('Tool Program'), not company-operated
+    equipment

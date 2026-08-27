@@ -1,0 +1,138 @@
+subject: austinelectricservices.com
+field: process_caps
+snapshot:
+  file: apps/data_etl_app/src/data_etl_app/knowledge/sample_scraped_texts/austinelectricservices.com.txt
+  sha256: "26d3b2d8c2d57c0219a2c12e0727aeca1bbf2da11f0d1142bae3a58adaabd118"
+eval_set_version: 2
+expected_empty: true
+notes: >-
+  Out-of-domain negative: every named operation in the corpus is residential
+  field-site construction work (TAXONOMY code I - installation/field-site
+  work, NOT in_field under the rollup) or business/HR activity (Z). Judgment
+  call made here: candidate-sounding operations like "roughing residential
+  tract homes", "measuring, cutting, and pulling wire", and "trim and braze"
+  were deliberately NOT seeded as entries - they are performed on houses at
+  the job site, never on work in a shop - so they live below as false
+  friends. The nearest thing to an own-facility production activity is
+  warehouse kitting ("We build all of our own material packs") and in-
+  facility pre-configuration of DIY security bundles; both are
+  logistics/configuration, judged near-field at best, and are also kept out
+  of entries. entries stays empty; ANY yield is measurement signal. VERIFY
+  2026-08-26 (second independent pass): expected_empty=true AGREED, zero
+  entries correct, and the code-I reasoning in these notes is the correct
+  reading of TAXONOMY.md. The strongest candidates were re-read in context
+  and all fall outside V/B: the /concrete/what-we-do/ 'SCOPE OF FIELD
+  SERVICES' list (Installation, Stressing, Tendon fishing, Pre-pour
+  inspections, Post-tension repair, line 2019ff) is construction field-site
+  work; the roughing / trimming / hot-checking / braze verbs are job-ad duty
+  bullets; 'material warehousing' is logistics. FALSE-FRIEND FORM DEFECT:
+  the form is written 'brazing' but the text says 'braze' - 'Must be able to
+  trim and braze residential tract home with minimal supervision.' (line
+  1186) - so that false friend cannot match an echoed surface form and
+  should be 'braze'. 'kitting' and 'system pre-configuration' likewise never
+  occur, but those two are legitimate mint-probes (the underlying prose is
+  'We build all of our own material packs' and 'pre-configured by our
+  team'). Spanish mirrors spot-checked line-for-line against their English
+  twins and confirmed faithful, with the machine-translation drift intact
+  ('Stressing' -> 'Estresante', i.e. 'stressful'; 'Tendon fishing' -> 'Pesca
+  de tendones'). CROSS-SUBJECT NOTE: the acimachine_com process_caps file
+  seeds field-site services (Machine & Option Installations, Precision
+  Leveling) AS entries, the opposite of the rule applied here; the two
+  subjects need one ruling between them.
+entries: []
+false_friends:
+  - form: "residential electric wiring"
+    reason: >-
+      The core service ("provides residential electric wiring and service for
+      new construction tract homes"); field installation on houses, code I.
+  - form: "roughing"
+    reason: >-
+      Job-ad phase work: "responsible for roughing residential tract homes"
+      (4x). Field-site construction phase, code I; HR evidence_kind job_ad.
+  - form: "trimming"
+    reason: >-
+      "responsible for trimming residential tract homes" (3x) - fixture
+      trim-out phase on site, code I; reads like a machining op out of context.
+  - form: "hot-checking"
+    reason: >-
+      "responsible for hot-checking residential tract homes" (2x) - live
+      electrical checkout of finished homes. Inspection carve-out does not
+      apply: it is field-site work on houses (I), not inspection of work in a
+      shop.
+  - form: "measuring, cutting, and pulling wire"
+    reason: >-
+      Job-ad responsibility bullet (2x); reads like machining operations but is
+      on-site wire installation, code I.
+  - form: "brazing"
+    reason: >-
+      "Must be able to trim and braze residential tract home" - real joining
+      process word, but on-site HVAC line-set brazing during trim, code I. The
+      single most manufacturing-shaped verb in the corpus.
+  - form: "sheet metal ductwork"
+    reason: >-
+      Job-ad bullets ("sheet metal ductwork", typo variant "sheet metal duck
+      work" 2x): on-site duct install, not sheet-metal fabrication.
+  - form: "installation"
+    reason: >-
+      Ubiquitous ("HVAC installation", "low voltage installation", "New
+      Construction Installation", "flatwork installations"): code I by
+      definition.
+  - form: "stressing"
+    reason: >-
+      Line item in Austin Concrete's "SCOPE OF FIELD SERVICES" list; post-tension cable stressing at the pour,
+      code I.
+  - form: "tendon fishing"
+    reason: >-
+      "Tendon fishing (cutting tendon tails, patching stress pockets)" -
+      contains "cutting" bait; concrete field-site op, code I.
+  - form: "post-tension repair"
+    reason: "Field repair of PT slabs (same field-services list); code I."
+  - form: "pre-pour inspections"
+    reason: >-
+      Site inspection before concrete pour; inspection carve-out covers
+      operations on the work in a manufacturing setting, this is field-site (I).
+  - form: "flatwork installations"
+    reason: "Concrete flatwork placed on site ('experienced flatwork installers'); code I."
+  - form: "value engineering"
+    reason: >-
+      "Through continuous process improvement and value engineering" (concrete
+      What We Do); business-improvement language, code Z/G.
+  - form: "continuous process improvement"
+    reason: "Same sentence; business activity, not an operation on work (Z/G)."
+  - form: "material warehousing"
+    reason: >-
+      Section heading (6x); stocking/distribution logistics, not an operation
+      on work.
+  - form: "kitting"
+    reason: >-
+      Likely minted from "We build all of our own material packs" (2x);
+      warehouse kit assembly for their own crews - logistics, near-field at
+      best, deliberately not an entry.
+  - form: "system pre-configuration"
+    reason: >-
+      From "Your security system is pre-configured by our team before it ever
+      leaves our facility" - in-facility device syncing/configuration of resold
+      security bundles; service configuration, not manufacturing.
+  - form: "diagnosing and repairing"
+    reason: >-
+      HVAC service job ad ("diagnosing and repairing residential tract homes");
+      field service work, code I.
+  - form: "cableado"
+    reason: >-
+      Spanish for wiring ("cableado eléctrico residencial", "cableado de bajo
+      voltaje"); same field-installation service, code I.
+  - form: "soldar"
+    reason: >-
+      Spanish job-ad mirror renders "trim and braze" as "recortar y soldar"
+      (2x); "soldar" reads as weld/solder - the strongest Spanish
+      manufacturing-verb false friend here. Still on-site line-set work, code I.
+  - form: "trabajos de chapa metálica"
+    reason: >-
+      Spanish mirror of "sheet metal duck work" (2x); on-site duct install,
+      not sheet-metal fabrication.
+  - form: "medición, corte y tendido de cables"
+    reason: >-
+      Spanish mirror of "measuring, cutting, and pulling wire" (2x); on-site
+      wire installation, code I.
+provenance:
+  - {action: added, by: "seed-agent-austinelectric", date: "2026-08-26", source: corpus-seed}

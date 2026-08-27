@@ -1,0 +1,19 @@
+subject: austinelectricservices.com
+field: contract_products
+expected:
+- name: Custom-designed home/business security system
+  evidence: every package is just a starting point... we'll design a system around you... we customize
+    every detail to match your lifestyle
+  strength: strong
+- name: Home-specific material packs (per-house bill of materials)
+  evidence: material packs to be accurate reducing the time it takes to complete each task reducing cycle
+    times
+  strength: moderate
+- name: Post-tensioned concrete foundation modifications per home plan
+  evidence: Foundation footprint changes – additions and modifications
+  strength: weak
+traps:
+- name: New Construction Installation (HVAC offering)
+  kind: wrong_axis
+  note: bullet in a generic list of service offerings ('Installation & Replacement / New Construction
+    Installation'), not an item built to an individual customer's spec

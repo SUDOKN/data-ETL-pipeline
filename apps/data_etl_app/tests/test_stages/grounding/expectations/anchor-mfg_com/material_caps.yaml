@@ -1,0 +1,32 @@
+subject: anchor-mfg.com
+field: material_caps
+expected:
+- name: Steel
+  evidence: 'Materials heading list: ''Steel & Aluminum'''
+  strength: strong
+- name: Aluminum
+  evidence: 'Materials heading list: ''Steel & Aluminum'''
+  strength: strong
+- name: High Strength Aluminum
+  evidence: 'Materials list item: ''High Strength Aluminum'''
+  strength: strong
+- name: High Strength Steel
+  evidence: 'Materials list item: ''High Strength Steel'''
+  strength: strong
+- name: Ultra High Strength Steel
+  evidence: 'Materials list item: ''Ultra High Strength Steel'''
+  strength: strong
+- name: Advanced High Strength Steel
+  evidence: 'Materials list item: ''Advanced High Strength Steel'''
+  strength: strong
+- name: Galvanized and Organic Coated Steel
+  evidence: 'Materials list item: ''Galvanized and Organic Coated Steel'''
+  strength: strong
+- name: Stainless Steel (Inc. Class A Cosmetic Parts)
+  evidence: 'Materials list item: ''Stainless Steel (Inc. Class A Cosmetic Parts)'''
+  strength: strong
+traps:
+- name: Iron
+  kind: homonym
+  note: appears only inside 'Seven Stage Iron Phosphate Wash', a coating pretreatment chemical, not a
+    material Anchor stamps

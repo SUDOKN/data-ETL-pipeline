@@ -1,0 +1,75 @@
+subject: austinelectricservices.com
+field: material_caps
+snapshot:
+  file: apps/data_etl_app/src/data_etl_app/knowledge/sample_scraped_texts/austinelectricservices.com.txt
+  sha256: "26d3b2d8c2d57c0219a2c12e0727aeca1bbf2da11f0d1142bae3a58adaabd118"
+eval_set_version: 2
+expected_empty: true
+notes: >-
+  Out-of-domain negative: no material, alloy, or grade is worked by anyone
+  in this corpus. Word-boundary greps confirm zero occurrences of steel,
+  stainless, aluminum, copper, titanium, alloy, plastic, polymer. The
+  substances that DO appear (concrete, sheet metal, lumber, wire, gas) are
+  construction commodities installed on job sites or supplier inputs, listed
+  below as false friends. entries stays empty; any yield is junk-minting
+  signal. VERIFY 2026-08-26 (second independent pass): expected_empty=true
+  AGREED. Verified independently: 'sheet metal' occurs 3 times and all are
+  HVAC job-ad duties ('sheet metal duck work' (sic) at 1059/1236, 'sheet
+  metal ductwork' at 1177) plus 4 Spanish mirrors; concrete appears as a
+  sibling division's name and as poured foundations, never as worked stock.
+  Minor correction to the 'Lead' false friend: word-boundary Lead/lead
+  occurs 8 times, not 7 (4 tagline verb + 4 'Lead Estimator') - immaterial
+  to the verdict, which is right. ONE TENSION RECORDED RATHER THAN FLIPPED:
+  sibling Austin Concrete does place post-tensioned concrete, and concrete
+  is a material, so a strict recall-first reading would seed one
+  parent_sibling entry here for the same reason products.yaml seeds
+  reseller_inventory devices. I judge the flag correct because placing
+  concrete on a job site is field-site construction work, not a material
+  capability in the manufacturing sense this field measures - but that
+  reasoning, not a grep, is what the verdict rests on, so the user may want
+  to rule on it.
+entries: []
+false_friends:
+  - form: "Lead"
+    reason: >-
+      7 occurrences, all non-material: taglines "We Lead the Industry..." (3x,
+      verb) and job title "Lead Estimator" (4x). The known brute-substring
+      false positive; zero in-window material sense (code U).
+  - form: "concrete"
+    reason: >-
+      Sibling division Austin Concrete's trade: "install post-tensioned
+      concrete foundations" - construction material placed on site, plus the
+      division NAME itself. Not a manufacturing material capability.
+  - form: "post-tensioned concrete"
+    reason: "Same: site-placed residential foundations, sibling division, field work."
+  - form: "hormigón"
+    reason: >-
+      Spanish for concrete ("Somos líderes en la industria del hormigón", 3x);
+      same sibling-division construction material.
+  - form: "sheet metal"
+    reason: >-
+      Only inside job-ad duct bullets ("sheet metal ductwork" / typo "sheet
+      metal duck work"); on-site HVAC duct install, no sheet-metal working
+      capability.
+  - form: "chapa metálica"
+    reason: "Spanish mirror of the same job-ad bullets ('trabajos de chapa metálica', 2x)."
+  - form: "lumber"
+    reason: >-
+      "Our ability to source form boards from top lumber suppliers" - a
+      supplier's commodity bought for concrete formwork, not a worked material.
+  - form: "form boards"
+    reason: "Concrete formwork consumable from the same sentence; component/consumable (N/C), not a material capability."
+  - form: "wire"
+    reason: >-
+      Installed electrical commodity and verb: "measuring, cutting, and pulling
+      wire", "hire us to wire 1000 homes a year". Never a material worked.
+  - form: "gas"
+    reason: >-
+      Job-ad parenthetical "(gas or heat pump)" - furnace fuel type, not a
+      material.
+  - form: "materials"
+    reason: >-
+      Generic logistics use throughout ("bill of materials", "Material
+      Warehousing", "material packs", Spanish "materiales"); code G.
+provenance:
+  - {action: added, by: "seed-agent-austinelectric", date: "2026-08-26", source: corpus-seed}

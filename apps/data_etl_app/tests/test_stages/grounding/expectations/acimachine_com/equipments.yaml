@@ -1,0 +1,28 @@
+subject: acimachine.com
+field: equipments
+expected: []
+traps:
+- name: ACER ATB 29 (CNC Lathe)
+  kind: wrong_axis
+  note: one of ~1,500 for-sale listings in ACI's active inventory; equipment ACI is brokering to a buyer,
+    not equipment ACI owns/operates
+- name: HURCO VMX42I (Vertical Machining Center)
+  kind: wrong_axis
+  note: featured-equipment listing for sale ('Request Info'), not equipment ACI owns/operates
+- name: CHEVALIER FSG-3A1224 (Reciprocating Surface Grinder)
+  kind: wrong_axis
+  note: for-sale listing with full spec sheet and 'Sell Now' / 'Request Info' CTAs, not equipment ACI
+    owns/operates
+- name: WINEMA RV 10 FLEXMASTER (Rotary Transfer Machine)
+  kind: wrong_axis
+  note: for-sale listing; description is OEM marketing copy about the machine's own capabilities, not
+    ACI's operation of it
+- name: JET 1/2SS-1C-10 (Electric Hoist)
+  kind: wrong_axis
+  note: one of 78 JET hoist listings for sale, not a hoist ACI owns/operates in its own shop
+- name: SHIMADA 2 SI-8 Mk-II (CNC Lathe)
+  kind: wrong_axis
+  note: for-sale listing with 'Request Quote' CTA, not equipment ACI owns/operates
+- name: JET J-2221VS (Drill Press)
+  kind: wrong_axis
+  note: for-sale listing under 'Heavy Duty & Sensitive Single Spindle Drills', not equipment ACI owns/operates

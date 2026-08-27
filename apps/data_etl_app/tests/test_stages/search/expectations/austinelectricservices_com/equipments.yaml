@@ -1,0 +1,98 @@
+subject: austinelectricservices.com
+field: equipments
+snapshot:
+  file: apps/data_etl_app/src/data_etl_app/knowledge/sample_scraped_texts/austinelectricservices.com.txt
+  sha256: "26d3b2d8c2d57c0219a2c12e0727aeca1bbf2da11f0d1142bae3a58adaabd118"
+eval_set_version: 2
+expected_empty: true
+notes: >-
+  Out-of-domain negative: no production machine, machine tool, or shop
+  equipment exists in this corpus (CNC, lathe, mill, press etc. all grep-
+  absent). What looks like equipment is (a) field-electrician hand tools
+  listed in job-ad requirement bullets, (b) installed HVAC components
+  belonging to the houses, (c) resold third-party security DEVICES - the
+  known product-vs-equipment D confusion (those are seeded as products.yaml
+  entries, not here), and (d) business software. entries stays empty; any
+  yield is junk-minting signal. VERIFY 2026-08-26 (second independent pass):
+  expected_empty=true AGREED, zero entries correct. Independent greps: no
+  machine, machine tool or production equipment is named anywhere - 'CNC',
+  'lathe', 'mill', 'machining', 'machine shop', 'stamping', 'injection
+  mold', 'extrusion' all zero. The only tool designations sit in one
+  repeated HR sentence, 'General knowledge of power hand tools such as
+  drills, panduit straps, snips, sawzall and general construction tools.'
+  (lines 1061, 1179, 1238) with a 'drills, generators' variant (1120, 1297,
+  1415, 1474) and four Spanish mirrors (2333, 2510, 2628) - hand tools a
+  candidate should know, not equipment the subject operates. The false-
+  friend list captures them correctly. One judgment recorded for the audit
+  trail: 'sawzall' is a Milwaukee trademark and so is the closest thing in
+  this corpus to a V-code make designation, but appearing only in job-ad
+  requirement text with no owner it stays a false friend, evidence_kind
+  job_ad.
+entries: []
+false_friends:
+  - form: "drills"
+    reason: >-
+      Job-ad hand-tool list ("power hand tools such as drills, generators, and
+      general construction tools", 4x + panduit variants); field hand tools in
+      HR text, not shop equipment - and "drills" invites a drill-press reading.
+  - form: "generators"
+    reason: "Same job-ad lists; portable jobsite generators, not production equipment."
+  - form: "sawzall"
+    reason: >-
+      Job-ad tool list ("panduit straps, snips, sawzall", 3x incl. capitalized
+      variant); brand-genericized recip saw carried by installers, HR text.
+  - form: "snips"
+    reason: "Same job-ad tool list; hand shears."
+  - form: "Panduit straps"
+    reason: >-
+      Branded cable-tie consumable in the same job-ad lists; consumable, not a
+      machine.
+  - form: "power hand tools"
+    reason: "Generic category label from the job ads (code G)."
+  - form: "general construction tools"
+    reason: "Generic category label from the job ads (code G)."
+  - form: "HVAC equipment"
+    reason: >-
+      "responsible for starting the HVAC equipment" - the home's installed
+      unit, i.e. the work product being commissioned, not equipment the subject
+      manufactures with.
+  - form: "trim equipment"
+    reason: >-
+      "grills, and other trim equipment" - components installed into homes,
+      not equipment used to make anything.
+  - form: "air handlers and condenser"
+    reason: >-
+      "installing air handlers and condenser, running HVAC line sets" -
+      third-party HVAC components installed into houses (D-flavored).
+  - form: "319MHz Smart Hub"
+    reason: >-
+      Resold security good on /security-systems/ (a products.yaml entry,
+      actor reseller_inventory). Returned here it is the classic
+      product-vs-equipment D confusion.
+  - form: "VDB750 HD Video Doorbell Camera"
+    reason: "Same: resold security device (products entry), D confusion if returned as equipment."
+  - form: "Wireless PIR Motion Sensor"
+    reason: "Same: resold security device (products entry), D confusion if returned as equipment."
+  - form: "auto dialer"
+    reason: >-
+      SMS-consent legal boilerplate on every form page ("including messages
+      sent by auto dialer"; Spanish "mensajes enviados por marcador
+      automático"); marketing-automation reference, code U.
+  - form: "estimating system"
+    reason: >-
+      "Using a proprietary estimating system" (2x; Spanish "sistema de
+      presupuestos patentado") - office software/tooling (T), not production
+      equipment.
+  - form: "scheduling system"
+    reason: "'our robust scheduling system' - dispatch software (T)."
+  - form: "taladros"
+    reason: "Spanish job-ad mirror of 'drills' ('taladros, correas Panduit', 4x); field hand tools."
+  - form: "sierras de vaivén"
+    reason: "Spanish job-ad mirror of the recip/jig saw (4x); field hand tool."
+  - form: "Truck Signage"
+    reason: >-
+      'How did you hear about us?' dropdown option repeated on all 22 job-ad
+      forms; pure form-field noise (U), included because it capitalizes like a
+      designation.
+provenance:
+  - {action: added, by: "seed-agent-austinelectric", date: "2026-08-26", source: corpus-seed}

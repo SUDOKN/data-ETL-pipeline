@@ -1,0 +1,12 @@
+subject: acimachine.com
+field: contract_products
+expected: []
+traps:
+- name: Build-To-Order (JET, 340 listings)
+  kind: third_party
+  note: '''Build-To-Order'' availability filter/tag on brand pages reflects the OEM''s (e.g. JET''s) build-to-order
+    production status, not ACI making goods to a customer''s spec'
+- name: 'WINEMA RV 10 FLEXMASTER (Condition: Build To Order)'
+  kind: third_party
+  note: 'individual listing tagged ''Condition: Build To Order'' is WINEMA''s OEM production status for
+    a machine ACI brokers, not something ACI itself produces to order'

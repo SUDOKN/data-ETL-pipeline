@@ -1,0 +1,30 @@
+subject: anchor-mfg.com
+field: conformity_attestations
+expected:
+- name: EMS Certificate 03.015.1
+  evidence: EMS Certificate 03.015.1 (Supplier Portal document list)
+  strength: strong
+- name: IATF Certificate without Product Design 03.225.5
+  evidence: IATF Certificate without Product Design 03.225.5 (Supplier Portal document list)
+  strength: strong
+- name: Foreign Corrupt Practices Act compliance
+  evidence: Anchor strictly adheres to all local and applicable U.S. laws and regulations, including the
+    Foreign Corrupt Practices Act
+  strength: weak
+traps:
+- name: SUPPLIER QUALITY ASSURANCE MANUAL – Rev 6, 03.24.20
+  kind: doc_title
+  note: a document title listed on the Supplier Portal, not itself a certification
+- name: ANCHOR SUPPLIER RESPONSIBILITY POLICY AND CODE OF CONDUCT
+  kind: doc_title
+  note: policy document title, not a certification
+- name: PRODUCTION/TOOL PURCHASING GENERAL TERMS AND CONDITIONS
+  kind: doc_title
+  note: legal terms document title
+- name: QUOTATION/ACKNOWLEDGEMENT TERMS AND CONDITIONS FOR ANCHOR'S BUYERS/CUSTOMERS
+  kind: doc_title
+  note: legal terms document title
+- name: Uniform Commercial Code
+  kind: doc_title
+  note: statutory code cited as governing law in boilerplate contract terms ('purchase money security
+    interest under the Uniform Commercial Code'), not a claimed compliance certification

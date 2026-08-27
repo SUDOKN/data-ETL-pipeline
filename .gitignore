@@ -53,3 +53,64 @@ apps/data_etl_app/src/data_etl_app/knowledge/prompts/final_texts/*
 !apps/data_etl_app/src/data_etl_app/knowledge/prompts/final_texts/static/**
 !apps/data_etl_app/src/data_etl_app/knowledge/prompts/skeletons/
 !apps/data_etl_app/src/data_etl_app/knowledge/prompts/skeletons/*.txt
+# Grounding evaluation instrument (apps/data_etl_app/tests/test_stages/grounding):
+# the eval set, fixtures, per-run results/judgments, and ledger are deliberately
+# persisted in git — they are the instrument's memory across runs.
+!apps/data_etl_app/tests/test_stages/grounding/**/*.json
+!apps/data_etl_app/tests/test_stages/grounding/**/*.jsonl
+!apps/data_etl_app/tests/test_stages/grounding/**/*.txt
+# Search-stage evaluation (apps/data_etl_app/tests/test_stages/search):
+# the expectation set, per-run scorecards and the append-only metrics history
+# are the instrument's memory across runs, so they must be tracked despite the
+# blanket *.json / *.jsonl rules above. The per-run raw/ directories are the
+# exception — they hold pulled request bodies with the scraped SITE TEXT and
+# stay ignored (each also carries its own .gitignore).
+!apps/data_etl_app/tests/test_stages/search/**/*.json
+!apps/data_etl_app/tests/test_stages/search/**/*.jsonl
+!apps/data_etl_app/tests/test_stages/search/**/*.txt
+# Synthesis-stage evaluation (apps/data_etl_app/tests/test_stages/synthesis):
+# same rationale — the expectation set, per-run scorecards/work orders/verdicts
+# and the cumulative judgment ledger are the instrument's memory across runs.
+# evidence_snapshots/ is the exception (pulled wire payloads hold the scraped
+# SITE TEXT) and stays ignored via the folder's own .gitignore.
+!apps/data_etl_app/tests/test_stages/synthesis/**/*.json
+!apps/data_etl_app/tests/test_stages/synthesis/**/*.jsonl
+!apps/data_etl_app/tests/test_stages/synthesis/**/*.txt
+
+# --- Stage-evaluation RUN DATA stays off GitHub (2026-08-27, user decision) ---
+# The per-stage blocks above re-include *.json/*.jsonl/*.txt so each stage's
+# INSTRUMENT is tracked — eval sets, config, harness code, docs, tests. Its
+# per-run evidence is a different animal: golden-corpus scale (search history
+# 4.8M, synthesis history 4.0M + evidence_snapshots 5.0M) and partly verbatim
+# scraped SITE TEXT pulled from Mongo. None of it belongs in the repo.
+#
+# Written as `<dir>/**` rather than `<dir>/` on purpose: ignoring the directory
+# itself would stop git descending into it, and the negations below would then
+# be unreachable.
+apps/data_etl_app/tests/test_stages/*/history/**
+apps/data_etl_app/tests/test_stages/*/results/**
+apps/data_etl_app/tests/test_stages/*/evidence_snapshots/**
+apps/data_etl_app/tests/test_stages/*/**/raw/**
+
+# ...with ONE exception per stage: the small cross-run trend file. These are
+# tens of KB, contain no site text, and are the entire point of a longitudinal
+# instrument — without them a fresh clone cannot compare today's run to any
+# previous one. Delete these lines if even they should stay local.
+!apps/data_etl_app/tests/test_stages/*/history/metrics.jsonl
+!apps/data_etl_app/tests/test_stages/*/history/ledger.json
+!apps/data_etl_app/tests/test_stages/*/history/LEDGER.md
+!apps/data_etl_app/tests/test_stages/*/history/metrics_scoreboard.csv
+
+# ...and the per-run WRITTEN ANALYSIS. FINDINGS/SUMMARY/JUDGED/notes are prose
+# in the KBs with no site text in them, and they are what the run data was
+# gathered to produce — losing them from the repo would leave the conclusions
+# living only on one laptop. Re-including needs the two directory lines first:
+# git cannot re-include a file whose parent directory is excluded.
+!apps/data_etl_app/tests/test_stages/*/history/runs/
+!apps/data_etl_app/tests/test_stages/*/history/runs/*/
+!apps/data_etl_app/tests/test_stages/*/history/runs/*/*.md
+
+# The sample scraped-text corpus: 4.7M of verbatim site text (acimachine.com
+# alone is 3.9M). It was untracked but NOT ignored, so any `git add -A` would
+# have committed the whole corpus. Same class of data as the run evidence.
+apps/data_etl_app/src/data_etl_app/knowledge/sample_scraped_texts/

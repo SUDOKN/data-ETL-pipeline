@@ -1,0 +1,175 @@
+# Common evaluation criteria — shared by every field.
+# The code half (run_eval.py) reads `deterministic_checks.enforced` and `noise`;
+# everything else is the instrument's declarative record, maintained by hand
+# through the Phase D evolution step (see RUNBOOK.md).
+
+taxonomy_version: 1
+
+noise:
+  # Per-row divergence of grounding on byte-identical input at temperature 0.
+  # Recomputed every run from the products/contract A/A instrument when
+  # available; this is the fallback (pessimistic end of 12.9%/18.7%, measured
+  # on runs 20260824T190359 and 20260825T194457).
+  fallback_row_divergence: 0.19
+  # The band formula is noise_band() in run_eval.py; README.md explains it.
+
+deterministic_checks:
+  # enforced: true  => any violation makes the field's outcome tier FAIL.
+  # A check stays unenforced while the known upstream fix is pending; flip it
+  # the run AFTER the fix lands and record the flip in the watch item's status.
+  enforced:
+    failed_rule_gate: false # pending code fix, ranked backlog #1 (2026-08-25)
+    vocab_membership: false # pending decoration-strip fix (#2) and the persist-drift design
+    sentinel_leak: true # fixed on all 3 result paths long ago; recurrence = break
+    decoration_echo: false # pending fix #2
+
+judged_metrics:
+  # Computed by --merge-judgments from the census JSONL; defined in TAXONOMY.md.
+  - clean_share # (D+N) / tag instances
+  - fabrication_count # F instances; the headline safety number
+  - shipped_defects # defective tags that passed screening on a grounded row
+  - decline_sound_share # DS / all judged declines
+  - descent_defect_share # (H-BRIDGE + H-FORCED + H-STOP) / hops
+
+# Watch items every field shares. Field-specific ones live in fields/<field>.yaml.
+# class: improved (fix landed, watch for regression) | remaining (defect known,
+# fix pending) | emerged (new this run) | latent (never yet exercised; the eval
+# probes for it).
+watch_items:
+  - id: GW-ALL-1
+    title: A failed rule never gates its own tag
+    class: remaining
+    first_seen: 20260825T194457
+    provenance: "census 2026-08-25: 6 tags emitted carrying a failed rule in their own list (3 IGR-E1, 3 OGR-N1); 3 shipped"
+    detector: deterministic (failed_rule_gate)
+    measure: gate_violations count (and its shipped sub-count)
+    expect: "0 after backlog fix #1; flip enforcement then"
+    status:
+      "20260825T194457": present (6, 3 shipped)
+
+  - id: GW-ALL-2
+    title: Decorated display form fails the vocabulary membership test
+    class: remaining
+    first_seen: 20260825T194457
+    provenance: "census 2026-08-25: 3 false B1 drops ('Machining (also: ...)' x2, 'Extruding (also: Extrusion)'); one lost a true Extruding grounding"
+    detector: deterministic (decoration_echo)
+    measure: dropped_options.false_drops
+    expect: "0 after backlog fix #2; flip enforcement then"
+    status:
+      "20260825T194457": present (3)
+
+  - id: GW-ALL-3
+    title: Tag coinage churn (near-duplicate tags for one thing)
+    class: remaining
+    first_seen: 20260825T194457
+    provenance: "census 2026-08-25: 8-10 FEMA variants for 2 standards, 8 welding labels for one capability, 19/40 industry tags near-duplicates"
+    detector: deterministic floor (tag_churn clusters) + judged near-dup clusters
+    measure: tag_churn.clusters per dump
+    expect: "falls substantially only with the tag-normalization design work (backlog #10)"
+    status:
+      "20260825T194457": present
+
+  - id: GW-ALL-4
+    title: Twin groups get contradictory grounding between their two chunks
+    class: remaining
+    first_seen: 20260825T194457
+    provenance: "census 2026-08-25: 209/412 twins (51%) diverge in status or final tag set; 10 pairs literally opposite"
+    detector: deterministic (twins.divergence_rate)
+    measure: twins.divergent / twins.twin_groups
+    expect: "structural fix rides the map->array + twin-dispatch bundle (backlog #5)"
+    status:
+      "20260825T194457": present (51%)
+
+  - id: GW-ALL-5
+    title: Irreproducibility on identical input (the noise floor itself)
+    class: latent
+    first_seen: 20260824T190359
+    provenance: "A/A instrument: 12.9%/18.7% of rows diverge on byte-identical payloads at temperature 0, seed fixed"
+    detector: deterministic (reproducibility_aa)
+    measure: row_divergence per subject; feeds every noise band
+    expect: "not fixable by prompt; tracked so bands stay honest"
+    status:
+      "20260825T194457": present (12.9%/18.7%)
+
+  - id: GW-ALL-6
+    title: Vocabulary-gap answers crash the run (B1)
+    class: improved
+    first_seen: 20260824T190359
+    provenance: "fixed 2026-08-25; run 194457: 56 drops absorbed both old crash signatures, 45/53 genuine drops re-captured by OOV"
+    detector: deterministic (dropped_options totals + oov_recaptured)
+    measure: "crashes 0; drops recorded; recapture share"
+    expect: "no crash ever again; recapture stays high"
+    status:
+      "20260825T194457": fixed (56 drops, 0 crashes)
+
+  - id: GW-ALL-7
+    title: Unanswered grounding records silently dropped
+    class: improved
+    first_seen: 20260825T194457
+    provenance: "under-answer retry port fired live (steelcraft material_caps OOV 1/46) and repaired in 1.5s"
+    detector: deterministic (ops retry_requests + judge completeness)
+    measure: unanswered residue after retry
+    expect: "0"
+    status:
+      "20260825T194457": fixed (1 fired, 1 repaired)
+
+  - id: GW-ALL-8
+    title: A1 parse-error HOLD path has never run live
+    class: latent
+    first_seen: 20260822T012722
+    provenance: "zero parse errors in every run since the fix was built; the path is test-only"
+    detector: deterministic (ops; any parse error in a live run exercises it)
+    measure: parse errors observed / HOLD behavior when one occurs
+    expect: "first live parse error either confirms the hold or exposes it"
+    status:
+      "20260825T194457": unexercised
+
+  - id: GW-DE-1
+    title: Descent walks world-knowledge bridges nothing screens (M2 alive)
+    class: remaining
+    first_seen: 20260825T194457
+    provenance: >
+      Census 2026-08-25: descent is 42% defective (54/128 hops) and 99.3%
+      unvetted — 134 of 135 descent tags never appear in any screening verdict
+      because PipelineStage ranks screening 8 and iterative_grounding 9.
+      Proof it matters: screening FAILED the Plastic tag on the vinyl-separator
+      record and descent still walked the same anti-evidence down to PVC.
+      8 named bridge families in census_descent.md.
+    detector: judged (hop codes) + deterministic (descent.screened_share)
+    measure: descent_defect_share; descent.screened_share
+    expect: "screened_share rises to ~1.0 when the descent-screening decision (backlog #4) lands; defect share falls with the RGR-E1 quote requirement (#8)"
+    status:
+      "20260825T194457": present (42% defective, 0.7% screened)
+
+  - id: GW-DE-2
+    title: The vocabulary forces distinctions the text never makes
+    class: remaining
+    first_seen: 20260825T194457
+    provenance: "census: Painting->Wet Painting inserts 'liquid' 7/7; Anodizing->Decorative Anodizing inserts 'aesthetic' — H-FORCED exists only because the ontology has no neutral child. Needs an explicit stop-at-the-parent outcome (backlog #8) or an ontology decision."
+    detector: judged (H-FORCED hops)
+    measure: H-FORCED count per run, by family
+    expect: "0 after descent gains a stop-at-the-parent outcome"
+    status:
+      "20260825T194457": present (>=8 across 2 families)
+
+  - id: GW-ALL-9
+    title: Six of eight sample manufacturers have never been run
+    class: latent
+    first_seen: 20260826 (instrument establishment)
+    provenance: "only alecmfg + steelcraft ever completed end-to-end; the roster includes a bilingual site (austinelectricservices), a 4MB dealer catalog (acimachine, all-trap zero-signal), a degenerate cookie-wall scrape (taylordunn), and a 7KB sparse site (101machine)"
+    detector: judged (first-contact protocol + recall vs inventory)
+    measure: subjects evaluated at least once
+    expect: "each new subject's first run is its baseline row"
+    status:
+      "20260825T194457": 2 of 8 subjects exercised
+
+notes: |
+  - Explanation-text metrics are banned as gates (the meta-finding: explanations
+    are post-hoc justifications). The one historical exception — counting
+    explanations that cite a nonexistent 'mentions' field, used to verify the
+    2026-08-25 mentions fix — measured PHRASING as phrasing, on purpose. If a
+    phrasing canary is ever wanted again, label it as such and never let it
+    drive a tier.
+  - record_own_name_hits saturated at exactly 100% on run 194457 (retire or
+    re-threshold, backlog #12). own_name_in_tags in this instrument is
+    report-only context, never a violation.

@@ -1,0 +1,54 @@
+subject: alecmfg.com
+field: industries
+expected:
+- name: Aerospace
+  evidence: presenting its capabilities in precision aerospace CNC machining and industrial 3D printing
+    for aerospace components
+  strength: strong
+- name: Automotive
+  evidence: fully qualified to support Tier 1 and Tier 2 automotive suppliers across Europe, North America,
+    and Australia
+  strength: strong
+- name: Electric Vehicles / New Energy Vehicles
+  evidence: a developer of custom components for new energy vehicles (NEVs), serving major OEMs across
+    Europe
+  strength: strong
+- name: Medical Devices
+  evidence: ISO 13485:2016 for quality management systems in the medical device industry
+  strength: strong
+- name: Consumer Electronics
+  evidence: solutions that meet customers' strict requirements in various fields such as medical care,
+    automobiles, and consumer electronics
+  strength: strong
+- name: Semiconductor
+  evidence: a leading global semiconductor equipment manufacturer was upgrading its wafer handling system
+  strength: strong
+- name: Industrial Automation / Robotics
+  evidence: an automation integrator specializing in high-speed packaging lines; Surgical Robotics Manufacturer
+  strength: strong
+- name: Rail / Railway
+  evidence: a rail technology manufacturer based in France—one of the primary suppliers to SNCF
+  strength: strong
+- name: Oil & Gas / Offshore
+  evidence: U.S. Oil & Gas Client ... structural frames for offshore skid systems
+  strength: strong
+- name: Power Electronics
+  evidence: a UK-based electronics manufacturer specializing in industrial power modules and rail inverter
+    systems
+  strength: moderate
+traps:
+- name: Food and personal care sectors
+  kind: client_work
+  note: '''an automation integrator specializing in high-speed packaging lines for the food and personal
+    care sectors'' — the client''s own customers'' sector, two hops removed from Alec'
+- name: CNC Machining
+  kind: wrong_axis
+  note: Alec's own process, described as applying 'across various industries' — not itself an industry
+    served
+- name: Mold Industry / Precision Machining Industry / Overall Manufacturing Industry
+  kind: wrong_axis
+  note: categories in a certification-adoption-rate statistics table, not sectors Alec's customers belong
+    to
+- name: Volkswagen, General Motors, Bosch, Hyundai
+  kind: third_party
+  note: named only as generic examples of companies that use D-U-N-S numbers, not confirmed Alec customers

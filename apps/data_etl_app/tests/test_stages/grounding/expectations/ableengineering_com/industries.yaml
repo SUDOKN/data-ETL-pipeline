@@ -1,0 +1,38 @@
+subject: ableengineering.com
+field: industries
+expected:
+- name: Military / defense
+  evidence: prime and sub-contracts for the U.S. Air Force, U.S. Army, U.S. Navy, U.S. Coast Guard, and
+    numerous foreign-allied militaries
+  strength: strong
+- name: Government / homeland security
+  evidence: highly credible MRO for the Departments of Defense, Homeland Security and Allied Nations
+  strength: strong
+- name: Commercial airlines
+  evidence: your full-service solution for landing gear, from narrow body airlines to business jets and
+    turboprops
+  strength: strong
+- name: Business aviation (business jets)
+  evidence: from narrow body airlines to business jets and turboprops
+  strength: moderate
+- name: Aircraft operators and fleet owners
+  evidence: helped some of the most recognizable and respected aircraft operators and fleet owners safely
+    reduce their operating costs
+  strength: strong
+- name: Foreign/allied governments
+  evidence: provides competitive pricing and turn times... which ensure our foreign and domestic clients
+    remain in-air
+  strength: moderate
+traps:
+- name: Aviation industry (Able's own sector)
+  kind: wrong_axis
+  note: '''achieving excellence in the aviation industry'' describes Able''s own line of business, not
+    a sector it serves.'
+- name: Textron Aviation
+  kind: wrong_actor
+  note: '''Able Aerospace is a subsidiary of Textron Aviation'' names the subject''s own parent/corporate
+    structure, not a customer sector.'
+- name: Boeing / Airbus / Bell / Sikorsky (aircraft OEM names)
+  kind: wrong_axis
+  note: These recur hundreds of times as the 'Make' of the aircraft platform a part fits, not as a customer
+    industry served.

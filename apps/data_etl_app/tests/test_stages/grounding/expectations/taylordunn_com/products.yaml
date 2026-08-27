@@ -1,0 +1,24 @@
+subject: taylordunn.com
+field: products
+expected:
+- name: Utility Vehicles
+  evidence: 'nav: VEHICLES > Utility Vehicles'
+  strength: strong
+- name: Bigfoot Burden Carriers
+  evidence: 'nav: VEHICLES > Bigfoot Burden Carriers'
+  strength: strong
+- name: Stockchasers
+  evidence: 'nav: VEHICLES > Stockchasers'
+  strength: strong
+- name: Personnel Carriers
+  evidence: 'nav: VEHICLES > Personnel Carriers'
+  strength: strong
+- name: Tow Tractors
+  evidence: crawled page slug /tow-tractors/; not listed in the current VEHICLES nav (page body itself
+    is the boilerplate)
+  strength: weak
+traps:
+- name: Bigfoot
+  kind: marketing_idiom
+  note: Bare brand nickname (own page /bigfoot/, nav item BUILD A BIGFOOT); risks double-counting against
+    the catalog item 'Bigfoot Burden Carriers'.

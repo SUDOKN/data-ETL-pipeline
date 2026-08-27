@@ -1,0 +1,70 @@
+subject: alecmfg.com
+field: contract_products
+expected:
+- name: Stainless steel valve body assemblies
+  evidence: urgently needed 30 ultra-precision valve body assemblies for cleanroom testing, particle analysis,
+    and lifecycle validation
+  strength: strong
+- name: Aluminum alloy sheet metal structural housings
+  evidence: urgently needed 20 functional aluminum alloy sheet metal housings for fit-check, vibration,
+    and thermal dissipation testing
+  strength: strong
+- name: Precision sensor ring (laparoscopic arm)
+  evidence: One critical component—the optical sensor ring—required precision machining for high-speed,
+    real-time angular feedback
+  strength: strong
+- name: Custom CNC-machined aluminum mounting brackets
+  evidence: The design called for a custom-machined aluminum bracket, intended to interface between the
+    gripper's pneumatic housing
+  strength: strong
+- name: CNC-machined aluminum baseplates
+  evidence: The cnc machined aluminum baseplates required for this system had to meet tight flatness and
+    parallelism specs
+  strength: strong
+- name: Custom-machined aluminum brackets and thermal support frames
+  evidence: required custom-machined aluminum brackets and thermal support frames using non-standard aerospace-grade
+    material
+  strength: strong
+- name: Aluminum alloy powertrain components
+  evidence: 3D drawings and technical specifications for three aluminum alloy components ... powertrain
+    structural module
+  strength: strong
+- name: Titanium alloy surgical guide components
+  evidence: detailed 3D models and specification sheets for a series of titanium components ... orthopedic
+    surgical guide
+  strength: strong
+- name: Lightweight CNC structural components (power module)
+  evidence: urgently required a batch of metal structural parts with high strength, lightweight design,
+    and excellent thermal performance
+  strength: strong
+- name: Copper heat sink
+  evidence: urgently needed a custom copper heat sink machining solution that ensured tight tolerances,
+    high thermal conductivity
+  strength: strong
+- name: Welded structural steel frames + machined interfaces
+  evidence: Product Type ... Welded structural steel frames + machined interfaces
+  strength: strong
+traps:
+- name: Heavy-lift drone
+  kind: client_work
+  note: the French client's own end-product; Alec made only the battery module housing for it
+- name: 3rd-generation laparoscopic system
+  kind: client_work
+  note: the DK client's own surgical robot; Alec made only the optical sensor ring component
+- name: Wafer handling system
+  kind: client_work
+  note: the semiconductor client's own equipment; Alec made only the gas control valve body
+- name: Subsea control module platform
+  kind: client_work
+  note: the offshore client's end platform; Alec made welded frames + machined interfaces for it
+- name: Electric truck / logistics vehicle
+  kind: client_work
+  note: the Swedish startup's own vehicle; Alec made lightweight CNC structural components for its power
+    module
+- name: High-end orthopedic surgical instruments
+  kind: client_work
+  note: the client's overall product line; Alec made titanium components for one surgical guide
+- name: End-of-line robotic gripper
+  kind: client_work
+  note: the Ohio client's own device; Alec made only the aluminum mounting bracket that interfaces with
+    it

@@ -1,0 +1,194 @@
+subject: anchor-mfg.com
+field: industries
+snapshot:
+  file: apps/data_etl_app/src/data_etl_app/knowledge/sample_scraped_texts/anchor-mfg.com.txt
+  sha256: e34daaa48321c56889764574c1e98456e927bf1c02b9eeb88f867ec0a1471b1f
+eval_set_version: 2
+expected_empty: false
+notes: Rich field. The same 7-industry list appears on four surfaces (home, /capabilities-services/,
+  /industries-served/, /Anchor/industries-served/) and each industry also gets a prose paragraph on
+  the two (duplicated) industries pages - expect every one of the 7 to be found, likely in several
+  windows. All are sectors Anchor serves (actor own throughout).
+  VERIFIER 2026-08-26 - independent pass - all 7 entries confirmed, all 14 quotes verbatim. expected_empty false AGREED. The 7 sectors are exactly the subject's own Industries Served list and no eighth sector claim exists in the file. 'Industrial' (0007) is the weakest - heading-only and close to the generic G code - but it is an explicit list item, so it stands.
+entries:
+- id: anchor-mfg_com-industries-0001
+  name: Automotive
+  status: confirmed
+  acceptable_forms:
+  - Automotive
+  - automotive industry
+  evidence:
+  - quote: significant expertise in the automotive industry
+    approx_offset: 695
+    evidence_kind: prose
+  - quote: Automotive
+    approx_offset: 470
+    evidence_kind: heading
+  notes: the dominant sector - home prose, industries prose, and all four list surfaces
+  provenance:
+  - action: added
+    by: seed-agent-anchor-mfg
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-anchor-mfg
+    date: '2026-08-26'
+- id: anchor-mfg_com-industries-0002
+  name: Appliance
+  status: confirmed
+  acceptable_forms:
+  - Appliance
+  - home appliance
+  evidence:
+  - quote: In the home appliance industry, designs are constantly updating
+    approx_offset: 21488
+    evidence_kind: prose
+  - quote: Appliance
+    approx_offset: 481
+    evidence_kind: heading
+  provenance:
+  - action: added
+    by: seed-agent-anchor-mfg
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-anchor-mfg
+    date: '2026-08-26'
+- id: anchor-mfg_com-industries-0003
+  name: Agricultural
+  status: confirmed
+  acceptable_forms:
+  - Agricultural
+  - Agriculture
+  evidence:
+  - quote: Anchor keeps agriculture rolling.
+    approx_offset: 22190
+    evidence_kind: prose
+  - quote: Agricultural
+    approx_offset: 491
+    evidence_kind: heading
+  notes: the prose paragraph is pure marketing filler ('without agriculture, there is no culture');
+    the served-industry claim rests on the list membership and the closing sentence quoted here
+  provenance:
+  - action: added
+    by: seed-agent-anchor-mfg
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-anchor-mfg
+    date: '2026-08-26'
+- id: anchor-mfg_com-industries-0004
+  name: Commercial Vehicle
+  status: confirmed
+  acceptable_forms:
+  - Commercial Vehicle
+  - commercial vehicles
+  - Class 8 heavy trucks
+  evidence:
+  - quote: Commercial Vehicle
+    approx_offset: 504
+    evidence_kind: heading
+  - quote: manufacture of Class 8 heavy trucks and busses
+    approx_offset: 22301
+    evidence_kind: prose
+  notes: the prose under this heading never repeats 'commercial vehicle' - its in-window
+    designation is the segment 'Class 8 heavy trucks' (accepted as a form, borderline B);
+    school/transit buses and road coaches from the same sentence are the customers' end
+    vehicles, not sector names
+    VERIFIER 2026-08-26 - flagged form - 'Class 8 heavy trucks' is listed as a products false friend (code C, the customer's end vehicle); as an industries form it is defensible per-field, but it lets a run that never names the sector take sector credit.
+  provenance:
+  - action: added
+    by: seed-agent-anchor-mfg
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-anchor-mfg
+    date: '2026-08-26'
+- id: anchor-mfg_com-industries-0005
+  name: Consumer Products
+  status: confirmed
+  acceptable_forms:
+  - Consumer Products
+  - Consumer Product
+  evidence:
+  - quote: Consumer Products
+    approx_offset: 6517
+    evidence_kind: heading
+  - quote: Consumer Product
+    approx_offset: 523
+    evidence_kind: heading
+  notes: singular on the home list and the industries-page prose heading, plural on the
+    capabilities and industries list surfaces - merged as trivial variants
+  provenance:
+  - action: added
+    by: seed-agent-anchor-mfg
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-anchor-mfg
+    date: '2026-08-26'
+- id: anchor-mfg_com-industries-0006
+  name: Defense
+  status: confirmed
+  acceptable_forms:
+  - Defense
+  - defense industry
+  - military industry
+  evidence:
+  - quote: Anchor has been a strategic supplier to the defense industry for many years
+    approx_offset: 22893
+    evidence_kind: prose
+  - quote: meet the specifications of the military industry
+    approx_offset: 23276
+    evidence_kind: prose
+  notes: genuine sector here (real supplier claim), unlike the weather-defense word-association
+    seen elsewhere in the corpus; 'military industry' from the same paragraph is merged as a
+    trivial variant rather than a separate entity
+  provenance:
+  - action: added
+    by: seed-agent-anchor-mfg
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-anchor-mfg
+    date: '2026-08-26'
+- id: anchor-mfg_com-industries-0007
+  name: Industrial
+  status: confirmed
+  acceptable_forms:
+  - Industrial
+  evidence:
+  - quote: Industrial
+    approx_offset: 548
+    evidence_kind: heading
+  notes: heading-only designation in the 7-industry list; its prose is generic ('many industries
+    and across a variety of market segments'), so the only anchoring form is the bare heading
+  provenance:
+  - action: added
+    by: seed-agent-anchor-mfg
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-anchor-mfg
+    date: '2026-08-26'
+false_friends:
+- form: Metal Stamping
+  reason: the subject's OWN process presented as capability headings and self-description ('As a
+    metal stamper') - returned as an industry it is code O (own activity as sector)
+- form: Tool & Die
+  reason: own business line ('a stand-alone tool and die business') and own-name footer ('Anchor
+    Tool & Die Co.' on all 15 pages) - code O as an industry
+- form: Manufacturing
+  reason: generic (code G) - 'Anchor Manufacturing', 'manufacturing space', 'Tier I and Tier II
+    manufacturers'; never a sector-served designation
+- form: Food
+  reason: word-association (code W) from agriculture marketing filler ('the food we eat', 'food
+    chain'); no food-industry-served claim anywhere
+- form: Transportation
+  reason: word-association (code W) from 'popular means of transport' in the commercial-vehicle
+    prose; transportation is never named as a served sector
+- form: OEM
+  reason: customer tier, not an industry - 'North American, European, and Asian OEM's' names who
+    Anchor sells to across sectors
+- form: Tier I and Tier II
+  reason: customer tiers ('Tier I and Tier II manufacturers'), not a sector designation

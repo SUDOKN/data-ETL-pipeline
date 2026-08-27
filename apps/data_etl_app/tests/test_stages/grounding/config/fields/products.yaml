@@ -1,0 +1,49 @@
+field: products
+stages: [freehand]
+
+watch_items:
+  - id: GW-PR-1
+    title: The rule approves one string, persistence stores another (FGR-Q1 drift)
+    class: remaining
+    first_seen: 20260825T194457
+    provenance: >
+      Census 2026-08-25: 31 of 454 FGR-Q1 checks in steelcraft products validate
+      a specific form ('L Series doors') and store a general one ('doors') — the
+      tag that ships was never the tag the rule approved. Same root as the 58
+      series/trade names that DID leak: normalization at persist time, silent and
+      inconsistent. Judged by sampling because the evidence is prose.
+    detector: judged (sample >= 20 tag instances per run against their rule rows)
+    measure: sampled share of tags whose persisted string differs materially from the evidenced entity
+    expect: "0 after the persist-time normalization design work (backlog #10 territory)"
+    status:
+      "20260825T194457": present (31/454)
+
+  - id: GW-PR-2
+    title: Zero-fabrication control
+    class: improved
+    first_seen: 20260825T194457
+    provenance: "steelcraft products has ZERO fabrications with the same stage and a sibling prompt — the control that localized the equipments regression. Its failure mode is over-admission, not invention."
+    detector: judged
+    measure: fabrication_count on products
+    expect: "stays 0; any F here means upstream contamination reached this field too"
+    status:
+      "20260825T194457": clean (0)
+
+  - id: GW-PR-3
+    title: Literature/doc-title records grounded as products
+    class: remaining
+    first_seen: 20260824T010654
+    provenance: "the document-listing synthesis rule scopes claims to the document, but records like 'Falcon SZ Series' (a sibling-brand PDF) and 'Steelcraft Portfolio' still sit in products with affirmative sentences; root cause is search precision (37%)"
+    detector: judged
+    measure: X/P-coded instances whose record is a document title or sibling-brand item
+    expect: "shrinks with search precision work (Phase 5); grounding should decline or scope them"
+    status:
+      "20260825T194457": present
+
+notes: |
+  This field is one half of the free A/A instrument (with contract_products) —
+  Phase A computes it automatically when both dumps exist and their freehand
+  request digests match. Inventory caution: three subjects (101machine, anchor-mfg,
+  alecmfg, austinelectricservices in part) sell NO catalog products — everything
+  is made to spec. An empty or near-empty products result is CORRECT there; judge
+  admissions against the inventory's traps.

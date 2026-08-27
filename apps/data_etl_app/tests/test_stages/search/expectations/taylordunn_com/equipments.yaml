@@ -1,0 +1,43 @@
+subject: taylordunn.com
+field: equipments
+snapshot:
+  file: apps/data_etl_app/src/data_etl_app/knowledge/sample_scraped_texts/taylordunn.com.txt
+  sha256: "dbf6cfcd2de35d5052df8d9b1e45530d25519aad8f62628716e2bedbb7c81113"
+eval_set_version: 2
+expected_empty: true
+notes: >-
+  No machine, tool, or shop-equipment designation appears. Word-boundary
+  greps for CNC/lathe/mill/welder/press/robot and forklift/crane/conveyor/
+  grinder/drill/saw/tooling return zero hits across the whole file (verified
+  2026-08-26). The equipment-shaped strings present are all IT/ad-tech
+  (software plugins, servers, hard drive) in cookie boilerplate, plus the
+  subject's own vehicle product lines in the nav -- the known
+  product-vs-equipment confusion (D code). Any yield here is junk.
+entries: []
+false_friends:
+  - form: "Elementor"
+    reason: "WordPress page-builder plugin in the cookie vendor table; software, T-code bait, not shop equipment"
+  - form: "WordPress"
+    reason: "CMS in the cookie vendor table; software, not equipment"
+  - form: "WPForms"
+    reason: "form-builder plugin in the cookie vendor table; software"
+  - form: "Complianz"
+    reason: "cookie-consent plugin in the vendor table; software"
+  - form: "Google reCAPTCHA"
+    reason: "third-party anti-bot service; software"
+  - form: "web beacon"
+    reason: "tracking technology defined in cookie-policy section 4, not a physical tool"
+  - form: "pixel tag"
+    reason: "tracking technology defined in cookie-policy section 4"
+  - form: "hard drive"
+    reason: "generic consumer IT hardware in cookie-explainer prose ('stored by your browser on the hard drive of your computer'), not production equipment"
+  - form: "servers"
+    reason: "IT infrastructure in cookie prose ('returned to our servers'), not shop equipment"
+  - form: "Utility Vehicles"
+    reason: "subject's own product line (nav label); a good made and sold, not equipment the subject uses -- D-code confusion"
+  - form: "Bigfoot Burden Carriers"
+    reason: "subject's own product line (nav label); D-code confusion"
+  - form: "Stockchasers"
+    reason: "subject's own product line (nav label); D-code confusion"
+  - form: "Personnel Carriers"
+    reason: "subject's own product line (nav label); D-code confusion"

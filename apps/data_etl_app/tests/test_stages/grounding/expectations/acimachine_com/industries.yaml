@@ -1,0 +1,16 @@
+subject: acimachine.com
+field: industries
+expected: []
+traps:
+- name: Oil & Gas
+  kind: wrong_axis
+  note: '''Oil Field & Hollow Spindle Lathes'' is an equipment TYPE category name (a kind of lathe for
+    sale), not a claim ACI serves the oil & gas sector'
+- name: Woodworking
+  kind: wrong_axis
+  note: '''Woodworking Lathes / Sanders / Band Saws / Jointers'' are equipment TYPE category names for
+    machines sold, not an industry ACI serves'
+- name: Bicycle manufacturing
+  kind: client_work
+  note: 'blog post ''The Human Touch'': a decades-old personal anecdote about one sales call to ''a company
+    that manufactured bicycles'', not a stated served sector'

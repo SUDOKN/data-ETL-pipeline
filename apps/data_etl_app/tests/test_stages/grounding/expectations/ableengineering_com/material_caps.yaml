@@ -1,0 +1,31 @@
+subject: ableengineering.com
+field: material_caps
+expected:
+- name: Aluminum
+  evidence: Able's innovative, additive manufacturing capability for repairing aluminum and magnesium
+    components.
+  strength: strong
+- name: Magnesium
+  evidence: Able's innovative, additive manufacturing capability for repairing aluminum and magnesium
+    components.
+  strength: strong
+- name: Chrome (Chromium plating)
+  evidence: Able is NADCAP-approved for chrome, which reduces in-house processing time for nickel, CAD
+    plating...
+  strength: strong
+- name: Nickel
+  evidence: NADCAP-approved for chrome, which reduces in-house processing time for nickel, CAD plating
+    and several other processes.
+  strength: strong
+- name: Cadmium (CAD plating)
+  evidence: 'Special processes performed in-house: Plating – Chrome, Nickel, CAD.'
+  strength: strong
+traps:
+- name: Skydrol
+  kind: wrong_axis
+  note: Hydraulic fluid brand serviced by the hydraulics team ('for Red Oil and Skydrol components'),
+    not a material the subject processes/fabricates.
+- name: Red Oil
+  kind: wrong_axis
+  note: MIL-H-5606 hydraulic fluid handled during hydraulics service, not a material_cap; appears only
+    in 'for Red Oil and Skydrol components'.

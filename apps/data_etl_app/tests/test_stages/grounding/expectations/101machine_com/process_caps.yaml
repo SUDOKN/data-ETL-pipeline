@@ -1,0 +1,82 @@
+subject: 101machine.com
+field: process_caps
+expected:
+- name: CNC Turning
+  evidence: CNC turning services for nuclear power, semiconductor, lighting, chemical, and medical industries
+  strength: strong
+- name: CNC Milling
+  evidence: Our CNC Milling offers machining services with consistently high-quality results
+  strength: strong
+- name: CNC Machining
+  evidence: Our CNC machining capabilities enable us to produce the finest, highly accurate parts
+  strength: strong
+- name: Drilling
+  evidence: Turning Services / Drilling (turning.html and milling.html service lists)
+  strength: strong
+- name: Tapping
+  evidence: Tapping (turning and milling service list item)
+  strength: strong
+- name: Reaming
+  evidence: Reaming (turning and milling service list item)
+  strength: strong
+- name: Boring
+  evidence: Boring (turning and milling service list item)
+  strength: strong
+- name: Counter Boring
+  evidence: Counter Boring (turning and milling service list item)
+  strength: strong
+- name: Broaching (Hexes and Square)
+  evidence: Broaching – Hexs and Square
+  strength: strong
+- name: Facing
+  evidence: Facing (turning and milling service list item)
+  strength: strong
+- name: Countersinking
+  evidence: Countersinking (turning and milling service list item)
+  strength: strong
+- name: Spotting
+  evidence: Spotting (turning and milling service list item)
+  strength: strong
+- name: Chamfering
+  evidence: Chamfering (turning and milling service list item)
+  strength: strong
+- name: Form Tapping
+  evidence: Form Tapping (turning and milling service list item)
+  strength: strong
+- name: Profiling
+  evidence: Profiling (turning and milling service list item)
+  strength: strong
+- name: Single Point Threading
+  evidence: Single Point Threading (turning.html service list)
+  strength: strong
+- name: Solid Surfacing
+  evidence: Solid Surfacing (milling.html Milling Services list)
+  strength: strong
+- name: ID Thread Milling
+  evidence: ID Thread Milling (milling.html service list)
+  strength: strong
+- name: OD Thread Milling
+  evidence: OD Thread Milling (milling.html service list)
+  strength: strong
+- name: Engraving
+  evidence: Engraving (milling.html service list)
+  strength: strong
+- name: Spot Facing
+  evidence: Spot Facing (milling.html service list)
+  strength: strong
+- name: Angular Milling
+  evidence: Angular Milling (milling.html service list)
+  strength: strong
+traps:
+- name: Injection Molding
+  kind: homonym
+  note: text says they produce injection molds (mold tooling) via CNC machining, not that they perform
+    the injection-molding process
+- name: Design consultation
+  kind: wrong_axis
+  note: a consulting/design service, not a manufacturing process; 'Machining and Design consultation services
+    are available'
+- name: Manual Machining
+  kind: marketing_idiom
+  note: page-header tagline on milling.html ('Manual Machining / Milling / Turning') contradicted by the
+    body text, which only describes CNC milling

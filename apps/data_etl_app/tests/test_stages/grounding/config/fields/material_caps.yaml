@@ -1,0 +1,45 @@
+field: material_caps
+stages: [initial, oov, recursive]
+
+watch_items:
+  - id: GW-MC-1
+    title: The Lead homonym (lead time / job titles, never the metal)
+    class: remaining
+    first_seen: 20260816T030947
+    provenance: >
+      Brute substring false positive since v1. Census 2026-08-25: correctly
+      declined at OUTPUT on both subjects, but grounding DID mint it once with
+      IGR-E1 failed attached (caught only by the gate/census). alecmfg writes
+      "Lead" only in "Lead Time" and "Lead Manufacturing Engineer".
+    detector: judged (decline soundness on lead groups) + deterministic (gate)
+    measure: any Lead tag instance shipping; decline correctness per subject
+    expect: "declined every run; a shipped Lead = regression"
+    status:
+      "20260825T194457": declined correctly (both subjects)
+
+  - id: GW-MC-2
+    title: Vague material tags carry no information
+    class: remaining
+    first_seen: 20260825T194457
+    provenance: "census 2026-08-25: V instances (Metal, Polymer, Chemicals, Honeycomb) — 6-7 per subject dump"
+    detector: judged
+    measure: V-coded share of material tag instances
+    expect: "shrinks if descent reliably reaches specific children AND vague parents stop shipping alongside them"
+    status:
+      "20260825T194457": present (~7-11%)
+
+  - id: GW-MC-3
+    title: Best-field control — alecmfg material_caps
+    class: improved
+    first_seen: 20260825T194457
+    provenance: "the pipeline's best field: 84% clean instances (29/33 real). A regression HERE is a red flag for any shared-template edit (the equipments lesson: a shared-rule edit can flip exactly one field)."
+    detector: judged
+    measure: clean_share on alecmfg material_caps
+    expect: "stays ~84%+ within noise; investigate any shared grounding-template edit if it falls"
+    status:
+      "20260825T194457": healthy (84%)
+
+notes: |
+  Descent's acronym/designation resolution is a strength worth protecting
+  (EN AW-6082 T6 -> Wrought Aluminum Alloy, A60 galvannealed -> Galvanized
+  Steel) — judge those hops H-OK and cite them when a descent rework is proposed.

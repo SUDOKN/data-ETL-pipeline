@@ -1,0 +1,381 @@
+subject: steelcraft.com
+field: material_caps
+snapshot:
+  file: apps/data_etl_app/src/data_etl_app/knowledge/sample_scraped_texts/steelcraft.com.txt
+  sha256: c10c1a3e4a24ade49fc7af157e8eb1f8975a371e7ae5e3dc081172790e6728b0
+eval_set_version: 2
+expected_empty: false
+notes: 'Materials are construction-spec designations: American steel, stainless (304/316), A60 galvannealed (three
+  spellings in-text), galvanized, and the five-way core-material menu (kraft honeycomb, polystyrene, polyurethane,
+  mineral board, steel stiffened) plus fiberglass batting, epoxy, ceramic glass, polymer, and the genuine lead-lining
+  context. Bare ''steel'' deliberately NOT an entry (trivially contained in dozens of forms - free recall); bare
+  ''Lead'' is a false friend (lead-time flood) while lead-lining/lead-lined forms carry the entry. VERIFICATION
+  PASS 2026-08-26 (verify-agent-steelcraft, second independent read): all 16 entries confirmed; 0 disputed; 0 quote
+  failures (all evidence byte-exact verbatim). Agreed with the two structural calls: keeping bare ''steel'' out
+  as an entry, and carrying the metal-lead sense only on lead-lining/lead-lined forms. FALSE FRIENDS: agreed as
+  written - wood/aluminum/vinyl are comparison-only, concrete/CMU block/drywall/masonry are install substrates or
+  opening types, ash/walnut are stain appearance names, and ''Inland Steel'' is the 1959 history line. ONE FORMS
+  GAP recorded on material_caps-0005: the third in-text spelling ''Galvanealled'' is not covered by any acceptable
+  form.'
+entries:
+- id: steelcraft_com-material_caps-0001
+  name: American steel
+  status: confirmed
+  acceptable_forms:
+  - American steel
+  evidence:
+  - quote: Steelcraft hollow metal doors and frames are always manufactured in the United States using American
+      steel.
+    approx_offset: 267
+  notes: homepage banner designation; bare 'steel' deliberately NOT seeded as an entry - it is trivially contained
+    in dozens of legitimate forms and would make recall free
+  provenance:
+  - action: added
+    by: seed-agent-steelcraft
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-steelcraft
+    date: '2026-08-26'
+- id: steelcraft_com-material_caps-0002
+  name: Stainless steel
+  status: confirmed
+  acceptable_forms:
+  - stainless steel
+  - all-stainless-steel
+  - Stainless
+  evidence:
+  - quote: This solution utilizes all-stainless-steel construction, including reinforcement components.
+    approx_offset: 197683
+  - quote: 100% stainless steel components ensure against rust, inside and out
+    approx_offset: 220484
+  notes: 'LS doors and FS/KS/MS frames; family-level (B) with graded alloys as separate entries | VERIFY 2026-08-26:
+    agreed. FORM FLAG: bare ''Stainless'' is credited by containment from the products/frames landing-page Subcategory
+    nav token ''Stainless'' and from every stainless PRODUCT designation (''LS Series Stainless Steel Doors'', ''Stainless
+    Steel Data Sheet'') - nav junk and product returns both credit.'
+  provenance:
+  - action: added
+    by: seed-agent-steelcraft
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-steelcraft
+    date: '2026-08-26'
+- id: steelcraft_com-material_caps-0003
+  name: Type 304 stainless alloy
+  status: confirmed
+  acceptable_forms:
+  - Type 304 Alloy
+  - Type 304
+  - 304 or 316 alloy
+  evidence:
+  - quote: Type 304 Alloy – standard corrosion resistance
+    approx_offset: 198595
+  - quote: LS Series Doors are available in either 304 or 316 alloy for maximum durability and corrosion protection.
+    approx_offset: 197776
+  notes: grade designation
+  provenance:
+  - action: added
+    by: seed-agent-steelcraft
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-steelcraft
+    date: '2026-08-26'
+- id: steelcraft_com-material_caps-0004
+  name: Type 316 stainless alloy
+  status: confirmed
+  acceptable_forms:
+  - Type 316 Alloy
+  - Type 316
+  evidence:
+  - quote: Type 316 Alloy - heavy duty corrosion resistance
+    approx_offset: 198643
+  notes: grade designation (heavy-duty corrosion resistance)
+  provenance:
+  - action: added
+    by: seed-agent-steelcraft
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-steelcraft
+    date: '2026-08-26'
+- id: steelcraft_com-material_caps-0005
+  name: A60 galvannealed steel
+  status: confirmed
+  acceptable_forms:
+  - A60 Galvannealled steel
+  - galvannealed A-60 steel
+  - A60 galvannealed steel
+  - Galvannealed A-60 Steel
+  - galvannealed
+  evidence:
+  - quote: A60 Galvannealled steel for superior strength and resistance to corrosion
+    approx_offset: 21496
+  - quote: Uses galvannealed A-60 steel
+    approx_offset: 28723
+  - quote: 14 Gauge A60 galvannealed steel for superior corrosion resistance on exterior openings
+    approx_offset: 34649
+  notes: 'THREE spellings in-text: ''Galvannealled'', ''galvannealed'', and ''Galvanealled'' (''ASTM A653 (Galv;
+    All Tornado products are Galvanealled)'') - all one designation | VERIFY 2026-08-26: agreed on the entity, but
+    the FORMS DO NOT COVER THE THIRD SPELLING the entry''s own note names: the text carries ''Galvanealled'' (single
+    n, in ''ASTM A653 (Galv; All Tornado products are Galvanealled)'') and no acceptable form contains that string,
+    so a faithful echo of that occurrence would NOT credit. Counted spellings in-snapshot: galvannealed x5, Galvannealed
+    x1, Galvannealled x1, Galvanealled x1.'
+  provenance:
+  - action: added
+    by: seed-agent-steelcraft
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-steelcraft
+    date: '2026-08-26'
+- id: steelcraft_com-material_caps-0006
+  name: Galvanized steel
+  status: confirmed
+  acceptable_forms:
+  - Galvanized steel
+  evidence:
+  - quote: Galvanized steel for superior strength and resistance to corrosion
+    approx_offset: 174574
+  notes: Paladin page wording; kept separate from galvannealed because the text uses both terms as designations
+  provenance:
+  - action: added
+    by: seed-agent-steelcraft
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-steelcraft
+    date: '2026-08-26'
+- id: steelcraft_com-material_caps-0007
+  name: Kraft honeycomb core
+  status: confirmed
+  acceptable_forms:
+  - kraft honeycomb
+  - Honeycomb
+  - honeycomb core
+  evidence:
+  - quote: 'Honeycomb (Standard): 1" (25 mm) cell kraft honeycomb configuration that increases structural integrity
+      while reducing overall weight'
+    approx_offset: 21774
+  notes: standard door core material
+  provenance:
+  - action: added
+    by: seed-agent-steelcraft
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-steelcraft
+    date: '2026-08-26'
+- id: steelcraft_com-material_caps-0008
+  name: Polystyrene core
+  status: confirmed
+  acceptable_forms:
+  - Polystyrene
+  evidence:
+  - quote: 'Polystyrene (optional): enhanced thermal performance'
+    approx_offset: 21908
+  - quote: Optional Polystyrene and Polyurethane cores for enhanced thermal performance
+    approx_offset: 43077
+  notes: optional door core material; standard on CE Series
+  provenance:
+  - action: added
+    by: seed-agent-steelcraft
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-steelcraft
+    date: '2026-08-26'
+- id: steelcraft_com-material_caps-0009
+  name: Polyurethane core
+  status: confirmed
+  acceptable_forms:
+  - Polyurethane
+  evidence:
+  - quote: 'Polyurethane (optional): extreme thermal performance'
+    approx_offset: 21961
+  notes: optional door core material
+  provenance:
+  - action: added
+    by: seed-agent-steelcraft
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-steelcraft
+    date: '2026-08-26'
+- id: steelcraft_com-material_caps-0010
+  name: Mineral board core
+  status: confirmed
+  acceptable_forms:
+  - Mineral board
+  - mineral board cores
+  - Mineral Board
+  evidence:
+  - quote: The T Series has mineral board cores that resist temperature rise, maximizing emergency protection in
+      stairwells.
+    approx_offset: 6586
+  - quote: 'Mineral Board (optional): rigid, temperature rise control'
+    approx_offset: 22014
+  notes: temperature-rise door core material
+  provenance:
+  - action: added
+    by: seed-agent-steelcraft
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-steelcraft
+    date: '2026-08-26'
+- id: steelcraft_com-material_caps-0011
+  name: Steel stiffened core
+  status: confirmed
+  acceptable_forms:
+  - Steel Stiffened
+  - steel stiffened core
+  - stiffened core
+  evidence:
+  - quote: 'Steel Stiffened (optional): welded hat section'
+    approx_offset: 22072
+  - quote: Steel stiffened core construction using 20 gauge hat section stiffeners
+    approx_offset: 50825
+  notes: 'core CONSTRUCTION type rather than a substance (B); listed in the same core-material menu as honeycomb/polystyrene/polyurethane/mineral
+    board | VERIFY 2026-08-26: agreed but weakest entry in this file - ''steel stiffened'' names a core CONSTRUCTION
+    type whose only substance is steel (already free). Kept in-field because it sits in the same core-option menu
+    as honeycomb/polystyrene/polyurethane/mineral board. FORM FLAG: ''stiffened core'' is credited by containment
+    from the product designation ''B Series stiffened core doors''.'
+  provenance:
+  - action: added
+    by: seed-agent-steelcraft
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-steelcraft
+    date: '2026-08-26'
+- id: steelcraft_com-material_caps-0012
+  name: Fiberglass batting
+  status: confirmed
+  acceptable_forms:
+  - fiberglass batting
+  - fiberglass
+  evidence:
+  - quote: filled with 1 pound fiberglass batting between stiffeners
+    approx_offset: 50968
+  notes: genuine material use in B Series cores; NOTE the word also occurs as a competitor door material ('outperforms
+    wood, aluminum, and fiberglass') - actor/sense is per-window
+  provenance:
+  - action: added
+    by: seed-agent-steelcraft
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-steelcraft
+    date: '2026-08-26'
+- id: steelcraft_com-material_caps-0013
+  name: Epoxy
+  status: confirmed
+  acceptable_forms:
+  - epoxy filled
+  - epoxy
+  evidence:
+  - quote: strong epoxy filled interlock edges
+    approx_offset: 16831
+  notes: edge-fill / stiffener adhesive material (B, in-passing on nearly every door series page)
+  provenance:
+  - action: added
+    by: seed-agent-steelcraft
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-steelcraft
+    date: '2026-08-26'
+- id: steelcraft_com-material_caps-0014
+  name: Ceramic glass
+  status: confirmed
+  acceptable_forms:
+  - ceramic glass
+  evidence:
+  - quote: Steelcraft’s fire rating capabilities include the use of ceramic glass and special glazing compounds.
+    approx_offset: 110551
+  notes: 'fire-rated glazing material (supplier-provided: FireLite/Pyrostop); B'
+  provenance:
+  - action: added
+    by: seed-agent-steelcraft
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-steelcraft
+    date: '2026-08-26'
+- id: steelcraft_com-material_caps-0015
+  name: Polymer (thermal separator extrusion)
+  status: confirmed
+  acceptable_forms:
+  - polymer extrusion
+  - polymer
+  evidence:
+  - quote: This durable polymer extrusion provides a more secure barrier over time
+    approx_offset: 28855
+  notes: FT thermal-break separator material; weak in-passing mention (B)
+  provenance:
+  - action: added
+    by: seed-agent-steelcraft
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-steelcraft
+    date: '2026-08-26'
+- id: steelcraft_com-material_caps-0016
+  name: Lead (radiation shielding)
+  status: confirmed
+  acceptable_forms:
+  - lead-lining
+  - lead-lined
+  - Lead-lining clips
+  evidence:
+  - quote: Frame Lead-lining clips for easy integration of lead where radiation transmission is a concern.
+    approx_offset: 195667
+  - quote: For more information on lead-lined doors and frames, please also visit Republic Doors and Frames.
+    approx_offset: 196685
+  notes: the ONE genuine metal-lead context in this corpus; bare 'Lead' is deliberately NOT an acceptable form (lead-time
+    flood - see false friends); full lead-lined doors are deflected to sibling brand Republic, the clips are Steelcraft's
+    own frame option
+  provenance:
+  - action: added
+    by: seed-agent-steelcraft
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-steelcraft
+    date: '2026-08-26'
+false_friends:
+- form: Lead
+  reason: 'bare form: dominant in-corpus senses are ''lead time''/''Lead Time Bulletins'' (support pages) and LEED/Leadership
+    word-shapes; the genuine metal sense occurs only inside ''lead-lining''/''lead-lined'', which the entry forms
+    cover (the alecmfg substring false positive, reproduced here)'
+- form: wood
+  reason: comparison and simulated-finish material ('the beauty of wood with the benefits... of steel', 'outperforms
+    wood') - never worked by the subject
+- form: aluminum
+  reason: competitor door material in comparison prose only ('outperforms wood, aluminum, and fiberglass')
+- form: vinyl
+  reason: comparison only ('compared to traditional vinyl separators')
+- form: concrete
+  reason: installation wall substrate ('poured concrete'), not a material the subject works
+- form: CMU block
+  reason: installation wall substrate (frames anchored to it), not a worked material
+- form: drywall
+  reason: wall type the frames install into ('DW Series Drywall frames' = frames FOR drywall walls)
+- form: masonry
+  reason: wall/opening type ('masonry frames' = frames for masonry openings), not a worked material
+- form: paint
+  reason: consumable coating (code C); the finishing OPERATION lives in process_caps
+- form: primer
+  reason: consumable coating (code C); the priming operation lives in process_caps
+- form: glass
+  reason: component openings ('glass lights') and supplier-provided glazing; bare 'glass' has no worked-material
+    sense here (specific glazing entries live in products/ceramic glass)
+- form: Inland Steel
+  reason: historical company name ('sold its metal building division to Inland Steel Products Company', 1959) -
+    not a material
+- form: ash
+  reason: wood-stain appearance name ('from ash to walnut') - word association, not a material worked
+- form: walnut
+  reason: wood-stain appearance name - word association

@@ -1,0 +1,222 @@
+subject: anchor-mfg.com
+field: material_caps
+snapshot:
+  file: apps/data_etl_app/src/data_etl_app/knowledge/sample_scraped_texts/anchor-mfg.com.txt
+  sha256: e34daaa48321c56889764574c1e98456e927bf1c02b9eeb88f867ec0a1471b1f
+eval_set_version: 2
+expected_empty: false
+notes: Rich field - all positive designations sit in one 'Materials' list block on
+  /capabilities-services/ (offsets 6564-6760). Note the substring nesting - 'High Strength Steel'
+  is contained inside both 'Ultra High Strength Steel' and 'Advanced High Strength Steel', so
+  form-level containment matching will cross-credit these three; the bare-line occurrence at
+  offset 6604 is its own designation.
+  VERIFIER 2026-08-26 - independent pass - all 10 entries confirmed, all 11 quotes verbatim, all inside the one Materials block on /capabilities-services/ plus the powder-coating wash line. expected_empty false AGREED. false_friend concern - 'Powder' is contained in 'Powder Coating', which the locked material keep-rule KEEPS (a treatment named after a substance implies that substance); if false-friend scoring is containment-based, a keep-rule-compliant 'Powder Coating' return would be miscounted as junk.
+entries:
+- id: anchor-mfg_com-material_caps-0001
+  name: Steel
+  status: confirmed
+  acceptable_forms:
+  - Steel
+  evidence:
+  - quote: Steel & Aluminum
+    approx_offset: 6564
+    evidence_kind: heading
+  notes: family designation (B); the specific grades below are the richer entities
+    VERIFIER 2026-08-26 - flagged form - bare 'Steel' is contained in every other seeded steel entity (0004 through 0009), so this entry can be credited by any steel return and can never independently miss.
+  provenance:
+  - action: added
+    by: seed-agent-anchor-mfg
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-anchor-mfg
+    date: '2026-08-26'
+- id: anchor-mfg_com-material_caps-0002
+  name: Aluminum
+  status: confirmed
+  acceptable_forms:
+  - Aluminum
+  evidence:
+  - quote: Steel & Aluminum
+    approx_offset: 6564
+    evidence_kind: heading
+  - quote: High Strength Aluminum
+    approx_offset: 6581
+    evidence_kind: heading
+  provenance:
+  - action: added
+    by: seed-agent-anchor-mfg
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-anchor-mfg
+    date: '2026-08-26'
+- id: anchor-mfg_com-material_caps-0003
+  name: High Strength Aluminum
+  status: confirmed
+  acceptable_forms:
+  - High Strength Aluminum
+  evidence:
+  - quote: High Strength Aluminum
+    approx_offset: 6581
+    evidence_kind: heading
+  provenance:
+  - action: added
+    by: seed-agent-anchor-mfg
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-anchor-mfg
+    date: '2026-08-26'
+- id: anchor-mfg_com-material_caps-0004
+  name: High Strength Steel
+  status: confirmed
+  acceptable_forms:
+  - High Strength Steel
+  evidence:
+  - quote: High Strength Steel
+    approx_offset: 6604
+    evidence_kind: heading
+  notes: bare-line designation; also a substring of entries 0005/0006 - see file notes
+  provenance:
+  - action: added
+    by: seed-agent-anchor-mfg
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-anchor-mfg
+    date: '2026-08-26'
+- id: anchor-mfg_com-material_caps-0005
+  name: Ultra High Strength Steel
+  status: confirmed
+  acceptable_forms:
+  - Ultra High Strength Steel
+  evidence:
+  - quote: Ultra High Strength Steel
+    approx_offset: 6624
+    evidence_kind: heading
+  provenance:
+  - action: added
+    by: seed-agent-anchor-mfg
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-anchor-mfg
+    date: '2026-08-26'
+- id: anchor-mfg_com-material_caps-0006
+  name: Advanced High Strength Steel
+  status: confirmed
+  acceptable_forms:
+  - Advanced High Strength Steel
+  evidence:
+  - quote: Advanced High Strength Steel
+    approx_offset: 6650
+    evidence_kind: heading
+  notes: AHSS - distinct grade family from 0005 despite the shared substring
+  provenance:
+  - action: added
+    by: seed-agent-anchor-mfg
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-anchor-mfg
+    date: '2026-08-26'
+- id: anchor-mfg_com-material_caps-0007
+  name: Galvanized Steel
+  status: confirmed
+  acceptable_forms:
+  - Galvanized and Organic Coated Steel
+  - Galvanized
+  evidence:
+  - quote: Galvanized and Organic Coated Steel
+    approx_offset: 6679
+    evidence_kind: heading
+  notes: one list line names two coated-steel types - split into 0007/0008 sharing the quote
+  provenance:
+  - action: added
+    by: seed-agent-anchor-mfg
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-anchor-mfg
+    date: '2026-08-26'
+- id: anchor-mfg_com-material_caps-0008
+  name: Organic Coated Steel
+  status: confirmed
+  acceptable_forms:
+  - Organic Coated Steel
+  - organic coated
+  evidence:
+  - quote: Galvanized and Organic Coated Steel
+    approx_offset: 6679
+    evidence_kind: heading
+  provenance:
+  - action: added
+    by: seed-agent-anchor-mfg
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-anchor-mfg
+    date: '2026-08-26'
+- id: anchor-mfg_com-material_caps-0009
+  name: Stainless Steel
+  status: confirmed
+  acceptable_forms:
+  - Stainless Steel
+  evidence:
+  - quote: Stainless Steel (Inc. Class A Cosmetic Parts)
+    approx_offset: 6715
+    evidence_kind: heading
+  notes: the parenthetical 'Class A Cosmetic Parts' is an appearance-grade qualifier, not a
+    separate material - see false_friends
+  provenance:
+  - action: added
+    by: seed-agent-anchor-mfg
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-anchor-mfg
+    date: '2026-08-26'
+- id: anchor-mfg_com-material_caps-0010
+  name: Iron Phosphate
+  status: confirmed
+  acceptable_forms:
+  - Iron Phosphate
+  evidence:
+  - quote: Seven Stage Iron Phosphate Wash
+    approx_offset: 7632
+    evidence_kind: heading
+  notes: borderline (B) - pretreatment chemistry named inside a process designation; qualifies
+    under the locked substance-implying keep-rule, but it is a coating consumable, not a worked
+    material
+    VERIFIER 2026-08-26 - membership independently checked against the locked material keep-rule ('a process or treatment named after a substance it applies does imply that substance, and qualifies'); the 2026-08-13 guard A/B was measured on THIS subject's powder-coating block and deliberately surfaces 'Iron Phosphate Wash' for screening, so the must-find is consistent with settled policy.
+  provenance:
+  - action: added
+    by: seed-agent-anchor-mfg
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-anchor-mfg
+    date: '2026-08-26'
+false_friends:
+- form: Lead
+  reason: occurs only inside 'industry leader' / 'leadership' / 'leads company' - the known
+    brute-substring false positive; zero in-window material sense (code U)
+- form: wood
+  reason: agriculture marketing filler ('the wood in our desks') - word-association, not a worked
+    material
+- form: metal
+  reason: generic (G) - 'metal stampings', 'metal forming'; no alloy/grade content on its own
+- form: material
+  reason: generic and legal ('raw material contract', 'substitution of material' in T&Cs) - G
+- form: Class A
+  reason: cosmetic appearance grade ('Class A Cosmetic Parts', 'Class A appearance trim'), a spec
+    qualifier - not a material designation
+- form: Coil
+  reason: appears only inside 'Coil Fed Servo Transfer System' - names the press feed system, not
+    a coil-stock material offering
+- form: Powder
+  reason: appears only inside the powder-coating process lines; bare form has no material
+    designation content (the process entities live in process_caps)
+- form: goods
+  reason: T&C legal generic - not a material

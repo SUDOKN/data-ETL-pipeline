@@ -1,0 +1,22 @@
+subject: steelcraft.com
+field: conformity_attestations
+eval_set_version: 1
+probes:
+- id: SC-P1
+  status: active
+  added: 2026-08-26
+  motivated_by: run 20260823T200044 (fixed 20260824T002404; regressed 012721; re-fixed 020729)
+  target: group keys for LEED Credits and CalGreen Building Standards
+  expectation: 'Records whose evidence sits under the "More from Allegion" heading must attribute the
+    credential to Allegion, never to Steelcraft. The known pair: LEED Credits, CalGreen Building Standards.
+
+    '
+- id: SC-P5
+  status: active
+  added: 2026-08-26
+  motivated_by: 194457 (UL 1784, ANSI A250.8-2003 lost to "standard, not a certification")
+  target: ANSI/SDI A250.x, UL 10C, UL 1784, ASTM A653 records
+  expectation: 'Compliance claims stated by the site must be transmitted as claims ("claims compliance
+    with UL 10C"); the paragraph must not weaken them into mere mentions.
+
+    '

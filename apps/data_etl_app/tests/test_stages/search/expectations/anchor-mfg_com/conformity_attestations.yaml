@@ -1,0 +1,95 @@
+subject: anchor-mfg.com
+field: conformity_attestations
+snapshot:
+  file: apps/data_etl_app/src/data_etl_app/knowledge/sample_scraped_texts/anchor-mfg.com.txt
+  sha256: e34daaa48321c56889764574c1e98456e927bf1c02b9eeb88f867ec0a1471b1f
+eval_set_version: 2
+expected_empty: false
+notes: Conformity is present ONLY as supplier-portal DOCUMENT TITLES - two certificate titles
+  listed identically on /supplier-portal/ and /supplier-portal-2/. No standard id appears in
+  prose anywhere (no ISO/IATF-16949-numbered/ASTM/NADCAP strings outside these titles). These
+  titles ARE in-text designations and are seeded as must-find with evidence_kind doc_title; the
+  rest of the file is a false-friend minefield (HR 'certificate programs', statutes in legal
+  boilerplate, awards, wrong-actor supplier-QA phrases).
+  VERIFIER 2026-08-26 - independent pass - both quotes verify verbatim and both entities confirmed. expected_empty false AGREED, but the field is thin - a case-insensitive grep for iso / 9001 / 14001 / 16949 / iatf / astm / nadcap / as9100 / ansi / sae / mil- finds no hit anywhere outside these two supplier-portal titles, so any sizable yield beyond them is junk-minting signal. Actor own on 0001 and 0002 is an inference from the portal context (the titles carry no holder name) - unknown would also be defensible.
+entries:
+- id: anchor-mfg_com-conformity_attestations-0001
+  name: IATF Certificate without Product Design
+  status: confirmed
+  acceptable_forms:
+  - IATF Certificate without Product Design 03.225.5
+  - IATF Certificate without Product Design
+  - IATF
+  evidence:
+  - quote: IATF Certificate without Product Design 03.225.5
+    approx_offset: 24141
+    evidence_kind: doc_title
+  notes: certificate document title, listed on both supplier-portal pages; names the IATF (16949)
+    scheme with the scope qualifier 'without Product Design'; '03.225.5' is a portal document
+    number, not a standard id. Actor is own (Anchor's certificate offered to its suppliers as
+    reference)
+  provenance:
+  - action: added
+    by: seed-agent-anchor-mfg
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-anchor-mfg
+    date: '2026-08-26'
+- id: anchor-mfg_com-conformity_attestations-0002
+  name: EMS Certificate
+  status: confirmed
+  acceptable_forms:
+  - EMS Certificate 03.015.1
+  - EMS Certificate
+  - EMS
+  evidence:
+  - quote: EMS Certificate 03.015.1
+    approx_offset: 24115
+    evidence_kind: doc_title
+  notes: environmental-management-system certificate document title (ISO 14001-style scheme
+    implied, no standard id in the title); listed on both supplier-portal pages
+    VERIFIER 2026-08-26 - flagged form - bare 'EMS' is a substring of the word 'systems', so containment matching credits this entry for any returned form ending in systems (e.g. 'comprehensive quality assurance systems', 'Automated Error Proofing Systems') - the same failure class as the known bare-'Lead' substring bug.
+  provenance:
+  - action: added
+    by: seed-agent-anchor-mfg
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-anchor-mfg
+    date: '2026-08-26'
+false_friends:
+- form: certificate programs
+  reason: HR careers benefit ('lunch and learns, course reimbursements, certificate programs') -
+    the non-conformity certificate sense (code Z)
+- form: Supplier Quality Assurance Manual
+  reason: doc title with no standard id (code D) - and it is Anchor's manual governing its
+    SUPPLIERS' quality systems, not an attestation Anchor holds
+- form: Code of Conduct
+  reason: policy document title ('ANCHOR SUPPLIER RESPONSIBILITY POLICY AND CODE OF CONDUCT') -
+    code D, no standard id
+- form: Foreign Corrupt Practices Act
+  reason: statute named in anti-corruption CSR boilerplate ('strictly adheres to all local and
+    applicable U.S. laws') - business-ethics law, not a manufacturing conformity attestation.
+    Judgment call - it IS a named regulation, but nothing here is a certification/standard the
+    ontology grounds; seeded as false friend
+- form: No Surprises Act
+  reason: health-plan transparency legislation on the employee-benefits page - unrelated to
+    manufacturing conformity
+- form: Uniform Commercial Code
+  reason: Ohio UCC cited in seller T&Cs - commercial statute in legal boilerplate
+- form: Precision Metalforming Association
+  reason: trade-association membership (CEO 'active participant with the Precision Metalforming
+    Association (PMA)') - a body one joins, not a standard one attests to; 'PMA' likewise
+- form: NorthCoast 99 Award
+  reason: best-workplace award, not a certification
+- form: Awards of Excellence
+  reason: customer/industry awards 'for such things as safety, training and technology' - not
+    certifications
+- form: quality assurance system
+  reason: generic (G) and wrong-actor - 'supplier quality assurance system approved by Purchaser'
+    is the supplier's obligation; 'comprehensive quality assurance systems' is defense-page
+    marketing prose
+- form: Class A
+  reason: cosmetic appearance grade ('Class A Cosmetic Parts', 'Class A appearance trim') - a
+    spec, not a standard designation

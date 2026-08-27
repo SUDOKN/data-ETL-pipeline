@@ -1,0 +1,84 @@
+field: conformity_attestations
+stages: [initial, oov, recursive]
+
+watch_items:
+  - id: GW-CA-1
+    title: The "standard, not a certification" decline template kills real attestations
+    class: remaining
+    first_seen: 20260825T194457
+    provenance: >
+      Census 2026-08-25: the template fired 21 times, 14 misfires — including
+      against "Steelcraft claims compliance with ANSI UL 10C", which IS a
+      compliance attestation. Cost: UL 1784 and ANSI A250.8-2003, both captured
+      in run 190359, lost in 194457.
+    detector: judged (DF declines) + the recall set below
+    measure: DF-coded declines citing the standard-vs-certification distinction
+    expect: "0 misfires after the conformity template fix (backlog #9)"
+    status:
+      "20260825T194457": present (14 of 21)
+
+  - id: GW-CA-2
+    title: Standards-family tag churn (FEMA/ICC variants)
+    class: remaining
+    first_seen: 20260825T194457
+    provenance: "census 2026-08-25: conformity went 32->61 tags, half real recall (7 new ASTM standards, NFPA 80, FBC), half churn — 8-10 FEMA tags for 2 standards, 5 ICC 500 variants; only 8/61 verbatim-stable across runs"
+    detector: deterministic (tag_churn) + judged near-dup clusters
+    measure: churn clusters among conformity tags
+    expect: "tag-normalization design work (backlog #10)"
+    status:
+      "20260825T194457": present
+
+  - id: GW-CA-3
+    title: Faithful-but-costly synthesis under-claims (upstream context)
+    class: remaining
+    first_seen: 20260825T194457
+    provenance: "alecmfg ISO 9001 lost because the SYNTHESIS under-claims ('lists ISO 9001:2015 in its certification statistics') and grounding correctly follows it. Code the decline DS and record the loss here — the defect is upstream."
+    detector: judged (notes on DS declines whose loss traces upstream)
+    measure: recall-set members lost to faithful declines
+    expect: "moves only with synthesis-side changes; never blame grounding for it"
+    status:
+      "20260825T194457": present (ISO 9001 alecmfg)
+
+  - id: GW-CA-4
+    title: Wrong-party credentials (parent company, labs, client requirements)
+    class: remaining
+    first_seen: 20260823T200044
+    provenance: >
+      The Allegion class (LEED Credits / CalGreen from "More from Allegion")
+      first seen in synthesis 2026-08-23 and fixed there; the census still finds
+      P-coded conformity instances. alecmfg case studies cite client-required
+      standards (CE/ISO9001 "compatible with their requirements", EN 10204 3.1,
+      ISO 10993-5, RoHS/REACH) that are the CLIENT'S protocol — the subject's own
+      certs (IATF 16949, ISO 13485, ISO 14001) appear only in news posts.
+    detector: judged
+    measure: P-coded share of conformity tag instances
+    expect: "low and falling; the party-preservation synthesis rule + screening actor work carry it"
+    status:
+      "20260825T194457": present
+
+# Named recall sets: attestations the source text genuinely claims for the
+# subject. Membership is checked present/absent every run — far more
+# noise-resistant than row-level assertions. Extend through Phase D as
+# inventories improve; entries list the canonical name plus acceptable variants.
+recall_sets:
+  steelcraft_com:
+    - "UL 1784"
+    - "ANSI UL 10C"
+    - "ANSI A250.8-2003"
+    - "ASTM A653"
+    - "FEMA 361"
+    - "ICC 500"
+    - "TDI Impact"
+    - "TAS 201"
+    - "TAS 202"
+    - "SDI Certified"
+  alecmfg_com:
+    - "IATF 16949:2016"
+    - "ISO 13485:2016"
+    - "ISO 14001:2015"
+    - "ISO 9001:2015"
+
+notes: |
+  Judges: a recall-set member counts as recalled when ANY surviving tag for the
+  subject covers it (verbatim or a near variant — churn is measured separately).
+  Record per-member present/absent in the judge summary.

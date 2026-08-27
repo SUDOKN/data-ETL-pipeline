@@ -1,0 +1,52 @@
+field: industries
+stages: [initial, oov, recursive]
+
+watch_items:
+  - id: GW-IN-1
+    title: Own-activity leaks into industries served (IGR-M2 axis error)
+    class: remaining
+    first_seen: 20260825T194457
+    provenance: >
+      Census 2026-08-25: 18 alecmfg rows (CNC Machining, machine shop, ...) ground
+      to "Industrial Machinery and Equipment"; steelcraft shows the same tag x4
+      from "industrial buildings". The subject's own activity is not a sector it
+      serves. Report X-own and X-sector sub-counts separately (taxonomy sub_kind).
+    detector: judged
+    measure: X-own share of industry tag instances
+    expect: "falls with the industries-specific grounding/screening rework (backlog #6 targets SCR-2, but grounding mints the axis error first)"
+    status:
+      "20260825T194457": present (18 alecmfg + 4 steelcraft)
+
+  - id: GW-IN-2
+    title: Real client sectors must survive grounding
+    class: remaining
+    first_seen: 20260825T194457
+    provenance: >
+      SCR-2 (screening, out of scope) kills real customer sectors — Unmanned
+      Aerial Systems, Surgical Robotics, Rail Equipment, Semiconductor Packaging.
+      Grounding's job here: those sectors must be MINTED (grounded from case-study
+      evidence) so the screening fix has something to restore. Recall is judged
+      against the subject inventory's expected industries.
+    detector: judged (recall vs inventory)
+    measure: expected strong/moderate industry entities with no grounded tag
+    expect: "grounding-side recall high; the screening fix decides what ships"
+    status:
+      "20260825T194457": minted correctly (killed downstream)
+
+  - id: GW-IN-3
+    title: Near-duplicate sector tags
+    class: remaining
+    first_seen: 20260825T194457
+    provenance: "census 2026-08-25: 19 of 40 industry tags near-duplicates; 6 education-flavored variants"
+    detector: deterministic (tag_churn) + judged near-dup clusters
+    measure: churn clusters among industry tags
+    expect: "tag-normalization design work (backlog #10)"
+    status:
+      "20260825T194457": present
+
+notes: |
+  Inventory caution for judges: services companies (austinelectricservices) and
+  dealers (acimachine) have industry sections that name the SUBJECT'S market in
+  legitimate terms — judge against the inventory's expected list, and code the
+  subject's own trade (electrical contracting, machine sales) as X-own if tagged
+  as an industry served.

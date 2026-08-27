@@ -1,0 +1,35 @@
+subject: alecmfg.com
+field: products
+eval_set_version: 1
+probes:
+- id: AL-P2
+  status: active
+  added: 2026-08-26
+  motivated_by: case-study attribution traps in the corpus (their ISO9001 / their CE)
+  target: case-study records whose evidence says "their … requirements"
+  expectation: 'A client''s compliance requirement ("aligned with THEIR ISO9001 protocols", "their CE
+    and ISO9001 requirements") must stay the client''s; writing it as Alec Model''s own certification
+    is a J4 fail.
+
+    '
+- id: AL-P5
+  status: active
+  added: 2026-08-26
+  motivated_by: first judgment pass — the case-study attribution trap, live (3 major fails on one record)
+  target: group g4mrl2az ("gripper modules"), and siblings g237yzhv, gu769x4t
+  expectation: 'A client''s assembled product must not be credited to the manufacturer. Verified defect:
+    sole entry "The gripper modules passed toolchanger assembly testing on first fit" (on a page about
+    machining the client''s MOUNTING BRACKETS) became "Alec Model manufactured gripper modules". Related:
+    prospective work ("preparing to supply") must not become present-tense supply.
+
+    '
+- id: AL-P7
+  status: active
+  added: 2026-08-26
+  motivated_by: first judgment pass — C5 disjunctive-hedge smuggling
+  target: records closing with two-branch hedges ("specifying or providing", "used or recommended", "provides
+    or arranges for")
+  expectation: 'A closing hedge must not offer an unsupported branch alongside the supported one. Watch
+    the rate: 3 occurrences in one 143-record slice.
+
+    '

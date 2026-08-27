@@ -1,0 +1,14 @@
+subject: 101machine.com
+field: products
+expected: []
+traps:
+- name: Custom machined solutions
+  kind: wrong_axis
+  note: job-shop work made to each customer's spec, not an off-the-shelf catalog product; belongs under
+    contract_products
+- name: Piece parts
+  kind: wrong_axis
+  note: generic parts machined to a customer's spec, not a catalog product; belongs under contract_products
+- name: Injection molds
+  kind: wrong_axis
+  note: mold tooling machined to a customer's spec, not a catalog product; belongs under contract_products

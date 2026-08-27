@@ -1,0 +1,21 @@
+subject: alecmfg.com
+field: products
+expected: []
+traps:
+- name: High-Precision Stainless Steel Valve Body
+  kind: wrong_axis
+  note: a one-off part built to a semiconductor client's spec; belongs under contract_products, not a
+    catalog product
+- name: Precision 5-Axis CNC Copper Heat Sink
+  kind: wrong_axis
+  note: custom part built to a UK client's spec; belongs under contract_products
+- name: CNC Machining / 3D Printing / Injection Molding (service names)
+  kind: wrong_axis
+  note: these are the services/process_caps offered, not catalog products Alec sells
+- name: Aluminum / Stainless Steel / Brass ... (Material Options list)
+  kind: wrong_axis
+  note: the services-page materials list is raw material capability, not finished catalog products
+- name: HS-V55LS (vertical machining center)
+  kind: wrong_actor
+  note: a machine Alec purchased and operates, not something Alec manufactures or sells; belongs under
+    equipments

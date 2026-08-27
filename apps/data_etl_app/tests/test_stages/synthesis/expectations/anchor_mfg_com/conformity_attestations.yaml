@@ -1,0 +1,13 @@
+subject: anchor-mfg.com
+field: conformity_attestations
+eval_set_version: 1
+probes:
+- id: AN-P3
+  status: predicted
+  added: 2026-08-26
+  motivated_by: corpus survey — certs exist only as downloadable file titles (EMS Certificate 03.015.1,
+    IATF Certificate without Product Design 03.225.5)
+  expectation: 'Certificate FILE TITLES are attestation evidence here (the field''s exception to the document
+    rule): the paragraph should state the attestation the file evidences, scoped to what the title supports.
+
+    '

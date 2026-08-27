@@ -1,0 +1,36 @@
+field: contract_products
+stages: [freehand]
+
+watch_items:
+  - id: GW-CP-1
+    title: Client end-product conflated with the part the subject built
+    class: remaining
+    first_seen: 20260825T194457
+    provenance: >
+      Census 2026-08-25: alecmfg case studies name the client's larger system
+      (heavy-lift drone, laparoscopic robot, wafer handling system) beside the
+      sub-component the subject actually made (housing, sensor ring, valve body).
+      P-coded when the client's product is tagged. The alecmfg "products" screen
+      passing 85 groups is the screening half; grounding's half is minting the
+      client's product at all.
+    detector: judged
+    measure: P-coded share of contract_products tag instances
+    expect: "falls with actor-aware prompt work; inventories now name the client-system traps explicitly"
+    status:
+      "20260825T194457": present
+
+  - id: GW-CP-2
+    title: A/A partner discipline
+    class: latent
+    first_seen: 20260824T190359
+    provenance: "this field shares every phrase stage with products through synthesis; its freehand payloads are byte-identical when ud= digests match, which powers the reproducibility instrument. NEVER count this dump as independent evidence of upstream stages."
+    detector: deterministic (reproducibility_aa.comparable)
+    measure: comparable flag true each run both fields are present
+    expect: "true; false means the fields' payloads diverged and the noise floor goes stale"
+    status:
+      "20260825T194457": comparable
+
+notes: |
+  The products/contract co-admission problem (151 steelcraft groups pass both
+  screens) is screening-owned; here, judge each tag on the contract axis alone:
+  is the thing made to a customer's order/spec, with the subject as maker?

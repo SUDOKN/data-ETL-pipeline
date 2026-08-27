@@ -1,0 +1,38 @@
+subject: anchor-mfg.com
+field: industries
+expected:
+- name: Automotive
+  evidence: significant expertise in the automotive industry; core expertise ... used throughout the vehicle
+  strength: strong
+- name: Appliance
+  evidence: In the home appliance industry, designs are constantly updating to meet consumer tastes
+  strength: strong
+- name: Agricultural
+  evidence: a worldwide need for smarter ways to keep the food chain ... Anchor keeps agriculture rolling
+  strength: strong
+- name: Commercial Vehicle
+  evidence: Many of our stampings and assemblies are used in the manufacture of Class 8 heavy trucks and
+    busses
+  strength: strong
+- name: Consumer Products
+  evidence: Anchor metal stampings play an important role in assuring household products are affordable,
+    reliable
+  strength: strong
+- name: Defense
+  evidence: Anchor has been a strategic supplier to the defense industry for many years
+  strength: strong
+- name: Industrial
+  evidence: we produce technically advanced engineered stampings and fabricated parts to many industries
+  strength: strong
+traps:
+- name: Metal Stamping / metal stamper
+  kind: wrong_axis
+  note: '''As a metal stamper, our metal forming capabilities can provide...'' describes Anchor''s own
+    activity, not a sector it serves'
+- name: OEM's, Tier I and Tier II manufacturers
+  kind: wrong_axis
+  note: customer tiers / company types Anchor sells to, not an industry sector
+- name: Precision Metalforming Association (PMA)
+  kind: wrong_axis
+  note: trade association the CEO personally participates in ('active participant with the Precision Metalforming
+    Association (PMA) and CEO Roundtables'), not a served industry

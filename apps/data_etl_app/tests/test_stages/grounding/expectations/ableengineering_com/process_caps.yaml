@@ -1,0 +1,51 @@
+subject: ableengineering.com
+field: process_caps
+expected:
+- name: CNC/manual machining (mill, grind, lathe)
+  evidence: Able has several five-axis CNC mills, grinders and lathes, as well as horizontal and vertical
+    honing and a five-axis CNC gantry.
+  strength: strong
+- name: Chemical processing / plating
+  evidence: Able is NADCAP-approved for chrome, which reduces in-house processing time for nickel, CAD
+    plating and several other processes.
+  strength: strong
+- name: Painting and coating
+  evidence: Our full suite of paint and coating services... make us equipped to handle painting services
+    with ease.
+  strength: strong
+- name: Non-Destructive Testing (NDT)
+  evidence: comprehensive, in-house and NADCAP-approved Non-Destructive Testing (NDT) services
+  strength: strong
+- name: Hydraulics service (disassembly, testing, modification)
+  evidence: Able's in-house hydraulics team provides services for both rotor wing and fixed wing aircraft.
+  strength: strong
+- name: Cold spray (additive manufacturing repair)
+  evidence: Able's innovative, additive manufacturing capability for repairing aluminum and magnesium
+    components.
+  strength: strong
+- name: Shot peen
+  evidence: NADCAP-approved, Able has state-of-the-art CNC shot peen and manual capabilities.
+  strength: strong
+- name: Abrasive blasting
+  evidence: Special Processes – Shot Peen, Blast, Cold Spray and Paint.
+  strength: strong
+- name: Component and assembly repair and overhaul
+  evidence: Able's component and assembly repairs are FAA-approved and offer a competitive cost solution.
+  strength: strong
+- name: Bearing service
+  evidence: in-house specialized services ranging from electroplating, chemical processing, machining
+    and grinding to non-destructive testing, hydraulics and bearings services
+  strength: moderate
+traps:
+- name: Safety Management System (SMS)
+  kind: wrong_axis
+  note: An FAA-accepted safety/quality management program ('SMS implementation plan'), not a manufacturing
+    or repair process.
+- name: FAA Part 145
+  kind: doc_title
+  note: Regulatory repair-station certification name, listed as a certification badge, not a process the
+    subject performs.
+- name: Assembly
+  kind: homonym
+  note: '''Assembly'' appears only inside component names (e.g. ''Gearbox Assembly'', ''Bracket Assembly'',
+    ''Basket Cam Assembly''), never as a described process.'

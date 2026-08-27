@@ -1,0 +1,720 @@
+subject: anchor-mfg.com
+field: process_caps
+snapshot:
+  file: apps/data_etl_app/src/data_etl_app/knowledge/sample_scraped_texts/anchor-mfg.com.txt
+  sha256: e34daaa48321c56889764574c1e98456e927bf1c02b9eeb88f867ec0a1471b1f
+eval_set_version: 2
+expected_empty: false
+notes: Very rich field - nearly all of it concentrated in the /capabilities-services/ list dump
+  (offsets ~6500-8000). Counter-pressure comes from the two T&C pages - a wrong-actor pump of
+  contractual activity phrases (see false_friends; per seeding direction the T&C junk pump is
+  recorded there, including 'inspection', which occurs ONLY inside purchase-order boilerplate).
+  Bare section headings 'Assembly' and the tooling-type words 'Progressive' / 'Transfer' /
+  'Single Hit' are defensible borderline returns but too generic/polysemous to require - seeded
+  neither as entries nor as false friends.
+  VERIFIER 2026-08-26 - independent pass - all 31 entries confirmed, all 40 quotes verbatim. The wrong-actor hypothesis was checked directly - NO entry's evidence lies inside either T&C page body; every quote resolves to /capabilities-services/, /, /industries-served/ and its /Anchor/ duplicate, /careers/, /executive-team/ or /about-anchor-mfg/. The only T&C contact is the bare 'Tool & Die' string in entry 0024, and that is the copyright footer, not clause text (see that entry's note). The 'inspection' false friend was re-verified independently - every occurrence of inspect-anything in the file sits in purchasing clause 5. false_friend concern - 'engineering' is contained in the accepted forms of entries 0027 ('engineering changes') and 0031 ('Engineering Design Support'), so those returns would both satisfy recall and score as a false friend. Omissions noted but not added (adding entries is out of scope for this pass) - laser cutting has no process entity although both laser lines are seeded as equipment, and 'process control' from the defense prose is unseeded either way.
+entries:
+- id: anchor-mfg_com-process_caps-0001
+  name: Metal Stamping
+  status: confirmed
+  acceptable_forms:
+  - Metal Stamping
+  - stamping
+  - metal stamper
+  evidence:
+  - quote: Metal Stamping
+    approx_offset: 6761
+    evidence_kind: heading
+  - quote: every facet of metal stamping
+    approx_offset: 5768
+    evidence_kind: prose
+  - quote: As a metal stamper, our metal forming capabilities
+    approx_offset: 21605
+    evidence_kind: prose
+  provenance:
+  - action: added
+    by: seed-agent-anchor-mfg
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-anchor-mfg
+    date: '2026-08-26'
+- id: anchor-mfg_com-process_caps-0002
+  name: Metal Forming
+  status: confirmed
+  acceptable_forms:
+  - metal forming
+  evidence:
+  - quote: As a metal stamper, our metal forming capabilities
+    approx_offset: 21605
+    evidence_kind: prose
+  - quote: machining and metal forming
+    approx_offset: 5855
+    evidence_kind: prose
+  provenance:
+  - action: added
+    by: seed-agent-anchor-mfg
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-anchor-mfg
+    date: '2026-08-26'
+- id: anchor-mfg_com-process_caps-0003
+  name: Welding
+  status: confirmed
+  acceptable_forms:
+  - Welding
+  evidence:
+  - quote: Welding
+    approx_offset: 6921
+    evidence_kind: heading
+  notes: section heading for the weld-cell capability block; the specific modes are separate
+    entries below - a bare 'welding' return still covers this entity
+  provenance:
+  - action: added
+    by: seed-agent-anchor-mfg
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-anchor-mfg
+    date: '2026-08-26'
+- id: anchor-mfg_com-process_caps-0004
+  name: Robotic Spot Welding
+  status: confirmed
+  acceptable_forms:
+  - Robotic Spot & Mig Welding
+  - spot welding
+  - robotic spot welding
+  evidence:
+  - quote: Robotic Spot & Mig Welding
+    approx_offset: 7019
+    evidence_kind: heading
+  notes: one list line names two robotic modes - split into spot (this entry) and MIG (0005),
+    both accepting the compound verbatim line
+  provenance:
+  - action: added
+    by: seed-agent-anchor-mfg
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-anchor-mfg
+    date: '2026-08-26'
+- id: anchor-mfg_com-process_caps-0005
+  name: MIG Welding
+  status: confirmed
+  acceptable_forms:
+  - Robotic Spot & Mig Welding
+  - Mig Welding
+  - MIG
+  evidence:
+  - quote: Robotic Spot & Mig Welding
+    approx_offset: 7019
+    evidence_kind: heading
+  - quote: Manual Welding, Including MIG & TIG
+    approx_offset: 7497
+    evidence_kind: heading
+  notes: appears robotic (weld cells) and manual (fabricating section)
+  provenance:
+  - action: added
+    by: seed-agent-anchor-mfg
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-anchor-mfg
+    date: '2026-08-26'
+- id: anchor-mfg_com-process_caps-0006
+  name: TIG Welding
+  status: confirmed
+  acceptable_forms:
+  - MIG & TIG
+  - TIG welding
+  - TIG
+  evidence:
+  - quote: Manual Welding, Including MIG & TIG
+    approx_offset: 7497
+    evidence_kind: heading
+  notes: designated only via the manual-welding line; 'manual welding' itself is a mode qualifier
+    carried by this quote rather than a separate entry
+  provenance:
+  - action: added
+    by: seed-agent-anchor-mfg
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-anchor-mfg
+    date: '2026-08-26'
+- id: anchor-mfg_com-process_caps-0007
+  name: Drawn Arc Welding
+  status: confirmed
+  acceptable_forms:
+  - Drawn Arc Welding
+  - drawn arc
+  evidence:
+  - quote: Drawn Arc Welding
+    approx_offset: 7046
+    evidence_kind: heading
+  notes: drawn-arc (stud) welding - distinctive designation, weld-cell block
+  provenance:
+  - action: added
+    by: seed-agent-anchor-mfg
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-anchor-mfg
+    date: '2026-08-26'
+- id: anchor-mfg_com-process_caps-0008
+  name: Resistance Welding
+  status: confirmed
+  acceptable_forms:
+  - Resistance Welding
+  evidence:
+  - quote: Resistance Welding
+    approx_offset: 7064
+    evidence_kind: heading
+  provenance:
+  - action: added
+    by: seed-agent-anchor-mfg
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-anchor-mfg
+    date: '2026-08-26'
+- id: anchor-mfg_com-process_caps-0009
+  name: Riveting
+  status: confirmed
+  acceptable_forms:
+  - Conventional & Orbital Riveting
+  - riveting
+  - orbital riveting
+  - conventional riveting
+  evidence:
+  - quote: Conventional & Orbital Riveting
+    approx_offset: 7092
+    evidence_kind: heading
+  notes: conventional and orbital merged as one entity - the line designates both modes of one
+    joining operation
+  provenance:
+  - action: added
+    by: seed-agent-anchor-mfg
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-anchor-mfg
+    date: '2026-08-26'
+- id: anchor-mfg_com-process_caps-0010
+  name: Staking
+  status: confirmed
+  acceptable_forms:
+  - Staking & Toggle Lock
+  - staking
+  evidence:
+  - quote: Staking & Toggle Lock
+    approx_offset: 7124
+    evidence_kind: heading
+  provenance:
+  - action: added
+    by: seed-agent-anchor-mfg
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-anchor-mfg
+    date: '2026-08-26'
+- id: anchor-mfg_com-process_caps-0011
+  name: Toggle Lock
+  status: confirmed
+  acceptable_forms:
+  - Staking & Toggle Lock
+  - toggle lock
+  evidence:
+  - quote: Staking & Toggle Lock
+    approx_offset: 7124
+    evidence_kind: heading
+  notes: toggle-lock joining; borderline (B) - shares its only line with Staking (0010)
+  provenance:
+  - action: added
+    by: seed-agent-anchor-mfg
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-anchor-mfg
+    date: '2026-08-26'
+- id: anchor-mfg_com-process_caps-0012
+  name: Automated Tapping
+  status: confirmed
+  acceptable_forms:
+  - Automated Tapping
+  - tapping
+  evidence:
+  - quote: Automated Tapping
+    approx_offset: 7146
+    evidence_kind: heading
+  provenance:
+  - action: added
+    by: seed-agent-anchor-mfg
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-anchor-mfg
+    date: '2026-08-26'
+- id: anchor-mfg_com-process_caps-0013
+  name: Manual Component Assembly
+  status: confirmed
+  acceptable_forms:
+  - Manual Component Assembly
+  - component assembly
+  evidence:
+  - quote: Manual Component Assembly
+    approx_offset: 7164
+    evidence_kind: heading
+  provenance:
+  - action: added
+    by: seed-agent-anchor-mfg
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-anchor-mfg
+    date: '2026-08-26'
+- id: anchor-mfg_com-process_caps-0014
+  name: In-press Assembly
+  status: confirmed
+  acceptable_forms:
+  - In-press Assembly (Studs, Nuts)
+  - In-press Assembly
+  evidence:
+  - quote: In-press Assembly (Studs, Nuts)
+    approx_offset: 7190
+    evidence_kind: heading
+  notes: the parenthetical studs/nuts are inserted hardware, not products - see products
+    false_friends
+  provenance:
+  - action: added
+    by: seed-agent-anchor-mfg
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-anchor-mfg
+    date: '2026-08-26'
+- id: anchor-mfg_com-process_caps-0015
+  name: Fabricating
+  status: confirmed
+  acceptable_forms:
+  - Fabricating
+  - fabrication
+  evidence:
+  - quote: Fabricating
+    approx_offset: 7222
+    evidence_kind: heading
+  - quote: prototype fabrication to mass production
+    approx_offset: 21701
+    evidence_kind: prose
+  provenance:
+  - action: added
+    by: seed-agent-anchor-mfg
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-anchor-mfg
+    date: '2026-08-26'
+- id: anchor-mfg_com-process_caps-0016
+  name: Prototype Fabrication
+  status: confirmed
+  acceptable_forms:
+  - prototype fabrication
+  evidence:
+  - quote: prototype fabrication to mass production
+    approx_offset: 21701
+    evidence_kind: prose
+  notes: borderline (B) - prototyping capability claimed in the appliance-industry prose ('from
+    small volume and prototype fabrication to mass production')
+  provenance:
+  - action: added
+    by: seed-agent-anchor-mfg
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-anchor-mfg
+    date: '2026-08-26'
+- id: anchor-mfg_com-process_caps-0017
+  name: Shearing
+  status: confirmed
+  acceptable_forms:
+  - Shearing
+  - Material Shear
+  evidence:
+  - quote: Shearing Capabilities up to 1/8” x 12’
+    approx_offset: 7372
+    evidence_kind: spec_table
+  - quote: Material Shear
+    approx_offset: 7482
+    evidence_kind: heading
+  notes: the 'Material Shear' line arguably names the machine - the same entity is seeded on the
+    equipments side too; either field's return is defensible
+  provenance:
+  - action: added
+    by: seed-agent-anchor-mfg
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-anchor-mfg
+    date: '2026-08-26'
+- id: anchor-mfg_com-process_caps-0018
+  name: CNC Machining
+  status: confirmed
+  acceptable_forms:
+  - CNC Machining
+  - machining
+  evidence:
+  - quote: CNC Machining
+    approx_offset: 7577
+    evidence_kind: heading
+  - quote: machining and metal forming
+    approx_offset: 5855
+    evidence_kind: prose
+  provenance:
+  - action: added
+    by: seed-agent-anchor-mfg
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-anchor-mfg
+    date: '2026-08-26'
+- id: anchor-mfg_com-process_caps-0019
+  name: Milling
+  status: confirmed
+  acceptable_forms:
+  - Milling Machines / Vertical Mills
+  - milling
+  evidence:
+  - quote: Milling Machines / Vertical Mills
+    approx_offset: 7543
+    evidence_kind: heading
+  notes: designated only via the machines line (also seeded in equipments); a run returning
+    'milling' as an operation from that window is covered here
+    VERIFIER 2026-08-26 - agreed but weak - no standalone 'Milling' operation string exists in the file; the only anchor is the machine line, which is also equipments-0011.
+  provenance:
+  - action: added
+    by: seed-agent-anchor-mfg
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-anchor-mfg
+    date: '2026-08-26'
+- id: anchor-mfg_com-process_caps-0020
+  name: Powder Coating
+  status: confirmed
+  acceptable_forms:
+  - Powder Coating
+  - powder coating
+  evidence:
+  - quote: Powder Coating
+    approx_offset: 7591
+    evidence_kind: heading
+  provenance:
+  - action: added
+    by: seed-agent-anchor-mfg
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-anchor-mfg
+    date: '2026-08-26'
+- id: anchor-mfg_com-process_caps-0021
+  name: Automated Powder Spraying
+  status: confirmed
+  acceptable_forms:
+  - Automated Powder Spraying
+  - powder spraying
+  evidence:
+  - quote: Automated Powder Spraying
+    approx_offset: 7606
+    evidence_kind: heading
+  provenance:
+  - action: added
+    by: seed-agent-anchor-mfg
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-anchor-mfg
+    date: '2026-08-26'
+- id: anchor-mfg_com-process_caps-0022
+  name: Seven Stage Iron Phosphate Wash
+  status: confirmed
+  acceptable_forms:
+  - Seven Stage Iron Phosphate Wash
+  - iron phosphate wash
+  evidence:
+  - quote: Seven Stage Iron Phosphate Wash
+    approx_offset: 7632
+    evidence_kind: heading
+  notes: pretreatment wash line of the powder-coating block
+  provenance:
+  - action: added
+    by: seed-agent-anchor-mfg
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-anchor-mfg
+    date: '2026-08-26'
+- id: anchor-mfg_com-process_caps-0023
+  name: Salt Spray Testing
+  status: confirmed
+  acceptable_forms:
+  - Salt Spray Capability
+  - salt spray
+  evidence:
+  - quote: Salt Spray Capability– up to 1,200 Hours
+    approx_offset: 7732
+    evidence_kind: spec_table
+  notes: corrosion TESTING operation - inspection/testing/measurement ARE operations per the
+    locked carve-out; the verbatim line says 'Capability' with an en dash fused to the word
+  provenance:
+  - action: added
+    by: seed-agent-anchor-mfg
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-anchor-mfg
+    date: '2026-08-26'
+- id: anchor-mfg_com-process_caps-0024
+  name: Tool & Die
+  status: confirmed
+  acceptable_forms:
+  - Tool & Die
+  - tool and die
+  evidence:
+  - quote: a stand-alone tool and die business
+    approx_offset: 798
+    evidence_kind: prose
+  - quote: Tool & Die
+    approx_offset: 7798
+    evidence_kind: heading
+  notes: the bare 'Tool & Die' string also matches the copyright footer ('Anchor Tool & Die Co.',
+    15 pages) - the capability heading at offset 7798 and the home prose are the genuine
+    designations; window location by string match must tolerate the footer collisions
+    VERIFIER 2026-08-26 - evidence hazard - the bare 'Tool & Die' quote occurs 17 times (15 copyright footers plus clause 1 of both T&C pages) in addition to the capabilities heading, so under window-scoped recall this entry is in scope for every window in the file, including the two T&C pages that contain no capability text; the discriminating evidence is the home-page prose quote.
+  provenance:
+  - action: added
+    by: seed-agent-anchor-mfg
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-anchor-mfg
+    date: '2026-08-26'
+- id: anchor-mfg_com-process_caps-0025
+  name: Die Design
+  status: confirmed
+  acceptable_forms:
+  - Die Design
+  evidence:
+  - quote: Die Design
+    approx_offset: 7837
+    evidence_kind: heading
+  provenance:
+  - action: added
+    by: seed-agent-anchor-mfg
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-anchor-mfg
+    date: '2026-08-26'
+- id: anchor-mfg_com-process_caps-0026
+  name: New Die Construction
+  status: confirmed
+  acceptable_forms:
+  - New Die Construction
+  - die construction
+  evidence:
+  - quote: New Die Construction
+    approx_offset: 7848
+    evidence_kind: heading
+  provenance:
+  - action: added
+    by: seed-agent-anchor-mfg
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-anchor-mfg
+    date: '2026-08-26'
+- id: anchor-mfg_com-process_caps-0027
+  name: Major Engineering Changes
+  status: confirmed
+  acceptable_forms:
+  - Major Engineering Changes
+  - engineering changes
+  evidence:
+  - quote: Major Engineering Changes
+    approx_offset: 7869
+    evidence_kind: heading
+  notes: POLYSEME - 'engineering changes' also appears in purchasing T&C clause 11(b) as supplier
+    paperwork; only the Tool & Die list occurrence (this one) is a capability designation
+    VERIFIER 2026-08-26 - flagged form - the short form 'engineering changes' also occurs in purchasing T&C clause 11(b), so a T&C-window return can credit this entry in any run that also searched the capabilities window.
+  provenance:
+  - action: added
+    by: seed-agent-anchor-mfg
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-anchor-mfg
+    date: '2026-08-26'
+- id: anchor-mfg_com-process_caps-0028
+  name: Die Repair / Refurbish
+  status: confirmed
+  acceptable_forms:
+  - Repair / Refurbish
+  - die repair
+  - refurbish
+  evidence:
+  - quote: Repair / Refurbish
+    approx_offset: 7895
+    evidence_kind: heading
+  notes: context is the Tool & Die list (die repair/refurbishment); distinct from the seller-T&C
+    warranty language 'repair or replace any goods' - bare 'repair' is a polyseme across those
+    windows
+  provenance:
+  - action: added
+    by: seed-agent-anchor-mfg
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-anchor-mfg
+    date: '2026-08-26'
+- id: anchor-mfg_com-process_caps-0029
+  name: Die Adaptation
+  status: confirmed
+  acceptable_forms:
+  - Die Adaptation
+  evidence:
+  - quote: Die Adaptation
+    approx_offset: 7914
+    evidence_kind: heading
+  provenance:
+  - action: added
+    by: seed-agent-anchor-mfg
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-anchor-mfg
+    date: '2026-08-26'
+- id: anchor-mfg_com-process_caps-0030
+  name: Deep Draw
+  status: confirmed
+  acceptable_forms:
+  - Deep Draw
+  - deep drawing
+  evidence:
+  - quote: Deep Draw
+    approx_offset: 7989
+    evidence_kind: heading
+  notes: from the tooling-type list ('Types of Tooling Include - Progressive, Transfer, Single
+    Hit, Deep Draw'); deep-draw stamping is a real process designation. Its bare siblings
+    'Progressive' / 'Transfer' / 'Single Hit' are too polysemous to require - defensible
+    borderline tooling returns, deliberately not seeded either way
+  provenance:
+  - action: added
+    by: seed-agent-anchor-mfg
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-anchor-mfg
+    date: '2026-08-26'
+- id: anchor-mfg_com-process_caps-0031
+  name: Engineering Design Support
+  status: confirmed
+  acceptable_forms:
+  - Complete Engineering Design Support from Concept Through Launch
+  - Engineering Design Support
+  - engineering design
+  evidence:
+  - quote: Complete Engineering Design Support from Concept Through Launch
+    approx_offset: 27926
+    evidence_kind: heading
+  notes: borderline (B) - service capability from the about-page bullet list
+  provenance:
+  - action: added
+    by: seed-agent-anchor-mfg
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-anchor-mfg
+    date: '2026-08-26'
+false_friends:
+- form: inspection
+  reason: occurs ONLY in purchase-order T&C clause 5 ('INSPECTION AND REJECTIONS' - Purchaser may
+    inspect supplier goods; 'Seller will perform inspections as designated by Purchaser') - the
+    obligation is Anchor's SUPPLIER's, in legal boilerplate; no shop-floor inspection claim exists
+    in this file. Judgment call - the locked carve-out makes inspection V when the subject performs
+    it on the work, but here every occurrence is wrong-actor contract text, seeded per direction as
+    part of the T&C junk pump
+- form: supplier quality assurance system
+  reason: wrong actor - 'Seller will provide and maintain a supplier quality assurance system
+    approved by Purchaser' obligates Anchor's suppliers, not Anchor
+- form: delivery
+  reason: T&C logistics clauses plus the service-values marketing list ('quality, service, program
+    management, efficiency, and delivery') - business activity (Z), never an operation on the work
+- form: packing
+  reason: T&C clause 'PACKING, MARKING AND SHIPMENT' - supplier logistics obligation, not a
+    capability
+- form: marking
+  reason: same T&C clause ('pack and mark goods') - supplier logistics obligation
+- form: shipment
+  reason: T&C logistics boilerplate
+- form: shipping
+  reason: T&C logistics ('including shipping on Saturdays and holidays, when requested') -
+    supplier obligation
+- form: transportation
+  reason: T&C routing-instruction clauses - logistics, wrong actor
+- form: insurance
+  reason: T&C clause 10 - legal/insurance obligation (Z)
+- form: indemnification
+  reason: T&C clause 10(b) - legal activity (Z)
+- form: warranty
+  reason: warranty clauses in both T&C documents - legal boilerplate (Z)
+- form: termination
+  reason: T&C clause 19 - contractual/legal activity
+- form: cancellation
+  reason: T&C clause 20 'CANCELLATION FOR DEFAULT' - contractual activity
+- form: assignment
+  reason: T&C clause 18 - contractual activity
+- form: customs
+  reason: T&C clause 13 - import/export compliance activity, wrong actor
+- form: labor disputes
+  reason: T&C clause 6 - HR/legal contingency clause
+- form: purchasing
+  reason: doc title 'PRODUCTION/TOOL PURCHASING' and T&C context - Anchor's procurement, a
+    business activity (Z)
+- form: quotation
+  reason: doc title 'QUOTATION/ACKNOWLEDGEMENT TERMS AND CONDITIONS' - sales paperwork, not an
+    operation
+- form: payment
+  reason: T&C payment/credit clauses - business activity
+- form: claims adjustment
+  reason: T&C clause 12 heading - legal/accounting activity
+- form: installation
+  reason: T&C clause 16 ('installation, servicing or maintenance of equipment' performed by
+    suppliers inside Anchor facilities) - code I trap, wrong actor
+- form: maintenance
+  reason: named only as an internal department in the CEO bio and in T&C clause 16 supplier
+    context - never a maintenance-service capability claim
+- form: program management
+  reason: service-values marketing list - business activity (Z)
+- form: production
+  reason: generic (G) - 'mass production', 'bring them into production'
+- form: manufacturing
+  reason: generic (G) - own name and 'manufacturing space'
+- form: training
+  reason: HR benefit ('additional training') and award subject ('safety, training and
+    technology') - Z
+- form: compliance
+  reason: CSR/legal boilerplate ('Compliance with legal and ethical standards', 'REQUIRED
+    COMPLIANCE' clause) - Z/G
+- form: forced labor
+  reason: CSR code-of-conduct heading - policy topic, not an operation
+- form: child labor
+  reason: CSR code-of-conduct heading - policy topic, not an operation
+- form: repair or replace
+  reason: seller-T&C warranty remedy ('repair or replace any goods which fail to meet the
+    warranties') - legal remedy language, distinct from the Tool & Die 'Repair / Refurbish'
+    capability (entry 0028)
+- form: engineering
+  reason: bare form appears as a department ('engineering departments') and a degree ('Engineering
+    degree from Cornell') - generic without the design-support or die-change qualifiers (entries
+    0027/0031 carry the real designations)

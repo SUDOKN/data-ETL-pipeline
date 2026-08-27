@@ -1,0 +1,351 @@
+subject: anchor-mfg.com
+field: products
+snapshot:
+  file: apps/data_etl_app/src/data_etl_app/knowledge/sample_scraped_texts/anchor-mfg.com.txt
+  sha256: e34daaa48321c56889764574c1e98456e927bf1c02b9eeb88f867ec0a1471b1f
+eval_set_version: 2
+expected_empty: false
+notes: SHARED OUTPUT NOTE - products and contract_products share one search output; this file
+  serves as the expectation set for BOTH fields. Products appear as offering categories (metal
+  stampings, welded assemblies, fabricated parts, tooling) plus automotive COMPONENT TYPES from
+  one dense list sentence repeated on three pages (home + both industries pages) and a careers
+  variant. The component types are single-word designations qualifying 'components' - expect
+  B-grade entities. No named catalog products or part numbers exist anywhere in the file.
+  VERIFIER 2026-08-26 - independent pass - all 15 entries confirmed, all 22 quotes verbatim, none resting on T&C text. expected_empty false AGREED. false_friend concern - 'Special Tooling' contains entry 0004's accepted form 'tooling', the same containment collision in reverse. For the shared contract_products use - confirmed by reading that no part numbers or named catalog products exist anywhere in the file, so these offering categories and component types are the whole ceiling.
+entries:
+- id: anchor-mfg_com-products-0001
+  name: Metal Stampings
+  status: confirmed
+  acceptable_forms:
+  - metal stampings
+  - stampings
+  - engineered stampings
+  evidence:
+  - quote: world class supplier of metal stampings, welded assemblies, fabricated parts and tooling
+    approx_offset: 329
+    evidence_kind: prose
+  - quote: technically advanced engineered stampings and fabricated parts
+    approx_offset: 23378
+    evidence_kind: prose
+  provenance:
+  - action: added
+    by: seed-agent-anchor-mfg
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-anchor-mfg
+    date: '2026-08-26'
+- id: anchor-mfg_com-products-0002
+  name: Welded Assemblies
+  status: confirmed
+  acceptable_forms:
+  - welded assemblies
+  - complex welded assemblies
+  - welded, complex assemblies
+  evidence:
+  - quote: world class supplier of metal stampings, welded assemblies, fabricated parts and tooling
+    approx_offset: 329
+    evidence_kind: prose
+  - quote: complex welded assemblies
+    approx_offset: 1039
+    evidence_kind: prose
+  notes: about-page word-order variant 'welded, complex assemblies' merged as trivial
+  provenance:
+  - action: added
+    by: seed-agent-anchor-mfg
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-anchor-mfg
+    date: '2026-08-26'
+- id: anchor-mfg_com-products-0003
+  name: Fabricated Parts
+  status: confirmed
+  acceptable_forms:
+  - fabricated parts
+  evidence:
+  - quote: world class supplier of metal stampings, welded assemblies, fabricated parts and tooling
+    approx_offset: 329
+    evidence_kind: prose
+  - quote: technically advanced engineered stampings and fabricated parts
+    approx_offset: 23378
+    evidence_kind: prose
+  provenance:
+  - action: added
+    by: seed-agent-anchor-mfg
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-anchor-mfg
+    date: '2026-08-26'
+- id: anchor-mfg_com-products-0004
+  name: Tooling
+  status: confirmed
+  acceptable_forms:
+  - tooling
+  evidence:
+  - quote: world class supplier of metal stampings, welded assemblies, fabricated parts and tooling
+    approx_offset: 329
+    evidence_kind: prose
+  notes: borderline (B) - product of the stand-alone tool & die business; the built dies
+    (Progressive / Transfer / Single Hit / Deep Draw types) are what this names. Distinct from
+    the T&C 'Special Tooling' defined term - see false_friends
+    VERIFIER 2026-08-26 - flagged form - bare 'tooling' is contained in this file's own false friend 'Special Tooling', so one returned form would both credit recall here and score as a false-friend hit.
+  provenance:
+  - action: added
+    by: seed-agent-anchor-mfg
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-anchor-mfg
+    date: '2026-08-26'
+- id: anchor-mfg_com-products-0005
+  name: Class A appearance trim
+  status: confirmed
+  acceptable_forms:
+  - Class A appearance trim
+  - appearance trim
+  - trim
+  evidence:
+  - quote: including Class A appearance trim, structural, exterior, interior, exhaust, N.V.H., ride control, seating, steering column, brake, chassis, and safety related components
+    approx_offset: 1065
+    evidence_kind: prose
+  notes: the component-list sentence occurs on three pages (home + duplicated industries pages)
+    VERIFIER 2026-08-26 - flagged form - bare 'trim' is short enough to be cross-credited by unrelated returns under containment matching.
+  provenance:
+  - action: added
+    by: seed-agent-anchor-mfg
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-anchor-mfg
+    date: '2026-08-26'
+- id: anchor-mfg_com-products-0006
+  name: Structural components
+  status: confirmed
+  acceptable_forms:
+  - structural
+  - energy absorbing structural supports
+  evidence:
+  - quote: including Class A appearance trim, structural, exterior, interior, exhaust, N.V.H., ride control, seating, steering column, brake, chassis, and safety related components
+    approx_offset: 1065
+    evidence_kind: prose
+  - quote: producing safety related metal assemblies for steering columns, brakes, chassis, energy absorbing structural supports, and other safety related components
+    approx_offset: 2326
+    evidence_kind: prose
+  provenance:
+  - action: added
+    by: seed-agent-anchor-mfg
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-anchor-mfg
+    date: '2026-08-26'
+- id: anchor-mfg_com-products-0007
+  name: Exterior and interior components
+  status: confirmed
+  acceptable_forms:
+  - exterior
+  - interior
+  evidence:
+  - quote: including Class A appearance trim, structural, exterior, interior, exhaust, N.V.H., ride control, seating, steering column, brake, chassis, and safety related components
+    approx_offset: 1065
+    evidence_kind: prose
+  notes: two adjacent single-word list items merged as one entity - either bare form covers it;
+    B-grade (they qualify 'components' at the end of the list sentence)
+    VERIFIER 2026-08-26 - entry shape - two list items merged into one entity, so a run returning only 'exterior' takes full credit and 'interior' is never separately measured.
+  provenance:
+  - action: added
+    by: seed-agent-anchor-mfg
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-anchor-mfg
+    date: '2026-08-26'
+- id: anchor-mfg_com-products-0008
+  name: Exhaust components
+  status: confirmed
+  acceptable_forms:
+  - exhaust
+  evidence:
+  - quote: including Class A appearance trim, structural, exterior, interior, exhaust, N.V.H., ride control, seating, steering column, brake, chassis, and safety related components
+    approx_offset: 1065
+    evidence_kind: prose
+  provenance:
+  - action: added
+    by: seed-agent-anchor-mfg
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-anchor-mfg
+    date: '2026-08-26'
+- id: anchor-mfg_com-products-0009
+  name: N.V.H. components
+  status: confirmed
+  acceptable_forms:
+  - N.V.H.
+  - NVH
+  evidence:
+  - quote: including Class A appearance trim, structural, exterior, interior, exhaust, N.V.H., ride control, seating, steering column, brake, chassis, and safety related components
+    approx_offset: 1065
+    evidence_kind: prose
+  notes: noise/vibration/harshness parts - the verbatim form is the dotted abbreviation
+  provenance:
+  - action: added
+    by: seed-agent-anchor-mfg
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-anchor-mfg
+    date: '2026-08-26'
+- id: anchor-mfg_com-products-0010
+  name: Ride control components
+  status: confirmed
+  acceptable_forms:
+  - ride control
+  evidence:
+  - quote: including Class A appearance trim, structural, exterior, interior, exhaust, N.V.H., ride control, seating, steering column, brake, chassis, and safety related components
+    approx_offset: 1065
+    evidence_kind: prose
+  provenance:
+  - action: added
+    by: seed-agent-anchor-mfg
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-anchor-mfg
+    date: '2026-08-26'
+- id: anchor-mfg_com-products-0011
+  name: Seating components
+  status: confirmed
+  acceptable_forms:
+  - seating
+  evidence:
+  - quote: including Class A appearance trim, structural, exterior, interior, exhaust, N.V.H., ride control, seating, steering column, brake, chassis, and safety related components
+    approx_offset: 1065
+    evidence_kind: prose
+  provenance:
+  - action: added
+    by: seed-agent-anchor-mfg
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-anchor-mfg
+    date: '2026-08-26'
+- id: anchor-mfg_com-products-0012
+  name: Steering column components
+  status: confirmed
+  acceptable_forms:
+  - steering column
+  - steering columns
+  evidence:
+  - quote: including Class A appearance trim, structural, exterior, interior, exhaust, N.V.H., ride control, seating, steering column, brake, chassis, and safety related components
+    approx_offset: 1065
+    evidence_kind: prose
+  - quote: producing safety related metal assemblies for steering columns, brakes, chassis, energy absorbing structural supports, and other safety related components
+    approx_offset: 2326
+    evidence_kind: prose
+  provenance:
+  - action: added
+    by: seed-agent-anchor-mfg
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-anchor-mfg
+    date: '2026-08-26'
+- id: anchor-mfg_com-products-0013
+  name: Brake components
+  status: confirmed
+  acceptable_forms:
+  - brake
+  - brakes
+  evidence:
+  - quote: including Class A appearance trim, structural, exterior, interior, exhaust, N.V.H., ride control, seating, steering column, brake, chassis, and safety related components
+    approx_offset: 1065
+    evidence_kind: prose
+  - quote: producing safety related metal assemblies for steering columns, brakes, chassis, energy absorbing structural supports, and other safety related components
+    approx_offset: 2326
+    evidence_kind: prose
+  provenance:
+  - action: added
+    by: seed-agent-anchor-mfg
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-anchor-mfg
+    date: '2026-08-26'
+- id: anchor-mfg_com-products-0014
+  name: Chassis components
+  status: confirmed
+  acceptable_forms:
+  - chassis
+  evidence:
+  - quote: including Class A appearance trim, structural, exterior, interior, exhaust, N.V.H., ride control, seating, steering column, brake, chassis, and safety related components
+    approx_offset: 1065
+    evidence_kind: prose
+  - quote: producing safety related metal assemblies for steering columns, brakes, chassis, energy absorbing structural supports, and other safety related components
+    approx_offset: 2326
+    evidence_kind: prose
+  provenance:
+  - action: added
+    by: seed-agent-anchor-mfg
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-anchor-mfg
+    date: '2026-08-26'
+- id: anchor-mfg_com-products-0015
+  name: Safety related components
+  status: confirmed
+  acceptable_forms:
+  - safety related components
+  - safety related metal assemblies
+  evidence:
+  - quote: including Class A appearance trim, structural, exterior, interior, exhaust, N.V.H., ride control, seating, steering column, brake, chassis, and safety related components
+    approx_offset: 1065
+    evidence_kind: prose
+  - quote: producing safety related metal assemblies for steering columns, brakes, chassis, energy absorbing structural supports, and other safety related components
+    approx_offset: 2326
+    evidence_kind: prose
+  provenance:
+  - action: added
+    by: seed-agent-anchor-mfg
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-anchor-mfg
+    date: '2026-08-26'
+false_friends:
+- form: goods
+  reason: T&C legal generic - not a product designation
+- form: Class 8 heavy trucks
+  reason: customers' end vehicles (Anchor supplies components INTO them) - client application,
+    code C
+- form: buses
+  reason: prose 'School and transit buses as well as road coaches' - customers' end vehicles in
+    commercial-vehicle prose, code C ('busses' spelling also occurs)
+- form: road coaches
+  reason: same sentence - customer end vehicles, code C
+- form: household items
+  reason: consumer-prose application example ('common household items in the kitchen, garage'),
+    code C - where stampings end up, not what Anchor offers
+- form: toys
+  reason: consumer-prose filler ('childrens' toys') - application example, code C
+- form: food
+  reason: agriculture marketing filler ('the food we eat') - word-association, not a product
+- form: company literature
+  reason: contact-page offer ('request company literature') - document/literature, code D
+- form: Marked Parts
+  reason: purchasing-T&C DEFINED TERM (parts bearing Purchaser trademarks) - legal term, not an
+    offering
+- form: Special Tooling
+  reason: purchasing-T&C DEFINED TERM for Purchaser-owned property - legal term, distinct from
+    the real tooling product (entry 0004)
+- form: machine readable files
+  reason: employee-portal health-plan transparency files - code U junk
+- form: samples
+  reason: T&C warranty language ('IF SAMPLES WERE EXHIBITED', 'samples furnished') - legal
+    boilerplate, not an offering
+- form: Studs, Nuts
+  reason: hardware inserted during in-press assembly ('In-press Assembly (Studs, Nuts)') -
+    purchased components consumed in the operation, not products offered

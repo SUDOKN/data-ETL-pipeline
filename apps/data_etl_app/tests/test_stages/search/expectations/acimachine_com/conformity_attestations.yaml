@@ -1,0 +1,56 @@
+subject: acimachine.com
+field: conformity_attestations
+snapshot:
+  file: apps/data_etl_app/src/data_etl_app/knowledge/sample_scraped_texts/acimachine.com.txt
+  sha256: "05596bd29027f7aed570e5ace0df4d9efab7349f4420dba38ab96570e265d12b"
+eval_set_version: 2
+expected_empty: true
+notes: >-
+  Word-boundary greps for ISO/AS9100/IATF/NADCAP/ASTM/ANSI/ASME: zero hits
+  in 3.9MB. ACI itself claims no certification anywhere. The single
+  standard-like designation is CSA/CUS on the electrics of resold Elite
+  machines (4 lines) — kept as one reseller_inventory candidate below,
+  consistent with '(almost) nothing in-field'. Any yield beyond CSA/CUS is
+  junk-minting signal. VERIFY 2026-08-26 (second independent pass):
+  expected_empty=true AGREED and entry 0001 confirmed (all three evidence
+  quotes verbatim). Independent word-boundary greps reproduce zero hits for
+  ISO 9001 / ISO 13485 / ISO 14001, AS9100, IATF, NADCAP, ASTM, ANSI, ASME,
+  RoHS, ITAR, OSHA, 'accredit', 'registrar' and 'compliance'. ONE GAP FOUND
+  that the seed missed: two further conformity marks are present which entry
+  0001's acceptable_forms do not cover - '1/2 HP UL/CSA motor' (line 189877)
+  and 'Its 1/2HP, UL motor offers great versatility' (line 209664), both JET
+  resold-machine spec prose. Word-boundary 'UL' occurs 5 times. Not added
+  here per the no-add rule; a future pass should either extend 0001 to cover
+  'UL/CSA' or seed a second reseller_inventory entry, otherwise a run
+  returning 'UL/CSA' scores as neither recall nor false friend.
+entries:
+  - id: acimachine_com-conformity_attestations-0001
+    name: "CSA/CUS"
+    status: confirmed
+    acceptable_forms:
+      - "CSA/CUS"
+      - "CSA/CUS Certified"
+    evidence:
+      - quote: "and CSA/CUS certified electrics make Elite vertical bandsaws the choice for precision sawing of ferrous and non-ferrous materials."
+        approx_offset: 748324
+      - quote: "For operator safety all Elite Mills have CSA/CUS approved electrics and all come with a spindle safety guard."
+        approx_offset: 1049236
+      - quote: "- CSA/CUS Certified"
+        approx_offset: 3884322
+    actor: reseller_inventory
+    notes: >-
+      certification mark on the electrics of resold Elite machines; borderline
+      (B) — a code-body mark, not a management-system certification, and never
+      ACI's own attestation
+    provenance:
+      - {action: added, by: "seed-agent-acimachine", date: "2026-08-26", source: corpus-seed}
+      - {action: verified, by: "verify-agent-acimachine-austin", date: "2026-08-26"}
+false_friends:
+  - form: "certified"
+    reason: >-
+      bare adjective appears only in third-party machine marketing; G code
+      without the CSA/CUS designation attached
+  - form: "patented"
+    reason: >-
+      Uni-Hydro marketing 'a patented system' (3 lines) — an IP claim, not a
+      conformity attestation

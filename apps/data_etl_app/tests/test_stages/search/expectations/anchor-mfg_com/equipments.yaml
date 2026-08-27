@@ -1,0 +1,264 @@
+subject: anchor-mfg.com
+field: equipments
+snapshot:
+  file: apps/data_etl_app/src/data_etl_app/knowledge/sample_scraped_texts/anchor-mfg.com.txt
+  sha256: e34daaa48321c56889764574c1e98456e927bf1c02b9eeb88f867ec0a1471b1f
+eval_set_version: 2
+expected_empty: false
+notes: Rich but entirely UNBRANDED - no make/model names anywhere; every machine is a specific
+  category with counts/specs ('Over 60 presses, 2000 ton to 110 ton', '4,000 Watt CNC Laser').
+  Expect mostly B-grade category designations. Spec-only lines ('Up to 240in. (6m) Bed Size',
+  'Stroke Length up to 20 in.', 'Interchangeable', 'Quick Change') are S-code attributes of the
+  seeded machines, not separate entities. Tooling-type words (Progressive / Transfer / Single
+  Hit / Deep Draw) are T-code tooling, deliberately not seeded as equipment.
+  VERIFIER 2026-08-26 - independent pass - all 11 entries confirmed, all 12 quotes verbatim, none resting on T&C text (every quote resolves to /capabilities-services/). expected_empty false AGREED. false_friend concern - 'machine' is contained in entry 0011's accepted form 'Milling Machines', so one returned form would both satisfy recall and score as a false friend; that false friend wants narrowing to the 'machine readable files' sense.
+entries:
+- id: anchor-mfg_com-equipments-0001
+  name: Stamping presses
+  status: confirmed
+  acceptable_forms:
+  - Over 60 presses
+  - presses
+  - 2000 ton to 110 ton
+  evidence:
+  - quote: Over 60 presses
+    approx_offset: 6776
+    evidence_kind: spec_table
+  - quote: 2000 ton to 110 ton
+    approx_offset: 6792
+    evidence_kind: spec_table
+  notes: the press fleet - counts and tonnage range are the in-text designation; 'Up to 240in.
+    (6m) Bed Size' and 'Stroke Length up to 20 in.' are its spec lines; about-page echo 'Wide
+    Ranging Press Tonnage and Bed Sizes'
+    VERIFIER 2026-08-26 - flagged form - '2000 ton to 110 ton' is a tonnage spec, which this file's own notes classify as an S-code attribute rather than an entity, so accepting it as a covering form credits recall for a return the judged pass would score S.
+  provenance:
+  - action: added
+    by: seed-agent-anchor-mfg
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-anchor-mfg
+    date: '2026-08-26'
+- id: anchor-mfg_com-equipments-0002
+  name: Coil Fed Servo Transfer System
+  status: confirmed
+  acceptable_forms:
+  - Coil Fed Servo Transfer System
+  - servo transfer system
+  evidence:
+  - quote: Coil Fed Servo Transfer System
+    approx_offset: 6839
+    evidence_kind: spec_table
+  provenance:
+  - action: added
+    by: seed-agent-anchor-mfg
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-anchor-mfg
+    date: '2026-08-26'
+- id: anchor-mfg_com-equipments-0003
+  name: Large Press Tandem Line
+  status: confirmed
+  acceptable_forms:
+  - Large Press Tandem Line
+  - tandem line
+  evidence:
+  - quote: Large Press Tandem Line
+    approx_offset: 6870
+    evidence_kind: spec_table
+  provenance:
+  - action: added
+    by: seed-agent-anchor-mfg
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-anchor-mfg
+    date: '2026-08-26'
+- id: anchor-mfg_com-equipments-0004
+  name: Flexible Weld Cells
+  status: confirmed
+  acceptable_forms:
+  - Over 40 Flexible Weld Cells
+  - Flexible Weld Cells
+  - weld cells
+  evidence:
+  - quote: Over 40 Flexible Weld Cells
+    approx_offset: 6929
+    evidence_kind: spec_table
+  notes: the 'Interchangeable' / 'Quick Change' lines beneath are attributes of these cells
+  provenance:
+  - action: added
+    by: seed-agent-anchor-mfg
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-anchor-mfg
+    date: '2026-08-26'
+- id: anchor-mfg_com-equipments-0005
+  name: Automated Error Proofing Systems
+  status: confirmed
+  acceptable_forms:
+  - Automated Error Proofing Systems
+  - error proofing
+  evidence:
+  - quote: Automated Error Proofing Systems
+    approx_offset: 6986
+    evidence_kind: spec_table
+  notes: borderline (B) - in-cell quality systems; straddles process/equipment and is seeded on
+    this side only
+    VERIFIER 2026-08-26 - agreed as borderline - error-proofing systems are in-cell devices so B is defensible, but a run coding them T (tooling/fixture ambiguous) would not be clearly wrong; weakest of the 11 equipment entries.
+  provenance:
+  - action: added
+    by: seed-agent-anchor-mfg
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-anchor-mfg
+    date: '2026-08-26'
+- id: anchor-mfg_com-equipments-0006
+  name: Laser – Turret Press
+  status: confirmed
+  acceptable_forms:
+  - Laser – Turret Press
+  - turret press
+  evidence:
+  - quote: Laser – Turret Press
+    approx_offset: 7234
+    evidence_kind: heading
+  notes: verbatim uses an en dash; combined laser / turret-press fabricating line
+  provenance:
+  - action: added
+    by: seed-agent-anchor-mfg
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-anchor-mfg
+    date: '2026-08-26'
+- id: anchor-mfg_com-equipments-0007
+  name: 4,000 Watt CNC Laser
+  status: confirmed
+  acceptable_forms:
+  - 4,000 Watt CNC Laser
+  - CNC Laser
+  evidence:
+  - quote: 4,000 Watt CNC Laser with 48” x 96” Capabilities up to .625” Thickness
+    approx_offset: 7411
+    evidence_kind: spec_table
+  notes: verbatim line carries curly inch marks - offsets are advisory, match by string
+  provenance:
+  - action: added
+    by: seed-agent-anchor-mfg
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-anchor-mfg
+    date: '2026-08-26'
+- id: anchor-mfg_com-equipments-0008
+  name: CNC Press Brakes
+  status: confirmed
+  acceptable_forms:
+  - CNC Multi-Axis Press Brakes
+  - CNC 7 Axis Press Brakes
+  - press brakes
+  evidence:
+  - quote: CNC Multi-Axis Press Brakes
+    approx_offset: 7255
+    evidence_kind: heading
+  - quote: CNC 7 Axis Press Brakes
+    approx_offset: 7283
+    evidence_kind: heading
+  notes: the multi-axis family line and its adjacent 7-axis specific merged as variants of one
+    fleet; the short form 'press brakes' is included so an aggregated return covers the entity
+  provenance:
+  - action: added
+    by: seed-agent-anchor-mfg
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-anchor-mfg
+    date: '2026-08-26'
+- id: anchor-mfg_com-equipments-0009
+  name: Mechanical Press Brake
+  status: confirmed
+  acceptable_forms:
+  - Mechanical Press Brake with Back Gage and Capabilities up to 10’
+  - Mechanical Press Brake
+  - press brake
+  evidence:
+  - quote: Mechanical Press Brake with Back Gage and Capabilities up to 10’
+    approx_offset: 7307
+    evidence_kind: spec_table
+  notes: VERIFIER 2026-08-26 - flagged form - the short form 'press brake' is contained in entry 0008's 'CNC Multi-Axis Press Brakes' and 'CNC 7 Axis Press Brakes', so any CNC-press-brake return cross-credits this separate mechanical-brake entity.
+  provenance:
+  - action: added
+    by: seed-agent-anchor-mfg
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-anchor-mfg
+    date: '2026-08-26'
+- id: anchor-mfg_com-equipments-0010
+  name: Material Shear
+  status: confirmed
+  acceptable_forms:
+  - Material Shear
+  - shear
+  evidence:
+  - quote: Material Shear
+    approx_offset: 7482
+    evidence_kind: heading
+  notes: also seeded as the Shearing operation in process_caps - either field's return is
+    defensible for this line
+    VERIFIER 2026-08-26 - flagged form - bare 'shear' is contained in 'Shearing', so a process_caps-0017 return cross-credits this equipment entry.
+  provenance:
+  - action: added
+    by: seed-agent-anchor-mfg
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-anchor-mfg
+    date: '2026-08-26'
+- id: anchor-mfg_com-equipments-0011
+  name: Vertical Mills
+  status: confirmed
+  acceptable_forms:
+  - Milling Machines / Vertical Mills
+  - Milling Machines
+  - Vertical Mills
+  evidence:
+  - quote: Milling Machines / Vertical Mills
+    approx_offset: 7543
+    evidence_kind: heading
+  notes: one line, two category names for the same machining fleet - merged
+  provenance:
+  - action: added
+    by: seed-agent-anchor-mfg
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-anchor-mfg
+    date: '2026-08-26'
+false_friends:
+- form: machine readable files
+  reason: employee-portal No Surprises Act health-plan transparency files ('digital representation
+    of data') - U junk, not machinery
+- form: Employee Navigator
+  reason: benefits-website brand name - looks like a named tool, is neither machine nor shop
+    software
+- form: Special Tooling
+  reason: purchasing-T&C DEFINED TERM for Purchaser-owned property ('tools, equipment, material,
+    drawings ... (Special Tooling)') - legal term of art, not a machine designation
+- form: equipment
+  reason: generic (G) - 'equipment redundancy' marketing and T&C 'parts or equipment'
+- form: Bulletin Board
+  reason: employee-benefits website feature - U junk
+- form: mechanical breakdown
+  reason: force-majeure list in the seller T&Cs - an event, not a machine
+- form: tooling
+  reason: bare form names the tool & die PRODUCT line ('fabricated parts and tooling') and the
+    T&C Special Tooling term - as an equipments return it is the known product/tooling confusion
+    (code D/T), the real entities being the dies the shop builds
+- form: machine
+  reason: bare form occurs only inside 'machine readable files' and 'Milling Machines' - no
+    standalone machine designation

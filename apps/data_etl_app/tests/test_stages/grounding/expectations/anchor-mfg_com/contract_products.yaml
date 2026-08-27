@@ -1,0 +1,51 @@
+subject: anchor-mfg.com
+field: contract_products
+expected:
+- name: Metal Stampings
+  evidence: small to large metal stampings and complex welded assemblies including Class A appearance
+    trim
+  strength: strong
+- name: Welded Assemblies
+  evidence: complex welded assemblies including Class A appearance trim, structural, exterior, interior
+  strength: strong
+- name: Fabricated Parts
+  evidence: supplier of metal stampings, welded assemblies, fabricated parts and tooling
+  strength: strong
+- name: Dies / Tooling (Progressive, Transfer, Single Hit, Deep Draw)
+  evidence: 'Types of Tooling Include: Progressive, Transfer, Single Hit, Deep Draw'
+  strength: strong
+- name: Class A Appearance Trim Stampings
+  evidence: including Class A appearance trim, structural, exterior, interior, exhaust, N.V.H.
+  strength: strong
+- name: Safety-Related Components (steering column, brake, chassis)
+  evidence: producing safety related metal assemblies for steering columns, brakes, chassis
+  strength: strong
+- name: Energy Absorbing Structural Supports
+  evidence: brakes, chassis, energy absorbing structural supports, and other safety related components
+  strength: strong
+- name: Special Tooling (built for Purchaser, becomes Purchaser's property)
+  evidence: acquired or manufactured by Seller for use in the performance of this order ... 'Special Tooling'
+    ... property of Purchaser
+  strength: strong
+- name: Exhaust Components
+  evidence: structural, exterior, interior, exhaust, N.V.H., ride control, seating, steering column
+  strength: moderate
+- name: Seating Components
+  evidence: ride control, seating, steering column, brake, chassis, and safety related components
+  strength: moderate
+- name: N.V.H. (Noise/Vibration/Harshness) Components
+  evidence: interior, exhaust, N.V.H., ride control, seating, steering column, brake, chassis
+  strength: moderate
+- name: Class 8 Heavy Truck & Bus Stampings/Assemblies
+  evidence: Many of our stampings and assemblies are used in the manufacture of Class 8 heavy trucks and
+    busses
+  strength: moderate
+- name: Marked Parts (Purchaser-trademarked parts, sold only to Purchaser)
+  evidence: if the tooling/part bears a Purchaser trademark ... Seller will sell Marked Parts ... only
+    to Purchaser
+  strength: moderate
+traps:
+- name: Machine readable files
+  kind: wrong_axis
+  note: digital healthcare-benefits data file defined on the Employee Portal page (No Surprises Act),
+    unrelated to Anchor's manufactured parts

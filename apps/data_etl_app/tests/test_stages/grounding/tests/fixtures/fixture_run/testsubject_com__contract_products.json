@@ -1,0 +1,50 @@
+{
+  "subject_unique_id": "testsubject.com",
+  "field_type": "contract_products",
+  "timestamp": "20260101T000000",
+  "run": {"extraction_metadata": {"ontology_version_id": null}},
+  "chunks": {
+    "0:100": {
+      "requests": {
+        "llm_phrase_freehand_grounding": [
+          {
+            "custom_id": "testsubject.com>contract_products>llm_phrase_freehand_grounding>chunk>0:100>group>0>gpt-4.1|pv=y|ud=deadbeef",
+            "input_tokens": 80,
+            "output_tokens": 40,
+            "client_latency_ms": 950
+          }
+        ]
+      },
+      "rows": [
+        {
+          "group_id": "gaa1",
+          "focal_form": "widget",
+          "forms": ["widget"],
+          "key": "widget",
+          "mention_count": 3,
+          "record": {"focal_form": "widget", "synthesis": "The subject sells widgets."},
+          "freehand_grounding": {
+            "tags": {
+              "Widget": [
+                {"rule_id": "FGR-E1", "outcome": "satisfied", "explanation": "evidenced"}
+              ]
+            }
+          },
+          "screening": {},
+          "status": "grounded"
+        },
+        {
+          "group_id": "gaa2",
+          "focal_form": "gadget",
+          "forms": ["gadget"],
+          "key": "gadget",
+          "mention_count": 1,
+          "record": {"focal_form": "gadget", "synthesis": "A gadget appears once."},
+          "freehand_grounding": {"declined": "Not evidenced as a contract product."},
+          "screening": {},
+          "status": "no_candidates"
+        }
+      ]
+    }
+  }
+}

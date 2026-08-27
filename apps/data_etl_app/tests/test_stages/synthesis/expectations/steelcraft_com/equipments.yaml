@@ -1,0 +1,25 @@
+subject: steelcraft.com
+field: equipments
+eval_set_version: 1
+probes:
+- id: SC-P2
+  status: active
+  added: 2026-08-26
+  motivated_by: FE→DE swap, stochastic 2-in-5 (runs 200044, 020729; recurred 194457)
+  target: group gl3j2k95 (FE Series Double-Egress Frames), every rendering
+  expectation: 'The paragraph for FE Series Double-Egress Frames must describe the FE Series, not the
+    DE Series co-packed beside it. Check every chunk and field rendering of the group — one of six was
+    wrong in 194457.
+
+    '
+- id: SC-P7
+  status: active
+  added: 2026-08-26
+  motivated_by: first judgment pass — C2 cross-entity anaphor/contrast capture
+  target: groups gbubf8pp (L Series), gjrirs9y (K Series frames)
+  expectation: 'A pronoun or contrast clause whose antecedent is a DIFFERENT entity must not be absorbed
+    into the focal entity''s description. Verified defects: the GRAINTECH finish''s "It" becoming an L
+    Series availability claim; the C&CK "but anchored also through..." clause becoming K Series'' own
+    installation method.
+
+    '

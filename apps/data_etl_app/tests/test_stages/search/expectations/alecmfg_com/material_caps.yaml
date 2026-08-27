@@ -1,0 +1,534 @@
+subject: alecmfg.com
+field: material_caps
+snapshot:
+  file: apps/data_etl_app/src/data_etl_app/knowledge/sample_scraped_texts/alecmfg.com.txt
+  sha256: f192654eaafbb44b699ffb23865174c401a604f230364fdf8d21a28c2cc245d8
+eval_set_version: 2
+expected_empty: false
+notes: The site's canonical 12-metal + 8-plastic offering (services + CNC pages) plus 9 specific grades from case
+  studies. 'Lead' has zero metal senses in this corpus.
+entries:
+- id: alecmfg_com-material_caps-0001
+  name: aluminum
+  status: confirmed
+  acceptable_forms:
+  - aluminum
+  - aluminum alloy
+  evidence:
+  - quote: including metals like aluminum and steel
+    approx_offset: 13583
+  - quote: precision aluminum alloy sheet metal processing
+    approx_offset: 54923
+  provenance:
+  - action: added
+    by: seed-agent-alecmfg
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-alecmfg
+    date: '2026-08-26'
+- id: alecmfg_com-material_caps-0002
+  name: stainless steel
+  status: confirmed
+  acceptable_forms:
+  - stainless steel
+  evidence:
+  - quote: semiconductor-grade stainless steel precision machining
+    approx_offset: 61301
+  - quote: High-Precision Stainless Steel Valve Body for Semiconductor Equipment
+    approx_offset: 24191
+  provenance:
+  - action: added
+    by: seed-agent-alecmfg
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-alecmfg
+    date: '2026-08-26'
+- id: alecmfg_com-material_caps-0003
+  name: brass
+  status: confirmed
+  acceptable_forms:
+  - brass
+  evidence:
+  - quote: 'Brass:'
+    approx_offset: 14184
+  notes: services materials list + CNC page blurb heading; blurb text itself does not repeat the word
+  provenance:
+  - action: added
+    by: seed-agent-alecmfg
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-alecmfg
+    date: '2026-08-26'
+- id: alecmfg_com-material_caps-0004
+  name: copper
+  status: confirmed
+  acceptable_forms:
+  - copper
+  evidence:
+  - quote: high-precision copper heat sink machining using 5-axis CNC
+    approx_offset: 104396
+  - quote: especially in oxygen-free copper machining
+    approx_offset: 100689
+  provenance:
+  - action: added
+    by: seed-agent-alecmfg
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-alecmfg
+    date: '2026-08-26'
+- id: alecmfg_com-material_caps-0005
+  name: titanium
+  status: confirmed
+  acceptable_forms:
+  - titanium
+  evidence:
+  - quote: CNC machined parts in titanium and high-temperature alloys, for engine and structural use
+    approx_offset: 43893
+  - quote: machining difficult materials like titanium alloys
+    approx_offset: 124595
+  provenance:
+  - action: added
+    by: seed-agent-alecmfg
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-alecmfg
+    date: '2026-08-26'
+- id: alecmfg_com-material_caps-0006
+  name: magnesium
+  status: confirmed
+  acceptable_forms:
+  - magnesium
+  evidence:
+  - quote: 'Magnesium:'
+    approx_offset: 14449
+  provenance:
+  - action: added
+    by: seed-agent-alecmfg
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-alecmfg
+    date: '2026-08-26'
+- id: alecmfg_com-material_caps-0007
+  name: zinc
+  status: confirmed
+  acceptable_forms:
+  - zinc
+  evidence:
+  - quote: 'Zinc:'
+    approx_offset: 14561
+  provenance:
+  - action: added
+    by: seed-agent-alecmfg
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-alecmfg
+    date: '2026-08-26'
+- id: alecmfg_com-material_caps-0008
+  name: nickel
+  status: confirmed
+  acceptable_forms:
+  - nickel
+  evidence:
+  - quote: 'Nickel:'
+    approx_offset: 14661
+  - quote: Nickel-based duplex process
+    approx_offset: 51940
+  provenance:
+  - action: added
+    by: seed-agent-alecmfg
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-alecmfg
+    date: '2026-08-26'
+- id: alecmfg_com-material_caps-0009
+  name: mild steel
+  status: confirmed
+  acceptable_forms:
+  - mild steel
+  evidence:
+  - quote: 'Mild Steel:'
+    approx_offset: 14770
+  provenance:
+  - action: added
+    by: seed-agent-alecmfg
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-alecmfg
+    date: '2026-08-26'
+- id: alecmfg_com-material_caps-0010
+  name: alloy steel
+  status: confirmed
+  acceptable_forms:
+  - alloy steel
+  evidence:
+  - quote: 'Alloy Steel:'
+    approx_offset: 14899
+  provenance:
+  - action: added
+    by: seed-agent-alecmfg
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-alecmfg
+    date: '2026-08-26'
+- id: alecmfg_com-material_caps-0011
+  name: tool steel
+  status: confirmed
+  acceptable_forms:
+  - tool steel
+  evidence:
+  - quote: 'Tool Steel:'
+    approx_offset: 15058
+  provenance:
+  - action: added
+    by: seed-agent-alecmfg
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-alecmfg
+    date: '2026-08-26'
+- id: alecmfg_com-material_caps-0012
+  name: Inconel
+  status: confirmed
+  acceptable_forms:
+  - Inconel
+  evidence:
+  - quote: 'Inconel:'
+    approx_offset: 15203
+  provenance:
+  - action: added
+    by: seed-agent-alecmfg
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-alecmfg
+    date: '2026-08-26'
+- id: alecmfg_com-material_caps-0013
+  name: ABS
+  status: confirmed
+  acceptable_forms:
+  - ABS
+  - Acrylonitrile Butadiene Styrene
+  evidence:
+  - quote: ABS (Acrylonitrile Butadiene Styrene)
+    approx_offset: 10052
+  - quote: plastics such as ABS and polycarbonate
+    approx_offset: 13625
+  notes: '3-char form: containment can false-credit words like ''absolute''; judged pass should read the window'
+  provenance:
+  - action: added
+    by: seed-agent-alecmfg
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-alecmfg
+    date: '2026-08-26'
+- id: alecmfg_com-material_caps-0014
+  name: Nylon
+  status: confirmed
+  acceptable_forms:
+  - Nylon
+  evidence:
+  - quote: Nylon
+    approx_offset: 10090
+  provenance:
+  - action: added
+    by: seed-agent-alecmfg
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-alecmfg
+    date: '2026-08-26'
+- id: alecmfg_com-material_caps-0015
+  name: polycarbonate
+  status: confirmed
+  acceptable_forms:
+  - polycarbonate
+  evidence:
+  - quote: plastics such as ABS and polycarbonate
+    approx_offset: 13625
+  provenance:
+  - action: added
+    by: seed-agent-alecmfg
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-alecmfg
+    date: '2026-08-26'
+- id: alecmfg_com-material_caps-0016
+  name: POM (Acetal)
+  status: confirmed
+  acceptable_forms:
+  - POM
+  - Polyoxymethylene
+  - Acetal
+  evidence:
+  - quote: POM (Polyoxymethylene or Acetal)
+    approx_offset: 10110
+  provenance:
+  - action: added
+    by: seed-agent-alecmfg
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-alecmfg
+    date: '2026-08-26'
+- id: alecmfg_com-material_caps-0017
+  name: PTFE (Teflon)
+  status: confirmed
+  acceptable_forms:
+  - PTFE
+  - Polytetrafluoroethylene
+  - Teflon
+  evidence:
+  - quote: PTFE (Polytetrafluoroethylene or Teflon)
+    approx_offset: 10143
+  provenance:
+  - action: added
+    by: seed-agent-alecmfg
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-alecmfg
+    date: '2026-08-26'
+- id: alecmfg_com-material_caps-0018
+  name: PEEK
+  status: confirmed
+  acceptable_forms:
+  - PEEK
+  - Polyether Ether Ketone
+  evidence:
+  - quote: PEEK (Polyether Ether Ketone)
+    approx_offset: 10184
+  provenance:
+  - action: added
+    by: seed-agent-alecmfg
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-alecmfg
+    date: '2026-08-26'
+- id: alecmfg_com-material_caps-0019
+  name: PVC
+  status: confirmed
+  acceptable_forms:
+  - PVC
+  - Polyvinyl Chloride
+  evidence:
+  - quote: PVC (Polyvinyl Chloride)
+    approx_offset: 10214
+  provenance:
+  - action: added
+    by: seed-agent-alecmfg
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-alecmfg
+    date: '2026-08-26'
+- id: alecmfg_com-material_caps-0020
+  name: HDPE
+  status: confirmed
+  acceptable_forms:
+  - HDPE
+  - High-Density Polyethylene
+  evidence:
+  - quote: HDPE (High-Density Polyethylene)
+    approx_offset: 10239
+  provenance:
+  - action: added
+    by: seed-agent-alecmfg
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-alecmfg
+    date: '2026-08-26'
+- id: alecmfg_com-material_caps-0021
+  name: 7075 aluminum
+  status: confirmed
+  acceptable_forms:
+  - '7075'
+  - EN AW 7075-T6
+  - AL7075
+  evidence:
+  - quote: EN AW 7075-T6 (EN 10204 3.1)
+    approx_offset: 50760
+  - quote: AL7075 aluminum
+    approx_offset: 96528
+  provenance:
+  - action: added
+    by: seed-agent-alecmfg
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-alecmfg
+    date: '2026-08-26'
+- id: alecmfg_com-material_caps-0022
+  name: 6061 aluminum
+  status: confirmed
+  acceptable_forms:
+  - '6061'
+  - 6061-T6
+  - 6061-T651
+  evidence:
+  - quote: 6061-T651 aluminum, with material certs per ASTM B221
+    approx_offset: 72708
+  - quote: 6061-T6 aluminum (ASTM B221, extrusion stock)
+    approx_offset: 76926
+  provenance:
+  - action: added
+    by: seed-agent-alecmfg
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-alecmfg
+    date: '2026-08-26'
+- id: alecmfg_com-material_caps-0023
+  name: EN AW-7475-T7351 aluminum
+  status: confirmed
+  acceptable_forms:
+  - EN AW-7475-T7351
+  - '7475'
+  evidence:
+  - quote: The customer specified EN AW-7475-T7351 aerospace aluminum sourced from a France-approved vendor
+    approx_offset: 68606
+  provenance:
+  - action: added
+    by: seed-agent-alecmfg
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-alecmfg
+    date: '2026-08-26'
+- id: alecmfg_com-material_caps-0024
+  name: EN AW-6082 T6 aluminum
+  status: confirmed
+  acceptable_forms:
+  - EN AW-6082 T6
+  - '6082'
+  evidence:
+  - quote: Aluminum alloy EN AW-6082 T6 (optimized for strength-to-weight ratio)
+    approx_offset: 127264
+  provenance:
+  - action: added
+    by: seed-agent-alecmfg
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-alecmfg
+    date: '2026-08-26'
+- id: alecmfg_com-material_caps-0025
+  name: 316L stainless steel
+  status: confirmed
+  acceptable_forms:
+  - 316L
+  evidence:
+  - quote: 316L stainless steel components showed microscopic burrs
+    approx_offset: 61039
+  provenance:
+  - action: added
+    by: seed-agent-alecmfg
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-alecmfg
+    date: '2026-08-26'
+- id: alecmfg_com-material_caps-0026
+  name: C1100 oxygen-free copper
+  status: confirmed
+  acceptable_forms:
+  - C1100
+  - oxygen-free copper
+  evidence:
+  - quote: C1100 oxygen-free copper is extremely ductile and sticky during cutting
+    approx_offset: 101597
+  - quote: especially in oxygen-free copper machining
+    approx_offset: 100689
+  provenance:
+  - action: added
+    by: seed-agent-alecmfg
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-alecmfg
+    date: '2026-08-26'
+- id: alecmfg_com-material_caps-0027
+  name: Ti6Al4V titanium alloy
+  status: confirmed
+  acceptable_forms:
+  - Ti6Al4V
+  evidence:
+  - quote: Ti6Al4V titanium alloy
+    approx_offset: 119912
+  - quote: Ti6Al4V is an α-β titanium alloy with high hardness and poor thermal conductivity
+    approx_offset: 120255
+  provenance:
+  - action: added
+    by: seed-agent-alecmfg
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-alecmfg
+    date: '2026-08-26'
+- id: alecmfg_com-material_caps-0028
+  name: ASTM A36 steel
+  status: confirmed
+  acceptable_forms:
+  - ASTM A36
+  - A36
+  evidence:
+  - quote: ASTM A36 plate + 4140 alloy inserts
+    approx_offset: 106681
+  - quote: cut and pre-machined in-house from ASTM A36 using CNC plasma and mill
+    approx_offset: 108224
+  notes: also a conformity_attestations entry (material spec standard)
+  provenance:
+  - action: added
+    by: seed-agent-alecmfg
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-alecmfg
+    date: '2026-08-26'
+- id: alecmfg_com-material_caps-0029
+  name: 4140 alloy steel
+  status: confirmed
+  acceptable_forms:
+  - 4140 alloy
+  - '4140'
+  evidence:
+  - quote: ASTM A36 plate + 4140 alloy inserts
+    approx_offset: 106681
+  provenance:
+  - action: added
+    by: seed-agent-alecmfg
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-alecmfg
+    date: '2026-08-26'
+false_friends:
+- form: Lead
+  reason: 'verified zero metal senses in this corpus: only ''Lead Time'', job titles (''Lead Mechanical Engineer'',
+    ''Project Lead''), ''leadership'', ''leading'', ''heavy-lift'''
+- form: White alumina
+  reason: 'micro-blasting media, a consumable (C): ''White alumina 800'''
+- form: epoxy
+  reason: appears once, as the coating operation 'epoxy coated (offshore marine coating)'; a coating consumable,
+    not a worked material
+- form: alcohol
+  reason: 'cleaning consumable (C): ''medical-grade lint-free cloths and alcohol for final wiping'''
+- form: foam
+  reason: 'packaging consumable (C): ''shock-absorbent foam'''
+- form: Metal
+  reason: generic table/tab header in the materials selectors (G)
+- form: Plastic
+  reason: generic table/tab header in the materials selectors (G)

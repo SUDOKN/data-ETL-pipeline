@@ -1,0 +1,32 @@
+subject: ableengineering.com
+field: products
+eval_set_version: 1
+probes:
+- id: AB-P1
+  status: predicted
+  added: 2026-08-26
+  motivated_by: corpus survey — MRO shop; airframer makes everywhere; "Authorized Bell Helicopter Service
+    Center"
+  expectation: 'Repairing/overhauling Bell or Leonardo components, and authorization to service them,
+    must never be written as MAKING those manufacturers'' products. FAA-PMA replacement parts are the
+    one own-product line — that distinction must survive.
+
+    '
+- id: AB-P2
+  status: predicted
+  added: 2026-08-26
+  motivated_by: corpus survey — thousands of OEM P/N / Able P/N table lines, near-identical part families
+  expectation: 'Records minted from part-number tables must keep OEM part numbers distinct from Able part
+    numbers, and must not fuse near-identical part-family rows into one entity (the FE→DE hazard at table
+    scale).
+
+    '
+- id: AB-P4
+  status: predicted
+  added: 2026-08-26
+  motivated_by: corpus survey — press releases with executive quotes (Textron voice)
+  expectation: 'Press-release claims quoted from named executives are first-party but time-bound news;
+    paragraphs should attribute them ("announced", "per a press release") rather than flatten them into
+    standing capabilities.
+
+    '

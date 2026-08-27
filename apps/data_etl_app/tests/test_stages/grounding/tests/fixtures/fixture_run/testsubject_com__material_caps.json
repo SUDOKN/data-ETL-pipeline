@@ -1,0 +1,238 @@
+{
+  "subject_unique_id": "testsubject.com",
+  "field_type": "material_caps",
+  "timestamp": "20260101T000000",
+  "run": {
+    "extraction_metadata": {
+      "ontology_version_id": "mZgLXCU1pvUxkkdcWTh4vOThS20JihMo"
+    }
+  },
+  "chunks": {
+    "0:100": {
+      "requests": {
+        "llm_phrase_initial_grounding": [
+          {
+            "custom_id": "testsubject.com>material_caps>llm_phrase_initial_grounding>chunk>0:100>group>0>gpt-4.1|pv=x|ud=abc",
+            "input_tokens": 100,
+            "output_tokens": 50,
+            "client_latency_ms": 1200
+          }
+        ],
+        "llm_phrase_oov_grounding_retry": [
+          {
+            "custom_id": "testsubject.com>material_caps>llm_phrase_oov_grounding>chunk>0:100>retry>1>group>0>gpt-4.1|pv=x|ud=def",
+            "input_tokens": 10,
+            "output_tokens": 5,
+            "client_latency_ms": 500
+          }
+        ],
+        "llm_phrase_recursive_tagging": [
+          {
+            "custom_id": "testsubject.com>material_caps>llm_phrase_recursive_tagging>chunk>0:100>group>0>gpt-4.1|pv=x|ud=ghi",
+            "input_tokens": 50,
+            "output_tokens": 20,
+            "client_latency_ms": 800
+          },
+          {
+            "custom_id": "testsubject.com>material_caps>llm_phrase_recursive_tagging>chunk>0:100>group>1>gpt-4.1|pv=x|ud=jkl",
+            "input_tokens": null,
+            "output_tokens": null,
+            "note": "usage_unavailable"
+          }
+        ]
+      },
+      "rows": [
+        {
+          "group_id": "gtwin001",
+          "focal_form": "steel",
+          "forms": ["steel", "Steel"],
+          "key": "steel",
+          "mention_count": 4,
+          "record": {"focal_form": "steel", "synthesis": "The subject works steel."},
+          "in_vocab_grounding": {
+            "tags": {
+              "Steel": [
+                {"rule_id": "IGR-E1", "outcome": "satisfied", "explanation": "evidenced"},
+                {"rule_id": "IGR-M1", "outcome": "chosen", "explanation": "matched"}
+              ]
+            }
+          },
+          "oov_grounding": {"declined": "No new material is evidenced."},
+          "screening": {
+            "Steel": {
+              "passed": true,
+              "applied_rules": [
+                {"rule_id": "SCR-1", "outcome": "satisfied", "explanation": "ok"}
+              ]
+            }
+          },
+          "lvl_by_lvl_itps": {
+            "1": [
+              {
+                "parent_group_id": null,
+                "group_id": "Steel",
+                "stop_reason": null,
+                "direct_og_tag_w_rules": {
+                  "Steel": [
+                    {"rule_id": "IGR-E1", "outcome": "satisfied", "explanation": "evidenced"}
+                  ]
+                },
+                "iterative_og_tag_w_rules": {},
+                "origin": "initial_grounding",
+                "source": "iterative_tagging",
+                "in_vocab": true
+              }
+            ],
+            "2": [
+              {
+                "parent_group_id": "Steel",
+                "group_id": "Stainless Steel",
+                "stop_reason": null,
+                "direct_og_tag_w_rules": {},
+                "iterative_og_tag_w_rules": {
+                  "Stainless Steel": [
+                    {"rule_id": "RGR-E1", "outcome": "satisfied", "explanation": "evidenced"}
+                  ]
+                },
+                "origin": "recursive_grounding",
+                "source": "iterative_tagging",
+                "in_vocab": true
+              }
+            ]
+          },
+          "status": "grounded"
+        },
+        {
+          "group_id": "ggate001",
+          "focal_form": "unobtainium parts",
+          "forms": ["unobtainium parts"],
+          "key": "unobtainium part",
+          "mention_count": 1,
+          "record": {"focal_form": "unobtainium parts", "synthesis": "Parts of unobtainium."},
+          "in_vocab_grounding": {"declined": "Not in vocabulary."},
+          "oov_grounding": {
+            "tags": {
+              "Unobtainium": [
+                {"rule_id": "OGR-E1", "outcome": "satisfied", "explanation": "evidenced"},
+                {"rule_id": "OGR-N1", "outcome": "failed", "explanation": "not novel"}
+              ]
+            }
+          },
+          "screening": {
+            "Unobtainium": {
+              "passed": true,
+              "applied_rules": [
+                {"rule_id": "SCR-1", "outcome": "satisfied", "explanation": "ok"}
+              ]
+            }
+          },
+          "status": "grounded"
+        },
+        {
+          "group_id": "gdrop001",
+          "focal_form": "vibranium",
+          "forms": ["vibranium"],
+          "key": "vibranium",
+          "mention_count": 2,
+          "record": {"focal_form": "vibranium", "synthesis": "The subject casts vibranium."},
+          "in_vocab_grounding": {
+            "tags": {},
+            "dropped_options": ["Steel (also: Carbon Steel)", "Vibranium"]
+          },
+          "oov_grounding": {
+            "tags": {
+              "Vibranium": [
+                {"rule_id": "OGR-E1", "outcome": "satisfied", "explanation": "evidenced"}
+              ]
+            }
+          },
+          "screening": {},
+          "status": "grounded"
+        },
+        {
+          "group_id": "gsent001",
+          "focal_form": "misc",
+          "forms": ["misc"],
+          "key": "misc",
+          "mention_count": 1,
+          "record": {"focal_form": "misc", "synthesis": "Nothing in particular."},
+          "in_vocab_grounding": {"tags": {"None of the above": []}},
+          "oov_grounding": {"declined": "Nothing."},
+          "screening": {},
+          "status": "grounded"
+        },
+        {
+          "group_id": "gdup001",
+          "focal_form": "steel plate",
+          "forms": ["steel plate"],
+          "key": "steel plate",
+          "mention_count": 1,
+          "record": {"focal_form": "steel plate", "synthesis": "Steel plate work."},
+          "in_vocab_grounding": {
+            "tags": {
+              "Steel": [
+                {"rule_id": "IGR-E1", "outcome": "satisfied", "explanation": "evidenced"}
+              ]
+            }
+          },
+          "oov_grounding": {
+            "tags": {
+              "steel": [
+                {"rule_id": "OGR-E1", "outcome": "satisfied", "explanation": "evidenced"}
+              ]
+            }
+          },
+          "screening": {},
+          "status": "grounded"
+        }
+      ]
+    },
+    "100:200": {
+      "requests": {},
+      "rows": [
+        {
+          "group_id": "gtwin001",
+          "focal_form": "steel",
+          "forms": ["steel"],
+          "key": "steel",
+          "mention_count": 1,
+          "record": {"focal_form": "steel", "synthesis": "Steel mentioned in passing."},
+          "in_vocab_grounding": {"declined": "No evidence here."},
+          "oov_grounding": {"declined": "No evidence here."},
+          "screening": {},
+          "status": "no_candidates"
+        },
+        {
+          "group_id": "gbad001",
+          "focal_form": "mystery",
+          "forms": ["mystery"],
+          "key": "mystery",
+          "mention_count": 1,
+          "record": {"focal_form": "mystery", "synthesis": "?"},
+          "in_vocab_grounding": {"declined": "?"},
+          "oov_grounding": {"declined": "?"},
+          "screening": {},
+          "status": "weird_status"
+        },
+        {
+          "group_id": "gnm001",
+          "focal_form": "ghost",
+          "forms": ["ghost"],
+          "key": "ghost",
+          "mention_count": 0,
+          "record": {"focal_form": "ghost", "synthesis": "n/a"},
+          "in_vocab_grounding": {
+            "tags": {
+              "Steel": [
+                {"rule_id": "IGR-E1", "outcome": "satisfied", "explanation": "evidenced"}
+              ]
+            }
+          },
+          "oov_grounding": {"declined": "n/a"},
+          "screening": {},
+          "status": "no_mentions"
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,52 @@
+subject: alecmfg.com
+field: equipments
+expected:
+- name: Multi-axis CNC machines and lathes
+  evidence: expanded our arsenal with cutting-edge technology, including SLS and SLA rapid prototyping
+    machines, as well as multi-axis CNC machines and lathes
+  strength: strong
+- name: SLS rapid prototyping machines
+  evidence: including SLS and SLA rapid prototyping machines
+  strength: strong
+- name: SLA rapid prototyping machines
+  evidence: including SLS and SLA rapid prototyping machines
+  strength: strong
+- name: Vertical machining centers (HS-V55LS)
+  evidence: three new vertical machining centers, the HS-V55LS models ... have already arrived at our
+    new facility
+  strength: strong
+- name: Double-column CNC machining center
+  evidence: Final precision machining was done in our double-column CNC center using Renishaw probing
+  strength: strong
+- name: Renishaw probing system
+  evidence: using Renishaw probing to set datums and align bores
+  strength: strong
+- name: Zeiss CONTURA G2 CMM
+  evidence: 'Hole Position Tolerance ... 0.015 mm ... Equipment Used: Zeiss CONTURA G2 CMM'
+  strength: strong
+- name: Laser Interferometer
+  evidence: Flatness (Flange Face) ... 0.007 mm ... Laser Interferometer
+  strength: strong
+- name: CNC plasma cutter
+  evidence: All steel plates were cut and pre-machined in-house from ASTM A36 using CNC plasma and mill
+  strength: strong
+- name: PowerMill CAM software
+  evidence: Toolpaths generated in PowerMill with adaptive roughing and high-feed finishing strategies
+  strength: moderate
+traps:
+- name: WordPress / Google Analytics / Intercom / LiteSpeed (website tools)
+  kind: wrong_axis
+  note: a Cookie Policy table of website plugins/trackers, not manufacturing equipment
+- name: Taiwan Hashuo
+  kind: third_party
+  note: the vendor/brand that manufactures the HS-V55LS machines Alec bought, not itself a piece of equipment
+- name: Wafer handling system
+  kind: wrong_actor
+  note: the semiconductor client's own equipment under repair/upgrade, not something Alec owns or operates
+- name: Linear shuttle-based conveyors
+  kind: wrong_actor
+  note: the U.S. automation client's own conveyor system, not equipment Alec owns
+- name: Mold design
+  kind: wrong_axis
+  note: '''Our expertise in mold design and process optimization'' describes a design service, not a named
+    piece of equipment'

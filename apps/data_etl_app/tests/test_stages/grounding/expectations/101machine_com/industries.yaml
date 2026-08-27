@@ -1,0 +1,25 @@
+subject: 101machine.com
+field: industries
+expected:
+- name: Nuclear power
+  evidence: CNC turning services for nuclear power, semiconductor, lighting, chemical, and medical industries
+  strength: strong
+- name: Semiconductor
+  evidence: '...semiconductor, lighting, chemical, and medical industries'
+  strength: strong
+- name: Lighting
+  evidence: '...semiconductor, lighting, chemical, and medical industries'
+  strength: strong
+- name: Chemical
+  evidence: '...semiconductor, lighting, chemical, and medical industries'
+  strength: strong
+- name: Medical
+  evidence: '...chemical, and medical industries'
+  strength: strong
+- name: Agricultural
+  evidence: '...lighting, chemical, agricultural, and medical industries (milling.html)'
+  strength: strong
+traps:
+- name: Automotive
+  kind: negated
+  note: 'explicitly excluded: ''We DO NOT machine automobile parts!'''

@@ -1,0 +1,10 @@
+subject: acimachine.com
+source_text: apps/data_etl_app/src/data_etl_app/knowledge/sample_scraped_texts/acimachine.com.txt
+text_chars_read: 200000
+coverage_note: first 200,000 chars only; pipeline chunk cap (max_tokens_per_chunk x max_chunks ~= 40k
+  tokens)
+built: 2026-08-26
+built_by: inventory agent, taxonomy v1
+placeholder: false
+profile: |
+  ACI Machine Tool Sales is a used-and-new machine-tool dealer/broker based in Lawrenceburg, KY (founded by Mark Cox in 2001; a "Support/Services" location is also listed at U.S. 60, Phoenix, Arizona), not a manufacturer. It lists thousands of metalworking machines (lathes, mills, grinders, saws, hoists, drill presses, press-brake accessories, transfer machines, etc.) sourced from many OEM brands (JET, ACER, CHEVALIER, SHARP, HURCO, WILLIS, EXPAND MACHINERY, DAINICHI, WATERJET CORP, WELLSAW, NOMURA, UNI-HYDRO, SHIMADA, WINEMA) for buyers to purchase, buys used equipment from sellers ("Sell Your Equipment"), and offers machine-tool repair/installation/leveling services. The readable prefix is almost entirely a paginated e-commerce catalog: brand pages, category/type filter pages, per-machine spec sheets (each repeating the same header/footer/cookie-banner boilerplate), a flat active-inventory model-number index (~2,800 of the ~12,900 lines), plus a handful of static pages (About, Support/Services, Contact, Terms, Privacy, Buy/Sell forms) and a blog of the founder's personal sales-career anecdotes. There is no claim anywhere in this prefix that ACI itself manufactures anything, processes materials, holds a certification, or serves a named customer industry — every one of the seven fields is dominated by lookalike traps rather than genuine signal.

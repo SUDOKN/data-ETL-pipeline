@@ -1,0 +1,34 @@
+subject: steelcraft.com
+field: contract_products
+expected:
+- name: Custom-manufactured frames to customer specification (Chino)
+  evidence: With our frame manufacturing capabilities, we can customize frames to your specifications,
+    with an express lead time
+  strength: strong
+- name: Custom finish paint colors
+  evidence: will also create customized colors ensuring the perfect complement to your hollow metal projects
+  strength: moderate
+- name: Custom doors (Blue Ash, consolidated with Chino order)
+  evidence: Custom doors may be produced in Blue Ash, but will consolidate and ship with the rest of your
+    Chino order
+  strength: moderate
+- name: Custom sizing, lites, and finishes (LS stainless showcase projects)
+  evidence: Custom sizing, lites, and finishes combined with industry performance ratings can create an
+    architectural design perfect for showcase projects
+  strength: moderate
+- name: Custom fire-rated profiles
+  evidence: It's important to verify the availability of a fire rated configuration for custom profiles
+  strength: weak
+- name: GRAINTECH custom finish matching
+  evidence: Our exclusive engraining and staining process simulates a wide variety of wood finishes, including
+    custom finish matching
+  strength: weak
+traps:
+- name: Standard catalog door series (e.g., L Series)
+  kind: wrong_axis
+  note: L Series and similar named series are off-the-shelf catalog products; offering some custom options
+    does not make the base series a contract/to-spec product
+- name: Express/stock programs (2-Day/3-Day/5-Day)
+  kind: wrong_axis
+  note: '''48-hour shipping on kwik-pak doors and frames and stock package small parts'' -- fast-ship
+    STOCK fulfillment, not made-to-customer-spec work'

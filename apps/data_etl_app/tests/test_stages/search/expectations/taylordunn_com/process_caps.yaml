@@ -1,0 +1,29 @@
+subject: taylordunn.com
+field: process_caps
+snapshot:
+  file: apps/data_etl_app/src/data_etl_app/knowledge/sample_scraped_texts/taylordunn.com.txt
+  sha256: "dbf6cfcd2de35d5052df8d9b1e45530d25519aad8f62628716e2bedbb7c81113"
+eval_set_version: 2
+expected_empty: true
+notes: >-
+  The text names zero performed operations on work. Word-boundary greps for
+  machin-/weld-/cast-/mold-/assembl-/fabricat-/coat-/paint-/stamp-/forg-/
+  extrud-/inspect-/test- return zero hits across the whole file (verified
+  2026-08-26). The only process-shaped vocabulary is data-privacy prose
+  ("processing of your data") and the "Manufacturing" inside the nav industry
+  label "Manufacturing & Warehousing". Any yield here is junk minted from
+  cookie-consent boilerplate or from nav labels.
+entries: []
+false_friends:
+  - form: "Manufacturing"
+    reason: "occurs only inside the footer industry label 'Manufacturing & Warehousing'; a sector word, not an operation the subject performs"
+  - form: "Warehousing"
+    reason: "same footer industry label; a sector word, not a performed operation"
+  - form: "processing"
+    reason: "data-processing sense only, in privacy-rights prose ('object to the processing of your data'); Z-code business/legal activity"
+  - form: "Tracking"
+    reason: "'Marketing/Tracking cookies' -- ad-tech sense, not an operation on work"
+  - form: "advertising"
+    reason: "'personalized advertising' / 'display advertising' in cookie prose; marketing activity, not a manufacturing process"
+  - form: "monitor traffic"
+    reason: "website analytics ('used to monitor traffic on a website'), not inspection/measurement of work"

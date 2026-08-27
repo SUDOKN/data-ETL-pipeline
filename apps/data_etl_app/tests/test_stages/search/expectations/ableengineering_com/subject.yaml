@@ -1,0 +1,48 @@
+subject: ableengineering.com
+slug: ableengineering_com
+role: inventory_subject
+snapshot:
+  file: apps/data_etl_app/src/data_etl_app/knowledge/sample_scraped_texts/ableengineering.com.txt
+  sha256: ffc5c3234c4dff2387887d61903a00d5320905f296fcff4b731c3f8d76529eb9
+identity_mismatch: 'Filename says ableengineering.com but every scraped URL in the file is https://www.ableaerospace.com/
+  - Able Aerospace Services Inc., Mesa, Arizona, a subsidiary of Textron Aviation (a Textron Inc. company). FAA-approved MRO:
+  repair/overhaul of fixed- and rotor-wing aircraft components, machine shop, plating, NDT, parts exchange and PMA replacement
+  parts. All expectations are keyed to the scraped ableaerospace.com content, not to any ''Able Engineering'' entity.'
+hazards:
+- hazard: OEM/platform names (Boeing x~104, Bell x~97, Airbus, Leonardo, Sikorsky, Honeywell, Pratt & Whitney...) are customer
+    aircraft makes/platforms and catalogue Make facets, never subject entities
+  quote: well-known aircraft – Airbus, Bell, Leonardo, MD and Sikorsky
+- hazard: Huge flattened aircraft-model filter lists on /parts/ and /mro/ pages are search facets, not a catalogue of anything
+  quote: '204-B
+
+    204B
+
+    205A-1
+
+    205B
+
+    206A'
+- hazard: Certification footer repeats on all 27 pages - any per-window cert count is inflated by it
+  quote: A1LR190N - EASA 145.4010 - AS9100 - AS9110 - ISO9001:2015 Certified
+- hazard: The 17-item cert wall appears verbatim on both the homepage and the why-able page
+  quote: QUALIFIED. VERIFIED. CERTIFIED.
+- hazard: 'Part catalogue rows are spec-table content: designation + OEM P/N + Able P/N + Make + Model, repeated hundreds
+    of times'
+  quote: 'OEM P/N: 41009491-101'
+- hazard: Catalogue pages are pagination-truncated by the scrape ('LOAD MORE'), so the parts/MRO listings are samples of the
+    real catalogue
+  quote: LOAD MORE BACK TO TOP
+- hazard: Press releases name partner/customer organizations (Vertex Aerospace, Airbus Helicopters, NATA, Textron) - actor
+    attribution needed; no other company's certification is claimed, but OEM authorizations name their grantors
+  quote: a Textron Inc. (NYSE:TXT) company
+- hazard: Nav header and contact/footer blocks repeat on every page (ROTOR WING / FIXED WING / MILITARY / LANDING GEAR / PARTS
+    / MRO)
+  quote: CONTACT AOG
+sampling_notes: 'Fully read, not sampled: all 6,428 lines / 27 scraped pages were read for seeding. Substantive prose is concentrated
+  in ~10 pages (home, processes, why-able, rotor-wing, fixed-wing, landing-gear, military, 5 press releases); the rest is
+  parts/MRO catalogue tables and facet lists.'
+provenance:
+- action: added
+  by: seed-agent-ableengineering
+  date: '2026-08-26'
+  source: corpus-seed

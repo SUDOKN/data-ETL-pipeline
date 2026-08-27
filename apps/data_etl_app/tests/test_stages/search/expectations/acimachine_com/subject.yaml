@@ -1,0 +1,82 @@
+subject: acimachine.com
+slug: acimachine_com
+role: scale_stress
+snapshot:
+  file: apps/data_etl_app/src/data_etl_app/knowledge/sample_scraped_texts/acimachine.com.txt
+  sha256: "05596bd29027f7aed570e5ace0df4d9efab7349f4420dba38ab96570e265d12b"
+eval_set_version: 1
+profile: >-
+  ACI Machine Tool Sales (2001 Foundation Drive, Lawrenceburg, KY) is a
+  machine-tool DEALER/DISTRIBUTOR founded 2001 by Mark Cox, selling and
+  servicing new machine tools in Kentucky and southern Indiana. 1,291 of the
+  1,430 pages are /equipment/<id>-<brand>-<model> resale listings. Every
+  equipment, material, and product mention belongs to resold third-party
+  machines; the subject's OWN capabilities are only the support-page field
+  services (troubleshooting, spindle/control repairs, installations, part
+  replacements, retrofit, precision leveling, maintenance, ball bar testing).
+hazards:
+  - name: related_brands_block
+    quote: "Related Brands"
+    note: >-
+      brand-list block (JET ACER SHARP WILLIS EXPAND MACHINERY CHEVALIER HURCO
+      DAINICHI WATERJET CORP WELLSAW NOMURA UNI-HYDRO SHIMADA WINEMA) repeats
+      on 1,279 pages
+  - name: footer_boilerplate
+    quote: "Equipt Pro website by Equipt"
+    note: >-
+      full nav/footer (Quick Links, Top Categories, Top Types, Top Brands,
+      cookie banner) repeats on all 1,430 pages
+  - name: locale_duplicates
+    quote: "https://acimachine.com/en/brands/jet"
+    note: "/en/ locale pages duplicate their bare-path twins"
+  - name: flattened_spec_tables
+    quote: "Grinding Wheel Dia."
+    note: >-
+      Specifications tables flatten to label/value runs (Table-W, Swing,
+      Spindle Bore, Capacity (Mild Steel)(in), ...) on every listing
+  - name: heavy_non_ascii
+    quote: "½ ton to 5 ton capacities"
+    note: "NBSP, (R) symbol, double-prime inch marks, vulgar fractions throughout"
+  - name: placeholder_address
+    quote: "U.S. 60, Phoenix, Arizona, USA"
+    note: >-
+      placeholder mailing address on the support-page contact form; the real
+      address is Lawrenceburg, KY
+sampling:
+  plan_verbatim: >-
+    read the head/homepage, the About page, the service/support pages, the
+    brands page, and 8–12 equipment listing pages spread across the file (use
+    grep -n for '^https://' to pick offsets across the whole file). Judge only
+    what you read.
+  pages_read:
+    - {line: 2, url: "https://acimachine.com/"}
+    - {line: 958, url: "https://acimachine.com/support"}
+    - {line: 3758, url: "https://acimachine.com/About_Us"}
+    - {line: 7959, url: "https://acimachine.com/brands"}
+    - {line: 3999, url: "https://acimachine.com/equipment/7190867-chevalier-fsg-3a1224-reciprocating-surface-grinders"}
+    - {line: 4161, url: "https://acimachine.com/equipment/7191985-winema-rv-10-flexmaster-rotary-trunnion-horizontal-and-vertical-transfer-machines"}
+    - {line: 41541, url: "https://acimachine.com/equipment/7191353-jet-hp-5-h-frame-presses"}
+    - {line: 41699, url: "https://acimachine.com/equipment/7191581-hurco-hm1700ri-horizontal-machining-centers"}
+    - {line: 63118, url: "https://acimachine.com/equipment/7190882-chevalier-smart-b1224iii-reciprocating-surface-grinders"}
+    - {line: 84616, url: "https://acimachine.com/equipment/7190237-acer-e-lathe-1760g-engine-lathes"}
+    - {line: 106168, url: "https://acimachine.com/equipment/7191834-sharp-svl-2416se-f-vertical-machining-centers"}
+    - {line: 127790, url: "https://acimachine.com/equipment/7190477-acer-dynamic-7060g-oil-field-and-hollow-spindle-lathes"}
+    - {line: 149324, url: "https://acimachine.com/equipment/7191810-sharp-sta-38-oil-field-and-hollow-spindle-lathes"}
+    - {line: 170964, url: "https://acimachine.com/equipment/7190235-acer-supra-618ii-reciprocating-surface-grinders"}
+    - {line: 192519, url: "https://acimachine.com/equipment/7191312-jet-bp-2248h-box-and-pan-brakes-including-finger"}
+    - {line: 213944, url: "https://acimachine.com/equipment/7191916-wellsaw-1200-horizontal-band-saws"}
+  targeted_greps: >-
+    word-boundary greps for ISO/AS9100/IATF/NADCAP/ASTM/ANSI/ASME: zero hits
+    (re-verified 2026-08-26, holds); NOTE the sector-grep claim this block
+    originally carried was WRONG and is corrected in industries.yaml -
+    aerospace/automotive/medical/semiconductor DO occur (in third-party OEM
+    prose); only defense and agriculture are absent;
+    "certif": only CSA/CUS certified/approved electrics on resold Elite
+    machines (4 lines); "industries|industry": only third-party machine
+    marketing prose and the manufacturer name SHARP Industries, no
+    "industries served" page; material greps (mild steel, aluminum, stainless,
+    cast iron, carbon steel, Meehanite, Lead, ferrous): all occurrences are
+    machine construction, spec-capacity ratings, or cuttable-material lists in
+    resold-machine descriptions.
+provenance:
+  - {action: added, by: "seed-agent-acimachine", date: "2026-08-26", source: corpus-seed}

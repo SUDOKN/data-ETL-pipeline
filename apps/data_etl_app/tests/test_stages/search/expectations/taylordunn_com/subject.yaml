@@ -1,0 +1,50 @@
+subject: taylordunn.com
+slug: taylordunn_com
+role: degenerate_input_probe
+snapshot:
+  file: apps/data_etl_app/src/data_etl_app/knowledge/sample_scraped_texts/taylordunn.com.txt
+  sha256: "dbf6cfcd2de35d5052df8d9b1e45530d25519aad8f62628716e2bedbb7c81113"
+eval_purpose: >-
+  Degenerate-input probe: the scrape failed. All 31 page blocks rendered the
+  cookie-consent modal (a Complianz cookie policy, last updated January 7,
+  2025) instead of page content; every block body is byte-identical once the
+  URL header line is stripped (verified by per-block sha256, 2026-08-26). The
+  only real signal is the nav/footer menu repeated on every block. This
+  subject measures whether search returns near-empty on boilerplate text or
+  mints junk from it; expectations are accordingly thin.
+company_context: >-
+  Taylor-Dunn (Anaheim, CA; owned by Waev Inc.) makes electric industrial
+  vehicles -- burden carriers, stockchasers, personnel carriers, tow tractors.
+  None of that appears in prose in this scrape; only nav/footer labels
+  survive.
+structure_verified:
+  page_blocks: 31
+  bodies_identical_after_url_strip: true
+  repeated_string_counts:  # each occurs exactly once per page block
+    "Bigfoot Burden Carriers": 31
+    "Stockchasers": 31
+    "Personnel Carriers": 31
+    "Utility Vehicles": 31
+    "2114 W Ball Rd": 31
+    "COOKIE POLICY": 31
+scrape_hazards:
+  - quote: "This Cookie Policy was last updated on January 7, 2025"
+    hazard: every page block is this cookie-policy modal; there is no page prose anywhere in the file
+  - quote: "2114 W Ball Rd, Anaheim, CA 92804"
+    hazard: parent company Waev Inc.'s privacy legal-notice address -- the only address in the text sits in a legal contact block, not a facility claim
+  - quote: "Consent to service elementor"
+    hazard: the "Placed cookies" vendor table names ad-tech/software brands (Elementor, WordPress, WPForms, Complianz, Google services, YouTube) that bait product/equipment minting
+  - quote: "Manufacturing & Warehousing"
+    hazard: nav/footer menu labels are the only in-domain strings; each repeats 31 times (once per block), which can inflate per-window counts
+sampling_notes: >-
+  Read exhaustively, not sampled: blocks 1-2 read in full, blocks 3-31
+  verified byte-identical to block 1 (URL line stripped) via per-block sha256.
+  Targeted word-boundary greps all return zero hits, for standards
+  (ISO/AS/IATF/ASTM/ANSI/UL/NFPA/OSHA/SAE/DOT/EPA/CE), process verbs
+  (machin-/weld-/cast-/mold-/assembl-/fabricat-/coat-/paint-/stamp-/forg-/
+  extrud-/inspect-/test-), materials (steel/aluminum/alloy/rubber/copper/
+  brass/iron/nylon/polymer/composite/fiberglass), and shop equipment
+  (forklift/crane/conveyor/grinder/drill/saw/press/tooling). "tow tractors"
+  exists only as the URL slug /tow-tractors/, never as text.
+provenance:
+  - {action: added, by: "seed-agent-taylordunn", date: "2026-08-26", source: corpus-seed}

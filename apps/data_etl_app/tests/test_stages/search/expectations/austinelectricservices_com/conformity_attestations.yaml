@@ -1,0 +1,202 @@
+subject: austinelectricservices.com
+field: conformity_attestations
+snapshot:
+  file: apps/data_etl_app/src/data_etl_app/knowledge/sample_scraped_texts/austinelectricservices.com.txt
+  sha256: "26d3b2d8c2d57c0219a2c12e0727aeca1bbf2da11f0d1142bae3a58adaabd118"
+eval_set_version: 2
+expected_empty: true
+notes: >-
+  Out-of-domain negative. ISO, AS9100, IATF, NADCAP, ASTM, ANSI, NFPA, NEC,
+  UL, ITAR are all grep-absent (word-boundary verified) - no manufacturing
+  certification exists in this corpus. The four candidates below are the
+  only named certification/regulatory designations in the text, and every
+  one is marginal: technician-level credentials in job ads, a sibling
+  division's trade-body program, a product-level program on installed goods,
+  and a state contractor license. They are seeded recall-side per the
+  recall-first contract; yield beyond them is junk-minting signal, and
+  "electrical code"/"HVAC code" building-code prose is the headline false
+  friend. VERIFY 2026-08-26 (second independent pass): expected_empty=true
+  AGREED. Independent word-boundary greps reproduce zero for ISO <digits>,
+  AS9100, IATF, NADCAP, ASTM, ANSI, NFPA, NEC, UL, OSHA and 'accredit'; the
+  3 case-insensitive 'ITAR' hits are substring artifacts inside Spanish
+  'militar' and 'facilitar', not the regulation. The 'CE' false friend is
+  correctly scoped - word-boundary CE occurs exactly 4 times, all 'CE George
+  Mechanical'. Of the four seeded entries 0001, 0002 and 0003 are confirmed
+  and 0004 (Arizona ROC#) is DISPUTED; reasons in each entry. FALSE-FRIEND
+  FORM DEFECT: "driver's license" is written with a straight apostrophe but
+  the text uses a curly U+2019 ('Reliable transportation & valid driver's
+  license.', 'Valid driver's license.'), so that false friend can never
+  match an echoed surface form and should be re-typed with the curly
+  character or reduced to 'license'. 'SMS opt-in consent' likewise never
+  occurs, but as a pure mint-probe that is legitimate.
+entries:
+  - id: austinelectricservices_com-conformity_attestations-0001
+    name: "EPA 608"
+    status: confirmed
+    acceptable_forms:
+      - "EPA 608 certification"
+      - "EPA 608"
+      - "certificación EPA 608"
+    evidence:
+      - quote: "Candidate must EPA 608 certification and be willing to attend regular trainings."
+        approx_offset: 36298
+      - quote: "Candidate must EPA 608 certification and be willing to participate in an On-Call rotation."
+        approx_offset: 61680
+      - quote: "El candidato debe contar con la certificación EPA 608"
+        approx_offset: 86211
+    actor: parent_sibling
+    notes: >-
+      EPA Section 608 refrigerant-handling certification, required of Austin
+      HVAC (sibling division) job candidates. Genuine regulatory
+      designation, but a technician-level credential appearing ONLY in job
+      ads (evidence_kind job_ad) - sits on the V-vs-Z line; second pass
+      should decide whether HR context demotes it. VERIFY 2026-08-26
+      CONFIRMED, and answering the seed's open question: HR context does NOT
+      demote this. EPA Section 608 is a genuine federal regulatory
+      certification designation under the Clean Air Act, so it is V/B on the
+      conformity table. Code Z covers the non-conformity certificate SENSE
+      (an HR 'certificate program'), not the page genre a real certification
+      happens to be named on; job-ad context is an evidence_kind flag, not a
+      code demotion. Both English quotes (lines 938, 1639, including the
+      source's own grammar slip 'must EPA 608 certification') and the
+      Spanish mirror (line 2270) verify verbatim.
+    provenance:
+      - {action: added, by: "seed-agent-austinelectric", date: "2026-08-26", source: corpus-seed}
+      - {action: verified, by: "verify-agent-acimachine-austin", date: "2026-08-26"}
+  - id: austinelectricservices_com-conformity_attestations-0002
+    name: "Post-Tensioning Institute Field Certification Program"
+    status: confirmed
+    acceptable_forms:
+      - "Post-Tensioning Institute’s Field Certification Program"
+      - "Post-Tensioning Institute"
+      - "Field Certification Program"
+      - "Programa de Certificación de Campo del Post-Tensioning Institute"
+    evidence:
+      - quote: "Technicians are certified by the Post-Tensioning Institute’s Field Certification Program"
+        approx_offset: 77672
+      - quote: "Los técnicos están certificados por el Programa de Certificación de Campo del Post-Tensioning Institute"
+        approx_offset: 85254
+    actor: parent_sibling
+    notes: >-
+      Named trade-body certification program explicitly attested ("are
+      certified") for Austin Concrete's field technicians; code B (named
+      program). Construction-sector body, expected OOV at grounding. VERIFY
+      2026-08-26 CONFIRMED. Read in context on /concrete/what-we-do/ (line
+      2038): 'Technicians are certified by the Post-Tensioning Institute's
+      Field Certification Program' is an explicit attestation naming a
+      trade-body program - code B (named program / code body) on the nose.
+      The Spanish mirror at line 2250 was checked line-for-line against the
+      English page and is a faithful translation.
+    provenance:
+      - {action: added, by: "seed-agent-austinelectric", date: "2026-08-26", source: corpus-seed}
+      - {action: verified, by: "verify-agent-acimachine-austin", date: "2026-08-26"}
+  - id: austinelectricservices_com-conformity_attestations-0003
+    name: "Energy Star"
+    status: confirmed
+    acceptable_forms:
+      - "Energy Star Certified"
+      - "Energy Star"
+      - "certificación Energy Star"
+    evidence:
+      - quote: "Energy Efficient/Energy Star Certified Systems"
+        approx_offset: 72948
+      - quote: "Sistemas con certificación Energy Star/Eficiencia Energética"
+        approx_offset: 105576
+    actor: parent_sibling
+    notes: >-
+      Named product-certification program in Austin HVAC's offerings list;
+      the certified things are third-party HVAC systems they install, not
+      the subject or its processes. Code B; wrong-actor flag expected.
+      VERIFY 2026-08-26 CONFIRMED. 'Energy Efficient/Energy Star Certified
+      Systems' (line 1915, Spanish mirror 2823) names a real third-party
+      product-certification program - code B. Recall-first admits it even
+      though the certified things are installed HVAC systems rather than the
+      subject or its processes; the wrong-actor flag stands and is the right
+      place for that concern.
+    provenance:
+      - {action: added, by: "seed-agent-austinelectric", date: "2026-08-26", source: corpus-seed}
+      - {action: verified, by: "verify-agent-acimachine-austin", date: "2026-08-26"}
+  - id: austinelectricservices_com-conformity_attestations-0004
+    name: "Arizona ROC contractor license"
+    status: disputed
+    acceptable_forms:
+      - "ROC# 341516"
+      - "ROC# 271055"
+      - "ROC#"
+    evidence:
+      - quote: "ROC# 341516 (Commercial)"
+        approx_offset: 10786
+      - quote: "ROC# 271055 (Residential)"
+        approx_offset: 10811
+    actor: own
+    notes: >-
+      Arizona Registrar of Contractors license numbers in the home-page
+      footer block (EN + ES). A regulatory credential designation, but a
+      contractor LICENSE rather than a conformity attestation - weakest of
+      the four seeds (B at best, arguably U); flagged for the second pass to
+      dispute or retire. VERIFY 2026-08-26 DISPUTED (taking up the seed's
+      own invitation to dispute or retire). Three reasons. (1) OUT OF FIELD:
+      an Arizona Registrar of Contractors number is a state trade LICENSE -
+      a legal permit to operate a contracting business - not an attestation
+      of conformity to any standard, specification or audit scheme. No
+      standard, program or code body is named anywhere near it. That is the
+      Z/U side of the conformity table, not V or B. (2) CONTEXT: read at
+      lines 294-311 the two numbers sit inside the OFFICES contact block,
+      directly under the street address and phone number and above 'Careers
+      / Contact Us' - evidence_kind legal_boilerplate, the same class as the
+      Terms and Privacy links beside them. (3) FORM DEFECT: the acceptable
+      form 'ROC#' is a bare four-character label prefix with zero
+      designation content, so as written this entry would credit a run for
+      returning a fragment - precisely the junk-minting this
+      out_of_domain_negative subject exists to measure, which makes the
+      entry actively harmful rather than merely weak. RECOMMEND: retire; or
+      if the user wants to keep a licence probe, drop the bare 'ROC#' form
+      and keep only the two full numbers.
+    provenance:
+      - {action: added, by: "seed-agent-austinelectric", date: "2026-08-26", source: corpus-seed}
+      - {action: verified, by: "verify-agent-acimachine-austin", date: "2026-08-26"}
+false_friends:
+  - form: "electrical code"
+    reason: >-
+      Building-code prose, never a standard id: "ever changing electrical code
+      requirements" (2x), "Strong knowledge of electrical code." (4x),
+      "Knowledge of electrical codes and electrical systems." (2x). NEC/NFPA
+      are never named; code G.
+  - form: "HVAC code"
+    reason: "Job-ad requirement 'Strong knowledge of HVAC code.' (5x); generic code-family reference, no standard id."
+  - form: "código eléctrico"
+    reason: "Spanish mirror ('Sólido conocimiento del código eléctrico', 4x); same generic building-code sense."
+  - form: "código HVAC"
+    reason: "Spanish mirror (6x); same."
+  - form: "quality standards"
+    reason: >-
+      "meet quality standards" appears 11x in job-ad bullets (Spanish
+      "estándares de calidad" 13x); QMS-sounding HR phrasing with no named
+      standard - code G, evidence_kind job_ad.
+  - form: "certified professionals"
+    reason: >-
+      Security page: "our certified professionals handle the entire
+      installation" - generic marketing "certified", no certifying body or
+      standard (G).
+  - form: "certified"
+    reason: "Bare generic wherever it appears outside the four seeded designations (G)."
+  - form: "CE"
+    reason: >-
+      Appears ONLY inside the company name "CE George Mechanical" (4x,
+      leadership bios) - a founder's former firm, not CE marking.
+  - form: "driver's license"
+    reason: >-
+      Job-ad requirement ("Valid driver’s license." 2x, Spanish "licencia
+      de conducir válida" 8x); personal credential in HR text, code Z.
+  - form: "Terms & Conditions"
+    reason: "Legal document title in every page footer and on dedicated pages; D/U, not a standard."
+  - form: "Privacy Policy"
+    reason: "Same footer boilerplate; legal document title, not a standard."
+  - form: "SMS opt-in consent"
+    reason: >-
+      Consent/compliance-flavored legal boilerplate on every form ("By opting
+      into SMS communication from Austin Companies", "I agree to be
+      contacted via text message.") sometimes minted as a compliance
+      attestation; no named standard or program.
+provenance:
+  - {action: added, by: "seed-agent-austinelectric", date: "2026-08-26", source: corpus-seed}

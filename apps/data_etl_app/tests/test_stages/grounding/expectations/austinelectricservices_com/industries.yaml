@@ -1,0 +1,25 @@
+subject: austinelectricservices.com
+field: industries
+expected:
+- name: Residential Homebuilding / Production Builders
+  evidence: 'ES: "Ofrecemos soluciones completas de climatización (HVAC) para nuestros constructores de
+    producción residencial y multifamiliar" (we offer complete HVAC solutions for our residential and
+    multi-family production builders)'
+  strength: strong
+- name: Custom Home / Remodel market
+  evidence: new construction tract homes, multi-family units, build to rent units, as well as custom homes
+    and remodels
+  strength: moderate
+- name: Residential & Commercial Security (home/business owners)
+  evidence: Whether you need protection for your home, business, or a combination of both, we'll design
+    a system around you.
+  strength: weak
+traps:
+- name: Manufacturing
+  kind: marketing_idiom
+  note: '''We Lead the Industry in Efficiency and Manufacturing Productivity'' is a self-descriptive slogan
+    about the subject''s own operations, not a sector it serves'
+- name: Framing
+  kind: wrong_actor
+  note: '''The Synergos family of companies also includes Erickson Framing, DSI, Austin HVAC and Austin
+    Concrete'' — a sister company''s trade, not an industry Austin Electric Services serves'

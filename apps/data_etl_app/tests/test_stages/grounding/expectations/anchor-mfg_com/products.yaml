@@ -1,0 +1,8 @@
+subject: anchor-mfg.com
+field: products
+expected: []
+traps:
+- name: metal stampings, welded assemblies, fabricated parts and tooling
+  kind: wrong_axis
+  note: generic descriptor of contract-manufactured output made to customer spec (belongs under contract_products),
+    not a discrete catalog product line

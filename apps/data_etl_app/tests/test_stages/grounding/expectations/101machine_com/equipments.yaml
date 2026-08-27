@@ -1,0 +1,10 @@
+subject: 101machine.com
+field: equipments
+expected:
+- name: Chevalier EM2040L (CNC milling center)
+  evidence: Just added a new Milling Center. Chevalier EM2040L Increases our CNC output capabilities
+  strength: strong
+traps:
+- name: Parasolid
+  kind: wrong_actor
+  note: a CAD file format requested from customers for quotes, not equipment 101 Machine owns or operates

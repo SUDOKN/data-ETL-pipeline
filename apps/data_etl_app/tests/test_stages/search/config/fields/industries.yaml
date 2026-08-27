@@ -1,0 +1,8 @@
+sweeps:
+  - name: sectors
+    ignore_case: true
+    pattern: '\b(?:aerospace|aviation|automotive|medical|defense|military|agricultur(?:e|al)|semiconductor|robotics|rail|marine|energy|construction|appliance|healthcare|education|oil and gas|nuclear|telecommunications)\b'
+notes: >
+  Worst Q3 consistency on record (58%/64%). Sector words in own-activity or
+  word-association contexts ("defense against weather") make uncovered hits
+  ambiguous — read them, don't count them blind.

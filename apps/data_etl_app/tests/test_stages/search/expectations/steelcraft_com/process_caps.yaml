@@ -1,0 +1,379 @@
+subject: steelcraft.com
+field: process_caps
+snapshot:
+  file: apps/data_etl_app/src/data_etl_app/knowledge/sample_scraped_texts/steelcraft.com.txt
+  sha256: c10c1a3e4a24ade49fc7af157e8eb1f8975a371e7ae5e3dc081172790e6728b0
+eval_set_version: 2
+expected_empty: false
+notes: 'Sparse in-passing operations on a catalogue site: welding/reinforcing/priming/embossing plus service-center
+  modification menus. The two measured wrong-actor flood classes are seeded as false friends: certification-lab
+  test procedures (missile impact, salt spray, cyclic wind, ...) and installation-site work (installation, field
+  assembly, grouting, anchoring). NOTE on ''anchor prep'': flagged as a false friend per the measured flood, but
+  the Chino/Kansas City *Special anchor preps* occurrences are own service-center work - adjudicate per window on
+  promotion. VERIFICATION PASS 2026-08-26 (verify-agent-steelcraft, second independent read): 12 of 13 entries confirmed,
+  1 disputed (process_caps-0006 Embossing - reason in that entry''s notes); 0 quote failures (all evidence byte-exact
+  verbatim). ANCHOR-PREP ADJUDICATION (the seed''s flagged question, settled here): the false friend ''anchor prep''
+  is WRONG AS SCOPED and should be narrowed to the installation-context anchoring surfaces only. Both in-snapshot
+  occurrences of ''Special anchor preps'' sit inside a service-center capability menu - the Chino ''Chino Products
+  & Services'' list (beside ''Local, custom frame manufacturing and welding'', ''Many door and frame stock modifications
+  available'', ''Modifications for lights and louvers'', ''Labeling with Intertek and UL fire ratings'') and the
+  Kansas City ''Lenexa Products & Services'' list (beside ''3-sided frame welding'', ''Door modifications for light
+  and louvers'', ''Custom crates''). Every one of those neighbours is already a seeded own-work entry (0001/0003/0010/0012/0013),
+  so ''Special anchor preps'' is OWN service-center work performed on the frame - code V, actor own - not installer
+  field work. The distinguishing surface is reliable in this corpus: ''prep'' only ever occurs in factory/service-center
+  senses (''hardware preps'', ''function hole preps on doors'', ''door preps for hardware'', ''factory prepared
+  for field-installed silencers''), while the genuine installation flood uses ''anchor(s)''/''anchoring'' (''adjustable
+  base anchors allow for installation adjustment'', ''quick anchoring in place'', ''butted to CMU block using wire
+  or Masonry-T anchors'', ''Standard Anchor Locations''). RECOMMENDATION (not applied - the verification pass adds
+  no entries): narrow the ''anchor prep'' false friend to ''anchoring''/''anchor locations'', and seed ''Special
+  anchor preps'' as its own process_caps entry. REST OF THE FALSE FRIENDS: agreed as written - the lab-procedure
+  block (missile impact / salt spray / cyclic wind / uniform static air pressure / condensation / film adhesion
+  / impact / positive+neutral pressure / air leakage / physical endurance) and the installation block (installation,
+  field assembly, grouting, field conversion, anchoring, wall framing) both check out, as do the code-Z business
+  activities. OBSERVED GAP (recorded, NOT added): the LS Series page names polishing and etching as finishing operations
+  (''custom doors are available in a wide range of polished and etched finishes'', ''#4 Brushed Satin - Polished
+  with one directional grain'') and no entry covers them.'
+entries:
+- id: steelcraft_com-process_caps-0001
+  name: Welding
+  status: confirmed
+  acceptable_forms:
+  - welding
+  - welded
+  - stitch welded
+  evidence:
+  - quote: Local, custom frame manufacturing and welding
+    approx_offset: 38183
+  - quote: 3-sided frame welding
+    approx_offset: 206169
+  - quote: or may be stitch welded and filled, which is proven to be more structurally sound than continuously welded
+      edges
+    approx_offset: 17523
+  notes: 'factory/service-center operation (Chino ''reinforcing and welding of stock frames'', Kansas City ''3-sided
+    frame welding'') plus construction prose (stitch/tack/face welds). CAUTION for judging: ''welding'' also appears
+    in installer how-to-video context (''how-to videos for frame installation, welding and more'') - actor is per-window
+    | VERIFY 2026-08-26: agreed - ''Local, custom frame manufacturing and welding'' (Chino) and ''3-sided frame
+    welding'' (Kansas City) are unambiguously own service-center operations. FORM FLAG: the adjectival form ''welded''
+    is credited by frame-feature prose (''welded for installation as a complete unit'', ''continuously welded edges''),
+    which is construction description rather than a named capability.'
+  provenance:
+  - action: added
+    by: seed-agent-steelcraft
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-steelcraft
+    date: '2026-08-26'
+- id: steelcraft_com-process_caps-0002
+  name: Custom frame manufacturing
+  status: confirmed
+  acceptable_forms:
+  - frame manufacturing
+  - custom frame manufacturing
+  - frame manufacturing capabilities
+  evidence:
+  - quote: With our frame manufacturing capabilities, we can customize frames to your specifications, with an express
+      lead time.
+    approx_offset: 37993
+  - quote: Combined door and frame manufacturing footprint of 553,000 sq ft.
+    approx_offset: 122507
+  notes: named own capability at Chino and Blue Ash; bare 'manufacturing' alone stays generic (G) - see false friends
+  provenance:
+  - action: added
+    by: seed-agent-steelcraft
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-steelcraft
+    date: '2026-08-26'
+- id: steelcraft_com-process_caps-0003
+  name: Reinforcing
+  status: confirmed
+  acceptable_forms:
+  - reinforcing
+  evidence:
+  - quote: from light cutouts to function hole preps on doors to reinforcing and welding of stock frames
+    approx_offset: 37898
+  notes: service-center stock-frame operation (Chino)
+  provenance:
+  - action: added
+    by: seed-agent-steelcraft
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-steelcraft
+    date: '2026-08-26'
+- id: steelcraft_com-process_caps-0004
+  name: Factory priming (baked-on rust-inhibiting primer)
+  status: confirmed
+  acceptable_forms:
+  - Factory-applied baked-on rust inhibiting primer
+  - rust inhibiting primer
+  - baked-on
+  evidence:
+  - quote: Factory-applied baked-on rust inhibiting primer meets ANSI A250.10-2011
+    approx_offset: 18714
+  notes: in-passing finishing operation stated on nearly every series page (~15x)
+  provenance:
+  - action: added
+    by: seed-agent-steelcraft
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-steelcraft
+    date: '2026-08-26'
+- id: steelcraft_com-process_caps-0005
+  name: Finish painting (incl. custom color matching)
+  status: confirmed
+  acceptable_forms:
+  - finish painting
+  - finish paint
+  - customized colors
+  evidence:
+  - quote: Steelcraft offers finish painting on doors only.
+    approx_offset: 32620
+  - quote: Steelcraft not only offers a wide selection of standard finish paint colors, but will also create customized
+      colors
+    approx_offset: 31566
+  notes: dedicated finish-paint page; doors only, frames excluded (referred to Republic)
+  provenance:
+  - action: added
+    by: seed-agent-steelcraft
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-steelcraft
+    date: '2026-08-26'
+- id: steelcraft_com-process_caps-0006
+  name: Embossing
+  status: disputed
+  acceptable_forms:
+  - embossment
+  - embossed
+  evidence:
+  - quote: Available in high definition embossment 2-panel designs (HD2 square; HD2A rounded top edge)
+    approx_offset: 188880
+  notes: 'operation implied by the CE embossed panel line and ''high definition embossment''; mostly adjectival
+    in-text (B-leaning) | DISPUTED by verify-agent-steelcraft 2026-08-26 (second independent read). The text never
+    names an embossing OPERATION anywhere: every surface is product-side, either an adjective on a series (''CE
+    Series embossed doors'', ''CE SERIES EMBOSSED PANEL DOORS'', the ''Embossed'' subcategory nav token, ''H / HE
+    (embossed)'', ''Hand-stained GRAINTECH embossed finishes'') or a design attribute (''high definition embossment
+    2-panel designs (HD2 square; HD2A rounded top edge)''). Under ''designations, not claims'' those are product/spec
+    designations (products-field V, or process_caps E/S), not a performed operation, so the operation here is inferred
+    rather than named. Compounding it, the acceptable form ''embossed'' is credited by containment from the CE/HE
+    product designations, so as written this entry would gate process_caps recall on a products-field answer. Contrast
+    process_caps-0007, where the text says ''Our exclusive engraining and staining PROCESS'' outright.'
+  provenance:
+  - action: added
+    by: seed-agent-steelcraft
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-steelcraft
+    date: '2026-08-26'
+- id: steelcraft_com-process_caps-0007
+  name: Engraining and staining
+  status: confirmed
+  acceptable_forms:
+  - engraining and staining
+  - Hand-stained
+  - staining
+  evidence:
+  - quote: Our exclusive engraining and staining process simulates a wide variety of wood finishes, from ash to
+      walnut, including custom finish matching.
+    approx_offset: 127024
+  - quote: Hand-stained GRAINTECH™ embossed finishes
+    approx_offset: 106558
+  notes: explicitly 'Our exclusive... process' - the clearest named own process in the corpus
+  provenance:
+  - action: added
+    by: seed-agent-steelcraft
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-steelcraft
+    date: '2026-08-26'
+- id: steelcraft_com-process_caps-0008
+  name: Core lamination / adhesive bonding
+  status: confirmed
+  acceptable_forms:
+  - laminated
+  - continuous bonding
+  - epoxy-glued
+  evidence:
+  - quote: The continuous bonding of the laminated core to steel face sheets provides an attractive, flat door,
+      free of face welding marks.
+    approx_offset: 42381
+  - quote: Stainless steel stiffeners are epoxy-glued to eliminate surface imperfections associated with welding.
+    approx_offset: 197882
+  notes: construction-prose operation on most door series pages
+  provenance:
+  - action: added
+    by: seed-agent-steelcraft
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-steelcraft
+    date: '2026-08-26'
+- id: steelcraft_com-process_caps-0009
+  name: Component cutting, notching and mitering
+  status: confirmed
+  acceptable_forms:
+  - cut to length, notched and/or mitered
+  - die-mitered
+  - notched
+  evidence:
+  - quote: Components are cut to length, notched and/or mitered, assembled and welded into assemblies to match specific
+      openings, all done at the factory or the distributor’s fabrication shop.
+    approx_offset: 185043
+  notes: 'elevations page; actor is ''the factory or the distributor''s fabrication shop'' - split actor noted for
+    judging; ''die-mitered corner connections'' recurs as a frame feature | VERIFY 2026-08-26: agreed - ''Components
+    are cut to length, notched and/or mitered, assembled and welded'' is a genuine operation sentence. FORM FLAG:
+    ''die-mitered'' is credited by the recurring frame FEATURE line ''Die-mitered corner connections'' (a spec,
+    code S), which appears on ~8 frame pages.'
+  provenance:
+  - action: added
+    by: seed-agent-steelcraft
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-steelcraft
+    date: '2026-08-26'
+- id: steelcraft_com-process_caps-0010
+  name: Door and frame stock modifications (cutouts, hole preps)
+  status: confirmed
+  acceptable_forms:
+  - stock modifications
+  - doors and frames modifications
+  - light cutouts
+  - function hole preps
+  - Modifications for lights and louvers
+  - Door modifications for light and louvers
+  evidence:
+  - quote: the facility offers a wide variety of  doors and frames modifications, from light cutouts to function
+      hole preps on doors to reinforcing and welding of stock frames
+    approx_offset: 37827
+  notes: service-center modification menu (Chino + Kansas City)
+  provenance:
+  - action: added
+    by: seed-agent-steelcraft
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-steelcraft
+    date: '2026-08-26'
+- id: steelcraft_com-process_caps-0011
+  name: Hardware preparations (factory)
+  status: confirmed
+  acceptable_forms:
+  - Hardware preparations
+  - hardware preps
+  - Factory prepared
+  - factory prepped
+  evidence:
+  - quote: Hardware preparations and reinforcements meet ANSI A250.6-2003
+    approx_offset: 18390
+  - quote: Factory prepared for field-installed silencers
+    approx_offset: 47351
+  notes: factory prep is own work; the silencer INSTALL those preps serve is field work - actor split per window
+  provenance:
+  - action: added
+    by: seed-agent-steelcraft
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-steelcraft
+    date: '2026-08-26'
+- id: steelcraft_com-process_caps-0012
+  name: Fire-rating labeling (Intertek/UL/WHI)
+  status: confirmed
+  acceptable_forms:
+  - Labeling with Intertek and UL fire ratings
+  - fire labeling
+  - Intertek (WHI) fire labeling
+  evidence:
+  - quote: Labeling with Intertek and UL fire ratings
+    approx_offset: 38430
+  - quote: Intertek (WHI) fire labeling
+    approx_offset: 206140
+  notes: 'service-center operation of applying agency labels to stock (B: operation on the work, though the rating
+    itself is lab-attested)'
+  provenance:
+  - action: added
+    by: seed-agent-steelcraft
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-steelcraft
+    date: '2026-08-26'
+- id: steelcraft_com-process_caps-0013
+  name: Custom crating
+  status: confirmed
+  acceptable_forms:
+  - Custom crates
+  evidence:
+  - quote: Custom crates to minimize risk of damage during transit
+    approx_offset: 206253
+  notes: Kansas City service-center packaging operation (B, in-passing)
+  provenance:
+  - action: added
+    by: seed-agent-steelcraft
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-steelcraft
+    date: '2026-08-26'
+false_friends:
+- form: missile impact tests
+  reason: 'certification-lab test procedure (code L, actor lab): ''TAS 201: Missile impact tests'' - performed by
+    Intertek/test houses, a measured wrong-actor flood class'
+- form: salt spray testing
+  reason: paint-lab test procedure per ASTM B117-18 (code L) - the other named exemplar of the measured lab-procedure
+    flood
+- form: cyclic wind pressure tests
+  reason: lab test procedure (TAS 203 / ASTM E1886) - code L
+- form: uniform static air pressure tests
+  reason: lab test procedure (TAS 202 / ASTM E330) - code L
+- form: condensation testing
+  reason: paint-lab test per ASTM D4585 - code L
+- form: film adhesion test
+  reason: paint-lab test per ASTM D3359 - code L
+- form: impact test
+  reason: lab paint test ('Impact test D2794-93R19') and product-claim prose ('high resistance to impact damage')
+    - L/S, never an own operation here
+- form: positive pressure testing
+  reason: fire-lab test regime (UL-10C) - code L
+- form: neutral pressure testing
+  reason: fire-lab test regime (ASTM E152/UL-10B) - code L
+- form: air leakage
+  reason: lab test subject (UL 1784 (Air Leakage)) - code L
+- form: physical endurance
+  reason: lab test category (ANSI/SDI A250.4 (Physical endurance)) - code L
+- form: installation
+  reason: 'installer/contractor field work (code I): ''Proper installation of tornado doors is critical'', ''ease
+    of installation'' - the measured installation-site flood class'
+- form: field assembly
+  reason: 'installer work: ''KD (knock-down) for field assembly prior to installation'' - code I'
+- form: anchor prep
+  reason: 'flagged per the measured installation-work flood; NOTE for second pass: ''Special anchor preps'' in the
+    Chino/Kansas City service lists is arguably OWN factory work - adjudicate per window; the flood came from installation-context
+    anchoring'
+- form: grouting
+  reason: installer field work ('Grouting WS Strikes' installation download) - code I
+- form: field conversion
+  reason: installer work ('easy field conversion from standard-weight to heavyweight hinges') - code I
+- form: anchoring
+  reason: installation-site work ('quick anchoring in place', frames 'butted to CMU block using wire or Masonry-T
+    anchors') - code I
+- form: wall framing
+  reason: contractor site work ('installed as part of the wall framing sequence') - code I
+- form: ordering
+  reason: 'business activity (code Z): OEW ordering, order entry'
+- form: estimating
+  reason: business activity ('List Price Estimating') - code Z
+- form: expedited shipping
+  reason: logistics program (Express programs) - code Z
+- form: training
+  reason: business activity ('instructor-led training and webinars') - code Z
+- form: recycling
+  reason: industry-general claim about steel ('the most recycled material in North America'), not a subject operation

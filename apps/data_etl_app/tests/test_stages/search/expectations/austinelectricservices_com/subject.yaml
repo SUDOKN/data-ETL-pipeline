@@ -1,0 +1,80 @@
+subject: austinelectricservices.com
+slug: austinelectricservices_com
+role: out_of_domain_negative
+snapshot:
+  file: apps/data_etl_app/src/data_etl_app/knowledge/sample_scraped_texts/austinelectricservices.com.txt
+  sha256: "26d3b2d8c2d57c0219a2c12e0727aeca1bbf2da11f0d1142bae3a58adaabd118"
+eval_set_version: 1
+context: >-
+  Austin Electric Services (Glendale/Phoenix AZ, Synergos Companies umbrella) is a
+  residential electrical CONTRACTOR wiring new-construction tract homes - not a
+  manufacturer. The scrape covers the entire austin-companies.com umbrella site,
+  including sibling divisions Austin HVAC, Austin Concrete, and Austin Integration
+  (low voltage / security systems). No page describes any manufacturing activity,
+  facility, machine, material capability, or certification of the ISO/AS/NADCAP kind
+  (all verified absent by word-boundary grep). This subject's value is measuring
+  what the search stage mints on out-of-domain construction, HR, Spanish-mirror,
+  and legal-boilerplate text.
+page_census:
+  total_pages: 100
+  spanish_mirror_pages: 48   # all under /es/; each verified as a translation of an English page
+  job_posting_pages: 22      # 11 English + 11 Spanish mirrors
+hazards:
+  - id: manufacturing-tagline
+    quote: "We Lead the Industry in Efficiency and Manufacturing Productivity"
+    note: >-
+      Marketing tagline on the electrical landing page AND the umbrella home page
+      (2 occurrences). The single strongest in-English manufacturing bait in the
+      corpus; the company manufactures nothing.
+  - id: spanish-mirrors
+    quote: "Somos líderes en la industria en eficiencia y productividad de fabricación."
+    note: >-
+      48/100 pages are /es/ Spanish mirrors of English pages. "fabricación"
+      (manufacturing) and "industria" appear in the mirrored tagline; translation
+      drift also produces "recortar y soldar" (for "trim and braze" - reads as
+      weld/solder), "Estimador de clientes potenciales" (for "Lead Estimator" -
+      the sales-lead sense), and "podar casas" (for "trimming homes" - pruning).
+  - id: job-ad-capability-phrasing
+    quote: "Knowledge of residential rough-in including measuring, cutting, and pulling wire."
+    note: >-
+      22/100 pages are job postings whose responsibility bullets read like
+      capability statements (HR text): roughing, trimming, hot-checking, braze,
+      "sheet metal duck work" (sic), hand-tool lists (drills, generators,
+      sawzall, panduit straps).
+  - id: sibling-and-parent-names
+    quote: "The Synergos family of companies also includes Erickson Framing, DSI, Austin HVAC and Austin Concrete."
+    note: >-
+      Parent Synergos (16x) and relatives DSI (29x), Erickson Framing (6x),
+      Brewer (6x), Door Sales & Installations (6x), Focus Electric (Las Vegas, NV)
+      (4x) recur across history/leadership pages; leadership bios also name
+      "CE George Mechanical" (4x - a founder's former firm whose name starts
+      with "CE").
+  - id: sms-legal-boilerplate
+    quote: "I agree to be contacted via text message."
+    note: >-
+      SMS-consent legalese sits on every contact and job-application form,
+      plus dedicated terms/privacy pages that are each scraped TWICE (with and
+      without trailing slash). Includes "including messages sent by auto dialer"
+      and "Msg & data rates may apply."
+  - id: form-field-noise
+    quote: "Accepted file types: pdf, doc, docx, Max. file size: 5 MB."
+    note: >-
+      Application-form dropdowns and upload hints repeat on all 22 job pages
+      ("How did you hear about us?", "Truck Signage", "DSI Referral Card").
+  - id: security-systems-product-page
+    quote: "Your security system is pre-configured by our team before it ever leaves our facility"
+    note: >-
+      /security-systems/ is the ONE designation-rich page in the corpus: named
+      third-party security devices (VDB750, V723X, V515, PowerG + 319MHz Smart
+      Panel, Flex IO Sensor) sold/installed by sibling division Austin
+      Integration. These feed products.yaml entries (reseller_inventory) and are
+      the known product-vs-equipment confusion bait for equipments.
+sampling:
+  notes: >-
+    All 52 English pages read exhaustively. All 48 /es/ pages skimmed in full and
+    confirmed to be translations of English counterparts (job ads, division pages,
+    legal pages); Spanish-only surface forms that could plausibly be returned are
+    carried as acceptable_forms or false_friends in the field files. No page was
+    left unread.
+provenance:
+  - {action: added, by: "seed-agent-austinelectric", date: "2026-08-26", source: corpus-seed}

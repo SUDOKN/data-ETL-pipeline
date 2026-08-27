@@ -1,0 +1,101 @@
+subject: steelcraft.com
+field: products
+expected:
+- name: L Series Flush Doors
+  evidence: L Series flush doors are designed to meet the architectural requirements for full flush doors
+  strength: strong
+- name: T Series Flush Doors (temperature rise)
+  evidence: The T Series temperature rise core doors, common in stairwells, control the level of heat
+    transfer
+  strength: strong
+- name: SL Series Square Edge Flush Doors
+  evidence: The SL Series doors assure high resistance to impact damage while meeting architectural requirements
+  strength: strong
+- name: B Series Steel Stiffened Doors
+  evidence: B Series stiffened core doors add internal steel stiffeners, extending the full width and
+    height
+  strength: strong
+- name: A14 Series Entrance Doors
+  evidence: A14 Series entrance doors are designed to meet the architectural requirements for exterior
+    entrance applications
+  strength: strong
+- name: CE Series Embossed Panel Doors
+  evidence: CE Series embossed doors are designed to meet the architectural requirements for embossed
+    panel doors
+  strength: strong
+- name: LS Series Stainless Steel Doors
+  evidence: LS Series Doors are designed and built to withstand the harshest environments
+  strength: strong
+- name: H Series Hurricane Rated Flush Doors
+  evidence: Hurricane doors and frames are assembly approved with Allegion hardware to resist Hurricane
+    pressures
+  strength: strong
+- name: Paladin PW Series Flush Doors and Frames
+  evidence: The PW14 Paladin Door System is designed and tested to withstand extreme effects of wind and
+    flying debris
+  strength: strong
+- name: GRAINTECH Series (stainable wood-look steel doors)
+  evidence: Steelcraft's GRAINTECH Series of stainable steel doors provides the beauty of wood with the
+    features...of steel
+  strength: strong
+- name: INPACT Door System (integrated door system)
+  evidence: The INPACT Door System is available on L Series and T Series doors with factory-installed...exit
+    hardware
+  strength: strong
+- name: FT Series Thermal Break Masonry Frames
+  evidence: FT Series 3-sided frames and elevations are designed to meet requirements for light to maximum
+    duty applications
+  strength: strong
+- name: FP Series Tornado Safe Frames
+  evidence: The FP14 Paladin Series 3 Sided flush frames are assembly tested and approved showing tornado
+    resistance
+  strength: strong
+- name: F / FN Series Three-Sided Flush Frames
+  evidence: The F Series three-sided flush frames meet requirements for light- to maximum-duty applications
+  strength: strong
+- name: FE / DE Series Double-Egress Frames
+  evidence: The FE Series double egress frames are designed to meet requirements for heavy to maximum
+    duty applications
+  strength: strong
+- name: DW & K Series Drywall Frames
+  evidence: The DW Series Drywall frames are designed for light to maximum duty applications
+  strength: strong
+- name: MU Series Multi-Use Flush Frames
+  evidence: The MU Series multi-use flush frames meet demands for light to maximum duty applications
+  strength: moderate
+- name: C & CK Series Casing-Ready Frames
+  evidence: C and CK Series drywall frames are designed for light to maximum duty applications
+  strength: moderate
+- name: FS, KS, MS Series Stainless Steel Frames
+  evidence: The FS, KS & MS Series three-sided stainless steel frames are engineered to meet the architectural
+    requirements
+  strength: moderate
+- name: SZ Series Falcon Flush Doors
+  evidence: The SZ Series Flush doors are square edge doors, designed to meet the architectural requirements
+    for full flush 18ga doors
+  strength: moderate
+traps:
+- name: Von Duprin exit devices
+  kind: third_party
+  note: '''factory-installed Von Duprin 94/95 Recessed Exit'' -- a sibling Allegion brand''s product bundled
+    into Steelcraft''s INPACT system, not Steelcraft''s own manufacture'
+- name: LCN Closers / IVES Hinges / Zero Thresholds
+  kind: third_party
+  note: '''hardware from the Allegion suite of brands...LCN Closers, LCN Magnetic Holders, IVES Hinges,
+    and Zero Thresholds'' -- sibling-brand components bundled in, not Steelcraft products'
+- name: Schlage LM9300 Levers
+  kind: third_party
+  note: Paladin tornado assemblies use 'Schlage LM9300 Levers or Von Duprin WS-T Exit Devices as latching
+    hardware' -- sibling Allegion brand hardware
+- name: Pilkington Pyrostop glass
+  kind: third_party
+  note: '''fire-rated for 90 minutes with Pilkington Pyrostop glass'' -- a third-party glass manufacturer''s
+    product used within a Steelcraft door'
+- name: Republic Doors and Frames
+  kind: third_party
+  note: '''Please see Republic Doors and Frames for additional information on finish paint products that
+    include Frames'' -- sibling Allegion brand, explicitly redirected to'
+- name: '''Falcon'' brand naming (SZ Series)'
+  kind: third_party
+  note: product literally named 'SZ Series Falcon Flush Doors' -- the Falcon designation could mislead
+    attribution even though the series is sold in Steelcraft's own catalog

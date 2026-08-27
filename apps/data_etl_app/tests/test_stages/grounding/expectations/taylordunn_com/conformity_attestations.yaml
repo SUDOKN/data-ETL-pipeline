@@ -1,0 +1,16 @@
+subject: taylordunn.com
+field: conformity_attestations
+expected: []
+traps:
+- name: Complianz
+  kind: homonym
+  note: Named in the 'Placed cookies' table as a WordPress cookie-consent plugin (functional cookies);
+    resembles 'compliance' but is not a certification.
+- name: Supplier Code of Conduct
+  kind: doc_title
+  note: Footer nav link title only; scrape never renders its body, so it names a document, not a claimed
+    standard/attestation.
+- name: European Economic Area, United Kingdom and Switzerland
+  kind: wrong_axis
+  note: Cookie Policy jurisdiction scope (data-privacy law coverage) repeated on every page; not a product/manufacturing
+    conformity standard.

@@ -1,0 +1,18 @@
+# Standards identifiers are the one field where a regex floor is high-precision:
+# a designator like "ASTM E1886" in the window that search did not return is a
+# near-certain recall miss. Windstorm family (TAS/ASTM E1886/E1996) is the
+# known 2026-08-25 loss — watch it by name.
+sweeps:
+  - name: standards_ids
+    ignore_case: false
+    # The letter group after the body is load-bearing: ASTM's E-series
+    # (E152, E330, E1886, E1996), ANSI A250.8 and ASTM A653 all put a
+    # LETTER between the body and the number. An earlier version required
+    # a digit there and silently matched none of them — most of
+    # steelcraft's standards — understating the sweep floor with no error.
+    pattern: '\b(?:ISO|IATF|ASTM|ANSI|NFPA|ICC|TAS|IEC|DIN|SDI|FEMA|EASA|STC|UL|AS)[\s-]?(?:[A-Z]{1,2})?-?\d[\dA-Za-z.:/-]*'
+  - name: named_schemes
+    ignore_case: true
+    pattern: '\bNADCAP\b|\bRoHS\b|\bREACH\b|\bCE\s?mark(?:ed|ing)?\b'
+notes: >
+  Bare "UL"/"AS"/"CE" without a digit are deliberately excluded (word noise).

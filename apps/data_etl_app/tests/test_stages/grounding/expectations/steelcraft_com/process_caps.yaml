@@ -1,0 +1,57 @@
+subject: steelcraft.com
+field: process_caps
+expected:
+- name: Welding (frame/assembly welding)
+  evidence: welded for installation as a complete unit
+  strength: strong
+- name: Lamination / core bonding to steel face sheets
+  evidence: The continuous bonding of the laminated core to steel face sheets provides an attractive,
+    flat door
+  strength: strong
+- name: Engraining and staining (GRAINTECH wood-look finish)
+  evidence: Our exclusive engraining and staining process simulates a wide variety of wood finishes
+  strength: strong
+- name: Factory finish painting (baked-on primer, custom colors)
+  evidence: Steelcraft not only offers a wide selection of standard finish paint colors, but will also
+    create customized colors
+  strength: strong
+- name: Die-mitering (corner connections)
+  evidence: Die-mitered corner connections at the head and jamb insure an attractive, tight and closed
+    mitered connection
+  strength: moderate
+- name: Stitch welding
+  evidence: may be stitch welded and filled, which is proven to be more structurally sound than continuously
+    welded edges
+  strength: moderate
+- name: Embossing (door panel embossment)
+  evidence: Available in high definition embossment 2-panel designs (HD2 square; HD2A rounded top edge)
+  strength: moderate
+- name: Cutting, notching and mitering of stick frame components
+  evidence: Components are cut to length, notched and/or mitered, assembled and welded into assemblies
+  strength: moderate
+- name: Polishing and etching (stainless door finishes)
+  evidence: custom doors are available in a wide range of polished and etched finishes
+  strength: moderate
+- name: Door/frame modification (light cutouts, hardware preps, reinforcing)
+  evidence: wide variety of doors and frames modifications, from light cutouts to function hole preps
+    on doors to reinforcing and welding
+  strength: moderate
+traps:
+- name: Missile impact / wind pressure testing (TAS 201/202/203)
+  kind: wrong_actor
+  note: '''Large Missile Impacts (TAS 201...)'' performed by third-party certification labs for listing,
+    not a Steelcraft manufacturing step'
+- name: Salt spray / condensation / film adhesion paint testing
+  kind: wrong_actor
+  note: '''Salt spray testing in accordance with ASTM B117-18'' -- lab test procedure, not something Steelcraft
+    itself does as a process'
+- name: Third-party lab STC testing
+  kind: wrong_actor
+  note: 'explicit phrase: ''over typical STC 35 L Series honeycomb doors in third party lab testing'''
+- name: Field installation / anchor preparation
+  kind: wrong_actor
+  note: '''pre-installation meeting with the contractor, specifier, door supplier, and installer'' --
+    installer''s site work, not manufacturing'
+- name: Installing/Grouting WS Strikes
+  kind: wrong_actor
+  note: download titles 'Grouting WS Strikes' / 'Installation Instructions' describe installer field procedures

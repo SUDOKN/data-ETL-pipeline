@@ -1,0 +1,50 @@
+field: process_caps
+stages: [initial, oov, recursive]
+
+watch_items:
+  - id: GW-PC-1
+    title: Wrong-actor flood — lab testing and installation-site work as capabilities
+    class: remaining
+    first_seen: 20260825T194457
+    provenance: >
+      Census 2026-08-25: steelcraft process_caps dominant error is wrong-actor
+      (38 P instances = 24.8%; certification-lab testing 13 + installation work 12 —
+      Intertek's missile impact / salt spray, anchor prep x7, Field Assembly).
+      By instance the lab/installation share is 16.3% (the 37% figure was
+      keyword-derived and corrected by the census).
+    detector: judged
+    measure: P-coded share of process tag instances, split lab vs installation in notes
+    expect: "falls with the SCR-3/actor work and any P-targeted prompt fix; grounding-side it should DECLINE these"
+    status:
+      "20260825T194457": present (24.8% steelcraft)
+
+  - id: GW-PC-2
+    title: OOV coinage flood — curator-discard singleton tags
+    class: remaining
+    first_seen: 20260825T194457
+    provenance: >
+      Census 2026-08-25: alecmfg's 86 singleton OOV process tags are ~75-80%
+      curator-discard (Shipment, CMM Reporting, Photographic Documentation);
+      OGR-K1 rubber-stamps them. alecmfg's dominant defect is wrong-axis
+      (46 X, all from the OOV pass).
+    detector: judged
+    measure: X+V share of OOV-stage process tag instances
+    expect: "falls only with an OGR-K1/OOV prompt rework or vocabulary decision; track until then"
+    status:
+      "20260825T194457": present (~75-80% discard-grade)
+
+  - id: GW-PC-3
+    title: Vocabulary gaps force drops/coinage for generic processes
+    class: remaining
+    first_seen: 20260825T194457
+    provenance: "the process ontology has no generic Inspection/Testing/Welding/Cutting; B1 drops these answers and OOV re-coins them with churn (8 welding labels for one capability)"
+    detector: deterministic (dropped_options + tag_churn) with judged confirmation
+    measure: drops naming generic processes; churn clusters on welding/cutting/testing families
+    expect: "an ontology decision (backlog #11) is the only real fix"
+    status:
+      "20260825T194457": present
+
+notes: |
+  Verb-fold applies to this field's grouping (VERB_FOLD_FIELDS), but the churn
+  floor in run_eval.py deliberately folds with verb_fold=False everywhere so
+  cluster counts are comparable across fields.

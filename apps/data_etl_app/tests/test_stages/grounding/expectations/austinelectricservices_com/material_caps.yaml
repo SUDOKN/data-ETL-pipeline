@@ -1,0 +1,28 @@
+subject: austinelectricservices.com
+field: material_caps
+expected:
+- name: Concrete
+  evidence: 'ES: "Nuestros equipos experimentados instalan cimientos de hormigón postesado para proyectos
+    residenciales" (our experienced teams install post-tensioned concrete foundations for residential
+    projects)'
+  strength: moderate
+- name: Electrical Wire/Cable
+  evidence: Knowledge of residential rough-in including measuring, cutting, and pulling wire.
+  strength: weak
+- name: Sheet Metal (ductwork)
+  evidence: installing new equipment, sheet metal duck work, attic and/or vertical splits (gas or heat
+    pump)
+  strength: weak
+traps:
+- name: Lumber (form boards)
+  kind: third_party
+  note: 'sourced from suppliers, not a material the subject processes: ''ability to source form boards
+    from top lumber suppliers'''
+- name: Bill of materials / material packs
+  kind: wrong_axis
+  note: a planning/logistics document and pre-kitted supply pack, not a material the subject itself works
+    or processes
+- name: Materials (generic, warehousing)
+  kind: wrong_axis
+  note: '''Material Warehousing'' page: ''We have 3 warehouses across AZ that stock all of the materials
+    we need'' — storage/logistics, not material processing'

@@ -1,0 +1,244 @@
+subject: acimachine.com
+field: equipments
+snapshot:
+  file: apps/data_etl_app/src/data_etl_app/knowledge/sample_scraped_texts/acimachine.com.txt
+  sha256: "05596bd29027f7aed570e5ace0df4d9efab7349f4420dba38ab96570e265d12b"
+eval_set_version: 2
+expected_empty: false
+notes: >-
+  DELIBERATELY NOT AN INVENTORY. The file carries 1,291 /equipment/ resale
+  listings; recall on this subject is measured mainly by the mechanical
+  brand/model sweep over listing pages, not by this entry list. The entries
+  below are representative probes chosen from the sampled listings, spread
+  across brands, machine types, and file offsets. Every machine is a resold
+  third-party unit (actor reseller_inventory) — ACI is a dealer; nothing
+  here is ACI's own shop equipment. VERIFY 2026-08-26 (second independent
+  pass): all 14 entries confirmed; every evidence quote verified verbatim
+  against the snapshot after NBSP normalisation and whitespace collapse.
+  Independent listing sample - six /equipment/ pages at fresh offsets NOT in
+  subject.yaml's pages_read (line 20074 ACER SMC 2442, 52003 CHEVALIER
+  FBL-530, 96032 JET SLT-1100, 118004 JET 22-44, 160005 EXPAND MACHINERY
+  T-500, 228105 CHEVALIER FVM-3016DCL) - reproduces the seeded page
+  structure exactly: uniform Overview (Type / Manufacturer / Model /
+  Condition / Status), a flattened Specifications table, an optional OEM
+  Description paragraph, a 12-item Suggested Equipment block of further
+  BRAND MODEL pairs, the 14-brand Related Brands block and a Related Types
+  block. This confirms the 'DELIBERATELY NOT AN INVENTORY' framing from the
+  other side: each listing page mints roughly a dozen MORE brand/model
+  designations than the one machine it is about, so recall here has to be
+  measured by the mechanical brand/model sweep, never by this 14-entry list.
+  One form flagged in-entry (0003).
+entries:
+  - id: acimachine_com-equipments-0001
+    name: "CHEVALIER FSG-3A1224"
+    status: confirmed
+    acceptable_forms:
+      - "CHEVALIER FSG-3A1224"
+      - "FSG-3A1224"
+    evidence:
+      - quote: "New CHEVALIER FSG-3A1224 | Reciprocating Surface Grinders"
+        approx_offset: 78092
+    actor: reseller_inventory
+    notes: "reciprocating surface grinder; also a homepage Featured Equipment item"
+    provenance:
+      - {action: added, by: "seed-agent-acimachine", date: "2026-08-26", source: corpus-seed}
+      - {action: verified, by: "verify-agent-acimachine-austin", date: "2026-08-26"}
+  - id: acimachine_com-equipments-0002
+    name: "WINEMA RV 10 FLEXMASTER"
+    status: confirmed
+    acceptable_forms:
+      - "WINEMA RV 10 FLEXMASTER"
+      - "RV 10 FLEXMASTER"
+    evidence:
+      - quote: "New WINEMA RV 10 FLEXMASTER | Rotary, Trunnion (Horizontal & Vertical) Transfer Machines"
+        approx_offset: 81015
+    actor: reseller_inventory
+    notes: "rotary indexing/transfer machine; long prose description on its listing"
+    provenance:
+      - {action: added, by: "seed-agent-acimachine", date: "2026-08-26", source: corpus-seed}
+      - {action: verified, by: "verify-agent-acimachine-austin", date: "2026-08-26"}
+  - id: acimachine_com-equipments-0003
+    name: "JET HP-5"
+    status: confirmed
+    acceptable_forms:
+      - "JET HP-5"
+      - "HP-5"
+    evidence:
+      - quote: "New JET HP-5 | H-Frame Presses"
+        approx_offset: 680303
+    actor: reseller_inventory
+    notes: >-
+      H-frame press; probes the non-cutting end of the JET line VERIFY
+      2026-08-26 FORM FLAG: the form 'HP-5' is a proper substring of 'JET
+      HP-5A', a DIFFERENT machine with its own listing
+      (/equipment/7191327-jet-hp-5a-h-frame-presses, 8 'JET HP-5' vs 7 'JET
+      HP-5A' occurrences). Under the schema's containment-either-way
+      matching a run that returned only 'JET HP-5A' would falsely credit
+      this entry. Narrow to 'JET HP-5' only - the same caution the seed
+      itself applied to WELLSAW 1200.
+    provenance:
+      - {action: added, by: "seed-agent-acimachine", date: "2026-08-26", source: corpus-seed}
+      - {action: verified, by: "verify-agent-acimachine-austin", date: "2026-08-26"}
+  - id: acimachine_com-equipments-0004
+    name: "HURCO HM1700RI"
+    status: confirmed
+    acceptable_forms:
+      - "HURCO HM1700RI"
+      - "HM1700RI"
+    evidence:
+      - quote: "New HURCO HM1700RI | Horizontal Machining Centers"
+        approx_offset: 682677
+    actor: reseller_inventory
+    provenance:
+      - {action: added, by: "seed-agent-acimachine", date: "2026-08-26", source: corpus-seed}
+      - {action: verified, by: "verify-agent-acimachine-austin", date: "2026-08-26"}
+  - id: acimachine_com-equipments-0005
+    name: "CHEVALIER SMART-B1224III"
+    status: confirmed
+    acceptable_forms:
+      - "CHEVALIER SMART-B1224III"
+      - "SMART-B1224III"
+    evidence:
+      - quote: "New CHEVALIER SMART-B1224III | Reciprocating Surface Grinders"
+        approx_offset: 1051627
+    actor: reseller_inventory
+    provenance:
+      - {action: added, by: "seed-agent-acimachine", date: "2026-08-26", source: corpus-seed}
+      - {action: verified, by: "verify-agent-acimachine-austin", date: "2026-08-26"}
+  - id: acimachine_com-equipments-0006
+    name: "ACER E-LATHE 1760G"
+    status: confirmed
+    acceptable_forms:
+      - "ACER E-LATHE 1760G"
+      - "E-LATHE 1760G"
+    evidence:
+      - quote: "New ACER E-LATHE 1760G | Engine Lathes"
+        approx_offset: 1424938
+    actor: reseller_inventory
+    provenance:
+      - {action: added, by: "seed-agent-acimachine", date: "2026-08-26", source: corpus-seed}
+      - {action: verified, by: "verify-agent-acimachine-austin", date: "2026-08-26"}
+  - id: acimachine_com-equipments-0007
+    name: "SHARP SVL-2416SE-F"
+    status: confirmed
+    acceptable_forms:
+      - "SHARP SVL-2416SE-F"
+      - "SVL-2416SE-F"
+    evidence:
+      - quote: "New SHARP SVL-2416SE-F | Vertical Machining Centers"
+        approx_offset: 1797964
+    actor: reseller_inventory
+    provenance:
+      - {action: added, by: "seed-agent-acimachine", date: "2026-08-26", source: corpus-seed}
+      - {action: verified, by: "verify-agent-acimachine-austin", date: "2026-08-26"}
+  - id: acimachine_com-equipments-0008
+    name: "ACER DYNAMIC 7060G"
+    status: confirmed
+    acceptable_forms:
+      - "ACER DYNAMIC 7060G"
+      - "DYNAMIC 7060G"
+    evidence:
+      - quote: "New ACER DYNAMIC 7060G | Oil Field & Hollow Spindle Lathes"
+        approx_offset: 2172697
+    actor: reseller_inventory
+    notes: "category name contains the industries false friend 'Oil Field'"
+    provenance:
+      - {action: added, by: "seed-agent-acimachine", date: "2026-08-26", source: corpus-seed}
+      - {action: verified, by: "verify-agent-acimachine-austin", date: "2026-08-26"}
+  - id: acimachine_com-equipments-0009
+    name: "SHARP STA-38"
+    status: confirmed
+    acceptable_forms:
+      - "SHARP STA-38"
+      - "STA-38"
+    evidence:
+      - quote: "New SHARP STA-38 | Oil Field & Hollow Spindle Lathes"
+        approx_offset: 2542634
+    actor: reseller_inventory
+    provenance:
+      - {action: added, by: "seed-agent-acimachine", date: "2026-08-26", source: corpus-seed}
+      - {action: verified, by: "verify-agent-acimachine-austin", date: "2026-08-26"}
+  - id: acimachine_com-equipments-0010
+    name: "ACER SUPRA-618II"
+    status: confirmed
+    acceptable_forms:
+      - "ACER SUPRA-618II"
+      - "SUPRA-618II"
+    evidence:
+      - quote: "New ACER SUPRA-618II | Reciprocating Surface Grinders"
+        approx_offset: 2907760
+    actor: reseller_inventory
+    provenance:
+      - {action: added, by: "seed-agent-acimachine", date: "2026-08-26", source: corpus-seed}
+      - {action: verified, by: "verify-agent-acimachine-austin", date: "2026-08-26"}
+  - id: acimachine_com-equipments-0011
+    name: "JET BP-2248H"
+    status: confirmed
+    acceptable_forms:
+      - "JET BP-2248H"
+      - "BP-2248H"
+    evidence:
+      - quote: "New JET BP-2248H | Box & Pan Brakes including Finger"
+        approx_offset: 3276810
+    actor: reseller_inventory
+    notes: "sheet-metal brake; probes fabrication-equipment types"
+    provenance:
+      - {action: added, by: "seed-agent-acimachine", date: "2026-08-26", source: corpus-seed}
+      - {action: verified, by: "verify-agent-acimachine-austin", date: "2026-08-26"}
+  - id: acimachine_com-equipments-0012
+    name: "WELLSAW 1200"
+    status: confirmed
+    acceptable_forms:
+      - "WELLSAW 1200"
+    evidence:
+      - quote: "New WELLSAW 1200 | Horizontal Band Saws"
+        approx_offset: 3641438
+    actor: reseller_inventory
+    notes: "bare model '1200' deliberately NOT an acceptable form (numeric collision risk)"
+    provenance:
+      - {action: added, by: "seed-agent-acimachine", date: "2026-08-26", source: corpus-seed}
+      - {action: verified, by: "verify-agent-acimachine-austin", date: "2026-08-26"}
+  - id: acimachine_com-equipments-0013
+    name: "HURCO VMX42I"
+    status: confirmed
+    acceptable_forms:
+      - "HURCO VMX42I"
+      - "VMX42I"
+    evidence:
+      - quote: "HURCO VMX42I"
+        approx_offset: 475
+    actor: reseller_inventory
+    notes: "homepage Featured Equipment item; also has its own listing pages"
+    provenance:
+      - {action: added, by: "seed-agent-acimachine", date: "2026-08-26", source: corpus-seed}
+      - {action: verified, by: "verify-agent-acimachine-austin", date: "2026-08-26"}
+  - id: acimachine_com-equipments-0014
+    name: "FANUC Oi-TD control"
+    status: confirmed
+    acceptable_forms:
+      - "FANUC Oi-TD"
+    evidence:
+      - quote: "This is a high precision CNC flat bed lathe with FANUC Oi-TD control."
+        approx_offset: 1057349
+    actor: reseller_inventory
+    notes: >-
+      CNC control unit fitted to resold SHARP STA-series lathes; taxonomy-T
+      (software/tooling) ambiguity acknowledged. Representative of control-brand
+      mentions in listing prose (FANUC 18iMB and Fanuc Oi-Mate MD also occur).
+    provenance:
+      - {action: added, by: "seed-agent-acimachine", date: "2026-08-26", source: corpus-seed}
+      - {action: verified, by: "verify-agent-acimachine-austin", date: "2026-08-26"}
+false_friends:
+  - form: "Equipment"
+    reason: >-
+      generic nav/heading label (Equipment, New Equipment, Featured Equipment,
+      Suggested Equipment, Sell Equipment, Buy Equipment) on every page; G code,
+      no designation content
+  - form: "Equipt"
+    reason: >-
+      website-platform vendor in the footer credit 'Equipt Pro website by
+      Equipt' on all 1,430 pages; a software brand, not a machine
+  - form: "Machinery"
+    reason: >-
+      generic except inside the brand name EXPAND MACHINERY (which IS a valid
+      brand form); bare 'Machinery'/'machinery' alone is G code

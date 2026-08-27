@@ -1,0 +1,80 @@
+subject: alecmfg.com
+field: process_caps
+expected:
+- name: CNC Machining (Milling & Turning)
+  evidence: CNC machining is a manufacturing process ... computer-controlled machines shape custom-designed
+    parts out of solid material
+  strength: strong
+- name: 5-Axis CNC Machining
+  evidence: 5-Axis CNC Machining Strategy ... TCP (Tool Center Point) control with ±3 μm positional accuracy
+  strength: strong
+- name: Sheet Metal Fabrication (cutting, bending, stamping)
+  evidence: precision cutting, bending, and finishing techniques ensure parts meet your exact specifications
+  strength: strong
+- name: 3D Printing (SLS / SLA)
+  evidence: expanded our arsenal with cutting-edge technology, including SLS and SLA rapid prototyping
+    machines
+  strength: strong
+- name: Urethane Casting
+  evidence: Urethane casting offers a flexible and cost-efficient approach to prototype and small batch
+    production
+  strength: strong
+- name: Injection Molding
+  evidence: Injection molding is the cornerstone of mass production ... cost-effective solution for manufacturing
+    high-quality plastic parts
+  strength: strong
+- name: Die Casting
+  evidence: Die casting is your go-to for high-volume production of metal parts with superior strength
+  strength: strong
+- name: Welding
+  evidence: Welded frames were fabricated by ASME-certified welders using proprietary jigs to control
+    deformation
+  strength: strong
+- name: Heat Treatment / Stress Relieving
+  evidence: each unit was stress-relieved at 620°C in our local heat treatment facility
+  strength: strong
+- name: Anodizing (Type II, clear/black/natural)
+  evidence: all housings underwent Type II matte black anodizing ... uniform color tone
+  strength: strong
+- name: Passivation
+  evidence: Medical-Grade Surface Cleanliness ... triple-filtered water for cleaning/passivation
+  strength: strong
+- name: Micro-blasting
+  evidence: Micro-blasting ... White alumina 800 ... Uniform matte texture Sa ≈ 1.5 μm
+  strength: strong
+- name: Surface finishing (as-machined / smooth / fine / polished)
+  evidence: We offer a full array of surface finishing treatments ... look, feel, and perform
+  strength: strong
+- name: CNC Plasma Cutting
+  evidence: All steel plates were cut and pre-machined in-house from ASTM A36 using CNC plasma and mill
+  strength: strong
+- name: Laser finishing
+  evidence: Introduced laser finishing in critical areas
+  strength: moderate
+- name: Material verification (OES + hardness testing)
+  evidence: we performed optical emission spectrometry (OES) and hardness validation to confirm conformity
+  strength: moderate
+- name: DFM (Design for Manufacturing) review
+  evidence: provided a bilingual DFM (Design for Manufacturing) report at the project's start
+  strength: moderate
+- name: CMM Inspection
+  evidence: 100% CMM inspection on all critical dimensions, plus functional and assembly verification
+    records
+  strength: strong
+traps:
+- name: Installation
+  kind: wrong_actor
+  note: '''a tight installation deadline for their new production line'' is the client''s own site installation,
+    not work Alec performs'
+- name: Fit-check / vibration / thermal dissipation testing
+  kind: client_work
+  note: '''they urgently needed 20 ... housings for fit-check, vibration, and thermal dissipation testing''
+    — testing done by the client after receipt'
+- name: Cleanroom testing / particle analysis / lifecycle validation
+  kind: client_work
+  note: '''30 ultra-precision valve body assemblies for cleanroom testing, particle analysis, and lifecycle
+    validation'' — client''s own post-receipt validation'
+- name: Our process (raw-material selection)
+  kind: marketing_idiom
+  note: '''Our process begins with careful selection of raw materials'' — vague boilerplate, not a discrete
+    named process'

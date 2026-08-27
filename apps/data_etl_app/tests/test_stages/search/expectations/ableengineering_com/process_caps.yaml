@@ -1,0 +1,534 @@
+subject: ableengineering.com
+field: process_caps
+snapshot:
+  file: apps/data_etl_app/src/data_etl_app/knowledge/sample_scraped_texts/ableengineering.com.txt
+  sha256: ffc5c3234c4dff2387887d61903a00d5320905f296fcff4b731c3f8d76529eb9
+eval_set_version: 2
+expected_empty: false
+notes: 'Rich field: MRO special processes dominate (machining/grinding, plating, chemical processing, paint, NDT, blast, shot
+  peen, cold spray, hydraulics). SECOND-PASS VERIFICATION 2026-08-26 (verify-agent-ableengineering): all 23 entries confirmed,
+  all quotes verbatim. Three cross-field couplings mean several recall numbers are not independent: chrome/nickel are shared
+  with material_caps-0003/0004, grind/lathe/mill are shared with equipments-0002/0003/0001, and ''testing'' (0021) is contained
+  in ''Non-Destructive Testing'' (0014). One evidence defect recorded on 0016. All 6 false friends checked and agreed, including
+  ''training'' (IFR flight training belongs to the U.S. Navy customer fleet) and ''exchange'' (a commercial program, not a
+  shop operation).'
+entries:
+- id: ableengineering_com-process_caps-0001
+  name: Aircraft component repair
+  status: confirmed
+  acceptable_forms:
+  - repair
+  - repairs
+  evidence:
+  - quote: Able Aerospace is an industry-leading provider of repair and overhaul for fixed and rotor wing customers around
+      the world.
+    approx_offset: 251
+  - quote: We offer 10,000+ FAA-approved fixed and rotor wing repairs – many of these repairs are proprietary to Able.
+    approx_offset: 917
+  provenance:
+  - action: added
+    by: seed-agent-ableengineering
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-ableengineering
+    date: '2026-08-26'
+  notes: 'VERIFY 2026-08-26 (second pass): both quotes verbatim; repair is the subject''s core operation on customer aircraft
+    components.'
+- id: ableengineering_com-process_caps-0002
+  name: Overhaul
+  status: confirmed
+  acceptable_forms:
+  - overhaul
+  - overhauls
+  evidence:
+  - quote: Able Aerospace is an industry-leading provider of repair and overhaul for fixed and rotor wing customers around
+      the world.
+    approx_offset: 251
+  - quote: our capabilities range from complete gear overhaul and repairs to life-limited components and line replacement
+      units alike
+    approx_offset: 41340
+  provenance:
+  - action: added
+    by: seed-agent-ableengineering
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-ableengineering
+    date: '2026-08-26'
+  notes: 'VERIFY 2026-08-26 (second pass): both quotes verbatim; 32 ''overhaul'' + 12 ''overhauls''.'
+- id: ableengineering_com-process_caps-0003
+  name: Machining
+  status: confirmed
+  acceptable_forms:
+  - machining
+  evidence:
+  - quote: Machining – Lathe (CNC and Manual), Grind (CNC and Manual), Mill (CNC and Manual)
+    approx_offset: 42308
+  - quote: in-house specialized services ranging from electroplating, chemical processing, machining and grinding to non-destructive
+      testing, hydraulics and bearings services
+    approx_offset: 81195
+  - quote: MACHINING & GRINDING
+    approx_offset: 5012
+  provenance:
+  - action: added
+    by: seed-agent-ableengineering
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-ableengineering
+    date: '2026-08-26'
+  notes: 'VERIFY 2026-08-26 (second pass): three independent occurrences confirmed, including the ''MACHINING & GRINDING''
+    heading on /processes/.'
+- id: ableengineering_com-process_caps-0004
+  name: CNC milling
+  status: confirmed
+  acceptable_forms:
+  - mill
+  - milling
+  - CNC mills
+  evidence:
+  - quote: Machining – Lathe (CNC and Manual), Grind (CNC and Manual), Mill (CNC and Manual)
+    approx_offset: 42308
+  - quote: Able has several five-axis CNC mills, grinders and lathes, as well as horizontal and vertical honing and a five-axis
+      CNC gantry.
+    approx_offset: 5071
+  provenance:
+  - action: added
+    by: seed-agent-ableengineering
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-ableengineering
+    date: '2026-08-26'
+  notes: 'VERIFY 2026-08-26 (second pass): ''Mill (CNC and Manual)'' and ''several five-axis CNC mills'' confirmed. Note:
+    ''milling'' never occurs in the file - alias only. The short form ''mill'' has no substring collisions here.'
+- id: ableengineering_com-process_caps-0005
+  name: Grinding
+  status: confirmed
+  acceptable_forms:
+  - grinding
+  - grind
+  evidence:
+  - quote: MACHINING & GRINDING
+    approx_offset: 5012
+  - quote: Machining – Lathe (CNC and Manual), Grind (CNC and Manual), Mill (CNC and Manual)
+    approx_offset: 42308
+  - quote: in-house specialized services ranging from electroplating, chemical processing, machining and grinding to non-destructive
+      testing, hydraulics and bearings services
+    approx_offset: 81195
+  provenance:
+  - action: added
+    by: seed-agent-ableengineering
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-ableengineering
+    date: '2026-08-26'
+  notes: 'VERIFY 2026-08-26 (second pass): three independent occurrences confirmed. Flag: the form ''grind'' is contained
+    in ''grinders'', which is equipments-0002''s form, so an equipment answer credits this process entry.'
+- id: ableengineering_com-process_caps-0006
+  name: Lathe turning
+  status: confirmed
+  acceptable_forms:
+  - lathe
+  - lathes
+  evidence:
+  - quote: Machining – Lathe (CNC and Manual), Grind (CNC and Manual), Mill (CNC and Manual)
+    approx_offset: 42308
+  - quote: Able has several five-axis CNC mills, grinders and lathes, as well as horizontal and vertical honing and a five-axis
+      CNC gantry.
+    approx_offset: 5071
+  notes: 'text says ''Lathe (CNC and Manual)''; ''turning'' never appears | VERIFY 2026-08-26 (second pass): ''Machining -
+    Lathe (CNC and Manual)'' confirms lathe work as an operation; ''turning'' never appears anywhere in the file, so the entry
+    NAME is an interpretation while the forms are the text''s own. Flag: ''lathe''/''lathes'' are also equipments-0003''s
+    forms.'
+  provenance:
+  - action: added
+    by: seed-agent-ableengineering
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-ableengineering
+    date: '2026-08-26'
+- id: ableengineering_com-process_caps-0007
+  name: Honing
+  status: confirmed
+  acceptable_forms:
+  - honing
+  evidence:
+  - quote: Able has several five-axis CNC mills, grinders and lathes, as well as horizontal and vertical honing and a five-axis
+      CNC gantry.
+    approx_offset: 5071
+  notes: '''horizontal and vertical honing'' | VERIFY 2026-08-26 (second pass): ''horizontal and vertical honing'', single
+    occurrence, subject''s own.'
+  provenance:
+  - action: added
+    by: seed-agent-ableengineering
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-ableengineering
+    date: '2026-08-26'
+- id: ableengineering_com-process_caps-0008
+  name: Plating
+  status: confirmed
+  acceptable_forms:
+  - plating
+  - electroplating
+  evidence:
+  - quote: Our 250,000-square-foot facility includes a state-of-the-art machine shop, plating, special processing and NDT.
+    approx_offset: 4715
+  - quote: in-house specialized services ranging from electroplating, chemical processing, machining and grinding to non-destructive
+      testing, hydraulics and bearings services
+    approx_offset: 81195
+  provenance:
+  - action: added
+    by: seed-agent-ableengineering
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-ableengineering
+    date: '2026-08-26'
+  notes: 'VERIFY 2026-08-26 (second pass): ''machine shop, plating, special processing and NDT'' plus ''electroplating'' in
+    the 2022 press release.'
+- id: ableengineering_com-process_caps-0009
+  name: Chrome plating
+  status: confirmed
+  acceptable_forms:
+  - chrome plating
+  - chrome
+  evidence:
+  - quote: Able is NADCAP-approved for chrome, which reduces in-house processing time for nickel, CAD plating and several
+      other processes.
+    approx_offset: 5232
+  - quote: Plating – Chrome, Nickel, CAD
+    approx_offset: 42133
+  notes: 'NADCAP-approved for chrome | VERIFY 2026-08-26 (second pass): entity sound: ''Plating - Chrome, Nickel, CAD'' and
+    ''NADCAP-approved for chrome'' establish chrome plating. The canonical form ''chrome plating'' never occurs contiguously
+    (alias only) and the bare fallback ''chrome'' is shared with material_caps-0003, so this entry cannot be scored independently
+    of that one.'
+  provenance:
+  - action: added
+    by: seed-agent-ableengineering
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-ableengineering
+    date: '2026-08-26'
+- id: ableengineering_com-process_caps-0010
+  name: Nickel plating
+  status: confirmed
+  acceptable_forms:
+  - nickel plating
+  - nickel
+  evidence:
+  - quote: Able is NADCAP-approved for chrome, which reduces in-house processing time for nickel, CAD plating and several
+      other processes.
+    approx_offset: 5232
+  - quote: Plating – Chrome, Nickel, CAD
+    approx_offset: 42133
+  provenance:
+  - action: added
+    by: seed-agent-ableengineering
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-ableengineering
+    date: '2026-08-26'
+  notes: 'VERIFY 2026-08-26 (second pass): same two quotes; the form ''nickel plating'' never occurs contiguously (alias only)
+    and bare ''nickel'' is shared with material_caps-0004.'
+- id: ableengineering_com-process_caps-0011
+  name: Cadmium (CAD) plating
+  status: confirmed
+  acceptable_forms:
+  - CAD plating
+  - Plating – Chrome, Nickel, CAD
+  evidence:
+  - quote: Able is NADCAP-approved for chrome, which reduces in-house processing time for nickel, CAD plating and several
+      other processes.
+    approx_offset: 5232
+  - quote: Plating – Chrome, Nickel, CAD
+    approx_offset: 42133
+  notes: '''CAD'' here = cadmium, not computer-aided design (polyseme) | VERIFY 2026-08-26 (second pass): ''CAD plating''
+    verbatim; cadmium sense confirmed by the neighbouring chrome/nickel plating list. The second acceptable form is a whole
+    list line rather than a designation - harmless but near-unmatchable.'
+  provenance:
+  - action: added
+    by: seed-agent-ableengineering
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-ableengineering
+    date: '2026-08-26'
+- id: ableengineering_com-process_caps-0012
+  name: Chemical processing
+  status: confirmed
+  acceptable_forms:
+  - chemical processing
+  evidence:
+  - quote: CHEMICAL PROCESSING AND PAINT
+    approx_offset: 5201
+  - quote: in-house specialized services ranging from electroplating, chemical processing, machining and grinding to non-destructive
+      testing, hydraulics and bearings services
+    approx_offset: 81195
+  - quote: NADCAP – CHEMICAL PROCESSING
+    approx_offset: 1582
+  provenance:
+  - action: added
+    by: seed-agent-ableengineering
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-ableengineering
+    date: '2026-08-26'
+  notes: 'VERIFY 2026-08-26 (second pass): three independent occurrences confirmed (processes heading, press release, cert
+    wall).'
+- id: ableengineering_com-process_caps-0013
+  name: Painting / coating
+  status: confirmed
+  acceptable_forms:
+  - paint
+  - painting
+  - paint and coating
+  evidence:
+  - quote: Our special processing includes blast, shot peen, cold spray and paint.
+    approx_offset: 4827
+  - quote: Our full suite of paint and coating services
+    approx_offset: 5360
+  provenance:
+  - action: added
+    by: seed-agent-ableengineering
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-ableengineering
+    date: '2026-08-26'
+  notes: 'VERIFY 2026-08-26 (second pass): ''Our special processing includes blast, shot peen, cold spray and paint'' plus
+    ''Our full suite of paint and coating services''; painting is the subject''s own operation.'
+- id: ableengineering_com-process_caps-0014
+  name: Non-Destructive Testing (NDT)
+  status: confirmed
+  acceptable_forms:
+  - Non-Destructive Testing
+  - NDT
+  evidence:
+  - quote: we’ve established comprehensive, in-house and NADCAP-approved Non-Destructive Testing (NDT) services.
+    approx_offset: 5630
+  - quote: Non-Destructive Testing (NDT)
+    approx_offset: 5692
+  - quote: NADCAP – NDT
+    approx_offset: 1538
+  provenance:
+  - action: added
+    by: seed-agent-ableengineering
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-ableengineering
+    date: '2026-08-26'
+  notes: 'VERIFY 2026-08-26 (second pass): 6 word-bounded ''NDT'', no substring collisions; the /processes/ NDT section is
+    explicit and in-house.'
+- id: ableengineering_com-process_caps-0015
+  name: Blasting
+  status: confirmed
+  acceptable_forms:
+  - blast
+  evidence:
+  - quote: Our special processing includes blast, shot peen, cold spray and paint.
+    approx_offset: 4827
+  - quote: Special Processes – Shot Peen, Blast, Cold Spray and Paint
+    approx_offset: 42248
+  notes: 'named bare ''Blast'' among special processes; media unspecified | VERIFY 2026-08-26 (second pass): bare ''Blast''
+    named twice among the special processes; media unspecified, as the seed says.'
+  provenance:
+  - action: added
+    by: seed-agent-ableengineering
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-ableengineering
+    date: '2026-08-26'
+- id: ableengineering_com-process_caps-0016
+  name: Shot peening
+  status: confirmed
+  acceptable_forms:
+  - shot peen
+  evidence:
+  - quote: NADCAP-approved, Able has state-of-the-art CNC shot peen and manual capabilities.
+    approx_offset: 6002
+  - quote: Special Processes – Shot Peen, Blast, Cold Spray and Paint
+    approx_offset: 42248
+  - quote: NADCAP – SURFACE ENHANCEMENT
+    approx_offset: 1552
+  notes: 'CNC and manual; NADCAP surface-enhancement scope covers it | VERIFY 2026-08-26 (second pass): ''shot peen'' 4x;
+    entity sound. DEFECT: the third evidence quote (''NADCAP - SURFACE ENHANCEMENT'') contains no acceptable form and sits
+    in the two cert-wall windows where ''shot peen'' does not occur, so it would gate this entry in a window that cannot name
+    it; treat quotes 1-2 as the gating evidence.'
+  provenance:
+  - action: added
+    by: seed-agent-ableengineering
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-ableengineering
+    date: '2026-08-26'
+- id: ableengineering_com-process_caps-0017
+  name: Cold spray
+  status: confirmed
+  acceptable_forms:
+  - cold spray
+  evidence:
+  - quote: Our special processing includes blast, shot peen, cold spray and paint.
+    approx_offset: 4827
+  - quote: Special Processes – Shot Peen, Blast, Cold Spray and Paint
+    approx_offset: 42248
+  - quote: COLD SPRAY
+    approx_offset: 5876
+  notes: 'the COLD SPRAY section describes it as additive-manufacturing repair of aluminum/magnesium | VERIFY 2026-08-26 (second
+    pass): three independent occurrences confirmed, including the COLD SPRAY section heading.'
+  provenance:
+  - action: added
+    by: seed-agent-ableengineering
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-ableengineering
+    date: '2026-08-26'
+- id: ableengineering_com-process_caps-0018
+  name: Additive manufacturing
+  status: confirmed
+  acceptable_forms:
+  - additive manufacturing
+  evidence:
+  - quote: Able’s innovative, additive manufacturing capability for repairing aluminum and magnesium components.
+    approx_offset: 5888
+  notes: 'the text''s own framing of cold spray repair of aluminum/magnesium; same underlying capability as the cold spray
+    entry | VERIFY 2026-08-26 (second pass): single occurrence, the text''s own framing of the cold-spray repair; a distinct
+    designation even though the underlying capability is the same as 0017.'
+  provenance:
+  - action: added
+    by: seed-agent-ableengineering
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-ableengineering
+    date: '2026-08-26'
+- id: ableengineering_com-process_caps-0019
+  name: Hydraulic component service
+  status: confirmed
+  acceptable_forms:
+  - hydraulics
+  - hydraulic
+  evidence:
+  - quote: Able’s in-house hydraulics team provides services for both rotor wing and fixed wing aircraft for Red Oil and Skydrol
+      components.
+    approx_offset: 5745
+  - quote: Hydraulics – disassembly, testing and modifications
+    approx_offset: 42164
+  notes: 'disassembly, testing and modifications; Red Oil and Skydrol components | VERIFY 2026-08-26 (second pass): ''Able''s
+    in-house hydraulics team provides services...'' plus ''Hydraulics - disassembly, testing and modifications''.'
+  provenance:
+  - action: added
+    by: seed-agent-ableengineering
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-ableengineering
+    date: '2026-08-26'
+- id: ableengineering_com-process_caps-0020
+  name: Bearing services
+  status: confirmed
+  acceptable_forms:
+  - bearings services
+  - bearing services
+  evidence:
+  - quote: in-house specialized services ranging from electroplating, chemical processing, machining and grinding to non-destructive
+      testing, hydraulics and bearings services
+    approx_offset: 81195
+  provenance:
+  - action: added
+    by: seed-agent-ableengineering
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-ableengineering
+    date: '2026-08-26'
+  notes: 'VERIFY 2026-08-26 (second pass): the text has ''bearings services'' (plural) exactly once, in the 2022 press release;
+    the singular ''bearing services'' never occurs and is an alias only.'
+- id: ableengineering_com-process_caps-0021
+  name: Testing
+  status: confirmed
+  acceptable_forms:
+  - testing
+  - tested
+  evidence:
+  - quote: All parts are tested to meet or exceed the performance of original equipment.
+    approx_offset: 3215
+  - quote: Hydraulics – disassembly, testing and modifications
+    approx_offset: 42164
+  notes: 'parts testing against OEM performance; inspection/testing are operations per locked carve-out | VERIFY 2026-08-26
+    (second pass): ''disassembly, testing and modifications'' and ''All parts are tested to meet or exceed the performance
+    of original equipment'' are real operations under the locked inspection/testing carve-out. Flag: the form ''testing''
+    is contained in ''Non-Destructive Testing'' (entry 0014), so this entry is auto-credited whenever NDT is found and its
+    recall number is not independent of 0014''s.'
+  provenance:
+  - action: added
+    by: seed-agent-ableengineering
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-ableengineering
+    date: '2026-08-26'
+- id: ableengineering_com-process_caps-0022
+  name: Custom crating and packaging
+  status: confirmed
+  acceptable_forms:
+  - custom crating and packaging
+  - crating and packaging
+  evidence:
+  - quote: from the beginning repair and overhaul process to the final custom crating and packaging
+    approx_offset: 41489
+  notes: 'borderline B: shipping-side operation offered as part of landing-gear MRO | VERIFY 2026-08-26 (second pass): single
+    occurrence on the landing-gear page; borderline B as the seed says, but it is an operation performed on the shipped work.'
+  provenance:
+  - action: added
+    by: seed-agent-ableengineering
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-ableengineering
+    date: '2026-08-26'
+- id: ableengineering_com-process_caps-0023
+  name: Completion services
+  status: confirmed
+  acceptable_forms:
+  - completion services
+  evidence:
+  - quote: YOUR FULL-SERVICE PROVIDER OF AIRCRAFT COMPONENT REPAIR AND OVERHAUL, APPROVED REPLACEMENT PARTS AND COMPLETION
+      SERVICES.
+    approx_offset: 25757
+  notes: 'borderline B: named once in the why-able banner, no detail | VERIFY 2026-08-26 (second pass): single occurrence
+    in the why-able banner; borderline B, no detail anywhere in the file.'
+  provenance:
+  - action: added
+    by: seed-agent-ableengineering
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-ableengineering
+    date: '2026-08-26'
+false_friends:
+- form: machine-learning
+  reason: '''machine-learning system on air compressors'' is a facility energy project in a sustainability press release,
+    not a work process'
+- form: heating and cooling
+  reason: facility HVAC ('Energy Management System for heating and cooling'), not an operation on the work
+- form: training
+  reason: IFR flight training is what the customer's TH-57 fleet does (U.S. Navy), not a subject process
+- form: safety management
+  reason: Safety Management System is a management/quality program (conformity_attestations), not a shop-floor operation
+- form: marketing
+  reason: cookie-consent boilerplate 'assist in our marketing efforts'
+- form: exchange
+  reason: parts exchange is a commercial transaction/program (Z / products side), not an operation performed on the work

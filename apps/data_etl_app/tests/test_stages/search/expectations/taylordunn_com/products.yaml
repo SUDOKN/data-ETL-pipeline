@@ -1,0 +1,107 @@
+subject: taylordunn.com
+field: products
+snapshot:
+  file: apps/data_etl_app/src/data_etl_app/knowledge/sample_scraped_texts/taylordunn.com.txt
+  sha256: "dbf6cfcd2de35d5052df8d9b1e45530d25519aad8f62628716e2bedbb7c81113"
+eval_set_version: 2
+expected_empty: false
+notes: >-
+  This file also serves the contract_products field: the text contains zero
+  contract-manufacturing prose, so ANY contract_products yield is
+  junk-minting signal; the products expectation is only the four nav-label
+  vehicle lines below. All evidence is nav/footer menu labels repeated
+  identically on all 31 page blocks (offsets are for the first block and
+  advisory only). "Tow Tractors" is deliberately NOT an entry: it occurs only
+  as the URL slug /tow-tractors/, never as text. Any sizable yield beyond
+  these four labels is junk minted from cookie-consent boilerplate.
+entries:
+  - id: taylordunn_com-products-0001
+    name: "Utility Vehicles"
+    status: confirmed
+    acceptable_forms:
+      - "Utility Vehicles"
+    evidence:
+      - quote: "Utility Vehicles"
+        approx_offset: 6732
+    evidence_kind: nav
+    notes: "footer VEHICLES menu label; product-line/category designation (family-level, B-leaning)"
+    provenance:
+      - {action: added, by: "seed-agent-taylordunn", date: "2026-08-26", source: corpus-seed}
+      - {action: verified, by: "verify-agent-taylordunn", date: "2026-08-26"}
+  - id: taylordunn_com-products-0002
+    name: "Bigfoot Burden Carriers"
+    status: confirmed
+    acceptable_forms:
+      - "Bigfoot Burden Carriers"
+      - "Bigfoot"
+    evidence:
+      - quote: "Bigfoot Burden Carriers"
+        approx_offset: 6749
+      - quote: "BUILD A BIGFOOT"
+        approx_offset: 156
+    evidence_kind: nav
+    notes: "footer VEHICLES menu label; the Bigfoot family also appears as header CTA 'BUILD A BIGFOOT' and footer link 'Build a Bigfoot' -- the closest thing to a branded product name in the text"
+    provenance:
+      - {action: added, by: "seed-agent-taylordunn", date: "2026-08-26", source: corpus-seed}
+      - {action: verified, by: "verify-agent-taylordunn", date: "2026-08-26"}
+  - id: taylordunn_com-products-0003
+    name: "Stockchasers"
+    status: confirmed
+    acceptable_forms:
+      - "Stockchasers"
+    evidence:
+      - quote: "Stockchasers"
+        approx_offset: 6773
+    evidence_kind: nav
+    notes: "footer VEHICLES menu label; distinctive branded category name for the subject's stock-picking vehicles"
+    provenance:
+      - {action: added, by: "seed-agent-taylordunn", date: "2026-08-26", source: corpus-seed}
+      - {action: verified, by: "verify-agent-taylordunn", date: "2026-08-26"}
+  - id: taylordunn_com-products-0004
+    name: "Personnel Carriers"
+    status: confirmed
+    acceptable_forms:
+      - "Personnel Carriers"
+    evidence:
+      - quote: "Personnel Carriers"
+        approx_offset: 6786
+    evidence_kind: nav
+    notes: "footer VEHICLES menu label; product-line/category designation (family-level, B-leaning)"
+    provenance:
+      - {action: added, by: "seed-agent-taylordunn", date: "2026-08-26", source: corpus-seed}
+      - {action: verified, by: "verify-agent-taylordunn", date: "2026-08-26"}
+false_friends:
+  - form: "Elementor"
+    reason: "WordPress page-builder plugin; appears only in the 'Placed cookies' vendor table ('Consent to service elementor'); third-party ad-tech software, not a subject product"
+  - form: "WordPress"
+    reason: "CMS named in the cookie vendor table; website infrastructure, not a product made or sold"
+  - form: "WPForms"
+    reason: "form-builder plugin in the cookie vendor table"
+  - form: "Complianz"
+    reason: "cookie-consent plugin vendor whose table this whole page is; not a product"
+  - form: "Google Adsense"
+    reason: "third-party ad service in the cookie vendor table"
+  - form: "Google Fonts"
+    reason: "third-party font service in the cookie vendor table"
+  - form: "Google reCAPTCHA"
+    reason: "third-party anti-bot service in the cookie vendor table"
+  - form: "Google Maps"
+    reason: "third-party map service in the cookie vendor table"
+  - form: "Google Ads"
+    reason: "third-party ad service in the cookie vendor table"
+  - form: "YouTube"
+    reason: "social/video platform named in cookie boilerplate and footer icon links"
+  - form: "Facebook"
+    reason: "social network named in cookie-policy section 5.4 and footer icon links"
+  - form: "LinkedIn"
+    reason: "social network named in cookie-policy section 5.4 and footer icon links"
+  - form: "Instagram"
+    reason: "social network named in cookie-policy section 5.4"
+  - form: "shopping cart"
+    reason: "hypothetical example inside generic cookie-explainer prose ('the items remain in your shopping cart'); the site has no store"
+  - form: "web beacon"
+    reason: "tracking technology defined in cookie-policy section 4, not a product"
+  - form: "pixel tag"
+    reason: "tracking technology defined in cookie-policy section 4, not a product"
+  - form: "2114 W Ball Rd"
+    reason: "Waev Inc. (parent company) privacy legal-notice address; a location string in legal boilerplate, not a product designation and not a subject facility claim"

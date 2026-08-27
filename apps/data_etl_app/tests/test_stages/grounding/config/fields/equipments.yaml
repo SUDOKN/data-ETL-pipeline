@@ -1,0 +1,50 @@
+field: equipments
+stages: [freehand]
+
+watch_items:
+  - id: GW-EQ-1
+    title: Product-to-machine fabrication through FGR-E1's inference license
+    class: remaining
+    first_seen: 20260825T194457
+    provenance: >
+      Census 2026-08-25: 19 of 20 steelcraft equipment tag instances fabricated —
+      9 invented "<door type> manufacturing machine" categories named nowhere in the
+      text, all passed by screening. Mechanism verified: the mentions fix re-anchored
+      FGR-E1 from mention snippets to the abstractive synthesis, and equipments is
+      the one field whose upstream is contaminated with products (68/75 search
+      groups). Identical records were declined the previous run.
+    detector: judged
+    measure: F-coded equipment tag instances whose machine is inferred from products sold
+    expect: "~0 after the equipment FGR-E1 prompt fix (backlog #7): require the machine be named/described as operated, owned, or used; forbid inferring machinery from what the subject sells"
+    status:
+      "20260825T194457": present (19)
+
+  - id: GW-EQ-2
+    title: Upstream contamination — equipment search returns products
+    class: remaining
+    first_seen: 20260825T194457
+    provenance: "68 of 75 steelcraft equipment group_ids are products (search precision, parked for Phase 5)"
+    detector: judged
+    measure: X-coded share (product-as-equipment) among equipment tag instances
+    expect: "stays high until equipment search precision is addressed; grounding DECLINES are the correct behavior on these rows — watch decline_sound_share"
+    status:
+      "20260825T194457": present (69/84 rows no_candidates, correctly)
+
+  - id: GW-EQ-3
+    title: Process-to-machine conversion soundness (the healthy control)
+    class: improved
+    first_seen: 20260825T194457
+    provenance: "alecmfg equipments is the run's healthiest field: 30/34 correct (Die Casting -> die casting machine, CNC Turning -> CNC lathe). Process->machine is sound; product->machine is fabrication."
+    detector: judged
+    measure: clean_share on subjects whose upstream carries real processes
+    expect: "stays ~85%+; a fall here means the FGR-E1 fix over-corrected"
+    status:
+      "20260825T194457": healthy (30/34)
+
+notes: |
+  The zero-fabrication control for this field is steelcraft PRODUCTS (same stage,
+  sibling prompt, zero fabrications) — any equipments fabrication claim should be
+  checked against it before blaming the shared stage. Inventory note: several
+  subjects (taylordunn, alecmfg) carry cookie-policy plugin tables (WordPress,
+  Google Analytics, ...) that read structurally like equipment lists — judge those
+  as traps, not evidence.

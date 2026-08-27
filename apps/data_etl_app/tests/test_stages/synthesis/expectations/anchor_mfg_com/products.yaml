@@ -1,0 +1,22 @@
+subject: anchor-mfg.com
+field: products
+eval_set_version: 1
+probes:
+- id: AN-P1
+  status: predicted
+  added: 2026-08-26
+  motivated_by: corpus survey — buyer T&C under /customer-portal/, PO legalese under capability-shaped
+    URLs
+  expectation: 'Legal-contract vocabulary ("Special Tooling", "goods", "milestones") from terms-and-conditions
+    text living under non-legal URLs must not ground capability paragraphs; a record whose only evidence
+    is legalese should say so or set it aside.
+
+    '
+- id: AN-P2
+  status: predicted
+  added: 2026-08-26
+  motivated_by: corpus survey — four sister legal entities share the site
+  expectation: 'Capabilities must not silently migrate between the four Anchor entities; where the evidence
+    names a specific entity (copyright under Anchor Tool & Die Co.), the paragraph preserves it.
+
+    '

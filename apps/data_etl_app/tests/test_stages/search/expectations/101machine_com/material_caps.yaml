@@ -1,0 +1,203 @@
+subject: 101machine.com
+field: material_caps
+snapshot:
+  file: apps/data_etl_app/src/data_etl_app/knowledge/sample_scraped_texts/101machine.com.txt
+  sha256: b7a95be543431822edc4873b4d66c97468ca0d02253d52cdb5e182e535c61770
+eval_set_version: 2
+expected_empty: false
+notes: 'All entries come from the materials.html list (spec_table between nav and footer). Source typo preserved verbatim in evidence: ''Structual''. Slash-lists merged into family entities. ''Solid Surfacing'' (milling ops list) is NOT seeded here; a material-side return could be defensible under the substance-implied keep-rule - judge in-window.'
+entries:
+- id: 101machine_com-material_caps-0001
+  name: Steel
+  status: confirmed
+  acceptable_forms:
+  - Steel
+  - Steel’s
+  - Cold Rolled
+  - Hot Rolled
+  - Carbon steel
+  - Structural steel
+  - Structual
+  - Tool steel
+  evidence:
+  - quote: 'Steel’s: Cold Rolled/Hot Rolled/Carbon/Structual/Tool'
+    approx_offset: 3131
+    evidence_kind: spec_table
+  notes: one slash-list line naming five steel types (cold rolled, hot rolled, carbon, structural - spelled 'Structual' in the source, tool); merged as one family entity. Constructed '<type> steel' forms are there so bare slash fragments ('Carbon', 'Tool') still match by containment.
+  provenance:
+  - action: added
+    by: seed-agent-101machine
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-101machine
+    date: '2026-08-26'
+- id: 101machine_com-material_caps-0002
+  name: Stainless steel
+  status: confirmed
+  acceptable_forms:
+  - Stainless Steel
+  - Stainless Steel’s
+  - 300 & 400 series
+  evidence:
+  - quote: 'Stainless Steel’s including: 300 & 400 series'
+    approx_offset: 3185
+    evidence_kind: spec_table
+  notes: 300 and 400 series folded into the one entity
+  provenance:
+  - action: added
+    by: seed-agent-101machine
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-101machine
+    date: '2026-08-26'
+- id: 101machine_com-material_caps-0003
+  name: Aluminum
+  status: confirmed
+  acceptable_forms:
+  - Aluminum
+  - Tooling Plate
+  - 3000/5000/6000/7000 Series
+  evidence:
+  - quote: 'Aluminum including: 3000/5000/6000/7000 Series/Tooling Plate'
+    approx_offset: 3231
+    evidence_kind: spec_table
+  notes: 3000/5000/6000/7000 series and Tooling Plate folded into the one entity
+  provenance:
+  - action: added
+    by: seed-agent-101machine
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-101machine
+    date: '2026-08-26'
+- id: 101machine_com-material_caps-0004
+  name: Brass
+  status: confirmed
+  acceptable_forms:
+  - Brass
+  evidence:
+  - quote: Brass
+    approx_offset: 3292
+    evidence_kind: spec_table
+  provenance:
+  - action: added
+    by: seed-agent-101machine
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-101machine
+    date: '2026-08-26'
+- id: 101machine_com-material_caps-0005
+  name: Bronze
+  status: confirmed
+  acceptable_forms:
+  - Bronze
+  evidence:
+  - quote: Bronze
+    approx_offset: 3298
+    evidence_kind: spec_table
+  provenance:
+  - action: added
+    by: seed-agent-101machine
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-101machine
+    date: '2026-08-26'
+- id: 101machine_com-material_caps-0006
+  name: Cast Iron
+  status: confirmed
+  acceptable_forms:
+  - Cast Iron
+  evidence:
+  - quote: Cast Iron
+    approx_offset: 3305
+    evidence_kind: spec_table
+  provenance:
+  - action: added
+    by: seed-agent-101machine
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-101machine
+    date: '2026-08-26'
+- id: 101machine_com-material_caps-0007
+  name: Copper
+  status: confirmed
+  acceptable_forms:
+  - Copper
+  evidence:
+  - quote: Copper
+    approx_offset: 3315
+    evidence_kind: spec_table
+  provenance:
+  - action: added
+    by: seed-agent-101machine
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-101machine
+    date: '2026-08-26'
+- id: 101machine_com-material_caps-0008
+  name: Molybdenum
+  status: confirmed
+  acceptable_forms:
+  - Molybdenum
+  evidence:
+  - quote: Molybdenum
+    approx_offset: 3322
+    evidence_kind: spec_table
+  provenance:
+  - action: added
+    by: seed-agent-101machine
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-101machine
+    date: '2026-08-26'
+- id: 101machine_com-material_caps-0009
+  name: Refractory Metals
+  status: confirmed
+  acceptable_forms:
+  - Refractory Metals
+  evidence:
+  - quote: Refractory Metals
+    approx_offset: 3333
+    evidence_kind: spec_table
+  notes: material family - borderline (B) side but in-field
+  provenance:
+  - action: added
+    by: seed-agent-101machine
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-101machine
+    date: '2026-08-26'
+- id: 101machine_com-material_caps-0010
+  name: Plastics
+  status: confirmed
+  acceptable_forms:
+  - Plastics
+  - Plastics including high temp
+  evidence:
+  - quote: Plastics including high temp
+    approx_offset: 3351
+    evidence_kind: spec_table
+  notes: includes high-temperature plastics
+  provenance:
+  - action: added
+    by: seed-agent-101machine
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-101machine
+    date: '2026-08-26'
+false_friends:
+- form: Materials
+  reason: generic - page heading 'Experienced with Many Materials' and catch-all 'Many other Materials and Alloys' (code G)
+- form: Alloys
+  reason: bare generic from 'Many other Materials and Alloys'; no designation content (code G)
+- form: Lead
+  reason: 'no lead in-text: only the verb ''leads'' in ''leads to a precision solution in a timely manner'' - the known brute substring-matcher false positive'

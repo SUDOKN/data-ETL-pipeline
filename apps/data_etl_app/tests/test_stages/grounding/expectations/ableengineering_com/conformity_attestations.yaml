@@ -1,0 +1,86 @@
+subject: ableengineering.com
+field: conformity_attestations
+expected:
+- name: FAA Part 145
+  evidence: QUALIFIED. VERIFIED. CERTIFIED. — FAA PART 145
+  strength: strong
+- name: FAA PMA (Parts Manufacturer Approval)
+  evidence: FAA PMA
+  strength: strong
+- name: EASA Part 145
+  evidence: EASA PART 145
+  strength: strong
+- name: CAA
+  evidence: QUALIFIED. VERIFIED. CERTIFIED. — CAA
+  strength: strong
+- name: CAAC Maintenance Organization (China)
+  evidence: CAAC MAINTENANCE ORGANIZATION
+  strength: strong
+- name: CAAT (Thailand)
+  evidence: CAAT
+  strength: strong
+- name: DGCA (India)
+  evidence: DGCA
+  strength: strong
+- name: ECAA (Egypt)
+  evidence: ECAA
+  strength: strong
+- name: JCAB (Japan)
+  evidence: JCAB
+  strength: strong
+- name: NADCAP – NDT
+  evidence: NADCAP – NDT
+  strength: strong
+- name: NADCAP – Surface Enhancement
+  evidence: NADCAP – SURFACE ENHANCEMENT
+  strength: strong
+- name: NADCAP – Chemical Processing
+  evidence: NADCAP – CHEMICAL PROCESSING
+  strength: strong
+- name: ISO 9001:2015
+  evidence: A1LR190N - EASA 145.4010 - AS9100 - AS9110 - ISO9001:2015 Certified
+  strength: strong
+- name: AS9100
+  evidence: ISO9001/AS9100 / AS9110
+  strength: strong
+- name: AS9110
+  evidence: ISO9001/AS9100 / AS9110
+  strength: strong
+- name: Approved Airbus Helicopters Maintenance & Repair Center
+  evidence: APPROVED AIRBUS HELICOPTERS MAINTENANCE & REPAIR CENTER
+  strength: strong
+- name: Authorized Bell Helicopter Service Center
+  evidence: AUTHORIZED BELL HELICOPTER SERVICE CENTER
+  strength: strong
+- name: Approved Leonardo Helicopters Maintenance Sub-Contractor
+  evidence: APPROVED LEONARDO HELICOPTERS MAINTENANCE SUB-CONTRACTOR
+  strength: strong
+- name: ARSA Member
+  evidence: ARSA MEMBER, listed under 'QUALIFIED. VERIFIED. CERTIFIED.'
+  strength: weak
+- name: FAA-accepted Safety Management System (SMS)
+  evidence: received Federal Aviation Administration (FAA) acceptance of the company's new Safety Management
+    System (SMS) implementation plan
+  strength: moderate
+- name: NATA Green Aviation Business certification
+  evidence: has certified as a Green Aviation Business under the National Air Transportation Association
+    (NATA)
+  strength: moderate
+traps:
+- name: Textron Inc. (NYSE:TXT)
+  kind: wrong_actor
+  note: 'Stock listing belongs to parent Textron Inc., not to Able Aerospace itself: ''a Textron Inc.
+    (NYSE:TXT) company''.'
+- name: California Transparency in Supply Chains Act
+  kind: doc_title
+  note: Footer resource-link title on every page, not a certification claimed for the subject.
+- name: Instructions for Continued Airworthiness (ICAs) - Yoke Assembly Repair
+  kind: doc_title
+  note: Footer document-title link, not a certification.
+- name: Vertex Aerospace
+  kind: third_party
+  note: A customer/partner named in a press release ('collaboration with Vertex Aerospace'), not a certifying
+    body or credential of Able's.
+- name: HAI Heli-Expo
+  kind: marketing_idiom
+  note: 'A trade show booth mention (''find them at booth #3511''), not a certification or standards compliance.'

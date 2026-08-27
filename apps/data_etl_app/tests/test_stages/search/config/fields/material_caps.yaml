@@ -1,0 +1,12 @@
+sweeps:
+  - name: metals
+    ignore_case: true
+    pattern: '\b(?:aluminum|aluminium|stainless steel|carbon steel|alloy steel|tool steel|mild steel|titanium|brass|copper|magnesium|zinc|nickel|inconel|bronze|tungsten|molybdenum|cast iron|lead)\b'
+  - name: polymers
+    ignore_case: true
+    pattern: '\b(?:ABS|nylon|polycarbonate|PEEK|PTFE|PVC|HDPE|POM|acetal|polyethylene|polypropylene|polystyrene|polyurethane|urethane|acrylic|fiberglass|delrin)\b'
+notes: >
+  "lead" hits are expected to be dominated by lead-time prose (the measured
+  52-hits-0-real case): a lead hit NOT covered by a returned form is usually
+  correct restraint, so read this field's uncovered list before believing it.
+  Short symbols (SS, Al) are excluded — below the word-boundary safety line.

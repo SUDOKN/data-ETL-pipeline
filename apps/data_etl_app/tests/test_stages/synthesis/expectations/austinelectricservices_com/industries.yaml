@@ -1,0 +1,20 @@
+subject: austinelectricservices.com
+field: industries
+eval_set_version: 1
+probes:
+- id: AU-P3
+  status: predicted
+  added: 2026-08-26
+  motivated_by: corpus survey — 48% Spanish duplicate pages, incl. mistranslations ("comenzó a podar casas")
+  expectation: 'Spanish-page evidence must synthesize coherently: no mangled non-ASCII, no duplicate near-records
+    solely from the translated twin page, and no capability minted from a mistranslation.
+
+    '
+- id: AU-P4
+  status: predicted
+  added: 2026-08-26
+  motivated_by: corpus survey — services contractor serving residential builders
+  expectation: 'The served market is residential production builders/homebuilding; the company''s own
+    trades (electrical, HVAC, concrete) must not become served industries.
+
+    '

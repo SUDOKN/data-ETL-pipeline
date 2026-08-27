@@ -1,0 +1,13 @@
+subject: acimachine.com
+field: process_caps
+expected: []
+traps:
+- name: Spindle & Control Repairs / Retrofit / Precision Leveling / Ball Bar Testing
+  kind: wrong_axis
+  note: 'Support/Services page: ''Troubleshooting - Repairs - Maintenance''; machine-tool repair/installation-site
+    work on customers'' machines, explicitly excluded by the process_caps definition (''not installation-site
+    work'')'
+- name: Machining
+  kind: wrong_actor
+  note: word appears ~400+ times in OEM marketing copy for machines-for-sale (e.g. 'ideal for machining
+    small precision parts'), describing what a buyer's machine will do, not a process ACI performs

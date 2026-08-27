@@ -1,0 +1,72 @@
+subject: anchor-mfg.com
+field: process_caps
+expected:
+- name: Metal Stamping
+  evidence: Metal Stamping / Over 60 presses / 2000 ton to 110 ton
+  strength: strong
+- name: Welding
+  evidence: Welding / Over 40 Flexible Weld Cells
+  strength: strong
+- name: Robotic Spot & Mig Welding
+  evidence: Robotic Spot & Mig Welding (Welding capability list item)
+  strength: strong
+- name: Drawn Arc Welding
+  evidence: Drawn Arc Welding (Welding capability list item)
+  strength: strong
+- name: Resistance Welding
+  evidence: Resistance Welding (Welding capability list item)
+  strength: strong
+- name: Manual Welding (MIG & TIG)
+  evidence: Manual Welding, Including MIG & TIG (Fabricating list item)
+  strength: strong
+- name: Conventional & Orbital Riveting
+  evidence: Conventional & Orbital Riveting (Assembly capability list item)
+  strength: strong
+- name: Staking & Toggle Lock
+  evidence: Staking & Toggle Lock (Assembly capability list item)
+  strength: strong
+- name: Automated Tapping
+  evidence: Automated Tapping (Assembly capability list item)
+  strength: strong
+- name: Manual Component Assembly
+  evidence: Manual Component Assembly (Assembly capability list item)
+  strength: strong
+- name: In-press Assembly (Studs, Nuts)
+  evidence: In-press Assembly (Studs, Nuts) (Assembly capability list item)
+  strength: strong
+- name: Laser Cutting
+  evidence: Laser – Turret Press; 4,000 Watt CNC Laser with 48” x 96” Capabilities up to .625” Thickness
+  strength: strong
+- name: CNC Press Brake Forming
+  evidence: CNC Multi-Axis Press Brakes / CNC 7 Axis Press Brakes
+  strength: strong
+- name: Mechanical Press Braking
+  evidence: Mechanical Press Brake with Back Gage and Capabilities up to 10’
+  strength: moderate
+- name: Shearing
+  evidence: Shearing Capabilities up to 1/8” x 12’; Material Shear
+  strength: strong
+- name: CNC Machining
+  evidence: 'Machining heading: CNC Machining'
+  strength: strong
+- name: Milling
+  evidence: Milling Machines / Vertical Mills (Machining list item)
+  strength: strong
+- name: Powder Coating
+  evidence: Powder Coating / Automated Powder Spraying / Seven Stage Iron Phosphate Wash
+  strength: strong
+- name: Die Design / Tool & Die Making
+  evidence: 'Tool & Die: Die Design, New Die Construction, Major Engineering Changes, Repair / Refurbish,
+    Die Adaptation'
+  strength: strong
+- name: Deep Draw Stamping
+  evidence: 'Types of Tooling Include: Progressive, Transfer, Single Hit, Deep Draw'
+  strength: moderate
+traps:
+- name: Environmentally Friendly
+  kind: marketing_idiom
+  note: describes the powder coating line's eco claim, not a manufacturing process name
+- name: installation, servicing or maintenance of equipment
+  kind: wrong_actor
+  note: confidentiality clause about Seller visiting Purchaser's facilities to service Purchaser's equipment,
+    not a process Anchor performs on its own line

@@ -1,0 +1,92 @@
+subject: alecmfg.com
+field: material_caps
+expected:
+- name: Aluminum
+  evidence: Metal ... Aluminum (Material Options list, services page)
+  strength: strong
+- name: Stainless Steel
+  evidence: Highly durable and resistant to corrosion, used in medical devices and kitchen equipment
+  strength: strong
+- name: Brass
+  evidence: Excellent machinability, commonly used for plumbing fixtures and decorative items
+  strength: strong
+- name: Copper
+  evidence: Known for its thermal and electrical conductivity, used in electrical components
+  strength: strong
+- name: Titanium
+  evidence: Strong and lightweight, favored in aerospace and medical industries
+  strength: strong
+- name: Magnesium
+  evidence: The lightest structural metal, used in automotive and aerospace applications
+  strength: strong
+- name: Zinc
+  evidence: Good for casting and strong impact resistance, used in automotive and industrial machinery
+  strength: strong
+- name: Nickel
+  evidence: High resistance to heat and corrosion, used in high-performance and high-temperature applications
+  strength: strong
+- name: Mild Steel
+  evidence: Highly weldable and durable, ideal for infrastructure and automotive parts
+  strength: strong
+- name: Alloy Steel
+  evidence: Enhanced with elements like chromium and nickel for better strength and heat resistance
+  strength: strong
+- name: Tool Steel
+  evidence: Characterized by its hardness and resistance to abrasion ... cutting and machining tools
+  strength: strong
+- name: Inconel
+  evidence: Known for its superb heat and corrosion resistance ... aerospace and marine environments
+  strength: strong
+- name: ABS (Acrylonitrile Butadiene Styrene)
+  evidence: Plastics ... ABS (Acrylonitrile Butadiene Styrene) (Material Options list)
+  strength: strong
+- name: Nylon
+  evidence: Plastics ... Nylon (Material Options list, services page)
+  strength: strong
+- name: Polycarbonate
+  evidence: metals like aluminum and steel, plastics such as ABS and polycarbonate
+  strength: strong
+- name: POM (Polyoxymethylene / Acetal)
+  evidence: POM (Polyoxymethylene or Acetal) (Material Options list, services page)
+  strength: strong
+- name: PTFE (Teflon)
+  evidence: PTFE (Polytetrafluoroethylene or Teflon) (Material Options list, services page)
+  strength: strong
+- name: PEEK
+  evidence: PEEK (Polyether Ether Ketone) (Material Options list, services page)
+  strength: strong
+- name: PVC
+  evidence: PVC (Polyvinyl Chloride) (Material Options list, services page)
+  strength: strong
+- name: HDPE
+  evidence: HDPE (High-Density Polyethylene) (Material Options list, services page)
+  strength: strong
+- name: 6061-T6 Aluminum
+  evidence: Used U.S.-sourced 6061-T6 extrusion plates (material cert included)
+  strength: moderate
+- name: 7075 Aluminum alloy (aerospace-grade)
+  evidence: secured a qualified batch of EN AW-7475-T7351 bar stock
+  strength: moderate
+- name: Ti6Al4V Titanium alloy
+  evidence: This project demonstrated our expertise in machining difficult materials like titanium alloys
+  strength: moderate
+- name: C1100 Oxygen-Free Copper
+  evidence: our experience in thermal component prototyping, especially in oxygen-free copper machining
+  strength: moderate
+traps:
+- name: Lead
+  kind: homonym
+  note: appears only inside 'Lead Time' / 'Lead Manufacturing Engineer' / 'Lead Development Engineer',
+    never as the metal
+- name: 316L Stainless Steel
+  kind: third_party
+  note: '''Existing suppliers'' 316L stainless steel components showed microscopic burrs'' — a competing
+    supplier''s material, not confirmed as what Alec machined'
+- name: Chromium
+  kind: wrong_axis
+  note: named only as an alloying element inside the Alloy Steel description, not a material processed
+    on its own
+- name: 4140 alloy
+  kind: client_work
+  note: '''ASTM A36 plate + 4140 alloy inserts'' listed under a Client Requirements Material row; only
+    the A36 plate is prose-corroborated as machined in-house'

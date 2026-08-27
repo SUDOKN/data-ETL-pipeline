@@ -1,0 +1,57 @@
+subject: steelcraft.com
+field: industries
+expected:
+- name: Healthcare
+  evidence: Healthcare institutions have special requirements when creating a safe, secure and comfortable
+    environments for patients
+  strength: strong
+- name: Education (K-12 and higher education)
+  evidence: commonly new school gymnasiums constructed as ICC500 compliant tornado shelters for K-12 and
+    higher education
+  strength: strong
+- name: Hospitality (hotels/motels)
+  evidence: hotels, offices and restaurants...Economy hotel and motel unit entrances
+  strength: moderate
+- name: Multifamily / apartments
+  evidence: multifamilies and apartments, hospitals, schools and more
+  strength: moderate
+- name: Government
+  evidence: meeting rooms, hotels, government buildings, and buildings located near airports and highways
+  strength: moderate
+- name: Detention / correctional facilities
+  evidence: detention centers and behavioral correction facilities
+  strength: moderate
+- name: Retail
+  evidence: Retail entrances and back doors
+  strength: moderate
+- name: Office buildings
+  evidence: traditional office buildings benefit from acoustically rated doors and frames
+  strength: moderate
+- name: Pharmaceutical (sterile environments)
+  evidence: Industries that require sterile environments such as hospitals, labs, pharmaceutical, or food
+  strength: moderate
+- name: Laboratories
+  evidence: Industries that require sterile environments such as hospitals, labs, pharmaceutical, or food
+  strength: moderate
+- name: Data centers
+  evidence: Cold climates, very hot climates, or data centers where the transfer of heat is an important
+    factor
+  strength: weak
+traps:
+- name: Steel Door Institute (SDI)
+  kind: wrong_axis
+  note: Steelcraft is a founding MEMBER of this trade association; it is not a customer sector Steelcraft
+    serves
+- name: '''The industry'' / industry standard'
+  kind: marketing_idiom
+  note: '''Our steel doors and frames set the industry standard'' repeats in every page footer -- generic
+    self-praise, not a named sector'
+- name: Homes / residential
+  kind: wrong_actor
+  note: '''Allegion...produces a range of solutions for homes, businesses, schools'' describes parent
+    Allegion''s broader market; Steelcraft''s own scope is explicitly ''institutional, commercial and
+    industrial'', not residential'
+- name: Safety and security industry
+  kind: wrong_actor
+  note: '''Allegion...is a global pioneer in safety and security'' is the parent company''s self-description,
+    not a sector Steelcraft serves'

@@ -1,0 +1,82 @@
+subject: steelcraft.com
+field: conformity_attestations
+expected:
+- name: SDI Certified (Steel Door Institute)
+  evidence: Steelcraft is SDI Certified through regular audits to ensure manufacturing, performance and
+    quality standards
+  strength: strong
+- name: ANSI A250.8-2017 (SDI-100)
+  evidence: Overall door construction exceeds ANSI A250.8-2017 (SDI-100), the standard set by SDI
+  strength: strong
+- name: ANSI A250.6-2003 (hardware preparations)
+  evidence: Hardware preparations and reinforcements meet ANSI A250.6-2003
+  strength: strong
+- name: ANSI/DHI A115 (hardware locations)
+  evidence: locations meet ANSI/DHI A115, unless otherwise stated
+  strength: strong
+- name: ANSI A250.10-2011 (primer)
+  evidence: Factory-applied baked-on rust inhibiting primer meets ANSI A250.10-2011
+  strength: strong
+- name: UL-10B / UL-10C fire-rating compliance
+  evidence: listed for installations requiring compliance to both neutral pressure testing...and positive
+    pressure standards (UL-10C)
+  strength: strong
+- name: FEMA P-361 / FEMA P-320 / ICC 500 tornado shelter compliance
+  evidence: labeled from the factory showing compliance with ICC 500-2020, FEMA P-320 (2021), and FEMA
+    P-361 (2021)
+  strength: strong
+- name: Florida Building Code (FBC) approval
+  evidence: Steelcraft products are in accordance with...the Florida Building Code (FBC) and the South
+    Florida Building Code (SFBC)
+  strength: strong
+- name: Miami-Dade (NOA) approval
+  evidence: Hurricane-approved (NOA Dade County Florida)
+  strength: strong
+- name: Texas Department of Insurance (TDI) listing
+  evidence: Texas Department of Insurance (TDI) listing requirements for resistance to hurricane forces
+  strength: strong
+- name: ANSI/SDI A250.13 (severe windstorm)
+  evidence: Steelcraft products are in accordance with ANSI/SDI A250.13 Testing and Rating of Severe Windstorm
+    Resistant Components
+  strength: strong
+- name: ASTM A666 (stainless steel)
+  evidence: Compliance with ASTM A666, ASTM E152, UL-10B, and USL-10C
+  strength: moderate
+- name: California Prop 65 warning
+  evidence: 'In accordance with California PROP65 - WARNING: Cancer & Reproductive Harm'
+  strength: moderate
+- name: ANSI/BHMA A156.3-2014 (hardware)
+  evidence: Hardware meets ANSI/BHMA A156.3 2014
+  strength: moderate
+traps:
+- name: LEED certification
+  kind: wrong_actor
+  note: '''Steelcraft aims to provide the information customers need to make decisions regarding their
+    own sustainable building concepts'' -- LEED certifies the CUSTOMER''s building, not Steelcraft'
+- name: EPD / HPD / CALGreen / Declare Label documentation
+  kind: third_party
+  note: '''For the most updated documentation, see the EPD page on us.allegion.com'' -- hosted and owned
+    by parent Allegion, not a Steelcraft-specific credential detailed here'
+- name: Intertek (the lab itself)
+  kind: wrong_actor
+  note: '''labeled by Intertek signifying compliance...'' -- Intertek is the certifying lab; the compliance
+    listing is the attestation, not the lab''s name'
+- name: UL (Underwriters Laboratories, the lab itself)
+  kind: wrong_actor
+  note: '''Labeling with Intertek and UL fire ratings'' -- UL is the testing/listing body, not itself
+    a Steelcraft-held credential'
+- name: FireLite (Technical Glass Products) glass spec
+  kind: third_party
+  note: '''Technical Glass Product''s FireLite fire-rated glass technical data specifications'' -- a third-party
+    glazing supplier''s own spec sheet'
+- name: Approvals listed under Schlage Lock Co.
+  kind: third_party
+  note: '''Note that Steelcraft/Allegion approvals are listed under Schlage Lock Co.'' -- filed under
+    a sibling brand''s corporate name, not Steelcraft''s'
+- name: Steelcraft Technical Data Manual
+  kind: doc_title
+  note: repeated literature/download title, not itself a certification or standard
+- name: ICC 500-2020 Customer Guide / Hardware Selection Guide
+  kind: doc_title
+  note: literature item names that embed a standard number but are documents, not the compliance claim
+    itself

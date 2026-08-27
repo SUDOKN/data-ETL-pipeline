@@ -1,0 +1,8 @@
+sweeps:
+  - name: operations
+    ignore_case: true
+    pattern: '\b(?:CNC machining|machining|milling|turning|welding|stamping|casting|molding|moulding|forging|grinding|plating|anodizing|painting|powder coating|coating|brazing|soldering|riveting|broaching|honing|drilling|tapping|threading|bending|punching|laser cutting|waterjet|extrusion|extruding|heat treating|heat treatment|assembly|inspection|prototyping|3D printing|sheet metal fabrication|fabrication)\b'
+notes: >
+  Inspection/testing/measurement ARE operations (locked carve-out). The
+  known floods — certification-lab procedures and installation-site work —
+  are judged classes (L, I), not sweepable.

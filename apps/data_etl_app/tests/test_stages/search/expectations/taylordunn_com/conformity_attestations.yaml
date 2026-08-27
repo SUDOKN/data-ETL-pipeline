@@ -1,0 +1,31 @@
+subject: taylordunn.com
+field: conformity_attestations
+snapshot:
+  file: apps/data_etl_app/src/data_etl_app/knowledge/sample_scraped_texts/taylordunn.com.txt
+  sha256: "dbf6cfcd2de35d5052df8d9b1e45530d25519aad8f62628716e2bedbb7c81113"
+eval_set_version: 2
+expected_empty: true
+notes: >-
+  No standard, certification, or regulatory designation appears. Word-boundary
+  greps for ISO/AS/IATF/ASTM/ANSI/UL/NFPA/OSHA/SAE/DOT/EPA/CE and for
+  'certif' return zero hits across the whole file (verified 2026-08-26). The
+  compliance-shaped strings present are all legal document titles and
+  cookie-consent vocabulary with no standard id. The strongest near-miss is
+  the footer link "Supplier Code of Conduct" -- a named parent-company policy
+  document, D code, still not an attestation. Any yield here is junk.
+entries: []
+false_friends:
+  - form: "Supplier Code of Conduct"
+    reason: "footer-linked parent-company policy document; named program with no standard id (D code) -- the strongest conformity near-miss in the text"
+  - form: "Cookie Policy"
+    reason: "legal document title, no standard id"
+  - form: "Privacy Policy"
+    reason: "legal document title, no standard id"
+  - form: "Terms & Conditions"
+    reason: "legal document title (also as 'TERMS AND CONDITIONS' in the footer), no standard id"
+  - form: "Complianz"
+    reason: "cookie-consent plugin brand that merely sounds like 'compliance'; a software vendor name in the cookie table"
+  - form: "Consent to service"
+    reason: "boilerplate cell text repeated through the 'Placed cookies' vendor table; consent-management vocabulary, not an attestation"
+  - form: "European Economic Area"
+    reason: "legal jurisdiction defining the policy's scope, not a standard or certification"

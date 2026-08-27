@@ -1,0 +1,25 @@
+subject: 101machine.com
+role: inventory_subject
+snapshot:
+  file: apps/data_etl_app/src/data_etl_app/knowledge/sample_scraped_texts/101machine.com.txt
+  sha256: b7a95be543431822edc4873b4d66c97468ca0d02253d52cdb5e182e535c61770
+scrape_hazards:
+- hazard: nav bar repeats on all 9 pages
+  quote: 101 Machine Capabilities Contact Us FAQ NEW
+- hazard: address/phone footer repeats on all 9 pages ('101 Machine, Inc / 1937 Evans Rd / Cary, NC 27513 / 919-650-3795')
+  quote: 1937 Evans Rd
+- hazard: index.html duplicates the homepage verbatim (same intro text twice in the file)
+  quote: What began in a garage in 2004
+- hazard: negative capability statement - names a thing the subject explicitly does NOT do; search false-friend, treated per recall-first semantics (industries entry 0007, products false friend)
+  quote: We DO NOT machine automobile parts!
+- hazard: 'source typos preserved verbatim in evidence quotes: ''Structual'' (structural steel), ''Hexs''/''Hexes'' inconsistency across the two Broaching lines'
+  quote: Structual
+- hazard: company name contains 'Machine' - constant own-name pressure on the equipments field
+  quote: 101 Machine, Inc
+sampling_notes: read exhaustively - 7KB, 9 pages (index/turning/milling/materials/faq/contact/index.html/New/machining); tiny prototype/short-run CNC job shop in Cary NC; nearly every non-boilerplate line is extractable capability text
+notes: 'Fields conformity_attestations and products are expected_empty (products doubles as the contract_products expectation - shared search output). Equipments is sparse: one named machine.'
+provenance:
+- action: added
+  by: seed-agent-101machine
+  date: '2026-08-26'
+  source: corpus-seed

@@ -1,0 +1,147 @@
+subject: austinelectricservices.com
+field: industries
+snapshot:
+  file: apps/data_etl_app/src/data_etl_app/knowledge/sample_scraped_texts/austinelectricservices.com.txt
+  sha256: "26d3b2d8c2d57c0219a2c12e0727aeca1bbf2da11f0d1142bae3a58adaabd118"
+eval_set_version: 2
+expected_empty: true
+notes: >-
+  Out-of-domain negative. The corpus names no manufacturing sector served.
+  The only defensible in-field candidates are the two construction-sector
+  entries below (sector operated-in / customer segment, both B-grade at
+  best, both expected to ground out-of-vocabulary downstream); any yield
+  beyond them is junk-minting signal. The main payload is the false-friends
+  list: the "Manufacturing Productivity" tagline, the Spanish
+  "fabricación"/"industria" family, and word-association bait on the
+  security page. VERIFY 2026-08-26 (second independent pass):
+  expected_empty=true AGREED and both entries confirmed. Independent check
+  of the headline bait: 'We Lead the Industry in Efficiency and
+  Manufacturing Productivity' occurs exactly twice in English (lines 7, 280)
+  with its Spanish mirror twice (lines 64, 692) - the hazard note is exact.
+  No manufacturing sector is served: 'machine shop', 'CNC', 'weld',
+  'machining', 'lathe', 'injection mold', 'stamping', 'assembly line',
+  'production line', 'tolerance', 'prototyp' and 'extrusion' are all zero.
+  ANSWERING THE SEED'S OPEN O-vs-B QUESTION: I judge B, not O. Code O is for
+  the subject's OWN activity dressed up as a sector; here the text names the
+  sector the group SERVES and operates in ('installation services to
+  residential builders', 'experience in the homebuilding industry'). O would
+  apply to something like 'electrical contracting' offered as an industry,
+  which this corpus never does.
+entries:
+  - id: austinelectricservices_com-industries-0001
+    name: "home building industry"
+    status: confirmed
+    acceptable_forms:
+      - "home-building and development industries"
+      - "home-building"
+      - "home building"
+      - "homebuilding industry"
+      - "new home construction industry"
+      - "industrias de construcción y desarrollo de viviendas"
+    evidence:
+      - quote: "and in the home-building and development industries"
+        approx_offset: 66186
+      - quote: "nearly 25 years of experience in the homebuilding industry"
+        approx_offset: 120214
+      - quote: "the new home construction industry"
+        approx_offset: 126118
+      - quote: "industrias de construcción y desarrollo de viviendas"
+        approx_offset: 115639
+    notes: >-
+      The sector the umbrella group explicitly says it operates in and
+      serves (low-voltage Who We Are / Our History pages, Austin Integration
+      GM bio, Austin HVAC history). Construction-sector, so likely OOV at
+      grounding; search returning it is correct recall, not junk. Judged B
+      (application domain) rather than V; a strict judge may prefer O for
+      the group's own pages - that dispute is welcome at promotion time.
+      VERIFY 2026-08-26 CONFIRMED: all four quotes verified verbatim and re-
+      read in context (line 204 low-voltage Who We Are, 1748/3661 Austin
+      Integration history, 3184/3284 the GM bio, 3312 HVAC history). A
+      sector designation genuinely named in the text.
+    provenance:
+      - {action: added, by: "seed-agent-austinelectric", date: "2026-08-26", source: corpus-seed}
+      - {action: verified, by: "verify-agent-acimachine-austin", date: "2026-08-26"}
+  - id: austinelectricservices_com-industries-0002
+    name: "residential builders"
+    status: confirmed
+    acceptable_forms:
+      - "residential builders"
+      - "residential and multi-family production builders"
+      - "production builders"
+      - "constructores residenciales"
+    evidence:
+      - quote: "product installation services to residential builders in the valley"
+        approx_offset: 6845
+      - quote: "We offer complete HVAC solutions for our residential and multi-family production builders."
+        approx_offset: 11216
+      - quote: "a constructores residenciales en el valle"
+        approx_offset: 34262
+    actor: own
+    notes: >-
+      The customer segment every division sells into (code B: customer
+      segment). Not a manufacturing sector; expected OOV at grounding.
+      Search returning it is correct recall on out-of-domain text. VERIFY
+      2026-08-26 CONFIRMED: quotes verified in context (line 204 'product
+      installation services to residential builders in the valley', lines
+      317/320/1908 'residential and multi-family production builders',
+      Spanish mirror). Customer-segment designation, B.
+    provenance:
+      - {action: added, by: "seed-agent-austinelectric", date: "2026-08-26", source: corpus-seed}
+      - {action: verified, by: "verify-agent-acimachine-austin", date: "2026-08-26"}
+false_friends:
+  - form: "Manufacturing"
+    reason: >-
+      Occurs only in the marketing tagline "We Lead the Industry in Efficiency
+      and Manufacturing Productivity" (electrical landing + umbrella home page).
+      No manufacturing activity anywhere in the corpus; G/W, not a sector served.
+  - form: "fabricación"
+    reason: >-
+      Spanish mirror of the same tagline: "productividad de fabricación" (2
+      occurrences, both taglines). The classic Spanish manufacturing false
+      friend for this corpus.
+  - form: "industria"
+    reason: >-
+      Spanish generic: "Somos líderes en la industria...", "líderes de la
+      industria" (leadership boilerplate). Generic, names no sector.
+  - form: "Industry"
+    reason: >-
+      "We Lead the Industry..." taglines and "experienced industry leaders"
+      bio boilerplate; bare generic.
+  - form: "residential construction"
+    reason: >-
+      "reduce residential construction cycle times" (4x, Synergos acquisition
+      blurbs) describes the group's OWN activity - code O, not a sector served.
+  - form: "Construction"
+    reason: >-
+      Own trade of the whole umbrella ("general construction tools",
+      "new construction tract homes"); O/G, never a customer sector.
+  - form: "Defense"
+    reason: >-
+      Word-association only: security-marketing verb "ready to defend your
+      space with precision" on /security-systems/. No defense-sector content.
+  - form: "Automotive"
+    reason: >-
+      Word-association from the "Connected Car" monitoring add-on ("Extend your
+      security to your vehicle"); a $7/month subscription, not an automotive
+      sector claim.
+  - form: "Energy"
+    reason: >-
+      From "maximize energy, efficiency" and "Energy Star" on HVAC pages;
+      energy-efficiency marketing, not an energy-sector claim.
+  - form: "Security"
+    reason: >-
+      Austin Integration's OWN service line ("security isn’t just a service");
+      code O. Not a sector served by a manufacturer.
+  - form: "HVAC"
+    reason: >-
+      Sibling division's own trade (division name and job titles); code O.
+  - form: "Concrete"
+    reason: >-
+      Sibling division name/trade ("We Lead the Industry in Concrete"); code O,
+      and doubles as a material false friend.
+  - form: "public accounting"
+    reason: >-
+      Leadership bio only: "auditing work for a large public accounting firm"
+      describes an employee's former employer, not a sector served.
+provenance:
+  - {action: added, by: "seed-agent-austinelectric", date: "2026-08-26", source: corpus-seed}

@@ -1,0 +1,60 @@
+subject: ableengineering.com
+field: products
+expected:
+- name: Bushing (PMA)
+  evidence: OEM P/N 310A2028-6 → Able P/N 310AA2028-6; 30 distinct Bushing entries in the PMA parts catalog.
+  strength: strong
+- name: Bearing (PMA)
+  evidence: OEM P/N 206-011-111-001 → Able P/N 2AA-011-111-001; 15 distinct Bearing entries.
+  strength: strong
+- name: Bolt (PMA)
+  evidence: OEM P/N 206-011-260-101 → Able P/N 2AA-011-260-101; 14 distinct Bolt entries.
+  strength: strong
+- name: AFT IB Track (PMA)
+  evidence: OEM P/N 1A044-0421 → Able P/N 1A044-0421AA, PMA replacement part for B757.
+  strength: strong
+- name: Basket Cam Assembly (PMA)
+  evidence: OEM P/N 140N2668-45 → Able P/N 140AA2668-45, PMA replacement part for B757.
+  strength: strong
+- name: Adapter (PMA)
+  evidence: OEM P/N 206-040-048-101 → Able P/N ABLE-0033-101, PMA replacement part.
+  strength: strong
+- name: Bearing, Sleeve (PMA)
+  evidence: OEM P/N 1B8419CL1 → Able P/N 1B8419CL1AA, PMA replacement part.
+  strength: moderate
+- name: Bracket Assembly (PMA)
+  evidence: OEM P/N D0296-1 → Able P/N D0296-1, PMA replacement part for Bell 407/427.
+  strength: moderate
+- name: Actuator Housing Assembly (PMA)
+  evidence: OEM P/N 41009491-101 → Able P/N 41009491-101AA, PMA replacement part.
+  strength: moderate
+- name: Printed Circuit Assembly (PMA)
+  evidence: OEM P/N 802170 → Able P/N 802170AA, PMA replacement part for Airbus Helicopters.
+  strength: weak
+- name: Spur Gear (PMA)
+  evidence: Single PMA catalog entry, distinct Able P/N assigned versus OEM P/N.
+  strength: weak
+- name: IGV Gear (PMA)
+  evidence: Single PMA catalog entry, distinct Able P/N assigned versus OEM P/N.
+  strength: weak
+- name: Fuel Nozzle Air Shroud (PMA)
+  evidence: Single PMA catalog entry, distinct Able P/N assigned versus OEM P/N.
+  strength: weak
+- name: Waste Container (PMA)
+  evidence: Single PMA catalog entry, distinct Able P/N assigned versus OEM P/N.
+  strength: weak
+- name: Galley Beam (PMA)
+  evidence: Single PMA catalog entry, distinct Able P/N assigned versus OEM P/N.
+  strength: weak
+traps:
+- name: 757 / AW139 / S-76 (aircraft model numbers)
+  kind: wrong_axis
+  note: These are the customer's aircraft platforms the part fits ('Model:' field), not products the subject
+    makes.
+- name: Boeing 737 Landing Gear (datasheet title)
+  kind: doc_title
+  note: Literature/brochure title on the fixed-wing datasheets page, not a distinct catalog product.
+- name: 412 Main Rotor Mast / 42 Degree Gearbox Assembly
+  kind: wrong_axis
+  note: MRO-catalog repair items carry only an OEM P/N, no Able P/N — these belong to the repair catalog,
+    not the products catalog.

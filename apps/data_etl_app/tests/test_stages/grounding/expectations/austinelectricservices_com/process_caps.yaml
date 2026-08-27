@@ -1,0 +1,28 @@
+subject: austinelectricservices.com
+field: process_caps
+expected: []
+traps:
+- name: Electrical rough-in / trim installation
+  kind: wrong_axis
+  note: on-site work at customer homes (job listings describe roughing/trimming residential tract homes),
+    not a manufacturing process
+- name: HVAC installation & replacement
+  kind: wrong_axis
+  note: '''Installation & Replacement / New Construction Installation'' — field installation service offering,
+    not manufacturing'
+- name: Post-tensioning / Stressing (concrete)
+  kind: wrong_axis
+  note: '''SCOPE OF FIELD SERVICES: Installation, Stressing, Tendon fishing... Pre-pour inspections, Post-tension
+    repair'' — all on-site field work'
+- name: Tendon fishing
+  kind: wrong_axis
+  note: '''Tendon fishing (cutting tendon tails, patching stress pockets)'' is on-site foundation repair,
+    not a fabrication process'
+- name: Low-voltage/security system installation
+  kind: wrong_axis
+  note: '''comprehensive low voltage wiring and “smart” product installation services to residential builders''
+    — installation at customer sites'
+- name: Manufacturing Productivity
+  kind: marketing_idiom
+  note: homepage/division slogan 'We Lead the Industry in Efficiency and Manufacturing Productivity' —
+    the company performs no manufacturing; repeated verbatim (EN and ES) across nearly every page

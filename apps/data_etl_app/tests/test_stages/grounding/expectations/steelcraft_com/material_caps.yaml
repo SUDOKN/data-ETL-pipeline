@@ -1,0 +1,53 @@
+subject: steelcraft.com
+field: material_caps
+expected:
+- name: Steel (hollow metal)
+  evidence: Steelcraft hollow metal doors and frames are always manufactured in the United States using
+    American steel
+  strength: strong
+- name: Stainless Steel (304/316 alloy)
+  evidence: LS Series Doors are available in either 304 or 316 alloy for maximum durability and corrosion
+    protection
+  strength: strong
+- name: Galvannealed A-60 Steel
+  evidence: A60 Galvannealled steel for superior strength and resistance to corrosion
+  strength: strong
+- name: Galvanized steel
+  evidence: Galvanized steel for superior strength and resistance to corrosion
+  strength: moderate
+- name: Honeycomb core (kraft)
+  evidence: 1" (25 mm) cell kraft honeycomb configuration that increases structural integrity while reducing
+    overall weight
+  strength: moderate
+- name: Polystyrene (core)
+  evidence: 'Polystyrene (optional): enhanced thermal performance'
+  strength: moderate
+- name: Polyurethane (core)
+  evidence: 'Polyurethane (optional): extreme thermal performance'
+  strength: moderate
+- name: Mineral board (core)
+  evidence: Mineral board core provides a 250 F (121 C) Temperature Rise rating
+  strength: moderate
+- name: Fiberglass batting
+  evidence: filled with 1 pound fiberglass batting between stiffeners
+  strength: weak
+- name: Epoxy (interlock-edge fill)
+  evidence: Full height, epoxy filled mechanical interlock edges provide structural support
+  strength: weak
+traps:
+- name: Wood
+  kind: negated
+  note: GRAINTECH mimics wood's look via steel; wood itself is the competing material Steelcraft claims
+    superiority over ('the beauty of wood with the benefits...of steel')
+- name: Aluminum
+  kind: negated
+  note: '''It outperforms wood, aluminum, and fiberglass'' -- a competitor door material, not something
+    Steelcraft uses'
+- name: Lead (lead time)
+  kind: homonym
+  note: '''add two weeks to Steelcraft standard lead time for custom paint colors'' -- scheduling term,
+    not the metal'
+- name: Lead (lead-lining)
+  kind: third_party
+  note: '''Frame Lead-lining clips for easy integration of lead...please also visit Republic Doors and
+    Frames'' -- lead-lined product belongs to sibling Allegion brand Republic, not Steelcraft'

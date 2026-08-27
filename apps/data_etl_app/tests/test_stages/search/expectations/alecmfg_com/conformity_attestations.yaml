@@ -1,0 +1,333 @@
+subject: alecmfg.com
+field: conformity_attestations
+snapshot:
+  file: apps/data_etl_app/src/data_etl_app/knowledge/sample_scraped_texts/alecmfg.com.txt
+  sha256: f192654eaafbb44b699ffb23865174c401a604f230364fdf8d21a28c2cc245d8
+eval_set_version: 2
+expected_empty: false
+notes: Own certificates (IATF 16949:2016, ISO 13485, ISO 14001, D-U-N-S) vs client-imposed standards met per project
+  (ASTM/EN/ISO/RoHS/REACH/CE). ISO 9001 is never stated as the subject's own certificate.
+entries:
+- id: alecmfg_com-conformity_attestations-0001
+  name: IATF 16949:2016
+  status: confirmed
+  acceptable_forms:
+  - IATF 16949:2016
+  - IATF 16949
+  - IATF
+  evidence:
+  - quote: Alec Manufacturing has officially obtained the IATF 16949:2016 certification
+    approx_offset: 42046
+  - quote: Alec Model Officially Achieves IATF 16949:2016 Certification
+    approx_offset: 41746
+  provenance:
+  - action: added
+    by: seed-agent-alecmfg
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-alecmfg
+    date: '2026-08-26'
+- id: alecmfg_com-conformity_attestations-0002
+  name: ISO 13485
+  status: confirmed
+  acceptable_forms:
+  - ISO 13485
+  - ISO 13485:2016
+  evidence:
+  - quote: ISO 13485:2016 for quality management systems in the medical device industry
+    approx_offset: 139038
+  - quote: our mastery of ISO 13485 medical quality standards
+    approx_offset: 124647
+  provenance:
+  - action: added
+    by: seed-agent-alecmfg
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-alecmfg
+    date: '2026-08-26'
+- id: alecmfg_com-conformity_attestations-0003
+  name: ISO 14001
+  status: confirmed
+  acceptable_forms:
+  - ISO 14001
+  - ISO 14001:2015
+  evidence:
+  - quote: ISO 14001:2015 for environmental management systems
+    approx_offset: 139119
+  provenance:
+  - action: added
+    by: seed-agent-alecmfg
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-alecmfg
+    date: '2026-08-26'
+- id: alecmfg_com-conformity_attestations-0004
+  name: ISO 9001
+  status: confirmed
+  acceptable_forms:
+  - ISO 9001
+  - ISO9001
+  - ISO 9001:2015
+  evidence:
+  - quote: Inspection reports are aligned with their ISO9001 compliance protocols
+    approx_offset: 59337
+  - quote: ISO 9001:2015
+    approx_offset: 140490
+  actor: unknown
+  notes: 'never stated as the subject''s own certificate: appears as clients'' requirements (''their ISO9001 compliance
+    protocols'') and in an industry-statistics table'
+  provenance:
+  - action: added
+    by: seed-agent-alecmfg
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-alecmfg
+    date: '2026-08-26'
+- id: alecmfg_com-conformity_attestations-0005
+  name: ASTM B221
+  status: confirmed
+  acceptable_forms:
+  - ASTM B221
+  evidence:
+  - quote: 6061-T651 aluminum, with material certs per ASTM B221
+    approx_offset: 72708
+  - quote: 6061-T6 aluminum (ASTM B221, extrusion stock)
+    approx_offset: 76926
+  notes: material spec standard invoked for client material certs
+  provenance:
+  - action: added
+    by: seed-agent-alecmfg
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-alecmfg
+    date: '2026-08-26'
+- id: alecmfg_com-conformity_attestations-0006
+  name: ASTM A36
+  status: confirmed
+  acceptable_forms:
+  - ASTM A36
+  evidence:
+  - quote: ASTM A36 plate + 4140 alloy inserts
+    approx_offset: 106681
+  notes: material spec standard; also a material_caps entry
+  provenance:
+  - action: added
+    by: seed-agent-alecmfg
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-alecmfg
+    date: '2026-08-26'
+- id: alecmfg_com-conformity_attestations-0007
+  name: EN 10204 3.1
+  status: confirmed
+  acceptable_forms:
+  - EN 10204 3.1
+  - EN 10204
+  evidence:
+  - quote: Full material certification per EN 10204 3.1 was required.
+    approx_offset: 68747
+  - quote: EN AW 7075-T6 (EN 10204 3.1)
+    approx_offset: 50760
+  provenance:
+  - action: added
+    by: seed-agent-alecmfg
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-alecmfg
+    date: '2026-08-26'
+- id: alecmfg_com-conformity_attestations-0008
+  name: ISO 7599
+  status: confirmed
+  acceptable_forms:
+  - ISO 7599
+  - ISO 7599 AA10
+  evidence:
+  - quote: 15–20 μm (ISO 7599 AA10)
+    approx_offset: 50819
+  notes: anodizing standard cited in the DK client spec table
+  provenance:
+  - action: added
+    by: seed-agent-alecmfg
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-alecmfg
+    date: '2026-08-26'
+- id: alecmfg_com-conformity_attestations-0009
+  name: ISO 10993-5
+  status: confirmed
+  acceptable_forms:
+  - ISO 10993-5
+  - ISO 10993
+  evidence:
+  - quote: ISO 10993-5 + RoHS / REACH
+    approx_offset: 50848
+  - quote: 'Medical-grade finishing: RoHS, REACH, and ISO 10993-5 compliant'
+    approx_offset: 52980
+  provenance:
+  - action: added
+    by: seed-agent-alecmfg
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-alecmfg
+    date: '2026-08-26'
+- id: alecmfg_com-conformity_attestations-0010
+  name: RoHS
+  status: confirmed
+  acceptable_forms:
+  - RoHS
+  evidence:
+  - quote: REACH/RoHS declarations, a formal conformity statement, and a component cleanliness note
+    approx_offset: 69100
+  - quote: RoHS Only
+    approx_offset: 50949
+  provenance:
+  - action: added
+    by: seed-agent-alecmfg
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-alecmfg
+    date: '2026-08-26'
+- id: alecmfg_com-conformity_attestations-0011
+  name: REACH
+  status: confirmed
+  acceptable_forms:
+  - REACH
+  evidence:
+  - quote: REACH/RoHS declarations, a formal conformity statement, and a component cleanliness note
+    approx_offset: 69100
+  notes: 'polyseme risk: ''reach/reached'' verbs occur throughout; only the regulation sense counts'
+  provenance:
+  - action: added
+    by: seed-agent-alecmfg
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-alecmfg
+    date: '2026-08-26'
+- id: alecmfg_com-conformity_attestations-0012
+  name: CE marking
+  status: confirmed
+  acceptable_forms:
+  - CE-MDR
+  - CE technical documentation
+  - CE and ISO9001
+  evidence:
+  - quote: allowed us to proceed with CE technical documentation ahead of schedule
+    approx_offset: 52376
+  - quote: compatible with their CE and ISO9001 requirements
+    approx_offset: 62389
+  - quote: Suitable for supplier capability reviews, OEM RFQs, and CE-MDR documentation support
+    approx_offset: 53467
+  notes: 'bare form ''CE'' deliberately NOT listed: 2-char containment would false-credit e.g. ''certificate'''
+  provenance:
+  - action: added
+    by: seed-agent-alecmfg
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-alecmfg
+    date: '2026-08-26'
+- id: alecmfg_com-conformity_attestations-0013
+  name: ISO 7 (cleanroom class)
+  status: confirmed
+  acceptable_forms:
+  - ISO 7 standard
+  evidence:
+  - quote: total particle count to comply with ISO 7 standard
+    approx_offset: 121210
+  notes: 'bare ''ISO 7'' not listed as a form: it is a substring of ''ISO 7599'' and would cross-credit'
+  provenance:
+  - action: added
+    by: seed-agent-alecmfg
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-alecmfg
+    date: '2026-08-26'
+- id: alecmfg_com-conformity_attestations-0014
+  name: ASME welder certification
+  status: confirmed
+  acceptable_forms:
+  - ASME-certified
+  - ASME
+  evidence:
+  - quote: Welded frames were fabricated by ASME-certified welders
+    approx_offset: 108296
+  notes: 'borderline (B): code body named via personnel certification'
+  provenance:
+  - action: added
+    by: seed-agent-alecmfg
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-alecmfg
+    date: '2026-08-26'
+- id: alecmfg_com-conformity_attestations-0015
+  name: WPS/PQR
+  status: confirmed
+  acceptable_forms:
+  - WPS/PQR
+  - WPS
+  - PQR
+  evidence:
+  - quote: Weld map, WPS/PQR, dimensional inspection, material certs
+    approx_offset: 107103
+  notes: 'borderline (B): standardized welding qualification documents'
+  provenance:
+  - action: added
+    by: seed-agent-alecmfg
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-alecmfg
+    date: '2026-08-26'
+- id: alecmfg_com-conformity_attestations-0016
+  name: D-U-N-S Number
+  status: disputed
+  acceptable_forms:
+  - D-U-N-S
+  evidence:
+  - quote: obtained its official D-U-N-S® Number from Dun & Bradstreet
+    approx_offset: 114607
+  notes: 'borderline (B) and dispute-prone: a business registry identifier, but the text itself calls it
+    a certification. DISPUTED (verify-agent-alecmfg 2026-08-26): the D-U-N-S Number is a Dun & Bradstreet
+    business registry identifier attesting company identity and credit standing, not conformity to any
+    standard; the certification wording on the page is marketing framing, and it fits none of the V/B senses
+    (standard, named program, audit scheme, code body).'
+  provenance:
+  - action: added
+    by: seed-agent-alecmfg
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: disputed
+    by: verify-agent-alecmfg
+    date: '2026-08-26'
+false_friends:
+- form: certified
+  reason: generic (G)
+- form: certification
+  reason: generic (G) without a standard id
+- form: compliance
+  reason: generic (G)
+- form: material certs
+  reason: generic document mention, no standard id (D/G)
+- form: Type II
+  reason: anodize class shorthand in spec lines ('Clear anodized (Type II)'); no standard id attached
+- form: H7
+  reason: ISO fit class on a reamed bore ('H7 reaming'), a spec attribute, not an attestation
+- form: EN AW-7475-T7351
+  reason: EN material designation; belongs to material_caps, not conformity
+- form: EN AW 7075-T6
+  reason: EN material designation; belongs to material_caps
+- form: EN AW-6082 T6
+  reason: EN material designation; belongs to material_caps

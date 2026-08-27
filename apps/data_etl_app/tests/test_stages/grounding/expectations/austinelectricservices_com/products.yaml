@@ -1,0 +1,34 @@
+subject: austinelectricservices.com
+field: products
+expected:
+- name: All-in-One DIY Bundle (security)
+  evidence: pre-configured by our team before it ever leaves our facility—meaning zero guesswork and zero
+    downtime
+  strength: strong
+- name: Pro Package (security)
+  evidence: our certified professionals handle the entire installation process with precision and care
+  strength: strong
+- name: Pro Plus Package (security)
+  evidence: same quality equipment and professional installation as the Pro package, but with the added
+    benefit of an indoor camera
+  strength: strong
+- name: Pro Premium Package (security)
+  evidence: premium security package delivers the most comprehensive protection for your home or business
+  strength: strong
+- name: Pro Video Package (monitoring add-on)
+  evidence: Includes 4 cameras (indoor, outdoor, or doorbell) with 1,000 cloud-stored video clips
+  strength: moderate
+traps:
+- name: PowerG + 319MHz Smart Panel
+  kind: third_party
+  note: named third-party branded security hardware resold/installed as part of a package, not manufactured
+    by the subject
+- name: VDB750 HD Video Doorbell Camera
+  kind: third_party
+  note: named third-party camera model resold within the Pro Premium Package
+- name: V723X 1080P Outdoor Camera
+  kind: third_party
+  note: branded third-party camera hardware, not the subject's own manufactured product
+- name: V515 1080P Indoor Camera
+  kind: third_party
+  note: branded third-party camera hardware installed by Austin Integration

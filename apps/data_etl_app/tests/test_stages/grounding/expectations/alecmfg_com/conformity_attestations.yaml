@@ -1,0 +1,57 @@
+subject: alecmfg.com
+field: conformity_attestations
+expected:
+- name: IATF 16949:2016
+  evidence: Alec Manufacturing has officially obtained the IATF 16949:2016 certification, the most rigorous
+    ... standard in the automotive industry
+  strength: strong
+- name: ISO 13485:2016
+  evidence: 'Alec Model has obtained two prestigious certifications: ISO 13485:2016 for quality management
+    systems'
+  strength: strong
+- name: ISO 14001:2015
+  evidence: ISO 14001:2015 for environmental management systems
+  strength: strong
+- name: ASME-certified welders
+  evidence: Welded frames were fabricated by ASME-certified welders using proprietary jigs to control
+    deformation
+  strength: moderate
+traps:
+- name: ISO9001 (client requirement)
+  kind: client_work
+  note: '''inspection routines compatible with their CE and ISO9001 requirements'' — recurs across 3 case
+    studies as the client''s own protocol, never Alec''s own certificate'
+- name: EN 10204 3.1
+  kind: client_work
+  note: '''Full material certification per EN 10204 3.1 was required'' — a customer-specified mill-cert
+    standard, not Alec''s own attestation'
+- name: ISO 10993-5
+  kind: client_work
+  note: appears only in a 'Client Spec' table row (biocompatibility requirement), not claimed as Alec's
+    own
+- name: RoHS / REACH
+  kind: client_work
+  note: '''the customer required not only material certs ... but also REACH/RoHS declarations'' — a customer
+    documentation demand'
+- name: ISO 7599 AA10
+  kind: client_work
+  note: anodizing thickness standard in a 'Client Spec' table row, not an Alec certification
+- name: ASTM B221
+  kind: client_work
+  note: '''material certs per ASTM B221'' is the customer''s specified material standard for extrusion
+    stock'
+- name: ISO 7 (particle cleanliness)
+  kind: client_work
+  note: '''total particle count to comply with ISO 7 standard'' is the client''s medical-device cleanliness
+    requirement'
+- name: WPS/PQR
+  kind: doc_title
+  note: '''Documentation Required: Weld map, WPS/PQR ...'' — a document type the client demanded, not
+    a certification Alec holds'
+- name: D-U-N-S Number
+  kind: wrong_axis
+  note: a Dun & Bradstreet business identifier for supplier verification, not a quality/conformity standard
+- name: ISO 9001:2015 (85%/78%/75% adoption table)
+  kind: wrong_axis
+  note: cited only as an industry-adoption-rate statistic in the ISO13485/14001 article, not claimed for
+    Alec itself

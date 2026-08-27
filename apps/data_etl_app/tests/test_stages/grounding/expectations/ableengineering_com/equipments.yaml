@@ -1,0 +1,48 @@
+subject: ableengineering.com
+field: equipments
+expected:
+- name: Five-axis CNC mills
+  evidence: Able has several five-axis CNC mills, grinders and lathes.
+  strength: strong
+- name: CNC grinders
+  evidence: Able has several five-axis CNC mills, grinders and lathes.
+  strength: strong
+- name: CNC and manual lathes
+  evidence: Machining – Lathe (CNC and Manual), Grind (CNC and Manual), Mill (CNC and Manual).
+  strength: strong
+- name: Horizontal and vertical honing machines
+  evidence: as well as horizontal and vertical honing and a five-axis CNC gantry
+  strength: strong
+- name: Five-axis CNC gantry
+  evidence: and a five-axis CNC gantry
+  strength: strong
+- name: CNC shot peen equipment
+  evidence: Able has state-of-the-art CNC shot peen and manual capabilities.
+  strength: strong
+- name: Cold spray (additive manufacturing) system
+  evidence: Able's innovative, additive manufacturing capability for repairing aluminum and magnesium
+    components.
+  strength: moderate
+- name: Plating line (chrome/nickel/CAD)
+  evidence: Plating – Chrome, Nickel, CAD (in-house special process list).
+  strength: moderate
+- name: Machine-learning-controlled air compressors
+  evidence: achieved certification by installing a machine-learning system on air compressors to reduce
+    energy
+  strength: moderate
+traps:
+- name: Landing gear
+  kind: wrong_axis
+  note: Landing gear is a customer aircraft component Able repairs, exchanges, leases, or sells outright
+    — not equipment Able operates.
+- name: CFM56-7 / PW 4000 / AW139 (engine and aircraft models)
+  kind: wrong_axis
+  note: These are customer engines/aircraft serviced by Able, not equipment the subject owns.
+- name: Rotable exchange inventory
+  kind: wrong_axis
+  note: '''one of the world''s largest rotable exchange inventories'' is spare-parts stock for customer
+    exchange, not manufacturing equipment.'
+- name: Bearing / Bushing / Bolt (PMA parts)
+  kind: wrong_axis
+  note: Individual replacement parts the subject sells, not machines it owns or operates — the classic
+    products-as-equipment trap.

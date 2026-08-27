@@ -1,0 +1,13 @@
+subject: alecmfg.com
+field: industries
+eval_set_version: 1
+probes:
+- id: AL-P3
+  status: active
+  added: 2026-08-26
+  motivated_by: 194457 (SCR-2 killed real client sectors; IGR-M2 own-activity leak)
+  target: UAV/aerospace, rail (SNCF), semiconductor, industrial-automation client records
+  expectation: 'Client sectors from case studies must be written as sectors SERVED (provenance preserved);
+    Alec Model''s own activities (CNC machining, machine shop) must never be framed as served industries.
+
+    '

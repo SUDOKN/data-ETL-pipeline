@@ -1,0 +1,16 @@
+subject: acimachine.com
+field: material_caps
+expected: []
+traps:
+- name: Aluminum
+  kind: wrong_axis
+  note: '''Aluminum extrusion design'' describes a press-brake gauge''s own frame material (an OEM product
+    for sale), not material ACI processes'
+- name: Alloy Steel
+  kind: wrong_axis
+  note: '''built with alloy steel bed ways'' describes a lathe''s own construction (OEM spec sheet), not
+    material ACI works'
+- name: Cast Iron / Mild Steel
+  kind: wrong_axis
+  note: '''Capacity (Mild Steel)(in)'' / ''Capacity (Cast Iron)(in)'' are drill-press spec-filter fields
+    (what the for-sale machine can drill), not materials ACI processes'

@@ -1,0 +1,188 @@
+subject: ableengineering.com
+field: industries
+snapshot:
+  file: apps/data_etl_app/src/data_etl_app/knowledge/sample_scraped_texts/ableengineering.com.txt
+  sha256: ffc5c3234c4dff2387887d61903a00d5320905f296fcff4b731c3f8d76529eb9
+eval_set_version: 2
+expected_empty: false
+notes: 'Aviation MRO subject: sector signal is aviation/aerospace with military/government and airline segments. OEM names
+  (Boeing, Bell, Airbus, Leonardo, Sikorsky, Honeywell) are makes/platform facets, not industries. SECOND-PASS VERIFICATION
+  2026-08-26 (verify-agent-ableengineering): all 7 entries confirmed, all quotes verbatim. Two systemic flags: (a) ''rotor
+  wing''/''fixed wing'' are simultaneously the served segment (B) and the subject''s own service division in the repeated
+  nav label (O), and their ~75-occurrence counts are nav/facet inflation, not sector prose; (b) the acceptable form ''defense''
+  on 0004 leans on parent-company names. All 4 false friends checked and agreed: MRO (93 word-bounded, the subject''s own
+  service category), Green Aviation Business (belongs to conformity_attestations), ''Supply Chains'' (statute name only) and
+  Marketing (byline job title plus cookie boilerplate) are all correctly excluded.'
+entries:
+- id: ableengineering_com-industries-0001
+  name: Aviation
+  status: confirmed
+  acceptable_forms:
+  - aviation
+  - aviation industry
+  evidence:
+  - quote: Able also provides a parts exchange program and approved replacement parts for some of the biggest names in aviation.
+    approx_offset: 400
+  - quote: achieving excellence in the aviation industry
+    approx_offset: 84163
+  notes: 'the umbrella sector; the whole site is aircraft MRO | VERIFY 2026-08-26 (second pass): sector sense confirmed independently
+    in ''some of the biggest names in aviation'', ''achieving excellence in the aviation industry'' and ''a self-certification
+    process for aviation businesses''. Flag: 6 of the ~19 occurrences are the parent-org name ''Textron Aviation'', which
+    contains the bare form and would credit this entry if returned.'
+  provenance:
+  - action: added
+    by: seed-agent-ableengineering
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-ableengineering
+    date: '2026-08-26'
+- id: ableengineering_com-industries-0002
+  name: Rotor wing aircraft (helicopters)
+  status: confirmed
+  acceptable_forms:
+  - rotor wing
+  - rotor-wing
+  evidence:
+  - quote: A GLOBAL LEADER IN ROTOR WING OVERHAUL AND REPAIR.
+    approx_offset: 36280
+  - quote: Able Aerospace is an industry-leading provider of repair and overhaul for fixed and rotor wing customers around
+      the world.
+    approx_offset: 251
+  notes: 'application domain / customer segment (borderline B); operators of Airbus, Bell, Leonardo, MD, Sikorsky helicopters
+    | VERIFY 2026-08-26 (second pass): ''repair and overhaul for fixed and rotor wing customers around the world'' makes rotor-wing
+    operators a served segment (B). Flag: ~77 occurrences, overwhelmingly the repeated nav label and the parts/MRO facet headers,
+    where the phrase is the subject''s OWN service division (code O) rather than a sector - per-window recall on this entry
+    is close to trivially satisfiable.'
+  provenance:
+  - action: added
+    by: seed-agent-ableengineering
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-ableengineering
+    date: '2026-08-26'
+- id: ableengineering_com-industries-0003
+  name: Fixed wing aircraft
+  status: confirmed
+  acceptable_forms:
+  - fixed wing
+  - fixed-wing
+  evidence:
+  - quote: ABLE IS AN INDUSTRY LEADER IN FIXED WING REPAIRS.
+    approx_offset: 47069
+  - quote: Able Aerospace is an industry-leading provider of repair and overhaul for fixed and rotor wing customers around
+      the world.
+    approx_offset: 251
+  notes: 'application domain / customer segment (borderline B) | VERIFY 2026-08-26 (second pass): ''ABLE IS AN INDUSTRY LEADER
+    IN FIXED WING REPAIRS.'' plus the same customers sentence; served segment (B), same nav-label inflation as 0002. DEFECT:
+    the second evidence quote (''...repair and overhaul for fixed and rotor wing customers...'') does not contain ''fixed
+    wing'' or ''fixed-wing'' contiguously, so it fails the schema''s contain-a-form rule; quote 1 (and the homepage ''FIXED-WING''
+    card labels) carries the entry.'
+  provenance:
+  - action: added
+    by: seed-agent-ableengineering
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-ableengineering
+    date: '2026-08-26'
+- id: ableengineering_com-industries-0004
+  name: Military & government aviation
+  status: confirmed
+  acceptable_forms:
+  - military
+  - defense
+  - government aircraft fleets
+  - Military & Foreign Government
+  evidence:
+  - quote: Able has a dedicated sales and customer service team to support our military clients
+    approx_offset: 50526
+  - quote: a highly credible MRO for the Departments of Defense, Homeland Security and Allied Nations
+    approx_offset: 51242
+  - quote: Maintaining government aircraft fleets requires expert knowledge and understanding.
+    approx_offset: 50442
+  notes: 'served branches named: U.S. Air Force, U.S. Army, U.S. Navy, U.S. Coast Guard, foreign-allied militaries, Homeland
+    Security; branch names are client organizations, not separate sectors | VERIFY 2026-08-26 (second pass): the /military/
+    page is unambiguous - ''our military clients'', ''Maintaining government aircraft fleets'', prime and sub-contracts for
+    the U.S. Air Force, Army, Navy and Coast Guard. Flag: the acceptable form ''defense'' is over-broad - 3 of its 4 occurrences
+    are the parent-company names ''Textron Aviation Defense'' and ''Defense & Special Missions''; only ''Departments of Defense''
+    is customer-side. ''Military & Foreign Government'' was located and is a sales-territory label in the contact-page rep
+    list (evidence_kind nav/contact block).'
+  provenance:
+  - action: added
+    by: seed-agent-ableengineering
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-ableengineering
+    date: '2026-08-26'
+- id: ableengineering_com-industries-0005
+  name: Airlines
+  status: confirmed
+  acceptable_forms:
+  - airlines
+  - narrow body airlines
+  evidence:
+  - quote: from narrow body airlines to business jets and turboprops
+    approx_offset: 41191
+  actor: client
+  notes: 'customer segment on the landing-gear page | VERIFY 2026-08-26 (second pass): ''from narrow body airlines to business
+    jets and turboprops'' on the landing-gear page; single occurrence, served customer segment. Note: the actor: client flag
+    is redundant for industries (a served sector is by definition the customer''s) but harmless, and it is not applied to
+    0001-0004 which are the same kind of claim.'
+  provenance:
+  - action: added
+    by: seed-agent-ableengineering
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-ableengineering
+    date: '2026-08-26'
+- id: ableengineering_com-industries-0006
+  name: Business jets
+  status: confirmed
+  acceptable_forms:
+  - business jets
+  evidence:
+  - quote: from narrow body airlines to business jets and turboprops
+    approx_offset: 41191
+  actor: client
+  notes: 'customer aircraft segment | VERIFY 2026-08-26 (second pass): same landing-gear sentence; aircraft-category customer
+    segment (B), single occurrence.'
+  provenance:
+  - action: added
+    by: seed-agent-ableengineering
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-ableengineering
+    date: '2026-08-26'
+- id: ableengineering_com-industries-0007
+  name: Turboprops
+  status: confirmed
+  acceptable_forms:
+  - turboprops
+  evidence:
+  - quote: from narrow body airlines to business jets and turboprops
+    approx_offset: 41191
+  actor: client
+  notes: 'customer aircraft segment | VERIFY 2026-08-26 (second pass): same landing-gear sentence; aircraft-category customer
+    segment (B), single occurrence.'
+  provenance:
+  - action: added
+    by: seed-agent-ableengineering
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-ableengineering
+    date: '2026-08-26'
+false_friends:
+- form: MRO
+  reason: the subject's OWN service category (maintenance, repair and overhaul), taxonomy code O when presented as an industry
+- form: Green Aviation Business
+  reason: NATA certification title, not a sector served (belongs to conformity_attestations)
+- form: Supply Chains
+  reason: occurs only inside the statute name 'California Transparency in Supply Chains Act' in footer boilerplate
+- form: Marketing
+  reason: occurs only in the byline job title 'Marketing Manager' and cookie-consent boilerplate 'our marketing efforts'

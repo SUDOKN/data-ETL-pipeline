@@ -1,0 +1,61 @@
+subject: anchor-mfg.com
+field: equipments
+expected:
+- name: Metal Stamping Presses (2000 ton to 110 ton, up to 240in. bed size)
+  evidence: Over 60 presses / 2000 ton to 110 ton / Up to 240in. (6m) Bed Size
+  strength: strong
+- name: Coil Fed Servo Transfer System
+  evidence: Coil Fed Servo Transfer System (Metal Stamping list item)
+  strength: strong
+- name: Large Press Tandem Line
+  evidence: Large Press Tandem Line (Metal Stamping list item)
+  strength: strong
+- name: Flexible Weld Cells (40+)
+  evidence: Over 40 Flexible Weld Cells / Interchangeable / Quick Change
+  strength: strong
+- name: Robotic Welding (Spot & MIG)
+  evidence: Automated Error Proofing Systems / Robotic Spot & Mig Welding
+  strength: strong
+- name: CNC Multi-Axis Press Brakes
+  evidence: CNC Multi-Axis Press Brakes (Fabricating list item)
+  strength: strong
+- name: CNC 7 Axis Press Brakes
+  evidence: CNC 7 Axis Press Brakes (Fabricating list item)
+  strength: strong
+- name: Mechanical Press Brake with Back Gage
+  evidence: Mechanical Press Brake with Back Gage and Capabilities up to 10’
+  strength: strong
+- name: 4,000 Watt CNC Laser (48in x 96in)
+  evidence: 4,000 Watt CNC Laser with 48” x 96” Capabilities up to .625” Thickness
+  strength: strong
+- name: Laser – Turret Press
+  evidence: Laser – Turret Press (Fabricating list item)
+  strength: strong
+- name: Milling Machines / Vertical Mills
+  evidence: Milling Machines / Vertical Mills (Machining list item)
+  strength: strong
+- name: CNC Machining Centers
+  evidence: CNC Machining (Machining heading, machine implied)
+  strength: moderate
+- name: Automated Powder Spraying System
+  evidence: Automated Powder Spraying (Powder Coating list item)
+  strength: strong
+- name: Seven Stage Iron Phosphate Wash
+  evidence: Seven Stage Iron Phosphate Wash (Powder Coating list item)
+  strength: strong
+- name: Material Shear
+  evidence: Material Shear (Fabricating list item)
+  strength: strong
+traps:
+- name: Special Tooling (Purchaser-owned, Seller as Agent-in-Possession)
+  kind: wrong_actor
+  note: tooling paid for by Purchaser remains Purchaser's property with Seller merely operating it as
+    'Agent-in-Possession', not Anchor-owned equipment
+- name: Purchaser's equipment (observed during installation/servicing at Purchaser facilities)
+  kind: wrong_actor
+  note: 'confidentiality clause: ''Purchaser processes, procedures and equipment observed by Seller when
+    in Purchaser facilities'' — belongs to the customer, not Anchor'
+- name: equipment redundancy
+  kind: marketing_idiom
+  note: '''We take pride in our equipment redundancy to support sudden market requirements'' — generic
+    capacity claim, not a named machine'

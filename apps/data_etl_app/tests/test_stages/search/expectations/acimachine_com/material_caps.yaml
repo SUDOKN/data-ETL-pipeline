@@ -1,0 +1,72 @@
+subject: acimachine.com
+field: material_caps
+snapshot:
+  file: apps/data_etl_app/src/data_etl_app/knowledge/sample_scraped_texts/acimachine.com.txt
+  sha256: "05596bd29027f7aed570e5ace0df4d9efab7349f4420dba38ab96570e265d12b"
+eval_set_version: 2
+expected_empty: true
+notes: >-
+  The subject is a dealer: it works no material. Every material mention in
+  3.9MB is (a) construction of a resold machine (cast iron base, Meehanite
+  frame, stainless blades), (b) a spec-capacity rating ('Capacity (Mild
+  Steel)(in)'), or (c) a cuttable-materials list in third-party marketing
+  ('steel, aluminum, brass, copper, lead, plastic and zinc'). Seeded with
+  zero entries per the scale-stress role — these are the known false-
+  positive trap. A second pass could promote cuttable-material lists to
+  reseller_inventory entries under strict recall-first; the trap catalog
+  below is the more useful signal for this subject. VERIFY 2026-08-26
+  (second independent pass): expected_empty=true AGREED. Independent greps
+  reproduce the seed's finding - every material occurrence is resold-machine
+  construction ('Meehanite processed cast iron frame'), a spec-capacity
+  rating ('Capacity (Mild Steel)(in)'), or an OEM cuttable-materials list
+  ('steel, aluminum, brass, copper, lead, plastic and zinc', JET slitting
+  shears, lines 23113/23120/175518). ACI works no material. The 'Lead' entry
+  is well-founded: 'lead screw' occurs 5 times as a machine component.
+  Recording the same recall-first tension the seed noted, because it is now
+  a live inconsistency: process_caps kept ONE representative
+  reseller_inventory probe (entry 0010, 'precision sawing') for exactly this
+  pattern of third-party marketing prose, so leaving material_caps and
+  industries at zero while process_caps carries a probe means the three
+  files score the same class of text three different ways. Whichever way the
+  user rules, all three should settle together.
+entries: []
+false_friends:
+  - form: "mild steel"
+    reason: >-
+      spec-capacity rating of resold machines: label 'Capacity (Mild
+      Steel)(in)' and JET marketing 'precision shearing of mild steel up to 16
+      gauge' — machine capacity, not an ACI material capability
+  - form: "aluminum"
+    reason: >-
+      machine construction ('Heavy duty cross-ribbed cast aluminum frame' x12)
+      and cuttable-material lists in third-party marketing; 34 lines total,
+      none an ACI capability
+  - form: "stainless steel"
+    reason: >-
+      components of resold machines: 'hardened and tempered stainless steel
+      blades', 'Separate Stainless Steel Tank'
+  - form: "cast iron"
+    reason: >-
+      machine bases/frames ('heavy-duty cast iron base', 'Meehanite processed
+      cast iron frame'); ~90 lines, all resold-machine construction
+  - form: "carbon steel"
+    reason: "machine roll material ('polished carbon steel' slip-roll rolls)"
+  - form: "Meehanite"
+    reason: >-
+      cast-iron grade of resold machine structures (59 lines, all in listing
+      descriptions); reads like an alloy designation but is machine
+      construction, not a worked material
+  - form: "Lead"
+    reason: >-
+      polyseme and known substring trap: blog prose 'this new lead' (sales
+      lead), machine components 'lead screw' (5 lines), and one genuine
+      material sense inside a resold shear's cuttable list 'steel, aluminum,
+      brass, copper, lead, plastic and zinc'
+  - form: "steel"
+    reason: >-
+      bare form is generic/machine construction ('rigid steel construction');
+      no worked-material sense anywhere
+  - form: "ferrous"
+    reason: >-
+      bandsaw cutting-capacity phrasing 'precision sawing of ferrous and
+      non-ferrous materials' — the machine's rating

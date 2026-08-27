@@ -1,0 +1,50 @@
+# Shared configuration for the search-stage eval's mechanical battery.
+# Judged-metric policy (codes, agent protocol) lives in TAXONOMY.md/RUNBOOK.md.
+
+thresholds:
+  # Gate thresholds — RECALL-ONLY gating (user decision 2026-08-26): the
+  # verdict turns RED on confirmed-recall misses, fabrication, and the
+  # fixed-flaw tripwires. Precision-family numbers are tracked, never gated.
+  # Baseline for not-in-window: ~1% (runs 061410/195947 after the fixes).
+  not_in_window_rate_max: 0.02
+
+prices:
+  # USD per million tokens, gpt-4.1 (matches the evidence folders' estimates).
+  input_per_million: 2.00
+  output_per_million: 8.00
+
+# Baselines already on the record before this harness existed (superseded
+# bounds — INCOMPARABLE with current fingerprints; kept here as the numbers
+# the harness was born from). Sources: pipeline_v3_evidence/, PIPELINE_V3_PLAN.md.
+born_from_baselines:
+  window_consistency_q3_overall: 0.74           # run 223715
+  products_precision_valid_plus_borderline: 0.37 # run 223715, 422 forms judged
+  products_precision_alecmfg: 0.10
+  products_precision_steelcraft: 0.70
+  products_recall_hand_inventory: 0.94           # 79/84
+  first_search_verbatim_exact: 0.96              # run 195947
+  not_in_window_rate: 0.01
+  repetition_loops: 0
+  line_break_crossers: 0
+  overlap_duplicates: 0
+  zero_hit_sent_forms: 0
+
+# Search's OWN A/A noise floor — measured 2026-08-26 (first time ever), probe
+# over the 96 stored search windows of run 20260825T194457: each stored BODY
+# (byte-identical, original nonce, temp 0, seed 12345, gpt-4.1) sent twice
+# fresh, phrase sets diffed. Full results:
+# history/runs/20260825T194457/raw/aa_probe_results.json (gitignored raw);
+# summary in history/runs/20260825T194457/AA_PROBE_NOTE.md.
+aa_noise_floor:
+  window_set_identity_fresh_pair: 0.284   # 27/95 windows return the SAME set
+  window_set_identity_vs_stored: 0.26     # temporal drift included
+  mean_per_window_jaccard_exact: 0.769
+  mean_per_window_jaccard_casefold: 0.791
+  mean_abs_size_difference_phrases: 3.49
+  per_field_mean_jaccard:
+    conformity_attestations: 0.937
+    material_caps: 0.831
+    industries: 0.751
+    process_caps: 0.732
+    products: 0.683
+    equipments: 0.678

@@ -1,0 +1,256 @@
+subject: austinelectricservices.com
+field: products
+snapshot:
+  file: apps/data_etl_app/src/data_etl_app/knowledge/sample_scraped_texts/austinelectricservices.com.txt
+  sha256: "26d3b2d8c2d57c0219a2c12e0727aeca1bbf2da11f0d1142bae3a58adaabd118"
+eval_set_version: 2
+expected_empty: false
+notes: >-
+  This file also serves contract_products: the contract_products expectation
+  for this subject IS empty - nothing in the corpus is manufactured, under
+  contract or otherwise. The products entries below all come from the ONE
+  designation-rich page in the corpus, /security-systems/, where sibling
+  division Austin Integration offers resold third-party security devices;
+  per the recall-first contract they are must-find product designations
+  (code B: third-party part offered, actor reseller_inventory). Everything
+  on the other 99 pages should yield nothing, so this file is simultaneously
+  a recall probe (one page) and a junk-minting probe (the rest). Judgment
+  line drawn here: the shipped DIY hardware bundle and the named devices are
+  entries; the professionally-installed "Pro" tiers and monthly monitoring
+  add-ons (Water Management, Connected Car, Pro Video Package, Video
+  Expansion, Doorbell with Analytics) are service-plan names, kept as false
+  friends. VERIFY 2026-08-26 (second independent pass): expected_empty=false
+  AGREED and all 9 entries confirmed; /security-systems/ (line 1515) was
+  read in full and every device designation verified in context. ON THE
+  REQUESTED OUT-OF-FIELD SCRUTINY: none of the nine is out of field, and I
+  would resist a dispute on any of them. TAXONOMY.md's products table makes
+  code B explicitly cover 'third-party part offered', and
+  EXPECTATIONS_SCHEMA.md's recall-first rule admits an entity the text names
+  regardless of actor - so resold Austin Integration hardware is must-find
+  with a reseller_inventory flag, exactly as acimachine's resold machines
+  are. The five model-numbered devices (VDB750, V723X, V515, PowerG panel,
+  Flex IO) are unarguable; the three category-named sensors and the DIY
+  bundle are B, with the weakest form flagged in 0008. The seed's line
+  between shipped/named devices (entries) and service-plan tiers (false
+  friends: Pro / Pro Plus / Pro Premium Package, Water Management, Connected
+  Car, Pro Video Package, Video Expansion, Doorbell with Analytics) is drawn
+  correctly and survives re-reading - those name subscriptions and
+  installation service levels, not goods. ONE GAP FOUND, not filled per the
+  no-add rule: the Security Add-On Features list on the same page names
+  Glass Break Detectors, Panic Buttons (Wall or Pendant), Extra Door/Window
+  Contacts, Smoke & CO Detectors, Flood Sensors and Remote Key Fobs, which
+  are the same class of device as entries 0007/0008 but appear in neither
+  entries nor false_friends, so a run returning them currently scores as
+  neither recall nor junk. ('Smart Locks' from the automation list IS
+  covered.)
+entries:
+  - id: austinelectricservices_com-products-0001
+    name: "Smart Security Hub (319MHz)"
+    status: confirmed
+    acceptable_forms:
+      - "Smart Security Hub (319MHz)"
+      - "319MHz Smart Hub"
+      - "Smart Security Hub"
+    evidence:
+      - quote: "Smart Security Hub (319MHz): The brain of your system"
+        approx_offset: 54328
+      - quote: "319MHz Smart Hub: The command center"
+        approx_offset: 55186
+    actor: reseller_inventory
+    notes: "Security panel/hub sold in every package by sibling division Austin Integration; third-party hardware."
+    provenance:
+      - {action: added, by: "seed-agent-austinelectric", date: "2026-08-26", source: corpus-seed}
+      - {action: verified, by: "verify-agent-acimachine-austin", date: "2026-08-26"}
+  - id: austinelectricservices_com-products-0002
+    name: "PowerG + 319MHz Smart Panel"
+    status: confirmed
+    acceptable_forms:
+      - "PowerG + 319MHz Smart Panel"
+      - "PowerG"
+      - "Smart Panel"
+    evidence:
+      - quote: "PowerG + 319MHz Smart Panel: Our top-of-the line security panel"
+        approx_offset: 56797
+    actor: reseller_inventory
+    notes: "Premium-package security panel; PowerG is a third-party wireless technology brand."
+    provenance:
+      - {action: added, by: "seed-agent-austinelectric", date: "2026-08-26", source: corpus-seed}
+      - {action: verified, by: "verify-agent-acimachine-austin", date: "2026-08-26"}
+  - id: austinelectricservices_com-products-0003
+    name: "VDB750 HD Video Doorbell Camera"
+    status: confirmed
+    acceptable_forms:
+      - "VDB750 HD Video Doorbell Camera"
+      - "VDB750"
+    evidence:
+      - quote: "VDB750 HD Video Doorbell Camera: Lets you see and communicate with visitors"
+        approx_offset: 57506
+    actor: reseller_inventory
+    notes: "Model-numbered third-party device in the Pro Premium package."
+    provenance:
+      - {action: added, by: "seed-agent-austinelectric", date: "2026-08-26", source: corpus-seed}
+      - {action: verified, by: "verify-agent-acimachine-austin", date: "2026-08-26"}
+  - id: austinelectricservices_com-products-0004
+    name: "V723X 1080P Outdoor Camera"
+    status: confirmed
+    acceptable_forms:
+      - "V723X 1080P Outdoor Camera with High Dynamic Range"
+      - "V723X"
+    evidence:
+      - quote: "V723X 1080P Outdoor Camera with High Dynamic Range"
+        approx_offset: 57635
+    actor: reseller_inventory
+    notes: "Model-numbered third-party device in the Pro Premium package."
+    provenance:
+      - {action: added, by: "seed-agent-austinelectric", date: "2026-08-26", source: corpus-seed}
+      - {action: verified, by: "verify-agent-acimachine-austin", date: "2026-08-26"}
+  - id: austinelectricservices_com-products-0005
+    name: "V515 1080P Indoor Camera"
+    status: confirmed
+    acceptable_forms:
+      - "V515 1080P Indoor Camera"
+      - "V515"
+    evidence:
+      - quote: "V515 1080P Indoor Camera: Features night vision"
+        approx_offset: 57782
+    actor: reseller_inventory
+    notes: "Model-numbered third-party device in the Pro Premium package."
+    provenance:
+      - {action: added, by: "seed-agent-austinelectric", date: "2026-08-26", source: corpus-seed}
+      - {action: verified, by: "verify-agent-acimachine-austin", date: "2026-08-26"}
+  - id: austinelectricservices_com-products-0006
+    name: "Flex IO Sensor"
+    status: confirmed
+    acceptable_forms:
+      - "Flex IO Sensor"
+      - "Flex IO"
+    evidence:
+      - quote: "Flex IO Sensor"
+        approx_offset: 60072
+    actor: reseller_inventory
+    notes: >-
+      Named device behind a $5/month add-on ("A battery-powered, long-range
+      sensor designed for gates, sheds, trailers"); the device designation, not
+      the subscription, is the entity.
+    provenance:
+      - {action: added, by: "seed-agent-austinelectric", date: "2026-08-26", source: corpus-seed}
+      - {action: verified, by: "verify-agent-acimachine-austin", date: "2026-08-26"}
+  - id: austinelectricservices_com-products-0007
+    name: "Wireless PIR Motion Sensor"
+    status: confirmed
+    acceptable_forms:
+      - "Wireless PIR Motion Sensor"
+      - "Motion Sensor (Wireless PIR)"
+      - "Wireless Motion Sensor"
+      - "PIR Motion Sensor"
+    evidence:
+      - quote: "Motion Sensor (Wireless PIR): Detects movement instantly"
+        approx_offset: 54469
+    actor: reseller_inventory
+    notes: "Borderline-generic category designation, but a distinct package line item across all packages (B)."
+    provenance:
+      - {action: added, by: "seed-agent-austinelectric", date: "2026-08-26", source: corpus-seed}
+      - {action: verified, by: "verify-agent-acimachine-austin", date: "2026-08-26"}
+  - id: austinelectricservices_com-products-0008
+    name: "Wireless Door & Window Sensors"
+    status: confirmed
+    acceptable_forms:
+      - "Wireless Door & Window Sensors"
+      - "Slim Door/Window Sensors"
+      - "Compact Door & Window Sensors"
+      - "Mini Wireless Door & Window Sensors"
+      - "Door/Window Sensors"
+    evidence:
+      - quote: "Slim Door/Window Sensors: Compact and discreet"
+        approx_offset: 54599
+      - quote: "Mini Wireless Door & Window Sensors"
+        approx_offset: 56116
+    actor: reseller_inventory
+    notes: >-
+      Borderline-generic category designation appearing under three package-
+      specific variant names (B). VERIFY 2026-08-26 CONFIRMED as a distinct
+      package line item, read in context on /security-systems/. FORM FLAG:
+      'Door/Window Sensors' is the most generic acceptable form in either
+      subject I verified and sits right on the B/G line - it is a bare
+      category noun. The three package-specific variants (Slim / Compact /
+      Mini Wireless) carry the designation content; consider dropping the
+      bare form.
+    provenance:
+      - {action: added, by: "seed-agent-austinelectric", date: "2026-08-26", source: corpus-seed}
+      - {action: verified, by: "verify-agent-acimachine-austin", date: "2026-08-26"}
+  - id: austinelectricservices_com-products-0009
+    name: "All-in-One DIY Bundle"
+    status: confirmed
+    acceptable_forms:
+      - "All-in-One DIY Bundle"
+      - "DIY Bundle"
+    evidence:
+      - quote: "All-in-One DIY Bundle"
+        approx_offset: 54059
+      - quote: "pre-configured by our team before it ever leaves our facility"
+        approx_offset: 54106
+    actor: reseller_inventory
+    notes: >-
+      The one bundle that is a shipped good ("pre-configured... before it
+      ever leaves our facility") rather than an installed service - which is
+      why it is an entry while the Pro tiers are false friends (B:
+      family/bundle). VERIFY 2026-08-26 CONFIRMED: re-read in context, the
+      bundle is unambiguously framed as a shipped good ('pre-configured by
+      our team before it ever leaves our facility... From the moment you
+      unbox it'), which is what separates it from the installed Pro tiers.
+      SCHEMA FLAG: the second evidence quote carries NO acceptable form,
+      contrary to the schema's rule that an evidence quote must contain one.
+      It is verbatim-present and harmless in practice (same page, ~50 bytes
+      after quote 1, so it widens no window), but it should be demoted to
+      prose in this note or given a form. The only such defect found in
+      either subject.
+    provenance:
+      - {action: added, by: "seed-agent-austinelectric", date: "2026-08-26", source: corpus-seed}
+      - {action: verified, by: "verify-agent-acimachine-austin", date: "2026-08-26"}
+false_friends:
+  - form: "products"
+    reason: >-
+      Generic umbrella claim "Austin companies provides products for projects
+      of all sizes" (home page) - no designation; the group installs, it does
+      not make products.
+  - form: "productos"
+    reason: "Spanish generic ('ofrece productos para proyectos de todos los tamaños', 'productos ecológicos')."
+  - form: "environmentally friendly products"
+    reason: "HVAC How We Do It marketing ('Our complete package includes environmentally friendly products'); generic."
+  - form: "material packs"
+    reason: >-
+      "We build all of our own material packs" - internal kitting output for
+      their own crews, not a sold product.
+  - form: "mechanical packages"
+    reason: "'logistically bundled mechanical packages' - HVAC install logistics bundles, not goods."
+  - form: "Pro Package"
+    reason: >-
+      Professionally-installed security service tier, not a shipped good
+      (judgment line documented in notes); same for its siblings below.
+  - form: "Pro Plus Package"
+    reason: "Installed security service tier."
+  - form: "Pro Premium Package"
+    reason: "Installed security service tier."
+  - form: "Water Management"
+    reason: "$5.00/month monitoring subscription plan name, not a product designation."
+  - form: "Connected Car"
+    reason: "$7.00/month vehicle-tracking subscription plan name."
+  - form: "Pro Video Package"
+    reason: "$9.00/month camera-monitoring subscription plan name."
+  - form: "Smart Locks"
+    reason: >-
+      Add-on category label in the smart-home marketing list ('Smart Locks –
+      Lock or unlock doors remotely'); generic category, like Glass Break
+      Detectors and Smoke & CO Detectors around it.
+  - form: "smart products"
+    reason: >-
+      From low-voltage 'smart' product installation services - generic
+      category inside a service description.
+  - form: "post-tensioned concrete foundations"
+    reason: >-
+      Site-built construction output of sibling Austin Concrete, not a
+      manufactured product designation (P/service).
+  - form: "wire"
+    reason: "Installed commodity and verb ('wire 1000 homes a year'); not a product of the subject."
+provenance:
+  - {action: added, by: "seed-agent-austinelectric", date: "2026-08-26", source: corpus-seed}

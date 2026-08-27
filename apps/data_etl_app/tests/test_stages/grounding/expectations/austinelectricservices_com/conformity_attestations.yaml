@@ -1,0 +1,20 @@
+subject: austinelectricservices.com
+field: conformity_attestations
+expected:
+- name: 'Arizona ROC Contractor License (Commercial #341516 / Residential #271055)'
+  evidence: ROC# 341516 (Commercial) ROC# 271055 (Residential)
+  strength: strong
+- name: Post-Tensioning Institute Field Certification Program
+  evidence: 'ES: "Los técnicos están certificados por el Programa de Certificación de Campo del Post-Tensioning
+    Institute" (technicians are certified by the Post-Tensioning Institute Field Certification Program)'
+  strength: moderate
+traps:
+- name: EPA 608 Certification
+  kind: wrong_actor
+  note: 'required of the job CANDIDATE, not claimed as the company''s own credential: ''Candidate must
+    EPA 608 certification and be willing to attend regular trainings.'' Appears in both HVAC job listings
+    and their Spanish mirrors.'
+- name: Energy Star Certified Systems
+  kind: third_party
+  note: '''Energy Efficient/Energy Star Certified Systems'' — the certification belongs to the installed
+    HVAC equipment, not to Austin Companies itself'

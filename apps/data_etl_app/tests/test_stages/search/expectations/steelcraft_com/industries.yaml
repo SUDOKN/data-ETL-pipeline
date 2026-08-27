@@ -1,0 +1,389 @@
+subject: steelcraft.com
+field: industries
+snapshot:
+  file: apps/data_etl_app/src/data_etl_app/knowledge/sample_scraped_texts/steelcraft.com.txt
+  sha256: c10c1a3e4a24ade49fc7af157e8eb1f8975a371e7ae5e3dc081172790e6728b0
+eval_set_version: 2
+expected_empty: false
+notes: 'Application-framed corpus: the institutional/commercial/industrial triple is the backbone designation (repeated
+  on landing pages), plus application segments from Typical-applications blocks. Judgment calls: (1) the sterile-environments
+  sentence (hospitals, labs, pharmaceutical, food) is the only explicit ''Industries...'' sentence and seeds three
+  entries; (2) windstorm GEOGRAPHY (tornado alley, hurricane zones, coastal regions) is judged NOT a served-industry
+  designation - false friends; (3) residential shelters kept as a borderline segment entry; (4) construction is
+  deliberately in NEITHER list - defensible B either way. VERIFICATION PASS 2026-08-26 (verify-agent-steelcraft,
+  second independent read): all 16 entries confirmed; 0 disputed; 0 quote failures (all evidence byte-exact verbatim).
+  Agreed with all four of the seed''s judgment calls, including keeping windstorm GEOGRAPHY out (tornado alley /
+  hurricane zones / coastal regions are regions, not sectors) and leaving ''construction'' out of both lists. FALSE
+  FRIENDS: agreed as written - I re-read each in context and Defense (''tough defense against harsh weather''),
+  Insurance (only inside ''Texas Department of Insurance''), Energy (only inside LEED''s expansion and ''energy
+  cost savings''), Airports (''near airports and highways'') and Manufacturing (own activity, code O) all hold.
+  OVER-BROAD FORMS are this file''s real risk, flagged per entry: ''commercial'' (56 occurrences, nearly all adjectival),
+  ''industrial'', ''institutional'', ''education'' (credited by ''Continuing Education''), ''offices'' (credited
+  by ''ADMINISTRATIVE OFFICES''), ''Retail'' (credited by privacy-boilerplate ''retail kiosks''/''retailers''),
+  and bare ''food''.'
+entries:
+- id: steelcraft_com-industries-0001
+  name: Institutional
+  status: confirmed
+  acceptable_forms:
+  - institutional
+  evidence:
+  - quote: Designed for institutional, commercial and industrial applications Steelcraft provides a full line of
+      hollow metal steel doors
+    approx_offset: 6151
+  - quote: Steelcraft’s products are designed for institutional, commercial and industrial markets for new and retrofit
+      construction needs.
+    approx_offset: 121947
+  notes: 'one of the three market designations repeated on doors/frames landing pages and the main-plant page |
+    VERIFY 2026-08-26: agreed - ''institutional, commercial and industrial markets'' is an explicit served-market
+    sentence. FORM FLAG: bare ''institutional'' is credited by containment from the recurring product prose ''commercial
+    and institutional buildings'', so a products-field return can satisfy this industries entry.'
+  provenance:
+  - action: added
+    by: seed-agent-steelcraft
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-steelcraft
+    date: '2026-08-26'
+- id: steelcraft_com-industries-0002
+  name: Commercial
+  status: confirmed
+  acceptable_forms:
+  - commercial
+  evidence:
+  - quote: Designed for institutional, commercial and industrial applications Steelcraft provides a full line of
+      hollow metal steel doors
+    approx_offset: 6151
+  notes: 'core served-market designation; also appears as building types (commercial buildings in hurricane zones)
+    | VERIFY 2026-08-26: agreed on membership. STRONGEST FORM FLAG IN THIS FILE: ''commercial'' occurs 56x in the
+    corpus, overwhelmingly as an adjective on buildings/doors (''commercial quality full flush steel doors'', ''standard
+    commercial steel doors and frames'', ''commercial and institutional buildings''). Under containment matching
+    almost any products- or conformity-field return credits this entry - treat a hit here as free recall unless
+    the judged pass confirms an industry sense.'
+  provenance:
+  - action: added
+    by: seed-agent-steelcraft
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-steelcraft
+    date: '2026-08-26'
+- id: steelcraft_com-industries-0003
+  name: Industrial
+  status: confirmed
+  acceptable_forms:
+  - industrial
+  evidence:
+  - quote: Designed for institutional, commercial and industrial applications Steelcraft provides a full line of
+      hollow metal steel doors
+    approx_offset: 6151
+  notes: 'core served-market designation | VERIFY 2026-08-26: agreed. FORM FLAG: bare ''industrial'' is credited
+    by containment from ''commercial and industrial buildings'' product prose - same free-recall caveat as ''commercial''.'
+  provenance:
+  - action: added
+    by: seed-agent-steelcraft
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-steelcraft
+    date: '2026-08-26'
+- id: steelcraft_com-industries-0004
+  name: Healthcare
+  status: confirmed
+  acceptable_forms:
+  - healthcare
+  - Healthcare institutions
+  - hospitals
+  - nursing homes
+  evidence:
+  - quote: Healthcare institutions have special requirements when creating a safe, secure and comfortable environments
+      for patients, physicians, staff and visitors.
+    approx_offset: 195227
+  - quote: ideal for exterior openings in schools, hospitals, nursing homes, apartment buildings, dormitories and
+      more
+    approx_offset: 128641
+  notes: dedicated application page + product-page application lists; nursing homes folded in as a healthcare/senior-care
+    variant
+  provenance:
+  - action: added
+    by: seed-agent-steelcraft
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-steelcraft
+    date: '2026-08-26'
+- id: steelcraft_com-industries-0005
+  name: Education (K-12 and higher education)
+  status: confirmed
+  acceptable_forms:
+  - education
+  - K-12
+  - K12
+  - schools
+  - higher education
+  - educational facilities
+  - university
+  - dormitories
+  evidence:
+  - quote: commonly new school gymnasiums constructed as ICC500 compliant tornado shelters for K-12 and higher education
+    approx_offset: 36029
+  notes: 'schools/gymnasiums/dormitories/university facilities recur across tornado and GRAINTECH pages | VERIFY
+    2026-08-26: agreed. FORM FLAG: bare ''education'' is credited by containment from ''Steelcraft Product Training
+    Continuing Education'' (a CEU offering, 2x) and from the privacy-boilerplate demographic list (''industry, income,
+    education, employment status'') - both unrelated to a served sector.'
+  provenance:
+  - action: added
+    by: seed-agent-steelcraft
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-steelcraft
+    date: '2026-08-26'
+- id: steelcraft_com-industries-0006
+  name: Hospitality (hotels, motels, restaurants)
+  status: confirmed
+  acceptable_forms:
+  - hospitality
+  - hotels
+  - motel
+  - restaurants
+  evidence:
+  - quote: Include the INPACTTM Series in your healthcare, hospitality, multi-family, office, or educational facilities
+    approx_offset: 105951
+  - quote: Economy hotel and motel unit entrances
+    approx_offset: 115289
+  notes: application-framed segment
+  provenance:
+  - action: added
+    by: seed-agent-steelcraft
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-steelcraft
+    date: '2026-08-26'
+- id: steelcraft_com-industries-0007
+  name: Multifamily housing
+  status: confirmed
+  acceptable_forms:
+  - multi-family
+  - multifamilies
+  - multifamily
+  - apartment buildings
+  - apartments
+  evidence:
+  - quote: interior passages in hotels, offices and restaurants, multifamilies and apartments, hospitals, schools
+      and more
+    approx_offset: 45029
+  notes: application-framed segment (B); several spellings in-text
+  provenance:
+  - action: added
+    by: seed-agent-steelcraft
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-steelcraft
+    date: '2026-08-26'
+- id: steelcraft_com-industries-0008
+  name: Offices
+  status: confirmed
+  acceptable_forms:
+  - offices
+  - office buildings
+  evidence:
+  - quote: interior passages in hotels, offices and restaurants, multifamilies and apartments, hospitals, schools
+      and more
+    approx_offset: 45029
+  notes: 'segment (B); bare ''office'' deliberately not a form - Sales Office / Administrative Offices boilerplate
+    would over-credit | VERIFY 2026-08-26: agreed. FORM FLAG: the seed excluded bare ''office'' but plural ''offices''
+    is still credited by containment from the ''ADMINISTRATIVE OFFICES'' contact block.'
+  provenance:
+  - action: added
+    by: seed-agent-steelcraft
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-steelcraft
+    date: '2026-08-26'
+- id: steelcraft_com-industries-0009
+  name: Government
+  status: confirmed
+  acceptable_forms:
+  - government buildings
+  evidence:
+  - quote: buildings where sound control is critical, such as meeting rooms, hotels, government buildings
+    approx_offset: 166927
+  notes: named once on the STC application page (B customer segment)
+  provenance:
+  - action: added
+    by: seed-agent-steelcraft
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-steelcraft
+    date: '2026-08-26'
+- id: steelcraft_com-industries-0010
+  name: Detention and behavioral correction facilities
+  status: confirmed
+  acceptable_forms:
+  - detention centers
+  - behavioral correction facilities
+  evidence:
+  - quote: such as detention centers and behavioral correction facilities
+    approx_offset: 52777
+  notes: B Series typical application
+  provenance:
+  - action: added
+    by: seed-agent-steelcraft
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-steelcraft
+    date: '2026-08-26'
+- id: steelcraft_com-industries-0011
+  name: Retail
+  status: confirmed
+  acceptable_forms:
+  - Retail
+  - Retail entrances
+  evidence:
+  - quote: Retail entrances and back doors
+    approx_offset: 115257
+  notes: 'borderline (B): named as a door location (''Retail entrances and back doors'') rather than an industry
+    sentence; kept as segment designation | VERIFY 2026-08-26: agreed as a borderline application-domain segment.
+    FORM FLAG: bare ''Retail'' is credited by containment from privacy boilerplate (''visit our stores or retail
+    kiosks'', ''associated dealers or retailers'').'
+  provenance:
+  - action: added
+    by: seed-agent-steelcraft
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-steelcraft
+    date: '2026-08-26'
+- id: steelcraft_com-industries-0012
+  name: Data centers
+  status: confirmed
+  acceptable_forms:
+  - data centers
+  evidence:
+  - quote: Cold climates, very hot climates, or data centers where the transfer of heat is an important factor in
+      energy cost savings
+    approx_offset: 30139
+  notes: FT Series typical application; application-domain designation (B)
+  provenance:
+  - action: added
+    by: seed-agent-steelcraft
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-steelcraft
+    date: '2026-08-26'
+- id: steelcraft_com-industries-0013
+  name: Pharmaceutical
+  status: confirmed
+  acceptable_forms:
+  - pharmaceutical
+  evidence:
+  - quote: Industries that require sterile environments such as hospitals, labs, pharmaceutical, or food
+    approx_offset: 220907
+  notes: explicitly 'Industries that require...' framing on the stainless frames page - the clearest served-industry
+    sentence in the corpus
+  provenance:
+  - action: added
+    by: seed-agent-steelcraft
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-steelcraft
+    date: '2026-08-26'
+- id: steelcraft_com-industries-0014
+  name: Food
+  status: confirmed
+  acceptable_forms:
+  - food
+  evidence:
+  - quote: Industries that require sterile environments such as hospitals, labs, pharmaceutical, or food
+    approx_offset: 220907
+  notes: 'same explicit ''Industries'' sentence; bare ''food'' is a short form but has no competing sense in this
+    corpus | VERIFY 2026-08-26: agreed - it sits inside the corpus''s only explicit ''Industries that require...''
+    sentence. FORM FLAG: bare ''food'' is 4 chars; clean in this snapshot (1 occurrence) but containment-fragile.'
+  provenance:
+  - action: added
+    by: seed-agent-steelcraft
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-steelcraft
+    date: '2026-08-26'
+- id: steelcraft_com-industries-0015
+  name: Laboratories
+  status: confirmed
+  acceptable_forms:
+  - labs
+  - laboratories
+  evidence:
+  - quote: Industries that require sterile environments such as hospitals, labs, pharmaceutical, or food
+    approx_offset: 220907
+  notes: 'same explicit sentence | VERIFY 2026-08-26: agreed. Checked the competing sense: ''third party lab testing''
+    does not collide with the ''labs'' form under containment in either direction; only a bare ''lab'' return would
+    credit, which is correct.'
+  provenance:
+  - action: added
+    by: seed-agent-steelcraft
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-steelcraft
+    date: '2026-08-26'
+- id: steelcraft_com-industries-0016
+  name: Residential shelters
+  status: confirmed
+  acceptable_forms:
+  - residential shelters
+  evidence:
+  - quote: It is ideal for commercial applications in tornado alley, residential shelters, and school gymnasiums
+      constructed as tornado shelters in K12 and university facilities.
+    approx_offset: 174088
+  notes: 'borderline (B): homeowner safe-room segment for Paladin/FP tornado products; application-domain more than
+    industry'
+  provenance:
+  - action: added
+    by: seed-agent-steelcraft
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-steelcraft
+    date: '2026-08-26'
+false_friends:
+- form: Defense
+  reason: 'word-association (code W): only ''tough defense against harsh weather and corrosion'' (LS doors, FS frames)
+    - the corpus''s textbook W case'
+- form: Insurance
+  reason: occurs only inside 'Texas Department of Insurance (TDI)' windstorm listing body - not a served industry
+- form: Energy
+  reason: occurs only inside 'Leadership in Energy and Environmental Design (LEED)' and 'energy cost savings' -
+    word-association
+- form: Security
+  reason: parent positioning ('Allegion... global pioneer in safety and security') and product function ('security,
+    safety and design requirements') - not a served-industry designation of the subject
+- form: Distribution
+  reason: history line ('founded... as a building products distribution company', 1933) and the Distributor sales
+    channel - not a served industry
+- form: Manufacturing
+  reason: the subject's OWN activity presented as a word (code O), e.g. 'door and frame manufacturing footprint'
+- form: Airports
+  reason: 'word-association: ''buildings located near airports and highways'' (STC page) - proximity context, not
+    a served sector'
+- form: tornado alley
+  reason: geographic application region, not an industry
+- form: hurricane zones
+  reason: geographic application region ('commercial buildings in hurricane zones near the Atlantic coast, and Gulf
+    of Mexico')
+- form: coastal regions
+  reason: geography from windstorm prose, not a served industry
+- form: Latin America
+  reason: sales territory in the regional sales-office list, not a served industry (same for Caribbean, Mountain
+    States, etc.)
+- form: Steel
+  reason: the subject's material/product ('Why Steel' nav) - not an industry served

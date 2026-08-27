@@ -1,0 +1,12 @@
+sweeps:
+  - name: machine_nouns
+    ignore_case: true
+    pattern: '\b(?:lathes?|machining centers?|press brakes?|EDM|CMM|grinders?|welders?|robots?|saws?|milling machines?|injection molding machines?|die casting machines?|laser cutters?)\b'
+  - name: dealer_brands
+    ignore_case: false
+    pattern: '\b(?:HURCO|CHEVALIER|DAINICHI|WELLSAW|NOMURA|UNI-HYDRO|SHIMADA|WINEMA|FANUC|Mazak|Haas|Okuma|DMG MORI)\b'
+notes: >
+  dealer_brands is case-sensitive on purpose (SHARP vs "sharp"); it exists for
+  the acimachine scale subject, where enumerated expectations are sampled.
+  The field's dominant defect is products-returned-as-equipment (68/75 on
+  steelcraft) — that is the judged D code plus the cross_field overlap metric.

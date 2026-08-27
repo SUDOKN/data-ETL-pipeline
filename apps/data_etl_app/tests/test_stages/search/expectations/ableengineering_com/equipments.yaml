@@ -1,0 +1,136 @@
+subject: ableengineering.com
+field: equipments
+snapshot:
+  file: apps/data_etl_app/src/data_etl_app/knowledge/sample_scraped_texts/ableengineering.com.txt
+  sha256: ffc5c3234c4dff2387887d61903a00d5320905f296fcff4b731c3f8d76529eb9
+eval_set_version: 2
+expected_empty: false
+notes: 'Sparse-generic by design: category-level machine mentions only, no makes/models of shop equipment anywhere in the
+  file. SECOND-PASS VERIFICATION 2026-08-26 (verify-agent-ableengineering): all 5 evidence quotes located verbatim; 4 confirmed,
+  1 disputed (0005 CNC shot peen - a process phrase, no machine named). The whole field rests on two sentences (the /processes/
+  MACHINING & GRINDING paragraph and the landing-gear ''Machining -'' line), so windowed recall for equipments on this subject
+  is effectively a single-window measurement. All 6 false friends checked and agreed; ''original equipment'' was verified
+  to occur only inside the OEM-performance clause (8x).'
+entries:
+- id: ableengineering_com-equipments-0001
+  name: Five-axis CNC mills
+  status: confirmed
+  acceptable_forms:
+  - five-axis CNC mills
+  - CNC mills
+  evidence:
+  - quote: Able has several five-axis CNC mills, grinders and lathes, as well as horizontal and vertical honing and a five-axis
+      CNC gantry.
+    approx_offset: 5071
+  notes: 'generic-but-machine category (B); ''several five-axis CNC mills'' | VERIFY 2026-08-26 (second pass): ''Utilizing
+    the latest CNC technology, Able has several five-axis CNC mills'' - machines owned and counted, unambiguous.'
+  provenance:
+  - action: added
+    by: seed-agent-ableengineering
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-ableengineering
+    date: '2026-08-26'
+- id: ableengineering_com-equipments-0002
+  name: Grinders (CNC and manual)
+  status: confirmed
+  acceptable_forms:
+  - grinders
+  - Grind (CNC and Manual)
+  evidence:
+  - quote: Able has several five-axis CNC mills, grinders and lathes, as well as horizontal and vertical honing and a five-axis
+      CNC gantry.
+    approx_offset: 5071
+  - quote: Machining – Lathe (CNC and Manual), Grind (CNC and Manual), Mill (CNC and Manual)
+    approx_offset: 42308
+  notes: 'generic-but-machine category (B) | VERIFY 2026-08-26 (second pass): ''grinders'' in the same sentence is a machine
+    noun owned by the subject. Flag: the second acceptable form ''Grind (CNC and Manual)'' is a PROCESS item from the landing-gear
+    ''Machining -'' list and is simultaneously an acceptable form of process_caps-0005, so equipment recall can be satisfied
+    by a returned process phrase.'
+  provenance:
+  - action: added
+    by: seed-agent-ableengineering
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-ableengineering
+    date: '2026-08-26'
+- id: ableengineering_com-equipments-0003
+  name: Lathes (CNC and manual)
+  status: confirmed
+  acceptable_forms:
+  - lathes
+  - Lathe (CNC and Manual)
+  evidence:
+  - quote: Able has several five-axis CNC mills, grinders and lathes, as well as horizontal and vertical honing and a five-axis
+      CNC gantry.
+    approx_offset: 5071
+  - quote: Machining – Lathe (CNC and Manual), Grind (CNC and Manual), Mill (CNC and Manual)
+    approx_offset: 42308
+  notes: 'generic-but-machine category (B) | VERIFY 2026-08-26 (second pass): ''lathes'' in the same sentence is a machine
+    noun owned by the subject. Flag: ''Lathe (CNC and Manual)'' is the same process-list item as above and is also a form
+    of process_caps-0006.'
+  provenance:
+  - action: added
+    by: seed-agent-ableengineering
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-ableengineering
+    date: '2026-08-26'
+- id: ableengineering_com-equipments-0004
+  name: Five-axis CNC gantry
+  status: confirmed
+  acceptable_forms:
+  - five-axis CNC gantry
+  - CNC gantry
+  evidence:
+  - quote: Able has several five-axis CNC mills, grinders and lathes, as well as horizontal and vertical honing and a five-axis
+      CNC gantry.
+    approx_offset: 5071
+  notes: 'the most specific machine designation in the file | VERIFY 2026-08-26 (second pass): ''as well as horizontal and
+    vertical honing and a five-axis CNC gantry'' - the most specific machine phrase in the file, single occurrence.'
+  provenance:
+  - action: added
+    by: seed-agent-ableengineering
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-ableengineering
+    date: '2026-08-26'
+- id: ableengineering_com-equipments-0005
+  name: CNC shot peen equipment
+  status: disputed
+  acceptable_forms:
+  - CNC shot peen
+  evidence:
+  - quote: NADCAP-approved, Able has state-of-the-art CNC shot peen and manual capabilities.
+    approx_offset: 6002
+  notes: 'borderline: phrased as ''CNC shot peen and manual capabilities'' - machine implied, never named as a model | DISPUTED
+    by second pass 2026-08-26: the only occurrence is ''NADCAP-approved, Able has state-of-the-art CNC shot peen and manual
+    capabilities.'' The CNC-versus-manual contrast describes how the shot-peen PROCESS is run; no machine is named or counted
+    (compare ''has several five-axis CNC mills, grinders and lathes''). Under the equipments table this reads P (process name),
+    and the same surface form is already the must-find form of process_caps-0016, so gating equipment recall on it would score
+    a process phrase as a machine.'
+  provenance:
+  - action: added
+    by: seed-agent-ableengineering
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: disputed
+    by: verify-agent-ableengineering
+    date: '2026-08-26'
+false_friends:
+- form: machine shop
+  reason: facility/department name (taxonomy S), not a machine designation
+- form: air compressors
+  reason: facility energy infrastructure in the NATA sustainability press release, not production equipment
+- form: Energy Management System
+  reason: facility HVAC/energy software in press release, not shop equipment
+- form: motion-sensor lighting
+  reason: facility lighting in sustainability press release
+- form: original equipment
+  reason: appears only in 'meet or exceed the performance of original equipment' (OEM phrase), not a machine
+- form: Bell 407
+  reason: customer aircraft platform, not shop equipment; likewise Boeing 737, AS350 etc.

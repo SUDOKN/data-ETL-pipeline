@@ -1,0 +1,720 @@
+subject: alecmfg.com
+field: process_caps
+snapshot:
+  file: apps/data_etl_app/src/data_etl_app/knowledge/sample_scraped_texts/alecmfg.com.txt
+  sha256: f192654eaafbb44b699ffb23865174c401a604f230364fdf8d21a28c2cc245d8
+eval_set_version: 2
+expected_empty: false
+notes: The six service lines live here, not in products. Case studies name many concrete shop operations (blanking
+  through laser finishing); inspection/testing entries follow the locked carve-out that measurement IS an operation.
+entries:
+- id: alecmfg_com-process_caps-0001
+  name: CNC machining
+  status: confirmed
+  acceptable_forms:
+  - CNC machining
+  - CNC machined
+  - 5-axis CNC machining
+  - 4-axis machining
+  evidence:
+  - quote: CNC machining offers unmatched accuracy and versatility for your prototypes and production parts
+    approx_offset: 7721
+  - quote: 5-axis simultaneous CNC machining recommended
+    approx_offset: 96616
+  - quote: 4-axis machining + precision milling
+    approx_offset: 119935
+  provenance:
+  - action: added
+    by: seed-agent-alecmfg
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-alecmfg
+    date: '2026-08-26'
+- id: alecmfg_com-process_caps-0002
+  name: CNC milling
+  status: confirmed
+  acceptable_forms:
+  - CNC milling
+  - milling
+  evidence:
+  - quote: CNC milling and turning are two methods used to remove material from a workpiece
+    approx_offset: 15384
+  - quote: 'Micro-feature 5-axis milling: φ0.5 mm tools'
+    approx_offset: 52848
+  provenance:
+  - action: added
+    by: seed-agent-alecmfg
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-alecmfg
+    date: '2026-08-26'
+- id: alecmfg_com-process_caps-0003
+  name: CNC turning
+  status: confirmed
+  acceptable_forms:
+  - CNC turning
+  - turning
+  evidence:
+  - quote: CNC turning involves a stationary cutting tool and a rotating workpiece to produce cylindrical parts
+    approx_offset: 15621
+  provenance:
+  - action: added
+    by: seed-agent-alecmfg
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-alecmfg
+    date: '2026-08-26'
+- id: alecmfg_com-process_caps-0004
+  name: 3D printing
+  status: confirmed
+  acceptable_forms:
+  - 3D printing
+  evidence:
+  - quote: 3D printing revolutionizes prototyping by turning your digital designs into tangible reality
+    approx_offset: 8045
+  - quote: precision aerospace CNC machining and industrial 3D printing for aerospace components
+    approx_offset: 41642
+  provenance:
+  - action: added
+    by: seed-agent-alecmfg
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-alecmfg
+    date: '2026-08-26'
+- id: alecmfg_com-process_caps-0005
+  name: SLA printing (stereolithography)
+  status: confirmed
+  acceptable_forms:
+  - SLA
+  evidence:
+  - quote: SLA/SLS printed prototypes for functional validation and assembly fitting
+    approx_offset: 44071
+  - quote: including SLS and SLA rapid prototyping machines
+    approx_offset: 21373
+  notes: '3-char form: containment can false-credit e.g. ''translation''; judged pass should read the window'
+  provenance:
+  - action: added
+    by: seed-agent-alecmfg
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-alecmfg
+    date: '2026-08-26'
+- id: alecmfg_com-process_caps-0006
+  name: SLS printing (selective laser sintering)
+  status: confirmed
+  acceptable_forms:
+  - SLS
+  evidence:
+  - quote: SLA/SLS printed prototypes for functional validation and assembly fitting
+    approx_offset: 44071
+  - quote: including SLS and SLA rapid prototyping machines
+    approx_offset: 21373
+  provenance:
+  - action: added
+    by: seed-agent-alecmfg
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-alecmfg
+    date: '2026-08-26'
+- id: alecmfg_com-process_caps-0007
+  name: injection molding
+  status: confirmed
+  acceptable_forms:
+  - injection molding
+  evidence:
+  - quote: Injection molding is the cornerstone of mass production
+    approx_offset: 9103
+  provenance:
+  - action: added
+    by: seed-agent-alecmfg
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-alecmfg
+    date: '2026-08-26'
+- id: alecmfg_com-process_caps-0008
+  name: urethane casting
+  status: confirmed
+  acceptable_forms:
+  - urethane casting
+  evidence:
+  - quote: Urethane casting offers a flexible and cost-efficient approach to prototype and small batch production
+    approx_offset: 8753
+  provenance:
+  - action: added
+    by: seed-agent-alecmfg
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-alecmfg
+    date: '2026-08-26'
+- id: alecmfg_com-process_caps-0009
+  name: sheet metal fabrication
+  status: confirmed
+  acceptable_forms:
+  - sheet metal fabrication
+  - sheet metal processing
+  evidence:
+  - quote: Sheet metal fabrication provides versatile solutions for creating durable, high-quality metal parts and
+      assemblies
+    approx_offset: 8405
+  - quote: our extensive experience in precision aluminum alloy sheet metal processing
+    approx_offset: 54895
+  provenance:
+  - action: added
+    by: seed-agent-alecmfg
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-alecmfg
+    date: '2026-08-26'
+- id: alecmfg_com-process_caps-0010
+  name: die casting
+  status: confirmed
+  acceptable_forms:
+  - die casting
+  evidence:
+  - quote: Die casting is your go-to for high-volume production of metal parts with superior strength and tight
+      tolerances
+    approx_offset: 9434
+  provenance:
+  - action: added
+    by: seed-agent-alecmfg
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-alecmfg
+    date: '2026-08-26'
+- id: alecmfg_com-process_caps-0011
+  name: surface finishing
+  status: confirmed
+  acceptable_forms:
+  - surface finishing
+  evidence:
+  - quote: We offer a full array of surface finishing treatments so that your parts look, feel, and perform like
+      they are designed to.
+    approx_offset: 15921
+  provenance:
+  - action: added
+    by: seed-agent-alecmfg
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-alecmfg
+    date: '2026-08-26'
+- id: alecmfg_com-process_caps-0012
+  name: anodizing
+  status: confirmed
+  acceptable_forms:
+  - anodizing
+  - anodized
+  - anodize
+  evidence:
+  - quote: After machining, all housings underwent Type II matte black anodizing
+    approx_offset: 57827
+  - quote: Clear anodized (Type II) with masked grounding pads
+    approx_offset: 73009
+  provenance:
+  - action: added
+    by: seed-agent-alecmfg
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-alecmfg
+    date: '2026-08-26'
+- id: alecmfg_com-process_caps-0013
+  name: polishing
+  status: confirmed
+  acceptable_forms:
+  - polishing
+  - Polished
+  evidence:
+  - quote: Exceptional surface quality without polishing
+    approx_offset: 104073
+  - quote: Polishing and Finishing, Quality Management, and Engineering & Project Management
+    approx_offset: 20253
+  provenance:
+  - action: added
+    by: seed-agent-alecmfg
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-alecmfg
+    date: '2026-08-26'
+- id: alecmfg_com-process_caps-0014
+  name: abrasive blasting
+  status: confirmed
+  acceptable_forms:
+  - Micro-blasting
+  - Blasted
+  - blasting
+  evidence:
+  - quote: Micro-blasting
+    approx_offset: 51783
+  - quote: Blasted + epoxy coated (offshore marine coating)
+    approx_offset: 106943
+  provenance:
+  - action: added
+    by: seed-agent-alecmfg
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-alecmfg
+    date: '2026-08-26'
+- id: alecmfg_com-process_caps-0015
+  name: anodize sealing
+  status: confirmed
+  acceptable_forms:
+  - Sealing
+  evidence:
+  - quote: Sealing
+    approx_offset: 51928
+  notes: 'single-word evidence: the DK case''s flattened surface-treatment table; the row''s parameters cell is
+    ''Nickel-based duplex process'''
+  provenance:
+  - action: added
+    by: seed-agent-alecmfg
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-alecmfg
+    date: '2026-08-26'
+- id: alecmfg_com-process_caps-0016
+  name: passivation
+  status: confirmed
+  acceptable_forms:
+  - passivation
+  evidence:
+  - quote: Medical-grade cleaning + passivation
+    approx_offset: 120008
+  - quote: We implemented triple-filtered water for cleaning/passivation
+    approx_offset: 121271
+  provenance:
+  - action: added
+    by: seed-agent-alecmfg
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-alecmfg
+    date: '2026-08-26'
+- id: alecmfg_com-process_caps-0017
+  name: epoxy coating
+  status: confirmed
+  acceptable_forms:
+  - epoxy coated
+  - epoxy coating
+  evidence:
+  - quote: Blasted + epoxy coated (offshore marine coating)
+    approx_offset: 106943
+  provenance:
+  - action: added
+    by: seed-agent-alecmfg
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-alecmfg
+    date: '2026-08-26'
+- id: alecmfg_com-process_caps-0018
+  name: welding
+  status: confirmed
+  acceptable_forms:
+  - welding
+  - Welded
+  evidence:
+  - quote: U.S. Oil & Gas Client | Integrated Welding and CNC Machining of Structural Frames for Offshore Skid Systems
+    approx_offset: 93802
+  - quote: Welded frames were fabricated by ASME-certified welders using proprietary jigs to control deformation
+    approx_offset: 108296
+  provenance:
+  - action: added
+    by: seed-agent-alecmfg
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-alecmfg
+    date: '2026-08-26'
+- id: alecmfg_com-process_caps-0019
+  name: bending
+  status: confirmed
+  acceptable_forms:
+  - bending
+  evidence:
+  - quote: our precision cutting, bending, and finishing techniques ensure parts meet your exact specifications
+    approx_offset: 8588
+  - quote: developed optimized multi-process bending and stamping plans
+    approx_offset: 56918
+  provenance:
+  - action: added
+    by: seed-agent-alecmfg
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-alecmfg
+    date: '2026-08-26'
+- id: alecmfg_com-process_caps-0020
+  name: stamping
+  status: confirmed
+  acceptable_forms:
+  - stamping
+  evidence:
+  - quote: developed optimized multi-process bending and stamping plans
+    approx_offset: 56918
+  provenance:
+  - action: added
+    by: seed-agent-alecmfg
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-alecmfg
+    date: '2026-08-26'
+- id: alecmfg_com-process_caps-0021
+  name: blanking
+  status: confirmed
+  acceptable_forms:
+  - blanking
+  evidence:
+  - quote: 'Tight Timeline: 10 days to complete blanking, bending, welding, anodizing, full inspection, reporting,
+      and international logistics'
+    approx_offset: 56495
+  provenance:
+  - action: added
+    by: seed-agent-alecmfg
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-alecmfg
+    date: '2026-08-26'
+- id: alecmfg_com-process_caps-0022
+  name: plasma cutting
+  status: confirmed
+  acceptable_forms:
+  - CNC plasma
+  - plasma
+  evidence:
+  - quote: All steel plates were cut and pre-machined in-house from ASTM A36 using CNC plasma and mill
+    approx_offset: 108202
+  provenance:
+  - action: added
+    by: seed-agent-alecmfg
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-alecmfg
+    date: '2026-08-26'
+- id: alecmfg_com-process_caps-0023
+  name: heat treatment / stress relieving
+  status: confirmed
+  acceptable_forms:
+  - heat treatment
+  - stress-relieved
+  - stress-relief
+  - stress relieving
+  evidence:
+  - quote: each unit was stress-relieved at 620°C in our local heat treatment facility
+    approx_offset: 108415
+  - quote: Material choice and stress-relief strategies were critical.
+    approx_offset: 128098
+  provenance:
+  - action: added
+    by: seed-agent-alecmfg
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-alecmfg
+    date: '2026-08-26'
+- id: alecmfg_com-process_caps-0024
+  name: drilling
+  status: confirmed
+  acceptable_forms:
+  - drilling
+  evidence:
+  - quote: High-speed drilling using progressive pilot holes
+    approx_offset: 51574
+  - quote: using multi-axis interpolation and progressive drilling
+    approx_offset: 51137
+  provenance:
+  - action: added
+    by: seed-agent-alecmfg
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-alecmfg
+    date: '2026-08-26'
+- id: alecmfg_com-process_caps-0025
+  name: reaming
+  status: confirmed
+  acceptable_forms:
+  - reaming
+  evidence:
+  - quote: H7 reaming for tolerance-critical bores
+    approx_offset: 51672
+  provenance:
+  - action: added
+    by: seed-agent-alecmfg
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-alecmfg
+    date: '2026-08-26'
+- id: alecmfg_com-process_caps-0026
+  name: tapping
+  status: confirmed
+  acceptable_forms:
+  - tapped holes
+  - tapping
+  evidence:
+  - quote: Two through-holes + M6 tapped holes + lateral counterbores
+    approx_offset: 76995
+  notes: 'borderline: named only via the feature ''tapped holes'''
+  provenance:
+  - action: added
+    by: seed-agent-alecmfg
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-alecmfg
+    date: '2026-08-26'
+- id: alecmfg_com-process_caps-0027
+  name: laser finishing
+  status: confirmed
+  acceptable_forms:
+  - laser finishing
+  evidence:
+  - quote: Introduced laser finishing in critical areas
+    approx_offset: 57661
+  provenance:
+  - action: added
+    by: seed-agent-alecmfg
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-alecmfg
+    date: '2026-08-26'
+- id: alecmfg_com-process_caps-0028
+  name: medical-grade cleaning
+  status: confirmed
+  acceptable_forms:
+  - Medical-grade cleaning
+  - cleaning
+  evidence:
+  - quote: Medical-grade cleaning + passivation
+    approx_offset: 120008
+  provenance:
+  - action: added
+    by: seed-agent-alecmfg
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-alecmfg
+    date: '2026-08-26'
+- id: alecmfg_com-process_caps-0029
+  name: rapid prototyping
+  status: confirmed
+  acceptable_forms:
+  - rapid prototyping
+  - prototyping
+  evidence:
+  - quote: From rapid prototyping to small scale production runs
+    approx_offset: 8163
+  - quote: including SLS and SLA rapid prototyping machines
+    approx_offset: 21373
+  provenance:
+  - action: added
+    by: seed-agent-alecmfg
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-alecmfg
+    date: '2026-08-26'
+- id: alecmfg_com-process_caps-0030
+  name: low-volume production
+  status: confirmed
+  acceptable_forms:
+  - low-volume production
+  - low-volume manufacturing
+  - small batch production
+  evidence:
+  - quote: From cutting-edge prototyping to low-volume production, our advanced techniques ensure
+    approx_offset: 7408
+  notes: 'borderline: production-scale capability rather than a distinct operation'
+  provenance:
+  - action: added
+    by: seed-agent-alecmfg
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-alecmfg
+    date: '2026-08-26'
+- id: alecmfg_com-process_caps-0031
+  name: CMM inspection
+  status: confirmed
+  acceptable_forms:
+  - CMM inspection
+  - inspected via CMM
+  - CMM
+  evidence:
+  - quote: inspected via CMM for hole concentricity, flange flatness, and ventilation slot dimensions
+    approx_offset: 58068
+  - quote: 100% CMM inspection on all critical dimensions
+    approx_offset: 127633
+  notes: inspection/measurement ARE operations (locked carve-out)
+  provenance:
+  - action: added
+    by: seed-agent-alecmfg
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-alecmfg
+    date: '2026-08-26'
+- id: alecmfg_com-process_caps-0032
+  name: first-article inspection
+  status: confirmed
+  acceptable_forms:
+  - First-article inspection
+  evidence:
+  - quote: First-article inspection confirmed hole position accuracy within ±0.015mm
+    approx_offset: 57399
+  provenance:
+  - action: added
+    by: seed-agent-alecmfg
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-alecmfg
+    date: '2026-08-26'
+- id: alecmfg_com-process_caps-0033
+  name: optical emission spectrometry
+  status: confirmed
+  acceptable_forms:
+  - optical emission spectrometry
+  - (OES)
+  evidence:
+  - quote: we performed optical emission spectrometry (OES) and hardness validation to confirm conformity
+    approx_offset: 69613
+  notes: 'form kept as ''(OES)'' with parens: bare ''oes'' is a substring of common words like ''does'''
+  provenance:
+  - action: added
+    by: seed-agent-alecmfg
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-alecmfg
+    date: '2026-08-26'
+- id: alecmfg_com-process_caps-0034
+  name: hardness testing
+  status: confirmed
+  acceptable_forms:
+  - hardness validation
+  - hardness testing
+  evidence:
+  - quote: we performed optical emission spectrometry (OES) and hardness validation to confirm conformity
+    approx_offset: 69613
+  provenance:
+  - action: added
+    by: seed-agent-alecmfg
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-alecmfg
+    date: '2026-08-26'
+- id: alecmfg_com-process_caps-0035
+  name: mold design
+  status: confirmed
+  acceptable_forms:
+  - mold design
+  evidence:
+  - quote: Our expertise in mold design and process optimization ensures consistent results
+    approx_offset: 9251
+  notes: 'borderline: engineering activity tied to injection molding'
+  provenance:
+  - action: added
+    by: seed-agent-alecmfg
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-alecmfg
+    date: '2026-08-26'
+- id: alecmfg_com-process_caps-0036
+  name: DFM (Design for Manufacturing)
+  status: confirmed
+  acceptable_forms:
+  - DFM
+  - Design for Manufacturing
+  evidence:
+  - quote: a bilingual DFM (Design for Manufacturing) report
+    approx_offset: 124303
+  - quote: DFM Optimization
+    approx_offset: 52503
+  notes: 'borderline: engineering service, not an operation on the work'
+  provenance:
+  - action: added
+    by: seed-agent-alecmfg
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-alecmfg
+    date: '2026-08-26'
+- id: alecmfg_com-process_caps-0037
+  name: CAM / toolpath programming
+  status: confirmed
+  acceptable_forms:
+  - CAM Programming
+  - Toolpath Programming
+  - toolpath
+  evidence:
+  - quote: CAM Programming & 5-Axis Toolpath Design
+    approx_offset: 103059
+  - quote: Toolpath Programming
+    approx_offset: 97646
+  notes: 'borderline: programming step upstream of machining'
+  provenance:
+  - action: added
+    by: seed-agent-alecmfg
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-alecmfg
+    date: '2026-08-26'
+- id: alecmfg_com-process_caps-0038
+  name: insert installation
+  status: confirmed
+  acceptable_forms:
+  - insert installation
+  - Helicoil Installation
+  evidence:
+  - quote: Helicoil Installation & Inspection
+    approx_offset: 73720
+  - quote: Proper insert installation and quality control
+    approx_offset: 74533
+  provenance:
+  - action: added
+    by: seed-agent-alecmfg
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-alecmfg
+    date: '2026-08-26'
+false_friends:
+- form: etching
+  reason: appears only as a client's 'etching equipment' (the subject machined components FOR it); zero subject-operation
+    sense
+- form: wafer handling
+  reason: the semiconductor client's own system being upgraded, not an operation of the subject
+- form: manufacturing
+  reason: generic (G)
+- form: production
+  reason: 'generic (G): ''production lines'', ''mass production'''
+- form: Quality Management
+  reason: facility zone name / business function (Z), not an operation on the work
+- form: Engineering & Project Management
+  reason: facility zone name / business function (Z)
+- form: Manual Work
+  reason: facility zone name with no operation content (G)
+- form: packaging
+  reason: dominant sense is protective shipment packaging / logistics (Z); 'packaging lines' are a client's product

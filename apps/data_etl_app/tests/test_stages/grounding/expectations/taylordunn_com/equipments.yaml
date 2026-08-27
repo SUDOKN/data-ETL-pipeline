@@ -1,0 +1,38 @@
+subject: taylordunn.com
+field: equipments
+expected: []
+traps:
+- name: WordPress
+  kind: third_party
+  note: CMS platform listed in the cookie table as a functional-cookie vendor; builds the website, not
+    manufacturing equipment.
+- name: Elementor
+  kind: third_party
+  note: Website page-builder plugin (anonymous statistics cookie), not equipment.
+- name: WPForms
+  kind: third_party
+  note: Website forms plugin (preferences/marketing cookie), not equipment.
+- name: Google Maps
+  kind: third_party
+  note: Embedded map widget (marketing cookie); a third-party web service, not owned/operated machinery.
+- name: Google Ads
+  kind: third_party
+  note: Third-party ad-tracking service listed in the cookie table.
+- name: Google Adsense
+  kind: third_party
+  note: Third-party ad service listed in the cookie table.
+- name: Google Fonts
+  kind: third_party
+  note: Third-party web-font service listed in the cookie table.
+- name: Google reCAPTCHA
+  kind: third_party
+  note: Third-party bot-protection widget listed in the cookie table.
+- name: YouTube
+  kind: third_party
+  note: Embedded video platform (marketing cookie), a third-party service.
+- name: Facebook
+  kind: third_party
+  note: Social platform embed (marketing/functional cookie), a third-party service.
+- name: LinkedIn
+  kind: third_party
+  note: Social platform embed (functional/marketing/statistics/preferences cookie), a third-party service.
